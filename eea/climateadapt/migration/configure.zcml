@@ -18,6 +18,13 @@
     permission="cmf.ManagePortal"
     />
 
+  <browser:page
+    name="volto_migrate_all_content"
+    for="*"
+    class=".scripts.MigrateToVolto"
+    permission="cmf.ManagePortal"
+    />
+
   <adapter
       factory=".cover.MigrateCover"
       />

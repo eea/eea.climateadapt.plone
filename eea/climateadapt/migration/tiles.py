@@ -1,14 +1,15 @@
 import logging
-from uuid import uuid4
 from collections import namedtuple
+from uuid import uuid4
+
 from plone import api
 from plone.app.uuid.utils import uuidToObject
-from zope.component.hooks import getSite
-from Products.CMFPlone.CatalogTool import sortable_title
 from Products.CMFCore.utils import getToolByName
-
+from Products.CMFPlone.CatalogTool import sortable_title
+from zope.component.hooks import getSite
 
 logger = logging.getLogger("eea.climateadapt")
+
 
 def assigned(tile):
     """Return the list of objects stored in the tile as UUID. If an UUID
@@ -37,7 +38,7 @@ def assigned(tile):
                 # maybe the user has no permission to access the object
                 # so we try to get it bypassing the restrictions
                 catalog = api.portal.get_tool("portal_catalog")
-                #brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
+                # brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
                 brain = catalog.searchResults(UID=uuid, review_state='published')
 
                 if not brain:
@@ -48,12 +49,13 @@ def assigned(tile):
                     )
     return results
 
+
 Item = namedtuple(
     "Item", [
-        "id", 
-        "portal_type", 
-        "getId", 
-        "UID", 
+        "id",
+        "portal_type",
+        "getId",
+        "UID",
         "Title",
         "title",
         "Description",
@@ -65,6 +67,7 @@ Item = namedtuple(
         "sortable_title",
     ]
 )
+
 
 def relevant_items(obj, request, tile):
     site = getSite()
@@ -78,10 +81,10 @@ def relevant_items(obj, request, tile):
         obj_path = item.getPhysicalPath()
         site_path = site.getPhysicalPath()
         path = '/' + '/'.join(obj_path[len(site_path):])
-        
+
         if not item:
             continue
-        
+
         adapter = sortable_title(item)
         st = adapter()
         o = Item(
@@ -100,14 +103,13 @@ def relevant_items(obj, request, tile):
             st,
         )
         items.append(o)
-    
+
     combine = data.get("combine_results", False)
 
     if not combine:
         if items:
             if data.get("sortBy", "") == "NAME":
                 items = sorted(items, key=lambda o: o.sortable_title)
-
 
     for item in items:
         o = {
@@ -129,7 +131,7 @@ def relevant_items(obj, request, tile):
                 "review_state": item.review_state,
             }]
         }
-        
+
         results.append(o)
 
     return results

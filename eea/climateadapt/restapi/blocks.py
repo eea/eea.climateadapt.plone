@@ -48,8 +48,7 @@ class RelevantAceContentBlockSerializer(object):
         ace.data = block
         ace.current_lang = 'en'
 
-        # import pdb; pdb.set_trace()
-
         block['_v_results'] = ace.relevant_all_items()
 
         return block
+

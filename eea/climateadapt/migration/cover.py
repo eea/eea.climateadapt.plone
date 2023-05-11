@@ -1,22 +1,32 @@
 import json
 from uuid import uuid4
 
-from collective.cover.interfaces import ICover
-from collective.cover.tiles.richtext import IRichTextTile
-from eea.climateadapt.migration.interfaces import IMigrateToVolto
-from eea.climateadapt.tiles.richtext import IRichTextWithTitle
-from eea.climateadapt.tiles.search_acecontent import ISearchAceContentTile, IRelevantAceContentItemsTile
-from eea.climateadapt.tiles.shareinfo import IShareInfoTile
-from eea.climateadapt.config import DEFAULT_LOCATIONS
-from plone.app.contenttypes.interfaces import IFolder
-from plone.tiles.interfaces import ITileDataManager
-from zope.component import adapter
-from zope.interface import Interface, implementer
-from .fixes import fix_content
-from .utils import convert_to_blocks
-from .tiles import relevant_items
-from collective.cover.tiles.embed import IEmbedTile
 from bs4 import BeautifulSoup
+from collective.cover.interfaces import ICover
+from collective.cover.tiles.embed import IEmbedTile
+from collective.cover.tiles.richtext import IRichTextTile
+from eea.climateadapt.config import DEFAULT_LOCATIONS
+from eea.climateadapt.migration.interfaces import IMigrateToVolto
+from eea.climateadapt.tiles.cardslisting import ICardsTile
+from eea.climateadapt.tiles.richtext import IRichTextWithTitle
+from eea.climateadapt.tiles.search_acecontent import (
+    IFilterAceContentItemsTile, IRelevantAceContentItemsTile,
+    ISearchAceContentTile)
+from eea.climateadapt.tiles.shareinfo import IShareInfoTile
+from eea.climateadapt.tiles.transregional_select import \
+    ITransRegionalSelectTile
+from eea.climateadapt.translation.utils import get_current_language
+from eea.climateadapt.vocabulary import BIOREGIONS
+from plone.api import content
+from plone.app.contenttypes.interfaces import IFolder
+from plone.namedfile.file import NamedBlobImage
+from plone.tiles.interfaces import ITileDataManager
+from zope.component import adapter, getMultiAdapter
+from zope.interface import Interface, implementer
+
+from .fixes import fix_content
+from .tiles import relevant_items
+from .utils import convert_to_blocks
 
 
 def richtext_tile_to_blocks(tile_dm, obj, request):
@@ -42,6 +52,112 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
     }
 
 
+def share_info_tile_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    current_lang = get_current_language(obj, request)
+
+    def link_url():
+        type_ = data.get('shareinfo_type')
+        location, _t, factory = DEFAULT_LOCATIONS[type_]
+        location = '/' + current_lang + '/' + location
+        return "{0}/add?type={1}".format(location, factory)
+
+    blocks = [[make_uid(), {
+        "@type": "callToActionBlock",
+        "href": link_url(),
+        "styles": {
+            "icon": "ri-share-line",
+            "theme": "primary",
+            "align": "left"
+        },
+        "text": "Share your information",  # TODO: translation
+        "target": "_self",
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
+
+def cards_tile_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+
+    if tile_dm.tile.is_empty():
+        return {"blocks": []}
+
+    collection = tile_dm.tile.get_context()
+    query = collection.query
+
+    query.append({
+        "i": "path",
+        "o": "plone.app.querystring.operation.string.absolutePath",
+        "v": "/cca/en/metadata/organisations"
+    })
+
+    block_id = make_uid()
+
+    blocks = [[block_id, {
+        "@type": "listing",
+        "block": block_id,
+        "headlineTag": "h2",
+        "gridSize": "four",
+        "query": [],
+        "querystring": {
+            "query": query,
+        },
+        "variation": "cardsGallery"
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
+
+def embed_tile_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    embed = data.get("embed", None)
+
+    if '<video' in embed:
+        soup = BeautifulSoup(embed, "html.parser")
+        video = soup.find("video")
+        url = video.attrs.get('src')
+        preview_image = video.attrs.get('poster', None)
+        video_description = soup.get_text().replace('\n', '')
+
+        video_block = {
+            # "@type": "video", -not working for cmshare.eea.europa.eu
+            "@type": "nextCloudVideo",
+            "url": url,
+            "title": video_description,
+        }
+
+        if preview_image is not None:
+            video_block['preview_image'] = preview_image
+
+        return {
+            "blocks": [[make_uid(), video_block]]
+        }
+
+    elif 'discomap' or 'maps.arcgis' in embed:
+        soup = BeautifulSoup(embed, "html.parser")
+        iframe = soup.find("iframe")
+        url = iframe.attrs.get('src')
+
+        maps_block = {
+            "@type": "maps",
+            "align": "full",
+            "dataprotection": {},
+            "height": "100vh",
+            "url": url,
+        }
+
+        return {
+            "blocks": [[make_uid(), maps_block]]
+        }
+    print("Implement missing embed tile type.")
+    return None
+
+
 def search_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
 
@@ -64,96 +180,6 @@ def search_acecontent_to_block(tile_dm, obj, request):
     return {
         "blocks": blocks,
     }
-
-
-def share_info_tile_to_block(tile_dm, obj, request):
-    data = tile_dm.get()
-
-    def link_url():
-        type_ = data.get('shareinfo_type')
-        location, _t, factory = DEFAULT_LOCATIONS[type_]
-        location = '/en/' + location
-        return "{0}/add?type={1}".format(location, factory)
-
-    blocks = [[make_uid(), {
-        "@type": "callToActionBlock",
-        "href": link_url(),
-        "styles": {
-            "icon": "ri-share-line",
-            "theme": "primary",
-            "align": "left"
-        },
-        "text": "Share your information",  # TODO: translation
-        "target": "_self",
-    }]]
-
-    return {
-        "blocks": blocks,
-    }
-
-
-def embed_tile_to_block(tile_dm, obj, request):
-    data = tile_dm.get()
-    embed = data.get("embed", None)
-
-    if '<video' in embed:
-        soup = BeautifulSoup(embed, "html.parser")
-        video = soup.find("video")
-        url = video.attrs.get('src')
-        preview_image = video.attrs.get('poster', None)
-        video_description = soup.get_text().replace('\n', '')
-
-        video_title = {
-            "@type": "slate",
-            "plaintext": video_description,
-            "value": [
-                {
-                    "children": [
-                        {
-                            "text": video_description,
-                        }
-                    ],
-                    "type": "h3"
-                }
-            ]
-        }
-
-        video_caption = {
-            "@type": "slate",
-            "plaintext": video_description,
-            "value": [
-                {
-                    "children": [
-                        {
-                            "text": video_description,
-                        }
-                    ],
-                    "type": "p"
-                },
-            ]
-        }
-
-        video_block = {
-            # "@type": "video", -not working for cmshare.eea.europa.eu
-            "@type": "nextCloudVideo",
-            "url": url,
-        }
-
-        if preview_image is not None:
-            video_block['preview_image'] = preview_image
-
-        blocks = []
-        if len(video_description) > 1:
-            blocks.append([make_uid(), video_title])
-        blocks.append([make_uid(), video_block])
-        if len(video_description) > 1:
-            blocks.append([make_uid(), video_caption])
-        return {
-            "blocks": blocks
-        }
-
-    print("Implement missing embed tile type.")
-    return None
 
 
 def relevant_acecontent_to_block(tile_dm, obj, request):
@@ -184,15 +210,114 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
     }
 
 
+def filter_acecontent_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    macro_regions = data.get('macro_regions')
+    sortBy = None
+    trans_macro_regions = []
+    sortingValues = {
+        'effective': 'EFFECTIVE',
+        'modified': 'MODIFIED',
+        'getId': 'NAME'
+    }
+    otherRegions = {
+        'Macaronesia',
+        'Caribbean Area',
+        'Amazonia',
+        'Anatolian',
+        'Indian Ocean Area'
+    }
+    regions = [i for i in macro_regions if i not in otherRegions]
+
+    for region_name in regions:
+        if 'Other Regions' == region_name:
+            trans_macro_regions.append('Other Regions')
+        for k, v in BIOREGIONS.items():
+            if 'TRANS_MACRO' in k and v == region_name:
+                trans_macro_regions.append(k)
+
+    for k, v in sortingValues.items():
+        if v == data.get('sortBy'):
+            sortBy = k
+
+    blocks = [[make_uid(), {
+        "@type": "filterAceContent",
+        "title": data.get('title'),
+        "search_text": data.get('search_text'),
+        "origin_website": data.get('origin_website'),
+        "search_type": data.get('search_type'),
+        "element_type": data.get('element_type'),
+        "sector": data.get('sector'),
+        "special_tags": data.get('special_tags'),
+        'countries': data.get('countries'),
+        "macro_regions": trans_macro_regions,
+        "bio_regions": data.get('bio_regions'),
+        "funding_programme": data.get('funding_programme'),
+        "nr_items": data.get('nr_items'),
+        "sortBy": sortBy,
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
+
+def path(obj):
+    return "/" + "/".join(obj.absolute_url(relative=1).split('/')[2:])
+
+
+def region_select_to_block(tile_dm, obj, request):
+    countries = tile_dm.tile.countries()
+    img_name = countries[1][0].replace('.jpg', '_bg.png').decode('utf-8')
+    img_path = ("/cca/++theme++climateadaptv2/static/images/transnational/" + img_name).encode('utf-8')
+    fs_file = obj.restrictedTraverse(img_path)
+    fs_file.request = request
+    bits = fs_file().read()
+    parent = obj.aq_parent
+    contentType = img_name.endswith('jpg') and 'image/jpeg' or 'image/png'
+
+    imagefield = NamedBlobImage(
+        # TODO: are all images jpegs?
+        data=bits,
+        contentType=contentType,
+        filename=img_name,
+    )
+
+    image = content.create(
+        type="Image",
+        title=img_name,
+        image=imagefield,
+        container=parent,
+    )
+
+    data = tile_dm.get()
+
+    blocks = [
+        [make_uid(), {
+            "@type": "image",
+            "url": path(image)
+        }],
+        [make_uid(), {
+            "@type": "transRegionSelect",
+            "title": data.get('title'),
+        }]
+    ]
+
+    return {
+        "blocks": blocks,
+    }
+
+
 tile_converters = {
     IRichTextTile: richtext_tile_to_blocks,
     IRichTextWithTitle: richtext_tile_to_blocks,
     ISearchAceContentTile: search_acecontent_to_block,
     IRelevantAceContentItemsTile: relevant_acecontent_to_block,
+    IFilterAceContentItemsTile: filter_acecontent_to_block,
     IShareInfoTile: share_info_tile_to_block,
+    ITransRegionalSelectTile: region_select_to_block,
     IEmbedTile: embed_tile_to_block,
-
-
+    ICardsTile: cards_tile_to_block,
 }
 
 
@@ -338,10 +463,12 @@ class MigrateCover(object):
     def make_column_block(self, row):
         attributes = {}
         col_mapping = {
-            9: 'twoThirds',
+            2: 'oneThird',
             3: 'oneThird',
             4: 'oneThird',
             8: 'twoThirds',
+            9: 'twoThirds',
+            10: 'twoThirds',
             12: 'full',
         }
         children = row['children']
@@ -418,7 +545,9 @@ class MigrateCover(object):
                     column = self.make_column_block(row)
                     page_blocks.append(column)
                 else:
-                    tiles = columns[0]['children']
+                    tiles = columns[0].get('children', None)
+                    if tiles is None:
+                        continue
                     for tile in tiles:
                         tileid = tile['id']
                         data = self.convert_tile_to_volto_blocklist(tileid)
@@ -437,7 +566,6 @@ class MigrateCover(object):
         # TODO: ensure there's a page banner block (or title block)
 
         fix_content(self.context)
-        return "ok"
 
         # print(blocks)
         # return json.dumps({"blocks": blocks, "attributes": attributes})
@@ -453,9 +581,16 @@ class MigrateFolder(object):
 
     def __call__(self):
         obj = self.context
-        if "index_html" in obj.contentIds():
-            cover = obj["index_html"]
-            MigrateCover(cover, self.request).__call__()
+        default_page = obj.getProperty('default_page')
+        if not default_page and "index_html" in obj.contentIds():
+            default_page = 'index_html'
 
-        # if there's a cover with id index_html, use that as content
-        pass
+        if default_page:
+            cover = obj.restrictedTraverse(default_page)
+            if not getattr(cover.aq_inner.aq_self, 'blocks'):
+                migrate = getMultiAdapter((cover, self.request), IMigrateToVolto)
+                migrate()
+
+            self.context.blocks_layout = cover.blocks_layout
+            self.context.blocks = cover.blocks
+            self._p_changed = True
