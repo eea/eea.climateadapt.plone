@@ -267,45 +267,53 @@ def path(obj):
 
 
 def region_select_to_block(tile_dm, obj, request):
-    countries = tile_dm.tile.countries()
-    img_name = countries[1][0].replace('.jpg', '_bg.png').decode('utf-8')
-    img_path = ("/cca/++theme++climateadaptv2/static/images/transnational/" + img_name).encode('utf-8')
-    fs_file = obj.restrictedTraverse(img_path)
-    fs_file.request = request
-    bits = fs_file().read()
-    parent = obj.aq_parent
-    contentType = img_name.endswith('jpg') and 'image/jpeg' or 'image/png'
-
-    imagefield = NamedBlobImage(
-        # TODO: are all images jpegs?
-        data=bits,
-        contentType=contentType,
-        filename=img_name,
-    )
-
-    image = content.create(
-        type="Image",
-        title=img_name,
-        image=imagefield,
-        container=parent,
-    )
-
     data = tile_dm.get()
+    countries = tile_dm.tile.countries()
 
-    blocks = [
-        [make_uid(), {
-            "@type": "image",
-            "url": path(image)
-        }],
-        [make_uid(), {
-            "@type": "transRegionSelect",
-            "title": data.get('title'),
-        }]
-    ]
+    if countries:
+        img_name = countries[1][0].replace('.jpg', '_bg.png').decode('utf-8')
+        img_path = ("/cca/++theme++climateadaptv2/static/images/transnational/" + img_name).encode('utf-8')
+        fs_file = obj.restrictedTraverse(img_path)
+        fs_file.request = request
+        bits = fs_file().read()
+        parent = obj.aq_parent
+        contentType = img_name.endswith('jpg') and 'image/jpeg' or 'image/png'
 
-    return {
-        "blocks": blocks,
-    }
+        imagefield = NamedBlobImage(
+            # TODO: are all images jpegs?
+            data=bits,
+            contentType=contentType,
+            filename=img_name,
+        )
+
+        image = content.create(
+            type="Image",
+            title=img_name,
+            image=imagefield,
+            container=parent,
+        )
+
+        return {
+            "blocks": [
+                [make_uid(), {
+                    "@type": "image",
+                    "url": path(image)
+                }],
+                [make_uid(), {
+                    "@type": "transRegionSelect",
+                    "title": '',
+                }]
+            ],
+        }
+    else:
+        return {
+            "blocks": [
+                [make_uid(), {
+                    "@type": "transRegionSelect",
+                    "title": '',
+                }]
+            ],
+        }
 
 
 tile_converters = {
