@@ -503,6 +503,11 @@ class MigrateCover(object):
             blocks_layout = []
 
             for tile in column['children']:
+                if tile.get('id', None) is None:
+                    print("Implement row.")
+                    continue
+                    # TODO new row and columns case (recursive?)
+                    # /cca/en/knowledge/tools/adaptation-support-tool/step-3-2/
                 tile_data = self.convert_tile_to_volto_blocklist(tile['id'])
                 blocklist = tile_data.pop('blocks', [])
                 attributes.update(tile_data)
