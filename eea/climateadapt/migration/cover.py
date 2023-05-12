@@ -227,7 +227,10 @@ def filter_acecontent_to_block(tile_dm, obj, request):
         'Anatolian',
         'Indian Ocean Area'
     }
-    regions = [i for i in macro_regions if i not in otherRegions]
+    if macro_regions is not None:
+        regions = [i for i in macro_regions if i not in otherRegions]
+    else:
+        regions = []
 
     for region_name in regions:
         if 'Other Regions' == region_name:
@@ -272,7 +275,8 @@ def region_select_to_block(tile_dm, obj, request):
 
     if countries:
         img_name = countries[1][0].replace('.jpg', '_bg.png').decode('utf-8')
-        img_path = ("/cca/++theme++climateadaptv2/static/images/transnational/" + img_name).encode('utf-8')
+        img_path = (
+            "/cca/++theme++climateadaptv2/static/images/transnational/" + img_name).encode('utf-8')
         fs_file = obj.restrictedTraverse(img_path)
         fs_file.request = request
         bits = fs_file().read()
@@ -596,7 +600,8 @@ class MigrateFolder(object):
         if default_page:
             cover = obj.restrictedTraverse(default_page)
             if not getattr(cover.aq_inner.aq_self, 'blocks'):
-                migrate = getMultiAdapter((cover, self.request), IMigrateToVolto)
+                migrate = getMultiAdapter(
+                    (cover, self.request), IMigrateToVolto)
                 migrate()
 
             self.context.blocks_layout = cover.blocks_layout
