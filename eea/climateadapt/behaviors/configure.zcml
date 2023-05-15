@@ -36,6 +36,15 @@
             provides=".ccaevent.ICcaEvent"
           />
 
+      <plone:behavior
+        name="plone.shortname"
+        title="Short name"
+        description="Gives the ability to rename an item from its edit form."
+        factory=".id.ShortName"
+        provides=".id.IShortName"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
     </configure>
 
 </configure>
