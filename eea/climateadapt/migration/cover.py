@@ -270,7 +270,6 @@ def path(obj):
 
 
 def region_select_to_block(tile_dm, obj, request):
-    data = tile_dm.get()
     countries = tile_dm.tile.countries()
 
     if countries:
@@ -282,6 +281,8 @@ def region_select_to_block(tile_dm, obj, request):
         bits = fs_file().read()
         parent = obj.aq_parent
         contentType = img_name.endswith('jpg') and 'image/jpeg' or 'image/png'
+        images = parent.listFolderContents(contentFilter={"portal_type" : "Image"})
+        image = None
 
         imagefield = NamedBlobImage(
             # TODO: are all images jpegs?
@@ -290,12 +291,15 @@ def region_select_to_block(tile_dm, obj, request):
             filename=img_name,
         )
 
-        image = content.create(
-            type="Image",
-            title=img_name,
-            image=imagefield,
-            container=parent,
-        )
+        if not images:
+            image = content.create(
+                type="Image",
+                title=img_name,
+                image=imagefield,
+                container=parent,
+            )
+        else:
+            image = images[0]
 
         return {
             "blocks": [
