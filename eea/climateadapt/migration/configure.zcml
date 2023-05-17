@@ -21,7 +21,7 @@
   <browser:page
     name="volto_migrate_all_content"
     for="*"
-    class=".scripts.MigrateToVolto"
+    class=".site.MigrateSiteToVolto"
     permission="cmf.ManagePortal"
     />
 
