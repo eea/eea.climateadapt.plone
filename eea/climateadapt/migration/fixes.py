@@ -2,6 +2,13 @@
 """
 
 
+import logging
+
+from plone.app.multilingual.api import get_translation_manager
+
+logger = logging.getLogger()
+
+
 def fix_climate_services_toc(context):
     # TODO: make multilingual aware
 
@@ -30,3 +37,65 @@ fixers = [fix_climate_services_toc]
 def fix_content(content):
     for fixer in fixers:
         fixer(content)
+
+
+languages = ['de', 'fr', 'es', 'it', 'pl']
+
+top_level = {
+    '/cca/en/about': [],
+    '/cca/en/eu-adaptation-policy': [],
+    '/cca/en/countries-regions': [],
+    '/cca/en/knowledge': [],
+    '/cca/en/network': [],
+}
+
+
+def getpath(obj):
+    return "/" + obj.absolute_url(relative=1)
+
+
+def exclude(obj):
+    obj.exclude_from_nav = True
+    obj.reindexObject()     # update_metadata=True - only on p6
+
+
+def include(obj):
+    obj.exclude_from_nav = False
+    obj.reindexObject()     # update_metadata=True - only on p6
+
+
+def exclude_content_from_navigation(site):
+    main = site.restrictedTraverse('en')
+    for oid, obj in main.contentItems():
+        path = getpath(obj)
+        if path not in top_level:
+            exclude(obj)
+
+            logger.info("Excluded from nav: %s", path)
+
+            intl_mgr = get_translation_manager(obj)
+            for lang in languages:
+                trans = intl_mgr.get_translation(lang)
+
+                if trans is None:
+                    continue
+
+                exclude(trans)
+                logger.info("Excluded from nav: %s", getpath(trans))
+        else:
+            include(obj)
+
+            # children
+            # for child_path in top_level[path]:
+            #     child = obj[child_path]
+            #     exclude(child)
+
+
+site_fixers = [
+    exclude_content_from_navigation
+]
+
+
+def fix_site(site):
+    for fixer in site_fixers:
+        fixer(site)
