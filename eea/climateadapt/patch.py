@@ -12,6 +12,8 @@ from plone.restapi.serializer.summary import (
     NON_METADATA_ATTRIBUTES,
     DEFAULT_METADATA_FIELDS,
 )
+from plone.app.event.base import get_events
+from plone.app.event.base import RET_MODE_ACCESSORS
 
 
 def getCache(settings):
@@ -125,5 +127,44 @@ def getTerm(self, userid):
     user = self._users.getUserById(userid, None)
     if user:
         fullname = user.getProperty('fullname', None) or userid
-    
+
     return SimpleTerm(userid, token, fullname)
+
+
+# Refs #252993 https://github.com/plone/plone.app.event/blob/1.2.x/plone/app/event/browser/event_listing.py
+def _get_events(self, ret_mode=RET_MODE_ACCESSORS, expand=True):
+    context = self.context
+    kw = {}
+    if self.uid:
+        # In this case, restrict search for single event
+        kw['UID'] = self.uid
+    else:
+        if self.path:
+            kw['path'] = self.path
+        elif self.settings.current_folder_only:
+            kw['path'] = '/'.join(context.getPhysicalPath())
+
+        if self.tags:
+            kw['Subject'] = {'query': self.tags, 'operator': 'and'}
+
+        if self.searchable_text:
+            kw['SearchableText'] = self.searchable_text
+
+    # kw['b_start'] = self.b_start
+    # kw['b_size']  = self.b_size
+
+    start, end = self._start_end
+
+    sort = 'start'
+    sort_reverse = False
+    if self.mode in ('past', 'all'):
+        sort_reverse = True
+
+    # override starts here:
+    unfiltered_events = get_events(context, start=start, end=end,
+                                   sort=sort, sort_reverse=sort_reverse,
+                                   ret_mode=ret_mode, expand=expand, **kw)
+
+    filtered_events = [
+        x for x in unfiltered_events if '/mission/' not in x.url]
+    return filtered_events

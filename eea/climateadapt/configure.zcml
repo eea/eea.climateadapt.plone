@@ -526,7 +526,7 @@
       original="metadata_fields"
       preserveOriginal="false"
       replacement="eea.climateadapt.patch.metadata_fields" />
-    
+
     <monkey:patch
       description="Patch getTerm to fix UnicodeEncodeError: 'ascii' codec can't encode character..."
       class="plone.app.vocabularies.users.UsersVocabulary"
@@ -534,4 +534,10 @@
       preserveOriginal="false"
       replacement="eea.climateadapt.patch.getTerm" />
 
+    <monkey:patch
+      description="Refs #252993 - Patch _get_events to exclude events from Mission subsite."
+      class="plone.app.event.browser.event_listing.EventListing"
+      original="_get_events"
+      preserveOriginal="false"
+      replacement="eea.climateadapt.patch._get_events" />
 </configure>
