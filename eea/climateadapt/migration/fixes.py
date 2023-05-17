@@ -41,11 +41,21 @@ def fix_content(content):
 
 languages = ['de', 'fr', 'es', 'it', 'pl']
 
-top_level = ['/cca/en/about']
+top_level = {'/cca/en/about': []}
 
 
 def getpath(obj):
     return "/" + obj.absolute_url(relative=1)
+
+
+def exclude(obj):
+    obj.exclude_from_nav = True
+    obj.reindexObject()     # update_metadata=True - only on p6
+
+
+def include(obj):
+    obj.exclude_from_nav = False
+    obj.reindexObject()     # update_metadata=True - only on p6
 
 
 def exclude_content_from_navigation(site):
@@ -53,8 +63,7 @@ def exclude_content_from_navigation(site):
     for oid, obj in main.contentItems():
         path = getpath(obj)
         if path not in top_level:
-            obj.exclude_from_nav = True
-            obj.reindexObject()     # update_metadata=True - only on p6
+            exclude(obj)
 
             logger.info("Excluded from nav: %s", path)
 
@@ -65,9 +74,15 @@ def exclude_content_from_navigation(site):
                 if trans is None:
                     continue
 
-                trans.exclude_from_nav = True
-                trans.reindexObject()
+                exclude(trans)
                 logger.info("Excluded from nav: %s", getpath(trans))
+        else:
+            include(obj)
+
+            # children
+            # for child_path in top_level[path]:
+            #     child = obj[child_path]
+            #     exclude(child)
 
 
 site_fixers = [
