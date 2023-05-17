@@ -41,7 +41,13 @@ def fix_content(content):
 
 languages = ['de', 'fr', 'es', 'it', 'pl']
 
-top_level = {'/cca/en/about': []}
+top_level = {
+    '/cca/en/about': [],
+    '/cca/en/eu-adaptation-policy': [],
+    '/cca/en/countries-regions': [],
+    '/cca/en/knowledge': [],
+    '/cca/en/network': [],
+}
 
 
 def getpath(obj):
