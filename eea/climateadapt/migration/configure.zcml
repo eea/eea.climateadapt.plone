@@ -26,11 +26,15 @@
     />
 
   <adapter
-      factory=".cover.MigrateCover"
+      factory=".content.MigrateCover"
       />
 
   <adapter
-      factory=".cover.MigrateFolder"
+      factory=".content.MigrateFolder"
+      />
+
+  <adapter
+      factory=".content.MigrateDocument"
       />
 
 </configure>

@@ -19,7 +19,7 @@ from eea.climateadapt.tiles.transregional_select import \
 from eea.climateadapt.translation.utils import get_current_language
 from eea.climateadapt.vocabulary import BIOREGIONS
 from plone.api import content
-from plone.app.contenttypes.interfaces import IFolder
+from plone.app.contenttypes.interfaces import IDocument, IFolder
 from plone.namedfile.file import NamedBlobImage
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter, getMultiAdapter
@@ -594,6 +594,30 @@ class MigrateCover(object):
         # return json.dumps({"blocks": blocks, "attributes": attributes})
 
 
+@adapter(IDocument, Interface)
+@implementer(IMigrateToVolto)
+class MigrateDocument(object):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        obj = self.context
+
+        text = obj.text
+        html = text.raw     # TODO: should we use .output ?
+        blocks = convert_to_blocks(html)
+        title_uid = make_uid()
+        uids = [title_uid] + [b[0] for b in blocks]
+        obj.blocks_layout = {"items": uids}
+        _blocks = {}
+        _blocks[title_uid] = {"@type": "title"}
+        for (uid, block) in blocks:
+            _blocks[uid] = block
+        obj.blocks = _blocks
+        obj._p_changed = True
+
+
 @adapter(IFolder, Interface)
 @implementer(IMigrateToVolto)
 class MigrateFolder(object):
@@ -610,7 +634,8 @@ class MigrateFolder(object):
 
         if default_page:
             cover = obj.restrictedTraverse(default_page)
-            if not getattr(cover.aq_inner.aq_self, 'blocks'):
+            unwrapped = cover.aq_inner.aq_self
+            if not hasattr(unwrapped, 'blocks') or not unwrapped.blocks:
                 migrate = getMultiAdapter(
                     (cover, self.request), IMigrateToVolto)
                 migrate()
