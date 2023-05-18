@@ -16,17 +16,43 @@ IGNORED_CONTENT_TYPES = [
     # TODO:
     'Document',
     'Event',
+    'News Item',
+    'eea.climateadapt.researchproject',
+    'cca-event',
+    'eea.climateadapt.guidancedocument',
 
     'Image', 'LRF', 'LIF', 'Collection', 'Link', 'DepictionTool', 'Subsite',
+    'File',
+    'eea.climateadapt.city_profile',
+    'FrontpageSlide',
+    'EasyForm'
 
 ]
 
-# TODO: Document
+languages = ['de', 'fr', 'es', 'it', 'pl', 'en']
+
+IGNORED_PATHS = [
+    'cca/{lang}/mission',
+    'cca/{lang}/metadata'
+]
+
+
+def is_ignored_path(path):
+    # if 'metadata' in path:
+    #     import pdb
+    #     pdb.set_trace()
+
+    for lang in languages:
+        for test_path in IGNORED_PATHS:
+            test_path = test_path.replace("{lang}", lang)
+            if path.startswith(test_path):
+                return True
 
 
 def _migrate_to_volto(site, request):
     """ #161595 migration script for Plone 4 to Volto content
     """
+
     logger.info("--- START CONTENT MIGRATION ---")
     logger.debug("Get the list of items ordered by levels...")
     brains = get_all_objs(site)
@@ -38,7 +64,7 @@ def _migrate_to_volto(site, request):
         obj = brain.getObject()
         url = obj.absolute_url(relative=True)
 
-        if '/mission/' in (url + '/'):
+        if is_ignored_path(url):
             continue
 
         if not IDexterityContent.providedBy(obj):
