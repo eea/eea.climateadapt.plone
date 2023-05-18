@@ -1,3 +1,5 @@
+import logging
+
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from plone.api import portal
 from Products.Five.browser import BrowserView
@@ -5,6 +7,11 @@ from zope.component import getMultiAdapter
 
 from .fixes import fix_site
 from .site import migrate_to_volto
+
+logger = logging.getLogger("eea.climateadapt")
+
+edw_logger = logging.getLogger("edw.logger")
+edw_logger.setLevel(logging.ERROR)
 
 
 class MigrateContent(BrowserView):
@@ -28,5 +35,5 @@ class MigrateSiteToVolto(BrowserView):
             return "ok"
 
         migrate_to_volto(site, self.request)
-        raise ValueError
+        # raise ValueError
         return "ok"
