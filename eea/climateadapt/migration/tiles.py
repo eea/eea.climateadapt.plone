@@ -405,6 +405,9 @@ view_convertors = {
     'regions-section': nop_view,
     'help-categories': nop_view,
     'regions-section': nop_view,
+    'fp-countries-tile': nop_view,
+    'fp-news-tile': nop_view,
+    'fp-events-tile': nop_view,
 }
 
 

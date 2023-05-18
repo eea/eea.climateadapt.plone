@@ -4,6 +4,7 @@ import logging
 from collective.cover.interfaces import ICover
 from collective.cover.tiles.embed import IEmbedTile
 from collective.cover.tiles.richtext import IRichTextTile
+from eea.climateadapt.browser.tilehelpers import ICarousel
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.tiles.ast import (IASTHeaderTile, IASTNavigationTile,
                                         IUrbanASTNavigationTile)
@@ -62,7 +63,8 @@ tile_converters = {
     IUrbanASTNavigationTile: nop_tile,
     IFormTile: nop_tile,
     ICountrySelectTile: nop_tile,
-    ISectionNavTile: nop_tile
+    ISectionNavTile: nop_tile,
+    ICarousel: nop_tile,
 
     # eea.climateadapt.browser.tilehelpers.ICarousel
 }
