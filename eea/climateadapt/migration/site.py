@@ -10,7 +10,7 @@ from plone.api.content import get_state
 from plone.dexterity.interfaces import IDexterityContent
 from zope.component import queryMultiAdapter
 
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger('SiteMigrate')
 
 IGNORED_CONTENT_TYPES = [
     # TODO:
@@ -32,6 +32,7 @@ IGNORED_CONTENT_TYPES = [
     'eea.climateadapt.publicationreport',
     'eea.climateadapt.researchproject',
     'eea.climateadapt.tool',
+    'eea.climateadapt.video',
 
     'Image', 'LRF', 'LIF', 'Collection', 'Link', 'DepictionTool', 'Subsite',
     'File',
@@ -47,6 +48,7 @@ IGNORED_PATHS = [
     'cca/{lang}/mission',
     'cca/{lang}/metadata'
     'cca/frontpage',
+    'cca/{lang}/observatory/news-archive-observatory',
 ]
 
 

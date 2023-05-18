@@ -385,7 +385,8 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
 
 
 view_convertors = {
-    'eu-sector-policies': lambda obj, data: {"blocks": []}
+    'eu-sector-policies': lambda obj, data: {"blocks": []},
+    'countries-list': lambda obj, data: {"blocks": []}
 }
 
 

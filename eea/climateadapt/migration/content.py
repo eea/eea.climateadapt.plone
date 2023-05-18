@@ -27,7 +27,7 @@ from .tiles import (cards_tile_to_block, embed_tile_to_block,
                     share_info_tile_to_block)
 from .utils import convert_to_blocks, make_uid
 
-logger = logging.getLogger('MigrateContent')
+logger = logging.getLogger('ContentMigrate')
 
 
 tile_converters = {
@@ -86,6 +86,7 @@ class MigrateCover(object):
             3: 'oneThird',
             4: 'oneThird',
             6: 'halfWidth',
+            7: 'twoThirds',
             8: 'twoThirds',
             9: 'twoThirds',
             10: 'twoThirds',
@@ -112,8 +113,20 @@ class MigrateCover(object):
             blocks_layout = []
 
             for tile in column['children']:
+                if tile.get('type') == 'row':
+                    # this type of content is a nasty inherited since the migration of
+                    # content from Liferea, due to the lack of nested columns in
+                    # collective.cover
+                    # So we convert this row to a separate columns block
+                    (block_id, blockdata) = self.make_column_block(tile)
+                    blocks[block_id] = blockdata
+                    blocks_layout.append(block_id)
+                    continue
+
                 if tile.get('id', None) is None:
                     logger.warning("Implement row.")
+                    import pdb
+                    pdb.set_trace()
                     continue
                     # TODO new row and columns case (recursive?)
                     # /cca/en/knowledge/tools/adaptation-support-tool/step-3-2/
