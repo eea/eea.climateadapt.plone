@@ -1,6 +1,6 @@
 IGNORED_CONTENT_TYPES = [
     # TODO:
-    'Document',
+    # 'Document',
     'Event',
     'News Item',
     'cca-event',
