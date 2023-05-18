@@ -17,9 +17,21 @@ IGNORED_CONTENT_TYPES = [
     'Document',
     'Event',
     'News Item',
-    'eea.climateadapt.researchproject',
     'cca-event',
+
+    'eea.climateadapt.aceproject',
+    'eea.climateadapt.adaptationoption',
+    'eea.climateadapt.c3sindicator',
+    'eea.climateadapt.casestudy',
+    'eea.climateadapt.city_profile',
     'eea.climateadapt.guidancedocument',
+    'eea.climateadapt.indicator',
+    'eea.climateadapt.informationportal',
+    'eea.climateadapt.mapgraphdataset',
+    'eea.climateadapt.organisation',
+    'eea.climateadapt.publicationreport',
+    'eea.climateadapt.researchproject',
+    'eea.climateadapt.tool',
 
     'Image', 'LRF', 'LIF', 'Collection', 'Link', 'DepictionTool', 'Subsite',
     'File',
@@ -38,10 +50,6 @@ IGNORED_PATHS = [
 
 
 def is_ignored_path(path):
-    # if 'metadata' in path:
-    #     import pdb
-    #     pdb.set_trace()
-
     for lang in languages:
         for test_path in IGNORED_PATHS:
             test_path = test_path.replace("{lang}", lang)
