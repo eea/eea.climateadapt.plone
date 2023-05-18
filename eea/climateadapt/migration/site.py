@@ -1,5 +1,6 @@
 """ Migrate content to Volto
 """
+
 import logging
 
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
@@ -13,22 +14,21 @@ logger = logging.getLogger('eea.climateadapt')
 def _migrate_to_volto(site, request):
     """ #161595 migration script for Plone 4 to Volto content
     """
-    logger.info("--- START MIGRATION -----------------------------")
-    logger.info("Get the list of items ordered by levels...")
+    logger.info("--- START CONTENT MIGRATION ---")
+    logger.debug("Get the list of items ordered by levels...")
     brains = get_all_objs(site)
 
     for brain in brains:
         obj = brain.getObject()
-        logger.info("Migrating %s" % obj.absolute_url())
+        logger.debug("Migrating %s" % obj.absolute_url())
 
         try:
             migrate = getMultiAdapter((obj, request), IMigrateToVolto)
             migrate()
         except Exception:
-            logger.info("Error for %s" % obj.absolute_url())
+            logger.warning("Error for %s" % obj.absolute_url())
 
-    logger.info("--- Done ----------------------------------------")
-    return "Done"
+    logger.info("--- Object migration done ---")
 
 
 def migrate_to_volto(site=None, request=None):

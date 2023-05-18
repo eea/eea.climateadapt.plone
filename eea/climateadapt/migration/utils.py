@@ -1,10 +1,13 @@
 import json
+import logging
 from uuid import uuid4
 
 import requests
 
 SLATE_CONVERTER = "http://converter:8000/html"
 BLOCKS_CONVERTER = "http://converter:8000/toblocks"
+
+logger = logging.getLogger("eea.climateadapt")
 
 
 def convert_to_blocks(text):
@@ -13,10 +16,8 @@ def convert_to_blocks(text):
 
     req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
-        print("Error in converter")
-        print(req.text)
-        # import pdb
-        # pdb.set_trace()
+        logger.error("Error in blocks converter")
+        logger.debug(req.text)
 
         return []
 

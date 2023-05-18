@@ -71,7 +71,7 @@ def exclude_content_from_navigation(site):
         if path not in top_level:
             exclude(obj)
 
-            logger.info("Excluded from nav: %s", path)
+            logger.debug("Excluded from nav: %s", path)
 
             intl_mgr = get_translation_manager(obj)
             for lang in languages:
@@ -81,7 +81,7 @@ def exclude_content_from_navigation(site):
                     continue
 
                 exclude(trans)
-                logger.info("Excluded from nav: %s", getpath(trans))
+                logger.debug("Excluded from nav: %s", getpath(trans))
         else:
             include(obj)
 

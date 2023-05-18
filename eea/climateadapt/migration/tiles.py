@@ -44,7 +44,7 @@ def assigned(tile):
                 if not brain:
                     # the object was deleted; remove it from the tile
                     obj.remove_item(uuid)
-                    logger.debug(
+                    logger.warning(
                         "Nonexistent object {0} removed from " "tile".format(uuid)
                     )
     return results

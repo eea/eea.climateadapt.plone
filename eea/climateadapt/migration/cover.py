@@ -1,4 +1,5 @@
 import json
+import logging
 from uuid import uuid4
 
 from bs4 import BeautifulSoup
@@ -28,6 +29,8 @@ from .fixes import fix_content
 from .tiles import relevant_items
 from .utils import convert_to_blocks
 
+logger = logging.getLogger('eea.climateadapt.cover')
+
 
 def richtext_tile_to_blocks(tile_dm, obj, request):
     attributes = {}
@@ -42,9 +45,9 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
     text = data.get('text')
     if text:
         html = text.raw     # TODO: should we use .output ?
-        print("Converting--")
-        print(html)
-        print("--/Converting")
+        logger.debug("Converting--")
+        logger.debug(html)
+        logger.debug("--/Converting")
         blocks = convert_to_blocks(html)
 
     return {
@@ -154,7 +157,7 @@ def embed_tile_to_block(tile_dm, obj, request):
         return {
             "blocks": [[make_uid(), maps_block]]
         }
-    print("Implement missing embed tile type.")
+    logger.error("Implement missing embed tile type.")
     return None
 
 
@@ -281,7 +284,7 @@ def region_select_to_block(tile_dm, obj, request):
         bits = fs_file().read()
         parent = obj.aq_parent
         contentType = img_name.endswith('jpg') and 'image/jpeg' or 'image/png'
-        images = parent.listFolderContents(contentFilter={"portal_type" : "Image"})
+        images = parent.listFolderContents(contentFilter={"portal_type": "Image"})
         image = None
 
         imagefield = NamedBlobImage(
@@ -468,7 +471,7 @@ class MigrateCover(object):
         converter = tile_converters.get(schema, None)
 
         if not converter:
-            print("You need to implement converter for block: ", schema)
+            logger.warning("You need to implement converter for block: %s", schema)
             data = []
             return {"blocks": []}
 
@@ -508,7 +511,7 @@ class MigrateCover(object):
 
             for tile in column['children']:
                 if tile.get('id', None) is None:
-                    print("Implement row.")
+                    logger.warning("Implement row.")
                     continue
                     # TODO new row and columns case (recursive?)
                     # /cca/en/knowledge/tools/adaptation-support-tool/step-3-2/
@@ -588,7 +591,6 @@ class MigrateCover(object):
 
         fix_content(self.context)
 
-        # print(blocks)
         # return json.dumps({"blocks": blocks, "attributes": attributes})
 
 
