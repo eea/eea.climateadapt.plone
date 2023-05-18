@@ -6,6 +6,8 @@ import logging
 
 from plone.app.multilingual.api import get_translation_manager
 
+from .config import LANGUAGES, TOP_LEVEL
+
 logger = logging.getLogger()
 
 
@@ -39,15 +41,7 @@ def fix_content(content):
         fixer(content)
 
 
-languages = ['de', 'fr', 'es', 'it', 'pl']
-
-top_level = {
-    '/cca/en/about': [],
-    '/cca/en/eu-adaptation-policy': [],
-    '/cca/en/countries-regions': [],
-    '/cca/en/knowledge': [],
-    '/cca/en/network': [],
-}
+languages = [lang for lang in LANGUAGES if lang != 'en']
 
 
 def getpath(obj):
@@ -68,7 +62,7 @@ def exclude_content_from_navigation(site):
     main = site.restrictedTraverse('en')
     for oid, obj in main.contentItems():
         path = getpath(obj)
-        if path not in top_level:
+        if path not in TOP_LEVEL:
             exclude(obj)
 
             logger.debug("Excluded from nav: %s", path)

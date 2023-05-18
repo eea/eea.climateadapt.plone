@@ -6,40 +6,11 @@ import logging
 from eea.climateadapt.scripts import get_plone_site
 from eea.climateadapt.translation.admin import get_all_objs
 
+from .config import IGNORED_CONTENT_TYPES
 from .content import migrate_content_to_volto
 
 logger = logging.getLogger('SiteMigrate')
 logger.setLevel(logging.WARNING)
-
-IGNORED_CONTENT_TYPES = [
-    # TODO:
-    'Document',
-    'Event',
-    'News Item',
-    'cca-event',
-
-    'eea.climateadapt.aceproject',
-    'eea.climateadapt.adaptationoption',
-    'eea.climateadapt.c3sindicator',
-    'eea.climateadapt.casestudy',
-    'eea.climateadapt.city_profile',
-    'eea.climateadapt.guidancedocument',
-    'eea.climateadapt.indicator',
-    'eea.climateadapt.informationportal',
-    'eea.climateadapt.mapgraphdataset',
-    'eea.climateadapt.organisation',
-    'eea.climateadapt.publicationreport',
-    'eea.climateadapt.researchproject',
-    'eea.climateadapt.tool',
-    'eea.climateadapt.video',
-
-    'Image', 'LRF', 'LIF', 'Collection', 'Link', 'DepictionTool', 'Subsite',
-    'File',
-    'eea.climateadapt.city_profile',
-    'FrontpageSlide',
-    'EasyForm'
-
-]
 
 
 def _migrate_to_volto(site, request):

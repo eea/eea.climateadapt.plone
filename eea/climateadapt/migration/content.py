@@ -26,6 +26,8 @@ from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter, queryMultiAdapter
 from zope.interface import Interface, implementer
 
+from .config import (COL_MAPPING, IGNORED_CONTENT_TYPES, IGNORED_PATHS,
+                     LANGUAGES)
 from .fixes import fix_content
 from .tiles import (cards_tile_to_block, embed_tile_to_block,
                     filter_acecontent_to_block, genericview_tile_to_block,
@@ -103,18 +105,6 @@ class MigrateCover(object):
 
     def make_column_block(self, row):
         attributes = {}
-        col_mapping = {
-            2: 'oneThird',
-            3: 'oneThird',
-            4: 'oneThird',
-            5: 'oneThird',
-            6: 'halfWidth',
-            7: 'twoThirds',
-            8: 'twoThirds',
-            9: 'twoThirds',
-            10: 'twoThirds',
-            12: 'full',
-        }
         children = row['children']
         columns_storage = {
             "blocks": {},       # these are the columns
@@ -126,7 +116,7 @@ class MigrateCover(object):
             "data": columns_storage,     # stores columns as "blocks"
             "gridSize": 12,
             "gridCols": [
-                col_mapping[column['column-size']] for column in children
+                COL_MAPPING[column['column-size']] for column in children
             ]}
 
         for column in children:
@@ -270,19 +260,8 @@ class MigrateDocument(object):
         obj._p_changed = True
 
 
-languages = ['de', 'fr', 'es', 'it', 'pl', 'en']
-
-
-IGNORED_PATHS = [
-    'cca/{lang}/mission',
-    'cca/{lang}/metadata'
-    'cca/frontpage',
-    'cca/{lang}/observatory/news-archive-observatory',
-]
-
-
 def is_ignored_path(path):
-    for lang in languages:
+    for lang in LANGUAGES:
         for test_path in IGNORED_PATHS:
             test_path = test_path.replace("{lang}", lang)
             if path.startswith(test_path):
@@ -290,6 +269,10 @@ def is_ignored_path(path):
 
 
 def migrate_content_to_volto(obj, request):
+
+    if obj.portal_type in IGNORED_CONTENT_TYPES:
+        return
+
     url = obj.absolute_url(relative=True)
 
     if is_ignored_path(url):
