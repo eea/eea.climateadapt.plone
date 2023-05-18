@@ -3,9 +3,24 @@
 - On /en/knowledge/adaptation-information/climate-services/climate-services
   migrate links at top (first block) to table of contents block
 
+- http://localhost:8080/cca/en/observatory/policy-context/european-policy-framework/working-group-on-health/eu-environment-health-process-WHO/edit
+migrates with volto-slate problem
+
+- http://localhost:3000/observatory-management-group-organisations
+Uncaught Error: Objects are not valid as a React child (found: object with keys {i, o, v}). If you meant to render a collection of children, use an array instea
 
 
 Problems:
+
+2023-05-18 12:44:39 ERROR eea.climateadapt Error in migrating cca/de/knowledge/tools/copy_of_adaptation-support-tool/step-1/high-level-support/index_html
+Traceback (most recent call last):
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/site.py", line 102, in _migrate_to_volto
+    migrate()
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 163, in __call__
+    column = self.make_column_block(row)
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 97, in make_column_block
+    col_mapping[column['column-size']] for column in children
+KeyError: 7
 
 
 2023-05-18 11:42:15 INFO eea.climateadapt Migrating cca/pl/observatory/policy-context/country-profiles/copy_of_country-profiles
@@ -46,6 +61,47 @@ TypeError: argument of type 'NoneType' is not iterable
 2023-05-18 11:42:14 WARNING eea.climateadapt.cover You need to implement converter for block: <SchemaClass eea.climateadapt.tiles.genericview.IGenericViewTile>
 2023-05-18 11:42:14 INFO eea.climateadapt Migrating cca/pl/observatory/policy-context/country-profiles/belgium
 
+
+2023-05-18 12:45:10 ERROR eea.climateadapt Error in migrating cca/pl/countries-regions/transnational-regions/adriatic-ionian/index_html
+Traceback (most recent call last):
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/site.py", line 102, in _migrate_to_volto
+    migrate()
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 137, in __call__
+    data = self.convert_tile_to_volto_blocklist(tileid)
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 72, in convert_tile_to_volto_blocklist
+    data = converter(tile_dm, self.context, self.request)
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/tiles.py", line 189, in region_select_to_block
+    fs_file = obj.restrictedTraverse(img_path)
+  File "/plone/buildout-cache/eggs/Zope2-2.13.29-py2.7.egg/OFS/Traversable.py", line 317, in restrictedTraverse
+    return self.unrestrictedTraverse(path, default, restricted=True)
+  File "/plone/buildout-cache/eggs/Zope2-2.13.29-py2.7.egg/OFS/Traversable.py", line 300, in unrestrictedTraverse
+    raise e
+NotFound
+
+
+2023-05-18 12:45:17 ERROR eea.climateadapt Error in migrating cca/pl/observatory/news-archive-observatory
+Traceback (most recent call last):
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/site.py", line 102, in _migrate_to_volto
+    migrate()
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 234, in __call__
+    (cover, self.request), IMigrateToVolto)
+  File "/plone/buildout-cache/eggs/zope.component-3.9.5-py2.7.egg/zope/component/_api.py", line 109, in getMultiAdapter
+    raise ComponentLookupError(objects, interface, name)
+ComponentLookupError: ((<Collection at /cca/pl/observatory/news-archive-observatory/news>, <HTTPRequest, URL=http://localhost:8080/cca/@@volto_migrate_site>), <InterfaceClass eea.climateadapt.migration
+.interfaces.IMigrateToVolto>, u'')
+
+
+2023-05-18 12:45:17 ERROR eea.climateadapt Error in migrating cca/pl/observatory/evidence/projections-and-tools/exposure-vulnerable-groups
+Traceback (most recent call last):
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/site.py", line 102, in _migrate_to_volto
+    migrate()
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 137, in __call__
+    data = self.convert_tile_to_volto_blocklist(tileid)
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 72, in convert_tile_to_volto_blocklist
+    data = converter(tile_dm, self.context, self.request)
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/tiles.py", line 291, in embed_tile_to_block
+    if '<video' in embed:
+TypeError: argument of type 'NoneType' is not iterable
 
 Example of cover:
 

@@ -288,6 +288,9 @@ def embed_tile_to_block(tile_dm, obj, request):
     data = tile_dm.get()
     embed = data.get("embed", None)
 
+    if not embed:
+        return None
+
     if '<video' in embed:
         soup = BeautifulSoup(embed, "html.parser")
         video = soup.find("video")

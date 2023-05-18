@@ -1,6 +1,7 @@
 from zope import schema
 from zope.interface import Interface
 
+
 class ICCACountry(Interface):
     """ Marker interface for Country Profiles
     """
@@ -105,7 +106,7 @@ class ICCAContentTypesSettings(Interface):
     fullwidthFor = schema.Tuple(
         title=u"Fullwidth ContentTypes",
         description=u"Enable body fullwidth class for the "
-                      "following content-types",
+        "following content-types",
         required=False,
         value_type=schema.Choice(
             vocabulary="plone.app.vocabularies.ReallyUserFriendlyTypes")

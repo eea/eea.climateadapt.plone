@@ -67,10 +67,12 @@ class MigrateCover(object):
 
         if not converter:
             logger.warning("You need to implement converter for block: %s", schema)
-            data = []
             return {"blocks": []}
 
         data = converter(tile_dm, self.context, self.request)
+        if not data:
+            logger.warning("Tile did not convert to blocks: %s", schema)
+            return {"blocks": []}
 
         return data
 
