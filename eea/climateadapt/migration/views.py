@@ -1,6 +1,10 @@
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
+from plone.api import portal
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
+
+from .fixes import fix_site
+from .site import migrate_to_volto
 
 
 class MigrateContent(BrowserView):
@@ -8,4 +12,21 @@ class MigrateContent(BrowserView):
         migrate = getMultiAdapter((self.context, self.request), IMigrateToVolto)
         migrate()
 
+        return "ok"
+
+
+class MigrateSiteToVolto(BrowserView):
+    """ A view to manually run the script for migrating to Volto content
+    """
+
+    def __call__(self):
+
+        site = portal.get()
+        fix_site(site)
+
+        if self.request.form.get('migrate') == "0":
+            return "ok"
+
+        migrate_to_volto(site, self.request)
+        raise ValueError
         return "ok"

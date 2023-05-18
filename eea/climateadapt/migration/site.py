@@ -5,11 +5,7 @@ import logging
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.scripts import get_plone_site
 from eea.climateadapt.translation.admin import get_all_objs
-from plone.api import portal
-from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
-
-from .fixes import fix_site
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -44,18 +40,3 @@ def migrate_to_volto(site=None, request=None):
         logger.info("TODO implement fake request")
     else:
         _migrate_to_volto(site, request)
-
-
-class MigrateSiteToVolto(BrowserView):
-    """ A view to manually run the script for migrating to Volto content
-    """
-
-    def __call__(self):
-
-        site = portal.get()
-        fix_site(site)
-
-        if self.request.form.get('migrate') == "0":
-            return "ok"
-
-        return migrate_to_volto(site, self.request)

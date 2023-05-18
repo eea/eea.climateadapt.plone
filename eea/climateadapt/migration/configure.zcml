@@ -19,9 +19,9 @@
     />
 
   <browser:page
-    name="volto_migrate_all_content"
+    name="volto_migrate_site"
     for="*"
-    class=".site.MigrateSiteToVolto"
+    class=".views.MigrateSiteToVolto"
     permission="cmf.ManagePortal"
     />
 
