@@ -6,6 +6,7 @@ from collective.cover.tiles.embed import IEmbedTile
 from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.tiles.cardslisting import ICardsTile
+from eea.climateadapt.tiles.genericview import IGenericViewTile
 from eea.climateadapt.tiles.richtext import IRichTextWithTitle
 from eea.climateadapt.tiles.search_acecontent import (
     IFilterAceContentItemsTile, IRelevantAceContentItemsTile,
@@ -20,9 +21,10 @@ from zope.interface import Interface, implementer
 
 from .fixes import fix_content
 from .tiles import (cards_tile_to_block, embed_tile_to_block,
-                    filter_acecontent_to_block, region_select_to_block,
-                    relevant_acecontent_to_block, richtext_tile_to_blocks,
-                    search_acecontent_to_block, share_info_tile_to_block)
+                    filter_acecontent_to_block, genericview_tile_to_block,
+                    region_select_to_block, relevant_acecontent_to_block,
+                    richtext_tile_to_blocks, search_acecontent_to_block,
+                    share_info_tile_to_block)
 from .utils import convert_to_blocks, make_uid
 
 logger = logging.getLogger('MigrateContent')
@@ -38,6 +40,7 @@ tile_converters = {
     ITransRegionalSelectTile: region_select_to_block,
     IEmbedTile: embed_tile_to_block,
     ICardsTile: cards_tile_to_block,
+    IGenericViewTile: genericview_tile_to_block,
 }
 
 
@@ -82,6 +85,7 @@ class MigrateCover(object):
             2: 'oneThird',
             3: 'oneThird',
             4: 'oneThird',
+            6: 'halfWidth',
             8: 'twoThirds',
             9: 'twoThirds',
             10: 'twoThirds',
@@ -92,6 +96,7 @@ class MigrateCover(object):
             "blocks": {},       # these are the columns
             "blocks_layout": {"items": []},
         }
+
         data = {
             "@type": "columnsBlock",
             "data": columns_storage,     # stores columns as "blocks"

@@ -46,6 +46,7 @@ languages = ['de', 'fr', 'es', 'it', 'pl', 'en']
 IGNORED_PATHS = [
     'cca/{lang}/mission',
     'cca/{lang}/metadata'
+    'cca/frontpage',
 ]
 
 
@@ -84,8 +85,8 @@ def _migrate_to_volto(site, request):
         except Exception:
             logger.warn("Unable to get review state for %s", url)
         else:
-            if state == 'archived':
-                logger.debug("Skip migrating %s as it's archived", url)
+            if state in ['private', 'archived']:
+                logger.debug("Skip migrating %s as it's private/archived", url)
                 continue
 
         logger.info("Migrating %s" % url)

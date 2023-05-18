@@ -384,6 +384,26 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
     }
 
 
+view_convertors = {
+    'eu-sector-policies': lambda obj, data: {"blocks": []}
+}
+
+
+def genericview_tile_to_block(tile_dm, obj, request):
+    data = tile_dm.get()
+    view_name = data.get('view_name')
+
+    if not view_name:
+        return {"blocks": []}
+
+    converter = view_convertors.get(view_name)
+    if converter is None:
+        logger.warn("GenericView tile converter not implemented: %s", view_name)
+        return {"blocks": []}
+
+    return converter(obj, data)
+
+
 def filter_acecontent_to_block(tile_dm, obj, request):
     data = tile_dm.get()
     macro_regions = data.get('macro_regions')
