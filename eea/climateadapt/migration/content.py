@@ -145,8 +145,6 @@ class MigrateCover(object):
 
                 if tile.get('id', None) is None:
                     logger.warning("Implement row.")
-                    import pdb
-                    pdb.set_trace()
                     continue
                     # TODO new row and columns case (recursive?)
                     # /cca/en/knowledge/tools/adaptation-support-tool/step-3-2/
@@ -297,8 +295,6 @@ def migrate_content_to_volto(obj, request):
 
     migrate = queryMultiAdapter((obj, request), IMigrateToVolto)
     if migrate is None:
-        import pdb
-        pdb.set_trace()
         logger.warning("No migrator for %s", url)
         return
 

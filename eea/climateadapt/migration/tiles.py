@@ -183,7 +183,7 @@ def region_select_to_block(tile_dm, obj, request):
     countries = tile_dm.tile.countries()
 
     if countries:
-        img_name = countries[1][0].replace('.jpg', '_bg.png').decode('utf-8')
+        img_name = countries[1][0].replace('.jpg', '_bg.png').replace(' ', '').decode('utf-8')
         img_path = (
             "/cca/++theme++climateadaptv2/static/images/transnational/" + img_name).encode('utf-8')
         fs_file = obj.restrictedTraverse(img_path)

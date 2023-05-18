@@ -17,7 +17,10 @@ edw_logger.setLevel(logging.ERROR)
 class MigrateContent(BrowserView):
     def __call__(self):
         migrate = getMultiAdapter((self.context, self.request), IMigrateToVolto)
-        migrate()
+        try:
+            migrate()
+        except Exception:
+            logger.exception("Error in migrator")
 
         return "ok"
 
