@@ -10,6 +10,10 @@ BLOCKS_CONVERTER = "http://converter:8000/toblocks"
 logger = logging.getLogger("eea.climateadapt")
 
 
+def path(obj):
+    return "/" + "/".join(obj.absolute_url(relative=1).split('/')[2:])
+
+
 def convert_to_blocks(text):
     data = {"html": text}
     headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
@@ -42,3 +46,7 @@ def convert_block(block):
 def slate_to_blocks(slate):
     blocks = [[str(uuid4()), convert_block(block)] for block in slate]
     return blocks
+
+
+def make_uid():
+    return str(uuid4())
