@@ -384,11 +384,27 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
     }
 
 
+def nop_view(obj, data):
+    return {"blocks": []}
+
+
 view_convertors = {
-    'eu-sector-policies': lambda obj, data: {"blocks": []},
-    'countries-list': lambda obj, data: {"blocks": []},
-    'video-thumbs': lambda obj, data: {"blocks": []},
-    'countries-context-pagelet': lambda obj, data: {"blocks": []}
+    'eu-sector-policies': nop_view,
+    'countries-list': nop_view,
+    'video-thumbs': nop_view,
+    'countries-context-pagelet': nop_view,
+    'c3s_indicators_overview': nop_view,
+    'observatory_indicators_list': nop_view,
+    'countries-heat-index': nop_view,
+    'case-study-and-adaptation-options-map-viewer': nop_view,
+    'forest-landing-page': nop_view,
+    'urban-landing-page': nop_view,
+    'view_last_modified': nop_view,
+    'country-disclaimer': nop_view,
+    'country-profile': nop_view,
+    'regions-section': nop_view,
+    'help-categories': nop_view,
+    'regions-section': nop_view,
 }
 
 

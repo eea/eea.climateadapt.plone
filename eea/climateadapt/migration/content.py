@@ -19,7 +19,9 @@ from eea.climateadapt.tiles.section_nav import ISectionNavTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.tiles.transregional_select import \
     ITransRegionalSelectTile
+from plone.api.content import get_state
 from plone.app.contenttypes.interfaces import IDocument, IFolder
+from plone.dexterity.interfaces import IDexterityContent
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter, queryMultiAdapter
 from zope.interface import Interface, implementer
@@ -33,6 +35,7 @@ from .tiles import (cards_tile_to_block, embed_tile_to_block,
 from .utils import convert_to_blocks, make_uid
 
 logger = logging.getLogger('ContentMigrate')
+logger.setLevel(logging.WARNING)
 
 
 def nop_tile(tile_dm, obj, request):
@@ -50,6 +53,7 @@ tile_converters = {
     IEmbedTile: embed_tile_to_block,
     ICardsTile: cards_tile_to_block,
     IGenericViewTile: genericview_tile_to_block,
+
     ISectionNavTile: nop_tile,
     IASTNavigationTile: nop_tile,
     IASTHeaderTile: nop_tile,
@@ -57,6 +61,8 @@ tile_converters = {
     IFormTile: nop_tile,
     ICountrySelectTile: nop_tile,
     ISectionNavTile: nop_tile
+
+    # eea.climateadapt.browser.tilehelpers.ICarousel
 }
 
 
@@ -264,6 +270,59 @@ class MigrateDocument(object):
         obj._p_changed = True
 
 
+languages = ['de', 'fr', 'es', 'it', 'pl', 'en']
+
+
+IGNORED_PATHS = [
+    'cca/{lang}/mission',
+    'cca/{lang}/metadata'
+    'cca/frontpage',
+    'cca/{lang}/observatory/news-archive-observatory',
+]
+
+
+def is_ignored_path(path):
+    for lang in languages:
+        for test_path in IGNORED_PATHS:
+            test_path = test_path.replace("{lang}", lang)
+            if path.startswith(test_path):
+                return True
+
+
+def migrate_content_to_volto(obj, request):
+    url = obj.absolute_url(relative=True)
+
+    if is_ignored_path(url):
+        return
+
+    if not IDexterityContent.providedBy(obj):
+        logger.debug("Ignoring %s, not a dexterity content", url)
+        return
+
+    try:
+        state = get_state(obj)
+    except Exception:
+        logger.warn("Unable to get review state for %s", url)
+    else:
+        if state in ['private', 'archived']:
+            logger.debug("Skip migrating %s as it's private/archived", url)
+            return
+
+    logger.info("Migrating %s" % url)
+
+    migrate = queryMultiAdapter((obj, request), IMigrateToVolto)
+    if migrate is None:
+        import pdb
+        pdb.set_trace()
+        logger.warning("No migrator for %s", url)
+        return
+
+    try:
+        migrate()
+    except Exception:
+        logger.exception("Error in migrating %s" % url)
+
+
 @adapter(IFolder, Interface)
 @implementer(IMigrateToVolto)
 class MigrateFolder(object):
@@ -281,14 +340,9 @@ class MigrateFolder(object):
         if default_page:
             cover = obj.restrictedTraverse(default_page)
             unwrapped = cover.aq_inner.aq_self
-            if not hasattr(unwrapped, 'blocks') or not unwrapped.blocks:
-                migrate = queryMultiAdapter(
-                    (cover, self.request), IMigrateToVolto)
 
-                if migrate is None:
-                    logger.warning("No migrator for %s", obj.absolute_url(relative=True))
-                else:
-                    migrate()
+            if not hasattr(unwrapped, 'blocks') or not unwrapped.blocks:
+                migrate_content_to_volto(cover, self.request)
 
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
