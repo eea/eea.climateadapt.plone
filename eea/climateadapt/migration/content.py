@@ -5,18 +5,23 @@ from collective.cover.interfaces import ICover
 from collective.cover.tiles.embed import IEmbedTile
 from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
+from eea.climateadapt.tiles.ast import (IASTHeaderTile, IASTNavigationTile,
+                                        IUrbanASTNavigationTile)
 from eea.climateadapt.tiles.cardslisting import ICardsTile
+from eea.climateadapt.tiles.country_select import ICountrySelectTile
+from eea.climateadapt.tiles.formtile import IFormTile
 from eea.climateadapt.tiles.genericview import IGenericViewTile
 from eea.climateadapt.tiles.richtext import IRichTextWithTitle
 from eea.climateadapt.tiles.search_acecontent import (
     IFilterAceContentItemsTile, IRelevantAceContentItemsTile,
     ISearchAceContentTile)
+from eea.climateadapt.tiles.section_nav import ISectionNavTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.tiles.transregional_select import \
     ITransRegionalSelectTile
 from plone.app.contenttypes.interfaces import IDocument, IFolder
 from plone.tiles.interfaces import ITileDataManager
-from zope.component import adapter, getMultiAdapter
+from zope.component import adapter, queryMultiAdapter
 from zope.interface import Interface, implementer
 
 from .fixes import fix_content
@@ -30,6 +35,10 @@ from .utils import convert_to_blocks, make_uid
 logger = logging.getLogger('ContentMigrate')
 
 
+def nop_tile(tile_dm, obj, request):
+    return {"blocks": []}
+
+
 tile_converters = {
     IRichTextTile: richtext_tile_to_blocks,
     IRichTextWithTitle: richtext_tile_to_blocks,
@@ -41,6 +50,13 @@ tile_converters = {
     IEmbedTile: embed_tile_to_block,
     ICardsTile: cards_tile_to_block,
     IGenericViewTile: genericview_tile_to_block,
+    ISectionNavTile: nop_tile,
+    IASTNavigationTile: nop_tile,
+    IASTHeaderTile: nop_tile,
+    IUrbanASTNavigationTile: nop_tile,
+    IFormTile: nop_tile,
+    ICountrySelectTile: nop_tile,
+    ISectionNavTile: nop_tile
 }
 
 
@@ -85,6 +101,7 @@ class MigrateCover(object):
             2: 'oneThird',
             3: 'oneThird',
             4: 'oneThird',
+            5: 'oneThird',
             6: 'halfWidth',
             7: 'twoThirds',
             8: 'twoThirds',
@@ -114,6 +131,11 @@ class MigrateCover(object):
 
             for tile in column['children']:
                 if tile.get('type') == 'row':
+
+                    # some of the columns haven't been filled
+                    if not tile.get('children'):
+                        continue
+
                     # this type of content is a nasty inherited since the migration of
                     # content from Liferea, due to the lack of nested columns in
                     # collective.cover
@@ -220,9 +242,18 @@ class MigrateDocument(object):
         obj = self.context
 
         text = obj.text
+        title_uid = make_uid()
+
+        if not text:
+            obj.blocks = {}
+            obj.blocks[title_uid] = {"@type": "title"}
+            obj.blocks_layout = {"items": [title_uid]}
+            obj._p_changed = True
+
+            return
+
         html = text.raw     # TODO: should we use .output ?
         blocks = convert_to_blocks(html)
-        title_uid = make_uid()
         uids = [title_uid] + [b[0] for b in blocks]
         obj.blocks_layout = {"items": uids}
         _blocks = {}
@@ -251,9 +282,13 @@ class MigrateFolder(object):
             cover = obj.restrictedTraverse(default_page)
             unwrapped = cover.aq_inner.aq_self
             if not hasattr(unwrapped, 'blocks') or not unwrapped.blocks:
-                migrate = getMultiAdapter(
+                migrate = queryMultiAdapter(
                     (cover, self.request), IMigrateToVolto)
-                migrate()
+
+                if migrate is None:
+                    logger.warning("No migrator for %s", obj.absolute_url(relative=True))
+                else:
+                    migrate()
 
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
