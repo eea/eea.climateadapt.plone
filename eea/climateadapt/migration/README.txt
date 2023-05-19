@@ -12,36 +12,6 @@ Uncaught Error: Objects are not valid as a React child (found: object with keys 
 
 Problems:
 
-<Cover at /cca/en/countries-regions/countries/switzerland>
-
-DEBUG - 2023-05-19 08:39:21,350 - starlite - middleware - exception raised on http connection request to route /toblocks
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.11/site-packages/starlite/middleware/exceptions/middleware.py", line 50, in __call__
-    await self.app(scope, receive, send)
-  File "/usr/local/lib/python3.11/site-packages/starlite/routes/http.py", line 79, in handle
-    response = await self._get_response_for_request(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/starlite/routes/http.py", line 131, in _get_response_for_request
-    response = await self._call_handler_function(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/starlite/routes/http.py", line 160, in _call_handler_function
-    response_data, cleanup_group = await self._get_response_data(
-                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.11/site-packages/starlite/routes/http.py", line 216, in _get_response_data
-    data = route_handler.fn.value(**parsed_kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/app/app/main.py", line 39, in toblocks
-    data = text_to_blocks(html)
-           ^^^^^^^^^^^^^^^^^^^^
-  File "/app/app/blocks.py", line 195, in text_to_blocks
-    proc(soup)
-  File "/app/app/blocks.py", line 92, in convert_tabs
-    tab_id = li.a.attrs['href'].replace('#', '')
-             ^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'attrs'
-
-
-
 Example of cover:
 
 [{u'children': [{u'children': [{u'id': u'1ab374eb8fb84e7ca45d45c6ed478889',
