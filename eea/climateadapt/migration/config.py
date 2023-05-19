@@ -35,6 +35,7 @@ IGNORED_PATHS = [
     'cca/{lang}/mission',
     'cca/{lang}/metadata'
     'cca/frontpage',
+    'cca/{lang}/frontpage',
     'cca/{lang}/observatory/news-archive-observatory',
 ]
 

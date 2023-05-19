@@ -21,7 +21,7 @@ def fix_climate_services_toc(context):
     if context.absolute_url(relative=True) != path:
         return
 
-    col_block_id = context.blocks_layout['items'][0]
+    col_block_id = context.blocks_layout['items'][1]    # [0] is title block
     col = context.blocks[col_block_id]
     column_ids = col['data']['blocks_layout']['items']
     first_col_id = column_ids[0]

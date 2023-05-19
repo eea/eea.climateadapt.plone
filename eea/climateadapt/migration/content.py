@@ -183,8 +183,11 @@ class MigrateCover(object):
             for data in tiles.values():
                 blocks.extend(data.get('blocks', []))
 
-            blocks_layout = {"items": [b[0] for b in blocks]}
+            title_uid = make_uid()
+            blocks_layout = {"items": [title_uid] + [b[0] for b in blocks]}
             blocks_data = {}
+            blocks_data[title_uid] = {"@type": "title"}
+
             for b in blocks:
                 blocks_data[b[0]] = b[1]
 
@@ -212,8 +215,10 @@ class MigrateCover(object):
                         attributes.update(data)
                         page_blocks.extend(tile_blocks)
 
-            blocks_layout = {"items": [b[0] for b in page_blocks]}
+            title_uid = make_uid()
+            blocks_layout = {"items": [title_uid] + [b[0] for b in page_blocks]}
             blocks_data = {}
+            blocks_data[title_uid] = {"@type": "title"}
             for b in page_blocks:
                 blocks_data[b[0]] = b[1]
 
