@@ -6,7 +6,10 @@
   <adapter factory=".serializer.LanguageGenericFolderSerializer"/>
   <!-- <adapter factory=".serializer.LanguageFolderSerializer"/> -->
   <adapter factory=".serializer.ClimateAdaptContentSerializer" />
+  <adapter factory=".serializer.AceItemSerializer" />
+  <adapter factory=".serializer.AceMeasureSerializer" />
   <adapter factory=".serializer.AdaptationOptionSerializer" />
+  <adapter factory=".serializer.AceProjectSerializer" />
   <adapter factory=".serializer.CaseStudySerializer" />
   <adapter factory=".long_converter" />
   <adapter factory=".geolocation_converter" />
