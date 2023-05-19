@@ -12,60 +12,33 @@ Uncaught Error: Objects are not valid as a React child (found: object with keys 
 
 Problems:
 
+<Cover at /cca/en/countries-regions/countries/switzerland>
 
-2023-05-18 12:44:39 ERROR eea.climateadapt Error in migrating cca/de/knowledge/tools/copy_of_adaptation-support-tool/step-1/high-level-support/index_html
+DEBUG - 2023-05-19 08:39:21,350 - starlite - middleware - exception raised on http connection request to route /toblocks
 Traceback (most recent call last):
-  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/site.py", line 102, in _migrate_to_volto
-    migrate()
-  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 163, in __call__
-    column = self.make_column_block(row)
-  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 97, in make_column_block
-    col_mapping[column['column-size']] for column in children
-KeyError: 7
-
-
-2023-05-18 11:42:15 INFO eea.climateadapt Migrating cca/pl/observatory/policy-context/country-profiles/copy_of_country-profiles
-2023-05-18 11:42:15 WARNING eea.climateadapt.cover You need to implement converter for block: <SchemaClass eea.climateadapt.tiles.genericview.IGenericViewTile>
-
-
-2023-05-18 11:42:14 ERROR eea.climateadapt Error in migrating cca/pl/observatory/news-archive-observatory
-Traceback (most recent call last):
-  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/site.py", line 106, in _migrate_to_volto
-    migrate()
-  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/cover.py", line 613, in __call__
-    if not getattr(cover.aq_inner.aq_self, 'blocks'):
-  File "/plone/buildout-cache/eggs/plone.dexterity-2.3.1-py2.7.egg/plone/dexterity/content.py", line 340, in __getattr__
-    raise AttributeError(name)
-AttributeError: blocks
-
-
-2023-05-18 11:42:13 INFO eea.climateadapt Migrating cca/pl/knowledge/tools/copy_of_adaptation-support-tool/step-1-1/index_html
-2023-05-18 11:42:13 WARNING eea.climateadapt.cover You need to implement converter for block: <SchemaClass eea.climateadapt.tiles.ast.IASTNavigationTile>
-2023-05-18 11:42:13 WARNING eea.climateadapt.cover You need to implement converter for block: <SchemaClass eea.climateadapt.tiles.ast.IASTHeaderTile>
-2023-05-18 11:42:13 WARNING eea.climateadapt.cover You need to implement converter for block: <SchemaClass eea.climateadapt.tiles.ast.IASTNavigationTile>
-2023-05-18 11:42:13 WARNING eea.climateadapt.cover You need to implement converter for block: <SchemaClass eea.climateadapt.tiles.ast.IASTHeaderTile>
-
-2023-05-18 11:42:14 INFO eea.climateadapt Migrating cca/pl/observatory/policy-context/country-profiles/austria
-2023-05-18 11:42:14 WARNING eea.climateadapt.cover You need to implement converter for block: <SchemaClass eea.climateadapt.tiles.genericview.IGenericViewTile>
-2023-05-18 11:42:14 WARNING eea.climateadapt.cover You need to implement converter for block: <SchemaClass eea.climateadapt.tiles.genericview.IGenericViewTile>
-2023-05-18 11:42:14 INFO eea.climateadapt Migrating cca/pl/observatory/policy-context/country-profiles/belgium
-
-
-2023-05-18 12:45:10 ERROR eea.climateadapt Error in migrating cca/pl/countries-regions/transnational-regions/adriatic-ionian/index_html
-Traceback (most recent call last):
-  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/site.py", line 102, in _migrate_to_volto
-    migrate()
-  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 137, in __call__
-    data = self.convert_tile_to_volto_blocklist(tileid)
-  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 72, in convert_tile_to_volto_blocklist
-    data = converter(tile_dm, self.context, self.request)
-  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/tiles.py", line 189, in region_select_to_block
-    fs_file = obj.restrictedTraverse(img_path)
-  File "/plone/buildout-cache/eggs/Zope2-2.13.29-py2.7.egg/OFS/Traversable.py", line 317, in restrictedTraverse
-    return self.unrestrictedTraverse(path, default, restricted=True)
-  File "/plone/buildout-cache/eggs/Zope2-2.13.29-py2.7.egg/OFS/Traversable.py", line 300, in unrestrictedTraverse
-    raise e
-NotFound
+  File "/usr/local/lib/python3.11/site-packages/starlite/middleware/exceptions/middleware.py", line 50, in __call__
+    await self.app(scope, receive, send)
+  File "/usr/local/lib/python3.11/site-packages/starlite/routes/http.py", line 79, in handle
+    response = await self._get_response_for_request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/starlite/routes/http.py", line 131, in _get_response_for_request
+    response = await self._call_handler_function(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/starlite/routes/http.py", line 160, in _call_handler_function
+    response_data, cleanup_group = await self._get_response_data(
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/starlite/routes/http.py", line 216, in _get_response_data
+    data = route_handler.fn.value(**parsed_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/main.py", line 39, in toblocks
+    data = text_to_blocks(html)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/app/app/blocks.py", line 195, in text_to_blocks
+    proc(soup)
+  File "/app/app/blocks.py", line 92, in convert_tabs
+    tab_id = li.a.attrs['href'].replace('#', '')
+             ^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'attrs'
 
 
 
