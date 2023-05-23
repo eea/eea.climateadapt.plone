@@ -58,9 +58,9 @@ tile_converters = {
     IGenericViewTile: genericview_tile_to_block,
 
     ISectionNavTile: nop_tile,
-    IASTNavigationTile: nop_tile,
-    IASTHeaderTile: nop_tile,
-    IUrbanASTNavigationTile: nop_tile,
+    IASTNavigationTile: nop_tile, # use context navigation
+    IASTHeaderTile: nop_tile, # use  EEA DS banner subtitle
+    IUrbanASTNavigationTile: nop_tile, # use context navigation
     IFormTile: nop_tile,
     ICountrySelectTile: nop_tile,
     ISectionNavTile: nop_tile,
