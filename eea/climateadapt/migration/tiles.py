@@ -389,24 +389,64 @@ def nop_view(obj, data):
 
 
 view_convertors = {
+    # lists the indicators structured by information extracted from the ECDE
+    # indicator. It needs to be reimplemented as a service. Ticket:
     'c3s_indicators_overview': nop_view,        # /knowledge/european-climate-data-explorer/overview-list
+
+    # reimplemented as CaseStudyExplorer block
     'case-study-and-adaptation-options-map-viewer': nop_view,       # /knowledge/tools/case-study-explorer
+
+    # renders a map of countries, with links to the countries. Needs a simple
+    # reimplementation. Ticket:
     'countries-context-pagelet': nop_view,      # /observatory/policy-context/country-profiles/country-profiles
+
     # /observatory/evidence/national-and-sub-national-warning-systems/national-and-sub-national-warning-systems
+    # a colored map with countries and two types of classification. Needs
+    # reimplementation. Ticket:
     'countries-heat-index': nop_view,
+
+    # right-side navigation. We could solve it with a context navigation portlet
     'countries-list': nop_view,  # /observatory/policy-context/country-profiles/austria
+
+    # it's a tooltip. It needs a custom block converter with https://github.com/eea/volto-slate-label
+    # Ticket:
     'country-disclaimer': nop_view,  # /countries-regions/countries/liechtenstein
+
+    # renders the main part of the country profile, extracted from JSON. Needs to be
+    # reimplemented. Ticket:
     'country-profile': nop_view,        # /countries-regions/countries/finland
+
+    # a listing of sector policies, with descriptions underneath. Doesn't fit the new
+    # Design System, we need a ticket for the designer to reorganize with EEA DS. Ticket:
     'eu-sector-policies': nop_view,     # /eu-adaptation-policy/sector-policies/index_html
+
+    # To be implemented as a homepage. Ticket:
     'forest-landing-page': nop_view,    # /knowledge/forestry
+
+    # To be implemented as a homepage. Ticket:
     'fp-countries-tile': nop_view,  # /
     'fp-events-tile': nop_view,  # /
     'fp-news-tile': nop_view,  # /
+
+    # Card-based listing. To be implemented as a card listing. Ticket:
     'help-categories': nop_view,  # /help/index_html
+
+
+    # A search listing with tab-based prefilters. Should be reimplemented as search
+    # block, maybe with a custom facet. Ticket:
     'observatory_indicators_list': nop_view,    # /observatory/evidence/indicators_intro
+
+    # A listing of the regions. We should do a listing block here. Also, make sure to
+    # migrate the image as "preview_image" in the regions items. Ticket:
     'regions-section': nop_view,    # /countries-regions/transnational-regions/transnational-regions-and-other-regions-and-countries
+
+    # To be reimplemented as a homepage. Ticket for designer:
     'urban-landing-page': nop_view,  # /countries-regions/local
+
+    # Doesn't seem to do anything. To be investigated.
     'video-thumbs': nop_view,       # /help/Webinars
+
+    # Should be provided by the banner block.
     'view_last_modified': nop_view,  # /countries-regions/countries/liechtenstein
 }
 
