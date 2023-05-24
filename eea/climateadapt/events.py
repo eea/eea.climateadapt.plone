@@ -91,7 +91,6 @@ def remove_broken_relations(obj, event):
         if catalog is None:
             return
 
-
         for relation in list(catalog.findRelations({'to_id': None})):
             catalog.unindex(relation)
             if relation in relation.from_object.relatedItems:
@@ -116,7 +115,9 @@ def handle_workflow_change(object, event):
     if event.new_state.title == 'Published':
         updateEffective(object, DateTime())
     else:
-        updateEffective(object, None)
+        if event.status.get('action', None) is not None and (
+                event.old_state.title != event.new_state.title):
+            updateEffective(object, None)
     return
 
 # from zope.annotation.interfaces import IAnnotations
