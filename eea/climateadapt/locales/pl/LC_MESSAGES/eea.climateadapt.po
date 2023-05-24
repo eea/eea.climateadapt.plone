@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-04-14 18:11+0000\n"
+"POT-Creation-Date: 2023-05-24 07:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1473,7 +1473,7 @@ msgstr "Zanieczyszczenia powietrza i alergeny wziewne"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:833
+#: ../../climateadapt/tiles/search_acecontent.py:873
 msgid "All adaptation sectors"
 msgstr "Wszystkie sektory adaptacyjne"
 
@@ -1488,7 +1488,7 @@ msgstr "Wszystkie sektory adaptacyjne"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:830
+#: ../../climateadapt/tiles/search_acecontent.py:870
 msgid "All climate impacts"
 msgstr "Wszystkie skutki klimatu"
 
@@ -1983,7 +1983,7 @@ msgstr "Skutki zmian klimatu"
 msgid "Climate change impacts on European cities"
 msgstr "Wpływ zmian klimatu na miasta europejskie"
 
-#: ../../climateadapt/tiles/search_acecontent.py:792
+#: ../../climateadapt/tiles/search_acecontent.py:832
 msgid "Climate impact"
 msgstr "Wpływ na klimat"
 
@@ -4775,7 +4775,7 @@ msgstr "Przeszukaj bazę Climate Adapt:"
 msgid "Search tile"
 msgstr "Wyszukaj płytki"
 
-#: ../../climateadapt/tiles/search_acecontent.py:798
+#: ../../climateadapt/tiles/search_acecontent.py:838
 msgid "Sector"
 msgstr "Sektor"
 

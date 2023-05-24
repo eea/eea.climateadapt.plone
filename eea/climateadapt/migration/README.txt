@@ -3,11 +3,12 @@
 - On /en/knowledge/adaptation-information/climate-services/climate-services
   migrate links at top (first block) to table of contents block
 
-- http://localhost:8080/cca/en/observatory/policy-context/european-policy-framework/working-group-on-health/eu-environment-health-process-WHO/edit
-migrates with volto-slate problem
+-
+  http://localhost:8080/cca/en/about/outreach-and-dissemination/climate-adapt-events-and-webinars/compose
 
 - http://localhost:3000/observatory-management-group-organisations
 Uncaught Error: Objects are not valid as a React child (found: object with keys {i, o, v}). If you meant to render a collection of children, use an array instea
+this is a collection.
 
 
 Problems:
