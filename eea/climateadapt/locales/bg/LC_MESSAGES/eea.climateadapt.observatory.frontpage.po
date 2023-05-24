@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-24 07:39+0000\n"
+"POT-Creation-Date: 2023-05-24 08:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +51,7 @@ msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Разберете как да допринесете за обсерваторията чрез климат-адаптиране"
 
 #: ../theme/climateadaptv2/health-homepage.html:174
-msgid "Get facts and information about specific vector-borne diseases"
+msgid "Get facts and information about selected vector-borne diseases"
 msgstr ""
 
 # ,

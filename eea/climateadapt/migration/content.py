@@ -59,12 +59,11 @@ tile_converters = {
 
     ISectionNavTile: nop_tile,
     IASTNavigationTile: nop_tile, # use context navigation
-    IASTHeaderTile: nop_tile, # use  EEA DS banner subtitle
+    IASTHeaderTile: nop_tile, # use EEA DS banner subtitle
     IUrbanASTNavigationTile: nop_tile, # use context navigation
-    IFormTile: nop_tile,
-    ICountrySelectTile: nop_tile,
-    ISectionNavTile: nop_tile,
-    ICarousel: nop_tile,
+    IFormTile: nop_tile, # no migration
+    ICountrySelectTile: nop_tile, # used in country profile page, no migration for now
+    ICarousel: nop_tile, # no migration
 
     # eea.climateadapt.browser.tilehelpers.ICarousel
 }
