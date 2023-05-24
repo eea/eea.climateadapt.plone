@@ -389,26 +389,68 @@ def nop_view(obj, data):
 
 
 view_convertors = {
-    'eu-sector-policies': nop_view,
-    'countries-list': nop_view,
-    'video-thumbs': nop_view,
-    'countries-context-pagelet': nop_view,
-    'c3s_indicators_overview': nop_view,
-    'observatory_indicators_list': nop_view,
+    # lists the indicators structured by information extracted from the ECDE
+    # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
+    'c3s_indicators_overview': nop_view,        # /knowledge/european-climate-data-explorer/overview-list
+
+    # reimplemented as CaseStudyExplorer block
+    'case-study-and-adaptation-options-map-viewer': nop_view,       # /knowledge/tools/case-study-explorer
+
+    # renders a map of countries, with links to the countries. Needs a simple
+    # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/161493
+    'countries-context-pagelet': nop_view,      # /observatory/policy-context/country-profiles/country-profiles
+
+    # /observatory/evidence/national-and-sub-national-warning-systems/national-and-sub-national-warning-systems
+    # a colored map with countries and two types of classification. Needs
+    # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/253391
     'countries-heat-index': nop_view,
-    'case-study-and-adaptation-options-map-viewer': nop_view,
-    'forest-landing-page': nop_view,
-    'urban-landing-page': nop_view,
-    'view_last_modified': nop_view,
-    'country-disclaimer': nop_view,
-    'country-profile': nop_view,
-    'regions-section': nop_view,
-    'help-categories': nop_view,
-    'regions-section': nop_view,
-    'fp-countries-tile': nop_view,
-    'fp-news-tile': nop_view,
-    'fp-events-tile': nop_view,
+
+    # right-side navigation. We could solve it with a context navigation portlet: https://taskman.eionet.europa.eu/issues/161493
+    'countries-list': nop_view,  # /observatory/policy-context/country-profiles/austria
+
+    # it's a tooltip. It needs a custom block converter with https://github.com/eea/volto-slate-label
+    # Ticket: https://taskman.eionet.europa.eu/issues/253394
+    'country-disclaimer': nop_view,  # /countries-regions/countries/liechtenstein
+
+    # renders the main part of the country profile, extracted from JSON. Needs to be
+    # reimplemented. Ticket: https://taskman.eionet.europa.eu/issues/253396
+    'country-profile': nop_view,        # /countries-regions/countries/finland
+
+    # a listing of sector policies, with descriptions underneath. Doesn't fit the new
+    # Design System, we need a ticket for the designer to reorganize with EEA DS. Ticket: https://taskman.eionet.europa.eu/issues/253400
+    'eu-sector-policies': nop_view,     # /eu-adaptation-policy/sector-policies/index_html
+
+    # To be implemented as a homepage. Ticket??: https://taskman.eionet.europa.eu/issues/161511
+    'forest-landing-page': nop_view,    # /knowledge/forestry
+
+    # To be implemented as a homepage. Ticket??: https://taskman.eionet.europa.eu/issues/161481
+    'fp-countries-tile': nop_view,  # /
+    'fp-events-tile': nop_view,  # /
+    'fp-news-tile': nop_view,  # /
+
+    # Card-based listing. To be implemented as a card listing. Ticket: https://taskman.eionet.europa.eu/issues/161514
+    'help-categories': nop_view,  # /help/index_html
+
+
+    # A search listing with tab-based prefilters. Should be reimplemented as search
+    # block, maybe with a custom facet. Ticket: https://taskman.eionet.europa.eu/issues/161496
+    'observatory_indicators_list': nop_view,    # /observatory/evidence/indicators_intro
+
+    # A listing of the regions. We should do a listing block here. Also, make sure to
+    # migrate the image as "preview_image" in the regions items. Ticket: https://taskman.eionet.europa.eu/issues/161598
+    'regions-section': nop_view,    # /countries-regions/transnational-regions/transnational-regions-and-other-regions-and-countries
+
+    # To be reimplemented as a homepage. Ticket for designer: https://taskman.eionet.europa.eu/issues/253404
+    'urban-landing-page': nop_view,  # /countries-regions/local
+
+    # Doesn't seem to do anything. To be investigated.
+    'video-thumbs': nop_view,       # /help/Webinars
+
+    # Should be provided by the banner block.
+    'view_last_modified': nop_view,  # /countries-regions/countries/liechtenstein
 }
+
+_logged = []
 
 
 def genericview_tile_to_block(tile_dm, obj, request):
@@ -422,6 +464,10 @@ def genericview_tile_to_block(tile_dm, obj, request):
     if converter is None:
         logger.warn("GenericView tile converter not implemented: %s", view_name)
         return {"blocks": []}
+
+    if view_name not in _logged:
+        logger.info("Generic view '%s' at '%s'", view_name, path(obj))
+        _logged.append(view_name)
 
     return converter(obj, data)
 
