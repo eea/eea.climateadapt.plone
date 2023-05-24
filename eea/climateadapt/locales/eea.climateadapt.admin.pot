@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-04-14 18:11+0000\n"
+"POT-Creation-Date: 2023-05-24 07:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,11 +71,11 @@ msgstr ""
 msgid "Air pollution and aero-allergens"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:833
+#: ../../climateadapt/tiles/search_acecontent.py:873
 msgid "All adaptation sectors"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:830
+#: ../../climateadapt/tiles/search_acecontent.py:870
 msgid "All climate impacts"
 msgstr ""
 
@@ -121,7 +121,7 @@ msgstr ""
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:792
+#: ../../climateadapt/tiles/search_acecontent.py:832
 msgid "Climate impact"
 msgstr ""
 
@@ -714,7 +714,7 @@ msgstr ""
 msgid "Sea Level Rise"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:798
+#: ../../climateadapt/tiles/search_acecontent.py:838
 msgid "Sector"
 msgstr ""
 
@@ -792,6 +792,14 @@ msgstr ""
 
 #: ../../climateadapt/contentrules.py:50
 msgid "Set object expiration date"
+msgstr ""
+
+#: ../../climateadapt/behaviors/id.py:22
+msgid "Settings"
+msgstr ""
+
+#: ../../climateadapt/behaviors/id.py:27
+msgid "Short name"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:149
@@ -881,6 +889,10 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/acemeasure.py:488
 msgid "TODO: Elements description here"
+msgstr ""
+
+#: ../../climateadapt/behaviors/id.py:28
+msgid "This name will be displayed in the URL."
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceitem.py:119

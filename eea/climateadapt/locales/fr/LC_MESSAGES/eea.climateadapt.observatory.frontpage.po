@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-04-14 18:11+0000\n"
+"POT-Creation-Date: 2023-05-24 07:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,6 +86,10 @@ msgstr "Événements"
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Découvrez comment contribuer à l'observatoire via Climate-ADAPT"
 
+#: ../theme/climateadaptv2/health-homepage.html:174
+msgid "Get facts and information about specific vector-borne diseases"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -109,10 +113,6 @@ msgstr "Accueil"
 #: ../theme/climateadaptv2/health-homepage.html:199
 msgid "INDICATORS"
 msgstr "Indicateurs"
-
-#: ../theme/climateadaptv2/health-homepage.html:174
-msgid "Learn about the impact of ground-level ozone on human health in the context of climate change"
-msgstr "Découvrez l'impact de l'ozone au niveau du sol sur la santé humaine dans le contexte du changement climatique"
 
 # ,
 # ,
@@ -177,10 +177,6 @@ msgstr "Nouvelles"
 #: ../theme/climateadaptv2/health-page.html:139
 msgid "News/Events"
 msgstr "Nouvelles/événements"
-
-#: ../theme/climateadaptv2/health-homepage.html:173
-msgid "Ozone impact"
-msgstr "Impact de l'ozone"
 
 # ,
 # ,
@@ -265,6 +261,10 @@ msgstr "Partagez <br /> Vos informations"
 #: ../theme/climateadaptv2/health-page.html:291
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Cet <strong> European Climate and Health Observatory </strong> est un partenariat entre la Commission européenne, l'Agence européenne de l'environnement et plusieurs autres organisations."
+
+#: ../theme/climateadaptv2/health-homepage.html:173
+msgid "Vector-borne disease webpages"
+msgstr ""
 
 # ,
 # ,

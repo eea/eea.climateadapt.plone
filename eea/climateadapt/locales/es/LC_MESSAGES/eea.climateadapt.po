@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-04-14 18:11+0000\n"
+"POT-Creation-Date: 2023-05-24 07:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1662,7 +1662,7 @@ msgstr "Contaminación del aire y aeroalérgenos"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:833
+#: ../../climateadapt/tiles/search_acecontent.py:873
 msgid "All adaptation sectors"
 msgstr "Todos los sectores de adaptación"
 
@@ -1678,7 +1678,7 @@ msgstr "Todos los sectores de adaptación"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:830
+#: ../../climateadapt/tiles/search_acecontent.py:870
 msgid "All climate impacts"
 msgstr "Todos los impactos climáticos"
 
@@ -2248,7 +2248,7 @@ msgstr "Impactos del cambio climático"
 msgid "Climate change impacts on European cities"
 msgstr "Impactos del cambio climático en las ciudades europeas"
 
-#: ../../climateadapt/tiles/search_acecontent.py:792
+#: ../../climateadapt/tiles/search_acecontent.py:832
 msgid "Climate impact"
 msgstr "Impacto climático"
 
@@ -5422,7 +5422,7 @@ msgstr "Busque en la base de datos de clima adaptante:"
 msgid "Search tile"
 msgstr "Ícono de búsqueda"
 
-#: ../../climateadapt/tiles/search_acecontent.py:798
+#: ../../climateadapt/tiles/search_acecontent.py:838
 msgid "Sector"
 msgstr "Sector"
 
