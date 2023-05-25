@@ -14,8 +14,8 @@
     <link rel="preload" href="static/css/compiled-css.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="static/css/compiled-css.css" /></noscript>
     
-    <link rel="preload" href="static/css/compiled-less.css?rel=092ac932ff" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=092ac932ff" /></noscript>
+    <link rel="preload" href="static/css/compiled-less.css?rel=5375a2f706" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=5375a2f706" /></noscript>
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
@@ -1049,6 +1049,14 @@
                       <p i18n:translate="">Mountain areas</p>
                     </a>
                   </li>
+                  <li class="policies-nav-item">
+                    <a tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/sector-policies/tourism')"
+                        href="/eu-adaptation-policy/sector-policies/tourism"
+                       data-toggle="tab" data-target="#tourism-management" class="policies-nav-link">
+                      <div class="policy-icons tourism"></div>
+                      <p i18n:translate="">Tourism</p>
+                    </a>
+                  </li>
                 </ul>
               
                 <div class="tab-content policies-tab-content">
@@ -1057,7 +1065,7 @@
                   <div id="agriculture" class="tab-pane active">
                     <div class="row">
                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/agriculture.png"
+                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/agriculture.jpg"
                              class="lazyload"
                              alt="Agriculture" title="Agriculture"/>
                       </div>
@@ -1087,7 +1095,7 @@
                   <div id="buildings" class="tab-pane">
                     <div class="row">
                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/buildings.png"
+                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/buildings.jpg"
                              class="lazyload"
                              alt="Buildings" title="Buildings"/>
                       </div>
@@ -1162,7 +1170,7 @@
                   <div id="forestry" class="tab-pane">
                     <div class="row">
                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/forestry.png"
+                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/forestry.jpg"
                              class="lazyload"
                              alt="Forestry" title="Forestry"/>
                       </div>
@@ -1233,7 +1241,7 @@
                   <div id="water-management" class="tab-pane">
                     <div class="row">
                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/water.png"
+                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/water.jpg"
                              class="lazyload" alt="Water management" title="Water management"/>
                       </div>
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
@@ -1309,6 +1317,20 @@
                       <div class="policy-description col-md-9 col-sm-9 col-xs-8">
                         <h3 i18n:translate="">Mountain areas</h3>
                         <p i18n:translate="">By the end of the century, it is projected that European mountains will have changed physically. Glaciers will have experienced significant mass loss, but changes also impact the lower, mid-hills, and floodplain environments, thereby affecting water availability, agricultural production, tourism, and health sectors. Seasonal snow lines will be found at higher elevations, and snow seasons will become shorter. Tree lines will move up and forest patterns will change in lower elevations.</p>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Tourism management -->
+                  <div id="tourism-management" class="tab-pane">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/tourism.jpg"
+                             class="lazyload" alt="Tourism management" title="Tourism management"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h3 i18n:translate="">Tourism</h3>
+                        <p i18n:translate="">Since weather and climate have a decisive influence on the travel season and the choice of holiday destinations, the tourism industry is highly dependent on them. There is also a strong connection between nature and tourism, as well as between cultural heritage and tourism. Depending on the location and the time of the year tourism can be positively or negatively impacted by climate change.</p>
                       </div>
                     </div>
                   </div>
