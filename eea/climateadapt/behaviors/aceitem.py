@@ -77,8 +77,9 @@ class IAceItem(IImageScaleTraversable):
 
     form.fieldset(
         "categorization",
-        label=u"Inclusion in the Health Observatory",
-        fields=["include_in_observatory", "health_impacts"],
+        label=u"Inclusion in the subsites",
+        fields=["include_in_observatory",
+                "include_in_mission", "health_impacts"],
     )
 
     # form.fieldset('inclusion_health_observatory',
@@ -133,6 +134,10 @@ class IAceItem(IImageScaleTraversable):
     )
     include_in_observatory = Bool(
         title=_(u"Include in observatory"), required=False, default=False
+    )
+
+    include_in_mission = Bool(
+        title=_(u"Include in Mission Implementation Platform"), required=False, default=False
     )
 
     title = TextLine(
@@ -362,7 +367,8 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    portal_type = PortalType(title=_(u"Portal type"), required=False, default=u"")
+    portal_type = PortalType(title=_(u"Portal type"),
+                             required=False, default=u"")
 
     item_link = AbsoluteUrl(title=_(u"Item link"), required=False, default=u"")
 
@@ -381,7 +387,8 @@ class IAceItem(IImageScaleTraversable):
         vocabulary="eea.climateadapt.aceitems_storagetypes",
     )
 
-    spatial_layer = TextLine(title=_(u"Spatial Layer"), required=False, default=u"")
+    spatial_layer = TextLine(title=_(u"Spatial Layer"),
+                             required=False, default=u"")
 
     spatial_values = List(
         title=_(u"Countries"),
@@ -390,7 +397,8 @@ class IAceItem(IImageScaleTraversable):
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
 
-    important = Bool(title=_(u"High importance"), required=False, default=False)
+    important = Bool(title=_(u"High importance"),
+                     required=False, default=False)
 
     metadata = TextLine(
         title=_(u"Metadata"),
@@ -457,6 +465,7 @@ def KeywordsFieldWidget(field, request):
 
     return widget
 
+
 alsoProvides(IAceItem['logo'], ILanguageIndependentField)
 alsoProvides(IAceItem['origin_website'], ILanguageIndependentField)
 alsoProvides(IAceItem['image'], ILanguageIndependentField)
@@ -471,5 +480,6 @@ alsoProvides(IAceItem['special_tags'], ILanguageIndependentField)
 # alsoProvides(IAceItem['relatedItems'], ILanguageIndependentField)
 alsoProvides(IAceItem['geochars'], ILanguageIndependentField)
 alsoProvides(IAceItem['include_in_observatory'], ILanguageIndependentField)
+alsoProvides(IAceItem['include_in_mission'], ILanguageIndependentField)
 alsoProvides(IAceItem['health_impacts'], ILanguageIndependentField)
 alsoProvides(IAceItem['comments'], ILanguageIndependentField)

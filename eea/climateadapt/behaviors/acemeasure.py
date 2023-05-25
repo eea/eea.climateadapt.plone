@@ -94,7 +94,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset(
         "reference_information",
         label=u"Reference information",
-        fields=["websites", "source", "special_tags", "comments"],  # 'contact',
+        fields=["websites", "source", "special_tags",
+                "comments"],  # 'contact',
     )
 
     # richtext fields in database:
@@ -112,7 +113,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.fieldset(
         "categorization",
         label=u"Inclusion in the Health Observatory",
-        fields=["include_in_observatory", "health_impacts"],
+        fields=["include_in_observatory",
+                "include_in_mission", "health_impacts"],
     )
 
     # -----------[ "default" fields ]------------------
@@ -469,7 +471,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype",
     )
 
-    spatial_layer = TextLine(title=_(u"Spatial Layer"), required=False, default=u"")
+    spatial_layer = TextLine(title=_(u"Spatial Layer"),
+                             required=False, default=u"")
 
     spatial_values = List(
         title=_(u"Countries"),
@@ -509,7 +512,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         title=_(u"Include in observatory"), required=False, default=False
     )
 
-    important = Bool(title=_(u"High importance"), required=False, default=False)
+    include_in_mission = Bool(
+        title=_(u"Include in Mission Implementation Platform"), required=False, default=False
+    )
+
+    important = Bool(title=_(u"High importance"),
+                     required=False, default=False)
 
     rating = Int(title=_(u"Rating"), required=True, default=0)
 
@@ -592,6 +600,7 @@ alsoProvides(IAceMeasure["special_tags"], ILanguageIndependentField)
 # alsoProvides(IAceMeasure["relatedItems"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["geochars"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["include_in_observatory"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["include_in_mission"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["health_impacts"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["publication_date"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["governance_level"], ILanguageIndependentField)

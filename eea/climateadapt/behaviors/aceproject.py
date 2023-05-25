@@ -95,8 +95,9 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     form.fieldset(
         "categorization",
-        label=u"Inclusion in the Health Observatory",
-        fields=["include_in_observatory", "health_impacts"],
+        label=u"Inclusion in the subsites",
+        fields=["include_in_observatory",
+                "include_in_mission", "health_impacts"],
     )
 
     # -----------[ "default" fields ]------------------
@@ -230,6 +231,10 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         title=_(u"Include in observatory"), required=False, default=False
     )
 
+    include_in_mission = Bool(
+        title=_(u"Include in Mission Implementation Platform"), required=False, default=False
+    )
+
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_(u"Sectors"),
@@ -278,7 +283,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
 
     duration = TextLine(
         title=_(u"Duration"),
-        description=_(u"Provide duration of project - Start and end date [yr]"),
+        description=_(
+            u"Provide duration of project - Start and end date [yr]"),
         required=False,
     )
 
@@ -450,6 +456,7 @@ alsoProvides(IAceProject["special_tags"], ILanguageIndependentField)
 # alsoProvides(IAceMeasure["relatedItems"], ILanguageIndependentField)
 alsoProvides(IAceProject["geochars"], ILanguageIndependentField)
 alsoProvides(IAceProject["include_in_observatory"], ILanguageIndependentField)
+alsoProvides(IAceProject["include_in_mission"], ILanguageIndependentField)
 alsoProvides(IAceProject["health_impacts"], ILanguageIndependentField)
 alsoProvides(IAceProject["publication_date"], ILanguageIndependentField)
 alsoProvides(IAceProject["acronym"], ILanguageIndependentField)
