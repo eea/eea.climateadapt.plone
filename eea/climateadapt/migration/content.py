@@ -35,7 +35,7 @@ from .tiles import (cards_tile_to_block, embed_tile_to_block,
                     region_select_to_block, relevant_acecontent_to_block,
                     richtext_tile_to_blocks, search_acecontent_to_block,
                     share_info_tile_to_block)
-from .utils import convert_to_blocks, make_uid
+from .utils import convert_to_blocks, make_uid, path
 
 logger = logging.getLogger('ContentMigrate')
 logger.setLevel(logging.WARNING)
@@ -58,12 +58,12 @@ tile_converters = {
     IGenericViewTile: genericview_tile_to_block,
 
     ISectionNavTile: nop_tile,
-    IASTNavigationTile: nop_tile, # use context navigation
-    IASTHeaderTile: nop_tile, # use EEA DS banner subtitle
-    IUrbanASTNavigationTile: nop_tile, # use context navigation
-    IFormTile: nop_tile, # no migration
-    ICountrySelectTile: nop_tile, # used in country profile page, no migration for now
-    ICarousel: nop_tile, # no migration
+    IASTNavigationTile: nop_tile,  # use context navigation
+    IASTHeaderTile: nop_tile,  # use EEA DS banner subtitle
+    IUrbanASTNavigationTile: nop_tile,  # use context navigation
+    IFormTile: nop_tile,  # no migration
+    ICountrySelectTile: nop_tile,  # used in country profile page, no migration for now
+    ICarousel: nop_tile,  # no migration
 
     # eea.climateadapt.browser.tilehelpers.ICarousel
 }
@@ -253,7 +253,12 @@ class MigrateDocument(object):
             return
 
         html = text.raw     # TODO: should we use .output ?
-        blocks = convert_to_blocks(html)
+        try:
+            blocks = convert_to_blocks(html)
+        except ValueError:
+            logger.error("Error in blocks converter: %s", path(obj))
+            blocks = []
+
         uids = [title_uid] + [b[0] for b in blocks]
         obj.blocks_layout = {"items": uids}
         _blocks = {}

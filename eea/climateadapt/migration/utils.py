@@ -20,10 +20,8 @@ def convert_to_blocks(text):
 
     req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
-        logger.error("Error in blocks converter")
         logger.debug(req.text)
-
-        return []
+        raise ValueError
 
     blocks = req.json()['data']
     return blocks

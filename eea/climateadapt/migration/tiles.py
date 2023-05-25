@@ -277,7 +277,11 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
         logger.debug("Converting--")
         logger.debug(html)
         logger.debug("--/Converting")
-        blocks = convert_to_blocks(html)
+        try:
+            blocks = convert_to_blocks(html)
+        except ValueError:
+            logger.error("Error in blocks converter: %s", path(obj))
+            blocks = []
 
     return {
         "blocks": blocks,
