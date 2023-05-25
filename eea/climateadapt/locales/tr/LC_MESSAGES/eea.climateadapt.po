@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-24 08:27+0000\n"
+"POT-Creation-Date: 2023-05-25 04:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,10 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:451
 msgid "-NONSPECIFIC-"
+msgstr ""
+
+#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:86
+msgid "...loading configuration..."
 msgstr ""
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:130
@@ -680,6 +684,7 @@ msgstr "İlgili kişi"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:37
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:158
+#: ../../climateadapt/browser/pt/c3sindicator_view0.pt:174
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
 
@@ -869,6 +874,10 @@ msgstr ""
 msgid "Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
 msgstr ""
 
+#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:58
+msgid "Explore in detail"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:314
@@ -972,6 +981,7 @@ msgid "Glossary"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
+#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:132
 msgid "Go back"
 msgstr ""
 
@@ -1258,6 +1268,10 @@ msgstr "Meta Verilere Bağlantı:"
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
 msgstr "Daha fazla bilgiye bağlantılar"
+
+#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:83
+msgid "Loading"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:450
 msgid "MCR 2030"
