@@ -1367,14 +1367,9 @@ $(document).ready(function () {
     // ADD RESPONSIVE DIV
     // for tables if parent not set as responsive
     var tables = $('table');
-    var is_sector_policy_page = $('body.subsection-sector-policies');
-    // do not make changes on eu sector policy pages
-    if (is_sector_policy_page.length) {
-      tables = [];
-    }
     for (var i=0;i<tables.length;i++) {
         var parentElement = tables[i].parentElement;
-        if (!(parentElement.nodeName.toLowerCase() == 'div' && parentElement.classList.contains('table-responsive'))) {
+        if (!(parentElement.nodeName.toLowerCase() == 'div' && parentElement.classList.contains('table-responsive')) && !tables[i].classList.contains('image-table-left')) {
             var divResponsive = '<div class="table-responsive">'+tables[i].outerHTML+"</div>";
             tables[i].outerHTML = divResponsive;
         }
