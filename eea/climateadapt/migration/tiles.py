@@ -47,13 +47,15 @@ def assigned(tile):
                 # so we try to get it bypassing the restrictions
                 catalog = api.portal.get_tool("portal_catalog")
                 # brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
-                brain = catalog.searchResults(UID=uuid, review_state='published')
+                brain = catalog.searchResults(
+                    UID=uuid, review_state='published')
 
                 if not brain:
                     # the object was deleted; remove it from the tile
                     obj.remove_item(uuid)
                     logger.warning(
-                        "Nonexistent object {0} removed from " "tile".format(uuid)
+                        "Nonexistent object {0} removed from " "tile".format(
+                            uuid)
                     )
     return results
 
@@ -183,7 +185,8 @@ def region_select_to_block(tile_dm, obj, request):
     countries = tile_dm.tile.countries()
 
     if countries:
-        img_name = countries[1][0].replace('.jpg', '_bg.png').replace(' ', '').decode('utf-8')
+        img_name = countries[1][0].replace(
+            '.jpg', '_bg.png').replace(' ', '').decode('utf-8')
         img_path = (
             "/cca/++theme++climateadaptv2/static/images/transnational/" + img_name).encode('utf-8')
         fs_file = obj.restrictedTraverse(img_path)
@@ -191,7 +194,8 @@ def region_select_to_block(tile_dm, obj, request):
         bits = fs_file().read()
         parent = obj.aq_parent
         contentType = img_name.endswith('jpg') and 'image/jpeg' or 'image/png'
-        images = parent.listFolderContents(contentFilter={"portal_type": "Image"})
+        images = parent.listFolderContents(
+            contentFilter={"portal_type": "Image"})
         image = None
 
         imagefield = NamedBlobImage(
@@ -267,9 +271,13 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
     title_level = data.get('title_level')
     title = data.get('title')
 
+    has_heading = False
     if title_level == 'h1' and title:
         attributes['title'] = title
 
+    else:
+        if title is not None:
+            has_heading = True
     blocks = []
     text = data.get('text')
     if text:
@@ -282,6 +290,23 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
         except ValueError:
             logger.error("Error in blocks converter: %s", path(obj))
             blocks = []
+
+    if has_heading is True:
+        heading = {
+            "@type": "slate",
+            "plaintext": title,
+            "value": [
+                {
+                    "children": [
+                        {
+                            "text": title,
+                        }
+                    ],
+                    "type": title_level
+                }
+            ]
+        }
+        blocks.insert(0, [make_uid(), heading])
 
     return {
         "blocks": blocks,
@@ -395,14 +420,17 @@ def nop_view(obj, data):
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
     # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
-    'c3s_indicators_overview': nop_view,        # /knowledge/european-climate-data-explorer/overview-list
+    # /knowledge/european-climate-data-explorer/overview-list
+    'c3s_indicators_overview': nop_view,
 
     # reimplemented as CaseStudyExplorer block
-    'case-study-and-adaptation-options-map-viewer': nop_view,       # /knowledge/tools/case-study-explorer
+    # /knowledge/tools/case-study-explorer
+    'case-study-and-adaptation-options-map-viewer': nop_view,
 
     # renders a map of countries, with links to the countries. Needs a simple
     # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/161493
-    'countries-context-pagelet': nop_view,      # /observatory/policy-context/country-profiles/country-profiles
+    # /observatory/policy-context/country-profiles/country-profiles
+    'countries-context-pagelet': nop_view,
 
     # /observatory/evidence/national-and-sub-national-warning-systems/national-and-sub-national-warning-systems
     # a colored map with countries and two types of classification. Needs
@@ -422,7 +450,8 @@ view_convertors = {
 
     # a listing of sector policies, with descriptions underneath. Doesn't fit the new
     # Design System, we need a ticket for the designer to reorganize with EEA DS. Ticket: https://taskman.eionet.europa.eu/issues/253400
-    'eu-sector-policies': nop_view,     # /eu-adaptation-policy/sector-policies/index_html
+    # /eu-adaptation-policy/sector-policies/index_html
+    'eu-sector-policies': nop_view,
 
     # To be implemented as a homepage. Ticket??: https://taskman.eionet.europa.eu/issues/161511
     'forest-landing-page': nop_view,    # /knowledge/forestry
@@ -438,11 +467,13 @@ view_convertors = {
 
     # A search listing with tab-based prefilters. Should be reimplemented as search
     # block, maybe with a custom facet. Ticket: https://taskman.eionet.europa.eu/issues/161496
-    'observatory_indicators_list': nop_view,    # /observatory/evidence/indicators_intro
+    # /observatory/evidence/indicators_intro
+    'observatory_indicators_list': nop_view,
 
     # A listing of the regions. We should do a listing block here. Also, make sure to
     # migrate the image as "preview_image" in the regions items. Ticket: https://taskman.eionet.europa.eu/issues/161598
-    'regions-section': nop_view,    # /countries-regions/transnational-regions/transnational-regions-and-other-regions-and-countries
+    # /countries-regions/transnational-regions/transnational-regions-and-other-regions-and-countries
+    'regions-section': nop_view,
 
     # To be reimplemented as a homepage. Ticket for designer: https://taskman.eionet.europa.eu/issues/253404
     'urban-landing-page': nop_view,  # /countries-regions/local
