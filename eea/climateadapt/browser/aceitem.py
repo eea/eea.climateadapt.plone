@@ -78,7 +78,8 @@ class C3sIndicatorView(DefaultView, AceViewApi):
                 }, false);
             })();
             """
-        response = response.replace("SCRIPT_JSON", self.context.overview_app_toolbox_url)
+        response = response.replace(
+            "SCRIPT_JSON", self.context.overview_app_toolbox_url)
         return response
 
     def c3sjs_details(self):
@@ -294,12 +295,15 @@ class OrganisationFormExtender(FormExtender):
         self.move("logo", before="image")
         self.move("IRelatedItems.relatedItems", before="comments")
         self.move("acronym", before="title")
-        self.move("organisational_contact_information", after="include_in_observatory")
+        self.move("organisational_contact_information",
+                  after="include_in_observatory")
         self.move("organisational_websites", after="include_in_observatory")
-        self.move("organisational_key_activities", after="include_in_observatory")
+        self.move("organisational_key_activities",
+                  after="include_in_observatory")
         self.remove("other_contributor")
         self.remove('IBlocks.blocks')
         self.remove('IBlocks.blocks_layout')
+
 
 class AceItemFormExtender(FormExtender):
     def update(self):
@@ -317,7 +321,9 @@ class AceItemFormExtender(FormExtender):
         self.remove('IBlocks.blocks_layout')
         labels = ["label_schema_ownership"]  # 'label_schema_dates',
         self.form.groups = [
-            group for group in self.form.groups if group.label not in labels
+            group for group in self.form.groups if (
+                group.label not in labels and len(group.fields.values()) > 0
+            )
         ]
 
 
