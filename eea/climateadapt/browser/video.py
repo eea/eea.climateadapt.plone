@@ -85,7 +85,8 @@ class VideoFormExtender(FormExtender):
         self.remove('IBlocks.blocks')
         self.remove('IBlocks.blocks_layout')
 
-        labels = ['label_schema_dates', 'label_schema_ownership']
+        labels = ['label_schema_dates',
+                  'label_schema_ownership', 'Layout', 'Settings']
         self.form.groups = [
             group for group in self.form.groups
 
