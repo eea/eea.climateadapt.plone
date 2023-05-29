@@ -66,7 +66,8 @@ class CaseStudyFormExtender(FormExtender):
         self.remove('IOwnership.creators')
         self.remove('IOwnership.contributors')
         self.remove('IOwnership.rights')
-        labels = ['label_schema_dates', 'label_schema_ownership', 'Layout']
+        labels = ['label_schema_dates',
+                  'label_schema_ownership', 'Layout', 'Settings']
         self.form.groups = [
             group for group in self.form.groups if len(
                 group.fields.values()) > 0 and group.label not in labels
