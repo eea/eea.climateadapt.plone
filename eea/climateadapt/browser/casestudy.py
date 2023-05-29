@@ -48,7 +48,7 @@ class CaseStudyAddForm(DefaultAddForm):
 
 class CaseStudyFormExtender(FormExtender):
     def update(self):
-        #import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         self.move('IGeolocatable.geolocation', after='geochars')
         self.move('description', before='long_description')
         self.move('primary_photo', after='long_description')
@@ -66,9 +66,10 @@ class CaseStudyFormExtender(FormExtender):
         self.remove('IOwnership.creators')
         self.remove('IOwnership.contributors')
         self.remove('IOwnership.rights')
-        labels = ['label_schema_dates', 'label_schema_ownership']
+        labels = ['label_schema_dates', 'label_schema_ownership', 'Layout']
         self.form.groups = [
-            group for group in self.form.groups if group.label not in labels
+            group for group in self.form.groups if len(
+                group.fields.values()) > 0 and group.label not in labels
         ]
 
 
