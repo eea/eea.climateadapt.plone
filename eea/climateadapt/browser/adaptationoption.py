@@ -82,9 +82,11 @@ class AdaptationOptionFormExtender(FormExtender):
         self.remove('IOwnership.creators')
         self.remove('IOwnership.contributors')
         self.remove('IOwnership.rights')
-        labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups
-                            if group.label not in labels]
+        labels = ['label_schema_dates', 'label_schema_ownership', 'Layout']
+        self.form.groups = [
+            group for group in self.form.groups if len(
+                group.fields.values()) > 0 and group.label not in labels
+        ]
 
 
 class AdaptationOptionEditForm(DefaultEditForm):
