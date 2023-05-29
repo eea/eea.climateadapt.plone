@@ -319,7 +319,8 @@ class AceItemFormExtender(FormExtender):
         self.remove("IOwnership.rights")
         self.remove('IBlocks.blocks')
         self.remove('IBlocks.blocks_layout')
-        labels = ["label_schema_ownership"]  # 'label_schema_dates',
+        # 'label_schema_dates',
+        labels = ["label_schema_ownership", "Settings"]
         self.form.groups = [
             group for group in self.form.groups if (
                 group.label not in labels and len(group.fields.values()) > 0
