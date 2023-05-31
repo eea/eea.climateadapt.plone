@@ -48,13 +48,11 @@
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/baltic_sea.png"/>
       </a>
     </div>
-    <!--
     <div class="region-wrapper">
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/black_sea_region">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/black_sea_basin.png"/>
       </a>
     </div>
-    -->
     <div class="region-wrapper">
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/central-europe">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/central_europe.png"/>
@@ -71,13 +69,11 @@
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/mediterranean.png"/>
       </a>
     </div>
-    <!--
     <div class="region-wrapper">
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/mediterranean_sea_basin">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/mediterranean_sea_basin.png"/>
       </a>
     </div>
-    -->
     <div class="region-wrapper">
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/north-sea">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/north_sea.png"/>
