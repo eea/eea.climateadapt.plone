@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ A tile to implement the transregional select dropdown
 """
 
@@ -91,6 +92,16 @@ regions = {
         # ('Belarus', '')],
         [('baltic_sea.jpg')],
     ],
+    'Black Sea Basin': [
+        [('Bulgaria', '/countries/bulgaria'),
+         ('Georgia', ''),
+         ('Greece', '/countries/greece'),
+         ('the Republic of Moldova', ''),
+         ('Romania', '/countries/romania'),
+         ('Türkiye', '/countries/turkey'),
+         ('Ukraine', '')],
+        [('black_sea_basin.jpg')],
+    ],
     'Central Europe': [
         [('Austria', '/countries/austria'),
          ('Croatia', '/countries/croatia'),
@@ -137,6 +148,24 @@ regions = {
          ('Spain', '/countries/spain')],
         # ('United Kingdom', '/countries/united-kingdom')],
         [('mediterranean.jpg')],
+    ],
+    'Mediterranean Sea Basin': [
+        [('Algeria', ''),
+         ('Cyprus', '/countries/cyprus'),
+         ('Egypt', ''),
+         ('France', '/countries/france'),
+         ('Greece', '/countries/greece'),
+         ('Israel', ''),
+         ('Italy', '/countries/italy'),
+         ('Lebanon', ''),
+         ('Jordan', ''),
+         ('Malta', '/countries/malta'),
+         ('Palestine', ''),
+         ('Portugal', '/countries/portugal'),
+         ('Spain', '/countries/spain'),
+         ('Tunisia', ''),
+         ('Türkiye ', '/countries/turkey')],
+        [('mediterranean_sea_basin.jpg')],
     ],
     'North Sea': [
         [('Belgium', '/countries/belgium'),
