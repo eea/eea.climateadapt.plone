@@ -11,6 +11,7 @@ from zope.interface import implements, providedBy
 
 from eea.climateadapt.translation.utils import TranslationUtilsMixin
 
+
 class ITransRegionalSelectTile(IPersistentCoverTile):
 
     title = schema.TextLine(
@@ -52,7 +53,7 @@ regions = {
         [('Finland', '/countries/finland'),
          ('Ireland', '/countries/ireland'),
          ('Sweden', '/countries/sweden'),
-         #('United Kingdom', '/countries/united-kingdom'),
+         # ('United Kingdom', '/countries/united-kingdom'),
          ('Iceland', '/countries/iceland'),
          ('Norway', '/countries/norway'),
          ('Greenland', ''),
@@ -64,18 +65,18 @@ regions = {
          ('Ireland', '/countries/ireland'),
          ('Portugal', '/countries/portugal'),
          ('Spain', '/countries/spain')
-         #('United Kingdom', '/countries/united-kingdom')
+         # ('United Kingdom', '/countries/united-kingdom')
          ],
         [('atlantic_area.jpg')],
     ],
-    #'Balkan-Mediterranean': [
+    # 'Balkan-Mediterranean': [
     #    [('Bulgaria', '/countries/bulgaria'),
     #     ('Cyprus', '/countries/cyprus'),
     #     ('Greece', '/countries/greece'),
     #     ('Albania', ''),
     #     ('Republic of North Macedonia', '')],
     #    [('balkan_mediterranean.jpg')],
-    #],
+    # ],
     'Baltic Sea': [
         [('Denmark', '/countries/denmark'),
          ('Estonia', '/countries/estonia'),
@@ -86,8 +87,8 @@ regions = {
          ('Poland', '/countries/poland'),
          ('Sweden', '/countries/sweden'),
          ('Norway', '/countries/norway')],
-         #('Russia', ''),
-         #('Belarus', '')],
+        # ('Russia', ''),
+        # ('Belarus', '')],
         [('baltic_sea.jpg')],
     ],
     'Central Europe': [
@@ -134,7 +135,7 @@ regions = {
          ('Republic of North Macedonia', ''),
          ('Slovenia', '/countries/slovenia'),
          ('Spain', '/countries/spain')],
-         #('United Kingdom', '/countries/united-kingdom')],
+        # ('United Kingdom', '/countries/united-kingdom')],
         [('mediterranean.jpg')],
     ],
     'North Sea': [
@@ -144,7 +145,7 @@ regions = {
          ('France', '/countries/france'),
          ('Netherlands', '/countries/netherlands'),
          ('Sweden', '/countries/sweden'),
-         #('United Kingdom', '/countries/united-kingdom'),
+         # ('United Kingdom', '/countries/united-kingdom'),
          ('Norway', '/countries/norway')],
         [('north_sea.jpg')],
     ],
@@ -156,14 +157,14 @@ regions = {
          ('Luxembourg', '/countries/luxembourg'),
          ('Netherlands', '/countries/netherlands'),
          ('Switzerland', '/countries/switzerland')],
-         #('United Kingdom', '/countries/united-kingdom')],
+        # ('United Kingdom', '/countries/united-kingdom')],
         [('north_western_europe.jpg')],
     ],
     'South-West Europe': [
         [('France', '/countries/france'),
          ('Portugal', '/countries/portugal'),
          ('Spain', '/countries/spain'),
-         #('United Kingdom', '/countries/united-kingdom'),
+         # ('United Kingdom', '/countries/united-kingdom'),
          ('Andorra', '')],
         [('south_west_europe.jpg')],
     ],
@@ -237,7 +238,8 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
             if path:
                 transl_path = self.translated_url(path)
 
-            transl_path = transl_path.replace('/countries/', '/countries-regions/countries/')
+            transl_path = transl_path.replace(
+                '/countries/', '/countries-regions/countries/')
             regions_translated.append((_r[0], transl_path))
 
         return [regions_translated, current_regions[1]]
