@@ -238,7 +238,11 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
 
         for b in brains:
             obj = b.getObject()
-            if 'Balkan-Mediterranean Area' == obj.title:
+            if obj.title.lower() in [
+                'balkan-mediterranean area',
+                'black sea basin',
+                'mediterranean sea basin'
+            ]:
                 continue
             provides = ["%s.%s" % (iface.__module__ or '', iface.__name__)
                         for iface in providedBy(obj)]

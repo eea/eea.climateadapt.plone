@@ -13,7 +13,7 @@ _regions = [
     'Atlantic Area',
     'Balkan-Mediterranean',
     'Baltic Sea',
-    'Baltic Sea Basin',
+    'Black Sea Basin',
     'Central Europe',
     'Danube',
     'Mediterranean',
