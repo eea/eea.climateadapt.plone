@@ -14,8 +14,8 @@
       </li>
       <li class="policies-nav-item">
         <a href="#biodiversity" class="policies-nav-link">
-          <div class="policy-icons biodiversity"></div>
-          <p i18n:translate="">Biodiversity</p>
+           <div class="policy-icons biodiversity"></div>
+           <p i18n:translate="">Biodiversity</p>
         </a>
       </li>
       <li class="policies-nav-item">
@@ -25,61 +25,122 @@
         </a>
       </li>
       <li class="policies-nav-item">
+        <a href="#business-and-industry" class="policies-nav-link">
+          <div class="policy-icons business_industry"></div>
+          <p i18n:translate="">Business and Industry</p>
+        </a>
+      </li>
+      <li class="policies-nav-item">
         <a href="#coastal-areas" class="policies-nav-link">
           <div class="policy-icons coastal"></div>
           <p i18n:translate="">Coastal areas</p>
         </a>
       </li>
       <li class="policies-nav-item">
-        <a href="#disaster-risk-reduction" class="policies-nav-link">
+        <a href="#cultural-heritage" class="policies-nav-link">
+          <div class="policy-icons cultural_heritage"></div>
+          <p i18n:translate="">Cultural Heritage</p>
+        </a>
+      </li>
+      <li class="policies-nav-item">
+        <a
+            href="/eu-adaptation-policy/sector-policies/disaster-risk-reduction"
+           data-toggle="tab" class="policies-nav-link" data-target="#disaster-risk-reduction">
           <div class="policy-icons disaster"></div>
           <p i18n:translate="">Disaster risk <br /> reduction</p>
         </a>
       </li>
       <li class="policies-nav-item">
-        <a href="#energy" class="policies-nav-link">
+        <a href="/eu-adaptation-policy/sector-policies/energy"
+           data-toggle="tab" data-target="#energy" class="policies-nav-link">
           <div class="policy-icons energy"></div>
           <p i18n:translate="">Energy</p>
         </a>
       </li>
       <li class="policies-nav-item">
-        <a href="#financial" class="policies-nav-link">
+        <a
+            href="/eu-adaptation-policy/sector-policies/financial"
+           data-toggle="tab" data-target="#financial" class="policies-nav-link">
           <div class="policy-icons financial"></div>
           <p i18n:translate="">Financial</p>
         </a>
       </li>
       <li class="policies-nav-item">
-        <a href="#forestry" class="policies-nav-link">
+        <a
+            href="/eu-adaptation-policy/sector-policies/forestry"
+           data-toggle="tab" data-target="#forestry" class="policies-nav-link">
           <div class="policy-icons forestry"></div>
           <p i18n:translate="">Forestry</p>
         </a>
       </li>
       <li class="policies-nav-item">
-        <a href="#health" class="policies-nav-link">
+        <a
+            href="/eu-adaptation-policy/sector-policies/health"
+           data-toggle="tab"  data-target="#health" class="policies-nav-link">
           <div class="policy-icons health"></div>
           <p i18n:translate="">Health</p>
         </a>
       </li>
       <li class="policies-nav-item">
-        <a href="#marine-and-fisheries" class="policies-nav-link">
+        <a
+            href="/eu-adaptation-policy/sector-policies/ict"
+           data-toggle="tab" data-target="#ict-management" class="policies-nav-link">
+          <div class="policy-icons ict"></div>
+          <p i18n:translate="">ICT</p>
+        </a>
+      </li>
+      <li class="policies-nav-item">
+        <a
+            href="/eu-adaptation-policy/sector-policies/land-use-planning"
+           data-toggle="tab" data-target="#land_use_planning-management" class="policies-nav-link">
+          <div class="policy-icons land_use_planning"></div>
+          <p i18n:translate="">Land use planning</p>
+        </a>
+      </li>
+      <li class="policies-nav-item">
+        <a
+            href="/eu-adaptation-policy/sector-policies/marine-and-fisheries"
+           data-toggle="tab" data-target="#marine-and-fisheries" class="policies-nav-link">
           <div class="policy-icons marine"></div>
           <p i18n:translate="">Marine <br /> &amp; fisheries</p>
         </a>
       </li>
       <li class="policies-nav-item">
-        <a href="#transport" class="policies-nav-link">
+        <a
+            href="/eu-adaptation-policy/sector-policies/mountain-areas"
+           data-toggle="tab" data-target="#mountains_area-management" class="policies-nav-link">
+          <div class="policy-icons mountains_area"></div>
+          <p i18n:translate="">Mountain areas</p>
+        </a>
+      </li>
+      <li class="policies-nav-item">
+        <a
+            href="/eu-adaptation-policy/sector-policies/tourism"
+           data-toggle="tab" data-target="#tourism-management" class="policies-nav-link">
+          <div class="policy-icons tourism"></div>
+          <p i18n:translate="">Tourism</p>
+        </a>
+      </li>
+      <li class="policies-nav-item">
+        <a
+            href="/eu-adaptation-policy/sector-policies/transport"
+           data-toggle="tab" data-target="#transport" class="policies-nav-link">
           <div class="policy-icons transport"></div>
           <p i18n:translate="">Transport</p>
         </a>
       </li>
       <li class="policies-nav-item">
-        <a href="#urban" class="policies-nav-link">
+        <a
+            href="/eu-adaptation-policy/sector-policies/urban"
+           data-toggle="tab"  data-target="#urban" class="policies-nav-link">
           <div class="policy-icons urban"></div>
           <p i18n:translate="">Urban</p>
         </a>
       </li>
       <li class="policies-nav-item">
-        <a href="#water-management" class="policies-nav-link">
+        <a
+            href="/eu-adaptation-policy/sector-policies/water-management"
+           data-toggle="tab" data-target="#water-management" class="policies-nav-link">
           <div class="policy-icons water"></div>
           <p i18n:translate="">Water <br /> management</p>
         </a>
@@ -127,6 +188,20 @@
         </div>
       </div>
 
+      <!-- business industry management -->
+      <div id="business-and-industry" class="tab-pane">
+        <div class="row">
+          <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/business_industry.jpg"
+                 class="lazyload" alt="Business and industry management" title="Business and industry management"/>
+          </div>
+          <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+            <h3 i18n:translate="">Business and Industry</h3>
+            <p i18n:translate="">Firms face two main types of climate-related risks: direct physical risks and transition risks that arise from society’s response to climate change, mainly mitigation actions.  Climate change can have significant impacts on supply chains, distribution, and sales in a number of ways. Heat negatively affects human health and can lead to poorer work performance (reduced productivity) or lower numbers of hours committed to work (labour supply).</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Coastal areas -->
       <div id="coastal-areas" class="tab-pane">
         <div class="row">
@@ -136,6 +211,20 @@
           <div class="policy-description col-md-9 col-sm-9 col-xs-8">
             <h3 i18n:translate="">Coastal areas</h3>
             <p i18n:translate="">Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- cultural heritage management -->
+      <div id="cultural-heritage" class="tab-pane">
+        <div class="row">
+          <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/cultural_heritage.jpg"
+                 class="lazyload" alt="Cultural Heritage management" title="Cultural Heritage management"/>
+          </div>
+          <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+            <h3 i18n:translate="">Cultural Heritage</h3>
+            <p i18n:translate="">The impacts of catastrophic events on this heritage are coupled with the slow onset of changes arising from deterioration processes. Continuous increase in temperature and fluctuations in temperature and humidity or fluctuations in freeze–thaw cycles causes degradation and stress in materials, leading to a greater need for restoration and conservation. Biological degradation caused by microorganisms, for example, are more likely to occur.</p>
           </div>
         </div>
       </div>
@@ -205,6 +294,34 @@
         </div>
       </div>
 
+      <!-- ict management -->
+      <div id="ict-management" class="tab-pane">
+        <div class="row">
+          <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/ict.jpg"
+                 class="lazyload" alt="ICT management" title="ICT management"/>
+          </div>
+          <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+            <h3 i18n:translate="">ICT</h3>
+            <p i18n:translate="">The challenges posed by climate change for the ICT fall into two main categories: acute events and chronic stresses. Acute events (also termed critical or crisis events) include floods (pluvial, fluvial, coastal), ice storms, heatwaves, etc. Acute events compromise ICT infrastructures by destroying or disabling the physical assets that they depend on. Chronic stresses result from more gradual changes in climate norms, such as including changes in temperature ranges and humidity levels. While these impacts are less likely to have catastrophic consequences, they will lead to increased asset degradation, more frequent failures and shorter life spans. </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- land_use_planning management -->
+      <div id="land_use_planning-management" class="tab-pane">
+        <div class="row">
+          <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/land_use_planning.jpg"
+                 class="lazyload" alt="Land use planning management" title="Land use planning management"/>
+          </div>
+          <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+            <h3 i18n:translate="">Land use planning</h3>
+            <p i18n:translate="">Land use planning is identified as one of the most effective processes to facilitate local adaptation to climate change. Existing processes and tools available through the municipal land use planning process in the EU, including official plans, zoning, and/or development permits, assist in minimizing the development risks to a municipality from the predicted impacts of increased floods, wildfires, landslides, and/or other natural hazards due to a changing climate. </p>
+          </div>
+        </div>
+      </div>
+
       <!-- Marine and fisheries -->
       <div id="marine-and-fisheries" class="tab-pane">
         <div class="row">
@@ -214,6 +331,34 @@
           <div class="policy-description col-md-9 col-sm-9 col-xs-8">
             <h3 i18n:translate="">Marine and fisheries</h3>
             <p i18n:translate="">Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mountain areas management -->
+      <div id="mountains_area-management" class="tab-pane">
+        <div class="row">
+          <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/mountains_area.jpg"
+                 class="lazyload" alt="Mountain areas management" title="Mountain areas management"/>
+          </div>
+          <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+            <h3 i18n:translate="">Mountain areas</h3>
+            <p i18n:translate="">By the end of the century, it is projected that European mountains will have changed physically. Glaciers will have experienced significant mass loss, but changes also impact the lower, mid-hills, and floodplain environments, thereby affecting water availability, agricultural production, tourism, and health sectors. Seasonal snow lines will be found at higher elevations, and snow seasons will become shorter. Tree lines will move up and forest patterns will change in lower elevations.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tourism management -->
+      <div id="tourism-management" class="tab-pane">
+        <div class="row">
+          <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+            <img data-src="/cca/++theme++climateadaptv2/static/images/eupolicy/tourism.jpg"
+                 class="lazyload" alt="Tourism management" title="Tourism management"/>
+          </div>
+          <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+            <h3 i18n:translate="">Tourism</h3>
+            <p i18n:translate="">Since weather and climate have a decisive influence on the travel season and the choice of holiday destinations, the tourism industry is highly dependent on them. There is also a strong connection between nature and tourism, as well as between cultural heritage and tourism. Depending on the location and the time of the year tourism can be positively or negatively impacted by climate change.</p>
           </div>
         </div>
       </div>
