@@ -96,6 +96,10 @@
       is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called “Interreg NEXT”.
     </p>
 
+    <p i18n:translate="">
+      To go to one of the regions please click on the maps.
+    </p>
+
     <div class="flex-wrapper">
       <div class="region-wrapper">
         <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/black_sea_region">
