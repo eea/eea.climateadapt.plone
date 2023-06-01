@@ -5,8 +5,9 @@
 import logging
 
 from plone.app.multilingual.api import get_translation_manager
-
+from eea.climateadapt.translation.utils import get_current_language
 from .config import LANGUAGES, TOP_LEVEL
+from .utils import make_uid
 
 logger = logging.getLogger()
 
@@ -32,13 +33,72 @@ def fix_climate_services_toc(context):
                 "variation": "horizontalMenu"}
     first_col['blocks'][first_block_id] = new_data
 
+def fix_news_archive(context, request):
+    current_lang = get_current_language(context, request)
+    path = 'cca/' + current_lang + '/news-archive'
+
+    if context.absolute_url(relative=True) != path:
+        return
+
+    listing_uid = make_uid()
+    title_uid = make_uid()
+
+    context.blocks = {
+        title_uid: {"@type": "title"},
+        listing_uid: {
+            "@type": "listing",
+            "headlineTag": "h2",
+            "block": make_uid(),
+            "itemModel": {
+                "@type": "item",
+                "hasDate": True,
+                "hasDescription":True,
+                "hasImage": False,
+                "hasLink": True,
+                "maxDescription": 2,
+                "maxTitle": 2,
+                "titleOnImage": False
+            },
+            "query": [],
+            "querystring": {
+                "query": [
+                {
+                    "i": "portal_type",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": [
+                    "News Item",
+                    "Link"
+                    ]
+                },
+                {
+                    "i": "path",
+                    "o": "plone.app.querystring.operation.string.absolutePath",
+                    "v": "/" + current_lang + "/news-archive"
+                }
+                ],
+                "sort_on": "effective",
+                "sort_order": "descending",
+                "sort_order_boolean": True
+            },
+            "variation": "summary"
+        }
+    }
+
+    context.blocks_layout = {"items": [title_uid, listing_uid]}
+    context._p_changed = True
+
 
 fixers = [fix_climate_services_toc]
+folder_fixers = [fix_news_archive]
 
 
 def fix_content(content):
     for fixer in fixers:
         fixer(content)
+
+def fix_folder(context, request):
+    for fixer in folder_fixers:
+        fixer(context, request)
 
 
 languages = [lang for lang in LANGUAGES if lang != 'en']

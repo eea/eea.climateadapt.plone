@@ -29,7 +29,7 @@ from zope.interface import Interface, implementer
 
 from .config import (COL_MAPPING, IGNORED_CONTENT_TYPES, IGNORED_PATHS,
                      LANGUAGES)
-from .fixes import fix_content
+from .fixes import fix_content, fix_folder
 from .tiles import (cards_tile_to_block, embed_tile_to_block,
                     filter_acecontent_to_block, genericview_tile_to_block,
                     region_select_to_block, relevant_acecontent_to_block,
@@ -57,7 +57,7 @@ tile_converters = {
     ICardsTile: cards_tile_to_block,
     IGenericViewTile: genericview_tile_to_block,
 
-    ISectionNavTile: nop_tile,
+    ISectionNavTile: nop_tile, # use context navigation
     IASTNavigationTile: nop_tile,  # use context navigation
     IASTHeaderTile: nop_tile,  # use EEA DS banner subtitle
     IUrbanASTNavigationTile: nop_tile,  # use context navigation
@@ -323,6 +323,7 @@ class MigrateFolder(object):
 
     def __call__(self):
         obj = self.context
+        request = self.request
         default_page = obj.getProperty('default_page')
         if not default_page and "index_html" in obj.contentIds():
             default_page = 'index_html'
@@ -337,3 +338,5 @@ class MigrateFolder(object):
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
             self._p_changed = True
+        
+        fix_folder(obj, request)
