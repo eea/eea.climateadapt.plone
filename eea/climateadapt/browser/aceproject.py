@@ -12,6 +12,7 @@ class AceProjectView(DefaultView, AceViewApi):
 
     type_label = u"Project"
 
+
 class AceProjectEditForm(DefaultEditForm):
     """ Edit form for Ace Projects
     """
@@ -38,5 +39,7 @@ class AceProjectFormExtender(FormExtender):
         self.remove('IOwnership.rights')
         self.remove('IBlocks.blocks')
         self.remove('IBlocks.blocks_layout')
-        labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
+        labels = ['label_schema_dates',
+                  'label_schema_ownership', 'Layout', 'Settings']
+        self.form.groups = [
+            group for group in self.form.groups if group.label not in labels]

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """ A tile to implement the transregional select dropdown
 """
 
@@ -10,6 +11,7 @@ from zope.component.hooks import getSite
 from zope.interface import implements, providedBy
 
 from eea.climateadapt.translation.utils import TranslationUtilsMixin
+
 
 class ITransRegionalSelectTile(IPersistentCoverTile):
 
@@ -52,7 +54,7 @@ regions = {
         [('Finland', '/countries/finland'),
          ('Ireland', '/countries/ireland'),
          ('Sweden', '/countries/sweden'),
-         #('United Kingdom', '/countries/united-kingdom'),
+         # ('United Kingdom', '/countries/united-kingdom'),
          ('Iceland', '/countries/iceland'),
          ('Norway', '/countries/norway'),
          ('Greenland', ''),
@@ -64,18 +66,18 @@ regions = {
          ('Ireland', '/countries/ireland'),
          ('Portugal', '/countries/portugal'),
          ('Spain', '/countries/spain')
-         #('United Kingdom', '/countries/united-kingdom')
+         # ('United Kingdom', '/countries/united-kingdom')
          ],
         [('atlantic_area.jpg')],
     ],
-    #'Balkan-Mediterranean': [
+    # 'Balkan-Mediterranean': [
     #    [('Bulgaria', '/countries/bulgaria'),
     #     ('Cyprus', '/countries/cyprus'),
     #     ('Greece', '/countries/greece'),
     #     ('Albania', ''),
     #     ('Republic of North Macedonia', '')],
     #    [('balkan_mediterranean.jpg')],
-    #],
+    # ],
     'Baltic Sea': [
         [('Denmark', '/countries/denmark'),
          ('Estonia', '/countries/estonia'),
@@ -86,9 +88,19 @@ regions = {
          ('Poland', '/countries/poland'),
          ('Sweden', '/countries/sweden'),
          ('Norway', '/countries/norway')],
-         #('Russia', ''),
-         #('Belarus', '')],
+        # ('Russia', ''),
+        # ('Belarus', '')],
         [('baltic_sea.jpg')],
+    ],
+    'Black Sea Basin': [
+        [('Bulgaria', '/countries/bulgaria'),
+         ('Georgia', ''),
+         ('Greece', '/countries/greece'),
+         ('the Republic of Moldova', ''),
+         ('Romania', '/countries/romania'),
+         ('Türkiye', '/countries/turkey'),
+         ('Ukraine', '')],
+        [('black_sea_basin.jpg')],
     ],
     'Central Europe': [
         [('Austria', '/countries/austria'),
@@ -134,8 +146,26 @@ regions = {
          ('Republic of North Macedonia', ''),
          ('Slovenia', '/countries/slovenia'),
          ('Spain', '/countries/spain')],
-         #('United Kingdom', '/countries/united-kingdom')],
+        # ('United Kingdom', '/countries/united-kingdom')],
         [('mediterranean.jpg')],
+    ],
+    'Mediterranean Sea Basin': [
+        [('Algeria', ''),
+         ('Cyprus', '/countries/cyprus'),
+         ('Egypt', ''),
+         ('France', '/countries/france'),
+         ('Greece', '/countries/greece'),
+         ('Israel', ''),
+         ('Italy', '/countries/italy'),
+         ('Lebanon', ''),
+         ('Jordan', ''),
+         ('Malta', '/countries/malta'),
+         ('Palestine', ''),
+         ('Portugal', '/countries/portugal'),
+         ('Spain', '/countries/spain'),
+         ('Tunisia', ''),
+         ('Türkiye ', '/countries/turkey')],
+        [('mediterranean_sea_basin.jpg')],
     ],
     'North Sea': [
         [('Belgium', '/countries/belgium'),
@@ -144,7 +174,7 @@ regions = {
          ('France', '/countries/france'),
          ('Netherlands', '/countries/netherlands'),
          ('Sweden', '/countries/sweden'),
-         #('United Kingdom', '/countries/united-kingdom'),
+         # ('United Kingdom', '/countries/united-kingdom'),
          ('Norway', '/countries/norway')],
         [('north_sea.jpg')],
     ],
@@ -156,14 +186,14 @@ regions = {
          ('Luxembourg', '/countries/luxembourg'),
          ('Netherlands', '/countries/netherlands'),
          ('Switzerland', '/countries/switzerland')],
-         #('United Kingdom', '/countries/united-kingdom')],
+        # ('United Kingdom', '/countries/united-kingdom')],
         [('north_western_europe.jpg')],
     ],
     'South-West Europe': [
         [('France', '/countries/france'),
          ('Portugal', '/countries/portugal'),
          ('Spain', '/countries/spain'),
-         #('United Kingdom', '/countries/united-kingdom'),
+         # ('United Kingdom', '/countries/united-kingdom'),
          ('Andorra', '')],
         [('south_west_europe.jpg')],
     ],
@@ -208,7 +238,11 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
 
         for b in brains:
             obj = b.getObject()
-            if 'Balkan-Mediterranean Area' == obj.title:
+            if obj.title.lower() in [
+                'balkan-mediterranean area',
+                'black sea basin',
+                'mediterranean sea basin'
+            ]:
                 continue
             provides = ["%s.%s" % (iface.__module__ or '', iface.__name__)
                         for iface in providedBy(obj)]
@@ -237,7 +271,8 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
             if path:
                 transl_path = self.translated_url(path)
 
-            transl_path = transl_path.replace('/countries/', '/countries-regions/countries/')
+            transl_path = transl_path.replace(
+                '/countries/', '/countries-regions/countries/')
             regions_translated.append((_r[0], transl_path))
 
         return [regions_translated, current_regions[1]]

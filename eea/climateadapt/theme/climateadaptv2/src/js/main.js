@@ -1367,10 +1367,10 @@ $(document).ready(function () {
     // ADD RESPONSIVE DIV
     // for tables if parent not set as responsive
     var tables = $('table');
-    for (i=0;i<tables.length;i++) {
-        parentElement = tables[i].parentElement;
-        if (!(parentElement.nodeName.toLowerCase() == 'div' && parentElement.classList.contains('table-responsive'))) {
-            divResponsive = '<div class="table-responsive">'+tables[i].outerHTML+"</div>";
+    for (var i=0;i<tables.length;i++) {
+        var parentElement = tables[i].parentElement;
+        if (!(parentElement.nodeName.toLowerCase() == 'div' && parentElement.classList.contains('table-responsive')) && !tables[i].classList.contains('image-table-left')) {
+            var divResponsive = '<div class="table-responsive">'+tables[i].outerHTML+"</div>";
             tables[i].outerHTML = divResponsive;
         }
     }

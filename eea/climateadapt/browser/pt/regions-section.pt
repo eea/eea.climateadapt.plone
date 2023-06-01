@@ -64,6 +64,7 @@
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/mediterranean.png"/>
       </a>
     </div>
+
     <div class="region-wrapper">
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/north-sea">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/north_sea.png"/>
@@ -83,6 +84,33 @@
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/south-west-europe">
         <img src="/cca/++theme++climateadaptv2/static/images/transnational/south_west_europe.png"/>
       </a>
+    </div>
+  </div>
+
+  <div>
+    <p i18n:translate="">
+      In 2021-2027, the
+      <a href="https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en">
+        cross-border cooperation (CBC) between EU Member States and Neighbourhood region
+      </a>
+      is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called “Interreg NEXT”.
+    </p>
+
+    <p i18n:translate="">
+      To go to one of the regions please click on the maps.
+    </p>
+
+    <div class="flex-wrapper">
+      <div class="region-wrapper">
+        <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/black_sea_region">
+          <img style="max-width:400px" src="/cca/++theme++climateadaptv2/static/images/transnational/black_sea_basin.png"/>
+        </a>
+      </div>
+      <div class="region-wrapper">
+        <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/mediterranean_sea_basin">
+          <img style="max-width:400px" src="/cca/++theme++climateadaptv2/static/images/transnational/mediterranean_sea_basin.png"/>
+        </a>
+      </div>
     </div>
   </div>
 </div>
