@@ -4218,7 +4218,7 @@ msgstr "En savoir plus sur la façon dont les villes peuvent s'adapter au change
 # ,
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:177
 msgid "Learn more about how forests can adapt to climate change to stay healthy, diverse, resilient and productive"
-msgstr "En savoir plus sur la façon dont les forêts peuvent s'adapter au changement climatique pour rester en bonne santé, diversifiée, résilientes et productives"
+msgstr "En savoir plus sur la façon dont les forêts peuvent s'adapter au changement climatique pour rester en bonne santé, diversifiées, résilientes et productives"
 
 # ,
 # ,
