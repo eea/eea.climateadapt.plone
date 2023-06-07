@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:41+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,8 +107,8 @@ msgstr "Bygninger"
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Bygninger kan være sårbare over for klimaændringer. I fremtiden kan der være en stigning i risikoen for sammenbrud, faldende tilstand og betydeligt værditab som et resultat af flere storme, sne- eller udfaldsskade, vandindgreb, forværret indendørs klima og reduceret bygningstid. Europa -Kommissionen har til formål at øge klimaforsikringen af ​​infrastrukturen, herunder bygninger. Nye og eksisterende bygninger skal vurderes for modstandsdygtighed over for aktuelle risici og fremtidige klimaændringer og planlægges eller opgraderes i overensstemmelse hermed. En vigtig politik, der bruges til at støtte bygningens modstandsdygtighed, er samhørighedspolitikken (også benævnt regional politik)."
 
-#: ../theme/climateadaptv2/index.html:1017
-#: ../theme/climateadaptv2/tab-policies-rule.html:118
+#: ../theme/climateadaptv2/index.html:938
+#: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Business and Industry"
 msgstr ""
 
@@ -177,8 +177,8 @@ msgstr "Klima-adapt casestudier viser initiativer, der allerede udføres i Europ
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:938
-#: ../theme/climateadaptv2/tab-policies-rule.html:39
+#: ../theme/climateadaptv2/index.html:946
+#: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Coastal areas"
 msgstr "Kystområder"
 
@@ -186,15 +186,15 @@ msgstr "Kystområder"
 msgid "Country <br /> Profiles"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1025
-#: ../theme/climateadaptv2/tab-policies-rule.html:126
+#: ../theme/climateadaptv2/index.html:954
+#: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Cultural Heritage"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:946
-#: ../theme/climateadaptv2/tab-policies-rule.html:47
+#: ../theme/climateadaptv2/index.html:962
+#: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Disaster risk <br /> reduction"
 msgstr "Katastrofrisiko <br /> reduktion"
 
@@ -219,8 +219,8 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:953
-#: ../theme/climateadaptv2/tab-policies-rule.html:54
+#: ../theme/climateadaptv2/index.html:969
+#: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Energy"
 msgstr "Energi"
 
@@ -255,8 +255,8 @@ msgstr "Ekstreme vejrbegivenheder i de senere år har øget presserende hastighe
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:961
-#: ../theme/climateadaptv2/tab-policies-rule.html:62
+#: ../theme/climateadaptv2/index.html:977
+#: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Financial"
 msgstr "Finansiel"
 
@@ -285,8 +285,8 @@ msgstr "For byområder Vejledningsbesøg:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:969
-#: ../theme/climateadaptv2/tab-policies-rule.html:70
+#: ../theme/climateadaptv2/index.html:985
+#: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Forestry"
 msgstr "Skovbrug"
 
@@ -322,13 +322,13 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:977
-#: ../theme/climateadaptv2/tab-policies-rule.html:78
+#: ../theme/climateadaptv2/index.html:993
+#: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Health"
 msgstr "Sundhed"
 
-#: ../theme/climateadaptv2/index.html:1033
-#: ../theme/climateadaptv2/tab-policies-rule.html:134
+#: ../theme/climateadaptv2/index.html:1001
+#: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "ICT"
 msgstr ""
 
@@ -359,8 +359,8 @@ msgstr "Indikatorer"
 msgid "Information portals"
 msgstr "Informationsportaler"
 
-#: ../theme/climateadaptv2/index.html:1041
-#: ../theme/climateadaptv2/tab-policies-rule.html:142
+#: ../theme/climateadaptv2/index.html:1009
+#: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Land use planning"
 msgstr ""
 
@@ -371,8 +371,8 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:985
-#: ../theme/climateadaptv2/tab-policies-rule.html:86
+#: ../theme/climateadaptv2/index.html:1017
+#: ../theme/climateadaptv2/tab-policies-rule.html:118
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Marine <br /> & amp; Fiskeri"
 
@@ -395,8 +395,8 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1049
-#: ../theme/climateadaptv2/tab-policies-rule.html:150
+#: ../theme/climateadaptv2/index.html:1025
+#: ../theme/climateadaptv2/tab-policies-rule.html:126
 msgid "Mountain areas"
 msgstr ""
 
@@ -569,22 +569,22 @@ msgstr "Den hurtige hastighed af klimaændringer kan overvinde den naturlige evn
 msgid "Tools"
 msgstr "Værktøjer"
 
-#: ../theme/climateadaptv2/index.html:1057
-#: ../theme/climateadaptv2/tab-policies-rule.html:158
+#: ../theme/climateadaptv2/index.html:1033
+#: ../theme/climateadaptv2/tab-policies-rule.html:134
 msgid "Tourism"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:993
-#: ../theme/climateadaptv2/tab-policies-rule.html:94
+#: ../theme/climateadaptv2/index.html:1041
+#: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Transport"
 msgstr "Transportere"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1001
-#: ../theme/climateadaptv2/tab-policies-rule.html:102
+#: ../theme/climateadaptv2/index.html:1049
+#: ../theme/climateadaptv2/tab-policies-rule.html:150
 msgid "Urban"
 msgstr "Urban"
 
@@ -600,8 +600,8 @@ msgstr "Videoer"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1009
-#: ../theme/climateadaptv2/tab-policies-rule.html:110
+#: ../theme/climateadaptv2/index.html:1057
+#: ../theme/climateadaptv2/tab-policies-rule.html:158
 msgid "Water <br /> management"
 msgstr "Vand <br /> styring"
 

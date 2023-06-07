@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:41+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,10 +50,6 @@ msgstr "evenemang"
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Ta reda på hur du bidrar till observatoriet via klimatanpassning"
 
-#: ../theme/climateadaptv2/health-homepage.html:174
-msgid "Get facts and information about selected vector-borne diseases"
-msgstr ""
-
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:391
 #: ../theme/climateadaptv2/health-page-full.html:144
@@ -65,6 +61,10 @@ msgstr "Hem"
 #: ../theme/climateadaptv2/health-homepage.html:199
 msgid "INDICATORS"
 msgstr "Indikatorer"
+
+#: ../theme/climateadaptv2/health-homepage.html:174
+msgid "Learn about climate change risks for health and safety at work"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:180
@@ -97,6 +97,10 @@ msgstr "Nyheter"
 #: ../theme/climateadaptv2/health-page.html:139
 msgid "News/Events"
 msgstr "Nyheter"
+
+#: ../theme/climateadaptv2/health-homepage.html:173
+msgid "Occupational health and safety"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:407
@@ -139,10 +143,6 @@ msgstr "Dela <br /> Din information"
 #: ../theme/climateadaptv2/health-page.html:291
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Detta <strong> europeiska klimat och hälsoobservatorium </strong> är ett partnerskap mellan Europeiska kommissionen, Europeiska miljöbyrån och flera andra organisationer."
-
-#: ../theme/climateadaptv2/health-homepage.html:173
-msgid "Vector-borne disease webpages"
-msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:200

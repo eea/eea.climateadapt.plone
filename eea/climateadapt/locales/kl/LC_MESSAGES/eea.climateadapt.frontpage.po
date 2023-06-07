@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:41+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,8 +84,8 @@ msgstr ""
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1017
-#: ../theme/climateadaptv2/tab-policies-rule.html:118
+#: ../theme/climateadaptv2/index.html:938
+#: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Business and Industry"
 msgstr ""
 
@@ -138,8 +138,8 @@ msgstr ""
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:938
-#: ../theme/climateadaptv2/tab-policies-rule.html:39
+#: ../theme/climateadaptv2/index.html:946
+#: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Coastal areas"
 msgstr ""
 
@@ -147,13 +147,13 @@ msgstr ""
 msgid "Country <br /> Profiles"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1025
-#: ../theme/climateadaptv2/tab-policies-rule.html:126
+#: ../theme/climateadaptv2/index.html:954
+#: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Cultural Heritage"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:946
-#: ../theme/climateadaptv2/tab-policies-rule.html:47
+#: ../theme/climateadaptv2/index.html:962
+#: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Disaster risk <br /> reduction"
 msgstr ""
 
@@ -174,8 +174,8 @@ msgstr ""
 msgid "EU Sector Policies"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:953
-#: ../theme/climateadaptv2/tab-policies-rule.html:54
+#: ../theme/climateadaptv2/index.html:969
+#: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Energy"
 msgstr ""
 
@@ -204,8 +204,8 @@ msgstr ""
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:961
-#: ../theme/climateadaptv2/tab-policies-rule.html:62
+#: ../theme/climateadaptv2/index.html:977
+#: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Financial"
 msgstr ""
 
@@ -226,8 +226,8 @@ msgstr ""
 msgid "For urban areas guidance visit:"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:969
-#: ../theme/climateadaptv2/tab-policies-rule.html:70
+#: ../theme/climateadaptv2/index.html:985
+#: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Forestry"
 msgstr ""
 
@@ -255,13 +255,13 @@ msgstr ""
 msgid "Guidance to search function"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:977
-#: ../theme/climateadaptv2/tab-policies-rule.html:78
+#: ../theme/climateadaptv2/index.html:993
+#: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Health"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1033
-#: ../theme/climateadaptv2/tab-policies-rule.html:134
+#: ../theme/climateadaptv2/index.html:1001
+#: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "ICT"
 msgstr ""
 
@@ -286,8 +286,8 @@ msgstr ""
 msgid "Information portals"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1041
-#: ../theme/climateadaptv2/tab-policies-rule.html:142
+#: ../theme/climateadaptv2/index.html:1009
+#: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Land use planning"
 msgstr ""
 
@@ -296,8 +296,8 @@ msgstr ""
 msgid "Land use planning is identified as one of the most effective processes to facilitate local adaptation to climate change. Existing processes and tools available through the municipal land use planning process in the EU, including official plans, zoning, and/or development permits, assist in minimizing the development risks to a municipality from the predicted impacts of increased floods, wildfires, landslides, and/or other natural hazards due to a changing climate."
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:985
-#: ../theme/climateadaptv2/tab-policies-rule.html:86
+#: ../theme/climateadaptv2/index.html:1017
+#: ../theme/climateadaptv2/tab-policies-rule.html:118
 msgid "Marine <br /> &amp; fisheries"
 msgstr ""
 
@@ -318,8 +318,8 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1049
-#: ../theme/climateadaptv2/tab-policies-rule.html:150
+#: ../theme/climateadaptv2/index.html:1025
+#: ../theme/climateadaptv2/tab-policies-rule.html:126
 msgid "Mountain areas"
 msgstr ""
 
@@ -455,18 +455,18 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1057
-#: ../theme/climateadaptv2/tab-policies-rule.html:158
+#: ../theme/climateadaptv2/index.html:1033
+#: ../theme/climateadaptv2/tab-policies-rule.html:134
 msgid "Tourism"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:993
-#: ../theme/climateadaptv2/tab-policies-rule.html:94
+#: ../theme/climateadaptv2/index.html:1041
+#: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Transport"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1001
-#: ../theme/climateadaptv2/tab-policies-rule.html:102
+#: ../theme/climateadaptv2/index.html:1049
+#: ../theme/climateadaptv2/tab-policies-rule.html:150
 msgid "Urban"
 msgstr ""
 
@@ -478,8 +478,8 @@ msgstr ""
 msgid "Videos"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1009
-#: ../theme/climateadaptv2/tab-policies-rule.html:110
+#: ../theme/climateadaptv2/index.html:1057
+#: ../theme/climateadaptv2/tab-policies-rule.html:158
 msgid "Water <br /> management"
 msgstr ""
 

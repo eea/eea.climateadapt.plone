@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:41+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,10 +80,6 @@ msgstr "Veranstaltungen"
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Finden Sie heraus, wie Sie über Climate-ADAPT zum Observatorium beitragen können"
 
-#: ../theme/climateadaptv2/health-homepage.html:174
-msgid "Get facts and information about selected vector-borne diseases"
-msgstr "Hier finden Sie Informationen zu ausgewählten vektor-übertragenen Krankheiten"
-
 # ,
 # ,
 # ,
@@ -105,6 +101,10 @@ msgstr "Startseite"
 #: ../theme/climateadaptv2/health-homepage.html:199
 msgid "INDICATORS"
 msgstr "Indikatoren"
+
+#: ../theme/climateadaptv2/health-homepage.html:174
+msgid "Learn about climate change risks for health and safety at work"
+msgstr "Erfahren Sie mehr über die Risiken des Klimawandels für Sicherheit und Gesundheit am Arbeitsplatz"
 
 # ,
 # ,
@@ -165,6 +165,10 @@ msgstr "Neuigkeiten"
 #: ../theme/climateadaptv2/health-page.html:139
 msgid "News/Events"
 msgstr "Neuigkeiten/Veranstaltungen"
+
+#: ../theme/climateadaptv2/health-homepage.html:173
+msgid "Occupational health and safety"
+msgstr "Arbeitsschutz und Arbeitsmedizin"
 
 # ,
 # ,
@@ -242,10 +246,6 @@ msgstr "Teilen Sie <br /> Ihre Informationen"
 #: ../theme/climateadaptv2/health-page.html:291
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "<strong>European Climate and Health Observatory </strong> ist eine Partnerschaft zwischen der Europäischen Kommission, der Europäischen Umweltbehörde und mehreren anderen Organisationen."
-
-#: ../theme/climateadaptv2/health-homepage.html:173
-msgid "Vector-borne disease webpages"
-msgstr "Webseiten zu vektor-übertragenen Krankheiten"
 
 # ,
 # ,

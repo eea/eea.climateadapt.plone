@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:41+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,8 +97,8 @@ msgstr "Pastatai"
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Pastatai gali būti pažeidžiami dėl klimato pokyčių. Ateityje gali padidėti žlugimo rizika, mažėjanti būsena ir reikšmingai prarasti vertę dėl daugiau audrų, sniego ar nuosmukio pažeidimų, vandens kėsinimosi, blogėjančio vidaus klimato ir sumažėjusio pastato eksploatavimo laiko. Europos Komisija siekia padidinti infrastruktūros atsparumą klimatui, įskaitant pastatus. Naujiems ir esamiems pastatams reikia įvertinti atsparumą dabartinei rizikai ir būsimiems klimato pokyčiams ir atitinkamai suplanuoti ar atnaujinti. Pagrindinė pastatų atsparumo palaikymo politika yra sanglaudos politika (dar vadinama regionine politika)."
 
-#: ../theme/climateadaptv2/index.html:1017
-#: ../theme/climateadaptv2/tab-policies-rule.html:118
+#: ../theme/climateadaptv2/index.html:938
+#: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Business and Industry"
 msgstr ""
 
@@ -159,8 +159,8 @@ msgid "Climate-ADAPT case studies showcase initiatives that are already being ca
 msgstr "Klimato pritaikymo atvejų tyrimai rodo iniciatyvas, kurios jau vykdomos Europoje, siekiant prisitaikyti prie klimato pokyčių ir padidinti atsparumą ekstremaliems orams ir lėtai atsirandantiems įvykiams."
 
 # ,
-#: ../theme/climateadaptv2/index.html:938
-#: ../theme/climateadaptv2/tab-policies-rule.html:39
+#: ../theme/climateadaptv2/index.html:946
+#: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Coastal areas"
 msgstr "Pakrančių teritorijos"
 
@@ -168,14 +168,14 @@ msgstr "Pakrančių teritorijos"
 msgid "Country <br /> Profiles"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1025
-#: ../theme/climateadaptv2/tab-policies-rule.html:126
+#: ../theme/climateadaptv2/index.html:954
+#: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Cultural Heritage"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:946
-#: ../theme/climateadaptv2/tab-policies-rule.html:47
+#: ../theme/climateadaptv2/index.html:962
+#: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Disaster risk <br /> reduction"
 msgstr "Nelaimės rizika <br /> Sumažinimas"
 
@@ -198,8 +198,8 @@ msgid "EU Sector Policies"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:953
-#: ../theme/climateadaptv2/tab-policies-rule.html:54
+#: ../theme/climateadaptv2/index.html:969
+#: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Energy"
 msgstr "Energija"
 
@@ -231,8 +231,8 @@ msgid "Extreme weather events in recent years have increased the urgency to main
 msgstr "Pastaraisiais metais ekstremalūs orų įvykiai padidino skubumą į pagrindinius klimato pokyčių pritaikymą į skirtingas ES politikos sritis. Yra keletas specifinių ES veiklos, skirtos pagrindiniam klimato pokyčių pritaikymui į finansų ir draudimo sektorių politiką. Tačiau daugelis su stichinių nelaimių susijusių Europos politikos (žr. Nelaimių rizikos mažinimą) yra labai svarbios finansų ir draudimo sektoriui, nes jos gali padėti užkirsti kelią dideliems nuostoliams ir finansinėms nelaimėms. Europos Komisija taip pat įsipareigojo didinti su klimatu susijusios veiklos finansavimą užtikrindama, kad mažiausiai 20% Europos biudžeto yra su klimatu susijusios išlaidos."
 
 # ,
-#: ../theme/climateadaptv2/index.html:961
-#: ../theme/climateadaptv2/tab-policies-rule.html:62
+#: ../theme/climateadaptv2/index.html:977
+#: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Financial"
 msgstr "Finansinis"
 
@@ -257,8 +257,8 @@ msgid "For urban areas guidance visit:"
 msgstr "Miesto teritorijoms gairės apsilankymas:"
 
 # ,
-#: ../theme/climateadaptv2/index.html:969
-#: ../theme/climateadaptv2/tab-policies-rule.html:70
+#: ../theme/climateadaptv2/index.html:985
+#: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Forestry"
 msgstr "Miškininkystė"
 
@@ -290,13 +290,13 @@ msgid "Guidance to search function"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:977
-#: ../theme/climateadaptv2/tab-policies-rule.html:78
+#: ../theme/climateadaptv2/index.html:993
+#: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Health"
 msgstr "Sveikata"
 
-#: ../theme/climateadaptv2/index.html:1033
-#: ../theme/climateadaptv2/tab-policies-rule.html:134
+#: ../theme/climateadaptv2/index.html:1001
+#: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "ICT"
 msgstr ""
 
@@ -324,8 +324,8 @@ msgstr "Rodikliai"
 msgid "Information portals"
 msgstr "Informacijos portalai"
 
-#: ../theme/climateadaptv2/index.html:1041
-#: ../theme/climateadaptv2/tab-policies-rule.html:142
+#: ../theme/climateadaptv2/index.html:1009
+#: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Land use planning"
 msgstr ""
 
@@ -335,8 +335,8 @@ msgid "Land use planning is identified as one of the most effective processes to
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:985
-#: ../theme/climateadaptv2/tab-policies-rule.html:86
+#: ../theme/climateadaptv2/index.html:1017
+#: ../theme/climateadaptv2/tab-policies-rule.html:118
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Jūrų pėstininkas <br /> & amp; Žuvininkystė"
 
@@ -358,8 +358,8 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1049
-#: ../theme/climateadaptv2/tab-policies-rule.html:150
+#: ../theme/climateadaptv2/index.html:1025
+#: ../theme/climateadaptv2/tab-policies-rule.html:126
 msgid "Mountain areas"
 msgstr ""
 
@@ -514,20 +514,20 @@ msgstr "Spartus klimato pokyčių greitis gali įveikti natūralius miško ekosi
 msgid "Tools"
 msgstr "Įrankiai"
 
-#: ../theme/climateadaptv2/index.html:1057
-#: ../theme/climateadaptv2/tab-policies-rule.html:158
+#: ../theme/climateadaptv2/index.html:1033
+#: ../theme/climateadaptv2/tab-policies-rule.html:134
 msgid "Tourism"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:993
-#: ../theme/climateadaptv2/tab-policies-rule.html:94
+#: ../theme/climateadaptv2/index.html:1041
+#: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Transport"
 msgstr "Transportas"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1001
-#: ../theme/climateadaptv2/tab-policies-rule.html:102
+#: ../theme/climateadaptv2/index.html:1049
+#: ../theme/climateadaptv2/tab-policies-rule.html:150
 msgid "Urban"
 msgstr "Miestas"
 
@@ -541,8 +541,8 @@ msgid "Videos"
 msgstr "Vaizdo įrašai"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1009
-#: ../theme/climateadaptv2/tab-policies-rule.html:110
+#: ../theme/climateadaptv2/index.html:1057
+#: ../theme/climateadaptv2/tab-policies-rule.html:158
 msgid "Water <br /> management"
 msgstr "Vanduo <br /> Valdymas"
 

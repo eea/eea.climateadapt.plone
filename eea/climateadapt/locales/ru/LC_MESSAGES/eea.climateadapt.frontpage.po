@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:41+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,8 +107,8 @@ msgstr "Здания"
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Здания могут быть уязвимы для изменения климата. В будущем может быть увеличен риск разрушения, сокращения состояния и значительной потери стоимости в результате большего количества штормов, снега или повреждения по пожилых людям, посягательства на воду, ухудшения климата в помещении и сокращения срока службы здания. Европейская комиссия стремится повысить устойчивость к климату инфраструктуры, включая здания. Новые и существующие здания должны быть оценены для устойчивости к текущим рискам и будущим изменениям климата, а также спланированы или обновлены соответственно. Ключевой политикой, используемой для поддержки устойчивости зданий, является политика сплоченности (также называемая региональной политикой)."
 
-#: ../theme/climateadaptv2/index.html:1017
-#: ../theme/climateadaptv2/tab-policies-rule.html:118
+#: ../theme/climateadaptv2/index.html:938
+#: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Business and Industry"
 msgstr ""
 
@@ -177,8 +177,8 @@ msgstr "Тематические исследования, адаптные кл
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:938
-#: ../theme/climateadaptv2/tab-policies-rule.html:39
+#: ../theme/climateadaptv2/index.html:946
+#: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Coastal areas"
 msgstr "Прибрежная зона"
 
@@ -186,15 +186,15 @@ msgstr "Прибрежная зона"
 msgid "Country <br /> Profiles"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1025
-#: ../theme/climateadaptv2/tab-policies-rule.html:126
+#: ../theme/climateadaptv2/index.html:954
+#: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Cultural Heritage"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:946
-#: ../theme/climateadaptv2/tab-policies-rule.html:47
+#: ../theme/climateadaptv2/index.html:962
+#: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Disaster risk <br /> reduction"
 msgstr "Риск бедствий <br /> Снижение"
 
@@ -219,8 +219,8 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:953
-#: ../theme/climateadaptv2/tab-policies-rule.html:54
+#: ../theme/climateadaptv2/index.html:969
+#: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Energy"
 msgstr "Энергия"
 
@@ -255,8 +255,8 @@ msgstr "Экстремальные погодные явления в после
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:961
-#: ../theme/climateadaptv2/tab-policies-rule.html:62
+#: ../theme/climateadaptv2/index.html:977
+#: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Financial"
 msgstr "Финансовый"
 
@@ -285,8 +285,8 @@ msgstr "Для городских районов. Руководство пос�
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:969
-#: ../theme/climateadaptv2/tab-policies-rule.html:70
+#: ../theme/climateadaptv2/index.html:985
+#: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Forestry"
 msgstr "Лесное хозяйство"
 
@@ -322,13 +322,13 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:977
-#: ../theme/climateadaptv2/tab-policies-rule.html:78
+#: ../theme/climateadaptv2/index.html:993
+#: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Health"
 msgstr "Здоровье"
 
-#: ../theme/climateadaptv2/index.html:1033
-#: ../theme/climateadaptv2/tab-policies-rule.html:134
+#: ../theme/climateadaptv2/index.html:1001
+#: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "ICT"
 msgstr ""
 
@@ -359,8 +359,8 @@ msgstr "Индикаторы"
 msgid "Information portals"
 msgstr "Информационные порталы"
 
-#: ../theme/climateadaptv2/index.html:1041
-#: ../theme/climateadaptv2/tab-policies-rule.html:142
+#: ../theme/climateadaptv2/index.html:1009
+#: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Land use planning"
 msgstr ""
 
@@ -371,8 +371,8 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:985
-#: ../theme/climateadaptv2/tab-policies-rule.html:86
+#: ../theme/climateadaptv2/index.html:1017
+#: ../theme/climateadaptv2/tab-policies-rule.html:118
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Marine <br /> & amp; рыболовство"
 
@@ -395,8 +395,8 @@ msgstr ""
 msgid "More news"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1049
-#: ../theme/climateadaptv2/tab-policies-rule.html:150
+#: ../theme/climateadaptv2/index.html:1025
+#: ../theme/climateadaptv2/tab-policies-rule.html:126
 msgid "Mountain areas"
 msgstr ""
 
@@ -569,22 +569,22 @@ msgstr "Быстрая скорость изменения климата мож
 msgid "Tools"
 msgstr "Инструменты"
 
-#: ../theme/climateadaptv2/index.html:1057
-#: ../theme/climateadaptv2/tab-policies-rule.html:158
+#: ../theme/climateadaptv2/index.html:1033
+#: ../theme/climateadaptv2/tab-policies-rule.html:134
 msgid "Tourism"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:993
-#: ../theme/climateadaptv2/tab-policies-rule.html:94
+#: ../theme/climateadaptv2/index.html:1041
+#: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Transport"
 msgstr "Транспорт"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1001
-#: ../theme/climateadaptv2/tab-policies-rule.html:102
+#: ../theme/climateadaptv2/index.html:1049
+#: ../theme/climateadaptv2/tab-policies-rule.html:150
 msgid "Urban"
 msgstr "Городской"
 
@@ -600,8 +600,8 @@ msgstr "Видео"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1009
-#: ../theme/climateadaptv2/tab-policies-rule.html:110
+#: ../theme/climateadaptv2/index.html:1057
+#: ../theme/climateadaptv2/tab-policies-rule.html:158
 msgid "Water <br /> management"
 msgstr "Вода <br /> Управление"
 

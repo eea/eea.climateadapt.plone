@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:40+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3285,6 +3285,10 @@ msgstr "Implementazione dell'adattamento"
 msgid "Importance and Relevance of Adaptation"
 msgstr "Importanza e rilevanza dell'adattamento"
 
+#: ../../climateadapt/browser/pt/regions-section.pt:91
+msgid "In 2021-2027, the <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> cross-border cooperation (CBC) between EU Member States and Neighbourhood region </a> is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called “Interreg NEXT”."
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -5488,6 +5492,10 @@ msgstr "Le informazioni presentate in queste pagine si basano sui rapporti secon
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
 msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
 msgstr "Ci sono <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a>in Europa per la cooperazione transnazionale. Inoltre, esistono strategie concordate specifiche dell'UE per quattro regioni macro-nazionali: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a> e <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional- Strategie/Adriatic-ionico/\" target=\"_blank\">x</a>. Questa sezione fornisce informazioni su strategie e azioni che sono state sviluppate o sono attualmente in fase di sviluppo per le regioni transnazionali dell'UE e per altre regioni e paesi. <br /> <br /> <b>x</b> <br /> La mappa mostra le regioni transnazionali situate in Europa definite nei programmi di cooperazione per il 2014-2020. È possibile selezionare le regioni transnazionali facendo clic sulla mappa. Se si seleziona un'area che appartiene a più di una regione, la finestra pop-up mostrerà tutte le regioni in cui si trova l'area. La finestra pop-up mostra anche i paesi in cui si trova ogni regione. <br /> <br /> per andare in una delle pagine delle regioni, scegliere nell'elenco a discesa, fare clic sulla legenda o utilizzare Il collegamento mostrato nel tooltip."
+
+#: ../../climateadapt/browser/pt/regions-section.pt:99
+msgid "To go to one of the regions please click on the maps."
+msgstr ""
 
 # ,
 # ,

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:41+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -207,8 +207,8 @@ msgstr "Budynki"
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Budynki mogą być podatne na zmiany klimatyczne. W przyszłości może wystąpić wzrost ryzyka zawalenia się, pogarszającego się stanu i znacznej utraty wartości w wyniku większej liczby burz, śniegu lub szkód spowodowanych osiadaniem, wnikania wody, pogarszającego się klimatu wewnętrznego i skróconego okresu eksploatacji budynku. Komisja Europejska dąży do zwiększenia odporności infrastruktury, w tym budynków, na zmiany klimatu. Nowe i istniejące budynki należy ocenić pod kątem odporności na obecne zagrożenia i przyszłe zmiany klimatyczne oraz odpowiednio je zaplanować lub zmodernizować. Kluczową polityką stosowaną do wspierania odporności budynków jest polityka spójności (zwana również polityką regionalną)."
 
-#: ../theme/climateadaptv2/index.html:1017
-#: ../theme/climateadaptv2/tab-policies-rule.html:118
+#: ../theme/climateadaptv2/index.html:938
+#: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Business and Industry"
 msgstr "Biznes i Przemysł "
 
@@ -347,8 +347,8 @@ msgstr "Studia przypadków Climate-ADAPT pokazują inicjatywy, które są już p
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:938
-#: ../theme/climateadaptv2/tab-policies-rule.html:39
+#: ../theme/climateadaptv2/index.html:946
+#: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Coastal areas"
 msgstr "Obszary przybrzeżne"
 
@@ -362,8 +362,8 @@ msgstr "Obszary przybrzeżne"
 msgid "Country <br /> Profiles"
 msgstr "Profile krajów"
 
-#: ../theme/climateadaptv2/index.html:1025
-#: ../theme/climateadaptv2/tab-policies-rule.html:126
+#: ../theme/climateadaptv2/index.html:954
+#: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Cultural Heritage"
 msgstr "Dziedzictwo Kulturowe"
 
@@ -377,8 +377,8 @@ msgstr "Dziedzictwo Kulturowe"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:946
-#: ../theme/climateadaptv2/tab-policies-rule.html:47
+#: ../theme/climateadaptv2/index.html:962
+#: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Disaster risk <br /> reduction"
 msgstr "Ograniczenie  <br /> ryzyka klęsk żywiołowych"
 
@@ -425,8 +425,8 @@ msgstr "polityka sektorowa UE"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:953
-#: ../theme/climateadaptv2/tab-policies-rule.html:54
+#: ../theme/climateadaptv2/index.html:969
+#: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Energy"
 msgstr "Energia"
 
@@ -485,8 +485,8 @@ msgstr "Ekstremalne zdarzenia pogodowe w ostatnich latach zwiększyły pilną po
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:961
-#: ../theme/climateadaptv2/tab-policies-rule.html:62
+#: ../theme/climateadaptv2/index.html:977
+#: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Financial"
 msgstr "Finansowy"
 
@@ -547,8 +547,8 @@ msgstr "W celu wytycznych dla obszarów miejskich:"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:969
-#: ../theme/climateadaptv2/tab-policies-rule.html:70
+#: ../theme/climateadaptv2/index.html:985
+#: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Forestry"
 msgstr "Leśnictwo"
 
@@ -616,13 +616,13 @@ msgstr "wytyczne dotyczące wyszukiwania"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:977
-#: ../theme/climateadaptv2/tab-policies-rule.html:78
+#: ../theme/climateadaptv2/index.html:993
+#: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Health"
 msgstr "Zdrowie"
 
-#: ../theme/climateadaptv2/index.html:1033
-#: ../theme/climateadaptv2/tab-policies-rule.html:134
+#: ../theme/climateadaptv2/index.html:1001
+#: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "ICT"
 msgstr "Technologie informacyjno-komunikacyjne"
 
@@ -677,8 +677,8 @@ msgstr "Wskaźniki"
 msgid "Information portals"
 msgstr "Portale informacyjne"
 
-#: ../theme/climateadaptv2/index.html:1041
-#: ../theme/climateadaptv2/tab-policies-rule.html:142
+#: ../theme/climateadaptv2/index.html:1009
+#: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Land use planning"
 msgstr "Planowanie Przestrzenne"
 
@@ -697,8 +697,8 @@ msgstr "Planowanie zagospodarowania przestrzennego jest uznawane za jeden z najs
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:985
-#: ../theme/climateadaptv2/tab-policies-rule.html:86
+#: ../theme/climateadaptv2/index.html:1017
+#: ../theme/climateadaptv2/tab-policies-rule.html:118
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Środowisko morskie <br /> &amp; rybołówstwo"
 
@@ -741,8 +741,8 @@ msgstr "Więcej wydarzeń"
 msgid "More news"
 msgstr "Więcej wiadomości"
 
-#: ../theme/climateadaptv2/index.html:1049
-#: ../theme/climateadaptv2/tab-policies-rule.html:150
+#: ../theme/climateadaptv2/index.html:1025
+#: ../theme/climateadaptv2/tab-policies-rule.html:126
 msgid "Mountain areas"
 msgstr "Obszary Górskie"
 
@@ -1085,8 +1085,8 @@ msgstr "Szybkie tempo zmian klimatu może przezwyciężyć naturalną zdolność
 msgid "Tools"
 msgstr "Narzędzia"
 
-#: ../theme/climateadaptv2/index.html:1057
-#: ../theme/climateadaptv2/tab-policies-rule.html:158
+#: ../theme/climateadaptv2/index.html:1033
+#: ../theme/climateadaptv2/tab-policies-rule.html:134
 msgid "Tourism"
 msgstr "Turystyka"
 
@@ -1100,8 +1100,8 @@ msgstr "Turystyka"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:993
-#: ../theme/climateadaptv2/tab-policies-rule.html:94
+#: ../theme/climateadaptv2/index.html:1041
+#: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Transport"
 msgstr "Transport"
 
@@ -1115,8 +1115,8 @@ msgstr "Transport"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1001
-#: ../theme/climateadaptv2/tab-policies-rule.html:102
+#: ../theme/climateadaptv2/index.html:1049
+#: ../theme/climateadaptv2/tab-policies-rule.html:150
 msgid "Urban"
 msgstr "Miejski"
 
@@ -1154,8 +1154,8 @@ msgstr "Filmy"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1009
-#: ../theme/climateadaptv2/tab-policies-rule.html:110
+#: ../theme/climateadaptv2/index.html:1057
+#: ../theme/climateadaptv2/tab-policies-rule.html:158
 msgid "Water <br /> management"
 msgstr "Gospodarka <br /> wodna"
 

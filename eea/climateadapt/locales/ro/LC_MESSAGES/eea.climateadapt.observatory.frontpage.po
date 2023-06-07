@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:41+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,10 +50,6 @@ msgstr "Evenimente"
 msgid "Find out how to contribute to the Observatory via Climate-ADAPT"
 msgstr "Aflați cum să contribuiți la Observator prin intermediul climei-adaptatului"
 
-#: ../theme/climateadaptv2/health-homepage.html:174
-msgid "Get facts and information about selected vector-borne diseases"
-msgstr ""
-
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:391
 #: ../theme/climateadaptv2/health-page-full.html:144
@@ -65,6 +61,10 @@ msgstr "Acasă"
 #: ../theme/climateadaptv2/health-homepage.html:199
 msgid "INDICATORS"
 msgstr "Indicatori"
+
+#: ../theme/climateadaptv2/health-homepage.html:174
+msgid "Learn about climate change risks for health and safety at work"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:180
@@ -97,6 +97,10 @@ msgstr "Știri"
 #: ../theme/climateadaptv2/health-page.html:139
 msgid "News/Events"
 msgstr "Noutăți și evenimente"
+
+#: ../theme/climateadaptv2/health-homepage.html:173
+msgid "Occupational health and safety"
+msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:407
@@ -139,10 +143,6 @@ msgstr "Partajează <br /> informațiile dvs."
 #: ../theme/climateadaptv2/health-page.html:291
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
 msgstr "Acest <strong> Observatorul european al climatului și al sănătății </strong> este un parteneriat între Comisia Europeană, Agenția Europeană pentru Mediu și alte câteva organizații."
-
-#: ../theme/climateadaptv2/health-homepage.html:173
-msgid "Vector-borne disease webpages"
-msgstr ""
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:200

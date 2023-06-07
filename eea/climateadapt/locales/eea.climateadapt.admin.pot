@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-05-25 07:41+0000\n"
+"POT-Creation-Date: 2023-06-07 04:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "-NONSPECIFIC-"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:176
+#: ../../climateadapt/behaviors/aceproject.py:177
 msgid "Abstracts"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:163
+#: ../../climateadapt/behaviors/aceproject.py:164
 #: ../../climateadapt/behaviors/organisation.py:30
 msgid "Acronym"
 msgstr ""
@@ -34,7 +34,7 @@ msgstr ""
 msgid "Acronym of the organisation"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:164
+#: ../../climateadapt/behaviors/aceproject.py:165
 msgid "Acronym of the project"
 msgstr ""
 
@@ -125,9 +125,9 @@ msgstr ""
 msgid "Climate impact"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:182
-#: ../../climateadapt/behaviors/acemeasure.py:143
-#: ../../climateadapt/behaviors/aceproject.py:250
+#: ../../climateadapt/behaviors/aceitem.py:187
+#: ../../climateadapt/behaviors/acemeasure.py:145
+#: ../../climateadapt/behaviors/aceproject.py:255
 msgid "Climate impacts"
 msgstr ""
 
@@ -144,13 +144,13 @@ msgstr ""
 msgid "Code"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:265
-#: ../../climateadapt/behaviors/acemeasure.py:350
+#: ../../climateadapt/behaviors/aceitem.py:270
+#: ../../climateadapt/behaviors/acemeasure.py:352
 msgid "Comments"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:353
-#: ../../climateadapt/behaviors/aceproject.py:324
+#: ../../climateadapt/behaviors/acemeasure.py:355
+#: ../../climateadapt/behaviors/aceproject.py:330
 msgid "Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"
 msgstr ""
 
@@ -175,23 +175,23 @@ msgstr ""
 msgid "Corporate email or link to contact form"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:242
+#: ../../climateadapt/behaviors/acemeasure.py:244
 msgid "Cost / Benefit"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:387
-#: ../../climateadapt/behaviors/acemeasure.py:475
-#: ../../climateadapt/behaviors/aceproject.py:411
+#: ../../climateadapt/behaviors/aceitem.py:394
+#: ../../climateadapt/behaviors/acemeasure.py:478
+#: ../../climateadapt/behaviors/aceproject.py:417
 msgid "Countries"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:401
-#: ../../climateadapt/behaviors/acemeasure.py:529
-#: ../../climateadapt/behaviors/aceproject.py:356
+#: ../../climateadapt/behaviors/aceitem.py:409
+#: ../../climateadapt/behaviors/acemeasure.py:537
+#: ../../climateadapt/behaviors/aceproject.py:362
 msgid "Created"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:372
+#: ../../climateadapt/behaviors/aceitem.py:378
 msgid "Data Type"
 msgstr ""
 
@@ -199,9 +199,9 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:211
-#: ../../climateadapt/behaviors/acemeasure.py:191
-#: ../../climateadapt/behaviors/aceproject.py:218
+#: ../../climateadapt/behaviors/aceitem.py:216
+#: ../../climateadapt/behaviors/acemeasure.py:193
+#: ../../climateadapt/behaviors/aceproject.py:219
 msgid "Date of item's creation"
 msgstr ""
 
@@ -215,27 +215,27 @@ msgstr ""
 msgid "Date of video's release"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:158
+#: ../../climateadapt/behaviors/acemeasure.py:160
 msgid "Describe and tag this item with relevant keywords. Press Enter after writing your keyword. Use specific and not general key words (e.g. avoid words as: adaption, climate change, measure, integrated approach, etc.):"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:156
+#: ../../climateadapt/behaviors/aceitem.py:161
 msgid "Describe and tag this item with relevant keywords.Press Enter after writing your keyword."
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:245
+#: ../../climateadapt/behaviors/acemeasure.py:247
 msgid "Describe costs (possibly providing quantitative estimate) and funding sources. Describe benefits provided by implemented solutions, i.e.: positive outcomes related climate change adaptation, co-benefits in other areas, quantitative estimation of benefits and related methodologies (e.g. monetization of benefits for cost benefit analysis, indicators of effectiveness of actions implemented, etc.) (5,000 characters limit)"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:232
+#: ../../climateadapt/behaviors/acemeasure.py:234
 msgid "Describe factors that are decisive for a successful implementation and expected challenges or limiting factors which may hinder the process and need to be considered (5,000 character limit)"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:216
+#: ../../climateadapt/behaviors/acemeasure.py:218
 msgid "Describe the Information about actors involved, the form of participation and the participation process.  Focus should be on the level of participation needed and/or adopted already (from information, to full commitment in the deliberation/implementation process), with useful notes e.g. regarding motivations. (5,000 character limit)"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:263
+#: ../../climateadapt/behaviors/acemeasure.py:265
 msgid "Describe the Legislation framework from which the case originated, relevant institutional opportunities and constrains, which determined the case as it is (5000 character limit):"
 msgstr ""
 
@@ -247,13 +247,13 @@ msgstr ""
 msgid "Describe the objectives which triggered the adaptation measures (5,000 characters limit):"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:245
-#: ../../climateadapt/behaviors/acemeasure.py:316
+#: ../../climateadapt/behaviors/aceitem.py:250
+#: ../../climateadapt/behaviors/acemeasure.py:318
 #: ../../climateadapt/behaviors/adaptationoption.py:74
 msgid "Describe the references (projects, a tools reports, etc.) related to this item, providing further information about it or its source."
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:278
+#: ../../climateadapt/behaviors/acemeasure.py:280
 msgid "Describe the time needed to implement the measure. Include: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)"
 msgstr ""
 
@@ -261,7 +261,7 @@ msgstr ""
 msgid "Describe what are the main climate change impacts/risks and related challenges addressed by the adaptation solutions proposed by the case study. Possibly include quantitate scenarios/projections of future climate change considered by the case study (5,000 characters limit):"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:131
+#: ../../climateadapt/behaviors/acemeasure.py:133
 #: ../../climateadapt/tiles/embedapp.py:25
 msgid "Description"
 msgstr ""
@@ -287,7 +287,7 @@ msgstr ""
 msgid "Droughts and floods"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:280
+#: ../../climateadapt/behaviors/aceproject.py:285
 msgid "Duration"
 msgstr ""
 
@@ -295,9 +295,9 @@ msgstr ""
 msgid "Ecosystem-based approaches (GI)"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:197
-#: ../../climateadapt/behaviors/acemeasure.py:487
-#: ../../climateadapt/behaviors/aceproject.py:265
+#: ../../climateadapt/behaviors/aceitem.py:202
+#: ../../climateadapt/behaviors/acemeasure.py:490
+#: ../../climateadapt/behaviors/aceproject.py:270
 msgid "Elements"
 msgstr ""
 
@@ -306,9 +306,9 @@ msgstr ""
 msgid "Energy"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:388
-#: ../../climateadapt/behaviors/acemeasure.py:476
-#: ../../climateadapt/behaviors/aceproject.py:412
+#: ../../climateadapt/behaviors/aceitem.py:395
+#: ../../climateadapt/behaviors/acemeasure.py:479
+#: ../../climateadapt/behaviors/aceproject.py:418
 msgid "European countries"
 msgstr ""
 
@@ -320,9 +320,9 @@ msgstr ""
 msgid "Extreme Temperatures"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:223
-#: ../../climateadapt/behaviors/acemeasure.py:203
-#: ../../climateadapt/behaviors/aceproject.py:286
+#: ../../climateadapt/behaviors/aceitem.py:228
+#: ../../climateadapt/behaviors/acemeasure.py:205
+#: ../../climateadapt/behaviors/aceproject.py:292
 msgid "Featured"
 msgstr ""
 
@@ -340,11 +340,11 @@ msgstr ""
 msgid "Forestry"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:155
+#: ../../climateadapt/behaviors/aceproject.py:156
 msgid "Funding Programme"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:274
+#: ../../climateadapt/behaviors/aceproject.py:279
 msgid "Further information on the funding"
 msgstr ""
 
@@ -356,13 +356,13 @@ msgstr ""
 msgid "General category"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:256
-#: ../../climateadapt/behaviors/acemeasure.py:340
-#: ../../climateadapt/behaviors/aceproject.py:316
+#: ../../climateadapt/behaviors/aceitem.py:261
+#: ../../climateadapt/behaviors/acemeasure.py:342
+#: ../../climateadapt/behaviors/aceproject.py:322
 msgid "Geographic characterisation"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:327
+#: ../../climateadapt/behaviors/acemeasure.py:329
 msgid "Governance Level"
 msgstr ""
 
@@ -375,9 +375,9 @@ msgstr ""
 msgid "Health"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:130
-#: ../../climateadapt/behaviors/acemeasure.py:503
-#: ../../climateadapt/behaviors/aceproject.py:212
+#: ../../climateadapt/behaviors/aceitem.py:131
+#: ../../climateadapt/behaviors/acemeasure.py:506
+#: ../../climateadapt/behaviors/aceproject.py:213
 msgid "Health impacts"
 msgstr ""
 
@@ -385,8 +385,8 @@ msgstr ""
 msgid "Heat"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:393
-#: ../../climateadapt/behaviors/acemeasure.py:512
+#: ../../climateadapt/behaviors/aceitem.py:400
+#: ../../climateadapt/behaviors/acemeasure.py:519
 msgid "High importance"
 msgstr ""
 
@@ -398,21 +398,27 @@ msgstr ""
 msgid "Ice and Snow"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:275
+#: ../../climateadapt/behaviors/acemeasure.py:277
 msgid "Implementation Time"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:466
+#: ../../climateadapt/behaviors/acemeasure.py:468
 msgid "Implementation Type"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:397
+#: ../../climateadapt/behaviors/aceproject.py:403
 msgid "Important"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:135
-#: ../../climateadapt/behaviors/acemeasure.py:509
-#: ../../climateadapt/behaviors/aceproject.py:230
+#: ../../climateadapt/behaviors/aceitem.py:140
+#: ../../climateadapt/behaviors/acemeasure.py:516
+#: ../../climateadapt/behaviors/aceproject.py:235
+msgid "Include in Mission Implementation Platform"
+msgstr ""
+
+#: ../../climateadapt/behaviors/aceitem.py:136
+#: ../../climateadapt/behaviors/acemeasure.py:512
+#: ../../climateadapt/behaviors/aceproject.py:231
 msgid "Include in observatory"
 msgstr ""
 
@@ -440,13 +446,13 @@ msgstr ""
 msgid "Institutional: Law and regulations"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:97
-#: ../../climateadapt/behaviors/acemeasure.py:362
-#: ../../climateadapt/behaviors/aceproject.py:107
+#: ../../climateadapt/behaviors/aceitem.py:98
+#: ../../climateadapt/behaviors/acemeasure.py:364
+#: ../../climateadapt/behaviors/aceproject.py:108
 msgid "Item from third parties"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:367
+#: ../../climateadapt/behaviors/aceitem.py:373
 msgid "Item link"
 msgstr ""
 
@@ -462,31 +468,31 @@ msgstr ""
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:155
-#: ../../climateadapt/behaviors/acemeasure.py:157
-#: ../../climateadapt/behaviors/aceproject.py:201
+#: ../../climateadapt/behaviors/aceitem.py:160
+#: ../../climateadapt/behaviors/acemeasure.py:159
+#: ../../climateadapt/behaviors/aceproject.py:202
 msgid "Keywords"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:406
-#: ../../climateadapt/behaviors/acemeasure.py:534
-#: ../../climateadapt/behaviors/aceproject.py:361
+#: ../../climateadapt/behaviors/aceitem.py:414
+#: ../../climateadapt/behaviors/acemeasure.py:542
+#: ../../climateadapt/behaviors/aceproject.py:367
 msgid "Last Modified"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:185
+#: ../../climateadapt/behaviors/aceproject.py:186
 msgid "Lead"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:186
+#: ../../climateadapt/behaviors/aceproject.py:187
 msgid "Lead organisation or individual of the project"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:260
+#: ../../climateadapt/behaviors/acemeasure.py:262
 msgid "Legal aspects"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:287
+#: ../../climateadapt/behaviors/acemeasure.py:289
 msgid "Lifetime"
 msgstr ""
 
@@ -494,18 +500,18 @@ msgstr ""
 msgid "Links to further information (relevant for the Observatory)"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:233
-#: ../../climateadapt/behaviors/aceproject.py:295
+#: ../../climateadapt/behaviors/aceitem.py:238
+#: ../../climateadapt/behaviors/aceproject.py:301
 msgid "List the Websites where the item can be found or is described. Please place each website on a new line"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:300
+#: ../../climateadapt/behaviors/acemeasure.py:302
 msgid "List the Websites where the option can be found or is described. Note: may refer to the original document describing a measure and does not have to refer back to the project e.g. collected measures. NOTE: Add http:// in front of every website link."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:110
-#: ../../climateadapt/behaviors/acemeasure.py:375
-#: ../../climateadapt/behaviors/aceproject.py:119
+#: ../../climateadapt/behaviors/aceitem.py:111
+#: ../../climateadapt/behaviors/acemeasure.py:377
+#: ../../climateadapt/behaviors/aceproject.py:120
 msgid "Logo"
 msgstr ""
 
@@ -526,11 +532,11 @@ msgstr ""
 msgid "Marine and Fisheries"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:496
+#: ../../climateadapt/behaviors/acemeasure.py:499
 msgid "Measure Type"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:396
+#: ../../climateadapt/behaviors/aceitem.py:404
 msgid "Metadata"
 msgstr ""
 
@@ -542,7 +548,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:122
+#: ../../climateadapt/behaviors/acemeasure.py:124
 msgid "Name of the case study clearly identifying its scope and location (250 character limit)"
 msgstr ""
 
@@ -558,9 +564,9 @@ msgstr ""
 msgid "Non specific"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:411
-#: ../../climateadapt/behaviors/acemeasure.py:539
-#: ../../climateadapt/behaviors/aceproject.py:366
+#: ../../climateadapt/behaviors/aceitem.py:419
+#: ../../climateadapt/behaviors/acemeasure.py:547
+#: ../../climateadapt/behaviors/aceproject.py:372
 msgid "Object ID"
 msgstr ""
 
@@ -592,8 +598,8 @@ msgstr ""
 msgid "Organisations"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:292
-#: ../../climateadapt/behaviors/acemeasure.py:412
+#: ../../climateadapt/behaviors/aceitem.py:297
+#: ../../climateadapt/behaviors/acemeasure.py:414
 msgid "Other contributor(s)"
 msgstr ""
 
@@ -605,23 +611,23 @@ msgstr ""
 msgid "Participation"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:192
+#: ../../climateadapt/behaviors/aceproject.py:193
 msgid "Partners"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:418
+#: ../../climateadapt/behaviors/aceproject.py:424
 msgid "Partners Source Link"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:415
+#: ../../climateadapt/behaviors/acemeasure.py:417
 msgid "Please first verify if the contributor is already part of the Climate ADAPT Database. If not, it is suggested to first create a new Organisation item (%s). As last alternative please add the new contributor(s) in the following box, using the official name"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:295
+#: ../../climateadapt/behaviors/aceitem.py:300
 msgid "Please first verify if the contributor is already part of the Climate ADAPT Database. If not, it is suggested to first create a new Organisation item (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last alternative please add the new contributor(s) in the following box, using the official name"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:365
+#: ../../climateadapt/behaviors/aceitem.py:370
 msgid "Portal type"
 msgstr ""
 
@@ -641,31 +647,31 @@ msgstr ""
 msgid "Professional thematic domain"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:170
+#: ../../climateadapt/behaviors/aceproject.py:171
 msgid "Project title or name"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:202
+#: ../../climateadapt/behaviors/aceproject.py:203
 msgid "Provide Keywords related to the project. Press Enter after writing your keyword."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:281
+#: ../../climateadapt/behaviors/aceproject.py:286
 msgid "Provide duration of project - Start and end date [yr]"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:193
+#: ../../climateadapt/behaviors/aceproject.py:194
 msgid "Provide information about project partners (organisation names)."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:177
+#: ../../climateadapt/behaviors/aceproject.py:178
 msgid "Provide information focusing on project output. Possibly on specific Website features."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:307
+#: ../../climateadapt/behaviors/aceproject.py:313
 msgid "Provide source from which project was retrieved (e.g. specific DB) "
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:275
+#: ../../climateadapt/behaviors/aceproject.py:280
 msgid "Provide source of funding"
 msgstr ""
 
@@ -673,17 +679,17 @@ msgstr ""
 msgid "Publications and reports"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:514
-#: ../../climateadapt/behaviors/aceproject.py:402
+#: ../../climateadapt/behaviors/acemeasure.py:522
+#: ../../climateadapt/behaviors/aceproject.py:408
 msgid "Rating"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:306
+#: ../../climateadapt/behaviors/aceproject.py:312
 msgid "Reference"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:243
-#: ../../climateadapt/behaviors/acemeasure.py:314
+#: ../../climateadapt/behaviors/aceitem.py:248
+#: ../../climateadapt/behaviors/acemeasure.py:316
 #: ../../climateadapt/behaviors/adaptationoption.py:72
 msgid "References"
 msgstr ""
@@ -692,9 +698,9 @@ msgstr ""
 msgid "Reindex object"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:283
-#: ../../climateadapt/behaviors/acemeasure.py:402
-#: ../../climateadapt/behaviors/aceproject.py:146
+#: ../../climateadapt/behaviors/aceitem.py:288
+#: ../../climateadapt/behaviors/acemeasure.py:404
+#: ../../climateadapt/behaviors/aceproject.py:147
 msgid "Related"
 msgstr ""
 
@@ -722,18 +728,18 @@ msgstr ""
 msgid "Sector Policies"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:167
-#: ../../climateadapt/behaviors/acemeasure.py:172
-#: ../../climateadapt/behaviors/aceproject.py:235
+#: ../../climateadapt/behaviors/aceitem.py:172
+#: ../../climateadapt/behaviors/acemeasure.py:174
+#: ../../climateadapt/behaviors/aceproject.py:240
 msgid "Sectors"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:277
+#: ../../climateadapt/behaviors/aceitem.py:282
 msgid "Select from the Climate ADAPT \"Organisation\" items the organisations contributing to/ involved in this item"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:397
-#: ../../climateadapt/behaviors/aceproject.py:141
+#: ../../climateadapt/behaviors/acemeasure.py:399
+#: ../../climateadapt/behaviors/aceproject.py:142
 msgid "Select from the Climate ADAPT Organisation items the organisations contributing to/ involved in this item"
 msgstr ""
 
@@ -753,28 +759,28 @@ msgstr ""
 msgid "Select one or more categories of adaptation options. The options are:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:183
-#: ../../climateadapt/behaviors/aceproject.py:251
+#: ../../climateadapt/behaviors/aceitem.py:188
+#: ../../climateadapt/behaviors/aceproject.py:256
 #: ../../climateadapt/behaviors/c3sindicator.py:95
 msgid "Select one or more climate change impact topics that this item relates to."
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:146
+#: ../../climateadapt/behaviors/acemeasure.py:148
 msgid "Select one or more climate change impact topics that this item relates to:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:198
-#: ../../climateadapt/behaviors/aceproject.py:266
+#: ../../climateadapt/behaviors/aceitem.py:203
+#: ../../climateadapt/behaviors/aceproject.py:271
 msgid "Select one or more elements."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:168
-#: ../../climateadapt/behaviors/aceproject.py:236
+#: ../../climateadapt/behaviors/aceitem.py:173
+#: ../../climateadapt/behaviors/aceproject.py:241
 #: ../../climateadapt/behaviors/c3sindicator.py:81
 msgid "Select one or more relevant sector policies that this item relates to."
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:173
+#: ../../climateadapt/behaviors/acemeasure.py:175
 msgid "Select one or more relevant sector policies that this item relates to:"
 msgstr ""
 
@@ -782,7 +788,7 @@ msgstr ""
 msgid "Select only one category below that best describes how relevant this case study is to climate change adaptation:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:328
+#: ../../climateadapt/behaviors/acemeasure.py:330
 msgid "Select the one governance level that relates to this adaptation option"
 msgstr ""
 
@@ -802,8 +808,8 @@ msgstr ""
 msgid "Short name"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:149
-#: ../../climateadapt/behaviors/acemeasure.py:136
+#: ../../climateadapt/behaviors/aceitem.py:154
+#: ../../climateadapt/behaviors/acemeasure.py:138
 msgid "Short summary"
 msgstr ""
 
@@ -823,31 +829,31 @@ msgstr ""
 msgid "Solutions"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:323
+#: ../../climateadapt/behaviors/aceproject.py:329
 msgid "Source"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:384
-#: ../../climateadapt/behaviors/acemeasure.py:472
-#: ../../climateadapt/behaviors/aceproject.py:405
+#: ../../climateadapt/behaviors/aceitem.py:390
+#: ../../climateadapt/behaviors/acemeasure.py:474
+#: ../../climateadapt/behaviors/aceproject.py:411
 msgid "Spatial Layer"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:371
+#: ../../climateadapt/behaviors/aceproject.py:377
 msgid "Special Tagging"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:354
-#: ../../climateadapt/behaviors/acemeasure.py:517
-#: ../../climateadapt/behaviors/aceproject.py:385
+#: ../../climateadapt/behaviors/aceitem.py:359
+#: ../../climateadapt/behaviors/acemeasure.py:525
+#: ../../climateadapt/behaviors/aceproject.py:391
 msgid "Special tagging"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:213
+#: ../../climateadapt/behaviors/acemeasure.py:215
 msgid "Stakeholder participation"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:379
+#: ../../climateadapt/behaviors/aceitem.py:385
 msgid "Storage Type"
 msgstr ""
 
@@ -879,7 +885,7 @@ msgstr ""
 msgid "Subtitle"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:229
+#: ../../climateadapt/behaviors/acemeasure.py:231
 msgid "Success / limitations"
 msgstr ""
 
@@ -887,7 +893,7 @@ msgstr ""
 msgid "Synchronize states for translations"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:488
+#: ../../climateadapt/behaviors/acemeasure.py:491
 msgid "TODO: Elements description here"
 msgstr ""
 
@@ -895,15 +901,15 @@ msgstr ""
 msgid "This name will be displayed in the URL."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:119
-#: ../../climateadapt/behaviors/acemeasure.py:384
-#: ../../climateadapt/behaviors/aceproject.py:128
+#: ../../climateadapt/behaviors/aceitem.py:120
+#: ../../climateadapt/behaviors/acemeasure.py:386
+#: ../../climateadapt/behaviors/aceproject.py:129
 msgid "Thumbnail"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:139
-#: ../../climateadapt/behaviors/acemeasure.py:121
-#: ../../climateadapt/behaviors/aceproject.py:169
+#: ../../climateadapt/behaviors/aceitem.py:144
+#: ../../climateadapt/behaviors/acemeasure.py:123
+#: ../../climateadapt/behaviors/aceproject.py:170
 msgid "Title"
 msgstr ""
 
@@ -937,19 +943,19 @@ msgstr ""
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:111
-#: ../../climateadapt/behaviors/acemeasure.py:376
-#: ../../climateadapt/behaviors/aceproject.py:120
+#: ../../climateadapt/behaviors/aceitem.py:112
+#: ../../climateadapt/behaviors/acemeasure.py:378
+#: ../../climateadapt/behaviors/aceproject.py:121
 msgid "Upload a representative picture or logo for the item. Recommended size: at least 360/180 px, aspect ratio 2x"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:120
-#: ../../climateadapt/behaviors/acemeasure.py:385
-#: ../../climateadapt/behaviors/aceproject.py:129
+#: ../../climateadapt/behaviors/aceitem.py:121
+#: ../../climateadapt/behaviors/acemeasure.py:387
+#: ../../climateadapt/behaviors/aceproject.py:130
 msgid "Upload a representative picture or logo for the item. Recommended size: at least 360/180 px, aspect ratio 2x. This image will be used in the search result page - cards view. If this image doesn't exist, then the logo image will be used."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:369
+#: ../../climateadapt/behaviors/aceitem.py:375
 msgid "Uploaded by"
 msgstr ""
 
@@ -958,22 +964,22 @@ msgstr ""
 msgid "Urban"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceproject.py:372
+#: ../../climateadapt/behaviors/aceproject.py:378
 msgid "Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:355
-#: ../../climateadapt/behaviors/acemeasure.py:518
-#: ../../climateadapt/behaviors/aceproject.py:386
+#: ../../climateadapt/behaviors/aceitem.py:360
+#: ../../climateadapt/behaviors/acemeasure.py:526
+#: ../../climateadapt/behaviors/aceproject.py:392
 msgid "Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
 msgstr ""
 
-#: ../../climateadapt/behaviors/acemeasure.py:363
+#: ../../climateadapt/behaviors/acemeasure.py:365
 msgid "Used only to highlight items provided by Third parties. <br>Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:98
-#: ../../climateadapt/behaviors/aceproject.py:108
+#: ../../climateadapt/behaviors/aceitem.py:99
+#: ../../climateadapt/behaviors/aceproject.py:109
 msgid "Used only to highlight items provided by Third parties.<br>Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
 msgstr ""
 
@@ -998,9 +1004,9 @@ msgstr ""
 msgid "Water management"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:232
-#: ../../climateadapt/behaviors/acemeasure.py:299
-#: ../../climateadapt/behaviors/aceproject.py:294
+#: ../../climateadapt/behaviors/aceitem.py:237
+#: ../../climateadapt/behaviors/acemeasure.py:301
+#: ../../climateadapt/behaviors/aceproject.py:300
 msgid "Websites"
 msgstr ""
 
