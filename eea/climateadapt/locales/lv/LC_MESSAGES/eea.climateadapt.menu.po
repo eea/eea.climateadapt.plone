@@ -594,6 +594,10 @@ msgstr "Observatorijas publikācijas"
 msgid "Observatory workplan for 2021-22"
 msgstr "Observatorijas darba plāns 2021-22"
 
+#:
+msgid "Occupational safety and health effects"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:60

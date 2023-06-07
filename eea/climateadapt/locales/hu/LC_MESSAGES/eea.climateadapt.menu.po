@@ -594,6 +594,10 @@ msgstr "Obszervatóriumi publikációk"
 msgid "Observatory workplan for 2021-22"
 msgstr "Obszervatóriumi munkaterv 2021-22-re"
 
+#:
+msgid "Occupational safety and health effects"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:60

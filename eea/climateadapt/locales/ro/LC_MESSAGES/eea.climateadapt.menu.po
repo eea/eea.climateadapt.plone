@@ -834,6 +834,10 @@ msgstr "Publicații Observator"
 msgid "Observatory workplan for 2021-22"
 msgstr "Plan de muncă observator pentru 2021-22"
 
+#:
+msgid "Occupational safety and health effects"
+msgstr ""
+
 # ,
 # ,
 # ,

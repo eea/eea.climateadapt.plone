@@ -1426,6 +1426,10 @@ msgstr "Veröffentlichungen des Observatory"
 msgid "Observatory workplan for 2021-22"
 msgstr "Arbeitsplan des Observatory für 2021-22"
 
+#:
+msgid "Occupational safety and health effects"
+msgstr "Arbeitsschutz und Arbeitsmedizin"
+
 # ,
 # ,
 # ,

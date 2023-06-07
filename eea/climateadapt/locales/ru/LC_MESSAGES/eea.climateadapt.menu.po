@@ -594,6 +594,10 @@ msgstr "Обсерватория"
 msgid "Observatory workplan for 2021-22"
 msgstr "Рабочий план обсерватории на 2021-22 гг."
 
+#:
+msgid "Occupational safety and health effects"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:60

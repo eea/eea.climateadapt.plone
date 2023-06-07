@@ -1491,6 +1491,10 @@ msgstr "Pubblicazioni dell'Osservatorio"
 msgid "Observatory workplan for 2021-22"
 msgstr "Piano di lavoro dell'Osservatorio per 2021-22"
 
+#:
+msgid "Occupational safety and health effects"
+msgstr "Sicurezza e salute sul lavoro"
+
 # ,
 # ,
 # ,

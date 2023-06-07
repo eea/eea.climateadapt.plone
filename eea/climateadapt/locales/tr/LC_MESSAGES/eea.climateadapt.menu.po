@@ -594,6 +594,10 @@ msgstr "Gözlemevi Yayınları"
 msgid "Observatory workplan for 2021-22"
 msgstr "2021-22 için Gözlemevi Çalışma Planı"
 
+#:
+msgid "Occupational safety and health effects"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:60

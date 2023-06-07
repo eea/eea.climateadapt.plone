@@ -594,6 +594,10 @@ msgstr "Observatorijske publikacije"
 msgid "Observatory workplan for 2021-22"
 msgstr "Opazovalni delovni načrt za 2021-22"
 
+#:
+msgid "Occupational safety and health effects"
+msgstr ""
+
 # ,
 # ,
 #: site_menu:60

@@ -594,3 +594,7 @@ msgstr ""
 #:
 msgid "Pollution"
 msgstr ""
+
+#:
+msgid "Occupational safety and health effects"
+msgstr ""
