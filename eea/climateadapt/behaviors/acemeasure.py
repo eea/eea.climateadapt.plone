@@ -513,7 +513,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     include_in_mission = Bool(
-        title=_(u"Include in Mission Implementation Platform"), required=False, default=False
+        title=_(u"Include in the Mission Portal"), required=False, default=False
     )
 
     important = Bool(title=_(u"High importance"),

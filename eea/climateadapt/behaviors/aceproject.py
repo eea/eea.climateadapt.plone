@@ -232,7 +232,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     )
 
     include_in_mission = Bool(
-        title=_(u"Include in Mission Implementation Platform"), required=False, default=False
+        title=_(u"Include in the Mission Portal"), required=False, default=False
     )
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
