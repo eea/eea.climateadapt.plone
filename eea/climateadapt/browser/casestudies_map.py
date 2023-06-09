@@ -7,6 +7,12 @@ from Products.Five import BrowserView
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
+from eea.climateadapt.vocabulary import (
+    ipcc_category,
+    aceitem_sectors_vocabulary,
+    aceitem_climateimpacts_vocabulary,
+)
+
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 logger = logging.getLogger("eea.climateadapt")
@@ -33,7 +39,35 @@ class Items(BrowserView):
                 "count": 10739,
             },
             "features": [],
+            "filters": {'sectors': [], 'impacts':[], 'ipcc':{}},
         }
+        # Add available filters
+        factory = getUtility(
+            IVocabularyFactory, "eea.climateadapt.aceitems_sectors"
+        )
+        vocabulary = factory(self.context)
+        for term in vocabulary:
+            results["filters"]['sectors'].append({"key": term.value, "value": term.title})
+
+        factory = getUtility(
+            IVocabularyFactory, "eea.climateadapt.aceitems_climateimpacts"
+        )
+        vocabulary = factory(self.context)
+        for term in vocabulary:
+            results["filters"]['impacts'].append({"key": term.value, "value": term.title})
+
+        factory = getUtility(
+            IVocabularyFactory, "eea.climateadapt.aceitems_ipcc_category"
+        )
+        vocabulary = factory(self.context)
+        for term in vocabulary:
+            temp = translate_text(self.context, self.request, term.title)
+            titleSplit = temp.split(":")
+            if titleSplit[0] not in results["filters"]['ipcc']:
+                results["filters"]['ipcc'][titleSplit[0]] = []
+            results["filters"]['ipcc'][titleSplit[0]].append(
+                {"key": term.value, "value": titleSplit[1].strip()}
+            )
 
         catalog = get_tool("portal_catalog")
         brains = catalog.searchResults(
