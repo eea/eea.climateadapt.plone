@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-14 04:27+0000\n"
+"POT-Creation-Date: 2023-06-14 06:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -206,10 +206,6 @@ msgstr ""
 msgid "Events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1598
-msgid "Extreme summer weather in a changing climate: is Europe prepared?"
-msgstr ""
-
 #: ../theme/climateadaptv2/index.html:1164
 #: ../theme/climateadaptv2/tab-policies-rule.html:265
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
@@ -336,6 +332,10 @@ msgstr ""
 
 #: ../theme/climateadaptv2/index.html:406
 msgid "New <br /> Features"
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1598
+msgid "New EEA product \"Extreme summer weather in a changing climate: is Europe prepared?\""
 msgstr ""
 
 #: ../theme/climateadaptv2/index.html:1620

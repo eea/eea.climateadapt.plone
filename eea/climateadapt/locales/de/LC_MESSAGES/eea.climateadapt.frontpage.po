@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-14 04:27+0000\n"
+"POT-Creation-Date: 2023-06-14 06:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -540,10 +540,6 @@ msgstr ""
 msgid "Events"
 msgstr "Veranstaltungen"
 
-#: ../theme/climateadaptv2/index.html:1598
-msgid "Extreme summer weather in a changing climate: is Europe prepared?"
-msgstr "Extremes Sommerwetter im Klimawandel: ist Europa vorbereitet?"
-
 # ,
 # ,
 # ,
@@ -874,6 +870,10 @@ msgstr "Gebirgsregionen"
 #: ../theme/climateadaptv2/index.html:406
 msgid "New <br /> Features"
 msgstr "Neue <br /> Funktionen"
+
+#: ../theme/climateadaptv2/index.html:1598
+msgid "New EEA product \"Extreme summer weather in a changing climate: is Europe prepared?\""
+msgstr "Neues EEA-Produkt „Extremes Sommerwetter im Klimawandel: ist Europa vorbereitet?\""
 
 # ,
 # ,
