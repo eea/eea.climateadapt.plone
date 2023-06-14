@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-07 04:57+0000\n"
+"POT-Creation-Date: 2023-06-14 04:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -410,16 +410,16 @@ msgstr ""
 msgid "Important"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:140
-#: ../../climateadapt/behaviors/acemeasure.py:516
-#: ../../climateadapt/behaviors/aceproject.py:235
-msgid "Include in Mission Implementation Platform"
-msgstr ""
-
 #: ../../climateadapt/behaviors/aceitem.py:136
 #: ../../climateadapt/behaviors/acemeasure.py:512
 #: ../../climateadapt/behaviors/aceproject.py:231
 msgid "Include in observatory"
+msgstr ""
+
+#: ../../climateadapt/behaviors/aceitem.py:140
+#: ../../climateadapt/behaviors/acemeasure.py:516
+#: ../../climateadapt/behaviors/aceproject.py:235
+msgid "Include in the Mission Portal"
 msgstr ""
 
 #: ../../climateadapt/behaviors/c3sindicator.py:54

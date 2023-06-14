@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-07 04:57+0000\n"
+"POT-Creation-Date: 2023-06-14 04:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,10 @@ msgstr ""
 msgid "Agriculture"
 msgstr "Zemědělství"
 
+#: ../theme/climateadaptv2/index.html:1602
+msgid "As our climate changes, the weather is becoming more extreme. The European Environment Agency looks at what might happen this summer; the impact of past weather events; what we can expect in the long term; and how prepared we are as a society."
+msgstr ""
+
 #: ../theme/climateadaptv2/index.html:1457
 msgid "Assessing adaptation options"
 msgstr ""
@@ -137,7 +141,7 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1712
+#: ../theme/climateadaptv2/index.html:1710
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Podívejte se na <a href=\"../newsletter\"> evropský zpravodaj pro přizpůsobení klimatu </a> a zaregistrujte se a přijímá jej ve svém e-mailu:"
 
@@ -242,9 +246,13 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1625
+#: ../theme/climateadaptv2/index.html:1623
 msgid "Events"
 msgstr "Události"
+
+#: ../theme/climateadaptv2/index.html:1598
+msgid "Extreme summer weather in a changing climate: is Europe prepared?"
+msgstr ""
 
 # ,
 # ,
@@ -387,11 +395,11 @@ msgstr "Marine a rybolov"
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1684
+#: ../theme/climateadaptv2/index.html:1682
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1655
+#: ../theme/climateadaptv2/index.html:1653
 msgid "More news"
 msgstr ""
 
@@ -406,13 +414,13 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1622
+#: ../theme/climateadaptv2/index.html:1620
 msgid "News"
 msgstr "Zprávy"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1698
+#: ../theme/climateadaptv2/index.html:1696
 msgid "Newsletter"
 msgstr "Zpravodaj"
 
@@ -441,11 +449,11 @@ msgstr "Publikace a zprávy"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1701
+#: ../theme/climateadaptv2/index.html:1699
 msgid "RSS feed"
 msgstr "RSS Feed"
 
-#: ../theme/climateadaptv2/index.html:1612
+#: ../theme/climateadaptv2/index.html:1610
 msgid "Read more"
 msgstr ""
 
@@ -488,7 +496,7 @@ msgstr "Sdílejte <Span> vaše informace </span>"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1714
+#: ../theme/climateadaptv2/index.html:1712
 msgid "Sign me up!"
 msgstr "Přihlaš mě!"
 
@@ -499,13 +507,13 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1731
+#: ../theme/climateadaptv2/index.html:1729
 msgid "Subscribe"
 msgstr "předplatit"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1729
+#: ../theme/climateadaptv2/index.html:1727
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Přihlaste se k odběru našeho <strong> RSS Feed </strong> <br /> a zůstaňte aktuální!"
 
@@ -518,10 +526,6 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:553
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "Evropský průzkumník údajů o klimatu poskytuje interaktivní přístup k mnoha indexům klimatu ze služby Copernicus Climate Change Service na podporu přizpůsobení se změně klimatu."
-
-#: ../theme/climateadaptv2/index.html:1598
-msgid "The European Climate Risk Assessment"
-msgstr ""
 
 #: ../theme/climateadaptv2/index.html:610
 msgid "The European Climate Risk Assessment provides an assessment of current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
@@ -637,7 +641,3 @@ msgstr ""
 #: ../theme/climateadaptv2/index.html:774
 msgid "type here ..."
 msgstr "Zadejte zde ..."
-
-#: ../theme/climateadaptv2/index.html:1603
-msgid "will assess current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
-msgstr ""

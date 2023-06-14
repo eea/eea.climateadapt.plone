@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-07 04:57+0000\n"
+"POT-Creation-Date: 2023-06-14 04:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,6 +139,10 @@ msgstr "Herramienta de soporte para la adaptación"
 msgid "Agriculture"
 msgstr "Agricultura"
 
+#: ../theme/climateadaptv2/index.html:1602
+msgid "As our climate changes, the weather is becoming more extreme. The European Environment Agency looks at what might happen this summer; the impact of past weather events; what we can expect in the long term; and how prepared we are as a society."
+msgstr "A medida que nuestro clima cambia, el clima se vuelve más extremo. La Agencia Europea de Medio Ambiente analiza lo que podría suceder este verano; el impacto de eventos meteorológicos pasados; lo que podemos esperar a largo plazo; y lo preparados que estamos como sociedad."
+
 #: ../theme/climateadaptv2/index.html:1457
 msgid "Assessing adaptation options"
 msgstr "Evaluar las opciones de adaptación"
@@ -261,7 +265,7 @@ msgstr "Folleto de casos de estudio"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1712
+#: ../theme/climateadaptv2/index.html:1710
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Consulte el <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> y regístrese para recibirlo en su correo electrónico:"
 
@@ -458,9 +462,13 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1625
+#: ../theme/climateadaptv2/index.html:1623
 msgid "Events"
 msgstr "Eventos"
+
+#: ../theme/climateadaptv2/index.html:1598
+msgid "Extreme summer weather in a changing climate: is Europe prepared?"
+msgstr "Verano extremo en un clima cambiante: ¿Europa está preparada?"
 
 # ,
 # ,
@@ -729,7 +737,7 @@ msgstr "Monitoreo &amp; Evaluación (M&amp;E)"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1684
+#: ../theme/climateadaptv2/index.html:1682
 msgid "More events"
 msgstr "Más eventos"
 
@@ -739,7 +747,7 @@ msgstr "Más eventos"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1655
+#: ../theme/climateadaptv2/index.html:1653
 msgid "More news"
 msgstr "Más noticias"
 
@@ -762,7 +770,7 @@ msgstr "Nuevas <br /> Funciones"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1622
+#: ../theme/climateadaptv2/index.html:1620
 msgid "News"
 msgstr "Noticias"
 
@@ -776,7 +784,7 @@ msgstr "Noticias"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1698
+#: ../theme/climateadaptv2/index.html:1696
 msgid "Newsletter"
 msgstr "Boletín informativo"
 
@@ -837,7 +845,7 @@ msgstr "Publicaciones e informes"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1701
+#: ../theme/climateadaptv2/index.html:1699
 msgid "RSS feed"
 msgstr "Canales RSS"
 
@@ -847,7 +855,7 @@ msgstr "Canales RSS"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1612
+#: ../theme/climateadaptv2/index.html:1610
 msgid "Read more"
 msgstr "Leer más"
 
@@ -944,7 +952,7 @@ msgstr "Comparte <Span> tu información </span>"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1714
+#: ../theme/climateadaptv2/index.html:1712
 msgid "Sign me up!"
 msgstr "¡Inscríbeme!"
 
@@ -963,7 +971,7 @@ msgstr "Dado que el estado del tiempo y el clima influyen decisivamente en la te
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1731
+#: ../theme/climateadaptv2/index.html:1729
 msgid "Subscribe"
 msgstr "Suscribirse"
 
@@ -977,7 +985,7 @@ msgstr "Suscribirse"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1729
+#: ../theme/climateadaptv2/index.html:1727
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "¡Suscríbete a nuestro canal RSS</strong> </strong> <br /> y mantente al día!"
 
@@ -998,10 +1006,6 @@ msgstr "El portal de la Misión de la UE «adaptación al cambio climático» pr
 #: ../theme/climateadaptv2/index.html:553
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "El Explorador Europeo de Datos Climáticos proporciona acceso interactivo a muchos índices climáticos del Copernicus Climate Change Service para apoyar la adaptación al cambio climático."
-
-#: ../theme/climateadaptv2/index.html:1598
-msgid "The European Climate Risk Assessment"
-msgstr "La evaluación europea del riesgo climático"
 
 #: ../theme/climateadaptv2/index.html:610
 msgid "The European Climate Risk Assessment provides an assessment of current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
@@ -1219,7 +1223,3 @@ msgstr "Consulte nuestra  ${page_url} para obtener más ayuda sobre cómo navega
 #: ../theme/climateadaptv2/index.html:774
 msgid "type here ..."
 msgstr "escriba aquí ..."
-
-#: ../theme/climateadaptv2/index.html:1603
-msgid "will assess current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
-msgstr "va a evaluar los efectos actuales y futuros del cambio climático y los riesgos relacionados con el medio ambiente, la economía y la sociedad en general en Europa."
