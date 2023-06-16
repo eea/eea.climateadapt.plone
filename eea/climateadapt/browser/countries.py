@@ -89,12 +89,14 @@ def get_discodata_for_country(country_code):
     processed_data = {
         k: unicode(v)
         for k, v in orig_data.items()
-        if k != 'countryCode'
+        # if k != 'countryCode'
+        if k not in ['countryCode', 'ReportNet3HistoricReleaseId']
     }
 
     # some values are strings, and need to be transformed
     # into Python objects
     for k, val in processed_data.items():
+        # import pdb; pdb.set_trace()
         json_val = json.loads(val)
         new_value = json_val[k][0]
 
@@ -103,7 +105,9 @@ def get_discodata_for_country(country_code):
     return processed_data
 
 
-DISCODATA_URL = 'https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_JSON%5D&p=1&nrOfHits=100'
+# DISCODATA_URL = 'https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_JSON%5D&p=1&nrOfHits=100'
+DISCODATA_URL = 'https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_Art19_JSON_2023%5D&p=1&nrOfHits=100'
+
 
 logger = logging.getLogger("eea.climateadapt")
 

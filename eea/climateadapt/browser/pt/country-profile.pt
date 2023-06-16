@@ -730,10 +730,10 @@
                     fieldset_data data/Monitoring_Evaluation/DescribeNationalAdaptation">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:Overview of good practices to review subnational adaptation policies;
+      <!-- <tal:block tal:define="fieldset_legend string:Overview of good practices to review subnational adaptation policies;
                     fieldset_data data/Monitoring_Evaluation/DescribeSubnationalAdaptation">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
+      </tal:block> -->
 
     </div>
 
