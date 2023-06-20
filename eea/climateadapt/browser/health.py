@@ -7,6 +7,8 @@ from zope.component.hooks import getSite
 from zope.component import getMultiAdapter
 from eea.climateadapt.translation.utils import (
     get_current_language, translate_text, TranslationUtilsMixin)
+import pytz
+
 
 class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
     def days_elapsed_mapping(self, p):
@@ -37,7 +39,6 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
         )
 
         for item in items:
-            # TODO: don't convert DateTime to datetime and back
             days = (
                 datetime.datetime.strptime(
                     item.getObject().start.strftime("%d.%m.%Y"), "%d.%m.%Y"
@@ -47,21 +48,14 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
 
             size = self.days_elapsed_mapping(days)
 
-            #toLocalizedTime = self.context.toLocalizedTime
-            #local_time = toLocalizedTime(item.getObject().start, True)
-            #local_time = datetime.datetime.strptime(local_time, '%b %d, %Y %I:%M %p')
-            #local_time = datetime.datetime.strftime(local_time, "%d %b %Y")
-
-            local_time = datetime.datetime.strftime(item.getObject().start, "%d %b %Y")
+            timezoned_time = item.getObject().start.astimezone(
+                pytz.timezone(item.start.timezone())).strftime("%d %b %Y")
 
             info = {
                 "title": item.Title,
                 "size": size,
                 "url": item.getURL(),
-                # "url": "/observatory/++aq++"
-                # + "/".join(item.getObject().getPhysicalPath()[2:]),
-                #"date": item.getObject().start.strftime("%d %b %Y"),
-                "date": local_time,
+                "date": timezoned_time,
                 "Subject": ("Health Observatory",),
             }
             results.append(info)
@@ -87,7 +81,6 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
         strptime = datetime.datetime.strptime
 
         for item in items:
-            # TODO: don't convert DateTime to datetime and back
             created = item.getObject().created().strftime("%d.%m.%Y")
             now = datetime.datetime.now()
             days = (strptime(created, "%d.%m.%Y") - now).days
@@ -108,17 +101,19 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
     @property
     def more_news(self):
         site = getSite()
-        url = site[get_current_language(self.context, self.request)]["observatory"]["news-archive-observatory"].absolute_url()
+        url = site[get_current_language(
+            self.context, self.request)]["observatory"]["news-archive-observatory"].absolute_url()
         title = translate_text(self.context, self.request,
-                "More news", 'eea.climateadapt.frontpage', self.current_lang)
+                               "More news", 'eea.climateadapt.frontpage', self.current_lang)
 
         return [url, title]
 
     @property
     def more_events(self):
         site = getSite()
-        url = site[get_current_language(self.context, self.request)]["observatory"]["more-events-observatory"].absolute_url()
+        url = site[get_current_language(
+            self.context, self.request)]["observatory"]["more-events-observatory"].absolute_url()
         title = translate_text(self.context, self.request,
-                "More events", 'eea.climateadapt.frontpage', self.current_lang)
+                               "More events", 'eea.climateadapt.frontpage', self.current_lang)
 
         return [url, title]
