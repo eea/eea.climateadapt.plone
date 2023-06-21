@@ -69,6 +69,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
             "climate_impacts",
             "keywords",
             "sectors",
+            "elements",
             "featured",  # 'year',
         ],
     )
