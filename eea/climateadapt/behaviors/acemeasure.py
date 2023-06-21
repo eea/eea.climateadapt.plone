@@ -448,8 +448,6 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, "spatial_layer")
     directives.omitted(IEditForm, "spatial_values")
     directives.omitted(IAddForm, "spatial_values")
-    directives.omitted(IEditForm, "elements")
-    directives.omitted(IAddForm, "elements")
     directives.omitted(IEditForm, "measure_type")
     directives.omitted(IAddForm, "measure_type")
     directives.omitted(IEditForm, "important")
@@ -488,7 +486,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
         title=_(u"Elements"),
-        description=_(u"TODO: Elements description here"),
+        description=_(u"Select one or more elements."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
