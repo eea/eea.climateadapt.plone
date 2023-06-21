@@ -792,3 +792,32 @@ def update_to_65(setup_tool=None):
     setup = api.portal.get_tool("portal_setup")
     setup.runImportStepFromProfile("eea.climateadapt:default", "catalog")
     logger.info("Done")
+
+
+def update_to_66(context):
+    logger.info("Upgrading to 66.")
+
+    catalog = portal.get_tool(name='portal_catalog')
+    query = {'portal_type': [
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+    ]}
+    results = catalog.searchResults(**query)
+    logger.info('Got %s results.' % len(results))
+    items_count = 0
+
+    for brain in results:
+        obj = brain.getObject()
+
+        if items_count % 100 == 0:
+            logger.info('Went through %s brains' % items_count)
+        items_count += 1
+        modified = False
+
+        logger.info('WIP %s' % obj.absolute_url())
+        if modified is True:
+            # obj.climate_impacts = climate
+            # obj.sectors = sectors
+            obj.reindexObject()
+            obj._p_changed = True
+    logger.info("Finished upgrade 66.")

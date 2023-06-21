@@ -2,6 +2,14 @@
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            i18n_domain="eea.climateadapt">
 
+  <genericsetup:upgradeStep
+    title="Upgrade eea.climateadapt to v66"
+    description="Update database items (case studies, adaptation options)"
+    source="65"
+    destination="66"
+    handler=".update.update_to_66"
+    profile="eea.climateadapt:default" />
+
   <genericsetup:upgradeSteps
     source="*"
     destination="65"
