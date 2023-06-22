@@ -289,23 +289,29 @@ alsoProvides(aceitem_storagetypes_vocabulary, IVocabularyFactory)
 
 
 _sectors = [    # this is the canonical
+    #   ("OTHER", "Other"),
+    #   ("TOURISM", "Tourism"),
     # ("AGRICULTURE", "Agriculture and Forest"),
+    # ("INFRASTRUCTURE", "Infrastructure"),
     ("AGRICULTURE", _("Agriculture")),
     ("BIODIVERSITY", _("Biodiversity")),
     ("BUILDINGS", _("Buildings")),
+    ("BUSINESSINDUSTRY", _("Business and industry")),
     ("COASTAL", _("Coastal areas")),
+    ("CULTURALHERITAGE", _("Cultural heritage")),
     ("DISASTERRISKREDUCTION", _("Disaster Risk Reduction")),
     ("ECOSYSTEM", _("Ecosystem-based approaches (GI)")),
     ("ENERGY", _("Energy")),
     ("FINANCIAL", _("Financial")),
     ("FORESTRY", _("Forestry")),
     ("HEALTH", _("Health")),
-    # ("INFRASTRUCTURE", "Infrastructure"),
+    ("ICT", _("ICT")),
+    ("LANDUSE", _("Land use planning")),
     ("MARINE", _("Marine and Fisheries")),
-    #   ("TOURISM", "Tourism"),
+    ("MOUNTAINAREAS", _("Mountain areas")),
+    ("TOURISMSECTOR", _("Tourism")),
     ("TRANSPORT", _("Transport")),
     ("URBAN", _("Urban")),
-    #   ("OTHER", "Other"),
     ("WATERMANAGEMENT", _("Water management")),
     ("NONSPECIFIC", _("Non specific")),
 ]
@@ -433,7 +439,7 @@ acemeasure_types = generic_vocabulary(_measure_types)
 alsoProvides(acemeasure_types, IVocabularyFactory)
 
 _origin_website = (("AdapteCCA", "AdapteCCA"),
-                   #("Climate-ADAPT", "Climate-ADAPT"),
+                   # ("Climate-ADAPT", "Climate-ADAPT"),
                    ("EEA", "EEA"),
                    ("EEA-archived", "EEA-archived"),
                    ('DRMKC', 'DRMKC'), ('C3S', 'C3S'),
