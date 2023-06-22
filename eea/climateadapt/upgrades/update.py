@@ -814,10 +814,28 @@ def update_to_66(context):
         items_count += 1
         modified = False
 
-        logger.info('WIP %s' % obj.absolute_url())
+        sectors = obj.sectors
+        elements = obj.elements
+        if elements is None:
+            elements = []
+
+        if sectors is not None and "ECOSYSTEM" in sectors:
+            updated_elements = elements
+            if updated_elements is None:
+                updated_elements = []
+            if "NATUREBASEDSOL" not in elements:
+                updated_elements.append("NATUREBASEDSOL")
+
+            updated_sectors = sectors
+            updated_sectors.remove("ECOSYSTEM")
+            modified = True
+
         if modified is True:
-            # obj.climate_impacts = climate
-            # obj.sectors = sectors
+            logger.info('Updating %s' % obj.absolute_url())
+            logger.info("NEW SECTORS %s" % ", ".join(updated_sectors))
+            logger.info("NEW ELEM %s" % ", ".join(updated_elements))
+            obj.sectors = updated_sectors
+            obj.elements = updated_elements
             obj.reindexObject()
             obj._p_changed = True
     logger.info("Finished upgrade 66.")
