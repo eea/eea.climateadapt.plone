@@ -74,10 +74,10 @@
                     <option value="TRANS_MACRO_ARCTIC" i18n:translate="">Arctic</option>
                     <option value="TRANS_MACRO_ATLANTIC" i18n:translate="">Atlantic</option>
                     <option value="TRANS_MACRO_ATL_AREA" i18n:translate="">Atlantic Area</option>
-                    <option value="TRANS_MACRO_BACLITC" i18n:translate="">Black Sea Basin (NEXT)</option>
+                    <option value="TRANS_MACRO_BACLITC" i18n:translate="">Baltic Sea</option>
                     <option value="TRANS_MACRO_BALKAN_MED" i18n:translate="">Balkan-Mediterranean</option>
                     <option value="TRANS_MACRO_BLACKSEA" i18n:translate="">Black Sea</option>
-                    <option value="TRANS_MACRO_BLACKSEA_BASIN" i18n:translate="">Black Sea Basin</option>
+                    <option value="TRANS_MACRO_BLACKSEA_BASIN" i18n:translate="">Black Sea Basin (NEXT)</option>
                     <option value="TRANS_MACRO_CAR_AREA" i18n:translate="">Caribbean Area</option>
                     <option value="TRANS_MACRO_CEN_EUR" i18n:translate="">Central Europe</option>
                     <option value="TRANS_MACRO_DANUBE" i18n:translate="">Danube</option>
