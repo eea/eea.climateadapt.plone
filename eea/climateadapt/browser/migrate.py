@@ -592,6 +592,20 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
             action="Add tag: Black Sea Basin (NEXT)")
         migrate_add_tag(objs=found_items, tag="Black Sea Basin (NEXT)")
 
+        # DELETE tags --------------------------------------------------- 3. 3.
+        delete_tags = ["Balkan-Mediterranean", "Mid-Atlantic",
+                       "Arctic", "South East Europe", "Black Sea"]
+        for a_tag in delete_tags:
+            found_items = search_for(
+                content_types=content_types,
+                tag=a_tag,
+                at_least_one=None,
+                tag_is_optional=False)
+
+            action = "Delete tag: " + a_tag
+            logs += justify_migration(objs=found_items, action=action)
+            migrate_delete_tag(objs=found_items, tag=a_tag)
+
         report = logs
         json_object = json.dumps(report, indent=4)
         r_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
