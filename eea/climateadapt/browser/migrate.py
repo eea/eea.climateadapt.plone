@@ -568,18 +568,29 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         logs = []
 
-        # ADD Arctic ---------------------------------------------------- 3. 2.
+        # ADD Northern Periphery and Arctic ----------------------------- 3. 2.
         found_items = search_for(
             content_types=content_types,
             tag="Arctic",
             at_least_one=None,
             tag_is_optional=False)
 
-        __import__('pdb').set_trace()
         logs += justify_migration(
             objs=found_items,
             action="Add tag: Northern Periphery and Arctic")
         migrate_add_tag(objs=found_items, tag="Northern Periphery and Arctic")
+
+        # ADD Black Sea Basin (NEXT) ------------------------------------ 3. 2.
+        found_items = search_for(
+            content_types=content_types,
+            tag="Black Sea",
+            at_least_one=None,
+            tag_is_optional=False)
+
+        logs += justify_migration(
+            objs=found_items,
+            action="Add tag: Black Sea Basin (NEXT)")
+        migrate_add_tag(objs=found_items, tag="Black Sea Basin (NEXT)")
 
         report = logs
         json_object = json.dumps(report, indent=4)
