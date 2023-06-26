@@ -3,6 +3,9 @@
 - On /en/knowledge/adaptation-information/climate-services/climate-services
   migrate links at top (first block) to table of contents block
 
+slate crash in
+- http://localhost:3000/en/observatory/policy-context/national-policy-analysis-2022
+
 -
   http://localhost:8080/cca/en/about/outreach-and-dissemination/climate-adapt-events-and-webinars/compose
 
