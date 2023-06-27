@@ -1,3 +1,8 @@
+2023-06-27 06:43:19 INFO ContentMigrate Migrating cca/pl/knowledge/european-climate-data-explorer/glossary-c3s
+2023-06-27 06:43:19 WARNING eea.climateadapt GenericView tile converter not implemented: c3s_indicators_glossary_table
+
+
+
 # TODO:
 
 - On /en/knowledge/adaptation-information/climate-services/climate-services

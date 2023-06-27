@@ -319,7 +319,17 @@ def embed_tile_to_block(tile_dm, obj, request):
     embed = data.get("embed", None)
 
     if not embed:
-        return None
+        # a fallback placeholder block
+        maps_block = {
+            "@type": "maps",
+            "align": "full",
+            "dataprotection": {},
+            "height": "100vh",
+            "url": '',
+        }
+        return {
+            "blocks": [[make_uid(), maps_block]]
+        }
 
     if '<video' in embed:
         soup = BeautifulSoup(embed, "html.parser")

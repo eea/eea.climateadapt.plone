@@ -20,7 +20,6 @@ from eea.climateadapt.tiles.section_nav import ISectionNavTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.tiles.transregional_select import \
     ITransRegionalSelectTile
-from plone.api.content import get_state
 from plone.app.contenttypes.interfaces import IDocument, IFolder
 from plone.dexterity.interfaces import IDexterityContent
 from plone.tiles.interfaces import ITileDataManager
@@ -38,7 +37,7 @@ from .tiles import (cards_tile_to_block, embed_tile_to_block,
 from .utils import convert_to_blocks, make_uid, path
 
 logger = logging.getLogger('ContentMigrate')
-logger.setLevel(logging.WARNING)
+logger.setLevel(logging.INFO)
 
 
 def nop_tile(tile_dm, obj, request):
@@ -57,7 +56,7 @@ tile_converters = {
     ICardsTile: cards_tile_to_block,
     IGenericViewTile: genericview_tile_to_block,
 
-    ISectionNavTile: nop_tile, # use context navigation
+    ISectionNavTile: nop_tile,  # use context navigation
     IASTNavigationTile: nop_tile,  # use context navigation
     IASTHeaderTile: nop_tile,  # use EEA DS banner subtitle
     IUrbanASTNavigationTile: nop_tile,  # use context navigation
@@ -291,14 +290,15 @@ def migrate_content_to_volto(obj, request):
         logger.debug("Ignoring %s, not a dexterity content", url)
         return
 
-    try:
-        state = get_state(obj)
-    except Exception:
-        logger.warn("Unable to get review state for %s", url)
-    else:
-        if state in ['private', 'archived']:
-            logger.debug("Skip migrating %s as it's private/archived", url)
-            return
+    # from plone.api.content import get_state
+    # try:
+    #     state = get_state(obj)
+    # except Exception:
+    #     logger.warn("Unable to get review state for %s", url)
+    # else:
+    #     if state in ['private', 'archived']:
+    #         logger.debug("Skip migrating %s as it's private/archived", url)
+    #         return
 
     logger.info("Migrating %s" % url)
 
@@ -338,5 +338,5 @@ class MigrateFolder(object):
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
             self._p_changed = True
-        
+
         fix_folder(obj, request)

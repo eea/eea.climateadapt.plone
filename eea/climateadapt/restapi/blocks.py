@@ -28,7 +28,7 @@ class SearchAceContentBlockSerializer(object):
         # print('sections', block)
 
         return block
-    
+
 
 @implementer(IBlockFieldSerializationTransformer)
 @adapter(IBlocks, IBrowserRequest)
@@ -51,4 +51,3 @@ class RelevantAceContentBlockSerializer(object):
         block['_v_results'] = ace.relevant_all_items()
 
         return block
-
