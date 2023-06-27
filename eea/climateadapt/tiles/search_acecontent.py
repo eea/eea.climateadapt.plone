@@ -402,7 +402,11 @@ class AceTileMixin(object):
                     return res
 
         for item in self.relevant_items():
-            obj = item.getObject()
+            try:
+                obj = item.getObject()
+            except KeyError:        # this is an indexing problem
+                logger.warn("Object not found in relevant_all_items: %s", item.getURL())
+                continue
             # if '/' + current_language + '/' not in item.getURL():
             #     item = self.translated_object(item)
 
@@ -530,7 +534,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
     @view.memoize
     def is_empty(self):
         return False
-    
+
     def get_description(self, item):
         # TODO: move this code to an indexer and a metadata column
 
@@ -569,7 +573,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
             "Page",
             "Link",
         ]
-    
+
     def view_more_url(self):
         site = getSite()
         base = site.absolute_url() + "/data-and-downloads?source="
@@ -674,7 +678,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
             res.append(o)
 
         return res
-    
+
     # @view.memoize
     def assigned(self):
         """Return the list of objects stored in the tile as UUID. If an UUID
@@ -712,7 +716,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
                             "Nonexistent object {0} removed from " "tile".format(uuid)
                         )
         return results
-    
+
     def populate_with_object(self, obj):
         """Add an object to the list of items
         :param obj: [required] The object to be added
