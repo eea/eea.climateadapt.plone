@@ -71,8 +71,8 @@ class AdaptationOptionView(DefaultView, AceViewApi):
 class AdaptationOptionFormExtender(FormExtender):
     def update(self):
         self.move('description', before='long_description')
-        self.move('category', before='stakeholder_participation')
-        self.move('ipcc_category', after='category')
+        self.move('key_type_measures', before='stakeholder_participation')
+        self.move('ipcc_category', after='key_type_measures')
         self.move('IRelatedItems.relatedItems', after='comments')
         self.move('casestudies', after='sectors')
         self.remove('ICategorization.subjects')

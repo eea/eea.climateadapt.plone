@@ -82,15 +82,18 @@ class ConvertSiteOrigin(BrowserView):
 
             if obj.source == "DRMKC" and not obj.origin_website:
                 obj.origin_website = [source]
-                logger.info("Migrated site origin : %s %s", brain.getURL(), obj.origin_website)
+                logger.info("Migrated site origin : %s %s",
+                            brain.getURL(), obj.origin_website)
 
             elif origin_website and isinstance(origin_website, str):
                 obj.origin_website = [origin_website]
-                logger.info("Migrated site origin : %s %s", brain.getURL(), obj.origin_website)
+                logger.info("Migrated site origin : %s %s",
+                            brain.getURL(), obj.origin_website)
 
             elif origin_website is None:
                 obj.origin_website = []
-                logger.info("Migrated site origin : %s %s", brain.getURL(), obj.origin_website)
+                logger.info("Migrated site origin : %s %s",
+                            brain.getURL(), obj.origin_website)
 
             else:
                 continue
@@ -161,7 +164,8 @@ class HealthImpacts:
                 ):
                     obj.health_impacts = [obj.health_impacts]
                     obj._p_changed = True
-                    logger.info("Migrated health impact for obj: %s %s", brain.getURL(), obj.health_impacts)
+                    logger.info("Migrated health impact for obj: %s %s",
+                                brain.getURL(), obj.health_impacts)
 
                     res.append(
                         {
@@ -215,7 +219,8 @@ class FundingProgramme:
                     "funding_programme": obj.funding_programme,
                 }
             )
-            logger.info("Migrated funding programme for obj: %s", obj.absolute_url())
+            logger.info("Migrated funding programme for obj: %s",
+                        obj.absolute_url())
 
         return response
 
@@ -335,7 +340,7 @@ def search_for(content_types=[], tag="", at_least_one=[],
             try:
                 old_values = []
                 values = json.loads(obj.geochars)[
-                        'geoElements']['macrotrans']
+                    'geoElements']['macrotrans']
                 for value in values:
                     bio = BIOREGIONS.get(value, None)
                     if bio is None:
@@ -364,7 +369,7 @@ def justify_migration(objs={}, action=""):
         logger.info(action)
         reason = "Found terms {0}, Found tags: {1}".format(
             item['reason_terms'], item['reason_tags']
-            )
+        )
         logger.info(reason)
         res.append({
             'URL': obj.absolute_url(),
@@ -532,38 +537,170 @@ def migrate_add_tag(objs=[], tag=""):
 
 
 class MigrateTransnationalRegionsDatabaseItems(BrowserView):
+    """
+    Refs #254130 Step 3.2:
+    IF database item
+    AND Arctic
+        => ADD Northern Periphery and Arctic
+
+    AND Black Sea
+        => ADD Black Sea basin (NEXT)
+
+    => REMOVE:
+        Balkan-Mediterranean
+        Mid-Atlantic
+        Arctic
+        Southeast
+        Black Sea
+
+    AND Amazonia or Caribbean Area or Indian Ocean Area
+        => ADD Outermost regions
+
+    => REMOVE: Amazonia, Caribbean Area, Indian Ocean Area
+    """
+
+    def __call__(self):
+        content_types = [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.tool",
+            "eea.climateadapt.video",
+        ]
+
+        logs = []
+
+        # ADD Northern Periphery and Arctic ----------------------------- 3. 2.
+        found_items = search_for(
+            content_types=content_types,
+            tag="Arctic",
+            at_least_one=None,
+            tag_is_optional=False)
+
+        logs += justify_migration(
+            objs=found_items,
+            action="Add tag: Northern Periphery and Arctic")
+        migrate_add_tag(objs=found_items, tag="Northern Periphery and Arctic")
+
+        # ADD Black Sea Basin (NEXT) ------------------------------------ 3. 2.
+        found_items = search_for(
+            content_types=content_types,
+            tag="Black Sea",
+            at_least_one=None,
+            tag_is_optional=False)
+
+        logs += justify_migration(
+            objs=found_items,
+            action="Add tag: Black Sea Basin (NEXT)")
+        migrate_add_tag(objs=found_items, tag="Black Sea Basin (NEXT)")
+
+        # DELETE tags --------------------------------------------------- 3. 3.
+        delete_tags = ["Balkan-Mediterranean", "Mid-Atlantic",
+                       "Arctic", "South East Europe", "Black Sea"]
+        for a_tag in delete_tags:
+            found_items = search_for(
+                content_types=content_types,
+                tag=a_tag,
+                at_least_one=None,
+                tag_is_optional=False)
+
+            action = "Delete tag: " + a_tag
+            logs += justify_migration(objs=found_items, action=action)
+            migrate_delete_tag(objs=found_items, tag=a_tag)
+
+        # ADD Outermost Regions ----------------------------------------- 3. 4.
+        found_items = search_for(
+            content_types=content_types,
+            tag="Amazonia",
+            at_least_one=None,
+            tag_is_optional=False)
+
+        logs += justify_migration(
+            objs=found_items,
+            action="Add tag: Outermost Regions")
+        migrate_add_tag(objs=found_items, tag="Outermost Regions")
+
+        # ADD Outermost Regions ----------------------------------------- 3. 4.
+        found_items = search_for(
+            content_types=content_types,
+            tag="Caribbean Area",
+            at_least_one=None,
+            tag_is_optional=False)
+
+        logs += justify_migration(
+            objs=found_items,
+            action="Add tag: Outermost Regions")
+        migrate_add_tag(objs=found_items, tag="Outermost Regions")
+
+        # ADD Outermost Regions ----------------------------------------- 3. 4.
+        found_items = search_for(
+            content_types=content_types,
+            tag="Indian Ocean Area",
+            at_least_one=None,
+            tag_is_optional=False)
+
+        logs += justify_migration(
+            objs=found_items,
+            action="Add tag: Outermost Regions")
+        migrate_add_tag(objs=found_items, tag="Outermost Regions")
+
+        # DELETE tags --------------------------------------------------- 3. 4.
+        delete_tags = ["Amazonia", "Caribbean Area", "Indian Ocean Area"]
+        for a_tag in delete_tags:
+            found_items = search_for(
+                content_types=content_types,
+                tag=a_tag,
+                at_least_one=None,
+                tag_is_optional=False)
+
+            action = "Delete tag: " + a_tag
+            logs += justify_migration(objs=found_items, action=action)
+            migrate_delete_tag(objs=found_items, tag=a_tag)
+
+        report = logs
+        json_object = json.dumps(report, indent=4)
+        r_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        with open("/tmp/migration_report_" + r_date + ".json", "w") as outf:
+            outf.write(json_object)
+
+        return "Done"
+
+
+class MigrateTransnationalRegionsDatabaseItemsOld(BrowserView):
     """ Update transnational regions
 
-    --- The request simplified ------------------------------------------------
+    --- The request simplified - -----------------------------------------------
     ** If we replace with a single tag, the first replace will be lost. So,
     instead of REPLACE we will ADD the new tag then the old Balkan-M will be
-    deleted for all. This way Balkan-M + Greece => Mediterranean AND also
-    Balkan-M + Greece => Adriatic-I Region.
+    deleted for all. This way Balkan-M + Greece = > Mediterranean AND also
+    Balkan-M + Greece = > Adriatic-I Region.
 
     IF content_types
     AND Balkan-Mediterranean
-        IF Greece
-        OR Albania
-        OR Macedonia
-        OR Bulgaria
-            => REPLACE Balkan-Mediterranean WITH Mediterranean               **
+    IF Greece
+     OR Albania
+      OR Macedonia
+       OR Bulgaria
+         = > REPLACE Balkan-Mediterranean WITH Mediterranean **
 
         IF Greece
         OR Albania
         OR Macedonia
-            => REPLACE Balkan-Mediterranean WITH Adriatic-Ionian Region      **
+         = > REPLACE Balkan-Mediterranean WITH Adriatic-Ionian Region      **
 
         IF Bulgaria
-            => REPLACE Balkan-Mediterranean WITH Danube Region               **
+         = > REPLACE Balkan-Mediterranean WITH Danube Region               **
 
         IF countries not mentioned
-            => DELETE tag Balkan-Mediterranean
+         = > DELETE tag Balkan-Mediterranean
 
     AND Mediterranean
-        IF Egypt
-        OR Tunisia
-        OR Algeria
-        OR Turkey
+    IF Egypt
+     OR Tunisia
+      OR Algeria
+       OR Turkey
         OR Israel
         OR Lebanon
         OR Palestine
@@ -574,30 +711,30 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         OR "African"
         OR "Mediterranean basin"
         OR "Mediterranean Sea basin".
-            => ADD tag MEDITERRANEAN SEA BASIN
+         = > ADD tag MEDITERRANEAN SEA BASIN
 
     AND Danube Area
-        IF Black Sea
-            => ADD tag Black Sea Basin
+    IF Black Sea
+         = > ADD tag Black Sea Basin
 
     AND South East Europe
-        IF Morocco
-        OR Africa
-        OR Canary
-            => ADD tag Mid-Atlantic
+    IF Morocco
+     OR Africa
+      OR Canary
+         = > ADD tag Mid-Atlantic
 
-    --- The request -----------------------------------------------------------
+    --- The request - ----------------------------------------------------------
     ALL database items EXCEPT: case studies, indicators, adaptation options
     a. For the items that are currently tagged for Balkan Mediterranean region:
         REPLACE THE  TAG "Balkan-Mediterranean" WITH
-        i. MEDITERRANEAN tag (items with the following countries selected
-        or mentioned in the text:
-        Greece OR Albania OR Macedonia OR Bulgaria)
-        ii. ADRIATIC-IONIAN REGION  tag (items with the following
-        countries selected or mentioned in the text:
-        Greece OR Albania OR Macedonia)
-        iii. DANUBE REGION tag (items with Bulgaria selected or mentioned)
-        iv. NOTHING (DELETE tag) if countries are not mentioned
+        i. MEDITERRANEAN tag(items with the following countries selected
+                             or mentioned in the text:
+                             Greece OR Albania OR Macedonia OR Bulgaria)
+        ii. ADRIATIC-IONIAN REGION  tag(items with the following
+                                        countries selected or mentioned in the text:
+                                        Greece OR Albania OR Macedonia)
+        iii. DANUBE REGION tag(items with Bulgaria selected or mentioned)
+        iv. NOTHING(DELETE tag) if countries are not mentioned
 
     b. For the items  that are currently tagged for Mediterranean region:
         i. ADD THE TAG MEDITERRANEAN SEA BASIN
@@ -608,15 +745,17 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
         "Mediterranean basin" OR "Mediterranean Sea basin".
 
     c. For the items that are currently tagged for Danube Area
-        i. ADD the tag "Black Sea Basin" (NEW TAG needs to be created first)
-        if they mention "Black Sea"
+    i. ADD the tag "Black Sea Basin" (NEW TAG needs to be created first)
+     if they mention "Black Sea"
 
     d. For the items that are currently tagged for South East Europe
-        i. ADD the tag "Mid-Atlantic" (NEW TAG needs to be created first)
-        IF the item include or mention "Morocco" OR "Africa" OR "Canary"
-        Note. No items are currently found with these words
+    i. ADD the tag "Mid-Atlantic" (NEW TAG needs to be created first)
+     IF the item include or mention "Morocco" OR "Africa" OR "Canary"
+      Note. No items are currently found with these words
     """
+
     def __call__(self):
+        return
         content_types = [
             "eea.climateadapt.aceproject",
             "eea.climateadapt.guidancedocument",
@@ -631,10 +770,10 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         # ADD Mediterranean --------------------------------------------- a. i.
         found_items = search_for(
-                content_types=content_types,
-                tag="Balkan-Mediterranean",
-                at_least_one=["Greece", "Albania", "Macedonia", "Bulgaria"],
-                tag_is_optional=False)
+            content_types=content_types,
+            tag="Balkan-Mediterranean",
+            at_least_one=["Greece", "Albania", "Macedonia", "Bulgaria"],
+            tag_is_optional=False)
 
         logs += justify_migration(objs=found_items,
                                   action="Add tag: Mediterranean")
@@ -642,10 +781,10 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         # ADD Adriatic-Ionian ------------------------------------------ a. ii.
         found_items = search_for(
-                content_types=content_types,
-                tag="Balkan-Mediterranean",
-                at_least_one=["Greece", "Albania", "Macedonia"],
-                tag_is_optional=False)
+            content_types=content_types,
+            tag="Balkan-Mediterranean",
+            at_least_one=["Greece", "Albania", "Macedonia"],
+            tag_is_optional=False)
 
         logs += justify_migration(objs=found_items,
                                   action="Add tag: Adriatic-Ionian")
@@ -653,10 +792,10 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         # ADD Danube -------------------------------------------------- a. iii.
         found_items = search_for(
-                content_types=content_types,
-                tag="Balkan-Mediterranean",
-                at_least_one=["Bulgaria"],
-                tag_is_optional=False)
+            content_types=content_types,
+            tag="Balkan-Mediterranean",
+            at_least_one=["Bulgaria"],
+            tag_is_optional=False)
 
         logs += justify_migration(objs=found_items,
                                   action="Add tag: Danube")
@@ -664,10 +803,10 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         # DELETE Balkan-Mediterranean ---------------------------------- a. iv.
         found_items = search_for(
-                content_types=content_types,
-                tag="Balkan-Mediterranean",
-                at_least_one=None,
-                tag_is_optional=False)
+            content_types=content_types,
+            tag="Balkan-Mediterranean",
+            at_least_one=None,
+            tag_is_optional=False)
 
         logs += justify_migration(objs=found_items,
                                   action="Delete tag: Balkan-Mediterranean")
@@ -675,15 +814,15 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         # ADD Mediterranean Sea Basin ----------------------------------- b. i.
         found_items = search_for(
-                content_types=content_types,
-                tag="Mediterranean",
-                at_least_one=[
-                    "Egypt", "Tunisia", "Algeria", "Turkey", "Israel",
-                    "Lebanon", "Palestine", "Jordan",
-                    "Southern and Eastern Mediterranean Countries",
-                    "surrounding regions", "Africa", "African",
-                    "Mediterranean basin", "Mediterranean Sea basin"],
-                tag_is_optional=False)
+            content_types=content_types,
+            tag="Mediterranean",
+            at_least_one=[
+                "Egypt", "Tunisia", "Algeria", "Turkey", "Israel",
+                "Lebanon", "Palestine", "Jordan",
+                "Southern and Eastern Mediterranean Countries",
+                "surrounding regions", "Africa", "African",
+                "Mediterranean basin", "Mediterranean Sea basin"],
+            tag_is_optional=False)
 
         logs += justify_migration(objs=found_items,
                                   action="Add tag: Mediterranean Sea Basin")
@@ -691,10 +830,10 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         # ADD Black Sea Basin ------------------------------------------- c. i.
         found_items = search_for(
-                content_types=content_types,
-                tag="Danube",
-                at_least_one=["Black Sea"],
-                tag_is_optional=False)
+            content_types=content_types,
+            tag="Danube",
+            at_least_one=["Black Sea"],
+            tag_is_optional=False)
 
         logs += justify_migration(objs=found_items,
                                   action="Add tag: Black Sea Basin")
@@ -702,10 +841,10 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
         # ADD Mid-Atlantic ---------------------------------------------- d. i.
         found_items = search_for(
-                content_types=content_types,
-                tag="South East Europe",
-                at_least_one=["Morocco", "Africa", "Canary"],
-                tag_is_optional=False)
+            content_types=content_types,
+            tag="South East Europe",
+            at_least_one=["Morocco", "Africa", "Canary"],
+            tag_is_optional=False)
 
         logs += justify_migration(objs=found_items,
                                   action="Add tag: Mid-Atlantic")
@@ -721,16 +860,17 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
 
 
 class MigrateTransnationalRegionsIndicators(BrowserView):
-    """ Database INDICATORS (that are always tagged for all regions)
-        a. Remove Balkan-Mediterranean tag for all the items
-        b. Add Black Sea Basin, Mediterranean Sea Basin, Mid-Atlantic
-        (3 new tags need to be created FIRST) for all the items
+    """ Database INDICATORS(that are always tagged for all regions)
+    a. Remove Balkan-Mediterranean tag for all the items
+     b. Add Black Sea Basin, Mediterranean Sea Basin, Mid-Atlantic
+      (3 new tags need to be created FIRST) for all the items
     """
+
     def __call__(self):
         catalog = api.portal.get_tool('portal_catalog')
         brains = catalog.searchResults(
-                path='/cca/en',
-                portal_type="eea.climateadapt.indicator")
+            path='/cca/en',
+            portal_type="eea.climateadapt.indicator")
 
         regions = {}
         for k, v in BIOREGIONS.items():
@@ -834,10 +974,10 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
 
 class CaseStudies:
     """Migrate case studies
-       Use Excel file - column AN, to retag case studies.
-       The column AN list the transnational regions to be displayed
-       on-line in each case study.
-       https://taskman.eionet.europa.eu/issues/156654#note-2
+    Use Excel file - column AN, to retag case studies.
+     The column AN list the transnational regions to be displayed
+      on-line in each case study.
+       https: // taskman.eionet.europa.eu/issues/156654  # note-2
     """
 
     def list(self):
@@ -856,8 +996,8 @@ class CaseStudies:
 
         catalog = api.portal.get_tool('portal_catalog')
         brains = catalog.searchResults(
-                path='/cca/en',
-                portal_type="eea.climateadapt.casestudy")
+            path='/cca/en',
+            portal_type="eea.climateadapt.casestudy")
 
         case_studies = [b.getObject() for b in brains]
         items = {}
@@ -906,7 +1046,7 @@ class CaseStudies:
         for item in items_new.keys():
             new_values = extract_vals(items_new[item]['trans_macro'])
             new_sub_values = extract_subnational_vals(
-                    items_new[item]['subnational'])
+                items_new[item]['subnational'])
 
             for a_val in new_values:
                 list_new_values.append(a_val)
@@ -970,7 +1110,7 @@ class CaseStudies:
                         #                      sub_values[0].encode('utf-8')]
                         # 'Catalu\xc3\xb1a (ES)'
                         sub = SUBNATIONAL_REGIONS.get(
-                                sub_value.encode('utf-8'), None)
+                            sub_value.encode('utf-8'), None)
 
                         if sub is None:
                             logger.info("Missing subnational: %s", sub_value)
@@ -1048,9 +1188,11 @@ class ContributingOrganisationPartner():
 
         map_organisations = {
             'Copernicus Climate Change Service - Climate-ADAPT (europa.eu)':
-                {'url': 'copernicus-climate-change-service-ecmw', 'id': 0, 'object': None},
+                {'url': 'copernicus-climate-change-service-ecmw',
+                    'id': 0, 'object': None},
             'European Centre for Disease Prevention and Control - Climate-ADAPT (europa.eu)':
-                {'url': 'european-centre-for-disease-prevention-and-control-ecdc', 'id': 0, 'object': None},
+                {'url': 'european-centre-for-disease-prevention-and-control-ecdc',
+                    'id': 0, 'object': None},
             'European Commission - Climate-ADAPT (europa.eu)':
                 {'url': 'european-commission', 'id': 0, 'object': None},
             'European Environment Agency - Climate-ADAPT (europa.eu)':
@@ -1060,7 +1202,8 @@ class ContributingOrganisationPartner():
             'Lancet Countdown - Climate-ADAPT (europa.eu)':
                 {'url': 'lancet-countdown', 'id': 0, 'object': None},
             'World Health Organization - Regional Office for Europe - Climate-ADAPT (europa.eu)':
-                {'url': 'who-regional-office-for-europe-who-europe', 'id': 0, 'object': None},
+                {'url': 'who-regional-office-for-europe-who-europe',
+                    'id': 0, 'object': None},
             'World Health Organization - Climate-ADAPT (europa.eu)':
                 {'url': 'world-health-organization', 'id': 0, 'object': None}
         }
@@ -1072,7 +1215,8 @@ class ContributingOrganisationPartner():
             if not orgs:
                 logger.warning("Organisation not found: %s", title)
             else:
-                map_organisations[title]['id'] = util.getId(orgs[0].getObject())
+                map_organisations[title]['id'] = util.getId(
+                    orgs[0].getObject())
                 map_organisations[title]['object'] = orgs[0].getObject()
 
         response = []
@@ -1112,12 +1256,14 @@ class ContributingOrganisationPartner():
                 continue
 
             if item['partners'] not in map_organisations:
-                logger.warning("Partner not found: %s [%s]", item['url'], item['partners'])
+                logger.warning(
+                    "Partner not found: %s [%s]", item['url'], item['partners'])
                 continue
 
             partner_object_id = map_organisations[item['partners']]['id']
             if not partner_object_id:
-                logger.warning("Partner not match: %s [%s]", item['url'], item['partners'])
+                logger.warning(
+                    "Partner not match: %s [%s]", item['url'], item['partners'])
                 continue
 
             obj.contributor_list = []
@@ -1135,6 +1281,7 @@ class ContributingOrganisationPartner():
             })
 
         return response
+
 
 class MoveContributorsToList:
 
@@ -1161,7 +1308,8 @@ class MoveContributorsToList:
                         delattr(obj, 'contributors')
                         obj._p_changed = True
 
-                    logger.info("Migrated contributors for obj: %s", brain.getURL())
+                    logger.info(
+                        "Migrated contributors for obj: %s", brain.getURL())
 
                     res.append(
                         {
@@ -1195,7 +1343,8 @@ class OrganisationLogo:
                     obj.image = obj.logo
                     obj._p_changed = True
 
-                    response.append({"title": obj.title, "url": brain.getURL()})
+                    response.append(
+                        {"title": obj.title, "url": brain.getURL()})
                     logger.info("Organisation logo: %s", brain.getURL())
 
         logger.info("Articles with logo in response: %s", len(response))
@@ -1238,7 +1387,8 @@ class SourceToRichText:
                 ):
                     obj.source = RichTextValue(obj.source)
                     obj._p_changed = True
-                    logger.info("Migrated source type for obj: %s", brain.getURL())
+                    logger.info("Migrated source type for obj: %s",
+                                brain.getURL())
 
 
 class OrganisationOrganisational:
@@ -1339,9 +1489,9 @@ class UpdateHealthItemsNone:
             for brain in brains:
                 obj = brain.getObject()
 
-                if hasattr(obj,"health_impacts") \
-                and obj.health_impacts \
-                and [None] == obj.health_impacts:
+                if hasattr(obj, "health_impacts") \
+                        and obj.health_impacts \
+                        and [None] == obj.health_impacts:
                     logger.info("Have none for obj: %s", brain.getURL())
 
                     res.append(
@@ -1386,9 +1536,11 @@ class AllObjectsNotify:
 
         map_organisations = {
             'Copernicus Climate Change Service - Climate-ADAPT (europa.eu)':
-                {'url': 'copernicus-climate-change-service-ecmw', 'id': 0, 'object': None},
+                {'url': 'copernicus-climate-change-service-ecmw',
+                    'id': 0, 'object': None},
             'European Centre for Disease Prevention and Control - Climate-ADAPT (europa.eu)':
-                {'url': 'european-centre-for-disease-prevention-and-control-ecdc', 'id': 0, 'object': None},
+                {'url': 'european-centre-for-disease-prevention-and-control-ecdc',
+                    'id': 0, 'object': None},
             'European Commission - Climate-ADAPT (europa.eu)':
                 {'url': 'european-commission', 'id': 0, 'object': None},
             'European Environment Agency - Climate-ADAPT (europa.eu)':
@@ -1398,7 +1550,8 @@ class AllObjectsNotify:
             'Lancet Countdown - Climate-ADAPT (europa.eu)':
                 {'url': 'lancet-countdown', 'id': 0, 'object': None},
             'World Health Organization - Regional Office for Europe - Climate-ADAPT (europa.eu)':
-                {'url': 'who-regional-office-for-europe-who-europe', 'id': 0, 'object': None},
+                {'url': 'who-regional-office-for-europe-who-europe',
+                    'id': 0, 'object': None},
             'World Health Organization - Climate-ADAPT (europa.eu)':
                 {'url': 'world-health-organization', 'id': 0, 'object': None}
         }
@@ -1410,7 +1563,8 @@ class AllObjectsNotify:
             if not orgs:
                 logger.warning("Organisation not found: %s", title)
             else:
-                map_organisations[title]['id'] = util.getId(orgs[0].getObject())
+                map_organisations[title]['id'] = util.getId(
+                    orgs[0].getObject())
                 map_organisations[title]['object'] = orgs[0].getObject()
 
         response = []
@@ -1450,12 +1604,14 @@ class AllObjectsNotify:
                 continue
 
             if item['partners'] not in map_organisations:
-                logger.warning("Partner not found: %s [%s]", item['url'], item['partners'])
+                logger.warning(
+                    "Partner not found: %s [%s]", item['url'], item['partners'])
                 continue
 
             partner_object_id = map_organisations[item['partners']]['id']
             if not partner_object_id:
-                logger.warning("Partner not match: %s [%s]", item['url'], item['partners'])
+                logger.warning(
+                    "Partner not match: %s [%s]", item['url'], item['partners'])
                 continue
 
             logger.info("Notificattion set: %s", item['url'])
@@ -1483,14 +1639,15 @@ class MigrateFundingProgrammeUpdates:
         }
 
         catalog = get_tool("portal_catalog")
-        brains = catalog.searchResults(portal_type="eea.climateadapt.aceproject")
+        brains = catalog.searchResults(
+            portal_type="eea.climateadapt.aceproject")
 
         res = []
         for brain in brains:
             obj = brain.getObject()
 
-            if hasattr(obj,"funding_programme") \
-            and obj.funding_programme in funding_programme_updates:
+            if hasattr(obj, "funding_programme") \
+                    and obj.funding_programme in funding_programme_updates:
                 logger.info("Will update for: %s", brain.getURL())
 
                 obj.funding_programme = funding_programme_updates[obj.funding_programme]
@@ -1588,7 +1745,8 @@ class UpdateHealthItemsFields:
                     obj.partner_organisation = RelationValue(relationId)
                     # obj.health_impacts = Choice(healthImpactChoice.value)
 
-                obj.health_impacts = [health_impacts.get(item["health_impact"], None)]
+                obj.health_impacts = [health_impacts.get(
+                    item["health_impact"], None)]
                 obj._p_changed = True
 
         # orgs_results = catalog.searchResults(**{'portal_type': 'eea.climateadapt.organisation', 'review_state': 'published'})
@@ -1621,7 +1779,7 @@ class UpdateHealthItemsFields:
         return res
 
 
-#142756
+# 142756
 class TransnationalRegions:
     """Update TransnationalRegions field"""
 
@@ -1656,7 +1814,7 @@ class TransnationalRegions:
             item["region_old"] = row[5]
             item["region_new"] = row[6]
             item["url"] = row[11]
-            #item["uid"] = row[6]
+            # item["uid"] = row[6]
 
             local_path = item['url'].replace('http://', '')
             local_path = local_path.replace('https://', '')
@@ -1676,7 +1834,7 @@ class TransnationalRegions:
             modified = False
 
             obj.geochars = json.dumps(geochars).encode()
-            #macro = geochars['geoElements'].get('macrotrans', [])
+            # macro = geochars['geoElements'].get('macrotrans', [])
             macro = []
             new_macros = item["region_new"].split(",")
             for new_macro in new_macros:
@@ -1701,8 +1859,9 @@ class TransnationalRegions:
         transaction.commit()
         return response
 
+
 class Retag:
-    """Retag items #153789"""
+    """Retag items  # 153789"""
 
     def list(self):
         response = []
@@ -1720,7 +1879,7 @@ class Retag:
 
         # need condition for "Yes"
         for row in reader:
-            #AdaptationOptions does not have elements
+            # AdaptationOptions does not have elements
             if 'metadata/adaptation-options/' in row[3]:
                 continue
 
@@ -1732,7 +1891,7 @@ class Retag:
             item["just_resilience"] = row[10]
             item["mre"] = row[11]
 
-            #import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
             if not item["climate_service"] and not item["just_resilience"] and not item["mre"]:
                 continue
 
@@ -1747,11 +1906,11 @@ class Retag:
                 obj.elements = []
 
             if item["climate_service"] and 'CLIMATESERVICES' not in obj.elements:
-                    obj.elements.append('CLIMATESERVICES');
+                obj.elements.append('CLIMATESERVICES')
             if item["just_resilience"] and 'JUSTRESILIENCE' not in obj.elements:
-                    obj.elements.append('JUSTRESILIENCE');
+                obj.elements.append('JUSTRESILIENCE')
             if item["mre"] and 'MRE' not in obj.elements:
-                    obj.elements.append('MRE');
+                obj.elements.append('MRE')
 
             obj._p_changed = True
             obj.reindexObject()
@@ -1825,7 +1984,8 @@ class ObservatoryHealthImpacts:
 
                 obj._p_changed = True
                 obj.reindexObject()
-                logger.info("Health impacts set: %s %s", brain.getURL(), obj.health_impacts)
+                logger.info("Health impacts set: %s %s",
+                            brain.getURL(), obj.health_impacts)
 
                 res.append(
                     {
@@ -1882,11 +2042,12 @@ class AdaptationNatureBasesSolutions:
                 if not hasattr(obj, "elements"):
                     obj.elements = []
                 if 'NATUREBASEDSOL' not in obj.elements:
-                    obj.elements.append('NATUREBASEDSOL');
+                    obj.elements.append('NATUREBASEDSOL')
                 obj.sectors.remove('ECOSYSTEM')
                 obj._p_changed = True
                 obj.reindexObject()
-                logger.info("Migrated adaptation element: %s %s", brain.getURL(), obj.elements)
+                logger.info("Migrated adaptation element: %s %s",
+                            brain.getURL(), obj.elements)
 
                 res.append(
                     {
@@ -1901,6 +2062,7 @@ class AdaptationNatureBasesSolutions:
 
         transaction.commit()
         return res
+
 
 class ElementNatureBasesSolutions:
     """Reindex NatureBasedSolution elements"""
@@ -1947,6 +2109,7 @@ class ElementNatureBasesSolutions:
         transaction.commit()
         return res
 
+
 class ElementNatureBSReverse:
     """Ecosystem based aproach revert"""
 
@@ -1984,11 +2147,12 @@ class ElementNatureBSReverse:
                 if not hasattr(obj, "sectors"):
                     obj.sectors = []
                 if 'ECOSYSTEM' not in obj.sectors:
-                    obj.sectors.append('ECOSYSTEM');
+                    obj.sectors.append('ECOSYSTEM')
                 obj.elements.remove('NATUREBASEDSOL')
                 obj._p_changed = True
                 obj.reindexObject()
-                logger.info("Migrated adaptation element: %s %s", brain.getURL(), obj.elements)
+                logger.info("Migrated adaptation element: %s %s",
+                            brain.getURL(), obj.elements)
 
                 res.append(
                     {

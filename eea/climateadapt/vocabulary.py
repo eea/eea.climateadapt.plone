@@ -289,23 +289,29 @@ alsoProvides(aceitem_storagetypes_vocabulary, IVocabularyFactory)
 
 
 _sectors = [    # this is the canonical
+    #   ("OTHER", "Other"),
+    #   ("TOURISM", "Tourism"),
     # ("AGRICULTURE", "Agriculture and Forest"),
+    # ("INFRASTRUCTURE", "Infrastructure"),
     ("AGRICULTURE", _("Agriculture")),
     ("BIODIVERSITY", _("Biodiversity")),
     ("BUILDINGS", _("Buildings")),
+    ("BUSINESSINDUSTRY", _("Business and industry")),
     ("COASTAL", _("Coastal areas")),
+    ("CULTURALHERITAGE", _("Cultural heritage")),
     ("DISASTERRISKREDUCTION", _("Disaster Risk Reduction")),
     ("ECOSYSTEM", _("Ecosystem-based approaches (GI)")),
     ("ENERGY", _("Energy")),
     ("FINANCIAL", _("Financial")),
     ("FORESTRY", _("Forestry")),
     ("HEALTH", _("Health")),
-    # ("INFRASTRUCTURE", "Infrastructure"),
+    ("ICT", _("ICT")),
+    ("LANDUSE", _("Land use planning")),
     ("MARINE", _("Marine and Fisheries")),
-    #   ("TOURISM", "Tourism"),
+    ("MOUNTAINAREAS", _("Mountain areas")),
+    ("TOURISMSECTOR", _("Tourism")),
     ("TRANSPORT", _("Transport")),
     ("URBAN", _("Urban")),
-    #   ("OTHER", "Other"),
     ("WATERMANAGEMENT", _("Water management")),
     ("NONSPECIFIC", _("Non specific")),
 ]
@@ -433,7 +439,7 @@ acemeasure_types = generic_vocabulary(_measure_types)
 alsoProvides(acemeasure_types, IVocabularyFactory)
 
 _origin_website = (("AdapteCCA", "AdapteCCA"),
-                   #("Climate-ADAPT", "Climate-ADAPT"),
+                   # ("Climate-ADAPT", "Climate-ADAPT"),
                    ("EEA", "EEA"),
                    ("EEA-archived", "EEA-archived"),
                    ('DRMKC', 'DRMKC'), ('C3S', 'C3S'),
@@ -532,6 +538,22 @@ _category = [
 category = generic_vocabulary(_category)
 alsoProvides(category, IVocabularyFactory)
 
+_key_type_measures = [
+    ("A1", _("A1: Governance and Institutional: Policy Instruments")),
+    ("A2", _("A2: Governance and Institutional: Management and planning")),
+    ("A3", _("A3: Governance and Institutional: Coordination cooperation and networks")),
+    ("B1", _("B1: Economic and Finance: Financing incentive instruments")),
+    ("B2", _("B2: Economic and Finance: Insurance and risk sharing instruments")),
+    ("C1", _("C1: Physical and technological: Grey options")),
+    ("C2", _("C2: Physical and technological: Technological options")),
+    ("D1", _("D1: Nature based Solutions and Ecosystem based approaches: Green options")),
+    ("D2", _("D2: Nature based Solutions and Ecosystem based approaches: Blue options")),
+    ("E1", _("E1: Knowledge and behavioural change: Information and awareness raising")),
+    ("E2", _("E2: Knowledge and behavioural change: capacity building empowering and lifestyle practices")),
+]
+key_type_measures = generic_vocabulary(_key_type_measures)
+alsoProvides(key_type_measures, IVocabularyFactory)
+
 _ipcc_category = [
     ("STRUCT_ENG", _("Structural and physical: Engineering and built environment options")),
     ("STRUCT_TECH", _("Structural and physical: Technological options")),
@@ -568,7 +590,7 @@ acesearch-geochars-lbl-BIOGRAPHICAL_REGION=Biogeographical Regions
 acesearch-geochars-lbl-COUNTRIES=Countries
 acesearch-geochars-lbl-SUBNATIONAL=Subnational Regions
 acesearch-geochars-lbl-CITY=Municipality Name
-acesearch-geochars-lbl-TRANS_MACRO_NORTHPERI=Northern Periphery
+acesearch-geochars-lbl-TRANS_MACRO_NORTHPERI=Northern Periphery and Arctic
 acesearch-geochars-lbl-TRANS_MACRO_BACLITC=Baltic Sea
 acesearch-geochars-lbl-TRANS_MACRO_NW_EUROPE=North West Europe
 acesearch-geochars-lbl-TRANS_MACRO_N_SEA=North Sea
@@ -577,19 +599,20 @@ acesearch-geochars-lbl-TRANS_MACRO_ALP_SPACE=Alpine Space
 acesearch-geochars-lbl-TRANS_MACRO_CEN_EUR=Central Europe
 acesearch-geochars-lbl-TRANS_MACRO_SW_EUR=South West Europe
 acesearch-geochars-lbl-TRANS_MACRO_SE_EUR=South East Europe
-acesearch-geochars-lbl-TRANS_MACRO_MED=Mediterranean
+acesearch-geochars-lbl-TRANS_MACRO_MED=Mediterranean (Euro-Med)
 acesearch-geochars-lbl-TRANS_MACRO_DANUBE=Danube
 acesearch-geochars-lbl-TRANS_MACRO_ADR_IONIAN=Adriatic-Ionian
 acesearch-geochars-lbl-TRANS_MACRO_CAR_AREA=Caribbean Area
 acesearch-geochars-lbl-TRANS_MACRO_AMAZONIA=Amazonia
 acesearch-geochars-lbl-TRANS_MACRO_IND_OCEAN_AREA=Indian Ocean Area
-acesearch-geochars-lbl-TRANS_MACRO_MED_BASIN=Mediterranean Sea Basin
+acesearch-geochars-lbl-TRANS_MACRO_MED_BASIN=Mediterranean Sea Basin (NEXT)
 acesearch-geochars-lbl-TRANS_MACRO_MID_ATLANTIC=Mid-Atlantic
 acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
 acesearch-geochars-lbl-TRANS_MACRO_ARCTIC=Arctic
 acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA=Black Sea
-acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA_BASIN=Black Sea Basin
+acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA_BASIN=Black Sea Basin (NEXT)
 acesearch-geochars-lbl-TRANS_MACRO_ATLANTIC=Atlantic
+acesearch-geochars-lbl-TRANS_MACRO_OUTERMOST=Outermost Regions
 acesearch-geochars-lbl-TRANS_BIO_ALPINE=Alpine
 acesearch-geochars-lbl-TRANS_BIO_ANATOLIAN=Anatolian
 acesearch-geochars-lbl-TRANS_BIO_ARCTIC=Arctic

@@ -792,3 +792,50 @@ def update_to_65(setup_tool=None):
     setup = api.portal.get_tool("portal_setup")
     setup.runImportStepFromProfile("eea.climateadapt:default", "catalog")
     logger.info("Done")
+
+
+def update_to_66(context):
+    logger.info("Upgrading to 66.")
+
+    catalog = portal.get_tool(name='portal_catalog')
+    query = {'portal_type': [
+        'eea.climateadapt.adaptationoption',
+        'eea.climateadapt.casestudy',
+    ]}
+    results = catalog.searchResults(**query)
+    logger.info('Got %s results.' % len(results))
+    items_count = 0
+
+    for brain in results:
+        obj = brain.getObject()
+
+        if items_count % 100 == 0:
+            logger.info('Went through %s brains' % items_count)
+        items_count += 1
+        modified = False
+
+        sectors = obj.sectors
+        elements = obj.elements
+        if elements is None:
+            elements = []
+
+        if sectors is not None and "ECOSYSTEM" in sectors:
+            updated_elements = elements
+            if updated_elements is None:
+                updated_elements = []
+            if "NATUREBASEDSOL" not in elements:
+                updated_elements.append("NATUREBASEDSOL")
+
+            updated_sectors = sectors
+            updated_sectors.remove("ECOSYSTEM")
+            modified = True
+
+        if modified is True:
+            logger.info('Updating %s' % obj.absolute_url())
+            logger.info("NEW SECTORS %s" % ", ".join(updated_sectors))
+            logger.info("NEW ELEM %s" % ", ".join(updated_elements))
+            obj.sectors = updated_sectors
+            obj.elements = updated_elements
+            obj.reindexObject()
+            obj._p_changed = True
+    logger.info("Finished upgrade 66.")
