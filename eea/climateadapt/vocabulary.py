@@ -538,6 +538,22 @@ _category = [
 category = generic_vocabulary(_category)
 alsoProvides(category, IVocabularyFactory)
 
+_key_type_measures = [
+    ("A1", _("A1: Governance and Institutional: Policy Instruments")),
+    ("A2", _("A2: Governance and Institutional: Management and planning")),
+    ("A3", _("A3: Governance and Institutional: Coordination cooperation and networks")),
+    ("B1", _("B1: Economic and Finance: Financing incentive instruments")),
+    ("B2", _("B2: Economic and Finance: Insurance and risk sharing instruments")),
+    ("C1", _("C1: Physical and technological: Grey options")),
+    ("C2", _("C2: Physical and technological: Technological options")),
+    ("D1", _("D1: Nature based Solutions and Ecosystem based approaches: Green options")),
+    ("D2", _("D2: Nature based Solutions and Ecosystem based approaches: Blue options")),
+    ("E1", _("E1: Knowledge and behavioural change: Information and awareness raising")),
+    ("E2", _("E2: Knowledge and behavioural change: capacity building empowering and lifestyle practices")),
+]
+key_type_measures = generic_vocabulary(_key_type_measures)
+alsoProvides(key_type_measures, IVocabularyFactory)
+
 _ipcc_category = [
     ("STRUCT_ENG", _("Structural and physical: Engineering and built environment options")),
     ("STRUCT_TECH", _("Structural and physical: Technological options")),
