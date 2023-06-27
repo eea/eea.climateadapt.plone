@@ -596,6 +596,7 @@ acesearch-geochars-lbl-TRANS_MACRO_ARCTIC=Arctic
 acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA=Black Sea
 acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA_BASIN=Black Sea Basin (NEXT)
 acesearch-geochars-lbl-TRANS_MACRO_ATLANTIC=Atlantic
+acesearch-geochars-lbl-TRANS_MACRO_OUTERMOST=Outermost Regions
 acesearch-geochars-lbl-TRANS_BIO_ALPINE=Alpine
 acesearch-geochars-lbl-TRANS_BIO_ANATOLIAN=Anatolian
 acesearch-geochars-lbl-TRANS_BIO_ARCTIC=Arctic
