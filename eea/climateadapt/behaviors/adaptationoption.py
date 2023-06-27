@@ -21,16 +21,6 @@ class IAdaptationOption(IAceMeasure):
     # directives.omitted(IEditForm, 'year')
     # directives.omitted(IAddForm, 'year')
 
-    form.widget(category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
-    category = List(
-        title=_(u"General category"),
-        description=_(u"Select one or more categories of adaptation options. "
-                      u"The 3 options are:"),
-        required=False,
-        value_type=Choice(
-            vocabulary="eea.climateadapt.aceitems_category",),
-    )
-
     form.widget(ipcc_category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     ipcc_category = List(
         title=_(u"IPCC adaptation options categories"),
@@ -82,4 +72,3 @@ class IAdaptationOption(IAceMeasure):
 alsoProvides(IAdaptationOption["publication_date"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["casestudies"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["ipcc_category"], ILanguageIndependentField)
-alsoProvides(IAdaptationOption["category"], ILanguageIndependentField)
