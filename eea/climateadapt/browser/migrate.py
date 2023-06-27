@@ -546,13 +546,17 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
     AND Black Sea
         => ADD Black Sea basin (NEXT)
 
-    ---------
     => REMOVE:
         Balkan-Mediterranean
         Mid-Atlantic
         Arctic
         Southeast
         Black Sea
+
+    AND Amazonia or Caribbean Area or Indian Ocean Area
+        => ADD Outermost regions
+
+    => REMOVE: Amazonia, Caribbean Area, Indian Ocean Area
     """
 
     def __call__(self):
@@ -605,6 +609,42 @@ class MigrateTransnationalRegionsDatabaseItems(BrowserView):
             action = "Delete tag: " + a_tag
             logs += justify_migration(objs=found_items, action=action)
             migrate_delete_tag(objs=found_items, tag=a_tag)
+
+        # ADD Outermost Regions ----------------------------------------- 3. 4.
+        found_items = search_for(
+            content_types=content_types,
+            tag="Amazonia",
+            at_least_one=None,
+            tag_is_optional=False)
+
+        logs += justify_migration(
+            objs=found_items,
+            action="Add tag: Outermost Regions")
+        migrate_add_tag(objs=found_items, tag="Outermost Regions")
+
+        # ADD Outermost Regions ----------------------------------------- 3. 4.
+        found_items = search_for(
+            content_types=content_types,
+            tag="Caribbean Area",
+            at_least_one=None,
+            tag_is_optional=False)
+
+        logs += justify_migration(
+            objs=found_items,
+            action="Add tag: Outermost Regions")
+        migrate_add_tag(objs=found_items, tag="Outermost Regions")
+
+        # ADD Outermost Regions ----------------------------------------- 3. 4.
+        found_items = search_for(
+            content_types=content_types,
+            tag="Indian Ocean Area",
+            at_least_one=None,
+            tag_is_optional=False)
+
+        logs += justify_migration(
+            objs=found_items,
+            action="Add tag: Outermost Regions")
+        migrate_add_tag(objs=found_items, tag="Outermost Regions")
 
         report = logs
         json_object = json.dumps(report, indent=4)
