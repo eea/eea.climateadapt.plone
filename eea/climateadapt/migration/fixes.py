@@ -33,6 +33,74 @@ def fix_climate_services_toc(context):
                 "variation": "horizontalMenu"}
     first_col['blocks'][first_block_id] = new_data
 
+
+def fix_tutorial_videos(context, request):
+    current_lang = get_current_language(context, request)
+    path = 'cca/' + current_lang + '/help/tutorial-videos'
+
+    if context.absolute_url(relative=True) != path:
+        return
+
+    # prepare video blocks
+    video_1_uid = make_uid()
+    video_2_uid = make_uid()
+    video_3_uid = make_uid()
+    video_4_uid = make_uid()
+    videos = {
+        video_1_uid: {
+            "@type": "nextCloudVideo",
+            "url": 'https://cmshare.eea.europa.eu/s/KbaSFnSGyQZra5L/download',
+            "title": '',
+        },
+        video_2_uid: {
+            "@type": "nextCloudVideo",
+            "url": 'https://cmshare.eea.europa.eu/s/7XiT5R6miLTXXFt/download',
+            "title": '',
+        },
+        video_3_uid: {
+            "@type": "nextCloudVideo",
+            "url": 'https://cmshare.eea.europa.eu/s/wRWfQsPzREXWrwn/download',
+            "title": '',
+        },
+        video_4_uid: {
+            "@type": "nextCloudVideo",
+            "url": 'https://cmshare.eea.europa.eu/s/sYPnWgfNDHeeSKR/download',
+            "title": '',
+        }
+    }
+
+    blocks = context.blocks
+    blocks[video_1_uid] = videos[video_1_uid]
+    blocks[video_2_uid] = videos[video_2_uid]
+    blocks[video_3_uid] = videos[video_3_uid]
+    blocks[video_4_uid] = videos[video_4_uid]
+
+    # prepare texts for videos
+    layout = context.blocks_layout
+    video_1_text = layout['items'][-4]
+    video_2_text = layout['items'][-3]
+    video_3_text = layout['items'][-2]
+    video_4_text = layout['items'][-1]
+    layout['items'].pop()
+    layout['items'].pop()
+    layout['items'].pop()
+    layout['items'].pop()
+
+    # add videos and texts
+    layout['items'].append(video_1_uid)
+    layout['items'].append(video_1_text)
+    layout['items'].append(video_2_uid)
+    layout['items'].append(video_2_text)
+    layout['items'].append(video_3_uid)
+    layout['items'].append(video_3_text)
+    layout['items'].append(video_4_uid)
+    layout['items'].append(video_4_text)
+
+    context.blocks = blocks
+    context.blocks_layout = layout
+    context._p_changed = True
+
+
 def fix_news_archive(context, request):
     current_lang = get_current_language(context, request)
     path = 'cca/' + current_lang + '/news-archive'
@@ -52,7 +120,7 @@ def fix_news_archive(context, request):
             "itemModel": {
                 "@type": "item",
                 "hasDate": True,
-                "hasDescription":True,
+                "hasDescription": True,
                 "hasImage": False,
                 "hasLink": True,
                 "maxDescription": 2,
@@ -62,19 +130,19 @@ def fix_news_archive(context, request):
             "query": [],
             "querystring": {
                 "query": [
-                {
-                    "i": "portal_type",
-                    "o": "plone.app.querystring.operation.selection.any",
-                    "v": [
-                    "News Item",
-                    "Link"
-                    ]
-                },
-                {
-                    "i": "path",
-                    "o": "plone.app.querystring.operation.string.absolutePath",
-                    "v": "/" + current_lang + "/news-archive"
-                }
+                    {
+                        "i": "portal_type",
+                        "o": "plone.app.querystring.operation.selection.any",
+                        "v": [
+                            "News Item",
+                            "Link"
+                        ]
+                    },
+                    {
+                        "i": "path",
+                        "o": "plone.app.querystring.operation.string.absolutePath",
+                        "v": "/" + current_lang + "/news-archive"
+                    }
                 ],
                 "sort_on": "effective",
                 "sort_order": "descending",
@@ -89,12 +157,13 @@ def fix_news_archive(context, request):
 
 
 fixers = [fix_climate_services_toc]
-folder_fixers = [fix_news_archive]
+folder_fixers = [fix_news_archive, fix_tutorial_videos]
 
 
 def fix_content(content):
     for fixer in fixers:
         fixer(content)
+
 
 def fix_folder(context, request):
     for fixer in folder_fixers:
