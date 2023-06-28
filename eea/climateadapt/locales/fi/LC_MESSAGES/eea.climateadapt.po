@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-14 06:05+0000\n"
+"POT-Creation-Date: 2023-06-28 07:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,12 +16,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
-#: ../../climateadapt/vocabulary.py:451
+#: ../../climateadapt/vocabulary.py:457
 msgid "-NONSPECIFIC-"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:86
-msgid "...loading configuration..."
 msgstr ""
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:130
@@ -342,6 +338,18 @@ msgstr ""
 msgid "A background document for the event is available <a href=\"${DYNAMIC_CONTENT}\">here</a>"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:542
+msgid "A1: Governance and Institutional: Policy Instruments"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:543
+msgid "A2: Governance and Institutional: Management and planning"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:544
+msgid "A3: Governance and Institutional: Coordination cooperation and networks"
+msgstr ""
+
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:54
 msgid "About the Urban Adaptation Support Tool"
 msgstr ""
@@ -356,7 +364,7 @@ msgid "Adaptation Details"
 msgstr "Sopeutumistiedot"
 
 # ,
-#: ../../climateadapt/vocabulary.py:333
+#: ../../climateadapt/vocabulary.py:339
 msgid "Adaptation Measures and Actions"
 msgstr "Sopeutumistoimenpiteet ja toimenpiteet"
 
@@ -369,12 +377,8 @@ msgstr "Tässä tapauksessa toteutetut mukautusvaihtoehdot"
 msgid "Adaptation Options and Case Studies"
 msgstr ""
 
-#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:264
-msgid "Adaptation Options categories"
-msgstr ""
-
 # ,
-#: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:340
 msgid "Adaptation Plans and Strategies"
 msgstr "Sopeutumissuunnitelmat ja strategiat"
 
@@ -393,7 +397,7 @@ msgstr "Sopeutumisvaihtoehdot"
 msgid "Adaptation portal or platform reported"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:166
+#: ../../climateadapt/browser/countries.py:173
 msgid "Adaptation portals and platforms"
 msgstr ""
 
@@ -449,11 +453,11 @@ msgstr ""
 
 # ,
 #: ../../climateadapt/browser/overrides.py:37
-#: ../../climateadapt/vocabulary.py:293
+#: ../../climateadapt/vocabulary.py:296
 msgid "Agriculture"
 msgstr "Maatalous"
 
-#: ../../climateadapt/vocabulary.py:449
+#: ../../climateadapt/vocabulary.py:455
 msgid "Air pollution and aero-allergens"
 msgstr ""
 
@@ -493,6 +497,14 @@ msgstr ""
 msgid "Atlantic Area"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:545
+msgid "B1: Economic and Finance: Financing incentive instruments"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:546
+msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/transnational_regions.pt:461
 msgid "Balkan-Mediterranean"
 msgstr ""
@@ -503,7 +515,7 @@ msgstr ""
 
 # ,
 #: ../../climateadapt/browser/overrides.py:39
-#: ../../climateadapt/vocabulary.py:294
+#: ../../climateadapt/vocabulary.py:297
 msgid "Biodiversity"
 msgstr "Biologinen monimuotoisuus"
 
@@ -514,9 +526,21 @@ msgstr "Biogeografiset alueet"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:49
-#: ../../climateadapt/vocabulary.py:295
+#: ../../climateadapt/vocabulary.py:298
 msgid "Buildings"
 msgstr "Rakennukset"
+
+#: ../../climateadapt/vocabulary.py:299
+msgid "Business and industry"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:547
+msgid "C1: Physical and technological: Grey options"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:548
+msgid "C2: Physical and technological: Technological options"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:46
@@ -607,7 +631,7 @@ msgstr ""
 msgid "Climate Impacts in Europe"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:165
+#: ../../climateadapt/browser/countries.py:172
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
@@ -646,13 +670,13 @@ msgstr ""
 msgid "Climate-ADAPT case studies"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:447
+#: ../../climateadapt/vocabulary.py:453
 msgid "Climate-sensitive diseases"
 msgstr ""
 
 # ,
 #: ../../climateadapt/browser/overrides.py:40
-#: ../../climateadapt/vocabulary.py:296
+#: ../../climateadapt/vocabulary.py:300
 msgid "Coastal areas"
 msgstr "Rannikkoalueet"
 
@@ -684,7 +708,6 @@ msgstr "Yhteyshenkilö"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:37
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:158
-#: ../../climateadapt/browser/pt/c3sindicator_view0.pt:174
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 msgstr ""
 
@@ -725,6 +748,18 @@ msgstr "Pormestarien liitto 2030 allekirjoittaja"
 #: ../../climateadapt/browser/pt/ace_macros.pt:104
 msgid "Created by:"
 msgstr "Luonut:"
+
+#: ../../climateadapt/vocabulary.py:301
+msgid "Cultural heritage"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:549
+msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:550
+msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
@@ -784,7 +819,7 @@ msgstr "Kuvaus:"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:42
-#: ../../climateadapt/vocabulary.py:297
+#: ../../climateadapt/vocabulary.py:302
 msgid "Disaster Risk Reduction"
 msgstr "Katastrofiriskin vähentäminen"
 
@@ -793,11 +828,11 @@ msgid "Download the detailed agenda <a href=\"${DYNAMIC_CONTENT}\">here</a>"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:341
+#: ../../climateadapt/vocabulary.py:347
 msgid "Droughts"
 msgstr "Kuivuus"
 
-#: ../../climateadapt/vocabulary.py:446
+#: ../../climateadapt/vocabulary.py:452
 msgid "Droughts and floods"
 msgstr ""
 
@@ -805,6 +840,14 @@ msgstr ""
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
 msgid "Duration:"
 msgstr "Kesto:"
+
+#: ../../climateadapt/vocabulary.py:551
+msgid "E1: Knowledge and behavioural change: Information and awareness raising"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:552
+msgid "E2: Knowledge and behavioural change: capacity building empowering and lifestyle practices"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:439
 msgid "EU Missions"
@@ -815,7 +858,7 @@ msgid "EU funding of adaptation"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:298
+#: ../../climateadapt/vocabulary.py:303
 msgid "Ecosystem-based approaches (GI)"
 msgstr "Ekosysteemipohjaiset lähestymistavat (GI)"
 
@@ -841,7 +884,7 @@ msgstr "Sähköposti"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47
-#: ../../climateadapt/vocabulary.py:299
+#: ../../climateadapt/vocabulary.py:304
 msgid "Energy"
 msgstr "Energia"
 
@@ -874,10 +917,6 @@ msgstr ""
 msgid "Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
 msgstr ""
 
-#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:58
-msgid "Explore in detail"
-msgstr ""
-
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
 #: ../../climateadapt/browser/pt/casestudy_view.pt:314
@@ -885,7 +924,7 @@ msgid "External source"
 msgstr "Ulkoinen lähde"
 
 # ,
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:348
 msgid "Extreme Temperatures"
 msgstr "Äärimmäiset lämpötilat"
 
@@ -907,7 +946,7 @@ msgstr ""
 
 # ,
 #: ../../climateadapt/browser/overrides.py:43
-#: ../../climateadapt/vocabulary.py:300
+#: ../../climateadapt/vocabulary.py:305
 msgid "Financial"
 msgstr "Rahoitus-"
 
@@ -916,13 +955,13 @@ msgid "Find out how to contribute different types of information to Climate-ADAP
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:349
 msgid "Flooding"
 msgstr "Tulva"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:38
-#: ../../climateadapt/vocabulary.py:301
+#: ../../climateadapt/vocabulary.py:306
 msgid "Forestry"
 msgstr "Metsätalous"
 
@@ -981,7 +1020,6 @@ msgid "Glossary"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:11
-#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:132
 msgid "Go back"
 msgstr ""
 
@@ -1058,7 +1096,7 @@ msgstr "Oletko jo kehittänyt sopeutumisstrategian?"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:44
-#: ../../climateadapt/vocabulary.py:302
+#: ../../climateadapt/vocabulary.py:307
 msgid "Health"
 msgstr "Terveys"
 
@@ -1069,7 +1107,7 @@ msgstr "Terveys"
 msgid "Health impact:"
 msgstr "Terveysvaikutukset:"
 
-#: ../../climateadapt/vocabulary.py:445
+#: ../../climateadapt/vocabulary.py:451
 msgid "Heat"
 msgstr ""
 
@@ -1086,13 +1124,17 @@ msgstr "Koti"
 msgid "How to use the map?"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:308
+msgid "ICT"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
 msgid "IPCC categories"
 msgstr "IPCC -luokat"
 
 # ,
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:350
 msgid "Ice and Snow"
 msgstr "Jää ja lumi"
 
@@ -1158,15 +1200,15 @@ msgstr ""
 msgid "Information portals"
 msgstr "Tietoportaalit"
 
-#: ../../climateadapt/vocabulary.py:543
+#: ../../climateadapt/vocabulary.py:565
 msgid "Institutional: Economic options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:545
+#: ../../climateadapt/vocabulary.py:567
 msgid "Institutional: Government policies and programmes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:544
+#: ../../climateadapt/vocabulary.py:566
 msgid "Institutional: Law and regulations"
 msgstr ""
 
@@ -1178,6 +1220,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
 msgid "Item’s creation:"
 msgstr "Kohteen luominen:"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:264
+msgid "Key Type Measures"
+msgstr ""
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:22
@@ -1210,6 +1256,10 @@ msgstr "Avainsanat"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:285
 msgid "Keywords:"
 msgstr "Avainsanat:"
+
+#: ../../climateadapt/vocabulary.py:309
+msgid "Land use planning"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:99
 msgid "Language of the conference"
@@ -1273,10 +1323,6 @@ msgstr "Linkki metatietoihin:"
 msgid "Links to further information"
 msgstr "Linkit lisätietoihin"
 
-#: ../../climateadapt/browser/pt/c3sindicator_view_old.pt:83
-msgid "Loading"
-msgstr ""
-
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:450
 msgid "MCR 2030"
 msgstr ""
@@ -1306,7 +1352,7 @@ msgstr "Kartat, kaaviot ja tietojoukot"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:46
-#: ../../climateadapt/vocabulary.py:304
+#: ../../climateadapt/vocabulary.py:310
 msgid "Marine and Fisheries"
 msgstr "Meri- ja kalatalous"
 
@@ -1332,6 +1378,10 @@ msgstr ""
 msgid "Monitoring and evaluating adaptation"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:311
+msgid "Mountain areas"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/countries-d3.pt:118
 msgid "NAS and NAP reported as adopted"
 msgstr ""
@@ -1345,11 +1395,11 @@ msgstr "Strategian/ suunnitelman nimi (jos se hyväksytään)"
 msgid "National HHAP"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:163
+#: ../../climateadapt/browser/countries.py:170
 msgid "National adaption policy"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:324
+#: ../../climateadapt/vocabulary.py:330
 msgid "Nature-based solutions"
 msgstr ""
 
@@ -1383,7 +1433,7 @@ msgid "No upcoming events."
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:310
+#: ../../climateadapt/vocabulary.py:316
 msgid "Non specific"
 msgstr "Erityinen"
 
@@ -1409,7 +1459,7 @@ msgid "Objectives"
 msgstr "Tavoitteet"
 
 # ,
-#: ../../climateadapt/vocabulary.py:331
+#: ../../climateadapt/vocabulary.py:337
 msgid "Observations and Scenarios"
 msgstr "Havainnot ja skenaariot"
 
@@ -1644,7 +1694,7 @@ msgid "Scroll to top"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:345
+#: ../../climateadapt/vocabulary.py:351
 msgid "Sea Level Rise"
 msgstr "Merenpinnan nousu"
 
@@ -1676,7 +1726,7 @@ msgid "Sector"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:335
+#: ../../climateadapt/vocabulary.py:341
 msgid "Sector Policies"
 msgstr "Sektoripolitiikat"
 
@@ -1741,15 +1791,15 @@ msgstr "Jaa tietosi"
 msgid "Show all sources"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:542
+#: ../../climateadapt/vocabulary.py:564
 msgid "Social: Behavioural"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:540
+#: ../../climateadapt/vocabulary.py:562
 msgid "Social: Educational options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:541
+#: ../../climateadapt/vocabulary.py:563
 msgid "Social: Informational"
 msgstr ""
 
@@ -1796,23 +1846,23 @@ msgid "Status"
 msgstr "Tila"
 
 # ,
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:352
 msgid "Storms"
 msgstr "Myrskyt"
 
-#: ../../climateadapt/vocabulary.py:538
+#: ../../climateadapt/vocabulary.py:560
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:536
+#: ../../climateadapt/vocabulary.py:558
 msgid "Structural and physical: Engineering and built environment options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:539
+#: ../../climateadapt/vocabulary.py:561
 msgid "Structural and physical: Service options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:537
+#: ../../climateadapt/vocabulary.py:559
 msgid "Structural and physical: Technological options"
 msgstr ""
 
@@ -1960,13 +2010,17 @@ msgstr ""
 msgid "Total"
 msgstr "Kaikki yhteensä"
 
+#: ../../climateadapt/vocabulary.py:312
+msgid "Tourism"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/transnational_regions.pt:410
 msgid "Transnational regions and other regions and countries"
 msgstr ""
 
 # ,
 #: ../../climateadapt/browser/overrides.py:48
-#: ../../climateadapt/vocabulary.py:306
+#: ../../climateadapt/vocabulary.py:313
 msgid "Transport"
 msgstr "Kuljetus"
 
@@ -1984,7 +2038,7 @@ msgstr ""
 
 # ,
 #: ../../climateadapt/browser/overrides.py:45
-#: ../../climateadapt/vocabulary.py:307
+#: ../../climateadapt/vocabulary.py:314
 msgid "Urban"
 msgstr "Kaupunki-"
 
@@ -2015,7 +2069,7 @@ msgid "View on DRMKC"
 msgstr "Näkymä DRMKC: ssä"
 
 # ,
-#: ../../climateadapt/vocabulary.py:332
+#: ../../climateadapt/vocabulary.py:338
 msgid "Vulnerability Assessment"
 msgstr "Haavoittuvuuden arviointi"
 
@@ -2025,13 +2079,13 @@ msgid "Warning: this will reset/invalidate tokens on all selected cities"
 msgstr "VAROITUS: Tämä palauttaa/mitätöidä rahakkeet kaikissa valituissa kaupungeissa"
 
 # ,
-#: ../../climateadapt/vocabulary.py:347
+#: ../../climateadapt/vocabulary.py:353
 msgid "Water Scarcity"
 msgstr "Veden niukkuus"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:50
-#: ../../climateadapt/vocabulary.py:309
+#: ../../climateadapt/vocabulary.py:315
 msgid "Water management"
 msgstr "Vesihuolto"
 
@@ -2076,7 +2130,7 @@ msgstr ""
 msgid "Where:"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:450
+#: ../../climateadapt/vocabulary.py:456
 msgid "Wildfires"
 msgstr ""
 

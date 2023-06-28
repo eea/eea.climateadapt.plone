@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-14 06:05+0000\n"
+"POT-Creation-Date: 2023-06-28 07:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,7 +120,7 @@ msgstr "Opciones para la adaptación"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1534
+#: ../theme/climateadaptv2/index.html:1531
 msgid "Adaptation support tool"
 msgstr "Herramienta de soporte para la adaptación"
 
@@ -139,15 +139,15 @@ msgstr "Herramienta de soporte para la adaptación"
 msgid "Agriculture"
 msgstr "Agricultura"
 
-#: ../theme/climateadaptv2/index.html:1602
+#: ../theme/climateadaptv2/index.html:1599
 msgid "As our climate changes, the weather is becoming more extreme. The European Environment Agency looks at what might happen this summer; the impact of past weather events; what we can expect in the long term; and how prepared we are as a society."
 msgstr "A medida que nuestro clima cambia, el clima se vuelve más extremo. La Agencia Europea de Medio Ambiente analiza lo que podría suceder este verano; el impacto de eventos meteorológicos pasados; lo que podemos esperar a largo plazo; y lo preparados que estamos como sociedad."
 
-#: ../theme/climateadaptv2/index.html:1457
+#: ../theme/climateadaptv2/index.html:1454
 msgid "Assessing adaptation options"
 msgstr "Evaluar las opciones de adaptación"
 
-#: ../theme/climateadaptv2/index.html:1439
+#: ../theme/climateadaptv2/index.html:1436
 msgid "Assessing risks and vulnerability <br /> to climate change"
 msgstr "Evaluar los riesgos y la vulnerabilidad <br /> al cambio climático"
 
@@ -231,7 +231,7 @@ msgstr "Se prevé que a finales de siglo las montañas europeas habrán cambiado
 msgid "Case <br /> Studies"
 msgstr "Casos de <br /> estudio"
 
-#: ../theme/climateadaptv2/index.html:1395
+#: ../theme/climateadaptv2/index.html:1392
 msgid "Case Studies Page"
 msgstr "página de Casos de Estudio"
 
@@ -251,7 +251,7 @@ msgstr "Casos de estudio"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1409
+#: ../theme/climateadaptv2/index.html:1406
 msgid "Case studies booklet"
 msgstr "Folleto de casos de estudio"
 
@@ -265,7 +265,7 @@ msgstr "Folleto de casos de estudio"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1710
+#: ../theme/climateadaptv2/index.html:1707
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Consulte el <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> y regístrese para recibirlo en su correo electrónico:"
 
@@ -339,7 +339,7 @@ msgstr "El cambio climático generará nuevos riesgos para la salud y amplificar
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1383
+#: ../theme/climateadaptv2/index.html:1380
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Los casos de estudio de Climate-ADAPT muestran iniciativas que ya se están llevando a cabo en Europa para la adaptación al cambio climático y, de esta forma, aumentar la resiliencia a los fenómenos meteorológicos extremos y de evolución lenta."
 
@@ -462,7 +462,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1623
+#: ../theme/climateadaptv2/index.html:1620
 msgid "Events"
 msgstr "Eventos"
 
@@ -506,7 +506,7 @@ msgstr "Finanzas"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1583
+#: ../theme/climateadaptv2/index.html:1580
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Descubra cómo contribuir a Climate-ADAPT con diferentes tipos de información."
 
@@ -539,7 +539,7 @@ msgstr "Para más información, visite:"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1544
+#: ../theme/climateadaptv2/index.html:1541
 msgid "For urban areas guidance visit:"
 msgstr "Para obtener información sobre áreas urbanas, visite:"
 
@@ -632,11 +632,11 @@ msgstr "Salud"
 msgid "ICT"
 msgstr "TIC"
 
-#: ../theme/climateadaptv2/index.html:1448
+#: ../theme/climateadaptv2/index.html:1445
 msgid "Identifying adaptation options"
 msgstr "Identificación de opciones de adaptación"
 
-#: ../theme/climateadaptv2/index.html:1466
+#: ../theme/climateadaptv2/index.html:1463
 msgid "Implementation"
 msgstr "Implementación"
 
@@ -723,7 +723,7 @@ msgstr "Marítimo<br /> &amp; Pesquero"
 msgid "Marine and fisheries"
 msgstr "Marítimo-Pesquero"
 
-#: ../theme/climateadaptv2/index.html:1475
+#: ../theme/climateadaptv2/index.html:1472
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
 msgstr "Monitoreo &amp; Evaluación (M&amp;E)"
 
@@ -733,7 +733,7 @@ msgstr "Monitoreo &amp; Evaluación (M&amp;E)"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1682
+#: ../theme/climateadaptv2/index.html:1679
 msgid "More events"
 msgstr "Más eventos"
 
@@ -743,7 +743,7 @@ msgstr "Más eventos"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1653
+#: ../theme/climateadaptv2/index.html:1650
 msgid "More news"
 msgstr "Más noticias"
 
@@ -756,7 +756,7 @@ msgstr "Zonas montañosas"
 msgid "New <br /> Features"
 msgstr "Nuevas <br /> Funciones"
 
-#: ../theme/climateadaptv2/index.html:1598
+#: ../theme/climateadaptv2/index.html:1595
 msgid "New EEA product \"Extreme summer weather in a changing climate: is Europe prepared?\""
 msgstr "Nuevo producto de la AEMA \"Verano extremo en un clima cambiante: ¿Europa está preparada?\""
 
@@ -770,7 +770,7 @@ msgstr "Nuevo producto de la AEMA \"Verano extremo en un clima cambiante: ¿Euro
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1620
+#: ../theme/climateadaptv2/index.html:1617
 msgid "News"
 msgstr "Noticias"
 
@@ -784,7 +784,7 @@ msgstr "Noticias"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1696
+#: ../theme/climateadaptv2/index.html:1693
 msgid "Newsletter"
 msgstr "Boletín informativo"
 
@@ -817,7 +817,7 @@ msgstr "Organizaciones"
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "En los últimos años, Europa ha experimentado todo tipo de desastres naturales: inundaciones, sequías e incendios forestales con efectos devastadores en la vida de las personas, en la economía europea y en el medio ambiente. En la última década, la Comisión Europea adoptó varias estrategias y acciones para hacer frente a la reducción del riesgo de desastres, por ejemplo, la Directiva Europea de Inundaciones y su implementación (calendario), la política Europea de Gestión de Escasez de Agua y Sequías, y el Green Paper sobre los seguros de catástrofes naturales y antropógenas"
 
-#: ../theme/climateadaptv2/index.html:1430
+#: ../theme/climateadaptv2/index.html:1427
 msgid "Preparing the ground for adaptation"
 msgstr "Preparando el terreno para la adaptación"
 
@@ -845,7 +845,7 @@ msgstr "Publicaciones e informes"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1699
+#: ../theme/climateadaptv2/index.html:1696
 msgid "RSS feed"
 msgstr "Canales RSS"
 
@@ -855,7 +855,7 @@ msgstr "Canales RSS"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1610
+#: ../theme/climateadaptv2/index.html:1607
 msgid "Read more"
 msgstr "Leer más"
 
@@ -924,7 +924,7 @@ msgstr "Acceder a toda la base de datos"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1404
+#: ../theme/climateadaptv2/index.html:1401
 msgid "See how Europe is adapting to climate change:"
 msgstr "Vea cómo Europa se está adaptando al cambio climático:"
 
@@ -938,7 +938,7 @@ msgstr "Vea cómo Europa se está adaptando al cambio climático:"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1582
+#: ../theme/climateadaptv2/index.html:1579
 msgid "Share <span>your information</span>"
 msgstr "Comparte <Span> tu información </span>"
 
@@ -952,7 +952,7 @@ msgstr "Comparte <Span> tu información </span>"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1712
+#: ../theme/climateadaptv2/index.html:1709
 msgid "Sign me up!"
 msgstr "¡Inscríbeme!"
 
@@ -971,7 +971,7 @@ msgstr "Dado que el estado del tiempo y el clima influyen decisivamente en la te
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1729
+#: ../theme/climateadaptv2/index.html:1726
 msgid "Subscribe"
 msgstr "Suscribirse"
 
@@ -985,7 +985,7 @@ msgstr "Suscribirse"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1727
+#: ../theme/climateadaptv2/index.html:1724
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "¡Suscríbete a nuestro canal RSS</strong> </strong> <br /> y mantente al día!"
 
@@ -1134,7 +1134,7 @@ msgstr "Urbano"
 # ,
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1548
+#: ../theme/climateadaptv2/index.html:1545
 msgid "Urban Adaptation Support Tool"
 msgstr "Herramienta de soporte para la adaptación urbana"
 
@@ -1198,11 +1198,11 @@ msgid "Water resources are directly impacted by climate change, and the manageme
 msgstr "Los recursos hídricos se ven directamente afectados por el cambio climático, y la gestión de estos recursos afecta la vulnerabilidad de los ecosistemas, las actividades socioeconómicas y la salud humana. También se espera que la gestión del agua desempeñe un papel cada vez más central en la adaptación. Se prevé que el cambio climático conducirá a cambios importantes en la disponibilidad del agua en toda Europa con el aumento de la escasez de agua y las sequías principalmente en el sur de Europa y el aumento de riesgo de inundaciones en la mayor parte de Europa."
 
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
-#: ../theme/climateadaptv2/index.html:1395
+#: ../theme/climateadaptv2/index.html:1392
 msgid "case_studies_tab"
 msgstr "Los casos de estudio son el buque insignia de la plataforma Climate-ADAPT. Tienen una estructura integral que cubre todos los aspectos clave en el ciclo de implementación de las medidas de adaptación, y están cuidadosa y específicamente preparados para Climate-ADAPT por la organización involucrada en su implementación con el apoyo de la Agencia Europea de Medio Ambiente (AEMA), siguiendo un conjunto de ${case_studies_tab_repository} y también en colaboración con las principales partes interesadas. Véase la ${case_studies_tab_pages}</a>."
 
-#: ../theme/climateadaptv2/index.html:1392
+#: ../theme/climateadaptv2/index.html:1389
 msgid "criteria"
 msgstr "criterios"
 

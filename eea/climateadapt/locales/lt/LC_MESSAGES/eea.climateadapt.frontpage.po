@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-14 06:05+0000\n"
+"POT-Creation-Date: 2023-06-28 07:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr ""
 msgid "Adaptation options"
 msgstr "Adaptacijos parinktys"
 
-#: ../theme/climateadaptv2/index.html:1534
+#: ../theme/climateadaptv2/index.html:1531
 msgid "Adaptation support tool"
 msgstr ""
 
@@ -65,15 +65,15 @@ msgstr ""
 msgid "Agriculture"
 msgstr "Žemdirbystė"
 
-#: ../theme/climateadaptv2/index.html:1602
+#: ../theme/climateadaptv2/index.html:1599
 msgid "As our climate changes, the weather is becoming more extreme. The European Environment Agency looks at what might happen this summer; the impact of past weather events; what we can expect in the long term; and how prepared we are as a society."
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1457
+#: ../theme/climateadaptv2/index.html:1454
 msgid "Assessing adaptation options"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1439
+#: ../theme/climateadaptv2/index.html:1436
 msgid "Assessing risks and vulnerability <br /> to climate change"
 msgstr ""
 
@@ -115,7 +115,7 @@ msgstr ""
 msgid "Case <br /> Studies"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1395
+#: ../theme/climateadaptv2/index.html:1392
 msgid "Case Studies Page"
 msgstr ""
 
@@ -124,12 +124,12 @@ msgstr ""
 msgid "Case studies"
 msgstr "Atvejų tyrimai"
 
-#: ../theme/climateadaptv2/index.html:1409
+#: ../theme/climateadaptv2/index.html:1406
 msgid "Case studies booklet"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:1710
+#: ../theme/climateadaptv2/index.html:1707
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Patikrinkite <a href=\"../newsletter\"> Europos klimato adaptacijos informacinį biuletenį </a> Ir užsiregistruokite, kad gautumėte jį el. Paštu:"
 
@@ -158,7 +158,7 @@ msgid "Climate change will generate new health risks and amplify current health 
 msgstr "Klimato pokyčiai sukels naują pavojų sveikatai ir sustiprins dabartines sveikatos problemas. Tikimasi tiek tiesioginio, tiek netiesioginio poveikio žmonių, augalų ir gyvūnų sveikatai iš klimato pokyčių. Tiesioginis poveikis atsiranda dėl ekstremalių oro sąlygų, tokių kaip karščio ir potvynių, intensyvumo ir dažnio pokyčių. Netiesioginis poveikis gali būti jaučiamas pasikeitus vabzdžių perduodamoms ligoms (t. Y. Vektoriams, kuriems atsiranda uodų ir erkių sukeltos ligos), graužikų ar vandens, maisto ir oro kokybės pokyčių. Europos Komisijos ES pritaikymo prie klimato pokyčių strategijai lydi personalo darbinis dokumentas."
 
 # ,
-#: ../theme/climateadaptv2/index.html:1383
+#: ../theme/climateadaptv2/index.html:1380
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Klimato pritaikymo atvejų tyrimai rodo iniciatyvas, kurios jau vykdomos Europoje, siekiant prisitaikyti prie klimato pokyčių ir padidinti atsparumą ekstremaliems orams ir lėtai atsirandantiems įvykiams."
 
@@ -224,7 +224,7 @@ msgid "European Climate and Health Observatory"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:1623
+#: ../theme/climateadaptv2/index.html:1620
 msgid "Events"
 msgstr "Įvykiai"
 
@@ -241,7 +241,7 @@ msgid "Financial"
 msgstr "Finansinis"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1583
+#: ../theme/climateadaptv2/index.html:1580
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Sužinokite, kaip prisidėti prie įvairių tipų informacijos apie klimato pritaikymą"
 
@@ -256,7 +256,7 @@ msgid "For more informations visit:"
 msgstr "Norėdami gauti daugiau informacijos, apsilankykite:"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1544
+#: ../theme/climateadaptv2/index.html:1541
 msgid "For urban areas guidance visit:"
 msgstr "Miesto teritorijoms gairės apsilankymas:"
 
@@ -304,11 +304,11 @@ msgstr "Sveikata"
 msgid "ICT"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1448
+#: ../theme/climateadaptv2/index.html:1445
 msgid "Identifying adaptation options"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1466
+#: ../theme/climateadaptv2/index.html:1463
 msgid "Implementation"
 msgstr ""
 
@@ -350,15 +350,15 @@ msgstr "Jūrų pėstininkas <br /> & amp; Žuvininkystė"
 msgid "Marine and fisheries"
 msgstr "Jūrų ir žuvininkystė"
 
-#: ../theme/climateadaptv2/index.html:1475
+#: ../theme/climateadaptv2/index.html:1472
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1682
+#: ../theme/climateadaptv2/index.html:1679
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1653
+#: ../theme/climateadaptv2/index.html:1650
 msgid "More news"
 msgstr ""
 
@@ -371,17 +371,17 @@ msgstr ""
 msgid "New <br /> Features"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1598
+#: ../theme/climateadaptv2/index.html:1595
 msgid "New EEA product \"Extreme summer weather in a changing climate: is Europe prepared?\""
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:1620
+#: ../theme/climateadaptv2/index.html:1617
 msgid "News"
 msgstr "žinios"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1696
+#: ../theme/climateadaptv2/index.html:1693
 msgid "Newsletter"
 msgstr "Informacinis biuletenis"
 
@@ -396,7 +396,7 @@ msgstr "Organizacijos"
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Per pastaruosius kelerius metus Europa patyrė visų rūšių stichines nelaimes: stiprius potvynius, sausras ir miškų gaisrus, turinčius niokojantį poveikį žmonių gyvenimui, Europos ekonomikai ir aplinkai. Per pastarąjį dešimtmetį Europos Komisija priėmė keletą strategijų ir veiksmų, skirtų susidoroti su nelaimių rizikos mažinimu, nes, pavyzdžiui, potvynių direktyva ir jos įgyvendinimas (tvarkaraštis), ES veiksmas dėl vandens trūkumo ir sausros, žaliojo dokumento apie draudimą, esantį draudimo srityje. Natūralių ir žmogaus sukeltų nelaimių kontekstas."
 
-#: ../theme/climateadaptv2/index.html:1430
+#: ../theme/climateadaptv2/index.html:1427
 msgid "Preparing the ground for adaptation"
 msgstr ""
 
@@ -406,11 +406,11 @@ msgid "Publications and reports"
 msgstr "Leidiniai ir ataskaitos"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1699
+#: ../theme/climateadaptv2/index.html:1696
 msgid "RSS feed"
 msgstr "RSS pašarai"
 
-#: ../theme/climateadaptv2/index.html:1610
+#: ../theme/climateadaptv2/index.html:1607
 msgid "Read more"
 msgstr ""
 
@@ -439,17 +439,17 @@ msgstr ""
 msgid "See complete database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1404
+#: ../theme/climateadaptv2/index.html:1401
 msgid "See how Europe is adapting to climate change:"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:1582
+#: ../theme/climateadaptv2/index.html:1579
 msgid "Share <span>your information</span>"
 msgstr "Dalytis <Pan> savo informacija </span>"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1712
+#: ../theme/climateadaptv2/index.html:1709
 msgid "Sign me up!"
 msgstr "Užregistruokit mane!"
 
@@ -459,12 +459,12 @@ msgid "Since weather and climate have a decisive influence on the travel season 
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:1729
+#: ../theme/climateadaptv2/index.html:1726
 msgid "Subscribe"
 msgstr "Prenumeruoti"
 
 # ,
-#: ../theme/climateadaptv2/index.html:1727
+#: ../theme/climateadaptv2/index.html:1724
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Prenumeruokite mūsų <strong> RSS kanalą </strong> <br /> ir nuolat atnaujinkite!"
 
@@ -535,7 +535,7 @@ msgstr "Transportas"
 msgid "Urban"
 msgstr "Miestas"
 
-#: ../theme/climateadaptv2/index.html:1548
+#: ../theme/climateadaptv2/index.html:1545
 msgid "Urban Adaptation Support Tool"
 msgstr ""
 
@@ -563,11 +563,11 @@ msgid "Water resources are directly impacted by climate change, and the manageme
 msgstr "Vandens ištekliams tiesiogiai daro įtaką klimato pokyčiai, o šių išteklių valdymas daro įtaką ekosistemų, socialinės ir ekonominės veiklos ir žmonių sveikatos pažeidžiamumui. Tikimasi, kad vandens tvarkymas taip pat vaidins vis svarbesnį vaidmenį adaptacijoje. Numatoma, kad klimato pokyčiai sukels didelius vandens prieinamumo pokyčius visoje Europoje, didėjant vandens trūkumui ir sausros, daugiausia Pietų Europoje ir didėjant potvynių rizikai visoje didžiojoje Europoje."
 
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
-#: ../theme/climateadaptv2/index.html:1395
+#: ../theme/climateadaptv2/index.html:1392
 msgid "case_studies_tab"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1392
+#: ../theme/climateadaptv2/index.html:1389
 msgid "criteria"
 msgstr ""
 
