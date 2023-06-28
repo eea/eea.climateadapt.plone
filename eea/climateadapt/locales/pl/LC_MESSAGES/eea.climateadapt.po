@@ -3452,7 +3452,7 @@ msgstr "Stworzenie elementu:"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:264
 msgid "Key Type Measures"
-msgstr ""
+msgstr "Miary typu klucza"
 
 # ,
 # ,

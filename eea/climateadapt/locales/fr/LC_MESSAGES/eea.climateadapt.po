@@ -4077,7 +4077,7 @@ msgstr "Création de l'article:"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:264
 msgid "Key Type Measures"
-msgstr ""
+msgstr "Mesures de type clé"
 
 # ,
 # ,
