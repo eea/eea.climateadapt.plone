@@ -260,13 +260,13 @@ a.reset-button {
                     <input type="checkbox" name="impacts" tal:attributes="value climate_impact/key" >
                 </p>
             </div>
-            <div class="cols-md-12 cs_filter_ipcc_div" tal:define="ipcc_categories view/get_key_type_measures">
+            <div class="cols-md-12 cs_filter_ipcc_div" tal:define="ktm_categories view/get_key_type_measures">
                 <h4 i18n:translate="">Key Type Measures</h4>
-                <p class="cs_filter_ipcc" style="display:none;" tal:repeat="ipcc_category ipcc_categories">
-                    <span style="clear:both;font-weight:bold;font-size:16px;border-bottom:1px solid #005c96;color:#005c96;width:100%" class="float-left ipcc_category_title" tal:content="python: ipcc_category"></span>
-                    <tal tal:repeat="ipcc python:ipcc_categories[ipcc_category]">
-                        <span style="clear:both;" class="float-left" tal:content="ipcc/value">Sector name</span>
-                        <input type="checkbox" name="ktms" tal:attributes="value ipcc/key" >
+                <p class="cs_filter_ipcc" style="display:none;" tal:repeat="ktm_category ktm_categories">
+                    <span style="clear:both;font-weight:bold;font-size:16px;border-bottom:1px solid #005c96;color:#005c96;width:100%" class="float-left ktm_category_title" tal:content="python: ktm_category"></span>
+                    <tal tal:repeat="ktm python:ktm_categories[ktm_category]">
+                        <span style="clear:both;" class="float-left" tal:content="ktm/value">Sector name</span>
+                        <input type="checkbox" name="ktms" tal:attributes="value ktm/key" >
                     </tal>
                 </p>
             </div>
