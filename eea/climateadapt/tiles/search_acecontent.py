@@ -840,6 +840,12 @@ class IFilteringSchema(form.Schema):
         required=False,
     )
 
+    key_type_measure = Choice(
+        title=_(u"Sector"),
+        vocabulary="eea.climateadapt.aceitems_key_type_measures",
+        required=False,
+    )
+
 
 class FilteringForm(Form):  # form.SchemaForm):
     """Filtering form handling"""
@@ -896,6 +902,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUt
         kw, errors = self.filterform.extractData()
         impact = kw["impact"]
         sector = kw["sector"]
+        key_type_measure = kw["key_type_measure"]
 
         count = self.data.get("nr_items", 5) or 5
         query = self.build_query()
@@ -905,6 +912,9 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUt
 
         if sector:
             query["sectors"] = sector
+
+        if key_type_measure:
+            query["key_type_measures"] = key_type_measure
         query["path"] = {"query": "/cca/{}".format(self.current_lang)}
 
         res = self.catalog.searchResults(limit=count, **query)
@@ -926,11 +936,15 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUt
         kw, errors = self.filterform.extractData()
         impact = kw["impact"]
         sector = kw["sector"]
+        key_type_measure = kw["key_type_measure"]
 
         if impact:
             query["climate_impacts"] = impact
 
         if sector:
             query["sectors"] = sector
+
+        if key_type_measure:
+            query["key_type_measures"] = key_type_measure
 
         return self.build_url(base, query, {})
