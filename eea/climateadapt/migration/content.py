@@ -93,7 +93,8 @@ class MigrateCover(object):
         converter = tile_converters.get(schema, None)
 
         if not converter:
-            logger.warning("You need to implement converter for block: %s", schema)
+            logger.warning(
+                "You need to implement converter for block: %s", schema)
             return {"blocks": []}
 
         data = converter(tile_dm, self.context, self.request)
@@ -214,7 +215,8 @@ class MigrateCover(object):
                         page_blocks.extend(tile_blocks)
 
             title_uid = make_uid()
-            blocks_layout = {"items": [title_uid] + [b[0] for b in page_blocks]}
+            blocks_layout = {"items": [title_uid] + [b[0]
+                                                     for b in page_blocks]}
             blocks_data = {}
             blocks_data[title_uid] = {"@type": "title"}
             for b in page_blocks:
@@ -225,7 +227,7 @@ class MigrateCover(object):
 
         # TODO: ensure there's a page banner block (or title block)
 
-        fix_content(self.context)
+        fix_content(self.context, self.request)
 
         # return json.dumps({"blocks": blocks, "attributes": attributes})
 

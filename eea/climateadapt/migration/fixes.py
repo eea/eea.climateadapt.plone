@@ -12,12 +12,12 @@ from .utils import make_uid
 logger = logging.getLogger()
 
 
-def fix_climate_services_toc(context):
-    # TODO: make multilingual aware
-
+def fix_climate_services_toc(context, request):
     # in first column block, replace the first paragraph with a horizontal navigation table of contents
 
-    path = 'cca/en/knowledge/adaptation-information/climate-services/climate-services'
+    current_lang = get_current_language(context, request)
+    path = 'cca/' + current_lang + \
+        '/knowledge/adaptation-information/climate-services/climate-services'
 
     if context.absolute_url(relative=True) != path:
         return
@@ -34,9 +34,9 @@ def fix_climate_services_toc(context):
     first_col['blocks'][first_block_id] = new_data
 
 
-def fix_tutorial_videos(context):
-    # TODO: make multilingual aware
-    path = 'cca/en/help/tutorial-videos/index_html'
+def fix_tutorial_videos(context, request):
+    current_lang = get_current_language(context, request)
+    path = 'cca/' + current_lang + '/help/tutorial-videos/index_html'
 
     if context.absolute_url(relative=True) != path:
         return
@@ -254,9 +254,9 @@ fixers = [fix_climate_services_toc, fix_tutorial_videos]
 folder_fixers = [fix_news_archive]
 
 
-def fix_content(content):
+def fix_content(content, request):
     for fixer in fixers:
-        fixer(content)
+        fixer(content, request)
 
 
 def fix_folder(context, request):
