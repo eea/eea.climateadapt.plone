@@ -12,14 +12,12 @@ from .utils import make_uid
 logger = logging.getLogger()
 
 
-def fix_climate_services_toc(context, request):
+def fix_climate_services_toc(context):
     # in first column block, replace the first paragraph with a horizontal navigation table of contents
 
-    current_lang = get_current_language(context, request)
-    path = 'cca/' + current_lang + \
-        '/knowledge/adaptation-information/climate-services/climate-services'
+    path = '/knowledge/adaptation-information/climate-services/climate-services'
 
-    if context.absolute_url(relative=True) != path:
+    if not context.absolute_url(relative=True).endswith(path):
         return
 
     col_block_id = context.blocks_layout['items'][1]    # [0] is title block
@@ -34,11 +32,10 @@ def fix_climate_services_toc(context, request):
     first_col['blocks'][first_block_id] = new_data
 
 
-def fix_tutorial_videos(context, request):
-    current_lang = get_current_language(context, request)
-    path = 'cca/' + current_lang + '/help/tutorial-videos/index_html'
+def fix_tutorial_videos(context):
+    path = '/help/tutorial-videos/index_html'
 
-    if context.absolute_url(relative=True) != path:
+    if not context.absolute_url(relative=True).endswith(path):
         return
 
     blocks = context.blocks
@@ -195,11 +192,10 @@ def fix_tutorial_videos(context, request):
     context._p_changed = True
 
 
-def fix_news_archive(context, request):
-    current_lang = get_current_language(context, request)
-    path = 'cca/' + current_lang + '/news-archive'
+def fix_news_archive(context):
+    path = '/news-archive'
 
-    if context.absolute_url(relative=True) != path:
+    if not context.absolute_url(relative=True).endswith(path):
         return
 
     listing_uid = make_uid()
@@ -254,14 +250,14 @@ fixers = [fix_climate_services_toc, fix_tutorial_videos]
 folder_fixers = [fix_news_archive]
 
 
-def fix_content(content, request):
+def fix_content(content):
     for fixer in fixers:
-        fixer(content, request)
+        fixer(content)
 
 
-def fix_folder(context, request):
+def fix_folder(context):
     for fixer in folder_fixers:
-        fixer(context, request)
+        fixer(context)
 
 
 languages = [lang for lang in LANGUAGES if lang != 'en']

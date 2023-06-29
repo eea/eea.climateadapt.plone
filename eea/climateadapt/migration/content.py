@@ -227,7 +227,7 @@ class MigrateCover(object):
 
         # TODO: ensure there's a page banner block (or title block)
 
-        fix_content(self.context, self.request)
+        fix_content(self.context)
 
         # return json.dumps({"blocks": blocks, "attributes": attributes})
 
@@ -341,4 +341,4 @@ class MigrateFolder(object):
             self.context.blocks = cover.blocks
             self._p_changed = True
 
-        fix_folder(obj, request)
+        fix_folder(obj)
