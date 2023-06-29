@@ -4,8 +4,9 @@
 
 import logging
 
-from plone.app.multilingual.api import get_translation_manager
 from eea.climateadapt.translation.utils import get_current_language
+from plone.app.multilingual.api import get_translation_manager
+
 from .config import LANGUAGES, TOP_LEVEL
 from .utils import make_uid
 
@@ -246,12 +247,12 @@ def fix_news_archive(context):
     context._p_changed = True
 
 
-fixers = [fix_climate_services_toc, fix_tutorial_videos]
+content_fixers = [fix_climate_services_toc, fix_tutorial_videos]
 folder_fixers = [fix_news_archive]
 
 
 def fix_content(content):
-    for fixer in fixers:
+    for fixer in content_fixers:
         fixer(content)
 
 
