@@ -841,7 +841,7 @@ class IFilteringSchema(form.Schema):
     )
 
     key_type_measure = Choice(
-        title=_(u"Sector"),
+        title=_(u"Key Type Measure"),
         vocabulary="eea.climateadapt.aceitems_key_type_measures",
         required=False,
     )
@@ -878,7 +878,9 @@ impacts_no_value = StaticWidgetAttribute(
 sectors_no_value = StaticWidgetAttribute(
     _(u"All adaptation sectors"), view=FilteringForm, field=IFilteringSchema["sector"]
 )
-
+key_type_measures_no_value = StaticWidgetAttribute(
+    _(u"All key type measures"), view=FilteringForm, field=IFilteringSchema["key_type_measure"]
+)
 
 class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
     implements(IFilterAceContentItemsTile)
