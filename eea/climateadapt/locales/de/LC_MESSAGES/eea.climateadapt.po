@@ -1317,11 +1317,11 @@ msgstr "A1: Governance und Institutionelle: Politische Instrumente"
 
 #: ../../climateadapt/vocabulary.py:543
 msgid "A2: Governance and Institutional: Management and planning"
-msgstr "A2: Governance und Institutionelles: Management und Planung"
+msgstr "A2: Governance und Institutionelle: Management und Planung"
 
 #: ../../climateadapt/vocabulary.py:544
 msgid "A3: Governance and Institutional: Coordination cooperation and networks"
-msgstr "A3: Governance und Institutionelles: Koordinierung, Zusammenarbeit und Netzwerke"
+msgstr "A3: Governance und Institutionelle: Koordinierung, Zusammenarbeit und Netzwerke"
 
 # ,
 # ,

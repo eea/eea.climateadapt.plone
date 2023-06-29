@@ -1255,7 +1255,7 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:542
 msgid "A1: Governance and Institutional: Policy Instruments"
-msgstr "A1: Gobernanza e instituciones: Instrumentos políticos"
+msgstr "A1: Gobernanza e Instituciones: Instrumentos políticos"
 
 #: ../../climateadapt/vocabulary.py:543
 msgid "A2: Governance and Institutional: Management and planning"
@@ -1810,7 +1810,7 @@ msgstr "B1: Economía y Finanzas: Instrumentos de incentivación de la financiac
 
 #: ../../climateadapt/vocabulary.py:546
 msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
-msgstr "B2: Economía y finanzas: Seguros e instrumentos de distribución de riesgos"
+msgstr "B2: Economía y Finanzas: Seguros e instrumentos de distribución de riesgos"
 
 # ,
 # ,
@@ -1910,11 +1910,11 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:547
 msgid "C1: Physical and technological: Grey options"
-msgstr "C1: Opciones grises: Físicas y tecnológicas"
+msgstr "C1: Físicas y tecnológicas: Opciones grises"
 
 #: ../../climateadapt/vocabulary.py:548
 msgid "C2: Physical and technological: Technological options"
-msgstr "C2: Opciones tecnológicas: Físicas y tecnológicas"
+msgstr "C2: Físicas y tecnológicas: Opciones tecnológicas"
 
 # ,
 # ,
