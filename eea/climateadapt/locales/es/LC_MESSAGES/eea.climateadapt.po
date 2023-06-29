@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-28 07:00+0000\n"
+"POT-Creation-Date: 2023-06-29 06:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1441,7 +1441,7 @@ msgstr "Portal de adaptación o plataforma reportada"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:173
+#: ../../climateadapt/browser/countries.py:166
 msgid "Adaptation portals and platforms"
 msgstr "Portales de adaptación y plataformas"
 
@@ -1658,7 +1658,7 @@ msgstr "Contaminación del aire y aeroalérgenos"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:873
+#: ../../climateadapt/tiles/search_acecontent.py:879
 msgid "All adaptation sectors"
 msgstr "Todos los sectores de adaptación"
 
@@ -1674,9 +1674,13 @@ msgstr "Todos los sectores de adaptación"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:870
+#: ../../climateadapt/tiles/search_acecontent.py:876
 msgid "All climate impacts"
 msgstr "Todos los impactos climáticos"
+
+#: ../../climateadapt/tiles/search_acecontent.py:882
+msgid "All key type measures"
+msgstr "Todas las medidas de tipo clave"
 
 # ,
 # ,
@@ -2225,7 +2229,7 @@ msgstr "Impactos climáticos en Europa"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:172
+#: ../../climateadapt/browser/countries.py:165
 msgid "Climate change impact and vulnerability assessments"
 msgstr "Impacto del cambio climático y evaluaciones de vulnerabilidad"
 
@@ -3891,6 +3895,10 @@ msgstr "Documentos del artículo"
 msgid "Item’s creation:"
 msgstr "Creación del artículo:"
 
+#: ../../climateadapt/tiles/search_acecontent.py:844
+msgid "Key Type Measure"
+msgstr "Medida tipo clave"
+
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:264
 msgid "Key Type Measures"
 msgstr "Medidas de tipo clave"
@@ -4409,7 +4417,7 @@ msgstr "HHAP Nacional"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:170
+#: ../../climateadapt/browser/countries.py:163
 msgid "National adaption policy"
 msgstr "Política de adaptación nacional"
 

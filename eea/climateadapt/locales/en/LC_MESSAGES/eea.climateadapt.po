@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-28 07:00+0000\n"
+"POT-Creation-Date: 2023-06-29 06:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -390,7 +390,7 @@ msgstr ""
 msgid "Adaptation portal or platform reported"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:173
+#: ../../climateadapt/browser/countries.py:166
 msgid "Adaptation portals and platforms"
 msgstr ""
 
@@ -448,12 +448,16 @@ msgstr ""
 msgid "Air pollution and aero-allergens"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:873
+#: ../../climateadapt/tiles/search_acecontent.py:879
 msgid "All adaptation sectors"
 msgstr ""
 
-#: ../../climateadapt/tiles/search_acecontent.py:870
+#: ../../climateadapt/tiles/search_acecontent.py:876
 msgid "All climate impacts"
+msgstr ""
+
+#: ../../climateadapt/tiles/search_acecontent.py:882
+msgid "All key type measures"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:419
@@ -608,7 +612,7 @@ msgstr ""
 msgid "Climate Impacts in Europe"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:172
+#: ../../climateadapt/browser/countries.py:165
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
@@ -1144,6 +1148,10 @@ msgstr ""
 msgid "Item’s creation:"
 msgstr ""
 
+#: ../../climateadapt/tiles/search_acecontent.py:844
+msgid "Key Type Measure"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:264
 msgid "Key Type Measures"
 msgstr ""
@@ -1301,7 +1309,7 @@ msgstr ""
 msgid "National HHAP"
 msgstr ""
 
-#: ../../climateadapt/browser/countries.py:170
+#: ../../climateadapt/browser/countries.py:163
 msgid "National adaption policy"
 msgstr ""
 

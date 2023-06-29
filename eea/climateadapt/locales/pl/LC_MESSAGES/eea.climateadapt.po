@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-28 07:00+0000\n"
+"POT-Creation-Date: 2023-06-29 06:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1280,7 +1280,7 @@ msgstr "Zgłoszony portal adaptacyjny lub platforma"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:173
+#: ../../climateadapt/browser/countries.py:166
 msgid "Adaptation portals and platforms"
 msgstr "Portale adaptacyjne i platformy"
 
@@ -1470,7 +1470,7 @@ msgstr "Zanieczyszczenia powietrza i alergeny wziewne"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:873
+#: ../../climateadapt/tiles/search_acecontent.py:879
 msgid "All adaptation sectors"
 msgstr "Wszystkie sektory adaptacyjne"
 
@@ -1485,9 +1485,13 @@ msgstr "Wszystkie sektory adaptacyjne"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:870
+#: ../../climateadapt/tiles/search_acecontent.py:876
 msgid "All climate impacts"
 msgstr "Wszystkie skutki klimatu"
+
+#: ../../climateadapt/tiles/search_acecontent.py:882
+msgid "All key type measures"
+msgstr "Wszystkie kluczowe środki typu"
 
 # ,
 # ,
@@ -1966,7 +1970,7 @@ msgstr "Wpływ klimatu w Europie"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:172
+#: ../../climateadapt/browser/countries.py:165
 msgid "Climate change impact and vulnerability assessments"
 msgstr "Wpływ zmian klimatu i oceny podatności"
 
@@ -3450,6 +3454,10 @@ msgstr "Dokumenty elementu"
 msgid "Item’s creation:"
 msgstr "Stworzenie elementu:"
 
+#: ../../climateadapt/tiles/search_acecontent.py:844
+msgid "Key Type Measure"
+msgstr "Miara typu klucza"
+
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:264
 msgid "Key Type Measures"
 msgstr "Miary typu klucza"
@@ -3900,7 +3908,7 @@ msgstr "Krajowy HHAP"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:170
+#: ../../climateadapt/browser/countries.py:163
 msgid "National adaption policy"
 msgstr "Krajowa polityka adaptacyjna"
 

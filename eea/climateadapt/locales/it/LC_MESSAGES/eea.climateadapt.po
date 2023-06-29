@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-28 07:00+0000\n"
+"POT-Creation-Date: 2023-06-29 06:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1280,7 +1280,7 @@ msgstr "Portale di adattamento o piattaforma trovate"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:173
+#: ../../climateadapt/browser/countries.py:166
 msgid "Adaptation portals and platforms"
 msgstr "Portali di adattamento e piattaforme"
 
@@ -1470,7 +1470,7 @@ msgstr "Inquinamento atmosferico e aeroallergeni"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:873
+#: ../../climateadapt/tiles/search_acecontent.py:879
 msgid "All adaptation sectors"
 msgstr "Tutti i settori di adattamento"
 
@@ -1485,9 +1485,13 @@ msgstr "Tutti i settori di adattamento"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:870
+#: ../../climateadapt/tiles/search_acecontent.py:876
 msgid "All climate impacts"
 msgstr "Tutti gli impatti climatici"
+
+#: ../../climateadapt/tiles/search_acecontent.py:882
+msgid "All key type measures"
+msgstr "Tutte le misure di tipo chiave"
 
 # ,
 # ,
@@ -1966,7 +1970,7 @@ msgstr "Impatti climatici in Europa"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:172
+#: ../../climateadapt/browser/countries.py:165
 msgid "Climate change impact and vulnerability assessments"
 msgstr "Impatto del cambiamento climatico e valutazioni della vulnerabilità"
 
@@ -3449,6 +3453,10 @@ msgstr "Documenti"
 msgid "Item’s creation:"
 msgstr "Creazione della scheda:"
 
+#: ../../climateadapt/tiles/search_acecontent.py:844
+msgid "Key Type Measure"
+msgstr "Misura di tipo chiave"
+
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:264
 msgid "Key Type Measures"
 msgstr "Misure di tipo chiave"
@@ -3902,7 +3910,7 @@ msgstr "HHAP nazionale"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/countries.py:170
+#: ../../climateadapt/browser/countries.py:163
 msgid "National adaption policy"
 msgstr "Politica di adattamento nazionale"
 
