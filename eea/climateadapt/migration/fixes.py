@@ -34,67 +34,161 @@ def fix_climate_services_toc(context):
     first_col['blocks'][first_block_id] = new_data
 
 
-def fix_tutorial_videos(context, request):
-    current_lang = get_current_language(context, request)
-    path = 'cca/' + current_lang + '/help/tutorial-videos'
+def fix_tutorial_videos(context):
+    # TODO: make multilingual aware
+    path = 'cca/en/help/tutorial-videos/index_html'
 
     if context.absolute_url(relative=True) != path:
         return
 
-    # prepare video blocks
-    video_1_uid = make_uid()
-    video_2_uid = make_uid()
-    video_3_uid = make_uid()
-    video_4_uid = make_uid()
+    blocks = context.blocks
+    layout = context.blocks_layout
+
     videos = {
-        video_1_uid: {
-            "@type": "nextCloudVideo",
-            "url": 'https://cmshare.eea.europa.eu/s/KbaSFnSGyQZra5L/download',
-            "title": '',
+        1:  {
+            'text': {
+                'id': layout['items'][-1],
+                'block': blocks[layout['items'][-1]]
+            },
+            'video': {
+                'id': layout['items'][-2],
+                'block': blocks[layout['items'][-2]]
+            }
         },
-        video_2_uid: {
-            "@type": "nextCloudVideo",
-            "url": 'https://cmshare.eea.europa.eu/s/7XiT5R6miLTXXFt/download',
-            "title": '',
+        2:  {
+            'text': {
+                'id': layout['items'][-3],
+                'block': blocks[layout['items'][-3]]
+            },
+            'video': {
+                'id': layout['items'][-4],
+                'block': blocks[layout['items'][-4]]
+            }
         },
-        video_3_uid: {
-            "@type": "nextCloudVideo",
-            "url": 'https://cmshare.eea.europa.eu/s/wRWfQsPzREXWrwn/download',
-            "title": '',
+        3:  {
+            'text': {
+                'id': layout['items'][-5],
+                'block': blocks[layout['items'][-5]]
+            },
+            'video': {
+                'id': layout['items'][-6],
+                'block': blocks[layout['items'][-6]]
+            }
         },
-        video_4_uid: {
-            "@type": "nextCloudVideo",
-            "url": 'https://cmshare.eea.europa.eu/s/sYPnWgfNDHeeSKR/download',
-            "title": '',
-        }
+        4:  {
+            'text': {
+                'id': layout['items'][-7],
+                'block': blocks[layout['items'][-7]]
+            },
+            'video': {
+                'id': layout['items'][-8],
+                'block': blocks[layout['items'][-8]]
+            }
+        },
+
     }
 
-    blocks = context.blocks
-    blocks[video_1_uid] = videos[video_1_uid]
-    blocks[video_2_uid] = videos[video_2_uid]
-    blocks[video_3_uid] = videos[video_3_uid]
-    blocks[video_4_uid] = videos[video_4_uid]
+    col_1_id = make_uid()
+    col_1_item_1_id = make_uid()
+    col_1_item_2_id = make_uid()
 
-    # prepare texts for videos
-    layout = context.blocks_layout
-    video_1_text = layout['items'][-4]
-    video_2_text = layout['items'][-3]
-    video_3_text = layout['items'][-2]
-    video_4_text = layout['items'][-1]
-    layout['items'].pop()
-    layout['items'].pop()
-    layout['items'].pop()
-    layout['items'].pop()
+    col_2_id = make_uid()
+    col_2_item_1_id = make_uid()
+    col_2_item_2_id = make_uid()
 
-    # add videos and texts
-    layout['items'].append(video_1_uid)
-    layout['items'].append(video_1_text)
-    layout['items'].append(video_2_uid)
-    layout['items'].append(video_2_text)
-    layout['items'].append(video_3_uid)
-    layout['items'].append(video_3_text)
-    layout['items'].append(video_4_uid)
-    layout['items'].append(video_4_text)
+    blocks[col_1_id] = {
+        "@type": "columnsBlock",
+        "data": {
+            "blocks": {
+                col_1_item_1_id: {
+                    "blocks": {
+                        videos[1]['video']['id']: videos[1]['video']['block'],
+                        videos[1]['text']['id']: videos[1]['text']['block'],
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            videos[1]['video']['id'],
+                            videos[1]['text']['id'],
+                        ]
+                    }
+                },
+                col_1_item_2_id: {
+                    "blocks": {
+                        videos[2]['video']['id']: videos[2]['video']['block'],
+                        videos[2]['text']['id']: videos[2]['text']['block'],
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            videos[2]['video']['id'],
+                            videos[2]['text']['id'],
+                        ]
+                    }
+                },
+            },
+            "blocks_layout": {
+                "items": [
+                    col_1_item_2_id,
+                    col_1_item_1_id,
+                ]
+            }
+        },
+        "gridCols": [
+            "halfWidth",
+            "halfWidth"
+        ],
+        "gridSize": 12,
+        "styles": {}
+    }
+
+    blocks[col_2_id] = {
+        "@type": "columnsBlock",
+        "data": {
+            "blocks": {
+                col_2_item_1_id: {
+                    "blocks": {
+                        videos[3]['video']['id']: videos[3]['video']['block'],
+                        videos[3]['text']['id']: videos[3]['text']['block'],
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            videos[3]['video']['id'],
+                            videos[3]['text']['id'],
+                        ]
+                    }
+                },
+                col_2_item_2_id: {
+                    "blocks": {
+                        videos[4]['video']['id']: videos[4]['video']['block'],
+                        videos[4]['text']['id']: videos[4]['text']['block'],
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            videos[4]['video']['id'],
+                            videos[4]['text']['id'],
+                        ]
+                    }
+                },
+            },
+            "blocks_layout": {
+                "items": [
+                    col_2_item_2_id,
+                    col_2_item_1_id,
+                ]
+            }
+        },
+        "gridCols": [
+            "halfWidth",
+            "halfWidth"
+        ],
+        "gridSize": 12,
+        "styles": {}
+    }
+
+    for index in range(0, 8):
+        layout['items'].pop()
+
+    layout['items'].append(col_2_id)
+    layout['items'].append(col_1_id)
 
     context.blocks = blocks
     context.blocks_layout = layout
@@ -156,8 +250,8 @@ def fix_news_archive(context, request):
     context._p_changed = True
 
 
-fixers = [fix_climate_services_toc]
-folder_fixers = [fix_news_archive, fix_tutorial_videos]
+fixers = [fix_climate_services_toc, fix_tutorial_videos]
+folder_fixers = [fix_news_archive]
 
 
 def fix_content(content):
