@@ -263,6 +263,10 @@
       component=".vocabulary.key_type_measures"
       />
   <utility
+      name="eea.climateadapt.aceitems_key_type_measures_short"
+      component=".vocabulary.key_type_measures_short"
+      />
+  <utility
       name="eea.climateadapt.acemeasure_implementationtype"
       component=".vocabulary.acemeasure_implementationtype_vocabulary"
       />

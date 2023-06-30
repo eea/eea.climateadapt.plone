@@ -554,6 +554,22 @@ _key_type_measures = [
 key_type_measures = generic_vocabulary(_key_type_measures)
 alsoProvides(key_type_measures, IVocabularyFactory)
 
+_key_type_measures_short = [
+    ("A1", _("A1: Gl: Policy Instruments")),
+    ("A2", _("A2: Gl: Management and planning")),
+    ("A3", _("A3: Gl: Coordination cooperation and networks")),
+    ("B1", _("B1: EF: Financing incentive instruments")),
+    ("B2", _("B2: EF: Insurance and risk sharing instruments")),
+    ("C1", _("C1: PT: Grey options")),
+    ("C2", _("C2: PT: Technological options")),
+    ("D1", _("D1: NBS: Green options")),
+    ("D2", _("D2: NBS: Blue options")),
+    ("E1", _("E1: KBC: Information and awareness raising")),
+    ("E2", _("E2: KBC: capacity building empowering and lifestyle practices")),
+]
+key_type_measures_short = generic_vocabulary(_key_type_measures_short)
+alsoProvides(key_type_measures_short, IVocabularyFactory)
+
 _ipcc_category = [
     ("STRUCT_ENG", _("Structural and physical: Engineering and built environment options")),
     ("STRUCT_TECH", _("Structural and physical: Technological options")),

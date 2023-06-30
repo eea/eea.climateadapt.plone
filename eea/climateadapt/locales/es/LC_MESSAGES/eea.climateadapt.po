@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-06-29 06:13+0000\n"
+"POT-Creation-Date: 2023-06-30 06:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1253,13 +1253,25 @@ msgstr ""
 msgid "A background document for the event is available <a href=\"${DYNAMIC_CONTENT}\">here</a>"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:558
+msgid "A1: Gl: Policy Instruments"
+msgstr "A1: GI: Instrumentos políticos"
+
 #: ../../climateadapt/vocabulary.py:542
 msgid "A1: Governance and Institutional: Policy Instruments"
 msgstr "A1: Gobernanza e Instituciones: Instrumentos políticos"
 
+#: ../../climateadapt/vocabulary.py:559
+msgid "A2: Gl: Management and planning"
+msgstr "A2: GI: Gestión y planificación"
+
 #: ../../climateadapt/vocabulary.py:543
 msgid "A2: Governance and Institutional: Management and planning"
 msgstr "A2: Gobernanza e Instituciones: Gestión y planificación"
+
+#: ../../climateadapt/vocabulary.py:560
+msgid "A3: Gl: Coordination cooperation and networks"
+msgstr "A3: GI: Coordinación, cooperación y redes"
 
 #: ../../climateadapt/vocabulary.py:544
 msgid "A3: Governance and Institutional: Coordination cooperation and networks"
@@ -1804,9 +1816,17 @@ msgstr "Evaluación de riesgos y vulnerabilidad <br /> al cambio climático"
 msgid "Atlantic Area"
 msgstr "Región atlántica"
 
+#: ../../climateadapt/vocabulary.py:561
+msgid "B1: EF: Financing incentive instruments"
+msgstr "B1: EF: Instrumentos de incentivación de la financiación"
+
 #: ../../climateadapt/vocabulary.py:545
 msgid "B1: Economic and Finance: Financing incentive instruments"
 msgstr "B1: Economía y Finanzas: Instrumentos de incentivación de la financiación"
+
+#: ../../climateadapt/vocabulary.py:562
+msgid "B2: EF: Insurance and risk sharing instruments"
+msgstr "B2: EF: Seguros e instrumentos de distribución de riesgos"
 
 #: ../../climateadapt/vocabulary.py:546
 msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
@@ -1908,9 +1928,17 @@ msgstr "Edificios"
 msgid "Business and industry"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:563
+msgid "C1: PT: Grey options"
+msgstr "C1: FT: Opciones grises"
+
 #: ../../climateadapt/vocabulary.py:547
 msgid "C1: Physical and technological: Grey options"
 msgstr "C1: Físicas y tecnológicas: Opciones grises"
+
+#: ../../climateadapt/vocabulary.py:564
+msgid "C2: PT: Technological options"
+msgstr "C2: FT: Opciones tecnológicas"
 
 #: ../../climateadapt/vocabulary.py:548
 msgid "C2: Physical and technological: Technological options"
@@ -2592,9 +2620,17 @@ msgstr "Creado por:"
 msgid "Cultural heritage"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:565
+msgid "D1: NBS: Green options"
+msgstr "D1: SBN: Infraestructuras verdes"
+
 #: ../../climateadapt/vocabulary.py:549
 msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
 msgstr "D1: Soluciones basadas en la naturaleza y enfoques basados en los ecosistemas: Infraestructuras verdes"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "D2: NBS: Blue options"
+msgstr "D2: SBN: Infraestructuras azules"
 
 #: ../../climateadapt/vocabulary.py:550
 msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
@@ -2848,9 +2884,17 @@ msgstr "Sequías e inundaciones"
 msgid "Duration:"
 msgstr "Duración:"
 
+#: ../../climateadapt/vocabulary.py:567
+msgid "E1: KBC: Information and awareness raising"
+msgstr "E1: CCC: Información y sensibilización"
+
 #: ../../climateadapt/vocabulary.py:551
 msgid "E1: Knowledge and behavioural change: Information and awareness raising"
 msgstr "E1: Conocimiento y cambio de comportamiento: Información y sensibilización"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "E2: KBC: capacity building empowering and lifestyle practices"
+msgstr "E2: CCC: capacitación sobre prácticas de empoderamiento y estilo de vida"
 
 #: ../../climateadapt/vocabulary.py:552
 msgid "E2: Knowledge and behavioural change: capacity building empowering and lifestyle practices"
@@ -3834,7 +3878,7 @@ msgstr "Portales de información"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:565
+#: ../../climateadapt/vocabulary.py:581
 msgid "Institutional: Economic options"
 msgstr "Institucional: Opciones económicas"
 
@@ -3848,7 +3892,7 @@ msgstr "Institucional: Opciones económicas"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:567
+#: ../../climateadapt/vocabulary.py:583
 msgid "Institutional: Government policies and programmes"
 msgstr "Institucional: Políticas públicas y programas gubernamentales"
 
@@ -3862,7 +3906,7 @@ msgstr "Institucional: Políticas públicas y programas gubernamentales"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:566
+#: ../../climateadapt/vocabulary.py:582
 msgid "Institutional: Law and regulations"
 msgstr "Institucional: Legislación y Regulaciones"
 
@@ -5685,7 +5729,7 @@ msgstr "Mostrar todas las fuentes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:564
+#: ../../climateadapt/vocabulary.py:580
 msgid "Social: Behavioural"
 msgstr "Social: Conductual"
 
@@ -5699,7 +5743,7 @@ msgstr "Social: Conductual"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:562
+#: ../../climateadapt/vocabulary.py:578
 msgid "Social: Educational options"
 msgstr "Social: Opciones educativas"
 
@@ -5713,7 +5757,7 @@ msgstr "Social: Opciones educativas"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:563
+#: ../../climateadapt/vocabulary.py:579
 msgid "Social: Informational"
 msgstr "Social: Informativo"
 
@@ -5892,7 +5936,7 @@ msgstr "Tormentas"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:560
+#: ../../climateadapt/vocabulary.py:576
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr "Estructural y físico: Opciones de adaptación basada en ecosistemas"
 
@@ -5906,7 +5950,7 @@ msgstr "Estructural y físico: Opciones de adaptación basada en ecosistemas"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:558
+#: ../../climateadapt/vocabulary.py:574
 msgid "Structural and physical: Engineering and built environment options"
 msgstr "Estructural y físico: Opciones de ingeniería y entorno construido"
 
@@ -5920,7 +5964,7 @@ msgstr "Estructural y físico: Opciones de ingeniería y entorno construido"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:561
+#: ../../climateadapt/vocabulary.py:577
 msgid "Structural and physical: Service options"
 msgstr "Estructural y físico: Opciones de servicio"
 
@@ -5934,7 +5978,7 @@ msgstr "Estructural y físico: Opciones de servicio"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:559
+#: ../../climateadapt/vocabulary.py:575
 msgid "Structural and physical: Technological options"
 msgstr "Estructural y físico: Opciones tecnológicas"
 

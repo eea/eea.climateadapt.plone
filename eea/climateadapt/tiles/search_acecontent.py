@@ -842,7 +842,7 @@ class IFilteringSchema(form.Schema):
 
     key_type_measure = Choice(
         title=_(u"Key Type Measure"),
-        vocabulary="eea.climateadapt.aceitems_key_type_measures",
+        vocabulary="eea.climateadapt.aceitems_key_type_measures_short",
         required=False,
     )
 
