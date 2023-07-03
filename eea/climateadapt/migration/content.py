@@ -325,7 +325,7 @@ class MigrateFolder(object):
 
     def __call__(self):
         obj = self.context
-        request = self.request
+        # request = self.request
         default_page = obj.getProperty('default_page')
         if not default_page and "index_html" in obj.contentIds():
             default_page = 'index_html'
@@ -340,5 +340,17 @@ class MigrateFolder(object):
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
             self._p_changed = True
+        else:
+            block_id = make_uid()
+            blocks = {}
+            blocks[block_id] = {
+                "@type": "listing",
+                "block": block_id,
+                "headlineTag": "h2",
+                "variation": "default",
+                "query": [],
+            }
+            self.context.blocks_layout = {"items": [block_id]}
+            self.context.blocks = blocks
 
         fix_folder(obj)
