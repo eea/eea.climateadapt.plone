@@ -270,6 +270,8 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
     data = tile_dm.get()
     title_level = data.get('title_level')
     title = data.get('title')
+    if isinstance(title, str):
+        title = title.decode('utf-8')
 
     has_heading = False
     if title_level == 'h1' and title and title != 'main content':

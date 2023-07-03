@@ -296,9 +296,22 @@ def fix_ast(context):
     return fix_uast(context)
 
 
-content_fixers = [fix_images_in_slate,
+def fix_field_encoding(context):
+
+    title = context.title
+    if isinstance(title, str):
+        title = title.decode('utf-8')
+        context.title = title
+
+    description = context.description
+    if isinstance(description, str):
+        description = description.decode('utf-8')
+        context.description = description
+
+
+content_fixers = [fix_field_encoding, fix_images_in_slate,
                   fix_climate_services_toc, fix_tutorial_videos, fix_uast]
-folder_fixers = [fix_news_archive]
+folder_fixers = [fix_field_encoding, fix_news_archive]
 
 
 def fix_content(content):

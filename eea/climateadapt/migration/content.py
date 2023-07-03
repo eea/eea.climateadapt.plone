@@ -332,6 +332,8 @@ class MigrateFolder(object):
         if not default_page and "index_html" in obj.contentIds():
             default_page = 'index_html'
 
+        # /cca/fr/observatory/About
+
         if default_page:
             cover = obj.restrictedTraverse(default_page)
             unwrapped = cover.aq_inner.aq_self
@@ -341,8 +343,7 @@ class MigrateFolder(object):
 
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
-            self.context.title = cover.title
-            self.context.description = cover.description
+
             self._p_changed = True
         else:
             block_id = make_uid()
