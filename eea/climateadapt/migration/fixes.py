@@ -12,13 +12,22 @@ from .utils import make_uid
 logger = logging.getLogger()
 
 
+def onpath(path):
+
+    def decorator_factory(func):
+        def decorator(context):
+            if not context.absolute_url(relative=True).endswith(path):
+                return
+            return func(context)
+
+        return decorator
+
+    return decorator_factory
+
+
+@onpath('/knowledge/adaptation-information/climate-services/climate-services')
 def fix_climate_services_toc(context):
     # in first column block, replace the first paragraph with a horizontal navigation table of contents
-
-    path = '/knowledge/adaptation-information/climate-services/climate-services'
-
-    if not context.absolute_url(relative=True).endswith(path):
-        return
 
     col_block_id = context.blocks_layout['items'][1]    # [0] is title block
     col = context.blocks[col_block_id]
@@ -32,12 +41,8 @@ def fix_climate_services_toc(context):
     first_col['blocks'][first_block_id] = new_data
 
 
+@onpath('/help/tutorial-videos/index_html')
 def fix_tutorial_videos(context):
-    path = '/help/tutorial-videos/index_html'
-
-    if not context.absolute_url(relative=True).endswith(path):
-        return
-
     blocks = context.blocks
     layout = context.blocks_layout
 
@@ -192,11 +197,8 @@ def fix_tutorial_videos(context):
     context._p_changed = True
 
 
+@onpath('/news-archive')
 def fix_news_archive(context):
-    path = '/news-archive'
-
-    if not context.absolute_url(relative=True).endswith(path):
-        return
 
     current_lang = context.absolute_url(relative=True).split('/')[-2]
 
@@ -253,9 +255,13 @@ def fix_images_in_slate(content):
     pass
 
 
+def fix_ast(content):
+    pass
+
+
 content_fixers = [fix_images_in_slate,
                   fix_climate_services_toc, fix_tutorial_videos]
-folder_fixers = [fix_news_archive]
+folder_fixers = [fix_news_archive, fix_ast]
 
 
 def fix_content(content):
