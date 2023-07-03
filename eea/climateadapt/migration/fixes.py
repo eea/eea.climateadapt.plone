@@ -25,6 +25,19 @@ def onpath(path):
     return decorator_factory
 
 
+def inpath(path):
+
+    def decorator_factory(func):
+        def decorator(context):
+            if not context.absolute_url(relative=True).endswith(path):
+                return
+            return func(context)
+
+        return decorator
+
+    return decorator_factory
+
+
 @onpath('/knowledge/adaptation-information/climate-services/climate-services')
 def fix_climate_services_toc(context):
     # in first column block, replace the first paragraph with a horizontal navigation table of contents
@@ -255,11 +268,8 @@ def fix_images_in_slate(content):
     pass
 
 
+@inpath('knowledge/tools/urban-ast/')
 def fix_uast(context):
-    path = 'knowledge/tools/urban-ast/'
-
-    if path not in context.absolute_url(relative=True):
-        return
 
     if not context.blocks:  # unmigrated content?
         return
@@ -279,6 +289,11 @@ def fix_uast(context):
     context.blocks = second_column['blocks']
     block_ids = [title_block_id] + second_column['blocks_layout']['items']
     context.blocks_layout = {"items": block_ids}
+
+
+@inpath('knowledge/tools/adaptation-support-tool')
+def fix_ast(context):
+    return fix_uast(context)
 
 
 content_fixers = [fix_images_in_slate,
