@@ -29,7 +29,7 @@ def inpath(path):
 
     def decorator_factory(func):
         def decorator(context):
-            if not context.absolute_url(relative=True).endswith(path):
+            if path not in context.absolute_url(relative=True):
                 return
             return func(context)
 
@@ -268,12 +268,7 @@ def fix_images_in_slate(content):
     pass
 
 
-@inpath('knowledge/tools/urban-ast/')
-def fix_uast(context):
-
-    if not context.blocks:  # unmigrated content?
-        return
-
+def extract_first_column(context):
     # pull out the content from the column, we have a different layout for these pages
     title_block_id = context.blocks_layout['items'][0]
     title_block = context.blocks[title_block_id]
@@ -291,9 +286,18 @@ def fix_uast(context):
     context.blocks_layout = {"items": block_ids}
 
 
+@inpath('knowledge/tools/urban-ast/')
+def fix_uast(context):
+
+    if not context.blocks:  # unmigrated content?
+        return
+
+    return extract_first_column(context)
+
+
 @inpath('knowledge/tools/adaptation-support-tool')
 def fix_ast(context):
-    return fix_uast(context)
+    return extract_first_column(context)
 
 
 def fix_field_encoding(context):
@@ -310,7 +314,7 @@ def fix_field_encoding(context):
 
 
 content_fixers = [fix_field_encoding, fix_images_in_slate,
-                  fix_climate_services_toc, fix_tutorial_videos, fix_uast]
+                  fix_climate_services_toc, fix_tutorial_videos, fix_uast, fix_ast]
 folder_fixers = [fix_field_encoding, fix_news_archive]
 
 
