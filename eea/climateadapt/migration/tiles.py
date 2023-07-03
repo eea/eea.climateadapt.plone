@@ -244,6 +244,10 @@ def share_info_tile_to_block(tile_dm, obj, request):
 
     def link_url():
         type_ = data.get('shareinfo_type')
+        if type_ is None:
+            # TODO: investigate
+            # raise ValueError("This should be investigated!!!")
+            return ""
         location, _t, factory = DEFAULT_LOCATIONS[type_]
         location = '/' + current_lang + '/' + location
         return "{0}/add?type={1}".format(location, factory)

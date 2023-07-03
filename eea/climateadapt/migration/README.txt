@@ -1,6 +1,18 @@
 2023-06-27 06:43:19 INFO ContentMigrate Migrating cca/pl/knowledge/european-climate-data-explorer/glossary-c3s
 2023-06-27 06:43:19 WARNING eea.climateadapt GenericView tile converter not implemented: c3s_indicators_glossary_table
 
+Traceback (most recent call last):
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 313, in migrate_content_to_volto
+    migrate()
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 175, in __call__
+    data = self.convert_tile_to_volto_blocklist(tileid)
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/content.py", line 100, in convert_tile_to_volto_blocklist
+    data = converter(tile_dm, self.context, self.request)
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/tiles.py", line 253, in share_info_tile_to_block
+    "href": link_url(),
+  File "/plone/instance/src/eea.climateadapt/eea/climateadapt/migration/tiles.py", line 247, in link_url
+    location, _t, factory = DEFAULT_LOCATIONS[type_]
+KeyError: None
 
 
 # TODO:
