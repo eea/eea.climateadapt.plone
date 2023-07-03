@@ -4,7 +4,6 @@
 
 import logging
 
-from eea.climateadapt.translation.utils import get_current_language
 from plone.app.multilingual.api import get_translation_manager
 
 from .config import LANGUAGES, TOP_LEVEL
@@ -199,6 +198,8 @@ def fix_news_archive(context):
     if not context.absolute_url(relative=True).endswith(path):
         return
 
+    current_lang = context.absolute_url(relative=True).split('/')[-2]
+
     listing_uid = make_uid()
     title_uid = make_uid()
 
@@ -252,7 +253,8 @@ def fix_images_in_slate(content):
     pass
 
 
-content_fixers = [fix_images_in_slate, fix_climate_services_toc, fix_tutorial_videos]
+content_fixers = [fix_images_in_slate,
+                  fix_climate_services_toc, fix_tutorial_videos]
 folder_fixers = [fix_news_archive]
 
 
