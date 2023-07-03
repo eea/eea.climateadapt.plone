@@ -247,7 +247,12 @@ def fix_news_archive(context):
     context._p_changed = True
 
 
-content_fixers = [fix_climate_services_toc, fix_tutorial_videos]
+def fix_images_in_slate(content):
+    # for links like "resolveuid/231312"
+    pass
+
+
+content_fixers = [fix_images_in_slate, fix_climate_services_toc, fix_tutorial_videos]
 folder_fixers = [fix_news_archive]
 
 
