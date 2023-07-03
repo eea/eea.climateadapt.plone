@@ -272,11 +272,11 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
     title = data.get('title')
 
     has_heading = False
-    if title_level == 'h1' and title:
+    if title_level == 'h1' and title and title != 'main content':
         attributes['title'] = title
     else:
         # avoid titles in simple RichTextTile, we only want those from the RichTextWithTitle
-        if title is not None and 'title_level' in data:
+        if title is not None and 'title_level' in data and title != 'main content':
             has_heading = True
 
     blocks = []
