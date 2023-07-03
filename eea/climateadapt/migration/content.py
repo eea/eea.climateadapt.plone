@@ -314,6 +314,8 @@ def migrate_content_to_volto(obj, request):
     except Exception:
         logger.exception("Error in migrating %s" % url)
 
+    obj.reindexObject()
+
 
 @adapter(IFolder, Interface)
 @implementer(IMigrateToVolto)
@@ -339,6 +341,8 @@ class MigrateFolder(object):
 
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
+            self.context.title = cover.title
+            self.context.description = cover.description
             self._p_changed = True
         else:
             block_id = make_uid()
@@ -354,3 +358,5 @@ class MigrateFolder(object):
             self.context.blocks = blocks
 
         fix_folder(obj)
+
+        obj.reindexObject()
