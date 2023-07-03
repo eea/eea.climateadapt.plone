@@ -255,13 +255,35 @@ def fix_images_in_slate(content):
     pass
 
 
-def fix_ast(content):
-    pass
+def fix_uast(context):
+    path = 'knowledge/tools/urban-ast/'
+
+    if path not in context.absolute_url(relative=True):
+        return
+
+    if not context.blocks:  # unmigrated content?
+        return
+
+    # pull out the content from the column, we have a different layout for these pages
+    title_block_id = context.blocks_layout['items'][0]
+    title_block = context.blocks[title_block_id]
+
+    column_block_id = context.blocks_layout['items'][1]
+    column_block = context.blocks[column_block_id]
+    second_column_id = column_block['data']['blocks_layout']['items'][1]
+    second_column = column_block['data']['blocks'][second_column_id]
+
+    blocks = second_column['blocks']
+    blocks[title_block_id] = title_block
+
+    context.blocks = second_column['blocks']
+    block_ids = [title_block_id] + second_column['blocks_layout']['items']
+    context.blocks_layout = {"items": block_ids}
 
 
 content_fixers = [fix_images_in_slate,
-                  fix_climate_services_toc, fix_tutorial_videos]
-folder_fixers = [fix_news_archive, fix_ast]
+                  fix_climate_services_toc, fix_tutorial_videos, fix_uast]
+folder_fixers = [fix_news_archive]
 
 
 def fix_content(content):
