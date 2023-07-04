@@ -196,7 +196,7 @@ class MigrateCover(object):
             cover_layout = []
 
             if self.context.cover_layout:
-                cover_layout = json.loads()
+                cover_layout = json.loads(self.context.cover_layout)
             else:
                 logger.warning("No cover layout at %s", self.context.absolute_url())
 
