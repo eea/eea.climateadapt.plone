@@ -193,7 +193,12 @@ class MigrateCover(object):
             self.context.blocks_layout = blocks_layout
             self.context.blocks = blocks_data
         else:
-            cover_layout = json.loads(self.context.cover_layout)
+            cover_layout = []
+
+            if self.context.cover_layout:
+                cover_layout = json.loads()
+            else:
+                logger.warning("No cover layout at %s", self.context.absolute_url())
 
             page_blocks = []
 

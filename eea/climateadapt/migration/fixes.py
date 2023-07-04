@@ -273,8 +273,16 @@ def extract_first_column(context):
     title_block_id = context.blocks_layout['items'][0]
     title_block = context.blocks[title_block_id]
 
+    if len(context.blocks_layout['items']) == 1:
+        # no content
+        return
+
     column_block_id = context.blocks_layout['items'][1]
     column_block = context.blocks[column_block_id]
+
+    if not column_block['@type'] == 'columnsBlock':
+        return
+
     second_column_id = column_block['data']['blocks_layout']['items'][1]
     second_column = column_block['data']['blocks'][second_column_id]
 
