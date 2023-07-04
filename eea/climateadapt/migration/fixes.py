@@ -353,11 +353,18 @@ def include(obj):
     obj.reindexObject()     # update_metadata=True - only on p6
 
 
+def is_top_level_path(path):
+    for test_path in TOP_LEVEL:
+        if path == test_path or path == '/cca' + test_path:
+            return True
+    return False
+
+
 def exclude_content_from_navigation(site):
     main = site.restrictedTraverse('en')
     for oid, obj in main.contentItems():
         path = getpath(obj)
-        if path not in TOP_LEVEL:
+        if not is_top_level_path(path):
             exclude(obj)
 
             logger.debug("Excluded from nav: %s", path)
