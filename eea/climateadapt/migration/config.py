@@ -32,11 +32,11 @@ LANGUAGES = ['de', 'fr', 'es', 'it', 'pl', 'en']
 
 
 IGNORED_PATHS = [
-    'cca/{lang}/mission',
-    'cca/{lang}/metadata'
-    'cca/frontpage',
-    'cca/{lang}/frontpage',
-    'cca/{lang}/observatory/news-archive-observatory',
+    '{lang}/mission',
+    '{lang}/metadata'
+    'frontpage',
+    '{lang}/frontpage',
+    '{lang}/observatory/news-archive-observatory',
 ]
 
 COL_MAPPING = {
@@ -53,9 +53,9 @@ COL_MAPPING = {
 }
 
 TOP_LEVEL = {
-    '/cca/en/about': [],
-    '/cca/en/eu-adaptation-policy': [],
-    '/cca/en/countries-regions': [],
-    '/cca/en/knowledge': [],
-    '/cca/en/network': [],
+    '/en/about': [],
+    '/en/eu-adaptation-policy': [],
+    '/en/countries-regions': [],
+    '/en/knowledge': [],
+    '/en/network': [],
 }

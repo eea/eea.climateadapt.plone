@@ -198,7 +198,8 @@ class MigrateCover(object):
             if self.context.cover_layout:
                 cover_layout = json.loads(self.context.cover_layout)
             else:
-                logger.warning("No cover layout at %s", self.context.absolute_url())
+                logger.warning("No cover layout at %s",
+                               self.context.absolute_url())
 
             page_blocks = []
 
@@ -279,7 +280,8 @@ def is_ignored_path(path):
     for lang in LANGUAGES:
         for test_path in IGNORED_PATHS:
             test_path = test_path.replace("{lang}", lang)
-            if path.startswith(test_path):
+            if path.startswith(test_path) or path.startswith(
+                    'cca/' + test_path):
                 return True
 
 
