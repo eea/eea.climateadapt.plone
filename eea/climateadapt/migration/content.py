@@ -349,6 +349,8 @@ class MigrateFolder(object):
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
 
+            obj.title = cover.title
+            obj.description = cover.description
             self._p_changed = True
         else:
             block_id = make_uid()
