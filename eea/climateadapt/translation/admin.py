@@ -377,10 +377,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                     # setattr(trans_obj, key, RichTextValue(encoded_text))
                     # setattr(getattr(trans_obj, key), 'raw', encoded_text)
                 else:
-                    if isinstance(value, str) and key in ['funding_programme']:
-                        setattr(trans_obj, key, translated['transId'])
-                    else:
-                        setattr(trans_obj, key, encoded_text)
+                    setattr(trans_obj, key, encoded_text)
 
                 # reindex object
                 trans_obj._p_changed = True
