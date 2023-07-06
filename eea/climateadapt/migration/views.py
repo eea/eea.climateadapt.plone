@@ -50,6 +50,6 @@ class PostMigrationCleanup(BrowserView):
 
     def __call__(self):
         site = portal.get()
-        post_migration_cleanup(site)
+        post_migration_cleanup(site, self.request)
 
         return "ok"
