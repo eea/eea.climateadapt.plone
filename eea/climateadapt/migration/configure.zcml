@@ -25,6 +25,13 @@
     permission="cmf.ManagePortal"
     />
 
+  <browser:page
+    name="volto_post_migration_cleanup"
+    for="*"
+    class=".views.PostMigrationCleanup"
+    permission="cmf.ManagePortal"
+    />
+
   <adapter
       factory=".content.MigrateCover"
       />
