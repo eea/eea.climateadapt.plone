@@ -67,7 +67,11 @@ def post_migration_cleanup(site, request):
             try:
                 obj.manage_delProperties(['default_page'])
                 obj._p_changed = True
-                obj.reindexObject(idxs=['default_page'])
+                # obj.reindexObject(idxs=['default_page'])
+                # TODO: investigate, fix:
+                # Module plone.restapi.indexers, line 75,
+                # in SearchableText_blocks
+                # UnicodeDecodeError: 'ascii' codec can't decode byte 0xe2...
             except Exception:
                 pass
 
