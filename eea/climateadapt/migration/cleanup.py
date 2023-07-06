@@ -28,6 +28,8 @@ def post_migration_cleanup(site, request):
     logger.info("--- START CLEANUP ---")
     brains = get_all_objs(site)
 
+    count = 0
+
     for brain in brains:
         if brain.portal_type in IGNORED_CONTENT_TYPES:
             continue
@@ -45,6 +47,7 @@ def post_migration_cleanup(site, request):
             default_page = 'index_html'
 
         if default_page:
+            count += 1
             logger.info(default_page)
             default_page_obj = None
             try:
@@ -60,6 +63,16 @@ def post_migration_cleanup(site, request):
                     plone.api.content.delete(default_page_obj)
                 except Exception:
                     logger.info("Error %s" % default_page_obj.absolute_url())
+
+            try:
+                obj.manage_delProperties(['default_page'])
+                obj._p_changed = True
+                obj.reindexObject(idxs=['default_page'])
+            except Exception:
+                pass
+
+            if count % 10 == 0:
+                transaction.commit()
 
     transaction.commit()
     logger.info("--- Cleanup done ---")
