@@ -89,7 +89,6 @@ def get_discodata_for_country(country_code):
     processed_data = {
         k: unicode(v)
         for k, v in orig_data.items()
-        # if k != 'countryCode'
         if k not in ['countryCode', 'ReportNet3HistoricReleaseId']
     }
 
@@ -98,16 +97,18 @@ def get_discodata_for_country(country_code):
     for k, val in processed_data.items():
         # import pdb; pdb.set_trace()
         json_val = json.loads(val)
-        new_value = json_val[k][0]
+        if type(json_val) is dict:
+            new_value = json_val[k][0]
 
-        processed_data[k] = new_value
+            processed_data[k] = new_value
+        #else:
+        #    processed_data[k] = None
 
     return processed_data
 
 
 # DISCODATA_URL = 'https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_JSON%5D&p=1&nrOfHits=100'
 DISCODATA_URL = 'https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_Art19_JSON_2023%5D&p=1&nrOfHits=100'
-
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -458,7 +459,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
             if not c_metadata:
                 c_metadata = self.extract_country_metadata_discodata(child)
-            
+
             res[child.id.title().replace('-', ' ')] = [
                 c_metadata,
                 child.absolute_url(),
@@ -596,6 +597,19 @@ class ContextCountriesView(BrowserView):
         )
 
         return s
+
+
+class ContextCountriesViewJson(BrowserView):
+    def __call__(self):
+        # used for heat_index map
+        info = parse_csv("data/heat_index.csv")
+        m = {}
+
+        for line in info:
+            if line["country_id"].strip():
+                m[line["country_id"]] = line
+
+        return json.dumps(m)
 
 
 class CountryProfileData(BrowserView):

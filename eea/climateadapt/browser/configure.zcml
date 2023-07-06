@@ -876,6 +876,12 @@
       permission="zope2.View"
       />
 
+  <browser:page
+      name="countries-heat-index-json"
+      for="*"
+      class=".countries.ContextCountriesViewJson"
+      permission="zope2.View"
+      />
 
   <browser:page
       name="countries-list"
