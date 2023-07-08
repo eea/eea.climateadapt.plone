@@ -1174,6 +1174,44 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
 
         return response
 
+    def get_overview_table(self):
+        site = portal.get()
+        lang = self.current_lang
+        lg = "en"
+
+        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        data = datastore['data']['overview_table']
+        response = {}
+        #import pdb; pdb.set_trace()
+
+        for hazard_category in data.keys():
+            response[hazard_category] = {'types':{}, 'total_indicators': 0}
+            for hazard_type in data[hazard_category].keys():
+                response[hazard_category]['types'][hazard_type] = []
+                for indicator in data[hazard_category][hazard_type]:
+                    response[hazard_category]['types'][hazard_type].append(indicator)
+                    response[hazard_category]['total_indicators'] += 1
+
+        #import pdb; pdb.set_trace()
+        responseHtml = "";
+        for _category in response.keys():
+            responseHtml += "<tr>"
+            responseHtml += "<td rowspan=\""+str(response[_category]['total_indicators'])+"\">"+_category+"</td>"
+            for i, _type in enumerate(response[_category]['types'].keys()):
+                #import pdb; pdb.set_trace()
+                if i>0:
+                    responseHtml += "<tr>"
+                responseHtml += "<td rowspan=\""+str(len(response[_category]['types'][_type]))+"\">"+_type+"</td>"
+                for j, indicator in enumerate(response[_category]['types'][_type]):
+                    if j>0:
+                        responseHtml += "<tr>"
+                    responseHtml += "<td>"+indicator['indicator_text']+"</td>"
+                    responseHtml += "<td><a href=\"\">Download</a></td>"
+                    responseHtml += "</tr>"
+
+        return responseHtml
+
 
     def get_disclaimer(self):
         site = portal.get()

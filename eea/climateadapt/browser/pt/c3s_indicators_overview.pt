@@ -8,7 +8,10 @@
   <div class="column col-md-16 " data-panel="">
     <div class="tile tile-default" id="b48b97e5-278f-4474-a61b-b73734177559">
       <div class="cover-richtext-tile tile-content" tal:define="data view/data">
-        <div class="cover-richtext-tile tile-content"><div style="float:right;"><a class="right standard-button secundary-button" href="/knowledge/european-climate-data-explorer" i18n:translate="">Go back</a></div>
+        <div class="cover-richtext-tile tile-content">
+          <div style="float:right;">
+            <a class="right standard-button secundary-button" href="/knowledge/european-climate-data-explorer" i18n:translate="">Go back</a>
+          </div>
           <h1 i18n:translate="">Overview list of all indices</h1>
           <p tal:content="structure view/data/overview_page/description" tal:condition="python: len(data)"></p>
         </div>
@@ -16,23 +19,23 @@
     </div>
   </div>
 
-  <div class="column col-md-16 " data-panel="">
-      <div class="row" tal:define="data view/get_overview_columns">
-        <div class="column col-md-6" tal:repeat="side python:['left','right']">
-            <tal tal:repeat="category python:data[side]">
-                <h2 tal:content="python:category['name']"></h2>
-                <tal tal:repeat="hazard python:category['items']">
-                    <h4 tal:condition="python:hazard['name']!='Other'" tal:content="python:hazard['name']"></h4>
-                    <ul>
-                        <li tal:repeat="item python:hazard['items']">
-                            <a tal:attributes="href python:item['url']" tal:content="python:item['title']"></a>
-                        </li>
-                    </ul>
-                </tal>
-            </tal>
-        </div>
-    </div>
-  </div>
+<style>
+table.plain{width:100% !important}
+table.plain th,table.plain td{border:1px solid #ddd}
+table.invisible th,table.plain td,table.plain th{padding:.5em 1em}
+</style>
+  <table class="plain" tal:define="data view/get_overview_table">
+    <thead>
+      <tr>
+        <th>Hazard category</th>
+        <th>Hazard type</th>
+        <th>Indicator</th>
+        <th>Zip download</th>
+      </tr>
+    </thead>
+    <tbody tal:content="structure data">
+    </tbody>
+  </table>
   <br>
   <p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
 </div>

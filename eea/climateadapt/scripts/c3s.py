@@ -27,10 +27,14 @@ from zope.annotation.interfaces import IAnnotations
 logger = logging.getLogger("eea.climateadapt")
 logging.basicConfig()
 
+# SOURCE_URL = (
+#     "https://raw.githubusercontent.com/bopen/c3s-430a-portal/"
+#     "static-generator-acceptance/data/data_consolidated.json"
+#     )
 SOURCE_URL = (
     "https://raw.githubusercontent.com/bopen/c3s-430a-portal/"
-    "static-generator-acceptance/data/data_consolidated.json"
-    )
+    "152-CSV-download-links/data/data_consolidated.json"
+)
 
 
 def get_source_data():
