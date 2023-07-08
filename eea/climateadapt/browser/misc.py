@@ -1178,6 +1178,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         site = portal.get()
         lang = self.current_lang
         lg = "en"
+        catalog = getToolByName(site, 'portal_catalog')
 
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
@@ -1190,6 +1191,24 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
             for hazard_type in data[hazard_category].keys():
                 response[hazard_category]['types'][hazard_type] = []
                 for indicator in data[hazard_category][hazard_type]:
+                    c3s_identifier = indicator['identifier']
+                    query = {
+                        'portal_type': 'eea.climateadapt.c3sindicator',
+                        'c3s_identifier': c3s_identifier,
+                        'path': "/cca/"+lang+"/metadata"
+                    }
+                    brains = catalog.searchResults(query)
+                    for brain in brains:
+                        logger.info('C3S %s LNG %s', c3s_identifier, lang)
+                        logger.info('C3S %s URL %s', brain.getObject().c3s_identifier, brain.getURL())
+
+                        if c3s_identifier != brain.getObject().c3s_identifier:
+                            continue
+                        if "/"+lang+"/" not in brain.getURL():
+                            continue
+                        #overview_page['hazard_list'][category][hazard][index]['title'] = brain.getObject().title
+                        #overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
+                        indicator['cca_url'] = brain.getURL()
                     response[hazard_category]['types'][hazard_type].append(indicator)
                     response[hazard_category]['total_indicators'] += 1
 
@@ -1206,8 +1225,8 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                 for j, indicator in enumerate(response[_category]['types'][_type]):
                     if j>0:
                         responseHtml += "<tr>"
-                    responseHtml += "<td>"+indicator['indicator_text']+"</td>"
-                    responseHtml += "<td><a href=\"\">Download</a></td>"
+                    responseHtml += "<td><a href=\""+indicator['cca_url']+"\">"+indicator['indicator_text']+"</a></td>"
+                    responseHtml += "<td><a href=\""+indicator['zip_url']+"\">Download</a></td>"
                     responseHtml += "</tr>"
 
         return responseHtml
