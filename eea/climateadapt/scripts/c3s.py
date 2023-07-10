@@ -23,6 +23,7 @@ from plone.dexterity.utils import createContentInContainer
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from zope.annotation.interfaces import IAnnotations
+from collections import OrderedDict
 
 logger = logging.getLogger("eea.climateadapt")
 logging.basicConfig()
@@ -40,7 +41,7 @@ SOURCE_URL = (
 def get_source_data():
     response = urllib2.urlopen(SOURCE_URL)
     source_content = response.read()
-    return json.loads(source_content)
+    return json.loads(source_content, object_pairs_hook=OrderedDict)
 
 
 def update_object(obj, indicator):
@@ -151,7 +152,6 @@ def main():
     annot._p_changed = True
     annot["c3s_json_data"] = {"data": data, "fetched": datetime.datetime.now()}
 
-    #import pdb; pdb.set_trace()
     for indicator_identifier in data["indicators"]:
         save_indicator(data["indicators"][indicator_identifier], site, data)
 
