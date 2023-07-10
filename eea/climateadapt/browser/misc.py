@@ -6,6 +6,7 @@ import requests
 import urllib
 import xlsxwriter
 
+from collections import OrderedDict
 from datetime import datetime
 from email.MIMEText import MIMEText
 from itertools import islice
@@ -1184,6 +1185,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         data = datastore['data']['overview_table']
         response = {}
+        #response = OrderedDict()
         #import pdb; pdb.set_trace()
 
         for hazard_category in data.keys():
@@ -1199,8 +1201,8 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                     }
                     brains = catalog.searchResults(query)
                     for brain in brains:
-                        logger.info('C3S %s LNG %s', c3s_identifier, lang)
-                        logger.info('C3S %s URL %s', brain.getObject().c3s_identifier, brain.getURL())
+                        # logger.info('C3S %s LNG %s', c3s_identifier, lang)
+                        # logger.info('C3S %s URL %s', brain.getObject().c3s_identifier, brain.getURL())
 
                         if c3s_identifier != brain.getObject().c3s_identifier:
                             continue
