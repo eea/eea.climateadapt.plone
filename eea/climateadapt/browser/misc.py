@@ -1185,8 +1185,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         data = datastore['data']['overview_table']
         response = {}
-        #response = OrderedDict()
-        #import pdb; pdb.set_trace()
+        response = OrderedDict()
 
         for hazard_category in data.keys():
             response[hazard_category] = {'types':{}, 'total_indicators': 0}
@@ -1201,26 +1200,20 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                     }
                     brains = catalog.searchResults(query)
                     for brain in brains:
-                        # logger.info('C3S %s LNG %s', c3s_identifier, lang)
-                        # logger.info('C3S %s URL %s', brain.getObject().c3s_identifier, brain.getURL())
 
                         if c3s_identifier != brain.getObject().c3s_identifier:
                             continue
                         if "/"+lang+"/" not in brain.getURL():
                             continue
-                        #overview_page['hazard_list'][category][hazard][index]['title'] = brain.getObject().title
-                        #overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
                         indicator['cca_url'] = brain.getURL()
                     response[hazard_category]['types'][hazard_type].append(indicator)
                     response[hazard_category]['total_indicators'] += 1
 
-        #import pdb; pdb.set_trace()
         responseHtml = "";
         for _category in response.keys():
             responseHtml += "<tr>"
             responseHtml += "<td rowspan=\""+str(response[_category]['total_indicators'])+"\">"+_category+"</td>"
             for i, _type in enumerate(response[_category]['types'].keys()):
-                #import pdb; pdb.set_trace()
                 if i>0:
                     responseHtml += "<tr>"
                 responseHtml += "<td rowspan=\""+str(len(response[_category]['types'][_type]))+"\">"+_type+"</td>"
