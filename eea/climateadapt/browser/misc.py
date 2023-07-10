@@ -1184,11 +1184,10 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         data = datastore['data']['overview_table']
-        response = {}
         response = OrderedDict()
 
         for hazard_category in data.keys():
-            response[hazard_category] = {'types':{}, 'total_indicators': 0}
+            response[hazard_category] = {'types':OrderedDict(), 'total_indicators': 0}
             for hazard_type in data[hazard_category].keys():
                 response[hazard_category]['types'][hazard_type] = []
                 for indicator in data[hazard_category][hazard_type]:
