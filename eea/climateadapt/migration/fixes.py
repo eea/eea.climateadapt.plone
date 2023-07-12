@@ -54,6 +54,206 @@ def fix_climate_services_toc(context):
     first_col['blocks'][first_block_id] = new_data
 
 
+@onpath('/help/Webinars')
+def fix_webinars(context):
+    blocks = context.blocks
+    layout = context.blocks_layout
+
+    videos = {
+        1:  {
+            'text': {
+                'id': layout['items'][-1],
+                'block': blocks[layout['items'][-1]]
+            },
+            'video': {
+                'id': layout['items'][-2],
+                'block': blocks[layout['items'][-2]]
+            }
+        },
+        2:  {
+            'text': {
+                'id': layout['items'][-3],
+                'block': blocks[layout['items'][-3]]
+            },
+            'video': {
+                'id': layout['items'][-4],
+                'block': blocks[layout['items'][-4]]
+            }
+        },
+        3:  {
+            'text': {
+                'id': layout['items'][-5],
+                'block': blocks[layout['items'][-5]]
+            },
+            'video': {
+                'id': layout['items'][-6],
+                'block': blocks[layout['items'][-6]]
+            }
+        },
+        4:  {
+            'text': {
+                'id': layout['items'][-7],
+                'block': blocks[layout['items'][-7]]
+            },
+            'video': {
+                'id': layout['items'][-8],
+                'block': blocks[layout['items'][-8]]
+            }
+        },
+        5:  {
+            'text': {
+                'id': layout['items'][-9],
+                'block': blocks[layout['items'][-9]]
+            },
+            'video': {
+                'id': layout['items'][-10],
+                'block': blocks[layout['items'][-10]]
+            }
+        },
+    }
+
+    col_1_id = make_uid()
+    col_1_item_1_id = make_uid()
+
+    col_2_id = make_uid()
+    col_2_item_1_id = make_uid()
+    col_2_item_2_id = make_uid()
+
+    col_3_id = make_uid()
+    col_3_item_1_id = make_uid()
+    col_3_item_2_id = make_uid()
+
+    blocks[col_1_id] = {
+        "@type": "columnsBlock",
+        "data": {
+            "blocks": {
+                col_1_item_1_id: {
+                    "blocks": {
+                        videos[1]['video']['id']: videos[1]['video']['block'],
+                        videos[1]['text']['id']: videos[1]['text']['block'],
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            videos[1]['video']['id'],
+                            videos[1]['text']['id'],
+                        ]
+                    }
+                },
+            },
+            "blocks_layout": {
+                "items": [
+                    col_1_item_1_id,
+                ]
+            }
+        },
+        "gridCols": [
+            "halfWidth",
+            "halfWidth"
+        ],
+        "gridSize": 12,
+        "styles": {}
+    }
+
+    blocks[col_2_id] = {
+        "@type": "columnsBlock",
+        "data": {
+            "blocks": {
+                col_2_item_1_id: {
+                    "blocks": {
+                        videos[2]['video']['id']: videos[2]['video']['block'],
+                        videos[2]['text']['id']: videos[2]['text']['block'],
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            videos[2]['video']['id'],
+                            videos[2]['text']['id'],
+                        ]
+                    }
+                },
+                col_2_item_2_id: {
+                    "blocks": {
+                        videos[3]['video']['id']: videos[3]['video']['block'],
+                        videos[3]['text']['id']: videos[3]['text']['block'],
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            videos[3]['video']['id'],
+                            videos[3]['text']['id'],
+                        ]
+                    }
+                },
+            },
+            "blocks_layout": {
+                "items": [
+                    col_2_item_2_id,
+                    col_2_item_1_id,
+                ]
+            }
+        },
+        "gridCols": [
+            "halfWidth",
+            "halfWidth"
+        ],
+        "gridSize": 12,
+        "styles": {}
+    }
+
+    blocks[col_3_id] = {
+        "@type": "columnsBlock",
+        "data": {
+            "blocks": {
+                col_3_item_1_id: {
+                    "blocks": {
+                        videos[4]['video']['id']: videos[4]['video']['block'],
+                        videos[4]['text']['id']: videos[4]['text']['block'],
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            videos[4]['video']['id'],
+                            videos[4]['text']['id'],
+                        ]
+                    }
+                },
+                col_3_item_2_id: {
+                    "blocks": {
+                        videos[5]['video']['id']: videos[5]['video']['block'],
+                        videos[5]['text']['id']: videos[5]['text']['block'],
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            videos[5]['video']['id'],
+                            videos[5]['text']['id'],
+                        ]
+                    }
+                },
+            },
+            "blocks_layout": {
+                "items": [
+                    col_3_item_2_id,
+                    col_3_item_1_id,
+                ]
+            }
+        },
+        "gridCols": [
+            "halfWidth",
+            "halfWidth"
+        ],
+        "gridSize": 12,
+        "styles": {}
+    }
+
+    for index in range(0, 10):
+        layout['items'].pop()
+
+    layout['items'].append(col_3_id)
+    layout['items'].append(col_2_id)
+    layout['items'].append(col_1_id)
+
+    context.blocks = blocks
+    context.blocks_layout = layout
+    context._p_changed = True
+
+
 @onpath('/help/tutorial-videos/index_html')
 def fix_tutorial_videos(context):
     blocks = context.blocks
@@ -322,7 +522,8 @@ def fix_field_encoding(context):
 
 
 content_fixers = [fix_field_encoding, fix_images_in_slate,
-                  fix_climate_services_toc, fix_tutorial_videos, fix_uast, fix_ast]
+                  fix_climate_services_toc, fix_tutorial_videos, fix_uast,
+                  fix_ast, fix_webinars]
 folder_fixers = [fix_field_encoding, fix_news_archive]
 
 
