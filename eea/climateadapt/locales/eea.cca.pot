@@ -76,3 +76,66 @@ msgstr ""
 
 msgid "Adaptation portals and platforms"
 msgstr ""
+
+msgid "Hazard category"
+msgstr ""
+
+msgid "Hazard type"
+msgstr ""
+
+msgid "Indicator"
+msgstr ""
+
+msgid "Zip download"
+msgstr ""
+
+msgid "Download"
+msgstr ""
+
+msgid "Heat and cold"
+msgstr ""
+
+msgid "Mean air temperature"
+msgstr ""
+
+msgid "Extreme heat"
+msgstr ""
+
+msgid "Cold spells and frost"
+msgstr ""
+
+msgid "Wet and dry"
+msgstr ""
+
+msgid "Mean precipitation"
+msgstr ""
+
+msgid "Extreme precipitation"
+msgstr ""
+
+msgid "River flooding"
+msgstr ""
+
+msgid "Aridity"
+msgstr ""
+
+msgid "Wildfire"
+msgstr ""
+
+msgid "Snow and land ice"
+msgstr ""
+
+msgid "Snow and ice"
+msgstr ""
+
+msgid "Coastal"
+msgstr ""
+
+msgid "Relative sea level"
+msgstr ""
+
+msgid "Coastal flooding"
+msgstr ""
+
+msgid "Other"
+msgstr ""

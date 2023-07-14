@@ -41,6 +41,7 @@ from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
 from eea.climateadapt.translation.utils import get_current_language
 from eea.climateadapt.translation.utils import TranslationUtilsMixin
+from eea.climateadapt.translation.utils import translate_text
 
 
 # from Acquisition import aq_inner
@@ -1198,6 +1199,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                         'path': "/cca/"+lang+"/metadata"
                     }
                     brains = catalog.searchResults(query)
+                    indicator['cca_url'] = '#'
                     for brain in brains:
 
                         if c3s_identifier != brain.getObject().c3s_identifier:
@@ -1208,22 +1210,30 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                     response[hazard_category]['types'][hazard_type].append(indicator)
                     response[hazard_category]['total_indicators'] += 1
 
-        responseHtml = "";
+        responseHtml = "<thead>" \
+            "<tr>" \
+                "<th>"+translate_text(self.context, self.request, "Hazard category", 'eea.cca')+"</th>" \
+                "<th>"+translate_text(self.context, self.request, "Hazard type", 'eea.cca')+"</th>" \
+                "<th>"+translate_text(self.context, self.request, "Indicator", 'eea.cca')+"</th>" \
+                "<th>"+translate_text(self.context, self.request, "Zip download", 'eea.cca')+"</th>" \
+            "</tr>" \
+            "</thead>" \
+            "<tbody>"
         for _category in response.keys():
             responseHtml += "<tr>"
-            responseHtml += "<td rowspan=\""+str(response[_category]['total_indicators'])+"\">"+_category+"</td>"
+            responseHtml += "<td rowspan=\""+str(response[_category]['total_indicators'])+"\">"+translate_text(self.context, self.request, _category, 'eea.cca')+"</td>"
             for i, _type in enumerate(response[_category]['types'].keys()):
                 if i>0:
                     responseHtml += "<tr>"
-                responseHtml += "<td rowspan=\""+str(len(response[_category]['types'][_type]))+"\">"+_type+"</td>"
+                responseHtml += "<td rowspan=\""+str(len(response[_category]['types'][_type]))+"\">"+translate_text(self.context, self.request, _type, 'eea.cca')+"</td>"
                 for j, indicator in enumerate(response[_category]['types'][_type]):
                     if j>0:
                         responseHtml += "<tr>"
                     responseHtml += "<td><a href=\""+indicator['cca_url']+"\">"+indicator['indicator_text']+"</a></td>"
-                    responseHtml += "<td><a href=\""+indicator['zip_url']+"\">Download</a></td>"
+                    responseHtml += "<td><a href=\""+indicator['zip_url']+"\">"+translate_text(self.context, self.request, "Download", 'eea.cca')+"</a></td>"
                     responseHtml += "</tr>"
 
-        return responseHtml
+        return responseHtml + "</tbody>"
 
 
     def get_disclaimer(self):
