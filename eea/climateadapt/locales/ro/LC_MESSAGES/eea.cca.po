@@ -24,6 +24,9 @@ msgstr "Opțiuni de adaptare"
 msgid "Adaptation portals and platforms"
 msgstr ""
 
+msgid "Aridity"
+msgstr ""
+
 msgid "Based on your preferences, you can view this page in english"
 msgstr ""
 
@@ -35,15 +38,45 @@ msgstr "Studii de caz"
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
+msgid "Coastal"
+msgstr ""
+
+msgid "Coastal flooding"
+msgstr ""
+
+msgid "Cold spells and frost"
+msgstr ""
+
 # ,
 # ,
 msgid "Countries:"
 msgstr "Țări:"
 
+msgid "Download"
+msgstr ""
+
+msgid "Extreme heat"
+msgstr ""
+
+msgid "Extreme precipitation"
+msgstr ""
+
 # ,
 # ,
 msgid "Guidance"
 msgstr "Îndrumare"
+
+msgid "Hazard category"
+msgstr ""
+
+msgid "Hazard type"
+msgstr ""
+
+msgid "Heat and cold"
+msgstr ""
+
+msgid "Indicator"
+msgstr ""
 
 # ,
 # ,
@@ -56,6 +89,12 @@ msgid "Information portals"
 msgstr "Portaluri de informații"
 
 msgid "Latest <br/> News & Events"
+msgstr ""
+
+msgid "Mean air temperature"
+msgstr ""
+
+msgid "Mean precipitation"
 msgstr ""
 
 msgid "Most recent <br/> Case Study"
@@ -72,6 +111,9 @@ msgstr ""
 msgid "Organisations"
 msgstr "Organizații"
 
+msgid "Other"
+msgstr ""
+
 # ,
 # ,
 msgid "Publication and reports"
@@ -80,10 +122,22 @@ msgstr "Publicarea și rapoartele"
 msgid "Publications and reports"
 msgstr ""
 
+msgid "Relative sea level"
+msgstr ""
+
 # ,
 # ,
 msgid "Research and knowledge projects"
 msgstr "Proiecte de cercetare și cunoștințe"
+
+msgid "River flooding"
+msgstr ""
+
+msgid "Snow and ice"
+msgstr ""
+
+msgid "Snow and land ice"
+msgstr ""
 
 # ,
 # ,
@@ -94,6 +148,15 @@ msgstr "Instrumente"
 # ,
 msgid "Videos"
 msgstr "Videoclipuri"
+
+msgid "Wet and dry"
+msgstr ""
+
+msgid "Wildfire"
+msgstr ""
+
+msgid "Zip download"
+msgstr ""
 
 msgid "here"
 msgstr ""

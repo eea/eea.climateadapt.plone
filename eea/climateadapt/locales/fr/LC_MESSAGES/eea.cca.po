@@ -32,6 +32,9 @@ msgstr "Options d'adaptation"
 msgid "Adaptation portals and platforms"
 msgstr "Portails et plateformes sur l'adaptation"
 
+msgid "Aridity"
+msgstr "Aridité"
+
 msgid "Based on your preferences, you can view this page in english"
 msgstr "En fonction de vos préférences, vous pouvez afficher cette page en français"
 
@@ -51,6 +54,15 @@ msgstr "Études de cas"
 msgid "Climate change impact and vulnerability assessments"
 msgstr "Évaluations de l'impact et de la vulnérabilité du changement climatique"
 
+msgid "Coastal"
+msgstr "Côtier"
+
+msgid "Coastal flooding"
+msgstr "Inondations côtières"
+
+msgid "Cold spells and frost"
+msgstr "Coups de froid et gel"
+
 # ,
 # ,
 # ,
@@ -63,6 +75,15 @@ msgstr "Évaluations de l'impact et de la vulnérabilité du changement climatiq
 msgid "Countries:"
 msgstr "Pays:"
 
+msgid "Download"
+msgstr "Télécharger"
+
+msgid "Extreme heat"
+msgstr "Chaleur extrème"
+
+msgid "Extreme precipitation"
+msgstr "Précipitations extrêmes"
+
 # ,
 # ,
 # ,
@@ -74,6 +95,18 @@ msgstr "Pays:"
 # ,
 msgid "Guidance"
 msgstr "Guides et lignes directrices"
+
+msgid "Hazard category"
+msgstr "Catégorie de danger"
+
+msgid "Hazard type"
+msgstr "Type de danger"
+
+msgid "Heat and cold"
+msgstr "Chaleur et froid"
+
+msgid "Indicator"
+msgstr "Indicateur"
 
 # ,
 # ,
@@ -107,6 +140,12 @@ msgstr "Portails d'information"
 # ,
 msgid "Latest <br/> News & Events"
 msgstr "Dernières <br/> actualités et événements"
+
+msgid "Mean air temperature"
+msgstr "Température moyenne de l'air"
+
+msgid "Mean precipitation"
+msgstr "Précipitations moyennes"
 
 # ,
 # ,
@@ -142,6 +181,9 @@ msgstr "Politique nationale d'adaptation"
 msgid "Organisations"
 msgstr "Organisations"
 
+msgid "Other"
+msgstr "Autre"
+
 # ,
 # ,
 # ,
@@ -159,6 +201,9 @@ msgstr "Publication et rapports"
 msgid "Publications and reports"
 msgstr "Publications et rapports"
 
+msgid "Relative sea level"
+msgstr "Niveau relatif de la mer"
+
 # ,
 # ,
 # ,
@@ -170,6 +215,15 @@ msgstr "Publications et rapports"
 # ,
 msgid "Research and knowledge projects"
 msgstr "Projets de recherche et de connaissance"
+
+msgid "River flooding"
+msgstr "Inondation de la rivière"
+
+msgid "Snow and ice"
+msgstr "Neige et glace"
+
+msgid "Snow and land ice"
+msgstr "Neige et glace terrestre"
 
 # ,
 # ,
@@ -194,6 +248,15 @@ msgstr "Outils"
 # ,
 msgid "Videos"
 msgstr "Vidéos"
+
+msgid "Wet and dry"
+msgstr "Humide et sec"
+
+msgid "Wildfire"
+msgstr "Incendies"
+
+msgid "Zip download"
+msgstr "Téléchargement zip"
 
 msgid "here"
 msgstr "ici"

@@ -20,6 +20,9 @@ msgstr ""
 msgid "Adaptation portals and platforms"
 msgstr ""
 
+msgid "Aridity"
+msgstr ""
+
 msgid "Based on your preferences, you can view this page in english"
 msgstr ""
 
@@ -29,10 +32,40 @@ msgstr ""
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
+msgid "Coastal"
+msgstr ""
+
+msgid "Coastal flooding"
+msgstr ""
+
+msgid "Cold spells and frost"
+msgstr ""
+
 msgid "Countries:"
 msgstr ""
 
+msgid "Download"
+msgstr ""
+
+msgid "Extreme heat"
+msgstr ""
+
+msgid "Extreme precipitation"
+msgstr ""
+
 msgid "Guidance"
+msgstr ""
+
+msgid "Hazard category"
+msgstr ""
+
+msgid "Hazard type"
+msgstr ""
+
+msgid "Heat and cold"
+msgstr ""
+
+msgid "Indicator"
 msgstr ""
 
 msgid "Indicators"
@@ -42,6 +75,12 @@ msgid "Information portals"
 msgstr ""
 
 msgid "Latest <br/> News & Events"
+msgstr ""
+
+msgid "Mean air temperature"
+msgstr ""
+
+msgid "Mean precipitation"
 msgstr ""
 
 msgid "Most recent <br/> Case Study"
@@ -56,19 +95,43 @@ msgstr ""
 msgid "Organisations"
 msgstr ""
 
+msgid "Other"
+msgstr ""
+
 msgid "Publication and reports"
 msgstr ""
 
 msgid "Publications and reports"
 msgstr ""
 
+msgid "Relative sea level"
+msgstr ""
+
 msgid "Research and knowledge projects"
+msgstr ""
+
+msgid "River flooding"
+msgstr ""
+
+msgid "Snow and ice"
+msgstr ""
+
+msgid "Snow and land ice"
 msgstr ""
 
 msgid "Tools"
 msgstr ""
 
 msgid "Videos"
+msgstr ""
+
+msgid "Wet and dry"
+msgstr ""
+
+msgid "Wildfire"
+msgstr ""
+
+msgid "Zip download"
 msgstr ""
 
 msgid "here"

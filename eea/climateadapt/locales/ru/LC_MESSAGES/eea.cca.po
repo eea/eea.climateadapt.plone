@@ -23,6 +23,9 @@ msgstr "Параметры адаптации"
 msgid "Adaptation portals and platforms"
 msgstr ""
 
+msgid "Aridity"
+msgstr ""
+
 msgid "Based on your preferences, you can view this page in english"
 msgstr ""
 
@@ -33,13 +36,43 @@ msgstr "Тематические исследования"
 msgid "Climate change impact and vulnerability assessments"
 msgstr ""
 
+msgid "Coastal"
+msgstr ""
+
+msgid "Coastal flooding"
+msgstr ""
+
+msgid "Cold spells and frost"
+msgstr ""
+
 # ,
 msgid "Countries:"
 msgstr "Страны:"
 
+msgid "Download"
+msgstr ""
+
+msgid "Extreme heat"
+msgstr ""
+
+msgid "Extreme precipitation"
+msgstr ""
+
 # ,
 msgid "Guidance"
 msgstr "Руководство"
+
+msgid "Hazard category"
+msgstr ""
+
+msgid "Hazard type"
+msgstr ""
+
+msgid "Heat and cold"
+msgstr ""
+
+msgid "Indicator"
+msgstr ""
 
 # ,
 msgid "Indicators"
@@ -50,6 +83,12 @@ msgid "Information portals"
 msgstr "Информационные порталы"
 
 msgid "Latest <br/> News & Events"
+msgstr ""
+
+msgid "Mean air temperature"
+msgstr ""
+
+msgid "Mean precipitation"
 msgstr ""
 
 msgid "Most recent <br/> Case Study"
@@ -65,6 +104,9 @@ msgstr ""
 msgid "Organisations"
 msgstr "Организации"
 
+msgid "Other"
+msgstr ""
+
 # ,
 msgid "Publication and reports"
 msgstr "Публикация и отчеты"
@@ -72,9 +114,21 @@ msgstr "Публикация и отчеты"
 msgid "Publications and reports"
 msgstr ""
 
+msgid "Relative sea level"
+msgstr ""
+
 # ,
 msgid "Research and knowledge projects"
 msgstr "Проекты по исследованиям и знаниям"
+
+msgid "River flooding"
+msgstr ""
+
+msgid "Snow and ice"
+msgstr ""
+
+msgid "Snow and land ice"
+msgstr ""
 
 # ,
 msgid "Tools"
@@ -83,6 +137,15 @@ msgstr "Инструменты"
 # ,
 msgid "Videos"
 msgstr "Видео"
+
+msgid "Wet and dry"
+msgstr ""
+
+msgid "Wildfire"
+msgstr ""
+
+msgid "Zip download"
+msgstr ""
 
 msgid "here"
 msgstr ""
