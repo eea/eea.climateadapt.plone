@@ -1193,6 +1193,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                 response[hazard_category]['types'][hazard_type] = []
                 for indicator in data[hazard_category][hazard_type]:
                     c3s_identifier = indicator['identifier']
+                    #import pdb; pdb.set_trace()
                     query = {
                         'portal_type': 'eea.climateadapt.c3sindicator',
                         'c3s_identifier': c3s_identifier,
@@ -1207,6 +1208,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                         if "/"+lang+"/" not in brain.getURL():
                             continue
                         indicator['cca_url'] = brain.getURL()
+                        indicator['cca_title'] = brain.getObject().title
                     response[hazard_category]['types'][hazard_type].append(indicator)
                     response[hazard_category]['total_indicators'] += 1
 
@@ -1229,7 +1231,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                 for j, indicator in enumerate(response[_category]['types'][_type]):
                     if j>0:
                         responseHtml += "<tr>"
-                    responseHtml += "<td><a href=\""+indicator['cca_url']+"\">"+indicator['indicator_text']+"</a></td>"
+                    responseHtml += "<td><a href=\""+indicator['cca_url']+"\">"+indicator['cca_title']+"</a></td>"
                     responseHtml += "<td><a href=\""+indicator['zip_url']+"\">"+translate_text(self.context, self.request, "Download", 'eea.cca')+"</a></td>"
                     responseHtml += "</tr>"
 
