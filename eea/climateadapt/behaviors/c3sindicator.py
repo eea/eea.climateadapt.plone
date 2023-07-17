@@ -51,7 +51,7 @@ class IC3sIndicator(IIndicator):
     #directives.omitted(IAddForm, "health_impacts")
 
     indicator_title = TextLine(
-        title=_(u"Indicator title"), required=True
+        title=_(u"Indicator title"), required=False
     )
 
     definition_app = RichText(
@@ -71,10 +71,10 @@ class IC3sIndicator(IIndicator):
     overview_app_parameters = Text(title=(u"Overview APP parameters"), required=True)
 
     details_app_toolbox_url = TextLine(
-        title=_(u"Details APP Toolbox URL"), required=True
+        title=_(u"Details APP Toolbox URL"), required=False
     )
 
-    details_app_parameters = Text(title=(u"Details APP parameters"), required=True)
+    details_app_parameters = Text(title=(u"Details APP parameters"), required=False)
 
     sectors = List(
         title=_(u"Sectors"),
