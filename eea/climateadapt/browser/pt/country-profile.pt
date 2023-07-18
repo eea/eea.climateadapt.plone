@@ -9,47 +9,6 @@
 
     <h1 class="documentFirstHeading" i18n:translate="">National circumstances relevant to adaptation actions</h1>
 
-    <tal:block tal:define="fieldset_legend string:Biogeophysical characteristics;
-                        fieldset_data data/National_Circumstances/BiogeophysicalCharacteristics">
-      <tal:macro metal:define-macro="fieldset-macro">
-        <div class="panel panel-default"
-          tal:define="id python: 'accordion_' + fieldset_legend.replace(' ', '_');
-                      id python: id.replace('(', '_');
-                      id python: id.replace(')', '_');
-                      id python: id.replace(',', '_');
-                      id python: id.replace('/', '_');
-                      id python: id.replace('&', '_');
-                      id python: id.replace('-', '_');
-                      id python: id.replace(',', '_');
-                      id python: id.replace('.', '_');
-                      id python: id.replace('/', '_');
-
-                      "
-          >
-          <div class="panel-heading" tal:attributes="id python: id+'-heading'">
-            <h4 class="panel-title">
-              <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
-                <span tal:content="fieldset_legend" i18n:translate="">Biogeophysical characteristics</span>
-              </a>
-            </h4>
-          </div>
-          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
-            <div class="panel-body" tal:content="structure python: view.convert_web_int(fieldset_data)">Data here</div>
-          </div>
-        </div>
-      </tal:macro>
-    </tal:block>
-
-    <tal:block tal:define="fieldset_legend string:Demographic situation;
-                        fieldset_data data/National_Circumstances/DemographicSituation">
-      <tal:macro metal:use-macro="view/fieldset-macro"/>
-    </tal:block>
-
-    <tal:block tal:define="fieldset_legend string:Economic and infrastructural situation;
-                        fieldset_data data/National_Circumstances/EconomicInfrastructuralSituation">
-      <tal:macro metal:use-macro="view/fieldset-macro"/>
-    </tal:block>
-
     <div style="padding: 0.5em;">
       <p>
         <strong i18n:translate="">Reporting updated until: </strong><span tal:content="data/General_Information/UpdateDate"/>
@@ -57,8 +16,11 @@
     </div>
 
   </div>
-  <ul class="nav nav-tabs">
+<div class="row">
+  <div class="col-lg-3">
+  <ul class="nav nav-tabs" style="flex-direction: column;">
     <li class="active"><a href="#4489-0" data-toggle="tab" i18n:translate="">Summary</a></li>
+    <li class=""><a href="#4489-01" data-toggle="tab" i18n:translate="">National circumstances </a></li>
     <li class=" "><a href="#4489-1" data-toggle="tab" i18n:translate="">Assessment</a></li>
     <li class=" "><a href="#4489-2" data-toggle="tab" i18n:translate="">Legal &amp; policy frameworks</a></li>
     <li class=" "><a href="#4489-3" data-toggle="tab" i18n:translate="">Strategies, plans &amp; goals</a>
@@ -66,8 +28,11 @@
     <li class=" "><a href="#4489-4" data-toggle="tab" i18n:translate="">Monitoring &amp; evaluation</a>
     </li>
     <li class=" "><a href="#4489-5" data-toggle="tab" i18n:translate="">Good practices, cooperation &amp; synergies</a></li>
+    <li class=" "><a href="#4489-51" data-toggle="tab" i18n:translate="">Sub-national adaptation </a></li>
     <li class=" "><a href="#4489-6" data-toggle="tab" i18n:translate="">Contact</a></li>
   </ul>
+  </div>
+  <div class="col-lg-9">
   <div class="tab-content">
     <div class="tab-pane active" id="4489-0">
       <table class="listing table-striped" summary="">
@@ -308,7 +273,50 @@
       </table>
     </div>
 
-    <div class="tab-pane  " id="4489-1">
+    <div class="tab-pane" id="4489-01">
+    <tal:block tal:define="fieldset_legend string:Biogeophysical characteristics;
+                        fieldset_data data/National_Circumstances/BiogeophysicalCharacteristics">
+      <tal:macro metal:define-macro="fieldset-macro">
+        <div class="panel panel-default"
+          tal:define="id python: 'accordion_' + fieldset_legend.replace(' ', '_');
+                      id python: id.replace('(', '_');
+                      id python: id.replace(')', '_');
+                      id python: id.replace(',', '_');
+                      id python: id.replace('/', '_');
+                      id python: id.replace('&', '_');
+                      id python: id.replace('-', '_');
+                      id python: id.replace(',', '_');
+                      id python: id.replace('.', '_');
+                      id python: id.replace('/', '_');
+
+                      "
+          >
+          <div class="panel-heading" tal:attributes="id python: id+'-heading'">
+            <h4 class="panel-title">
+              <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
+                <span tal:content="fieldset_legend" i18n:translate="">Biogeophysical characteristics</span>
+              </a>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
+            <div class="panel-body" tal:content="structure python: view.convert_web_int(fieldset_data)">Data here</div>
+          </div>
+        </div>
+      </tal:macro>
+    </tal:block>
+
+    <tal:block tal:define="fieldset_legend string:Demographic situation;
+                        fieldset_data data/National_Circumstances/DemographicSituation">
+      <tal:macro metal:use-macro="view/fieldset-macro"/>
+    </tal:block>
+
+    <tal:block tal:define="fieldset_legend string:Economic and infrastructural situation;
+                        fieldset_data data/National_Circumstances/EconomicInfrastructuralSituation">
+      <tal:macro metal:use-macro="view/fieldset-macro"/>
+    </tal:block>
+
+    </div>
+    <div class="tab-pane" id="4489-1">
       <tal:block tal:define="fieldset_legend string:Climate monitoring, modelling, projections and scenarios;
                     fieldset_data python: data['National_Circumstances'].get('MainActivitiesClimateMonitoring', '')">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
@@ -814,4 +822,6 @@
       </tal:def>
     </div>
   </div>
+</div>
+</div>
 </div>
