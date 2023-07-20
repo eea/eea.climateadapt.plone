@@ -35,12 +35,27 @@ def getCache(settings):
     return cache
 
 
-# https://github.com/plone/plone.app.search/blob/1.1.x/plone/app/search/browser.py#L33
-# Refs #159767 - Patch the search results to include language filter.
+def filtered_search_paths(context, paths):
+    """ Input: ['/cca/en'] or ['/cca/en', '/cca/de', ...]
+        Return: the list of paths to be used in search (excluding Mission)
+    """
+    res = []
+    for path in paths:
+        container = context.unrestrictedTraverse(path, None)
+        contents = container.listFolderContents()
+        paths_in_context = ["/".join(x.getPhysicalPath()) for x in contents]
+        filtered_paths = [x for x in paths_in_context if '/mission' not in x]
+        for s_path in filtered_paths:
+            res.append(s_path)
+
+    return res
+
+
 def results(self, query=None, batch=True, b_size=10, b_start=0):
-    """Get properly wrapped search results from the catalog.
-    Everything in Plone that performs searches should go through this view.
-    'query' should be a dictionary of catalog parameters.
+    """ https://github.com/plone/plone.app.search/blob/1.1.x/plone/app/search/browser.py#L33
+        Get properly wrapped search results from the catalog.
+        Everything in Plone that performs searches should go through this view.
+        'query' should be a dictionary of catalog parameters.
     """
     if query is None:
         query = {}
@@ -50,6 +65,11 @@ def results(self, query=None, batch=True, b_size=10, b_start=0):
     query = self.filter_query(query)
 
     # Customization start -----------------------------------------------------
+    # All changes are done to update query before searching for results.
+    # This is important because we need pagination working, too.
+
+    # FILTER LANGUAGE
+    # Refs #159767 - Patch the search results to include language filter.
     try:
         default_language = self.request.cookies.get("I18N_LANGUAGE", "en")
     except Exception:
@@ -72,7 +92,16 @@ def results(self, query=None, batch=True, b_size=10, b_start=0):
 
     if query is None:
         query = {}
-    query["path"] = updated_path
+
+    # FILTER MISSION CONTENT
+    # Refs #252993 - Also exclude content from Mission subsite.
+    if updated_path == '/cca':
+        search_paths = ["/cca/" + language for language in languages]
+    else:
+        search_paths = [updated_path]
+
+    query["path"] = {'query': filtered_search_paths(
+        self.context, search_paths)}
     # Customization end -------------------------------------------------------
 
     if query is None:
