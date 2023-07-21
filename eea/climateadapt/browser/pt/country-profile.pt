@@ -34,6 +34,7 @@
   </div>
   <div class="col-lg-9">
   <div class="tab-content">
+    <!-- <div tal:content="view/summary_table"></div> -->
     <div class="tab-pane active" id="4489-0">
       <table class="listing table-striped" summary="">
         <thead>
@@ -43,8 +44,30 @@
             <th style="width: 22em;" i18n:translate="">Links</th>
           </tr>
         </thead>
-        <tbody>
-          <tr tal:define="items python: data['Legal_Policies'].get('NAS', [])">
+        <tbody tal:define="summary_data view/summary_table">
+          <tr tal:repeat="key python:summary_data['keys']">
+            <td tal:content="key">Key</td>
+            <td tal:define="items python:summary_data['items'][key]">
+              <ul>
+                <li tal:repeat="item items"
+                    tal:content="item/status">Adopted</li>
+              </ul>
+            </td>
+            <td tal:define="items python:summary_data['items'][key]">
+              <ul>
+                <li tal:repeat="item items">
+                  <span class="link-external">
+                    <a tal:attributes="href item/link"
+                       tal:content="item/title"
+                       rel="noopener" target="_blank" data-linktype="external"></a>
+                  </span>
+
+                </li>
+              </ul>
+            </td>
+          </tr>
+
+          <tr tal:define="items python: data['Legal_Policies'].get('B: National Adaptation Strategy (NAS)', [])">
             <td i18n:translate="">National adaptation strategy (NAS)</td>
             <td>
               <ul>
@@ -90,28 +113,6 @@
           </tr>
           <tr tal:define="items python: data['Legal_Policies'].get('SAP', [])">
             <td i18n:translate="">Sectoral adaptation plan (SAP)</td>
-            <td>
-              <ul>
-                <li tal:repeat="item items"
-                    tal:content="item/Status">Adopted</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li tal:repeat="item items"
-                    style="clear: both;">
-                  <span class="link-external">
-                    <a tal:attributes="href python: view.fix_link(item.get('Link', '#'));
-                                       data-val python: view.fix_link(item.get('Link', '#'))"
-                       tal:content="item/Title"
-                       rel="noopener" target="_blank" data-linktype="external"></a>
-                  </span>
-                </li>
-              </ul>
-            </td>
-          </tr>
-          <tr tal:define="items python: data['National_Circumstances'].get('CC_IVA', [])">
-            <td i18n:translate="">Climate change impact and vulnerability assessment</td>
             <td>
               <ul>
                 <li tal:repeat="item items"
@@ -278,7 +279,8 @@
                         fieldset_data data/National_Circumstances/BiogeophysicalCharacteristics">
       <tal:macro metal:define-macro="fieldset-macro">
         <div class="panel panel-default"
-          tal:define="id python: 'accordion_' + fieldset_legend.replace(' ', '_');
+          tal:define="fieldset_key fieldset_key | string:'123';
+                      id python: 'accordion_' + fieldset_legend.replace(' ', '_');
                       id python: id.replace('(', '_');
                       id python: id.replace(')', '_');
                       id python: id.replace(',', '_');
@@ -288,17 +290,16 @@
                       id python: id.replace(',', '_');
                       id python: id.replace('.', '_');
                       id python: id.replace('/', '_');
-
                       "
           >
-          <div class="panel-heading" tal:attributes="id python: id+'-heading'">
+          <div class="panel-heading" tal:attributes="id python: id+fieldset_key+'-heading'">
             <h4 class="panel-title">
-              <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
+              <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+fieldset_key+'-body'" data-toggle="collapse">
                 <span tal:content="fieldset_legend" i18n:translate="">Biogeophysical characteristics</span>
               </a>
             </h4>
           </div>
-          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
+          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+fieldset_key+'-body'">
             <div class="panel-body" tal:content="structure python: view.convert_web_int(fieldset_data)">Data here</div>
           </div>
         </div>
@@ -328,9 +329,83 @@
       </tal:block>
 
       <tal:block tal:define="fieldset_legend string:General aspects of climate change impact and vulnerability assessment;
-                    fieldset_data python: data['National_Circumstances'].get('GeneralAspectsAssessment', '')">
+                    fieldset_data python: data['Observed_Future_Climate_Hazards'].get('GeneralAspectsAssessment', '')">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
+
+      <div tal:define="values python: data['Observed_Future_Climate_Hazards'].get('HazardsForm', [])">
+        <div tal:content="python: values[0]['Hazards']"></div>
+      </div>
+      <table class="listing table-striped">
+        <thead>
+          <tr>
+            <th style="width: 18em;" i18n:translate="">Observed climate hazards</th>
+            <th style="width: 22em;" i18n:translate="">Acute</th>
+            <th style="width: 22em;" i18n:translate="">Chronic</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td i18n:translate="">Temperature</td>
+            <td tal:define="values python: data['Observed_Future_Climate_Hazards'].get('HazardsForm', [])[0].get('Hazards',[]);
+                            other_values python: data['National_Circumstances'].get('TemperatureAcuteOther', '')">
+              <ul>
+                <tal tal:repeat="value values">
+                <li tal:condition="python: value['Group']=='Temperature'">
+                  <span tal:content="value/Event"></span>
+                </li>
+                </tal>
+              </ul>
+              <!-- <tal:macro metal:define-macro="assessment-climate-hazards">
+                <ul tal:condition="values">
+                  <li tal:repeat="val python: values.split('; ')"
+                      tal:content="python: val.split(' - ')[-1]">Value here</li>
+                  <li tal:condition="other_values" i18n:translate="">
+                    Other: <span tal:content="other_values"></span>
+                  </li>
+                </ul>
+              </tal:macro> -->
+            </td>
+            <td tal:define="values python: data['National_Circumstances'].get('TemperatureRelatedChronic', '');
+                            other_values python: data['National_Circumstances'].get('TemperatureAcuteOther', '')">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td i18n:translate="">Wind</td>
+            <td tal:define="values python: data['National_Circumstances'].get('WindRelatedAcute', '');
+                            other_values python: data['National_Circumstances'].get('WindAcuteOther', '')">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values python: data['National_Circumstances'].get('WindRelatedChronic', '');
+                            other_values python: data['National_Circumstances'].get('WindChronicOther', '')">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td i18n:translate="">Water</td>
+            <td tal:define="values python: data['National_Circumstances'].get('WaterRelatedAcute', '');
+                            other_values python: data['National_Circumstances'].get('WaterAcuteOther', '')">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values python: data['National_Circumstances'].get('WaterRelatedChronic', '');
+                            other_values python: data['National_Circumstances'].get('WaterChronicOther', '')">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+          <tr>
+            <td i18n:translate="">Solid mass</td>
+            <td tal:define="values python: data['National_Circumstances'].get('SolidMassRelatedAcute', '');
+                            other_values python: data['National_Circumstances'].get('SolidAcuteOther', '')">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+            <td tal:define="values python: data['National_Circumstances'].get('SolidMassRelatedChronic', '');
+                            other_values python: data['National_Circumstances'].get('SolidChronicOther', '')">
+              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <table class="listing table-striped">
         <thead>
@@ -453,12 +528,12 @@
       </table>
 
       <tal:block tal:define="fieldset_legend string:Overview of existing pressures;
-                    fieldset_data python: data['National_Circumstances'].get('DescribeExistingEnvironmental', '')">
+                    fieldset_data python: data['Observed_Future_Climate_Hazards'].get('DescribeExistingEnvironmental', '')">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
       <tal:block tal:define="fieldset_legend string:Secondary effects;
-                    fieldset_data python: data['National_Circumstances'].get('DescribeSecondaryEffects', '')">
+                    fieldset_data python: data['Observed_Future_Climate_Hazards'].get('DescribeSecondaryEffects', '')">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
@@ -576,21 +651,6 @@
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
-      <h2 class="country-header" i18n:translate="">Overview of institutional arrangements and governance at the sub-national level
-(where “sub-national” refers to local and regional)</h2>
-      <tal:block tal:define="fieldset_legend string:Legal requirements;
-                    fieldset_data data/Legal_Policies/SummarizeLegalRequirements">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
-      <tal:block tal:define="fieldset_legend string:Networks and collaborations;
-                    fieldset_data data/Legal_Policies/SummarizeNetworks">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
-      <tal:block tal:define="fieldset_legend string:Good practices;
-                    fieldset_data data/Legal_Policies/SummarizeGoodPractice">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
-
     </div>
 
     <div class="tab-pane  " id="4489-3">
@@ -675,10 +735,6 @@
       </tal:rep>
 
       <br/><br/>
-      <tal:block tal:define="fieldset_legend string:Overview of sub-national strategies;
-                    fieldset_data data/Strategies_Plans/OverviewContent">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
       <tal:block tal:define="fieldset_legend string:Integrate climate change adaptation into sectoral policies, plans and programs;
                     fieldset_data data/Strategies_Plans/OverviewEffortsClimate">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
@@ -752,7 +808,7 @@
       </tal:cond>
 
       <tal:rep tal:repeat="item view/get_sorted_available_practices_data">
-        <tal:block tal:define="fieldset_legend item/Area;
+        <tal:block tal:define="fieldset_legend item/Title;
                       fieldset_data item/DescribeGoodPractice;
                       id repeat/item/index;
                       ">
@@ -790,6 +846,38 @@
       </tal:block>
 
     </div>
+
+    <div class="tab-pane  " id="4489-51">
+
+      <h2 class="country-header" i18n:translate="">Overview of institutional arrangements and governance at the sub-national level
+(where “sub-national” refers to local and regional)</h2>
+      <tal:block tal:define="fieldset_legend string:Legal requirements;
+                    fieldset_data data/Legal_Policies/SummarizeLegalRequirements">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Networks and collaborations;
+                    fieldset_data data/Legal_Policies/SummarizeNetworks">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Good practices;
+                    fieldset_data data/Legal_Policies/SummarizeGoodPractice">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Overview of sub-national strategies;
+                    fieldset_data data/Strategies_Plans/OverviewContent">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
+                    fieldset_data data/Sub_National_Adaptation/OverviewMeasures;fieldset_key string:1">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Stakeholder engagement - private;
+                    fieldset_data data/Sub_National_Adaptation/OverviewPrivateSector;fieldset_key string:1">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+    </div>
+
+
 
     <div class="tab-pane  " id="4489-6">
       <div style="display: flex; margin-bottom: 3em;"

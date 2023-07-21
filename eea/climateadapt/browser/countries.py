@@ -633,11 +633,11 @@ class CountryProfileData(BrowserView):
 
     def get_sorted_available_practices_data(self):
         items = self.processed_data['Cooperation_Experience'].get(
-            'Available_Good_Practices', [])
+            'AvailableGoodPractices', [])
 
         sorted_items = sorted(
             items,
-            key=lambda i: i['Area']
+            key=lambda i: i['Title']
         )
 
         return sorted_items
@@ -650,6 +650,32 @@ class CountryProfileData(BrowserView):
 
         return link
 
+    def summary_table(self):
+        country_name = self.context.id.title().replace('-', ' ')
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+
+        response = {}
+        items = processed_data.get('Legal_Policies',[]).get('AdaptationPolicies',[])
+        for item in items:
+            typeName = item['Type']
+            temp = typeName.split(':',1)
+            if len(temp)==2:
+                typeName = temp[1]
+            if typeName not in response.keys():
+                response[typeName] = []
+            response[typeName].append({'status':item['Status'], 'title':item['Title'],'link':self.fix_link(item.get('Link','#'))})
+
+        #import pdb; pdb.set_trace()
+
+        keys = response.keys()
+        keys.sort()
+        return {'keys':keys, 'items':response}
+
     def __call__(self):
         country_name = self.context.id.title().replace('-', ' ')
         country_code = get_country_code(country_name)
@@ -660,7 +686,7 @@ class CountryProfileData(BrowserView):
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
 
         self.processed_data = processed_data
-
+        #import pdb; pdb.set_trace()
         return self.template(country_data=processed_data)
 
 
