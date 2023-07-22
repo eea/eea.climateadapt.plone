@@ -1200,7 +1200,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                         'path': "/cca/"+lang+"/metadata"
                     }
                     if 'cca_title' not in indicator:
-                        indicator['cca_title'] = indicator['cca_text']
+                        indicator['cca_title'] = indicator['indicator_text']
                     brains = catalog.searchResults(query)
                     indicator['cca_url'] = '#'
                     for brain in brains:
