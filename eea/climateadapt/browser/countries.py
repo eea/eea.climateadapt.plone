@@ -610,14 +610,16 @@ class CountryProfileData(BrowserView):
         # return convWebInt(text.strip())
 
     def get_sorted_affected_sectors_data(self):
-        items = self.processed_data['National_Circumstances'].get(
-            'Afected_Sectors', [])
+        # items = self.processed_data['National_Circumstances'].get(
+        #     'Afected_Sectors', [])
+        # sorted_items = sorted(
+        #     items,
+        #     key=lambda i: (i['SectorTitle'], i['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in i else '')
+        # )
+        items = self.processed_data.get('Key_Affected_Sectors',[])
+        sorted_items = dict(sorted(items.items()))
 
-        sorted_items = sorted(
-            items,
-            key=lambda i: (i['SectorTitle'], i['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in i else '')
-        )
-
+        #import pdb; pdb.set_trace()
         return sorted_items
 
     def get_sorted_action_measures_data(self):
@@ -669,6 +671,34 @@ class CountryProfileData(BrowserView):
             if typeName not in response.keys():
                 response[typeName] = []
             response[typeName].append({'status':item['Status'], 'title':item['Title'],'link':self.fix_link(item.get('Link','#'))})
+
+        #import pdb; pdb.set_trace()
+
+        keys = response.keys()
+        keys.sort()
+        return {'keys':keys, 'items':response}
+
+    def hazards_table(self):
+        country_name = self.context.id.title().replace('-', ' ')
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+
+        response = {}
+        items = processed_data.get('Observed_Future_Climate_Hazards',[]).get('HazardsForm', [])[0].get('Hazards',[])
+        #import pdb; pdb.set_trace()
+
+        for item in items:
+            occurence = item['Occurrence']
+            if occurence not in response.keys():
+                response[occurence] = {}
+            group = item['Group']
+            if group not in response[occurence].keys():
+                response[occurence][group] = []
+            response[occurence][group].append(item)
 
         #import pdb; pdb.set_trace()
 

@@ -67,7 +67,7 @@
             </td>
           </tr>
 
-          <tr tal:define="items python: data['Legal_Policies'].get('B: National Adaptation Strategy (NAS)', [])">
+          <!-- <tr tal:define="items python: data['Legal_Policies'].get('B: National Adaptation Strategy (NAS)', [])">
             <td i18n:translate="">National adaptation strategy (NAS)</td>
             <td>
               <ul>
@@ -132,7 +132,7 @@
                 </li>
               </ul>
             </td>
-          </tr>
+          </tr> -->
           <tr tal:define="items python: data['National_Circumstances'].get('Meteo_observation', [])">
             <td i18n:translate="">Meteorological observations</td>
             <td>
@@ -279,7 +279,7 @@
                         fieldset_data data/National_Circumstances/BiogeophysicalCharacteristics">
       <tal:macro metal:define-macro="fieldset-macro">
         <div class="panel panel-default"
-          tal:define="fieldset_key fieldset_key | string:'123';
+          tal:define="fieldset_key fieldset_key | string:_;
                       id python: 'accordion_' + fieldset_legend.replace(' ', '_');
                       id python: id.replace('(', '_');
                       id python: id.replace(')', '_');
@@ -336,25 +336,20 @@
       <div tal:define="values python: data['Observed_Future_Climate_Hazards'].get('HazardsForm', [])">
         <div tal:content="python: values[0]['Hazards']"></div>
       </div>
+      <tal  tal:define="items view/hazards_table">
       <table class="listing table-striped">
         <thead>
           <tr>
-            <th style="width: 18em;" i18n:translate="">Observed climate hazards</th>
+            <th style="width: 18em;" i18n:translate="">Observed1 climate hazards</th>
             <th style="width: 22em;" i18n:translate="">Acute</th>
             <th style="width: 22em;" i18n:translate="">Chronic</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td i18n:translate="">Temperature</td>
-            <td tal:define="values python: data['Observed_Future_Climate_Hazards'].get('HazardsForm', [])[0].get('Hazards',[]);
-                            other_values python: data['National_Circumstances'].get('TemperatureAcuteOther', '')">
+          <tr tal:repeat="item python:items['items']['Observed']">
+            <td tal:content="item">item</td>
+            <td>
               <ul>
-                <tal tal:repeat="value values">
-                <li tal:condition="python: value['Group']=='Temperature'">
-                  <span tal:content="value/Event"></span>
-                </li>
-                </tal>
               </ul>
               <!-- <tal:macro metal:define-macro="assessment-climate-hazards">
                 <ul tal:condition="values">
@@ -372,7 +367,7 @@
             </td>
           </tr>
           <tr>
-            <td i18n:translate="">Wind</td>
+            <td i18n:translate="">Wind1</td>
             <td tal:define="values python: data['National_Circumstances'].get('WindRelatedAcute', '');
                             other_values python: data['National_Circumstances'].get('WindAcuteOther', '')">
               <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
@@ -406,6 +401,7 @@
           </tr>
         </tbody>
       </table>
+      </tal>
 
       <table class="listing table-striped">
         <thead>
@@ -538,7 +534,20 @@
       </tal:block>
 
       <h2 class="country-header" i18n:translate="">Key affected sectors</h2>
-      <tal:rep tal:repeat="item view/get_sorted_affected_sectors_data">
+      <table class="listing table-striped">
+        <tbody tal:define="items view/get_sorted_affected_sectors_data">
+          <tal tal:repeat="item items">
+          <tr tal:condition="python:len(str(items[item])) and not item.endswith('Id')">
+            <td style="width: 14em;" tal:content="item"></td>
+            <td tal:content="python: items[item]"></td>
+          </tr>
+          </tal>
+        </tbody>
+      </table>
+
+      <!-- <tal:rep tal:repeat="item view/get_sorted_affected_sectors_data"> -->
+      <tal:rep tal:repeat="item python:[]">
+
 
         <div class="panel panel-default"
           tal:define="id item/SectorTitle/title;
