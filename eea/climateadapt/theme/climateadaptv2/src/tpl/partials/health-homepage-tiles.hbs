@@ -15,18 +15,27 @@
           <div class="health-box-layer"><span class="new-label" i18n:translate="">New</span></div>
         </div>
         <div class="health-top-content">
-          <h5 style="display:inline-block" i18n:translate="">Occupational health and safety</h5>
+          <h5 style="display:inline-block" i18n:translate="">AIR POLLUTANT FORECAST VIEWERS</h5>
           <p i18n:translate="" style="display: -webkit-inline-box;
     overflow: hidden !important;
     text-overflow: ellipsis;
     -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;">Learn about climate change risks for health and safety at work</p>
+    -webkit-box-orient: vertical;">View forecasts of air pollutant concentrations, which could be affected by climatic changes</p>
           <div class="health-footer">
-            <a class="health-learn-more"
-               tal:attributes="href python:view.translate_url('/en/observatory/evidence/health-effects/occupational-health-safety/effects-on-occupational-health-and-safety')"
-               href="/en/observatory/evidence/health-effects/occupational-health-safety/effects-on-occupational-health-and-safety"
-               i18n:translate="">
-              Learn more
+            <a class="health-learn-more" style="padding:2px 12px"
+               tal:attributes="href python:view.translate_url('/en/observatory/evidence/projections-and-tools/cams-ground-level-no2-forecast/cams-no2-viewer')"
+               href="/en/observatory/evidence/projections-and-tools/cams-ground-level-no2-forecast/cams-no2-viewer">
+              NO2
+            </a>
+            <a class="health-learn-more"  style="padding:2px 12px"
+               tal:attributes="href python:view.translate_url('/en/observatory/evidence/projections-and-tools/cams-ground-level-pm2.5-forecast/cams-pm25-viewer')"
+               href="/en/observatory/evidence/projections-and-tools/cams-ground-level-pm2.5-forecast/cams-pm25-viewer">
+              PM2.5
+            </a>
+            <a class="health-learn-more"  style="padding:2px 12px"
+               tal:attributes="href python:view.translate_url('/en/observatory/evidence/projections-and-tools/cams-ground-level-pm10-forecast/cams-pm10-viewer')"
+               href="/en/observatory/evidence/projections-and-tools/cams-ground-level-pm10-forecast/cams-pm10-viewer">
+              PM10
             </a>
           </div>
         </div>
