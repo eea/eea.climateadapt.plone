@@ -421,7 +421,7 @@
       <table class="listing table-striped">
         <tbody tal:define="items view/get_sorted_affected_sectors_data">
           <tal tal:repeat="item items">
-          <tr tal:condition="python:len(str(items[item])) and not item.endswith('Id')">
+          <tr tal:condition="python:len(unicode(items[item])) and not item.endswith(u'Id')">
             <td style="width: 14em;" tal:content="item"></td>
             <td tal:content="python: items[item]"></td>
           </tr>
