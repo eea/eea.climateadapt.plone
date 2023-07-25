@@ -7,9 +7,9 @@
     class="sweet-tabs sweet-tabs2" id="country-tab">
   <div style="background-color: white; padding: 30px;">
 
-    <h1 class="documentFirstHeading" i18n:translate="">National circumstances relevant to adaptation actions</h1>
+    <h1 class="documentFirstHeading" style="margin-bottom:0.5em;" i18n:translate="">National circumstances relevant to adaptation actions</h1>
 
-    <div style="padding: 0.5em;">
+    <div>
       <p>
         <strong i18n:translate="">Reporting updated until: </strong><span tal:content="data/General_Information/UpdateDate"/>
       </p>
@@ -280,6 +280,8 @@
       <tal:macro metal:define-macro="fieldset-macro">
         <div class="panel panel-default"
           tal:define="fieldset_key fieldset_key | string:_;
+                      fieldset_websites fieldset_websites | nothing;
+                      fieldset_data fieldset_data | nothing;
                       id python: 'accordion_' + fieldset_legend.replace(' ', '_');
                       id python: id.replace('(', '_');
                       id python: id.replace(')', '_');
@@ -300,7 +302,16 @@
             </h4>
           </div>
           <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+fieldset_key+'-body'">
-            <div class="panel-body" tal:content="structure python: view.convert_web_int(fieldset_data)">Data here</div>
+            <div class="panel-body" tal:condition="fieldset_websites">
+             <ul>
+              <li tal:repeat="item fieldset_websites">
+              <span>
+                <a tal:attributes="href item/Url" tal:content="item/Title"></a>
+                </span>
+              </li>
+             </ul>
+            </div>
+            <div class="panel-body" tal:condition="python: not fieldset_websites" tal:content="structure python: view.convert_web_int(fieldset_data)">Data here</div>
           </div>
         </div>
       </tal:macro>
@@ -333,76 +344,10 @@
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
-      <div tal:define="values python: data['Observed_Future_Climate_Hazards'].get('HazardsForm', [])">
+      <!-- <div tal:define="values python: data['Observed_Future_Climate_Hazards'].get('HazardsForm', [])">
         <div tal:content="python: values[0]['Hazards']"></div>
-      </div>
+      </div> -->
       <tal  tal:define="items view/hazards_table">
-      <table class="listing table-striped">
-        <thead>
-          <tr>
-            <th style="width: 18em;" i18n:translate="">Observed1 climate hazards</th>
-            <th style="width: 22em;" i18n:translate="">Acute</th>
-            <th style="width: 22em;" i18n:translate="">Chronic</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr tal:repeat="item python:items['items']['Observed']">
-            <td tal:content="item">item</td>
-            <td>
-              <ul>
-              </ul>
-              <!-- <tal:macro metal:define-macro="assessment-climate-hazards">
-                <ul tal:condition="values">
-                  <li tal:repeat="val python: values.split('; ')"
-                      tal:content="python: val.split(' - ')[-1]">Value here</li>
-                  <li tal:condition="other_values" i18n:translate="">
-                    Other: <span tal:content="other_values"></span>
-                  </li>
-                </ul>
-              </tal:macro> -->
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('TemperatureRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('TemperatureAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-          <tr>
-            <td i18n:translate="">Wind1</td>
-            <td tal:define="values python: data['National_Circumstances'].get('WindRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('WindAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('WindRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('WindChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-          <tr>
-            <td i18n:translate="">Water</td>
-            <td tal:define="values python: data['National_Circumstances'].get('WaterRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('WaterAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('WaterRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('WaterChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-          <tr>
-            <td i18n:translate="">Solid mass</td>
-            <td tal:define="values python: data['National_Circumstances'].get('SolidMassRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('SolidAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('SolidMassRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('SolidChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      </tal>
-
       <table class="listing table-striped">
         <thead>
           <tr>
@@ -412,56 +357,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td i18n:translate="">Temperature</td>
-            <td tal:define="values python: data['National_Circumstances'].get('TemperatureRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('TemperatureAcuteOther', '')">
-              <tal:macro metal:define-macro="assessment-climate-hazards">
-                <ul tal:condition="values">
-                  <li tal:repeat="val python: values.split('; ')"
-                      tal:content="python: val.split(' - ')[-1]">Value here</li>
-                  <li tal:condition="other_values" i18n:translate="">
-                    Other: <span tal:content="other_values"></span>
+          <tr tal:repeat="hazardType python:items['items']['Observed']">
+            <td tal:content="hazardType">item</td>
+            <td>
+              <ul>
+                  <li tal:repeat="acute python: items['items']['Observed'][hazardType]">
+                    <span tal:content="acute"></span>
                   </li>
-                </ul>
-              </tal:macro>
+              </ul>
             </td>
-            <td tal:define="values python: data['National_Circumstances'].get('TemperatureRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('TemperatureAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-          <tr>
-            <td i18n:translate="">Wind</td>
-            <td tal:define="values python: data['National_Circumstances'].get('WindRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('WindAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('WindRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('WindChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-          <tr>
-            <td i18n:translate="">Water</td>
-            <td tal:define="values python: data['National_Circumstances'].get('WaterRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('WaterAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('WaterRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('WaterChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-          <tr>
-            <td i18n:translate="">Solid mass</td>
-            <td tal:define="values python: data['National_Circumstances'].get('SolidMassRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('SolidAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('SolidMassRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('SolidChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            <td>
+              <ul tal:repeat="acute python: items['items']['Observed'][hazardType]" style="padding-bottom:0px;">
+                  <li tal:repeat="item python: items['items']['Observed'][hazardType][acute]">
+                    <span tal:content="item/YesNo_Value"></span>
+                  </li>
+              </ul>
             </td>
           </tr>
         </tbody>
@@ -476,52 +386,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td i18n:translate="">Temperature</td>
-            <td tal:define="values python: data['National_Circumstances'].get('FutureTemperatureRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('FutureTemperatureAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+          <tr tal:repeat="hazardType python:items['items']['Future']">
+            <td tal:content="hazardType">item</td>
+            <td>
+              <ul>
+                  <li tal:repeat="acute python: items['items']['Future'][hazardType]">
+                    <span tal:content="acute"></span>
+                  </li>
+              </ul>
             </td>
-            <td tal:define="values python: data['National_Circumstances'].get('FutureTemperatureRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('FutureTemperatureChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-          <tr>
-            <td i18n:translate="">Wind</td>
-            <td tal:define="values python: data['National_Circumstances'].get('FutureWindRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('FutureWindAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('FutureWindRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('FutureWindChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-          <tr>
-            <td i18n:translate="">Water</td>
-            <td tal:define="values python: data['National_Circumstances'].get('FutureWaterRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('FutureWaterAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('FutureWaterRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('FutureWaterChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-          </tr>
-          <tr>
-            <td i18n:translate="">Solid mass</td>
-            <td tal:define="values python: data['National_Circumstances'].get('FutureSolidMassRelatedAcute', '');
-                            other_values python: data['National_Circumstances'].get('FutureSolidAcuteOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
-            </td>
-            <td tal:define="values python: data['National_Circumstances'].get('FutureSolidMassRelatedChronic', '');
-                            other_values python: data['National_Circumstances'].get('FutureSolidChronicOther', '')">
-              <tal:macro metal:use-macro="view/assessment-climate-hazards"/>
+            <td>
+              <ul tal:repeat="acute python: items['items']['Future'][hazardType]" style="padding-bottom:0px;">
+                  <li tal:repeat="item python: items['items']['Future'][hazardType][acute]">
+                    <span tal:content="item/PatternValue"></span>
+                  </li>
+              </ul>
             </td>
           </tr>
         </tbody>
       </table>
+      </tal>
 
       <tal:block tal:define="fieldset_legend string:Overview of existing pressures;
                     fieldset_data python: data['Observed_Future_Climate_Hazards'].get('DescribeExistingEnvironmental', '')">
@@ -873,7 +757,7 @@
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Overview of sub-national strategies;
-                    fieldset_data data/Strategies_Plans/OverviewContent">
+                    fieldset_data data/Strategies_Plans/OverviewMeasures">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
@@ -884,6 +768,25 @@
                     fieldset_data data/Sub_National_Adaptation/OverviewPrivateSector;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
+      <tal:block tal:define="fieldset_legend string:Websites and social media;
+                    fieldset_websites view/get_sub_national_websites"
+                  tal:condition="fieldset_websites">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Key reports and publications;
+                    fieldset_websites view/get_sub_national_publications"
+                  tal:condition="fieldset_websites">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <!-- <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
+                    fieldset_data data/Sub_National_Adaptation/OverviewMeasures;fieldset_key string:1">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Stakeholder engagement - private;
+                    fieldset_data data/Sub_National_Adaptation/OverviewPrivateSector;fieldset_key string:1">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block> -->
     </div>
 
 

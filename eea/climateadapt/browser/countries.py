@@ -601,13 +601,55 @@ class ContextCountriesView(BrowserView):
 class CountryProfileData(BrowserView):
     template = ViewPageTemplateFile("pt/country-profile.pt")
 
+    def get_processed_data(self):
+        country_name = self.context.id.title().replace('-', ' ')
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+        return processed_data
+
     def convert_web_int(self, text):
+        if not text:
+            return text
+
         _text = CCAWebIntelligentToHtmlConverter(text.strip())()
 
         # import pdb; pdb.set_trace()
 
         return _text
         # return convWebInt(text.strip())
+
+    def get_sub_national_websites(self):
+        data = self.get_processed_data()
+
+        if 'Sub_National_Adaptation' not in data.keys():
+            return []
+        data = data['Sub_National_Adaptation']
+        if 'Sub_National_Websites' not in data.keys():
+            return []
+        data = data['Sub_National_Websites']
+
+        return data
+
+    def get_sub_national_publications(self):
+        data = self.get_processed_data()
+
+        if 'Sub_National_Adaptation' not in data.keys():
+            return []
+        data = data['Sub_National_Adaptation']
+        if 'Sub_National_Publications' not in data.keys():
+            return []
+        data = data['Sub_National_Publications']
+
+        for index in range(len(data)):
+            data[index]['Title'] = data[index]['TitleEnglish']
+            data[index]['Url'] = data[index]['WebLink']
+
+
+        return data
 
     def get_sorted_affected_sectors_data(self):
         # items = self.processed_data['National_Circumstances'].get(
@@ -619,7 +661,10 @@ class CountryProfileData(BrowserView):
         items = self.processed_data.get('Key_Affected_Sectors',[])
         sorted_items = dict(sorted(items.items()))
 
-        #import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
+        # for k in sorted_items:
+        #     if str == type(sorted_items[k]):
+        #         sorted_items[k] = sorted_items[k].encode('utf8')
         return sorted_items
 
     def get_sorted_action_measures_data(self):
@@ -697,8 +742,11 @@ class CountryProfileData(BrowserView):
                 response[occurence] = {}
             group = item['Group']
             if group not in response[occurence].keys():
-                response[occurence][group] = []
-            response[occurence][group].append(item)
+                response[occurence][group] = {}
+            event = item['Event']
+            if event not in response[occurence][group].keys():
+                response[occurence][group][event] = []
+            response[occurence][group][event].append(item)
 
         #import pdb; pdb.set_trace()
 
