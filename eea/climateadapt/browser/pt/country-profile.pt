@@ -745,19 +745,19 @@
       <h2 class="country-header" i18n:translate="">Overview of institutional arrangements and governance at the sub-national level
 (where “sub-national” refers to local and regional)</h2>
       <tal:block tal:define="fieldset_legend string:Legal requirements;
-                    fieldset_data data/Legal_Policies/SummarizeLegalRequirements">
+                    fieldset_data data/Sub_National_Adaptation/SummarizeLegalRequirements">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Networks and collaborations;
-                    fieldset_data data/Legal_Policies/SummarizeNetworks">
+                    fieldset_data data/Sub_National_Adaptation/SummarizeNetworks">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Good practices;
-                    fieldset_data data/Legal_Policies/SummarizeGoodPractice">
+                    fieldset_data data/Sub_National_Adaptation/SummarizeGoodPractice">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Overview of sub-national strategies;
-                    fieldset_data data/Strategies_Plans/OverviewMeasures">
+                    fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
