@@ -21,6 +21,9 @@ ul.no-bullet {
   padding-top:0px;
   margin-top:0px;
 }
+#country-tab .nav-tabs li.active {
+    background-color: whitesmoke;
+}
 </style>
 <div tal:define="data options/country_data"
      tal:condition="data"
