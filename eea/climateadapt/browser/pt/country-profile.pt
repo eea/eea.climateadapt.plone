@@ -2,6 +2,26 @@
   No data for this country
 </div>
 
+<style>
+ul.no-bullet {
+  list-style-type: none;
+  padding-left:0;
+}
+#country-tab .panel.panel-default {
+  padding-top: 0px;
+}
+#country-tab .tab-pane {
+  padding-top: 0px;
+  margin-top: 0px;
+}
+#country-tab .tab-pane > h2.country-header {
+  padding-top:0px;
+}
+#country-tab .tab-pane > div.table-responsive > table {
+  padding-top:0px;
+  margin-top:0px;
+}
+</style>
 <div tal:define="data options/country_data"
      tal:condition="data"
     class="sweet-tabs sweet-tabs2" id="country-tab">
@@ -266,6 +286,12 @@
                        target="_blank" data-linktype="external">https://reportnet.europa.eu/public/dataflow/110</a>
                   </span>
                 </li>
+                <li style="clear: both;">
+                  <span class="link-external">
+                    <a href="https://reportnet.europa.eu/public/dataflow/897" data-val="https://reportnet.europa.eu/public/dataflow/897" rel="noopener"
+                       target="_blank" data-linktype="external">https://reportnet.europa.eu/public/dataflow/897</a>
+                  </span>
+                </li>
               </ul>
             </td>
           </tr>
@@ -351,27 +377,28 @@
       <table class="listing table-striped">
         <thead>
           <tr>
-            <th style="width: 18em;" i18n:translate="">Observed climate hazards</th>
-            <th style="width: 22em;" i18n:translate="">Acute</th>
-            <th style="width: 22em;" i18n:translate="">Chronic</th>
+            <th style="width: 16em;" i18n:translate="">Observed climate hazards</th>
+            <th i18n:translate="">Acute</th>
+            <th style="width: 3em;" i18n:translate="">Chronic</th>
           </tr>
         </thead>
         <tbody>
           <tr tal:repeat="hazardType python:items['items']['Observed']">
             <td tal:content="hazardType">item</td>
             <td>
-              <ul>
+              <ul class="no-bullet">
                   <li tal:repeat="acute python: items['items']['Observed'][hazardType]">
                     <span tal:content="acute"></span>
                   </li>
               </ul>
             </td>
             <td>
-              <ul tal:repeat="acute python: items['items']['Observed'][hazardType]" style="padding-bottom:0px;">
+              <ul class="no-bullet" style="padding-bottom:0px;">
+              <tal tal:repeat="acute python: items['items']['Observed'][hazardType]" style="padding-bottom:0px;">
                   <li tal:repeat="item python: items['items']['Observed'][hazardType][acute]">
                     <span tal:content="item/YesNo_Value"></span>
                   </li>
-              </ul>
+              </tal></ul>
             </td>
           </tr>
         </tbody>
@@ -725,6 +752,18 @@
         </tal:block>
       </tal:rep>
 
+      <tal:block tal:define="fieldset_legend string:STATE OF PLAY - IMPLEMENTATION;
+                    fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:OVERVIEW OF GOOD PRACTICES TO REVIEW SUBNATIONAL ADAPTATION POLICIES;
+                    fieldset_data data/Sub_National_Adaptation/DescribeSubnationalAdaptation">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:COOPERATION - ADAPTATION ACTION;
+                    fieldset_data data/Sub_National_Adaptation/DescribeDetailCooperationEnhance">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
       <tal:block tal:define="fieldset_legend string:Synergies of adaptation actions with other international frameworks;
                     fieldset_data data/Cooperation_Experience/DescribeSynergiesAdaptation">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
