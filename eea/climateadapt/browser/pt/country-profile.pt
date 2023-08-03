@@ -7,6 +7,9 @@ ul.no-bullet {
   list-style-type: none;
   padding-left:0;
 }
+ul li {
+  border-top:1px solid #fff;
+}
 #country-tab .panel.panel-default {
   padding-top: 0px;
 }
@@ -23,6 +26,9 @@ ul.no-bullet {
 }
 #country-tab .nav-tabs li.active {
     background-color: whitesmoke;
+}
+.pt2 {
+  padding-top:20px !important;
 }
 </style>
 <div tal:define="data options/country_data"
@@ -73,7 +79,7 @@ ul.no-bullet {
             <td tal:define="items python:summary_data['items'][key]">
               <ul>
                 <li tal:repeat="item items"
-                    tal:content="item/status">Adopted</li>
+                    tal:content="item/status" >Adopted</li>
               </ul>
             </td>
             <td tal:define="items python:summary_data['items'][key]">
@@ -589,8 +595,20 @@ ul.no-bullet {
                     fieldset_data data/Strategies_Plans/SummaryNationalStrategies">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
+      <tal:block tal:define="fieldset_legend string:Integrate climate change adaptation into sectoral policies, plans and programs;
+                    fieldset_data data/Strategies_Plans/OverviewEffortsClimate">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
+                    fieldset_data data/Strategies_Plans/OverviewMeasures">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Stakeholder engagement - private;
+                    fieldset_data data/Strategies_Plans/OverviewPrivateSector">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
 
-      <h2 class="country-header" i18n:translate="">Selection of actions and (programmes of) measures</h2>
+      <h2 class="country-header pt2" i18n:translate="">Selection of actions and (programmes of) measures</h2>
       <tal:cond tal:condition="python: not view.get_sorted_action_measures_data()">
         <div i18n:translate="">Not reported</div>
       </tal:cond>
@@ -657,19 +675,6 @@ ul.no-bullet {
             </div>
       </tal:rep>
 
-      <br/><br/>
-      <tal:block tal:define="fieldset_legend string:Integrate climate change adaptation into sectoral policies, plans and programs;
-                    fieldset_data data/Strategies_Plans/OverviewEffortsClimate">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
-      <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
-                    fieldset_data data/Strategies_Plans/OverviewMeasures">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
-      <tal:block tal:define="fieldset_legend string:Stakeholder engagement - private;
-                    fieldset_data data/Strategies_Plans/OverviewPrivateSector">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
     </div>
 
     <div class="tab-pane  " id="4489-4" tal:condition="python: 'Monitoring_Evaluation' in data">
@@ -767,6 +772,7 @@ ul.no-bullet {
                     fieldset_data data/Sub_National_Adaptation/DescribeDetailCooperationEnhance">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
+      <h2 class="country-header pt2" i18n:translate="">Cooperation and experience</h2>
       <tal:block tal:define="fieldset_legend string:Synergies of adaptation actions with other international frameworks;
                     fieldset_data data/Cooperation_Experience/DescribeSynergiesAdaptation">
         <tal:macro metal:use-macro="view/fieldset-macro"/>

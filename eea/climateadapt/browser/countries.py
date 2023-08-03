@@ -729,6 +729,8 @@ class CountryProfileData(BrowserView):
                 typeName = temp[1]
             if typeName not in response.keys():
                 response[typeName] = []
+            if item['Status'][1] == "-":
+                item['Status'] = item['Status'][2:]
             response[typeName].append({'status':item['Status'], 'title':item['Title'],'link':self.fix_link(item.get('Link','#'))})
 
         #import pdb; pdb.set_trace()
