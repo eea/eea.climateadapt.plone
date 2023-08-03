@@ -760,8 +760,13 @@ class CountryProfileData(BrowserView):
             if group not in response[occurence].keys():
                 response[occurence][group] = {}
             event = item['Event']
+            if occurence == 'Future' and item['PatternValue'][0] == '0':
+                continue
+            if occurence == 'Observed' and item['YesNo_Value'] == 'NO':
+                continue
             if event not in response[occurence][group].keys():
                 response[occurence][group][event] = []
+
             response[occurence][group][event].append(item)
 
         #import pdb; pdb.set_trace()

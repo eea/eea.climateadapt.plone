@@ -405,7 +405,7 @@ ul li {
               <ul class="no-bullet" style="padding-bottom:0px;">
               <tal tal:repeat="acute python: items['items']['Observed'][hazardType]" style="padding-bottom:0px;">
                   <li tal:repeat="item python: items['items']['Observed'][hazardType][acute]">
-                    <span tal:content="item/YesNo_Value"></span>
+                    <span tal:content="item/YesNo_Value" tal:condition="python: item['YesNo_Value']!='NO'"></span>
                   </li>
               </tal></ul>
             </td>
