@@ -4,6 +4,7 @@ import logging
 import re
 import sys
 from datetime import datetime
+from collections import OrderedDict
 
 import lxml.etree
 import lxml.html
@@ -720,23 +721,24 @@ class CountryProfileData(BrowserView):
         # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
 
-        response = {}
+        response = OrderedDict()
+
         items = processed_data.get('Legal_Policies',[]).get('AdaptationPolicies',[])
+        items = sorted(items, key=lambda x: x['Type'])
+
         for item in items:
             typeName = item['Type']
             temp = typeName.split(':',1)
             if len(temp)==2:
                 typeName = temp[1]
+            typeName = typeName.strip()
             if typeName not in response.keys():
                 response[typeName] = []
             if item['Status'][1] == "-":
                 item['Status'] = item['Status'][2:]
             response[typeName].append({'status':item['Status'], 'title':item['Title'],'link':self.fix_link(item.get('Link','#'))})
 
-        #import pdb; pdb.set_trace()
-
         keys = response.keys()
-        keys.sort()
         return {'keys':keys, 'items':response}
 
     def hazards_table(self):
