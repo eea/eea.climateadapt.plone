@@ -79,6 +79,7 @@ def get_discodata():
 
 def get_discodata_for_country(country_code):
     data = get_discodata()
+    #import pdb; pdb.set_trace()
 
     orig_data = next((
         x
@@ -86,7 +87,8 @@ def get_discodata_for_country(country_code):
         if x['countryCode'] == country_code
     ), {})
 
-    # remove the countryCode as we don't need it
+    #import pdb; pdb.set_trace()
+        # remove the countryCode as we don't need it
     processed_data = {
         k: unicode(v)
         for k, v in orig_data.items()
@@ -96,14 +98,20 @@ def get_discodata_for_country(country_code):
     # some values are strings, and need to be transformed
     # into Python objects
     for k, val in processed_data.items():
-        # import pdb; pdb.set_trace()
-        json_val = json.loads(val)
-        if type(json_val) is dict:
-            new_value = json_val[k][0]
+        try:
+            if val == 'None':
+                processed_data[k] = None
+                continue
+            json_val = json.loads(val)
+            if type(json_val) is dict:
+                new_value = json_val[k][0]
 
-            processed_data[k] = new_value
-        #else:
-        #    processed_data[k] = None
+                processed_data[k] = new_value
+            #else:
+            #    processed_data[k] = None
+        except:
+            logger.info("EMPTY DATA 114 : %s", k)
+
 
     return processed_data
 
@@ -378,7 +386,11 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
         # setup Adaptation portals and platforms
         value = u""
-        values = processed_data['Contact'].get('CCIV_Portal_Platform', [])
+        try:
+            values = processed_data['Contact'].get('CCIV_Portal_Platform', [])
+        except:
+            logger.info("EMPTY DATA 395")
+
         if values:
             value = [
                 u"<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
