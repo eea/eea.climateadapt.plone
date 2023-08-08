@@ -10,8 +10,9 @@ from plone.namedfile.field import NamedBlobImage
 from z3c.form.interfaces import IAddForm, IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import alsoProvides
-from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
-                         TextLine, Tuple)
+from zope.schema import Choice, List, TextLine
+
+# URI, Text, Int, Datetime, Date, Bool, , Tuple
 
 
 class ICaseStudy(IAceMeasure):  # , IGeolocatable):
