@@ -764,6 +764,58 @@ class CountryProfileData(BrowserView):
 
         response = {}
         items = processed_data.get('Observed_Future_Climate_Hazards',[]).get('HazardsForm', [])[0].get('Hazards',[])
+
+        for item in items:
+            occurence = item['Occurrence']
+            if occurence not in response.keys():
+                response[occurence] = {}
+            group = item['Group']
+            if group not in response[occurence].keys():
+                response[occurence][group] = {'AC':{'hazards':[], 'trend':[]}, 'CH':{'hazards':[], 'trend':[]}}
+            accuteChronic = item['Type']
+            event = item['Event']
+            if occurence == 'Future' and item['PatternValue'][0] == '0':
+                continue
+            if occurence == 'Observed' and item['YesNo_Value'] == 'NO':
+                continue
+            #if event not in response[occurence][group][accuteChronic]['hazards']:
+            response[occurence][group][accuteChronic]['hazards'].append(item['Event'])
+            if occurence == 'Future':
+                response[occurence][group][accuteChronic]['trend'].append(item['PatternValue'][2:])
+
+        observedHtml = ""
+        for hazardType in response['Observed']:
+            observedHtml += "<tr><td rowspan='2' class='bb1'>"+hazardType+"</td>"
+            observedHtml += "<td>Acute</td><td>"+', '.join(response['Observed'][hazardType]['AC']['hazards'])+"</td>"
+            observedHtml +="</tr>"
+            observedHtml += "<tr>"
+            observedHtml += "<td class='bb1'>Chronic</td><td class='bb1'>"+', '.join(response['Observed'][hazardType]['CH']['hazards'])+"</td>"
+            observedHtml +="</tr>"
+
+        futureHtml = ""
+        for hazardType in response['Future']:
+            futureHtml += "<tr><td rowspan='2' class='bb1'>"+hazardType+"</td>"
+            futureHtml += "<td>Acute</td><td>"+', '.join(response['Future'][hazardType]['AC']['hazards'])+"</td>"
+            futureHtml += "<td>"+', '.join(response['Future'][hazardType]['AC']['trend'])+"</td>"
+            futureHtml +="</tr>"
+            futureHtml += "<tr>"
+            futureHtml += "<td class='bb1'>Chronic</td><td class='bb1'>"+', '.join(response['Future'][hazardType]['CH']['hazards'])+"</td>"
+            futureHtml += "<td class='bb1'>"+', '.join(response['Future'][hazardType]['CH']['trend'])+"</td>"
+            futureHtml +="</tr>"
+
+        return {'observedHtml':observedHtml, 'futureHtml':futureHtml, 'data':response}
+
+    def hazards_table_prev_version(self):
+        country_name = self.context.id.title().replace('-', ' ')
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+
+        response = {}
+        items = processed_data.get('Observed_Future_Climate_Hazards',[]).get('HazardsForm', [])[0].get('Hazards',[])
         #import pdb; pdb.set_trace()
 
         for item in items:

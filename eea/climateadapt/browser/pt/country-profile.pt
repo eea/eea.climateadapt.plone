@@ -30,6 +30,9 @@ ul li {
 .pt2 {
   padding-top:20px !important;
 }
+.bb1 {
+  border-bottom:1px solid #d7d7d7;
+}
 </style>
 <div tal:define="data options/country_data"
      tal:condition="data"
@@ -326,59 +329,25 @@ ul li {
       <table class="listing table-striped">
         <thead>
           <tr>
-            <th style="width: 16em;" i18n:translate="">Observed climate hazards</th>
-            <th i18n:translate="">Acute</th>
-            <th style="width: 3em;" i18n:translate="">Chronic</th>
+            <th style="width: 10em;" i18n:translate="">Hazard type</th>
+            <th style="width: 10em;" i18n:translate="">Acute/chronic</th>
+            <th i18n:translate="">observed climate hazards</th>
           </tr>
         </thead>
-        <tbody>
-          <tr tal:repeat="hazardType python:items['items']['Observed']">
-            <td tal:content="hazardType">item</td>
-            <td>
-              <ul class="no-bullet">
-                  <li tal:repeat="acute python: items['items']['Observed'][hazardType]">
-                    <span tal:content="acute"></span>
-                  </li>
-              </ul>
-            </td>
-            <td>
-              <ul class="no-bullet" style="padding-bottom:0px;">
-              <tal tal:repeat="acute python: items['items']['Observed'][hazardType]" style="padding-bottom:0px;">
-                  <li tal:repeat="item python: items['items']['Observed'][hazardType][acute]">
-                    <span tal:content="item/YesNo_Value" tal:condition="python: item['YesNo_Value']!='NO'"></span>
-                  </li>
-              </tal></ul>
-            </td>
-          </tr>
+        <tbody tal:content="structure items/observedHtml">
         </tbody>
       </table>
 
       <table class="listing table-striped">
         <thead>
           <tr>
-            <th style="width: 18em;" i18n:translate="">Key future climate hazards</th>
-            <th style="width: 22em;" i18n:translate="">Acute</th>
-            <th style="width: 22em;" i18n:translate="">Chronic</th>
+            <th style="width: 10em;" i18n:translate="">Hazard type</th>
+            <th style="width: 10em;" i18n:translate="">Acute/chronic</th>
+            <th i18n:translate="">future climate hazards</th>
+            <th i18n:translate="">qualitative trend</th>
           </tr>
         </thead>
-        <tbody>
-          <tr tal:repeat="hazardType python:items['items']['Future']">
-            <td tal:content="hazardType">item</td>
-            <td>
-              <ul>
-                  <li tal:repeat="acute python: items['items']['Future'][hazardType]">
-                    <span tal:content="acute"></span>
-                  </li>
-              </ul>
-            </td>
-            <td>
-              <ul tal:repeat="acute python: items['items']['Future'][hazardType]" style="padding-bottom:0px;">
-                  <li tal:repeat="item python: items['items']['Future'][hazardType][acute]">
-                    <span tal:content="item/PatternValue"></span>
-                  </li>
-              </ul>
-            </td>
-          </tr>
+        <tbody tal:content="structure items/futureHtml">
         </tbody>
       </table>
       </tal>
