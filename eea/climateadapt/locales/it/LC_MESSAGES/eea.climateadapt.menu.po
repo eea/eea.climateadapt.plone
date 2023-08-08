@@ -30,7 +30,7 @@ msgstr ""
 # ,
 #: health_menu:43
 msgid "2021 Lancet Countdown-EEA Briefing"
-msgstr "Briefing Lancet Countdown-EEA 2021"
+msgstr "2021 Lancet Countdown-AEA briefing"
 
 #:
 msgid "2022 EEA Report on Climate & Health"
