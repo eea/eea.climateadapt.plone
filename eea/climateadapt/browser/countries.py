@@ -765,6 +765,8 @@ class CountryProfileData(BrowserView):
             if occurence not in response.keys():
                 response[occurence] = {}
             group = item['Group']
+            if group == 'SolidMass':
+                group = 'Solid mass'
             if group not in response[occurence].keys():
                 response[occurence][group] = {'AC':{'hazards':[], 'trend':[]}, 'CH':{'hazards':[], 'trend':[]}}
             accuteChronic = item['Type']
@@ -781,21 +783,21 @@ class CountryProfileData(BrowserView):
         observedHtml = ""
         for hazardType in response['Observed']:
             observedHtml += "<tr><td rowspan='2' class='bb1'>"+hazardType+"</td>"
-            observedHtml += "<td>Acute</td><td>"+', '.join(response['Observed'][hazardType]['AC']['hazards'])+"</td>"
+            observedHtml += "<td>Acute</td><td>"+'<br>'.join(response['Observed'][hazardType]['AC']['hazards'])+"</td>"
             observedHtml +="</tr>"
             observedHtml += "<tr>"
-            observedHtml += "<td class='bb1'>Chronic</td><td class='bb1'>"+', '.join(response['Observed'][hazardType]['CH']['hazards'])+"</td>"
+            observedHtml += "<td class='bb1'>Chronic</td><td class='bb1'>"+'<br>'.join(response['Observed'][hazardType]['CH']['hazards'])+"</td>"
             observedHtml +="</tr>"
 
         futureHtml = ""
         for hazardType in response['Future']:
             futureHtml += "<tr><td rowspan='2' class='bb1'>"+hazardType+"</td>"
-            futureHtml += "<td>Acute</td><td>"+', '.join(response['Future'][hazardType]['AC']['hazards'])+"</td>"
-            futureHtml += "<td>"+', '.join(response['Future'][hazardType]['AC']['trend'])+"</td>"
+            futureHtml += "<td>Acute</td><td>"+'<br>'.join(response['Future'][hazardType]['AC']['hazards'])+"</td>"
+            futureHtml += "<td>"+'<br>'.join(response['Future'][hazardType]['AC']['trend'])+"</td>"
             futureHtml +="</tr>"
             futureHtml += "<tr>"
-            futureHtml += "<td class='bb1'>Chronic</td><td class='bb1'>"+', '.join(response['Future'][hazardType]['CH']['hazards'])+"</td>"
-            futureHtml += "<td class='bb1'>"+', '.join(response['Future'][hazardType]['CH']['trend'])+"</td>"
+            futureHtml += "<td class='bb1'>Chronic</td><td class='bb1'>"+'<br>'.join(response['Future'][hazardType]['CH']['hazards'])+"</td>"
+            futureHtml += "<td class='bb1'>"+'<br>'.join(response['Future'][hazardType]['CH']['trend'])+"</td>"
             futureHtml +="</tr>"
 
         return {'observedHtml':observedHtml, 'futureHtml':futureHtml, 'data':response}
