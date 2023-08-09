@@ -176,8 +176,8 @@ _COUNTRIES_WITH_NAP = [
 
 _MARKERS = [
     ("national adaption policy", _("National adaption policy")),
-    ("climate change impact and vulnerability assessments",
-     _("Climate change impact and vulnerability assessments")),
+    # ("climate change impact and vulnerability assessments",
+    #  _("Climate change impact and vulnerability assessments")),
     ("adaptation portals and platforms", _("Adaptation portals and platforms")),
     # ('action plans', 'National adaptation plans (NAP)'),
     # ('action plans', 'Action plans'),
