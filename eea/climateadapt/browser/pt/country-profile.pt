@@ -363,15 +363,25 @@ ul li {
       </tal:block>
 
       <h2 class="country-header pt2" i18n:translate="">Key affected sectors</h2>
-      <table class="listing table-striped">
-        <tbody tal:define="items view/get_sorted_affected_sectors_data">
-          <tal tal:repeat="item items">
-          <tr>
-            <td style="width: 14em;" tal:content="item/SectorDescribe"></td>
-          </tr>
-          </tal>
-        </tbody>
-      </table>
+
+      <tal tal:define="items view/get_sorted_affected_sectors_data">
+      <div class="panel panel-default"  tal:repeat="item items">
+        <div class="panel-heading" tal:attributes="id string:key_affected_sectors_${repeat/item/index}-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle tiny-acchead" tal:attributes="href string:#key_affected_sectors_${repeat/item/index}-body" data-toggle="collapse">
+              <span tal:content="item/SectorDescribe" i18n:translate="">item/SectorDescribe</span>
+            </a>
+          </h4>
+        </div>
+        <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:key_affected_sectors_${repeat/item/index}-body">
+          Content for <span tal:content="item/SectorDescribe" />
+          <table class="listing table-striped">
+            <tr><td tal:content="item/SectorDescribe" /><td></td></tr>
+            <tr><td tal:content="item/ImpactsKeyHazards" /><td></td></tr>
+          </table>
+        </div>
+      </div>
+      </tal>
 
       <!-- <tal:rep tal:repeat="item view/get_sorted_affected_sectors_data"> -->
       <tal:rep tal:repeat="item python:[]">

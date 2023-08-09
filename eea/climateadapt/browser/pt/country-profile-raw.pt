@@ -1,7 +1,16 @@
 <div tal:define="data options/country_data">
   <div tal:repeat="section_title python: data.keys()">
     <h2 tal:content="section_title"></h2>
+    <tal:cond tal:condition="python: type(data[section_title]) is list">
+        <div style="border: 1px solid black; padding: 10px;">
+          <ul>
+            <li tal:repeat="section_data python: data[section_title]"
+                tal:content="section_data"></li>
+          </ul>
+        </div>
+    </tal:cond>
 
+    <tal:cond tal:condition="python: type(data[section_title]) is not list">
         <div style="border: 1px solid black; padding: 10px;"
             tal:define="section_data python: data[section_title]">
           <p tal:content="python: len(section_data)"></p>
@@ -19,6 +28,7 @@
             </tal:cond>
           </div>
         </div>
+    </tal:cond>
 
   </div>
 
