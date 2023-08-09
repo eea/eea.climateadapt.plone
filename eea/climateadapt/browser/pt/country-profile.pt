@@ -362,13 +362,12 @@ ul li {
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
-      <h2 class="country-header" i18n:translate="">Key affected sectors</h2>
+      <h2 class="country-header pt2" i18n:translate="">Key affected sectors</h2>
       <table class="listing table-striped">
         <tbody tal:define="items view/get_sorted_affected_sectors_data">
           <tal tal:repeat="item items">
-          <tr tal:condition="python:len(unicode(items[item])) and not item.endswith(u'Id')">
-            <td style="width: 14em;" tal:content="item"></td>
-            <td tal:content="python: items[item]"></td>
+          <tr>
+            <td style="width: 14em;" tal:content="item/SectorDescribe"></td>
           </tr>
           </tal>
         </tbody>

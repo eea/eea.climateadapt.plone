@@ -96,6 +96,7 @@ def get_discodata_for_country(country_code):
     }
 
     # some values are strings, and need to be transformed
+    #import pdb; pdb.set_trace()
     # into Python objects
     for k, val in processed_data.items():
         try:
@@ -103,15 +104,15 @@ def get_discodata_for_country(country_code):
                 processed_data[k] = None
                 continue
             json_val = json.loads(val)
+            new_value = None
             if type(json_val) is dict:
-                new_value = json_val[k][0]
+                new_value = json_val[k][0] if 1==len(json_val[k]) else json_val[k]
 
                 processed_data[k] = new_value
             #else:
             #    processed_data[k] = None
         except:
             logger.info("EMPTY DATA 114 : %s", k)
-
 
     return processed_data
 
@@ -686,13 +687,7 @@ class CountryProfileData(BrowserView):
         #     key=lambda i: (i['SectorTitle'], i['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in i else '')
         # )
         items = self.processed_data.get('Key_Affected_Sectors',[])
-        sorted_items = dict(sorted(items.items()))
-
-        # import pdb; pdb.set_trace()
-        # for k in sorted_items:
-        #     if str == type(sorted_items[k]):
-        #         sorted_items[k] = sorted_items[k].encode('utf8')
-        return sorted_items
+        return items
 
     def get_sorted_action_measures_data(self):
         items = self.processed_data['Strategies_Plans'].get(
