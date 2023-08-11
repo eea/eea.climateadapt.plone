@@ -536,6 +536,27 @@ def migrate_add_tag(objs=[], tag=""):
                             trans_obj.absolute_url())
 
 
+class MigrateAdaptationOptionItems(BrowserView):
+    """
+    Refs #254130 -> Adaptation options_KTM_IPCC_for retagging.xlsx
+    """
+
+    def __call__(self):
+        content_types = [
+            "eea.climateadapt.adaptationoption",
+        ]
+
+        logs = []
+
+        report = logs
+        json_object = json.dumps(report, indent=4)
+        r_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        with open("/tmp/migration_report_" + r_date + ".json", "w") as outf:
+            outf.write(json_object)
+
+        return "Done"
+
+
 class MigrateTransnationalRegionsDatabaseItems(BrowserView):
     """
     Refs #254130 Step 3.2:
