@@ -30,6 +30,8 @@ from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
 
 from eea.climateadapt.browser.migration_data.adaptationoption import ADAPTATION_OPTION_MIGRATION_DATA
+from eea.climateadapt.browser.migration_data.adaptationoption import MAP_IPCC
+from eea.climateadapt.vocabulary import _ipcc_category, _key_type_measures
 
 # from zope.schema import Choice
 # from zope.schema.interfaces import IVocabularyFactory
@@ -541,6 +543,7 @@ def migrate_add_tag(objs=[], tag=""):
 class MigrateAdaptationOptionItems(BrowserView):
     """
     Refs #254130 -> Adaptation options_KTM_IPCC_for retagging.xlsx
+                    KTM and IPCC categories
     """
 
     def find_adaptationoption_item(self, item_title):
@@ -554,10 +557,6 @@ class MigrateAdaptationOptionItems(BrowserView):
             return res[0].getObject()
 
     def __call__(self):
-        content_types = [
-            "eea.climateadapt.adaptationoption",
-        ]
-
         logs = []
 
         for csv_line in ADAPTATION_OPTION_MIGRATION_DATA.splitlines():
@@ -571,6 +570,20 @@ class MigrateAdaptationOptionItems(BrowserView):
                     logger.warning("Item not found.")
                 else:
                     item = res
+
+                    for index, value in enumerate(data_row):
+                        if value == "X":
+                            if index <= len(_key_type_measures):
+                                to_check = _key_type_measures[index-1][0]
+                                logger.info("TODO: check " + to_check)
+                            else:
+                                to_check = _ipcc_category[
+                                    MAP_IPCC[index - 1 -
+                                             len(_key_type_measures)]
+                                ][0]
+
+                                logger.info("TODO: check " + to_check)
+
                     logger.info("Found: " + item.absolute_url())
 
         report = logs

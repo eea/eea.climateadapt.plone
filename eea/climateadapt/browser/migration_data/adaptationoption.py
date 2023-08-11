@@ -64,3 +64,17 @@ Weather derivatives as risk management tool,X,,,,X,,,,,,,X,,X,,,,,,,
 Precision agriculture,,,,,,,X,,,X,,,,,,,X,,,,X
 Early warning systems for vector-borne diseases,,,,,,,X,,,X,,,,,,,X,,,,X
 """
+
+# The order is not the same in vocabulary and csv for IPCC
+MAP_IPCC = {
+    0: 7,
+    1: 9,
+    2: 8,
+    3: 6,
+    4: 4,
+    5: 5,
+    6: 2,
+    7: 0,
+    8: 3,
+    9: 1,
+}
