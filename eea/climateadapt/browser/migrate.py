@@ -29,6 +29,8 @@ from plone.app.multilingual.manager import TranslationManager
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
 
+from eea.climateadapt.browser.migration_data.adaptationoption import ADAPTATION_OPTION_MIGRATION_DATA
+
 # from zope.schema import Choice
 # from zope.schema.interfaces import IVocabularyFactory
 # import StringIO
@@ -547,6 +549,13 @@ class MigrateAdaptationOptionItems(BrowserView):
         ]
 
         logs = []
+
+        for csv_line in ADAPTATION_OPTION_MIGRATION_DATA.splitlines():
+            if len(csv_line) > 2:
+                csv_list = csv.reader([csv_line])
+                item = next(csv_list)
+
+                print("Migrate... " + item[0])
 
         report = logs
         json_object = json.dumps(report, indent=4)
