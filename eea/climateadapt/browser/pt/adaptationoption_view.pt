@@ -163,6 +163,11 @@
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>
 
+            <div id="cca-macro-category-elements" class="macro-category">
+              <h4 i18n:translate="">Elements:</h4>
+              <tal:block content="structure python:view.w['elements'].render()" />
+            </div>
+
             <div class="macro-category">
               <h4 i18n:translate="">Sectors:</h4>
               <tal:block content="structure python:view.w['sectors'].render()"/>
