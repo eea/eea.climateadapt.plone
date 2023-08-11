@@ -580,8 +580,6 @@ _header_level = (
 rich_header_level = generic_vocabulary(_header_level)
 alsoProvides(rich_header_level, IVocabularyFactory)
 
-# acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
-# TODO Delete this ^ after migrations are done
 labels = """
 acesearch-geochars-lbl-GLOBAL=Global
 acesearch-geochars-lbl-EUROPE=Europe
@@ -598,18 +596,13 @@ acesearch-geochars-lbl-TRANS_MACRO_ATL_AREA=Atlantic Area
 acesearch-geochars-lbl-TRANS_MACRO_ALP_SPACE=Alpine Space
 acesearch-geochars-lbl-TRANS_MACRO_CEN_EUR=Central Europe
 acesearch-geochars-lbl-TRANS_MACRO_SW_EUR=South West Europe
-acesearch-geochars-lbl-TRANS_MACRO_SE_EUR=South East Europe
 acesearch-geochars-lbl-TRANS_MACRO_MED=Mediterranean (Euro-Med)
-acesearch-geochars-lbl-TRANS_MACRO_DANUBE=Danube
+acesearch-geochars-lbl-TRANS_MACRO_DANUBE=Danube Area
 acesearch-geochars-lbl-TRANS_MACRO_ADR_IONIAN=Adriatic-Ionian
 acesearch-geochars-lbl-TRANS_MACRO_CAR_AREA=Caribbean Area
 acesearch-geochars-lbl-TRANS_MACRO_AMAZONIA=Amazonia
 acesearch-geochars-lbl-TRANS_MACRO_IND_OCEAN_AREA=Indian Ocean Area
 acesearch-geochars-lbl-TRANS_MACRO_MED_BASIN=Mediterranean Sea Basin (NEXT)
-acesearch-geochars-lbl-TRANS_MACRO_MID_ATLANTIC=Mid-Atlantic
-acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
-acesearch-geochars-lbl-TRANS_MACRO_ARCTIC=Arctic
-acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA=Black Sea
 acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA_BASIN=Black Sea Basin (NEXT)
 acesearch-geochars-lbl-TRANS_MACRO_ATLANTIC=Atlantic
 acesearch-geochars-lbl-TRANS_MACRO_OUTERMOST=Outermost Regions
