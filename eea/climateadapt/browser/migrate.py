@@ -543,6 +543,16 @@ class MigrateAdaptationOptionItems(BrowserView):
     Refs #254130 -> Adaptation options_KTM_IPCC_for retagging.xlsx
     """
 
+    def find_adaptationoption_item(self, item_title):
+        """ Get the item having the title
+        """
+        content_type = "eea.climateadapt.adaptationoption"
+        res = api.content.find(portal_type=content_type, Title=item_title)
+        if len(res) == 0:
+            return None
+        else:
+            return res[0].getObject()
+
     def __call__(self):
         content_types = [
             "eea.climateadapt.adaptationoption",
@@ -553,9 +563,15 @@ class MigrateAdaptationOptionItems(BrowserView):
         for csv_line in ADAPTATION_OPTION_MIGRATION_DATA.splitlines():
             if len(csv_line) > 2:
                 csv_list = csv.reader([csv_line])
-                item = next(csv_list)
-
-                print("Migrate... " + item[0])
+                data_row = next(csv_list)
+                item_title = data_row[0]
+                res = self.find_adaptationoption_item(item_title)
+                logger.info("Migrating... " + item_title)
+                if res is None:
+                    logger.warning("Item not found.")
+                else:
+                    item = res
+                    logger.info("Found: " + item.absolute_url())
 
         report = logs
         json_object = json.dumps(report, indent=4)
