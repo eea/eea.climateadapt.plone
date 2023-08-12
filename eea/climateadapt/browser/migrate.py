@@ -597,9 +597,9 @@ class MigrateAdaptationOptionItems(BrowserView):
                         "new ipcc": ipcc
                     }
 
-                    # item.key_type_measures = ktm
-                    # item.ipcc_category = ipcc
-                    # obj.reindexObject()
+                    item.key_type_measures = ktm
+                    item.ipcc_category = ipcc
+                    item.reindexObject()
 
                 logs.append(log_info)
 
