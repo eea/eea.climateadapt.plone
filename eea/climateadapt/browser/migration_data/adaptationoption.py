@@ -37,7 +37,7 @@ Awareness raising campaigns for stakeholders’ behavioural change,,,,,,,,,,X,X,
 Beach and shoreface nourishment,,,,,,,,X,,,,,,,,,,X,,,
 Capacity building on climate change adaptation,,,,,,,,,,,X,,,,,X,X,,,,
 Cliff stabilisation and strengthening,,,,,,X,,X,,,,,,,,,,X,X,,,,,,,,,,,,,,,,,,,,,,,
-Climate proofed standards for road design, construction and maintenance,,,,,,X,X,,,,,,,,,,,,X,,X
+"Climate proofed standards for road design, construction and maintenance",,,,,,X,X,,,,,,,,,,,,X,,X
 Climate proofing of buildings against excessive heat,,,,,,,X,X,,,,,,,,,,X,,,X,,,,,,,,,,,,,,,,,,,,,
 Consumer-side adaptation options in the energy sector – changes in individual behaviour,,,,,,,,,,X,X,,,,X,,X,,,,
 Crises and disaster management systems and plans,,X,,,,,,,,X,,,X,X,,,,,,X,
