@@ -3,7 +3,21 @@
     Copy relevant data to Google Sheets
     Download CSV
     Save the content as python var here
+
+    Some titles are updated:
+    NOT FOUND ITEMS:
+    Water uses to cope with heat waves in cities
+    Improved desing of dikes and levees
+    Agro-forestry
+    Climate proofed construction and design standards for road infrastructure
+
+    FOUND AS:
+    Using water to cope with heat waves in cities
+    Improved design of dikes and levees
+    Agroforestry
+    Climate proofed standards for road design, construction and maintenance
 """
+
 
 ADAPTATION_OPTION_MIGRATION_DATA = """
 Adaptation measures to increase climate resilience of airports,,,,,,X,X,,,,,,,,,,,,X,,X
@@ -15,15 +29,15 @@ Integration of climate change adaptation in coastal management plans,,X,X,,,,,,,
 Integration of climate change adaptation in land use planning,,X,X,,,,,,,,,,X,X,,,,,,,
 Adaptation options for electricity transmission and distribution networks and infrastructure,,,,,,X,X,,,,,,,,,,,,X,,X
 Adaptation options for hydropower plants,,,,,,X,X,,,,,,,,,,,,X,,X
-Improved desing of dikes and levees,,,,,,X,,,,,,,,,,,,,X,,
+Improved design of dikes and levees,,,,,,X,,,,,,,,,,,,,X,,
 Adaptive management of natural habitats,X,,,,,,,X,X,,,,X,,,,,X,,,
 Afforestation and reforestation as adaptation opportunity,,X,,,,,,X,,,,,X,,,,,X,,,
-Agro-forestry,,,,,,,,X,,,X,,,,X,,,X,,,
+Agroforestry,,,,,,,,X,,,X,,,,X,,,X,,,
 Awareness raising campaigns for stakeholders’ behavioural change,,,,,,,,,,X,X,,,,X,X,,,,,
 Beach and shoreface nourishment,,,,,,,,X,,,,,,,,,,X,,,
 Capacity building on climate change adaptation,,,,,,,,,,,X,,,,,X,X,,,,
 Cliff stabilisation and strengthening,,,,,,X,,X,,,,,,,,,,X,X,,,,,,,,,,,,,,,,,,,,,,,
-Climate proofed construction and design standards for road infrastructure,,,,,,X,X,,,,,,,,,,,,X,,X
+Climate proofed standards for road design, construction and maintenance,,,,,,X,X,,,,,,,,,,,,X,,X
 Climate proofing of buildings against excessive heat,,,,,,,X,X,,,,,,,,,,X,,,X,,,,,,,,,,,,,,,,,,,,,
 Consumer-side adaptation options in the energy sector – changes in individual behaviour,,,,,,,,,,X,X,,,,X,,X,,,,
 Crises and disaster management systems and plans,,X,,,,,,,,X,,,X,X,,,,,,X,
@@ -59,7 +73,7 @@ Water reuse,,,,,,,X,,,,X,,,,,,,,,X,X
 Water restrictions and water rationing,X,,,,,,,,,,X,,X,,X,,,,,,
 Water sensitive forest management,,,,,,,,X,X,,,,,,,,,X,,,
 Water sensitive urban and building design,,,,,,,X,X,,,,,,,,,,X,X,,
-Water uses to cope with heat waves in cities,,,,,,X,X,,,,,,,,,,,,X,,X
+Using water to cope with heat waves in cities,,,,,,X,X,,,,,,,,,,,,X,,X
 Weather derivatives as risk management tool,X,,,,X,,,,,,,X,,X,,,,,,,
 Precision agriculture,,,,,,,X,,,X,,,,,,,X,,,,X
 Early warning systems for vector-borne diseases,,,,,,,X,,,X,,,,,,,X,,,,X
