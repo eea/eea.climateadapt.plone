@@ -568,23 +568,40 @@ class MigrateAdaptationOptionItems(BrowserView):
                 logger.info("Migrating... " + item_title)
                 if res is None:
                     logger.warning("Item not found.")
+                    log_info = {
+                        "title": item_title,
+                        "url": "ITEM NOT FOUND",
+                    }
                 else:
                     item = res
 
+                    ktm = []
+                    ipcc = []
                     for index, value in enumerate(data_row):
                         if value == "X":
+
                             if index <= len(_key_type_measures):
                                 to_check = _key_type_measures[index-1][0]
-                                logger.info("TODO: check " + to_check)
+                                ktm.append(to_check)
                             else:
                                 to_check = _ipcc_category[
                                     MAP_IPCC[index - 1 -
                                              len(_key_type_measures)]
                                 ][0]
+                                ipcc.append(to_check)
 
-                                logger.info("TODO: check " + to_check)
+                    log_info = {
+                        "title": item_title,
+                        "url": item.absolute_url(),
+                        "new ktm": ktm,
+                        "new ipcc": ipcc
+                    }
 
-                    logger.info("Found: " + item.absolute_url())
+                    # item.key_type_measures = ktm
+                    # item.ipcc_category = ipcc
+                    # obj.reindexObject()
+
+                logs.append(log_info)
 
         report = logs
         json_object = json.dumps(report, indent=4)
