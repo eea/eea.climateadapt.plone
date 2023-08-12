@@ -584,14 +584,11 @@ class MigrateAdaptationOptionItems(BrowserView):
                                 to_check = _key_type_measures[index-1][0]
                                 ktm.append(to_check)
                             else:
-                                try:
-                                    to_check = _ipcc_category[
-                                        MAP_IPCC[index - 1 -
-                                                 len(_key_type_measures)]
-                                    ][0]
-                                    ipcc.append(to_check)
-                                except:
-                                    __import__('pdb').set_trace()
+                                to_check = _ipcc_category[
+                                    MAP_IPCC[index - 1 -
+                                             len(_key_type_measures)]
+                                ][0]
+                                ipcc.append(to_check)
 
                     log_info = {
                         "title": item_title,
