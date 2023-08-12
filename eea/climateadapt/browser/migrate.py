@@ -599,7 +599,25 @@ class MigrateAdaptationOptionItems(BrowserView):
 
                     item.key_type_measures = ktm
                     item.ipcc_category = ipcc
+                    item._p_changed = True
                     item.reindexObject()
+
+                    # Apply the same change for translated content
+                    try:
+                        translations = TranslationManager(
+                            item).get_translations()
+                    except Exception:
+                        translations = None
+
+                    if translations is not None:
+                        for language in translations.keys():
+                            trans_obj = translations[language]
+                            trans_obj.key_type_measures = ktm
+                            trans_obj.ipcc_category = ipcc
+                            trans_obj._p_changed = True
+                            trans_obj.reindexObject()
+                            logger.info("Migrated too: %s",
+                                        trans_obj.absolute_url())
 
                 logs.append(log_info)
 
