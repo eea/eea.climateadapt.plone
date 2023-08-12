@@ -29,6 +29,10 @@ from plone.app.multilingual.manager import TranslationManager
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
 
+from eea.climateadapt.browser.migration_data.adaptationoption import ADAPTATION_OPTION_MIGRATION_DATA
+from eea.climateadapt.browser.migration_data.adaptationoption import MAP_IPCC
+from eea.climateadapt.vocabulary import _ipcc_category, _key_type_measures
+
 # from zope.schema import Choice
 # from zope.schema.interfaces import IVocabularyFactory
 # import StringIO
@@ -534,6 +538,78 @@ def migrate_add_tag(objs=[], tag=""):
                 trans_obj.reindexObject()
                 logger.info("Migrated too: %s",
                             trans_obj.absolute_url())
+
+
+class MigrateAdaptationOptionItems(BrowserView):
+    """
+    Refs #254130 -> Adaptation options_KTM_IPCC_for retagging.xlsx
+                    KTM and IPCC categories
+    """
+
+    def find_adaptationoption_item(self, item_title):
+        """ Get the item having the title
+        """
+        content_type = "eea.climateadapt.adaptationoption"
+        res = api.content.find(portal_type=content_type, Title=item_title)
+        if len(res) == 0:
+            return None
+        else:
+            return res[0].getObject()
+
+    def __call__(self):
+        logs = []
+
+        for csv_line in ADAPTATION_OPTION_MIGRATION_DATA.splitlines():
+            if len(csv_line) > 2:
+                csv_list = csv.reader([csv_line])
+                data_row = next(csv_list)
+                item_title = data_row[0]
+                res = self.find_adaptationoption_item(item_title)
+                logger.info("Migrating... " + item_title)
+                if res is None:
+                    logger.warning("Item not found.")
+                    log_info = {
+                        "title": item_title,
+                        "url": "ITEM NOT FOUND",
+                    }
+                else:
+                    item = res
+
+                    ktm = []
+                    ipcc = []
+                    for index, value in enumerate(data_row):
+                        if value == "X":
+
+                            if index <= len(_key_type_measures):
+                                to_check = _key_type_measures[index-1][0]
+                                ktm.append(to_check)
+                            else:
+                                to_check = _ipcc_category[
+                                    MAP_IPCC[index - 1 -
+                                             len(_key_type_measures)]
+                                ][0]
+                                ipcc.append(to_check)
+
+                    log_info = {
+                        "title": item_title,
+                        "url": item.absolute_url(),
+                        "new ktm": ktm,
+                        "new ipcc": ipcc
+                    }
+
+                    item.key_type_measures = ktm
+                    item.ipcc_category = ipcc
+                    item.reindexObject()
+
+                logs.append(log_info)
+
+        report = logs
+        json_object = json.dumps(report, indent=4)
+        r_date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        with open("/tmp/migration_report_" + r_date + ".json", "w") as outf:
+            outf.write(json_object)
+
+        return "Done"
 
 
 class MigrateTransnationalRegionsDatabaseItems(BrowserView):

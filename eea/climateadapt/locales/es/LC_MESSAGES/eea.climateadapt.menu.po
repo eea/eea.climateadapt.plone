@@ -949,7 +949,7 @@ msgstr "Ozono en el suelo"
 
 #:
 msgid "Ground-level ozone forecast (CAMS)"
-msgstr "Pronóstico de ozono en el suelo (CAMS)"
+msgstr "Pronóstico de ozono a nivel del suelo (CAMS)"
 
 # ,
 # ,
