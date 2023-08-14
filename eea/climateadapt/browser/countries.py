@@ -369,6 +369,47 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
             res[prop] = value
 
+        values = processed_data['Legal_Policies'].get('AdaptationPolicies', [])
+        res['nas_mixed'] = ''
+        res['nap_mixed'] = ''
+        res['sap_mixed'] = ''
+        if values:
+            # setup National adaptation policy - NAS, NAP and SAP
+            #import pdb; pdb.set_trace()
+            for name in ('NAS', 'NAP', 'SAP'):
+                value = u''
+                data = filter(lambda c: '('+name+')' in c['Type'] , values)
+
+                if name == 'SAP':
+                    value = [
+                        u"<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
+                        u"<p {4}>{2}</p></li>".format(
+                            v.get('Link'), v.get('Title'),
+                            v.get('Status'), v.get('Sector'),
+                            "style='font-style:oblique;'",
+                            "style='font-weight:bold;'",
+                        )
+                        for v in data
+                    ]
+                else:
+                    value = [
+                        u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                            v.get('Link'), v.get('Title'),
+                            "style='font-style:oblique;'", v.get('Status'))
+                        for v in data
+                    ]
+                if len(value):
+                    value = u"<ul>{}</ul>".format(
+                        ''.join(value)
+                    )
+                else:
+                    value = u''
+
+                prop = "{}_mixed".format(name.lower())
+
+                res[prop] = value
+
+
         # setup Climate change impact and vulnerability assessments
         value = u""
         values = processed_data['National_Circumstances'].get('CC_IVA', [])
