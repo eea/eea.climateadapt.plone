@@ -1,0 +1,22 @@
+<div tal:define="portal_url context/portal_url" class="trans-regions-section-select"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt">
+
+  <script>
+    $(document).ready(function () {
+      $("#region-select").change(function () {
+        var url = $(this).val();
+        if (url.length) {
+          document.location = url;
+        }
+      });
+    });
+  </script>
+
+  <select id="region-select" class="form-control">
+    <option value="" i18n:translate="">Choose a region</option>
+    <option tal:repeat="region view/regions" tal:attributes="value region/url" tal:content="region/title">Region</option>
+  </select>
+
+</div>

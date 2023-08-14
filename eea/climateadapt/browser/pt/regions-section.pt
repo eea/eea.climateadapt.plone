@@ -3,22 +3,6 @@
   lang="en"
   i18n:domain="eea.climateadapt">
 
-  <script>
-    $(document).ready(function () {
-      $("#region-select").change(function () {
-        var url = $(this).val();
-        if (url.length) {
-          document.location = url;
-        }
-      });
-    });
-  </script>
-
-  <select id="region-select" class="form-control">
-    <option value="" i18n:translate="">Choose a region</option>
-    <option tal:repeat="region view/regions" tal:attributes="value region/url" tal:content="region/title">Region</option>
-  </select>
-
   <div class="flex-wrapper">
     <div class="region-wrapper">
       <a tal:attributes="href string:${portal_url}/countries-regions/transnational-regions/adriatic-ionian">
