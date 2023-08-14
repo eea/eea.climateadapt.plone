@@ -1,5 +1,4 @@
 /* global d3, $, jQuery */
-
 var _selectedMapSection = null;
 // var _mapTooltip = null;
 var countrySettings = {};   // country settings extracted from ajax json
@@ -112,7 +111,8 @@ function getCountryClass(country, countries) {
     } else if (onlyNasAdopted) {
       k += ' country-nas';
     } else if (noneAdopted) {
-      k += ' country-none';
+      // k += ' country-none';
+      k += ' country-nasnap';
     }
 
     if (countryNoData.indexOf(countryName) > -1) {
@@ -139,8 +139,6 @@ function getCountryClass(country, countries) {
 
   if (_selectedMapSection === 'portals') {
     var {focus_info, notreported} = discodata;
-
-    console.log(focus_info, countryName)
 
     /*
     if (notreported) {
