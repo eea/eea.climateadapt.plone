@@ -19,7 +19,7 @@ class TransRegionSelect(BrowserView, TranslationUtilsMixin):
         q = {
             "object_provides":
                 "eea.climateadapt.interfaces.ITransnationalRegionMarker",
-            'sort_on': 'sortable_title',
+            'sort_on': 'getObjPositionInParent',
             'path': '/cca/'+self.current_lang
         }
         brains = catalog.searchResults(**q)
@@ -36,5 +36,4 @@ class TransRegionSelect(BrowserView, TranslationUtilsMixin):
             if "eea.climateadapt.interfaces.ITransnationalRegionMarker" \
                     in provides:
                 results.append(b)
-        return sorted([{'url': b.getURL(), 'title': b.Title} for b in results],
-                      key=lambda x: x['title'])
+        return [{'url': b.getURL(), 'title': b.Title} for b in results]
