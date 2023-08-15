@@ -117,7 +117,7 @@
               <span class="country-nasnap legend-box"></span>
               <p class="legend-text" i18n:translate="">NAS and NAP reported as adopted</p>
             </div>
-            <div class="legend-el">
+            <!-- <div class="legend-el">
               <span class="country-nap legend-box"></span>
               <p class="legend-text" i18n:translate="">Only NAP reported as adopted</p>
             </div>
@@ -128,7 +128,7 @@
             <div class="legend-el">
               <span class="country-sap legend-box"></span>
               <p class="legend-text" i18n:translate="">SAP reported as adopted</p>
-            </div>
+            </div> -->
             <div class="legend-el">
               <span class="country-none legend-box"></span>
               <p class="legend-text" i18n:translate="">Outside EEA coverage</p>
