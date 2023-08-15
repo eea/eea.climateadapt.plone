@@ -85,6 +85,7 @@ class Items(BrowserView):
         for brain in brains:
             obj = brain.getObject()
             if hasattr(obj, "geolocation") and obj.geolocation:
+                list_key_type_measures = []
                 list_ipcc_categories = []
                 list_adaptation_options = []
                 list_adaptation_options_links = []
@@ -96,6 +97,10 @@ class Items(BrowserView):
                             for ipcc_category in ao.ipcc_category:
                                 if ipcc_category not in list_ipcc_categories:
                                     list_ipcc_categories.append(ipcc_category)
+                        if hasattr(ao, "key_type_measures"):
+                            for key_type_measure in ao.key_type_measures:
+                                if key_type_measure not in list_key_type_measures:
+                                    list_key_type_measures.append(key_type_measure)
                         list_adaptation_options.append(ao.title)
                         list_adaptation_options_links.append(
                             "<a href='"
@@ -141,6 +146,7 @@ class Items(BrowserView):
                             "sectors": "," + (",".join(obj.sectors)) + ",",
                             "impacts": "," + (",".join(obj.climate_impacts)) + ",",
                             "ipccs": "," + (",".join(list_ipcc_categories)) + ",",
+                            "ktms": "," + (",".join(list_key_type_measures)) + ",",
                             "adaptation_options": "<>".join(list_adaptation_options),
                             "adaptation_options_links": "<>".join(
                                 list_adaptation_options_links
@@ -225,6 +231,25 @@ class Page(BrowserView):
                 response[titleSplit[0]] = []
             response[titleSplit[0]].append(
                 {"key": term.value, "value": titleSplit[1].strip()}
+            )
+            # response.append({"key": term.value, "value": term.title})
+        return response
+
+    def get_key_type_measures(self):
+        factory = getUtility(
+            IVocabularyFactory, "eea.climateadapt.aceitems_key_type_measures"
+        )
+        vocabulary = factory(self.context)
+        response = {}
+        # import pdb; pdb.set_trace()
+        # response.append({"key": "", "value": "Filter by IPCCS"})
+        for term in vocabulary:
+            temp = translate_text(self.context, self.request, term.title)
+            titleSplit = temp.split(":")
+            if titleSplit[1] not in response:
+                response[titleSplit[1]] = []
+            response[titleSplit[1]].append(
+                {"key": term.value, "value": titleSplit[2].strip()}
             )
             # response.append({"key": term.value, "value": term.title})
         return response

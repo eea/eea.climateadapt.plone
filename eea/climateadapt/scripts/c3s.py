@@ -74,6 +74,8 @@ def update_object(obj, indicator):
     obj.sectors = []
     obj.climate_impacts = []
     obj.origin_website = ['C3S']
+    obj.language = 'en'
+    obj.reindexObject()
 
     state = api.content.get_state(obj=obj, default="Unknown")
     if state != "published":

@@ -229,7 +229,7 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
         q = {
             "object_provides":
                 "eea.climateadapt.interfaces.ITransnationalRegionMarker",
-            'sort_on': 'sortable_title',
+            'sort_on': 'getObjPositionInParent',
             "path": {"query": "/cca/{}".format(self.current_lang)}
         }
         brains = catalog.searchResults(**q)
@@ -251,8 +251,7 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
                     in provides:
                 results.append(b)
 
-        return sorted([{'url': b.getURL(), 'title': b.Title} for b in results],
-                      key=lambda x: x['title'])
+        return [{'url': b.getURL(), 'title': b.Title} for b in results]
 
     def countries(self):
         # a list of {'name': Country name, 'link': Country Link}

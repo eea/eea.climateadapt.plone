@@ -163,6 +163,21 @@
               <metal:macro use-macro="context/ace_macros/macros/keywords" />
             </div>
 
+            <div id="cca-macro-category-elements" class="macro-category">
+              <h4 i18n:translate="">Elements:</h4>
+              <tal:block content="structure python:view.w['elements'].render()" />
+            </div>
+
+            <div id="cca-macro-category-ktm" class="macro-category">
+              <h4 i18n:translate="">Key Type Measures:</h4>
+              <tal:block content="structure python:view.w['key_type_measures'].render()" />
+            </div>
+
+            <div id="cca-macro-category-ipcc" class="macro-category">
+              <h4 i18n:translate="">IPCC adaptation options categories:</h4>
+              <tal:block content="structure python:view.w['ipcc_category'].render()" />
+            </div>
+
             <div class="macro-category">
               <h4 i18n:translate="">Sectors:</h4>
               <tal:block content="structure python:view.w['sectors'].render()"/>

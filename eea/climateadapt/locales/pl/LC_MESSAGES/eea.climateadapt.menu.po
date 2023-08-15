@@ -31,6 +31,10 @@ msgstr ""
 msgid "2021 Lancet Countdown-EEA Briefing"
 msgstr "2021 Lancet Countdown-Informacje EEA"
 
+#:
+msgid "2022 EEA Report on Climate & Health"
+msgstr "2022 Raport EOG na temat klimatu i zdrowia"
+
 # ,
 # ,
 # ,
@@ -990,6 +994,18 @@ msgid "Glossary"
 msgstr "Słownik"
 
 #:
+msgid "Ground-level NO2 forecast (CAMS)"
+msgstr "Prognoza NO2 w warstwie przyziemnej (CAMS)"
+
+#:
+msgid "Ground-level PM10 forecast (CAMS)"
+msgstr "Prognoza PM10 w warstwie przyziemnej (CAMS)"
+
+#:
+msgid "Ground-level PM2.5 forecast (CAMS)"
+msgstr "Prognoza PM2.5 w warstwie przyziemnej (CAMS)"
+
+#:
 msgid "Ground-level ozone"
 msgstr "Ozonu w warstwie przyziemnej"
 
@@ -1414,6 +1430,10 @@ msgstr "Publikacje Obserwatorium"
 #: health_menu:11
 msgid "Observatory workplan for 2021-22"
 msgstr "Plan pracy Obserwatorium na 2021-22"
+
+#:
+msgid "Observatory workplan for 2023-24"
+msgstr "Plan pracy Obserwatorium na 2023-24"
 
 #:
 msgid "Occupational safety and health effects"

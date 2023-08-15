@@ -598,3 +598,29 @@ msgstr ""
 #:
 msgid "Occupational safety and health effects"
 msgstr ""
+
+#:
+msgid "Observatory workplan for 2023-24"
+msgstr ""
+
+#:
+msgid "Ground-level PM2.5 forecast (CAMS)"
+msgstr ""
+
+#:
+msgid "Ground-level PM10 forecast (CAMS)"
+msgstr ""
+
+#:
+msgid "Ground-level NO2 forecast (CAMS)"
+msgstr ""
+
+#:
+msgid "2022 EEA Report on Climate & Health"
+msgstr ""
+
+#:
+msgid "2021 Lancet Countdown-EEA Briefing"
+msgstr ""
+
+

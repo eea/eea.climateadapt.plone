@@ -69,6 +69,13 @@
     />
 
   <browser:page
+    name="migrate_adaptationoption_items"
+    for="*"
+    class=".migrate.MigrateAdaptationOptionItems"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
     name="migrate_database_items"
     for="*"
     class=".migrate.MigrateTransnationalRegionsDatabaseItems"

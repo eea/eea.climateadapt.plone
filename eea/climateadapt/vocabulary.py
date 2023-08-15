@@ -300,7 +300,6 @@ _sectors = [    # this is the canonical
     ("COASTAL", _("Coastal areas")),
     ("CULTURALHERITAGE", _("Cultural heritage")),
     ("DISASTERRISKREDUCTION", _("Disaster Risk Reduction")),
-    ("ECOSYSTEM", _("Ecosystem-based approaches (GI)")),
     ("ENERGY", _("Energy")),
     ("FINANCIAL", _("Financial")),
     ("FORESTRY", _("Forestry")),
@@ -580,8 +579,6 @@ _header_level = (
 rich_header_level = generic_vocabulary(_header_level)
 alsoProvides(rich_header_level, IVocabularyFactory)
 
-# acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
-# TODO Delete this ^ after migrations are done
 labels = """
 acesearch-geochars-lbl-GLOBAL=Global
 acesearch-geochars-lbl-EUROPE=Europe
