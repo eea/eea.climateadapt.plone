@@ -80,7 +80,7 @@
             </div>
 
             <div id="cca-macro-category-elements" class="macro-category">
-              <h4 i18n:translate="">Elements:</h4>
+              <h4 i18n:translate="">Adaptation elements:</h4>
               <tal:block content="structure python:view.w['elements'].render()" />
             </div>
 
