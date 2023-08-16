@@ -825,59 +825,70 @@ class CountryProfileData(BrowserView):
 
         observedHtml = ""
         for hazardType in response['Observed']:
-            countAC = max(1, len(response['Observed'][hazardType]['AC']['hazards']))
-            countCH = max(1, len(response['Observed'][hazardType]['CH']['hazards']))
-            observedHtml += "<tr><td rowspan='"+str(countAC+countCH)+"' class='bb1'>"+hazardType+"</td>"
-            observedHtml += "<td rowspan='"+str(countAC)+"' class='bb1'>Acute</td>"
+            countAC = len(response['Observed'][hazardType]['AC']['hazards'])
+            countCH = len(response['Observed'][hazardType]['CH']['hazards'])
+            observedHtml += "<tr><td rowspan='"+str(max(1,countAC)+max(1,countCH))+"' class='bb1'>"+hazardType+"</td>"
+            observedHtml += "<td rowspan='"+str(max(1,countAC))+"' class='bb1'>Acute</td>"
             if len(response['Observed'][hazardType]['AC']['hazards']):
-                observedHtml += "<td>"+response['Observed'][hazardType]['AC']['hazards'][0] if countAC else ""+"</td>"
+                className = ' class="bb1"' if countAC==1 else ''
+                observedHtml += "<td"+className+">"+response['Observed'][hazardType]['AC']['hazards'][0] if countAC else ""+"</td>"
                 observedHtml +="</tr>"
-                for hazard in response['Observed'][hazardType]['AC']['hazards'][1:]:
-                    observedHtml += "<tr><td>"+hazard+"</td></tr>"
+                hazards = response['Observed'][hazardType]['AC']['hazards'][1:]
+                for idx in range(len(hazards)):
+                    #import pdb; pdb.set_trace()
+                    className = ' class="bb1"' if idx+1==len(hazards) else ''
+                    observedHtml += "<tr><td"+className+">"+hazards[idx]+"</td></tr>"
             else:
-                observedHtml += "<td/></tr>"
+                observedHtml += "<td class='bb1'/></tr>"
 
             observedHtml += "<tr>"
-            observedHtml += "<td class='bb1' rowspan='"+str(countCH)+"'>Chronic</td>"
+            observedHtml += "<td class='bb1' rowspan='"+str(max(1,countCH))+"'>Chronic</td>"
             if len(response['Observed'][hazardType]['CH']['hazards']):
                 #import pdb; pdb.set_trace()
-                observedHtml += "<td class='bb1'>"+response['Observed'][hazardType]['CH']['hazards'][0]+"</td>"
+                className = ' class="bb1"' if countCH==1 else ''
+                observedHtml += "<td"+className+">"+response['Observed'][hazardType]['CH']['hazards'][0]+"</td>"
                 observedHtml +="</tr>"
                 hazards = response['Observed'][hazardType]['CH']['hazards'][1:]
                 for idx in range(len(hazards)):
-                    observedHtml += "<tr><td>"+hazards[idx]+"</td></tr>"
+                    className = ' class="bb1"' if idx+1==len(hazards) else ''
+                    observedHtml += "<tr><td"+className+">"+hazards[idx]+"</td></tr>"
             else:
-                observedHtml += "<td/></tr>"
+                observedHtml += "<td class='bb1'/></tr>"
 
         futureHtml = ""
         for hazardType in response['Future']:
-            countAC = max(1, len(response['Future'][hazardType]['AC']['hazards']))
-            countCH = max(1, len(response['Future'][hazardType]['CH']['hazards']))
-            futureHtml += "<tr><td rowspan='"+str(countAC+countCH)+"' class='bb1'>"+hazardType+"</td>"
-            futureHtml += "<td rowspan="+str(countAC)+" class='bb1'>Acute</td>"
-            futureHtml += "<td>"+response['Future'][hazardType]['AC']['hazards'][0] if countAC else ""+"</td>"
-            futureHtml += "<td>"+response['Future'][hazardType]['AC']['trend'][0] if countAC else ""+"</td>"
+            countAC = len(response['Future'][hazardType]['AC']['hazards'])
+            countCH = len(response['Future'][hazardType]['CH']['hazards'])
+            futureHtml += "<tr><td rowspan='"+str(max(1,countAC)+max(1,countCH))+"' class='bb1'>"+hazardType+"</td>"
+            futureHtml += "<td rowspan="+str(max(1,countAC))+" class='bb1'>Acute</td>"
+            className = ' class="bb1"' if countAC==1 else ''
+            futureHtml += "<td"+className+">"+response['Future'][hazardType]['AC']['hazards'][0] if countAC else ""+"</td>"
+            futureHtml += "<td"+className+">"+response['Future'][hazardType]['AC']['trend'][0] if countAC else ""+"</td>"
             futureHtml +="</tr>"
 
             if len(response['Future'][hazardType]['AC']['hazards']):
                 hazards = response['Future'][hazardType]['AC']['hazards'][1:]
                 for idx in range(len(hazards)):
-                    futureHtml += "<tr><td>"+response['Future'][hazardType]['AC']['hazards'][idx]+"</td>"
-                    futureHtml += "<td>"+response['Future'][hazardType]['AC']['trend'][idx]+"</td></tr>"
+                    className = ' class="bb1"' if idx+1==len(hazards) else ''
+                    futureHtml += "<tr><td"+className+">"+response['Future'][hazardType]['AC']['hazards'][idx+1]+"</td>"
+                    futureHtml += "<td"+className+">"+response['Future'][hazardType]['AC']['trend'][idx+1]+"</td></tr>"
             else:
-                futureHtml += "<td/><td/><tr>"
+                futureHtml += "<td class='bb1'/><td class='bb1'/><tr>"
 
             futureHtml += "<tr>"
-            futureHtml += "<td rowspan="+str(countCH)+"  class='bb1'>Chronic</td>"
+            futureHtml += "<td rowspan="+str(max(1,countCH))+"  class='bb1'>Chronic</td>"
             if len(response['Future'][hazardType]['CH']['hazards']):
-                futureHtml += "<td>"+response['Future'][hazardType]['CH']['hazards'][0] if countCH else ""+"</td>"
-                futureHtml += "<td>"+response['Future'][hazardType]['CH']['trend'][0] if countCH else ""+"</td>"
+                className = ' class="bb1"' if countCH==1 else ''
+                futureHtml += "<td"+className+">"+response['Future'][hazardType]['CH']['hazards'][0] if countCH else ""+"</td>"
+                futureHtml += "<td"+className+">"+response['Future'][hazardType]['CH']['trend'][0] if countCH else ""+"</td>"
                 futureHtml +="</tr>"
-                for hazard in response['Future'][hazardType]['CH']['hazards'][1:]:
-                    futureHtml += "<tr><td>"+hazard+"</td>"
-                    futureHtml += "<td>"+response['Future'][hazardType]['CH']['trend'][idx]+"</td></tr>"
+                hazards = response['Future'][hazardType]['CH']['hazards'][1:]
+                for idx in range(len(hazards)):
+                    className = ' class="bb1"' if idx+1==len(hazards) else ''
+                    futureHtml += "<tr><td"+className+">"+response['Future'][hazardType]['CH']['hazards'][idx+1]+"</td>"
+                    futureHtml += "<td"+className+">"+response['Future'][hazardType]['CH']['trend'][idx+1]+"</td></tr>"
             else:
-                futureHtml += "<td/><td/><tr>"
+                futureHtml += "<td class='bb1'/><td class='bb1'/><tr>"
 
         return {'observedHtml':observedHtml, 'futureHtml':futureHtml, 'data':response}
 
