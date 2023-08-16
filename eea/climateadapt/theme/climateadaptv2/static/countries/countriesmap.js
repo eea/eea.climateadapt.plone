@@ -97,7 +97,8 @@ function getCountryClass(country, countries) {
     var noneAdopted = !(nap_info && nas_info && sap_info);
 
     if (notreported) {
-      k += ' country-notreported';
+      // k += ' country-notreported';
+      k += ' country-nas';
     } else if (nasNapSapAdopted) {
       k += ' country-nasnapsap';
     } else if (nasSapAdopted) {
@@ -156,7 +157,8 @@ function getCountryClass(country, countries) {
     }
     */
     if (notreported) {
-      k += ' country-notreported';
+      // k += ' country-notreported';
+      k += ' country-nas';
     } else if (["both", "hazard", "adaptation", "not_specified"].includes(focus_info)) {
       k += ' country-nasnap';
     } else {
