@@ -10,7 +10,7 @@
         </div>
     </tal:cond>
 
-    <tal:cond tal:condition="python: type(data[section_title]) is not list">
+    <tal:cond tal:condition="python: data[section_title] and type(data[section_title]) is not list">
         <div style="border: 1px solid black; padding: 10px;"
             tal:define="section_data python: data[section_title]">
           <p tal:content="python: len(section_data)"></p>
