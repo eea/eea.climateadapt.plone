@@ -41,9 +41,12 @@ def parse_csv(path):
 
 
 def get_country_code(country_name):
+    # import pdb; pdb.set_trace()
     country_code = next(
         (k for k, v in ace_countries if v == country_name), 'Not found'
     )
+    if country_code == 'GR':
+        country_code = "EL"
 
     return country_code
 
@@ -801,6 +804,9 @@ class CountryProfileData(BrowserView):
         response = {}
         countItems = {'Observed': 0, 'Future': 0}
         items = processed_data.get('Observed_Future_Climate_Hazards',[]).get('HazardsForm', [])[0].get('Hazards',[])
+        # import pdb; pdb.set_trace()
+        if len(items)==0:
+            return items
 
         for item in items:
             occurence = item['Occurrence']
@@ -861,23 +867,23 @@ class CountryProfileData(BrowserView):
             countCH = len(response['Future'][hazardType]['CH']['hazards'])
             futureHtml += "<tr><td rowspan='"+str(max(1,countAC)+max(1,countCH))+"' class='bb1'>"+hazardType+"</td>"
             futureHtml += "<td rowspan="+str(max(1,countAC))+" class='bb1'>Acute</td>"
-            className = ' class="bb1"' if countAC==1 else ''
+            className = ' class="bb1"' if countAC<=1 else ''
             futureHtml += "<td"+className+">"+response['Future'][hazardType]['AC']['hazards'][0] if countAC else ""+"</td>"
             futureHtml += "<td"+className+">"+response['Future'][hazardType]['AC']['trend'][0] if countAC else ""+"</td>"
             futureHtml +="</tr>"
 
-            if len(response['Future'][hazardType]['AC']['hazards']):
+            if countAC:
                 hazards = response['Future'][hazardType]['AC']['hazards'][1:]
                 for idx in range(len(hazards)):
                     className = ' class="bb1"' if idx+1==len(hazards) else ''
                     futureHtml += "<tr><td"+className+">"+response['Future'][hazardType]['AC']['hazards'][idx+1]+"</td>"
                     futureHtml += "<td"+className+">"+response['Future'][hazardType]['AC']['trend'][idx+1]+"</td></tr>"
-            else:
-                futureHtml += "<td class='bb1'/><td class='bb1'/><tr>"
+            # else:
+            #     futureHtml += "<td class='bb1'/><td class='bb1'/><tr>"
 
             futureHtml += "<tr>"
             futureHtml += "<td rowspan="+str(max(1,countCH))+"  class='bb1'>Chronic</td>"
-            if len(response['Future'][hazardType]['CH']['hazards']):
+            if countCH:
                 className = ' class="bb1"' if countCH==1 else ''
                 futureHtml += "<td"+className+">"+response['Future'][hazardType]['CH']['hazards'][0] if countCH else ""+"</td>"
                 futureHtml += "<td"+className+">"+response['Future'][hazardType]['CH']['trend'][0] if countCH else ""+"</td>"

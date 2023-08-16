@@ -143,7 +143,7 @@ ul li {
               </ul>
             </td>
           </tr>
-          <tr tal:define="items python: data['Contact'].get('CCIV_Portal_Platform', [])">
+          <tr tal:condition="data/Contact" tal:define="items python: data['Contact'].get('CCIV_Portal_Platform', []) if data['Contact'] else []">
             <td i18n:translate="">Adaptation portals and platforms</td>
             <td>
               <ul>
@@ -192,7 +192,7 @@ ul li {
           <tr>
             <td i18n:translate="">Key reports and publications</td>
             <td></td>
-            <td tal:define="items python: data['Contact'].get('Publications', [])">
+            <td tal:condition="data/Contact" tal:define="items python: data['Contact'].get('Publications', []) if data['Contact'] else []">
               <ul>
                 <li tal:condition="items"
                     tal:repeat="item items"
@@ -325,7 +325,7 @@ ul li {
       <!-- <div tal:define="values python: data['Observed_Future_Climate_Hazards'].get('HazardsForm', [])">
         <div tal:content="python: values[0]['Hazards']"></div>
       </div> -->
-      <tal  tal:define="items view/hazards_table">
+      <tal  tal:define="items view/hazards_table" tal:condition="python: len(items)">
       <table class="listing table-striped">
         <thead>
           <tr>
@@ -382,7 +382,7 @@ ul li {
             <tr><td>Rating of the key hazards' likelihood of occurrence and exposure to them under future climate</td><td tal:content="item/KeyHazardsLikelihood" /></tr>
             <tr><td>Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td tal:content="item/LikelihoodVariability" /></tr>
             <tr><td>Rating of the vulnerability, including adaptive capacity</td><td tal:content="item/Vulnerability" /></tr>
-            <tr><td>Different rating of the vulnerability and/or adaptive capacity</td><td tal:content="item/VulnerabilityVariability" /></tr>
+            <tr><td>Different rating of the vulnerability and/or adaptive capacity</td><td tal:content="python: item.get('VulnerabilityVariability','')" /></tr>
             <tr><td>Assessment</td><td tal:content="item/DescribeVulnerability" /></tr>
             <tr><td>Rating for the risk of potential future impacts</td><td tal:content="item/RiskFutureImpacts" /></tr>
             <tr><td>Different rating of the risk of potential future impacts</td><td tal:content="item/RiskVariability" /></tr>
@@ -767,8 +767,8 @@ ul li {
 
 
     <div class="tab-pane  " id="4489-6">
-      <div style="display: flex; margin-bottom: 3em;"
-          tal:define="items python: data['Contact'].get('Contact_General', [])">
+      <div style="display: flex; margin-bottom: 3em;" tal:condition="data/Contact"
+          tal:define="items python: data['Contact'].get('Contact_General', []) if data['Contact'] else []">
         <div style="width: 50%;"
             tal:repeat="item items">
           <h3 tal:content="item/Organisation" tal:condition="python: 'Organisation' in item">Organisation</h3>
@@ -787,7 +787,7 @@ ul li {
         </div>
       </div>
 
-      <tal:def tal:define="items python: data['Contact'].get('Website', [])"
+      <tal:def tal:define="items python: data['Contact'].get('Website', []) if data['Contact'] else []"
           tal:condition="items">
         <h2 class="country-header" i18n:translate="">Relevant websites and social media source</h2>
         <div tal:repeat="item items">
