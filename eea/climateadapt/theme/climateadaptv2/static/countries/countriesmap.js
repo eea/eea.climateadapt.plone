@@ -1,5 +1,4 @@
 /* global d3, $, jQuery */
-
 var _selectedMapSection = null;
 // var _mapTooltip = null;
 var countrySettings = {};   // country settings extracted from ajax json
@@ -98,7 +97,8 @@ function getCountryClass(country, countries) {
     var noneAdopted = !(nap_info && nas_info && sap_info);
 
     if (notreported) {
-      k += ' country-notreported';
+      // k += ' country-notreported';
+      k += ' country-nas';
     } else if (nasNapSapAdopted) {
       k += ' country-nasnapsap';
     } else if (nasSapAdopted) {
@@ -112,7 +112,8 @@ function getCountryClass(country, countries) {
     } else if (onlyNasAdopted) {
       k += ' country-nas';
     } else if (noneAdopted) {
-      k += ' country-none';
+      // k += ' country-none';
+      k += ' country-nasnap';
     }
 
     if (countryNoData.indexOf(countryName) > -1) {
@@ -140,8 +141,6 @@ function getCountryClass(country, countries) {
   if (_selectedMapSection === 'portals') {
     var {focus_info, notreported} = discodata;
 
-    console.log(focus_info, countryName)
-
     /*
     if (notreported) {
       k += ' country-notreported';
@@ -158,7 +157,8 @@ function getCountryClass(country, countries) {
     }
     */
     if (notreported) {
-      k += ' country-notreported';
+      // k += ' country-notreported';
+      k += ' country-nas';
     } else if (["both", "hazard", "adaptation", "not_specified"].includes(focus_info)) {
       k += ' country-nasnap';
     } else {
@@ -610,18 +610,24 @@ function showMapTooltip(d) {
     var napInfo, nasInfo, sapInfo;
     if (content['nap_info']) {
       napInfo = '<span>National Adaptation Plan:</span>' + content['nap_info'];
+    } else if (content['nap_mixed']) {
+      napInfo = '<span>National Adaptation Plan:</span>' + content['nap_mixed'];
     } else {
       napInfo = '';
     }
 
     if (content['nas_info']) {
       nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_info'];
+    } else if (content['nas_mixed']) {
+      nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_mixed'];
     } else {
       nasInfo = '';
     }
 
     if (content['sap_info']) {
       sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_info'];
+    } else if (content['sap_mixed']) {
+      sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_mixed'];
     } else {
       sapInfo = '';
     }
