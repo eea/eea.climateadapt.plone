@@ -90,7 +90,7 @@
             </div>
 
             <div id="cca-macro-category-elements" class="macro-category" tal:condition="python:len(elements)" tal:define="elements context/elements">
-              <h4 i18n:translate="">Elements:</h4>
+              <h4 i18n:translate="">Adaptation elements:</h4>
               <tal:block content="structure python:view.w['elements'].render()"/>
             </div>
 

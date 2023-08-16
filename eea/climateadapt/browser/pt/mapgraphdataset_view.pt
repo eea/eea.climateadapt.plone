@@ -51,7 +51,7 @@
             <h4 i18n:translate="">Climate impacts</h4>
             <tal:block content="structure python:view.w['climate_impacts'].render()"/>
 
-            <h4 i18n:translate="">Elements</h4>
+            <h4 i18n:translate="">Adaptation elements</h4>
             <tal:block content="structure python:view.w['elements'].render()"/>
 
             <h4 i18n:translate="">Sectors</h4>
