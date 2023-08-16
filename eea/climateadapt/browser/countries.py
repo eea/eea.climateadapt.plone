@@ -730,7 +730,13 @@ class CountryProfileData(BrowserView):
         #     items,
         #     key=lambda i: (i['SectorTitle'], i['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in i else '')
         # )
+
         items = self.processed_data.get('Key_Affected_Sectors',[])
+
+        # for some countries if we have only one item, will return the item and not a array
+        if 'Id' in items:
+            items = [items]
+
         return items
 
     def get_sorted_action_measures_data(self):
@@ -945,7 +951,7 @@ class CountryProfileData(BrowserView):
 
         self.processed_data = processed_data
         #import pdb; pdb.set_trace()
-        return self.template(country_data=processed_data)
+        return self.template(country_data=processed_data, country_code=country_code, country_name=country_name)
 
 
 class CountryProfileDataRaw(CountryProfileData):
