@@ -385,25 +385,19 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                 _response[_type] = []
             _response[_type].append(item)
 
-        # value = u''
-        # for key in _response:
-        #     data = _response[key]
-        #     _value = [
-        #         u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
-        #             v.get('Link'), v.get('Title'),
-        #             "style='font-style:oblique;'", v.get('Status'))
-        #         for v in data
-        #     ]
-        #     if len(_value):
-        #         value += "<span>"+key+"</span>"
-        #         _value = [
-        #             u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
-        #                 v.get('Link'), v.get('Title'),
-        #                 "style='font-style:oblique;'", v.get('Status'))
-        #             for v in _value
-        #         ]
-        #         value += "<ul>"+_value+"</ul>"
-        # res['mixed'] = value
+        value = u''
+        for key in _response:
+            data = _response[key]
+            _value = [
+                u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                    v.get('Link'), v['Title'].encode('ascii', 'ignore').decode('ascii'),
+                    "style='font-style:oblique;'", v.get('Status'))
+                for v in data
+            ]
+            if len(_value):
+                value += "<span>"+key+"</span>"
+                value += "<ul>"+''.join(_value)+"</ul>"
+        res['mixed'] = value
 
         #import pdb; pdb.set_trace()
         res['nas_mixed'] = ''

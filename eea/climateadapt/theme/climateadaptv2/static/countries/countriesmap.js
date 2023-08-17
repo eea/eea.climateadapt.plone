@@ -607,35 +607,35 @@ function showMapTooltip(d) {
   var url = info[1];
 
   if (_selectedMapSection === 'overview') {
-    var napInfo, nasInfo, sapInfo;
-    if (content['nap_info']) {
-      napInfo = '<span>National Adaptation Plan:</span>' + content['nap_info'];
-    } else if (content['nap_mixed']) {
-      napInfo = '<span>National Adaptation Plan:</span>' + content['nap_mixed'];
-    } else {
-      napInfo = '';
-    }
+    // var napInfo, nasInfo, sapInfo;
+    // if (content['nap_info']) {
+    //   napInfo = '<span>National Adaptation Plan:</span>' + content['nap_info'];
+    // } else if (content['nap_mixed']) {
+    //   napInfo = '<span>National Adaptation Plan:</span>' + content['nap_mixed'];
+    // } else {
+    //   napInfo = '';
+    // }
+    // _mi
+    // if (content['nas_info']) {
+    //   nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_info'];
+    // } else if (content['nas_mixed']) {
+    //   nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_mixed'];
+    // } else {
+    //   nasInfo = '';
+    // }
 
-    if (content['nas_info']) {
-      nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_info'];
-    } else if (content['nas_mixed']) {
-      nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_mixed'];
-    } else {
-      nasInfo = '';
-    }
-
-    if (content['sap_info']) {
-      sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_info'];
-    } else if (content['sap_mixed']) {
-      sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_mixed'];
-    } else {
-      sapInfo = '';
-    }
+    // if (content['sap_info']) {
+    //   sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_info'];
+    // } else if (content['sap_mixed']) {
+    //   sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_mixed'];
+    // } else {
+    //   sapInfo = '';
+    // }
 
     if (content['notreported']) {
       content = noDataReportedMsg;
     } else {
-      content = (nasInfo + napInfo + sapInfo) || "NAS and NAP not reported";
+      content = (content['mixed']) || "NAS and NAP not reported";
     }
   }
 
