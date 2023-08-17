@@ -373,6 +373,39 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
             res[prop] = value
 
         values = processed_data['Legal_Policies'].get('AdaptationPolicies', [])
+        sorted_items = sorted(
+            values,
+            key=lambda i: i['Type']
+        )
+        _response = {}
+        for item in sorted_items:
+            _type = item['Type']
+            _type = _type[3:_type.find('(')]
+            if _type not in _response:
+                _response[_type] = []
+            _response[_type].append(item)
+
+        # value = u''
+        # for key in _response:
+        #     data = _response[key]
+        #     _value = [
+        #         u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+        #             v.get('Link'), v.get('Title'),
+        #             "style='font-style:oblique;'", v.get('Status'))
+        #         for v in data
+        #     ]
+        #     if len(_value):
+        #         value += "<span>"+key+"</span>"
+        #         _value = [
+        #             u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+        #                 v.get('Link'), v.get('Title'),
+        #                 "style='font-style:oblique;'", v.get('Status'))
+        #             for v in _value
+        #         ]
+        #         value += "<ul>"+_value+"</ul>"
+        # res['mixed'] = value
+
+        #import pdb; pdb.set_trace()
         res['nas_mixed'] = ''
         res['nap_mixed'] = ''
         res['sap_mixed'] = ''
