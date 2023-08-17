@@ -170,7 +170,7 @@ window.requirejs([
 
 var changeSkipClicks = false;
 $( document ).ready(function() {
-  $('#arcgis_case_study_form input[name="impacts"], #arcgis_case_study_form input[name="sectors"], #arcgis_case_study_form input[name="ipccs"]').change(function(){
+  $('#arcgis_case_study_form input[name="impacts"], #arcgis_case_study_form input[name="sectors"], #arcgis_case_study_form input[name="ipccs"], #arcgis_case_study_form input[name="ktms"]').change(function(){
     if (!changeSkipClicks) {
       buttonReset();
       updateItems();
@@ -231,6 +231,8 @@ function updateItems(type) {
   const whereImpacts = [];
   const whereSectors = [];
   const whereIpccs = [];
+  const whereKtms = [];
+
   where.push( "portal_type LIKE 'casestudy'" );
 
   const impacts = $("#arcgis_case_study_form input[name='impacts']:checked");
@@ -256,6 +258,15 @@ function updateItems(type) {
   if (whereIpccs.length) {
     where.push('('+whereIpccs.join(' OR ')+')');
   }
+
+  const ktms = $("#arcgis_case_study_form input[name='ktms']:checked");
+  for (index=0; index<ktms.length; index++) {
+    whereKtms.push( "ktms LIKE '%"+ktms[index].getAttribute('value')+"%'" );
+  }
+  if (whereKtms.length) {
+    where.push('('+whereKtms.join(' OR ')+')');
+  }
+
 
   window.mapview.filter = {where: where.join(' AND ')};
   //console.log(window.mapview.filter);
