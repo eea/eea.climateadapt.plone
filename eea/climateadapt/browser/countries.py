@@ -47,6 +47,8 @@ def get_country_code(country_name):
     )
     if country_code == 'GR':
         country_code = "EL"
+    if country_code == 'Not found' and country_name.lower == 'turkiye':
+        country_code = "TR"
 
     return country_code
 
@@ -326,6 +328,8 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
         #         res[name] = obj.getProperty(name)
 
         country_name = obj.id.title().replace('-', ' ')
+        if country_name.lower == 'turkiye':
+            country_name == 'Turkey'
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -700,8 +704,13 @@ class ContextCountriesViewJson(BrowserView):
 class CountryProfileData(BrowserView):
     template = ViewPageTemplateFile("pt/country-profile.pt")
 
+    def verify_country_name(self, country_name):
+        if country_name.lower in ['copy_of_turkey', 'turkiye']:
+            country_name == 'Turkey'
+        return country_name
+
     def get_processed_data(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -797,7 +806,7 @@ class CountryProfileData(BrowserView):
         return link
 
     def summary_table(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -826,7 +835,7 @@ class CountryProfileData(BrowserView):
         return {'keys':keys, 'items':response}
 
     def hazards_table(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -932,7 +941,7 @@ class CountryProfileData(BrowserView):
         return {'observedHtml':observedHtml, 'futureHtml':futureHtml, 'data':response}
 
     def hazards_table_prev_version(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -968,7 +977,7 @@ class CountryProfileData(BrowserView):
         return {'keys':keys, 'items':response}
 
     def __call__(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
