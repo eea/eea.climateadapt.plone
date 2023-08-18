@@ -47,7 +47,7 @@ def get_country_code(country_name):
     )
     if country_code == 'GR':
         country_code = "EL"
-    if country_code == 'Not found' and country_name.lower == 'turkiye':
+    if country_code == 'Not found' and country_name.lower() == 'turkiye':
         country_code = "TR"
 
     return country_code
@@ -706,7 +706,7 @@ class CountryProfileData(BrowserView):
 
     def verify_country_name(self, country_name):
         if country_name.lower in ['copy_of_turkey', 'turkiye']:
-            country_name == 'Turkey'
+            country_name = 'Turkey'
         return country_name
 
     def get_processed_data(self):
