@@ -1,10 +1,10 @@
 <div tal:condition="python: not options['country_data']" i18n:translate="" style="margin:30px;" class="alert alert-warning alert-dismissable alert-redirect" role="alert">
   <p tal:condition="python: options['country_code']=='TR'">
-  The information presented in these pages is based on the 2021 voluntary reporting of Türkiye, in line with the 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action'
+  No data reported in 2023. You can visit on <a href="/en/countries-regions/countries-2021/turkiye">older report for Türkiye</a>.
   </p>
 
   <p tal:condition="python: options['country_code']=='NO'">
-  The information presented in these pages is based on the 2019 voluntary reporting of Norway, in line with the 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change'.
+  No data reported in 2023. You can visit on <a href="/en/countries-regions/countries-2021/norway">older report for Norway</a>.
   </p>
   <p tal:condition="python: options['country_code'] not in ['TR','NO']">No data for this country</p>
 </div>
