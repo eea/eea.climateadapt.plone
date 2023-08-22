@@ -1,3 +1,4 @@
+# coding=utf-8
 """ A tile to implement the countries select dropdown
 """
 
@@ -47,7 +48,8 @@ class CountrySelectTile(PersistentCoverTile):
 
         # return sorted(countries, key=lambda c: c[1])
 
-        return sorted(ace_countries_selection, key=lambda c: c[1])
+        return sorted([(code,name if name != u'Turkey' else u'Türkiye') for code,name in ace_countries_selection], key=lambda c: c[1])
+        # return sorted(ace_countries_selection, key=lambda c: c[1])
 
 
 class SettingsPage(BrowserView):
