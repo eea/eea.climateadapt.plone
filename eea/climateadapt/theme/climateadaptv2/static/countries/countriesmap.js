@@ -33,6 +33,7 @@ function initmap(metadata, world, flags) {
   var sections_language = metadata[2];
 
   world = world.features;
+  console.log();
 
   // setCountryFlags(world, flags);
 
@@ -838,8 +839,7 @@ function createSectionsSelector(sections, countries, callback) {
   var countryNames = Object.keys(countries);
   countryNames.sort();
   var select = $("#country-selector select");
-
-  countryNames.forEach(function (name) {
+  countryNames.filter((countryName)=>countryName != "United Kingdom").forEach(function (name) {
     select
       .append(
       $("<option>").append(name)
