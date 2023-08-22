@@ -382,6 +382,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
             key=lambda i: i['Type']
         )
         _response = {}
+        sorted_items = filter(lambda x: x['Status'].endswith(('completed', '(adopted)')), sorted_items)
         for item in sorted_items:
             _type = item['Type']
             _type = _type[3:_type.find('(')]
