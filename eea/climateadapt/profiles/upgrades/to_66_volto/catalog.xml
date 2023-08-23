@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+ <index name="show_in_top_level" meta_type="FieldIndex">
+  <indexed_attr value="show_in_top_level"/>
+ </index>
+</object>
+

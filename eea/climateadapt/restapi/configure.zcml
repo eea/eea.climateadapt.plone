@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone">
 
   <adapter factory=".serializer.LanguageGenericSerializer"/>
@@ -44,5 +45,14 @@
     factory=".blocks.RelevantAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
     />
+
+  <browser:page
+      for="*"
+      name="portal_tabs_view"
+      layer="plone.restapi.interfaces.IPloneRestapiLayer"
+      class=".navigation.CatalogNavigationTabs"
+      permission="zope.Public"
+      allowed_attributes="topLevelTabs"
+      />
 
 </configure>
