@@ -1,13 +1,10 @@
-# import json
-import urllib
 from collections import namedtuple
 
 from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+                                                filters_to_query,
                                                 translate_text)
 from plone.api.portal import get_tool
 from Products.Five.browser import BrowserView
-
-# from urlparse import parse_sql
 
 Section = namedtuple("Section", ["title", "count", "link", "icon_class"])
 
@@ -25,16 +22,6 @@ SEARCH_TYPES_ICONS = [
     ("RESEARCHPROJECT", "Research and knowledge projects", "research-icon"),
     ("TOOL", "Tools", "fa-wrench"),
 ]
-
-
-def filters_to_query(args):
-    res = []
-    for i, (name, val) in enumerate(args):
-        res.append(['filters[{0}][field]'.format(i), name])
-        res.append(['filters[{0}][type]'.format(i), 'any'])
-        res.append(['filters[{0}][values][0]'.format(i), val])
-
-    return urllib.urlencode(dict(res))
 
 
 class Urban(BrowserView, TranslationUtilsMixin):

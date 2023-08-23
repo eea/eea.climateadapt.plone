@@ -1,10 +1,13 @@
 """ Generic utilities
 """
 
+import urllib
 import logging
-import time
 
 from DateTime import DateTime
+
+# import time
+
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -42,3 +45,13 @@ def shorten(t, to=254):
         t = t[:to - 3] + el
 
     return t
+
+
+def filters_to_query(args):
+    res = []
+    for i, (name, val) in enumerate(args):
+        res.append(['filters[{0}][field]'.format(i), name])
+        res.append(['filters[{0}][type]'.format(i), 'any'])
+        res.append(['filters[{0}][values][0]'.format(i), val])
+
+    return urllib.urlencode(dict(res))
