@@ -6,7 +6,10 @@ class CatalogNavigationTabs(BaseCatalogNavigationTabs):
     def _getNavQuery(self):
         query = super(CatalogNavigationTabs, self)._getNavQuery()
 
-        if '/mission/' not in self.context.absolute_url(relative=True):
-            query['show_in_top_level'] = True
+        bits = self.context.getPhysicalPath()
+        if len(bits) > 3 and bits[3] == 'mission':
+            return query
+        # if '/mission' not in self.context.absolute_url(relative=True):
+        query['show_in_top_level'] = True
 
         return query
