@@ -70,6 +70,9 @@ function getCountryClass(country, countries) {
 
   var countryName = country.properties.SHRT_ENGL;
   var meta = countrySettings[countryName];
+  if (countryName == 'Turkey') {
+    var meta = countrySettings['Turkiye'];
+  }
   if (!meta) {
     return k;
   }
