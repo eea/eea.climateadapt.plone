@@ -55,4 +55,18 @@
       allowed_attributes="topLevelTabs"
       />
 
+  <adapter
+      factory=".navigation.Navigation"
+      name="navigation"
+      />
+
+    <plone:service
+      method="GET"
+      factory=".navigation.NavigationGet"
+      for="zope.interface.Interface"
+      permission="zope2.View"
+      name="@navigation"
+      layer="plone.restapi.interfaces.IPloneRestapiLayer"
+      />
+
 </configure>
