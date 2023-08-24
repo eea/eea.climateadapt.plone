@@ -32,11 +32,11 @@ DEFAULT_LOCATIONS = {
                "Case studies",
                'eea.climateadapt.casestudy'),
     "NEW": ('news-archive',
-               "News",
-               'News Item'),
+            "News",
+            'News Item'),
     "EVENT": ('more-events',
-               "Events",
-               'Event'),
+              "Events",
+              'Event'),
 }
 
 CONTACT_MAIL_LIST = [
@@ -50,3 +50,8 @@ REGISTER_MAIL_LIST = [
     "lorenasalcidos@gmail.com",
     "helpdesk@mayors-adapt.eu",
 ]
+
+
+ACEID_TO_SEARCHTYPE = {
+    'Case studies': 'Case study',
+}

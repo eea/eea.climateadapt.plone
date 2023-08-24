@@ -1,5 +1,6 @@
 from collections import namedtuple
 
+from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
 from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
                                                 filters_to_query,
                                                 translate_text)
@@ -30,7 +31,7 @@ class Urban(BrowserView, TranslationUtilsMixin):
     # @cache
     def _make_link(self, search_type):
         args = [
-            ('objectProvides', search_type),
+            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
             ('cca_adaptation_sectors.keyword', "Urban"),
         ]
         query = filters_to_query(args)
@@ -61,9 +62,9 @@ class Urban(BrowserView, TranslationUtilsMixin):
             data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
         return [
-            Section(x[1], counts.get(x[0], 0), self._make_link(x[1]), x[2])
+            Section(title, counts.get(aceid, 0), self._make_link(aceid), icon)
             # for x in SEARCH_TYPES_ICONS
-            for x in tmp_types
+            for (aceid, title, icon, raw_title) in tmp_types
         ]
 
 
@@ -73,7 +74,7 @@ class Forest(BrowserView, TranslationUtilsMixin):
     # @cache
     def _make_link(self, search_type):
         args = [
-            ('objectProvides', search_type),
+            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
             ('cca_adaptation_sectors.keyword', "Forestry"),
         ]
         query = filters_to_query(args)
@@ -103,8 +104,9 @@ class Forest(BrowserView, TranslationUtilsMixin):
             data = list(data)
             data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
+
         return [
-            Section(x[1], counts.get(x[0], 0), self._make_link(x[1]), x[2])
+            Section(title, counts.get(aceid, 0), self._make_link(aceid), icon)
             # for x in SEARCH_TYPES_ICONS
-            for x in tmp_types
+            for (aceid, title, icon, raw_title) in tmp_types
         ]
