@@ -266,7 +266,7 @@
                   </div>
                   <p class="feature-text" i18n:translate="">Learn more about different adaptation options to the various impacts of climate change in urban areas.</p>
                   <div class="bottom-section">
-                    <a class="standard-button primary-button feature-btn" href="/en/data-and-downloads/?lang=en&source=%7B%22query%22%3A%20%7B%22function_score%22%3A%20%7B%22query%22%3A%20%7B%22bool%22%3A%20%7B%22filter%22%3A%20%7B%22bool%22%3A%20%7B%22must%22%3A%20%5B%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22typeOfData%22%3A%20%22Adaptation%20options%22%7D%7D%5D%7D%7D%2C%20%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22sectors%22%3A%20%22Urban%22%7D%7D%5D%7D%7D%5D%7D%7D%7D%7D%7D%7D%7D" i18n:translate="">Go to the Adaptation Options</a>
+                    <a class="standard-button primary-button feature-btn" tal:attributes="href view/main_link" href="/en/data-and-downloads/?lang=en&source=%7B%22query%22%3A%20%7B%22function_score%22%3A%20%7B%22query%22%3A%20%7B%22bool%22%3A%20%7B%22filter%22%3A%20%7B%22bool%22%3A%20%7B%22must%22%3A%20%5B%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22typeOfData%22%3A%20%22Adaptation%20options%22%7D%7D%5D%7D%7D%2C%20%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22sectors%22%3A%20%22Urban%22%7D%7D%5D%7D%7D%5D%7D%7D%7D%7D%7D%7D%7D" i18n:translate="">Go to the Adaptation Options</a>
                   </div>
                 </div>
 

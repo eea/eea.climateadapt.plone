@@ -351,11 +351,11 @@ class FrontpageSearch(BrowserView, TranslationUtilsMixin):
 
         for data in SEARCH_TYPES_ICONS:
             data = list(data)
-            data.append(data[1])
+            # data.append(data[1])
             data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
 
         return [
             Section(title, counts.get(aceid, 0), self._make_link(aceid), icon)
-            for (aceid, title, icon, raw_title) in tmp_types
+            for (aceid, title, icon) in tmp_types
         ]

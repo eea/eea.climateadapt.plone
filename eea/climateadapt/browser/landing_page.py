@@ -26,6 +26,15 @@ SEARCH_TYPES_ICONS = [
 
 
 class Urban(BrowserView, TranslationUtilsMixin):
+    def main_link(self):
+        search_type = "Adaptation option"
+        args = [
+            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ('cca_adaptation_sectors.keyword', "Urban"),
+        ]
+        query = filters_to_query(args)
+        link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
+        return link
 
     # TODO: implement cache using eea.cache
     # @cache
@@ -61,14 +70,25 @@ class Urban(BrowserView, TranslationUtilsMixin):
             data = list(data)
             data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
+
         return [
             Section(title, counts.get(aceid, 0), self._make_link(aceid), icon)
             # for x in SEARCH_TYPES_ICONS
-            for (aceid, title, icon, raw_title) in tmp_types
+            for (aceid, title, icon) in tmp_types
         ]
 
 
 class Forest(BrowserView, TranslationUtilsMixin):
+    def main_link(self):
+        search_type = "Adaptation option"
+        args = [
+            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ('cca_adaptation_sectors.keyword', "Forestry"),
+        ]
+        query = filters_to_query(args)
+        link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
+        return link
+        # return "/en/data-and-downloads/?lang=en&source=%7B%22query%22%3A%20%7B%22function_score%22%3A%20%7B%22query%22%3A%20%7B%22bool%22%3A%20%7B%22filter%22%3A%20%7B%22bool%22%3A%20%7B%22must%22%3A%20%5B%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22typeOfData%22%3A%20%22Adaptation%20options%22%7D%7D%5D%7D%7D%2C%20%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22sectors%22%3A%20%22Forestry%22%7D%7D%5D%7D%7D%5D%7D%7D%7D%7D%7D%7D%7D"
 
     # TODO: implement cache using eea.cache
     # @cache
@@ -108,5 +128,5 @@ class Forest(BrowserView, TranslationUtilsMixin):
         return [
             Section(title, counts.get(aceid, 0), self._make_link(aceid), icon)
             # for x in SEARCH_TYPES_ICONS
-            for (aceid, title, icon, raw_title) in tmp_types
+            for (aceid, title, icon) in tmp_types
         ]
