@@ -252,38 +252,37 @@ class AceTileMixin(object):
         for k, v in x.items():
 
             if k == "search_type":
-
                 terms.append(('objectProvides',
                               [ACEID_TO_SEARCHTYPE.get(
                                   s, DATATYPES.get(s, s)) for s in v]))
-                # for s in v:
-                #     terms.append({u"term": {u"typeOfData": DATATYPES[s]}})
 
             if k == "origin_website":
                 terms.append(('cca_origin_websites.keyword', [
                              ORIGIN_WEBSITES[s] for s in v]))
-                # for s in v:
-                #     terms.append({u"term": {u"typeOfData": ORIGIN_WEBSITES[s]}})
 
-        #     if k == "sectors":
-        #         for s in v:
-        #             terms.append({u"term": {u"sectors": SECTORS[s]}})
-        #
-        #     if k == "climate_impacts":
-        #         for s in v:
-        #             terms.append({u"term": {u"climate_impacts": CLIMATE_IMPACTS[s]}})
-        #
-        #     if k == "elements":
-        #         for s in v:
-        #             terms.append({u"term": {u"elements": ELEMENTS[s]}})
-        #
+            if k == "sectors":
+                __import__('pdb').set_trace()
+                terms.append(('cca_adaptation_sectors.keyword', [
+                             SECTORS[s] for s in v]))
+
+            if k == "climate_impacts":
+                terms.append(('cca_climate_impacts.keyword', [
+                             CLIMATE_IMPACTS[s] for s in v]))
+
+            if k == "elements":
+                terms.append(('cca_adaptation_elements.keyword', [
+                             ELEMENTS[s] for s in v]))
+
+            if k == "countries":
+                terms.append(('cca_geographic_countries.keyword', [
+                             COUNTRIES[s] for s in v]))
+
+        # cca_geographic_transnational_region
+        # cca_funding_programme
+
         #     if k == "funding_programme":
         #         for s in v:
         #             terms.append({u"term": {u"funding_programme": s}})
-        #
-        #     if k == "countries":
-        #         for s in v:
-        #             terms.append({u"term": {u"places": COUNTRIES[s]}})
         #
         #     if k == "macro_regions":
         #         for s in v:
