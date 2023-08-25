@@ -259,7 +259,8 @@ class AceTileMixin(object):
                 #     terms.append({u"term": {u"typeOfData": DATATYPES[s]}})
 
             if k == "origin_website":
-                terms.append(('cca_origin_websites.keyword', [ORIGIN_WEBSITES[s] for s in v])
+                terms.append(('cca_origin_websites.keyword', [
+                             ORIGIN_WEBSITES[s] for s in v]))
                 # for s in v:
                 #     terms.append({u"term": {u"typeOfData": ORIGIN_WEBSITES[s]}})
 
@@ -315,13 +316,13 @@ class AceTileMixin(object):
         # }
         #
         # q = {"query": t}
-        query=filters_to_query(terms)
+        query = filters_to_query(terms)
 
         # print(q)
         return "{}{}".format(url, query)        # urllib.quote(json.dumps(q))
 
     def list_of_other_regions(self):
-        resp=[]
+        resp = []
         resp.append('Macaronesia')
         resp.append('Caribbean Area')
         resp.append('Amazonia')
@@ -332,53 +333,53 @@ class AceTileMixin(object):
 
     def sections(self):
         """Returns a list of (section name, section count, section_url)"""
-        site=getSite()
-        base_query="/{0}/data-and-downloads/?lang={0}&source=".format(
+        site = getSite()
+        base_query = "/{0}/data-and-downloads/?lang={0}&source=".format(
             self.current_lang)
 
-        base=site.absolute_url() + base_query
+        base = site.absolute_url() + base_query
 
-        result=[]
+        result = []
 
-        _ace_types=dict(_datatypes)
+        _ace_types = dict(_datatypes)
 
-        search_type=self.data.get("search_type")
+        search_type = self.data.get("search_type")
 
         if search_type and len(search_type) == 1:
             # Special case when we want to show the results, like RelevantTile
-            search_type=search_type[0]
-            query=self.build_query()
-            count=self.data.get("nr_items", 5)
-            brains=self.catalog.searchResults(**query)
-            url=self.build_url(base, query, {})
-            r=(_ace_types[search_type], len(brains), url, brains[:count])
+            search_type = search_type[0]
+            query = self.build_query()
+            count = self.data.get("nr_items", 5)
+            brains = self.catalog.searchResults(**query)
+            url = self.build_url(base, query, {})
+            r = (_ace_types[search_type], len(brains), url, brains[:count])
             result.append(r)
 
             return result
 
         # TODO: sync the links here to the index names and to the faceted
         # indexes
-        query=self.build_query()
+        query = self.build_query()
 
-        element_type=self.data.pop("element_type", [])
+        element_type = self.data.pop("element_type", [])
 
         for typeid, typelabel in _datatypes:
             if search_type:
                 if not (typeid in search_type):
                     continue
-            q=query.copy()
+            q = query.copy()
 
             q.update({"search_type": typeid})
 
             if element_type:
                 q.update({"elements": element_type})
 
-            count=len(self.catalog.searchResults(**q))
+            count = len(self.catalog.searchResults(**q))
 
             if count:
                 # TODO: this append needs 4 items, not 3
-                url=self.build_url(base, q, {})
-                r=(
+                url = self.build_url(base, q, {})
+                r = (
                     typelabel,
                     count,
                     url,
@@ -389,17 +390,17 @@ class AceTileMixin(object):
         return result
 
     def relevant_items(self):
-        query=self.build_query()
-        res=self.catalog.searchResults(**query)
+        query = self.build_query()
+        res = self.catalog.searchResults(**query)
 
         return res
 
     def relevant_all_items(self):
         # current_language = get_current_language(self.context, self.request)
-        count=int(self.data.get("nr_items", 5)) or 5
-        res=[]
+        count = int(self.data.get("nr_items", 5)) or 5
+        res = []
 
-        combine=self.data.get("combine_results", False)
+        combine = self.data.get("combine_results", False)
 
         if not combine:
             if res:
@@ -410,9 +411,10 @@ class AceTileMixin(object):
 
         for item in self.relevant_items():
             try:
-                obj=item.getObject()
+                obj = item.getObject()
             except KeyError:        # this is an indexing problem
-                logger.warn("Object not found in relevant_all_items: %s", item.getURL())
+                logger.warn(
+                    "Object not found in relevant_all_items: %s", item.getURL())
                 continue
             # if '/' + current_language + '/' not in item.getURL():
             #     item = self.translated_object(item)
@@ -420,9 +422,9 @@ class AceTileMixin(object):
             if not item:
                 continue
 
-            adapter=sortable_title(obj)
-            st=adapter()
-            o=Item(
+            adapter = sortable_title(obj)
+            st = adapter()
+            o = Item(
                 item.Title,
                 item.Description,
                 '',
@@ -449,12 +451,12 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMi
     # special_tags
     # countries
 
-    index=ViewPageTemplateFile("pt/search_acecontent.pt")
+    index = ViewPageTemplateFile("pt/search_acecontent.pt")
 
-    is_configurable=True
-    is_editable=True
-    is_droppable=False
-    short_name=u"Search AceContent"
+    is_configurable = True
+    is_editable = True
+    is_droppable = False
+    short_name = u"Search AceContent"
 
     @ view.memoize
     def is_empty(self):
@@ -467,29 +469,30 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMi
         return []
 
 
-sortby_def={
+sortby_def = {
     "MODIFIED": "Last Modified",
     "EFFECTIVE": "Last Published",
     "NAME": "Alphabetical sorting",
 }
 
-sortbyterms=[SimpleTerm(value=k, token=k, title=v) for k, v in sortby_def.items()]
-sortby_vocabulary=SimpleVocabulary(sortbyterms)
+sortbyterms = [SimpleTerm(value=k, token=k, title=v)
+               for k, v in sortby_def.items()]
+sortby_vocabulary = SimpleVocabulary(sortbyterms)
 
 
 class IRelevantAceContentItemsTile(ISearchAceContentTile):
 
-    show_share_btn=Bool(
+    show_share_btn = Bool(
         title=u"Show the share button",
         default=False,
     )
 
-    combine_results=Bool(
+    combine_results = Bool(
         title=u"Show listing results, in addition to assigned items",
         default=False,
     )
 
-    uuids=Dict(
+    uuids = Dict(
         title=u"Elements",
         key_type=TextLine(),
         value_type=Dict(
@@ -499,7 +502,7 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
         required=False,
     )
 
-    sortBy=Choice(
+    sortBy = Choice(
         title=u"Sort order for results and assigned items",
         vocabulary=sortby_vocabulary,
     )
@@ -507,7 +510,8 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
     form.omitted("uuids")
 
 
-Item=namedtuple("Item", ["Title", "Description", "icons", "sortable_title", "url"])
+Item = namedtuple("Item", ["Title", "Description",
+                  "icons", "sortable_title", "url"])
 
 
 class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
@@ -515,15 +519,15 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
     implements(IRelevantAceContentItemsTile, IListTile)
 
-    short_name=u"Relevant AceContent"
+    short_name = u"Relevant AceContent"
 
-    is_configurable=True
-    is_editable=True
-    is_droppable=True
+    is_configurable = True
+    is_editable = True
+    is_droppable = True
 
-    index=ViewPageTemplateFile("pt/relevant_acecontent.pt")
+    index = ViewPageTemplateFile("pt/relevant_acecontent.pt")
 
-    view_more=True
+    view_more = True
 
     @ property
     def is_available(self):
@@ -545,9 +549,9 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
     def get_description(self, item):
         # TODO: move this code to an indexer and a metadata column
 
-        adapter=get_aceitem_description(item)
+        adapter = get_aceitem_description(item)
         try:
-            value=adapter()
+            value = adapter()
         except AttributeError:  # object doesn't have long_description
             return ""
 
@@ -557,7 +561,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
     def accepted_ct(self):
         """Return accepted drag/drop content types for this tile."""
 
-        cca_types=[
+        cca_types = [
             u"eea.climateadapt.adaptationoption",
             u"eea.climateadapt.aceproject",
             u"eea.climateadapt.casestudy",
@@ -582,10 +586,10 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         ]
 
     def view_more_url(self):
-        site=getSite()
-        base=site.absolute_url() + "/data-and-downloads?source="
+        site = getSite()
+        base = site.absolute_url() + "/data-and-downloads?source="
 
-        q={
+        q = {
             "elements": self.data.get("element_type"),
             "search_type": self.data.get("search_type"),
             "SearchableText": self.data.get("search_text") or "",
@@ -600,54 +604,54 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
     @ view.memoize
     def icon_images(self):
-        root=portal.get()
+        root = portal.get()
 
         if "tile_icons" not in root.objectIds():
             return []
 
-        tile_icons=root["tile_icons"]
+        tile_icons = root["tile_icons"]
 
         return tile_icons.objectValues()
 
     def get_icons(self, obj):
-        special_tags=getattr(obj, "special_tags", []) or []
-        images=self.icon_images()
-        icons=[image for image in images if image.getId() in special_tags]
+        special_tags = getattr(obj, "special_tags", []) or []
+        images = self.icon_images()
+        icons = [image for image in images if image.getId() in special_tags]
 
         return icons
 
     # @view.memoize
     def items(self):
-        count=self.data.get("nr_items", 5) or 5
-        query=self.build_query()
-        res=self.catalog.searchResults(**query)
+        count = self.data.get("nr_items", 5) or 5
+        query = self.build_query()
+        res = self.catalog.searchResults(**query)
 
         if len(res) < count:
-            self.view_more=False
+            self.view_more = False
 
-        items=res[:count]
+        items = res[:count]
 
         return items
 
     def all_items(self):
-        current_language=get_current_language(self.context, self.request)
+        current_language = get_current_language(self.context, self.request)
         # site = getSite()
         # catalog = site.portal_catalog
-        res=[]
+        res = []
 
         for item in self.assigned():
             if current_language != 'en':
                 # import pdb; pdb.set_trace()
-                item=self.translated_object(item)
+                item = self.translated_object(item)
             #    translations = TranslationManager(item).get_translations()
             #    if current_language not in translations:
             #        continue
             #    item = translations[current_language]
             if not item:
                 continue
-            adapter=sortable_title(item)
-            st=adapter()
-            o=Item(
+            adapter = sortable_title(item)
+            st = adapter()
+            o = Item(
                 item.Title(),
                 self.get_description(item),
                 self.get_icons(item),
@@ -656,7 +660,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
             )
             res.append(o)
 
-        combine=self.data.get("combine_results", False)
+        combine = self.data.get("combine_results", False)
 
         if not combine:
             if res:
@@ -666,16 +670,16 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
                     return res
 
         for item in self.items():
-            obj=item.getObject()
+            obj = item.getObject()
             if '/'+current_language+'/' not in item.getURL():
-                item=self.translated_object(item)
+                item = self.translated_object(item)
 
             if not item:
                 continue
 
-            adapter=sortable_title(obj)
-            st=adapter()
-            o=Item(
+            adapter = sortable_title(obj)
+            st = adapter()
+            o = Item(
                 item.Title,
                 item.Description,
                 self.get_icons(item),
@@ -695,16 +699,16 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         # self.set_limit()
 
         # always get the latest data
-        uuids=ITileDataManager(self).get().get("uuids", None)
+        uuids = ITileDataManager(self).get().get("uuids", None)
 
-        results=list()
+        results = list()
 
         if uuids:
-            ordered_uuids=[(k, v) for k, v in uuids.items()]
+            ordered_uuids = [(k, v) for k, v in uuids.items()]
             ordered_uuids.sort(key=lambda x: x[1]["order"])
 
             for uuid in [i[0] for i in ordered_uuids]:
-                obj=uuidToObject(uuid)
+                obj = uuidToObject(uuid)
 
                 if obj:
                     results.append(obj)
@@ -712,15 +716,17 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
                 else:
                     # maybe the user has no permission to access the object
                     # so we try to get it bypassing the restrictions
-                    catalog=api.portal.get_tool("portal_catalog")
+                    catalog = api.portal.get_tool("portal_catalog")
                     # brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
-                    brain=catalog.searchResults(UID=uuid, review_state='published')
+                    brain = catalog.searchResults(
+                        UID=uuid, review_state='published')
 
                     if not brain:
                         # the object was deleted; remove it from the tile
                         self.remove_item(uuid)
                         logger.debug(
-                            "Nonexistent object {0} removed from " "tile".format(uuid)
+                            "Nonexistent object {0} removed from " "tile".format(
+                                uuid)
                         )
         return results
 
@@ -731,7 +737,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         """
         super(RelevantAceContentItemsTile, self).populate_with_object(obj)
         # check permission
-        uuids=ICoverUIDsProvider(obj).getUIDs()
+        uuids = ICoverUIDsProvider(obj).getUIDs()
 
         if uuids:
             self.populate_with_uuids(uuids)
@@ -744,47 +750,49 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         """
 
         if not self.isAllowedToEdit():
-            raise Unauthorized("You are not allowed to add content to this tile")
+            raise Unauthorized(
+                "You are not allowed to add content to this tile")
         # self.set_limit()
-        data_mgr=ITileDataManager(self)
+        data_mgr = ITileDataManager(self)
 
-        old_data=data_mgr.get()
+        old_data = data_mgr.get()
 
         if old_data["uuids"] is None:
             # If there is no content yet, just assign an empty dict
-            old_data["uuids"]=dict()
+            old_data["uuids"] = dict()
 
-        uuids_dict=old_data.get("uuids")
+        uuids_dict = old_data.get("uuids")
 
         if not isinstance(uuids_dict, dict):
             # Make sure this is a dict
-            uuids_dict=old_data["uuids"]=dict()
+            uuids_dict = old_data["uuids"] = dict()
 
         # if uuids_dict and len(uuids_dict) > self.limit:
         #     # Do not allow adding more objects than the defined limit
         #     return
 
-        order_list=[int(val.get("order", 0)) for key, val in uuids_dict.items()]
+        order_list = [int(val.get("order", 0))
+                      for key, val in uuids_dict.items()]
 
         if len(order_list) == 0:
             # First entry
-            order=0
+            order = 0
         else:
             # Get last order position and increment 1
             order_list.sort()
-            order=order_list.pop() + 1
+            order = order_list.pop() + 1
 
         for uuid in uuids:
             if uuid not in uuids_dict.keys():
-                entry=dict()
-                entry[u"order"]=unicode(order)
-                uuids_dict[uuid]=entry
+                entry = dict()
+                entry[u"order"] = unicode(order)
+                uuids_dict[uuid] = entry
                 order += 1
 
-        old_data["uuids"]=uuids_dict
+        old_data["uuids"] = uuids_dict
 
         # Whenever we insert an (or rearange), remove the alpha sort
-        old_data["sortBy"]=""
+        old_data["sortBy"] = ""
         data_mgr.set(old_data)
 
     def replace_with_uuids(self, uuids):
@@ -794,11 +802,12 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         """
 
         if not self.isAllowedToEdit():
-            raise Unauthorized("You are not allowed to add content to this tile")
-        data_mgr=ITileDataManager(self)
-        old_data=data_mgr.get()
+            raise Unauthorized(
+                "You are not allowed to add content to this tile")
+        data_mgr = ITileDataManager(self)
+        old_data = data_mgr.get()
         # Clean old data
-        old_data["uuids"]=dict()
+        old_data["uuids"] = dict()
         data_mgr.set(old_data)
         # Repopulate with clean list
         self.populate_with_uuids(uuids)
@@ -820,13 +829,13 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         """
         super(RelevantAceContentItemsTile, self).remove_item(uuid)
         # check permission
-        data_mgr=ITileDataManager(self)
-        old_data=data_mgr.get()
-        uuids=data_mgr.get()["uuids"]
+        data_mgr = ITileDataManager(self)
+        old_data = data_mgr.get()
+        uuids = data_mgr.get()["uuids"]
 
         if uuid in uuids.keys():
             del uuids[uuid]
-        old_data["uuids"]=uuids
+        old_data["uuids"] = uuids
         data_mgr.set(old_data)
 
 
@@ -839,19 +848,19 @@ class IFilterAceContentItemsTile(IRelevantAceContentItemsTile):
 
 
 class IFilteringSchema(form.Schema):
-    impact=Choice(
+    impact = Choice(
         title=_(u"Climate impact"),
         vocabulary="eea.climateadapt.aceitems_climateimpacts",
         required=False,
     )
 
-    sector=Choice(
+    sector = Choice(
         title=_(u"Sector"),
         vocabulary="eea.climateadapt.aceitems_sectors",
         required=False,
     )
 
-    key_type_measure=Choice(
+    key_type_measure = Choice(
         title=_(u"Key Type Measure"),
         vocabulary="eea.climateadapt.aceitems_key_type_measures_short",
         required=False,
@@ -861,21 +870,21 @@ class IFilteringSchema(form.Schema):
 class FilteringForm(Form):  # form.SchemaForm):
     """Filtering form handling"""
 
-    template=ViewPageTemplateFile("pt/filter_form.pt")
+    template = ViewPageTemplateFile("pt/filter_form.pt")
 
-    label=u""
-    description=u""
+    label = u""
+    description = u""
 
-    prefix=""
-    ignoreContext=True
-    method="GET"
+    prefix = ""
+    ignoreContext = True
+    method = "GET"
 
-    fields=Fields(IFilteringSchema)
-    css_class="acecontent_filtering_tile"
+    fields = Fields(IFilteringSchema)
+    css_class = "acecontent_filtering_tile"
 
     def __init__(self, context, request, *args, **kwargs):
         if "PARENT_REQUEST" in request:
-            request=request["PARENT_REQUEST"]
+            request = request["PARENT_REQUEST"]
         super(FilteringForm, self).__init__(context, request, *args, **kwargs)
 
     @ view.memoize
@@ -883,13 +892,13 @@ class FilteringForm(Form):  # form.SchemaForm):
         return self.context.absolute_url()
 
 
-impacts_no_value=StaticWidgetAttribute(
+impacts_no_value = StaticWidgetAttribute(
     _(u"All climate impacts"), view=FilteringForm, field=IFilteringSchema["impact"]
 )
-sectors_no_value=StaticWidgetAttribute(
+sectors_no_value = StaticWidgetAttribute(
     _(u"All adaptation sectors"), view=FilteringForm, field=IFilteringSchema["sector"]
 )
-key_type_measures_no_value=StaticWidgetAttribute(
+key_type_measures_no_value = StaticWidgetAttribute(
     _(u"All key type measures"), view=FilteringForm, field=IFilteringSchema["key_type_measure"]
 )
 
@@ -897,68 +906,68 @@ key_type_measures_no_value=StaticWidgetAttribute(
 class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
     implements(IFilterAceContentItemsTile)
 
-    short_name=u"Filterable relevant AceContent"
+    short_name = u"Filterable relevant AceContent"
 
-    is_configurable=True
-    is_editable=True
-    is_droppable=False
-    index=ViewPageTemplateFile("pt/filter_acecontent.pt")
+    is_configurable = True
+    is_editable = True
+    is_droppable = False
+    index = ViewPageTemplateFile("pt/filter_acecontent.pt")
 
     @ property
     def filterform(self):
-        form=FilteringForm(self.context, self.request)
+        form = FilteringForm(self.context, self.request)
 
         form.update()
 
         return form
 
     def items(self):
-        kw, errors=self.filterform.extractData()
-        impact=kw["impact"]
-        sector=kw["sector"]
-        key_type_measure=kw["key_type_measure"]
+        kw, errors = self.filterform.extractData()
+        impact = kw["impact"]
+        sector = kw["sector"]
+        key_type_measure = kw["key_type_measure"]
 
-        count=self.data.get("nr_items", 5) or 5
-        query=self.build_query()
+        count = self.data.get("nr_items", 5) or 5
+        query = self.build_query()
 
         if impact:
-            query["climate_impacts"]=impact
+            query["climate_impacts"] = impact
 
         if sector:
-            query["sectors"]=sector
+            query["sectors"] = sector
 
         if key_type_measure:
-            query["key_type_measures"]=key_type_measure
-        query["path"]={"query": "/cca/{}".format(self.current_lang)}
+            query["key_type_measures"] = key_type_measure
+        query["path"] = {"query": "/cca/{}".format(self.current_lang)}
 
-        res=self.catalog.searchResults(limit=count, **query)
+        res = self.catalog.searchResults(limit=count, **query)
 
         return res[:count]
 
     def view_more_url(self):
-        site=getSite()
-        base=site.absolute_url() + "/{}/data-and-downloads/?lang={}&source="\
+        site = getSite()
+        base = site.absolute_url() + "/{}/data-and-downloads/?lang={}&source="\
             .format(self.current_lang, self.current_lang)
 
-        query={
+        query = {
             "elements": self.data.get("element_type"),
             "search_type": self.data.get("search_type"),
             "funding_programme": self.data.get("funding_programme") or "",
             "SearchableText": self.data.get("search_text") or "",
         }
 
-        kw, errors=self.filterform.extractData()
-        impact=kw["impact"]
-        sector=kw["sector"]
-        key_type_measure=kw["key_type_measure"]
+        kw, errors = self.filterform.extractData()
+        impact = kw["impact"]
+        sector = kw["sector"]
+        key_type_measure = kw["key_type_measure"]
 
         if impact:
-            query["climate_impacts"]=impact
+            query["climate_impacts"] = impact
 
         if sector:
-            query["sectors"]=sector
+            query["sectors"] = sector
 
         if key_type_measure:
-            query["key_type_measures"]=key_type_measure
+            query["key_type_measures"] = key_type_measure
 
         return self.build_url(base, query, {})
