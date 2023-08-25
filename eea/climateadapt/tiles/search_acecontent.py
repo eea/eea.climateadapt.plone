@@ -254,7 +254,8 @@ class AceTileMixin(object):
             if k == "search_type":
 
                 terms.append(('objectProvides',
-                              [ACEID_TO_SEARCHTYPE.get(DATATYPES[s], s) for s in v]))
+                              [ACEID_TO_SEARCHTYPE.get(
+                                  s, DATATYPES.get(s, s)) for s in v]))
                 # for s in v:
                 #     terms.append({u"term": {u"typeOfData": DATATYPES[s]}})
 

@@ -53,7 +53,14 @@ REGISTER_MAIL_LIST = [
 
 
 ACEID_TO_SEARCHTYPE = {
-    'Case studies': 'Case study',
+    'ACTION': 'Case study',
+    'DOCUMENT': 'Publication reference',
+    'GUIDANCE': 'Guidance',
+    'INDICATOR': 'Indicator',
+    'INFORMATIONSOURCE': 'Information portal',
+    'MEASURE': 'Adaptation option',
+    'ORGANISATION': 'Organisation',
+    'RESEARCHPROJECT': 'Research and knowledge project',
+    'TOOL': 'Tool',
     'VIDEO': 'Video',
-    # 'DOCUMENT':
 }
