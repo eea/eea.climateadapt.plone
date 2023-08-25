@@ -166,10 +166,21 @@ def get_site_languages():
 
 
 def filters_to_query(args):
+    """
+
+    args = [
+        ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+        ('cca_adaptation_sectors.keyword', "Urban"),
+    ]
+    """
     res = []
     for i, (name, val) in enumerate(args):
         res.append(['filters[{0}][field]'.format(i), name])
         res.append(['filters[{0}][type]'.format(i), 'any'])
-        res.append(['filters[{0}][values][0]'.format(i), val])
+        if isinstance(val, list):
+            for x, lv in enumerate(val):
+                res.append(['filters[{0}][values][{1}]'.format(i, x), lv])
+        else:
+            res.append(['filters[{0}][values][0]'.format(i), val])
 
     return urllib.urlencode(dict(res))

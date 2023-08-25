@@ -54,4 +54,6 @@ REGISTER_MAIL_LIST = [
 
 ACEID_TO_SEARCHTYPE = {
     'Case studies': 'Case study',
+    'VIDEO': 'Video',
+    # 'DOCUMENT':
 }
