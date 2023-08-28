@@ -277,13 +277,11 @@ class AceTileMixin(object):
                 terms.append(('cca_geographic_countries.keyword', [
                              COUNTRIES[s] for s in v]))
 
-        # cca_geographic_transnational_region
-        # cca_funding_programme
+            if k == "funding_programme":
+                terms.append(('cca_funding_programme.keyword', [s for s in v]))
 
-        #     if k == "funding_programme":
-        #         for s in v:
-        #             terms.append({u"term": {u"funding_programme": s}})
-        #
+        # cca_geographic_transnational_region
+
         #     if k == "macro_regions":
         #         for s in v:
         #             # import pdb; pdb.set_trace()
