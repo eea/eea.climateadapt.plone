@@ -261,7 +261,6 @@ class AceTileMixin(object):
                              ORIGIN_WEBSITES[s] for s in v]))
 
             if k == "sectors":
-                __import__('pdb').set_trace()
                 terms.append(('cca_adaptation_sectors.keyword', [
                              SECTORS[s] for s in v]))
 
@@ -295,43 +294,13 @@ class AceTileMixin(object):
                 terms.append(
                     ('cca_geographic_transnational_region.keyword', temp_terms))
 
-        # cca_geographic_transnational_region
+            if k == "SearchableText":
+                # TODO: fix this
+                # __import__('pdb').set_trace()
+                terms.append(('q', [s for s in v]))
 
-        #     if k == "macro_regions":
-        #         for s in v:
-        #             # import pdb; pdb.set_trace()
-        #             if 'TRANS_MACRO_' in s:
-        #                 for key, val in BIOREGIONS.items():
-        #                     if 'TRANS_MACRO_' in key and key == s:
-        #                         if val in self.list_of_other_regions():
-        #                             val = 'Other Regions'
-        #                         terms.append({u"term": {u"macro-transnational-region": val}})
-        #             else:
-        #                 import pdb
-        #                 pdb.set_trace()
-        #                 terms.append({u"term": {u"macro-transnational-region": s}})
-        #
-        #     if k == "SearchableText":
-        #         for s in v:
-        #             terms.append(
-        #                 {
-        #                     u"query_string": {
-        #                         u"analyze_wildcard": True,
-        #                         u"default_operator": u"OR",
-        #                         u"query": s,
-        #                     }
-        #                 }
-        #             )
-        # t = {
-        #     u"function_score": {
-        #         u"query": {u"bool": {u"filter": {u"bool": {u"should": terms}}}}
-        #     }
-        # }
-        #
-        # q = {"query": t}
         query = filters_to_query(terms)
 
-        # print(q)
         return "{}{}".format(url, query)        # urllib.quote(json.dumps(q))
 
     def list_of_other_regions(self):
