@@ -280,6 +280,21 @@ class AceTileMixin(object):
             if k == "funding_programme":
                 terms.append(('cca_funding_programme.keyword', [s for s in v]))
 
+            if k == "macro_regions":
+                temp_terms = []
+                for s in v:
+                    if 'TRANS_MACRO_' in s:
+                        for key, val in BIOREGIONS.items():
+                            if 'TRANS_MACRO_' in key and key == s:
+                                if val in self.list_of_other_regions():
+                                    val = 'Other Regions'
+                                temp_terms.append(val)
+                    else:
+                        temp_terms.append(s)
+
+                terms.append(
+                    ('cca_geographic_transnational_region.keyword', temp_terms))
+
         # cca_geographic_transnational_region
 
         #     if k == "macro_regions":
@@ -509,7 +524,7 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
 
 
 Item = namedtuple("Item", ["Title", "Description",
-                  "icons", "sortable_title", "url"])
+                           "icons", "sortable_title", "url"])
 
 
 class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
