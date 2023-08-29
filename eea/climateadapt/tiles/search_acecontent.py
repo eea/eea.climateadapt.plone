@@ -297,7 +297,7 @@ class AceTileMixin(object):
             if k == "SearchableText":
                 # TODO: fix this
                 # __import__('pdb').set_trace()
-                terms.append(('q', [s for s in v]))
+                terms.append(('q', v))
 
         query = filters_to_query(terms)
 
@@ -316,7 +316,7 @@ class AceTileMixin(object):
     def sections(self):
         """Returns a list of (section name, section count, section_url)"""
         site = getSite()
-        base_query = "/{0}/data-and-downloads/?lang={0}&source=".format(
+        base_query = "/{0}/data-and-downloads/?lang={0}&".format(
             self.current_lang)
 
         base = site.absolute_url() + base_query
@@ -569,7 +569,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
     def view_more_url(self):
         site = getSite()
-        base = site.absolute_url() + "/data-and-downloads?source="
+        base = site.absolute_url() + "/data-and-downloads?"
 
         q = {
             "elements": self.data.get("element_type"),
@@ -928,7 +928,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUt
 
     def view_more_url(self):
         site = getSite()
-        base = site.absolute_url() + "/{}/data-and-downloads/?lang={}&source="\
+        base = site.absolute_url() + "/{}/data-and-downloads/?lang={}&"\
             .format(self.current_lang, self.current_lang)
 
         query = {

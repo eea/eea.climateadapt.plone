@@ -175,6 +175,11 @@ def filters_to_query(args):
     """
     res = []
     for i, (name, val) in enumerate(args):
+        if name == 'q':
+            if isinstance(val, list):
+                val = val[0]
+            res.append([name, val])
+            continue
         res.append(['filters[{0}][field]'.format(i), name])
         res.append(['filters[{0}][type]'.format(i), 'any'])
         if isinstance(val, list):
