@@ -295,8 +295,6 @@ class AceTileMixin(object):
                     ('cca_geographic_transnational_region.keyword', temp_terms))
 
             if k == "SearchableText":
-                # TODO: fix this
-                # __import__('pdb').set_trace()
                 terms.append(('q', v))
 
         query = filters_to_query(terms)
