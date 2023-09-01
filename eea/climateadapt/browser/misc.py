@@ -39,10 +39,11 @@ from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import Interface, implements
-from eea.climateadapt.translation.utils import get_current_language
-from eea.climateadapt.translation.utils import TranslationUtilsMixin
 from eea.climateadapt.translation.utils import translate_text
 
+from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+                                                filters_to_query,
+                                                get_current_language)
 
 # from Acquisition import aq_inner
 # from eea.climateadapt import MessageFactory as _
@@ -302,17 +303,17 @@ class RedirectToSearchView (BrowserView):
 
         typeOfDataTo = self.request.other['ACTUAL_URL'].split('/')[-1]
         typeOfDataValues = {
-            'adaptation-options':'Adaptation options',
-            'case-studies':'Case studies',
-            'indicators':'Indicators',
-            'portals':'Information portals',
-            'guidances':'Guidance',
-            'organisations':'Organisations',
-            'publications':'Publications and reports',
-            'projects':'Research and knowledge projects',
-            'tools':'Tools',
-            'videos':'Videos',
-            }
+            'adaptation-options': 'Adaptation options',
+            'case-studies': 'Case studies',
+            'indicators': 'Indicators',
+            'portals': 'Information portals',
+            'guidances': 'Guidance',
+            'organisations': 'Organisations',
+            'publications': 'Publications and reports',
+            'projects': 'Research and knowledge projects',
+            'tools': 'Tools',
+            'videos': 'Videos',
+        }
 
         navigation_root_url = portal_state.navigation_root_url()
         if '/observatory' in navigation_root_url:
@@ -321,16 +322,16 @@ class RedirectToSearchView (BrowserView):
             link = '/'+current_language+'/data-and-downloads/'
 
         if link == '/'+current_language+'/observatory/catalogue/' and typeOfDataTo == 'organisations':
-            link = '/'+current_language+'/observatory/About/about-the-observatory#partners';
+            link = '/'+current_language+'/observatory/About/about-the-observatory#partners'
         else:
             querystring = self.request.form.get('SearchableText', "")
             query = {
                 u'display_type': u'list',
                 u'highlight': {
-                  u'fields': {
-                    u'*': {
+                    u'fields': {
+                        u'*': {
+                        }
                     }
-                  }
                 },
                 u'query': {
                     u'bool': {
@@ -339,14 +340,16 @@ class RedirectToSearchView (BrowserView):
                              {u'query_string': {u'analyze_wildcard': True,
                                                 u'default_operator': u'OR',
                                                 u'query': querystring}
-                             }]
-                            }
-                           }
-                         }
+                              }]
+                    }
+                }
+            }
             if typeOfDataTo in typeOfDataValues:
-                query['query']['bool']['filter'] = {"bool":{"should":[{"term":{"typeOfData":typeOfDataValues[typeOfDataTo]}}]}}
+                query['query']['bool']['filter'] = {
+                    "bool": {"should": [{"term": {"typeOfData": typeOfDataValues[typeOfDataTo]}}]}}
 
-            link = link + '?source=' + urllib.quote(json.dumps(query))+'&lang='+current_language
+            link = link + '?source=' + \
+                urllib.quote(json.dumps(query))+'&lang='+current_language
 
         return self.request.response.redirect(link)
 
@@ -402,7 +405,7 @@ class DetectBrokenLinksView (BrowserView):
 
                     item['date'] = date.Date() if isinstance(
                         date, DateTime) else date
-                    if (isinstance(date, str) and date=='pre_nov7_data'):
+                    if (isinstance(date, str) and date == 'pre_nov7_data'):
                         continue
 
                     item['url'] = info['url']
@@ -427,10 +430,10 @@ class DetectBrokenLinksView (BrowserView):
     def data_to_xls(self, data):
         headers = [
             ('url', 'Destination Links'),
-            ('status' ,'Status Code'),
-            ('object_url' ,'Object Url'),
-            ('date' ,'Date'),
-            ('state' ,'Type')
+            ('status', 'Status Code'),
+            ('object_url', 'Object Url'),
+            ('date', 'Date'),
+            ('state', 'Type')
         ]
 
         # Create a workbook and add a worksheet.
@@ -441,7 +444,7 @@ class DetectBrokenLinksView (BrowserView):
         worksheet = workbook.add_worksheet(wtitle[:30])
 
         for i, (key, title) in enumerate(headers):
-                worksheet.write(0, i, title or '')
+            worksheet.write(0, i, title or '')
 
         row_index = 1
 
@@ -808,7 +811,7 @@ def check_link(link):
             resp = requests.head(link, timeout=5, allow_redirects=True)
             if resp.status_code == 404:
                 return {'status': '404', 'url': link}
-            #requests.head(link, timeout=5, allow_redirects=True)
+            # requests.head(link, timeout=5, allow_redirects=True)
         except requests.exceptions.ReadTimeout:
             return {'status': '504', 'url': link}
         except requests.exceptions.ConnectTimeout:
@@ -1087,9 +1090,10 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         data_overview_page = datastore['data']['overview_page']
 
         response = []
-        #hazard_type_order = data_overview_page['hazard_type_order']
-        hazard_type_order = data_overview_page['hazard_type_order_left'] + data_overview_page['hazard_type_order_right']
-        #hazard_type_order.append(['Other'])
+        # hazard_type_order = data_overview_page['hazard_type_order']
+        hazard_type_order = data_overview_page['hazard_type_order_left'] + \
+            data_overview_page['hazard_type_order_right']
+        # hazard_type_order.append(['Other'])
 
         for index, main_category in enumerate(data_overview_page['category_order']):
             if main_category in data_overview_page['hazard_list']:
@@ -1103,7 +1107,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                 response.append({
                     'name': main_category,
                     'data': res
-                    })
+                })
 
         return response
 
@@ -1115,7 +1119,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         overview_page = datastore['data']['overview_page']
-        response = {'left':[], 'right':[]}
+        response = {'left': [], 'right': []}
 
         catalog = getToolByName(site, 'portal_catalog')
         if 'hazard_list_language' not in overview_page:
@@ -1128,16 +1132,17 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                     overview_page['hazard_list_language'][lang][category] = {}
                 for hazard in overview_page['hazard_list'][category]:
                     if hazard not in overview_page['hazard_list_language'][lang][category]:
-                        overview_page['hazard_list_language'][lang][category][hazard] = []
+                        overview_page['hazard_list_language'][lang][category][hazard] = [
+                        ]
                     for index, item in enumerate(overview_page['hazard_list'][category][hazard]):
                         c3s_identifier = None
-                        #print(item['title'])
+                        # print(item['title'])
                         for c3s_identifier_ in datastore["data"]["indicators"]:
-                            #print("  "+c3s_identifier_)
-                            #print("  "+datastore["data"]["indicators"][c3s_identifier_]["page_title"])
+                            # print("  "+c3s_identifier_)
+                            # print("  "+datastore["data"]["indicators"][c3s_identifier_]["page_title"])
                             if datastore["data"]["indicators"][c3s_identifier_]["page_title"] == item['title']:
                                 c3s_identifier = c3s_identifier_
-                                #print("  --> FOUND")
+                                # print("  --> FOUND")
                                 break
                         if c3s_identifier:
                             query = {
@@ -1147,32 +1152,39 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                             }
                             brains = catalog.searchResults(query)
                             for brain in brains:
-                                logger.info('C3S %s LNG %s', c3s_identifier, lang)
-                                logger.info('C3S %s URL %s', brain.getObject().c3s_identifier, brain.getURL())
+                                logger.info('C3S %s LNG %s',
+                                            c3s_identifier, lang)
+                                logger.info('C3S %s URL %s', brain.getObject(
+                                ).c3s_identifier, brain.getURL())
 
                                 if c3s_identifier != brain.getObject().c3s_identifier:
                                     continue
                                 if "/"+lang+"/" not in brain.getURL():
                                     continue
-                                #overview_page['hazard_list'][category][hazard][index]['title'] = brain.getObject().title
-                                #overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
-                                overview_page['hazard_list_language'][lang][category][hazard].append({'title':brain.getObject().title, 'url':brain.getURL()})
-                                logger.info('LANG %s URL %', lang, brain.absolute_url())
+                                # overview_page['hazard_list'][category][hazard][index]['title'] = brain.getObject().title
+                                # overview_page['hazard_list'][category][hazard][index]['url'] = brain.getURL()
+                                overview_page['hazard_list_language'][lang][category][hazard].append(
+                                    {'title': brain.getObject().title, 'url': brain.getURL()})
+                                logger.info('LANG %s URL %', lang,
+                                            brain.absolute_url())
 
                         else:
-                            print "Not found: "+ item['title']
+                            print "Not found: " + item['title']
 
         for side in response:
             for cindex, category in enumerate(overview_page['category_order_'+side]):
                 if category in overview_page['hazard_list']:
                     category_index = len(response[side])
-                    response[side].insert(category_index, {'name':category, 'items':[]})
+                    response[side].insert(
+                        category_index, {'name': category, 'items': []})
 
                     hazards = overview_page['hazard_type_order_'+side][cindex]
                     for hazard in hazards:
                         if hazard in overview_page['hazard_list'][category]:
-                            len_hazard = len(response[side][category_index]['items'])
-                            response[side][category_index]['items'].insert(len_hazard, {'name':hazard, 'items':overview_page['hazard_list_language'][lang][category][hazard]})
+                            len_hazard = len(
+                                response[side][category_index]['items'])
+                            response[side][category_index]['items'].insert(len_hazard, {
+                                                                           'name': hazard, 'items': overview_page['hazard_list_language'][lang][category][hazard]})
 
         return response
 
@@ -1188,12 +1200,13 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         response = OrderedDict()
 
         for hazard_category in data.keys():
-            response[hazard_category] = {'types':OrderedDict(), 'total_indicators': 0}
+            response[hazard_category] = {
+                'types': OrderedDict(), 'total_indicators': 0}
             for hazard_type in data[hazard_category].keys():
                 response[hazard_category]['types'][hazard_type] = []
                 for indicator in data[hazard_category][hazard_type]:
                     c3s_identifier = indicator['identifier']
-                    #import pdb; pdb.set_trace()
+                    # import pdb; pdb.set_trace()
                     query = {
                         'portal_type': 'eea.climateadapt.c3sindicator',
                         'c3s_identifier': c3s_identifier,
@@ -1211,34 +1224,39 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                             continue
                         indicator['cca_url'] = brain.getURL()
                         indicator['cca_title'] = brain.getObject().title
-                    response[hazard_category]['types'][hazard_type].append(indicator)
+                    response[hazard_category]['types'][hazard_type].append(
+                        indicator)
                     response[hazard_category]['total_indicators'] += 1
 
         responseHtml = "<thead>" \
             "<tr>" \
-                "<th>"+translate_text(self.context, self.request, "Hazard category", 'eea.cca')+"</th>" \
-                "<th>"+translate_text(self.context, self.request, "Hazard type", 'eea.cca')+"</th>" \
-                "<th>"+translate_text(self.context, self.request, "Indicator", 'eea.cca')+"</th>" \
-                "<th>"+translate_text(self.context, self.request, "Zip download", 'eea.cca')+"</th>" \
+            "<th>"+translate_text(self.context, self.request, "Hazard category", 'eea.cca')+"</th>" \
+            "<th>"+translate_text(self.context, self.request, "Hazard type", 'eea.cca')+"</th>" \
+            "<th>"+translate_text(self.context, self.request, "Indicator", 'eea.cca')+"</th>" \
+            "<th>"+translate_text(self.context, self.request, "Zip download", 'eea.cca')+"</th>" \
             "</tr>" \
             "</thead>" \
             "<tbody>"
         for _category in response.keys():
             responseHtml += "<tr>"
-            responseHtml += "<td rowspan=\""+str(response[_category]['total_indicators'])+"\">"+translate_text(self.context, self.request, _category, 'eea.cca')+"</td>"
+            responseHtml += "<td rowspan=\""+str(response[_category]['total_indicators'])+"\">"+translate_text(
+                self.context, self.request, _category, 'eea.cca')+"</td>"
             for i, _type in enumerate(response[_category]['types'].keys()):
-                if i>0:
+                if i > 0:
                     responseHtml += "<tr>"
-                responseHtml += "<td rowspan=\""+str(len(response[_category]['types'][_type]))+"\">"+translate_text(self.context, self.request, _type, 'eea.cca')+"</td>"
+                responseHtml += "<td rowspan=\""+str(len(response[_category]['types'][_type]))+"\">"+translate_text(
+                    self.context, self.request, _type, 'eea.cca')+"</td>"
                 for j, indicator in enumerate(response[_category]['types'][_type]):
-                    if j>0:
+                    if j > 0:
                         responseHtml += "<tr>"
-                    responseHtml += "<td><a href=\""+indicator['cca_url']+"\">"+indicator['cca_title']+"</a></td>"
-                    responseHtml += "<td><a href=\""+indicator['zip_url']+"\">"+translate_text(self.context, self.request, "Download", 'eea.cca')+"</a></td>"
+                    responseHtml += "<td><a href=\"" + \
+                        indicator['cca_url']+"\">" + \
+                        indicator['cca_title']+"</a></td>"
+                    responseHtml += "<td><a href=\""+indicator['zip_url']+"\">"+translate_text(
+                        self.context, self.request, "Download", 'eea.cca')+"</a></td>"
                     responseHtml += "</tr>"
 
         return responseHtml + "</tbody>"
-
 
     def get_disclaimer(self):
         site = portal.get()
@@ -1259,6 +1277,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
     def __call__(self):
         return self.index()
 
+
 class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
     """ Overview page for indicators. Registered as @@c3s_indicators_overview
 
@@ -1271,15 +1290,16 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
         self.request = request
 
     def list(self):
-        res = {'description':'','items':[]}
+        res = {'description': '', 'items': []}
 
         url = self.request["ACTUAL_URL"]
         category = url.split("/")[-1]
-        category_id = category.lower().replace("-"," ")
+        category_id = category.lower().replace("-", " ")
         category_path = category.lower()
 
         catalog = api.portal.get_tool("portal_catalog")
-        brains = catalog.searchResults(portal_type='eea.climateadapt.c3sindicator', c3s_theme=category.capitalize())
+        brains = catalog.searchResults(
+            portal_type='eea.climateadapt.c3sindicator', c3s_theme=category.capitalize())
 
         items = {}
         for brain in brains:
@@ -1287,8 +1307,8 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
                 continue
             obj = brain.getObject()
             items[obj.title] = {
-                "url":brain.getURL(),
-                "obj":obj
+                "url": brain.getURL(),
+                "obj": obj
             }
 
         site = portal.get()
@@ -1301,11 +1321,13 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
                 obj = items[indicator['title']]['obj']
                 if self.current_lang != 'en':
                     try:
-                        translations = TranslationManager(obj).get_translations()
+                        translations = TranslationManager(
+                            obj).get_translations()
                         if self.current_lang in translations:
                             obj = translations[self.current_lang]
                     except:
-                        logger.info('At least one language is not published for '.obj.absolute_url())
+                        logger.info(
+                            'At least one language is not published for '.obj.absolute_url())
                 res['items'].append({
                     'title': obj.title,
                     'url': obj.absolute_url(),
@@ -1334,7 +1356,7 @@ class GetCoventantOfMayorsLinks(BrowserView):
         for domain in self.domains:
             if domain in url:
                 return True
-        
+
         return False
 
     def data_to_xls(self, data):
@@ -1348,7 +1370,7 @@ class GetCoventantOfMayorsLinks(BrowserView):
         worksheet = workbook.add_worksheet(wtitle[:30])
 
         for i, title in enumerate(headers):
-                worksheet.write(0, i, title or '')
+            worksheet.write(0, i, title or '')
 
         row_index = 1
 
@@ -1388,3 +1410,39 @@ class GetCoventantOfMayorsLinks(BrowserView):
            'attachment; filename=%s.xlsx' % fname)
 
         return xlsio.read()
+
+
+def create_contributions_link(language, organisation_id):
+    # origin_website vocabulary?
+    # https://github.com/eea/eea.climateadapt.plone/blob/master/eea/climateadapt/vocabulary.py#L441
+
+    # filters[0][values][0]=AdapteCCA
+    # &filters[0][values][1]=Lancet Countdown
+    # &filters[0][values][2]=DRMKC
+    # &filters[0][values][3]=EEA-archived
+    # &filters[0][values][4]=EEA
+    # &filters[0][values][5]=C3S
+
+    map_contributor_values = {
+        # not in vocabulary?
+        "copernicus-climate-change-service-ecmw": "Copernicus Climate Change Service and Copernicus Atmosphere Monitoring Service",
+        "european-centre-for-disease-prevention-and-control-ecdc": "European Centre for Disease Prevention and Control",
+        "european-commission": "European Commission",
+        "european-food-safety-authority": "European Food Safety Authority",
+        "who-regional-office-for-europe-who-europe": "WHO Regional Office for Europe",
+        "world-health-organization": "World Health Organization",
+        # solved:
+        "european-environment-agency-eea": "EEA",
+        "lancet-countdown": "Lancet Countdown",
+    }
+
+    terms = []
+
+    if organisation_id in map_contributor_values:
+        org = map_contributor_values[organisation_id]
+        terms.append(('cca_origin_websites.keyword', [org]))
+
+        url = "/" + language + "/observatory/catalogue/?"
+        query = filters_to_query(terms)
+
+        return "{}{}".format(url, query)
