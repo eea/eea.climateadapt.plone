@@ -1412,7 +1412,7 @@ class GetCoventantOfMayorsLinks(BrowserView):
         return xlsio.read()
 
 
-def create_contributions_link(language, organisation_id):
+def create_contributions_link(language='en', organisation_id=None):
     # origin_website vocabulary?
     # https://github.com/eea/eea.climateadapt.plone/blob/master/eea/climateadapt/vocabulary.py#L441
 
