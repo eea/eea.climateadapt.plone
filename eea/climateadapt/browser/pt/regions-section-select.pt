@@ -1,0 +1,15 @@
+<div tal:define="portal_url context/portal_url" class="trans-regions-section-select"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  i18n:domain="eea.climateadapt">
+
+  <div class="aceitem-search-tile">
+    <h4 i18n:translate="">Choose a region</h4>
+    <ul id="region-select-list">
+      <li tal:repeat="region view/regions">
+        <a tal:attributes="href region/url" tal:content="region/title"></a>
+      </li>
+    </ul>
+  </div>
+
+</div>

@@ -13,6 +13,7 @@
 
   <adapter factory=".search_acecontent.impacts_no_value" name="noValueMessage" />
   <adapter factory=".search_acecontent.sectors_no_value" name="noValueMessage" />
+  <adapter factory=".search_acecontent.key_type_measures_no_value" name="noValueMessage" />
 
   <utility name="eea.climateadapt.element_types_vocabulary" component=".vocabulary.ElementsVocabularyFactory"/>
   <utility name="eea.climateadapt.search_types_vocabulary" component=".vocabulary.SearchTypesVocabularyFactory"/>

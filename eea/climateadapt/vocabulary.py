@@ -293,6 +293,7 @@ _sectors = [    # this is the canonical
     #   ("TOURISM", "Tourism"),
     # ("AGRICULTURE", "Agriculture and Forest"),
     # ("INFRASTRUCTURE", "Infrastructure"),
+    # ("ECOSYSTEM", _("Ecosystem-based approaches (GI)")),
     ("AGRICULTURE", _("Agriculture")),
     ("BIODIVERSITY", _("Biodiversity")),
     ("BUILDINGS", _("Buildings")),
@@ -300,7 +301,6 @@ _sectors = [    # this is the canonical
     ("COASTAL", _("Coastal areas")),
     ("CULTURALHERITAGE", _("Cultural heritage")),
     ("DISASTERRISKREDUCTION", _("Disaster Risk Reduction")),
-    ("ECOSYSTEM", _("Ecosystem-based approaches (GI)")),
     ("ENERGY", _("Energy")),
     ("FINANCIAL", _("Financial")),
     ("FORESTRY", _("Forestry")),
@@ -549,10 +549,26 @@ _key_type_measures = [
     ("D1", _("D1: Nature based Solutions and Ecosystem based approaches: Green options")),
     ("D2", _("D2: Nature based Solutions and Ecosystem based approaches: Blue options")),
     ("E1", _("E1: Knowledge and behavioural change: Information and awareness raising")),
-    ("E2", _("E2: Knowledge and behavioural change: capacity building empowering and lifestyle practices")),
+    ("E2", _("E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices")),
 ]
 key_type_measures = generic_vocabulary(_key_type_measures)
 alsoProvides(key_type_measures, IVocabularyFactory)
+
+_key_type_measures_short = [
+    ("A1", _("A1: Policy Instruments")),
+    ("A2", _("A2: Management and planning")),
+    ("A3", _("A3: Coordination cooperation and networks")),
+    ("B1", _("B1: Financing incentive instruments")),
+    ("B2", _("B2: Insurance and risk sharing instruments")),
+    ("C1", _("C1: Grey options")),
+    ("C2", _("C2: Technological options")),
+    ("D1", _("D1: Green options")),
+    ("D2", _("D2: Blue options")),
+    ("E1", _("E1: Information and awareness raising")),
+    ("E2", _("E2: Capacity building empowering and lifestyle practices")),
+]
+key_type_measures_short = generic_vocabulary(_key_type_measures_short)
+alsoProvides(key_type_measures_short, IVocabularyFactory)
 
 _ipcc_category = [
     ("STRUCT_ENG", _("Structural and physical: Engineering and built environment options")),
@@ -580,8 +596,6 @@ _header_level = (
 rich_header_level = generic_vocabulary(_header_level)
 alsoProvides(rich_header_level, IVocabularyFactory)
 
-# acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
-# TODO Delete this ^ after migrations are done
 labels = """
 acesearch-geochars-lbl-GLOBAL=Global
 acesearch-geochars-lbl-EUROPE=Europe
@@ -598,20 +612,11 @@ acesearch-geochars-lbl-TRANS_MACRO_ATL_AREA=Atlantic Area
 acesearch-geochars-lbl-TRANS_MACRO_ALP_SPACE=Alpine Space
 acesearch-geochars-lbl-TRANS_MACRO_CEN_EUR=Central Europe
 acesearch-geochars-lbl-TRANS_MACRO_SW_EUR=South West Europe
-acesearch-geochars-lbl-TRANS_MACRO_SE_EUR=South East Europe
 acesearch-geochars-lbl-TRANS_MACRO_MED=Mediterranean (Euro-Med)
-acesearch-geochars-lbl-TRANS_MACRO_DANUBE=Danube
+acesearch-geochars-lbl-TRANS_MACRO_DANUBE=Danube Area
 acesearch-geochars-lbl-TRANS_MACRO_ADR_IONIAN=Adriatic-Ionian
-acesearch-geochars-lbl-TRANS_MACRO_CAR_AREA=Caribbean Area
-acesearch-geochars-lbl-TRANS_MACRO_AMAZONIA=Amazonia
-acesearch-geochars-lbl-TRANS_MACRO_IND_OCEAN_AREA=Indian Ocean Area
 acesearch-geochars-lbl-TRANS_MACRO_MED_BASIN=Mediterranean Sea Basin (NEXT)
-acesearch-geochars-lbl-TRANS_MACRO_MID_ATLANTIC=Mid-Atlantic
-acesearch-geochars-lbl-TRANS_MACRO_BALKAN_MED=Balkan-Mediterranean
-acesearch-geochars-lbl-TRANS_MACRO_ARCTIC=Arctic
-acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA=Black Sea
 acesearch-geochars-lbl-TRANS_MACRO_BLACKSEA_BASIN=Black Sea Basin (NEXT)
-acesearch-geochars-lbl-TRANS_MACRO_ATLANTIC=Atlantic
 acesearch-geochars-lbl-TRANS_MACRO_OUTERMOST=Outermost Regions
 acesearch-geochars-lbl-TRANS_BIO_ALPINE=Alpine
 acesearch-geochars-lbl-TRANS_BIO_ANATOLIAN=Anatolian

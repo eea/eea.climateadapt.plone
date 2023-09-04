@@ -486,7 +486,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_(u"Elements"),
+        title=_(u"Adaptation elements"),
         description=_(u"Select one or more elements."),
         required=False,
         value_type=Choice(

@@ -35,6 +35,11 @@
     </dl>
 
     <div class="cover-richtext-tile tile-content aceitem-relevant-tile aceitem-filter-relevant-tile" tal:condition="not: is_compose">
+<style>
+body:not(.subsection-adaptation-information) div.aceitem-filter-relevant-tile #formfield-widgets-key_type_measure {
+  display:none;
+}
+</style>
       <h2 tal:content="python: view.data.get('title')">Title here</h2>
 
       <h3 style="display:none" i18n:translate="">Relevant tile</h3>

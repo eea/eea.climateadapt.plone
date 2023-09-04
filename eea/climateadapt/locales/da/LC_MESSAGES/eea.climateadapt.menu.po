@@ -21,6 +21,10 @@ msgstr ""
 msgid "2021 Lancet Countdown-EEA Briefing"
 msgstr "2021 Lancet Countdown-EEA briefing"
 
+#:
+msgid "2022 EEA Report on Climate & Health"
+msgstr ""
+
 # ,
 #: site_menu:28
 msgid "ADAPTATION IN EU POLICY SECTORS"
@@ -354,6 +358,18 @@ msgid "Glossary"
 msgstr "Ordliste"
 
 #:
+msgid "Ground-level NO2 forecast (CAMS)"
+msgstr ""
+
+#:
+msgid "Ground-level PM10 forecast (CAMS)"
+msgstr ""
+
+#:
+msgid "Ground-level PM2.5 forecast (CAMS)"
+msgstr ""
+
+#:
 msgid "Ground-level ozone"
 msgstr ""
 
@@ -504,6 +520,10 @@ msgstr "Observatory publikationer."
 
 #: health_menu:11
 msgid "Observatory workplan for 2021-22"
+msgstr ""
+
+#:
+msgid "Observatory workplan for 2023-24"
 msgstr ""
 
 #:

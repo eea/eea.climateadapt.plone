@@ -110,7 +110,7 @@
             </div>
 
             <div class="macro-category" tal:condition="context/elements">
-                <h4 i18n:translate="">Elements</h4>
+                <h4 i18n:translate="">Adaptation elements</h4>
                 <tal:block content="structure python:view.w['elements'].render()"/>
             </div>
 
