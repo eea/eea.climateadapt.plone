@@ -1,13 +1,12 @@
-from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy, \
-    IAceProject, IAceItem, IAceMeasure
+import json
+
+from eea.climateadapt.behaviors import (IAceItem, IAceMeasure, IAceProject,
+                                        IAdaptationOption, ICaseStudy)
 from eea.climateadapt.browser import get_date_updated, get_files
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import (IClimateAdaptContent,
                                          IEEAClimateAdaptInstalled)
-from eea.climateadapt.vocabulary import (
-    BIOREGIONS,
-    ace_countries_dict,
-)
+from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
 # from plone.app.contenttypes.interfaces import IFolder
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.serializer.converters import json_compatible
@@ -15,7 +14,6 @@ from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
                                                 SerializeToJson)
 from zope.component import adapter
 from zope.interface import Interface
-import json
 
 # from plone import api
 
@@ -117,6 +115,7 @@ class AdaptationOptionSerializer(SerializeFolderToJson):        # SerializeToJso
         result = append_common_new_fields(result, item)
         return result
 
+
 @adapter(IAceProject, Interface)
 class AceProjectSerializer(SerializeFolderToJson):        # SerializeToJson
     def __call__(self, version=None, include_items=True):
@@ -153,8 +152,8 @@ class CaseStudySerializer(SerializeFolderToJson):       # SerializeToJson
         return result
 
 
-def get_geographic(item, result = {}):
-    if not hasattr(item, 'geochars'):
+def get_geographic(item, result={}):
+    if not hasattr(item, 'geochars') and not item.geochars:
         return result
 
     response = {}
@@ -163,9 +162,9 @@ def get_geographic(item, result = {}):
         response['countries'] = [ace_countries_dict.get(x, x) for x in
                                  data['geoElements']['countries']]
     if data['geoElements']['macrotrans'] and len(data['geoElements'
-            ]['macrotrans']):
+                                                      ]['macrotrans']):
         response['transnational_region'] = [BIOREGIONS.get(x, x)
-                for x in data['geoElements']['macrotrans']]
+                                            for x in data['geoElements']['macrotrans']]
 
     if len(response):
         result['geographic'] = response
