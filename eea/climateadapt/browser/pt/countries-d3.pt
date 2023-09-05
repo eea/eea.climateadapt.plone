@@ -107,8 +107,9 @@
               <p class="legend-text">Outside EEA coverage</p>
             </div>
             <div class="legend-el">
-              <span class="country-notreported legend-box"></span>
-              <p class="legend-text" i18n:translate="">No data reported in 2021</p>
+              <!-- <span class="country-notreported legend-box"></span> -->
+              <span class="country-nas legend-box"></span>
+              <p class="legend-text" i18n:translate="">No data reported in 2023</p>
             </div>
           </div>
 
@@ -117,7 +118,7 @@
               <span class="country-nasnap legend-box"></span>
               <p class="legend-text" i18n:translate="">NAS and NAP reported as adopted</p>
             </div>
-            <div class="legend-el">
+            <!-- <div class="legend-el">
               <span class="country-nap legend-box"></span>
               <p class="legend-text" i18n:translate="">Only NAP reported as adopted</p>
             </div>
@@ -128,14 +129,15 @@
             <div class="legend-el">
               <span class="country-sap legend-box"></span>
               <p class="legend-text" i18n:translate="">SAP reported as adopted</p>
-            </div>
+            </div> -->
             <div class="legend-el">
               <span class="country-none legend-box"></span>
               <p class="legend-text" i18n:translate="">Outside EEA coverage</p>
             </div>
             <div class="legend-el">
-              <span class="country-notreported legend-box"></span>
-              <p class="legend-text" i18n:translate="">No data reported in 2021</p>
+              <!-- <span class="country-notreported legend-box"></span> -->
+              <span class="country-nas legend-box"></span>
+              <p class="legend-text" i18n:translate="">No data reported in 2023</p>
             </div>
           </div>
         </div>

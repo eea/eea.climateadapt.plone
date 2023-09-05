@@ -589,7 +589,9 @@ function initCountryPages() {
     var country = $(".dd-country-title li[data-value='" + url + "']")
       .text()
       .replace(" ", "-");
-
+    if (url == 'TR') {
+      country = 'turkiye';
+    }
     if (country.length) {
       document.location = "/countries/" + country.toLowerCase();
     }

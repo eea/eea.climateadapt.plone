@@ -1,3 +1,4 @@
+# coding=utf-8
 """ A tile to implement the countries select dropdown
 """
 
@@ -47,7 +48,8 @@ class CountrySelectTile(PersistentCoverTile):
 
         # return sorted(countries, key=lambda c: c[1])
 
-        return sorted(ace_countries_selection, key=lambda c: c[1])
+        return sorted([(code,name if name != u'Turkey' else u'Türkiye') for code,name in ace_countries_selection  if code != 'GB'], key=lambda c: c[1])
+        # return sorted(ace_countries_selection, key=lambda c: c[1])
 
 
 class SettingsPage(BrowserView):
@@ -56,6 +58,10 @@ class SettingsPage(BrowserView):
 
     def __call__(self):
         self.request.response.setHeader('Content-Type', 'application/json')
-        res = {'focusCountry': self.context.id.replace("-", " ").title()}
+        country_name = self.context.id.replace("-", " ").title()
+        if country_name.lower() in ['copy_of_turkey', 'turkiye']:
+            country_name = 'Turkey'
+
+        res = {'focusCountry': country_name}
 
         return json.dumps(res)
