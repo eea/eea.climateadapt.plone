@@ -314,7 +314,7 @@ class AceTileMixin(object):
     def sections(self):
         """Returns a list of (section name, section count, section_url)"""
         site = getSite()
-        base_query = "/{0}/data-and-downloads/?lang={0}&".format(
+        base_query = "/{0}/data-and-downloads/?language={0}&".format(
             self.current_lang)
 
         base = site.absolute_url() + base_query

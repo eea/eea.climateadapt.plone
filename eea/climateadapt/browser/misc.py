@@ -349,7 +349,7 @@ class RedirectToSearchView (BrowserView):
                     "bool": {"should": [{"term": {"typeOfData": typeOfDataValues[typeOfDataTo]}}]}}
 
             link = link + '?source=' + \
-                urllib.quote(json.dumps(query))+'&lang='+current_language
+                urllib.quote(json.dumps(query))+'&language='+current_language
 
         return self.request.response.redirect(link)
 
@@ -1441,6 +1441,7 @@ def create_contributions_link(language='en', organisation_id=None):
     if organisation_id in map_contributor_values:
         org = map_contributor_values[organisation_id]
         terms.append(('cca_origin_websites.keyword', [org]))
+        terms.append(('language', [language]))
 
         url = "/" + language + "/observatory/catalogue/?"
         query = filters_to_query(terms)
