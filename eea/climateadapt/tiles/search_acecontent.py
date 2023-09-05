@@ -165,6 +165,7 @@ class AceTileMixin(object):
             "macro_regions": "macro_regions",
             "bio_regions": "bio_regions",
             "funding_programme": "funding_programme",
+            "language": "language",
         }
 
         sort_map = {
@@ -217,6 +218,7 @@ class AceTileMixin(object):
             words = query.pop("SearchableText", u"").split(u" ")
             query["SearchableText"] = u" ".join(set(words + st))
 
+        query['language'] = lang
         print(query)
 
         return query
@@ -278,6 +280,9 @@ class AceTileMixin(object):
 
             if k == "funding_programme":
                 terms.append(('cca_funding_programme.keyword', [s for s in v]))
+
+            if k == "language":
+                terms.append(('language', [s for s in v]))
 
             if k == "macro_regions":
                 temp_terms = []
