@@ -549,23 +549,23 @@ _key_type_measures = [
     ("D1", _("D1: Nature based Solutions and Ecosystem based approaches: Green options")),
     ("D2", _("D2: Nature based Solutions and Ecosystem based approaches: Blue options")),
     ("E1", _("E1: Knowledge and behavioural change: Information and awareness raising")),
-    ("E2", _("E2: Knowledge and behavioural change: capacity building empowering and lifestyle practices")),
+    ("E2", _("E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices")),
 ]
 key_type_measures = generic_vocabulary(_key_type_measures)
 alsoProvides(key_type_measures, IVocabularyFactory)
 
 _key_type_measures_short = [
-    ("A1", _("A1: Gl: Policy Instruments")),
-    ("A2", _("A2: Gl: Management and planning")),
-    ("A3", _("A3: Gl: Coordination cooperation and networks")),
-    ("B1", _("B1: EF: Financing incentive instruments")),
-    ("B2", _("B2: EF: Insurance and risk sharing instruments")),
-    ("C1", _("C1: PT: Grey options")),
-    ("C2", _("C2: PT: Technological options")),
-    ("D1", _("D1: NBS: Green options")),
-    ("D2", _("D2: NBS: Blue options")),
-    ("E1", _("E1: KBC: Information and awareness raising")),
-    ("E2", _("E2: KBC: capacity building empowering and lifestyle practices")),
+    ("A1", _("A1: Policy Instruments")),
+    ("A2", _("A2: Management and planning")),
+    ("A3", _("A3: Coordination cooperation and networks")),
+    ("B1", _("B1: Financing incentive instruments")),
+    ("B2", _("B2: Insurance and risk sharing instruments")),
+    ("C1", _("C1: Grey options")),
+    ("C2", _("C2: Technological options")),
+    ("D1", _("D1: Green options")),
+    ("D2", _("D2: Blue options")),
+    ("E1", _("E1: Information and awareness raising")),
+    ("E2", _("E2: Capacity building empowering and lifestyle practices")),
 ]
 key_type_measures_short = generic_vocabulary(_key_type_measures_short)
 alsoProvides(key_type_measures_short, IVocabularyFactory)

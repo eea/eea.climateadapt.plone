@@ -38,10 +38,6 @@
 
   <metal:fill-slot fill-slot="content-core">
 
-    <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
-      <p i18n:translate="">Here you can find an overview of your personally created Climate-Adapt content.</p>
-    </div>
-
     <div class="cover-richtext-tile tile-content" id="countrymap-container"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
@@ -116,7 +112,7 @@
           <div class="legend nasnap-legend">
             <div class="legend-el">
               <span class="country-nasnap legend-box"></span>
-              <p class="legend-text" i18n:translate="">NAS and NAP reported as adopted</p>
+              <p class="legend-text" i18n:translate="">National adaptation policy adopted</p>
             </div>
             <!-- <div class="legend-el">
               <span class="country-nap legend-box"></span>
@@ -152,6 +148,10 @@
         </div>
       </div>
 
+    </div>
+
+    <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
+      <p i18n:translate="">Here you can find an overview of your personally created Climate-Adapt content.</p>
     </div>
 
     <script src='++theme++climateadaptv2/static/countries/countriesmap.js'></script>
