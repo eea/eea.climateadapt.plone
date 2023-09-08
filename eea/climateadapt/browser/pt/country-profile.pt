@@ -39,7 +39,7 @@ ul li {
     class="sweet-tabs sweet-tabs2" id="country-tab">
   <div style="background-color: white; padding: 30px;">
 
-    <h1 class="documentFirstHeading" style="margin-bottom:0.5em;" i18n:translate="">National circumstances relevant to adaptation actions</h1>
+    <h1 class="documentFirstHeading" style="margin-bottom:0.5em;" i18n:translate="">Information on national adaptation actions reported under the Governance Regulation</h1>
 
     <div>
       <p>
@@ -326,12 +326,13 @@ ul li {
         <div tal:content="python: values[0]['Hazards']"></div>
       </div> -->
       <tal  tal:define="items view/hazards_table" tal:condition="python: len(items)">
-      <table class="listing table-striped">
+      <div style="margin-top:25px;"/>
+      <table class="listing table-striped" style="padding-top:10px;">
         <thead>
           <tr>
             <th style="width: 10em;" i18n:translate="">Hazard type</th>
-            <th style="width: 10em;" i18n:translate="">Acute/chronic</th>
-            <th i18n:translate="">observed climate hazards</th>
+            <th style="width: 10em;" i18n:translate="">Acute/Chronic</th>
+            <th i18n:translate="">Observed climate hazards</th>
           </tr>
         </thead>
         <tbody tal:content="structure items/observedHtml">
@@ -342,9 +343,9 @@ ul li {
         <thead>
           <tr>
             <th style="width: 10em;" i18n:translate="">Hazard type</th>
-            <th style="width: 10em;" i18n:translate="">Acute/chronic</th>
-            <th i18n:translate="">future climate hazards</th>
-            <th i18n:translate="">qualitative trend</th>
+            <th style="width: 10em;" i18n:translate="">Acute/Chronic</th>
+            <th i18n:translate="">Future climate hazards</th>
+            <th i18n:translate="">Qualitative trend</th>
           </tr>
         </thead>
         <tbody tal:content="structure items/futureHtml">
@@ -480,25 +481,24 @@ ul li {
     </div>
 
     <div class="tab-pane  " id="4489-2">
+      <h2 class="country-header" i18n:translate="">Overview of institutional arrangements and governance at the national level</h2>
       <tal:block tal:define="fieldset_legend string:Legal and policy frameworks and regulations;
                     fieldset_data data/Legal_Policies/LegalPolicyFrameworks">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-
-      <h2 class="country-header" i18n:translate="">Overview of institutional arrangements and governance at the national level</h2>
       <tal:block tal:define="fieldset_legend string:Climate vulnerability and risk assessment;
                     fieldset_data data/Legal_Policies/ArrangementsCCIV_assessments">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:Planning, implemention, monitoring, evaluation and revision of adaptation policy;
+      <tal:block tal:define="fieldset_legend string:Planning, implementation, monitoring, evaluation and revision of adaptation policy;
                     fieldset_data data/Legal_Policies/DescribeInstitutionalArrangements">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:Integration of climate change impacts and resilience into environmental assessment procedures;
+      <tal:block tal:define="fieldset_legend string:INTEGRATION INTO ENVIRONMENTAL ASSESSMENT PROCEDURES;
                     fieldset_data data/Legal_Policies/DescribeEIA">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:Integration of climate change adaptation into disaster risk management;
+      <tal:block tal:define="fieldset_legend string:INTEGRATION INTO DISASTER RISK MANAGEMENT;
                     fieldset_data data/Legal_Policies/DescribeDRR">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
@@ -617,7 +617,7 @@ ul li {
                     fieldset_data data/Monitoring_Evaluation/DescribeStatePlay">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:State of play - spending for climate adaptation (including disaster risk management);
+      <tal:block tal:define="fieldset_legend string:STATE OF PLAY - SPENDING FOR CLIMATE CHANGE ADAPTATION;
                     fieldset_data data/Monitoring_Evaluation/SummaryClimateAdaptation">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
