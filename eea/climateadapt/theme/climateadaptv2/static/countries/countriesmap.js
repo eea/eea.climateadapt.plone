@@ -85,37 +85,28 @@ function getCountryClass(country, countries) {
 //    if (discodata[_selectedMapSection] === true) {
 //      k += ' country-blue';
 //    }
+console.log(countryName);
+let discodataKeys = Object.keys(discodata);
+let discodataValues = [];
+for (i=0;i<discodataKeys.length;i++) {
+  let key = discodataKeys[i];
+  if (['nas_info','nap_info','sap_info','nas_mixed','nap_mixed','sap_mixed'].includes(key)) {
+    if (discodata[key].length) {
+      discodataValues.push(key);
+    }
+  }
+}
 
     var {nap_info, nas_info, sap_info, notreported} = discodata;
-
-    var nasNapSapAdopted = (nap_info && nas_info && sap_info);
-    var nasSapAdopted = (!nap_info && nas_info && sap_info);
-    var napSapAdopted = (nap_info && !nas_info && sap_info);
-    var nasNapAdopted = (nap_info && nas_info && !sap_info);
-    var onlyNasAdopted = (!nap_info && nas_info && !sap_info);
-    var onlyNapAdopted = (nap_info && !nas_info && !sap_info);
-    var noneAdopted = !(nap_info && nas_info && sap_info);
 
     if (notreported) {
       // k += ' country-notreported';
       k += ' country-nas';
-    } else if (nasNapSapAdopted) {
-      k += ' country-nasnapsap';
-    } else if (nasSapAdopted) {
-      k += ' country-nassap';
-    } else if (napSapAdopted) {
-      k += ' country-napsap';
-    } else if (nasNapAdopted) {
+    } else if (discodataValues.length) {
       k += ' country-nasnap';
-    } else if (onlyNapAdopted) {
-      k += ' country-nap';
-    } else if (onlyNasAdopted) {
-      k += ' country-nas';
-    } else if (noneAdopted) {
-      // k += ' country-none';
-      k += ' country-nasnap';
+    } else {
+      k += ' country-nodata2';
     }
-
     if (countryNoData.indexOf(countryName) > -1) {
       k += ' country-nodata';
     }
@@ -784,7 +775,6 @@ function createSectionsSelector(sections, countries, callback) {
   for (index=0;index<sections.length;index++) {
     key = sections[index][0];
     label_name = sections[index][1];
-    console.log(key,index);
     var label = $("<label>");
     var span = $("<span class='radiobtn'>");
     var inp = $("<input type='radio'>")
