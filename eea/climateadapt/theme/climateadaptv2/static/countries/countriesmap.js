@@ -602,6 +602,9 @@ function showMapTooltip(d) {
   var noDataReportedMsg = 'No data reported through the reporting mechanism of the Governance Regulation. Last information is available <a href="'+countrySettings[d.properties.SHRT_ENGL][1]+'">here</a>';
   var coords = [d3.event.pageY, d3.event.pageX];
   var info = countrySettings[d.properties.SHRT_ENGL];
+  if (d.properties.SHRT_ENGL=='Turkiye') {
+    var noDataReportedMsg = 'Data reported in 2021 through the reporting mechanism of the Governance Regulation. Information is available <a href="'+countrySettings[d.properties.SHRT_ENGL][1]+'">here</a>';
+  }
   if (!info) return;
   var content = info[0];
   var url = info[1];
