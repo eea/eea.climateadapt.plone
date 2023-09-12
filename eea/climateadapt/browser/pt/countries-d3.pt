@@ -138,14 +138,6 @@
           </div>
         </div>
 
-        <!-- Disclaimer in right side of map -->
-        <div id="disclaimer" i18n:translate="">
-          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-          <span i18n:translate="">[Disclaimer]</span>
-          <div id="hover-content" i18n:translate="">
-            The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'
-          </div>
-        </div>
       </div>
 
     </div>
