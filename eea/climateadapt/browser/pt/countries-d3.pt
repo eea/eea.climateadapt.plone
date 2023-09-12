@@ -112,7 +112,11 @@
           <div class="legend nasnap-legend">
             <div class="legend-el">
               <span class="country-nasnap legend-box"></span>
-              <p class="legend-text" i18n:translate="">National adaptation policy adopted</p>
+              <p class="legend-text" i18n:translate="">National adaptation policy reported in 2023</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-nodata2 legend-box"></span>
+              <p class="legend-text" i18n:translate="">National adaptation policy not reported in detail in 2023</p>
             </div>
             <!-- <div class="legend-el">
               <span class="country-nap legend-box"></span>
@@ -127,13 +131,13 @@
               <p class="legend-text" i18n:translate="">SAP reported as adopted</p>
             </div> -->
             <div class="legend-el">
-              <span class="country-none legend-box"></span>
-              <p class="legend-text" i18n:translate="">Outside EEA coverage</p>
-            </div>
-            <div class="legend-el">
               <!-- <span class="country-notreported legend-box"></span> -->
               <span class="country-nas legend-box"></span>
               <p class="legend-text" i18n:translate="">No data reported in 2023</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-none legend-box"></span>
+              <p class="legend-text" i18n:translate="">Outside EEA coverage</p>
             </div>
           </div>
         </div>
