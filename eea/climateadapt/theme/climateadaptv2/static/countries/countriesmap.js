@@ -19,6 +19,7 @@ jQuery(document).ready(function () {
     $.get('/'+getCurrentLanguage()+'/countries-regions/countries/@@countries-metadata-extract?langflag=1', function (metadata) {
       d3.tsv(fpath, function (flags) {
         window._flags = flags;
+//console.log(metadata);
         initmap(metadata, world, flags);
       });
     });
@@ -33,7 +34,6 @@ function initmap(metadata, world, flags) {
   var sections_language = metadata[2];
 
   world = world.features;
-
   // setCountryFlags(world, flags);
 
   createSectionsSelector(
@@ -68,6 +68,10 @@ function getCountryClass(country, countries) {
   // if (available) k += ' country-available';
 
   var countryName = country.properties.SHRT_ENGL;
+
+  if (countryName == 'Turkey') {
+    countryName = 'Turkiye';
+  }
   var meta = countrySettings[countryName];
   if (!meta) {
     return k;
@@ -85,7 +89,6 @@ function getCountryClass(country, countries) {
 //    if (discodata[_selectedMapSection] === true) {
 //      k += ' country-blue';
 //    }
-console.log(countryName);
 let discodataKeys = Object.keys(discodata);
 let discodataValues = [];
 for (i=0;i<discodataKeys.length;i++) {
@@ -166,14 +169,20 @@ for (i=0;i<discodataKeys.length;i++) {
 }
 
 function renderCountry(map, country, path, countries, x, y) {
-
   var cprectid = makeid();    // unique id for this map drawing
   var klass = getCountryClass(country, countries);
   var cId = 'c-' + cprectid + '-' + country.properties.id;
   var cpId = 'cp-' + cprectid + '-' + country.properties.id;
 
+  if (country.properties.SHRT_ENGL=='Türkiye') {
+    country.properties.SHRT_ENGL = 'Turkiye';
+    // console.log(countries.names);
+  }
+  if (country.properties.SHRT_ENGL=='Turkey') {
+    country.properties.SHRT_ENGL = 'Turkiye';
+    // console.log(countries.names);
+  }
   var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
-
   var parent = map
     .append('g')
     .attr('class', klass)
