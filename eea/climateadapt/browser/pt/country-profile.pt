@@ -1,5 +1,17 @@
-<div tal:condition="python: not options['country_data']" i18n:translate="">
-  No data for this country
+<div tal:condition="python: not options['country_data']" style="margin:30px;" class="alert alert-warning alert-dismissable alert-redirect" role="alert">
+  <p tal:condition="python: options['country_code']=='TR'" i18n:translate="">
+  No data reported in 2021. You can visit on <a href="/en/countries-regions/countries-2021/turkiye">older report for Türkiye</a>.
+  </p>
+
+  <p tal:condition="python: options['country_code']=='NO'" i18n:translate="">
+  No data reported in 2021. You can visit on <a href="/en/countries-regions/countries-2021/norway">older report for Norway</a>.
+  </p>
+
+  <p tal:condition="python: options['country_code']=='LI'" i18n:translate="">
+  No data reported in 2021. You can visit on <a href="/en/countries-regions/countries-2021/liechtenstein">older report for Liechtenstein</a>.
+  </p>
+
+  <p tal:condition="python: options['country_code'] not in ['TR', 'NO', 'LI']" i18n:translate="">No data for this country</p>
 </div>
 
 <style>
@@ -376,18 +388,18 @@ ul li {
         </div>
         <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:key_affected_sectors_${repeat/item/index}-body">
           <table class="listing table-striped">
-            <tr><td>Key affected sector(s)</td><td tal:content="item/SectorTitle" /></tr>
-            <tr><td>Rating of the observed impacts of key hazards, including changes in frequency and magnitude</td><td tal:content="item/ImpactsKeyHazards" /></tr>
-            <tr><td>Different rating of the observed impacts of key hazards</td><td tal:content="item/ImpactVariation" /></tr>
-            <tr><td>Assessment</td><td tal:content="item/DescribeImpactsKeyHazards" /></tr>
-            <tr><td>Rating of the key hazards' likelihood of occurrence and exposure to them under future climate</td><td tal:content="item/KeyHazardsLikelihood" /></tr>
-            <tr><td>Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td tal:content="item/LikelihoodVariability" /></tr>
-            <tr><td>Rating of the vulnerability, including adaptive capacity</td><td tal:content="item/Vulnerability" /></tr>
-            <tr><td>Different rating of the vulnerability and/or adaptive capacity</td><td tal:content="python: item.get('VulnerabilityVariability','')" /></tr>
-            <tr><td>Assessment</td><td tal:content="item/DescribeVulnerability" /></tr>
-            <tr><td>Rating for the risk of potential future impacts</td><td tal:content="item/RiskFutureImpacts" /></tr>
-            <tr><td>Different rating of the risk of potential future impacts</td><td tal:content="item/RiskVariability" /></tr>
-            <tr><td>Assessment</td><td tal:content="item/DescribeRisk	" /></tr>
+            <tr><td i18n:translate="">Key affected sector(s)</td><td tal:content="item/SectorTitle" /></tr>
+            <tr><td i18n:translate="">Rating of the observed impacts of key hazards, including changes in frequency and magnitude</td><td tal:content="item/ImpactsKeyHazards" /></tr>
+            <tr><td i18n:translate="">Different rating of the observed impacts of key hazards</td><td tal:content="item/ImpactVariation" /></tr>
+            <tr><td i18n:translate="">Assessment</td><td tal:content="item/DescribeImpactsKeyHazards" /></tr>
+            <tr><td i18n:translate="">Rating of the key hazards' likelihood of occurrence and exposure to them under future climate</td><td tal:content="item/KeyHazardsLikelihood" /></tr>
+            <tr><td i18n:translate="">Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td tal:content="item/LikelihoodVariability" /></tr>
+            <tr><td i18n:translate="">Rating of the vulnerability, including adaptive capacity</td><td tal:content="item/Vulnerability" /></tr>
+            <tr><td i18n:translate="">Different rating of the vulnerability and/or adaptive capacity</td><td tal:content="item/VulnerabilityVariability" /></tr>
+            <tr><td i18n:translate="">Assessment</td><td tal:content="item/DescribeVulnerability" /></tr>
+            <tr><td i18n:translate="">Rating for the risk of potential future impacts</td><td tal:content="item/RiskFutureImpacts" /></tr>
+            <tr><td i18n:translate="">Different rating of the risk of potential future impacts</td><td tal:content="item/RiskVariability" /></tr>
+            <tr><td i18n:translate="">Assessment</td><td tal:content="item/DescribeRisk	" /></tr>
           </table>
         </div>
       </div>
