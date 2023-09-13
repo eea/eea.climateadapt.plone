@@ -24,6 +24,9 @@ from zope.interface import Interface, implementer
 class SlateBlockSerializer(SlateBlockSerializerBase):
     """SlateBlockSerializerBase."""
 
+    # TODO: this needs also a deserializer that takes the scale in url and saves it to
+    # the "scale" field
+
     def handle_img(self, child):
         if child.get("url"):
             url = uid_to_url(child["url"])
