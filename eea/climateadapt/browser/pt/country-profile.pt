@@ -781,6 +781,7 @@ ul li {
       </tal:block>
 
       <div class="panel panel-default"
+        tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing"
         tal:define="fieldset_key string:SubNationalAvailableGoodPractices | string:_;
                     fieldset_legend string:SubNationalAvailableGoodPractices
                     id string: accordion_SubNationalAvailableGoodPractices"
@@ -794,15 +795,14 @@ ul li {
         <div class="panel-collapse tiny-accbody collapse" id="accordion_SubNationalAvailableGoodPractices-body">
           <div class="panel-body">
             <div tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices">
-            <h2 tal:content="item/Title"></h2>
-            <p><strong tal:content="item/Area"/></p>
-            <p tal:content="structure python:item['DescribeGoodPractice'].replace('\n', '<br>')"></p>
+              <h2 tal:content="item/Title"></h2>
+              <p><strong tal:content="item/Area"></strong></p>
+              <p tal:content="structure python:item['DescribeGoodPractice'].replace('\n', '<br>')"></p>
             </div>
           </div>
         </div>
 
       </div>
-
 
       <!-- <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
                     fieldset_data data/Sub_National_Adaptation/OverviewMeasures;fieldset_key string:1">
