@@ -563,6 +563,12 @@ function drawCountries(world) {
     world, focusCountryNames
   );
 
+  for (let iW=0;iW<world.length;iW++) {
+    if (world[iW].properties.id=='TR') {
+      world[iW].url = 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg';
+    }
+  }
+
   var width = Math.round($(svg.node()).width());
   var height = 500;
 
