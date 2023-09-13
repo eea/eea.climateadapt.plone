@@ -322,6 +322,7 @@ function renderCountriesBox(opts) {
   var coords = opts.coordinates;
   var countries = opts.focusCountries;
 
+
   var svg = opts.svg;
   var world = opts.world;
   var zoom = opts.zoom;
@@ -554,6 +555,9 @@ function drawCountries(world) {
   svg.selectAll("*").remove();
 
   var focusCountryNames = Object.keys(countrySettings);
+
+  focusCountryNames = focusCountryNames.filter((countryName) => countryName != 'United Kingdom');
+  console.log(focusCountryNames);
 
   var focusCountriesFeature = filterCountriesByNames(
     world, focusCountryNames
