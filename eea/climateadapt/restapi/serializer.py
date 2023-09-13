@@ -173,7 +173,7 @@ class CaseStudySerializer(SerializeFolderToJson):       # SerializeToJson
 
 
 def get_geographic(item, result={}):
-    if not hasattr(item, 'geochars'):
+    if not hasattr(item, 'geochars') and not item.geochars:
         return result
 
     response = {}

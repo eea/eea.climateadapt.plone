@@ -59,3 +59,14 @@ TOP_LEVEL = {
     '/en/knowledge': [],
     '/en/network': [],
 }
+
+AST_PATHS = [
+    '/knowledge/tools/urban-ast',
+    '/knowledge/tools/adaptation-support-tool'
+]
+
+FULL_PAGE_PATHS = [
+    '/observatory',
+    '/knowledge/forestry'
+]
+
