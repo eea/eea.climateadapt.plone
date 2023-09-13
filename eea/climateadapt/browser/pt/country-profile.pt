@@ -712,18 +712,6 @@ ul li {
         </tal:block>
       </tal:rep>
 
-      <tal:block tal:define="fieldset_legend string:STATE OF PLAY - IMPLEMENTATION;
-                    fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
-      <tal:block tal:define="fieldset_legend string:OVERVIEW OF GOOD PRACTICES TO REVIEW SUBNATIONAL ADAPTATION POLICIES;
-                    fieldset_data data/Sub_National_Adaptation/DescribeSubnationalAdaptation">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
-      <tal:block tal:define="fieldset_legend string:COOPERATION - ADAPTATION ACTION;
-                    fieldset_data data/Sub_National_Adaptation/DescribeDetailCooperationEnhance">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
       <h2 class="country-header pt2" i18n:translate="">Cooperation and experience</h2>
       <tal:block tal:define="fieldset_legend string:Synergies of adaptation actions with other international frameworks;
                     fieldset_data data/Cooperation_Experience/DescribeSynergiesAdaptation">
@@ -760,12 +748,25 @@ ul li {
                     fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
+      <tal:block tal:define="fieldset_legend string:OVERVIEW OF GOOD PRACTICES TO REVIEW SUBNATIONAL ADAPTATION POLICIES;
+                    fieldset_data data/Sub_National_Adaptation/DescribeSubnationalAdaptation">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:Overview Content;
+                    fieldset_data data/Sub_National_Adaptation/OverviewContent;fieldset_key string:1">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
                     fieldset_data data/Sub_National_Adaptation/OverviewMeasures;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - private;
                     fieldset_data data/Sub_National_Adaptation/OverviewPrivateSector;fieldset_key string:1">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+
+      <tal:block tal:define="fieldset_legend string:COOPERATION - ADAPTATION ACTION;
+                    fieldset_data data/Sub_National_Adaptation/DescribeDetailCooperationEnhance">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Websites and social media;
@@ -778,6 +779,30 @@ ul li {
                   tal:condition="fieldset_websites">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
+
+      <div class="panel panel-default"
+        tal:define="fieldset_key string:SubNationalAvailableGoodPractices | string:_;
+                    fieldset_legend string:SubNationalAvailableGoodPractices
+                    id string: accordion_SubNationalAvailableGoodPractices"
+        >
+        <div class="panel-heading" id="accordion_SubNationalAvailableGoodPractices-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle tiny-acchead" href="#accordion_SubNationalAvailableGoodPractices-body" data-toggle="collapse">
+            <span>Available Good Practices</span></a>
+          </h4>
+        </div>
+        <div class="panel-collapse tiny-accbody collapse" id="accordion_SubNationalAvailableGoodPractices-body">
+          <div class="panel-body">
+            <div tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices">
+            <h2 tal:content="item/Title"></h2>
+            <p><strong tal:content="item/Area"/></p>
+            <p tal:content="structure python:item['DescribeGoodPractice'].replace('\n', '<br>')"></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
 
       <!-- <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
                     fieldset_data data/Sub_National_Adaptation/OverviewMeasures;fieldset_key string:1">
