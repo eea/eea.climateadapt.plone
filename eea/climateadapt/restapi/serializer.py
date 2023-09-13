@@ -26,7 +26,13 @@ class SlateBlockSerializer(SlateBlockSerializerBase):
 
     def handle_img(self, child):
         if child.get("url"):
-            child["url"] = uid_to_url(child["url"])
+            url = uid_to_url(child["url"])
+            if child.get('scale'):
+                url = "%s/@@images/image/%s" % (url, child['scale'])
+            else:
+                url = "%s/@@images/image/large" % url
+
+            child["url"] = url
 
 
 def append_common_new_fields(result, item):
