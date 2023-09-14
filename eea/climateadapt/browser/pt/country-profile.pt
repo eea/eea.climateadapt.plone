@@ -1,17 +1,5 @@
 <div tal:condition="python: not options['country_data']" style="margin:30px;" class="alert alert-warning alert-dismissable alert-redirect" role="alert">
-  <p tal:condition="python: options['country_code']=='TR'" i18n:translate="">
-  No data reported in 2021. You can visit on <a href="/en/countries-regions/countries-2021/turkiye">older report for Türkiye</a>.
-  </p>
-
-  <p tal:condition="python: options['country_code']=='NO'" i18n:translate="">
-  No data reported in 2021. You can visit on <a href="/en/countries-regions/countries-2021/norway">older report for Norway</a>.
-  </p>
-
-  <p tal:condition="python: options['country_code']=='LI'" i18n:translate="">
-  No data reported in 2021. You can visit on <a href="/en/countries-regions/countries-2021/liechtenstein">older report for Liechtenstein</a>.
-  </p>
-
-  <p tal:condition="python: options['country_code'] not in ['TR', 'NO', 'LI']" i18n:translate="">No data for this country</p>
+  <p>No data for this country</p>
 </div>
 
 <style>
@@ -401,18 +389,18 @@ ul li {
         </div>
         <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:key_affected_sectors_${repeat/item/index}-body">
           <table class="listing table-striped">
-            <tr><td i18n:translate="">Key affected sector(s)</td><td tal:content="item/SectorTitle" /></tr>
-            <tr><td i18n:translate="">Rating of the observed impacts of key hazards, including changes in frequency and magnitude</td><td tal:content="item/ImpactsKeyHazards" /></tr>
-            <tr><td i18n:translate="">Different rating of the observed impacts of key hazards</td><td tal:content="item/ImpactVariation" /></tr>
-            <tr><td i18n:translate="">Assessment</td><td tal:content="item/DescribeImpactsKeyHazards" /></tr>
-            <tr><td i18n:translate="">Rating of the key hazards' likelihood of occurrence and exposure to them under future climate</td><td tal:content="item/KeyHazardsLikelihood" /></tr>
-            <tr><td i18n:translate="">Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td tal:content="item/LikelihoodVariability" /></tr>
-            <tr><td i18n:translate="">Rating of the vulnerability, including adaptive capacity</td><td tal:content="item/Vulnerability" /></tr>
-            <tr><td i18n:translate="">Different rating of the vulnerability and/or adaptive capacity</td><td tal:content="item/VulnerabilityVariability" /></tr>
-            <tr><td i18n:translate="">Assessment</td><td tal:content="item/DescribeVulnerability" /></tr>
-            <tr><td i18n:translate="">Rating for the risk of potential future impacts</td><td tal:content="item/RiskFutureImpacts" /></tr>
-            <tr><td i18n:translate="">Different rating of the risk of potential future impacts</td><td tal:content="item/RiskVariability" /></tr>
-            <tr><td i18n:translate="">Assessment</td><td tal:content="item/DescribeRisk	" /></tr>
+            <tr><td>Key affected sector(s)</td><td tal:content="item/SectorTitle" /></tr>
+            <tr><td>Rating of the observed impacts of key hazards, including changes in frequency and magnitude</td><td tal:content="item/ImpactsKeyHazards" /></tr>
+            <tr><td>Different rating of the observed impacts of key hazards</td><td tal:content="item/ImpactVariation" /></tr>
+            <tr><td>Assessment</td><td tal:content="item/DescribeImpactsKeyHazards" /></tr>
+            <tr><td>Rating of the key hazards' likelihood of occurrence and exposure to them under future climate</td><td tal:content="item/KeyHazardsLikelihood" /></tr>
+            <tr><td>Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td tal:content="item/LikelihoodVariability" /></tr>
+            <tr><td>Rating of the vulnerability, including adaptive capacity</td><td tal:content="item/Vulnerability" /></tr>
+            <tr><td>Different rating of the vulnerability and/or adaptive capacity</td><td tal:content="item/VulnerabilityVariability" /></tr>
+            <tr><td>Assessment</td><td tal:content="item/DescribeVulnerability" /></tr>
+            <tr><td>Rating for the risk of potential future impacts</td><td tal:content="item/RiskFutureImpacts" /></tr>
+            <tr><td>Different rating of the risk of potential future impacts</td><td tal:content="item/RiskVariability" /></tr>
+            <tr><td>Assessment</td><td tal:content="item/DescribeRisk	" /></tr>
           </table>
         </div>
       </div>
@@ -744,16 +732,12 @@ ul li {
                     fieldset_data data/Sub_National_Adaptation/SummarizeGoodPractice">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:Overview of sub-national strategies;
-                    fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation">
+      <tal:block tal:define="fieldset_legend string:Overview of the content of sub-national policies;
+                    fieldset_data data/Sub_National_Adaptation/OverviewContent;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:OVERVIEW OF GOOD PRACTICES TO REVIEW SUBNATIONAL ADAPTATION POLICIES;
                     fieldset_data data/Sub_National_Adaptation/DescribeSubnationalAdaptation">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
-      <tal:block tal:define="fieldset_legend string:Overview Content;
-                    fieldset_data data/Sub_National_Adaptation/OverviewContent;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
@@ -762,6 +746,10 @@ ul li {
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - private;
                     fieldset_data data/Sub_National_Adaptation/OverviewPrivateSector;fieldset_key string:1">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:State of play of the implementation of measures planned;
+                    fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
@@ -780,28 +768,23 @@ ul li {
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
-      <div class="panel panel-default"
-        tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing"
-        tal:define="fieldset_key string:SubNationalAvailableGoodPractices | string:_;
-                    fieldset_legend string:SubNationalAvailableGoodPractices
-                    id string: accordion_SubNationalAvailableGoodPractices"
-        >
-        <div class="panel-heading" id="accordion_SubNationalAvailableGoodPractices-heading">
+    <div tal:define="id string:Sub_National_AvailableGoodPractices" tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing">
+      <h2 class="country-header">Good practices and lessons learnt</h2>
+      <div class="panel panel-default" tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices">
+        <div class="panel-heading" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-heading">
           <h4 class="panel-title">
-            <a class="accordion-toggle tiny-acchead" href="#accordion_SubNationalAvailableGoodPractices-body" data-toggle="collapse">
-            <span>Available Good Practices</span></a>
+            <a class="accordion-toggle tiny-acchead" tal:attributes="href string:#accordion_sn_agp_${repeat/item/index}-body" data-toggle="collapse">
+            <span tal:content="item/Title">Available Good Practices</span></a>
           </h4>
         </div>
-        <div class="panel-collapse tiny-accbody collapse" id="accordion_SubNationalAvailableGoodPractices-body">
+        <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-body">
           <div class="panel-body">
-            <div tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices">
-              <h2 tal:content="item/Title"></h2>
-              <p><strong tal:content="item/Area"></strong></p>
-              <p tal:content="structure python:item['DescribeGoodPractice'].replace('\n', '<br>')"></p>
-            </div>
+            <p><strong tal:content="item/Area"></strong></p>
+            <p tal:content="structure python:item['DescribeGoodPractice'].replace('\n', '<br>')"></p>
           </div>
         </div>
 
+      </div>
       </div>
 
       <!-- <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
