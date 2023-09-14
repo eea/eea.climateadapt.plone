@@ -732,16 +732,12 @@ ul li {
                     fieldset_data data/Sub_National_Adaptation/SummarizeGoodPractice">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:Overview of sub-national strategies;
-                    fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation">
+      <tal:block tal:define="fieldset_legend string:Overview of the content of sub-national policies;
+                    fieldset_data data/Sub_National_Adaptation/OverviewContent;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:OVERVIEW OF GOOD PRACTICES TO REVIEW SUBNATIONAL ADAPTATION POLICIES;
                     fieldset_data data/Sub_National_Adaptation/DescribeSubnationalAdaptation">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
-      <tal:block tal:define="fieldset_legend string:Overview Content;
-                    fieldset_data data/Sub_National_Adaptation/OverviewContent;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
@@ -750,6 +746,10 @@ ul li {
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - private;
                     fieldset_data data/Sub_National_Adaptation/OverviewPrivateSector;fieldset_key string:1">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
+      <tal:block tal:define="fieldset_legend string:State of play of the implementation of measures planned;
+                    fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
@@ -768,28 +768,23 @@ ul li {
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
-      <div class="panel panel-default"
-        tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing"
-        tal:define="fieldset_key string:SubNationalAvailableGoodPractices | string:_;
-                    fieldset_legend string:SubNationalAvailableGoodPractices
-                    id string: accordion_SubNationalAvailableGoodPractices"
-        >
-        <div class="panel-heading" id="accordion_SubNationalAvailableGoodPractices-heading">
+    <div tal:define="id string:Sub_National_AvailableGoodPractices" tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing">
+      <h2 class="country-header">Good practices and lessons learnt</h2>
+      <div class="panel panel-default" tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices">
+        <div class="panel-heading" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-heading">
           <h4 class="panel-title">
-            <a class="accordion-toggle tiny-acchead" href="#accordion_SubNationalAvailableGoodPractices-body" data-toggle="collapse">
-            <span>Available Good Practices</span></a>
+            <a class="accordion-toggle tiny-acchead" tal:attributes="href string:#accordion_sn_agp_${repeat/item/index}-body" data-toggle="collapse">
+            <span tal:content="item/Title">Available Good Practices</span></a>
           </h4>
         </div>
-        <div class="panel-collapse tiny-accbody collapse" id="accordion_SubNationalAvailableGoodPractices-body">
+        <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-body">
           <div class="panel-body">
-            <div tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices">
-              <h2 tal:content="item/Title"></h2>
-              <p><strong tal:content="item/Area"></strong></p>
-              <p tal:content="structure python:item['DescribeGoodPractice'].replace('\n', '<br>')"></p>
-            </div>
+            <p><strong tal:content="item/Area"></strong></p>
+            <p tal:content="structure python:item['DescribeGoodPractice'].replace('\n', '<br>')"></p>
           </div>
         </div>
 
+      </div>
       </div>
 
       <!-- <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
