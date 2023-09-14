@@ -751,6 +751,9 @@ function createTooltip(opts) {
     .attr('id', 'tooltip-content')
     .append(content)
     ;
+  if (name=='Turkiye') {
+    name = 'Türkiye';
+  }
   var h3_name = $('<h3>')
     .append(name)
     ;
