@@ -4,6 +4,7 @@ from plone.restapi.services.navigation.get import \
     NavigationGet as BaseNavigationGet
 from Products.CMFPlone.browser.navigation import \
     CatalogNavigationTabs as BaseCatalogNavigationTabs
+from urlparse import urlparse
 from zope.component import adapter
 from zope.interface import Interface, implementer
 
@@ -37,7 +38,7 @@ class Navigation(BaseNavigation):
             # self.depth = int(self.request.form["expand.navigation.depth"])
 
             if is_outside_mission(self.context):
-                self.depth = 1
+                self.depth = 8
             else:
                 self.depth = int(self.request.form["expand.navigation.depth"])
         else:
@@ -49,6 +50,26 @@ class Navigation(BaseNavigation):
 
         result["navigation"]["items"] = self.build_tree(self.navtree_path)
         return result
+
+    def customize_entry(self, entry, brain):
+        entry['brain'] = brain
+        if brain.remoteUrl:
+            entry['path'] = urlparse(brain.remoteUrl).path
+            entry['@id'] = brain.remoteUrl
+        return entry
+
+    def render_item(self, item, path):
+        sub = self.build_tree(item["path"], first_run=False)
+
+        item.update({"items": sub})
+
+        if "path" in item:
+            del item["path"]
+
+        if 'brain' in item:
+            del item['brain']
+
+        return item
 
 
 class NavigationGet(BaseNavigationGet):
