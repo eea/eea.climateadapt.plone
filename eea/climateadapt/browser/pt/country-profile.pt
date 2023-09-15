@@ -656,10 +656,6 @@ ul li {
                     fieldset_data data/Sub_National_Adaptation/OverviewContent | nothing;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:OVERVIEW OF GOOD PRACTICES TO REVIEW SUBNATIONAL ADAPTATION POLICIES;
-                    fieldset_data data/Sub_National_Adaptation/DescribeSubnationalAdaptation | nothing">
-        <tal:macro metal:use-macro="view/fieldset-macro"/>
-      </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
                     fieldset_data data/Sub_National_Adaptation/OverviewMeasures | nothing;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
@@ -672,7 +668,10 @@ ul li {
                     fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-
+      <tal:block tal:define="fieldset_legend string:OVERVIEW OF GOOD PRACTICES TO REVIEW SUBNATIONAL ADAPTATION POLICIES;
+                    fieldset_data data/Sub_National_Adaptation/DescribeSubnationalAdaptation | nothing">
+        <tal:macro metal:use-macro="view/fieldset-macro"/>
+      </tal:block>
       <tal:block tal:define="fieldset_legend string:COOPERATION - ADAPTATION ACTION;
                     fieldset_data data/Sub_National_Adaptation/DescribeDetailCooperationEnhance | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
