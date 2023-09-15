@@ -339,10 +339,14 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
             return res
 
+        if not processed_data['Legal_Policies']:
+            return res
+
         # setup National adaptation policy - NAS, NAP and SAP
         for name in ('NAS', 'NAP', 'SAP'):
             value = u''
             values = processed_data['Legal_Policies'].get(name, [])
+
             is_nap_country = country_name in _COUNTRIES_WITH_NAP
             is_nas_country = country_name in _COUNTRIES_WITH_NAS
 
@@ -706,7 +710,7 @@ class CountryProfileData(BrowserView):
     template = ViewPageTemplateFile("pt/country-profile.pt")
 
     def verify_country_name(self, country_name):
-        if country_name.lower in ['copy_of_turkey', 'turkiye']:
+        if country_name.lower in ['turkiye']:
             country_name = 'Turkey'
         return country_name
 
@@ -770,6 +774,8 @@ class CountryProfileData(BrowserView):
 
         items = self.processed_data.get('Key_Affected_Sectors',[])
 
+        if not items:
+            return []
         # for some countries if we have only one item, will return the item and not a array
         if 'Id' in items:
             items = [items]
@@ -777,6 +783,9 @@ class CountryProfileData(BrowserView):
         return items
 
     def get_sorted_action_measures_data(self):
+        if not self.processed_data['Strategies_Plans']:
+            return None
+
         items = self.processed_data['Strategies_Plans'].get(
             'Action_Measures', [])
 
@@ -788,6 +797,9 @@ class CountryProfileData(BrowserView):
         return sorted_items
 
     def get_sorted_available_practices_data(self):
+        if not self.processed_data['Cooperation_Experience']:
+            return None
+
         items = self.processed_data['Cooperation_Experience'].get(
             'AvailableGoodPractices', [])
 
@@ -816,6 +828,9 @@ class CountryProfileData(BrowserView):
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
 
         response = OrderedDict()
+
+        if not processed_data['Legal_Policies']:
+            return {'keys':[], 'items':[]}
 
         items = processed_data.get('Legal_Policies',[]).get('AdaptationPolicies',[])
         items = sorted(items, key=lambda x: x['Type'])
