@@ -95,17 +95,17 @@
               <p class="legend-text" i18n:translate="">Adaptation portal or platform reported</p>
             </div>
             <div class="legend-el">
-              <span class="country-noportal legend-box"></span>
+              <span class="country-nodata2 legend-box"></span>
               <p class="legend-text" i18n:translate="">No portal or platform reported</p>
-            </div>
-            <div class="legend-el">
-              <span class="country-outside legend-box"></span>
-              <p class="legend-text">Outside EEA coverage</p>
             </div>
             <div class="legend-el">
               <!-- <span class="country-notreported legend-box"></span> -->
               <span class="country-nas legend-box"></span>
               <p class="legend-text" i18n:translate="">No data reported in 2023</p>
+            </div>
+            <div class="legend-el">
+              <span class="country-outside legend-box"></span>
+              <p class="legend-text">Outside EEA coverage</p>
             </div>
           </div>
 

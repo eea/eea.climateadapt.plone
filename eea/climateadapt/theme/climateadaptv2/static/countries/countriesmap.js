@@ -19,7 +19,6 @@ jQuery(document).ready(function () {
     $.get('/'+getCurrentLanguage()+'/countries-regions/countries/@@countries-metadata-extract?langflag=1', function (metadata) {
       d3.tsv(fpath, function (flags) {
         window._flags = flags;
-//console.log(metadata);
         initmap(metadata, world, flags);
       });
     });
@@ -73,6 +72,9 @@ function getCountryClass(country, countries) {
     countryName = 'Turkiye';
   }
   var meta = countrySettings[countryName];
+  if (countryName == 'Turkey') {
+    var meta = countrySettings['Turkiye'];
+  }
   if (!meta) {
     return k;
   }
@@ -156,7 +158,7 @@ for (i=0;i<discodataKeys.length;i++) {
     } else if (["both", "hazard", "adaptation", "not_specified"].includes(focus_info)) {
       k += ' country-nasnap';
     } else {
-      k += ' country-noportal';
+      k += ' country-nodata2';
     }
 
     if (countryNoData.indexOf(countryName) > -1) {
@@ -620,35 +622,35 @@ function showMapTooltip(d) {
   var url = info[1];
 
   if (_selectedMapSection === 'overview') {
-    var napInfo, nasInfo, sapInfo;
-    if (content['nap_info']) {
-      napInfo = '<span>National Adaptation Plan:</span>' + content['nap_info'];
-    } else if (content['nap_mixed']) {
-      napInfo = '<span>National Adaptation Plan:</span>' + content['nap_mixed'];
-    } else {
-      napInfo = '';
-    }
+    // var napInfo, nasInfo, sapInfo;
+    // if (content['nap_info']) {
+    //   napInfo = '<span>National Adaptation Plan:</span>' + content['nap_info'];
+    // } else if (content['nap_mixed']) {
+    //   napInfo = '<span>National Adaptation Plan:</span>' + content['nap_mixed'];
+    // } else {
+    //   napInfo = '';
+    // }
+    // _mi
+    // if (content['nas_info']) {
+    //   nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_info'];
+    // } else if (content['nas_mixed']) {
+    //   nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_mixed'];
+    // } else {
+    //   nasInfo = '';
+    // }
 
-    if (content['nas_info']) {
-      nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_info'];
-    } else if (content['nas_mixed']) {
-      nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_mixed'];
-    } else {
-      nasInfo = '';
-    }
-
-    if (content['sap_info']) {
-      sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_info'];
-    } else if (content['sap_mixed']) {
-      sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_mixed'];
-    } else {
-      sapInfo = '';
-    }
+    // if (content['sap_info']) {
+    //   sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_info'];
+    // } else if (content['sap_mixed']) {
+    //   sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_mixed'];
+    // } else {
+    //   sapInfo = '';
+    // }
 
     if (content['notreported']) {
       content = noDataReportedMsg;
     } else {
-      content = (nasInfo + napInfo + sapInfo) || "NAS and NAP not reported";
+      content = (content['mixed']) || "NAS and NAP not reported";
     }
   }
 
@@ -853,8 +855,7 @@ function createSectionsSelector(sections, countries, callback) {
   var countryNames = Object.keys(countries);
   countryNames.sort();
   var select = $("#country-selector select");
-
-  countryNames.forEach(function (name) {
+  countryNames.filter((countryName)=>countryName != "United Kingdom").forEach(function (name) {
     select
       .append(
       $("<option>").append(name)
