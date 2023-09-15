@@ -6,7 +6,7 @@ import logging
 
 from plone.app.multilingual.api import get_translation_manager
 
-from .config import LANGUAGES, TOP_LEVEL
+from .config import LANGUAGES, TOP_LEVEL, AST_PATHS, FULL_PAGE_PATHS
 from .utils import make_uid
 
 logger = logging.getLogger()
@@ -506,6 +506,41 @@ def fix_uast(context):
 @inpath('knowledge/tools/adaptation-support-tool')
 def fix_ast(context):
     return extract_first_column(context)
+
+
+def is_full_layout_path(url):
+    for path in FULL_PAGE_PATHS:
+        if url.endswith(path):
+            return True
+        
+def is_ast_path(url):
+    for path in AST_PATHS:
+        if path in url:
+            return True
+
+def fix_layout_size(context):
+    url = context.absolute_url(relative=True)
+
+    if is_ast_path(url):
+        return
+
+    if is_full_layout_path(url):
+        return
+
+    layout_uid = make_uid()
+    page_blocks = context.blocks
+    page_blocks_layout = context.blocks_layout
+    uids = page_blocks_layout['items'] + [layout_uid]
+    blocks_layout = {"items":  uids}
+    _blocks = {}
+    _blocks[layout_uid] = {"@type": "layoutSettings", "layout_size": "narrow_view"}
+   
+    for (uid, block) in page_blocks.items():
+        _blocks[uid] = block
+   
+    context.blocks = _blocks
+    context.blocks_layout = blocks_layout
+    context._p_changed = True
 
 
 def fix_field_encoding(context):

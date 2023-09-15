@@ -10,6 +10,7 @@ from plone import api
 from plone.api import content
 from plone.app.uuid.utils import uuidToObject
 from plone.namedfile.file import NamedBlobImage
+from plone.restapi.serializer.converters import json_compatible
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.CatalogTool import sortable_title
 from zope.component.hooks import getSite
@@ -106,9 +107,9 @@ def relevant_items(obj, request, tile):
             item.Title(),
             item.Description(),
             item.meta_type,
-            item.created(),
-            item.effective(),
-            item.modified(),
+            json_compatible(item.created()),
+            json_compatible(item.effective()),
+            json_compatible(item.modified()),
             state,
             st,
         )

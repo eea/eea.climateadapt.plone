@@ -31,6 +31,25 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
+  <adapter
+    factory=".actions.Actions"
+    name="actions"
+    />
+
+  <plone:service
+    method="GET"
+    factory=".actions.ActionsGet"
+    for="zope.interface.Interface"
+    permission="zope2.View"
+    name="@actions"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
+  <subscriber
+      factory=".serializer.SlateBlockSerializer"
+      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+      />
+
   <subscriber
       factory=".deserializer.VolatileSmartField"
       provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
