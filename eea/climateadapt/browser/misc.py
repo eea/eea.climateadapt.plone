@@ -1240,7 +1240,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                 for j, indicator in enumerate(response[_category]['types'][_type]):
                     if j > 0:
                         responseHtml += "<tr>"
-                    responseHtml += "<td><a href=\""+indicator['cca_url']+"\">"+indicator['cca_title']+"</a></td>"
+                    responseHtml += "<td><a href=\""+indicator['cca_url']+"\">"+indicator['cca_title'].decode('utf-8')+"</a></td>"
                     responseHtml += "<td><a href=\"" + \
                         indicator['zip_url']+"\">" + \
                         translate_text(self.context, self.request, "Download", 'eea.cca')+"</a></td>"
