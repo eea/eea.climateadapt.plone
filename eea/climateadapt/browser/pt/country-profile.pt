@@ -80,7 +80,8 @@ ul li {
   <div class="col-lg-9">
   <div class="tab-content">
     <!-- <div tal:content="view/summary_table"></div> -->
-    <div class="tab-pane active" id="4489-0">
+    <div class="tab-pane active" id="4489-0" tal:define="summary_data view/summary_table">
+      <tal:cond tal:condition="python: len(summary_data['items'])">
       <table class="listing table-striped" summary="">
         <thead>
           <tr>
@@ -263,6 +264,7 @@ ul li {
 
         </tbody>
       </table>
+      </tal:cond>
     </div>
 
     <div class="tab-pane" id="4489-01">
@@ -307,7 +309,6 @@ ul li {
         </div>
       </tal:macro>
     </tal:block>
-
     <tal:block tal:define="fieldset_legend string:Demographic situation;
                         fieldset_data data/National_Circumstances/DemographicSituation">
       <tal:macro metal:use-macro="view/fieldset-macro"/>
@@ -376,6 +377,7 @@ ul li {
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
+      <tal:cond tal:condition="view/get_sorted_affected_sectors_data | nothing">
       <h2 class="country-header pt2" i18n:translate="">Key affected sectors</h2>
 
       <tal tal:define="items view/get_sorted_affected_sectors_data">
@@ -406,117 +408,33 @@ ul li {
       </div>
       </tal>
 
-      <!-- <tal:rep tal:repeat="item view/get_sorted_affected_sectors_data"> -->
-      <tal:rep tal:repeat="item python:[]">
-
-
-        <div class="panel panel-default"
-          tal:define="id item/SectorTitle/title;
-                      id python: 'sector_title_' + id;
-                      id python: id + '_' + item['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in item else id;
-                      id python: id.replace(' ', '_');
-                      id python: id.replace('(', '_');
-                      id python: id.replace(')', '_');
-                      id python: id.replace('/', '_');
-                      id python: id.replace(',', '_');
-                      id python: id.replace('-', '_');
-                      "
-          >
-          <div class="panel-heading" tal:attributes="id python: id+'-heading'">
-            <h4 class="panel-title">
-              <a class="accordion-toggle tiny-acchead" tal:attributes="href python:'#'+id+'-body'" data-toggle="collapse">
-                <span tal:content="item/SectorTitle/title">Forest</span>
-                <span tal:condition="python: 'SectorDescribeIfOther' in item"
-                    tal:content="python: ': ' + item['SectorDescribeIfOther']">Forest</span>
-              </a>
-            </h4>
-          </div>
-          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
-            <div class="panel-body">
-                  <div class="read_more_second">
-                    <table class="listing table-striped">
-                      <thead tal:condition="python: False">
-                        <tr>
-                          <th i18n:translate="">Sector</th>
-                          <th>
-                            <span tal:content="item/SectorTitle">Forest</span>
-                            <span tal:condition="item/SectorDescribeIfOther"
-                                tal:content="python: ': ' + item['SectorDescribeIfOther']">Forest</span>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td style="width: 14em;" i18n:translate="">Impact/key hazard</td>
-                          <td>
-                            <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
-                                tal:content="structure python: view.convert_web_int(item['ImpactsKeyHazards'])">long text</div>
-                            <div style="padding: 5px;"
-                                 tal:content="structure python: view.convert_web_int(item['DescribeImpactsKeyHazards'])">long text</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td i18n:translate="">Key hazard likelihood</td>
-                          <td>
-                            <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
-                                tal:content="structure python: view.convert_web_int(item['KeyHazardsLikelihood'])">long text</div>
-                            <div style="padding: 5px;"
-                                 tal:content="structure python: view.convert_web_int(item['DescribeLikelihood'])">long text</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td i18n:translate="">Vulnerability</td>
-                          <td>
-                            <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
-                                tal:content="structure python: view.convert_web_int(item['Vulnerability'])">long text</div>
-                            <div style="padding: 5px;"
-                                 tal:content="structure python: view.convert_web_int(item['DescribeVulnerability'])">long text</div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td i18n:translate="">Risk Future Impact</td>
-                          <td>
-                            <div style="border-bottom: 1px solid #e5e5e5; padding: 5px;"
-                                tal:content="structure python: view.convert_web_int(item['RiskFutureImpacts'])">long text</div>
-                            <div style="padding: 5px;"
-                                 tal:content="structure python: view.convert_web_int(item['DescribeRisk'])">long text</div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-      </tal:rep>
+      </tal:cond>
     </div>
 
     <div class="tab-pane  " id="4489-2">
       <h2 class="country-header" i18n:translate="">Overview of institutional arrangements and governance at the national level</h2>
       <tal:block tal:define="fieldset_legend string:Legal and policy frameworks and regulations;
-                    fieldset_data data/Legal_Policies/LegalPolicyFrameworks">
+                    fieldset_data data/Legal_Policies/LegalPolicyFrameworks | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Climate vulnerability and risk assessment;
-                    fieldset_data data/Legal_Policies/ArrangementsCCIV_assessments">
+                    fieldset_data data/Legal_Policies/ArrangementsCCIV_assessments | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:PLANNING, IMPLEMENTATION, MONITORING AND EVALUATION OF ADAPTATION POLICY;
-                    fieldset_data data/Legal_Policies/DescribeInstitutionalArrangements">
+                    fieldset_data data/Legal_Policies/DescribeInstitutionalArrangements | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:INTEGRATION INTO ENVIRONMENTAL ASSESSMENT PROCEDURES;
-                    fieldset_data data/Legal_Policies/DescribeEIA">
+                    fieldset_data data/Legal_Policies/DescribeEIA | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:INTEGRATION INTO DISASTER RISK MANAGEMENT;
-                    fieldset_data data/Legal_Policies/DescribeDRR">
+                    fieldset_data data/Legal_Policies/DescribeDRR | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Collection and ownership of data;
-                    fieldset_data data/Legal_Policies/DescribeCollection">
+                    fieldset_data data/Legal_Policies/DescribeCollection | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
@@ -524,27 +442,27 @@ ul li {
 
     <div class="tab-pane  " id="4489-3">
       <tal:block tal:define="fieldset_legend string:Adaptation priorities;
-                    fieldset_data data/Strategies_Plans/AdaptationPriorities">
+                    fieldset_data data/Strategies_Plans/AdaptationPriorities | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Challenges, gaps and barriers;
-                    fieldset_data data/Strategies_Plans/Challenges">
+                    fieldset_data data/Strategies_Plans/Challenges | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Summaries of national strategies;
-                    fieldset_data data/Strategies_Plans/SummaryNationalStrategies">
+                    fieldset_data data/Strategies_Plans/SummaryNationalStrategies | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:INTEGRATION INTO SECTORAL POLICIES, PLANS AND PROGRAMS;
-                    fieldset_data data/Strategies_Plans/OverviewEffortsClimate">
+                    fieldset_data data/Strategies_Plans/OverviewEffortsClimate | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
-                    fieldset_data data/Strategies_Plans/OverviewMeasures">
+                    fieldset_data data/Strategies_Plans/OverviewMeasures | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - private;
-                    fieldset_data data/Strategies_Plans/OverviewPrivateSector">
+                    fieldset_data data/Strategies_Plans/OverviewPrivateSector | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
@@ -553,6 +471,7 @@ ul li {
         <div i18n:translate="">Not reported</div>
       </tal:cond>
 
+      <tal:cond tal:condition="python: view.get_sorted_action_measures_data()">
       <tal:rep tal:repeat="item view/get_sorted_action_measures_data">
         <div class="panel panel-default"
           tal:define="id repeat/item/index;
@@ -614,52 +533,53 @@ ul li {
               </div>
             </div>
       </tal:rep>
+      </tal:cond>
 
     </div>
 
     <div class="tab-pane  " id="4489-4" tal:condition="python: 'Monitoring_Evaluation' in data">
       <tal:block tal:define="fieldset_legend string:Monitoring, reporting and evaluation (MRE) methodology;
-                    fieldset_data data/Monitoring_Evaluation/DescribeMonitoringReportingEvaluation">
+                    fieldset_data data/Monitoring_Evaluation/DescribeMonitoringReportingEvaluation | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:MRE implementation;
-                    fieldset_data data/Monitoring_Evaluation/DescribeMREMethodology">
+                    fieldset_data data/Monitoring_Evaluation/DescribeMREMethodology | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:State of play - implementation;
-                    fieldset_data data/Monitoring_Evaluation/DescribeStatePlay">
+                    fieldset_data data/Monitoring_Evaluation/DescribeStatePlay | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:STATE OF PLAY - SPENDING FOR CLIMATE CHANGE ADAPTATION;
-                    fieldset_data data/Monitoring_Evaluation/SummaryClimateAdaptation">
+                    fieldset_data data/Monitoring_Evaluation/SummaryClimateAdaptation | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:State of play - spending by sector;
-                    fieldset_data python: data['Monitoring_Evaluation'].get('SummarySpendingShare', '')">
+                    fieldset_data data/Monitoring_Evaluation/SummarySpendingShare | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Progress towards reducing climate impacts, vulnerabilities and risks;
-                    fieldset_data data/Monitoring_Evaluation/DescribeReducingClimateImpacts">
+                    fieldset_data data/Monitoring_Evaluation/DescribeReducingClimateImpacts | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Progress increasing adaptive capacity;
-                    fieldset_data data/Monitoring_Evaluation/DescribeIncreasingAdaptiveCapacity">
+                    fieldset_data data/Monitoring_Evaluation/DescribeIncreasingAdaptiveCapacity | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Progress meeting adaptation priorities;
-                    fieldset_data data/Monitoring_Evaluation/DescribeMeetingAdaptationPriorities">
+                    fieldset_data data/Monitoring_Evaluation/DescribeMeetingAdaptationPriorities | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Progress addressing barriers to adaptation;
-                    fieldset_data data/Monitoring_Evaluation/DescribeProgressTowardsAddressing">
+                    fieldset_data data/Monitoring_Evaluation/DescribeProgressTowardsAddressing | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Steps to review climate change impact and vulnerability assessments;
-                    fieldset_data data/Monitoring_Evaluation/DescribeVulnerability">
+                    fieldset_data data/Monitoring_Evaluation/DescribeVulnerability | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Steps to review national adaptation policies;
-                    fieldset_data data/Monitoring_Evaluation/DescribeNationalAdaptation">
+                    fieldset_data data/Monitoring_Evaluation/DescribeNationalAdaptation | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <!-- <tal:block tal:define="fieldset_legend string:Overview of good practices to review subnational adaptation policies;
@@ -702,15 +622,15 @@ ul li {
 
       <h2 class="country-header pt2" i18n:translate="">Cooperation and experience</h2>
       <tal:block tal:define="fieldset_legend string:Synergies of adaptation actions with other international frameworks;
-                    fieldset_data data/Cooperation_Experience/DescribeSynergiesAdaptation">
+                    fieldset_data data/Cooperation_Experience/DescribeSynergiesAdaptation | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Cooperation - science;
-                    fieldset_data data/Cooperation_Experience/DescribeDetailShareInformation">
+                    fieldset_data data/Cooperation_Experience/DescribeDetailShareInformation | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Cooperation - policy;
-                    fieldset_data data/Cooperation_Experience/DescribeDetailCooperationEnhance">
+                    fieldset_data data/Cooperation_Experience/DescribeDetailCooperationEnhance | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
@@ -721,52 +641,56 @@ ul li {
       <h2 class="country-header" i18n:translate="">Overview of institutional arrangements and governance at the sub-national level
 (where “sub-national” refers to local and regional)</h2>
       <tal:block tal:define="fieldset_legend string:Legal requirements;
-                    fieldset_data data/Sub_National_Adaptation/SummarizeLegalRequirements">
+                    fieldset_data data/Sub_National_Adaptation/SummarizeLegalRequirements | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Networks and collaborations;
-                    fieldset_data data/Sub_National_Adaptation/SummarizeNetworks">
+                    fieldset_data data/Sub_National_Adaptation/SummarizeNetworks | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Good practices;
-                    fieldset_data data/Sub_National_Adaptation/SummarizeGoodPractice">
+                    fieldset_data data/Sub_National_Adaptation/SummarizeGoodPractice | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Overview of the content of sub-national policies;
-                    fieldset_data data/Sub_National_Adaptation/OverviewContent;fieldset_key string:1">
+                    fieldset_data data/Sub_National_Adaptation/OverviewContent | nothing;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:OVERVIEW OF GOOD PRACTICES TO REVIEW SUBNATIONAL ADAPTATION POLICIES;
-                    fieldset_data data/Sub_National_Adaptation/DescribeSubnationalAdaptation">
+                    fieldset_data data/Sub_National_Adaptation/DescribeSubnationalAdaptation | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
-                    fieldset_data data/Sub_National_Adaptation/OverviewMeasures;fieldset_key string:1">
+                    fieldset_data data/Sub_National_Adaptation/OverviewMeasures | nothing;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:Stakeholder engagement - private;
-                    fieldset_data data/Sub_National_Adaptation/OverviewPrivateSector;fieldset_key string:1">
+                    fieldset_data data/Sub_National_Adaptation/OverviewPrivateSector | nothing;fieldset_key string:1">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
       <tal:block tal:define="fieldset_legend string:State of play of the implementation of measures planned;
-                    fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation">
+                    fieldset_data data/Sub_National_Adaptation/DescribeSubNationalImplementation | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
 
       <tal:block tal:define="fieldset_legend string:COOPERATION - ADAPTATION ACTION;
-                    fieldset_data data/Sub_National_Adaptation/DescribeDetailCooperationEnhance">
+                    fieldset_data data/Sub_National_Adaptation/DescribeDetailCooperationEnhance | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
+      <tal:cond tal:condition="data/Sub_National_Adaptation | nothing">
       <tal:block tal:define="fieldset_legend string:Websites and social media;
                     fieldset_websites view/get_sub_national_websites"
                   tal:condition="fieldset_websites">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
+      </tal:cond>
+      <tal:cond tal:condition="data/Sub_National_Adaptation | nothing">
       <tal:block tal:define="fieldset_legend string:Key reports and publications;
                     fieldset_websites view/get_sub_national_publications"
                   tal:condition="fieldset_websites">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
+      </tal:cond>
 
     <div tal:define="id string:Sub_National_AvailableGoodPractices" tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing">
       <h2 class="country-header">Good practices and lessons learnt</h2>

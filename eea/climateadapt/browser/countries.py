@@ -47,6 +47,8 @@ def get_country_code(country_name):
     )
     if country_code == 'GR':
         country_code = "EL"
+    if country_code == 'Not found' and country_name.lower() == 'turkiye':
+        country_code = "TR"
 
     return country_code
 
@@ -326,6 +328,8 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
         #         res[name] = obj.getProperty(name)
 
         country_name = obj.id.title().replace('-', ' ')
+        if country_name.lower == 'turkiye':
+            country_name == 'Turkey'
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -335,10 +339,14 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
             return res
 
+        if not processed_data['Legal_Policies']:
+            return res
+
         # setup National adaptation policy - NAS, NAP and SAP
         for name in ('NAS', 'NAP', 'SAP'):
             value = u''
             values = processed_data['Legal_Policies'].get(name, [])
+
             is_nap_country = country_name in _COUNTRIES_WITH_NAP
             is_nas_country = country_name in _COUNTRIES_WITH_NAS
 
@@ -373,6 +381,34 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
             res[prop] = value
 
         values = processed_data['Legal_Policies'].get('AdaptationPolicies', [])
+        sorted_items = sorted(
+            values,
+            key=lambda i: i['Type']
+        )
+        _response = {}
+        sorted_items = filter(lambda x: x['Status'].endswith(('completed', '(adopted)')), sorted_items)
+        for item in sorted_items:
+            _type = item['Type']
+            _type = _type[3:_type.find('(')]
+            if _type not in _response:
+                _response[_type] = []
+            _response[_type].append(item)
+
+        value = u''
+        for key in _response:
+            data = _response[key]
+            _value = [
+                u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                    v.get('Link'), v['Title'].encode('ascii', 'ignore').decode('ascii'),
+                    "style='font-style:oblique;'", v.get('Status'))
+                for v in data
+            ]
+            if len(_value):
+                value += "<span>"+key+"</span>"
+                value += "<ul>"+''.join(_value)+"</ul>"
+        res['mixed'] = value
+
+        #import pdb; pdb.set_trace()
         res['nas_mixed'] = ''
         res['nap_mixed'] = ''
         res['sap_mixed'] = ''
@@ -673,8 +709,13 @@ class ContextCountriesViewJson(BrowserView):
 class CountryProfileData(BrowserView):
     template = ViewPageTemplateFile("pt/country-profile.pt")
 
+    def verify_country_name(self, country_name):
+        if country_name.lower in ['turkiye']:
+            country_name = 'Turkey'
+        return country_name
+
     def get_processed_data(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -730,10 +771,21 @@ class CountryProfileData(BrowserView):
         #     items,
         #     key=lambda i: (i['SectorTitle'], i['SectorDescribeIfOther'] if 'SectorDescribeIfOther' in i else '')
         # )
+
         items = self.processed_data.get('Key_Affected_Sectors',[])
+
+        if not items:
+            return []
+        # for some countries if we have only one item, will return the item and not a array
+        if 'Id' in items:
+            items = [items]
+
         return items
 
     def get_sorted_action_measures_data(self):
+        if not self.processed_data['Strategies_Plans']:
+            return None
+
         items = self.processed_data['Strategies_Plans'].get(
             'Action_Measures', [])
 
@@ -745,6 +797,9 @@ class CountryProfileData(BrowserView):
         return sorted_items
 
     def get_sorted_available_practices_data(self):
+        if not self.processed_data['Cooperation_Experience']:
+            return None
+
         items = self.processed_data['Cooperation_Experience'].get(
             'AvailableGoodPractices', [])
 
@@ -764,7 +819,7 @@ class CountryProfileData(BrowserView):
         return link
 
     def summary_table(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -773,6 +828,9 @@ class CountryProfileData(BrowserView):
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
 
         response = OrderedDict()
+
+        if not processed_data['Legal_Policies']:
+            return {'keys':[], 'items':[]}
 
         items = processed_data.get('Legal_Policies',[]).get('AdaptationPolicies',[])
         items = sorted(items, key=lambda x: x['Type'])
@@ -793,7 +851,7 @@ class CountryProfileData(BrowserView):
         return {'keys':keys, 'items':response}
 
     def hazards_table(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -899,7 +957,7 @@ class CountryProfileData(BrowserView):
         return {'observedHtml':observedHtml, 'futureHtml':futureHtml, 'data':response}
 
     def hazards_table_prev_version(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -935,7 +993,7 @@ class CountryProfileData(BrowserView):
         return {'keys':keys, 'items':response}
 
     def __call__(self):
-        country_name = self.context.id.title().replace('-', ' ')
+        country_name = self.verify_country_name(self.context.id.title().replace('-', ' '))
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -945,7 +1003,7 @@ class CountryProfileData(BrowserView):
 
         self.processed_data = processed_data
         #import pdb; pdb.set_trace()
-        return self.template(country_data=processed_data)
+        return self.template(country_data=processed_data, country_code=country_code, country_name=country_name)
 
 
 class CountryProfileDataRaw(CountryProfileData):
