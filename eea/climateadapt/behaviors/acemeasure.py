@@ -454,10 +454,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, "important")
     directives.omitted(IEditForm, "rating")
     directives.omitted(IAddForm, "rating")
-    directives.omitted(IAddForm, "modification_date")
-    directives.omitted(IEditForm, "modification_date")
-    directives.omitted(IAddForm, "creation_date")
-    directives.omitted(IEditForm, "creation_date")
+    # directives.omitted(IAddForm, "modification_date")
+    # directives.omitted(IEditForm, "modification_date")
+    # directives.omitted(IAddForm, "creation_date")
+    # directives.omitted(IEditForm, "creation_date")
     directives.omitted(IAddForm, "id")
     directives.omitted(IEditForm, "id")
     # end
@@ -531,15 +531,17 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         missing_value=(None),
     )
 
-    creation_date = Datetime(
-        title=_(u"Created"),
-        required=False,
-    )
-
-    modification_date = Datetime(
-        title=_(u"Last Modified"),
-        required=False,
-    )
+    # creation_date = Datetime(
+    #     title=_(u"Created"),
+    #     required=False,
+    #     missing_value=None
+    # )
+    #
+    # modification_date = Datetime(
+    #     title=_(u"Last Modified"),
+    #     required=False,
+    #     missing_value=None
+    # )
 
     id = TextLine(
         title=_(u"Object ID"),
@@ -557,6 +559,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         u"and then the year",
         required=True,
     )
+
+    # directives.omitted(IAddForm, "id")
 
     # dexteritytextindexer.searchable('summary')
     # summary = Text(title=_(u"Summary"), required=False, default=u"")
