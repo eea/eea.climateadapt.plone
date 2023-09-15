@@ -158,7 +158,7 @@ for (i=0;i<discodataKeys.length;i++) {
     } else if (["both", "hazard", "adaptation", "not_specified"].includes(focus_info)) {
       k += ' country-nasnap';
     } else {
-      k += ' country-noportal';
+      k += ' country-nodata2';
     }
 
     if (countryNoData.indexOf(countryName) > -1) {
