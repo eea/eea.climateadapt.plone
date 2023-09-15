@@ -7,15 +7,35 @@ from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import (IClimateAdaptContent,
                                          IEEAClimateAdaptInstalled)
 from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
-# from plone.app.contenttypes.interfaces import IFolder
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
+from plone.restapi.behaviors import IBlocks
+from plone.restapi.interfaces import IBlockFieldSerializationTransformer
+from plone.restapi.serializer.blocks import (SlateBlockSerializerBase,
+                                             uid_to_url)
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
                                                 SerializeToJson)
 from zope.component import adapter
-from zope.interface import Interface
+from zope.interface import Interface, implementer
 
-# from plone import api
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IEEAClimateAdaptInstalled)
+class SlateBlockSerializer(SlateBlockSerializerBase):
+    """SlateBlockSerializerBase."""
+
+    # TODO: this needs also a deserializer that takes the scale in url and saves it to
+    # the "scale" field
+
+    def handle_img(self, child):
+        if child.get("url"):
+            url = uid_to_url(child["url"])
+            if child.get('scale'):
+                url = "%s/@@images/image/%s" % (url, child['scale'])
+            else:
+                url = "%s/@@images/image/large" % url
+
+            child["url"] = url
 
 
 def append_common_new_fields(result, item):

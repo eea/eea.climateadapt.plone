@@ -304,7 +304,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         ),
         required=False,
         value_type=URI(),
-        missing_value=(),
+        # missing_value=(),
     )
 
     dexteritytextindexer.searchable("source")
