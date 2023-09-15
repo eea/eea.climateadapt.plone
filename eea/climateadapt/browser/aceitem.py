@@ -1,10 +1,10 @@
-import json
-import urllib
+# import json
+# import urllib
 
 from eea.climateadapt.browser import AceViewApi
+from eea.climateadapt.browser.misc import create_contributions_link
 from eea.climateadapt.translation.admin import get_translation_object
 from eea.climateadapt.translation.utils import get_current_language
-from eea.climateadapt.browser.misc import create_contributions_link
 from plone import api
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
