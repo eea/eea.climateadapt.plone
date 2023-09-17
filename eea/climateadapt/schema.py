@@ -1,9 +1,8 @@
 """ zope.schema extensions
 """
 
-from zope.schema import TextLine
 from Products.CMFPlone.PloneTool import EMAIL_RE
-from zope.schema import ValidationError
+from zope.schema import TextLine, ValidationError
 
 
 class Year(TextLine):
@@ -17,7 +16,7 @@ class Year(TextLine):
         if not v:
             return
         if v < 1800 or v > 2200:
-            raise ValueError (u"Value outside of normal range: 1800-2200")
+            raise ValueError(u"Value outside of normal range: 1800-2200")
 
     def fromUnicode(self, str):
         """
@@ -46,14 +45,17 @@ class Email(TextLine):
                 raise InvalidEmail
         return True
 
+
 class PortalType(TextLine):
     """ plain text line used just to override the getter to return portal type"""
     pass
+
 
 class AbsoluteUrl(TextLine):
     """ plain text line used just to override the getter to return
         the link to the object"""
     pass
+
 
 class Uploader(TextLine):
     """ plain text line used just to override the getter to return the uploader uid"""
