@@ -14,10 +14,9 @@ from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
-from zope.interface import alsoProvides, implementer, implements
+from zope.interface import alsoProvides, implementer  # , implements
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
-
 
 ADD_ORGANISATION_URL = (
     u"<a target='_blank' "
