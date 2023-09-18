@@ -70,3 +70,26 @@ FULL_PAGE_PATHS = [
     '/knowledge/forestry'
 ]
 
+SECTOR_POLICIES = [
+    "/eu-adaptation-policy/sector-policies/agriculture",
+    "/eu-adaptation-policy/sector-policies/biodiversity",
+    "/eu-adaptation-policy/sector-policies/buildings",
+    "/eu-adaptation-policy/sector-policies/business-and-industry",
+    "/eu-adaptation-policy/sector-policies/coastal-areas",
+    "/eu-adaptation-policy/sector-policies/cultural-heritage",
+    "/eu-adaptation-policy/sector-policies/disaster-risk-reduction",
+    "/eu-adaptation-policy/sector-policies/energy",
+    "/eu-adaptation-policy/sector-policies/financial",
+    "/eu-adaptation-policy/sector-policies/forestry",
+    "/eu-adaptation-policy/sector-policies/health",
+    "/eu-adaptation-policy/sector-policies/ict/",
+    "/eu-adaptation-policy/sector-policies/land-use-planning",
+    "/eu-adaptation-policy/sector-policies/marine-and-fisheries",
+    "/eu-adaptation-policy/sector-policies/mountain-areas",
+    "/eu-adaptation-policy/sector-policies/transport",
+    "/eu-adaptation-policy/sector-policies/tourism",
+    "/eu-adaptation-policy/sector-policies/urban",
+    "/eu-adaptation-policy/sector-policies/water-management",
+    "/knowledge/adaptation-information/vulnerabilities-and-risks",
+    "/knowledge/adaptation-information/adaptation-measures"
+]
