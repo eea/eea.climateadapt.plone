@@ -116,7 +116,7 @@
             </div>
             <div class="legend-el">
               <span class="country-nodata2 legend-box"></span>
-              <p class="legend-text" i18n:translate="">National adaptation policy not reported in detail in 2023</p>
+              <p class="legend-text" i18n:translate="">National adaptation policy not reported beyond mandatory reporting in 2023</p>
             </div>
             <!-- <div class="legend-el">
               <span class="country-nap legend-box"></span>
