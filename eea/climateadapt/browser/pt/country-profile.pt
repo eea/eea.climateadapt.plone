@@ -648,7 +648,7 @@ ul li {
                     fieldset_data data/Sub_National_Adaptation/SummarizeNetworks | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
-      <tal:block tal:define="fieldset_legend string:Good practices;
+      <tal:block tal:define="fieldset_legend string:Good practice examples of networks or other collaborations;
                     fieldset_data data/Sub_National_Adaptation/SummarizeGoodPractice | nothing">
         <tal:macro metal:use-macro="view/fieldset-macro"/>
       </tal:block>
