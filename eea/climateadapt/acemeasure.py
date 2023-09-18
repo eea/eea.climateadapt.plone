@@ -5,8 +5,6 @@ import json
 import logging
 from datetime import date
 
-from zope.interface import implements
-
 from eea.climateadapt.behaviors import (IAceMeasure, IAdaptationOption,
                                         ICaseStudy)
 from eea.climateadapt.interfaces import IClimateAdaptContent
@@ -19,6 +17,7 @@ from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.rabbitmq.plone.rabbitmq import queue_msg
 from plone.api.portal import get_tool
 from plone.directives import dexterity
+from zope.interface import implements
 
 logger = logging.getLogger("eea.climateadapt.acemeasure")
 

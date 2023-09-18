@@ -28,7 +28,7 @@ from zope.interface import Interface, implementer
 
 from .config import (COL_MAPPING, IGNORED_CONTENT_TYPES, IGNORED_PATHS,
                      LANGUAGES)
-from .fixes import fix_content, fix_folder
+from .fixes import fix_content, fix_folder, fix_layout_size
 from .tiles import (cards_tile_to_block, embed_tile_to_block,
                     filter_acecontent_to_block, genericview_tile_to_block,
                     region_select_to_block, relevant_acecontent_to_block,
@@ -234,6 +234,7 @@ class MigrateCover(object):
         # TODO: ensure there's a page banner block (or title block)
 
         fix_content(self.context)
+        fix_layout_size(self.context)
 
         # return json.dumps({"blocks": blocks, "attributes": attributes})
 
@@ -274,6 +275,7 @@ class MigrateDocument(object):
             _blocks[uid] = block
         obj.blocks = _blocks
         obj._p_changed = True
+        fix_layout_size(obj)
 
 
 def is_ignored_path(path):
@@ -367,6 +369,7 @@ class MigrateFolder(object):
             self.context.blocks_layout = {"items": [block_id]}
             self.context.blocks = blocks
 
+        fix_layout_size(obj)
         fix_folder(obj)
 
         obj.reindexObject()

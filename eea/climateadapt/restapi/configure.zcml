@@ -46,6 +46,11 @@
     />
 
   <subscriber
+      factory=".serializer.SlateBlockSerializer"
+      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+      />
+
+  <subscriber
       factory=".deserializer.VolatileSmartField"
       provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
       />

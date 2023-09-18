@@ -12,8 +12,6 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import alsoProvides
 from zope.schema import Choice, List, TextLine
 
-# URI, Text, Int, Datetime, Date, Bool, , Tuple
-
 
 class ICaseStudy(IAceMeasure):  # , IGeolocatable):
     """Case study"""
@@ -147,6 +145,33 @@ class ICaseStudy(IAceMeasure):  # , IGeolocatable):
         ),
         required=False,
     )
+
+    # form.fieldset(
+    #     "default",
+    #     label=u"Item Description",
+    #     fields=[
+    #         'title',
+    #         'description',
+    #         'long_description',
+    #         'primary_photo',
+    #         'primary_photo_copyright',
+    #         'origin_website',
+    #         'logo',
+    #         'image',
+    #         'contributor_list',
+    #         'other_contributor',
+    #         "climate_impacts",
+    #         "challenges",
+    #         "objectives",
+    #         "adaptationoptions",
+    #         "solutions",
+    #         "relevance",
+    #         "keywords",
+    #         "sectors",
+    #         "elements",
+    #         # "featured",  # 'year',
+    #     ],
+    # )
 
 
 alsoProvides(ICaseStudy["relevance"], ILanguageIndependentField)

@@ -241,7 +241,7 @@ class IAceItem(IImageScaleTraversable):
         ),
         required=False,
         value_type=URI(),
-        missing_value=None,
+        # missing_value=None,
     )
 
     source = RichText(

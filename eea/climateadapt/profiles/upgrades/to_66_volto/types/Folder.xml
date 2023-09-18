@@ -53,7 +53,7 @@
     &lt;schema&gt;
       &lt;fieldset name="layout" label="Layout"&gt;
         &lt;field name="blocks" type="plone.schema.jsonfield.JSONField"&gt;
-          &lt;default&gt;{u'fed15d9d-046a-472f-a2e6-75014016c1cb': {u'@type': u'slate'}, u'e28ec238-4cd7-4b72-8025-66da44a6062f': {u'@type': u'layoutSettings'}, u'cb0f0cc0-266a-4728-89a0-539cdb18859c': {u'@type': u'title', u'copyrightIcon': u'ri-copyright-line'}}&lt;/default&gt;
+          &lt;default&gt;{u'fed15d9d-046a-472f-a2e6-75014016c1cb': {u'@type': u'slate'}, u'e28ec238-4cd7-4b72-8025-66da44a6062f': {u'@type': u'layoutSettings', u'layout_size': u'narrow_view'}, u'cb0f0cc0-266a-4728-89a0-539cdb18859c': {u'@type': u'title', u'copyrightIcon': u'ri-copyright-line'}}&lt;/default&gt;
           &lt;description/&gt;
           &lt;required&gt;False&lt;/required&gt;
           &lt;title&gt;Blocks&lt;/title&gt;
