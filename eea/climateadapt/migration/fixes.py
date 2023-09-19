@@ -6,7 +6,7 @@ import logging
 
 from plone.app.multilingual.api import get_translation_manager
 
-from .config import LANGUAGES, TOP_LEVEL, AST_PATHS, FULL_PAGE_PATHS
+from .config import LANGUAGES, TOP_LEVEL, AST_PATHS, FULL_PAGE_PATHS, SECTOR_POLICIES
 from .utils import make_uid
 
 logger = logging.getLogger()
@@ -463,6 +463,75 @@ def fix_news_archive(context):
     context._p_changed = True
 
 
+def are_on_path(url, paths):
+    for path in paths:
+        if url.endswith(path):
+            return True
+        
+def are_in_path(url, paths):
+    for path in paths:
+        if path in url:
+            return True
+
+def fix_read_more(context):
+    url = context.absolute_url(relative=True)
+
+    def get_columns_block_id(blocks):
+        columns_block = {k for k, v in blocks.items() if v['@type'] == 'columnsBlock'}
+        col_id = list(columns_block)[0]
+        return col_id
+    
+    def get_read_more_block_id(blocks):
+        read_more_block = {k for k, v in blocks.items() if v['@type'] == 'readMoreBlock'}
+        if read_more_block:
+            read_more_block_id = list(read_more_block)[0]
+            return read_more_block_id
+        else:
+            return None
+
+    if are_in_path(url, SECTOR_POLICIES):
+        col_id = get_columns_block_id(context.blocks)
+        col = context.blocks[col_id]
+        first_col_id = col['data']['blocks_layout']['items'][0]
+        first_col = col['data']['blocks'][first_col_id]
+        col_items = first_col['blocks_layout']['items']
+        read_more_block_id = get_read_more_block_id(first_col['blocks'])
+        tiles = {k for k, v in first_col['blocks'].items() 
+                if v['@type'] == 'relevantAceContent' or v['@type'] == 'filterAceContent'}
+        read_more_index = col_items.index(read_more_block_id)
+        col_items.pop(read_more_index)
+        col_items.insert(len(col_items)-len(tiles), read_more_block_id) # insert before acecontent blocks
+        first_col['blocks_layout']['items'] = col_items
+
+    elif are_in_path(url, AST_PATHS):
+        items = context.blocks_layout['items']
+        read_more_block_id = get_read_more_block_id(context.blocks)
+        if read_more_block_id:
+            read_more_index = items.index(read_more_block_id)
+            items.pop(read_more_index)
+            items.insert(len(items) -1, read_more_block_id) # insert before columnsblock
+            context.blocks_layout['items'] = items
+
+    elif url.endswith('knowledge/eu-vulnerability/eu-vulnerability-to-cc-impacts-occurring-outside'):
+        items = context.blocks_layout['items']
+        read_more_block_id = get_read_more_block_id(context.blocks)
+        read_more_index = items.index(read_more_block_id)
+        items.pop(read_more_index)
+        items.insert(len(items) -1, read_more_block_id) # insert before last block
+        context.blocks_layout['items'] = items
+
+    else:
+        items = context.blocks_layout['items']
+        read_more_block_id = get_read_more_block_id(context.blocks)
+        if read_more_block_id:
+            read_more_index = items.index(read_more_block_id)
+            items.pop(read_more_index)
+            items.append(read_more_block_id)
+            context.blocks_layout['items'] = items
+
+    context._p_changed = True
+
+
 def fix_images_in_slate(content):
     # for links like "resolveuid/231312"
     pass
@@ -508,23 +577,13 @@ def fix_ast(context):
     return extract_first_column(context)
 
 
-def is_full_layout_path(url):
-    for path in FULL_PAGE_PATHS:
-        if url.endswith(path):
-            return True
-        
-def is_ast_path(url):
-    for path in AST_PATHS:
-        if path in url:
-            return True
-
 def fix_layout_size(context):
     url = context.absolute_url(relative=True)
 
-    if is_ast_path(url):
+    if are_on_path(url, FULL_PAGE_PATHS):
         return
 
-    if is_full_layout_path(url):
+    if are_in_path(url, AST_PATHS):
         return
 
     layout_uid = make_uid()
@@ -558,7 +617,7 @@ def fix_field_encoding(context):
 
 content_fixers = [fix_field_encoding, fix_images_in_slate,
                   fix_climate_services_toc, fix_tutorial_videos, fix_uast,
-                  fix_ast, fix_webinars]
+                  fix_ast, fix_webinars, fix_read_more]
 folder_fixers = [fix_field_encoding, fix_news_archive]
 
 

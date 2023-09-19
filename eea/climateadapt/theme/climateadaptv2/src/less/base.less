@@ -1321,9 +1321,9 @@ form .standard-button,
   position: relative;
   margin-left: -50vw;
   left: 50%;
-  border-top: 4px solid @primary-green;
-  border-bottom: 5px solid @primary-green;
-  height: 310px;
+  border-top: 1px solid #b9b9b9;;
+  border-bottom: 1px solid #b9b9b9;;
+  height: 305px;
 }
 
 #disclaimer:hover #hover-content {
@@ -1331,7 +1331,7 @@ form .standard-button,
 }
 
 #disclaimer {
-  color: #bf5900;
+  color: #8a9c3a;
   font-family: "OpenSansB";
   position: relative;
   cursor: pointer;
@@ -1345,7 +1345,7 @@ form .standard-button,
   display: none;
   font-family: "OpenSansM";
   color: #fff;
-  background-color: #bf5900;
+  background-color: #8a9c3a;
   padding: 1em;
   border-radius: 5px;
   position: absolute;
@@ -2882,7 +2882,7 @@ div.width-1\3a 4 {
     background-color: #fed7da;
   }
   .country-none {
-    background-color: #c0c0c0;
+    background-color: #f5f5f5;
   }
   .country-outside {
     background-color: #e0e0e0;
@@ -2892,7 +2892,7 @@ div.width-1\3a 4 {
 .legend.nasnap-legend {
   display: block;
   .country-nasnap {
-    background-color: #0071b3;
+    background-color: #004B7F;
   }
   .country-nas {
     background-color: #78d9fc;
@@ -2916,10 +2916,13 @@ div.width-1\3a 4 {
     background-color: #11cbff;
   }
   .country-both {
-    background-color: @secondary-blue;
+    background-color: #004B7F;
   }
   .country-not-specified {
     background-color: #fff3ac;
+  }
+  .country-nas {
+    background-color: #78d9fc;
   }
   .country-none {
     background-color: #efe7d4;
@@ -3085,7 +3088,7 @@ div.width-1\3a 4 {
 }
 
 .country-napsap path {
-  fill: url(#napsap);
+  fill: #004B7F;
   cursor: pointer;
 }
 
@@ -3095,7 +3098,7 @@ div.width-1\3a 4 {
 }
 
 .country-nasnap path {
-  fill: #007db6;
+  fill: #004B7F;
   cursor: pointer;
 }
 
@@ -3116,6 +3119,10 @@ div.width-1\3a 4 {
 
 .country-nodata path {
   fill: #F5F5F5;
+  cursor: pointer;
+}
+.country-nodata2 path {
+  fill: #0A99FF;
   cursor: pointer;
 }
 
@@ -3142,10 +3149,10 @@ div.width-1\3a 4 {
 
 .maplet-container {
   .country-nasnap path {
-    fill: @secondary-blue;
+    fill: #004B7F;
   }
   .country-nas path {
-    fill: #acedff;
+    fill: #78d9fc;
   }
   .country-nap path {
     fill: #11cbff;
