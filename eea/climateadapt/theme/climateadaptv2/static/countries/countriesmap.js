@@ -1,5 +1,4 @@
 /* global d3, $, jQuery */
-
 var _selectedMapSection = null;
 // var _mapTooltip = null;
 var countrySettings = {};   // country settings extracted from ajax json
@@ -34,7 +33,6 @@ function initmap(metadata, world, flags) {
   var sections_language = metadata[2];
 
   world = world.features;
-
   // setCountryFlags(world, flags);
 
   createSectionsSelector(
@@ -69,7 +67,14 @@ function getCountryClass(country, countries) {
   // if (available) k += ' country-available';
 
   var countryName = country.properties.SHRT_ENGL;
+
+  if (countryName == 'Turkey') {
+    countryName = 'Turkiye';
+  }
   var meta = countrySettings[countryName];
+  if (countryName == 'Turkey') {
+    var meta = countrySettings['Turkiye'];
+  }
   if (!meta) {
     return k;
   }
@@ -86,35 +91,27 @@ function getCountryClass(country, countries) {
 //    if (discodata[_selectedMapSection] === true) {
 //      k += ' country-blue';
 //    }
+let discodataKeys = Object.keys(discodata);
+let discodataValues = [];
+for (i=0;i<discodataKeys.length;i++) {
+  let key = discodataKeys[i];
+  if (['nas_info','nap_info','sap_info','nas_mixed','nap_mixed','sap_mixed'].includes(key)) {
+    if (discodata[key].length) {
+      discodataValues.push(key);
+    }
+  }
+}
 
     var {nap_info, nas_info, sap_info, notreported} = discodata;
 
-    var nasNapSapAdopted = (nap_info && nas_info && sap_info);
-    var nasSapAdopted = (!nap_info && nas_info && sap_info);
-    var napSapAdopted = (nap_info && !nas_info && sap_info);
-    var nasNapAdopted = (nap_info && nas_info && !sap_info);
-    var onlyNasAdopted = (!nap_info && nas_info && !sap_info);
-    var onlyNapAdopted = (nap_info && !nas_info && !sap_info);
-    var noneAdopted = !(nap_info && nas_info && sap_info);
-
     if (notreported) {
-      k += ' country-notreported';
-    } else if (nasNapSapAdopted) {
-      k += ' country-nasnapsap';
-    } else if (nasSapAdopted) {
-      k += ' country-nassap';
-    } else if (napSapAdopted) {
-      k += ' country-napsap';
-    } else if (nasNapAdopted) {
-      k += ' country-nasnap';
-    } else if (onlyNapAdopted) {
-      k += ' country-nap';
-    } else if (onlyNasAdopted) {
+      // k += ' country-notreported';
       k += ' country-nas';
-    } else if (noneAdopted) {
-      k += ' country-none';
+    } else if (discodataValues.length) {
+      k += ' country-nasnap';
+    } else {
+      k += ' country-nodata2';
     }
-
     if (countryNoData.indexOf(countryName) > -1) {
       k += ' country-nodata';
     }
@@ -140,8 +137,6 @@ function getCountryClass(country, countries) {
   if (_selectedMapSection === 'portals') {
     var {focus_info, notreported} = discodata;
 
-    console.log(focus_info, countryName)
-
     /*
     if (notreported) {
       k += ' country-notreported';
@@ -158,11 +153,12 @@ function getCountryClass(country, countries) {
     }
     */
     if (notreported) {
-      k += ' country-notreported';
+      // k += ' country-notreported';
+      k += ' country-nas';
     } else if (["both", "hazard", "adaptation", "not_specified"].includes(focus_info)) {
       k += ' country-nasnap';
     } else {
-      k += ' country-noportal';
+      k += ' country-nodata2';
     }
 
     if (countryNoData.indexOf(countryName) > -1) {
@@ -175,14 +171,20 @@ function getCountryClass(country, countries) {
 }
 
 function renderCountry(map, country, path, countries, x, y) {
-
   var cprectid = makeid();    // unique id for this map drawing
   var klass = getCountryClass(country, countries);
   var cId = 'c-' + cprectid + '-' + country.properties.id;
   var cpId = 'cp-' + cprectid + '-' + country.properties.id;
 
+  if (country.properties.SHRT_ENGL=='Türkiye') {
+    country.properties.SHRT_ENGL = 'Turkiye';
+    // console.log(countries.names);
+  }
+  if (country.properties.SHRT_ENGL=='Turkey') {
+    country.properties.SHRT_ENGL = 'Turkiye';
+    // console.log(countries.names);
+  }
   var available = countries.names.indexOf(country.properties.SHRT_ENGL) !== -1;
-
   var parent = map
     .append('g')
     .attr('class', klass)
@@ -321,6 +323,7 @@ function renderCountriesBox(opts) {
 
   var coords = opts.coordinates;
   var countries = opts.focusCountries;
+
 
   var svg = opts.svg;
   var world = opts.world;
@@ -555,9 +558,18 @@ function drawCountries(world) {
 
   var focusCountryNames = Object.keys(countrySettings);
 
+  focusCountryNames = focusCountryNames.filter((countryName) => countryName != 'United Kingdom');
+  console.log(focusCountryNames);
+
   var focusCountriesFeature = filterCountriesByNames(
     world, focusCountryNames
   );
+
+  for (let iW=0;iW<world.length;iW++) {
+    if (world[iW].properties.id=='TR') {
+      world[iW].url = 'https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg';
+    }
+  }
 
   var width = Math.round($(svg.node()).width());
   var height = 500;
@@ -602,34 +614,43 @@ function showMapTooltip(d) {
   var noDataReportedMsg = 'No data reported through the reporting mechanism of the Governance Regulation. Last information is available <a href="'+countrySettings[d.properties.SHRT_ENGL][1]+'">here</a>';
   var coords = [d3.event.pageY, d3.event.pageX];
   var info = countrySettings[d.properties.SHRT_ENGL];
+  if (d.properties.SHRT_ENGL=='Turkiye') {
+    var noDataReportedMsg = 'Data reported in 2021 through the reporting mechanism of the Governance Regulation. Information is available <a href="'+countrySettings[d.properties.SHRT_ENGL][1]+'">here</a>';
+  }
   if (!info) return;
   var content = info[0];
   var url = info[1];
 
   if (_selectedMapSection === 'overview') {
-    var napInfo, nasInfo, sapInfo;
-    if (content['nap_info']) {
-      napInfo = '<span>National Adaptation Plan:</span>' + content['nap_info'];
-    } else {
-      napInfo = '';
-    }
+    // var napInfo, nasInfo, sapInfo;
+    // if (content['nap_info']) {
+    //   napInfo = '<span>National Adaptation Plan:</span>' + content['nap_info'];
+    // } else if (content['nap_mixed']) {
+    //   napInfo = '<span>National Adaptation Plan:</span>' + content['nap_mixed'];
+    // } else {
+    //   napInfo = '';
+    // }
+    // _mi
+    // if (content['nas_info']) {
+    //   nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_info'];
+    // } else if (content['nas_mixed']) {
+    //   nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_mixed'];
+    // } else {
+    //   nasInfo = '';
+    // }
 
-    if (content['nas_info']) {
-      nasInfo = '<span>National Adaptation Strategy:</span>' + content['nas_info'];
-    } else {
-      nasInfo = '';
-    }
-
-    if (content['sap_info']) {
-      sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_info'];
-    } else {
-      sapInfo = '';
-    }
+    // if (content['sap_info']) {
+    //   sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_info'];
+    // } else if (content['sap_mixed']) {
+    //   sapInfo = '<span>Sectoral Adaptation Plan:</span>' + content['sap_mixed'];
+    // } else {
+    //   sapInfo = '';
+    // }
 
     if (content['notreported']) {
       content = noDataReportedMsg;
     } else {
-      content = (nasInfo + napInfo + sapInfo) || "NAS and NAP not reported";
+      content = (content['mixed']) || "NAS and NAP not reported";
     }
   }
 
@@ -730,6 +751,9 @@ function createTooltip(opts) {
     .attr('id', 'tooltip-content')
     .append(content)
     ;
+  if (name=='Turkiye') {
+    name = 'Türkiye';
+  }
   var h3_name = $('<h3>')
     .append(name)
     ;
@@ -778,7 +802,6 @@ function createSectionsSelector(sections, countries, callback) {
   for (index=0;index<sections.length;index++) {
     key = sections[index][0];
     label_name = sections[index][1];
-    console.log(key,index);
     var label = $("<label>");
     var span = $("<span class='radiobtn'>");
     var inp = $("<input type='radio'>")
@@ -832,8 +855,7 @@ function createSectionsSelector(sections, countries, callback) {
   var countryNames = Object.keys(countries);
   countryNames.sort();
   var select = $("#country-selector select");
-
-  countryNames.forEach(function (name) {
+  countryNames.filter((countryName)=>countryName != "United Kingdom").forEach(function (name) {
     select
       .append(
       $("<option>").append(name)
