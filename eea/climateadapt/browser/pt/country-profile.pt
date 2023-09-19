@@ -81,7 +81,6 @@ ul li {
   <div class="tab-content">
     <!-- <div tal:content="view/summary_table"></div> -->
     <div class="tab-pane active" id="4489-0" tal:define="summary_data view/summary_table">
-      <tal:cond tal:condition="python: len(summary_data['items'])">
       <table class="listing table-striped" summary="">
         <thead>
           <tr>
@@ -91,6 +90,7 @@ ul li {
           </tr>
         </thead>
         <tbody tal:define="summary_data view/summary_table">
+          <tal:cond tal:condition="python: len(summary_data['items'])">
           <tr tal:repeat="key python:summary_data['keys']">
             <td tal:content="key">Key</td>
             <td tal:define="items python:summary_data['items'][key]">
@@ -112,6 +112,7 @@ ul li {
               </ul>
             </td>
           </tr>
+          </tal:cond>
 
           <tr tal:define="items python: data['National_Circumstances'].get('Meteo_observation', [])">
             <td i18n:translate="">Meteorological observations</td>
@@ -264,7 +265,6 @@ ul li {
 
         </tbody>
       </table>
-      </tal:cond>
     </div>
 
     <div class="tab-pane" id="4489-01">
