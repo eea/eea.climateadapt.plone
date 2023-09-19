@@ -56,6 +56,9 @@ class SettingsPage(BrowserView):
 
     def __call__(self):
         self.request.response.setHeader('Content-Type', 'application/json')
-        res = {'focusCountry': self.context.id.replace("-", " ").title()}
+        id = self.context.id.replace("-", " ").title()
+        if id == 'Turkiye':
+            id = 'Turkey'
+        res = {'focusCountry': id}
 
         return json.dumps(res)
