@@ -437,6 +437,50 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
 def nop_view(obj, data):
     return {"blocks": []}
 
+def country_disclaimer_view(obj, data):
+    title = data.get('title')
+    content = (
+        "The information presented in these pages is based on "
+        "the reporting according to \'Regulation (EU) 2018/1999 on the " 
+        "Governance of the Energy Union and Climate Action' and updates "
+        "by the EEA member countries. However, for those pages where the "
+        "information is last updated before 01/01/2021, the information "
+        "presented is based on the reporting according to 'Regulation (EU) "
+        "No 525/2013 on a mechanism for monitoring and reporting greenhouse "
+        "gas emissions and for reporting other information relevant "
+        "to climate change\' and updates by the EEA member countries."
+    )
+
+    blocks = [[make_uid(), {
+        "@type": "slate",
+        "plaintext": title,
+        "value": [{
+            "children": [{
+                "children": [{
+                    "text": title
+                }],
+                "data": {
+                    "label_type": "high",
+                    "tooltip_content": [{
+                    "children": [{
+                        "text": content
+                        }],
+                    "type": "p"
+                    }],
+                    "tooltip_type": "",
+                    "tooltip_size": "extra",
+                    "uid": make_uid()
+                },
+                "type": "label"
+            }],
+            "type": "p"
+        }]
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
 
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
@@ -463,7 +507,7 @@ view_convertors = {
 
     # it's a tooltip. It needs a custom block converter with https://github.com/eea/volto-slate-label
     # Ticket: https://taskman.eionet.europa.eu/issues/253394
-    'country-disclaimer': nop_view,  # /countries-regions/countries/liechtenstein
+    'country-disclaimer': country_disclaimer_view,  # /countries-regions/countries/liechtenstein
 
     # renders the main part of the country profile, extracted from JSON. Needs to be
     # reimplemented. Ticket: https://taskman.eionet.europa.eu/issues/253396
