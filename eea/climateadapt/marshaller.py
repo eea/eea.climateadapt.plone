@@ -255,6 +255,8 @@ class CountryModifier(object):
         # </geo:SpatialThing>
         # </dcterms:spatial>
         country = self.context.id.replace("-", " ").title()
+        if country == 'Turkiye':
+            country = 'Turkey'
         code = country_to_code[country]
 
         SpatialThing = session.get_class(surf.ns.GEO.SpatialThing)
