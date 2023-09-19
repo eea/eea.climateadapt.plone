@@ -2,13 +2,15 @@
 """
 
 import threading
-from Products.CMFCore.interfaces import IContentish
+
 from plone.stringinterp.adapters import BaseSubstitution
+from Products.CMFCore.interfaces import IContentish
 from zope.component import adapts
-from zope.component.interfaces import ObjectEvent, IObjectEvent
-from zope.event import notify
+from zope.component.interfaces import IObjectEvent, ObjectEvent
 from zope.interface import implements
-from Products.Five.browser import BrowserView
+
+# from zope.event import notify
+# from Products.Five.browser import BrowserView
 
 
 MESSAGE_KEY = 'cca_indicator_message'
@@ -45,4 +47,3 @@ class indicator_message(BaseSubstitution):
 #         import pdb;pdb.set_trace()
 #         notify(IndicatorMessageEvent(self.context))
 #         return "call"
-

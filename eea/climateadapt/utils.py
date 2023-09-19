@@ -2,9 +2,11 @@
 """
 
 import logging
-import time
 
 from DateTime import DateTime
+
+# import time
+
 
 logger = logging.getLogger('eea.climateadapt')
 
