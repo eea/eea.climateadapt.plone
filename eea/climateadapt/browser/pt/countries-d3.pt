@@ -38,10 +38,6 @@
 
   <metal:fill-slot fill-slot="content-core">
 
-    <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
-      <p i18n:translate="">Here you can find an overview of your personally created Climate-Adapt content.</p>
-    </div>
-
     <div class="cover-richtext-tile tile-content" id="countrymap-container"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
@@ -99,25 +95,30 @@
               <p class="legend-text" i18n:translate="">Adaptation portal or platform reported</p>
             </div>
             <div class="legend-el">
-              <span class="country-noportal legend-box"></span>
+              <span class="country-nodata2 legend-box"></span>
               <p class="legend-text" i18n:translate="">No portal or platform reported</p>
+            </div>
+            <div class="legend-el">
+              <!-- <span class="country-notreported legend-box"></span> -->
+              <span class="country-nas legend-box"></span>
+              <p class="legend-text" i18n:translate="">No data reported in 2023</p>
             </div>
             <div class="legend-el">
               <span class="country-outside legend-box"></span>
               <p class="legend-text">Outside EEA coverage</p>
-            </div>
-            <div class="legend-el">
-              <span class="country-notreported legend-box"></span>
-              <p class="legend-text" i18n:translate="">No data reported in 2021</p>
             </div>
           </div>
 
           <div class="legend nasnap-legend">
             <div class="legend-el">
               <span class="country-nasnap legend-box"></span>
-              <p class="legend-text" i18n:translate="">NAS and NAP reported as adopted</p>
+              <p class="legend-text" i18n:translate="">National adaptation policy reported in 2023</p>
             </div>
             <div class="legend-el">
+              <span class="country-nodata2 legend-box"></span>
+              <p class="legend-text" i18n:translate="">National adaptation policy not reported beyond mandatory reporting in 2023</p>
+            </div>
+            <!-- <div class="legend-el">
               <span class="country-nap legend-box"></span>
               <p class="legend-text" i18n:translate="">Only NAP reported as adopted</p>
             </div>
@@ -128,28 +129,25 @@
             <div class="legend-el">
               <span class="country-sap legend-box"></span>
               <p class="legend-text" i18n:translate="">SAP reported as adopted</p>
+            </div> -->
+            <div class="legend-el">
+              <!-- <span class="country-notreported legend-box"></span> -->
+              <span class="country-nas legend-box"></span>
+              <p class="legend-text" i18n:translate="">No data reported in 2023</p>
             </div>
             <div class="legend-el">
               <span class="country-none legend-box"></span>
               <p class="legend-text" i18n:translate="">Outside EEA coverage</p>
             </div>
-            <div class="legend-el">
-              <span class="country-notreported legend-box"></span>
-              <p class="legend-text" i18n:translate="">No data reported in 2021</p>
-            </div>
           </div>
         </div>
 
-        <!-- Disclaimer in right side of map -->
-        <div id="disclaimer" i18n:translate="">
-          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-          <span i18n:translate="">[Disclaimer]</span>
-          <div id="hover-content" i18n:translate="">
-            The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'
-          </div>
-        </div>
       </div>
 
+    </div>
+
+    <div tal:condition="context/text|nothing" tal:replace="structure context/text/output">
+      <p i18n:translate="">Here you can find an overview of your personally created Climate-Adapt content.</p>
     </div>
 
     <script src='++theme++climateadaptv2/static/countries/countriesmap.js'></script>
