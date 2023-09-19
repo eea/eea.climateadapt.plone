@@ -16,8 +16,8 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer
-from zope.schema import (URI, Bool, Choice, Date, Datetime, List, Text,
-                         TextLine, Tuple)
+from zope.schema import (ASCII, URI, ASCIILine, Bool, Choice, Date, Datetime,
+                         List, Text, TextLine, Tuple)
 
 
 class IAceItem(IImageScaleTraversable):
@@ -150,7 +150,7 @@ class IAceItem(IImageScaleTraversable):
         required=True,
     )
 
-    description = Text(
+    description = ASCII(
         title=_(u"Short summary"),
         required=False,
         description=u"Enter a short summary that will be used in listings.",
@@ -311,8 +311,8 @@ class IAceItem(IImageScaleTraversable):
     )
 
     # -----------[ "omitted" fields ]------------------
-    directives.omitted(IAddForm, "portal_type")
-    directives.omitted(IEditForm, "portal_type")
+    # directives.omitted(IAddForm, "portal_type")
+    # directives.omitted(IEditForm, "portal_type")
 
     directives.omitted(IAddForm, "item_link")
     directives.omitted(IEditForm, "item_link")
@@ -367,8 +367,8 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    portal_type = PortalType(title=_(u"Portal type"),
-                             required=False, default=u"")
+    # portal_type = PortalType(title=_(u"Portal type"),
+    #                          required=False, default=u"")
 
     item_link = AbsoluteUrl(title=_(u"Item link"), required=False, default=u"")
 
@@ -415,7 +415,7 @@ class IAceItem(IImageScaleTraversable):
         required=False,
     )
 
-    id = TextLine(
+    id = ASCIILine(
         title=_(u"Object ID"),
         required=False,
     )
