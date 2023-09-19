@@ -42,12 +42,13 @@ class CountrySelectTile(PersistentCoverTile):
 
     @view.memoize
     def countries(self):
+
         # countries = [(c[0], c[1].replace(" ", "-")) for c in
         #              ace_countries_selection]
 
         # return sorted(countries, key=lambda c: c[1])
-
-        return sorted(ace_countries_selection, key=lambda c: c[1])
+        return sorted(filter(lambda country:  country[0]!='GB', ace_countries_selection))
+        #return sorted(ace_countries_selection, key=lambda c: c[1])
 
 
 class SettingsPage(BrowserView):
