@@ -53,7 +53,7 @@ class Navigation(BaseNavigation):
 
     def customize_entry(self, entry, brain):
         entry['brain'] = brain
-        if brain.remoteUrl:
+        if getattr(brain, 'remoteUrl'):
             entry['path'] = urlparse(brain.remoteUrl).path
             entry['@id'] = brain.remoteUrl
         return entry

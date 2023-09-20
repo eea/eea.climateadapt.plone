@@ -46,14 +46,14 @@ class CustomAttributeFieldDataManager(AttributeField):
         """See z3c.form.interfaces.IDataManager"""
         value = super(CustomAttributeFieldDataManager, self).get()
 
-        if self.field.__name__ in ['id', 'description', 'portal_type']:
-            if isinstance(value, unicode):
-                value = str(value)
-                print(self.field.__name__, value)
-
-        elif self.field.__name__ in ['modification_date', 'creation_date']:
-            if isinstance(value, DateTime):
-                value = value.asdatetime()
-                print(self.field.__name__, value)
+        # if self.field.__name__ in ['id', 'description', 'portal_type']:
+        #     if isinstance(value, unicode):
+        #         value = str(value)
+        #         print(self.field.__name__, value)
+        #
+        # elif self.field.__name__ in ['modification_date', 'creation_date']:
+        #     if isinstance(value, DateTime):
+        #         value = value.asdatetime()
+        #         print(self.field.__name__, value)
 
         return value
