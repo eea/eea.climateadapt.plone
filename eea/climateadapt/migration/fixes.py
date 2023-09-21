@@ -419,7 +419,10 @@ def fix_news_archive(context):
     title_uid = make_uid()
 
     context.blocks = {
-        title_uid: {"@type": "title"},
+        title_uid: {
+            "@type": "title",
+            "hideContentType": True
+        },
         listing_uid: {
             "@type": "listing",
             "headlineTag": "h2",
@@ -476,11 +479,19 @@ def are_in_path(url, paths):
 def fix_read_more(context):
     url = context.absolute_url(relative=True)
 
+    PATHS = [
+        '/knowledge/tools/urban-ast',
+        '/knowledge/tools/adaptation-support-tool',
+        '/knowledge/eu-vulnerability/eu-vulnerability-to-cc-impacts-occurring-outside',
+        '/countries-regions/transnational-regions/baltic-sea-region/adaptation',
+        '/countries-regions/transnational-regions/carpathian-mountains'
+    ]
+
     def get_columns_block_id(blocks):
         columns_block = {k for k, v in blocks.items() if v['@type'] == 'columnsBlock'}
         col_id = list(columns_block)[0]
         return col_id
-    
+
     def get_read_more_block_id(blocks):
         read_more_block = {k for k, v in blocks.items() if v['@type'] == 'readMoreBlock'}
         if read_more_block:
@@ -498,27 +509,20 @@ def fix_read_more(context):
         read_more_block_id = get_read_more_block_id(first_col['blocks'])
         tiles = {k for k, v in first_col['blocks'].items() 
                 if v['@type'] == 'relevantAceContent' or v['@type'] == 'filterAceContent'}
-        read_more_index = col_items.index(read_more_block_id)
-        col_items.pop(read_more_index)
-        col_items.insert(len(col_items)-len(tiles), read_more_block_id) # insert before acecontent blocks
-        first_col['blocks_layout']['items'] = col_items
+        if read_more_block_id:
+            read_more_index = col_items.index(read_more_block_id)
+            col_items.pop(read_more_index)
+            col_items.insert(len(col_items)-len(tiles), read_more_block_id) # insert before acecontent blocks
+            first_col['blocks_layout']['items'] = col_items
 
-    elif are_in_path(url, AST_PATHS):
+    elif are_in_path(url, PATHS):
         items = context.blocks_layout['items']
         read_more_block_id = get_read_more_block_id(context.blocks)
         if read_more_block_id:
             read_more_index = items.index(read_more_block_id)
             items.pop(read_more_index)
-            items.insert(len(items) -1, read_more_block_id) # insert before columnsblock
+            items.insert(len(items) -1, read_more_block_id) # insert before last block
             context.blocks_layout['items'] = items
-
-    elif url.endswith('knowledge/eu-vulnerability/eu-vulnerability-to-cc-impacts-occurring-outside'):
-        items = context.blocks_layout['items']
-        read_more_block_id = get_read_more_block_id(context.blocks)
-        read_more_index = items.index(read_more_block_id)
-        items.pop(read_more_index)
-        items.insert(len(items) -1, read_more_block_id) # insert before last block
-        context.blocks_layout['items'] = items
 
     else:
         items = context.blocks_layout['items']
@@ -526,7 +530,7 @@ def fix_read_more(context):
         if read_more_block_id:
             read_more_index = items.index(read_more_block_id)
             items.pop(read_more_index)
-            items.append(read_more_block_id)
+            items.append(read_more_block_id) # insert as last one
             context.blocks_layout['items'] = items
 
     context._p_changed = True
