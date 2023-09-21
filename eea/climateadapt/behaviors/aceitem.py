@@ -344,14 +344,14 @@ class IAceItem(IImageScaleTraversable):
     directives.omitted(IAddForm, "rating")
     directives.omitted(IEditForm, "rating")
 
-    directives.omitted(IAddForm, "modification_date")
-    directives.omitted(IEditForm, "modification_date")
-
-    directives.omitted(IAddForm, "creation_date")
-    directives.omitted(IEditForm, "creation_date")
-
-    directives.omitted(IAddForm, "id")
-    directives.omitted(IEditForm, "id")
+    # directives.omitted(IAddForm, "modification_date")
+    # directives.omitted(IEditForm, "modification_date")
+    #
+    # directives.omitted(IAddForm, "creation_date")
+    # directives.omitted(IEditForm, "creation_date")
+    #
+    # directives.omitted(IAddForm, "id")
+    # directives.omitted(IEditForm, "id")
 
     # -----------[ "backend" fields ]------------------
 
@@ -405,20 +405,20 @@ class IAceItem(IImageScaleTraversable):
         required=False,
     )
 
-    creation_date = Datetime(
-        title=_(u"Created"),
-        required=False,
-    )
-
-    modification_date = Datetime(
-        title=_(u"Last Modified"),
-        required=False,
-    )
-
-    id = ASCIILine(
-        title=_(u"Object ID"),
-        required=False,
-    )
+    # creation_date = Datetime(
+    #     title=_(u"Created"),
+    #     required=False,
+    # )
+    #
+    # modification_date = Datetime(
+    #     title=_(u"Last Modified"),
+    #     required=False,
+    # )
+    #
+    # id = ASCIILine(
+    #     title=_(u"Object ID"),
+    #     required=False,
+    # )
 
     # TODO: see if possible to use eea.promotions for this
     # featured = List(title=_(u"Featured in location"),
