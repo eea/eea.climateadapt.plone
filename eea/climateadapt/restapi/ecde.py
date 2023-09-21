@@ -73,7 +73,7 @@ class C3SIndicatorsOverview(object):
                 })
         return res
 
-    def __call__(self):
+    def __call__(self, expand=False):
         if self.is_ecde_context() is True:
             indicators_data = self.get_indicators_data()
         else:
