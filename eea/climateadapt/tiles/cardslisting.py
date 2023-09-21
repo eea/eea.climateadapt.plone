@@ -1,13 +1,11 @@
 """ Cards listing
 """
 
-import json
-import urllib
-
 from collective.cover.tiles.base import (IPersistentCoverTile,
                                          PersistentCoverTile)
-from eea.climateadapt.translation.utils import get_current_language
-from eea.climateadapt.translation.utils import TranslationUtilsMixin
+from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+                                                get_current_language)
+from eea.climateadapt.browser.misc import create_contributions_link
 from zope import schema
 from zope.interface import implements
 
@@ -66,8 +64,8 @@ class CardsTile(PersistentCoverTile):
         if not context:
             return []
 
-        #import pdb; pdb.set_trace()
-        #return context.results()
+        # import pdb; pdb.set_trace()
+        # return context.results()
 
         # Will return items only for current language instead
         language = get_current_language(self.context, self.request)
@@ -82,7 +80,7 @@ class CardsTile(PersistentCoverTile):
         return ["Collection"]
 
     def populate_with_object(self, obj):
-        #import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         super(CardsTile, self).populate_with_object(obj)  # check permission
 
         if obj.portal_type in self.accepted_ct():
@@ -99,8 +97,9 @@ class IndicatorCard(BrowserView):
 
     def indicator_link(self):
         language = get_current_language(self.context, self.request)
-        link = "/"+language+"/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[2:])
-        #link = link.replace("++aq++en/", "++aq++"+language+"/")
+        link = "/"+language+"/observatory/++aq++" + \
+            "/".join(self.context.getPhysicalPath()[2:])
+        # link = link.replace("++aq++en/", "++aq++"+language+"/")
         link = link.replace("++aq++"+language+"/", "++aq++")
         return link
 
@@ -123,41 +122,7 @@ class OrganisationCard(BrowserView, TranslationUtilsMixin):
         return "https://%s" % contact
 
     def contributions_link(self):
-        org = ''
-
-        map_contributor_values = {
-            "copernicus-climate-change-service-ecmw": "Copernicus Climate Change Service and Copernicus Atmosphere Monitoring Service",
-            "european-centre-for-disease-prevention-and-control-ecdc": "European Centre for Disease Prevention and Control",
-            "european-commission": "European Commission",
-            "european-environment-agency-eea": "European Environment Agency",
-            "european-food-safety-authority": "European Food Safety Authority",
-            "lancet-countdown": "Lancet Countdown",
-            "who-regional-office-for-europe-who-europe": "WHO Regional Office for Europe",
-            "world-health-organization": "World Health Organization"
-        }
-
-        if self.context.id in map_contributor_values:
-            org = map_contributor_values[self.context.id]
-
-        t = {
-            u"function_score": {
-                u"query": {
-                    u"bool": {
-                        u"filter": {
-                            u"bool": {
-                                u"should": [
-                                    {u"term": {u"partner_contributors": org}}
-                                ]
-                            }
-                        },
-                    }
-                }
-            }
-        }
-
-        q = {"query": t}
-
-        return "/"+self.current_lang+"/observatory/catalogue/?source=" + urllib.quote(json.dumps(q))
+        return create_contributions_link(self.current_lang, self.context.id)
 
     def website_link(self):
         websites = getattr(self.context, "websites", [])
@@ -167,6 +132,7 @@ class OrganisationCard(BrowserView, TranslationUtilsMixin):
 
     def organisation_link(self):
         language = get_current_language(self.context, self.request)
-        link = "/"+language+"/observatory/++aq++" + "/".join(self.context.getPhysicalPath()[2:])
+        link = "/"+language+"/observatory/++aq++" + \
+            "/".join(self.context.getPhysicalPath()[2:])
         link = link.replace("++aq++"+language+"/", "++aq++")
         return link

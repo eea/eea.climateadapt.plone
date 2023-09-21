@@ -1,9 +1,10 @@
-from zope.component import getMultiAdapter
-from Products.CMFCore.utils import getToolByName
-from plone import api
-from plone.app.multilingual.manager import TranslationManager
+import urllib
 
 from eea.climateadapt.translation import retrieve_translation
+from plone import api
+from plone.app.multilingual.manager import TranslationManager
+from Products.CMFCore.utils import getToolByName
+from zope.component import getMultiAdapter
 
 
 class TranslationUtilsMixin(object):
@@ -115,7 +116,7 @@ class TranslationUtilsMixin(object):
 
         if 'translated' in translated:
             encoded_text = translated['transId'].encode(
-                    'latin-1')
+                'latin-1')
 
             return encoded_text
 
@@ -137,10 +138,11 @@ def get_current_language(context, request):
     try:
         context = context.aq_inner
         portal_state = getMultiAdapter(
-                (context, request), name=u'plone_portal_state')
+            (context, request), name=u'plone_portal_state')
         return portal_state.language()
     except Exception:
         return 'en'
+
 
 def translate_text(context, request, text, domain=u'eea.climateadapt', language=None):
     tool = getToolByName(context, "translation_service")
@@ -148,15 +150,42 @@ def translate_text(context, request, text, domain=u'eea.climateadapt', language=
         language = get_current_language(context, request)
 
     return tool.translate(text,
-            domain=domain,
-            target_language=language
-            )
+                          domain=domain,
+                          target_language=language
+                          )
+
 
 def get_site_languages():
     try:
         languages = TranslationManager(
-                api.portal.get().restrictedTraverse("en")
-                ).get_translations().keys()
+            api.portal.get().restrictedTraverse("en")
+        ).get_translations().keys()
         return languages
     except Exception:
         return []
+
+
+def filters_to_query(args):
+    """
+
+    args = [
+        ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+        ('cca_adaptation_sectors.keyword', "Urban"),
+    ]
+    """
+    res = []
+    for i, (name, val) in enumerate(args):
+        if name == 'q':
+            if isinstance(val, list):
+                val = val[0]
+            res.append([name, val])
+            continue
+        res.append(['filters[{0}][field]'.format(i), name])
+        res.append(['filters[{0}][type]'.format(i), 'any'])
+        if isinstance(val, list):
+            for x, lv in enumerate(val):
+                res.append(['filters[{0}][values][{1}]'.format(i, x), lv])
+        else:
+            res.append(['filters[{0}][values][0]'.format(i), val])
+
+    return urllib.urlencode(dict(res))
