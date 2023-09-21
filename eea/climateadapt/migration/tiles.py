@@ -438,6 +438,10 @@ def nop_view(obj, data):
     return {"blocks": []}
 
 
+def c3s_indicators_overview_view(obj, data):
+    return {"blocks": []}
+
+
 def country_disclaimer_view(obj, data):
     title = data.get('title')
     content = (
@@ -487,7 +491,7 @@ view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
     # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
     # /knowledge/european-climate-data-explorer/overview-list
-    'c3s_indicators_overview': nop_view,
+    'c3s_indicators_overview': c3s_indicators_overview_view,
 
     # reimplemented as CaseStudyExplorer block
     # /knowledge/tools/case-study-explorer

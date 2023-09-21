@@ -45,6 +45,20 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
+  <adapter
+    factory=".ecde.C3SIndicatorsOverview"
+    name="c3s_indicators_overview"
+    />
+
+  <plone:service
+    method="GET"
+    factory=".ecde.C3SIndicatorsOverviewGet"
+    for="zope.interface.Interface"
+    permission="zope2.View"
+    name="@c3s_indicators_overview"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
   <subscriber
       factory=".serializer.SlateBlockSerializer"
       provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
