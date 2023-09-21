@@ -185,7 +185,10 @@ class MigrateCover(object):
             title_uid = make_uid()
             blocks_layout = {"items": [title_uid] + [b[0] for b in blocks]}
             blocks_data = {}
-            blocks_data[title_uid] = {"@type": "title"}
+            blocks_data[title_uid] = {
+                "@type": "title", 
+                "hideContentType": True
+            }
 
             for b in blocks:
                 blocks_data[b[0]] = b[1]
@@ -224,7 +227,10 @@ class MigrateCover(object):
             blocks_layout = {"items": [title_uid] + [b[0]
                                                      for b in page_blocks]}
             blocks_data = {}
-            blocks_data[title_uid] = {"@type": "title"}
+            blocks_data[title_uid] = {
+                "@type": "title", 
+                "hideContentType": True
+            }
             for b in page_blocks:
                 blocks_data[b[0]] = b[1]
 
@@ -254,7 +260,10 @@ class MigrateDocument(object):
 
         if not text:
             obj.blocks = {}
-            obj.blocks[title_uid] = {"@type": "title"}
+            obj.blocks[title_uid] = {
+                "@type": "title", 
+                "hideContentType": True
+            }
             obj.blocks_layout = {"items": [title_uid]}
             obj._p_changed = True
 
@@ -270,7 +279,10 @@ class MigrateDocument(object):
         uids = [title_uid] + [b[0] for b in blocks]
         obj.blocks_layout = {"items": uids}
         _blocks = {}
-        _blocks[title_uid] = {"@type": "title"}
+        _blocks[title_uid] = {
+            "@type": "title", 
+            "hideContentType": True
+        }
         for (uid, block) in blocks:
             _blocks[uid] = block
         obj.blocks = _blocks
