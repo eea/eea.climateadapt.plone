@@ -85,3 +85,38 @@ class C3SIndicatorsOverviewGet(Service):
     def reply(self):
         indicators = C3SIndicatorsOverview(self.context, self.request)
         return indicators()
+
+
+@implementer(IExpandableElement)
+@adapter(Interface, IEEAClimateAdaptInstalled)
+class C3SIndicatorsGlossaryTable(object):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def is_ecde_context(self):
+        if 'european-climate-data-explorer' in self.request["ACTUAL_URL"]:
+            return True
+        return False
+
+    def get_indicators_data(self):
+        site = portal.get()
+        lg = get_current_language(self.context, self.request)
+        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
+        datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        if 'glossary_table' in datastore['data']:
+            return datastore['data']['glossary_table']
+        return ''
+
+    def __call__(self, expand=False):
+        if self.is_ecde_context() is True:
+            indicators_data = self.get_indicators_data()
+        else:
+            indicators_data = 'Error: Wrong context.'
+        return {"c3s_indicators_glossary_table": indicators_data}
+
+
+class C3SIndicatorsGlossaryTableGet(Service):
+    def reply(self):
+        table = C3SIndicatorsGlossaryTable(self.context, self.request)
+        return table()
