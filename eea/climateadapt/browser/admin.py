@@ -8,7 +8,7 @@ from io import BytesIO as StringIO
 from apiclient.discovery import build
 from DateTime import DateTime
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.browser.fixblobs import (check_at_blobs, 
+from eea.climateadapt.browser.fixblobs import (check_at_blobs,
                                                check_dexterity_blobs)
 from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
 from eea.climateadapt.browser.site import _extract_menu
@@ -311,7 +311,7 @@ class ForcePingCRView(BrowserView):
         cat = get_tool('portal_catalog')
 
         query = {
-            'review_state': ['published', 'archived']       ## , 'private'
+            'review_state': ['published', 'archived']  # , 'private'
         }
         results = cat.searchResults(query)
 
@@ -794,8 +794,8 @@ class GetBrokenCreationDates(BrowserView):
     by getting the creator/creation_date from workflow_history
     """
     zone = DateTime().timezone()
-    bl_users = ('ghitab', 'tibiadmin', 'tibi', 'tiberich', 'eugentripon', 
-        'iulianpetchesi', 'krisztina')
+    bl_users = ('ghitab', 'tibiadmin', 'tibi', 'tiberich', 'eugentripon',
+                'iulianpetchesi', 'krisztina')
 
     def date_to_iso(self, date_time):
         if not date_time:
@@ -830,7 +830,7 @@ class GetBrokenCreationDates(BrowserView):
                 creator = obj.Creator()
             except:
                 continue
-            
+
             if creator not in self.bl_users:
                 continue
 
@@ -854,7 +854,7 @@ class GetBrokenCreationDates(BrowserView):
 
             if wf_data:
                 wf_creator, wf_creation_date = wf_data[0]
-            
+
             if not wf_creator:
                 continue
 
@@ -863,7 +863,7 @@ class GetBrokenCreationDates(BrowserView):
 
             if self.date_to_iso(wf_creation_date) == creation_date:
                 continue
-            
+
             # if wf_creator in self.bl_users:
                 # continue
 
@@ -875,8 +875,8 @@ class GetBrokenCreationDates(BrowserView):
             if not new_creator:
                 continue
 
-            res.append((obj, creator, wf_creator, new_creator, creation_date, 
-                wf_creation_date))
+            res.append((obj, creator, wf_creator, new_creator, creation_date,
+                        wf_creation_date))
 
         return res
 
@@ -897,11 +897,11 @@ class GetBrokenCreationDates(BrowserView):
 
             if not isinstance(obj.creation_date, basestring):
                 continue
-            
+
             res.append(obj)
 
         return res
-    
+
     def fix_string_dates(self):
         results = self.results_string_dates()
 
@@ -947,14 +947,14 @@ class GetBrokenCreationDates(BrowserView):
             new_creator = row[3]
             new_creation_date = row[5]
             creators = [
-                x for x in obj.creators if x != new_creator   
+                x for x in obj.creators if x != new_creator
             ]
             creators = tuple([new_creator] + creators)
             obj.creators = creators
             obj.creation_date = new_creation_date
             obj._p_changed = True
             obj.reindexObject(idxs=["creators", "creation_date"])
-            
+
         return "Fixed {} objects!".format(len(results))
 
     def __call__(self):
@@ -970,7 +970,7 @@ class GetBrokenCreationDates(BrowserView):
             return [x.absolute_url() for x in results] or 'No results!'
 
         return self.index()
-        
+
 
 class GetMissingLanguages(BrowserView):
     """ Get all objects with missing 'language' field
@@ -987,7 +987,7 @@ class GetMissingLanguages(BrowserView):
                 obj = brain.getObject()
             except:
                 continue
-            
+
             language = getattr(obj, 'language')
 
             if language:
@@ -997,7 +997,7 @@ class GetMissingLanguages(BrowserView):
 
             if len(language_from_path) != 2:
                 continue
-            
+
             if language == language_from_path:
                 continue
 
@@ -1016,7 +1016,7 @@ class GetMissingLanguages(BrowserView):
             obj.language = language_from_path
             obj._p_changed = True
             obj.reindexObject(idxs=["language"])
-            
+
         return "Fixed {} objects!".format(len(results))
 
     def __call__(self):
@@ -1146,6 +1146,7 @@ class ConvertPythonDatetime(BrowserView):
 class ExportKeywordsCSV(BrowserView):
     """ Export the list of keywords and the URLs of items using them
     """
+
     def __call__(self):
         catalog = api.portal.get_tool("portal_catalog")
 
@@ -1177,52 +1178,62 @@ class ExportKeywordsCSV(BrowserView):
 class ExportDbItems(BrowserView):
     """ Export the list of keywords and the URLs of items using them
     """
+
     def __call__(self):
         catalog = api.portal.get_tool("portal_catalog")
 
         res = []
-        res.append(['UID','TITLE','TYPE','URL','KEYWORDS','SECTORS','ELEMENTS','IMPACTS','SearchableText'])
+        res.append(['UID', 'TITLE', 'TYPE', 'URL', 'KEYWORDS', 'SECTORS',
+                   'ELEMENTS', 'IMPACTS', 'SearchableText', 'WEBSITES'])
         for _type in DB_ITEM_TYPES:
-            brains = catalog.searchResults(portal_type=_type, path='/cca/en', review_state='published')
+            brains = catalog.searchResults(
+                portal_type=_type, path='/cca/en', review_state='published')
             for brain in brains:
                 line = []
                 try:
                     line.append(brain.UID)
                     line.append(brain.Title)
-                    line.append(_type.replace('eea.climateadapt.',''))
+                    line.append(_type.replace('eea.climateadapt.', ''))
                     line.append(brain.getURL())
-                    #keywords
+                    # keywords
                     temp = u''
                     if brain.keywords:
                         temp = u','.join(brain.keywords).encode('utf-8')
                     line.append(temp)
 
                     obj = brain.getObject()
-                    #sectors
+                    # sectors
                     temp = u''
                     if hasattr(obj, "sectors"):
                         temp = u','.join(obj.sectors)
                     line.append(temp)
-                    #elements
+                    # elements
                     temp = u''
                     if hasattr(obj, "elements"):
                         if obj.elements:
                             temp = u','.join(obj.elements)
                     line.append(temp)
-                    #impacts
+                    # impacts
                     temp = u''
                     if hasattr(obj, "climate_impacts"):
                         temp = u','.join(obj.climate_impacts)
                     line.append(temp)
-                    indexer = getMultiAdapter((obj, catalog), IIndexer, name="SearchableText")
+                    # searchable text
+                    indexer = getMultiAdapter(
+                        (obj, catalog), IIndexer, name="SearchableText")
                     temp = indexer()
                     line.append(temp)
-
-                    #import pdb; pdb.set_trace()
+                    # websites
+                    temp = u''
+                    if hasattr(obj, "websites"):
+                        if obj.websites is not None:
+                            temp = u','.join(obj.websites)
+                    line.append(temp)
 
                     res.append(line)
                 except Exception as Err:
-                    import pdb; pdb.set_trace()
+                    import pdb
+                    pdb.set_trace()
                     logger.info(brain.getURL())
                     logger.info(Err)
 
@@ -1243,10 +1254,9 @@ class ExportDbItems(BrowserView):
                 try:
                     csv_writer.writerow(line)
                 except:
-                    import pdb; pdb.set_trace()
+                    import pdb
+                    pdb.set_trace()
                     logger.info(line)
-
-
 
         logger.info('CSV PREPARED')
 

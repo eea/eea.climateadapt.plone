@@ -102,12 +102,13 @@ ul li {
             <td tal:define="items python:summary_data['items'][key]">
               <ul>
                 <li tal:repeat="item items">
-                  <span class="link-external">
-                    <a tal:attributes="href item/link"
+                  <span class="link-external" tal:condition="python: len(item['link'])>8">
+                    <a tal:attributes="href item/link;data-val item/link"
                        tal:content="item/title"
                        rel="noopener" target="_blank" data-linktype="external"></a>
                   </span>
-
+                  <span class="link-external" tal:content="item/title" tal:condition="python: len(item['link'])<8">
+                  </span>
                 </li>
               </ul>
             </td>

@@ -47,8 +47,8 @@ class CountrySelectTile(PersistentCoverTile):
         #              ace_countries_selection]
 
         # return sorted(countries, key=lambda c: c[1])
-        return sorted(filter(lambda country:  country[0]!='GB', ace_countries_selection))
-        #return sorted(ace_countries_selection, key=lambda c: c[1])
+        clist = filter(lambda country:  country[0] != 'GB', ace_countries_selection)
+        return sorted(clist, key=lambda c: c[1])
 
 
 class SettingsPage(BrowserView):

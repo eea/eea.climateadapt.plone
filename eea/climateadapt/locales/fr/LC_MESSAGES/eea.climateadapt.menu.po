@@ -26,7 +26,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: health_menu:43
+#:
 msgid "2021 Lancet Countdown-EEA Briefing"
 msgstr "2021 Lancet Countdown-AEE note"
 
@@ -808,6 +808,10 @@ msgstr "Cadre de politique européenne"
 #: health_menu:37
 msgid "European early warning systems"
 msgstr "Systèmes d'alerte précoce européens"
+
+#:
+msgid "European environment and health atlas"
+msgstr "Atlas européen de l’environnement et de la santé"
 
 # ,
 # ,

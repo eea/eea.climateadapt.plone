@@ -17,7 +17,7 @@ msgstr ""
 "Language: \n"
 
 # ,
-#: health_menu:43
+#:
 msgid "2021 Lancet Countdown-EEA Briefing"
 msgstr "2021 Lancet Odbrojavanje-EEA brifing"
 
@@ -313,6 +313,10 @@ msgstr "Europski okvir politike"
 #: health_menu:37
 msgid "European early warning systems"
 msgstr "Europski sustavi ranog upozoravanja"
+
+#:
+msgid "European environment and health atlas"
+msgstr ""
 
 #: health_menu:14
 msgid "European policies on climate adaptation and health"
