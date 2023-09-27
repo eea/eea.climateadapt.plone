@@ -56,6 +56,9 @@ def get_date_updated(item):
 def get_files(context):
     files = context.contentValues({"portal_type": "File"})
 
+    if context.relatedItems is None:
+        return files
+
     for r in context.relatedItems:
         obj = r.to_object
         if obj is None:

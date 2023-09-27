@@ -42,7 +42,9 @@ def find_related_casestudies(item):
                 })
                 urls.append(obj.absolute_url())
 
-    cstudies = [o.to_object for o in item.casestudies]
+    cstudies = []
+    if item.casestudies is not None:
+        cstudies = [o.to_object for o in item.casestudies]
 
     for obj in cstudies:
         if obj.absolute_url() in urls:
