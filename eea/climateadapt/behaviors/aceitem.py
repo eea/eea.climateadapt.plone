@@ -340,11 +340,11 @@ class IAceItem(IImageScaleTraversable):
     directives.omitted(IAddForm, "metadata")
     directives.omitted(IEditForm, "metadata")
 
-    # directives.omitted(IAddForm, 'special_tags')
-    # directives.omitted(IEditForm, 'special_tags')
-
     directives.omitted(IAddForm, "rating")
     directives.omitted(IEditForm, "rating")
+
+    # directives.omitted(IAddForm, 'special_tags')
+    # directives.omitted(IEditForm, 'special_tags')
 
     # directives.omitted(IAddForm, "modification_date")
     # directives.omitted(IEditForm, "modification_date")
