@@ -1,6 +1,6 @@
 from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader  # , Year
+from eea.climateadapt.schema import AbsoluteUrl, Uploader
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
@@ -16,8 +16,9 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer
-from zope.schema import (ASCII, URI, ASCIILine, Bool, Choice, Date, Datetime,
-                         List, Text, TextLine, Tuple)
+from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple
+
+# , Year, PortalType,
 
 
 class IAceItem(IImageScaleTraversable):
@@ -150,10 +151,11 @@ class IAceItem(IImageScaleTraversable):
         required=True,
     )
 
-    description = ASCII(
+    description = Text(
         title=_(u"Short summary"),
         required=False,
         description=u"Enter a short summary that will be used in listings.",
+        missing_value=u'',
     )
 
     keywords = Tuple(

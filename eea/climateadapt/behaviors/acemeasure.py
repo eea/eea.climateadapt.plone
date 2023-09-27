@@ -15,8 +15,8 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer  # , implements
-from zope.schema import (ASCII, URI, Bool, Choice, Date, Datetime, Int, List,
-                         Text, TextLine, Tuple)
+from zope.schema import (URI, Bool, Choice, Date, Int, List, Text, TextLine,
+                         Tuple)
 
 ADD_ORGANISATION_URL = (
     u"<a target='_blank' "
@@ -134,10 +134,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
-    description = ASCII(
+    description = Text(
         title=_(u"Short summary"),
         required=False,
         description=u"Enter a short summary that will be used in listings.",
+        missing=u"",
     )
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
