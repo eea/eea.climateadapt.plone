@@ -138,7 +138,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         title=_(u"Short summary"),
         required=False,
         description=u"Enter a short summary that will be used in listings.",
-        missing=u"",
+        missing_value=u"",
     )
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
