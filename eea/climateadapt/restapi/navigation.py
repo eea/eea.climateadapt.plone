@@ -1,3 +1,4 @@
+from plone.memoize.view import memoize
 from plone.restapi.interfaces import IExpandableElement, IPloneRestapiLayer
 from plone.restapi.services.navigation.get import Navigation as BaseNavigation
 from plone.restapi.services.navigation.get import \
@@ -70,6 +71,24 @@ class Navigation(BaseNavigation):
             del item['brain']
 
         return item
+
+    @property
+    @memoize
+    def portal_tabs(self):
+        old = super(Navigation, self).portal_tabs
+        for entry in old:
+            if entry.get('url'):
+                # quick hack to fix broken handling of Link Urls
+                entry['url'] = entry['url'].replace('/cca/', '/')
+        return old
+
+    # @property
+    # @memoize
+    # def navtree(self):
+    #     old = super(Navigation, self).navtree
+    #     import pdb
+    #     pdb.set_trace()
+    #     return old
 
 
 class NavigationGet(BaseNavigationGet):
