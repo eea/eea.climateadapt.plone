@@ -5,20 +5,6 @@ from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
 from plone.restapi.serializer.converters import json_compatible
 
 
-def append_common_new_fields(result, item):
-    """Add here fields for any CCA content type"""
-    result["cca_last_modified"] = json_compatible(
-        get_date_updated(item)["cadapt_last_modified"]
-    )
-    result["cca_published"] = json_compatible(
-        get_date_updated(item)["cadapt_published"]
-    )
-    result["is_cca_content"] = True
-    result["language"] = getattr(item, "language", "")
-
-    return result
-
-
 def get_geographic(item, result={}):
     if not hasattr(item, 'geochars') and not item.geochars:
         return result
@@ -44,11 +30,22 @@ def cca_content_serializer(item, result):
     """
 
     result = get_geographic(item, result)
-    result = append_common_new_fields(result, item)
 
     files = get_files(item)
-    result["cca_files"] = [
-        {"title": file.Title(), "url": file.absolute_url()} for file in files
-    ]
-    result = append_common_new_fields(result, item)
+    if files:
+        result["cca_files"] = [
+            {"title": file.Title(), "url": file.absolute_url()} for file in files
+        ]
+
+    dates = get_date_updated(item)
+    if 'description' not in result and hasattr(item, 'long_description') and item.long_description.output:
+        description = item.portal_transforms.convertTo('text/plain',
+                                                       item.long_description.output).getData().strip()
+        result['description'] = description.decode('utf-8')
+
+    result["cca_last_modified"] = json_compatible(dates["cadapt_last_modified"])
+    result["cca_published"] = json_compatible(dates["cadapt_published"])
+    result["is_cca_content"] = True
+    result["language"] = getattr(item, "language", "en")
+
     return result
