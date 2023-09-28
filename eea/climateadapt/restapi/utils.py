@@ -38,12 +38,13 @@ def cca_content_serializer(item, result):
         ]
 
     dates = get_date_updated(item)
-    if 'description' not in result and hasattr(item, 'long_description') and item.long_description.output:
+    if not getattr(item, 'description', None) and hasattr(item, 'long_description') and item.long_description.output:
         description = item.portal_transforms.convertTo('text/plain',
                                                        item.long_description.output).getData().strip()
         result['description'] = description.decode('utf-8')
 
-    result["cca_last_modified"] = json_compatible(dates["cadapt_last_modified"])
+    result["cca_last_modified"] = json_compatible(
+        dates["cadapt_last_modified"])
     result["cca_published"] = json_compatible(dates["cadapt_published"])
     result["is_cca_content"] = True
     result["language"] = getattr(item, "language", "en")
