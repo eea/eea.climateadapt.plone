@@ -1,6 +1,6 @@
 from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader  # , Year
+from eea.climateadapt.schema import AbsoluteUrl, Uploader
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
@@ -16,8 +16,9 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer
-from zope.schema import (URI, Bool, Choice, Date, Datetime, List, Text,
-                         TextLine, Tuple)
+from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple
+
+# , Year, PortalType,
 
 
 class IAceItem(IImageScaleTraversable):
@@ -154,6 +155,7 @@ class IAceItem(IImageScaleTraversable):
         title=_(u"Short summary"),
         required=False,
         description=u"Enter a short summary that will be used in listings.",
+        missing_value=u'',
     )
 
     keywords = Tuple(
@@ -311,8 +313,8 @@ class IAceItem(IImageScaleTraversable):
     )
 
     # -----------[ "omitted" fields ]------------------
-    directives.omitted(IAddForm, "portal_type")
-    directives.omitted(IEditForm, "portal_type")
+    # directives.omitted(IAddForm, "portal_type")
+    # directives.omitted(IEditForm, "portal_type")
 
     directives.omitted(IAddForm, "item_link")
     directives.omitted(IEditForm, "item_link")
@@ -338,20 +340,20 @@ class IAceItem(IImageScaleTraversable):
     directives.omitted(IAddForm, "metadata")
     directives.omitted(IEditForm, "metadata")
 
-    # directives.omitted(IAddForm, 'special_tags')
-    # directives.omitted(IEditForm, 'special_tags')
-
     directives.omitted(IAddForm, "rating")
     directives.omitted(IEditForm, "rating")
 
-    directives.omitted(IAddForm, "modification_date")
-    directives.omitted(IEditForm, "modification_date")
+    # directives.omitted(IAddForm, 'special_tags')
+    # directives.omitted(IEditForm, 'special_tags')
 
-    directives.omitted(IAddForm, "creation_date")
-    directives.omitted(IEditForm, "creation_date")
-
-    directives.omitted(IAddForm, "id")
-    directives.omitted(IEditForm, "id")
+    # directives.omitted(IAddForm, "modification_date")
+    # directives.omitted(IEditForm, "modification_date")
+    #
+    # directives.omitted(IAddForm, "creation_date")
+    # directives.omitted(IEditForm, "creation_date")
+    #
+    # directives.omitted(IAddForm, "id")
+    # directives.omitted(IEditForm, "id")
 
     # -----------[ "backend" fields ]------------------
 
@@ -367,8 +369,8 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    portal_type = PortalType(title=_(u"Portal type"),
-                             required=False, default=u"")
+    # portal_type = PortalType(title=_(u"Portal type"),
+    #                          required=False, default=u"")
 
     item_link = AbsoluteUrl(title=_(u"Item link"), required=False, default=u"")
 
@@ -405,20 +407,20 @@ class IAceItem(IImageScaleTraversable):
         required=False,
     )
 
-    creation_date = Datetime(
-        title=_(u"Created"),
-        required=False,
-    )
-
-    modification_date = Datetime(
-        title=_(u"Last Modified"),
-        required=False,
-    )
-
-    id = TextLine(
-        title=_(u"Object ID"),
-        required=False,
-    )
+    # creation_date = Datetime(
+    #     title=_(u"Created"),
+    #     required=False,
+    # )
+    #
+    # modification_date = Datetime(
+    #     title=_(u"Last Modified"),
+    #     required=False,
+    # )
+    #
+    # id = ASCIILine(
+    #     title=_(u"Object ID"),
+    #     required=False,
+    # )
 
     # TODO: see if possible to use eea.promotions for this
     # featured = List(title=_(u"Featured in location"),

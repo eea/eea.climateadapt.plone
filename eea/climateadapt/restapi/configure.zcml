@@ -1,16 +1,16 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone">
 
-  <adapter factory=".serializer.LanguageGenericSerializer"/>
-  <adapter factory=".serializer.LanguageGenericFolderSerializer"/>
-  <!-- <adapter factory=".serializer.LanguageFolderSerializer"/> -->
+  <adapter factory=".serializer.GenericContentSerializer"/>
+  <adapter factory=".serializer.GenericFolderSerializer"/>
+
   <adapter factory=".serializer.ClimateAdaptContentSerializer" />
-  <adapter factory=".serializer.AceItemSerializer" />
-  <adapter factory=".serializer.AceMeasureSerializer" />
   <adapter factory=".serializer.AdaptationOptionSerializer" />
   <adapter factory=".serializer.AceProjectSerializer" />
   <adapter factory=".serializer.CaseStudySerializer" />
+
   <adapter factory=".long_converter" />
   <adapter factory=".geolocation_converter" />
   <adapter factory=".richtext_value_converter" />
@@ -44,6 +44,34 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
+  <adapter
+    factory=".ecde.C3SIndicatorsOverview"
+    name="c3s_indicators_overview"
+    />
+
+  <plone:service
+    method="GET"
+    factory=".ecde.C3SIndicatorsOverviewGet"
+    for="zope.interface.Interface"
+    permission="zope2.View"
+    name="@c3s_indicators_overview"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
+  <adapter
+    factory=".ecde.C3SIndicatorsGlossaryTable"
+    name="c3s_indicators_glossary_table"
+    />
+
+  <plone:service
+    method="GET"
+    factory=".ecde.C3SIndicatorsGlossaryTableGet"
+    for="zope.interface.Interface"
+    permission="zope2.View"
+    name="@c3s_indicators_glossary_table"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
   <subscriber
       factory=".serializer.SlateBlockSerializer"
       provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
@@ -63,5 +91,33 @@
     factory=".blocks.RelevantAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
     />
+
+  <browser:page
+      for="*"
+      name="portal_tabs_view"
+      layer="plone.restapi.interfaces.IPloneRestapiLayer"
+      class=".navigation.CatalogNavigationTabs"
+      permission="zope.Public"
+      allowed_attributes="topLevelTabs"
+      />
+
+  <adapter
+      factory=".navigation.Navigation"
+      name="navigation"
+      />
+
+    <plone:service
+      method="GET"
+      factory=".navigation.NavigationGet"
+      for="zope.interface.Interface"
+      permission="zope2.View"
+      name="@navigation"
+      layer="plone.restapi.interfaces.IPloneRestapiLayer"
+      />
+
+    <adapter
+      for="eea.climateadapt.interfaces.IClimateAdaptContent zope.schema.interfaces.IField"
+      factory=".dm.CustomAttributeFieldDataManager"
+      />
 
 </configure>

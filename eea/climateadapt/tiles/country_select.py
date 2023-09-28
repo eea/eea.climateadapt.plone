@@ -47,7 +47,7 @@ class CountrySelectTile(PersistentCoverTile):
         #              ace_countries_selection]
 
         # return sorted(countries, key=lambda c: c[1])
-        clist = filter(lambda country:  country[0]!='GB', ace_countries_selection)
+        clist = filter(lambda country:  country[0] != 'GB', ace_countries_selection)
         return sorted(clist, key=lambda c: c[1])
 
 

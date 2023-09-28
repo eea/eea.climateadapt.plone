@@ -1,22 +1,19 @@
-import json
-
-from eea.climateadapt.behaviors import (IAceItem, IAceMeasure, IAceProject,
-                                        IAdaptationOption, ICaseStudy)
-from eea.climateadapt.browser import get_date_updated, get_files
+from eea.climateadapt.behaviors import (IAceProject, IAdaptationOption,
+                                        ICaseStudy)
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import (IClimateAdaptContent,
                                          IEEAClimateAdaptInstalled)
-from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.serializer.blocks import (SlateBlockSerializerBase,
                                              uid_to_url)
-from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
                                                 SerializeToJson)
 from zope.component import adapter
 from zope.interface import Interface, implementer
+
+from .utils import cca_content_serializer
 
 
 @implementer(IBlockFieldSerializationTransformer)
@@ -38,24 +35,10 @@ class SlateBlockSerializer(SlateBlockSerializerBase):
             child["url"] = url
 
 
-def append_common_new_fields(result, item):
-    """Add here fields for any CCA content type"""
-    result["cca_last_modified"] = json_compatible(
-        get_date_updated(item)["cadapt_last_modified"]
-    )
-    result["cca_published"] = json_compatible(
-        get_date_updated(item)["cadapt_published"]
-    )
-    result["is_cca_content"] = True
-    result["language"] = getattr(item, "language", "")
-
-    return result
-
-
 @adapter(IDexterityContainer, IEEAClimateAdaptInstalled)
-class LanguageGenericFolderSerializer(SerializeFolderToJson):
+class GenericFolderSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
-        result = super(LanguageGenericFolderSerializer, self).__call__(
+        result = super(GenericFolderSerializer, self).__call__(
             version=None, include_items=True
         )
         item = self.context
@@ -65,45 +48,14 @@ class LanguageGenericFolderSerializer(SerializeFolderToJson):
 
 
 @adapter(IDexterityContent, IEEAClimateAdaptInstalled)
-class LanguageGenericSerializer(SerializeToJson):
+class GenericContentSerializer(SerializeToJson):
     def __call__(self, version=None, include_items=True):
-        result = super(LanguageGenericSerializer, self).__call__(
+        result = super(GenericContentSerializer, self).__call__(
             version=None, include_items=True
         )
         item = self.context
         result["language"] = getattr(item, "language", "")
 
-        return result
-
-
-# @adapter(IFolder, Interface)
-# class LanguageFolderSerializer(LanguageGenericSerializer):
-#     """"""
-
-
-@adapter(IAceItem, Interface)
-class AceItemSerializer(SerializeToJson):
-    def __call__(self, version=None, include_items=True):
-        result = super(AceItemSerializer, self).__call__(
-            version=None, include_items=True
-        )
-        item = self.context
-
-        result = get_geographic(item, result)
-        result = append_common_new_fields(result, item)
-        return result
-
-
-@adapter(IAceMeasure, Interface)
-class AceMeasureSerializer(SerializeToJson):
-    def __call__(self, version=None, include_items=True):
-        result = super(AceMeasureSerializer, self).__call__(
-            version=None, include_items=True
-        )
-        item = self.context
-
-        result = get_geographic(item, result)
-        result = append_common_new_fields(result, item)
         return result
 
 
@@ -113,14 +65,7 @@ class ClimateAdaptContentSerializer(SerializeToJson):
         result = super(ClimateAdaptContentSerializer, self).__call__(
             version=None, include_items=True
         )
-        item = self.context
-
-        files = get_files(item)
-        result["cca_files"] = [
-            {"title": file.Title(), "url": file.absolute_url()} for file in files
-        ]
-        result = append_common_new_fields(result, item)
-        return result
+        return cca_content_serializer(self.context, result)
 
 
 @adapter(IAdaptationOption, Interface)
@@ -129,11 +74,8 @@ class AdaptationOptionSerializer(SerializeFolderToJson):        # SerializeToJso
         result = super(AdaptationOptionSerializer, self).__call__(
             version=None, include_items=True
         )
-        item = self.context
-        result["related_case_studies"] = find_related_casestudies(item)
-        result = get_geographic(item, result)
-        result = append_common_new_fields(result, item)
-        return result
+        result["related_case_studies"] = find_related_casestudies(self.context)
+        return cca_content_serializer(self.context, result)
 
 
 @adapter(IAceProject, Interface)
@@ -142,10 +84,7 @@ class AceProjectSerializer(SerializeFolderToJson):        # SerializeToJson
         result = super(AceProjectSerializer, self).__call__(
             version=None, include_items=True
         )
-        item = self.context
-        result = get_geographic(item, result)
-        result = append_common_new_fields(result, item)
-        return result
+        return cca_content_serializer(self.context, result)
 
 
 @adapter(ICaseStudy, Interface)
@@ -154,6 +93,8 @@ class CaseStudySerializer(SerializeFolderToJson):       # SerializeToJson
         result = super(CaseStudySerializer, self).__call__(
             version=None, include_items=True
         )
+        result = cca_content_serializer(self.context, result)
+
         item = self.context
         images = item.contentValues({"portal_type": "Image"})
         suffix = "/@@images/image/large"
@@ -162,30 +103,4 @@ class CaseStudySerializer(SerializeFolderToJson):       # SerializeToJson
             for image in images
         ]
 
-        files = get_files(item)
-        result["cca_files"] = [
-            {"title": file.Title(), "url": file.absolute_url()} for file in files
-        ]
-
-        result = get_geographic(item, result)
-        result = append_common_new_fields(result, item)
         return result
-
-
-def get_geographic(item, result={}):
-    if not hasattr(item, 'geochars') and not item.geochars:
-        return result
-
-    response = {}
-    data = json.loads(item.geochars)
-    if len(data['geoElements']['countries']):
-        response['countries'] = [ace_countries_dict.get(x, x) for x in
-                                 data['geoElements']['countries']]
-    if data['geoElements']['macrotrans'] and len(data['geoElements'
-                                                      ]['macrotrans']):
-        response['transnational_region'] = [BIOREGIONS.get(x, x)
-                                            for x in data['geoElements']['macrotrans']]
-
-    if len(response):
-        result['geographic'] = response
-    return result

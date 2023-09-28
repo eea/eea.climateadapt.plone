@@ -1,10 +1,8 @@
-from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
-                         TextLine, Tuple)
-
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from plone.autoform import directives
 from z3c.form.interfaces import IAddForm, IEditForm
+from zope.schema import Date, Text
 
 
 class IIndicator(IAceItem):
