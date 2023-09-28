@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 import logging
+
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-from plone.restapi.interfaces import IExpandableElement
-from plone.restapi.services import Service
-from zope.component import adapter
-from zope.interface import implementer
-from zope.interface import Interface
+from eea.climateadapt.translation.utils import get_current_language
 from plone import api
 from plone.api import portal
-from zope.annotation.interfaces import IAnnotations
 from plone.app.multilingual.manager import TranslationManager
-from eea.climateadapt.translation.utils import get_current_language
+from plone.restapi.interfaces import IExpandableElement
+from plone.restapi.services import Service
+from zope.annotation.interfaces import IAnnotations
+from zope.component import adapter
+from zope.interface import Interface, implementer
 
 logger = logging.getLogger('eea.climateadapt')
 
@@ -76,9 +76,9 @@ class C3SIndicatorsOverview(object):
     def __call__(self, expand=False):
         if self.is_ecde_context() is True:
             indicators_data = self.get_indicators_data()
+            return {"c3s_indicators_overview": indicators_data}
         else:
-            indicators_data = 'Error: Wrong context.'
-        return {"c3s_indicators_overview": indicators_data}
+            return {}
 
 
 class C3SIndicatorsOverviewGet(Service):
@@ -112,7 +112,7 @@ class C3SIndicatorsGlossaryTable(object):
         if self.is_ecde_context() is True:
             indicators_data = self.get_indicators_data()
         else:
-            indicators_data = 'Error: Wrong context.'
+            return {}
         return {"c3s_indicators_glossary_table": indicators_data}
 
 
