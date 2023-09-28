@@ -3,15 +3,14 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone">
 
-  <adapter factory=".serializer.LanguageGenericSerializer"/>
-  <adapter factory=".serializer.LanguageGenericFolderSerializer"/>
-  <!-- <adapter factory=".serializer.LanguageFolderSerializer"/> -->
+  <adapter factory=".serializer.GenericContentSerializer"/>
+  <adapter factory=".serializer.GenericFolderSerializer"/>
+
   <adapter factory=".serializer.ClimateAdaptContentSerializer" />
-  <adapter factory=".serializer.AceItemSerializer" />
-  <adapter factory=".serializer.AceMeasureSerializer" />
   <adapter factory=".serializer.AdaptationOptionSerializer" />
   <adapter factory=".serializer.AceProjectSerializer" />
   <adapter factory=".serializer.CaseStudySerializer" />
+
   <adapter factory=".long_converter" />
   <adapter factory=".geolocation_converter" />
   <adapter factory=".richtext_value_converter" />
