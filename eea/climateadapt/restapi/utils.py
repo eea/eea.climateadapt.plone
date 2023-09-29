@@ -25,7 +25,7 @@ def get_geographic(item, result={}):
     return result
 
 
-def cca_content_serializer(item, result):
+def cca_content_serializer(item, result, request):
     """ A generic enrichment that should be applied to all IClimateAdaptContent
     """
 
@@ -38,7 +38,8 @@ def cca_content_serializer(item, result):
         ]
 
     dates = get_date_updated(item)
-    if not getattr(item, 'description', None) and hasattr(item, 'long_description') and item.long_description.output:
+    if not getattr(item, 'description', None) and hasattr(
+            item, 'long_description') and item.long_description.output and 'eea_index' in request.QUERY_STRING:
         description = item.portal_transforms.convertTo('text/plain',
                                                        item.long_description.output).getData().strip()
         result['description'] = description.decode('utf-8')

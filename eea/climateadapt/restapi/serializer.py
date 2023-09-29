@@ -65,17 +65,18 @@ class ClimateAdaptContentSerializer(SerializeToJson):
         result = super(ClimateAdaptContentSerializer, self).__call__(
             version=None, include_items=True
         )
-        return cca_content_serializer(self.context, result)
+        return cca_content_serializer(self.context, result, self.request)
 
 
 @adapter(IAdaptationOption, Interface)
-class AdaptationOptionSerializer(SerializeFolderToJson):        # SerializeToJson
+# SerializeToJson
+class AdaptationOptionSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
         result = super(AdaptationOptionSerializer, self).__call__(
             version=None, include_items=True
         )
         result["related_case_studies"] = find_related_casestudies(self.context)
-        return cca_content_serializer(self.context, result)
+        return cca_content_serializer(self.context, result, self.request)
 
 
 @adapter(IAceProject, Interface)
@@ -84,7 +85,7 @@ class AceProjectSerializer(SerializeFolderToJson):        # SerializeToJson
         result = super(AceProjectSerializer, self).__call__(
             version=None, include_items=True
         )
-        return cca_content_serializer(self.context, result)
+        return cca_content_serializer(self.context, result, self.request)
 
 
 @adapter(ICaseStudy, Interface)
@@ -93,7 +94,7 @@ class CaseStudySerializer(SerializeFolderToJson):       # SerializeToJson
         result = super(CaseStudySerializer, self).__call__(
             version=None, include_items=True
         )
-        result = cca_content_serializer(self.context, result)
+        result = cca_content_serializer(self.context, result, self.request)
 
         item = self.context
         images = item.contentValues({"portal_type": "Image"})
