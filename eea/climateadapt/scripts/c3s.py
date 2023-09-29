@@ -31,7 +31,7 @@ logging.basicConfig()
 SOURCE_URL = (
     "https://raw.githubusercontent.com/bopen/c3s-430a-portal/"
     "static-generator-acceptance/data/data_consolidated.json"
-    )
+)
 
 
 def get_source_data():
@@ -48,6 +48,7 @@ def update_object(obj, indicator):
     obj.indicator_title = indicator["indicator_title"]
 
     obj.long_description = RichTextValue(indicator["description_general"])
+    obj.description = ''
     obj.definition_app = RichTextValue(indicator["description_vis_nav"])
 
     if isinstance(indicator["theme"], list):
@@ -56,16 +57,16 @@ def update_object(obj, indicator):
         obj.c3s_theme = [indicator["theme"]]
 
     obj.overview_app_toolbox_url = indicator["detail"]
-    #obj.overview_app_parameters = "{}"
-    #if indicator["vars"]["overview"]:
+    # obj.overview_app_parameters = "{}"
+    # if indicator["vars"]["overview"]:
     #    obj.overview_app_parameters = json.dumps(
     #        {"workflowParams": indicator["vars"]["overview"]}
     #    )
     obj.overview_app_parameters = indicator["overview"]
 
-    #obj.details_app_toolbox_url = indicator["detail"]
-    #obj.details_app_parameters = "{}"
-    #if indicator["vars"]["detail"]:
+    # obj.details_app_toolbox_url = indicator["detail"]
+    # obj.details_app_parameters = "{}"
+    # if indicator["vars"]["detail"]:
     #    obj.details_app_parameters = json.dumps(
     #        {"workflowParams": indicator["vars"]["detail"]}
     #    )
@@ -132,7 +133,7 @@ def save_indicator(indicator, site, data):
         folder = site.restrictedTraverse(folder_path)
 
         obj = createContentInContainer(
-            #folder_indicator,
+            # folder_indicator,
             folder,
             "eea.climateadapt.c3sindicator",
             title=indicator["page_title"],
@@ -153,7 +154,7 @@ def main():
     for indicator_identifier in data["indicators"]:
         save_indicator(data["indicators"][indicator_identifier], site, data)
 
-    #for theme_id in data["themes"]:
+    # for theme_id in data["themes"]:
     #    theme_folder = base_folder[theme_id]
     #    theme_folder.text = RichTextValue(
     #        data["themes"][theme_id]["description"]
