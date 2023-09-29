@@ -115,9 +115,4 @@
       layer="plone.restapi.interfaces.IPloneRestapiLayer"
       />
 
-    <adapter
-      for="eea.climateadapt.interfaces.IClimateAdaptContent zope.schema.interfaces.IField"
-      factory=".dm.CustomAttributeFieldDataManager"
-      />
-
 </configure>
