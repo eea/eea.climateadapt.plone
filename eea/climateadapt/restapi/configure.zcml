@@ -44,6 +44,7 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
+  <!--
   <adapter
     factory=".ecde.C3SIndicatorsOverview"
     name="c3s_indicators_overview"
@@ -57,6 +58,7 @@
     name="@c3s_indicators_overview"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
+    -->
 
   <adapter
     factory=".ecde.C3SIndicatorsGlossaryTable"
