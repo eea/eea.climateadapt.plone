@@ -42,7 +42,10 @@ def cca_content_serializer(item, result, request):
             item, 'long_description') and item.long_description.output and 'eea_index' in request.form:
         description = item.portal_transforms.convertTo('text/plain',
                                                        item.long_description.output).getData().strip()
-        result['description'] = description.decode('utf-8')
+        try:
+            result['description'] = description.decode('utf-8')
+        except Exception:
+            result['description'] = description.encode('utf-8')
 
     result["cca_last_modified"] = json_compatible(
         dates["cadapt_last_modified"])
