@@ -10,12 +10,18 @@ def get_geographic(item, result={}):
         return result
 
     response = {}
-    data = json.loads(item.geochars)
-    if len(data['geoElements']['countries']):
+    if item.geochars is not None and item.geochars != '':
+        data = json.loads(item.geochars)
+    else:
+        data = {}
+
+    if not data:
+        return result
+
+    if 'countries' in data['geoElements'] and len(data['geoElements']['countries']):
         response['countries'] = [ace_countries_dict.get(x, x) for x in
                                  data['geoElements']['countries']]
-    if data['geoElements']['macrotrans'] and len(data['geoElements'
-                                                      ]['macrotrans']):
+    if 'macrotrans' in data['geoElements'] and len(data['geoElements']['macrotrans']):
         response['transnational_region'] = [BIOREGIONS.get(x, x)
                                             for x in data['geoElements']['macrotrans']]
 
