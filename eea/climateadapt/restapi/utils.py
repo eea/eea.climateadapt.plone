@@ -21,7 +21,8 @@ def get_geographic(item, result={}):
     if 'countries' in data['geoElements'] and len(data['geoElements']['countries']):
         response['countries'] = [ace_countries_dict.get(x, x) for x in
                                  data['geoElements']['countries']]
-    if 'macrotrans' in data['geoElements'] and len(data['geoElements']['macrotrans']):
+    if 'macrotrans' in data['geoElements'] and data[
+            'geoElements']['macrotrans'] and len(data['geoElements']['macrotrans']):
         response['transnational_region'] = [BIOREGIONS.get(x, x)
                                             for x in data['geoElements']['macrotrans']]
 
