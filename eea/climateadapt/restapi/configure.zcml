@@ -44,7 +44,7 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
-  <!--
+  <!-- USED IN MIGRATION
   <adapter
     factory=".ecde.C3SIndicatorsOverview"
     name="c3s_indicators_overview"
@@ -58,7 +58,6 @@
     name="@c3s_indicators_overview"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
-    -->
 
   <adapter
     factory=".ecde.C3SIndicatorsGlossaryTable"
@@ -73,6 +72,7 @@
     name="@c3s_indicators_glossary_table"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
+    -->
 
   <subscriber
       factory=".serializer.SlateBlockSerializer"
