@@ -455,8 +455,9 @@ def country_disclaimer_view(obj, data):
         "gas emissions and for reporting other information relevant "
         "to climate change\' and updates by the EEA member countries."
     )
+    block_id = make_uid()
 
-    blocks = [[make_uid(), {
+    blocks = [[block_id, {
         "@type": "slate",
         "plaintext": title,
         "value": [{
@@ -486,6 +487,138 @@ def country_disclaimer_view(obj, data):
         "blocks": blocks,
     }
 
+def help_categories_view(obj, data):
+    current_lang = obj.absolute_url(relative=True).split('/')[-2]
+    block_id = make_uid()
+
+    item_model = {
+        "@type": "card",
+        "callToAction": {
+            "label": "Read more"
+        },
+        "hasDate": False,
+        "hasDescription": True,
+        "hasEventDate": False,
+        "hasLink": True,
+        "maxDescription": "5",
+        "maxTitle": "3",
+        "styles": {
+            "text": "center"
+        },
+        "titleOnImage": False
+    }
+
+    blocks = [[block_id, {
+        "@type": "teaserGrid",
+        "columns": [{
+            "@type": "teaser",
+            "description": "Common definitions of the terms used frequently in the clearinghouse.",
+            "href": [{
+                    "@id": "/" + current_lang + "/help/glossary",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2016-07-07T12:57:23+01:00",
+                    "Title": "Glossary",
+                    "image_field": "",
+                    "title": "Glossary"
+            }],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "Glossary"
+        },
+        {
+            "@type": "teaser",
+            "description": "Guidance on the Climate-ADAPT Database Search function.",
+            "href": [
+                {
+                    "@id": "/" + current_lang + "/help/guidance",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2017-06-15T14:48:34+01:00",
+                    "Title": "Guidance to search function",
+                    "image_field": "",
+                    "title": "Guidance to search function"
+                }
+            ],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "Guidance to search function"
+        },
+        {
+            "@type": "teaser",
+            "description": "Find out how to contribute different types of information to Climate-ADAPT.",
+            "href": [
+                {
+                    "@id": "/" + current_lang + "/help/faq-providers",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2016-07-07T12:57:35+01:00",
+                    "Title": "FAQ for providers",
+                    "image_field": "",
+                    "title": "FAQ for providers"
+                }
+            ],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "FAQ for providers"
+        },
+        {
+            "@type": "teaser",
+            "description": "Frequently asked questions in one place.",
+            "href": [
+                {
+                    "@id": "/" + current_lang + "/help/faq",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2016-07-07T12:57:35+01:00",
+                    "Title": "FAQ for users",
+                    "image_field": "",
+                    "title": "FAQ for users"
+                }
+            ],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "FAQ for users"
+        },
+        {
+            "@type": "teaser",
+            "description": "If you are new user the video tutorials can help you get started.",
+            "href": [
+                {
+                    "@id": "/" + current_lang + "/help/tutorial-videos",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2016-07-07T12:59:05+01:00",
+                    "Title": "Tutorial videos",
+                    "image_field": "",
+                    "title": "Tutorial videos"
+                }
+            ],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "Tutorial videos"
+        }
+        ]
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
 
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
@@ -533,7 +666,7 @@ view_convertors = {
     'fp-news-tile': nop_view,  # /
 
     # Card-based listing. To be implemented as a card listing. Ticket: https://taskman.eionet.europa.eu/issues/161514
-    'help-categories': nop_view,  # /help/index_html
+    'help-categories': help_categories_view,  # /help/index_html
 
 
     # A search listing with tab-based prefilters. Should be reimplemented as search

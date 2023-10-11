@@ -2,9 +2,7 @@
 It renders a search "portlet" for Ace content
 """
 
-import json
 import logging
-import urllib
 from collections import namedtuple
 
 from AccessControl import Unauthorized
@@ -14,7 +12,9 @@ from collective.cover.tiles.base import (IPersistentCoverTile,
 from collective.cover.tiles.list import IListTile
 from eea.climateadapt import MessageFactory as _
 from eea.climateadapt.catalog import get_aceitem_description
+from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
 from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+                                                filters_to_query,
                                                 get_current_language)
 from eea.climateadapt.vocabulary import (BIOREGIONS, _climateimpacts,
                                          _datatypes, _elements,
@@ -38,7 +38,9 @@ from zope.interface import implements
 from zope.schema import Bool, Choice, Dict, Int, List, TextLine
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
-#from plone.app.multilingual.manager import TranslationManager
+# import json
+# import urllib
+# from plone.app.multilingual.manager import TranslationManager
 
 
 ORIGIN_WEBSITES = dict(_origin_website)
@@ -163,6 +165,7 @@ class AceTileMixin(object):
             "macro_regions": "macro_regions",
             "bio_regions": "bio_regions",
             "funding_programme": "funding_programme",
+            "language": "language",
         }
 
         sort_map = {
@@ -215,6 +218,7 @@ class AceTileMixin(object):
             words = query.pop("SearchableText", u"").split(u" ")
             query["SearchableText"] = u" ".join(set(words + st))
 
+        query['language'] = lang
         print(query)
 
         return query
@@ -250,68 +254,57 @@ class AceTileMixin(object):
         for k, v in x.items():
 
             if k == "search_type":
-                for s in v:
-                    terms.append({u"term": {u"typeOfData": DATATYPES[s]}})
+                terms.append(('objectProvides',
+                              [ACEID_TO_SEARCHTYPE.get(
+                                  s, DATATYPES.get(s, s)) for s in v]))
 
             if k == "origin_website":
-                for s in v:
-                    terms.append({u"term": {u"typeOfData": ORIGIN_WEBSITES[s]}})
+                terms.append(('cca_origin_websites.keyword', [
+                             ORIGIN_WEBSITES[s] for s in v]))
 
             if k == "sectors":
-                for s in v:
-                    terms.append({u"term": {u"sectors": SECTORS[s]}})
+                terms.append(('cca_adaptation_sectors.keyword', [
+                             SECTORS[s] for s in v]))
 
             if k == "climate_impacts":
-                for s in v:
-                    terms.append({u"term": {u"climate_impacts": CLIMATE_IMPACTS[s]}})
+                terms.append(('cca_climate_impacts.keyword', [
+                             CLIMATE_IMPACTS[s] for s in v]))
 
             if k == "elements":
-                for s in v:
-                    terms.append({u"term": {u"elements": ELEMENTS[s]}})
-
-            if k == "funding_programme":
-                for s in v:
-                    terms.append({u"term": {u"funding_programme": s}})
+                terms.append(('cca_adaptation_elements.keyword', [
+                             ELEMENTS[s] for s in v]))
 
             if k == "countries":
-                for s in v:
-                    terms.append({u"term": {u"places": COUNTRIES[s]}})
+                terms.append(('cca_geographic_countries.keyword', [
+                             COUNTRIES[s] for s in v]))
+
+            if k == "funding_programme":
+                terms.append(('cca_funding_programme.keyword', [s for s in v]))
+
+            if k == "language":
+                terms.append(('language', [s for s in v]))
 
             if k == "macro_regions":
+                temp_terms = []
                 for s in v:
-                    #import pdb; pdb.set_trace()
                     if 'TRANS_MACRO_' in s:
                         for key, val in BIOREGIONS.items():
                             if 'TRANS_MACRO_' in key and key == s:
                                 if val in self.list_of_other_regions():
                                     val = 'Other Regions'
-                                terms.append({u"term": {u"macro-transnational-region": val}})
+                                temp_terms.append(val)
                     else:
-                        import pdb
-                        pdb.set_trace()
-                        terms.append({u"term": {u"macro-transnational-region": s}})
+                        temp_terms.append(s)
+
+                terms.append(
+                    ('cca_geographic_transnational_region.keyword', temp_terms))
 
             if k == "SearchableText":
-                for s in v:
-                    terms.append(
-                        {
-                            u"query_string": {
-                                u"analyze_wildcard": True,
-                                u"default_operator": u"OR",
-                                u"query": s,
-                            }
-                        }
-                    )
-        t = {
-            u"function_score": {
-                u"query": {u"bool": {u"filter": {u"bool": {u"should": terms}}}}
-            }
-        }
+                terms.append(('q', v))
 
-        q = {"query": t}
+        query = filters_to_query(terms)
 
-        print(q)
-        return "{}{}".format(url, urllib.quote(json.dumps(q)))
+        return "{}{}".format(url, query)        # urllib.quote(json.dumps(q))
 
     def list_of_other_regions(self):
         resp = []
@@ -326,7 +319,7 @@ class AceTileMixin(object):
     def sections(self):
         """Returns a list of (section name, section count, section_url)"""
         site = getSite()
-        base_query = "/{0}/data-and-downloads/?lang={0}&source=".format(
+        base_query = "/{0}/data-and-downloads/?language={0}&".format(
             self.current_lang)
 
         base = site.absolute_url() + base_query
@@ -405,7 +398,8 @@ class AceTileMixin(object):
             try:
                 obj = item.getObject()
             except KeyError:        # this is an indexing problem
-                logger.warn("Object not found in relevant_all_items: %s", item.getURL())
+                logger.warn(
+                    "Object not found in relevant_all_items: %s", item.getURL())
                 continue
             # if '/' + current_language + '/' not in item.getURL():
             #     item = self.translated_object(item)
@@ -449,11 +443,11 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMi
     is_droppable = False
     short_name = u"Search AceContent"
 
-    @view.memoize
+    @ view.memoize
     def is_empty(self):
         return False
 
-    @view.memoize
+    @ view.memoize
     def accepted_ct(self):
         """Return an empty list as no content types are accepted."""
 
@@ -466,7 +460,8 @@ sortby_def = {
     "NAME": "Alphabetical sorting",
 }
 
-sortbyterms = [SimpleTerm(value=k, token=k, title=v) for k, v in sortby_def.items()]
+sortbyterms = [SimpleTerm(value=k, token=k, title=v)
+               for k, v in sortby_def.items()]
 sortby_vocabulary = SimpleVocabulary(sortbyterms)
 
 
@@ -500,7 +495,8 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
     form.omitted("uuids")
 
 
-Item = namedtuple("Item", ["Title", "Description", "icons", "sortable_title", "url"])
+Item = namedtuple("Item", ["Title", "Description",
+                           "icons", "sortable_title", "url"])
 
 
 class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
@@ -518,7 +514,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
     view_more = True
 
-    @property
+    @ property
     def is_available(self):
         return bool(self.items() or self.assigned())
 
@@ -531,7 +527,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
     #
     #         return True
 
-    @view.memoize
+    @ view.memoize
     def is_empty(self):
         return False
 
@@ -546,7 +542,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
         return value
 
-    @view.memoize
+    @ view.memoize
     def accepted_ct(self):
         """Return accepted drag/drop content types for this tile."""
 
@@ -576,7 +572,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
     def view_more_url(self):
         site = getSite()
-        base = site.absolute_url() + "/data-and-downloads?source="
+        base = site.absolute_url() + "/data-and-downloads?"
 
         q = {
             "elements": self.data.get("element_type"),
@@ -591,7 +587,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         # "%s/data-and-downloads?searchtext=%s&searchelements=%s&searchtypes=%s"
         # % ( site.absolute_url(), search_text, element_type, search_type)
 
-    @view.memoize
+    @ view.memoize
     def icon_images(self):
         root = portal.get()
 
@@ -624,13 +620,13 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
     def all_items(self):
         current_language = get_current_language(self.context, self.request)
-        site = getSite()
-        catalog = site.portal_catalog
+        # site = getSite()
+        # catalog = site.portal_catalog
         res = []
 
         for item in self.assigned():
             if current_language != 'en':
-                #import pdb; pdb.set_trace()
+                # import pdb; pdb.set_trace()
                 item = self.translated_object(item)
             #    translations = TranslationManager(item).get_translations()
             #    if current_language not in translations:
@@ -706,14 +702,16 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
                     # maybe the user has no permission to access the object
                     # so we try to get it bypassing the restrictions
                     catalog = api.portal.get_tool("portal_catalog")
-                    #brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
-                    brain = catalog.searchResults(UID=uuid, review_state='published')
+                    # brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
+                    brain = catalog.searchResults(
+                        UID=uuid, review_state='published')
 
                     if not brain:
                         # the object was deleted; remove it from the tile
                         self.remove_item(uuid)
                         logger.debug(
-                            "Nonexistent object {0} removed from " "tile".format(uuid)
+                            "Nonexistent object {0} removed from " "tile".format(
+                                uuid)
                         )
         return results
 
@@ -737,7 +735,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         """
 
         if not self.isAllowedToEdit():
-            raise Unauthorized("You are not allowed to add content to this tile")
+            raise Unauthorized(
+                "You are not allowed to add content to this tile")
         # self.set_limit()
         data_mgr = ITileDataManager(self)
 
@@ -757,7 +756,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         #     # Do not allow adding more objects than the defined limit
         #     return
 
-        order_list = [int(val.get("order", 0)) for key, val in uuids_dict.items()]
+        order_list = [int(val.get("order", 0))
+                      for key, val in uuids_dict.items()]
 
         if len(order_list) == 0:
             # First entry
@@ -787,7 +787,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         """
 
         if not self.isAllowedToEdit():
-            raise Unauthorized("You are not allowed to add content to this tile")
+            raise Unauthorized(
+                "You are not allowed to add content to this tile")
         data_mgr = ITileDataManager(self)
         old_data = data_mgr.get()
         # Clean old data
@@ -871,7 +872,7 @@ class FilteringForm(Form):  # form.SchemaForm):
             request = request["PARENT_REQUEST"]
         super(FilteringForm, self).__init__(context, request, *args, **kwargs)
 
-    @view.memoize
+    @ view.memoize
     def action(self):
         return self.context.absolute_url()
 
@@ -886,6 +887,7 @@ key_type_measures_no_value = StaticWidgetAttribute(
     _(u"All key type measures"), view=FilteringForm, field=IFilteringSchema["key_type_measure"]
 )
 
+
 class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
     implements(IFilterAceContentItemsTile)
 
@@ -896,7 +898,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUt
     is_droppable = False
     index = ViewPageTemplateFile("pt/filter_acecontent.pt")
 
-    @property
+    @ property
     def filterform(self):
         form = FilteringForm(self.context, self.request)
 
@@ -929,7 +931,7 @@ class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUt
 
     def view_more_url(self):
         site = getSite()
-        base = site.absolute_url() + "/{}/data-and-downloads/?lang={}&source="\
+        base = site.absolute_url() + "/{}/data-and-downloads/?lang={}&"\
             .format(self.current_lang, self.current_lang)
 
         query = {

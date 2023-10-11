@@ -5,6 +5,7 @@
 import logging
 
 from plone.app.multilingual.api import get_translation_manager
+from plone.tiles.interfaces import ITileDataManager
 
 from .config import LANGUAGES, TOP_LEVEL, AST_PATHS, FULL_PAGE_PATHS, SECTOR_POLICIES
 from .utils import make_uid
@@ -36,6 +37,14 @@ def inpath(path):
         return decorator
 
     return decorator_factory
+
+
+def get_block_id(blocks, type):
+    block = {k for k, v in blocks.items() if v['@type'] == type}
+    if block:
+        return list(block)[0]
+    else:
+        return None
 
 
 @onpath('/knowledge/adaptation-information/climate-services/climate-services')
@@ -470,11 +479,13 @@ def are_on_path(url, paths):
     for path in paths:
         if url.endswith(path):
             return True
-        
+
+
 def are_in_path(url, paths):
     for path in paths:
         if path in url:
             return True
+
 
 def fix_read_more(context):
     url = context.absolute_url(relative=True)
@@ -487,50 +498,37 @@ def fix_read_more(context):
         '/countries-regions/transnational-regions/carpathian-mountains'
     ]
 
-    def get_columns_block_id(blocks):
-        columns_block = {k for k, v in blocks.items() if v['@type'] == 'columnsBlock'}
-        col_id = list(columns_block)[0]
-        return col_id
-
-    def get_read_more_block_id(blocks):
-        read_more_block = {k for k, v in blocks.items() if v['@type'] == 'readMoreBlock'}
-        if read_more_block:
-            read_more_block_id = list(read_more_block)[0]
-            return read_more_block_id
-        else:
-            return None
-
     if are_in_path(url, SECTOR_POLICIES):
-        col_id = get_columns_block_id(context.blocks)
+        col_id = get_block_id(context.blocks, 'columnsBlock')
         col = context.blocks[col_id]
         first_col_id = col['data']['blocks_layout']['items'][0]
         first_col = col['data']['blocks'][first_col_id]
         col_items = first_col['blocks_layout']['items']
-        read_more_block_id = get_read_more_block_id(first_col['blocks'])
-        tiles = {k for k, v in first_col['blocks'].items() 
-                if v['@type'] == 'relevantAceContent' or v['@type'] == 'filterAceContent'}
+        read_more_block_id = get_block_id(first_col['blocks'], 'readMoreBlock')
+        tiles = {k for k, v in first_col['blocks'].items()
+                 if v['@type'] == 'relevantAceContent' or v['@type'] == 'filterAceContent'}
         if read_more_block_id:
             read_more_index = col_items.index(read_more_block_id)
             col_items.pop(read_more_index)
-            col_items.insert(len(col_items)-len(tiles), read_more_block_id) # insert before acecontent blocks
+            col_items.insert(len(col_items)-len(tiles), read_more_block_id)  # insert before acecontent blocks
             first_col['blocks_layout']['items'] = col_items
 
     elif are_in_path(url, PATHS):
         items = context.blocks_layout['items']
-        read_more_block_id = get_read_more_block_id(context.blocks)
+        read_more_block_id = get_block_id(context.blocks, 'readMoreBlock')
         if read_more_block_id:
             read_more_index = items.index(read_more_block_id)
             items.pop(read_more_index)
-            items.insert(len(items) -1, read_more_block_id) # insert before last block
+            items.insert(len(items) - 1, read_more_block_id)  # insert before last block
             context.blocks_layout['items'] = items
 
     else:
         items = context.blocks_layout['items']
-        read_more_block_id = get_read_more_block_id(context.blocks)
+        read_more_block_id = get_block_id(context.blocks, 'readMoreBlock')
         if read_more_block_id:
             read_more_index = items.index(read_more_block_id)
             items.pop(read_more_index)
-            items.append(read_more_block_id) # insert as last one
+            items.append(read_more_block_id)  # insert as last one
             context.blocks_layout['items'] = items
 
     context._p_changed = True
@@ -587,6 +585,9 @@ def fix_layout_size(context):
     if are_on_path(url, FULL_PAGE_PATHS):
         return
 
+    if are_in_path(url, SECTOR_POLICIES):
+        return
+
     if are_in_path(url, AST_PATHS):
         return
 
@@ -596,14 +597,55 @@ def fix_layout_size(context):
     uids = page_blocks_layout['items'] + [layout_uid]
     blocks_layout = {"items":  uids}
     _blocks = {}
-    _blocks[layout_uid] = {"@type": "layoutSettings", "layout_size": "narrow_view"}
-   
+    _blocks[layout_uid] = {
+        "@type": "layoutSettings",
+        "layout_size": "narrow_view"
+    }
+
     for (uid, block) in page_blocks.items():
         _blocks[uid] = block
-   
+
     context.blocks = _blocks
     context.blocks_layout = blocks_layout
     context._p_changed = True
+
+
+def fix_ast_header(context):
+    obj = context
+    url = obj.absolute_url(relative=True)
+
+    if are_in_path(url, AST_PATHS):
+        for tile in obj.list_tiles():
+            if 'ast_header' in obj.get_tile_type(tile):
+                tile = obj.get_tile(tile)
+                tile_dm = ITileDataManager(tile)
+                data = tile_dm.get()
+                title = data.get('title')
+                step = data.get('step')
+                title_block_id = get_block_id(obj.blocks, 'title')
+                subtitle = str(step) + '. ' + title
+                new_data = {
+                    "@type": 'title',
+                    "hideContentType": True,
+                    "subtitle": subtitle
+                }
+                obj.blocks[title_block_id] = new_data
+                obj.title = subtitle
+
+        for tile in obj.list_tiles():
+            if 'richtext_with_title' in obj.get_tile_type(tile):
+                tile = obj.get_tile(tile)
+                tile_dm = ITileDataManager(tile)
+                data = tile_dm.get()
+                title = data.get('title')
+                if title and title[:1].isdigit():
+                    obj.title = title
+
+        title_block_id = get_block_id(obj.blocks, 'title')
+        if obj.blocks[title_block_id]['subtitle'] == obj.title:
+            obj.blocks[title_block_id]['subtitle'] = ''
+
+    obj._p_changed = True
 
 
 def fix_field_encoding(context):
@@ -621,7 +663,7 @@ def fix_field_encoding(context):
 
 content_fixers = [fix_field_encoding, fix_images_in_slate,
                   fix_climate_services_toc, fix_tutorial_videos, fix_uast,
-                  fix_ast, fix_webinars, fix_read_more]
+                  fix_ast, fix_webinars, fix_read_more, fix_ast_header]
 folder_fixers = [fix_field_encoding, fix_news_archive]
 
 
