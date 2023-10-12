@@ -23,13 +23,14 @@ def find_related_casestudies(item):
     res = []
     urls = []
 
-    # __import__('pdb').set_trace()
-    # test = intids.getId(aq_inner(item))
+    try:
+        relations = catalog.findRelations(
+            dict(to_id=intids.getId(aq_inner(item).aq_self),
+                 from_attribute='adaptationoptions'))
+    except Exception:
+        relations = []
 
-    for rel in catalog.findRelations(
-        dict(to_id=intids.getId(aq_inner(item).aq_self),
-             from_attribute='adaptationoptions')
-    ):
+    for rel in relations:
         obj = intids.queryObject(rel.from_id)
 
         if obj is not None and checkPermission('zope2.View', obj):
