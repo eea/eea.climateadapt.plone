@@ -214,7 +214,8 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         if not isinstance(html, basestring):
             return u""
         portal_transforms = api.portal.get_tool(name="portal_transforms")
-        data = portal_transforms.convertTo("text/plain", html, mimetype="text/html")
+        data = portal_transforms.convertTo(
+            "text/plain", html, mimetype="text/html")
         text = data.getData()
 
         return text
@@ -321,6 +322,7 @@ class FrontpageSearch(BrowserView, TranslationUtilsMixin):
         type_ = ACEID_TO_SEARCHTYPE.get(search_type) or search_type
         args = [
             ('objectProvides', type_),
+            ('language', self.current_lang),
         ]
         query = filters_to_query(args)
 
@@ -352,7 +354,8 @@ class FrontpageSearch(BrowserView, TranslationUtilsMixin):
         for data in SEARCH_TYPES_ICONS:
             data = list(data)
             # data.append(data[1])
-            data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
+            data[1] = translate_text(
+                self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
 
         return [
