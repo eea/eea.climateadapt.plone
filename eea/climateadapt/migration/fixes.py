@@ -658,12 +658,12 @@ def fix_field_encoding(context):
 
 @inpath('countries-regions/transnational-regions/')
 def fix_preview_image(context):
-    # url = context.absolute_url(relative=True)
-    images = context.listFolderContents(contentFilter={"portal_type": "Image"})
 
-    import pdb; pdb.set_trace()
-
-    context._p_changed = True
+    folder_image = context.listFolderContents(contentFilter={"portal_type": "Image"})[0]
+    if folder_image: 
+        image = folder_image.image
+        context.preview_image = image
+        context._p_changed = True
 
 
 content_fixers = [fix_field_encoding, fix_images_in_slate,
