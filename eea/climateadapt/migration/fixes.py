@@ -656,11 +656,20 @@ def fix_field_encoding(context):
         description = description.decode('utf-8')
         context.description = description
 
+@inpath('countries-regions/transnational-regions/')
+def fix_preview_image(context):
+    # url = context.absolute_url(relative=True)
+    images = context.listFolderContents(contentFilter={"portal_type": "Image"})
+
+    import pdb; pdb.set_trace()
+
+    context._p_changed = True
+
 
 content_fixers = [fix_field_encoding, fix_images_in_slate,
                   fix_climate_services_toc, fix_tutorial_videos, fix_uast,
                   fix_ast, fix_webinars, fix_read_more, fix_ast_header]
-folder_fixers = [fix_field_encoding, fix_news_archive]
+folder_fixers = [fix_field_encoding, fix_news_archive, fix_preview_image]
 
 
 def fix_content(content):
