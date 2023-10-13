@@ -620,6 +620,72 @@ def help_categories_view(obj, data):
         "blocks": blocks,
     }
 
+def regions_section_view(obj, data):
+    current_lang = obj.absolute_url(relative=True).split('/')[-2]
+     
+    return {
+        "blocks": [
+            [make_uid(), {
+                "@type": "listing",
+                "block": make_uid(),
+                "headlineTag": "h2",
+                "itemModel": {
+                    "@type": "card",
+                    "callToAction": {
+                        "label": "Read more"
+                    },
+                    "hasLink": True,
+                    "maxDescription": 2,
+                    "maxTitle": 2,
+                    "styles": {
+                        "objectFit": "contain",
+                        "text": "center"
+                    },
+                    "titleOnImage": False
+                },
+                "query": [],
+                "querystring": {
+                    "query": [{
+                        "i": "Subject",
+                        "o": "plone.app.querystring.operation.selection.any",
+                        "v": ["transnational-region"]
+                    }],
+                    "sort_on": "sortable_title",
+                    "sort_order": "ascending"
+                },
+                "styles": {},
+                "variation": "summary"
+            }],
+            [make_uid(), {
+                "@type": "slate",
+                "value": [
+                    {
+                        "children": [
+                            {
+                                "text": "In 2021-2027, the "
+                            },
+                            {
+                                "children": [
+                                    {
+                                        "text": "cross-border cooperation (CBC) between EU Member States and Neighbourhood region"
+                                    }
+                                ],
+                                "data": {
+                                    "url": "https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en"
+                                },
+                                "type": "link"
+                            },
+                            {
+                                "text": " is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called \"Interreg NEXT\". "
+                            }
+                        ],
+                        "type": "p"
+                    }
+                ]
+            }],
+        ],
+    }
+
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
     # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
@@ -677,7 +743,7 @@ view_convertors = {
     # A listing of the regions. We should do a listing block here. Also, make sure to
     # migrate the image as "preview_image" in the regions items. Ticket: https://taskman.eionet.europa.eu/issues/161598
     # /countries-regions/transnational-regions/transnational-regions-and-other-regions-and-countries
-    'regions-section': nop_view,
+    'regions-section': regions_section_view,
 
     # To be reimplemented as a homepage. Ticket for designer: https://taskman.eionet.europa.eu/issues/253404
     'urban-landing-page': nop_view,  # /countries-regions/local
