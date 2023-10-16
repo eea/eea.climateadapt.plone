@@ -636,6 +636,12 @@ def regions_section_view(obj, data, request):
         },
         "titleOnImage": False
     }
+    content = (
+        " is governed by the EU Cohesion policy and the programmes will be "
+        "fully part of Interreg. In order to highlight the external dimension "
+        "of Cohesion policy and at the same time to emphasise how close EU and "
+        "partner countries stand, the new programmes is called \"Interreg NEXT\"."
+    )
 
     blocks = [
         [make_uid(), {
@@ -676,7 +682,7 @@ def regions_section_view(obj, data, request):
                             "type": "link"
                         },
                         {
-                            "text": " is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called \"Interreg NEXT\". "
+                            "text": content,
                         }
                     ],
                     "type": "p"
