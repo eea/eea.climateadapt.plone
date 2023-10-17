@@ -18,18 +18,19 @@
 <property name="add_permission">plone.app.contenttypes.addDocument</property>
 <property name="klass">plone.app.contenttypes.content.Document</property>
 <property name="behaviors">
-<element value="volto.blocks"/>
-<element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
-<element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
-<element value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"/>
-<element value="plone.app.versioningbehavior.behaviors.IVersionable"/>
-<element value="plone.app.content.interfaces.INameFromTitle"/>
-<element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>
-<element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>
-<element value="plone.app.relationfield.behavior.IRelatedItems"/>
-<element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
-<element value="plone.shortname"/>
-<element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
+  <element value="volto.blocks"/>
+  <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
+  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+  <element value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"/>
+  <element value="plone.app.versioningbehavior.behaviors.IVersionable"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
+  <element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>
+  <element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>
+  <element value="plone.app.relationfield.behavior.IRelatedItems"/>
+  <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
+  <element value="plone.shortname"/>
+  <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
+  <element value="volto.preview_image"/>
 </property>
 <property name="schema"/>
 <property

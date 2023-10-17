@@ -434,7 +434,7 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
     }
 
 
-def nop_view(obj, data):
+def nop_view(obj, data, request):
     return {"blocks": []}
 
 
@@ -487,8 +487,8 @@ def country_disclaimer_view(obj, data):
         "blocks": blocks,
     }
 
-def help_categories_view(obj, data):
-    current_lang = obj.absolute_url(relative=True).split('/')[-2]
+def help_categories_view(obj, data, request):
+    current_lang = get_current_language(obj, request)
     block_id = make_uid()
 
     item_model = {
@@ -620,6 +620,120 @@ def help_categories_view(obj, data):
         "blocks": blocks,
     }
 
+def regions_section_view(obj, data, request):
+    current_lang = get_current_language(obj, request)
+    item_model = {
+        "@type": "card",
+        "callToAction": {
+            "label": "Read more"
+        },
+        "hasLink": True,
+        "maxDescription": 2,
+        "maxTitle": 2,
+        "styles": {
+            "objectFit": "contain",
+            "text": "center"
+        },
+        "titleOnImage": False
+    }
+    content = (
+        " is governed by the EU Cohesion policy and the programmes will be "
+        "fully part of Interreg. In order to highlight the external dimension "
+        "of Cohesion policy and at the same time to emphasise how close EU and "
+        "partner countries stand, the new programmes is called \"Interreg NEXT\"."
+    )
+
+    blocks = [
+        [make_uid(), {
+            "@type": "listing",
+            "block": make_uid(),
+            "headlineTag": "h2",
+            "itemModel": item_model,
+            "query": [],
+            "querystring": {
+                "query": [{
+                    "i": "Subject",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": ["transnational-region"]
+                }],
+                "sort_on": "sortable_title",
+                "sort_order": "ascending"
+            },
+            "styles": {},
+            "variation": "summary"
+        }],
+        [make_uid(), {
+            "@type": "slate",
+            "value": [
+                {
+                    "children": [
+                        {
+                            "text": "In 2021-2027, the "
+                        },
+                        {
+                            "children": [
+                                {
+                                    "text": "cross-border cooperation (CBC) between EU Member States and Neighbourhood region"
+                                }
+                            ],
+                            "data": {
+                                "url": "https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en"
+                            },
+                            "type": "link"
+                        },
+                        {
+                            "text": content,
+                        }
+                    ],
+                    "type": "p"
+                }
+            ]
+        }],
+        [make_uid(), {
+            "@type": "teaserGrid",
+            "columns": [{
+                "@type": "teaser",
+                "description": "",
+                "href": [{
+                    "@id": "/" + current_lang + "/countries-regions/transnational-regions/black_sea_region",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "None",
+                    "ExpirationDate": "None",
+                    "Subject": [],
+                    "Title": "Black Sea Basin (NEXT)",
+                    "image_field": "preview_image",
+                    "title": "Black Sea Basin (NEXT)"
+                }],
+                "id": make_uid(),
+                "itemModel": item_model,
+                "title": "Black Sea Basin"
+            },
+            {
+                "@type": "teaser",
+                "description": "",
+                "href": [{
+                    "@id": "/" + current_lang + "/countries-regions/transnational-regions/mediterranean_sea_basin",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "None",
+                    "ExpirationDate": "None",
+                    "Subject": [],
+                    "Title": "Mediterranean Sea Basin (NEXT)",
+                    "image_field": "preview_image",
+                    "title": "Mediterranean Sea Basin (NEXT)"
+                }],
+                "id": make_uid(),
+                "itemModel": item_model,
+                "title": "Mediterranean Sea Basin"
+            }]
+        }]
+    ]
+
+    return {
+        "blocks": blocks
+    }
+
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
     # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
@@ -677,7 +791,7 @@ view_convertors = {
     # A listing of the regions. We should do a listing block here. Also, make sure to
     # migrate the image as "preview_image" in the regions items. Ticket: https://taskman.eionet.europa.eu/issues/161598
     # /countries-regions/transnational-regions/transnational-regions-and-other-regions-and-countries
-    'regions-section': nop_view,
+    'regions-section': regions_section_view,
 
     # To be reimplemented as a homepage. Ticket for designer: https://taskman.eionet.europa.eu/issues/253404
     'urban-landing-page': nop_view,  # /countries-regions/local
@@ -708,7 +822,7 @@ def genericview_tile_to_block(tile_dm, obj, request):
         logger.info("Generic view '%s' at '%s'", view_name, path(obj))
         _logged.append(view_name)
 
-    return converter(obj, data)
+    return converter(obj, data, request)
 
 
 def filter_acecontent_to_block(tile_dm, obj, request):

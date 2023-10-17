@@ -141,8 +141,9 @@ def metadata_fields(self):
             fields_cache = set(catalog.schema()) | NON_METADATA_ATTRIBUTES
             self.request.set("_summary_fields_cache", fields_cache)
         additional_metadata_fields = fields_cache
+    image_metadata_fields = set(['image_field', 'image_scales'])
 
-    return DEFAULT_METADATA_FIELDS | additional_metadata_fields
+    return DEFAULT_METADATA_FIELDS | additional_metadata_fields | image_metadata_fields
 
 
 # Refs #248978
