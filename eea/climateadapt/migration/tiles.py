@@ -434,7 +434,7 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
     }
 
 
-def nop_view(obj, data):
+def nop_view(obj, data, request):
     return {"blocks": []}
 
 
