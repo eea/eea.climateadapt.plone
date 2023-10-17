@@ -1166,6 +1166,19 @@ $(document).ready(function () {
       }
     }
   });
+  //Observatory check and force links in language menu if necesary
+  if (window.location.pathname.includes("/++aq++metadata/")) {
+    var _links = $('#portal-languageselector a');
+    var currentUrl = window.location.pathname;
+    var currentParams = new URLSearchParams(window.location.search);
+    var currentLanguage = window.location.pathname.substring(1,3);
+    for (var i=0;i<_links.length;i++) {
+      var language = new URLSearchParams(_links[i].search).get('set_language');
+      currentParams.set('set_language', language);
+      _links[i].href = currentUrl.replace('/'+currentLanguage+'/', '/'+language+'/')+'?'+currentParams.toString();
+    }
+  }
+
   if (window.require && window.requirejs) {
     window.requirejs.config({
       paths: {
