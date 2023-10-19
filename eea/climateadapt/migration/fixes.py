@@ -7,7 +7,7 @@ import logging
 from plone.app.multilingual.api import get_translation_manager
 from plone.tiles.interfaces import ITileDataManager
 
-from .config import LANGUAGES, TOP_LEVEL, AST_PATHS, FULL_PAGE_PATHS, SECTOR_POLICIES
+from .config import LANGUAGES, TOP_LEVEL, AST_PATHS, FULL_PAGE_PATHS, SECTOR_POLICY_PATHS
 from .utils import make_uid
 
 logger = logging.getLogger()
@@ -496,7 +496,7 @@ def fix_read_more(context):
         '/countries-regions/transnational-regions/carpathian-mountains'
     ]
 
-    if are_in_path(url, SECTOR_POLICIES):
+    if are_in_path(url, SECTOR_POLICY_PATHS):
         col_id = get_block_id(context.blocks, 'columnsBlock')
         col = context.blocks[col_id]
         first_col_id = col['data']['blocks_layout']['items'][0]
@@ -583,7 +583,7 @@ def fix_layout_size(context):
     if are_on_path(url, FULL_PAGE_PATHS):
         return
     
-    if are_in_path(url, SECTOR_POLICIES):
+    if are_in_path(url, SECTOR_POLICY_PATHS):
         return
 
     if are_in_path(url, AST_PATHS):

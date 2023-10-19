@@ -14,6 +14,7 @@ from plone.restapi.serializer.converters import json_compatible
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.CatalogTool import sortable_title
 from zope.component.hooks import getSite
+from .config import SECTOR_POLICIES
 
 from .utils import convert_to_blocks, make_uid, path
 
@@ -734,6 +735,102 @@ def regions_section_view(obj, data, request):
         "blocks": blocks
     }
 
+def eu_sector_policies_view(obj, data, request):
+    current_lang = get_current_language(obj, request)
+    blocks = []
+    # TODO: translation
+    for sector in SECTOR_POLICIES:
+        col_block_id = make_uid()
+        col_1_id = make_uid()
+        col_2_id = make_uid()
+        call_to_action_block_id = make_uid()
+        slate_block_id = make_uid()
+        item_block_id = make_uid()
+        divider_id = make_uid()
+
+        col_data =  {
+            "@type": "columnsBlock",
+            "data": {
+                "blocks": {
+                    col_1_id: {
+                        "blocks": {
+                            call_to_action_block_id: {
+                                "@type": "callToActionBlock",
+                                "href": "/" +  current_lang + sector[2],
+                                "styles": {
+                                    "align": "right",
+                                    "theme": "primary"
+                                },
+                                "text": "Read more"
+                            },
+                            slate_block_id: {
+                                "@type": "slate",
+                                "plaintext": sector[1],
+                                "value": [{
+                                    "children": [{
+                                        "text": sector[1]
+                                    }],
+                                    "type": "p"
+                                }]
+                            },
+                            divider_id : {
+                                "@type": "dividerBlock",
+                                "hidden": True,
+                                "styles": {}
+                            }
+                        },
+                        "blocks_layout": {
+                            "items": [
+                                divider_id,
+                                slate_block_id,
+                                call_to_action_block_id,
+                            ]
+                        }
+                    },
+                    col_2_id: {
+                        "blocks": {
+                            item_block_id: {
+                                "@type": "item",
+                                "description": [{
+                                    "children": [{
+                                        "style-primary": True,
+                                        "text": sector[0]
+                                    }],
+                                    "type": "h3"
+                                }],
+                                "iconSize": "big",
+                                "theme": "primary",
+                                "verticalAlign": "middle"
+                            },
+                        },
+                        "blocks_layout": {
+                            "items": [
+                                item_block_id,
+                            ]
+                        }
+                    }
+                },
+                "blocks_layout": {
+                    "items": [
+                        col_2_id,
+                        col_1_id
+                    ]
+                }
+            },
+            "gridCols": [
+                "oneThird",
+                "twoThirds"
+            ],
+            "gridSize": 12,
+            "styles": {}
+        }
+
+        blocks.append([col_block_id, col_data])
+
+    return {
+        "blocks": blocks
+    }
+
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
     # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
@@ -769,7 +866,7 @@ view_convertors = {
     # a listing of sector policies, with descriptions underneath. Doesn't fit the new
     # Design System, we need a ticket for the designer to reorganize with EEA DS. Ticket: https://taskman.eionet.europa.eu/issues/253400
     # /eu-adaptation-policy/sector-policies/index_html
-    'eu-sector-policies': nop_view,
+    'eu-sector-policies': eu_sector_policies_view,
 
     # To be implemented as a homepage. Ticket??: https://taskman.eionet.europa.eu/issues/161511
     'forest-landing-page': nop_view,    # /knowledge/forestry
