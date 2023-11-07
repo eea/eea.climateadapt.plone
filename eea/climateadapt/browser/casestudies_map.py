@@ -39,7 +39,7 @@ class Items(BrowserView):
                 "count": 10739,
             },
             "features": [],
-            "filters": {'sectors': [], 'impacts':[], 'ipcc':{}},
+            "filters": {'sectors': [], 'impacts':[], 'measures':{}},
         }
         # Add available filters
         factory = getUtility(
@@ -57,16 +57,17 @@ class Items(BrowserView):
             results["filters"]['impacts'].append({"key": term.value, "value": term.title})
 
         factory = getUtility(
-            IVocabularyFactory, "eea.climateadapt.aceitems_ipcc_category"
+            IVocabularyFactory, "eea.climateadapt.aceitems_key_type_measures"
         )
         vocabulary = factory(self.context)
         for term in vocabulary:
             temp = translate_text(self.context, self.request, term.title)
             titleSplit = temp.split(":")
-            if titleSplit[0] not in results["filters"]['ipcc']:
-                results["filters"]['ipcc'][titleSplit[0]] = []
-            results["filters"]['ipcc'][titleSplit[0]].append(
-                {"key": term.value, "value": titleSplit[1].strip()}
+            nameCategory = titleSplit[1].strip()
+            if nameCategory not in results["filters"]['measures']:
+                results["filters"]['measures'][nameCategory] = []
+            results["filters"]['measures'][nameCategory].append(
+                {"key": term.value, "value": titleSplit[2].strip()}
             )
 
         catalog = get_tool("portal_catalog")
