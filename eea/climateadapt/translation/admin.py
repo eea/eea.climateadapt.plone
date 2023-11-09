@@ -625,7 +625,7 @@ def verify_translation_fields(site, request):
     if language is None:
         return "Missing language parameter. (Example: ?language=it)"
     catalog = site.portal_catalog
-    #brains = catalog.searchResults(path='/cca/en')
+    # brains = catalog.searchResults(path='/cca/en')
     catalogSearch = {}
     catalogSearch['path'] = '/cca/en'
     if uid:
@@ -1132,7 +1132,8 @@ def translation_step_2(site, request, force_uid=None):
                 language.upper(),
                 False,
             )
-        logger.info("TransStep2 File  %s from %s, total files %s", nr_files, len(json_files), total_files)
+        logger.info("TransStep2 File  %s from %s, total files %s",
+                    nr_files, len(json_files), total_files)
         if not force_uid:
             report['date']['last_update'] = datetime.now().strftime(
                 "%Y-%m-%d %H:%M:%S")
@@ -1427,7 +1428,7 @@ def translation_step_4(site, request, async_request=False):
             if async_request:  # not hasattr(trans_obj, 'REQUEST'):
                 trans_obj.REQUEST = site.REQUEST
                 obj.REQUEST = site.REQUEST
-                #request = getattr(event.object, 'REQUEST', getRequest())
+                # request = getattr(event.object, 'REQUEST', getRequest())
 
         except KeyError:
             logger.info("Missing translation for: %s", obj.absolute_url())
@@ -1473,8 +1474,10 @@ def translation_step_4(site, request, async_request=False):
                     if data_tile['type'] == 'eea.climateadapt.relevant_acecontent':
                         tile = obj.get_tile(data_tile['id'])
                         tile_type = get_tile_type(tile, obj, trans_obj)
-                        from_tile = obj.restrictedTraverse('@@{0}/{1}'.format(tile_type, tile.id))
-                        to_tile = trans_obj.restrictedTraverse('@@{0}/{1}'.format(tile_type, tile.id))
+                        from_tile = obj.restrictedTraverse(
+                            '@@{0}/{1}'.format(tile_type, tile.id))
+                        to_tile = trans_obj.restrictedTraverse(
+                            '@@{0}/{1}'.format(tile_type, tile.id))
 
                         from_data_mgr = ITileDataManager(from_tile)
                         to_data_mgr = ITileDataManager(to_tile)
@@ -2460,7 +2463,17 @@ class TranslationCheckLanguageViewlet(ViewletBase):
         return get_current_language(self.context, self.request)
 
     def get_cookie_language(self):
-        return self.request.cookies.get("I18N_LANGUAGE", "en")
+        """ Cookie language if set, else item's language, else EN
+        """
+        cookie_language = self.request.cookies.get("I18N_LANGUAGE", None)
+        if cookie_language is not None:
+            return cookie_language
+
+        obj_language = getattr(self.context, 'language', None)
+        if obj_language is not None:
+            return obj_language
+
+        return 'en'
 
     def get_suggestion_url(self):
         try:
@@ -2553,7 +2566,8 @@ class AdminPublishItems(BrowserView):
                 except:
                     continue
 
-                translations = TranslationManager(content_obj).get_translations()
+                translations = TranslationManager(
+                    content_obj).get_translations()
 
                 for _lang, _obj_transl in translations.items():
                     result = self.publish_obj(_obj_transl)
@@ -2673,7 +2687,8 @@ def execute_translate_async(context, options, language, request_vars):
     if not hasattr(context, 'REQUEST'):
         zopeUtils._Z2HOST = options['http_host']
         context = zopeUtils.makerequest(context)
-        context.REQUEST.other['SERVER_URL'] = context.REQUEST.other['SERVER_URL'].replace('http', 'https')
+        context.REQUEST.other['SERVER_URL'] = context.REQUEST.other['SERVER_URL'].replace(
+            'http', 'https')
         # context.REQUEST['PARENTS'] = [context]
 
         for k, v in request_vars.items():
@@ -2748,7 +2763,8 @@ class TranslateObjectAsync(BrowserView):
                     continue
 
                 if self.async_service is None:
-                    logger.warn("Can't translate_asyn, plone.app.async not installed!")
+                    logger.warn(
+                        "Can't translate_asyn, plone.app.async not installed!")
                     return
 
                 create_translation_object(obj, language)
@@ -2760,7 +2776,8 @@ class TranslateObjectAsync(BrowserView):
             language = get_current_language(self.context, self.request)
             en_path = '/'.join(obj.getPhysicalPath())
             en_path = en_path.replace('/{}/'.format(language), '/en/')
-            obj_en = self.context.unrestrictedTraverse(en_path.replace('/{}/'.format(language), '/en/'))
+            obj_en = self.context.unrestrictedTraverse(
+                en_path.replace('/{}/'.format(language), '/en/'))
 
             create_translation_object(obj_en, language)
             queue = self.async_service.getQueues()['']
