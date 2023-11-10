@@ -2466,11 +2466,11 @@ class TranslationCheckLanguageViewlet(ViewletBase):
         """ Cookie language if set, else item's language, else EN
         """
         cookie_language = self.request.cookies.get("I18N_LANGUAGE", None)
-        if cookie_language is not None:
+        if cookie_language is not None and len(cookie_language) > 1:
             return cookie_language
 
         obj_language = getattr(self.context, 'language', None)
-        if obj_language is not None:
+        if obj_language is not None and len(obj_language) > 1:
             return obj_language
 
         return 'en'
