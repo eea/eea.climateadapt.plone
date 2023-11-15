@@ -6,6 +6,7 @@ from plone.api.portal import get_tool
 from Products.Five import BrowserView
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
+from collections import OrderedDict;
 
 from eea.climateadapt.vocabulary import (
     ipcc_category,
@@ -241,7 +242,7 @@ class Page(BrowserView):
             IVocabularyFactory, "eea.climateadapt.aceitems_key_type_measures"
         )
         vocabulary = factory(self.context)
-        response = {}
+        response=OrderedDict()
         # import pdb; pdb.set_trace()
         # response.append({"key": "", "value": "Filter by IPCCS"})
         for term in vocabulary:
@@ -250,7 +251,7 @@ class Page(BrowserView):
             if titleSplit[1] not in response:
                 response[titleSplit[1]] = []
             response[titleSplit[1]].append(
-                {"key": term.value, "value": titleSplit[2].strip()}
+                {"key": term.value, "value": titleSplit[0].strip()+': '+titleSplit[2].strip()}
             )
             # response.append({"key": term.value, "value": term.title})
         return response

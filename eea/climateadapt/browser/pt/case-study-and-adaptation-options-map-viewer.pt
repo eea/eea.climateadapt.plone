@@ -229,6 +229,9 @@
 a.reset-button {
     padding: 5px 10px !important;
 }
+.cs_filter_ipcc tal span {
+  width:90%;
+}
 </style>
 <div class="row">
     <div class="col-md-12 cs-menu">
@@ -292,6 +295,7 @@ a.reset-button {
         -->
         </div>
         </form>
+        <br />
         <div class="case-study-legend">
             <p><span></span> <tal i18n:translate="">Climate-ADAPT case studies</tal></p>
             <p><span class="light-blue"></span> <tal i18n:translate="">Case studies collected at national level in Spain, provided by AdapteCCA.es</tal></p>
