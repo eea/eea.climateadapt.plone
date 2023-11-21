@@ -39,7 +39,8 @@
 #formfield-widgets-key_type_measure {
   display:none;
 }
-body.subsection-adaptation-information div.aceitem-filter-relevant-tile #formfield-widgets-key_type_measure {
+body.subsection-adaptation-information div.aceitem-filter-relevant-tile #formfield-widgets-key_type_measure,
+body.subsection-tools-adaptation-support-tool-step-3-1 div.aceitem-filter-relevant-tile #formfield-widgets-key_type_measure {  
   display:block !important;
 }
 </style>
