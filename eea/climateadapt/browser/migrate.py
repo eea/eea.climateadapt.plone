@@ -2327,7 +2327,79 @@ class RetagAO:
                     "url": obj.absolute_url(),
                 }
             )
-            logger.info("Migrated funding programme for obj: %s",
+            logger.info("Retag elements for obj: %s",
                         obj.absolute_url())
+
+        return response
+
+class RetagCS:
+    """Retagging of case studies #261447"""
+
+    def list(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        response = []
+        fileUploaded = self.request.form.get("fileToUpload", None)
+
+        if not fileUploaded:
+            return response
+
+
+        reader = csv.reader(
+            fileUploaded,
+            delimiter=",",
+            quotechar='"',
+            #    dialect='excel',
+        )
+        _elements = {
+            "adaptation_mesures_and_actions":"MEASUREACTION",
+            "adaptation_plans_and_strategies": "PLANSTRATEGY",
+            "climate_services": "CLIMATESERVICES",
+            "just_resilience": "JUSTRESILIENCE",
+            "mre": "MRE",
+            "nature_based_solutions": "NATUREBASEDSOL",
+            "observations_ans_scenarios": "OBSERVATIONS",
+            "sector_policies": "EU_POLICY",
+            "vulnerability_assessment": "VULNERABILITY",
+        }
+
+        for row in reader:
+            item = {}
+            item["title"] = row[0]
+
+            item["just_resilience"] = None
+            item["nature_based_solutions"] = None
+
+            item["vulnerability_assessment"] = row[1]
+            item["observations_ans_scenarios"] = row[2]
+            item["adaptation_plans_and_strategies"] = row[3]
+            item["adaptation_mesures_and_actions"] = row[4]
+            item["climate_services"] = row[5]
+            item["sector_policies"] = row[6]
+            item["mre"] = row[7]
+
+            obj = None
+            brains = catalog.searchResults({'portal_type': 'eea.climateadapt.casestudy', 'path': '/cca/en'})
+            for brain in brains:
+                if brain.getObject().title == item['title']:
+                    obj = brain.getObject()
+
+            if not obj:
+                continue
+            # import pdb; pdb.set_trace()
+            abc = []
+            [abc.append(x) for x in item if item[x]]
+            data = [_elements[x] for x in abc if x in _elements]
+
+            obj.elements = data
+            obj._p_changed = True
+            response.append(
+                {
+                    "title": obj.title,
+                    "url": obj.absolute_url(),
+                }
+            )
+            logger.info("Retag elements for obj: %s",
+                        obj.absolute_url())
+            logger.info(data)
 
         return response
