@@ -2403,3 +2403,61 @@ class RetagCS:
             logger.info(data)
 
         return response
+
+class NewSector:
+    """Add the new sectors #257706"""
+
+    def list(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        response = []
+        fileUploaded = self.request.form.get("fileToUpload", None)
+
+        if not fileUploaded:
+            return response
+
+
+        reader = csv.reader(
+            fileUploaded,
+            delimiter=",",
+            quotechar='"',
+            #    dialect='excel',
+        )
+
+
+        for row in reader:
+            item = {}
+            item["uid"] = row[0]
+            item["title"] = row[1]
+            item["sector"] = row[2]
+
+
+            obj = api.content.get(UID=item["uid"])
+
+            if not obj:
+                continue
+
+            # import pdb; pdb.set_trace()
+            if isinstance(obj.sectors, tuple):
+                obj.sectors = list(obj.sectors)
+            try:
+                obj.sectors.append(item['sector'])
+                obj._p_changed = True
+            except Exception as err:
+                import pdb; pdb.set_trace()
+
+
+
+
+
+            response.append(
+                {
+                    "title": obj.title,
+                    "url": obj.absolute_url(),
+                }
+            )
+            logger.info("%s %s", item['uid'], type(obj.sectors))
+
+            # logger.info("Added sector %s for obj: %s",
+            #             item["sector"], obj.absolute_url())
+
+        return response
