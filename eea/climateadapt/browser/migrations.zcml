@@ -61,6 +61,30 @@
     />
 
   <browser:page
+    name="retag_ao"
+    for="*"
+    template="pt/migrate_upload_file.pt"
+    class=".migrate.RetagAO"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="retag_cs"
+    for="*"
+    template="pt/migrate_upload_file.pt"
+    class=".migrate.RetagCS"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="new_sector"
+    for="*"
+    template="pt/migrate_upload_file.pt"
+    class=".migrate.NewSector"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
     name="migrate_case_studies"
     for="*"
     template="pt/migrate_case_studies.pt"
