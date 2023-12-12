@@ -38,7 +38,7 @@ from zope.interface import implements
 from zope.schema import Bool, Choice, Dict, Int, List, TextLine
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
-#from plone.app.multilingual.manager import TranslationManager
+# from plone.app.multilingual.manager import TranslationManager
 
 
 ORIGIN_WEBSITES = dict(_origin_website)
@@ -255,7 +255,8 @@ class AceTileMixin(object):
 
             if k == "origin_website":
                 for s in v:
-                    terms.append({u"term": {u"typeOfData": ORIGIN_WEBSITES[s]}})
+                    terms.append(
+                        {u"term": {u"typeOfData": ORIGIN_WEBSITES[s]}})
 
             if k == "sectors":
                 for s in v:
@@ -263,7 +264,8 @@ class AceTileMixin(object):
 
             if k == "climate_impacts":
                 for s in v:
-                    terms.append({u"term": {u"climate_impacts": CLIMATE_IMPACTS[s]}})
+                    terms.append(
+                        {u"term": {u"climate_impacts": CLIMATE_IMPACTS[s]}})
 
             if k == "elements":
                 for s in v:
@@ -279,17 +281,19 @@ class AceTileMixin(object):
 
             if k == "macro_regions":
                 for s in v:
-                    #import pdb; pdb.set_trace()
+                    # import pdb; pdb.set_trace()
                     if 'TRANS_MACRO_' in s:
                         for key, val in BIOREGIONS.items():
                             if 'TRANS_MACRO_' in key and key == s:
                                 if val in self.list_of_other_regions():
                                     val = 'Other Regions'
-                                terms.append({u"term": {u"macro-transnational-region": val}})
+                                terms.append(
+                                    {u"term": {u"macro-transnational-region": val}})
                     else:
                         import pdb
                         pdb.set_trace()
-                        terms.append({u"term": {u"macro-transnational-region": s}})
+                        terms.append(
+                            {u"term": {u"macro-transnational-region": s}})
 
             if k == "SearchableText":
                 for s in v:
@@ -366,7 +370,12 @@ class AceTileMixin(object):
             if element_type:
                 q.update({"elements": element_type})
 
-            count = len(self.catalog.searchResults(**q))
+            # 'sort_on': 'rating' causes wrong count - see #261745
+            simplified_q = q.copy()
+            if 'sort_on' in simplified_q:
+                del simplified_q['sort_on']
+
+            count = len(self.catalog.searchResults(**simplified_q))
 
             if count:
                 # TODO: this append needs 4 items, not 3
@@ -405,7 +414,8 @@ class AceTileMixin(object):
             try:
                 obj = item.getObject()
             except KeyError:        # this is an indexing problem
-                logger.warn("Object not found in relevant_all_items: %s", item.getURL())
+                logger.warn(
+                    "Object not found in relevant_all_items: %s", item.getURL())
                 continue
             # if '/' + current_language + '/' not in item.getURL():
             #     item = self.translated_object(item)
@@ -466,7 +476,8 @@ sortby_def = {
     "NAME": "Alphabetical sorting",
 }
 
-sortbyterms = [SimpleTerm(value=k, token=k, title=v) for k, v in sortby_def.items()]
+sortbyterms = [SimpleTerm(value=k, token=k, title=v)
+               for k, v in sortby_def.items()]
 sortby_vocabulary = SimpleVocabulary(sortbyterms)
 
 
@@ -500,7 +511,8 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
     form.omitted("uuids")
 
 
-Item = namedtuple("Item", ["Title", "Description", "icons", "sortable_title", "url"])
+Item = namedtuple("Item", ["Title", "Description",
+                  "icons", "sortable_title", "url"])
 
 
 class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
@@ -630,7 +642,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
         for item in self.assigned():
             if current_language != 'en':
-                #import pdb; pdb.set_trace()
+                # import pdb; pdb.set_trace()
                 item = self.translated_object(item)
             #    translations = TranslationManager(item).get_translations()
             #    if current_language not in translations:
@@ -706,14 +718,16 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
                     # maybe the user has no permission to access the object
                     # so we try to get it bypassing the restrictions
                     catalog = api.portal.get_tool("portal_catalog")
-                    #brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
-                    brain = catalog.searchResults(UID=uuid, review_state='published')
+                    # brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
+                    brain = catalog.searchResults(
+                        UID=uuid, review_state='published')
 
                     if not brain:
                         # the object was deleted; remove it from the tile
                         self.remove_item(uuid)
                         logger.debug(
-                            "Nonexistent object {0} removed from " "tile".format(uuid)
+                            "Nonexistent object {0} removed from " "tile".format(
+                                uuid)
                         )
         return results
 
@@ -737,7 +751,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         """
 
         if not self.isAllowedToEdit():
-            raise Unauthorized("You are not allowed to add content to this tile")
+            raise Unauthorized(
+                "You are not allowed to add content to this tile")
         # self.set_limit()
         data_mgr = ITileDataManager(self)
 
@@ -757,7 +772,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         #     # Do not allow adding more objects than the defined limit
         #     return
 
-        order_list = [int(val.get("order", 0)) for key, val in uuids_dict.items()]
+        order_list = [int(val.get("order", 0))
+                      for key, val in uuids_dict.items()]
 
         if len(order_list) == 0:
             # First entry
@@ -787,7 +803,8 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         """
 
         if not self.isAllowedToEdit():
-            raise Unauthorized("You are not allowed to add content to this tile")
+            raise Unauthorized(
+                "You are not allowed to add content to this tile")
         data_mgr = ITileDataManager(self)
         old_data = data_mgr.get()
         # Clean old data
@@ -885,6 +902,7 @@ sectors_no_value = StaticWidgetAttribute(
 key_type_measures_no_value = StaticWidgetAttribute(
     _(u"All key type measures"), view=FilteringForm, field=IFilteringSchema["key_type_measure"]
 )
+
 
 class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
     implements(IFilterAceContentItemsTile)
