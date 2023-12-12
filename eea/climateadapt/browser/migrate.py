@@ -2404,11 +2404,52 @@ class RetagCS:
 
         return response
 
+class UndoSector:
+    """Add the new sectors #257706"""
+
+    def __call__(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        reset_sectors = ['BUSINESSINDUSTRY', 'ICT', 'CULTURALHERITAGE', 'LANDUSE', 'TOURISMSECTOR', 'MOUNTAINAREAS']
+
+        brains = catalog.searchResults({
+            'path': '/cca/en/metadata',
+            "portal_type": [
+                "eea.climateadapt.aceproject",
+                "eea.climateadapt.casestudy",
+                "eea.climateadapt.adaptationoption",
+                "eea.climateadapt.guidancedocument",
+                "eea.climateadapt.indicator",
+                "eea.climateadapt.informationportal",
+                "eea.climateadapt.organisation",
+                "eea.climateadapt.publicationreport",
+                "eea.climateadapt.researchproject",
+                "eea.climateadapt.tool",
+                "eea.climateadapt.video",
+            ]
+        })
+
+        i_count = 0
+        for brain in brains:
+            i_count = i_count+1
+            obj = brain.getObject()
+            if hasattr(obj, 'sectors') and isinstance(obj.sectors, list):
+                for reset_sector in reset_sectors:
+                    if reset_sector in obj.sectors:
+                        obj.sectors.remove(reset_sector)
+
+                logger.info("%s from %s %s", i_count, len(brains), obj.absolute_url())
+
+                obj._p_changed = True
+                obj.reindexObject()
+        logger.info("DONE")
+
+        return 'done'
+
+
 class NewSector:
     """Add the new sectors #257706"""
 
     def list(self):
-        catalog = api.portal.get_tool('portal_catalog')
         response = []
         fileUploaded = self.request.form.get("fileToUpload", None)
 
@@ -2431,23 +2472,23 @@ class NewSector:
             item["sector"] = row[2]
 
 
+            if not len(item['sector']):
+                continue
+            # import pdb; pdb.set_trace()
             obj = api.content.get(UID=item["uid"])
 
             if not obj:
+                logger.info("Not found: %s %s", item['uid'], item['title'])
                 continue
 
-            # import pdb; pdb.set_trace()
             if isinstance(obj.sectors, tuple):
                 obj.sectors = list(obj.sectors)
             try:
                 obj.sectors.append(item['sector'])
                 obj._p_changed = True
+                obj.reindexObject()
             except Exception as err:
                 import pdb; pdb.set_trace()
-
-
-
-
 
             response.append(
                 {
@@ -2457,7 +2498,40 @@ class NewSector:
             )
             logger.info("%s %s", item['uid'], type(obj.sectors))
 
-            # logger.info("Added sector %s for obj: %s",
-            #             item["sector"], obj.absolute_url())
-
         return response
+
+class SyncAttributes:
+    """Add the new sectors #257706"""
+
+    def __call__(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        attribute_names = ['sectors', 'elements']
+        i_transaction = 0
+
+        brains = catalog.searchResults({
+            'path': '/cca/en/metadata'
+        })
+        for brain in brains:
+            obj = brain.getObject()
+
+            try:
+                translations = TranslationManager(obj).get_translations()
+            except Exception:
+                logger.info("Problem getting translations for: %s", obj.absolute_url())
+                translations = []
+            for language in translations:
+                obj_lang = translations[language]
+                for attribute_name in attribute_names:
+                    if hasattr(obj, attribute_name):
+                        value = getattr(obj, attribute_name)
+                        setattr(obj_lang, attribute_name, value)
+                obj_lang._p_changed = True
+                obj_lang.reindexObject()
+                i_transaction += 1
+                if i_transaction % 100 == 0:
+                    transaction.savepoint()
+            logger.info("%s", obj.absolute_url())
+
+        transaction.commit()
+
+        return 'done'
