@@ -77,10 +77,24 @@
     />
 
   <browser:page
+    name="undo_sector"
+    for="*"
+    class=".migrate.UndoSector"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
     name="new_sector"
     for="*"
     template="pt/migrate_upload_file.pt"
     class=".migrate.NewSector"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
+    name="sync_attributes"
+    for="*"
+    class=".migrate.SyncAttributes"
     permission="cmf.ManagePortal"
     />
 
