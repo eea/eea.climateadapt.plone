@@ -232,4 +232,10 @@
     permission="cmf.ManagePortal"
     />
 
+  <browser:page
+    name="delete_city_profile_items"
+    for="*"
+    class=".migrate.DeleteCityProfileItems"
+    permission="cmf.ManagePortal"
+    />
 </configure>

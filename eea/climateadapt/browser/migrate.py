@@ -56,6 +56,24 @@ DB_ITEM_TYPES = [
 ]
 
 
+class DeleteCityProfileItems(BrowserView):
+    """ see #261751 """
+
+    def __call__(self):
+        catalog = get_tool("portal_catalog")
+        content_type = "eea.climateadapt.city_profile"
+        items = [b.getObject() for b in catalog(portal_type=content_type)]
+
+        for item in items:
+            try:
+                logger.info("Deleting... %s" % item.absolute_url())
+                api.content.delete(item)
+            except Exception:
+                logger.info("Error %s" % item.absolute_url())
+
+        return "Done"
+
+
 class ConvertSiteOrigin(BrowserView):
     """Convert the site origin from string to list"""
 
@@ -2274,7 +2292,6 @@ class RetagAO:
         if not fileUploaded:
             return response
 
-
         reader = csv.reader(
             fileUploaded,
             delimiter=",",
@@ -2282,7 +2299,7 @@ class RetagAO:
             #    dialect='excel',
         )
         _elements = {
-            "adaptation_mesures_and_actions":"MEASUREACTION",
+            "adaptation_mesures_and_actions": "MEASUREACTION",
             "adaptation_plans_and_strategies": "PLANSTRATEGY",
             "climate_services": "CLIMATESERVICES",
             "just_resilience": "JUSTRESILIENCE",
@@ -2307,7 +2324,8 @@ class RetagAO:
             item["vulnerability_assessment"] = row[9]
 
             obj = None
-            brains = catalog.searchResults({'portal_type': 'eea.climateadapt.adaptationoption', 'path': '/cca/en'})
+            brains = catalog.searchResults(
+                {'portal_type': 'eea.climateadapt.adaptationoption', 'path': '/cca/en'})
             for brain in brains:
                 if brain.getObject().title == item['title']:
                     obj = brain.getObject()
@@ -2332,6 +2350,7 @@ class RetagAO:
 
         return response
 
+
 class RetagCS:
     """Retagging of case studies #261447"""
 
@@ -2343,7 +2362,6 @@ class RetagCS:
         if not fileUploaded:
             return response
 
-
         reader = csv.reader(
             fileUploaded,
             delimiter=",",
@@ -2351,7 +2369,7 @@ class RetagCS:
             #    dialect='excel',
         )
         _elements = {
-            "adaptation_mesures_and_actions":"MEASUREACTION",
+            "adaptation_mesures_and_actions": "MEASUREACTION",
             "adaptation_plans_and_strategies": "PLANSTRATEGY",
             "climate_services": "CLIMATESERVICES",
             "just_resilience": "JUSTRESILIENCE",
@@ -2378,7 +2396,8 @@ class RetagCS:
             item["mre"] = row[7]
 
             obj = None
-            brains = catalog.searchResults({'portal_type': 'eea.climateadapt.casestudy', 'path': '/cca/en'})
+            brains = catalog.searchResults(
+                {'portal_type': 'eea.climateadapt.casestudy', 'path': '/cca/en'})
             for brain in brains:
                 if brain.getObject().title == item['title']:
                     obj = brain.getObject()
@@ -2404,12 +2423,14 @@ class RetagCS:
 
         return response
 
+
 class UndoSector:
     """Add the new sectors #257706"""
 
     def __call__(self):
         catalog = api.portal.get_tool('portal_catalog')
-        reset_sectors = ['BUSINESSINDUSTRY', 'ICT', 'CULTURALHERITAGE', 'LANDUSE', 'TOURISMSECTOR', 'MOUNTAINAREAS']
+        reset_sectors = ['BUSINESSINDUSTRY', 'ICT', 'CULTURALHERITAGE',
+                         'LANDUSE', 'TOURISMSECTOR', 'MOUNTAINAREAS']
 
         brains = catalog.searchResults({
             'path': '/cca/en/metadata',
@@ -2437,7 +2458,8 @@ class UndoSector:
                     if reset_sector in obj.sectors:
                         obj.sectors.remove(reset_sector)
 
-                logger.info("%s from %s %s", i_count, len(brains), obj.absolute_url())
+                logger.info("%s from %s %s", i_count,
+                            len(brains), obj.absolute_url())
 
                 obj._p_changed = True
                 obj.reindexObject()
@@ -2456,7 +2478,6 @@ class NewSector:
         if not fileUploaded:
             return response
 
-
         reader = csv.reader(
             fileUploaded,
             delimiter=",",
@@ -2464,13 +2485,11 @@ class NewSector:
             #    dialect='excel',
         )
 
-
         for row in reader:
             item = {}
             item["uid"] = row[0]
             item["title"] = row[1]
             item["sector"] = row[2]
-
 
             if not len(item['sector']):
                 continue
@@ -2488,7 +2507,8 @@ class NewSector:
                 obj._p_changed = True
                 obj.reindexObject()
             except Exception as err:
-                import pdb; pdb.set_trace()
+                import pdb
+                pdb.set_trace()
 
             response.append(
                 {
@@ -2499,6 +2519,7 @@ class NewSector:
             logger.info("%s %s", item['uid'], type(obj.sectors))
 
         return response
+
 
 class SyncAttributes:
     """Add the new sectors #257706"""
@@ -2517,7 +2538,8 @@ class SyncAttributes:
             try:
                 translations = TranslationManager(obj).get_translations()
             except Exception:
-                logger.info("Problem getting translations for: %s", obj.absolute_url())
+                logger.info("Problem getting translations for: %s",
+                            obj.absolute_url())
                 translations = []
             for language in translations:
                 obj_lang = translations[language]
