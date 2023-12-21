@@ -115,7 +115,6 @@ class CalculateItemStatistics(BrowserView):
                  'eea.climateadapt.researchproject',
                  'eea.climateadapt.publicationreport',
                  'eea.climateadapt.organisation',
-                 'eea.climateadapt.city_profile',
                  'eea.climateadapt.mapgraphdataset',
                  'eea.climateadapt.informationportal',
                  'eea.climateadapt.indicator',
@@ -707,7 +706,6 @@ def get_links(site):
             'eea.climateadapt.publicationreport',
             'eea.climateadapt.researchproject',
             'eea.climateadapt.tool',
-            'eea.climateadapt.city_profile',
             'collective.cover.content',
         ]
     }
@@ -734,9 +732,6 @@ def get_links(site):
             elif type(obj.websites) is list or type(obj.websites) is tuple:
                 for url in obj.websites:
                     append_urls(url, path)
-        else:
-            if obj.portal_type == 'eea.climateadapt.city_profile':
-                append_urls(obj.website_of_the_local_authority, path)
         attrs = ['long_description', 'description', 'source', 'comments']
 
         for attr in attrs:
@@ -1334,7 +1329,7 @@ class GetCoventantOfMayorsLinks(BrowserView):
         for domain in self.domains:
             if domain in url:
                 return True
-        
+
         return False
 
     def data_to_xls(self, data):

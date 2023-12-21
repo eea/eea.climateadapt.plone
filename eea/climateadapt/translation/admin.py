@@ -1355,7 +1355,6 @@ def translation_step_4(site, request, async_request=False):
         "eea.climateadapt.video": ["effective"],
         "Link": ["effective"],
         "eea.climateadapt.c3sindicator": ["effective"],
-        "eea.climateadapt.city_profile": ["effective"],
         "eea.climateadapt.researchproject": ["effective"],
         "eea.climateadapt.tool": [
             "spatial_values", "storage_type", "publication_date", "effective",

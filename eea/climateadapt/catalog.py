@@ -7,7 +7,6 @@ from eea.climateadapt.aceitem import IAceItem, IC3sIndicator
 from eea.climateadapt.behaviors.aceproject import IAceProject
 from eea.climateadapt.behaviors.adaptationoption import IAdaptationOption
 from eea.climateadapt.behaviors.casestudy import ICaseStudy
-from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.api.portal import get_tool
 from plone.dexterity.interfaces import IDexterityContent
@@ -92,31 +91,6 @@ def search_type_for_newsevents(object):
     """"""
 
     return "CONTENT"
-
-
-@indexer(ICityProfile)
-def city_sectors(city):
-    return city.key_vulnerable_adaptation_sector
-
-
-@indexer(ICityProfile)
-def city_climate_impacts(city):
-    return city.climate_impacts_risks_particularly_for_city_region
-
-
-@indexer(ICityProfile)
-def city_stage_implementation_cycle(city):
-    return city.stage_of_the_implementation_cycle
-
-
-@indexer(ICityProfile)
-def city_countries(city):
-    return [city.country]
-
-
-@indexer(ICityProfile)
-def city_long_description(city):
-    return ""
 
 
 @indexer(IClimateAdaptContent)
