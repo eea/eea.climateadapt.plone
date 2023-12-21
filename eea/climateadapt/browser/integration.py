@@ -21,7 +21,6 @@ from eea.climateadapt.browser.event import EventAddForm
 from eea.climateadapt.browser.news_item import NewsItemAddForm
 from eea.climateadapt.browser.mapgraphsdataset import MapsAddForm
 from eea.climateadapt.browser.video import VideoAddForm
-from eea.climateadapt.mayorsadapt.cityprofile import CityProfileAddForm
 from OFS.Image import Image
 from OFS.Traversable import Traversable
 from plone.api import portal
@@ -97,7 +96,6 @@ forms_dict = {
     # 'eea.climateadapt.aceitem.ResearchProject':
     'eea.climateadapt.aceproject.AceProject': AceProjectAddForm,
     'eea.climateadapt.acevideo.Video': VideoAddForm,
-    'eea.climateadapt.city_profile.CityProfile': CityProfileAddForm,
     'plone.app.contenttypes.content.Event': EventAddForm,
     'plone.app.contenttypes.content.NewsItem': NewsItemAddForm,
 }

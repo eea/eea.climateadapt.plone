@@ -31,10 +31,6 @@ from eea.climateadapt.interfaces import (IASTNavigationRoot,
                                          ISiteSearchFacetedView,
                                          ITransnationalRegionMarker,
                                          ITransRegioRoot)
-from eea.climateadapt.mayorsadapt.vocabulary import (
-    already_devel_adapt_strategy_vocabulary,
-    stage_implementation_cycle_vocabulary,
-    status_of_adapt_signature_vocabulary)
 from eea.climateadapt.vocabulary import (_cca_types, ace_countries_vocabulary,
                                          aceitem_climateimpacts_vocabulary,
                                          aceitem_elements_vocabulary,
@@ -219,7 +215,7 @@ def import_adaptationoption(data, location):
         geochars=data.geochars,
         implementation_time=t2r(data.implementationtime),
         implementation_type=data.implementationtype,
-        #keywords=s2l(data.keywords, separators=[';', ',']),
+        # keywords=s2l(data.keywords, separators=[';', ',']),
         # keywords=t2r(data.keywords),
         keywords=s2l(r2t(data.keywords), separators=[';', ',']),
         legal_aspects=t2r(data.legalaspects),
@@ -350,7 +346,7 @@ def import_casestudy(data, location):
 @log_call
 def import_image(data, location):
     name = "{0}.{1}/1.0".format(data.imageid, data.type_)
-    #str(data.imageid) + '.' + data.type_ + '/1.0'
+    # str(data.imageid) + '.' + data.type_ + '/1.0'
     try:
         file_data = open('./document_library/0/0/' + name).read()
     except IOError:
@@ -447,7 +443,7 @@ def import_dlfileentry(data, location):
             file=NamedBlobFile(filename=filename, data=file_data)
         )
 
-    #item._uuid = data.uuid_
+    # item._uuid = data.uuid_
     info = map(str, [data.uuid_,
                      data.name,
                      data.fileentryid,
@@ -689,16 +685,11 @@ def import_city_profile(container, journal):
     c = container
     map_climate_impacts = mpttt(c, aceitem_climateimpacts_vocabulary)
     map_country = mpttt(c, ace_countries_vocabulary)
-    map_status_of_major_adapt_signature = mpttt(c, status_of_adapt_signature_vocabulary)
     map_impacted_sectors = mpttt(c, aceitem_sectors_vocabulary)
-    map_stage_of_implementation = mpttt(c, stage_implementation_cycle_vocabulary)
-    map_adaptation_strategy = mpttt(c, already_devel_adapt_strategy_vocabulary)
     map_elements = mpttt(c, aceitem_elements_vocabulary)
 
     def map_to_x(x):
-        res = map_adaptation_strategy(x)
-
-        return res or ""
+        return ""
 
     _map = {
         'a_m_city_latitude': {'newkey': 'city_latitude'},
@@ -715,9 +706,6 @@ def import_city_profile(container, journal):
         'b_m_covenant_of_mayors_signatory': {
             'newkey': 'covenant_of_mayors_signatory',
             'mapping_fnc': lambda x: x and x.lower() == 'yes'},
-        'b_m_current_status_of_mayors_adapt_enrolment': {
-            'newkey': 'status_of_mayors_adapt_signature',
-            'mapping_fnc': map_status_of_major_adapt_signature},
         'b_m_name_surname_of_mayor': {'newkey': 'name_and_surname_of_mayor'},
         'b_m_official_email': {'newkey': 'official_email'},
         'b_m_sector': {
@@ -731,9 +719,6 @@ def import_city_profile(container, journal):
         'b_signature_date': {
             'newkey': 'signature_date',
             'mapping_fnc': lambda x: dt.fromtimestamp(int(x) / 1e3).date()},
-        'c_m_stage_of_the_implementation_cycle': {
-            'newkey': 'stage_of_the_implementation_cycle',
-            'mapping_fnc': lambda x: map_stage_of_implementation(x) or ""},
         'd_adaptation_strategy_date_of_approval': {
             'newkey': 'date_of_approval_of_the_strategy__plan',
             'mapping_fnc': lambda x: dt.fromtimestamp(int(x) / 1e3).date()},
@@ -1392,7 +1377,7 @@ def import_template_ace_layout_4(site, layout, structure):
     # we need to go through each of the tabs and change the structure to be html
 
     payload = []
-    #import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
     for k, v in main['accordion']:
         # TODO: get the keys from dictionary
@@ -1658,7 +1643,7 @@ def import_template_1_column(site, layout, structure):
     # done, fixed parent title
     # this is a simple page, with one portlet of text
     # example: /eu-adaptation-policy/funding/life
-    #import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
     if layout.friendlyurl == '/share-your-info':
         img_1 = structure['column-1'][0][1]['content'][0]
@@ -1956,7 +1941,8 @@ def import_template_2_columns_iii(site, layout, structure):
                 'thumb': localize(image, site) + "/@@images/image",
             }
 
-            cover.aq_parent.edit(title=main['title'])   # Fix cover parent title
+            # Fix cover parent title
+            cover.aq_parent.edit(title=main['title'])
 
             main_content = render(
                 'templates/richtext_readmore_and_image.pt', {'payload': main})
@@ -2008,7 +1994,8 @@ def import_template_2_columns_iii(site, layout, structure):
         # filter_portlet_1 = structure['column-1'][1]
         # filter_portlet_2 = structure['column-1'][2]
         # blue_button = structure['column-1'][3][1]['content'][0]
-        extra_tiles = [make_tile(cover, [p]) for p in structure['column-1'][1:]]
+        extra_tiles = [make_tile(cover, [p])
+                       for p in structure['column-1'][1:]]
     elif len(structure['column-1']) == 2:
         body += structure['column-1'][1][1]['content'][0]
 
@@ -2082,7 +2069,8 @@ def import_template_ace_layout_5(site, layout, structure):
     else:
         main_text = texts[0]
 
-    cover = create_cover_at(site, layout.friendlyurl, title=title or main_title)
+    cover = create_cover_at(site, layout.friendlyurl,
+                            title=title or main_title)
     cover.aq_parent.edit(title=main_title)
     alsoProvides(cover.aq_parent, ITransnationalRegionMarker)
     cover.aq_parent.reindexObject(idxs=('object_provides',))
@@ -2096,7 +2084,8 @@ def import_template_ace_layout_5(site, layout, structure):
 
     main_text_tile = make_richtext_with_title_tile(cover, main_info)
     dropdown_tile = make_transregion_dropdown_tile(cover)
-    image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
+    image_tile = make_image_tile(
+        site, cover, image_info)    # TODO: import image
 
     image_group = make_group(3, image_tile, dropdown_tile)
     main_text_group = make_group(9, main_text_tile)
@@ -2120,7 +2109,7 @@ def _import_transnational_region_page(site, layout, structure):
         'assessments_and_projects_': "Assessments and projects",
         'Detailed_Information': "Detailed information",
     }
-    #import pdb; pdb.set_trace()
+    # import pdb; pdb.set_trace()
 
     _info = {}
     _info['title'] = ''
@@ -2174,7 +2163,8 @@ def _import_transnational_region_page(site, layout, structure):
 
     main_text_tile = make_richtext_with_title_tile(cover, main_info)
 
-    image_tile = make_image_tile(site, cover, image_info)    # TODO: import image
+    image_tile = make_image_tile(
+        site, cover, image_info)    # TODO: import image
     dropdown_tile = make_transregion_dropdown_tile(cover,
                                                    {'region': region_name})
 
@@ -2384,7 +2374,8 @@ def import_journal_articles(site):
             month = attrs['month']
             year = attrs['year']
             location = attrs['location']
-            date = dateutil.parser.parse("{0} {1} {2}".format(day, month, year))
+            date = dateutil.parser.parse(
+                "{0} {1} {2}".format(day, month, year))
             date = utc.localize(date)
 
             event = create_plone_content(parent, type='Event', id=slug,
@@ -2440,7 +2431,7 @@ def import_journal_articles(site):
                 val = line[2][0]
                 attrs[name] = val
             link = attrs['url']
-            #link_title = attrs['title']
+            # link_title = attrs['title']
             news = create_plone_content(parent, type='Link', id=slug,
                                         title=title, remoteUrl=link,
                                         effective_date=publish_date)
@@ -2667,7 +2658,8 @@ def tweak_site(site):
     dad.title = 'Search the database'
     noLongerProvides(dad, IFacetedNavigable)
     alsoProvides(dad, ISiteSearchFacetedView)
-    faceted_view = getMultiAdapter((dad, site.REQUEST), name="faceted_subtyper")
+    faceted_view = getMultiAdapter(
+        (dad, site.REQUEST), name="faceted_subtyper")
     faceted_view.enable()
     IFacetedLayout(dad).update_layout('faceted-climate-listing-view')
 
@@ -2734,7 +2726,7 @@ def tweak_site(site):
     site['more-events'].constrain_types_mode = 1
 
     # set permissions
-    #{'extranet-cca-managers': [u'Contributor', u'Reviewer', u'Editor', u'Reader']}
+    # {'extranet-cca-managers': [u'Contributor', u'Reviewer', u'Editor', u'Reader']}
     site.__ac_local_roles__.update({'extranet-cca-managers': [u'Manager'],
                                     'extranet-cca-editors': [u'Contributor'],
                                     'extranet-cca-checkers': [u'Reader'],

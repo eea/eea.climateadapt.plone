@@ -1,11 +1,11 @@
+import OFS
+import transaction
 import collective.cover.config
 from zope.i18nmessageid import MessageFactory
 
 import Products.CMFCore.permissions
 from AccessControl import ClassSecurityInfo
 from AccessControl.class_init import InitializeClass
-from AccessControl.Permissions import add_user_folders
-from eea.climateadapt.mayorsadapt import roleplugin
 from eea.notifications import utils
 from plone.dexterity.content import Container
 from plone.i18n import normalizer
@@ -50,19 +50,6 @@ sec.apply(Container)
 InitializeClass(Container)
 
 
-def initialize(context):
-
-    context.registerClass(
-        roleplugin.CityMayorUserFactory,
-        permission=add_user_folders,
-        constructors=(
-            roleplugin.manage_addCityMayorUserFactoryForm,
-            roleplugin.manage_addCityMayorUserFactory,
-        ),
-        visibility=None,
-    )
-
-
 LABELS = {}
 
 
@@ -78,6 +65,8 @@ def get_tags_cca(obj):
 utils.get_tags = get_tags_cca
 
 # Raven repr monkey patch #129327
+
+
 def ZApplicationWrapper__repr__(self):
     """ZApplicationWrapper has no __repr__ because it does not inherit
     from object.
@@ -91,11 +80,8 @@ def ZApplicationWrapper__repr__(self):
     mem = '0x' + hex(id(self))[2:].zfill(8).upper()
     return '<{0}.{1} instance at {2}>'.format(mod, cls, mem)
 
+
 ZApplicationWrapper.__repr__ = ZApplicationWrapper__repr__
-
-
-import transaction
-import OFS
 
 
 def isLinked(obj):
@@ -131,7 +117,7 @@ def isLinked(obj):
         parent.manage_delObjects(obj.getId())
     except OFS.ObjectManager.BeforeDeleteException:
         linked = True
-    except:  # ignore other exceptions, not useful to us at this point
+    except Exception:  # ignore other exceptions, not useful to us at this point
         pass
     finally:
         savepoint.rollback()
