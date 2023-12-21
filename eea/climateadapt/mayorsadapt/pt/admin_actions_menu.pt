@@ -1,6 +1,0 @@
-<div id="cityprofile-admin-menu">
-  <strong tal:condition="view/is_not_private" i18n:translate="">Them email token has been sent.</strong>
-  <form method="POST" action="" tal:attributes="action string:${context/absolute_url}/@@send-mayorsadapt-token-email">
-    <button onclick="return confirm('Are you sure you want to send the email?');" i18n:translate="">Send access token email</button>
-  </form>
-</div>
