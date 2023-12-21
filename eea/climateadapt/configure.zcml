@@ -28,10 +28,6 @@
   <includeDependencies package="." />
 
   <i18n:registerTranslations directory="locales" />
-  <five:registerPackage
-      package="."
-      initialize=".initialize"
-      />
 
   <include
       package="plone.resource"
