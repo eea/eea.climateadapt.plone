@@ -4,7 +4,6 @@ import logging
 import pytz
 import rdflib
 import surf
-from eea.climateadapt.city_profile import ICityProfile
 from eea.climateadapt.interfaces import ICCACountry
 from eea.climateadapt.vocabulary import (BIOREGIONS, SUBNATIONAL_REGIONS,
                                          ace_countries_dict)
@@ -139,19 +138,6 @@ class GeoCharsFieldModifier(object):
             text = u", ".join(value)
 
         return u"city:{0}".format(text)
-
-
-class CityProfile2Surf(Dexterity2Surf):
-    adapts(ICityProfile, ISurfSession)
-
-    @property
-    def prefix(self):
-        """ Prefix """
-
-        if self.portalType.lower() == "eeaclimateadaptcity_profile":
-            return "eeaclimateadaptcityprofile"
-
-        return self.portalType.lower()
 
 
 class CountryTitle2Surf(DXField2Surf):

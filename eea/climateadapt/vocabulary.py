@@ -225,7 +225,6 @@ class CCAItemsVocabulary(CatalogVocabularyFactory):
                  u'eea.climateadapt.publicationreport',
                  u'eea.climateadapt.researchproject',
                  u'eea.climateadapt.tool',
-                 u'eea.climateadapt.city_profile',
                  u'Folder',
              ]}
         )

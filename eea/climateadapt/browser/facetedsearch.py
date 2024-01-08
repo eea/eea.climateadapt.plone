@@ -64,7 +64,6 @@ CCA_TYPES = [
     'eea.climateadapt.publicationreport',
     'eea.climateadapt.researchproject',
     'eea.climateadapt.tool',
-    'eea.climateadapt.city_profile',
 ]
 
 

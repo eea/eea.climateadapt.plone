@@ -28,10 +28,6 @@
   <includeDependencies package="." />
 
   <i18n:registerTranslations directory="locales" />
-  <five:registerPackage
-      package="."
-      initialize=".initialize"
-      />
 
   <include
       package="plone.resource"
@@ -50,7 +46,6 @@
   <include package=".browser" />
   <include package=".tiles" />
   <!-- <include package=".sat" /> -->
-  <include package=".mayorsadapt" />
   <!-- <include package="._importer" /> -->
   <include package=".upgrades" />
   <include package=".restapi" />
@@ -127,18 +122,6 @@
       name="aceproject_id"
       />
   <adapter
-      factory=".catalog.city_stage_implementation_cycle"
-      name="city_stage"
-      />
-  <adapter
-      factory=".catalog.city_climate_impacts"
-      name="climate_impacts"
-      />
-  <adapter
-      factory=".catalog.city_countries"
-      name="countries"
-      />
-  <adapter
       factory=".catalog.countries"
       name="countries"
       />
@@ -147,20 +130,12 @@
       name="imported_ids"
       />
   <adapter
-      factory=".catalog.city_long_description"
-      name="long_description"
-      />
-  <adapter
       factory=".catalog.search_type"
       name="search_type"
       />
   <adapter
       factory=".catalog.search_type_for_newsevents"
       name="search_type"
-      />
-  <adapter
-      factory=".catalog.city_sectors"
-      name="sectors"
       />
   <adapter
       factory=".catalog.featured"
@@ -420,7 +395,6 @@
       provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
       />
 
-  <adapter factory=".marshaller.CityProfile2Surf" />
   <adapter factory=".marshaller.Geolocation2Surf" />
   <adapter factory=".marshaller.File2Surf" />
   <adapter factory=".marshaller.Image2Surf" />
