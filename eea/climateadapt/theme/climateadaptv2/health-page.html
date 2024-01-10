@@ -17,7 +17,7 @@
     <link rel="preload" href="static/css/compiled-less.css?rel=2669d66c6c" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
     <noscript><link rel="stylesheet" href="static/css/compiled-less.css?rel=2669d66c6c"></noscript>
     
-    <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css?rel=0a57b672f4" />
+    <link rel="stylesheet" type="text/css" href="/++theme++climateadaptv2/static/css/health.css?rel=da7f12d927" />
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/favicon/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/images/favicon/apple-touch-icon-114x114.png" />
@@ -187,19 +187,52 @@
                 </div>
             
                 <div class="main-health-box col-lg-6 col-sm-6 col-xs-12">
-                  <div class="box-container info-section">
-                    <a tal:attributes="href python:view.translate_url('/en/help/share-your-info')"
-                        href="../help/share-your-info">
-                      <div class="content-body">
-                        <img src="/cca/++theme++climateadaptv2//static/images/health_share.svg"
-                             title="Information icon"
-                             width="95"
-                             height="110"
-                             />
-                        <h5 class="info-title" i18n:translate="">Share <br /> your information</h5>
-                        <p i18n:translate="">Find out how to contribute to the Observatory via Climate-ADAPT</p>
+                  <div class="box-container zone-share">
+                    <ul class="nav nav-tabs">
+                      <li class="active">
+                        <a href="#newsletter-tab" i18n:translate="">Newsletter</a>
+                      </li>
+                      <li>
+                        <a href="#share-info-tab" i18n:translate="">Share</a>
+                      </li>
+                    </ul>
+            
+                    <div class="tab-content">
+                      <div class="tab-pane active fade in" id="newsletter-tab">
+                        <div class="fp-newsletter-tile">
+                          <div class="feed-wrapper content-body">
+                            <a href="/newsletter" title="Check the European Climate Adaptation Newsletters">
+                              <i class="fa fa-envelope"></i>
+                            </a>
+                            <p>Register to receive the European Climate and Health Observatory newsletter in your inbox.</p>
+                            <div class="main-link-wrapper">
+                              <a href="https://subscriptions.eea.europa.eu/newsletter-subscription-european-climate-and-health-observatory" class="standard-button primary-button" title="Sign up for our Newsletters" target="_blank">
+                                  Sign me up!
+                              </a>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </a>
+            
+                      <div class="tab-pane fade" id="share-info-tab">
+                        <div class="fp-share-info-tile box-container info-section">
+                          <div class="box-container info-section">
+                            <a tal:attributes="href python:view.translate_url('/en/help/share-your-info')"
+                                href="../help/share-your-info">
+                              <div class="content-body">
+                                <img src="/cca/++theme++climateadaptv2//static/images/health_share.svg"
+                                     title="Information icon"
+                                     width="95"
+                                     height="110"
+                                     />
+                                <h5 class="info-title" i18n:translate="">Share your<br /> information</h5>
+                                <p i18n:translate="">Find out how to contribute to the Observatory via Climate-ADAPT</p>
+                              </div>
+                            </a>
+                          </div>
+                                </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
             
