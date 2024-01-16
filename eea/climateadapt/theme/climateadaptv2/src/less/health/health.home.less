@@ -425,11 +425,16 @@
 
 .zone-share {
   background-color: #0170b7 !important;
-
-  .tab-pane {
+  .tab-content {
     height: calc(100% - 40px);
     padding: 0.7em;
     background-color: #ffffff;
+  }
+  .tab-pane {
+    // display: flex;
+    // height: 100%;
+    // align-items: center;
+    // justify-content: center;
   }
   .nav-tabs {
     padding-bottom: 0;
@@ -462,8 +467,14 @@
   }
 
   #newsletter-tab, #share-info-tab {
-    padding: 0.7em;
     background-color: #fff;
+    padding: 0.7em;
+  }
+  #newsletter-tab.active {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
   }
   .fp-share-info-tile {
     padding:0;
