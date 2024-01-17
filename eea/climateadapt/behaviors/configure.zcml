@@ -61,14 +61,6 @@
         for="plone.dexterity.interfaces.IDexterityContent"
       />
 
-      <plone:behavior
-        name="cca.toplevel"
-        title="Top level navigation"
-        description="Set top level navigation visibility for each item."
-        provides=".toplevelnav.ITopLevelVisibility"
-        for="plone.dexterity.interfaces.IDexterityContent"
-        />
-
     </configure>
 
 </configure>
