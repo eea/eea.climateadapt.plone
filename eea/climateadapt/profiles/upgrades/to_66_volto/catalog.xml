@@ -3,5 +3,9 @@
  <index name="show_in_top_level" meta_type="FieldIndex">
   <indexed_attr value="show_in_top_level"/>
  </index>
+ <index name="image_scales" meta_type="FieldIndex">
+  <indexed_attr value="image_scales"/>
+ </index>
+ <column value="image_scales" />
 </object>
 
