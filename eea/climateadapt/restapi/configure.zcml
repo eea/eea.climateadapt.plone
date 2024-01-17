@@ -44,10 +44,9 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
-  <!-- USED IN MIGRATION
   <adapter
     factory=".ecde.C3SIndicatorsOverview"
-    name="c3s_indicators_overview"
+    name="c3s_indicators_overview_api"
     />
 
   <plone:service
@@ -55,13 +54,13 @@
     factory=".ecde.C3SIndicatorsOverviewGet"
     for="zope.interface.Interface"
     permission="zope2.View"
-    name="@c3s_indicators_overview"
+    name="@c3s_indicators_overview_api"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
   <adapter
     factory=".ecde.C3SIndicatorsGlossaryTable"
-    name="c3s_indicators_glossary_table"
+    name="c3s_indicators_glossary_table_api"
     />
 
   <plone:service
@@ -69,10 +68,9 @@
     factory=".ecde.C3SIndicatorsGlossaryTableGet"
     for="zope.interface.Interface"
     permission="zope2.View"
-    name="@c3s_indicators_glossary_table"
+    name="@c3s_indicators_glossary_table_api"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
-    -->
 
   <subscriber
       factory=".serializer.SlateBlockSerializer"

@@ -25,16 +25,24 @@
       <include package="plone.behavior" file="meta.zcml"/>
 
       <plone:behavior
-          title="Include in Health Observatory"
-          description="Settings for inclusion in Health Observatory"
-          provides=".health_observatory.IHealthObservatoryMetadata"
-        />
+        name="volto.preview_image"
+        title="Preview Image"
+        description="Preview image for listings"
+        provides=".preview.IPreview"
+        for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
       <plone:behavior
-            title="CCA Event details"
-            description="Settings for CCA Events"
-            provides=".ccaevent.ICcaEvent"
-          />
+        title="Include in Health Observatory"
+        description="Settings for inclusion in Health Observatory"
+        provides=".health_observatory.IHealthObservatoryMetadata"
+      />
+
+      <plone:behavior
+        title="CCA Event details"
+        description="Settings for CCA Events"
+        provides=".ccaevent.ICcaEvent"
+      />
 
       <plone:behavior
         name="plone.shortname"
@@ -43,7 +51,15 @@
         factory=".id.ShortName"
         provides=".id.IShortName"
         for="plone.dexterity.interfaces.IDexterityContent"
-        />
+      />
+
+      <plone:behavior
+        name="cca.toplevel"
+        title="Top level navigation"
+        description="Set top level navigation visibility for each item."
+        provides=".toplevelnav.ITopLevelVisibility"
+        for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
       <plone:behavior
         name="cca.toplevel"

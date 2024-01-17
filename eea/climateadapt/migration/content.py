@@ -383,7 +383,6 @@ class MigrateFolder(object):
             self.context.blocks_layout = {"items": [block_id]}
             self.context.blocks = blocks
 
-        fix_layout_size(obj)
         fix_folder(obj)
 
         obj.reindexObject()

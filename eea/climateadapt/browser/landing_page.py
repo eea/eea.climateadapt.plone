@@ -1,12 +1,11 @@
-import json
-import urllib
 from collections import namedtuple
 
+from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
 from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+                                                filters_to_query,
                                                 translate_text)
 from plone.api.portal import get_tool
 from Products.Five.browser import BrowserView
-
 
 Section = namedtuple("Section", ["title", "count", "link", "icon_class"])
 
@@ -25,34 +24,29 @@ SEARCH_TYPES_ICONS = [
     ("TOOL", "Tools", "fa-wrench"),
 ]
 
+
 class Urban(BrowserView, TranslationUtilsMixin):
+    def main_link(self):
+        search_type = "Adaptation option"
+        args = [
+            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ('cca_adaptation_sectors.keyword', "Urban"),
+        ]
+        query = filters_to_query(args)
+        link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
+        return link
 
     # TODO: implement cache using eea.cache
     # @cache
     def _make_link(self, search_type):
-        t = {
-            u"function_score": {
-                u"query": {
-                    u"bool": {
-                        u"filter": {
-                            u"bool": {
-                                u"must": [
-                                    {u"bool": {u"should":[{u"term": {u"typeOfData": search_type}}]}},
-                                    {u"bool": {u"should":[{u"term": {u"sectors": "Urban"}}]}},
-                                ]
-                            }
-                        },
-                    }
-                }
-            }
-        }
+        args = [
+            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ('cca_adaptation_sectors.keyword', "Urban"),
+        ]
+        query = filters_to_query(args)
+        link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
 
-        base_query = "/{0}/data-and-downloads/?lang={0}&source=".format(
-            self.current_lang)
-        q = {"query": t}
-        l = base_query + urllib.quote(json.dumps(q))
-
-        return l
+        return link
 
     def sections(self):
         catalog = get_tool("portal_catalog")
@@ -76,41 +70,37 @@ class Urban(BrowserView, TranslationUtilsMixin):
             data = list(data)
             data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
+
         return [
-            Section(x[1], counts.get(x[0], 0), self._make_link(x[1]), x[2])
-            #for x in SEARCH_TYPES_ICONS
-            for x in tmp_types
+            Section(title, counts.get(aceid, 0), self._make_link(aceid), icon)
+            # for x in SEARCH_TYPES_ICONS
+            for (aceid, title, icon) in tmp_types
         ]
 
 
 class Forest(BrowserView, TranslationUtilsMixin):
+    def main_link(self):
+        search_type = "Adaptation option"
+        args = [
+            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ('cca_adaptation_sectors.keyword', "Forestry"),
+        ]
+        query = filters_to_query(args)
+        link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
+        return link
+        # return "/en/data-and-downloads/?lang=en&source=%7B%22query%22%3A%20%7B%22function_score%22%3A%20%7B%22query%22%3A%20%7B%22bool%22%3A%20%7B%22filter%22%3A%20%7B%22bool%22%3A%20%7B%22must%22%3A%20%5B%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22typeOfData%22%3A%20%22Adaptation%20options%22%7D%7D%5D%7D%7D%2C%20%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22sectors%22%3A%20%22Forestry%22%7D%7D%5D%7D%7D%5D%7D%7D%7D%7D%7D%7D%7D"
 
     # TODO: implement cache using eea.cache
     # @cache
     def _make_link(self, search_type):
-        t = {
-            u"function_score": {
-                u"query": {
-                    u"bool": {
-                        u"filter": {
-                            u"bool": {
-                                u"must": [
-                                    {u"bool": {u"should":[{u"term": {u"typeOfData": search_type}}]}},
-                                    {u"bool": {u"should":[{u"term": {u"sectors": "Forestry"}}]}},
-                                ]
-                            }
-                        },
-                    }
-                }
-            }
-        }
+        args = [
+            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ('cca_adaptation_sectors.keyword', "Forestry"),
+        ]
+        query = filters_to_query(args)
+        link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
 
-        base_query = "/{0}/data-and-downloads/?lang={0}&source=".format(
-            self.current_lang)
-        q = {"query": t}
-        l = base_query + urllib.quote(json.dumps(q))
-
-        return l
+        return link
 
     def sections(self):
         catalog = get_tool("portal_catalog")
@@ -134,8 +124,9 @@ class Forest(BrowserView, TranslationUtilsMixin):
             data = list(data)
             data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
+
         return [
-            Section(x[1], counts.get(x[0], 0), self._make_link(x[1]), x[2])
-            #for x in SEARCH_TYPES_ICONS
-            for x in tmp_types
+            Section(title, counts.get(aceid, 0), self._make_link(aceid), icon)
+            # for x in SEARCH_TYPES_ICONS
+            for (aceid, title, icon) in tmp_types
         ]

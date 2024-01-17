@@ -1,7 +1,8 @@
-import json
-import urllib
+# import json
+# import urllib
 
 from eea.climateadapt.browser import AceViewApi
+from eea.climateadapt.browser.misc import create_contributions_link
 from eea.climateadapt.translation.admin import get_translation_object
 from eea.climateadapt.translation.utils import get_current_language
 from plone import api
@@ -168,39 +169,7 @@ class OrganisationView(DefaultView, AceViewApi):
         return response
 
     def contributions_link(self):
-        org = ""
-
-        map_contributor_values = {
-            "copernicus-climate-change-service-ecmw": "Copernicus Climate Change Service and Copernicus Atmosphere Monitoring Service",
-            "european-centre-for-disease-prevention-and-control-ecdc": "European Centre for Disease Prevention and Control",
-            "european-commission": "European Commission",
-            "european-environment-agency-eea": "European Environment Agency",
-            "european-food-safety-authority": "European Food Safety Authority",
-            "lancet-countdown": "Lancet Countdown",
-            "who-regional-office-for-europe-who-europe": "WHO Regional Office for Europe",
-            "world-health-organization": "World Health Organization",
-        }
-
-        if self.context.id in map_contributor_values:
-            org = map_contributor_values[self.context.id]
-
-        t = {
-            "function_score": {
-                "query": {
-                    "bool": {
-                        "filter": {
-                            "bool": {
-                                "should": [{"term": {"partner_contributors": org}}]
-                            }
-                        },
-                    }
-                }
-            }
-        }
-
-        q = {"query": t}
-
-        return "/observatory/catalogue/?source=" + urllib.quote(json.dumps(q))
+        return create_contributions_link('en', self.context.id)
 
 
 # Form Extenders + add/edit forms
