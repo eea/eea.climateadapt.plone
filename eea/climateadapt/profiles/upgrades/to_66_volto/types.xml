@@ -49,7 +49,6 @@
  <object name="eea.climateadapt.publicationreport" meta_type="Dexterity FTI"/>
  <object name="eea.climateadapt.researchproject" meta_type="Dexterity FTI"/>
  <object name="eea.climateadapt.tool" meta_type="Dexterity FTI"/>
- <object name="eea.climateadapt.city_profile" meta_type="Dexterity FTI"/>
  <object name="Topic" meta_type="Dexterity FTI"/>
  <object name="PDFTool"
     meta_type="Factory-based Type Information with dynamic views"/>
