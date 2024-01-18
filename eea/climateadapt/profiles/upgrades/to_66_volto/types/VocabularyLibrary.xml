@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<object name="VocabularyLibrary" meta_type="Factory-based Type Information"
+   i18n:domain="atvocabularymanager"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title" i18n:translate="">Vocabulary Library</property>
+ <property name="description" i18n:translate="">
+  This tool contains dynamic vocabularies to be used by Archetypes fields. It has methods to register special/custom vocabulary types</property>
+ <property name="icon_expr">string:${portal_url}/folder_icon.gif</property>
+ <property name="content_meta_type">VocabularyLibrary</property>
+ <property name="product">ATVocabularyManager</property>
+ <property name="factory">addVocabularyLibrary</property>
+ <property name="add_view_expr"></property>
+ <property name="link_target"></property>
+ <property name="immediate_view">vocabularytool_view</property>
+ <property name="global_allow">False</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types">
+  <element value="AliasVocabulary"/>
+  <element value="SimpleVocabulary"/>
+  <element value="SortedSimpleVocabulary"/>
+  <element value="TreeVocabulary"/>
+  <element value="VdexFileVocabulary"/>
+ </property>
+ <property name="allow_discussion">False</property>
+ <alias from="(Default)" to="vocabularytool_view"/>
+ <alias from="edit" to="base_edit"/>
+ <alias from="index.html" to="(Default)"/>
+ <alias from="properties" to="base_metadata"/>
+ <alias from="view" to="(Default)"/>
+ <action title="View" action_id="view" category="object"
+    condition_expr="python:True" description="" icon_expr="" link_target=""
+    url_expr="string:$object_url/vocabularytool_view" visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object"
+    condition_expr="not:object/@@plone_lock_info/is_locked_for_current_user"
+    description="" icon_expr="" link_target=""
+    url_expr="string:${object_url}/edit" visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+ <action title="References" action_id="references" category="object"
+    condition_expr="object/archetype_tool/has_graphviz" description=""
+    icon_expr="" link_target=""
+    url_expr="string:${object_url}/reference_graph" visible="True">
+  <permission value="Modify portal content"/>
+  <permission value="Review portal content"/>
+ </action>
+</object>

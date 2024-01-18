@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<object name="ProgressContentType"
+   meta_type="Factory-based Type Information with dynamic views"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title">Content-Type</property>
+ <property
+    name="description">Content-Type mapping (portal_progress)</property>
+ <property
+    name="icon_expr">string:${portal_url}/++resource++eea.progressbar.images/icon.png</property>
+ <property name="content_meta_type">ProgressContentType</property>
+ <property name="product">eea.progressbar</property>
+ <property name="factory">addProgressContentType</property>
+ <property name="add_view_expr"></property>
+ <property name="link_target"></property>
+ <property name="immediate_view">view</property>
+ <property name="global_allow">False</property>
+ <property name="filter_content_types">False</property>
+ <property name="allowed_content_types"/>
+ <property name="allow_discussion">False</property>
+ <property name="default_view">view</property>
+ <property name="view_methods">
+  <element value="view"/>
+ </property>
+ <property name="default_view_fallback">False</property>
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="atct_edit"/>
+ <alias from="index.html" to="(dynamic view)"/>
+ <alias from="properties" to="base_metadata"/>
+ <alias from="sharing" to="@@sharing"/>
+ <alias from="view" to="(selected layout)"/>
+ <action title="Configure" action_id="view" category="object"
+    condition_expr="" description="" icon_expr="" link_target=""
+    url_expr="string:${folder_url}/" visible="True">
+  <permission value="Manage portal"/>
+ </action>
+ <action title="Reset order" action_id="reset.order" category="object_buttons"
+    condition_expr="" description="" icon_expr="" link_target=""
+    url_expr="string:${folder_url}/view.reorder" visible="True">
+  <permission value="Manage portal"/>
+ </action>
+ <action title="Reset changes" action_id="reset.changes"
+    category="object_buttons" condition_expr="" description="" icon_expr=""
+    link_target="" url_expr="string:${folder_url}/view.reset" visible="True">
+  <permission value="Manage portal"/>
+ </action>
+ <action title="Export" action_id="export" category="object_buttons"
+    condition_expr="" description="" icon_expr="" link_target=""
+    url_expr="string:${folder_url}/view.export" visible="True">
+  <permission value="Manage portal"/>
+ </action>
+ <action title="Import" action_id="import" category="object_buttons"
+    condition_expr="" description="" icon_expr="" link_target=""
+    url_expr="string:${folder_url}/view.import" visible="True">
+  <permission value="Manage portal"/>
+ </action>
+</object>
