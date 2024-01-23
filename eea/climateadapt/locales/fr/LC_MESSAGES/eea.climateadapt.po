@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-09-11 18:10+0000\n"
+"POT-Creation-Date: 2024-01-23 11:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:457
+#: ../../climateadapt/vocabulary.py:456
 msgid "-NONSPECIFIC-"
 msgstr "-NON SPECIFIQUE-"
 
@@ -1309,11 +1309,7 @@ msgstr "<a href=\"https://www.climatealliance.org/home.html\"> Climate Alliance 
 msgid "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> is an Initiative of the European Union that provides urban areas throughout Europe with resources to test new and unproven solutions to address urban challenge"
 msgstr "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> est une Initiative de l'Union Européenne qui permet aux aires urbaines en Europe de mettre en œuvre des solutions nouvelles et innovantes afin de faire face aux défis urbains qu’elles rencontrent."
 
-#: ../../climateadapt/browser/pt/countries-d3.pt:145
-msgid "<i class=\"fa fa-exclamation-circle\" aria-hidden=\"true\"></i> <span>x</span> <div id=\"hover-content\">x</div>"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/casestudy_view.pt:242
+#: ../../climateadapt/browser/pt/casestudy_view.pt:292
 msgid "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
 msgstr ""
 
@@ -1326,32 +1322,32 @@ msgid "A background document for the event is available <a href=\"${DYNAMIC_CONT
 msgstr ""
 
 #,
-#: ../../climateadapt/vocabulary.py:542
+#: ../../climateadapt/vocabulary.py:541
 msgid "A1: Governance and Institutional: Policy Instruments"
 msgstr "A1: gouvernance et institutionnelle: instruments politiques"
 
 #,
-#: ../../climateadapt/vocabulary.py:558
+#: ../../climateadapt/vocabulary.py:557
 msgid "A1: Policy Instruments"
 msgstr "A1: Instruments politiques"
 
 #,
-#: ../../climateadapt/vocabulary.py:543
+#: ../../climateadapt/vocabulary.py:542
 msgid "A2: Governance and Institutional: Management and planning"
 msgstr "A2: gouvernance et institutionnelle: gestion et planification"
 
 #,
-#: ../../climateadapt/vocabulary.py:559
+#: ../../climateadapt/vocabulary.py:558
 msgid "A2: Management and planning"
 msgstr "A2: Gestion et planification"
 
 #,
-#: ../../climateadapt/vocabulary.py:560
+#: ../../climateadapt/vocabulary.py:559
 msgid "A3: Coordination cooperation and networks"
 msgstr "A3: coopération et réseaux de coordination"
 
 #,
-#: ../../climateadapt/vocabulary.py:544
+#: ../../climateadapt/vocabulary.py:543
 msgid "A3: Governance and Institutional: Coordination cooperation and networks"
 msgstr "A3: gouvernance et institutionnelle: coopération et réseaux de coordination"
 
@@ -1405,7 +1401,7 @@ msgstr "Adaptation <br /> Outil de support"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:61
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:60
 msgid "Adaptation Details"
 msgstr "Détails d'adaptation"
 
@@ -1423,7 +1419,7 @@ msgstr "Détails d'adaptation"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:339
+#: ../../climateadapt/vocabulary.py:338
 msgid "Adaptation Measures and Actions"
 msgstr "Mesures et actions d'adaptation"
 
@@ -1441,7 +1437,7 @@ msgstr "Mesures et actions d'adaptation"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:57
+#: ../../climateadapt/browser/pt/casestudy_view.pt:59
 msgid "Adaptation Options Implemented In This Case"
 msgstr "Options d'adaptation mises en oeuvre dans ce cas"
 
@@ -1466,7 +1462,7 @@ msgstr "Options d'Adaptation et Études de Cas"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:340
+#: ../../climateadapt/vocabulary.py:339
 msgid "Adaptation Plans and Strategies"
 msgstr "Plans et stratégies d'adaptation"
 
@@ -1484,7 +1480,7 @@ msgstr "Plans et stratégies d'adaptation"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:250
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:253
 msgid "Adaptation Sectors"
 msgstr "Secteurs d'adaptation"
 
@@ -1497,8 +1493,8 @@ msgstr "Éléments d'adaptation"
 
 #,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:167
-#: ../../climateadapt/browser/pt/casestudy_view.pt:290
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:158
+#: ../../climateadapt/browser/pt/casestudy_view.pt:340
 msgid "Adaptation elements:"
 msgstr "Éléments d'adaptation:"
 
@@ -1554,28 +1550,9 @@ msgstr "Portail ou plate-forme d'adaptation signalé"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/BKPcountries.py:182
-#: ../../climateadapt/browser/countries.py:184
+#: ../../climateadapt/browser/countries.py:186
 msgid "Adaptation portals and platforms"
 msgstr "Portails et plateformes d'adaptation"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:125
-msgid "Adaptation strategy"
-msgstr "Stratégie d'adaptation"
 
 # ,
 # ,
@@ -1636,7 +1613,7 @@ msgstr "Adaptation au changement climatique dans les zones urbaines"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:321
+#: ../../climateadapt/browser/pt/casestudy_view.pt:371
 msgid "AdapteCCA"
 msgstr "AdapteCCA"
 
@@ -1655,27 +1632,9 @@ msgstr "AdapteCCA"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
-#: ../../climateadapt/browser/pt/casestudy_view.pt:71
+#: ../../climateadapt/browser/pt/casestudy_view.pt:73
 msgid "Additional Details"
 msgstr "Détails supplémentaires"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:158
-msgid "Additional information on adaptation responses"
-msgstr "Informations supplémentaires sur les réponses d'adaptation"
 
 # ,
 # ,
@@ -1757,13 +1716,13 @@ msgstr "Ordre du jour et pièces justificatives"
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:37
-#: ../../climateadapt/vocabulary.py:297
+#: ../../climateadapt/vocabulary.py:296
 msgid "Agriculture"
 msgstr "Agriculture"
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:455
+#: ../../climateadapt/vocabulary.py:454
 msgid "Air pollution and aero-allergens"
 msgstr "Pollution atmosphérique et aéroallergènes"
 
@@ -1781,7 +1740,7 @@ msgstr "Pollution atmosphérique et aéroallergènes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:883
+#: ../../climateadapt/tiles/search_acecontent.py:885
 msgid "All adaptation sectors"
 msgstr "Tous les secteurs d'adaptation"
 
@@ -1799,12 +1758,12 @@ msgstr "Tous les secteurs d'adaptation"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/search_acecontent.py:880
+#: ../../climateadapt/tiles/search_acecontent.py:882
 msgid "All climate impacts"
 msgstr "Tous les impacts climatiques"
 
 #,
-#: ../../climateadapt/tiles/search_acecontent.py:886
+#: ../../climateadapt/tiles/search_acecontent.py:888
 msgid "All key type measures"
 msgstr "Toutes les mesures de type clé"
 
@@ -1935,22 +1894,22 @@ msgid "Atlantic Area"
 msgstr "Région de l'Atlantique"
 
 #,
-#: ../../climateadapt/vocabulary.py:545
+#: ../../climateadapt/vocabulary.py:544
 msgid "B1: Economic and Finance: Financing incentive instruments"
 msgstr "B1: économique et finance: financement des instruments d'incitation"
 
 #,
-#: ../../climateadapt/vocabulary.py:561
+#: ../../climateadapt/vocabulary.py:560
 msgid "B1: Financing incentive instruments"
 msgstr "B1: Financement des instruments d'incitation"
 
 #,
-#: ../../climateadapt/vocabulary.py:546
+#: ../../climateadapt/vocabulary.py:545
 msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
 msgstr "B2: économique et finance: instruments d'assurance et de partage des risques"
 
 #,
-#: ../../climateadapt/vocabulary.py:562
+#: ../../climateadapt/vocabulary.py:561
 msgid "B2: Insurance and risk sharing instruments"
 msgstr "B2: Instruments d'assurance et de partage des risques"
 
@@ -2005,7 +1964,7 @@ msgstr "Mer Baltique"
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:39
-#: ../../climateadapt/vocabulary.py:298
+#: ../../climateadapt/vocabulary.py:297
 msgid "Biodiversity"
 msgstr "Biodiversité"
 
@@ -2023,7 +1982,7 @@ msgstr "Biodiversité"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:186
+#: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
 msgstr "Régions biogéographiques"
 
@@ -2042,32 +2001,32 @@ msgstr "Régions biogéographiques"
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:49
-#: ../../climateadapt/vocabulary.py:299
+#: ../../climateadapt/vocabulary.py:298
 msgid "Buildings"
 msgstr "bâtiment "
 
 #,
-#: ../../climateadapt/vocabulary.py:300
+#: ../../climateadapt/vocabulary.py:299
 msgid "Business and industry"
 msgstr "Entreprise et industrie"
 
 #,
-#: ../../climateadapt/vocabulary.py:563
+#: ../../climateadapt/vocabulary.py:562
 msgid "C1: Grey options"
 msgstr "C1: Options grises"
 
 #,
-#: ../../climateadapt/vocabulary.py:547
+#: ../../climateadapt/vocabulary.py:546
 msgid "C1: Physical and technological: Grey options"
 msgstr "C1: Physique et technologique: Options grises"
 
 #,
-#: ../../climateadapt/vocabulary.py:548
+#: ../../climateadapt/vocabulary.py:547
 msgid "C2: Physical and technological: Technological options"
 msgstr "C2: physique et technologique: options technologiques"
 
 #,
-#: ../../climateadapt/vocabulary.py:564
+#: ../../climateadapt/vocabulary.py:563
 msgid "C2: Technological options"
 msgstr "C2: Options technologiques"
 
@@ -2085,7 +2044,7 @@ msgstr "C2: Options technologiques"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:46
+#: ../../climateadapt/browser/pt/casestudy_view.pt:48
 msgid "Case Study Description"
 msgstr "Description de l'étude de cas"
 
@@ -2098,7 +2057,7 @@ msgstr "Description de l'étude de cas"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:242
+#: ../../climateadapt/browser/pt/casestudy_view.pt:292
 msgid "Case Study Illustrations"
 msgstr "Illustrations d'étude de cas"
 
@@ -2143,7 +2102,7 @@ msgstr "Études de Cas et Options d'Adaptation"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:297
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:301
 msgid "Case studies collected at national level in Spain, provided by AdapteCCA.es"
 msgstr "Des études de cas collectées au niveau national en Espagne, fournies par AdapteCCA.ES"
 
@@ -2161,27 +2120,9 @@ msgstr "Des études de cas collectées au niveau national en Espagne, fournies p
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:209
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:200
 msgid "Case studies related to this option:"
 msgstr "Études de cas liées à cette option:"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
-msgid "Category"
-msgstr "Catégorie"
 
 # ,
 # ,
@@ -2215,27 +2156,9 @@ msgstr "Europe centrale"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:49
+#: ../../climateadapt/browser/pt/casestudy_view.pt:51
 msgid "Challenges"
 msgstr "Défis"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/views.py:78
-msgid "Check-out created"
-msgstr "Vérification créée"
 
 # ,
 # ,
@@ -2326,8 +2249,7 @@ msgstr "Choisissez la carte thématique:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:228
-#: ../../climateadapt/mayorsadapt/pt/city_admin.pt:26
+#: ../../climateadapt/browser/__init__.py:231
 msgid "City"
 msgstr "Ville"
 
@@ -2363,7 +2285,7 @@ msgstr "Réseaux de Villes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:257
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:260
 msgid "Climate Impacts"
 msgstr "Impacts climatiques"
 
@@ -2399,29 +2321,11 @@ msgstr "Impacts climatiques en Europe"
 # ,
 # ,
 # ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:111
-msgid "Climate change impacts"
-msgstr "Impacts du changement climatique"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:58
 msgid "Climate change impacts on European cities"
 msgstr "Les effets du changement climatique sur les villes européennes"
 
-#: ../../climateadapt/tiles/search_acecontent.py:836
+#: ../../climateadapt/tiles/search_acecontent.py:838
 msgid "Climate impact"
 msgstr "Impact climatique"
 
@@ -2460,8 +2364,8 @@ msgstr "Impacts climatiques"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:102
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:187
-#: ../../climateadapt/browser/pt/casestudy_view.pt:300
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
+#: ../../climateadapt/browser/pt/casestudy_view.pt:350
 msgid "Climate impacts:"
 msgstr "Impacts climatiques:"
 
@@ -2490,13 +2394,13 @@ msgstr "Événement Climate-ADAPT"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:296
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:300
 msgid "Climate-ADAPT case studies"
 msgstr "Études de cas Climate-ADAPT"
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:453
+#: ../../climateadapt/vocabulary.py:452
 msgid "Climate-sensitive diseases"
 msgstr "Maladies influencées par le climat"
 
@@ -2515,7 +2419,7 @@ msgstr "Maladies influencées par le climat"
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:40
-#: ../../climateadapt/vocabulary.py:301
+#: ../../climateadapt/vocabulary.py:300
 msgid "Coastal areas"
 msgstr "Zones côtières"
 
@@ -2563,7 +2467,7 @@ msgstr "Définitions communes des termes fréquemment utilisés dans le centre d
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:103
+#: ../../climateadapt/browser/pt/casestudy_view.pt:105
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:95
 #: ../../climateadapt/browser/pt/navbar_footer.pt:15
 msgid "Contact"
@@ -2586,24 +2490,6 @@ msgstr "Contacter"
 #: ../../climateadapt/browser/pt/organisation_view.pt:39
 msgid "Contact information for the Observatory"
 msgstr "Coordonnées de l'observatoire"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:222
-msgid "Contact person"
-msgstr "Personne à contacter"
 
 # ,
 # ,
@@ -2650,8 +2536,8 @@ msgstr "Contributeur"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:42
-#: ../../climateadapt/browser/pt/casestudy_view.pt:82
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:41
+#: ../../climateadapt/browser/pt/casestudy_view.pt:84
 msgid "Costs and Benefits"
 msgstr "Coûts et bénéfices"
 
@@ -2669,7 +2555,7 @@ msgstr "Coûts et bénéfices"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:194
+#: ../../climateadapt/browser/__init__.py:197
 msgid "Countries"
 msgstr "Pays"
 
@@ -2707,68 +2593,32 @@ msgstr "Pays:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:245
-msgid "Covenant of Mayors 2020 signatory"
-msgstr "Signataire de la Convention des Maires 2020"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:251
-msgid "Covenant of Mayors 2030 signatory"
-msgstr "Signataire de la Convention des Maires 2030"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:104
 msgid "Created by:"
 msgstr "Créé par:"
 
 #,
-#: ../../climateadapt/vocabulary.py:302
+#: ../../climateadapt/vocabulary.py:301
 msgid "Cultural heritage"
 msgstr "Héritage culturel"
 
 #,
-#: ../../climateadapt/vocabulary.py:565
+#: ../../climateadapt/vocabulary.py:564
 msgid "D1: Green options"
 msgstr "D1: Options vertes"
 
 #,
-#: ../../climateadapt/vocabulary.py:549
+#: ../../climateadapt/vocabulary.py:548
 msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
 msgstr "D1: Solutions basées sur la nature et approches basées sur les écosystèmes: Options vertes"
 
 #,
-#: ../../climateadapt/vocabulary.py:566
+#: ../../climateadapt/vocabulary.py:565
 msgid "D2: Blue options"
 msgstr "D2: Options bleues"
 
 #,
-#: ../../climateadapt/vocabulary.py:550
+#: ../../climateadapt/vocabulary.py:549
 msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
 msgstr "D2: Solutions basées sur la nature et approches basées sur les écosystèmes: Options bleues"
 
@@ -2832,28 +2682,10 @@ msgstr "Données et Outils"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:145
-#: ../../climateadapt/browser/pt/casestudy_view.pt:215
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:136
+#: ../../climateadapt/browser/pt/casestudy_view.pt:265
 msgid "Date of creation:"
 msgstr "Date de création:"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:240
-msgid "Date of officially joining Mayors Adapt"
-msgstr "Date d'adhésion officielle à Mayors Adapt"
 
 # ,
 # ,
@@ -2892,24 +2724,6 @@ msgstr "Date de publication:"
 #: ../../climateadapt/browser/pt/video_view.pt:93
 msgid "Date of release:"
 msgstr "Date de sortie:"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:138
-msgid "Date of strategy/plan approval"
-msgstr "Date d'approbation de la stratégie/du plan"
 
 # ,
 # ,
@@ -2966,7 +2780,7 @@ msgstr "Description:"
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:42
-#: ../../climateadapt/vocabulary.py:303
+#: ../../climateadapt/vocabulary.py:302
 msgid "Disaster Risk Reduction"
 msgstr "Réduction des risques de catastrophe"
 
@@ -2995,13 +2809,13 @@ msgstr "Téléchargez l'ordre du jour détaillé <a href=\"${DYNAMIC_CONTENT}\">
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:347
+#: ../../climateadapt/vocabulary.py:346
 msgid "Droughts"
 msgstr "Sécheresse"
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:452
+#: ../../climateadapt/vocabulary.py:451
 msgid "Droughts and floods"
 msgstr "Sécheresses et inondations"
 
@@ -3024,22 +2838,22 @@ msgid "Duration:"
 msgstr "Durée:"
 
 #,
-#: ../../climateadapt/vocabulary.py:567
+#: ../../climateadapt/vocabulary.py:566
 msgid "E1: Information and awareness raising"
 msgstr "E1: augmentation des informations et de la sensibilisation"
 
 #,
-#: ../../climateadapt/vocabulary.py:551
+#: ../../climateadapt/vocabulary.py:550
 msgid "E1: Knowledge and behavioural change: Information and awareness raising"
 msgstr "E1: Connaissances et changement de comportement: augmentation des informations et de la sensibilisation"
 
 #,
-#: ../../climateadapt/vocabulary.py:568
+#: ../../climateadapt/vocabulary.py:567
 msgid "E2: Capacity building empowering and lifestyle practices"
 msgstr "E2: Pratiques d'autonomisation et de style de vie de renforcement des capacités"
 
 #,
-#: ../../climateadapt/vocabulary.py:552
+#: ../../climateadapt/vocabulary.py:551
 msgid "E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices"
 msgstr "E2: Connaissances et changement de comportement: Pratiques d'autonomisation et de style de vie du renforcement des capacités"
 
@@ -3072,27 +2886,8 @@ msgstr "Financement européen de l'adaptation"
 # ,
 # ,
 # ,
-#: ../../climateadapt/mayorsadapt/pt/city_admin.pt:28
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:228
-msgid "Email"
-msgstr "E-mail"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
 #: ../../climateadapt/browser/overrides.py:47
-#: ../../climateadapt/vocabulary.py:304
+#: ../../climateadapt/vocabulary.py:303
 msgid "Energy"
 msgstr "Énergie"
 
@@ -3174,7 +2969,7 @@ msgstr "Explorez les études de cas d'adaptation urbaine par localisation géogr
 # ,
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
-#: ../../climateadapt/browser/pt/casestudy_view.pt:319
+#: ../../climateadapt/browser/pt/casestudy_view.pt:369
 msgid "External source"
 msgstr "Source externe"
 
@@ -3192,7 +2987,7 @@ msgstr "Source externe"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:348
+#: ../../climateadapt/vocabulary.py:347
 msgid "Extreme Temperatures"
 msgstr "Températures extrêmes"
 
@@ -3251,7 +3046,7 @@ msgstr "Le portail web FISE vise à améliorer la santé et la résilience de no
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:43
-#: ../../climateadapt/vocabulary.py:305
+#: ../../climateadapt/vocabulary.py:304
 msgid "Financial"
 msgstr "Financier"
 
@@ -3281,7 +3076,7 @@ msgstr "Découvrez comment contribuer différents types d'informations à Climat
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:349
+#: ../../climateadapt/vocabulary.py:348
 msgid "Flooding"
 msgstr "Inondation"
 
@@ -3300,7 +3095,7 @@ msgstr "Inondation"
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:38
-#: ../../climateadapt/vocabulary.py:306
+#: ../../climateadapt/vocabulary.py:305
 msgid "Forestry"
 msgstr "Sylviculture"
 
@@ -3381,7 +3176,7 @@ msgstr "Caractérisation géographique"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:202
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:193
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:85
 #: ../../climateadapt/browser/pt/informationportal_view.pt:88
 msgid "Geographic characterisation:"
@@ -3421,7 +3216,7 @@ msgstr "Caractérisation géographique"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:117
-#: ../../climateadapt/browser/pt/casestudy_view.pt:314
+#: ../../climateadapt/browser/pt/casestudy_view.pt:364
 #: ../../climateadapt/browser/pt/indicator_view.pt:103
 msgid "Geographic characterization:"
 msgstr "Caractérisation géographique:"
@@ -3558,26 +3353,8 @@ msgstr "Ouvrir l'Aperçu des Politiques Urbaines"
 # ,
 # ,
 # ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:171
-msgid "Good practice / spotlight item"
-msgstr "Bonne pratique / Point d'intérêt"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:193
-#: ../../climateadapt/browser/pt/casestudy_view.pt:306
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:184
+#: ../../climateadapt/browser/pt/casestudy_view.pt:356
 msgid "Governance level:"
 msgstr "Niveau de gouvernance:"
 
@@ -3595,7 +3372,7 @@ msgstr "Niveau de gouvernance:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:266
+#: ../../climateadapt/vocabulary.py:265
 msgid "Guidance"
 msgstr "Orientation"
 
@@ -3663,26 +3440,8 @@ msgstr "Site Web du HHWS"
 # ,
 # ,
 # ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:128
-msgid "Have you already developed an adaptation strategy?"
-msgstr "Avez-vous déjà développé une stratégie d'adaptation?"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
 #: ../../climateadapt/browser/overrides.py:44
-#: ../../climateadapt/vocabulary.py:307
+#: ../../climateadapt/vocabulary.py:306
 msgid "Health"
 msgstr "Santé"
 
@@ -3701,14 +3460,14 @@ msgstr "Santé"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:155
-#: ../../climateadapt/browser/pt/casestudy_view.pt:278
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:146
+#: ../../climateadapt/browser/pt/casestudy_view.pt:328
 msgid "Health impact:"
 msgstr "Impact sur la santé:"
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:451
+#: ../../climateadapt/vocabulary.py:450
 msgid "Heat"
 msgstr "Chaleur"
 
@@ -3762,12 +3521,12 @@ msgstr "Accueil"
 msgid "How to use the map?"
 msgstr "Comment utiliser la carte?"
 
-#: ../../climateadapt/vocabulary.py:308
+#: ../../climateadapt/vocabulary.py:307
 msgid "ICT"
 msgstr ""
 
 #,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:177
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:168
 msgid "IPCC adaptation options categories:"
 msgstr "Catégories d'options d'adaptation du GIEC:"
 
@@ -3785,7 +3544,7 @@ msgstr "Catégories d'options d'adaptation du GIEC:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:34
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
 msgid "IPCC categories"
 msgstr "Catégories du GIEC"
 
@@ -3803,7 +3562,7 @@ msgstr "Catégories du GIEC"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:350
+#: ../../climateadapt/vocabulary.py:349
 msgid "Ice and Snow"
 msgstr "Glace et neige"
 
@@ -3890,8 +3649,8 @@ msgstr "Mise en œuvre"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:48
-#: ../../climateadapt/browser/pt/casestudy_view.pt:90
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:47
+#: ../../climateadapt/browser/pt/casestudy_view.pt:92
 msgid "Implementation Time"
 msgstr "Temps de mise en œuvre"
 
@@ -3927,7 +3686,7 @@ msgstr "Mise en oeuvre de l'adaptation"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:65
+#: ../../climateadapt/browser/pt/casestudy_view.pt:67
 msgid "Importance and Relevance of Adaptation"
 msgstr "Importance et pertinence de l'adaptation"
 
@@ -3949,7 +3708,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:265
+#: ../../climateadapt/vocabulary.py:264
 msgid "Indicators"
 msgstr "Indicateurs"
 
@@ -4001,7 +3760,7 @@ msgstr "Des informations sur la protection des données personnelles sont dispon
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:263
+#: ../../climateadapt/vocabulary.py:262
 msgid "Information portals"
 msgstr "Portails d'information"
 
@@ -4018,7 +3777,7 @@ msgstr "Portails d'information"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:581
+#: ../../climateadapt/vocabulary.py:580
 msgid "Institutional: Economic options"
 msgstr "Institutionnel: Options économiques"
 
@@ -4035,7 +3794,7 @@ msgstr "Institutionnel: Options économiques"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:583
+#: ../../climateadapt/vocabulary.py:582
 msgid "Institutional: Government policies and programmes"
 msgstr "Institutionnel: politiques et programmes gouvernementaux"
 
@@ -4052,7 +3811,7 @@ msgstr "Institutionnel: politiques et programmes gouvernementaux"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:582
+#: ../../climateadapt/vocabulary.py:581
 msgid "Institutional: Law and regulations"
 msgstr "Institutionnel: droit et réglementation"
 
@@ -4088,22 +3847,22 @@ msgstr "Documents d'articles"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:129
 msgid "Item’s creation:"
 msgstr "Création de l'article:"
 
 #,
-#: ../../climateadapt/tiles/search_acecontent.py:848
+#: ../../climateadapt/tiles/search_acecontent.py:850
 msgid "Key Type Measure"
 msgstr "Mesure de type clé"
 
 #,
-#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:264
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:267
 msgid "Key Type Measures"
 msgstr "Mesures de type clé"
 
 #,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:172
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:163
 msgid "Key Type Measures:"
 msgstr "Mesures de type clé:"
 
@@ -4124,24 +3883,6 @@ msgstr "Mesures de type clé:"
 #: ../../climateadapt/browser/pt/organisation_view.pt:22
 msgid "Key activities within climate change and health"
 msgstr "Activités clés dans le changement climatique et la santé"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:203
-msgid "Key vulnerable sectors"
-msgstr "Secteurs vulnérables clés"
 
 #: ../../climateadapt/browser/admin.py:562
 msgid "Keyword succesfully deleted: ${kw_old}."
@@ -4186,13 +3927,13 @@ msgstr "Mots clés"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:92
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:162
-#: ../../climateadapt/browser/pt/casestudy_view.pt:285
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:153
+#: ../../climateadapt/browser/pt/casestudy_view.pt:335
 msgid "Keywords:"
 msgstr "Mots clés:"
 
 #,
-#: ../../climateadapt/vocabulary.py:309
+#: ../../climateadapt/vocabulary.py:308
 msgid "Land use planning"
 msgstr "Planification de l'utilisation des terres"
 
@@ -4220,24 +3961,6 @@ msgstr "Langue de la conférence"
 #: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "Last Modified in Climate-ADAPT"
 msgstr "Dernière modification dans Climate-ADAPT"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:258
-msgid "Last Update"
-msgstr "Dernière mise à jour"
 
 # ,
 # ,
@@ -4303,8 +4026,8 @@ msgstr "En savoir plus sur la façon dont les forêts peuvent s'adapter au chang
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:45
-#: ../../climateadapt/browser/pt/casestudy_view.pt:86
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:44
+#: ../../climateadapt/browser/pt/casestudy_view.pt:88
 msgid "Legal Aspects"
 msgstr "Aspects légaux"
 
@@ -4322,8 +4045,8 @@ msgstr "Aspects légaux"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:51
-#: ../../climateadapt/browser/pt/casestudy_view.pt:94
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:50
+#: ../../climateadapt/browser/pt/casestudy_view.pt:96
 msgid "Life Time"
 msgstr "Durée de vie"
 
@@ -4395,27 +4118,9 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:177
+#: ../../climateadapt/browser/__init__.py:180
 msgid "Macro-Transnational region"
 msgstr "Région macro-transnationale"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:120
-msgid "Main motivation for taking adaptation action"
-msgstr "Motivation principale pour prendre des mesures d'adaptation"
 
 # ,
 # ,
@@ -4440,7 +4145,7 @@ msgstr "Making Cities Resilient: <a href=\"https://mcr2030.undrr.org/\">Making C
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:235
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:238
 msgid "Map"
 msgstr "Carte"
 
@@ -4458,7 +4163,7 @@ msgstr "Carte"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:264
+#: ../../climateadapt/vocabulary.py:263
 msgid "Maps, graphs and datasets"
 msgstr "Cartes, graphiques et ensembles de données"
 
@@ -4477,45 +4182,9 @@ msgstr "Cartes, graphiques et ensembles de données"
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:46
-#: ../../climateadapt/vocabulary.py:310
+#: ../../climateadapt/vocabulary.py:309
 msgid "Marine and Fisheries"
 msgstr "Maritime et pêches"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:212
-msgid "Mayor"
-msgstr "Maire"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:234
-msgid "Mayors Adapt signatory"
-msgstr "Signataire de Mayors Adapt"
 
 # ,
 # ,
@@ -4572,27 +4241,9 @@ msgid "Monitoring and evaluating adaptation"
 msgstr "Suivi et évaluation de l'adaptation"
 
 #,
-#: ../../climateadapt/vocabulary.py:311
+#: ../../climateadapt/vocabulary.py:310
 msgid "Mountain areas"
 msgstr "Zones de montagne"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:133
-msgid "Name of the strategy/ plan (If adopted)"
-msgstr "Nom de la stratégie / plan (s'il est adopté)"
 
 # ,
 # ,
@@ -4608,10 +4259,13 @@ msgstr "Nom de la stratégie / plan (s'il est adopté)"
 msgid "National HHAP"
 msgstr "HAP national"
 
-#,
+#: ../../climateadapt/browser/pt/countries-d3.pt:119
+msgid "National adaptation policy not reported beyond mandatory reporting in 2023"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/countries-d3.pt:115
-msgid "National adaptation policy adopted"
-msgstr "Politique d'adaptation nationale adoptée"
+msgid "National adaptation policy reported in 2023"
+msgstr ""
 
 # ,
 # ,
@@ -4627,12 +4281,11 @@ msgstr "Politique d'adaptation nationale adoptée"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/BKPcountries.py:179
-#: ../../climateadapt/browser/countries.py:181
+#: ../../climateadapt/browser/countries.py:183
 msgid "National adaption policy"
 msgstr "Politique d'adaptation nationale"
 
-#: ../../climateadapt/vocabulary.py:330
+#: ../../climateadapt/vocabulary.py:329
 msgid "Nature-based solutions"
 msgstr "Solutions basées sur la nature"
 
@@ -4697,7 +4350,7 @@ msgid "No data reported in 2021"
 msgstr "Aucune donnée déclarée en 2021"
 
 #,
-#: ../../climateadapt/browser/pt/countries-d3.pt:108
+#: ../../climateadapt/browser/pt/countries-d3.pt:104
 msgid "No data reported in 2023"
 msgstr "Aucune donnée rapportée en 2023"
 
@@ -4751,7 +4404,7 @@ msgstr "Aucun événement à venir."
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:316
+#: ../../climateadapt/vocabulary.py:315
 msgid "Non specific"
 msgstr "Non spécifique"
 
@@ -4827,7 +4480,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:53
+#: ../../climateadapt/browser/pt/casestudy_view.pt:55
 msgid "Objectives"
 msgstr "Objectifs"
 
@@ -4845,7 +4498,7 @@ msgstr "Objectifs"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:337
+#: ../../climateadapt/vocabulary.py:336
 msgid "Observations and Scenarios"
 msgstr "Observations et scénarios"
 
@@ -4911,7 +4564,7 @@ msgstr "Enregistrement en ligne"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:15
-#: ../../climateadapt/vocabulary.py:271
+#: ../../climateadapt/vocabulary.py:270
 msgid "Organisations"
 msgstr "Organisations"
 
@@ -4980,7 +4633,7 @@ msgstr "Autres régions"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:131
+#: ../../climateadapt/browser/pt/countries-d3.pt:140
 msgid "Outside EEA coverage"
 msgstr "Couverture hors EEE"
 
@@ -5045,25 +4698,7 @@ msgstr "Les partenaires"
 # ,
 # ,
 # ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:165
-msgid "Planned adaptation actions"
-msgstr "Actions d'adaptation planifiées"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:206
+#: ../../climateadapt/browser/pt/casestudy_view.pt:254
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
 msgstr "Veuillez nous contacter pour toute autre enquête sur cette étude de cas ou pour partager une nouvelle étude de cas (email <a href=\"mailto: climate.adapt@eea.europa.eu\"> climat.adapt@eea.europa.eu </ a >)"
 
@@ -5093,24 +4728,6 @@ msgstr "Aperçu des Politiques"
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:210
 msgid "Policy overview"
 msgstr "Aperçu des Politiques"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:217
-msgid "Population"
-msgstr "Population"
 
 # ,
 # ,
@@ -5266,7 +4883,7 @@ msgstr "Renseignements sur le projet"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:8
-#: ../../climateadapt/vocabulary.py:262
+#: ../../climateadapt/vocabulary.py:261
 msgid "Publications and reports"
 msgstr "Publications et rapports"
 
@@ -5316,7 +4933,7 @@ msgstr "Publié dans Climate-ADAPT"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:194
+#: ../../climateadapt/browser/pt/casestudy_view.pt:237
 msgid "Reference"
 msgstr "Référence"
 
@@ -5334,7 +4951,7 @@ msgstr "Référence"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:100
+#: ../../climateadapt/browser/pt/casestudy_view.pt:102
 msgid "Reference Information"
 msgstr "Informations de référence"
 
@@ -5354,7 +4971,7 @@ msgstr "Informations de référence"
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:28
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:55
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:54
 msgid "Reference information"
 msgstr "Informations de référence"
 
@@ -5390,7 +5007,7 @@ msgstr "Référence:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:122
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:113
 msgid "References:"
 msgstr "Références:"
 
@@ -5466,7 +5083,7 @@ msgstr "Documents et présentations connexes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:144
+#: ../../climateadapt/browser/pt/casestudy_view.pt:187
 msgid "Relevance"
 msgstr "Pertinence"
 
@@ -5484,7 +5101,7 @@ msgstr "Pertinence"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/pt/filter_acecontent.pt:45
+#: ../../climateadapt/tiles/pt/filter_acecontent.pt:49
 msgid "Relevant tile"
 msgstr "Carreaux pertinents"
 
@@ -5503,7 +5120,7 @@ msgstr "Carreaux pertinents"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:12
-#: ../../climateadapt/vocabulary.py:268
+#: ../../climateadapt/vocabulary.py:267
 msgid "Research and knowledge projects"
 msgstr "Projets de recherche et de connaissances"
 
@@ -5521,7 +5138,7 @@ msgstr "Projets de recherche et de connaissances"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:274
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:277
 msgid "Reset"
 msgstr "Réinitialiser"
 
@@ -5611,7 +5228,7 @@ msgstr "Faites défiler vers le haut"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:351
+#: ../../climateadapt/vocabulary.py:350
 msgid "Sea Level Rise"
 msgstr "Elévation du niveau de la mer"
 
@@ -5685,7 +5302,7 @@ msgstr "Consulter la base de données Climate Adapt:"
 msgid "Search tile"
 msgstr "Carreaux de recherche"
 
-#: ../../climateadapt/tiles/search_acecontent.py:842
+#: ../../climateadapt/tiles/search_acecontent.py:844
 msgid "Sector"
 msgstr "Secteur"
 
@@ -5703,7 +5320,7 @@ msgstr "Secteur"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:341
+#: ../../climateadapt/vocabulary.py:340
 msgid "Sector Policies"
 msgstr "Politiques sectorielles"
 
@@ -5742,8 +5359,8 @@ msgstr "Secteurs"
 # ,
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:112
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:182
-#: ../../climateadapt/browser/pt/casestudy_view.pt:295
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:173
+#: ../../climateadapt/browser/pt/casestudy_view.pt:345
 msgid "Sectors:"
 msgstr "Secteurs:"
 
@@ -5823,24 +5440,6 @@ msgstr "Sélectionnez un pays pour aller directement à la page du pays:"
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
 msgstr "Sélectionnez les secteurs pour lesquels vous souhaitez recevoir un e-mail de notification lorsqu'un élément est modifié."
 
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_admin.pt:15
-msgid "Send token emails to City Mayors"
-msgstr "Envoyez des courriels symboliques aux maires des villes"
-
 #: ../../climateadapt/tiles/pt/shareinfo.pt:8
 msgid "Share button tile"
 msgstr ""
@@ -5889,7 +5488,7 @@ msgstr "Afficher toutes les sources"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:580
+#: ../../climateadapt/vocabulary.py:579
 msgid "Social: Behavioural"
 msgstr "Social: comportemental"
 
@@ -5906,7 +5505,7 @@ msgstr "Social: comportemental"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:578
+#: ../../climateadapt/vocabulary.py:577
 msgid "Social: Educational options"
 msgstr "Social: Options éducatives"
 
@@ -5923,7 +5522,7 @@ msgstr "Social: Options éducatives"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:579
+#: ../../climateadapt/vocabulary.py:578
 msgid "Social: Informational"
 msgstr "Social: information"
 
@@ -5941,7 +5540,7 @@ msgstr "Social: information"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:61
+#: ../../climateadapt/browser/pt/casestudy_view.pt:63
 msgid "Solutions"
 msgstr "Solutions"
 
@@ -5959,8 +5558,8 @@ msgstr "Solutions"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:58
-#: ../../climateadapt/browser/pt/casestudy_view.pt:111
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
+#: ../../climateadapt/browser/pt/casestudy_view.pt:113
 msgid "Source"
 msgstr "Source"
 
@@ -6034,7 +5633,7 @@ msgstr "Europe du Sud-Ouest"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/casestudy_view.pt:74
+#: ../../climateadapt/browser/pt/casestudy_view.pt:76
 msgid "Stakeholder Participation"
 msgstr "Participation des parties prenantes"
 
@@ -6052,7 +5651,7 @@ msgstr "Participation des parties prenantes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:36
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:35
 msgid "Stakeholder participation"
 msgstr "Participation des parties prenantes"
 
@@ -6070,25 +5669,7 @@ msgstr "Participation des parties prenantes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/mayorsadapt/pt/city_admin.pt:27
-msgid "Status"
-msgstr "Statut"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/vocabulary.py:352
+#: ../../climateadapt/vocabulary.py:351
 msgid "Storms"
 msgstr "Tempêtes"
 
@@ -6105,7 +5686,7 @@ msgstr "Tempêtes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:576
+#: ../../climateadapt/vocabulary.py:575
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr "Structurel et physique: options d'adaptation basées sur les écosystèmes"
 
@@ -6122,7 +5703,7 @@ msgstr "Structurel et physique: options d'adaptation basées sur les écosystèm
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:574
+#: ../../climateadapt/vocabulary.py:573
 msgid "Structural and physical: Engineering and built environment options"
 msgstr "Structurel et physique: ingénierie et environnement bâti"
 
@@ -6139,7 +5720,7 @@ msgstr "Structurel et physique: ingénierie et environnement bâti"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:577
+#: ../../climateadapt/vocabulary.py:576
 msgid "Structural and physical: Service options"
 msgstr "Structurel et physique: options de service"
 
@@ -6156,7 +5737,7 @@ msgstr "Structurel et physique: options de service"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:575
+#: ../../climateadapt/vocabulary.py:574
 msgid "Structural and physical: Technological options"
 msgstr "Structurel et physique: options technologiques"
 
@@ -6174,27 +5755,9 @@ msgstr "Structurel et physique: options technologiques"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/__init__.py:199
+#: ../../climateadapt/browser/__init__.py:202
 msgid "Sub Nationals"
 msgstr "Sous-nationaux"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_admin.pt:49
-msgid "Submit"
-msgstr "Soumettre"
 
 # ,
 # ,
@@ -6224,28 +5787,10 @@ msgstr "HHAP infranational ou local"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:39
-#: ../../climateadapt/browser/pt/casestudy_view.pt:78
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:38
+#: ../../climateadapt/browser/pt/casestudy_view.pt:80
 msgid "Success and Limiting Factors"
 msgstr "Facteurs de réussite et facteurs limitants"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:153
-msgid "Summary of the strategy/plan"
-msgstr "Résumé de la stratégie / plan"
 
 # ,
 # ,
@@ -6468,28 +6013,10 @@ msgstr "La date fait référence à la dernière date de publication de l'articl
 # ,
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:147
-#: ../../climateadapt/browser/pt/casestudy_view.pt:217
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
+#: ../../climateadapt/browser/pt/casestudy_view.pt:267
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
 msgstr "La date fait référence au moment où l'article a été préparé ou mis à jour par les experts contributeurs pour être soumis à la publication dans Climate ADAPT."
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:145
-msgid "The information presented in these pages is based on the reporting according to 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action' and updates by the EEA member countries. However, for those pages where the information is last updated before 01/01/2021, the information presented is based on the reporting according to 'Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change' and updates by the EEA member countries.'"
-msgstr "Les informations présentées sur ces pages sont basées sur les déclarations effectuées conformément au \"Règlement (UE) 2018/1999 sur la gouvernance de l'Union de l'énergie et l'action climatique\" et sur les mises à jour effectuées par les pays membres de l'EEE. Toutefois, pour les pages dont la dernière mise à jour est antérieure au 01/01/2021, les informations présentées sont basées sur les déclarations effectuées conformément au \"Règlement (UE) n° 525/2013 relatif à un mécanisme pour la surveillance et la déclaration des émissions de gaz à effet de serre et pour la déclaration d'autres informations ayant trait au changement climatique\" et les mises à jour effectuées par les pays membres de l'EEE."
 
 # ,
 # ,
@@ -6523,7 +6050,7 @@ msgstr "Pour aller dans l'une des régions, veuillez cliquer sur les cartes."
 # ,
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:11
-#: ../../climateadapt/vocabulary.py:267
+#: ../../climateadapt/vocabulary.py:266
 msgid "Tools"
 msgstr "Outils"
 
@@ -6553,7 +6080,7 @@ msgid "Total"
 msgstr "Total"
 
 #,
-#: ../../climateadapt/vocabulary.py:312
+#: ../../climateadapt/vocabulary.py:311
 msgid "Tourism"
 msgstr "Tourisme"
 
@@ -6590,7 +6117,7 @@ msgstr "Régions transnationales et autres régions et pays"
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:48
-#: ../../climateadapt/vocabulary.py:313
+#: ../../climateadapt/vocabulary.py:312
 msgid "Transport"
 msgstr "Transport"
 
@@ -6615,7 +6142,7 @@ msgstr "Vidéos didactiques"
 msgid "URBACT"
 msgstr "URBACT"
 
-#: ../../climateadapt/translation/admin.py:2607
+#: ../../climateadapt/translation/admin.py:2620
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
@@ -6634,7 +6161,7 @@ msgstr ""
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:45
-#: ../../climateadapt/vocabulary.py:314
+#: ../../climateadapt/vocabulary.py:313
 msgid "Urban"
 msgstr "Urbain"
 
@@ -6679,7 +6206,7 @@ msgstr "Utilisation de l'outil d'assistance d'adaptation"
 # ,
 # ,
 # ,
-#: ../../climateadapt/tiles/pt/filter_acecontent.pt:57
+#: ../../climateadapt/tiles/pt/filter_acecontent.pt:61
 msgid "View all"
 msgstr "Voir tout"
 
@@ -6751,7 +6278,7 @@ msgstr "Voir sur DRMKC"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:338
+#: ../../climateadapt/vocabulary.py:337
 msgid "Vulnerability Assessment"
 msgstr "Évaluation de la vulnérabilité"
 
@@ -6769,25 +6296,7 @@ msgstr "Évaluation de la vulnérabilité"
 # ,
 # ,
 # ,
-#: ../../climateadapt/mayorsadapt/pt/city_admin.pt:16
-msgid "Warning: this will reset/invalidate tokens on all selected cities"
-msgstr "AVERTISSEMENT: cela réinitialisera / invalidera les jetons sur toutes les villes sélectionnées"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/vocabulary.py:353
+#: ../../climateadapt/vocabulary.py:352
 msgid "Water Scarcity"
 msgstr "Pénurie d'eau"
 
@@ -6806,7 +6315,7 @@ msgstr "Pénurie d'eau"
 # ,
 # ,
 #: ../../climateadapt/browser/overrides.py:50
-#: ../../climateadapt/vocabulary.py:315
+#: ../../climateadapt/vocabulary.py:314
 msgid "Water management"
 msgstr "Gestion de l'eau"
 
@@ -6824,62 +6333,8 @@ msgstr "Gestion de l'eau"
 # ,
 # ,
 # ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:143
-msgid "Weblink of the strategy/ plan"
-msgstr "Lien internet de la stratégie / plan"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:148
-msgid "Weblinks to relevant plans/ studies"
-msgstr "Liens internets vers les plans / études pertinents"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:230
-msgid "Website"
-msgstr "Site Internet"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
-#: ../../climateadapt/browser/pt/casestudy_view.pt:107
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:56
+#: ../../climateadapt/browser/pt/casestudy_view.pt:109
 msgid "Websites"
 msgstr "Sites Internet"
 
@@ -6899,27 +6354,9 @@ msgstr "Sites Internet"
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:29
 #: ../../climateadapt/browser/pt/aceproject_view.pt:55
-#: ../../climateadapt/browser/pt/adaptationoption_view.pt:117
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:108
 msgid "Websites:"
 msgstr "Sites Internet:"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:177
-msgid "What sectors are concerned"
-msgstr "Quels secteurs sont concernés"
 
 # ,
 # ,
@@ -6945,7 +6382,7 @@ msgstr "Où:"
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:456
+#: ../../climateadapt/vocabulary.py:455
 msgid "Wildfires"
 msgstr "Feux de forêt"
 
@@ -6975,45 +6412,9 @@ msgstr "Année:"
 # ,
 # ,
 # ,
-#: ../../climateadapt/browser/pt/countries-d3.pt:144
-msgid "[Disclaimer]"
-msgstr "[Clause de non-responsabilité]"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:33
 msgid "back to search"
 msgstr "Retour à la recherche"
-
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-# ,
-#: ../../climateadapt/mayorsadapt/pt/city_profile.pt:218
-msgid "inhabitants"
-msgstr "habitants"
 
 #. Default: "Filter the results."
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:250
