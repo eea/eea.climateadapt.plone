@@ -1,3 +1,4 @@
+from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
@@ -28,7 +29,10 @@ def get_url(item):
 def get_id(item):
     if not item:
         return None
-    getId = getattr(item, "getId")
+    try:
+        getId = getattr(item, "getId")
+    except:
+        __import__("pdb").set_trace()
     if not utils.safe_callable(getId):
         # Looks like a brain
         return getId
@@ -50,12 +54,60 @@ def get_view_url(context):
     return name, item_url
 
 
+class CatalogNavigationBreadcrumbs(BrowserView):
+    implements(INavigationBreadcrumbs)
+
+    def breadcrumbs(self):
+        context = aq_inner(self.context)
+        request = self.request
+        ct = getToolByName(context, "portal_catalog")
+        query = {}
+
+        # Check to see if the current page is a folder default view, if so
+        # get breadcrumbs from the parent folder
+        if utils.isDefaultPage(context, request):
+            currentPath = "/".join(utils.parent(context).getPhysicalPath())
+        else:
+            currentPath = "/".join(context.getPhysicalPath())
+        query["path"] = {"query": currentPath, "navtree": 1, "depth": 0}
+
+        rawresult = ct(**query)
+
+        # Sort items on path length
+        dec_result = [(len(r.getPath()), r) for r in rawresult]
+        dec_result.sort()
+
+        # Build result dict
+        result = []
+        for r_tuple in dec_result:
+            item = r_tuple[1]
+
+            # Don't include it if it would be above the navigation root
+            itemPath = item.getPath()
+
+            id, item_url = get_view_url(item)
+            data = {
+                "Title": utils.pretty_title_or_id(context, item),
+                "absolute_url": item_url,
+            }
+            result.append(data)
+        return result
+
+
 class PhysicalNavigationBreadcrumbs(BrowserView):
     implements(INavigationBreadcrumbs)
 
     def breadcrumbs(self):
         context = aq_inner(self.context)
         request = self.request
+        if IPloneSiteRoot.providedBy(self.context):
+            return (
+                {
+                    "absolute_url": self.context.absolute_url(),
+                    "Title": utils.pretty_title_or_id(context, context),
+                },
+            )
+
         container = utils.parent(context)
 
         name, item_url = get_view_url(context)
@@ -68,7 +120,9 @@ class PhysicalNavigationBreadcrumbs(BrowserView):
                 },
             )
 
-        view = getMultiAdapter((container, request), name="breadcrumbs_view")
+        # view = getMultiAdapter((container, request), name="breadcrumbs_view")
+        # __import__("pdb").set_trace()
+        view = CatalogNavigationBreadcrumbs(container, request)
         base = tuple(view.breadcrumbs())
 
         # Some things want to be hidden from the breadcrumbs
@@ -100,8 +154,8 @@ class PhysicalBreadcrumbs:
 
     def __call__(self, expand=False):
         result = {
-            "physical_breadcrumbs": {
-                "@id": f"{self.context.absolute_url()}/@physical_breadcrumbs"
+            "physical-breadcrumbs": {
+                "@id": "%s/@physical-breadcrumbs" % self.context.absolute_url()
             }
         }
         if not expand:
@@ -122,12 +176,14 @@ class PhysicalBreadcrumbs:
 
             items.append(item)
 
-        result["breadcrumbs"]["items"] = items
-        result["breadcrumbs"]["root"] = portal_state.navigation_root().absolute_url()
+        result["physical-breadcrumbs"]["items"] = items
+        result["physical-breadcrumbs"][
+            "root"
+        ] = portal_state.navigation_root().absolute_url()
         return result
 
 
 class PhysicalBreadcrumbsGet(Service):
     def reply(self):
         breadcrumbs = PhysicalBreadcrumbs(self.context, self.request)
-        return breadcrumbs(expand=True)["breadcrumbs"]
+        return breadcrumbs(expand=True)["physical-breadcrumbs"]
