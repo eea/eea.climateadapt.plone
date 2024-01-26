@@ -31,8 +31,8 @@ def get_id(item):
         return None
     try:
         getId = getattr(item, "getId")
-    except:
-        __import__("pdb").set_trace()
+    except Exception:
+        return None
     if not utils.safe_callable(getId):
         # Looks like a brain
         return getId
