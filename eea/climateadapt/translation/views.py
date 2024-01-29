@@ -22,7 +22,7 @@ from .interfaces import ITranslationContext
 from plone.api import portal
 from eea.climateadapt.browser.admin import force_unlock
 from plone.app.textfield.value import RichTextValue
-# from eea.climateadapt.translation.admin import get_translation_object_from_uid
+# from eea.climateadapt.translation.core import get_translation_object_from_uid
 
 logger = logging.getLogger("wise.msfd.translation")
 env = os.environ.get

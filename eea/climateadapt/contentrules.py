@@ -9,6 +9,7 @@ from plone import api
 from plone.api.portal import get_tool
 import transaction
 from OFS.SimpleItem import SimpleItem
+
 # from plone.app.contentrules import PloneMessageFactory as _
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.app.multilingual.manager import TranslationManager
@@ -24,30 +25,29 @@ from zope.site.hooks import getSite
 from DateTime import DateTime
 
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.async.utils import get_async_service
-from eea.climateadapt.translation.admin import create_translation_object
-from eea.climateadapt.translation.admin import copy_missing_interfaces
-from eea.climateadapt.translation.admin import execute_translate_async
-from eea.climateadapt.translation.admin import translate_obj
-from eea.climateadapt.translation.admin import translation_step_4
-from eea.climateadapt.translation.utils import (get_current_language,
-                                                get_site_languages)
-from eea.climateadapt.translation.admin import translation_step_5
+from eea.climateadapt.asynctasks.utils import get_async_service
+from eea.climateadapt.translation.core import create_translation_object
+from eea.climateadapt.translation.core import copy_missing_interfaces
+from eea.climateadapt.translation.core import execute_translate_async
+from eea.climateadapt.translation.core import translate_obj
+from eea.climateadapt.translation.core import translation_step_4
+from eea.climateadapt.translation.utils import get_current_language, get_site_languages
+from eea.climateadapt.translation.core import translation_step_5
 
 
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger("eea.climateadapt")
 
 
 class IObjectDateExpirationAction(Interface):
-    """Interface for the configurable aspects of a archived action. """
+    """Interface for the configurable aspects of a archived action."""
 
 
 @implementer(IObjectDateExpirationAction, IRuleElementData)
 class ObjectDateExpirationAction(SimpleItem):
-    """The actual persistent implementation of the action element. """
+    """The actual persistent implementation of the action element."""
 
     element = "eea.climateadapt.ObjectDateExpiration"
-    summary = _(u"Set object expiration date")
+    summary = _("Set object expiration date")
 
 
 @adapter(Interface, IObjectDateExpirationAction, Interface)
@@ -66,11 +66,11 @@ class ObjectDateExpirationActionExecutor(object):
 
         try:
             state = api.content.get_state(obj)
-            if state == 'published':
+            if state == "published":
                 obj.setExpirationDate(None)
                 obj._p_changed = True
                 obj.reindexObject()
-            if state == 'archived':
+            if state == "archived":
                 obj.setExpirationDate(DateTime())
                 obj._p_changed = True
                 obj.reindexObject()
@@ -90,15 +90,15 @@ class ObjectDateExpirationAddForm(NullAddForm):
 
 
 class IReindexAction(Interface):
-    """Interface for the configurable aspects of a reindex action. """
+    """Interface for the configurable aspects of a reindex action."""
 
 
 @implementer(IReindexAction, IRuleElementData)
 class ReindexAction(SimpleItem):
-    """The actual persistent implementation of the action element. """
+    """The actual persistent implementation of the action element."""
 
     element = "eea.climateadapt.Reindex"
-    summary = _(u"Reindex object")
+    summary = _("Reindex object")
 
 
 @adapter(Interface, IReindexAction, Interface)
@@ -130,12 +130,12 @@ class ReindexActionExecutor(object):
         return True
 
     def error(self, obj, error):
-        """ Show error """
+        """Show error"""
         request = getattr(self.context, "REQUEST", None)
         if request is not None:
             title = utils.pretty_title_or_id(obj, obj)
             message = _(
-                u"Unable to reindex ${name} as part of content rule 'reindex' action: ${error}",
+                "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}",
                 mapping={"name": title, "error": error},
             )
             IStatusMessage(request).addStatusMessage(message, type="error")
@@ -149,15 +149,15 @@ class ReindexAddForm(NullAddForm):
 
 
 class ITranslateAction(Interface):
-    """Interface for the configurable aspects of a translate action. """
+    """Interface for the configurable aspects of a translate action."""
 
 
 @implementer(ITranslateAction, IRuleElementData)
 class TranslateAction(SimpleItem):
-    """The actual persistent implementation of the action element. """
+    """The actual persistent implementation of the action element."""
 
     element = "eea.climateadapt.Translate"
-    summary = _(u"Translate object")
+    summary = _("Translate object")
 
 
 @adapter(Interface, ITranslateAction, Interface)
@@ -183,20 +183,19 @@ class TranslateActionExecutor(object):
             # like share-your-info
 
     def error(self, obj, error):
-        """ Show error """
+        """Show error"""
         request = getattr(self.context, "REQUEST", None)
         if request is not None:
             title = utils.pretty_title_or_id(obj, obj)
             message = _(
-                u"Unable to translate ${name} as part of content rule "
+                "Unable to translate ${name} as part of content rule "
                 "'translate' action: ${error}",
                 mapping={"name": title, "error": error},
             )
             IStatusMessage(request).addStatusMessage(message, type="error")
 
     def create_translations(self, obj):
-        """ Make sure all translations (cloned) objs exists for this obj
-        """
+        """Make sure all translations (cloned) objs exists for this obj"""
         transaction.savepoint()
         translations = TranslationManager(obj).get_translations()
         for language in get_site_languages():
@@ -205,33 +204,29 @@ class TranslateActionExecutor(object):
         transaction.commit()
 
     def translate_obj(self, obj):
-        """ Send the obj to be translated
-        """
+        """Send the obj to be translated"""
         try:
             result = translate_obj(obj, one_step=True)
         except Exception as e:
             self.error(obj, str(e))
 
     def copy_interfaces(self, obj):
-        """ Copy interfaces from en to translated obj
-        """
+        """Copy interfaces from en to translated obj"""
         translations = TranslationManager(obj).get_translations()
         for language in translations:
             trans_obj = translations[language]
             copy_missing_interfaces(obj, trans_obj)
 
     def set_workflow_states(self, obj):
-        """ Mark translations as not approved
-        """
+        """Mark translations as not approved"""
         translations = TranslationManager(obj).get_translations()
         for language in translations:
             this_obj = translations[language]
             wftool = getToolByName(this_obj, "portal_workflow")
-            wftool.doActionFor(this_obj, 'send_to_translation_not_approved')
+            wftool.doActionFor(this_obj, "send_to_translation_not_approved")
 
     def copy_fields(self, obj):
-        """ Run step 4 for this obj
-        """
+        """Run step 4 for this obj"""
         translations = TranslationManager(obj).get_translations()
         for language in translations:
             if language != "en":
@@ -242,8 +237,7 @@ class TranslateActionExecutor(object):
                 translation_step_4(getSite(), settings)
 
     def publish_translations(self, obj):
-        """ Run step 5 for this obj
-        """
+        """Run step 5 for this obj"""
         translations = TranslationManager(obj).get_translations()
         for language in translations:
             if language != "en":
@@ -269,26 +263,24 @@ class TranslateAsyncAddForm(NullAddForm):
 
 
 class ITranslateAsyncAction(Interface):
-    """ Interface for run translate and translate_step_4 for and object
-    """
+    """Interface for run translate and translate_step_4 for and object"""
 
 
 class TranslateAsyncAction(SimpleItem):
-    """ Async translate and translate_step_4 for and object
-    """
+    """Async translate and translate_step_4 for and object"""
+
     implements(ITranslateAsyncAction, IRuleElementData)
 
     element = "eea.climateadapt.TranslateAsync"
-    summary = _(u"Translate object async")
+    summary = _("Translate object async")
 
 
 def execute_translate_step_4_async(context, options, language, request_vars):
-    """ translate via zc.async
-    """
-    if not hasattr(context, 'REQUEST'):
-        zopeUtils._Z2HOST = options['obj_url']
+    """translate via zc.async"""
+    if not hasattr(context, "REQUEST"):
+        zopeUtils._Z2HOST = options["obj_url"]
         context = zopeUtils.makerequest(context)
-        context.REQUEST['PARENTS'] = [context]
+        context.REQUEST["PARENTS"] = [context]
 
         for k, v in request_vars:
             context.REQUEST.set(k, v)
@@ -296,10 +288,10 @@ def execute_translate_step_4_async(context, options, language, request_vars):
     try:
         settings = {
             "language": language,
-            "uid": options['uid'],
+            "uid": options["uid"],
         }
         res = translation_step_4(context, settings, async_request=True)
-        logger.info("Async translate for object %s", options['obj_url'])
+        logger.info("Async translate for object %s", options["obj_url"])
 
     except Exception as err:
         # async_service = get_async_service()
@@ -313,20 +305,20 @@ def execute_translate_step_4_async(context, options, language, request_vars):
         # )
 
         # mark the original job as failed
-        return "Translate rescheduled for object %s. "\
-            "Reason: %s " % (
-                options['obj_url'],
-                str(err))
+        return "Translate rescheduled for object %s. " "Reason: %s " % (
+            options["obj_url"],
+            str(err),
+        )
 
     return res
 
 
 class TranslateAsyncActionExecutor(object):
-    """ Translate async executor
-    """
+    """Translate async executor"""
+
     implements(IExecutable)
     adapts(Interface, ITranslateAsyncAction, Interface)
-    noasync_msg = 'No instance for async operations was defined.'
+    noasync_msg = "No instance for async operations was defined."
 
     def __init__(self, context, element, event):
         self.context = context
@@ -340,10 +332,9 @@ class TranslateAsyncActionExecutor(object):
     def __call__(self):
         obj = self.event.object
         options = {}
-        options['obj_url'] = obj.absolute_url()
-        options['uid'] = obj.UID()
-        options['http_host'] = self.context.REQUEST.environ[
-                'HTTP_X_FORWARDED_HOST']
+        options["obj_url"] = obj.absolute_url()
+        options["uid"] = obj.UID()
+        options["http_host"] = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
 
         request_vars = {
             # 'PARENTS': obj.REQUEST['PARENTS']
@@ -365,44 +356,56 @@ class TranslateAsyncActionExecutor(object):
                     return
 
                 create_translation_object(obj, language)
-                queue = self.async_service.getQueues()['']
+                queue = self.async_service.getQueues()[""]
                 self.async_service.queueJobInQueue(
-                        queue, ('translate',), execute_translate_async,
-                        obj, options, language, request_vars)
+                    queue,
+                    ("translate",),
+                    execute_translate_async,
+                    obj,
+                    options,
+                    language,
+                    request_vars,
+                )
 
         else:
             language = get_current_language(self.context, self.request)
-            en_path = '/'.join(obj.getPhysicalPath())
-            en_path = en_path.replace('/{}/'.format(language), '/en/')
+            en_path = "/".join(obj.getPhysicalPath())
+            en_path = en_path.replace("/{}/".format(language), "/en/")
             obj_en = self.context.unrestrictedTraverse(
-                    en_path.replace('/{}/'.format(language), '/en/'))
+                en_path.replace("/{}/".format(language), "/en/")
+            )
 
             create_translation_object(obj_en, language)
-            queue = self.async_service.getQueues()['']
+            queue = self.async_service.getQueues()[""]
             self.async_service.queueJobInQueue(
-                queue, ('translate',), execute_translate_async,
-                obj_en, options, language, request_vars)
+                queue,
+                ("translate",),
+                execute_translate_async,
+                obj_en,
+                options,
+                language,
+                request_vars,
+            )
 
         return True
 
 
 class ISynchronizeStatesForTranslationsAction(Interface):
-    """ Interface for sync states for translation items action. """
+    """Interface for sync states for translation items action."""
 
 
 @implementer(ISynchronizeStatesForTranslationsAction, IRuleElementData)
 class SynchronizeStatesForTranslationsAction(SimpleItem):
-    """The actual persistent implementation of the action element. """
+    """The actual persistent implementation of the action element."""
 
     element = "eea.climateadapt.SynchronizeStatesForTranslations"
-    summary = _(u"Synchronize states for translations")
+    summary = _("Synchronize states for translations")
 
 
 @adapter(Interface, ISynchronizeStatesForTranslationsAction, Interface)
 @implementer(IExecutable)
 class SynchronizeStatesForTranslationsActionExecutor(object):
-    """ Make sure the translated objects have the same state as EN object
-    """
+    """Make sure the translated objects have the same state as EN object"""
 
     def __init__(self, context, element, event):
         self.context = context
@@ -410,10 +413,9 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
         self.event = event
 
     def set_new_state(self, trans_obj, action):
-        """ Set the new state
-        """
+        """Set the new state"""
         try:
-            wftool = getToolByName(trans_obj, 'portal_workflow')
+            wftool = getToolByName(trans_obj, "portal_workflow")
             wftool.doActionFor(trans_obj, action)
             transaction.commit()
         except Exception:
@@ -426,8 +428,8 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
             logger.info("Synchronize states...")
             action = self.event.action
             translations = TranslationManager(obj).get_translations()
-            translated_objs = [
-                    translations[x] for x in translations if x != "en"]
+            translated_objs = [translations[x]
+                               for x in translations if x != "en"]
 
             for trans_obj in translated_objs:
                 self.set_new_state(trans_obj, action)

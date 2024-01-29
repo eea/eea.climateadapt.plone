@@ -4,18 +4,17 @@
 import logging
 
 from eea.climateadapt.scripts import get_plone_site
-from eea.climateadapt.translation.admin import get_all_objs
+from eea.climateadapt.translation.core import get_all_objs
 
 from .config import IGNORED_CONTENT_TYPES
 from .content import migrate_content_to_volto
 
-logger = logging.getLogger('SiteMigrate')
+logger = logging.getLogger("SiteMigrate")
 logger.setLevel(logging.WARNING)
 
 
 def _migrate_to_volto(site, request):
-    """ #161595 migration script for Plone 4 to Volto content
-    """
+    """#161595 migration script for Plone 4 to Volto content"""
 
     logger.info("--- START CONTENT MIGRATION ---")
     logger.debug("Get the list of items ordered by levels...")
@@ -32,8 +31,7 @@ def _migrate_to_volto(site, request):
 
 
 def migrate_to_volto(site=None, request=None):
-    """ bin/standalone run bin/migrate_to_volto
-    """
+    """bin/standalone run bin/migrate_to_volto"""
     if site is None:
         site = get_plone_site()
 

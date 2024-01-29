@@ -4,27 +4,28 @@ import logging
 import plone.api
 import transaction
 
-from eea.climateadapt.translation.admin import get_all_objs
+from eea.climateadapt.translation.core import get_all_objs
 
 from plone.app.contenttypes.interfaces import IFolder
 from plone.dexterity.interfaces import IDexterityContainer
 
 from .config import IGNORED_CONTENT_TYPES
 
-logger = logging.getLogger('SiteMigrate')
+logger = logging.getLogger("SiteMigrate")
 logger.setLevel(logging.INFO)
 
 
 def is_folderish(obj):
-    if IFolder in obj.__provides__.interfaces() or \
-            IDexterityContainer in obj.__provides__.interfaces():
+    if (
+        IFolder in obj.__provides__.interfaces()
+        or IDexterityContainer in obj.__provides__.interfaces()
+    ):
         return True
     return False
 
 
 def post_migration_cleanup(site, request):
-    """ Remove old index_html leaf page
-    """
+    """Remove old index_html leaf page"""
     logger.info("--- START CLEANUP ---")
     brains = get_all_objs(site)
 
@@ -42,9 +43,9 @@ def post_migration_cleanup(site, request):
         if not is_folderish(obj):
             continue
 
-        default_page = obj.getProperty('default_page')
+        default_page = obj.getProperty("default_page")
         if not default_page and "index_html" in obj.contentIds():
-            default_page = 'index_html'
+            default_page = "index_html"
 
         if default_page:
             count += 1
@@ -65,7 +66,7 @@ def post_migration_cleanup(site, request):
                     logger.info("Error %s" % default_page_obj.absolute_url())
 
             try:
-                obj.manage_delProperties(['default_page'])
+                obj.manage_delProperties(["default_page"])
                 obj._p_changed = True
                 # obj.reindexObject(idxs=['default_page'])
                 # TODO: investigate, fix:

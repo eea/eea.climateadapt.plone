@@ -3,7 +3,7 @@
 
 from eea.climateadapt.browser import AceViewApi
 from eea.climateadapt.browser.misc import create_contributions_link
-from eea.climateadapt.translation.admin import get_translation_object
+from eea.climateadapt.translation.core import get_translation_object
 from eea.climateadapt.translation.utils import get_current_language
 from plone import api
 from plone.dexterity.browser.add import DefaultAddForm
@@ -80,7 +80,8 @@ class C3sIndicatorView(DefaultView, AceViewApi):
             })();
             """
         response = response.replace(
-            "SCRIPT_JSON", self.context.overview_app_toolbox_url)
+            "SCRIPT_JSON", self.context.overview_app_toolbox_url
+        )
         return response
 
     def c3sjs_details(self):
@@ -169,7 +170,7 @@ class OrganisationView(DefaultView, AceViewApi):
         return response
 
     def contributions_link(self):
-        return create_contributions_link('en', self.context.id)
+        return create_contributions_link("en", self.context.id)
 
 
 # Form Extenders + add/edit forms
@@ -270,13 +271,13 @@ class OrganisationFormExtender(FormExtender):
         self.move("organisational_key_activities",
                   after="include_in_observatory")
         self.remove("other_contributor")
-        self.remove('IBlocks.blocks')
-        self.remove('IBlocks.blocks_layout')
+        self.remove("IBlocks.blocks")
+        self.remove("IBlocks.blocks_layout")
         labels = ["label_schema_ownership", "Settings"]
         self.form.groups = [
-            group for group in self.form.groups if (
-                group.label not in labels and len(group.fields.values()) > 0
-            )
+            group
+            for group in self.form.groups
+            if (group.label not in labels and len(group.fields.values()) > 0)
         ]
 
 
@@ -292,22 +293,22 @@ class AceItemFormExtender(FormExtender):
         self.remove("IOwnership.creators")
         self.remove("IOwnership.contributors")
         self.remove("IOwnership.rights")
-        self.remove('IBlocks.blocks')
-        self.remove('IBlocks.blocks_layout')
+        self.remove("IBlocks.blocks")
+        self.remove("IBlocks.blocks_layout")
         # 'label_schema_dates',
         labels = ["label_schema_ownership", "Settings"]
         self.form.groups = [
-            group for group in self.form.groups if (
-                group.label not in labels and len(group.fields.values()) > 0
-            )
+            group
+            for group in self.form.groups
+            if (group.label not in labels and len(group.fields.values()) > 0)
         ]
 
 
 class IndicatorFormExtender(FormExtender):
     def update(self):
         self.move("publication_date", before="map_graphs")
-        self.remove('IBlocks.blocks')
-        self.remove('IBlocks.blocks_layout')
+        self.remove("IBlocks.blocks")
+        self.remove("IBlocks.blocks_layout")
 
 
 class C3sIndicatorFormExtender(FormExtender):
@@ -315,5 +316,5 @@ class C3sIndicatorFormExtender(FormExtender):
 
     def update(self):
         self.move("IRelatedItems.relatedItems", after="details_app_parameters")
-        self.remove('IBlocks.blocks')
-        self.remove('IBlocks.blocks_layout')
+        self.remove("IBlocks.blocks")
+        self.remove("IBlocks.blocks_layout")
