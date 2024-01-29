@@ -11,7 +11,7 @@
   for="*"
   manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
   template="pt/translation_state_viewlet.pt"
-  class=".admin.TranslationStateViewlet"
+  class=".viewlets.TranslationStateViewlet"
   permission="zope2.View"
   />
 
@@ -20,7 +20,7 @@
   for="*"
   manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
   template="pt/translation_check_language_viewlet.pt"
-  class=".admin.TranslationCheckLanguageViewlet"
+  class=".viewlets.TranslationCheckLanguageViewlet"
   permission="zope2.View"
   />
 
@@ -29,7 +29,7 @@
   for="*"
   manager="plone.app.layout.viewlets.interfaces.IAboveContent"
   template="pt/translation_info_viewlet.pt"
-  class=".admin.TranslationInfoViewlet"
+  class=".viewlets.TranslationInfoViewlet"
   permission="zope2.View"
   />
 
