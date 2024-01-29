@@ -117,4 +117,11 @@
     layer="plone.restapi.interfaces.IPloneRestapiLayer"
     />
 
+  <plone:behavior
+    name="volto.blocks.editable.layout"
+    title="Blocks (Editable Layout)"
+    description="Enables Volto Blocks (editable layout) support"
+    provides=".behaviors.IBlocksEditableLayout"
+    />
+
 </configure>
