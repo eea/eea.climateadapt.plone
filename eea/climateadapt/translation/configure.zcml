@@ -8,33 +8,7 @@
   <adapter factory=".app.annotfactory" />
 
   <include file="admin.zcml" />
-
-  <browser:viewlet
-      name="translation_state_viewlet"
-      for="*"
-      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
-      template="pt/translation_state_viewlet.pt"
-      class=".admin.TranslationStateViewlet"
-      permission="zope2.View"
-      />
-
-  <browser:viewlet
-      name="translation_check_language_viewlet"
-      for="*"
-      manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
-      template="pt/translation_check_language_viewlet.pt"
-      class=".admin.TranslationCheckLanguageViewlet"
-      permission="zope2.View"
-      />
-
-  <browser:viewlet
-      name="translation_info_viewlet"
-      for="*"
-      manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-      template="pt/translation_info_viewlet.pt"
-      class=".admin.TranslationInfoViewlet"
-      permission="zope2.View"
-      />
+  <include file="viewlets.zcml" />
 
   <browser:page
     for="*"
