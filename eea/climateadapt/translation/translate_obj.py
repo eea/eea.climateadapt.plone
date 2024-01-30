@@ -199,7 +199,7 @@ def handle_cover(obj):
                         logger.info(tile_id)
 
 
-def get_translation_object(trans_obj, obj_en, version):
+def get_translation_object(trans_obj, obj_en, obj, version):
     layout_en = obj_en.getLayout()
     default_view_en = obj_en.getDefaultPage()
     layout_default_view_en = None
@@ -214,7 +214,7 @@ def get_translation_object(trans_obj, obj_en, version):
 
         if obj_version >= version:
             logger.info("Skipping! object already at version %s", obj_version)
-            continue
+            return None
 
         trans_obj.version = version
 
@@ -233,7 +233,6 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
     without using annotations.
     """
     source_language = get_language_for_obj(obj, "EN")
-    errors = []
     force_unlock(obj)
 
     fields = get_object_fields(obj)
@@ -250,12 +249,14 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                 continue
 
             trans_obj = get_translation_object(
-                translations[language], obj_en, version)
-            translate_obj_with_language(
-                trans_obj, obj, fields, language, source_language, errors, one_step
+                translations[language], obj_en, obj, version
             )
+            if trans_obj is not None:
+                translate_obj_with_language(
+                    trans_obj, obj, fields, language, source_language, one_step
+                )
 
-    return {"errors": errors}
+    return {"errors": []}
 
 
 def translatable_fields(trans_obj, fields):
@@ -299,7 +300,7 @@ def get_value(obj, fieldname):
 
 
 def translate_obj_with_language(
-    trans_obj, obj, fields, language, source_language, errors, one_step
+    trans_obj, obj, fields, language, source_language, one_step
 ):
     site_url = portal.getSite().absolute_url()
 
@@ -325,9 +326,6 @@ def translate_obj_with_language(
         if not value:
             continue
 
-        if fieldname not in errors:
-            errors.append(fieldname)
-
         force_unlock(trans_obj)
 
         if one_step and fieldname not in rich_fields:  # shortcuts the circuit
@@ -350,7 +348,7 @@ def translate_obj_with_language(
             encoded_text = translated["transId"].encode("latin-1")
 
             if fieldname == "source" and obj.portal_type in source_richtext_types:
-                setattr(trans_obj, fieldname, getattr(obj, fieldname))
+                # setattr(trans_obj, fieldname, getattr(obj, fieldname))
                 setattr(trans_obj, fieldname, RichTextValue(encoded_text))
 
                 trans_obj._p_changed = True
