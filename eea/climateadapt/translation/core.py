@@ -4,20 +4,17 @@ import logging
 import os
 import time
 from collections import defaultdict
-from datetime import date, datetime
+from datetime import datetime
 
+from .utils import get_object_fields_values, is_json
 import transaction
 from Acquisition import aq_inner, aq_parent
-from collective.cover.tiles.richtext import RichTextTile
-from DateTime import DateTime
 
 from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import (
     get_translated,
     retrieve_html_translation,
     retrieve_translation,
-    retrieve_translation_one_step,
 )
 from plone import api
 from plone.api import content, portal
@@ -26,437 +23,21 @@ from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.value import RichTextValue
 from plone.app.uuid.utils import uuidToObject
 from plone.behavior.interfaces import IBehaviorAssignable
-from plone.formwidget.geolocation.geolocation import Geolocation
-from plone.namedfile.file import NamedBlobFile, NamedBlobImage, NamedFile, NamedImage
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
-from z3c.relationfield.relation import RelationValue
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
 
-# from eea.climateadapt.asynctasks.utils import get_async_service
+from .translate_obj import translate_obj
+
+
+# steps => used to translate the entire website
+# translate in one step (when object is published)
+# translate async => manual action
 
 logger = logging.getLogger("eea.climateadapt")
-
-LANGUAGE_INDEPENDENT_FIELDS = [
-    "c3s_identifier",
-    "contact_email",
-    "contact_name",
-    "details_app_toolbox_url",
-    "duration",
-    "event_url",
-    "funding_programme",
-    "method",
-    "other_contributor",
-    "organisational_contact_information",
-    "organisational_websites",
-    "overview_app_toolbox_url",
-    "partners_source_link",
-    "remoteUrl",
-    "storage_type",
-    "sync_uid",
-    "timezone",
-    "template_layout",
-    "event_language",
-]
-
-
-def is_language_independent_value(value):
-    if (
-        isinstance(value, bool)
-        or isinstance(value, int)
-        or isinstance(value, long)
-        or isinstance(value, tuple)
-        or isinstance(value, list)
-        or isinstance(value, set)
-        or isinstance(value, dict)
-        or isinstance(value, NamedBlobImage)
-        or isinstance(value, NamedBlobFile)
-        or isinstance(value, NamedImage)
-        or isinstance(value, NamedFile)
-        or isinstance(value, DateTime)
-        or isinstance(value, date)
-        or isinstance(value, RelationValue)
-        or isinstance(value, Geolocation)
-    ):
-        return True
-    return False
-
-
-def is_json(input):
-    try:
-        json.loads(input)
-    except ValueError as e:
-        return False
-    return True
-
-
-def translate_obj(obj, lang=None, version=None, one_step=False):
-    """Translate given obj. Use one_step = True to translate in a single step
-    without using annotations.
-    """
-    # import pdb; pdb.set_trace()
-    source_language = "EN"
-    tile_fields = ["title", "description", "tile_title", "footer", "alt_text"]
-    errors = []
-    force_unlock(obj)
-
-    site_url = portal.getSite().absolute_url()
-    obj_url = obj.absolute_url()
-    obj_path = "/cca" + obj_url.split(site_url)[-1]
-
-    cca_event_languages = {
-        "English": "EN",
-        "German": "DE",
-        "French": "FR",
-        "Spanish": "ES",
-        "Italian": "IT",
-        "Dutch": "NL",
-        "Romanian": "RO",
-        "Polish": "PL",
-        "Bulgarian": "BG",
-        "Slovak": "SK",
-        "Slovenian": "SI",
-    }
-
-    if obj.portal_type == "cca-event":
-        custom_language = obj.event_language
-        if custom_language is not None:
-            custom_language = cca_event_languages.get(custom_language, None)
-            if custom_language is not None:
-                source_language = custom_language
-
-    # get behavior fields and values
-    behavior_assignable = IBehaviorAssignable(obj)
-    fields = {}
-    if behavior_assignable:
-        behaviors = behavior_assignable.enumerateBehaviors()
-        for behavior in behaviors:
-            for k, v in getFieldsInOrder(behavior.interface):
-                fields.update({k: v})
-
-    #  get schema fields and values
-    for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
-        fields.update({k: v})
-
-    translations = TranslationManager(obj).get_translations()
-    obj_en = translations.pop("en")
-
-    if not hasattr(obj_en, "REQUEST"):
-        obj_en.REQUEST = obj.REQUEST
-
-    layout_en = obj_en.getLayout()
-    default_view_en = obj_en.getDefaultPage()
-    if default_view_en is not None:
-        layout_default_view_en = obj_en[default_view_en].getLayout()
-
-    for language in translations:
-        if lang is not None:
-            if language != lang:
-                continue
-
-        trans_obj = translations[language]
-        trans_obj_url = trans_obj.absolute_url()
-        trans_obj_path = "/cca" + trans_obj_url.split(site_url)[-1]
-
-        if not hasattr(trans_obj, "REQUEST"):
-            trans_obj.REQUEST = obj.REQUEST
-
-        if version is not None:
-            obj_version = int(getattr(trans_obj, "version", 0))
-
-            if obj_version >= version:
-                logger.info(
-                    "Skipping! object already at version %s", obj_version)
-                continue
-
-            trans_obj.version = version
-
-        # set the layout of the translated object to match the english object
-        trans_obj.setLayout(layout_en)
-
-        # also set the layout of the default view
-        if default_view_en:
-            trans_obj[default_view_en].setLayout(layout_default_view_en)
-
-        # get tile data
-        if trans_obj.portal_type == "collective.cover.content" and one_step is True:
-            # One step translation for covers/tiles
-            json_data = get_object_fields_values(obj_en)
-
-            tile_html_fields = []
-            if "tile" in json_data:
-                for tile_id in json_data["tile"].keys():
-                    tile_data = json_data["tile"][tile_id]
-                    # LOOP tile text items
-                    for key in tile_data["item"].keys():
-                        # TODO add one step params
-                        res = retrieve_translation_one_step(
-                            source_language,
-                            tile_data["item"][key],
-                            [language.upper()],
-                            uid=trans_obj.UID(),
-                            obj_path=trans_obj_path,
-                            field=key,
-                            tile_data=tile_data,
-                            tile_id=tile_id,
-                        )
-                        logger.info("One step translation tile: %s", res)
-                    # LOOP tile HTML items
-                    for key in tile_data["html"].keys():
-                        value = tile_data["html"][key]
-                        value = value.replace("\r", "")
-                        value = value.replace("\n", "")
-                        try:
-                            test_value = value + "test"
-                        except UnicodeDecodeError:
-                            value = value.decode("utf-8")
-                        tile_html_fields.append(
-                            {"tile_id": tile_id, "field": key, "value": value}
-                        )
-
-            # Translate simple fields
-            for key in json_data["item"].keys():
-                res = retrieve_translation_one_step(
-                    source_language,
-                    json_data["item"][key],
-                    [language.upper()],
-                    uid=trans_obj.UID(),
-                    obj_path=trans_obj_path,
-                    field=key,
-                )
-
-            # TILE HTML fields translate in one call
-            if len(tile_html_fields):
-                if not trans_obj_path:
-                    continue
-                html_content = (
-                    "<!doctype html>" + "<head><meta charset=utf-8></head><body>"
-                )
-                for item in tile_html_fields:
-                    html_tile = (
-                        "<div class='cca-translation-tile'"
-                        + " data-field='"
-                        + item["field"]
-                        + "'"
-                        + " data-tile-id='"
-                        + item["tile_id"]
-                        + "'"
-                        + ">"
-                        + item["value"]
-                        + "</div>"
-                    )
-                    html_content += html_tile
-
-                html_content += "</body></html>"
-                html_content = html_content.encode("utf-8")
-                translated = retrieve_html_translation(
-                    source_language,
-                    html_content,
-                    trans_obj_path,
-                    language.upper(),
-                    False,
-                )
-        elif trans_obj.portal_type == "collective.cover.content":
-            tiles_id = trans_obj.list_tiles()
-
-            for tile_id in tiles_id:
-                tile = trans_obj.get_tile(tile_id)
-                for field in tile_fields:
-                    value = tile.data.get(field)
-                    if value:
-                        translated = retrieve_translation(
-                            source_language, value, [language.upper()]
-                        )
-
-                        if "translated" in translated:
-                            encoded_text = translated["transId"].encode(
-                                "latin-1")
-                            tile.data.update({field: encoded_text})
-
-                if isinstance(tile, RichTextWithTitle) or isinstance(
-                    tile, RichTextTile
-                ):
-                    try:
-                        value = tile.data.get("text").raw
-                    except Exception:
-                        value = None
-                    if value:
-                        html_content = (
-                            "<!doctype html>"
-                            + "<head><meta charset=utf-8></head><body>"
-                        )
-
-                        value = value.replace("\r", "")
-                        value = value.replace("\n", "")
-                        try:
-                            test_value = value + "test"
-                        except UnicodeDecodeError:
-                            value = value.decode("utf-8")
-                        html_tile = (
-                            "<div class='cca-translation-tile'"
-                            + " data-field='"
-                            + field
-                            + "'"
-                            + " data-tile-id='"
-                            + tile_id
-                            + "'"
-                            + ">"
-                            + value
-                            + "</div>"
-                        )
-
-                        html_content += html_tile
-
-                        html_content += "</body></html>"
-                        html_content = html_content.encode("utf-8")
-                        translated = retrieve_html_translation(
-                            source_language,
-                            html_content,
-                            trans_obj_path,
-                            language.upper(),
-                            False,
-                        )
-
-                        if "translated" in translated:
-                            try:
-                                encoded_text = translated["transId"].encode(
-                                    "latin-1")
-                                tile.data["text"].raw = encoded_text
-                            except AttributeError:
-                                logger.info("Error for tile. TODO improve.")
-                                logger.info(tile_id)
-
-        # send requests to translation service for each field
-        # update field in obj
-        rich_fields = []
-
-        for key in fields:
-            rich = False
-            # print(key)
-            if key in ["acronym", "id", "language", "portal_type", "contentType"]:
-                continue
-            if key in LANGUAGE_INDEPENDENT_FIELDS:
-                continue
-
-            value = getattr(getattr(obj, key), "raw", getattr(obj, key))
-
-            if trans_obj.portal_type in ["Event", "cca-event"]:
-                if key in ["start", "end", "timezone"]:
-                    continue
-
-            if not value:
-                continue
-
-            if callable(value):
-                # ignore datetimes
-                if isinstance(value(), DateTime):
-                    continue
-
-                value = value()
-
-            # ignore some value types
-            if is_language_independent_value(value):
-                continue
-
-            if isinstance(getattr(obj, key), RichTextValue):
-                value = getattr(obj, key).raw.replace("\r\n", "")
-                rich = True
-                if key not in rich_fields:
-                    rich_fields.append(key)
-
-            if is_json(value):
-                continue
-
-            if key not in errors:
-                errors.append(key)
-            force_unlock(trans_obj)
-
-            if one_step is True and rich is not True:
-                translated = retrieve_translation_one_step(
-                    source_language,
-                    value,
-                    [language.upper()],
-                    uid=trans_obj.UID(),
-                    obj_path=trans_obj_path,
-                    field=key,
-                )
-                continue
-
-            translated = retrieve_translation(
-                source_language, value, [language.upper()]
-            )
-            if "translated" in translated:
-                # TODO improve this part, after no more errors
-                encoded_text = translated["transId"].encode("latin-1")
-
-                source_richtext_types = [
-                    "eea.climateadapt.publicationreport",
-                    "eea.climateadapt.researchproject",
-                    "eea.climateadapt.mapgraphdataset",
-                    "eea.climateadapt.video",
-                ]
-
-                if key == "source" and obj.portal_type in source_richtext_types:
-                    # import pdb; pdb.set_trace()
-                    setattr(trans_obj, key, getattr(obj, key))
-                    # setattr(trans_obj, key, encoded_text)
-                    # setattr(trans_obj, key, translated['transId'])
-
-                    setattr(trans_obj, key, RichTextValue(encoded_text))
-                    # ValueError: Can not convert 'Elsevier' to an IRichTextValue
-                    # <ResearchProject at /cca/ro/help/share-your-info/research-and-knowledge-projects
-                    # /elderly-resident2019s-uses-of-and-preferences-for-urban-green-spaces-during-hea
-                    # t-periods>
-
-                    # reindex object
-                    trans_obj._p_changed = True
-                    trans_obj.reindexObject(idxs=[key])
-                    continue
-
-                if rich:
-                    pass
-                    # TODO No action needed, right?
-                    # setattr(trans_obj, key, getattr(obj, key))
-                    # setattr(trans_obj, key, RichTextValue(encoded_text))
-                    # setattr(getattr(trans_obj, key), 'raw', encoded_text)
-                else:
-                    setattr(trans_obj, key, encoded_text)
-
-                # reindex object
-                trans_obj._p_changed = True
-                trans_obj.reindexObject(idxs=[key])
-
-        if len(rich_fields) > 0:
-            html_content = "<!doctype html><head><meta charset=utf-8></head>"
-            html_content += "<body>"
-
-            for key in rich_fields:
-                value = getattr(obj, key).raw.replace("\r\n", "")
-                html_section = (
-                    "<div class='cca-translation-section'"
-                    + " data-field='"
-                    + key
-                    + "'>"
-                    + value
-                    + "</div>"
-                )
-
-                html_content += html_section
-
-            html_content += "</body></html>"
-            html_content = html_content.encode("utf-8")
-            res = retrieve_html_translation(
-                source_language,
-                html_content,
-                trans_obj_path,
-                language.upper(),
-                False,
-            )
-
-    return {"errors": errors}
 
 
 def initiate_translations(site, skip=0, version=None, language=None):
@@ -645,8 +226,7 @@ def fix_urls_for_translated_content(site, language=None):
                 try:
                     if trans_obj.id != obj.id:
                         # ids doesn't match
-                        trans_obj.aq_parent.manage_renameObject(
-                            trans_obj.id, obj.id)
+                        trans_obj.aq_parent.manage_renameObject(trans_obj.id, obj.id)
                         logger.info("SOLVED")
                         solved += 1
                     else:
@@ -663,8 +243,7 @@ def fix_urls_for_translated_content(site, language=None):
                     )
             else:
                 # missing translation
-                logger.info("NOT SOLVED. Missing translation: %s",
-                            trans_obj_path)
+                logger.info("NOT SOLVED. Missing translation: %s", trans_obj_path)
                 not_solved["missing_translation"].append(obj_url)
 
     logger.info("DONE. Solved: %s", solved)
@@ -787,7 +366,7 @@ def verify_translation_fields(site, request):
                 missing = object()
                 if (
                     not mark_field
-                    and not getattr(obj, field, missing) in (missing, None)
+                    and getattr(obj, field, missing) not in (missing, None)
                     and getattr(trans_obj, field, missing) in (missing, None)
                 ):
                     mark_field = True
@@ -839,93 +418,6 @@ def verify_translation_fields(site, request):
         outfile.write(json_object)
 
     return "\n".join(res)
-
-
-def get_object_fields(obj):
-    behavior_assignable = IBehaviorAssignable(obj)
-    fields = {}
-    if behavior_assignable:
-        behaviors = behavior_assignable.enumerateBehaviors()
-        for behavior in behaviors:
-            for k, v in getFieldsInOrder(behavior.interface):
-                fields.update({k: v})
-    for k, v in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
-        fields.update({k: v})
-    return fields
-
-
-def get_object_fields_values(obj):
-    # TODO: perhaps a list by each portal_type
-    skip_fields = LANGUAGE_INDEPENDENT_FIELDS
-    tile_fields = ["title", "text", "description",
-                   "tile_title", "footer", "alt_text"]
-
-    data = {}
-    data["portal_type"] = obj.portal_type
-    data["path"] = obj.absolute_url()
-    data["item"] = {}
-    data["html"] = {}
-    data["tile"] = {}
-    # get tile data
-    if obj.portal_type == "collective.cover.content":
-        tiles_id = obj.list_tiles()
-        for tile_id in tiles_id:
-            data["tile"][tile_id] = {"item": {}, "html": {}}
-            tile = obj.get_tile(tile_id)
-            for field in tile_fields:
-                value = None
-                if isinstance(tile, RichTextWithTitle) or isinstance(
-                    tile, RichTextTile
-                ):
-                    if field in tile_fields:
-                        try:
-                            if isinstance(tile.data.get(field), RichTextValue):
-                                value = tile.data.get(field).raw
-                                if value:
-                                    data["tile"][tile_id]["html"][field] = value
-                            else:
-                                value = tile.data.get(field)
-                                if value:
-                                    data["tile"][tile_id]["item"][field] = value
-                        except Exception:
-                            value = None
-                else:
-                    value = tile.data.get(field, None)
-                    if value:
-                        data["tile"][tile_id]["item"][field] = value
-    fields = get_object_fields(obj)
-    for key in fields:
-        if key in ["acronym", "id", "language", "portal_type", "contentType"]:
-            continue
-        if key in skip_fields:
-            continue
-
-        value = getattr(getattr(obj, key), "raw", getattr(obj, key))
-
-        if not value:
-            continue
-
-        if callable(value):
-            # ignore datetimes
-            if isinstance(value(), DateTime):
-                continue
-
-            value = value()
-
-        # ignore some value types
-        if is_language_independent_value(value):
-            continue
-
-        if isinstance(getattr(obj, key), RichTextValue):
-            value = getattr(obj, key).raw.replace("\r\n", "")
-            data["html"][key] = value
-            continue
-
-        if is_json(value):
-            continue
-
-        data["item"][key] = value
-    return data
 
 
 def is_obj_skipped_for_translation(obj):
@@ -1091,7 +583,7 @@ def translation_step_2(site, request, force_uid=None):
     nr_items_translated = 0  # found translated objects
     if limit:
         json_files.sort()
-        json_files = json_files[offset: offset + limit]
+        json_files = json_files[offset : offset + limit]
 
     for json_file in json_files:
         file = open("/tmp/jsons/" + json_file, "r")
@@ -1129,8 +621,7 @@ def translation_step_2(site, request, force_uid=None):
         if len(tile_html_fields):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
-            trans_obj_path = get_translation_object_path(
-                obj, language, site_url)
+            trans_obj_path = get_translation_object_path(obj, language, site_url)
             if not trans_obj_path:
                 continue
             html_content = "<!doctype html>" + "<head><meta charset=utf-8></head><body>"
@@ -1161,8 +652,7 @@ def translation_step_2(site, request, force_uid=None):
 
         # LOOP object text items
         for key in json_data["item"].keys():
-            res = retrieve_translation(
-                "EN", json_data["item"][key], [language.upper()])
+            res = retrieve_translation("EN", json_data["item"][key], [language.upper()])
             nr_items += 1
             if "translated" in res:
                 nr_items_translated += 1
@@ -1170,8 +660,7 @@ def translation_step_2(site, request, force_uid=None):
         if len(json_data["html"]):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
-            trans_obj_path = get_translation_object_path(
-                obj, language, site_url)
+            trans_obj_path = get_translation_object_path(obj, language, site_url)
             if not trans_obj_path:
                 continue
 
@@ -1207,8 +696,7 @@ def translation_step_2(site, request, force_uid=None):
             total_files,
         )
         if not force_uid:
-            report["date"]["last_update"] = datetime.now().strftime(
-                "%Y-%m-%d %H:%M:%S")
+            report["date"]["last_update"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             report["response"] = {
                 "items": {
                     "nr_files": nr_files,
@@ -1296,18 +784,10 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type=None):
                 trans_obj.__annotations__[tile_annot_id] = update
 
     for key in json_data["item"].keys():
-        translated_msg = get_translated(
-            json_data["item"][key], language.upper())
+        translated_msg = get_translated(json_data["item"][key], language.upper())
 
         if translated_msg:
             encoded_text = translated_msg.encode("latin-1")
-
-            source_richtext_types = [
-                "eea.climateadapt.publicationreport",
-                "eea.climateadapt.researchproject",
-                "eea.climateadapt.mapgraphdataset",
-                "eea.climateadapt.video",
-            ]
 
             if key == "source" and obj.portal_type in source_richtext_types:
                 setattr(trans_obj, key, getattr(obj, key))
@@ -1360,7 +840,7 @@ def translation_step_3(site, request):
 
     if limit:
         json_files.sort()
-        json_files = json_files[offset: offset + limit]
+        json_files = json_files[offset : offset + limit]
 
     nr_files = 0  # total translatable eng objects (not unique)
 
@@ -1369,17 +849,14 @@ def translation_step_3(site, request):
         logger.info("PROCESSING file: %s", nr_files)
 
         try:
-            translation_step_3_one_file(
-                json_file, language, catalog, portal_type)
+            translation_step_3_one_file(json_file, language, catalog, portal_type)
             transaction.commit()  # make sure tiles are saved (encoding issue)
         except Exception as err:
             logger.info("ERROR")  # TODO improve this
             logger.info(err)
 
-        report["date"]["last_update"] = datetime.now().strftime(
-            "%Y-%m-%d %H:%M:%S")
-        report["response"] = {
-            "last_item": json_file, "files_processd": nr_files}
+        report["date"]["last_update"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        report["response"] = {"last_item": json_file, "files_processd": nr_files}
         report["status"] = "Processing"
 
         json_object = json.dumps(report, indent=4)
@@ -1430,110 +907,6 @@ def translation_step_4(site, request, async_request=False):
     # site_url = portal.getSite().absolute_url()
     logger.info("Start copying values for language independent fields...")
 
-    language_independent_fields = {
-        "Folder": ["effective"],
-        "eea.climateadapt.video": ["effective"],
-        "Link": ["effective"],
-        "eea.climateadapt.c3sindicator": ["effective"],
-        "eea.climateadapt.researchproject": ["effective"],
-        "eea.climateadapt.tool": [
-            "spatial_values",
-            "storage_type",
-            "publication_date",
-            "effective",
-        ],
-        "eea.climateadapt.guidancedocument": [
-            "storage_type",
-            "spatial_values",
-            "effective",
-        ],
-        "EasyForm": ["showFields", "effective"],
-        "eea.climateadapt.adaptationoption": [
-            "implementation_type",
-            "effective",
-        ],
-        "eea.climateadapt.mapgraphdataset": [
-            "storage_type",
-            "spatial_values",
-            "effective",
-            "source",
-        ],
-        "Collection": ["sort_reversed", "query", "effective"],
-        "Document": ["table_of_contents", "effective"],
-        "News Item": [
-            "health_impacts",
-            "image",
-            "effective",
-            "include_in_observatory",
-            "subject",
-        ],
-        "eea.climateadapt.casestudy": [
-            "geolocation",
-            "implementation_type",
-            "spatial_values",
-            "effective",
-            "source",
-            "geochars",
-        ],
-        "eea.climateadapt.aceproject": [
-            "specialtagging",
-            "spatial_values",
-            "funding_programme",
-            "effective",
-            "source",
-        ],
-        "eea.climateadapt.indicator": [
-            "publication_date",
-            "storage_type",
-            "spatial_values",
-            "effective",
-        ],
-        "eea.climateadapt.informationportal": [
-            "spatial_values",
-            "storage_type",
-            "publication_date",
-            "effective",
-        ],
-        "eea.climateadapt.organisation": [
-            "storage_type",
-            "spatial_values",
-            "publication_date",
-            "effective",
-        ],
-        "eea.climateadapt.publicationreport": [
-            "storage_type",
-            "spatial_values",
-            "metadata",
-            "effective",
-        ],
-        "Event": [
-            "timezone",
-            "start",
-            "end",
-            "effective",
-            "event_url",
-            "health_impacts",
-            "contact_email",
-            "location",
-            "contact_name",
-            "effective",
-            "include_in_observatory",
-        ],
-        "cca-event": [
-            "timezone",
-            "start",
-            "end",
-            "effective",
-            "contact_email",
-            "contact_name",
-            "event_language",
-            "event_url",
-        ],
-        "File": ["file", "effective", "filename"],
-        "Image": ["image", "effective", "filename"],
-        "collective.cover.content": ["effective", "template_layout"],
-    }
-
     obj_count = 0
     for brain in brains:
         if uid and uid != brain.UID:
@@ -1582,8 +955,7 @@ def translation_step_4(site, request, async_request=False):
                                     trans_tile = None
 
                                 if trans_tile is not None:
-                                    collection_obj = uuidToObject(
-                                        tile.data["uuid"])
+                                    collection_obj = uuidToObject(tile.data["uuid"])
                                     collection_trans_obj = get_translation_object(
                                         collection_obj, language
                                     )
@@ -1592,8 +964,7 @@ def translation_step_4(site, request, async_request=False):
 
                                     temp = dataManager.get()
                                     try:
-                                        temp["uuid"] = IUUID(
-                                            collection_trans_obj)
+                                        temp["uuid"] = IUUID(collection_trans_obj)
                                     except TypeError:
                                         logger.info("Collection not found.")
 
@@ -1651,11 +1022,9 @@ def translation_step_4(site, request, async_request=False):
             # also set the layout of the default view
             if layout_default_view_en:
                 try:
-                    trans_obj[default_view_en].setLayout(
-                        layout_default_view_en)
+                    trans_obj[default_view_en].setLayout(layout_default_view_en)
                 except:
-                    logger.info("Can't set layout for: %s",
-                                trans_obj.absolute_url())
+                    logger.info("Can't set layout for: %s", trans_obj.absolute_url())
                     continue
 
             if async_request:
@@ -1668,7 +1037,7 @@ def translation_step_4(site, request, async_request=False):
             trans_obj._p_changed = True
             trans_obj.reindexObject()
 
-        if obj.portal_type in language_independent_fields:
+        if obj.portal_type in contenttype_language_independent_fields:
             force_unlock(obj)
             obj_url = obj.absolute_url()
             logger.info("PROCESS: %s", obj_url)
@@ -1688,7 +1057,7 @@ def translation_step_4(site, request, async_request=False):
                 logger.info("Missing translation for: %s", obj_url)
                 continue
 
-            fields = language_independent_fields[obj.portal_type]
+            fields = contenttype_language_independent_fields[obj.portal_type]
             for key in fields:
                 logger.info("Field: %s", key)
 
@@ -2169,8 +1538,7 @@ def verify_unlinked_translation(site, request):
     """Clone the content to be translated if not exist"""
     language = request.get("language", None)
     available_languages = ["es", "de", "it", "pl", "fr"]
-    check_nr_languages = request.get(
-        "check_nr_languages", len(available_languages) + 1)
+    check_nr_languages = request.get("check_nr_languages", len(available_languages) + 1)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
     offset = int(request.get("offset", 0))
@@ -2204,8 +1572,7 @@ def report_unlinked_translation(site, request):
     """Report untranslated items"""
     language = request.get("language", None)
     available_languages = ["es", "de", "it", "pl", "fr"]
-    check_nr_languages = request.get(
-        "check_nr_languages", len(available_languages) + 1)
+    check_nr_languages = request.get("check_nr_languages", len(available_languages) + 1)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
     offset = int(request.get("offset", 0))

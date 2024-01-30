@@ -7,11 +7,10 @@ from eea.climateadapt.asynctasks.utils import get_async_service
 from eea.climateadapt.translation.utils import (
     get_current_language,
     get_site_languages,
-    # translate_text,
 )
 from Products.CMFPlone import utils
 from plone import api
-from plone.api import content, portal
+from plone.api import portal
 from .core import (
     admin_some_translated,
     copy_missing_interfaces,
@@ -317,17 +316,16 @@ class AdminPublishItems(BrowserView):
                     errors.append(result)
 
             # second step: publish the contents of the item
-            for title, content_obj in obj_en.contentItems():
+            for _, content_obj in obj_en.contentItems():
                 try:
                     if api.content.get_state(content_obj) != "published":
                         continue
                 except:
                     continue
 
-                translations = TranslationManager(
-                    content_obj).get_translations()
+                translations = TranslationManager(content_obj).get_translations()
 
-                for _lang, _obj_transl in translations.items():
+                for _, _obj_transl in translations.items():
                     result = self.publish_obj(_obj_transl)
 
                     if result:
@@ -463,8 +461,7 @@ class TranslateObjectAsync(BrowserView):
                     continue
 
                 if self.async_service is None:
-                    logger.warn(
-                        "Can't translate_asyn, plone.app.async not installed!")
+                    logger.warn("Can't translate_asyn, plone.app.async not installed!")
                     return
 
                 create_translation_object(obj, language)
