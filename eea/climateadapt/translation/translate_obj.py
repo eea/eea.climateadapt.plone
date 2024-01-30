@@ -258,6 +258,46 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
     return {"errors": errors}
 
 
+def translatable_fields(trans_obj, fields):
+    res = []
+    for fieldname in fields:
+        if fieldname in IGNORE_FIELDS + LANGUAGE_INDEPENDENT_FIELDS:
+            continue
+
+        if trans_obj.portal_type in ["Event", "cca-event"]:
+            if fieldname in ["start", "end", "timezone"]:
+                continue
+
+        res.append(fieldname)
+
+    return res
+
+
+def get_value(obj, fieldname):
+    value = getattr(getattr(obj, fieldname), "raw", getattr(obj, fieldname))
+
+    if not value:
+        return None
+
+    if callable(value):
+        if isinstance(value(), DateTime):  # ignore datetimes
+            return None
+
+        value = value()
+
+    # ignore some value types
+    if is_language_independent_value(value):
+        return None
+
+    if isinstance(getattr(obj, fieldname), RichTextValue):
+        value = getattr(obj, fieldname).raw.replace("\r\n", "")
+
+    if is_json(value):
+        return None
+
+    return value
+
+
 def translate_obj_with_language(
     trans_obj, obj, fields, language, source_language, errors, one_step
 ):
@@ -276,38 +316,13 @@ def translate_obj_with_language(
     # update field in obj
     rich_fields = set()
 
-    for fieldname in fields:
-        if fieldname in IGNORE_FIELDS + LANGUAGE_INDEPENDENT_FIELDS:
-            continue
+    for fieldname in translatable_fields(trans_obj, fields):
+        value, is_rich_field = get_value(obj, fieldname)
 
-        if trans_obj.portal_type in ["Event", "cca-event"]:
-            if fieldname in ["start", "end", "timezone"]:
-                continue
-
-        value = getattr(getattr(obj, fieldname),
-                        "raw", getattr(obj, fieldname))
-
-        if not value:
-            continue
-
-        if callable(value):
-            if isinstance(value(), DateTime):  # ignore datetimes
-                continue
-
-            value = value()
-
-        # ignore some value types
-        if is_language_independent_value(value):
-            continue
-
-        is_rich_field = False
-
-        if isinstance(getattr(obj, fieldname), RichTextValue):
-            value = getattr(obj, fieldname).raw.replace("\r\n", "")
-            is_rich_field = True
+        if is_rich_field:
             rich_fields.add(fieldname)
 
-        if is_json(value):
+        if not value:
             continue
 
         if fieldname not in errors:
@@ -315,8 +330,8 @@ def translate_obj_with_language(
 
         force_unlock(trans_obj)
 
-        if one_step and not is_rich_field:
-            retrieve_translation_one_step(  # trigger translate
+        if one_step and fieldname not in rich_fields:  # shortcuts the circuit
+            retrieve_translation_one_step(
                 source_language,
                 value,
                 [language.upper()],
@@ -342,7 +357,7 @@ def translate_obj_with_language(
                 trans_obj.reindexObject(idxs=[fieldname])
                 continue
 
-            if not is_rich_field:
+            if fieldname not in rich_fields:
                 setattr(trans_obj, fieldname, encoded_text)
 
             trans_obj._p_changed = True
