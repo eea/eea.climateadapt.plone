@@ -57,7 +57,7 @@ def get_object_fields(obj):
     return fields
 
 
-def handle_cover_one_step(obj):
+def handle_cover_one_step(trans_obj, obj_en, language, source_language, trans_obj_path):
     json_data = get_object_fields_values(obj_en)
 
     tile_html_fields = []
@@ -84,7 +84,7 @@ def handle_cover_one_step(obj):
                 value = value.replace("\r", "")
                 value = value.replace("\n", "")
                 try:
-                    test_value = value + "test"
+                    _ = value + "test"
                 except UnicodeDecodeError:
                     value = value.decode("utf-8")
                 tile_html_fields.append(
@@ -105,26 +105,18 @@ def handle_cover_one_step(obj):
     # TILE HTML fields translate in one call
     if len(tile_html_fields):
         if not trans_obj_path:
-            continue
+            return
+
         html_content = "<!doctype html>" + "<head><meta charset=utf-8></head><body>"
         for item in tile_html_fields:
-            html_tile = (
-                "<div class='cca-translation-tile'"
-                + " data-field='"
-                + item["field"]
-                + "'"
-                + " data-tile-id='"
-                + item["tile_id"]
-                + "'"
-                + ">"
-                + item["value"]
-                + "</div>"
-            )
+            html_tile = get_html_field(
+                item["field"], item["tile_id"], item["value"])
             html_content += html_tile
 
         html_content += "</body></html>"
         html_content = html_content.encode("utf-8")
-        translated = retrieve_html_translation(
+
+        retrieve_html_translation(
             source_language,
             html_content,
             trans_obj_path,
@@ -132,7 +124,14 @@ def handle_cover_one_step(obj):
         )
 
 
-def handle_cover(obj):
+def get_html_field(field, tile_id, value):
+    return (
+        "<div class='cca-translation-tile' data-field='%s' data-tile-id='%s'>%s</div>"
+        % (field, tile_id, value)
+    )
+
+
+def handle_cover(trans_obj, language, source_language, trans_obj_path):
     tiles_id = trans_obj.list_tiles()
 
     for tile_id in tiles_id:
@@ -141,7 +140,8 @@ def handle_cover(obj):
             value = tile.data.get(field)
             if value:
                 translated = (
-                    retrieve_translation(source_language, value, [language.upper()])
+                    retrieve_translation(
+                        source_language, value, [language.upper()])
                     or {}
                 )
 
@@ -162,21 +162,10 @@ def handle_cover(obj):
                 value = value.replace("\r", "")
                 value = value.replace("\n", "")
                 try:
-                    test_value = value + "test"
+                    _ = value + "test"
                 except UnicodeDecodeError:
                     value = value.decode("utf-8")
-                html_tile = (
-                    "<div class='cca-translation-tile'"
-                    + " data-field='"
-                    + field
-                    + "'"
-                    + " data-tile-id='"
-                    + tile_id
-                    + "'"
-                    + ">"
-                    + value
-                    + "</div>"
-                )
+                html_tile = get_html_field("no_value", tile_id, value)
 
                 html_content += html_tile
 
@@ -189,7 +178,7 @@ def handle_cover(obj):
                     language.upper(),
                 )
 
-                if "translated" in translated:
+                if translated and "translated" in translated:
                     try:
                         encoded_text = translated["transId"].encode("latin-1")
                         tile.data["text"].raw = encoded_text
@@ -251,11 +240,12 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
         if language != lang:
             continue
 
-        trans_obj = get_translation_object(translations[language], obj_en, obj, version)
+        trans_obj = get_translation_object(
+            translations[language], obj_en, obj, version)
 
         if trans_obj is not None:
             translate_obj_with_language(
-                trans_obj, obj, fields, language, source_language, one_step
+                trans_obj, obj, obj_en, fields, language, source_language, one_step
             )
 
     return dummy
@@ -303,7 +293,7 @@ def get_value(obj, fieldname):
 
 
 def translate_obj_with_language(
-    trans_obj, obj, fields, language, source_language, one_step
+    trans_obj, obj, obj_en, fields, language, source_language, one_step
 ):
     site_url = portal.getSite().absolute_url()
 
@@ -312,9 +302,12 @@ def translate_obj_with_language(
 
     # get tile data
     if trans_obj.portal_type == "collective.cover.content" and one_step is True:
-        handle_cover_one_step(obj)  # One step translation for covers/tiles
+        # One step translation for covers/tiles
+        handle_cover_one_step(
+            trans_obj, obj_en, language, source_language, trans_obj_path
+        )
     elif trans_obj.portal_type == "collective.cover.content":
-        handle_cover(obj)
+        handle_cover(trans_obj, language, source_language, trans_obj_path)
 
     # send requests to translation service for each field
     # update field in obj
@@ -343,7 +336,8 @@ def translate_obj_with_language(
             continue
 
         translated = (
-            retrieve_translation(source_language, value, [language.upper()]) or {}
+            retrieve_translation(source_language, value, [
+                                 language.upper()]) or {}
         )
         if "translated" in translated:
             # TODO improve this part, after no more errors
