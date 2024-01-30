@@ -1,3 +1,5 @@
+tile_fields = ["title", "description", "tile_title", "footer", "alt_text"]
+
 cca_event_languages = {
     "English": "EN",
     "German": "DE",
