@@ -236,8 +236,6 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
     errors = []
     force_unlock(obj)
 
-    site_url = portal.getSite().absolute_url()
-
     fields = get_object_fields(obj)
 
     translations = TranslationManager(obj).get_translations()
@@ -251,110 +249,108 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
             if language != lang:
                 continue
 
-        trans_obj = get_translation_object(
-            translations[language], obj_en, version)
-        trans_obj_url = trans_obj.absolute_url()
-        trans_obj_path = "/cca" + trans_obj_url.split(site_url)[-1]
-
-        # get tile data
-        if trans_obj.portal_type == "collective.cover.content" and one_step is True:
-            handle_cover_one_step(obj)  # One step translation for covers/tiles
-        elif trans_obj.portal_type == "collective.cover.content":
-            handle_cover(obj)
-
-        # send requests to translation service for each field
-        # update field in obj
-        rich_fields = set()
-
-        for key in fields:
-            is_rich_field = False
-            if key in IGNORE_FIELDS or key in LANGUAGE_INDEPENDENT_FIELDS:
-                continue
-
-            if trans_obj.portal_type in ["Event", "cca-event"]:
-                if key in ["start", "end", "timezone"]:
-                    continue
-
-            value = getattr(getattr(obj, key), "raw", getattr(obj, key))
-
-            if not value:
-                continue
-
-            if callable(value):
-                # ignore datetimes
-                if isinstance(value(), DateTime):
-                    continue
-
-                value = value()
-
-            # ignore some value types
-            if is_language_independent_value(value):
-                continue
-
-            if isinstance(getattr(obj, key), RichTextValue):
-                value = getattr(obj, key).raw.replace("\r\n", "")
-                is_rich_field = True
-                if key not in rich_fields:
-                    rich_fields.add(key)
-
-            if is_json(value):
-                continue
-
-            if key not in errors:
-                errors.append(key)
-
-            force_unlock(trans_obj)
-
-            if one_step is True and is_rich_field is not True:
-                translated = retrieve_translation_one_step(
-                    source_language,
-                    value,
-                    [language.upper()],
-                    uid=trans_obj.UID(),
-                    obj_path=trans_obj_path,
-                    field=key,
-                )
-                continue
-
-            translated = (
-                retrieve_translation(source_language, value, [
-                                     language.upper()]) or {}
-            )
-            if "translated" in translated:
-                # TODO improve this part, after no more errors
-                encoded_text = translated["transId"].encode("latin-1")
-
-                if key == "source" and obj.portal_type in source_richtext_types:
-                    setattr(trans_obj, key, getattr(obj, key))
-                    setattr(trans_obj, key, RichTextValue(encoded_text))
-                    # setattr(trans_obj, key, encoded_text)
-                    # setattr(trans_obj, key, translated['transId'])
-                    # ValueError: Can not convert 'Elsevier' to an IRichTextValue
-                    # <ResearchProject at /cca/ro/help/share-your-info/research-and-knowledge-projects
-                    # /elderly-resident2019s-uses-of-and-preferences-for-urban-green-spaces-during-hea
-                    # t-periods>
-
-                    trans_obj._p_changed = True
-                    trans_obj.reindexObject(idxs=[key])
-                    continue
-
-                if not is_rich_field:
-                    setattr(trans_obj, key, encoded_text)
-                else:
-                    pass  # TODO No action needed, right?
-                    # setattr(trans_obj, key, getattr(obj, key))
-                    # setattr(trans_obj, key, RichTextValue(encoded_text))
-                    # setattr(getattr(trans_obj, key), 'raw', encoded_text)
-
-                trans_obj._p_changed = True
-                trans_obj.reindexObject(idxs=[key])
-
-        if len(rich_fields) > 0:
-            handle_obj_with_richfields(
-                obj, list(rich_fields), source_language, trans_obj_path, language
+            trans_obj = get_translation_object(
+                translations[language], obj_en, version)
+            translate_obj_with_language(
+                trans_obj, obj, fields, language, source_language, errors, one_step
             )
 
     return {"errors": errors}
+
+
+def translate_obj_with_language(
+    trans_obj, obj, fields, language, source_language, errors, one_step
+):
+    site_url = portal.getSite().absolute_url()
+
+    trans_obj_url = trans_obj.absolute_url()
+    trans_obj_path = "/cca" + trans_obj_url.split(site_url)[-1]
+
+    # get tile data
+    if trans_obj.portal_type == "collective.cover.content" and one_step is True:
+        handle_cover_one_step(obj)  # One step translation for covers/tiles
+    elif trans_obj.portal_type == "collective.cover.content":
+        handle_cover(obj)
+
+    # send requests to translation service for each field
+    # update field in obj
+    rich_fields = set()
+
+    for key in fields:
+        if key in IGNORE_FIELDS or key in LANGUAGE_INDEPENDENT_FIELDS:
+            continue
+
+        if trans_obj.portal_type in ["Event", "cca-event"]:
+            if key in ["start", "end", "timezone"]:
+                continue
+
+        value = getattr(getattr(obj, key), "raw", getattr(obj, key))
+
+        if not value:
+            continue
+
+        if callable(value):
+            if isinstance(value(), DateTime):  # ignore datetimes
+                continue
+
+            value = value()
+
+        # ignore some value types
+        if is_language_independent_value(value):
+            continue
+
+        is_rich_field = False
+
+        if isinstance(getattr(obj, key), RichTextValue):
+            value = getattr(obj, key).raw.replace("\r\n", "")
+            is_rich_field = True
+            rich_fields.add(key)
+
+        if is_json(value):
+            continue
+
+        if key not in errors:
+            errors.append(key)
+
+        force_unlock(trans_obj)
+
+        if one_step is True and is_rich_field is not True:
+            translated = retrieve_translation_one_step(
+                source_language,
+                value,
+                [language.upper()],
+                uid=trans_obj.UID(),
+                obj_path=trans_obj_path,
+                field=key,
+            )
+            continue
+
+        translated = (
+            retrieve_translation(source_language, value, [
+                                 language.upper()]) or {}
+        )
+        if "translated" in translated:
+            # TODO improve this part, after no more errors
+            encoded_text = translated["transId"].encode("latin-1")
+
+            if key == "source" and obj.portal_type in source_richtext_types:
+                setattr(trans_obj, key, getattr(obj, key))
+                setattr(trans_obj, key, RichTextValue(encoded_text))
+
+                trans_obj._p_changed = True
+                trans_obj.reindexObject(idxs=[key])
+                continue
+
+            if not is_rich_field:
+                setattr(trans_obj, key, encoded_text)
+
+            trans_obj._p_changed = True
+            trans_obj.reindexObject(idxs=[key])
+
+    if len(rich_fields) > 0:
+        handle_obj_with_richfields(
+            obj, list(rich_fields), source_language, trans_obj_path, language
+        )
 
 
 def handle_obj_with_richfields(
