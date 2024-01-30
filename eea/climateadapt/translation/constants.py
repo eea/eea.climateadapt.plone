@@ -43,6 +43,8 @@ LANGUAGE_INDEPENDENT_FIELDS = [
     "event_language",
 ]
 
+IGNORE_FIELDS = ["acronym", "id", "language", "portal_type", "contentType"]
+
 
 contenttype_language_independent_fields = {
     "Folder": ["effective"],

@@ -226,7 +226,8 @@ def fix_urls_for_translated_content(site, language=None):
                 try:
                     if trans_obj.id != obj.id:
                         # ids doesn't match
-                        trans_obj.aq_parent.manage_renameObject(trans_obj.id, obj.id)
+                        trans_obj.aq_parent.manage_renameObject(
+                            trans_obj.id, obj.id)
                         logger.info("SOLVED")
                         solved += 1
                     else:
@@ -243,7 +244,8 @@ def fix_urls_for_translated_content(site, language=None):
                     )
             else:
                 # missing translation
-                logger.info("NOT SOLVED. Missing translation: %s", trans_obj_path)
+                logger.info("NOT SOLVED. Missing translation: %s",
+                            trans_obj_path)
                 not_solved["missing_translation"].append(obj_url)
 
     logger.info("DONE. Solved: %s", solved)
@@ -583,7 +585,7 @@ def translation_step_2(site, request, force_uid=None):
     nr_items_translated = 0  # found translated objects
     if limit:
         json_files.sort()
-        json_files = json_files[offset : offset + limit]
+        json_files = json_files[offset: offset + limit]
 
     for json_file in json_files:
         file = open("/tmp/jsons/" + json_file, "r")
@@ -621,7 +623,8 @@ def translation_step_2(site, request, force_uid=None):
         if len(tile_html_fields):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
-            trans_obj_path = get_translation_object_path(obj, language, site_url)
+            trans_obj_path = get_translation_object_path(
+                obj, language, site_url)
             if not trans_obj_path:
                 continue
             html_content = "<!doctype html>" + "<head><meta charset=utf-8></head><body>"
@@ -647,12 +650,12 @@ def translation_step_2(site, request, force_uid=None):
                 html_content,
                 trans_obj_path,
                 language.upper(),
-                False,
             )
 
         # LOOP object text items
         for key in json_data["item"].keys():
-            res = retrieve_translation("EN", json_data["item"][key], [language.upper()])
+            res = retrieve_translation(
+                "EN", json_data["item"][key], [language.upper()])
             nr_items += 1
             if "translated" in res:
                 nr_items_translated += 1
@@ -660,7 +663,8 @@ def translation_step_2(site, request, force_uid=None):
         if len(json_data["html"]):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
-            trans_obj_path = get_translation_object_path(obj, language, site_url)
+            trans_obj_path = get_translation_object_path(
+                obj, language, site_url)
             if not trans_obj_path:
                 continue
 
@@ -687,7 +691,6 @@ def translation_step_2(site, request, force_uid=None):
                 html_content,
                 trans_obj_path,
                 language.upper(),
-                False,
             )
         logger.info(
             "TransStep2 File  %s from %s, total files %s",
@@ -696,7 +699,8 @@ def translation_step_2(site, request, force_uid=None):
             total_files,
         )
         if not force_uid:
-            report["date"]["last_update"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            report["date"]["last_update"] = datetime.now().strftime(
+                "%Y-%m-%d %H:%M:%S")
             report["response"] = {
                 "items": {
                     "nr_files": nr_files,
@@ -784,7 +788,8 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type=None):
                 trans_obj.__annotations__[tile_annot_id] = update
 
     for key in json_data["item"].keys():
-        translated_msg = get_translated(json_data["item"][key], language.upper())
+        translated_msg = get_translated(
+            json_data["item"][key], language.upper())
 
         if translated_msg:
             encoded_text = translated_msg.encode("latin-1")
@@ -840,7 +845,7 @@ def translation_step_3(site, request):
 
     if limit:
         json_files.sort()
-        json_files = json_files[offset : offset + limit]
+        json_files = json_files[offset: offset + limit]
 
     nr_files = 0  # total translatable eng objects (not unique)
 
@@ -849,14 +854,17 @@ def translation_step_3(site, request):
         logger.info("PROCESSING file: %s", nr_files)
 
         try:
-            translation_step_3_one_file(json_file, language, catalog, portal_type)
+            translation_step_3_one_file(
+                json_file, language, catalog, portal_type)
             transaction.commit()  # make sure tiles are saved (encoding issue)
         except Exception as err:
             logger.info("ERROR")  # TODO improve this
             logger.info(err)
 
-        report["date"]["last_update"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        report["response"] = {"last_item": json_file, "files_processd": nr_files}
+        report["date"]["last_update"] = datetime.now().strftime(
+            "%Y-%m-%d %H:%M:%S")
+        report["response"] = {
+            "last_item": json_file, "files_processd": nr_files}
         report["status"] = "Processing"
 
         json_object = json.dumps(report, indent=4)
@@ -955,7 +963,8 @@ def translation_step_4(site, request, async_request=False):
                                     trans_tile = None
 
                                 if trans_tile is not None:
-                                    collection_obj = uuidToObject(tile.data["uuid"])
+                                    collection_obj = uuidToObject(
+                                        tile.data["uuid"])
                                     collection_trans_obj = get_translation_object(
                                         collection_obj, language
                                     )
@@ -964,7 +973,8 @@ def translation_step_4(site, request, async_request=False):
 
                                     temp = dataManager.get()
                                     try:
-                                        temp["uuid"] = IUUID(collection_trans_obj)
+                                        temp["uuid"] = IUUID(
+                                            collection_trans_obj)
                                     except TypeError:
                                         logger.info("Collection not found.")
 
@@ -1022,9 +1032,11 @@ def translation_step_4(site, request, async_request=False):
             # also set the layout of the default view
             if layout_default_view_en:
                 try:
-                    trans_obj[default_view_en].setLayout(layout_default_view_en)
+                    trans_obj[default_view_en].setLayout(
+                        layout_default_view_en)
                 except:
-                    logger.info("Can't set layout for: %s", trans_obj.absolute_url())
+                    logger.info("Can't set layout for: %s",
+                                trans_obj.absolute_url())
                     continue
 
             if async_request:
@@ -1538,7 +1550,8 @@ def verify_unlinked_translation(site, request):
     """Clone the content to be translated if not exist"""
     language = request.get("language", None)
     available_languages = ["es", "de", "it", "pl", "fr"]
-    check_nr_languages = request.get("check_nr_languages", len(available_languages) + 1)
+    check_nr_languages = request.get(
+        "check_nr_languages", len(available_languages) + 1)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
     offset = int(request.get("offset", 0))
@@ -1572,7 +1585,8 @@ def report_unlinked_translation(site, request):
     """Report untranslated items"""
     language = request.get("language", None)
     available_languages = ["es", "de", "it", "pl", "fr"]
-    check_nr_languages = request.get("check_nr_languages", len(available_languages) + 1)
+    check_nr_languages = request.get(
+        "check_nr_languages", len(available_languages) + 1)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
     offset = int(request.get("offset", 0))

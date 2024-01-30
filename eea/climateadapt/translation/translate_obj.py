@@ -12,6 +12,7 @@ from eea.climateadapt.translation import (
     retrieve_translation_one_step,
 )
 from eea.climateadapt.translation.constants import (
+    IGNORE_FIELDS,
     cca_event_languages,
     LANGUAGE_INDEPENDENT_FIELDS,
     source_richtext_types,
@@ -128,7 +129,6 @@ def handle_cover_one_step(obj):
             html_content,
             trans_obj_path,
             language.upper(),
-            False,
         )
 
 
@@ -141,7 +141,8 @@ def handle_cover(obj):
             value = tile.data.get(field)
             if value:
                 translated = (
-                    retrieve_translation(source_language, value, [language.upper()])
+                    retrieve_translation(
+                        source_language, value, [language.upper()])
                     or {}
                 )
 
@@ -187,7 +188,6 @@ def handle_cover(obj):
                     html_content,
                     trans_obj_path,
                     language.upper(),
-                    False,
                 )
 
                 if "translated" in translated:
@@ -197,6 +197,35 @@ def handle_cover(obj):
                     except AttributeError:
                         logger.info("Error for tile. TODO improve.")
                         logger.info(tile_id)
+
+
+def get_translation_object(trans_obj, obj_en, version):
+    layout_en = obj_en.getLayout()
+    default_view_en = obj_en.getDefaultPage()
+    layout_default_view_en = None
+    if default_view_en is not None:
+        layout_default_view_en = obj_en[default_view_en].getLayout()
+
+    if not hasattr(trans_obj, "REQUEST"):
+        trans_obj.REQUEST = obj.REQUEST
+
+    if version is not None:
+        obj_version = int(getattr(trans_obj, "version", 0))
+
+        if obj_version >= version:
+            logger.info("Skipping! object already at version %s", obj_version)
+            continue
+
+        trans_obj.version = version
+
+    # set the layout of the translated object to match the english object
+    trans_obj.setLayout(layout_en)
+
+    # also set the layout of the default view
+    if default_view_en and layout_default_view_en:
+        trans_obj[default_view_en].setLayout(layout_default_view_en)
+
+    return trans_obj
 
 
 def translate_obj(obj, lang=None, version=None, one_step=False):
@@ -217,64 +246,36 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
     if not hasattr(obj_en, "REQUEST"):
         obj_en.REQUEST = obj.REQUEST
 
-    layout_en = obj_en.getLayout()
-    default_view_en = obj_en.getDefaultPage()
-    layout_default_view_en = None
-    if default_view_en is not None:
-        layout_default_view_en = obj_en[default_view_en].getLayout()
-
     for language in translations:
         if lang is not None:
             if language != lang:
                 continue
 
-        trans_obj = translations[language]
+        trans_obj = get_translation_object(
+            translations[language], obj_en, version)
         trans_obj_url = trans_obj.absolute_url()
         trans_obj_path = "/cca" + trans_obj_url.split(site_url)[-1]
 
-        if not hasattr(trans_obj, "REQUEST"):
-            trans_obj.REQUEST = obj.REQUEST
-
-        if version is not None:
-            obj_version = int(getattr(trans_obj, "version", 0))
-
-            if obj_version >= version:
-                logger.info("Skipping! object already at version %s", obj_version)
-                continue
-
-            trans_obj.version = version
-
-        # set the layout of the translated object to match the english object
-        trans_obj.setLayout(layout_en)
-
-        # also set the layout of the default view
-        if default_view_en and layout_default_view_en:
-            trans_obj[default_view_en].setLayout(layout_default_view_en)
-
         # get tile data
         if trans_obj.portal_type == "collective.cover.content" and one_step is True:
-            handle_cover_one_step(obj)
-            # One step translation for covers/tiles
+            handle_cover_one_step(obj)  # One step translation for covers/tiles
         elif trans_obj.portal_type == "collective.cover.content":
             handle_cover(obj)
 
         # send requests to translation service for each field
         # update field in obj
-        rich_fields = []
+        rich_fields = set()
 
         for key in fields:
-            rich = False
-            # print(key)
-            if key in ["acronym", "id", "language", "portal_type", "contentType"]:
+            is_rich_field = False
+            if key in IGNORE_FIELDS or key in LANGUAGE_INDEPENDENT_FIELDS:
                 continue
-            if key in LANGUAGE_INDEPENDENT_FIELDS:
-                continue
-
-            value = getattr(getattr(obj, key), "raw", getattr(obj, key))
 
             if trans_obj.portal_type in ["Event", "cca-event"]:
                 if key in ["start", "end", "timezone"]:
                     continue
+
+            value = getattr(getattr(obj, key), "raw", getattr(obj, key))
 
             if not value:
                 continue
@@ -292,18 +293,19 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
 
             if isinstance(getattr(obj, key), RichTextValue):
                 value = getattr(obj, key).raw.replace("\r\n", "")
-                rich = True
+                is_rich_field = True
                 if key not in rich_fields:
-                    rich_fields.append(key)
+                    rich_fields.add(key)
 
             if is_json(value):
                 continue
 
             if key not in errors:
                 errors.append(key)
+
             force_unlock(trans_obj)
 
-            if one_step is True and rich is not True:
+            if one_step is True and is_rich_field is not True:
                 translated = retrieve_translation_one_step(
                     source_language,
                     value,
@@ -315,67 +317,70 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                 continue
 
             translated = (
-                retrieve_translation(source_language, value, [language.upper()]) or {}
+                retrieve_translation(source_language, value, [
+                                     language.upper()]) or {}
             )
             if "translated" in translated:
                 # TODO improve this part, after no more errors
                 encoded_text = translated["transId"].encode("latin-1")
 
                 if key == "source" and obj.portal_type in source_richtext_types:
-                    # import pdb; pdb.set_trace()
                     setattr(trans_obj, key, getattr(obj, key))
+                    setattr(trans_obj, key, RichTextValue(encoded_text))
                     # setattr(trans_obj, key, encoded_text)
                     # setattr(trans_obj, key, translated['transId'])
-
-                    setattr(trans_obj, key, RichTextValue(encoded_text))
                     # ValueError: Can not convert 'Elsevier' to an IRichTextValue
                     # <ResearchProject at /cca/ro/help/share-your-info/research-and-knowledge-projects
                     # /elderly-resident2019s-uses-of-and-preferences-for-urban-green-spaces-during-hea
                     # t-periods>
 
-                    # reindex object
                     trans_obj._p_changed = True
                     trans_obj.reindexObject(idxs=[key])
                     continue
 
-                if rich:
-                    pass
-                    # TODO No action needed, right?
+                if not is_rich_field:
+                    setattr(trans_obj, key, encoded_text)
+                else:
+                    pass  # TODO No action needed, right?
                     # setattr(trans_obj, key, getattr(obj, key))
                     # setattr(trans_obj, key, RichTextValue(encoded_text))
                     # setattr(getattr(trans_obj, key), 'raw', encoded_text)
-                else:
-                    setattr(trans_obj, key, encoded_text)
 
-                # reindex object
                 trans_obj._p_changed = True
                 trans_obj.reindexObject(idxs=[key])
 
         if len(rich_fields) > 0:
-            html_content = "<!doctype html><head><meta charset=utf-8></head>"
-            html_content += "<body>"
-
-            for key in rich_fields:
-                value = getattr(obj, key).raw.replace("\r\n", "")
-                html_section = (
-                    "<div class='cca-translation-section'"
-                    + " data-field='"
-                    + key
-                    + "'>"
-                    + value
-                    + "</div>"
-                )
-
-                html_content += html_section
-
-            html_content += "</body></html>"
-            html_content = html_content.encode("utf-8")
-            res = retrieve_html_translation(
-                source_language,
-                html_content,
-                trans_obj_path,
-                language.upper(),
-                False,
+            handle_obj_with_richfields(
+                obj, list(rich_fields), source_language, trans_obj_path, language
             )
 
     return {"errors": errors}
+
+
+def handle_obj_with_richfields(
+    obj, rich_fields, source_language, trans_obj_path, language
+):
+    html_content = "<!doctype html><head><meta charset=utf-8></head>"
+    html_content += "<body>"
+
+    for key in rich_fields:
+        value = getattr(obj, key).raw.replace("\r\n", "")
+        html_section = (
+            "<div class='cca-translation-section'"
+            + " data-field='"
+            + key
+            + "'>"
+            + value
+            + "</div>"
+        )
+
+        html_content += html_section
+
+    html_content += "</body></html>"
+    html_content = html_content.encode("utf-8")
+    retrieve_html_translation(
+        source_language,
+        html_content,
+        trans_obj_path,
+        language.upper(),
+    )
