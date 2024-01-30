@@ -141,8 +141,7 @@ def handle_cover(obj):
             value = tile.data.get(field)
             if value:
                 translated = (
-                    retrieve_translation(
-                        source_language, value, [language.upper()])
+                    retrieve_translation(source_language, value, [language.upper()])
                     or {}
                 )
 
@@ -243,20 +242,23 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
     if not hasattr(obj_en, "REQUEST"):
         obj_en.REQUEST = obj.REQUEST
 
+    dummy = {"errors": []}
+
+    if lang is None:
+        return dummy
+
     for language in translations:
-        if lang is not None:
-            if language != lang:
-                continue
+        if language != lang:
+            continue
 
-            trans_obj = get_translation_object(
-                translations[language], obj_en, obj, version
+        trans_obj = get_translation_object(translations[language], obj_en, obj, version)
+
+        if trans_obj is not None:
+            translate_obj_with_language(
+                trans_obj, obj, fields, language, source_language, one_step
             )
-            if trans_obj is not None:
-                translate_obj_with_language(
-                    trans_obj, obj, fields, language, source_language, one_step
-                )
 
-    return {"errors": []}
+    return dummy
 
 
 def translatable_fields(trans_obj, fields):
@@ -275,7 +277,8 @@ def translatable_fields(trans_obj, fields):
 
 
 def get_value(obj, fieldname):
-    value = getattr(getattr(obj, fieldname), "raw", getattr(obj, fieldname))
+    raw_value = getattr(obj, fieldname)
+    value = getattr(raw_value, "raw", raw_value)
 
     if not value:
         return None
@@ -340,15 +343,13 @@ def translate_obj_with_language(
             continue
 
         translated = (
-            retrieve_translation(source_language, value, [
-                                 language.upper()]) or {}
+            retrieve_translation(source_language, value, [language.upper()]) or {}
         )
         if "translated" in translated:
             # TODO improve this part, after no more errors
             encoded_text = translated["transId"].encode("latin-1")
 
             if fieldname == "source" and obj.portal_type in source_richtext_types:
-                # setattr(trans_obj, fieldname, getattr(obj, fieldname))
                 setattr(trans_obj, fieldname, RichTextValue(encoded_text))
 
                 trans_obj._p_changed = True
