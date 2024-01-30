@@ -6,7 +6,7 @@ import time
 from collections import defaultdict
 from datetime import datetime
 
-from .utils import get_object_fields_values, is_json
+from eea.climateadapt.translation.utils import get_object_fields_values, is_json
 import transaction
 from Acquisition import aq_inner, aq_parent
 
@@ -30,7 +30,7 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
 
-from .translate_obj import translate_obj
+from eea.climateadapt.translation.translate_obj import translate_obj
 
 
 # steps => used to translate the entire website

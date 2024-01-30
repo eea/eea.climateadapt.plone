@@ -1,3 +1,4 @@
+from plone.app.textfield.value import RichTextValue
 from DateTime import DateTime
 import logging
 from zope.schema import getFieldsInOrder
@@ -13,11 +14,13 @@ from eea.climateadapt.translation import (
 from eea.climateadapt.translation.constants import (
     cca_event_languages,
     LANGUAGE_INDEPENDENT_FIELDS,
+    source_richtext_types,
 )
 from eea.climateadapt.translation.utils import get_object_fields_values
 from eea.climateadapt.translation.utils import is_language_independent_value
 from collective.cover.tiles.richtext import RichTextTile
 from eea.climateadapt.tiles.richtext import RichTextWithTitle
+from .utils import is_json
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -182,8 +185,11 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                 for field in tile_fields:
                     value = tile.data.get(field)
                     if value:
-                        translated = retrieve_translation(
-                            source_language, value, [language.upper()]
+                        translated = (
+                            retrieve_translation(
+                                source_language, value, [language.upper()]
+                            )
+                            or {}
                         )
 
                         if "translated" in translated:
@@ -298,8 +304,8 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
                 )
                 continue
 
-            translated = retrieve_translation(
-                source_language, value, [language.upper()]
+            translated = (
+                retrieve_translation(source_language, value, [language.upper()]) or {}
             )
             if "translated" in translated:
                 # TODO improve this part, after no more errors
