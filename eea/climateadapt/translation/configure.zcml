@@ -49,4 +49,11 @@
     permission="cmf.ManagePortal"
     />
 
+  <browser:page
+    for="*"
+    class=".volto.ContentToHtml"
+    name="volto-html"
+    permission="cmf.ManagePortal"
+    />
+
 </configure>
