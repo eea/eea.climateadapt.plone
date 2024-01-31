@@ -493,6 +493,7 @@ alsoProvides(IAceItem['special_tags'], ILanguageIndependentField)
 alsoProvides(IAceItem['storage_type'], ILanguageIndependentField)
 alsoProvides(IAceItem['uploader'], ILanguageIndependentField)
 alsoProvides(IAceItem['websites'], ILanguageIndependentField)
+alsoProvides(IAceItem['spatial_layer'], ILanguageIndependentField)
 
 from plone.app.dexterity.behaviors.metadata import IPublication
 
