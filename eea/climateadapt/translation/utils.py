@@ -12,7 +12,7 @@ from zope.schema import getFieldsInOrder
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 import urllib
 
-from eea.climateadapt.translation import retrieve_translation
+from eea.climateadapt.translation import translate_one_text_to_translation_storage
 from plone import api
 from plone.app.multilingual.manager import TranslationManager
 from Products.CMFCore.utils import getToolByName
@@ -124,7 +124,8 @@ class TranslationUtilsMixin(object):
         if language == "EN":
             return value
 
-        translated = retrieve_translation("EN", value, [language])
+        translated = translate_one_text_to_translation_storage("EN", value, [
+                                                               language])
 
         if "translated" in translated:
             encoded_text = translated["transId"].encode("latin-1")
@@ -148,7 +149,8 @@ class TranslationUtilsMixin(object):
 def get_current_language(context, request):
     try:
         context = context.aq_inner
-        portal_state = getMultiAdapter((context, request), name="plone_portal_state")
+        portal_state = getMultiAdapter(
+            (context, request), name="plone_portal_state")
         return portal_state.language()
     except Exception:
         return "en"
@@ -246,7 +248,8 @@ def is_json(input):
 def get_object_fields_values(obj):
     # TODO: perhaps a list by each portal_type
     skip_fields = LANGUAGE_INDEPENDENT_FIELDS
-    tile_fields = ["title", "text", "description", "tile_title", "footer", "alt_text"]
+    tile_fields = ["title", "text", "description",
+                   "tile_title", "footer", "alt_text"]
 
     data = {}
     data["portal_type"] = obj.portal_type

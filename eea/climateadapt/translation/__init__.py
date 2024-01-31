@@ -171,7 +171,9 @@ def retrieve_html_translation(source_lang, html, obj_path, target_languages=None
     return res
 
 
-def retrieve_translation(country_code, text, target_languages=None, force=False):
+def translate_one_text_to_translation_storage(
+    country_code, text, target_languages=None, force=False
+):
     """Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
@@ -179,7 +181,7 @@ def retrieve_translation(country_code, text, target_languages=None, force=False)
     country_code = _get_country_code(country_code, text)
 
     if not text:
-        return
+        return {}
 
     if not target_languages:
         target_languages = ["EN"]
@@ -249,7 +251,7 @@ def retrieve_translation(country_code, text, target_languages=None, force=False)
     return res
 
 
-def retrieve_translation_one_step(
+def translate_one_field_in_one_step(
     country_code,
     text,
     target_languages=None,

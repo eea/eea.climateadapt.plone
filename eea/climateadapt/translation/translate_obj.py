@@ -8,8 +8,8 @@ from plone.api import portal
 from plone.behavior.interfaces import IBehaviorAssignable
 from eea.climateadapt.translation import (
     retrieve_html_translation,
-    retrieve_translation,
-    retrieve_translation_one_step,
+    translate_one_text_to_translation_storage,
+    translate_one_field_in_one_step,
 )
 from eea.climateadapt.translation.constants import (
     IGNORE_FIELDS,
@@ -67,7 +67,7 @@ def handle_cover_one_step(trans_obj, obj_en, language, source_language, trans_ob
             # LOOP tile text items
             for key in tile_data["item"].keys():
                 # TODO add one step params
-                res = retrieve_translation_one_step(
+                res = translate_one_field_in_one_step(
                     source_language,
                     tile_data["item"][key],
                     [language.upper()],
@@ -93,7 +93,7 @@ def handle_cover_one_step(trans_obj, obj_en, language, source_language, trans_ob
 
     # Translate simple fields
     for key in json_data["item"].keys():
-        res = retrieve_translation_one_step(
+        res = translate_one_field_in_one_step(
             source_language,
             json_data["item"][key],
             [language.upper()],
@@ -140,8 +140,9 @@ def handle_cover(trans_obj, language, source_language, trans_obj_path):
             value = tile.data.get(field)
             if value:
                 translated = (
-                    retrieve_translation(
-                        source_language, value, [language.upper()])
+                    translate_one_text_to_translation_storage(
+                        source_language, value, [language.upper()]
+                    )
                     or {}
                 )
 
@@ -301,13 +302,14 @@ def translate_obj_with_language(
     trans_obj_path = "/cca" + trans_obj_url.split(site_url)[-1]
 
     # get tile data
-    if trans_obj.portal_type == "collective.cover.content" and one_step is True:
-        # One step translation for covers/tiles
-        handle_cover_one_step(
-            trans_obj, obj_en, language, source_language, trans_obj_path
-        )
-    elif trans_obj.portal_type == "collective.cover.content":
-        handle_cover(trans_obj, language, source_language, trans_obj_path)
+    if trans_obj.portal_type == "collective.cover.content":
+        if one_step is True:
+            # One step translation for covers/tiles
+            handle_cover_one_step(
+                trans_obj, obj_en, language, source_language, trans_obj_path
+            )
+        else:
+            handle_cover(trans_obj, language, source_language, trans_obj_path)
 
     # send requests to translation service for each field
     # update field in obj
@@ -325,7 +327,7 @@ def translate_obj_with_language(
         force_unlock(trans_obj)
 
         if one_step and fieldname not in rich_fields:  # shortcuts the circuit
-            retrieve_translation_one_step(
+            translate_one_field_in_one_step(
                 source_language,
                 value,
                 [language.upper()],
@@ -336,8 +338,10 @@ def translate_obj_with_language(
             continue
 
         translated = (
-            retrieve_translation(source_language, value, [
-                                 language.upper()]) or {}
+            translate_one_text_to_translation_storage(
+                source_language, value, [language.upper()]
+            )
+            or {}
         )
         if "translated" in translated:
             # TODO improve this part, after no more errors

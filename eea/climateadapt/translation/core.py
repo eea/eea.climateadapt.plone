@@ -14,7 +14,7 @@ from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.translation import (
     get_translated,
     retrieve_html_translation,
-    retrieve_translation,
+    translate_one_text_to_translation_storage,
 )
 from plone import api
 from plone.api import content, portal
@@ -31,6 +31,7 @@ from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.translation.translate_obj import translate_obj
+from .constants import source_richtext_types, contenttype_language_independent_fields
 
 
 # steps => used to translate the entire website
@@ -601,7 +602,7 @@ def translation_step_2(site, request, force_uid=None):
                 tile_data = json_data["tile"][tile_id]
                 # LOOP tile text items
                 for key in tile_data["item"].keys():
-                    res = retrieve_translation(
+                    res = translate_one_text_to_translation_storage(
                         "EN", tile_data["item"][key], [language.upper()]
                     )
                     nr_items += 1
@@ -613,7 +614,7 @@ def translation_step_2(site, request, force_uid=None):
                     value = value.replace("\r", "")
                     value = value.replace("\n", "")
                     try:
-                        test_value = value + "test"
+                        _ = value + "test"
                     except UnicodeDecodeError:
                         value = value.decode("utf-8")
                     tile_html_fields.append(
@@ -623,6 +624,8 @@ def translation_step_2(site, request, force_uid=None):
         if len(tile_html_fields):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
+            if obj is None:  # TODO: logging
+                continue
             trans_obj_path = get_translation_object_path(
                 obj, language, site_url)
             if not trans_obj_path:
@@ -645,7 +648,7 @@ def translation_step_2(site, request, force_uid=None):
 
             html_content += "</body></html>"
             html_content = html_content.encode("utf-8")
-            translated = retrieve_html_translation(
+            retrieve_html_translation(
                 "EN",
                 html_content,
                 trans_obj_path,
@@ -654,8 +657,9 @@ def translation_step_2(site, request, force_uid=None):
 
         # LOOP object text items
         for key in json_data["item"].keys():
-            res = retrieve_translation(
-                "EN", json_data["item"][key], [language.upper()])
+            res = translate_one_text_to_translation_storage(
+                "EN", json_data["item"][key], [language.upper()]
+            )
             nr_items += 1
             if "translated" in res:
                 nr_items_translated += 1
@@ -663,6 +667,8 @@ def translation_step_2(site, request, force_uid=None):
         if len(json_data["html"]):
             nr_html_items += 1
             obj = get_translation_object_from_uid(json_file, catalog)
+            if obj is None:  # TODO: logging
+                continue
             trans_obj_path = get_translation_object_path(
                 obj, language, site_url)
             if not trans_obj_path:
@@ -750,6 +756,10 @@ def translation_step_2(site, request, force_uid=None):
 
 def translation_step_3_one_file(json_file, language, catalog, portal_type=None):
     obj = get_translation_object_from_uid(json_file, catalog)
+
+    if obj is None:
+        return  # TODO: logging
+
     trans_obj = get_translation_object(obj, language)
     if trans_obj is None:
         return
@@ -892,7 +902,7 @@ def translation_step_4(site, request, async_request=False):
     language = request.get("language", None)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
-    offset = int(request.get("offset", 0))
+    # offset = int(request.get("offset", 0))
     portal_type = request.get("portal_type", None)
 
     if language is None:
@@ -925,8 +935,8 @@ def translation_step_4(site, request, async_request=False):
 
         try:
             translations = TranslationManager(obj).get_translations()
-        except:
-            pass
+        except:  # TODO: logging
+            continue
 
         try:
             trans_obj = translations[language]
@@ -1116,7 +1126,7 @@ def translation_step_5(site, request):
     language = request.get("language", None)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
-    offset = int(request.get("offset", 0))
+    # offset = int(request.get("offset", 0))
     portal_type = request.get("portal_type", None)
 
     if language is None:
@@ -1146,7 +1156,7 @@ def translation_step_5(site, request):
         try:
             translations = TranslationManager(obj).get_translations()
         except Exception:
-            pass
+            continue  # TODO: logging
 
         try:
             trans_obj = translations[language]
@@ -1183,10 +1193,10 @@ def translation_repaire(site, request):
     """
     language = request.get("language", None)
     file = request.get("file", None)
-    uid = request.get("uid", None)
-    limit = int(request.get("limit", 0))
-    offset = int(request.get("offset", 0))
-    portal_type = request.get("portal_type", None)
+    # uid = request.get("uid", None)
+    # limit = int(request.get("limit", 0))
+    # offset = int(request.get("offset", 0))
+    # portal_type = request.get("portal_type", None)
     stop_pdb = request.get("stop_pdb", None)
 
     if language is None:
@@ -1215,45 +1225,48 @@ def translation_repaire_step_3(site, request):
     """Get all jsons objects in english and overwrite targeted language
     object with translations.
     """
-    language = request.get("language", None)
-    file = request.get("file", None)
-    uid = request.get("uid", None)
-    limit = int(request.get("limit", 0))
-    offset = int(request.get("offset", 0))
-    portal_type = request.get("portal_type", None)
-    stop_pdb = request.get("stop_pdb", None)
+    print(site, request)
+    # language = request.get("language", None)
+    # file = request.get("file", None)
+    # uid = request.get("uid", None)
+    # # limit = int(request.get("limit", 0))
+    # # offset = int(request.get("offset", 0))
+    # portal_type = request.get("portal_type", None)
+    # stop_pdb = request.get("stop_pdb", None)
+    #
+    # if language is None:
+    #     return "Missing language parameter. (Example: ?language=it)"
+    # if file is None:
+    #     return "Missing file parameter. (Example: ?file=ABC will process /tmp/ABC.json)"
+    # file = open("/tmp/" + file + ".json", "r")
+    # json_content = file.read()
+    # if not is_json(json_content):
+    #     return "Looks like we the file is not valid json"
+    # json_data = json.loads(json_content)
+    #
+    # if "_details" not in json_data:
+    #     return "Details key was not found in json"
+    #
+    # items = json_data["_details"]
+    # if stop_pdb:
+    #     import pdb
+    #
+    #     pdb.set_trace()
+    #
+    # catalog = site.portal_catalog
 
-    if language is None:
-        return "Missing language parameter. (Example: ?language=it)"
-    if file is None:
-        return "Missing file parameter. (Example: ?file=ABC will process /tmp/ABC.json)"
-    file = open("/tmp/" + file + ".json", "r")
-    json_content = file.read()
-    if not is_json(json_content):
-        return "Looks like we the file is not valid json"
-    json_data = json.loads(json_content)
-
-    if "_details" not in json_data:
-        return "Details key was not found in json"
-
-    items = json_data["_details"]
-    if stop_pdb:
-        import pdb
-
-        pdb.set_trace()
-    catalog = site.portal_catalog
-    for item in items:
-        if uid and uid != brain.UID:
-            continue
-        if portal_type and portal_type != item["portal_type"]:
-            continue
-        if stop_pdb:
-            import pdb
-
-            pdb.set_trace()
-        translation_step_3_one_file(
-            item["brain_uid"] + ".json", language, catalog, portal_type
-        )
+    # for item in items:
+    #     if uid and uid != brain.UID:
+    #         continue
+    #     if portal_type and portal_type != item["portal_type"]:
+    #         continue
+    #     if stop_pdb:
+    #         import pdb
+    #
+    #         pdb.set_trace()
+    #     translation_step_3_one_file(
+    #         item["brain_uid"] + ".json", language, catalog, portal_type
+    #     )
 
 
 def translation_list_type_fields(site):
@@ -1548,23 +1561,23 @@ def execute_trans_script(site, language):
 
 def verify_unlinked_translation(site, request):
     """Clone the content to be translated if not exist"""
-    language = request.get("language", None)
+    # language = request.get("language", None)
     available_languages = ["es", "de", "it", "pl", "fr"]
     check_nr_languages = request.get(
         "check_nr_languages", len(available_languages) + 1)
     uid = request.get("uid", None)
-    limit = int(request.get("limit", 0))
-    offset = int(request.get("offset", 0))
+    # limit = int(request.get("limit", 0))
+    # offset = int(request.get("offset", 0))
     portal_type = request.get("portal_type", None)
 
-    catalog = site.portal_catalog
+    # catalog = site.portal_catalog
     language_container = site["en"]
 
     # get and parse all objects under /en/
     res = get_all_objs(language_container)
 
-    failed_translations = []
-    count = 0
+    # failed_translations = []
+    # count = 0
     for brain in res:
         obj = brain.getObject()
 
@@ -1583,16 +1596,16 @@ def verify_unlinked_translation(site, request):
 
 def report_unlinked_translation(site, request):
     """Report untranslated items"""
-    language = request.get("language", None)
+    # language = request.get("language", None)
     available_languages = ["es", "de", "it", "pl", "fr"]
     check_nr_languages = request.get(
         "check_nr_languages", len(available_languages) + 1)
     uid = request.get("uid", None)
-    limit = int(request.get("limit", 0))
-    offset = int(request.get("offset", 0))
+    # limit = int(request.get("limit", 0))
+    # offset = int(request.get("offset", 0))
     portal_type = request.get("portal_type", None)
 
-    catalog = site.portal_catalog
+    # catalog = site.portal_catalog
     language_container = site["en"]
 
     res = {}
@@ -1717,4 +1730,4 @@ def execute_translate_async(context, options, language, request_vars):
             str(err),
         )
 
-    return "FInished"
+    return "Finished"
