@@ -468,13 +468,12 @@ def KeywordsFieldWidget(field, request):
     return widget
 
 
-# alsoProvides(IAceItem['relatedItems'], ILanguageIndependentField)
-
 alsoProvides(IAceItem['climate_impacts'], ILanguageIndependentField)
 alsoProvides(IAceItem['comments'], ILanguageIndependentField)
 alsoProvides(IAceItem['contributor_list'], ILanguageIndependentField)
 alsoProvides(IAceItem['data_type'], ILanguageIndependentField)
 alsoProvides(IAceItem['elements'], ILanguageIndependentField)
+alsoProvides(IAceItem['featured'], ILanguageIndependentField)
 alsoProvides(IAceItem['geochars'], ILanguageIndependentField)
 alsoProvides(IAceItem['health_impacts'], ILanguageIndependentField)
 alsoProvides(IAceItem['image'], ILanguageIndependentField)
@@ -487,10 +486,15 @@ alsoProvides(IAceItem['logo'], ILanguageIndependentField)
 alsoProvides(IAceItem['metadata'], ILanguageIndependentField)
 alsoProvides(IAceItem['origin_website'], ILanguageIndependentField)
 alsoProvides(IAceItem['other_contributor'], ILanguageIndependentField)
-alsoProvides(IAceItem['rating'], ILanguageIndependentField)
+alsoProvides(IAceItem['publication_date'], ILanguageIndependentField)
 alsoProvides(IAceItem['sectors'], ILanguageIndependentField)
 alsoProvides(IAceItem['spatial_values'], ILanguageIndependentField)
 alsoProvides(IAceItem['special_tags'], ILanguageIndependentField)
 alsoProvides(IAceItem['storage_type'], ILanguageIndependentField)
 alsoProvides(IAceItem['uploader'], ILanguageIndependentField)
 alsoProvides(IAceItem['websites'], ILanguageIndependentField)
+
+from plone.app.dexterity.behaviors.metadata import IPublication
+
+alsoProvides(IPublication['effective'], ILanguageIndependentField)
+alsoProvides(IPublication['expires'], ILanguageIndependentField)
