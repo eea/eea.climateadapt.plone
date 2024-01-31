@@ -1,15 +1,18 @@
 """ Translation views
 """
-import logging
-import base64
-import os
 
-from zope import event
-
+from Products.Five.browser import BrowserView
 from bs4 import BeautifulSoup
 from eea.cache.event import InvalidateMemCacheEvent
-from Products.Five.browser import BrowserView
+from eea.climateadapt.browser.admin import force_unlock
+from plone.api import portal
+from plone.app.textfield.value import RichTextValue
+from zope import event
+import base64
+import logging
+import os
 
+from .interfaces import ITranslationContext
 from . import (
     normalize,
     save_translation,
@@ -17,21 +20,9 @@ from . import (
     get_translation_key_values,
     get_translation_report,
 )
-from .interfaces import ITranslationContext
-
-from plone.api import portal
-from eea.climateadapt.browser.admin import force_unlock
-from plone.app.textfield.value import RichTextValue
-# from eea.climateadapt.translation.core import get_translation_object_from_uid
 
 logger = logging.getLogger("wise.msfd.translation")
 env = os.environ.get
-
-ANNOTATION_KEY = "translation.msfd.storage"
-TRANS_USERNAME = "ipetchesi"  # TODO: get another username?
-MARINE_PASS = env("MARINE_PASS", "")
-
-SERVICE_URL = "https://webgate.ec.europa.eu/etranslation/si/translate"
 
 
 class TranslationCallback(BrowserView):
@@ -179,6 +170,8 @@ class TranslationCallback(BrowserView):
         if value is not None and value != "":
             force_unlock(trans_obj)
             encoded_text = value.encode("latin-1")
+            have_change = False
+
             try:
                 setattr(trans_obj, field, encoded_text)
                 have_change = True
@@ -188,6 +181,7 @@ class TranslationCallback(BrowserView):
                     trans_obj.absolute_url(),
                     field,
                 )
+
             if have_change:
                 trans_obj._p_changed = True
                 trans_obj.reindexObject()
