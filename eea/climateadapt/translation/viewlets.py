@@ -1,3 +1,4 @@
+from plone.api.portal import get_tool
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.multilingual.manager import TranslationManager
 from eea.climateadapt.translation.utils import get_current_language, translate_text
@@ -26,7 +27,7 @@ class TranslationInfoViewlet(ViewletBase):
                     return False
 
                 return True
-        except:
+        except Exception:
             return False
 
 
@@ -42,14 +43,14 @@ class TranslationStateViewlet(ViewletBase):
 
     def show_approve_button(self):
         context = self.context
-        state, wf_state = self._get_current_wf_state(context)
+        state, _ = self._get_current_wf_state(context)
 
         return state == "translation_not_approved"
 
     def get_css_class(self):
         context = self.context
         css_class = "portalMessage {}"
-        state, wf_state = self._get_current_wf_state(context)
+        state, _ = self._get_current_wf_state(context)
         css_type = self.css_types.get(state, "no_state")
 
         return css_class.format(css_type)
@@ -102,9 +103,11 @@ class TranslationCheckLanguageViewlet(ViewletBase):
             if self.request.get("langflag", None):
                 return True
             url = self.get_suggestion_url()
+
             if "++aq++" in self.request["ACTUAL_URL"]:
-                url = url.replace("/news-archive/",
-                                  "/observatory/++aq++news-archive/")
+                url = (url or "").replace(
+                    "/news-archive/", "/observatory/++aq++news-archive/"
+                )
             # if we have a url, then redirect. A few pages are not translated
             if url:
                 return self.request.response.redirect(url)
