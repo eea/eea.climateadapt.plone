@@ -20,7 +20,7 @@ class ContentToHtml(BrowserView):
             for k, v in getFieldsInOrder(schema):
                 if ILanguageIndependentField.providedBy(v):
                     continue
-                print(schema, k)
+                print(schema, k, v)
                 fields[k] = v
 
         # __import__("pdb").set_trace()
