@@ -4,4 +4,9 @@ The intention is to use eTranslation as a service to translate a complete Volto 
 by first converting the blocks to HTML, then ingest and convert that structure back to Volto blocks
 """
 
-# class VoltoBlocksToH
+
+from Products.Five.browser import BrowserView
+
+
+class VoltoBlocksToHtml(BrowserView):
+    pass
