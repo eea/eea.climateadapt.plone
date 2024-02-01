@@ -1,3 +1,4 @@
+from plone.app.dexterity.behaviors.metadata import IPublication
 from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.schema import AbsoluteUrl, Uploader
@@ -18,8 +19,6 @@ from zope.component import adapter
 from zope.interface import alsoProvides, implementer
 from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple
 
-# , Year, PortalType,
-
 
 class IAceItem(IImageScaleTraversable):
     """
@@ -33,7 +32,6 @@ class IAceItem(IImageScaleTraversable):
     dexteritytextindexer.searchable("sectors")
     dexteritytextindexer.searchable("climate_impacts")
     dexteritytextindexer.searchable("elements")
-    # dexteritytextindexer.searchable('year')
 
     dexteritytextindexer.searchable("websites")
     dexteritytextindexer.searchable("source")
@@ -48,6 +46,7 @@ class IAceItem(IImageScaleTraversable):
     dexteritytextindexer.searchable("metadata")
     dexteritytextindexer.searchable("special_tags")
 
+    # dexteritytextindexer.searchable('year')
     # directives.omitted(IAddForm, 'relatedItems')
     # directives.omitted(IEditForm, 'relatedItems')
 
@@ -369,9 +368,6 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    # portal_type = PortalType(title=_(u"Portal type"),
-    #                          required=False, default=u"")
-
     item_link = AbsoluteUrl(title=_(u"Item link"), required=False, default=u"")
 
     uploader = Uploader(title=_(u"Uploaded by"), required=False, default=u"")
@@ -494,8 +490,6 @@ alsoProvides(IAceItem['storage_type'], ILanguageIndependentField)
 alsoProvides(IAceItem['uploader'], ILanguageIndependentField)
 alsoProvides(IAceItem['websites'], ILanguageIndependentField)
 alsoProvides(IAceItem['spatial_layer'], ILanguageIndependentField)
-
-from plone.app.dexterity.behaviors.metadata import IPublication
 
 alsoProvides(IPublication['effective'], ILanguageIndependentField)
 alsoProvides(IPublication['expires'], ILanguageIndependentField)
