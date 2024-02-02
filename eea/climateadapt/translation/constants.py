@@ -21,6 +21,8 @@ source_richtext_types = [
     "eea.climateadapt.video",
 ]
 
+# fallback, some fields are also defined in generated schemas
+# (<InterfaceClass plone.dexterity.schema.generated.cca_0_Link>, 'remoteUrl', <zope.schema._bootstrapfields.TextLine object at 0x7f032249ac10>)
 LANGUAGE_INDEPENDENT_FIELDS = [
     "c3s_identifier",
     "contact_email",
@@ -41,6 +43,8 @@ LANGUAGE_INDEPENDENT_FIELDS = [
     "timezone",
     "template_layout",
     "event_language",
+    # tibi
+    "image",
 ]
 
 IGNORE_FIELDS = ["acronym", "id", "language", "portal_type", "contentType"]

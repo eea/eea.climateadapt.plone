@@ -54,6 +54,7 @@
     class=".volto.ContentToHtml"
     name="volto-html"
     permission="cmf.ManagePortal"
+    template="pt/volto-html.pt"
     />
 
 </configure>

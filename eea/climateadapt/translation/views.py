@@ -201,10 +201,11 @@ class TranslationCallback(BrowserView):
         form.pop("format")
         form.pop("request-id")
         form.pop("external-reference")
-        # source_lang = form.get("source_lang")
         form.pop("source_lang")
-        # target_lang = form.get("target-language")
         form.pop("target-language")
+
+        # source_lang = form.get("source_lang")
+        # target_lang = form.get("target-language")
         # logger.info("Translate %s to %s", source_lang, target_lang)
 
         trans_obj = site.unrestrictedTraverse(trans_obj_path)

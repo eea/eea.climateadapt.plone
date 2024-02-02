@@ -247,16 +247,16 @@ def is_json(input):
 
 def get_object_fields_values(obj):
     # TODO: perhaps a list by each portal_type
-    skip_fields = LANGUAGE_INDEPENDENT_FIELDS
     tile_fields = ["title", "text", "description",
                    "tile_title", "footer", "alt_text"]
 
-    data = {}
-    data["portal_type"] = obj.portal_type
-    data["path"] = obj.absolute_url()
-    data["item"] = {}
-    data["html"] = {}
-    data["tile"] = {}
+    data = {
+        "portal_type": obj.portal_type,
+        "path": obj.absolute_url(),
+        "item": {},
+        "html": {},
+        "tile": {},
+    }
 
     # get tile data
     if obj.portal_type == "collective.cover.content":
@@ -286,16 +286,27 @@ def get_object_fields_values(obj):
                     if value:
                         data["tile"][tile_id]["item"][field] = value
 
+    skip_fields = [
+        "acronym",
+        "id",
+        "language",
+        "portal_type",
+        "contentType",
+    ] + LANGUAGE_INDEPENDENT_FIELDS
+
     fields = get_object_fields(obj)
     for key in fields:
-        if key in ["acronym", "id", "language", "portal_type", "contentType"]:
-            continue
         if key in skip_fields:
             continue
 
-        value = getattr(getattr(obj, key), "raw", getattr(obj, key))
+        raw_value = getattr(obj, key)
+        value = getattr(raw_value, "raw", getattr(obj, key))
 
         if not value:
+            continue
+
+        # ignore some value types
+        if is_language_independent_value(value):
             continue
 
         if callable(value):
@@ -305,12 +316,8 @@ def get_object_fields_values(obj):
 
             value = value()
 
-        # ignore some value types
-        if is_language_independent_value(value):
-            continue
-
-        if isinstance(getattr(obj, key), RichTextValue):
-            value = getattr(obj, key).raw.replace("\r\n", "")
+        if isinstance(raw_value, RichTextValue):
+            value = raw_value.raw.replace("\r\n", "")
             data["html"][key] = value
             continue
 
@@ -320,3 +327,26 @@ def get_object_fields_values(obj):
         data["item"][key] = value
 
     return data
+
+
+def get_value_representation(obj, name):
+    """Returns a value suitable for representation in HTML"""
+    value = getattr(obj, name)
+
+    if is_language_independent_value(value):
+        return None
+
+    if callable(value):
+        value = value()
+
+        # TODO: we should not need to do this
+        if isinstance(value, DateTime):  # ignore datetimes
+            return None
+
+    if isinstance(value, RichTextValue):
+        value = value.raw.replace("\r\n", "")
+
+    # if is_json(value):
+    #     return None
+
+    return value
