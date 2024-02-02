@@ -319,4 +319,18 @@
     </after>
   </rules>
 
+  <!-- 2024 disclaimer -->
+  <rules css:if-content=".section-frontpage">
+    <drop css:theme=".top-2024-disclaimer-after" />
+  </rules>
+  <rules css:if-not-content=".section-frontpage">
+    <drop css:theme=".top-2024-disclaimer-before" />
+  </rules>
+  <rules css:if-content=".template-health_homepage">
+    <drop css:theme=".top-obs-2024-disclaimer-after" />
+  </rules>
+  <rules css:if-not-content=".template-health_homepage">
+    <drop css:theme=".top-obs-2024-disclaimer-before" />
+  </rules>
+
 </rules>
