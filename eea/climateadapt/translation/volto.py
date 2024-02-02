@@ -27,9 +27,11 @@ CONTENT_CONVERTER = "http://converter:8000/html2content"
 
 def get_blocks_as_html(obj):
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(
+        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -41,9 +43,11 @@ def get_blocks_as_html(obj):
 
 def get_content_from_html(html):
     data = {"html": html}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER,
+                        data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -58,7 +62,7 @@ class ContentToHtml(BrowserView):
 
     def copy(self, fielddata):
         site = api.portal.get()
-        sandbox = site["en"]["sandbox"]
+        sandbox = site.restrictedTraverse("sandbox")
         copy = api.content.copy(source=self.context, target=sandbox)
         for k, v in fielddata.items():
             setattr(copy, k, v)
@@ -89,8 +93,14 @@ class ContentToHtml(BrowserView):
         html = self.index()
         data = get_content_from_html(html)
 
+        # because the blocks deserializer returns {blocks, blocks_layout} and is saved in "blocks", we need to fix it
+        if data.get("blocks"):
+            blockdata = data["blocks"]
+            data["blocks_layout"] = blockdata["blocks_layout"]
+            data["blocks"] = blockdata["blocks"]
+
         # json.dumps({"html": html, "data": data}, indent=2)
-        return self.copy(data).absolute_url()
+        return "http://localhost:3000/" + self.copy(data).absolute_url(relative=1)
 
     def get_value(self, name):
         if name == "blocks":
