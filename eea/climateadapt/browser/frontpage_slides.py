@@ -1,9 +1,9 @@
-import json
-import urllib
 from collections import namedtuple
 
+from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+                                                filters_to_query,
                                                 translate_text)
 from plone import api
 from plone.api.portal import get_tool, getSite
@@ -14,6 +14,8 @@ from Products.Five.browser import BrowserView
 from zope.interface import implements
 from zope.schema import TextLine
 
+# import json
+# import urllib
 # from zope.lifecycleevent import modified
 # from plone.namedfile.field import NamedBlobImage
 # from plone.namedfile.interfaces import IImageScaleTraversable
@@ -69,7 +71,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         sf = site.unrestrictedTraverse(fp_slides_path)
 
         slides = [
-            o for o in sf.contentValues() # if api.content.get_state(o) == "published"
+            o for o in sf.contentValues()  # if api.content.get_state(o) == "published"
         ]
         images = []
 
@@ -162,7 +164,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         image_url, copyright = self.getImages(slide)
         category = "Latest <br/> News & Events"
         category_translated = translate_text(self.context, self.request,
-            category, 'eea.cca', self.current_lang)
+                                             category, 'eea.cca', self.current_lang)
 
         return {
             "image_url": image_url,
@@ -196,7 +198,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         image_url, copyright = self.getImages(slide)
         category = "Most recent <br/> Case Study"
         category_translated = translate_text(self.context, self.request,
-            category, 'eea.cca', self.current_lang)
+                                             category, 'eea.cca', self.current_lang)
 
         return {
             "image_url": image_url,
@@ -212,7 +214,8 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         if not isinstance(html, basestring):
             return u""
         portal_transforms = api.portal.get_tool(name="portal_transforms")
-        data = portal_transforms.convertTo("text/plain", html, mimetype="text/html")
+        data = portal_transforms.convertTo(
+            "text/plain", html, mimetype="text/html")
         text = data.getData()
 
         return text
@@ -268,7 +271,7 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
         image_url, copyright = self.getImages(slide)
         category = "Most recent <br/> Publication or Report"
         category_translated = translate_text(self.context, self.request,
-            category, 'eea.cca', self.current_lang)
+                                             category, 'eea.cca', self.current_lang)
 
         return {
             "image_url": image_url,
@@ -303,26 +306,32 @@ class FrontpageSearch(BrowserView, TranslationUtilsMixin):
     # TODO: implement cache using eea.cache
     # @cache
     def _make_link(self, search_type):
-        t = {
-            u"function_score": {
-                u"query": {
-                    u"bool": {
-                        u"filter": {
-                            u"bool": {
-                                u"should": [{u"term": {u"typeOfData": search_type}}]
-                            }
-                        },
-                    }
-                }
-            }
-        }
+        # t = {
+        #     u"function_score": {
+        #         u"query": {
+        #             u"bool": {
+        #                 u"filter": {
+        #                     u"bool": {
+        #                         u"should": [{u"term": {u"typeOfData": search_type}}]
+        #                     }
+        #                 },
+        #             }
+        #         }
+        #     }
+        # }
+        type_ = ACEID_TO_SEARCHTYPE.get(search_type) or search_type
+        args = [
+            ('objectProvides', type_),
+            ('language', self.current_lang),
+        ]
+        query = filters_to_query(args)
 
-        base_query = "{0}/data-and-downloads/?lang={0}&source=".format(
-            self.current_lang)
-        q = {"query": t}
-        l = base_query + urllib.quote(json.dumps(q))
+        link = "{0}/data-and-downloads/?{1}".format(self.current_lang, query)
+        # "?lang={0}&source=".format(self.current_lang)
+        # q = {"query": t}
+        # link = base_query + urllib.quote(json.dumps(q))
 
-        return l
+        return link
 
     def sections(self):
         catalog = get_tool("portal_catalog")
@@ -344,11 +353,12 @@ class FrontpageSearch(BrowserView, TranslationUtilsMixin):
 
         for data in SEARCH_TYPES_ICONS:
             data = list(data)
-            data.append(data[1])
-            data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
+            # data.append(data[1])
+            data[1] = translate_text(
+                self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
+
         return [
-            Section(x[1], counts.get(x[0], 0), self._make_link(x[3]), x[2])
-            #for x in SEARCH_TYPES_ICONS
-            for x in tmp_types
+            Section(title, counts.get(aceid, 0), self._make_link(aceid), icon)
+            for (aceid, title, icon) in tmp_types
         ]

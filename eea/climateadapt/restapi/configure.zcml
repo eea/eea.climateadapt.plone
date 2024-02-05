@@ -1,7 +1,9 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:plone="http://namespaces.plone.org/plone">
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:plone="http://namespaces.plone.org/plone">
+
+  <include file="breadcrumbs.zcml" />
 
   <adapter factory=".serializer.GenericContentSerializer"/>
   <adapter factory=".serializer.GenericFolderSerializer"/>
@@ -44,10 +46,9 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
-  <!-- USED IN MIGRATION
   <adapter
     factory=".ecde.C3SIndicatorsOverview"
-    name="c3s_indicators_overview"
+    name="c3s_indicators_overview_api"
     />
 
   <plone:service
@@ -55,13 +56,13 @@
     factory=".ecde.C3SIndicatorsOverviewGet"
     for="zope.interface.Interface"
     permission="zope2.View"
-    name="@c3s_indicators_overview"
+    name="@c3s_indicators_overview_api"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
   <adapter
     factory=".ecde.C3SIndicatorsGlossaryTable"
-    name="c3s_indicators_glossary_table"
+    name="c3s_indicators_glossary_table_api"
     />
 
   <plone:service
@@ -69,20 +70,19 @@
     factory=".ecde.C3SIndicatorsGlossaryTableGet"
     for="zope.interface.Interface"
     permission="zope2.View"
-    name="@c3s_indicators_glossary_table"
+    name="@c3s_indicators_glossary_table_api"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
-    -->
 
   <subscriber
-      factory=".serializer.SlateBlockSerializer"
-      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-      />
+    factory=".serializer.SlateBlockSerializer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+    />
 
   <subscriber
-      factory=".deserializer.VolatileSmartField"
-      provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
-      />
+    factory=".deserializer.VolatileSmartField"
+    provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
+    />
 
   <subscriber
     factory=".blocks.SearchAceContentBlockSerializer"
@@ -95,26 +95,33 @@
     />
 
   <browser:page
-      for="*"
-      name="portal_tabs_view"
-      layer="plone.restapi.interfaces.IPloneRestapiLayer"
-      class=".navigation.CatalogNavigationTabs"
-      permission="zope.Public"
-      allowed_attributes="topLevelTabs"
-      />
+    for="*"
+    name="portal_tabs_view"
+    layer="plone.restapi.interfaces.IPloneRestapiLayer"
+    class=".navigation.CatalogNavigationTabs"
+    permission="zope.Public"
+    allowed_attributes="topLevelTabs"
+    />
 
   <adapter
-      factory=".navigation.Navigation"
-      name="navigation"
-      />
+    factory=".navigation.Navigation"
+    name="navigation"
+    />
 
-    <plone:service
-      method="GET"
-      factory=".navigation.NavigationGet"
-      for="zope.interface.Interface"
-      permission="zope2.View"
-      name="@navigation"
-      layer="plone.restapi.interfaces.IPloneRestapiLayer"
-      />
+  <plone:service
+    method="GET"
+    factory=".navigation.NavigationGet"
+    for="zope.interface.Interface"
+    permission="zope2.View"
+    name="@navigation"
+    layer="plone.restapi.interfaces.IPloneRestapiLayer"
+    />
+
+  <plone:behavior
+    name="volto.blocks.editable.layout"
+    title="Blocks (Editable Layout)"
+    description="Enables Volto Blocks (editable layout) support"
+    provides=".behaviors.IBlocksEditableLayout"
+    />
 
 </configure>

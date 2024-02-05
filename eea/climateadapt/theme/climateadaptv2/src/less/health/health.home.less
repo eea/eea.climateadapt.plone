@@ -423,6 +423,80 @@
   background-color: #f5f5f5;
 }
 
+.zone-share {
+  background-color: #0170b7 !important;
+  .tab-content {
+    height: calc(100% - 40px);
+    padding: 0.7em;
+    background-color: #ffffff;
+  }
+  .tab-pane {
+    // display: flex;
+    // height: 100%;
+    // align-items: center;
+    // justify-content: center;
+  }
+  .nav-tabs {
+    padding-bottom: 0;
+    padding-left: 0;
+    margin:0;
+
+    a {
+      position:relative;
+      display: block;
+      padding:10px 15px;
+    }
+  }
+
+  .nav-tabs>li a, .nav-tabs>li a:hover {
+    font-size: 13px;
+    text-transform: uppercase;
+    color :#ffffff;
+    background-color: transparent;
+    border: none;
+  }
+
+  .nav-tabs>li.active a, .nav-tabs>li.active a {
+    border: none;
+    border-radius: 0;
+    color: #555;
+  }
+
+  .nav-tabs>li.active a{
+    background-color: #fff;
+  }
+
+  #newsletter-tab, #share-info-tab {
+    background-color: #fff;
+    padding: 0.7em;
+  }
+  #newsletter-tab.active {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .fp-share-info-tile {
+    padding:0;
+  }
+  .fp-share-info-tile .info-section{
+    padding:0.2em;
+  }
+  #share-info-tab .info-section{
+    background-color: #ffffff;
+
+    h5, p {
+      color:#0170b7;
+    }
+
+    img {
+      fill:#0170b7;
+      filter: invert(69%) sepia(43%) saturate(2755%) hue-rotate(181deg) brightness(99%) contrast(99%);
+    }
+  }
+
+}
+
 @media only screen and (max-width: 992px) {
   .health-fp-image .health-image-wrapper {
     height: 450px;

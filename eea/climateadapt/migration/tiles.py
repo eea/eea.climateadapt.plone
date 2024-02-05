@@ -14,6 +14,7 @@ from plone.restapi.serializer.converters import json_compatible
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.CatalogTool import sortable_title
 from zope.component.hooks import getSite
+from .config import SECTOR_POLICIES
 
 from .utils import convert_to_blocks, make_uid, path
 
@@ -434,7 +435,7 @@ def relevant_acecontent_to_block(tile_dm, obj, request):
     }
 
 
-def nop_view(obj, data):
+def nop_view(obj, data, request):
     return {"blocks": []}
 
 
@@ -455,8 +456,9 @@ def country_disclaimer_view(obj, data):
         "gas emissions and for reporting other information relevant "
         "to climate change\' and updates by the EEA member countries."
     )
+    block_id = make_uid()
 
-    blocks = [[make_uid(), {
+    blocks = [[block_id, {
         "@type": "slate",
         "plaintext": title,
         "value": [{
@@ -486,6 +488,348 @@ def country_disclaimer_view(obj, data):
         "blocks": blocks,
     }
 
+def help_categories_view(obj, data, request):
+    current_lang = get_current_language(obj, request)
+    block_id = make_uid()
+
+    item_model = {
+        "@type": "card",
+        "callToAction": {
+            "label": "Read more"
+        },
+        "hasDate": False,
+        "hasDescription": True,
+        "hasEventDate": False,
+        "hasLink": True,
+        "maxDescription": "5",
+        "maxTitle": "3",
+        "styles": {
+            "text": "center"
+        },
+        "titleOnImage": False
+    }
+
+    blocks = [[block_id, {
+        "@type": "teaserGrid",
+        "columns": [{
+            "@type": "teaser",
+            "description": "Common definitions of the terms used frequently in the clearinghouse.",
+            "href": [{
+                    "@id": "/" + current_lang + "/help/glossary",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2016-07-07T12:57:23+01:00",
+                    "Title": "Glossary",
+                    "image_field": "",
+                    "title": "Glossary"
+            }],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "Glossary"
+        },
+        {
+            "@type": "teaser",
+            "description": "Guidance on the Climate-ADAPT Database Search function.",
+            "href": [
+                {
+                    "@id": "/" + current_lang + "/help/guidance",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2017-06-15T14:48:34+01:00",
+                    "Title": "Guidance to search function",
+                    "image_field": "",
+                    "title": "Guidance to search function"
+                }
+            ],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "Guidance to search function"
+        },
+        {
+            "@type": "teaser",
+            "description": "Find out how to contribute different types of information to Climate-ADAPT.",
+            "href": [
+                {
+                    "@id": "/" + current_lang + "/help/faq-providers",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2016-07-07T12:57:35+01:00",
+                    "Title": "FAQ for providers",
+                    "image_field": "",
+                    "title": "FAQ for providers"
+                }
+            ],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "FAQ for providers"
+        },
+        {
+            "@type": "teaser",
+            "description": "Frequently asked questions in one place.",
+            "href": [
+                {
+                    "@id": "/" + current_lang + "/help/faq",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2016-07-07T12:57:35+01:00",
+                    "Title": "FAQ for users",
+                    "image_field": "",
+                    "title": "FAQ for users"
+                }
+            ],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "FAQ for users"
+        },
+        {
+            "@type": "teaser",
+            "description": "If you are new user the video tutorials can help you get started.",
+            "href": [
+                {
+                    "@id": "/" + current_lang + "/help/tutorial-videos",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "2016-07-07T12:59:05+01:00",
+                    "Title": "Tutorial videos",
+                    "image_field": "",
+                    "title": "Tutorial videos"
+                }
+            ],
+            "id": make_uid(),
+            "itemModel": item_model,
+            "styles": {
+                "align": "left"
+            },
+            "title": "Tutorial videos"
+        }
+        ]
+    }]]
+
+    return {
+        "blocks": blocks,
+    }
+
+def regions_section_view(obj, data, request):
+    current_lang = get_current_language(obj, request)
+    item_model = {
+        "@type": "card",
+        "callToAction": {
+            "label": "Read more"
+        },
+        "hasLink": True,
+        "maxDescription": 2,
+        "maxTitle": 2,
+        "styles": {
+            "objectFit": "contain",
+            "text": "center"
+        },
+        "titleOnImage": False
+    }
+    content = (
+        " is governed by the EU Cohesion policy and the programmes will be "
+        "fully part of Interreg. In order to highlight the external dimension "
+        "of Cohesion policy and at the same time to emphasise how close EU and "
+        "partner countries stand, the new programmes is called \"Interreg NEXT\"."
+    )
+
+    blocks = [
+        [make_uid(), {
+            "@type": "listing",
+            "block": make_uid(),
+            "headlineTag": "h2",
+            "itemModel": item_model,
+            "query": [],
+            "querystring": {
+                "query": [{
+                    "i": "Subject",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": ["transnational-region"]
+                }],
+                "sort_on": "sortable_title",
+                "sort_order": "ascending"
+            },
+            "styles": {},
+            "variation": "summary"
+        }],
+        [make_uid(), {
+            "@type": "slate",
+            "value": [
+                {
+                    "children": [
+                        {
+                            "text": "In 2021-2027, the "
+                        },
+                        {
+                            "children": [
+                                {
+                                    "text": "cross-border cooperation (CBC) between EU Member States and Neighbourhood region"
+                                }
+                            ],
+                            "data": {
+                                "url": "https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en"
+                            },
+                            "type": "link"
+                        },
+                        {
+                            "text": content,
+                        }
+                    ],
+                    "type": "p"
+                }
+            ]
+        }],
+        [make_uid(), {
+            "@type": "teaserGrid",
+            "columns": [{
+                "@type": "teaser",
+                "description": "",
+                "href": [{
+                    "@id": "/" + current_lang + "/countries-regions/transnational-regions/black_sea_region",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "None",
+                    "ExpirationDate": "None",
+                    "Subject": [],
+                    "Title": "Black Sea Basin (NEXT)",
+                    "image_field": "preview_image",
+                    "title": "Black Sea Basin (NEXT)"
+                }],
+                "id": make_uid(),
+                "itemModel": item_model,
+                "title": "Black Sea Basin"
+            },
+            {
+                "@type": "teaser",
+                "description": "",
+                "href": [{
+                    "@id": "/" + current_lang + "/countries-regions/transnational-regions/mediterranean_sea_basin",
+                    "@type": "Folder",
+                    "Description": "",
+                    "EffectiveDate": "None",
+                    "ExpirationDate": "None",
+                    "Subject": [],
+                    "Title": "Mediterranean Sea Basin (NEXT)",
+                    "image_field": "preview_image",
+                    "title": "Mediterranean Sea Basin (NEXT)"
+                }],
+                "id": make_uid(),
+                "itemModel": item_model,
+                "title": "Mediterranean Sea Basin"
+            }]
+        }]
+    ]
+
+    return {
+        "blocks": blocks
+    }
+
+def eu_sector_policies_view(obj, data, request):
+    current_lang = get_current_language(obj, request)
+    blocks = []
+    # TODO: translation
+    for sector in SECTOR_POLICIES:
+        col_block_id = make_uid()
+        col_1_id = make_uid()
+        col_2_id = make_uid()
+        call_to_action_block_id = make_uid()
+        slate_block_id = make_uid()
+        item_block_id = make_uid()
+        divider_id = make_uid()
+
+        col_data =  {
+            "@type": "columnsBlock",
+            "data": {
+                "blocks": {
+                    col_1_id: {
+                        "blocks": {
+                            call_to_action_block_id: {
+                                "@type": "callToActionBlock",
+                                "href": "/" +  current_lang + sector[2],
+                                "styles": {
+                                    "align": "right",
+                                    "theme": "primary"
+                                },
+                                "text": "Read more"
+                            },
+                            slate_block_id: {
+                                "@type": "slate",
+                                "plaintext": sector[1],
+                                "value": [{
+                                    "children": [{
+                                        "text": sector[1]
+                                    }],
+                                    "type": "p"
+                                }]
+                            },
+                            divider_id : {
+                                "@type": "dividerBlock",
+                                "hidden": True,
+                                "styles": {}
+                            }
+                        },
+                        "blocks_layout": {
+                            "items": [
+                                divider_id,
+                                slate_block_id,
+                                call_to_action_block_id,
+                            ]
+                        }
+                    },
+                    col_2_id: {
+                        "blocks": {
+                            item_block_id: {
+                                "@type": "item",
+                                "description": [{
+                                    "children": [{
+                                        "style-primary": True,
+                                        "text": sector[0]
+                                    }],
+                                    "type": "h3"
+                                }],
+                                "iconSize": "big",
+                                "theme": "primary",
+                                "verticalAlign": "middle"
+                            },
+                        },
+                        "blocks_layout": {
+                            "items": [
+                                item_block_id,
+                            ]
+                        }
+                    }
+                },
+                "blocks_layout": {
+                    "items": [
+                        col_2_id,
+                        col_1_id
+                    ]
+                }
+            },
+            "gridCols": [
+                "oneThird",
+                "twoThirds"
+            ],
+            "gridSize": 12,
+            "styles": {}
+        }
+
+        blocks.append([col_block_id, col_data])
+
+    return {
+        "blocks": blocks
+    }
 
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
@@ -522,7 +866,7 @@ view_convertors = {
     # a listing of sector policies, with descriptions underneath. Doesn't fit the new
     # Design System, we need a ticket for the designer to reorganize with EEA DS. Ticket: https://taskman.eionet.europa.eu/issues/253400
     # /eu-adaptation-policy/sector-policies/index_html
-    'eu-sector-policies': nop_view,
+    'eu-sector-policies': eu_sector_policies_view,
 
     # To be implemented as a homepage. Ticket??: https://taskman.eionet.europa.eu/issues/161511
     'forest-landing-page': nop_view,    # /knowledge/forestry
@@ -533,7 +877,7 @@ view_convertors = {
     'fp-news-tile': nop_view,  # /
 
     # Card-based listing. To be implemented as a card listing. Ticket: https://taskman.eionet.europa.eu/issues/161514
-    'help-categories': nop_view,  # /help/index_html
+    'help-categories': help_categories_view,  # /help/index_html
 
 
     # A search listing with tab-based prefilters. Should be reimplemented as search
@@ -544,7 +888,7 @@ view_convertors = {
     # A listing of the regions. We should do a listing block here. Also, make sure to
     # migrate the image as "preview_image" in the regions items. Ticket: https://taskman.eionet.europa.eu/issues/161598
     # /countries-regions/transnational-regions/transnational-regions-and-other-regions-and-countries
-    'regions-section': nop_view,
+    'regions-section': regions_section_view,
 
     # To be reimplemented as a homepage. Ticket for designer: https://taskman.eionet.europa.eu/issues/253404
     'urban-landing-page': nop_view,  # /countries-regions/local
@@ -575,7 +919,7 @@ def genericview_tile_to_block(tile_dm, obj, request):
         logger.info("Generic view '%s' at '%s'", view_name, path(obj))
         _logged.append(view_name)
 
-    return converter(obj, data)
+    return converter(obj, data, request)
 
 
 def filter_acecontent_to_block(tile_dm, obj, request):
