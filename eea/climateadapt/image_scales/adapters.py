@@ -172,7 +172,7 @@ class ImageFieldScales(object):
                 "height": actual_height,
             }
 
-        print("scales", scales)
+        print("'eea.climateadapt.image_scales.adapters scales", scales)
         return scales
 
     def get_original_image_url(self, fieldname, width, height):
