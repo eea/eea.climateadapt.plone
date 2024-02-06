@@ -443,7 +443,7 @@ def c3s_indicators_overview_view(obj, data):
     return {"blocks": []}
 
 
-def country_disclaimer_view(obj, data):
+def country_disclaimer_view(obj, data, request):
     title = data.get('title')
     content = (
         "The information presented in these pages is based on "
@@ -488,6 +488,7 @@ def country_disclaimer_view(obj, data):
         "blocks": blocks,
     }
 
+
 def help_categories_view(obj, data, request):
     current_lang = get_current_language(obj, request)
     block_id = make_uid()
@@ -522,7 +523,7 @@ def help_categories_view(obj, data, request):
                     "Title": "Glossary",
                     "image_field": "",
                     "title": "Glossary"
-            }],
+                    }],
             "id": make_uid(),
             "itemModel": item_model,
             "styles": {
@@ -530,7 +531,7 @@ def help_categories_view(obj, data, request):
             },
             "title": "Glossary"
         },
-        {
+            {
             "@type": "teaser",
             "description": "Guidance on the Climate-ADAPT Database Search function.",
             "href": [
@@ -551,7 +552,7 @@ def help_categories_view(obj, data, request):
             },
             "title": "Guidance to search function"
         },
-        {
+            {
             "@type": "teaser",
             "description": "Find out how to contribute different types of information to Climate-ADAPT.",
             "href": [
@@ -572,7 +573,7 @@ def help_categories_view(obj, data, request):
             },
             "title": "FAQ for providers"
         },
-        {
+            {
             "@type": "teaser",
             "description": "Frequently asked questions in one place.",
             "href": [
@@ -593,7 +594,7 @@ def help_categories_view(obj, data, request):
             },
             "title": "FAQ for users"
         },
-        {
+            {
             "@type": "teaser",
             "description": "If you are new user the video tutorials can help you get started.",
             "href": [
@@ -620,6 +621,7 @@ def help_categories_view(obj, data, request):
     return {
         "blocks": blocks,
     }
+
 
 def regions_section_view(obj, data, request):
     current_lang = get_current_language(obj, request)
@@ -710,7 +712,7 @@ def regions_section_view(obj, data, request):
                 "itemModel": item_model,
                 "title": "Black Sea Basin"
             },
-            {
+                {
                 "@type": "teaser",
                 "description": "",
                 "href": [{
@@ -735,6 +737,7 @@ def regions_section_view(obj, data, request):
         "blocks": blocks
     }
 
+
 def eu_sector_policies_view(obj, data, request):
     current_lang = get_current_language(obj, request)
     blocks = []
@@ -748,7 +751,7 @@ def eu_sector_policies_view(obj, data, request):
         item_block_id = make_uid()
         divider_id = make_uid()
 
-        col_data =  {
+        col_data = {
             "@type": "columnsBlock",
             "data": {
                 "blocks": {
@@ -756,7 +759,7 @@ def eu_sector_policies_view(obj, data, request):
                         "blocks": {
                             call_to_action_block_id: {
                                 "@type": "callToActionBlock",
-                                "href": "/" +  current_lang + sector[2],
+                                "href": "/" + current_lang + sector[2],
                                 "styles": {
                                     "align": "right",
                                     "theme": "primary"
@@ -773,7 +776,7 @@ def eu_sector_policies_view(obj, data, request):
                                     "type": "p"
                                 }]
                             },
-                            divider_id : {
+                            divider_id: {
                                 "@type": "dividerBlock",
                                 "hidden": True,
                                 "styles": {}
@@ -830,6 +833,7 @@ def eu_sector_policies_view(obj, data, request):
     return {
         "blocks": blocks
     }
+
 
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
