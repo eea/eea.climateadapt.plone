@@ -198,3 +198,10 @@ def _get_events(self, ret_mode=RET_MODE_ACCESSORS, expand=True):
     filtered_events = [
         x for x in unfiltered_events if '/mission/' not in x.url]
     return filtered_events
+
+
+THREE_SECONDS = 3000
+
+
+def __patched_modified_since(self, since, offset=THREE_SECONDS):
+    return self._old__modified_since(since, offset)

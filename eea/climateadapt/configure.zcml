@@ -526,4 +526,12 @@
       original="_get_events"
       preserveOriginal="false"
       replacement="eea.climateadapt.patch._get_events" />
+
+    <monkey:patch
+      description="Patch _modified_since in scales AnnotationStorage to avoid invalidation of scales in the same transaction"
+      class="plone.scale.storage.AnnotationStorage"
+      original="_modified_since"
+      preserveOriginal="true"
+      replacement="eea.climateadapt.patch.__patched_modified_since" />
+
 </configure>
