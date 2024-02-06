@@ -499,12 +499,14 @@ def fix_read_more(context):
     ]
 
     def get_columns_block_id(blocks):
-        columns_block = {k for k, v in blocks.items() if v['@type'] == 'columnsBlock'}
+        columns_block = {
+            k for k, v in blocks.items() if v['@type'] == 'columnsBlock'}
         col_id = list(columns_block)[0]
         return col_id
 
     def get_read_more_block_id(blocks):
-        read_more_block = {k for k, v in blocks.items() if v['@type'] == 'readMoreBlock'}
+        read_more_block = {
+            k for k, v in blocks.items() if v['@type'] == 'readMoreBlock'}
         if read_more_block:
             read_more_block_id = list(read_more_block)[0]
             return read_more_block_id
@@ -523,7 +525,8 @@ def fix_read_more(context):
         if read_more_block_id:
             read_more_index = col_items.index(read_more_block_id)
             col_items.pop(read_more_index)
-            col_items.insert(len(col_items)-len(tiles), read_more_block_id)  # insert before acecontent blocks
+            # insert before acecontent blocks
+            col_items.insert(len(col_items)-len(tiles), read_more_block_id)
             first_col['blocks_layout']['items'] = col_items
 
     elif are_in_path(url, PATHS):
@@ -532,7 +535,8 @@ def fix_read_more(context):
         if read_more_block_id:
             read_more_index = items.index(read_more_block_id)
             items.pop(read_more_index)
-            items.insert(len(items) - 1, read_more_block_id)  # insert before last block
+            # insert before last block
+            items.insert(len(items) - 1, read_more_block_id)
             context.blocks_layout['items'] = items
 
     else:
@@ -677,7 +681,11 @@ def fix_field_encoding(context):
 @inpath('countries-regions/transnational-regions/')
 def fix_preview_image(context):
 
-    folder_image = context.listFolderContents(contentFilter={"portal_type": "Image"})[0]
+    folder_images = context.listFolderContents(
+        contentFilter={"portal_type": "Image"})
+    folder_image = None
+    if len(folder_images) > 0:
+        folder_image = folder_images[0]
     if folder_image:
         image = folder_image.image
         context.preview_image = image
