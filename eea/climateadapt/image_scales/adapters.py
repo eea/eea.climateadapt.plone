@@ -2,6 +2,7 @@
 """
 ImageScales
 """
+
 from Acquisition import aq_inner
 from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.utils import iterSchemata
@@ -68,6 +69,7 @@ def _get_scale_infos():
     imaging_settings = registry.forInterface(
         IImagingSchema, prefix="plone", omit=("picture_variants")
     )
+    # __import__("pdb").set_trace()
     allowed_sizes = imaging_settings.allowed_sizes
     return [_split_scale_info(size) for size in allowed_sizes]
 
@@ -98,6 +100,7 @@ class ImageFieldScales(object):
             # Seen in plone.app.caching.tests.test_profile_with_caching_proxy.
             # If we cannot find the images view, there is nothing for us to do.
             return None
+
         width, height = image.getImageSize()
         url = self.get_original_image_url(self.field.__name__, width, height)
         scales = self.get_scales(self.field, width, height)
@@ -114,6 +117,15 @@ class ImageFieldScales(object):
             }
         ]
 
+    def _get_scale_from_storage(self, fieldname, width, height):
+        for scale in self.context.__annotations__["plone.scale"].values():
+            if (
+                scale["fieldname"] == fieldname and scale["width"] == width
+                # and scale["height"] == height
+            ):
+                # __import__("pdb").set_trace()
+                return scale
+
     def get_scales(self, field, width, height):
         """Get a dictionary of available scales for a particular image field,
         with the actual dimensions (aspect ratio of the original image).
@@ -121,6 +133,7 @@ class ImageFieldScales(object):
         scales = {}
 
         for name, actual_width, actual_height in _get_scale_infos():
+            print("get_scales", name, actual_height, actual_height)
             if actual_width > width:
                 # The width of the scale is larger than the original width.
                 # Scaling would simply return the original (or perhaps a copy
@@ -131,25 +144,35 @@ class ImageFieldScales(object):
 
                 # Get the scale info without actually generating the scale,
                 # nor any old-style HiDPI scales.
-            scale = self.images_view.scale(
-                field.__name__,
-                width=actual_width,
-                height=actual_height,
+
+            # __import__("pdb").set_trace()
+            scale = self._get_scale_from_storage(
+                field.__name__, width=actual_width, height=actual_height
             )
+            # scale = self.images_view.scale(
+            #     field.__name__,
+            #     width=actual_width,
+            #     height=actual_height,
+            # )
             if scale is None:
+                print("scale is none")
                 # If we cannot get a scale, it is probably a corrupt image.
                 continue
 
-            url = scale.url
-            actual_width = scale.width
-            actual_height = scale.height
+            ext = scale["mimetype"].split("/")[1]
+            url = "@@images/%s.%s" % (scale["uid"], ext)
 
+            actual_width = scale["width"]
+            actual_height = scale["height"]
+
+            # __import__("pdb").set_trace()
             scales[name] = {
                 "download": self._scale_view_from_url(url),
                 "width": actual_width,
                 "height": actual_height,
             }
 
+        print("scales", scales)
         return scales
 
     def get_original_image_url(self, fieldname, width, height):

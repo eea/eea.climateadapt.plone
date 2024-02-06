@@ -8,12 +8,14 @@ from Acquisition import Explicit, aq_inner
 from collective.cover.interfaces import ITileEditForm
 from collective.cover.tiles.edit import CustomEditForm as CoverEditForm
 from collective.cover.tiles.edit import CustomTileEdit as CoverTileEdit
-from eea.climateadapt.browser.aceitem import (GuidanceDocumentAddForm,
-                                              IndicatorAddForm,
-                                              InformationPortalAddForm,
-                                              OrganisationAddForm,
-                                              PublicationReportAddForm,
-                                              ToolAddForm)
+from eea.climateadapt.browser.aceitem import (
+    GuidanceDocumentAddForm,
+    IndicatorAddForm,
+    InformationPortalAddForm,
+    OrganisationAddForm,
+    PublicationReportAddForm,
+    ToolAddForm,
+)
 from eea.climateadapt.browser.aceproject import AceProjectAddForm
 from eea.climateadapt.browser.adaptationoption import AdaptationOptionAddForm
 from eea.climateadapt.browser.casestudy import CaseStudyAddForm
@@ -37,21 +39,21 @@ from zope.schema.interfaces import IVocabularyFactory
 
 
 class VocabularyView(vocab.VocabularyView):
-    """ Override the default getVocabulary because it doesn't work
-        well with the add view and the editing of an item
+    """Override the default getVocabulary because it doesn't work
+    well with the add view and the editing of an item
     """
 
     _vocabs = [
-        ('eea.climateadapt.keywords', 'keywords'),
-        ('eea.climateadapt.special_tags', 'special_tags'),
-        ('eea.climateadapt.adaptation_options', 'adaptationoptions'),
-        ('eea.climateadapt.cca_items', 'ccaitems')
+        ("eea.climateadapt.keywords", "keywords"),
+        ("eea.climateadapt.special_tags", "special_tags"),
+        ("eea.climateadapt.adaptation_options", "adaptationoptions"),
+        ("eea.climateadapt.cca_items", "ccaitems"),
     ]
 
     def get_vocabulary(self):
         context = self.get_context()
-        factory_name = self.request.get('name', None)
-        field_name = self.request.get('field', None)
+        factory_name = self.request.get("name", None)
+        field_name = self.request.get("field", None)
 
         if (factory_name, field_name) not in self._vocabs:
             return super(VocabularyView, self).get_vocabulary()
@@ -60,7 +62,8 @@ class VocabularyView(vocab.VocabularyView):
 
         if not factory:
             raise vocab.VocabLookupException(
-                'No factory with name "%s" exists.' % factory_name)
+                'No factory with name "%s" exists.' % factory_name
+            )
 
         # import pdb; pdb.set_trace()
         # This part is for backwards-compatibility with the first
@@ -72,9 +75,9 @@ class VocabularyView(vocab.VocabularyView):
             factory_spec = inspect.getargspec(factory)
         else:
             factory_spec = inspect.getargspec(factory.__call__)
-        query = vocab._parseJSON(self.request.get('query', ''))
+        query = vocab._parseJSON(self.request.get("query", ""))
 
-        if query and 'query' in factory_spec.args:
+        if query and "query" in factory_spec.args:
             vocabulary = factory(context, query=query)
         else:
             # This is what is reached for non-legacy vocabularies.
@@ -84,25 +87,25 @@ class VocabularyView(vocab.VocabularyView):
 
 
 forms_dict = {
-    'eea.climateadapt.acemeasure.CaseStudy': CaseStudyAddForm,
-    'eea.climateadapt.acemeasure.AdaptationOption': AdaptationOptionAddForm,
-    'eea.climateadapt.aceitem.PublicationReport': PublicationReportAddForm,
-    'eea.climateadapt.aceitem.InformationPortal': InformationPortalAddForm,
-    'eea.climateadapt.aceitem.GuidanceDocument': GuidanceDocumentAddForm,
-    'eea.climateadapt.aceitem.Tool': ToolAddForm,
-    'eea.climateadapt.aceitem.Organisation': OrganisationAddForm,
-    'eea.climateadapt.aceitem.Indicator': IndicatorAddForm,
-    'eea.climateadapt.aceitem.MapGraphDataset': MapsAddForm,
+    "eea.climateadapt.acemeasure.CaseStudy": CaseStudyAddForm,
+    "eea.climateadapt.acemeasure.AdaptationOption": AdaptationOptionAddForm,
+    "eea.climateadapt.aceitem.PublicationReport": PublicationReportAddForm,
+    "eea.climateadapt.aceitem.InformationPortal": InformationPortalAddForm,
+    "eea.climateadapt.aceitem.GuidanceDocument": GuidanceDocumentAddForm,
+    "eea.climateadapt.aceitem.Tool": ToolAddForm,
+    "eea.climateadapt.aceitem.Organisation": OrganisationAddForm,
+    "eea.climateadapt.aceitem.Indicator": IndicatorAddForm,
+    "eea.climateadapt.aceitem.MapGraphDataset": MapsAddForm,
     # 'eea.climateadapt.aceitem.ResearchProject':
-    'eea.climateadapt.aceproject.AceProject': AceProjectAddForm,
-    'eea.climateadapt.acevideo.Video': VideoAddForm,
-    'plone.app.contenttypes.content.Event': EventAddForm,
-    'plone.app.contenttypes.content.NewsItem': NewsItemAddForm,
+    "eea.climateadapt.aceproject.AceProject": AceProjectAddForm,
+    "eea.climateadapt.acevideo.Video": VideoAddForm,
+    "plone.app.contenttypes.content.Event": EventAddForm,
+    "plone.app.contenttypes.content.NewsItem": NewsItemAddForm,
 }
 
 
 class AddView(DefaultAddView):
-    """ Add form page for case studies
+    """Add form page for case studies
 
     The default add view, as generated by plone.autoform, cannot really use
     a custom FormExtender because the context is not the proper context (the
@@ -118,22 +121,22 @@ class AddView(DefaultAddView):
         self.request = request
 
         if self.form is not None:
-
             klass = forms_dict.get(ti.klass, None)
 
             if klass:
                 self.form = klass
 
-            self.form_instance = self.form(aq_inner(self.context),
-                                           self.request)
+            self.form_instance = self.form(
+                aq_inner(self.context), self.request)
             self.form_instance.__name__ = self.__name__
 
         self.ti = ti
 
         # Set portal_type name on newly created form instance
 
-        if self.form_instance is not None \
-           and not getattr(self.form_instance, 'portal_type', None):
+        if self.form_instance is not None and not getattr(
+            self.form_instance, "portal_type", None
+        ):
             self.form_instance.portal_type = ti.getId()
 
 
@@ -164,7 +167,7 @@ class PloneLayout(LayoutPolicy):
     def __init__(self, context, request):
         # print "custom plone layout view", context
 
-        if hasattr(context, 'aq_parent'):
+        if hasattr(context, "aq_parent"):
             return LayoutPolicy.__init__(self, context.aq_parent, request)
         else:
             return super(PloneLayout, self).__init__(context, request)
@@ -172,7 +175,6 @@ class PloneLayout(LayoutPolicy):
 
 @implementer(ITileEditForm)
 class CustomEditForm(CoverEditForm):
-
     def getContent(self):
         dataManager = ITileDataManager(self.getTile())
         val = dataManager.get()
@@ -187,7 +189,7 @@ class CustomTileEdit(CoverTileEdit):
 
 
 class IconWrapper(Traversable):
-    """ Class hack to allow traversing to type icons. See below"""
+    """Class hack to allow traversing to type icons. See below"""
 
     def __init__(self, context):
         self.context = context
@@ -201,7 +203,7 @@ class IconWrapper(Traversable):
 
 
 class AceContentImagesTraverser(ImageScaling):
-    """ A hack to use the content type icons for @@images view
+    """A hack to use the content type icons for @@images view
 
     It is needed because relatedItems widget from plone.app.widgets hardcodes
     the path that is used to get the icons.
@@ -210,22 +212,22 @@ class AceContentImagesTraverser(ImageScaling):
     def publishTraverse(self, request, name):
         # import pdb
         # pdb.set_trace()
-        if name == 'image':
+        if name == "image":
             site = portal.getSite()
-            if not hasattr(self.context, 'getIcon'):
+            if not hasattr(self.context, "getIcon"):
                 return super(AceContentImagesTraverser, self).publishTraverse(
-                    request, name)
+                    request, name
+                )
             icon = self.context.getIcon()
 
-            if icon.startswith('/'):
+            if icon.startswith("/"):
                 icon = icon[1:]
             img = site.restrictedTraverse(icon)
 
             if "++resource++" in icon:
-                img = Image('img', 'image', img.GET())
+                img = Image("img", "image", img.GET())
                 img = img.__of__(self.context)
 
             return IconWrapper(img)
 
-        return super(AceContentImagesTraverser, self).publishTraverse(request,
-                                                                      name)
+        return super(AceContentImagesTraverser, self).publishTraverse(request, name)

@@ -69,9 +69,9 @@
       layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
       />
 
-  <class class=".acemeasure.CaseStudy">
-    <implements interface="plone.app.imagecropping.dx.IImageCroppingDX" />
-  </class>
+  <!-- <class class=".acemeasure.CaseStudy"> -->
+  <!--   <implements interface="plone.app.imagecropping.dx.IImageCroppingDX" /> -->
+  <!-- </class> -->
 
   <class class="collective.cover.content.Cover">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
