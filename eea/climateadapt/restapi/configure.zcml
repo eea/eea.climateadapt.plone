@@ -1,6 +1,7 @@
 <configure
   xmlns="http://namespaces.zope.org/zope"
   xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
   xmlns:plone="http://namespaces.plone.org/plone">
 
   <include file="breadcrumbs.zcml" />
@@ -13,7 +14,10 @@
   <adapter factory=".serializer.AceProjectSerializer" />
   <adapter factory=".serializer.CaseStudySerializer" />
 
-  <adapter factory=".long_converter" />
+  <zcml:configure zcml:condition="not-installed collective.exportimport">
+    <adapter factory=".long_converter" />
+  </zcml:configure>
+
   <adapter factory=".geolocation_converter" />
   <adapter factory=".richtext_value_converter" />
   <adapter factory=".deserializer.GeolocationFieldDeserializer" />
