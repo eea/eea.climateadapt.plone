@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-01-23 11:25+0000\n"
+"POT-Creation-Date: 2024-02-03 05:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,422 +50,427 @@ msgstr "<i class = \"Fa Fa-Question-Circle\"> </i> súgó"
 msgid "<i class=\"fa fa-search\"></i>"
 msgstr "<i class = \"Fa fa-search\"> </i>"
 
-#: ../theme/climateadaptv2/index.html:436
+#: ../theme/climateadaptv2/index.html:446
 msgid "Adaptation <br /> Support Tool"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:797
+#: ../theme/climateadaptv2/index.html:807
 msgid "Adaptation options"
 msgstr "Adaptációs lehetőségek"
 
-#: ../theme/climateadaptv2/index.html:1534
+#: ../theme/climateadaptv2/index.html:1544
 msgid "Adaptation support tool"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:914
+#: ../theme/climateadaptv2/index.html:924
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "Mezőgazdaság"
 
-#: ../theme/climateadaptv2/index.html:1602
+#: ../theme/climateadaptv2/index.html:1612
 msgid "As our climate changes, the weather is becoming more extreme. The European Environment Agency looks at what might happen this summer; the impact of past weather events; what we can expect in the long term; and how prepared we are as a society."
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1457
+#: ../theme/climateadaptv2/index.html:1467
 msgid "Assessing adaptation options"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1439
+#: ../theme/climateadaptv2/index.html:1449
 msgid "Assessing risks and vulnerability <br /> to climate change"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:922
+#: ../theme/climateadaptv2/index.html:932
 #: ../theme/climateadaptv2/tab-policies-rule.html:23
 msgid "Biodiversity"
 msgstr "Biológiai sokféleség"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1089
+#: ../theme/climateadaptv2/index.html:1099
 #: ../theme/climateadaptv2/tab-policies-rule.html:190
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
 msgstr "A biodiverzitás fontos szerepet játszik az éghajlat szabályozásában, ezáltal kulcsfontosságú hozzájárulást jelent az éghajlatváltozás enyhítéséhez és az alkalmazkodáshoz. Ugyanakkor az ökoszisztéma-alapú megközelítésekkel párhuzamosan elengedhetetlen a biodiverzitás veszteségének elkerülése érdekében. Ezért lehetetlen kezelni a biodiverzitás veszteségét anélkül, hogy az éghajlatváltozással foglalkozna, de ugyanolyan lehetetlen kezelni az éghajlatváltozást anélkül, hogy a biodiverzitás veszteségével foglalkoznánk."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:930
+#: ../theme/climateadaptv2/index.html:940
 #: ../theme/climateadaptv2/tab-policies-rule.html:31
 msgid "Buildings"
 msgstr "Épületek"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1104
+#: ../theme/climateadaptv2/index.html:1114
 #: ../theme/climateadaptv2/tab-policies-rule.html:205
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Az épületek kiszolgáltatottak lehetnek az éghajlatváltozással szemben. A jövőben növekedhet az összeomlás, a csökkenő állapot csökkenése és a jelentős értékvesztés, a több vihar, a hó vagy a süllyedés károsodása, a víz beavatkozása, a beltéri éghajlat romlása és az épület élettartama eredményeként. Az Európai Bizottság célja az infrastruktúra éghajlati ellenálló képességének növelése, ideértve az épületeket is. Az új és a meglévő épületeket meg kell vizsgálni a jelenlegi kockázatokkal és a jövőbeli éghajlatváltozásokkal szembeni ellenálló képesség szempontjából, és ennek megfelelően megtervezni vagy korszerűsíteni. Az épületek ellenálló képességének alátámasztására alkalmazott kulcsfontosságú politika a kohéziós politika (más néven regionális politika)."
 
-#: ../theme/climateadaptv2/index.html:938
+#: ../theme/climateadaptv2/index.html:948
 #: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Business and Industry"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1319
+#: ../theme/climateadaptv2/index.html:1329
 #: ../theme/climateadaptv2/tab-policies-rule.html:420
 msgid "By the end of the century, it is projected that European mountains will have changed physically. Glaciers will have experienced significant mass loss, but changes also impact the lower, mid-hills, and floodplain environments, thereby affecting water availability, agricultural production, tourism, and health sectors. Seasonal snow lines will be found at higher elevations, and snow seasons will become shorter. Tree lines will move up and forest patterns will change in lower elevations."
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:430
+#: ../theme/climateadaptv2/index.html:440
 msgid "Case <br /> Studies"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1395
+#: ../theme/climateadaptv2/index.html:1405
 msgid "Case Studies Page"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:806
+#: ../theme/climateadaptv2/index.html:816
 msgid "Case studies"
 msgstr "Esettanulmányok"
 
-#: ../theme/climateadaptv2/index.html:1409
+#: ../theme/climateadaptv2/index.html:1419
 msgid "Case studies booklet"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1710
+#: ../theme/climateadaptv2/index.html:1720
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Ellenőrizze a <a href=\"../newsletter\"> európai éghajlati adaptációs hírlevelet </a>, és regisztráljon, hogy megkapja az e-mailben:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1149
+#: ../theme/climateadaptv2/index.html:1159
 #: ../theme/climateadaptv2/tab-policies-rule.html:250
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
 msgstr "Az éghajlatváltozás többféle módon befolyásolja az energiaágazatot, kezdve a fűtési és hűtési kereslet változásaitól; az energiaellátási körülményekre gyakorolt ​​hatásokra - például csökkenti a vízelláthatóságot a vízenergia számára hosszabb aszályok során, és csökkenti a hűtővíz rendelkezésre állását, amely befolyásolja az erőművek hatékonyságát. Ezenkívül az energiainfrastruktúra jobban ki lehet téve a károknak az éghajlati viszonyok megváltoztatásával. Az Európai Bizottság általában célja az infrastruktúra éghajlati ellenálló képességének növelése, ideértve az energiát is, stratégiai keretek biztosításával."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1074
+#: ../theme/climateadaptv2/index.html:1084
 #: ../theme/climateadaptv2/tab-policies-rule.html:175
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
 msgstr "Az éghajlatváltozásnak összetett hatása van a mezőgazdasági rendszereket alátámasztó bio-fizikai folyamatokra, mind a negatív, mind a pozitív következményekkel a különböző EU régiókban. A növekvő légköri CO2 -koncentráció, a magasabb hőmérsékletek, a csapadékminták változásai és a szélsőséges események gyakorisága egyaránt befolyásolja a természetes környezetet, valamint az élelmiszer -előállítás mennyiségét, minőségét és stabilitását. Az éghajlati változások befolyásolják a vízkészleteket, a talajra, a kártevőkre és a betegségekre, ami a mezőgazdaság és az állattenyésztés jelentős változásait eredményezi."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1207
+#: ../theme/climateadaptv2/index.html:1217
 #: ../theme/climateadaptv2/tab-policies-rule.html:308
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
 msgstr "Az éghajlatváltozás várhatóan súlyos hatással lesz a tengeri környezetre. A víz hőmérsékletének növekedése hozzájárul a tengeri ökoszisztémák szerkezetátalakításához, az óceánkeringés, a biogeokémiai kerékpározás és a tengeri biodiverzitás következményeivel. Az óceán savasodása befolyásolja egyes kalcium-karbonát-szekretáló fajok (mint puhatestűek, planktonok és korallok) képességét, hogy héjat vagy csontvázukat előállítsák. Ezért a melegebb és savas tengervíz negatívan befolyásolja a halászatot és az akvakultúrát."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1193
+#: ../theme/climateadaptv2/index.html:1203
 #: ../theme/climateadaptv2/tab-policies-rule.html:294
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
 msgstr "Az éghajlatváltozás új egészségügyi kockázatokat generál és felerősíti a jelenlegi egészségügyi problémákat. Mind a közvetlen, mind a közvetett hatások az emberi, növényi és állati egészségre várnak az éghajlatváltozásból. A közvetlen hatások a szélsőséges időjárási események, például a hőhullámok és az áradások intenzitásának és gyakoriságának változásaiból származnak. A közvetett hatások a rovarok (azaz a szúnyogok és kullancsok által okozott vektor által okozott betegségek), a rágcsálók, vagy a víz, az élelmiszer és a levegő minőségének változásai révén a rovarok (azaz a szúnyogok és a kullancsok által okozott vektoros betegségek. Az Európai Bizottság éghajlatváltozáshoz való alkalmazkodására vonatkozó EU -stratégiáját egy személyzet munkadokumentuma kíséri."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1383
+#: ../theme/climateadaptv2/index.html:1393
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Az éghajlati-adapt esettanulmányok olyan kezdeményezéseket mutatnak be, amelyeket már Európában végeznek az éghajlatváltozáshoz való alkalmazkodáshoz, és növelik a szélsőséges időjárási és lassú eseményekkel szembeni ellenálló képességet."
 
+#: ../theme/climateadaptv2/index.html:140
+#: ../theme/climateadaptv2/page.html:146
+msgid "Climate-ADAPT is undergoing reconstruction until June 2024 to improve its performance. We apologise for any possible disturbance to the content and functionality of the platform."
+msgstr ""
+
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:946
+#: ../theme/climateadaptv2/index.html:956
 #: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Coastal areas"
 msgstr "Parti szakaszok"
 
-#: ../theme/climateadaptv2/index.html:424
+#: ../theme/climateadaptv2/index.html:434
 msgid "Country <br /> Profiles"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:954
+#: ../theme/climateadaptv2/index.html:964
 #: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Cultural Heritage"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:962
+#: ../theme/climateadaptv2/index.html:972
 #: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Disaster risk <br /> reduction"
 msgstr "Katasztrófakockázat <br /> Csökkentés"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1133
+#: ../theme/climateadaptv2/index.html:1143
 #: ../theme/climateadaptv2/tab-policies-rule.html:234
 msgid "Disaster risk reduction"
 msgstr "Katasztrófakockázat -csökkentés"
 
-#: ../theme/climateadaptv2/index.html:515
+#: ../theme/climateadaptv2/index.html:525
 msgid "EU Mission on Adaptation"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:418
+#: ../theme/climateadaptv2/index.html:428
 msgid "EU Sector <br /> Policies"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1345
+#: ../theme/climateadaptv2/index.html:1355
 msgid "EU Sector Policies"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:969
+#: ../theme/climateadaptv2/index.html:979
 #: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Energy"
 msgstr "Energia"
 
-#: ../theme/climateadaptv2/index.html:529
+#: ../theme/climateadaptv2/index.html:539
 msgid "European Climate Data Explorer"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:609
+#: ../theme/climateadaptv2/index.html:619
 msgid "European Climate Risk Assessment"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:536
+#: ../theme/climateadaptv2/index.html:546
 msgid "European Climate Risk Assessment<br />(EUCRA)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:522
+#: ../theme/climateadaptv2/index.html:532
 msgid "European Climate and Health Observatory"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1623
+#: ../theme/climateadaptv2/index.html:1633
 msgid "Events"
 msgstr "Események"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1164
+#: ../theme/climateadaptv2/index.html:1174
 #: ../theme/climateadaptv2/tab-policies-rule.html:265
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr "Az utóbbi években a szélsőséges időjárási események növelték az éghajlatváltozás adaptációjának sürgősségét a különböző EU -politikai területekre. Kevés konkrét EU -tevékenység zajlik az éghajlatváltozás alapjául szolgáló adaptációhoz a pénzügyi és biztosítási ágazatok politikájába. A természeti katasztrófákkal kapcsolatos számos európai politika (lásd a katasztrófakockázat -csökkentést) nagyon releváns a pénzügyi és biztosítási ágazat szempontjából, mivel segíthetnek a jelentős veszteségek és a pénzügyi katasztrófák megelőzésében. Az Európai Bizottság azt is elkötelezte magát az éghajlattal kapcsolatos tevékenységek finanszírozásának növelése mellett, biztosítva, hogy az európai költségvetés legalább 20% -a éghajlattal kapcsolatos kiadások legyen."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:977
+#: ../theme/climateadaptv2/index.html:987
 #: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Financial"
 msgstr "Pénzügyi"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1583
+#: ../theme/climateadaptv2/index.html:1593
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Tudja meg, hogyan járulhat hozzá különféle információkhoz az éghajlat-adapthoz"
 
-#: ../theme/climateadaptv2/index.html:1263
+#: ../theme/climateadaptv2/index.html:1273
 #: ../theme/climateadaptv2/tab-policies-rule.html:364
 msgid "Firms face two main types of climate-related risks: direct physical risks and transition risks that arise from society’s response to climate change, mainly mitigation actions. Climate change can have significant impacts on supply chains, distribution, and sales in a number of ways. Heat negatively affects human health and can lead to poorer work performance (reduced productivity) or lower numbers of hours committed to work (labour supply)."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1341
+#: ../theme/climateadaptv2/index.html:1351
 msgid "For more informations visit:"
 msgstr "További információkért látogasson el:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1544
+#: ../theme/climateadaptv2/index.html:1554
 msgid "For urban areas guidance visit:"
 msgstr "Városi területekhez Útmutató látogatás:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:985
+#: ../theme/climateadaptv2/index.html:995
 #: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Forestry"
 msgstr "Erdészet"
 
-#: ../theme/climateadaptv2/index.html:611
+#: ../theme/climateadaptv2/index.html:621
 msgid "Go to the EUCRA"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:554
+#: ../theme/climateadaptv2/index.html:564
 msgid "Go to the European Climate Data Explorer"
 msgstr "Menjen az Európai éghajlati adatkutatóhoz"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:573
+#: ../theme/climateadaptv2/index.html:583
 msgid "Go to the European Climate and Health Observatory"
 msgstr "Menj az európai éghajlati és egészségügyi obszervatóriumba"
 
-#: ../theme/climateadaptv2/index.html:592
+#: ../theme/climateadaptv2/index.html:602
 msgid "Go to the Mission Portal"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:815
+#: ../theme/climateadaptv2/index.html:825
 msgid "Guidance"
 msgstr "Tanácsadás"
 
-#: ../theme/climateadaptv2/index.html:787
+#: ../theme/climateadaptv2/index.html:797
 msgid "Guidance to search function"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:993
+#: ../theme/climateadaptv2/index.html:1003
 #: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Health"
 msgstr "Egészség"
 
-#: ../theme/climateadaptv2/index.html:1001
+#: ../theme/climateadaptv2/index.html:1011
 #: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "ICT"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1448
+#: ../theme/climateadaptv2/index.html:1458
 msgid "Identifying adaptation options"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1466
+#: ../theme/climateadaptv2/index.html:1476
 msgid "Implementation"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1235
+#: ../theme/climateadaptv2/index.html:1245
 #: ../theme/climateadaptv2/tab-policies-rule.html:336
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
 msgstr "Európában a lakosság közel 73% -a városi területeken él, és az előrejelzések szerint 2050 -re több mint 80% -ra növekszik. Az éghajlatváltozás valószínűleg befolyásolja a városok és a városok szinte minden alkotóelemét - környezetük, gazdaságuk és társadalom. Ez új, összetett kihívásokat vet fel a várostervezés és a menedzsment számára. Az éghajlatváltozás hatása az európai gazdasági aktivitás, a társadalmi élet, a kultúra és az innováció csomópontjára hatással van, amelyek messze túlmutatnak az önkormányzati határokon."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:824
+#: ../theme/climateadaptv2/index.html:834
 msgid "Indicators"
 msgstr "Indikátorok"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:833
+#: ../theme/climateadaptv2/index.html:843
 msgid "Information portals"
 msgstr "Információs portálok"
 
-#: ../theme/climateadaptv2/index.html:1009
+#: ../theme/climateadaptv2/index.html:1019
 #: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Land use planning"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1305
+#: ../theme/climateadaptv2/index.html:1315
 #: ../theme/climateadaptv2/tab-policies-rule.html:406
 msgid "Land use planning is identified as one of the most effective processes to facilitate local adaptation to climate change. Existing processes and tools available through the municipal land use planning process in the EU, including official plans, zoning, and/or development permits, assist in minimizing the development risks to a municipality from the predicted impacts of increased floods, wildfires, landslides, and/or other natural hazards due to a changing climate."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1017
+#: ../theme/climateadaptv2/index.html:1027
 #: ../theme/climateadaptv2/tab-policies-rule.html:118
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Marine <br /> & amp; halászat"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1206
+#: ../theme/climateadaptv2/index.html:1216
 #: ../theme/climateadaptv2/tab-policies-rule.html:307
 msgid "Marine and fisheries"
 msgstr "Tengeri és halászat"
 
-#: ../theme/climateadaptv2/index.html:1475
+#: ../theme/climateadaptv2/index.html:1485
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1682
+#: ../theme/climateadaptv2/index.html:1692
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1653
+#: ../theme/climateadaptv2/index.html:1663
 msgid "More news"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1025
+#: ../theme/climateadaptv2/index.html:1035
 #: ../theme/climateadaptv2/tab-policies-rule.html:126
 msgid "Mountain areas"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:406
+#: ../theme/climateadaptv2/index.html:416
 msgid "New <br /> Features"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1598
+#: ../theme/climateadaptv2/index.html:1608
 msgid "New EEA product \"Extreme summer weather in a changing climate: is Europe prepared?\""
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1620
+#: ../theme/climateadaptv2/index.html:1630
 msgid "News"
 msgstr "hírek"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1696
+#: ../theme/climateadaptv2/index.html:1706
 msgid "Newsletter"
 msgstr "Hírlevél"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:851
+#: ../theme/climateadaptv2/index.html:861
 msgid "Organisations"
 msgstr "Szervezetek"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1134
+#: ../theme/climateadaptv2/index.html:1144
 #: ../theme/climateadaptv2/tab-policies-rule.html:235
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Az elmúlt években Európa mindenféle természeti katasztrófát tapasztalt: súlyos áradások, aszályok és erdőtüzek, amelyek pusztító hatással vannak az emberek életére, az európai gazdaságra és a környezetre. Az elmúlt évtizedben az Európai Bizottság számos stratégiát és intézkedést fogadott el a katasztrófakockázat -csökkentés kezelésére, például az árvízi irányelvre és annak végrehajtására (ütemterv), az EU vízhiányos és aszályáról szóló fellépés, a biztosításról szóló zöld cikk a biztosításról A természetes és ember okozta katasztrófák kontextusa."
 
-#: ../theme/climateadaptv2/index.html:1430
+#: ../theme/climateadaptv2/index.html:1440
 msgid "Preparing the ground for adaptation"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:869
+#: ../theme/climateadaptv2/index.html:879
 msgid "Publications and reports"
 msgstr "Publikációk és jelentések"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1699
+#: ../theme/climateadaptv2/index.html:1709
 msgid "RSS feed"
 msgstr "RSS -takarmány"
 
-#: ../theme/climateadaptv2/index.html:1610
+#: ../theme/climateadaptv2/index.html:1620
 msgid "Read more"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:878
+#: ../theme/climateadaptv2/index.html:888
 msgid "Research and knowledge projects"
 msgstr "Kutatási és tudásprojektek"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1119
+#: ../theme/climateadaptv2/index.html:1129
 #: ../theme/climateadaptv2/tab-policies-rule.html:220
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
 msgstr "A tengerszint emelkedése áradást, part menti eróziót és az alacsony fekvésű part menti rendszerek elvesztését okozhatja. Ez növeli a viharhullámok kockázatát és a sósvízi földfelügyelet valószínűségét, és veszélyeztetheti a parti ökoszisztémákat. A vízhőmérséklet várható emelkedése és az óceán savasodása hozzájárul a part menti ökoszisztémák szerkezetátalakításához; az óceán keringésének és a biogeokémiai kerékpározásnak a következményeivel."
@@ -476,168 +481,171 @@ msgstr "A tengerszint emelkedése áradást, part menti eróziót és az alacson
 msgid "Search Climate-ADAPT"
 msgstr "Keresse meg az éghajlat-adaptot"
 
-#: ../theme/climateadaptv2/index.html:412
+#: ../theme/climateadaptv2/index.html:422
 msgid "Search the <br /> Database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:895
+#: ../theme/climateadaptv2/index.html:905
 msgid "See complete database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1404
+#: ../theme/climateadaptv2/index.html:1414
 msgid "See how Europe is adapting to climate change:"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1582
+#: ../theme/climateadaptv2/index.html:1592
 msgid "Share <span>your information</span>"
 msgstr "Ossza meg <San> Az Ön adatait </span>"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1712
+#: ../theme/climateadaptv2/index.html:1722
 msgid "Sign me up!"
 msgstr "Írj fel!"
 
-#: ../theme/climateadaptv2/index.html:1333
+#: ../theme/climateadaptv2/index.html:1343
 #: ../theme/climateadaptv2/tab-policies-rule.html:434
 msgid "Since weather and climate have a decisive influence on the travel season and the choice of holiday destinations, the tourism industry is highly dependent on them. There is also a strong connection between nature and tourism, as well as between cultural heritage and tourism. Depending on the location and the time of the year tourism can be positively or negatively impacted by climate change."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1729
+#: ../theme/climateadaptv2/index.html:1739
 msgid "Subscribe"
 msgstr "Iratkozz fel"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1727
+#: ../theme/climateadaptv2/index.html:1737
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Iratkozzon fel a <strong> RSS hírcsatornánkra </strong> <br />, és maradjon naprakész!"
 
-#: ../theme/climateadaptv2/index.html:591
+#: ../theme/climateadaptv2/index.html:601
 msgid "The EU Mission on Adaptation to Climate Change portal provides relevant information and resources to European regional and local authorities to prepare and plan for climate resilience."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:553
+#: ../theme/climateadaptv2/index.html:563
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "Az Európai éghajlati adatkutató interaktív hozzáférést biztosít a kopernikusz éghajlatváltozási szolgáltatásának számos éghajlati mutatójához az éghajlatváltozás adaptációjának támogatása érdekében."
 
-#: ../theme/climateadaptv2/index.html:610
+#: ../theme/climateadaptv2/index.html:620
 msgid "The European Climate Risk Assessment provides an assessment of current and future climate change impacts and risks relating to the environment, economy and wider society in Europe."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:572
+#: ../theme/climateadaptv2/index.html:582
 msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
 msgstr "Az Európai éghajlati és egészségügyi obszervatórium hozzáférést biztosít a releváns publikációk, eszközök, webhelyek és egyéb erőforrások széles skálájához az éghajlatváltozással és az egészséggel kapcsolatban."
 
-#: ../theme/climateadaptv2/index.html:1291
+msgid "The Observatory platform is undergoing reconstruction until June 2024 to improve its performance. We apologise for any possible disturbance to the content and functionality of the platform."
+msgstr ""
+
+#: ../theme/climateadaptv2/index.html:1301
 #: ../theme/climateadaptv2/tab-policies-rule.html:392
 msgid "The challenges posed by climate change for the ICT fall into two main categories: acute events and chronic stresses. Acute events (also termed critical or crisis events) include floods (pluvial, fluvial, coastal), ice storms, heatwaves, etc. Acute events compromise ICT infrastructures by destroying or disabling the physical assets that they depend on. Chronic stresses result from more gradual changes in climate norms, such as including changes in temperature ranges and humidity levels. While these impacts are less likely to have catastrophic consequences, they will lead to increased asset degradation, more frequent failures and shorter life spans."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:785
+#: ../theme/climateadaptv2/index.html:795
 msgid "The database contains quality checked information and is annotated by climate adaptation experts with keywords."
 msgstr "Az adatbázis minőségi ellenőrzött információkat tartalmaz, és az éghajlat -adaptációs szakértők kommentálják a kulcsszavakkal."
 
-#: ../theme/climateadaptv2/index.html:1277
+#: ../theme/climateadaptv2/index.html:1287
 #: ../theme/climateadaptv2/tab-policies-rule.html:378
 msgid "The impacts of catastrophic events on this heritage are coupled with the slow onset of changes arising from deterioration processes. Continuous increase in temperature and fluctuations in temperature and humidity or fluctuations in freeze–thaw cycles causes degradation and stress in materials, leading to a greater need for restoration and conservation. Biological degradation caused by microorganisms, for example, are more likely to occur."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1221
+#: ../theme/climateadaptv2/index.html:1231
 #: ../theme/climateadaptv2/tab-policies-rule.html:322
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
 msgstr "Az Európai Bizottság adaptációs fehér könyvének (COM (2009) 148) óta kiemelt a szállítási rendszer adaptálásának szükségességének szükségessége az éghajlatváltozás hatására. A szállítás adaptációját az európai közlekedés, az éghajlatváltozás és a kutatási politikák kombinációjával kell kezelni. Az Európai Unió elősegíti a bevált gyakorlatokat, az adaptációt a közlekedési infrastruktúra fejlesztési programjain belül, és útmutatást nyújt, pl. megfelelő építési előírások kidolgozásával. A fellépés a közlekedési infrastruktúrára, különösen a transz-európai közlekedési hálózatra (Ten-T) összpontosít."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1179
+#: ../theme/climateadaptv2/index.html:1189
 #: ../theme/climateadaptv2/tab-policies-rule.html:280
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
 msgstr "Az éghajlatváltozás gyors üteme kiküszöböli az erdő ökoszisztémák alkalmazkodásának természetes képességét. Ez a viharok, tűz, kártevők és betegségek megnövekedett zavarok kockázatához vezet, az erdőnövekedés és a termelés következményeivel. Az erdőgazdálkodás gazdasági életképességét érinti, elsősorban Európa déli területein, valamint az erdők képességét környezetvédelmi szolgáltatások nyújtására, ideértve a szén -dioxid -mosogató funkció változásait is. 2013 -ban a Bizottság új EU -erdészeti stratégiát fogadott el, amely reagál az erdők és az erdőszektor előtt álló új kihívásokra."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:887
+#: ../theme/climateadaptv2/index.html:897
 msgid "Tools"
 msgstr "Szerszámok"
 
-#: ../theme/climateadaptv2/index.html:1033
+#: ../theme/climateadaptv2/index.html:1043
 #: ../theme/climateadaptv2/tab-policies-rule.html:134
 msgid "Tourism"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1041
+#: ../theme/climateadaptv2/index.html:1051
 #: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Transport"
 msgstr "Szállítás"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1049
+#: ../theme/climateadaptv2/index.html:1059
 #: ../theme/climateadaptv2/tab-policies-rule.html:150
 msgid "Urban"
 msgstr "Városi"
 
-#: ../theme/climateadaptv2/index.html:1548
+#: ../theme/climateadaptv2/index.html:1558
 msgid "Urban Adaptation Support Tool"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:860
+#: ../theme/climateadaptv2/index.html:870
 msgid "Videos"
 msgstr "Videó"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1057
+#: ../theme/climateadaptv2/index.html:1067
 #: ../theme/climateadaptv2/tab-policies-rule.html:158
 msgid "Water <br /> management"
 msgstr "Víz <br /> kezelés"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1248
+#: ../theme/climateadaptv2/index.html:1258
 #: ../theme/climateadaptv2/tab-policies-rule.html:349
 msgid "Water management"
 msgstr "Vízgazdálkodás"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1249
+#: ../theme/climateadaptv2/index.html:1259
 #: ../theme/climateadaptv2/tab-policies-rule.html:350
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "A vízkészleteket közvetlenül befolyásolja az éghajlatváltozás, és ezen erőforrások kezelése befolyásolja az ökoszisztémák, a társadalmi-gazdasági tevékenységek és az emberi egészség sebezhetőségét. A vízgazdálkodás várhatóan egyre inkább központi szerepet játszik az alkalmazkodásban. Az éghajlatváltozás várhatóan az Európában a víz elérhetőségének jelentős változásaihoz vezet, a növekvő vízhiány és az aszályok, elsősorban Dél -Európában, és Európa nagy részében növekvő árvízkockázat."
 
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
-#: ../theme/climateadaptv2/index.html:1395
+#: ../theme/climateadaptv2/index.html:1405
 msgid "case_studies_tab"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1392
+#: ../theme/climateadaptv2/index.html:1402
 msgid "criteria"
 msgstr ""
 
 #. Default: "Please check our ${page_url} for more help on how to search the database."
-#: ../theme/climateadaptv2/index.html:787
+#: ../theme/climateadaptv2/index.html:797
 msgid "guidance_link"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:774
+#: ../theme/climateadaptv2/index.html:784
 msgid "type here ..."
 msgstr "írj ide ..."
