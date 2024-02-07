@@ -659,6 +659,9 @@ def fix_ast_header(context):
                     obj.title = title
 
         title_block_id = get_block_id(obj.blocks, 'title')
+        if 'subtitle' not in obj.blocks[title_block_id]:
+            obj.blocks[title_block_id]['subtitle'] = ''
+
         if obj.blocks[title_block_id]['subtitle'] == obj.title:
             obj.blocks[title_block_id]['subtitle'] = ''
 
