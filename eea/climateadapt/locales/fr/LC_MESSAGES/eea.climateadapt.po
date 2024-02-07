@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-01-23 11:25+0000\n"
+"POT-Creation-Date: 2024-02-03 05:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1550,6 +1550,7 @@ msgstr "Portail ou plate-forme d'adaptation signalé"
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/BKPcountries.py:182
 #: ../../climateadapt/browser/countries.py:186
 msgid "Adaptation portals and platforms"
 msgstr "Portails et plateformes d'adaptation"
@@ -2159,6 +2160,10 @@ msgstr "Europe centrale"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:51
 msgid "Challenges"
 msgstr "Défis"
+
+#: ../../climateadapt/mayorsadapt/views.py:78
+msgid "Check-out created"
+msgstr ""
 
 # ,
 # ,
@@ -4281,6 +4286,7 @@ msgstr ""
 # ,
 # ,
 # ,
+#: ../../climateadapt/browser/BKPcountries.py:179
 #: ../../climateadapt/browser/countries.py:183
 msgid "National adaption policy"
 msgstr "Politique d'adaptation nationale"
