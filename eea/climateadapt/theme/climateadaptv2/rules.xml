@@ -332,5 +332,9 @@
   <rules css:if-not-content=".template-health_homepage">
     <drop css:theme=".top-obs-2024-disclaimer-before" />
   </rules>
+  <drop css:theme=".top-obs-2024-disclaimer-before" />
+  <drop css:theme=".top-obs-2024-disclaimer-after" />
+  <drop css:theme=".top-2024-disclaimer-before" />
+  <drop css:theme=".top-2024-disclaimer-after" />
 
 </rules>
