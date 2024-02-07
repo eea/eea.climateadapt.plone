@@ -439,7 +439,7 @@ def nop_view(obj, data, request):
     return {"blocks": []}
 
 
-def c3s_indicators_overview_view(obj, data):
+def c3s_indicators_overview_view(obj, data, request):
     return {"blocks": []}
 
 
