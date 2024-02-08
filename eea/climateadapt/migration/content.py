@@ -1,3 +1,4 @@
+from plone.app.contenttypes.interfaces import INewsItem
 import json
 import logging
 
@@ -44,7 +45,7 @@ from .tiles import (
     share_info_tile_to_block,
 )
 from .utils import convert_to_blocks, make_uid, path
-from .blocks import make_title_block
+from .blocks import make_narrow_layout_block, make_title_block, make_summary_block
 
 logger = logging.getLogger("ContentMigrate")
 logger.setLevel(logging.INFO)
@@ -397,5 +398,38 @@ class MigrateFolder(object):
             self.context.blocks = blocks
 
         fix_folder(obj)
+
+        obj.reindexObject()
+
+
+@adapter(INewsItem, Interface)
+@implementer(IMigrateToVolto)
+class MigrateNewsItem(object):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        obj = self.context
+        titleuid, titleblock = make_title_block()
+        titleblock["hideContentType"] = False
+        sumuid, sumblock = make_summary_block()
+        layoutuid, layout = make_narrow_layout_block()
+        blocks = {}
+        blocks[titleuid] = titleblock
+        blocks[sumuid] = sumblock
+        blocks[layoutuid] = layout
+
+        voltoblocks = []
+        if obj.text:
+            voltoblocks = convert_to_blocks(obj.text.raw)
+
+        for buid, block in voltoblocks:
+            blocks[buid] = block
+
+        obj.blocks = blocks
+        obj.blocks_layout = {
+            "items": [titleuid, layoutuid, sumuid] + [b[0] for b in voltoblocks]
+        }
 
         obj.reindexObject()
