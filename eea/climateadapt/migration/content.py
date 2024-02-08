@@ -1,3 +1,4 @@
+from plone.app.contenttypes.interfaces import IEvent
 from plone.app.contenttypes.interfaces import INewsItem
 import json
 import logging
@@ -402,6 +403,30 @@ class MigrateFolder(object):
         obj.reindexObject()
 
 
+def migrate_simplecontent_to_volto(obj, make_metadata_blocks):
+    blocks = {}
+    items = []
+
+    titleuid, titleblock = make_title_block()
+    titleblock["hideContentType"] = False
+    blocks[titleuid] = titleblock
+    items.append(titleuid)
+
+    metadatablocks = make_metadata_blocks()
+
+    voltoblocks = []
+
+    if obj.text:
+        voltoblocks = convert_to_blocks(obj.text.raw)
+
+    for buid, block in metadatablocks + voltoblocks:
+        blocks[buid] = block
+        items.append(buid)
+
+    obj.blocks = blocks
+    obj.blocks_layout = {"items": items}
+
+
 @adapter(INewsItem, Interface)
 @implementer(IMigrateToVolto)
 class MigrateNewsItem(object):
@@ -410,26 +435,26 @@ class MigrateNewsItem(object):
         self.request = request
 
     def __call__(self):
-        obj = self.context
-        titleuid, titleblock = make_title_block()
-        titleblock["hideContentType"] = False
-        sumuid, sumblock = make_summary_block()
-        layoutuid, layout = make_narrow_layout_block()
-        blocks = {}
-        blocks[titleuid] = titleblock
-        blocks[sumuid] = sumblock
-        blocks[layoutuid] = layout
+        def make_metadata_blocks():
+            sumuid, sumblock = make_summary_block()
+            layoutuid, layout = make_narrow_layout_block()
+            return [[sumuid, sumblock], [layoutuid, layout]]
 
-        voltoblocks = []
-        if obj.text:
-            voltoblocks = convert_to_blocks(obj.text.raw)
+        migrate_simplecontent_to_volto(self.context, make_metadata_blocks)
+        self.context.reindexObject()
 
-        for buid, block in voltoblocks:
-            blocks[buid] = block
 
-        obj.blocks = blocks
-        obj.blocks_layout = {
-            "items": [titleuid, layoutuid, sumuid] + [b[0] for b in voltoblocks]
-        }
+@adapter(IEvent, Interface)
+@implementer(IMigrateToVolto)
+class MigrateEvent(object):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
 
-        obj.reindexObject()
+    def __call__(self):
+        def make_metadata_blocks():
+            sumuid, sumblock = make_summary_block()
+            return [[sumuid, sumblock]]
+
+        migrate_simplecontent_to_volto(self.context, make_metadata_blocks)
+        self.context.reindexObject()

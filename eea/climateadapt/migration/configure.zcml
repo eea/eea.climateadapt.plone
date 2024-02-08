@@ -48,4 +48,8 @@
       factory=".content.MigrateNewsItem"
       />
 
+  <adapter
+      factory=".content.MigrateEvent"
+      />
+
 </configure>
