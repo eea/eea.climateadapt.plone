@@ -6,37 +6,47 @@ from collective.cover.tiles.embed import IEmbedTile
 from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.browser.tilehelpers import ICarousel
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
-from eea.climateadapt.tiles.ast import (IASTHeaderTile, IASTNavigationTile,
-                                        IUrbanASTNavigationTile)
+from eea.climateadapt.tiles.ast import (
+    IASTHeaderTile,
+    IASTNavigationTile,
+    IUrbanASTNavigationTile,
+)
 from eea.climateadapt.tiles.cardslisting import ICardsTile
 from eea.climateadapt.tiles.country_select import ICountrySelectTile
 from eea.climateadapt.tiles.formtile import IFormTile
 from eea.climateadapt.tiles.genericview import IGenericViewTile
 from eea.climateadapt.tiles.richtext import IRichTextWithTitle
 from eea.climateadapt.tiles.search_acecontent import (
-    IFilterAceContentItemsTile, IRelevantAceContentItemsTile,
-    ISearchAceContentTile)
+    IFilterAceContentItemsTile,
+    IRelevantAceContentItemsTile,
+    ISearchAceContentTile,
+)
 from eea.climateadapt.tiles.section_nav import ISectionNavTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
-from eea.climateadapt.tiles.transregional_select import \
-    ITransRegionalSelectTile
+from eea.climateadapt.tiles.transregional_select import ITransRegionalSelectTile
 from plone.app.contenttypes.interfaces import IDocument, IFolder
 from plone.dexterity.interfaces import IDexterityContent
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter, queryMultiAdapter
 from zope.interface import Interface, implementer
 
-from .config import (COL_MAPPING, IGNORED_CONTENT_TYPES, IGNORED_PATHS,
-                     LANGUAGES)
+from .config import COL_MAPPING, IGNORED_CONTENT_TYPES, IGNORED_PATHS, LANGUAGES
 from .fixes import fix_content, fix_folder, fix_layout_size
-from .tiles import (cards_tile_to_block, embed_tile_to_block,
-                    filter_acecontent_to_block, genericview_tile_to_block,
-                    region_select_to_block, relevant_acecontent_to_block,
-                    richtext_tile_to_blocks, search_acecontent_to_block,
-                    share_info_tile_to_block)
+from .tiles import (
+    cards_tile_to_block,
+    embed_tile_to_block,
+    filter_acecontent_to_block,
+    genericview_tile_to_block,
+    region_select_to_block,
+    relevant_acecontent_to_block,
+    richtext_tile_to_blocks,
+    search_acecontent_to_block,
+    share_info_tile_to_block,
+)
 from .utils import convert_to_blocks, make_uid, path
+from .blocks import make_title_block
 
-logger = logging.getLogger('ContentMigrate')
+logger = logging.getLogger("ContentMigrate")
 logger.setLevel(logging.INFO)
 
 
@@ -55,7 +65,6 @@ tile_converters = {
     IEmbedTile: embed_tile_to_block,
     ICardsTile: cards_tile_to_block,
     IGenericViewTile: genericview_tile_to_block,
-
     ISectionNavTile: nop_tile,  # use context navigation
     IASTNavigationTile: nop_tile,  # use context navigation
     IASTHeaderTile: nop_tile,  # use EEA DS banner subtitle
@@ -63,7 +72,6 @@ tile_converters = {
     IFormTile: nop_tile,  # no migration
     ICountrySelectTile: nop_tile,  # used in country profile page, no migration for now
     ICarousel: nop_tile,  # no migration
-
     # eea.climateadapt.browser.tilehelpers.ICarousel
 }
 
@@ -71,8 +79,7 @@ tile_converters = {
 @adapter(ICover, Interface)
 @implementer(IMigrateToVolto)
 class MigrateCover(object):
-    """ Migrate the tiles of a cover to volto blocks
-    """
+    """Migrate the tiles of a cover to volto blocks"""
 
     def __init__(self, context, request):
         self.context = context
@@ -93,8 +100,7 @@ class MigrateCover(object):
         converter = tile_converters.get(schema, None)
 
         if not converter:
-            logger.warning(
-                "You need to implement converter for block: %s", schema)
+            logger.warning("You need to implement converter for block: %s", schema)
             return {"blocks": []}
 
         data = converter(tile_dm, self.context, self.request)
@@ -106,19 +112,18 @@ class MigrateCover(object):
 
     def make_column_block(self, row):
         attributes = {}
-        children = row['children']
+        children = row["children"]
         columns_storage = {
-            "blocks": {},       # these are the columns
+            "blocks": {},  # these are the columns
             "blocks_layout": {"items": []},
         }
 
         data = {
             "@type": "columnsBlock",
-            "data": columns_storage,     # stores columns as "blocks"
+            "data": columns_storage,  # stores columns as "blocks"
             "gridSize": 12,
-            "gridCols": [
-                COL_MAPPING[column['column-size']] for column in children
-            ]}
+            "gridCols": [COL_MAPPING[column["column-size"]] for column in children],
+        }
 
         for column in children:
             uid = make_uid()
@@ -126,11 +131,10 @@ class MigrateCover(object):
             blocks = {}
             blocks_layout = []
 
-            for tile in column['children']:
-                if tile.get('type') == 'row':
-
+            for tile in column["children"]:
+                if tile.get("type") == "row":
                     # some of the columns haven't been filled
-                    if not tile.get('children'):
+                    if not tile.get("children"):
                         continue
 
                     # this type of content is a nasty inherited since the migration of
@@ -142,24 +146,23 @@ class MigrateCover(object):
                     blocks_layout.append(block_id)
                     continue
 
-                if tile.get('id', None) is None:
+                if tile.get("id", None) is None:
                     logger.warning("Implement row.")
                     continue
                     # TODO new row and columns case (recursive?)
                     # /cca/en/knowledge/tools/adaptation-support-tool/step-3-2/
-                tile_data = self.convert_tile_to_volto_blocklist(tile['id'])
-                blocklist = tile_data.pop('blocks', [])
+                tile_data = self.convert_tile_to_volto_blocklist(tile["id"])
+                blocklist = tile_data.pop("blocks", [])
                 attributes.update(tile_data)
-                tile_blocks, tile_blocks_layout = self._blocklist_to_blocks(
-                    blocklist)
+                tile_blocks, tile_blocks_layout = self._blocklist_to_blocks(blocklist)
                 blocks.update(tile_blocks)
-                blocks_layout.extend(tile_blocks_layout['items'])
+                blocks_layout.extend(tile_blocks_layout["items"])
 
-            columns_storage['blocks'][uid] = {
+            columns_storage["blocks"][uid] = {
                 "blocks": blocks,
-                "blocks_layout": {"items": blocks_layout}
+                "blocks_layout": {"items": blocks_layout},
             }
-            columns_storage['blocks_layout']['items'].append(uid)
+            columns_storage["blocks_layout"]["items"].append(uid)
 
         return [make_uid(), data]
 
@@ -180,15 +183,12 @@ class MigrateCover(object):
         if len(tiles) == 1:
             blocks = []
             for data in tiles.values():
-                blocks.extend(data.get('blocks', []))
+                blocks.extend(data.get("blocks", []))
 
             title_uid = make_uid()
             blocks_layout = {"items": [title_uid] + [b[0] for b in blocks]}
             blocks_data = {}
-            blocks_data[title_uid] = {
-                "@type": "title", 
-                "hideContentType": True
-            }
+            blocks_data[title_uid] = {"@type": "title", "hideContentType": True}
 
             for b in blocks:
                 blocks_data[b[0]] = b[1]
@@ -201,36 +201,31 @@ class MigrateCover(object):
             if self.context.cover_layout:
                 cover_layout = json.loads(self.context.cover_layout)
             else:
-                logger.warning("No cover layout at %s",
-                               self.context.absolute_url())
+                logger.warning("No cover layout at %s", self.context.absolute_url())
 
             page_blocks = []
 
             for row in cover_layout:
-                assert row['type'] == 'row'
-                columns = row['children']
+                assert row["type"] == "row"
+                columns = row["children"]
                 if len(columns) > 1:
                     column = self.make_column_block(row)
                     page_blocks.append(column)
                 else:
-                    tiles = columns[0].get('children', None)
+                    tiles = columns[0].get("children", None)
                     if tiles is None:
                         continue
                     for tile in tiles:
-                        tileid = tile['id']
+                        tileid = tile["id"]
                         data = self.convert_tile_to_volto_blocklist(tileid)
-                        tile_blocks = data.pop('blocks', [])
+                        tile_blocks = data.pop("blocks", [])
                         attributes.update(data)
                         page_blocks.extend(tile_blocks)
 
             title_uid = make_uid()
-            blocks_layout = {"items": [title_uid] + [b[0]
-                                                     for b in page_blocks]}
+            blocks_layout = {"items": [title_uid] + [b[0] for b in page_blocks]}
             blocks_data = {}
-            blocks_data[title_uid] = {
-                "@type": "title", 
-                "hideContentType": True
-            }
+            blocks_data[title_uid] = {"@type": "title", "hideContentType": True}
             for b in page_blocks:
                 blocks_data[b[0]] = b[1]
 
@@ -260,16 +255,13 @@ class MigrateDocument(object):
 
         if not text:
             obj.blocks = {}
-            obj.blocks[title_uid] = {
-                "@type": "title", 
-                "hideContentType": True
-            }
+            obj.blocks[title_uid] = {"@type": "title", "hideContentType": True}
             obj.blocks_layout = {"items": [title_uid]}
             obj._p_changed = True
 
             return
 
-        html = text.raw     # TODO: should we use .output ?
+        html = text.raw  # TODO: should we use .output ?
         try:
             blocks = convert_to_blocks(html)
         except ValueError:
@@ -279,11 +271,8 @@ class MigrateDocument(object):
         uids = [title_uid] + [b[0] for b in blocks]
         obj.blocks_layout = {"items": uids}
         _blocks = {}
-        _blocks[title_uid] = {
-            "@type": "title", 
-            "hideContentType": True
-        }
-        for (uid, block) in blocks:
+        _blocks[title_uid] = {"@type": "title", "hideContentType": True}
+        for uid, block in blocks:
             _blocks[uid] = block
         obj.blocks = _blocks
         obj._p_changed = True
@@ -294,13 +283,11 @@ def is_ignored_path(path):
     for lang in LANGUAGES:
         for test_path in IGNORED_PATHS:
             test_path = test_path.replace("{lang}", lang)
-            if path.startswith(test_path) or path.startswith(
-                    'cca/' + test_path):
+            if path.startswith(test_path) or path.startswith("cca/" + test_path):
                 return True
 
 
 def migrate_content_to_volto(obj, request):
-
     if obj.portal_type in IGNORED_CONTENT_TYPES:
         return
 
@@ -341,7 +328,6 @@ def migrate_content_to_volto(obj, request):
 @adapter(IFolder, Interface)
 @implementer(IMigrateToVolto)
 class MigrateFolder(object):
-
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -349,9 +335,9 @@ class MigrateFolder(object):
     def __call__(self):
         obj = self.context
         # request = self.request
-        default_page = obj.getProperty('default_page')
+        default_page = obj.getProperty("default_page")
         if not default_page and "index_html" in obj.contentIds():
-            default_page = 'index_html'
+            default_page = "index_html"
 
         # /cca/fr/observatory/About
 
@@ -359,7 +345,7 @@ class MigrateFolder(object):
             cover = obj.restrictedTraverse(default_page)
             unwrapped = cover.aq_inner.aq_self
 
-            if not hasattr(unwrapped, 'blocks') or not unwrapped.blocks:
+            if not hasattr(unwrapped, "blocks") or not unwrapped.blocks:
                 migrate_content_to_volto(cover, self.request)
 
             self.context.blocks_layout = cover.blocks_layout
@@ -379,8 +365,26 @@ class MigrateFolder(object):
                 "headlineTag": "h2",
                 "variation": "default",
                 "query": [],
+                "querystring": {
+                    "query": [
+                        {
+                            "i": "portal_type",
+                            "o": "plone.app.querystring.operation.selection.any",
+                            "v": ["Folder"],
+                        },
+                        {
+                            "i": "path",
+                            "o": "plone.app.querystring.operation.string.relativePath",
+                            "v": ".",
+                        },
+                    ],
+                    "sort_on": "sortable_title",
+                    "sort_order": "ascending",
+                },
             }
-            self.context.blocks_layout = {"items": [block_id]}
+            titleuid, titleblock = make_title_block()
+            blocks[titleuid] = titleblock
+            self.context.blocks_layout = {"items": [titleuid, block_id]}
             self.context.blocks = blocks
 
         fix_folder(obj)
