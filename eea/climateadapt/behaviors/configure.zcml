@@ -61,6 +61,14 @@
         for="plone.dexterity.interfaces.IDexterityContent"
       />
 
+
+      <plone:behavior
+        name="volto.blocks.editable.layout"
+        title="Blocks (Editable Layout)"
+        description="Enables Volto Blocks (editable layout) support"
+        provides=".blocks.IBlocksEditableLayout"
+        />
+
     </configure>
 
 </configure>
