@@ -426,6 +426,8 @@ def migrate_simplecontent_to_volto(obj, make_metadata_blocks):
     obj.blocks = blocks
     obj.blocks_layout = {"items": items}
 
+    obj._p_changed = True
+
 
 @adapter(INewsItem, Interface)
 @implementer(IMigrateToVolto)
