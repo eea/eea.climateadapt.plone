@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
@@ -52,6 +53,9 @@
   <include package=".behaviors" />
   <include package=".translation" />
   <include package=".migration" />
+  <configure zcml:condition="not-installed Products.CMFPlone.image_scales">
+    <include package=".image_scales" />
+  </configure>
 
   <include file="skins.zcml" />
   <include file="profiles.zcml" />
@@ -522,4 +526,12 @@
       original="_get_events"
       preserveOriginal="false"
       replacement="eea.climateadapt.patch._get_events" />
+
+    <monkey:patch
+      description="Patch _modified_since in scales AnnotationStorage to avoid invalidation of scales in the same transaction"
+      class="plone.scale.storage.AnnotationStorage"
+      original="_modified_since"
+      preserveOriginal="true"
+      replacement="eea.climateadapt.patch.__patched_modified_since" />
+
 </configure>

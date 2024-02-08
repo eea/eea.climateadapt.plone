@@ -28,15 +28,13 @@ class MigrateContent(BrowserView):
 
 
 class MigrateSiteToVolto(BrowserView):
-    """ A view to manually run the script for migrating to Volto content
-    """
+    """A view to manually run the script for migrating to Volto content"""
 
     def __call__(self):
-
         site = portal.get()
         fix_site(site)
 
-        if self.request.form.get('migrate') == "0":
+        if self.request.form.get("migrate") == "0":
             return "ok"
 
         migrate_to_volto(site, self.request)
@@ -45,8 +43,7 @@ class MigrateSiteToVolto(BrowserView):
 
 
 class PostMigrationCleanup(BrowserView):
-    """ Remove old index_html leaf pages after migration
-    """
+    """Remove old index_html leaf pages after migration"""
 
     def __call__(self):
         site = portal.get()
