@@ -131,11 +131,14 @@ class ImageFieldScales(object):
 
                 # Get the scale info without actually generating the scale,
                 # nor any old-style HiDPI scales.
-            scale = self.images_view.scale(
-                field.__name__,
-                width=actual_width,
-                height=actual_height,
-            )
+            try:
+                scale = self.images_view.scale(
+                    field.__name__,
+                    width=actual_width,
+                    height=actual_height,
+                )
+            except:  # TODO: hotfix for migration
+                scale = None
             if scale is None:
                 # If we cannot get a scale, it is probably a corrupt image.
                 continue
@@ -156,11 +159,15 @@ class ImageFieldScales(object):
         """
         get image url from scale
         """
-        scale = self.images_view.scale(
-            fieldname,
-            width=width,
-            height=height,
-        )
+        try:
+            # TODO: temporary hotfix for migration
+            scale = self.images_view.scale(
+                fieldname,
+                width=width,
+                height=height,
+            )
+        except:
+            return ""
         # Corrupt images may not have a scale.
         return scale.url if scale else None
 
