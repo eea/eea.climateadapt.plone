@@ -170,7 +170,6 @@ class MigrateCover(object):
 
     def __call__(self):
         # allow some blocks to set content metadata fields
-
         # todo: convert cover layout to columns block layout
 
         attributes = {}
@@ -187,14 +186,13 @@ class MigrateCover(object):
             for data in tiles.values():
                 blocks.extend(data.get("blocks", []))
 
-            title_uid = make_uid()
+            title_uid, titleblock = make_title_block()
             blocks_layout = {"items": [title_uid] + [b[0] for b in blocks]}
             blocks_data = {}
-            blocks_data[title_uid] = {
-                "@type": "title", "hideContentType": True}
+            blocks_data[title_uid] = titleblock
 
-            for b in blocks:
-                blocks_data[b[0]] = b[1]
+            for uid, block in blocks:
+                blocks_data[uid] = block
 
             self.context.blocks_layout = blocks_layout
             self.context.blocks = blocks_data
@@ -232,8 +230,9 @@ class MigrateCover(object):
             blocks_data = {}
             blocks_data[title_uid] = {
                 "@type": "title", "hideContentType": True}
-            for b in page_blocks:
-                blocks_data[b[0]] = b[1]
+
+            for uid, block in page_blocks:
+                blocks_data[uid] = block
 
             self.context.blocks_layout = blocks_layout
             self.context.blocks = blocks_data
@@ -344,8 +343,6 @@ class MigrateFolder(object):
         default_page = obj.getProperty("default_page")
         if not default_page and "index_html" in obj.contentIds():
             default_page = "index_html"
-
-        # /cca/fr/observatory/About
 
         if default_page:
             cover = obj.restrictedTraverse(default_page)
