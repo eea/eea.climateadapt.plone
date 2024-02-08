@@ -383,6 +383,11 @@ class MigrateFolder(object):
                             "o": "plone.app.querystring.operation.string.relativePath",
                             "v": ".",
                         },
+                        {
+                            "i": "review_state",
+                            "o": "plone.app.querystring.operation.selection.any",
+                            "v": ["published"],
+                        },
                     ],
                     "depth": "1",
                     "sort_on": "sortable_title",
