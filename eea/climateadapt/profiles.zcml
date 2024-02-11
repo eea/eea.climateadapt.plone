@@ -400,4 +400,12 @@
       directory="profiles/upgrades/to_66_volto"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_67"
+      title="Upgrade profile for eea.climateadapt v67"
+      description=""
+      directory="profiles/upgrades/to_67"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
 </configure>
