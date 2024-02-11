@@ -9,6 +9,21 @@
       <element>plone.app.querystring.operation.selection.any</element>
       <element>plone.app.querystring.operation.selection.none</element>
     </value>
+    <value key="vocabulary">eea.climateadapt.origin_website</value>
+    <value key="group">Metadata</value>
+  </records>
+
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+    prefix="plone.app.querystring.field.health_impacts">
+    <value key="title">Health impacts</value>
+    <value key="description">(Observatory specific information)</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+      <element>plone.app.querystring.operation.selection.none</element>
+    </value>
+    <value key="vocabulary">eea.climateadapt.health_impacts</value>
     <value key="group">Metadata</value>
   </records>
 </registry>

@@ -408,4 +408,5 @@
       directory="profiles/upgrades/to_67"
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
+
 </configure>
