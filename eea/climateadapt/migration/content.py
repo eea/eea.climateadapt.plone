@@ -348,10 +348,13 @@ class MigrateFolder(object):
 
         if default_page:
             cover = obj.restrictedTraverse(default_page)
-            unwrapped = cover.aq_inner.aq_self
 
-            if not hasattr(unwrapped, "blocks") or not unwrapped.blocks:
-                migrate_content_to_volto(cover, self.request)
+            # always forcing migration of blocks for the default page
+            migrate_content_to_volto(cover, self.request)
+
+            # unwrapped = cover.aq_inner.aq_self
+            # if not hasattr(unwrapped, "blocks") or not unwrapped.blocks:
+            #     migrate_content_to_volto(cover, self.request)
 
             self.context.blocks_layout = cover.blocks_layout
             self.context.blocks = cover.blocks
