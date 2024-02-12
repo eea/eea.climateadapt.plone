@@ -864,6 +864,60 @@ def eu_sector_policies_view(obj, data, request):
     return {"blocks": blocks}
 
 
+def obs_countries_list(obj, data, request):
+    uid = make_uid()
+    blocks = [
+        [
+            uid,
+            {
+                "@type": "listing",
+                "block": uid,
+                "headline": "Select a country",
+                "headlineTag": "h3",
+                "itemModel": {
+                    "@type": "simpleItem",
+                    "callToAction": {"label": "Read more"},
+                    "hasDate": False,
+                    "hasEventDate": False,
+                    "hasLink": True,
+                    "maxDescription": 2,
+                    "maxTitle": 2,
+                    "styles": {},
+                    "titleOnImage": False,
+                },
+                "query": [],
+                "querystring": {
+                    "b_size": "10000",
+                    "limit": "10000",
+                    "query": [
+                        {
+                            "i": "path",
+                            "o": "plone.app.querystring.operation.string.relativePath",
+                            "v": ".",
+                        },
+                        {
+                            "i": "review_state",
+                            "o": "plone.app.querystring.operation.selection.any",
+                            "v": ["published"],
+                        },
+                        {
+                            "i": "portal_type",
+                            "o": "plone.app.querystring.operation.selection.any",
+                            "v": ["collective.cover.content"],
+                        },
+                    ],
+                    "sort_on": "sortable_title",
+                    "sort_order": "ascending",
+                    "sort_order_boolean": false,
+                },
+                "styles": {},
+                "variation": "summary",
+            },
+        ]
+    ]
+    return {"blocks": blocks}
+
+
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
     # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
@@ -875,13 +929,14 @@ view_convertors = {
     # renders a map of countries, with links to the countries. Needs a simple
     # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/161493
     # /observatory/policy-context/country-profiles/country-profiles
-    "countries-context-pagelet": nop_view,
+    "countries-context-pagelet": obs_countries_map,
     # /observatory/evidence/national-and-sub-national-warning-systems/national-and-sub-national-warning-systems
     # a colored map with countries and two types of classification. Needs
     # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/253391
     "countries-heat-index": nop_view,
     # right-side navigation. We could solve it with a context navigation portlet: https://taskman.eionet.europa.eu/issues/161493
-    "countries-list": nop_view,  # /observatory/policy-context/country-profiles/austria
+    # /observatory/policy-context/country-profiles/austria
+    "countries-list": obs_countries_list,
     # it's a tooltip. It needs a custom block converter with https://github.com/eea/volto-slate-label
     # Ticket: https://taskman.eionet.europa.eu/issues/253394
     # /countries-regions/countries/liechtenstein
@@ -915,10 +970,6 @@ view_convertors = {
     "video-thumbs": nop_view,  # /help/Webinars
     # Should be provided by the banner block.
     "view_last_modified": nop_view,  # /countries-regions/countries/liechtenstein
-    "countries-context-pagelet": obs_countries_map,
-    #     2024-02-12 12:13:01 INFO ContentMigrate Migrating cca/en/observatory/policy-context/country-profiles/country-profiles
-    # 2024-02-12 12:13:01 INFO eea.climateadapt Generic view 'countries-context-pagelet' at '/observatory/policy-context/country-profiles/country-profiles'
-    # 2024-02-12 12:13:01 INFO eea.climateadapt Generic view 'countries-list' at '/observatory/policy-context/country-profiles/country-profiles'
 }
 
 _logged = []
