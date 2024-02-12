@@ -879,12 +879,40 @@ def obs_countries_list(obj, data, request):
     uid = make_uid()
     blocks = [
         [
+            make_uid(), {
+                "@type": "slate",
+                "plaintext": " Select a country ",
+                "styles": {
+                    "style_name": None
+                },
+                "value": [
+                    {
+                        "children": [
+                            {
+                                "text": ""
+                            },
+                            {
+                            "children": [
+                                {
+                                    "text": "Select a country"
+                                }
+                            ],
+                            "type": "strong"
+                            },
+                            {
+                                "text": ""
+                            }
+                        ],
+                        "type": "p"
+                    }
+                ]
+            }
+        ],
+        [
             uid,
             {
                 "@type": "listing",
                 "block": uid,
-                "headline": "Select a country",
-                "headlineTag": "h3",
                 "itemModel": {
                     "@type": "simpleItem",
                     "callToAction": {"label": "Read more"},
