@@ -46,7 +46,12 @@ from .tiles import (
     share_info_tile_to_block,
 )
 from .utils import convert_to_blocks, make_uid, path
-from .blocks import make_narrow_layout_block, make_title_block, make_summary_block
+from .blocks import (
+    make_folder_listing_block,
+    make_narrow_layout_block,
+    make_title_block,
+    make_summary_block,
+)
 
 logger = logging.getLogger("ContentMigrate")
 logger.setLevel(logging.INFO)
@@ -242,7 +247,7 @@ class MigrateCover(object):
         # TODO: ensure there's a page banner block (or title block)
 
         fix_content(self.context)
-        fix_layout_size(self.context)
+        # fix_layout_size(self.context)
 
         # return json.dumps({"blocks": blocks, "attributes": attributes})
 
@@ -365,40 +370,12 @@ class MigrateFolder(object):
 
             fix_content(obj)
         else:
-            block_id = make_uid()
+            listuid, listblock = make_folder_listing_block()
             blocks = {}
-            blocks[block_id] = {
-                "@type": "listing",
-                "block": block_id,
-                "headlineTag": "h2",
-                "variation": "default",
-                "query": [],
-                "querystring": {
-                    "query": [
-                        {
-                            "i": "portal_type",
-                            "o": "plone.app.querystring.operation.selection.any",
-                            "v": ["Folder"],
-                        },
-                        {
-                            "i": "path",
-                            "o": "plone.app.querystring.operation.string.relativePath",
-                            "v": ".",
-                        },
-                        {
-                            "i": "review_state",
-                            "o": "plone.app.querystring.operation.selection.any",
-                            "v": ["published"],
-                        },
-                    ],
-                    "depth": "1",
-                    "sort_on": "sortable_title",
-                    "sort_order": "ascending",
-                },
-            }
+            blocks[listuid] = listblock
             titleuid, titleblock = make_title_block()
             blocks[titleuid] = titleblock
-            self.context.blocks_layout = {"items": [titleuid, block_id]}
+            self.context.blocks_layout = {"items": [titleuid, listuid]}
             self.context.blocks = blocks
 
         fix_folder(obj)

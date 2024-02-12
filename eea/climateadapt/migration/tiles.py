@@ -327,9 +327,13 @@ def richtext_tile_to_blocks(tile_dm, obj, request):
     # remove h1 that was inserted in the text. It's usually the page title
     if blocks:
         _, block = blocks[0]
-        if isinstance(block, dict) and block.get("@type") == "h1":
-            logger.warn("Removed h1 text block: %s", path(obj))
-            blocks = blocks[1:]
+        if isinstance(block, dict) and block.get("@type") == "slate":
+            value = block.get("value", [])
+            if value:
+                first = value[0]
+                if isinstance(first, dict) and first.get("type") == "h1":
+                    logger.warn("Removed h1 text block: %s", path(obj))
+                    blocks = blocks[1:]
 
     if has_heading is True:
         heading = {
