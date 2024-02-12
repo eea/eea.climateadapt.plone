@@ -458,6 +458,17 @@ _health_impacts = (("Heat", _("Heat")),
 health_impacts = generic_vocabulary(_health_impacts, False)
 alsoProvides(health_impacts, IVocabularyFactory)
 
+_key_community_systems = (("Critical Infrastructure", _("Critical Infrastructure")),
+                   ("Health and Wellbeing", _("Health and Wellbeing")),
+                   ("Land-use and Food Systems", _("Land-use and Food Systems")),
+                   ("Water Management", _("Water Management")),
+                   ("Ecosystems and Nature Based Solutions", 
+                    _("Ecosystems and Nature Based Solutions")),
+                   ("Local Economic Systems", _("Local Economic Systems")))
+
+key_community_systems = generic_vocabulary(_key_community_systems, False)
+alsoProvides(key_community_systems, IVocabularyFactory)
+
 _funding_programme = (("Other", "Other"),
                       ("COST Action", "COST Action"),
                       ("LIFE - Environment and climate action",

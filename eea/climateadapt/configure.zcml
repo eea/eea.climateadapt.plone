@@ -270,6 +270,10 @@
       component=".vocabulary.funding_programme"
       />
   <utility
+      name="eea.climateadapt.key_community_systems"
+      component=".vocabulary.key_community_systems"
+      />
+  <utility
       name="eea.climateadapt.cca_types"
       component=".vocabulary.cca_types"
       />
