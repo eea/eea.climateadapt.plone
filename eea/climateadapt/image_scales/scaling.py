@@ -25,12 +25,6 @@ def get_data(value):
 
 @implementer(ITraversable, IPublishTraverse)
 class ImageScaling(BaseImageScaling):
-    # def publishTraverse(self, request, name):
-    #     __import__("pdb").set_trace()
-    #
-    # def traverse(self, name, furtherPath):
-    #     __import__("pdb").set_trace()
-
     def create(
         self, fieldname, direction="thumbnail", height=None, width=None, **parameters
     ):
