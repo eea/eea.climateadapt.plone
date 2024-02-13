@@ -65,3 +65,12 @@ def make_folder_listing_block():
     }
 
     return [uid, block]
+
+
+def simple_slate_to_volto_blocks(slate_value):
+    res = []
+    for para in slate_value:
+        block = {"@type": "slate", "value": [para]}
+        res.append([make_uid(), block])
+
+    return res

@@ -15,6 +15,7 @@ from .config import (
     SECTOR_POLICY_PATHS,
 )
 from .utils import make_uid
+from .blocks import simple_slate_to_volto_blocks
 
 logger = logging.getLogger()
 
@@ -428,7 +429,8 @@ def fix_read_more(context):
     ]
 
     def get_columns_block_id(blocks):
-        columns_block = {k for k, v in blocks.items() if v["@type"] == "columnsBlock"}
+        columns_block = {
+            k for k, v in blocks.items() if v["@type"] == "columnsBlock"}
         col_id = list(columns_block)[0]
         return col_id
 
@@ -522,6 +524,73 @@ def fix_uast(context):
     return extract_first_column(context)
 
 
+@inpath("observatory/policy-context/country-profiles/")
+def fix_obs_countries(context):
+    # only for country profiles
+    # __import__("pdb").set_trace()
+    if not context.blocks:
+        return
+
+    if len(context.blocks) != 2:
+        return
+
+    last = context.blocks_layout["items"][-1:][0]
+    block = context.blocks[last]
+    if block.get("@type") != "columnsBlock":
+        return
+
+    lastcoluid = block["data"]["blocks_layout"]["items"][-1]
+    lastcol = block["data"]["blocks"][lastcoluid]
+
+    listuid = lastcol["blocks_layout"]["items"][-1]
+    listblock = lastcol["blocks"][listuid]
+    listblock["querystring"]["query"][0]["v"] = ".."
+
+    firstcoluid = block["data"]["blocks_layout"]["items"][0]
+    # __import__("pdb").set_trace()
+    firstcol = block["data"]["blocks"][firstcoluid]
+
+    first_table_node_uid = None
+    content_table_node_uid = None
+
+    items = firstcol["blocks_layout"]["items"][:]
+
+    slate_content = None
+
+    for uid in items:
+        block = firstcol["blocks"][uid]
+        if block.get("@type") == "slate":
+            value = block["value"] or []
+            if not value:
+                continue
+            firstnode = block["value"][0]
+            if isinstance(firstnode, dict) and firstnode.get("type") == "table":
+                if not first_table_node_uid:
+                    first_table_node_uid = uid
+                    firstcol["blocks_layout"]["items"] = [
+                        x for x in items if x != uid]
+                else:
+                    tbody = firstnode["children"][0]
+                    tr = tbody["children"][0]
+                    slate_content = tr["children"][1]["children"]
+                    content_table_node_uid = uid
+
+    # __import__("pdb").set_trace()
+    if slate_content:
+        data = simple_slate_to_volto_blocks(slate_content)
+        blocks = {}
+        items = []
+        for buid, b in data:
+            blocks[buid] = b
+            items.append(buid)
+        firstcol["blocks"][content_table_node_uid] = {
+            "@type": "group",
+            "as": "div",
+            "styles": {"style_name": None, "backgroundColor": "#c8fff8"},
+            "data": {"blocks": blocks, "blocks_layout": {"items": items}},
+        }
+
+
 @inpath("knowledge/tools/adaptation-support-tool")
 def fix_ast(context):
     return extract_first_column(context)
@@ -612,7 +681,8 @@ def fix_field_encoding(context):
 
 @inpath("countries-regions/transnational-regions/")
 def fix_preview_image(context):
-    folder_images = context.listFolderContents(contentFilter={"portal_type": "Image"})
+    folder_images = context.listFolderContents(
+        contentFilter={"portal_type": "Image"})
     folder_image = None
     if len(folder_images) > 0:
         folder_image = folder_images[0]
@@ -632,6 +702,7 @@ content_fixers = [
     fix_webinars,
     fix_read_more,
     fix_ast_header,
+    fix_obs_countries,
     fix_layout_size,
 ]
 
