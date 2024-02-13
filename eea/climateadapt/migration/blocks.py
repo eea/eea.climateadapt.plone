@@ -74,3 +74,30 @@ def simple_slate_to_volto_blocks(slate_value):
         res.append([make_uid(), block])
 
     return res
+
+
+def make_obs_countries_header(countrycode):
+    flaguid = make_uid()
+    blocks = {}
+    blocks[flaguid] = {
+        "@type": "countryFlag",
+        "country_name": countrycode.upper(),
+        "show_flag": True,
+        "show_name": True,
+    }
+
+    block = {
+        "@type": "group",
+        "as": "div",
+        "data": {
+            "blocks": blocks,
+            "blocks_layout": {"items": [flaguid]},
+        },
+        "styles": {
+            "size": "container_width",
+            "style_name": "content-box-primary",
+            "useAsPageHeader": True,
+        },
+    }
+
+    return block
