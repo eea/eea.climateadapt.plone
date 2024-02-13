@@ -38,7 +38,7 @@ IGNORED_PATHS = [
     "{lang}/mission",
     "{lang}/metadata" "frontpage",
     "{lang}/frontpage",
-    "{lang}/observatory/news-archive-observatory",
+    # "{lang}/observatory/news-archive-observatory",
 ]
 
 COL_MAPPING = {
