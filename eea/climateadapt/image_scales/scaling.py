@@ -5,11 +5,6 @@ from zope.traversing.interfaces import ITraversable
 from zope.interface import implementer
 from zope.app.file.file import FileChunk
 
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from io import BytesIO as StringIO
-
 
 def get_data(value):
     orig_data = None
