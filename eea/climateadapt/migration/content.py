@@ -397,7 +397,11 @@ def migrate_simplecontent_to_volto(obj, make_metadata_blocks):
     voltoblocks = []
 
     if obj.text:
-        voltoblocks = convert_to_blocks(obj.text.raw)
+        if isinstance(obj.text, basestring):
+            text = obj.text
+        else:
+            text = obj.text.raw
+        voltoblocks = convert_to_blocks(text)
 
     for buid, block in metadatablocks + voltoblocks:
         blocks[buid] = block

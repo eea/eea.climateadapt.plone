@@ -34,14 +34,13 @@ def _migrate_to_volto(site, request):
         if brain.portal_type in IGNORED_CONTENT_TYPES:
             continue
 
-        if not (root and allow(brain, root)):
+        if root and not allow(brain, root):
             continue
 
         logger.info("migrate %s", brain.getURL())
         obj = brain.getObject()
         migrate_content_to_volto(obj, request)
 
-    raise ValueError
     logger.info("--- Object migration done ---")
 
 
