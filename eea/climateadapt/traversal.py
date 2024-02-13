@@ -1,3 +1,4 @@
+from plone.rest.traverse import RESTWrapper
 from zope.component import adapter, getUtility
 from zope.interface import implementer, Interface
 from zope.publisher.interfaces.browser import IBrowserRequest
@@ -7,7 +8,7 @@ from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.contentrules.engine.interfaces import IRuleStorage
 
 
-#@adapter(INavigationRoot, IBrowserRequest)
+# @adapter(INavigationRoot, IBrowserRequest)
 @adapter(Interface, IBrowserRequest)
 @implementer(ITraversable)
 class AcquisitionNamespace(object):
@@ -22,6 +23,13 @@ class AcquisitionNamespace(object):
 
     def traverse(self, name, ignore):
         self.request.form["observatory_page"] = "1"
-        #import pdb; pdb.set_trace()
         base = self.context.restrictedTraverse(name).aq_base
-        return base.__of__(self.context)
+
+        # handle ++aq++metadata links in the Observatory
+        if isinstance(self.context, RESTWrapper):
+            context = self.context.context
+            base = base.__of__(context)
+            self.context.context = base
+            return self.context
+
+        return self.context
