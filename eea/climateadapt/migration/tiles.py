@@ -839,6 +839,11 @@ def observatory_indicators_list(obj, data, request):
                     "o": "plone.app.querystring.operation.string.absolutePath",
                     "v": "/" + current_lang,
                 },
+                {
+                    "i": "review_state",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": ["published"],
+                },
             ],
             "sort_on": "sortable_title",
             "sort_order": "ascending",
