@@ -98,8 +98,14 @@ class ImageFieldScales(object):
             # Seen in plone.app.caching.tests.test_profile_with_caching_proxy.
             # If we cannot find the images view, there is nothing for us to do.
             return None
+        # __import__("pdb").set_trace()
         width, height = image.getImageSize()
         url = self.get_original_image_url(self.field.__name__, width, height)
+
+        if url and ".svg" in url:
+            bits = url.split("@@images")
+            url = bits[0] + "@@download" + "/" + self.field.__name__
+
         scales = self.get_scales(self.field, width, height)
 
         return [
