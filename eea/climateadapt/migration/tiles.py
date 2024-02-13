@@ -791,6 +791,65 @@ def regions_section_view(obj, data, request):
     return {"blocks": blocks}
 
 
+def observatory_indicators_list(obj, data, request):
+    current_lang = get_current_language(obj, request)
+    searchblock = {
+        "@type": "search",
+        "facets": [
+            {
+                "@id": make_uid(),
+                "field": {"label": "Health impacts", "value": "health_impacts"},
+                "hidden": False,
+                "multiple": False,
+                "type": "checkboxFacet",
+            },
+            {
+                "@id": make_uid(),
+                "field": {"label": "Origin website", "value": "origin_website"},
+                "hidden": False,
+                "multiple": False,
+                "type": "checkboxFacet",
+            },
+        ],
+        "itemModel": {
+            "@type": "simpleItem",
+            "hasMetaType": False,
+            "styles": {"bordered:bool": False, "inverted:bool": False},
+        },
+        "listingBodyTemplate": "summary",
+        "query": {
+            "b_size": "10000",
+            "limit": "1000",
+            "query": [
+                {
+                    "i": "portal_type",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": [
+                        "eea.climateadapt.indicator",
+                        "eea.climateadapt.c3sindicator",
+                    ],
+                },
+                {
+                    "i": "include_in_observatory",
+                    "o": "plone.app.querystring.operation.boolean.isTrue",
+                    "v": "",
+                },
+                {
+                    "i": "path",
+                    "o": "plone.app.querystring.operation.string.absolutePath",
+                    "v": "/" + current_lang,
+                },
+            ],
+            "sort_on": "sortable_title",
+            "sort_order": "ascending",
+        },
+        "showSearchInput": True,
+        "showTotalResults": True,
+    }
+    blocks = [[make_uid(), searchblock]]
+    return {"blocks": blocks}
+
+
 def eu_sector_policies_view(obj, data, request):
     current_lang = get_current_language(obj, request)
     blocks = []
@@ -879,34 +938,25 @@ def obs_countries_list(obj, data, request):
     uid = make_uid()
     blocks = [
         [
-            make_uid(), {
+            make_uid(),
+            {
                 "@type": "slate",
                 "plaintext": " Select a country ",
-                "styles": {
-                    "style_name": None
-                },
+                "styles": {"style_name": None},
                 "value": [
                     {
                         "children": [
+                            {"text": ""},
                             {
-                                "text": ""
+                                "children": [{"text": "Select a country"}],
+                                "type": "strong",
                             },
-                            {
-                            "children": [
-                                {
-                                    "text": "Select a country"
-                                }
-                            ],
-                            "type": "strong"
-                            },
-                            {
-                                "text": ""
-                            }
+                            {"text": ""},
                         ],
-                        "type": "p"
+                        "type": "p",
                     }
-                ]
-            }
+                ],
+            },
         ],
         [
             uid,
@@ -952,7 +1002,7 @@ def obs_countries_list(obj, data, request):
                 "styles": {},
                 "variation": "summary",
             },
-        ]
+        ],
     ]
     return {"blocks": blocks}
 
@@ -998,7 +1048,7 @@ view_convertors = {
     # A search listing with tab-based prefilters. Should be reimplemented as search
     # block, maybe with a custom facet. Ticket: https://taskman.eionet.europa.eu/issues/161496
     # /observatory/evidence/indicators_intro
-    "observatory_indicators_list": nop_view,
+    "observatory_indicators_list": observatory_indicators_list,
     # A listing of the regions. We should do a listing block here. Also, make sure to
     # migrate the image as "preview_image" in the regions items. Ticket: https://taskman.eionet.europa.eu/issues/161598
     # /countries-regions/transnational-regions/transnational-regions-and-other-regions-and-countries
