@@ -816,7 +816,7 @@ def observatory_indicators_list(obj, data, request):
             "hasMetaType": False,
             "styles": {"bordered:bool": False, "inverted:bool": False},
         },
-        "listingBodyTemplate": "summary",
+        "listingBodyTemplate": "indicatorCards",
         "query": {
             "b_size": "10000",
             "limit": "1000",
