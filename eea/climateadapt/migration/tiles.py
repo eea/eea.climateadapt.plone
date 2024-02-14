@@ -183,7 +183,8 @@ def cards_tile_to_block(tile_dm, obj, request):
                 "querystring": {
                     "query": query,
                 },
-                "variation": "cardsGallery",
+                # "variation": "cardsGallery",
+                "variation": "organisationCards",
             },
         ]
     ]
