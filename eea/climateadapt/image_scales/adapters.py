@@ -141,7 +141,6 @@ class ImageFieldScales(object):
         """Get a dictionary of available scales for a particular image field,
         with the actual dimensions(aspect ratio of the original image).
         """
-        needs_reindex = False
         scales = {}
 
         for name, actual_width, actual_height in _get_scale_infos():
@@ -167,7 +166,6 @@ class ImageFieldScales(object):
                         width=actual_width,
                         height=actual_height,
                     )
-                    needs_reindex = True
             except:  # TODO: hotfix for migration
                 scale = None
             if scale is None:
@@ -191,9 +189,6 @@ class ImageFieldScales(object):
                 "width": actual_width,
                 "height": actual_height,
             }
-
-        # if needs_reindex:
-        #     self.context.reindexObject()
 
         return scales
 
