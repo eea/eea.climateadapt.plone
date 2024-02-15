@@ -6,6 +6,9 @@
 
   <include file="breadcrumbs.zcml" />
 
+  <!-- this is protected by have-plone5 condition in the original -->
+  <include file="multilingual.zcml" />
+
   <adapter factory=".serializer.GenericContentSerializer"/>
   <adapter factory=".serializer.GenericFolderSerializer"/>
 
