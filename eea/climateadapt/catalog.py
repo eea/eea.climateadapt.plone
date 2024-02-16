@@ -229,18 +229,19 @@ def cover_description(obj):
 @indexer(IDexterityContent)
 def image_field_indexer(obj):
     """Indexer for knowing in a catalog search if a content has any image."""
+
     base_obj = aq_base(obj)
 
     image_field = ""
-    if getattr(base_obj, "preview_image", False):
-        image_field = "preview_image"
-    elif (
-        getattr(base_obj, "preview_image_link", False)
-        and not base_obj.preview_image_link.isBroken()
-    ):
-        image_field = "preview_image_link"
-    elif getattr(base_obj, "image", False):
-        image_field = "image"
-    elif getattr(base_obj, "logo", False):
-        image_field = "logo"
+    if getattr(base_obj, "preview_image_link", False) \
+        and not base_obj.preview_image_link.isBroken():
+        image_field = 'preview_image'
+
+    fields = ["preview_image", "image", "logo", "primary_photo"]
+
+    for name in fields:
+        if getattr(base_obj, name, False):
+            image_field = name
+            break
+
     return image_field
