@@ -469,6 +469,21 @@ _key_community_systems = (("Critical Infrastructure", _("Critical Infrastructure
 key_community_systems = generic_vocabulary(_key_community_systems, False)
 alsoProvides(key_community_systems, IVocabularyFactory)
 
+_climate_threats = (("Mean air temperature", _("Mean air temperature")),
+                   ("Extreme heat", _("Extreme heat")),
+                   ("Cold spells and frost", _("Cold spells and frost")),
+                   ("Mean precipitation", _("Mean precipitation")),
+                   ("Extreme Precipitation", _("Extreme Precipitation")),
+                   ("River flooding", _("River flooding")),
+                   ("Aridity", _("Aridity")),
+                   ("Wildfire", _("Wildfire")),
+                   ("Snow and ice", _("Snow and ice")),
+                   ("Relative sea level", _("Relative sea level")),
+                   ("Coastal flooding", _("Coastal flooding")))
+
+climate_threats = generic_vocabulary(_climate_threats, False)
+alsoProvides(climate_threats, IVocabularyFactory)
+
 _funding_programme = (("Other", "Other"),
                       ("COST Action", "COST Action"),
                       ("LIFE - Environment and climate action",

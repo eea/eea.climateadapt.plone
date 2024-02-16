@@ -274,6 +274,10 @@
       component=".vocabulary.key_community_systems"
       />
   <utility
+      name="eea.climateadapt.climate_threats"
+      component=".vocabulary.climate_threats"
+      />
+  <utility
       name="eea.climateadapt.cca_types"
       component=".vocabulary.cca_types"
       />
