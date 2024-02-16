@@ -92,7 +92,6 @@ class IMissionStory(model.Schema, IBlocks):
 
     country = List(
         title=_(u"Countries"),
-        description=_(u"European country"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
