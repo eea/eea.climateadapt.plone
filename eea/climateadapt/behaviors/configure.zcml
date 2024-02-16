@@ -45,6 +45,12 @@
       />
 
       <plone:behavior
+        title="Mission story details"
+        description="Settings for Mission stories"
+        provides=".missionstory.IMissionStory"
+      />
+
+      <plone:behavior
         name="plone.shortname"
         title="Short name"
         description="Gives the ability to rename an item from its edit form."
