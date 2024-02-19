@@ -14,7 +14,7 @@ from .config import (
     FULL_PAGE_PATHS,
     SECTOR_POLICY_PATHS,
 )
-from .utils import make_uid
+from .utils import make_uid, get_country_alpha2
 from .blocks import simple_slate_to_volto_blocks, make_obs_countries_header
 
 logger = logging.getLogger()
@@ -543,8 +543,9 @@ def fix_obs_countries(context):
     for buid in context.blocks_layout["items"]:
         b = context.blocks[buid]
         if b.get("@type") == "title":
-            # TODO: use context.title to get the id
-            context.blocks[buid] = make_obs_countries_header("at")
+            country = get_country_alpha2(context.title)
+            if country is not None:
+                context.blocks[buid] = make_obs_countries_header(country)
 
     lastcoluid = block["data"]["blocks_layout"]["items"][-1]
     lastcol = block["data"]["blocks"][lastcoluid]
