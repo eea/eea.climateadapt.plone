@@ -10,6 +10,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="eea.climateadapt2">
 
+    <include file="missing.zcml" />
     <adapter factory=".aceitem.KeywordsFieldWidget" />
     <adapter factory=".aceitem.SpecialTagsFieldWidget" />
 
