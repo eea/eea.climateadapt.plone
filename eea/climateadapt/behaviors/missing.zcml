@@ -11,10 +11,10 @@
   i18n_domain="eea.climateadapt2">
 
 <plone:behavior
-  name="plone.dublinecore"
+  name="plone.dublincore"
   title="Inplace compatibility"
   description="Not to be used"
-  provides=".missing.IMissingPloneDublineCore"
+  provides=".missing.IMissingPloneDublinCore"
   for="plone.dexterity.interfaces.IDexterityContent"
   />
 

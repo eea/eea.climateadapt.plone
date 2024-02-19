@@ -60,5 +60,5 @@ class IMissingPloneNameFromTitle(Interface):
     pass
 
 
-class IMissingPloneDublineCore(Interface):
+class IMissingPloneDublinCore(Interface):
     pass
