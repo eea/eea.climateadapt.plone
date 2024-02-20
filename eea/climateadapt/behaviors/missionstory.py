@@ -1,13 +1,18 @@
 from eea.climateadapt import CcaAdminMessageFactory as _
-from zope.schema import (Choice, List)
-from plone.app.textfield import RichText
+from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+from zope.component import adapter
+from zope.interface import alsoProvides, implementer, provider, alsoProvides
+from zope.schema import (Choice, List, Tuple, TextLine)
 from plone.directives import form
+from plone.app.textfield import RichText
+from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.restapi.behaviors import IBlocks
 from plone.supermodel import model
 from plone.autoform.interfaces import IFormFieldProvider
-from zope.interface import provider, alsoProvides
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-
+from z3c.form.widget import FieldWidget
+from z3c.form.interfaces import IFieldWidget
+from z3c.form.util import getSpecification
 
 @provider(IFormFieldProvider)
 class IMissionStory(model.Schema, IBlocks):
@@ -16,20 +21,30 @@ class IMissionStory(model.Schema, IBlocks):
         "mission_story_info",
         label=u"Mission Story Fieldset",
         fields=[
+            "keywords",
             "climate_impacts",
             "sectors",
             "key_system",
             "country",
-            "climate_threats",
             "funding_programme",
             "key_learnings",
-            "region",
             "about_the_region",
             "solution",
             "synopsis",
             "further_information",
             "contact"
         ],
+    )
+
+    keywords = Tuple(
+        title=_(u"Keywords"),
+        description=_(
+            u"Describe and tag this item with relevant keywords."
+            u"Press Enter after writing your keyword."
+        ),
+        required=False,
+        value_type=TextLine(),
+        missing_value=None,
     )
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -42,19 +57,6 @@ class IMissionStory(model.Schema, IBlocks):
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_climateimpacts",
-        ),
-    )
-
-    form.widget(climate_threats="z3c.form.browser.checkbox.CheckBoxFieldWidget")
-    climate_threats = List(
-        title=_(u"Hazard Type"),
-        description=_(
-            u"Select one or more climate change impact topics that "
-            u"this item relates to."
-        ),
-        required=False,
-        value_type=Choice(
-            vocabulary="eea.climateadapt.climate_threats",
         ),
     )
 
@@ -116,11 +118,6 @@ class IMissionStory(model.Schema, IBlocks):
         required=False,
     )
 
-    region = RichText(
-        title=_(u"Region"),
-        required=False,
-    )
-
     further_information = RichText(
         title=_(u"Further Information"),
         required=False,
@@ -131,12 +128,19 @@ class IMissionStory(model.Schema, IBlocks):
         required=False,
     )
 
+@adapter(getSpecification(IMissionStory["keywords"]), IWidgetsLayer)
+@implementer(IFieldWidget)
+def KeywordsFieldWidget(field, request):
+    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+    widget.vocabulary = "eea.climateadapt.keywords"
+    # widget.vocabulary = 'plone.app.vocabularies.Catalog'
+
+    return widget
 
 alsoProvides(IMissionStory["climate_impacts"], ILanguageIndependentField)
+alsoProvides(IMissionStory['keywords'], ILanguageIndependentField)
 alsoProvides(IMissionStory["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionStory["key_system"], ILanguageIndependentField)
-alsoProvides(IMissionStory["climate_threats"], ILanguageIndependentField)
-alsoProvides(IMissionStory["region"], ILanguageIndependentField)
 alsoProvides(IMissionStory["funding_programme"], ILanguageIndependentField)
 alsoProvides(IMissionStory["country"], ILanguageIndependentField)
 alsoProvides(IMissionStory["key_learnings"], ILanguageIndependentField)
