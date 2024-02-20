@@ -54,9 +54,14 @@ class Navigation(BaseNavigation):
 
     def customize_entry(self, entry, brain):
         entry["brain"] = brain
+
+        if getattr(brain, "is_nonstructural_folder", False):
+            entry["nonclickable"] = True
+
         if hasattr(brain, "getRemoteUrl") and brain.getRemoteUrl:
             entry["path"] = urlparse(brain.getRemoteUrl).path
             entry["@id"] = brain.getRemoteUrl
+
         return entry
 
     def render_item(self, item, path):
