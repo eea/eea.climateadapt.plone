@@ -19,7 +19,7 @@ from zope.component import adapter
 from zope.interface import alsoProvides, implementer
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
-
+from plone.autoform import directives
 # from z3c.relationfield.schema import RelationChoice
 
 GEOCHARS = {
@@ -197,6 +197,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         required=True,
     )
 
+    directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     dexteritytextindexer.searchable("keywords")
     keywords = Tuple(
         title=_(u"Keywords"),
@@ -205,8 +206,10 @@ class IAceProject(form.Schema, IImageScaleTraversable):
             u"Press Enter after writing your keyword."
         ),
         required=False,
-        value_type=TextLine(),
-        missing_value=(None),
+        default=(),
+        value_type=TextLine(
+            title=u"Single topic",
+        ),
     )
 
     health_impacts = List(

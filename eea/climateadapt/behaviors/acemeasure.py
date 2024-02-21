@@ -17,6 +17,7 @@ from zope.component import adapter
 from zope.interface import alsoProvides, implementer  # , implements
 from zope.schema import (URI, Bool, Choice, Date, Int, List, Text, TextLine,
                          Tuple)
+from plone.autoform import directives
 
 ADD_ORGANISATION_URL = (
     u"<a target='_blank' "
@@ -156,6 +157,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         ),
     )
 
+    directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     keywords = Tuple(
         title=_(u"Keywords"),
         description=_(
@@ -166,8 +168,10 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
             u"integrated approach, etc.):"
         ),
         required=False,
-        value_type=TextLine(),
-        missing_value=(None),
+        default=(),
+        value_type=TextLine(
+            title=u"Single topic",
+        ),
     )
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
