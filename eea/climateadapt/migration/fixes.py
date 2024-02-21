@@ -246,6 +246,62 @@ def fix_webinars(context):
     context._p_changed = True
 
 
+@onpath("/observatory/more-events-observatory")
+def fix_observatory_eventsarchive(context):
+    blocks = context.blocks
+    layout = context.blocks_layout
+
+    # remove the listing block
+    last = context.blocks_layout["items"][-1]
+    del blocks[last]
+    context.blocks_layout["items"] = context.blocks_layout["items"][:-1]
+
+    uid = make_uid()
+    block = {
+        "@type": "listing",
+        "block": uid,
+        "headlineTag": "h2",
+        "itemModel": {
+            "@type": "item",
+            "callToAction": {"label": "Read more"},
+            "hasDate": False,
+            "hasDescription": True,
+            "hasEventDate": True,
+            "hasIcon": False,
+            "hasImage": False,
+            "hasLink": True,
+            "maxDescription": 2,
+            "maxTitle": 2,
+            "styles": {},
+            "titleOnImage": False,
+        },
+        "query": [],
+        "querystring": {
+            "depth": "1",
+            "query": [
+                {
+                    "i": "portal_type",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": ["Event"],
+                },
+                {
+                    "i": "review_state",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": ["published"],
+                },
+            ],
+            "sort_on": "effective",
+            "sort_order": "descending",
+            "sort_order_boolean": True,
+        },
+        "styles": {},
+        "variation": "summary",
+    }
+    blocks[uid] = block
+    layout["items"].append(uid)
+    context._p_changed = True
+
+
 @onpath("/observatory/news-archive-observatory")
 def fix_observatory_newsarchive(context):
     blocks = context.blocks
@@ -810,7 +866,6 @@ content_fixers = [
     fix_read_more,
     fix_ast_header,
     fix_obs_countries,
-    fix_observatory_newsarchive,
     fix_layout_size,
 ]
 
@@ -818,6 +873,8 @@ folder_fixers = [
     fix_field_encoding,
     fix_news_archive,
     fix_preview_image,
+    fix_observatory_newsarchive,
+    fix_observatory_eventsarchive,
     fix_layout_size,
 ]
 
