@@ -6,6 +6,9 @@
 
   <include file="breadcrumbs.zcml" />
 
+  <!-- this is protected by have-plone5 condition in the original -->
+  <include file="multilingual.zcml" />
+
   <adapter factory=".serializer.GenericContentSerializer"/>
   <adapter factory=".serializer.GenericFolderSerializer"/>
 
@@ -119,13 +122,6 @@
     permission="zope2.View"
     name="@navigation"
     layer="plone.restapi.interfaces.IPloneRestapiLayer"
-    />
-
-  <plone:behavior
-    name="volto.blocks.editable.layout"
-    title="Blocks (Editable Layout)"
-    description="Enables Volto Blocks (editable layout) support"
-    provides=".behaviors.IBlocksEditableLayout"
     />
 
 </configure>

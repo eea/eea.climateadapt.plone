@@ -1,6 +1,7 @@
 import json
 import logging
 from uuid import uuid4
+import pycountry
 
 import requests
 
@@ -16,9 +17,11 @@ def path(obj):
 
 def convert_to_blocks(text):
     data = {"html": text}
-    headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    headers = {'Content-type': 'application/json',
+               'Accept': 'application/json'}
 
-    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(
+        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -29,9 +32,11 @@ def convert_to_blocks(text):
 
 def text_to_slate(text):
     data = {"html": text}
-    headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    headers = {'Content-type': 'application/json',
+               'Accept': 'application/json'}
 
-    req = requests.post(SLATE_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(
+        SLATE_CONVERTER, data=json.dumps(data), headers=headers)
     slate = req.json()['data']
     return slate
 
@@ -48,3 +53,18 @@ def slate_to_blocks(slate):
 
 def make_uid():
     return str(uuid4())
+
+
+def get_country_alpha2(country_name):
+    fixed = {
+        u"Czechia": u"Czech Republic"
+    }
+    fixed_name = fixed.get(country_name, None) or country_name
+    try:
+        country = pycountry.countries.get(name=fixed_name)
+        if country:
+            return country.alpha2
+        else:
+            return None
+    except LookupError:
+        return None

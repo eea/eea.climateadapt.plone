@@ -1,10 +1,10 @@
 from plone.memoize.view import memoize
 from plone.restapi.interfaces import IExpandableElement, IPloneRestapiLayer
 from plone.restapi.services.navigation.get import Navigation as BaseNavigation
-from plone.restapi.services.navigation.get import \
-    NavigationGet as BaseNavigationGet
-from Products.CMFPlone.browser.navigation import \
-    CatalogNavigationTabs as BaseCatalogNavigationTabs
+from plone.restapi.services.navigation.get import NavigationGet as BaseNavigationGet
+from Products.CMFPlone.browser.navigation import (
+    CatalogNavigationTabs as BaseCatalogNavigationTabs,
+)
 from urlparse import urlparse
 from zope.component import adapter
 from zope.interface import Interface, implementer
@@ -13,7 +13,7 @@ from zope.interface import Interface, implementer
 # if '/mission' not in self.context.absolute_url(relative=True):
 def is_outside_mission(context):
     bits = context.getPhysicalPath()
-    if len(bits) > 3 and bits[3] == 'mission':
+    if len(bits) > 3 and bits[3] == "mission":
         return False
 
     return True
@@ -26,7 +26,7 @@ class CatalogNavigationTabs(BaseCatalogNavigationTabs):
         if not is_outside_mission(self.context):
             return query
 
-        query['show_in_top_level'] = True
+        query["show_in_top_level"] = True
 
         return query
 
@@ -53,10 +53,15 @@ class Navigation(BaseNavigation):
         return result
 
     def customize_entry(self, entry, brain):
-        entry['brain'] = brain
-        if hasattr(brain, 'remoteUrl') and brain.remoteUrl:
-            entry['path'] = urlparse(brain.remoteUrl).path
-            entry['@id'] = brain.remoteUrl
+        entry["brain"] = brain
+
+        if getattr(brain, "is_nonstructural_folder", False):
+            entry["nonclickable"] = True
+
+        if hasattr(brain, "getRemoteUrl") and brain.getRemoteUrl:
+            entry["path"] = urlparse(brain.getRemoteUrl).path
+            entry["@id"] = brain.getRemoteUrl
+
         return entry
 
     def render_item(self, item, path):
@@ -67,8 +72,8 @@ class Navigation(BaseNavigation):
         if "path" in item:
             del item["path"]
 
-        if 'brain' in item:
-            del item['brain']
+        if "brain" in item:
+            del item["brain"]
 
         return item
 
@@ -77,9 +82,9 @@ class Navigation(BaseNavigation):
     def portal_tabs(self):
         old = super(Navigation, self).portal_tabs
         for entry in old:
-            if entry.get('url'):
+            if entry.get("url"):
                 # quick hack to fix broken handling of Link Urls
-                entry['url'] = entry['url'].replace('/cca/', '/')
+                entry["url"] = entry["url"].replace("/cca/", "/")
         return old
 
     # @property

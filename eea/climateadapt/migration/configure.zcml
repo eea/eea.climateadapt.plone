@@ -44,4 +44,12 @@
       factory=".content.MigrateDocument"
       />
 
+  <adapter
+      factory=".content.MigrateNewsItem"
+      />
+
+  <adapter
+      factory=".content.MigrateEvent"
+      />
+
 </configure>
