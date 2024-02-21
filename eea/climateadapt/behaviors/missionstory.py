@@ -13,6 +13,7 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from z3c.form.widget import FieldWidget
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
+from plone.autoform import directives
 
 @provider(IFormFieldProvider)
 class IMissionStory(model.Schema, IBlocks):
@@ -36,15 +37,18 @@ class IMissionStory(model.Schema, IBlocks):
         ],
     )
 
+    directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     keywords = Tuple(
         title=_(u"Keywords"),
         description=_(
-            u"Describe and tag this item with relevant keywords."
-            u"Press Enter after writing your keyword."
+            u"Describe and tag this item with relevant keywords. "
+            u"Press Enter after writing your keyword. "
         ),
         required=False,
-        value_type=TextLine(),
-        missing_value=None,
+        default=(),
+        value_type=TextLine(
+            title=u"Single topic",
+        ),
     )
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -133,7 +137,6 @@ class IMissionStory(model.Schema, IBlocks):
 def KeywordsFieldWidget(field, request):
     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
     widget.vocabulary = "eea.climateadapt.keywords"
-    # widget.vocabulary = 'plone.app.vocabularies.Catalog'
 
     return widget
 
