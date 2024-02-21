@@ -46,6 +46,7 @@ class IMissionStory(model.Schema, IBlocks):
         ),
         required=False,
         default=(),
+        missing_value=None,
         value_type=TextLine(
             title=u"Single topic",
         ),

@@ -20,6 +20,9 @@ from .blocks import simple_slate_to_volto_blocks, make_obs_countries_header
 logger = logging.getLogger()
 
 
+languages = [lang for lang in LANGUAGES if lang != "en"]
+
+
 def onpath(path):
     def decorator_factory(func):
         def decorator(context):
@@ -42,6 +45,18 @@ def inpath(path):
         return decorator
 
     return decorator_factory
+
+
+def are_on_path(url, paths):
+    for path in paths:
+        if url.endswith(path):
+            return True
+
+
+def are_in_path(url, paths):
+    for path in paths:
+        if path in url:
+            return True
 
 
 def get_block_id(blocks, type):
@@ -231,6 +246,111 @@ def fix_webinars(context):
     context._p_changed = True
 
 
+@onpath("/observatory/more-events-observatory")
+def fix_observatory_eventsarchive(context):
+    blocks = context.blocks
+    layout = context.blocks_layout
+
+    # remove the listing block
+    last = context.blocks_layout["items"][-1]
+    del blocks[last]
+    context.blocks_layout["items"] = context.blocks_layout["items"][:-1]
+
+    uid = make_uid()
+    block = {
+        "@type": "listing",
+        "block": uid,
+        "headlineTag": "h2",
+        "itemModel": {
+            "@type": "item",
+            "callToAction": {"label": "Read more"},
+            "hasDate": False,
+            "hasDescription": True,
+            "hasEventDate": True,
+            "hasIcon": False,
+            "hasImage": False,
+            "hasLink": True,
+            "maxDescription": 2,
+            "maxTitle": 2,
+            "styles": {},
+            "titleOnImage": False,
+        },
+        "query": [],
+        "querystring": {
+            "depth": "1",
+            "query": [
+                {
+                    "i": "portal_type",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": ["Event"],
+                },
+                {
+                    "i": "review_state",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": ["published"],
+                },
+            ],
+            "sort_on": "effective",
+            "sort_order": "descending",
+            "sort_order_boolean": True,
+        },
+        "styles": {},
+        "variation": "summary",
+    }
+    blocks[uid] = block
+    layout["items"].append(uid)
+    context._p_changed = True
+
+
+@onpath("/observatory/news-archive-observatory")
+def fix_observatory_newsarchive(context):
+    blocks = context.blocks
+    layout = context.blocks_layout
+    uid = make_uid()
+    block = {
+        "@type": "listing",
+        "block": uid,
+        "headlineTag": "h2",
+        "itemModel": {
+            "@type": "item",
+            "callToAction": {"label": "Read more"},
+            "hasDate": True,
+            "hasDescription": True,
+            "hasEventDate": False,
+            "hasIcon": False,
+            "hasImage": False,
+            "hasLink": True,
+            "maxDescription": 2,
+            "maxTitle": 2,
+            "styles": {},
+            "titleOnImage": False,
+        },
+        "query": [],
+        "querystring": {
+            "query": [
+                {
+                    "i": "include_in_observatory",
+                    "o": "plone.app.querystring.operation.boolean.isTrue",
+                    "v": "",
+                },
+                {
+                    "i": "portal_type",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": ["News Item"],
+                },
+            ],
+            "sort_on": "effective",
+            "sort_order": "descending",
+            "sort_order_boolean": True,
+        },
+        "styles": {},
+        "variation": "summary",
+    }
+    blocks[uid] = block
+    layout["items"].append(uid)
+    context._p_changed = True
+
+
 @onpath("/help/tutorial-videos/index_html")
 def fix_tutorial_videos(context):
     blocks = context.blocks
@@ -405,18 +525,6 @@ def fix_news_archive(context):
     context._p_changed = True
 
 
-def are_on_path(url, paths):
-    for path in paths:
-        if url.endswith(path):
-            return True
-
-
-def are_in_path(url, paths):
-    for path in paths:
-        if path in url:
-            return True
-
-
 def fix_read_more(context):
     url = context.absolute_url(relative=True)
 
@@ -429,8 +537,7 @@ def fix_read_more(context):
     ]
 
     def get_columns_block_id(blocks):
-        columns_block = {
-            k for k, v in blocks.items() if v["@type"] == "columnsBlock"}
+        columns_block = {k for k, v in blocks.items() if v["@type"] == "columnsBlock"}
         col_id = list(columns_block)[0]
         return col_id
 
@@ -575,8 +682,7 @@ def fix_obs_countries(context):
             if isinstance(firstnode, dict) and firstnode.get("type") == "table":
                 if not first_table_node_uid:
                     first_table_node_uid = uid
-                    firstcol["blocks_layout"]["items"] = [
-                        x for x in items if x != uid]
+                    firstcol["blocks_layout"]["items"] = [x for x in items if x != uid]
                 else:
                     tbody = firstnode["children"][0]
                     tr = tbody["children"][0]
@@ -689,8 +795,7 @@ def fix_field_encoding(context):
 
 @inpath("countries-regions/transnational-regions/")
 def fix_preview_image(context):
-    folder_images = context.listFolderContents(
-        contentFilter={"portal_type": "Image"})
+    folder_images = context.listFolderContents(contentFilter={"portal_type": "Image"})
     folder_image = None
     if len(folder_images) > 0:
         folder_image = folder_images[0]
@@ -698,41 +803,6 @@ def fix_preview_image(context):
         image = folder_image.image
         context.preview_image = image
         context._p_changed = True
-
-
-content_fixers = [
-    fix_field_encoding,
-    fix_images_in_slate,
-    fix_climate_services_toc,
-    fix_tutorial_videos,
-    fix_uast,
-    fix_ast,
-    fix_webinars,
-    fix_read_more,
-    fix_ast_header,
-    fix_obs_countries,
-    fix_layout_size,
-]
-
-folder_fixers = [
-    fix_field_encoding,
-    fix_news_archive,
-    fix_preview_image,
-    fix_layout_size,
-]
-
-
-def fix_content(content):
-    for fixer in content_fixers:
-        fixer(content)
-
-
-def fix_folder(context):
-    for fixer in folder_fixers:
-        fixer(context)
-
-
-languages = [lang for lang in LANGUAGES if lang != "en"]
 
 
 def getpath(obj):
@@ -784,6 +854,39 @@ def exclude_content_from_navigation(site):
 
 
 site_fixers = [exclude_content_from_navigation]
+
+content_fixers = [
+    fix_field_encoding,
+    fix_images_in_slate,
+    fix_climate_services_toc,
+    fix_tutorial_videos,
+    fix_uast,
+    fix_ast,
+    fix_webinars,
+    fix_read_more,
+    fix_ast_header,
+    fix_obs_countries,
+    fix_layout_size,
+]
+
+folder_fixers = [
+    fix_field_encoding,
+    fix_news_archive,
+    fix_preview_image,
+    fix_observatory_newsarchive,
+    fix_observatory_eventsarchive,
+    fix_layout_size,
+]
+
+
+def fix_content(content):
+    for fixer in content_fixers:
+        fixer(content)
+
+
+def fix_folder(context):
+    for fixer in folder_fixers:
+        fixer(context)
 
 
 def fix_site(site):
