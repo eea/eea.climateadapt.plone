@@ -17,7 +17,7 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer
 from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple
-from plone.autoform import directives
+
 # , Year, PortalType,
 
 
@@ -158,7 +158,6 @@ class IAceItem(IImageScaleTraversable):
         missing_value=u'',
     )
 
-    directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     keywords = Tuple(
         title=_(u"Keywords"),
         description=_(
@@ -166,10 +165,8 @@ class IAceItem(IImageScaleTraversable):
             u"Press Enter after writing your keyword."
         ),
         required=False,
-        default=(),
-        value_type=TextLine(
-            title=u"Single topic",
-        ),
+        value_type=TextLine(),
+        missing_value=None,
     )
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
