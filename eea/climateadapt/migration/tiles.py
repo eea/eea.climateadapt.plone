@@ -49,15 +49,13 @@ def assigned(tile):
                 # so we try to get it bypassing the restrictions
                 catalog = api.portal.get_tool("portal_catalog")
                 # brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
-                brain = catalog.searchResults(
-                    UID=uuid, review_state="published")
+                brain = catalog.searchResults(UID=uuid, review_state="published")
 
                 if not brain:
                     # the object was deleted; remove it from the tile
                     obj.remove_item(uuid)
                     logger.warning(
-                        "Nonexistent object {0} removed from " "tile".format(
-                            uuid)
+                        "Nonexistent object {0} removed from " "tile".format(uuid)
                     )
     return results
 
@@ -93,7 +91,7 @@ def relevant_items(obj, request, tile):
         state = wftool.getInfoFor(item, "review_state")
         obj_path = item.getPhysicalPath()
         site_path = site.getPhysicalPath()
-        path = "/" + "/".join(obj_path[len(site_path):])
+        path = "/" + "/".join(obj_path[len(site_path) :])
 
         if not item:
             continue
@@ -199,8 +197,7 @@ def region_select_to_block(tile_dm, obj, request):
 
     if countries:
         img_name = (
-            countries[1][0].replace(".jpg", "_bg.png").replace(
-                " ", "").decode("utf-8")
+            countries[1][0].replace(".jpg", "_bg.png").replace(" ", "").decode("utf-8")
         )
         img_path = (
             "/cca/++theme++climateadaptv2/static/images/transnational/" + img_name
@@ -210,8 +207,7 @@ def region_select_to_block(tile_dm, obj, request):
         bits = fs_file().read()
         parent = obj.aq_parent
         contentType = img_name.endswith("jpg") and "image/jpeg" or "image/png"
-        images = parent.listFolderContents(
-            contentFilter={"portal_type": "Image"})
+        images = parent.listFolderContents(contentFilter={"portal_type": "Image"})
         image = None
 
         imagefield = NamedBlobImage(
@@ -515,8 +511,7 @@ def country_disclaimer_view(obj, data, request):
                                 "data": {
                                     "label_type": "high",
                                     "tooltip_content": [
-                                        {"children": [
-                                            {"text": content}], "type": "p"}
+                                        {"children": [{"text": content}], "type": "p"}
                                     ],
                                     "tooltip_type": "",
                                     "tooltip_size": "extra",
@@ -885,8 +880,7 @@ def eu_sector_policies_view(obj, data, request):
                                 "@type": "slate",
                                 "plaintext": sector[1],
                                 "value": [
-                                    {"children": [
-                                        {"text": sector[1]}], "type": "p"}
+                                    {"children": [{"text": sector[1]}], "type": "p"}
                                 ],
                             },
                             divider_id: {
@@ -910,8 +904,7 @@ def eu_sector_policies_view(obj, data, request):
                                 "description": [
                                     {
                                         "children": [
-                                            {"style-primary": True,
-                                                "text": sector[0]}
+                                            {"style-primary": True, "text": sector[0]}
                                         ],
                                         "type": "h3",
                                     }
@@ -999,6 +992,11 @@ def obs_countries_list(obj, data, request):
                             "i": "portal_type",
                             "o": "plone.app.querystring.operation.selection.any",
                             "v": ["collective.cover.content"],
+                        },
+                        {
+                            "i": "Subject",
+                            "o": "plone.app.querystring.operation.selection.any",
+                            "v": ["countryprofile"],
                         },
                     ],
                     "sort_on": "sortable_title",
@@ -1094,8 +1092,7 @@ def filter_acecontent_to_block(tile_dm, obj, request):
     macro_regions = data.get("macro_regions")
     sortBy = None
     trans_macro_regions = []
-    sortingValues = {"effective": "EFFECTIVE",
-                     "modified": "MODIFIED", "getId": "NAME"}
+    sortingValues = {"effective": "EFFECTIVE", "modified": "MODIFIED", "getId": "NAME"}
     otherRegions = {
         "Macaronesia",
         "Caribbean Area",

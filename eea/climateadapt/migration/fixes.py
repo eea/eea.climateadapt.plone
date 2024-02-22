@@ -641,6 +641,7 @@ def fix_obs_countries(context):
     if len(context.blocks) != 2:
         return
 
+    context.subject = (u"countryprofile",)
     last = context.blocks_layout["items"][-1:][0]
     block = context.blocks[last]
     if block.get("@type") != "columnsBlock":
