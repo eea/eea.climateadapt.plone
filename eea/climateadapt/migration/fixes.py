@@ -634,18 +634,19 @@ def fix_uast(context):
 @inpath("observatory/policy-context/country-profiles/")
 def fix_obs_countries(context):
     # only for country profiles
-    # __import__("pdb").set_trace()
     if not context.blocks:
         return
 
     if len(context.blocks) != 2:
         return
 
-    context.subject = (u"countryprofile",)
     last = context.blocks_layout["items"][-1:][0]
     block = context.blocks[last]
     if block.get("@type") != "columnsBlock":
         return
+
+    context.subject = ("countryprofile",)
+    context.reindexObject()
 
     # replace title block with special country header block
     for buid in context.blocks_layout["items"]:
