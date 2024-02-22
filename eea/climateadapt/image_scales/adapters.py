@@ -10,7 +10,7 @@ from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.utils import iterSchemata
 from plone.namedfile.interfaces import INamedImageField
 from plone.registry.interfaces import IRegistry
-from ZODB.POSException import PosKeyError
+from ZODB.POSException import POSKeyError
 from zope.component import adapter, getMultiAdapter, getUtility, queryMultiAdapter
 from zope.component.interfaces import ComponentLookupError
 from zope.interface import Interface, implementer
@@ -50,7 +50,7 @@ class ImageScales(object):
                         scales = serializer()
                         if scales:
                             res[name] = scales
-                    except PosKeyError:
+                    except POSKeyError:
                         logger.error("No blobs for %s", self.context.absolute_url())
 
         return res
