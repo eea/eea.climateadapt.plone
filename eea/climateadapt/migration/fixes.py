@@ -7,15 +7,19 @@ import logging
 from plone.app.multilingual.api import get_translation_manager
 from plone.tiles.interfaces import ITileDataManager
 
+from .blocks import (
+    make_obs_countries_header,
+    make_vibriomap_block,
+    simple_slate_to_volto_blocks,
+)
 from .config import (
-    LANGUAGES,
-    TOP_LEVEL,
     AST_PATHS,
     FULL_PAGE_PATHS,
+    LANGUAGES,
     SECTOR_POLICY_PATHS,
+    TOP_LEVEL,
 )
-from .utils import make_uid, get_country_alpha2
-from .blocks import simple_slate_to_volto_blocks, make_obs_countries_header
+from .utils import get_country_alpha2, make_uid
 
 logger = logging.getLogger()
 
@@ -26,7 +30,9 @@ languages = [lang for lang in LANGUAGES if lang != "en"]
 def onpath(path):
     def decorator_factory(func):
         def decorator(context):
-            if not context.absolute_url(relative=True).endswith(path):
+            url = context.absolute_url(relative=True)
+            # print("test onpath", url)
+            if not url.endswith(path):
                 return
             return func(context)
 
@@ -38,7 +44,9 @@ def onpath(path):
 def inpath(path):
     def decorator_factory(func):
         def decorator(context):
-            if path not in context.absolute_url(relative=True):
+            url = context.absolute_url(relative=True)
+            # print("test inpath", url)
+            if path not in url:
                 return
             return func(context)
 
@@ -80,6 +88,14 @@ def fix_climate_services_toc(context):
     first_block_id = first_col["blocks_layout"]["items"][0]
     new_data = {"@type": "toc", "variation": "horizontalMenu"}
     first_col["blocks"][first_block_id] = new_data
+
+
+@inpath("/observatory/evidence/projections-and-tools/ecdc-vibrio-map-viewer")
+def fix_vibiomapviewer(context):
+    # in first column block, replace the first paragraph with a horizontal navigation table of contents
+    uid, block = make_vibriomap_block()
+    context.blocks[uid] = block
+    context.blocks_layout["items"].append(uid)
 
 
 @onpath("/help/Webinars")
@@ -863,6 +879,7 @@ content_fixers = [
     fix_images_in_slate,
     fix_climate_services_toc,
     fix_tutorial_videos,
+    fix_vibiomapviewer,
     fix_uast,
     fix_ast,
     fix_webinars,

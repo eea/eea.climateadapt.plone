@@ -107,8 +107,7 @@ class MigrateCover(object):
         converter = tile_converters.get(schema, None)
 
         if not converter:
-            logger.warning(
-                "You need to implement converter for block: %s", schema)
+            logger.warning("You need to implement converter for block: %s", schema)
             return {"blocks": []}
 
         data = converter(tile_dm, self.context, self.request)
@@ -162,8 +161,7 @@ class MigrateCover(object):
                 tile_data = self.convert_tile_to_volto_blocklist(tile["id"])
                 blocklist = tile_data.pop("blocks", [])
                 attributes.update(tile_data)
-                tile_blocks, tile_blocks_layout = self._blocklist_to_blocks(
-                    blocklist)
+                tile_blocks, tile_blocks_layout = self._blocklist_to_blocks(blocklist)
                 blocks.update(tile_blocks)
                 blocks_layout.extend(tile_blocks_layout["items"])
 
@@ -209,8 +207,7 @@ class MigrateCover(object):
             if self.context.cover_layout:
                 cover_layout = json.loads(self.context.cover_layout)
             else:
-                logger.warning("No cover layout at %s",
-                               self.context.absolute_url())
+                logger.warning("No cover layout at %s", self.context.absolute_url())
 
             page_blocks = []
 
@@ -232,8 +229,7 @@ class MigrateCover(object):
                         page_blocks.extend(tile_blocks)
 
             titleuid, titleblock = make_title_block()
-            blocks_layout = {"items": [titleuid] + [b[0]
-                                                    for b in page_blocks]}
+            blocks_layout = {"items": [titleuid] + [b[0] for b in page_blocks]}
             blocks_data = {}
             blocks_data[titleuid] = titleblock
 
@@ -246,9 +242,6 @@ class MigrateCover(object):
         # TODO: ensure there's a page banner block (or title block)
 
         fix_content(self.context)
-        # fix_layout_size(self.context)
-
-        # return json.dumps({"blocks": blocks, "attributes": attributes})
 
 
 @adapter(IDocument, Interface)
@@ -287,6 +280,7 @@ class MigrateDocument(object):
             _blocks[uid] = block
         obj.blocks = _blocks
         obj._p_changed = True
+        fix_content(self.context)
         fix_layout_size(obj)
 
 
