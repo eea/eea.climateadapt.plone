@@ -231,12 +231,11 @@ class MigrateCover(object):
                         attributes.update(data)
                         page_blocks.extend(tile_blocks)
 
-            title_uid = make_uid()
-            blocks_layout = {"items": [title_uid] + [b[0]
-                                                     for b in page_blocks]}
+            titleuid, titleblock = make_title_block()
+            blocks_layout = {"items": [titleuid] + [b[0]
+                                                    for b in page_blocks]}
             blocks_data = {}
-            blocks_data[title_uid] = {
-                "@type": "title", "hideContentType": True}
+            blocks_data[titleuid] = titleblock
 
             for uid, block in page_blocks:
                 blocks_data[uid] = block

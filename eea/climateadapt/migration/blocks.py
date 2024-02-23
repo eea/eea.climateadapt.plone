@@ -8,7 +8,7 @@ def make_title_block():
         "copyrightIcon": "ri-copyright-line",
         "hideContentType": True,
         "hideCreationDate": True,
-        "hideDownloadButton": True,
+        "hideDownloadButton": False,
         "hideModificationDate": True,
         "hidePublishingDate": True,
         "styles": {},
