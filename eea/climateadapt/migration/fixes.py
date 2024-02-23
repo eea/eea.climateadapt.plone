@@ -674,8 +674,10 @@ def fix_obs_countries(context):
 
     slate_content = None
 
+    # TODO: convert line images to image blocks
     for uid in items:
         block = firstcol["blocks"][uid]
+        # TODO: remove empty paragraph block
         if block.get("@type") == "slate":
             value = block["value"] or []
             if not value:
@@ -691,7 +693,6 @@ def fix_obs_countries(context):
                     slate_content = tr["children"][1]["children"]
                     content_table_node_uid = uid
 
-    # __import__("pdb").set_trace()
     if slate_content:
         data = simple_slate_to_volto_blocks(slate_content)
         blocks = {}

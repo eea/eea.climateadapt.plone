@@ -1,17 +1,14 @@
-from eea.climateadapt.behaviors import (IAceProject, IAdaptationOption,
-                                        ICaseStudy)
-from eea.climateadapt.browser.adaptationoption import find_related_casestudies
-from eea.climateadapt.interfaces import (IClimateAdaptContent,
-                                         IEEAClimateAdaptInstalled)
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
-from plone.restapi.serializer.blocks import (SlateBlockSerializerBase,
-                                             uid_to_url)
-from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
-                                                SerializeToJson)
+from plone.restapi.serializer.blocks import SlateBlockSerializerBase, uid_to_url
+from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeToJson
 from zope.component import adapter
 from zope.interface import Interface, implementer
+
+from eea.climateadapt.behaviors import IAceProject, IAdaptationOption, ICaseStudy
+from eea.climateadapt.browser.adaptationoption import find_related_casestudies
+from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
 
 from .utils import cca_content_serializer
 
@@ -26,11 +23,12 @@ class SlateBlockSerializer(SlateBlockSerializerBase):
 
     def handle_img(self, child):
         if child.get("url"):
+            # __import__("pdb").set_trace()
             url = uid_to_url(child["url"])
-            if child.get('scale'):
-                url = "%s/@@images/image/%s" % (url, child['scale'])
+            if child.get("scale"):
+                url = "%s/@@images/image/%s" % (url, child["scale"])
             else:
-                url = "%s/@@images/image/large" % url
+                url = "%s/@@images/image/huge" % url
 
             child["url"] = url
 
@@ -80,7 +78,7 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
 
 
 @adapter(IAceProject, Interface)
-class AceProjectSerializer(SerializeFolderToJson):        # SerializeToJson
+class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(AceProjectSerializer, self).__call__(
             version=None, include_items=True
@@ -89,7 +87,7 @@ class AceProjectSerializer(SerializeFolderToJson):        # SerializeToJson
 
 
 @adapter(ICaseStudy, Interface)
-class CaseStudySerializer(SerializeFolderToJson):       # SerializeToJson
+class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(CaseStudySerializer, self).__call__(
             version=None, include_items=True
