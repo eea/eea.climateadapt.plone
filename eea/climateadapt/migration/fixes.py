@@ -702,7 +702,7 @@ def fix_obs_countries(context):
         firstcol["blocks"][content_table_node_uid] = {
             "@type": "group",
             "as": "div",
-            "styles": {"style_name": None, "backgroundColor": "#c8fff8"},
+            "styles": {"style_name": None, "backgroundColor": "#e6e7e8"},
             "data": {"blocks": blocks, "blocks_layout": {"items": items}},
         }
 
