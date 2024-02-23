@@ -8,7 +8,7 @@ def make_title_block():
         "copyrightIcon": "ri-copyright-line",
         "hideContentType": True,
         "hideCreationDate": True,
-        "hideDownloadButton": True,
+        "hideDownloadButton": False,
         "hideModificationDate": True,
         "hidePublishingDate": True,
         "styles": {},
@@ -101,3 +101,15 @@ def make_obs_countries_header(countrycode):
     }
 
     return block
+
+
+def make_vibriomap_block():
+    uid = make_uid()
+    block = {
+        "@type": "maps",
+        "align": "full",
+        "dataprotection": {},
+        "height": "100vh",
+        "url": "/@@vibriomap-view-simple",
+    }
+    return [uid, block]

@@ -1266,3 +1266,22 @@ class ExportDbItems(BrowserView):
 #        out.seek(0)
         logger.info('CSV READY')
 #        return out.getvalue()
+#
+# class ReindexMetadataScales(BrowserView):
+#     def __call__(self):
+#         catalog = api.portal.get_tool("portal_catalog")
+#         column = self.request.form.get('column', 'image_scales')
+#
+#         # inverse = {}
+#         # for p, rid in catalog._catalog.uids.items():
+#         #     inverse[rid] = p
+#
+#         # passing an invalid index name gives all brains as a result
+#         for brain in catalog.searchResults(missing_broken=True):
+#             obj = brain.getObject()
+#             pass
+#
+#         # this is a mapping path -> uid
+#         for p in catalog._catalog.uids.keys():
+#             catalog._catalog.updateMetadata()
+#

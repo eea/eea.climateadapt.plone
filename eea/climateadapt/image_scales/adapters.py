@@ -2,26 +2,27 @@
 """
 ImageScales
 """
+
+import logging
+
 from Acquisition import aq_inner
 from plone.dexterity.interfaces import IDexterityContent
 from plone.dexterity.utils import iterSchemata
-from zope.component import adapter
-from zope.component import queryMultiAdapter
-from zope.interface import implementer
-from zope.interface import Interface
-from zope.schema import getFields
 from plone.namedfile.interfaces import INamedImageField
 from plone.registry.interfaces import IRegistry
-from zope.component import getMultiAdapter
-
-from zope.component import getUtility
+from ZODB.POSException import POSKeyError
+from zope.component import adapter, getMultiAdapter, getUtility, queryMultiAdapter
 from zope.component.interfaces import ComponentLookupError
+from zope.interface import Interface, implementer
+from zope.schema import getFields
 
 from eea.climateadapt.image_scales.interfaces import (
     IImageScalesAdapter,
     IImageScalesFieldAdapter,
     IImagingSchema,
 )
+
+logger = logging.getLogger("eea.climateadapt")
 
 
 @implementer(IImageScalesAdapter)
@@ -45,9 +46,13 @@ class ImageScales(object):
                     (field, obj, self.request), IImageScalesFieldAdapter
                 )
                 if serializer:
-                    scales = serializer()
-                    if scales:
-                        res[name] = scales
+                    try:
+                        scales = serializer()
+                        if scales:
+                            res[name] = scales
+                    except POSKeyError:
+                        logger.error("No blobs for %s", self.context.absolute_url())
+
         return res
 
 
