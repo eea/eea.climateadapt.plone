@@ -2,7 +2,17 @@
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            i18n_domain="eea.climateadapt">
 
-<genericsetup:upgradeSteps
+   <genericsetup:upgradeSteps
+     source="68"
+     destination="69"
+     profile="eea.climateadapt:default">
+     <genericsetup:upgradeDepends
+       title="Update profile eeaclimate to v69"
+       import_profile="eea.climateadapt:eeaclimateadapt_to_69"
+     />
+   </genericsetup:upgradeSteps>
+
+   <genericsetup:upgradeSteps
      source="67"
      destination="68"
      profile="eea.climateadapt:default">
