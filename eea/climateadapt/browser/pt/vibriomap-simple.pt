@@ -1,0 +1,236 @@
+<div>
+        <link rel="stylesheet" href="//js.arcgis.com/3.12/dijit/themes/claro/claro.css" />
+        <link rel="stylesheet" href="//js.arcgis.com/3.12/esri/css/esri.css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css" />
+        <link rel="stylesheet" href="/++theme++climateadaptv2/static/vibrio/map-viewer.css" />
+        <link rel="stylesheet" href="/++theme++climateadaptv2/static/vibrio/site.css" />
+
+<style>
+#fullScreenImg,
+#OverviewImg,
+#imgidentifybutton,
+#fullExtentImg,
+#imgAboutMapButton
+{
+  width:45px;
+  height:20px;
+}
+select.form-control {
+  height: 25px;
+  padding: 0;
+  margin: 0;
+}
+#optionsContainer {
+  margin:0px;
+  margin-top:0px;
+}
+#containerMap #leftPanel {
+  width:270px;
+}
+#containerMap #map {
+  width:calc(99% - 280px);
+}
+</style>
+        <div class="container page-content-main">
+            <div class="claro" id="mapBody">
+                <div style="margin:0 auto;position:relative" id="mapContainer">
+                    <div id="capaLinks">
+                        <a id="link1"><img src="/++theme++climateadaptv2/static/vibrio/iconUp.png" id="imgArrow" /></a> |
+                        <a id="link2" style="color:White;font-weight:normal" i18n:translate="">View options</a>
+                    </div>
+                    <div class="slide">
+                        <div id="capa1">
+                            <div class="optionsDiv">
+                                <div class="optionsDivTop">&#160;</div>
+                                <div class="optionsDivCenter">
+                                    <input type="radio" name="rdBaseMap" id="streets" onclick="changeBasemap('streets')" />
+                                    <label for="streets" title="Worldwide Street Map" i18n:translate="" i18n:attributes="title">Streets</label>
+                                    <input type="radio" name="rdBaseMap" id="topo" checked="checked" onclick="changeBasemap('topo')" />
+                                    <label for="topo" title="Worldwide Topo Map" i18n:translate="" i18n:attributes="title">Topo</label>
+                                    <input type="radio" name="rdBaseMap" id="Imagery" onclick="changeBasemap('satellite')" />
+                                    <label for="Imagery" title="Worldwide Satellite Imagery Map" i18n:translate="" i18n:attributes="title">Imagery</label>
+                                </div>
+                                <div class="optionsDivBottom" i18n:translate="">Map Style</div>
+                            </div>
+                            <div id="sliderDIV">
+                                <div class="optionsDivTop">&#160;</div>
+                                <div id="slider" style="float:right"></div>
+                                <div class="optionsDivBottomO" i18n:translate="">Opacity</div>
+                            </div>
+                            <div id="overviewDIV">
+                                <div class="optionsDivTop">&#160;</div>
+                                <div class="optionsDivCenter">
+                                    <a id="Overview" onclick="overviewShow()">
+                                        <img src="/++theme++climateadaptv2/static/vibrio/Overview.png" id="OverviewImg" alt="Overview"  i18n:attributes="alt"/>
+                                    </a>
+                                </div>
+                                <div class="optionsDivBottomFS" i18n:translate="">Overview</div>
+                            </div>
+                            <div id="fullDIV">
+                                <div class="optionsDivTop">&#160;</div>
+                                <div class="optionsDivCenter">
+                                    <a href="#" id="fullscreen"><img src="/++theme++climateadaptv2/static/vibrio/Full_Screen.png" id="fullScreenImg"></a>
+                                </div>
+                                <div class="optionsDivBottomFS" i18n:translate="">Full Screen</div>
+                            </div>
+                            <div id="indentifyDiv">
+                                <div class="optionsDivTop">&#160;</div>
+                                <div class="optionsDivCenter">
+                                    <a id="print"><img src="/++theme++climateadaptv2/static/vibrio/i_info.png" id="imgidentifybutton" alt="Get Value" onclick="identifyVibrio()" i18n:attributes="alt"/></a>
+                                </div>
+                                <div class="optionsDivBottomGV" i18n:translate="">Get Value</div>
+                            </div>
+                            <div id="panDIV">
+                                <div id="panDivTop"><a href="#" onclick="panTop()"><img src="/++theme++climateadaptv2/static/vibrio/expand.png" id="imgUp" alt="up" i18n:attributes="alt"/></a></div>
+                                <div id="panCenter">
+                                    <div id="panLeft"><a href="#" onclick="panleft()"><img src="/++theme++climateadaptv2/static/vibrio/expand.png" id="imgLeft" alt="left" i18n:attributes="alt"/></a></div>
+                                    <div id="panRight"><a href="#" onclick="panright()"><img src="/++theme++climateadaptv2/static/vibrio/expand.png" id="imgRight" alt="right" i18n:attributes="alt"/></a></div>
+                                </div>
+                                <div id="panDivBottom">
+                                    <a href="#" onclick="pandown()"><img src="/++theme++climateadaptv2/static/vibrio/expand.png" id="imgDown" alt="down" i18n:attributes="alt"/></a>
+                                    <div class="optionsDivBottomPan" i18n:translate="">Pan</div>
+                                </div>
+                            </div>
+                            <div id="fullExtentDIV">
+                                <div class="optionsDivTop">&#160;</div>
+                                <div class="optionsDivCenter">
+                                    <a href="#" onclick="fullExtent()" id="fullExtent"><img src="/++theme++climateadaptv2/static/vibrio/blue_globe.png" id="fullExtentImg" width="40" height="40" alt="Full Extent" i18n:attributes="alt"/></a>
+                                </div>
+                                <div class="optionsDivBottomFS" i18n:translate="">Full Extent</div>
+                            </div>
+                            <div id="aboutMapDiv">
+                                <div class="optionsDivTop">&#160;</div>
+                                <div class="optionsDivCenter">
+                                    <a><img src="/++theme++climateadaptv2/static/vibrio/i_info.png" id="imgAboutMapButton" alt="About the map" onclick="showAboutMapInfo()" i18n:attributes="alt"/></a>
+                                </div>
+                                <div class="optionsDivBottomGV" i18n:translate="">About the map</div>
+                                <div id="aboutMapDialog" title="About the map" i18n:translate="" i18n:attributes="title">
+                                    The Vibrio viewer is a real-time model that uses daily updated remote sensing data to examine
+                                    worldwide environmental suitable conditions such as sea surface temperature and salinity for
+                                    <i>Vibrio</i> spp. according to Baker-Austin et al. (<a href="http://www.nature.com/nclimate/journal/v3/n1/full/nclimate1628.html">Nature Climate Change 3, 73–77, 2013</a>).
+                                    Infections caused by Vibrio species other than <i>V. cholerae</i> can also be serious notably for immunocompromised persons,
+                                    but the overall occurrence is low despites an increase having been recently observed in Northern Europe.
+                                    Note that only imported case of acute Vibrio cholerae infections are notified in EU. Further work
+                                    is on-going to improve this environmental suitability model in collaboration with
+                                    <a href="http://coastwatch.noaa.gov/">NOAA CoastWatch</a>,
+                                    <a href="http://www.ecdc.europa.eu/en/Pages/home.aspx">ECDC</a>,
+                                    <a href="http://www.cefas.defra.gov.uk/">CEFAS</a>,
+                                    <a href="http://www.bath.ac.uk/bio-sci/">University of Bath</a> and the
+                                    <a href="http://www.usc.es/en/index.html">University of Santiago de Compostela</a> (for more
+                                    information in the <a href="https://e3geoportal.ecdc.europa.eu/Help%20Pdf/Vibrio%20risk%20map%20short%20note_20130905.pdf">model summary</a> ).
+                                    Early information about the environmental suitability will be of public health interest to assess the
+                                    geographic extent of potential human exposure. Please note that this model has been calibrated
+                                    to the Baltic Region in Northern Europe and might not apply to other worldwide settings prior to validation.
+                                    <br /> <br />
+                                    <b i18n:translate="">
+                                        For the Baltic Sea, the model parameters are optimized for the following values:
+                                        colour palette (boxfill/vibrio), number colour bands (10) ,
+                                        scale method (linear), legend range Min. value (0), and Max. value (28).
+                                    </b>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="capa2" style="display:none">
+
+                        </div>
+                    </div>
+                    <div id="containerMap" data-dojo-type="dijit.layout.BorderContainer">
+                        <div class="typeDivLeft" id="leftPanel">
+                            <div id="capaLeft">
+                                <div data-dojo-type="dijit.layout.ContentPane" data-dojo-props="title:'Legend1', selected:true" id="optionsContainer">
+                                    <div class="typeDiv" id="typeDiv">
+                                        <div>
+                                            <div class="box" id="controls">
+                                            </div>
+                                            <div class="box">
+                                                <span i18n:translate="">Time range selection</span>
+                                                <div style="clear:both;padding-top:2px;">
+                                                    <span style="font-weight:normal;" i18n:translate="">From</span>
+                                                    <input type="text" id="dateFrom" style="float:right;font-size:11px;" />
+                                                </div>
+                                                <div style="clear:both;padding-top:2px;">
+                                                    <span style="font-weight:normal;" i18n:translate="">To</span>
+                                                    <input type="text" id="dateTo" style="float:right;font-size:11px;" />
+                                                </div>
+                                                <div style="clear:both;padding-top:2px;">
+                                                    <span i18n:translate="">Colour palette</span>
+                                                    <div id="colourPaletteDiv" style="float:right;"></div>
+                                                </div>
+                                                <div style="clear:both;padding-top:2px;">
+                                                    <span i18n:translate="">Colour bands</span>
+                                                    <select id="colourBands" style="float:right;"><option></option></select>
+                                                </div>
+                                                <div style="clear:both;padding-top:2px;">
+                                                    <span i18n:translate="">Scale method</span>
+                                                    <select id="scaleMethod" style="float:right;"><option></option></select>
+                                                </div>
+                                                <div style="clear:both;padding-top:2px;">
+                                                    <span i18n:translate="">Legend range</span>
+                                                </div>
+                                                <div style="clear:both;padding-top:2px;">
+                                                    <span style="font-weight:normal;" i18n:translate="">Min. value</span>
+                                                    <select id="minValue" style="float:right;"><option></option></select>
+                                                </div>
+                                                <div style="clear:both;padding-top:2px;">
+                                                    <span style="font-weight:normal;" i18n:translate="">Max. value</span>
+                                                    <select id="maxValue" style="float:right;"><option></option></select>
+                                                </div>
+                                            </div>
+                                            <div class="box">
+                                                <div><span i18n:translate="">Legend</span></div>
+                                                <div style="width:190px;">
+                                                    <div id="divLegend">
+                                                        <img id="imageLegend" />
+                                                    </div>
+                                                    <div id="divLegendDesc" style="display: inline-block;font-size: 9px;margin-left: 9px;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="typeDivRight" id="hidePanel">
+                                <img src="/++theme++climateadaptv2/static/vibrio/arrow_left.png" alt="show / hide" id="showhide" i18n:attributes="alt"/>
+                            </div>
+                        </div>
+                        <div id="map" data-dojo-type="dijit.layout.ContentPane">
+                            <div id="attributionDiv"></div>
+                            <div id="sliderVibrioParent">
+                                <div id="sliderVibrio">
+                                    <span id="sliderLayer" i18n:translate="">Daily Suitability Index (Daily Vibrio Risk)</span>
+                                    <div>
+                                        <div id="sliderDateLeft">
+                                            <span id="sliderDateFrom"></span>
+                                        </div>
+                                        <div id="sliderDateCenter" i18n:translate="">
+                                            Current:
+                                            <span id="sliderCurrentDate"></span>
+                                        </div>
+                                        <div id="sliderDateRight">
+                                            <span id="sliderDateTo"></span>
+                                        </div>
+                                    </div>
+                                    <div style="clear:both;padding-top:8px">
+                                        <span id="sliderLeft" class="stepper"><</span>
+                                        <div id="timeSlider" style="margin-top: 4px;margin-left: 4px;margin-right: 4px;"></div>
+                                        <span id="sliderRight" class="stepper">></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <img id="loadingImg" src="/++theme++climateadaptv2/static/vibrio/loading.gif" style="display:none;position:absolute; right:50%; top:50%; z-index:100;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="//js.arcgis.com/3.12/"></script>
+        <script src="/++theme++climateadaptv2/static/vibrio/map-viewer.js"></script>
+        <script src="/++theme++climateadaptv2/static/vibrio/map-viewer-menu.js"></script>
+        <script src="/++theme++climateadaptv2/static/vibrio/map-viewer-init.js"></script>
+
+</div>
