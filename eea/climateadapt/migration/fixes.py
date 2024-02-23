@@ -7,15 +7,19 @@ import logging
 from plone.app.multilingual.api import get_translation_manager
 from plone.tiles.interfaces import ITileDataManager
 
+from .blocks import (
+    make_obs_countries_header,
+    make_vibriomap_block,
+    simple_slate_to_volto_blocks,
+)
 from .config import (
-    LANGUAGES,
-    TOP_LEVEL,
     AST_PATHS,
     FULL_PAGE_PATHS,
+    LANGUAGES,
     SECTOR_POLICY_PATHS,
+    TOP_LEVEL,
 )
-from .utils import make_uid, get_country_alpha2
-from .blocks import simple_slate_to_volto_blocks, make_obs_countries_header
+from .utils import get_country_alpha2, make_uid
 
 logger = logging.getLogger()
 
@@ -26,7 +30,9 @@ languages = [lang for lang in LANGUAGES if lang != "en"]
 def onpath(path):
     def decorator_factory(func):
         def decorator(context):
-            if not context.absolute_url(relative=True).endswith(path):
+            url = context.absolute_url(relative=True)
+            # print("test onpath", url)
+            if not url.endswith(path):
                 return
             return func(context)
 
@@ -38,7 +44,9 @@ def onpath(path):
 def inpath(path):
     def decorator_factory(func):
         def decorator(context):
-            if path not in context.absolute_url(relative=True):
+            url = context.absolute_url(relative=True)
+            # print("test inpath", url)
+            if path not in url:
                 return
             return func(context)
 
@@ -80,6 +88,14 @@ def fix_climate_services_toc(context):
     first_block_id = first_col["blocks_layout"]["items"][0]
     new_data = {"@type": "toc", "variation": "horizontalMenu"}
     first_col["blocks"][first_block_id] = new_data
+
+
+@inpath("/observatory/evidence/projections-and-tools/ecdc-vibrio-map-viewer")
+def fix_vibiomapviewer(context):
+    # in first column block, replace the first paragraph with a horizontal navigation table of contents
+    uid, block = make_vibriomap_block()
+    context.blocks[uid] = block
+    context.blocks_layout["items"].append(uid)
 
 
 @onpath("/help/Webinars")
@@ -634,7 +650,6 @@ def fix_uast(context):
 @inpath("observatory/policy-context/country-profiles/")
 def fix_obs_countries(context):
     # only for country profiles
-    # __import__("pdb").set_trace()
     if not context.blocks:
         return
 
@@ -645,6 +660,9 @@ def fix_obs_countries(context):
     block = context.blocks[last]
     if block.get("@type") != "columnsBlock":
         return
+
+    context.subject = ("countryprofile",)
+    context.reindexObject()
 
     # replace title block with special country header block
     for buid in context.blocks_layout["items"]:
@@ -672,8 +690,10 @@ def fix_obs_countries(context):
 
     slate_content = None
 
+    # TODO: convert line images to image blocks
     for uid in items:
         block = firstcol["blocks"][uid]
+        # TODO: remove empty paragraph block
         if block.get("@type") == "slate":
             value = block["value"] or []
             if not value:
@@ -689,7 +709,6 @@ def fix_obs_countries(context):
                     slate_content = tr["children"][1]["children"]
                     content_table_node_uid = uid
 
-    # __import__("pdb").set_trace()
     if slate_content:
         data = simple_slate_to_volto_blocks(slate_content)
         blocks = {}
@@ -700,7 +719,7 @@ def fix_obs_countries(context):
         firstcol["blocks"][content_table_node_uid] = {
             "@type": "group",
             "as": "div",
-            "styles": {"style_name": None, "backgroundColor": "#c8fff8"},
+            "styles": {"style_name": None, "backgroundColor": "#e6e7e8"},
             "data": {"blocks": blocks, "blocks_layout": {"items": items}},
         }
 
@@ -860,6 +879,7 @@ content_fixers = [
     fix_images_in_slate,
     fix_climate_services_toc,
     fix_tutorial_videos,
+    fix_vibiomapviewer,
     fix_uast,
     fix_ast,
     fix_webinars,

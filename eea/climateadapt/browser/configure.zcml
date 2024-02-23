@@ -1250,6 +1250,13 @@
       class=".misc.VibrioProxy"
       />
 
+  <browser:page
+      name="vibriomap-view-simple"
+      for="*"
+      template="pt/vibriomap-simple.pt"
+      permission="zope2.View"
+      />
+
 
   <browser:page
       name="lancet-indicator-view"

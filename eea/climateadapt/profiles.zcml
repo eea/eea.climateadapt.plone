@@ -417,4 +417,12 @@
       directory="profiles/upgrades/to_68"
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_69"
+      title="Upgrade profile for eea.climateadapt v69"
+      description=""
+      directory="profiles/upgrades/to_69"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
 </configure>
