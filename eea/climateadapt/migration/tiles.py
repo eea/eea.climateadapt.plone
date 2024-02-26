@@ -184,7 +184,6 @@ def cards_tile_to_block(tile_dm, obj, request):
         }
     )
 
-    __import__('pdb').set_trace()
     query = clean_query(query)
 
     block_id = make_uid()
