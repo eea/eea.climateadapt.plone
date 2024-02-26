@@ -173,7 +173,7 @@ def make_events_archive_block():
                                 "sort_order_boolean": True,
                             },
                             "styles": {},
-                            "variation": "summary",
+                            "variation": "eventCards",
                         },
                     },
                     "blocks_layout": {
@@ -233,7 +233,7 @@ def make_events_archive_block():
                                 "sort_order_boolean": True,
                             },
                             "styles": {},
-                            "variation": "summary",
+                            "variation": "eventCards",
                         },
                         "d29a59fd-0071-45c8-8785-5e554780b06a": {
                             "@type": "slate",
