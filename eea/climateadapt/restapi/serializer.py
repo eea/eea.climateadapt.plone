@@ -98,7 +98,7 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
         images = item.contentValues({"portal_type": "Image"})
         suffix = "/@@images/image/large"
         result["cca_gallery"] = [
-            {"title": image.Title(), "url": image.absolute_url() + suffix}
+            {"title": image.Title(), "url": image.absolute_url() + suffix, "description": image.Description()}
             for image in images
         ]
 
