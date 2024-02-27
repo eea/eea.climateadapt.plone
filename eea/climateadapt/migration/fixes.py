@@ -8,6 +8,7 @@ from plone.app.multilingual.api import get_translation_manager
 from plone.tiles.interfaces import ITileDataManager
 
 from .blocks import (
+    make_events_archive_block,
     make_obs_countries_header,
     make_vibriomap_block,
     simple_slate_to_volto_blocks,
@@ -272,47 +273,7 @@ def fix_observatory_eventsarchive(context):
     del blocks[last]
     context.blocks_layout["items"] = context.blocks_layout["items"][:-1]
 
-    uid = make_uid()
-    block = {
-        "@type": "listing",
-        "block": uid,
-        "headlineTag": "h2",
-        "itemModel": {
-            "@type": "item",
-            "callToAction": {"label": "Read more"},
-            "hasDate": False,
-            "hasDescription": True,
-            "hasEventDate": True,
-            "hasIcon": False,
-            "hasImage": False,
-            "hasLink": True,
-            "maxDescription": 2,
-            "maxTitle": 2,
-            "styles": {},
-            "titleOnImage": False,
-        },
-        "query": [],
-        "querystring": {
-            "depth": "1",
-            "query": [
-                {
-                    "i": "portal_type",
-                    "o": "plone.app.querystring.operation.selection.any",
-                    "v": ["Event"],
-                },
-                {
-                    "i": "review_state",
-                    "o": "plone.app.querystring.operation.selection.any",
-                    "v": ["published"],
-                },
-            ],
-            "sort_on": "effective",
-            "sort_order": "descending",
-            "sort_order_boolean": True,
-        },
-        "styles": {},
-        "variation": "summary",
-    }
+    uid, block = make_events_archive_block()
     blocks[uid] = block
     layout["items"].append(uid)
     context._p_changed = True
