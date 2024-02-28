@@ -22,7 +22,6 @@ class AcquisitionNamespace(object):
         self.request = request
 
     def traverse(self, name, ignore):
-        self.request.form["observatory_page"] = "1"
         base = self.context.restrictedTraverse(name).aq_base
 
         # handle ++aq++metadata links in the Observatory
@@ -32,4 +31,6 @@ class AcquisitionNamespace(object):
             self.context.context = base
             return self.context
 
-        return self.context
+        self.request.form["observatory_page"] = "1"
+        destination = base.__of__(self.context)
+        return destination
