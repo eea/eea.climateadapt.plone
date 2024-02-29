@@ -3,6 +3,20 @@
            i18n_domain="eea.climateadapt">
 
    <genericsetup:upgradeSteps
+     source="69"
+     destination="70"
+     profile="eea.climateadapt:default">
+     <genericsetup:upgradeDepends
+       title="Update profile eeaclimate to v70"
+       import_profile="eea.climateadapt:eeaclimateadapt_to_70"
+     />
+     <genericsetup:upgradeStep
+        title="Reindex objects with health_impacts"
+        handler=".update.reindex_health_impacts"
+        />
+   </genericsetup:upgradeSteps>
+
+   <genericsetup:upgradeSteps
      source="68"
      destination="69"
      profile="eea.climateadapt:default">
