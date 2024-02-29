@@ -31,6 +31,15 @@
     />
 
   <plone:service
+    method="POST"
+    factory=".querystats.QueryStatsPost"
+    for="Products.CMFCore.interfaces.IContentish"
+    permission="zope2.View"
+    name="@querystats"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
+  <plone:service
     method="GET"
     factory=".workflow.WorkflowInfoService"
     for="Products.CMFCore.interfaces.IContentish"
