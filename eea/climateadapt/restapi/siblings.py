@@ -20,8 +20,6 @@ class Siblings(object):
             "siblings": {"@id": "{}/@siblings".format(self.context.absolute_url())}
         }
 
-        # unline other expandable elements, expand is always True here
-
         if ("fullobjects" not in self.request.form) and not expand:
             return result
 
@@ -30,37 +28,16 @@ class Siblings(object):
         if self.context is portal:
             return result
 
-        # __import__("pdb").set_trace()
         if "expand" in self.request.form:
             del self.request.form["expand"]
         self.request.form["include_items"] = True
+        self.request.form["b_size"] = 1000
 
         parent = self.context.aq_parent  # .aq_parent.aq_inner
 
         serializer = getMultiAdapter((parent, self.request), ISerializeToJson)
         serialized = serializer()
         result["siblings"]["items"] = serialized["items"]
-
-        # query = self._build_query()
-        #
-        # catalog = getToolByName(self.context, "portal_catalog")
-        # brains = catalog(query)
-        #
-        # batch = HypermediaBatch(self.request, brains)
-        #
-        # result["items_total"] = batch.items_total
-        # if batch.links:
-        #     result["batching"] = batch.links
-        #
-        # if "fullobjects" in list(self.request.form):
-        #     result["items"] = getMultiAdapter((brains, self.request), ISerializeToJson)(
-        #         fullobjects=True
-        #     )["items"]
-        # else:
-        #     result["items"] = [
-        #         getMultiAdapter((brain, self.request), ISerializeToJsonSummary)()
-        #         for brain in batch
-        #     ]
 
         return result
 
