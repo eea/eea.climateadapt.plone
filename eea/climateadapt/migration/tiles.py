@@ -49,15 +49,13 @@ def assigned(tile):
                 # so we try to get it bypassing the restrictions
                 catalog = api.portal.get_tool("portal_catalog")
                 # brain = catalog.unrestrictedSearchResults(UID=uuid, review_state='published')
-                brain = catalog.searchResults(
-                    UID=uuid, review_state="published")
+                brain = catalog.searchResults(UID=uuid, review_state="published")
 
                 if not brain:
                     # the object was deleted; remove it from the tile
                     obj.remove_item(uuid)
                     logger.warning(
-                        "Nonexistent object {0} removed from " "tile".format(
-                            uuid)
+                        "Nonexistent object {0} removed from " "tile".format(uuid)
                     )
     return results
 
@@ -93,7 +91,7 @@ def relevant_items(obj, request, tile):
         state = wftool.getInfoFor(item, "review_state")
         obj_path = item.getPhysicalPath()
         site_path = site.getPhysicalPath()
-        path = "/" + "/".join(obj_path[len(site_path):])
+        path = "/" + "/".join(obj_path[len(site_path) :])
 
         if not item:
             continue
@@ -157,10 +155,10 @@ def clean_query(query):
     seen_paths = set()
 
     for item in query:
-        if item.get('i') == 'path' and item.get('v') in seen_paths:
+        if item.get("i") == "path" and item.get("v") in seen_paths:
             continue
-        elif item.get('i') == 'path':
-            seen_paths.add(item.get('v'))
+        elif item.get("i") == "path":
+            seen_paths.add(item.get("v"))
 
         cleaned_query.append(item)
 
@@ -216,8 +214,7 @@ def region_select_to_block(tile_dm, obj, request):
 
     if countries:
         img_name = (
-            countries[1][0].replace(".jpg", "_bg.png").replace(
-                " ", "").decode("utf-8")
+            countries[1][0].replace(".jpg", "_bg.png").replace(" ", "").decode("utf-8")
         )
         img_path = (
             "/cca/++theme++climateadaptv2/static/images/transnational/" + img_name
@@ -227,8 +224,7 @@ def region_select_to_block(tile_dm, obj, request):
         bits = fs_file().read()
         parent = obj.aq_parent
         contentType = img_name.endswith("jpg") and "image/jpeg" or "image/png"
-        images = parent.listFolderContents(
-            contentFilter={"portal_type": "Image"})
+        images = parent.listFolderContents(contentFilter={"portal_type": "Image"})
         image = None
 
         imagefield = NamedBlobImage(
@@ -494,6 +490,7 @@ def obs_countries_map(obj, data, request):
 
     return {"blocks": blocks}
 
+
 def obs_countries_heat_index(obj, data, request):
     blocks = [[make_uid(), {"@type": "countryMapHeatIndex"}]]
 
@@ -537,8 +534,7 @@ def country_disclaimer_view(obj, data, request):
                                 "data": {
                                     "label_type": "high",
                                     "tooltip_content": [
-                                        {"children": [
-                                            {"text": content}], "type": "p"}
+                                        {"children": [{"text": content}], "type": "p"}
                                     ],
                                     "tooltip_type": "",
                                     "tooltip_size": "extra",
@@ -907,8 +903,7 @@ def eu_sector_policies_view(obj, data, request):
                                 "@type": "slate",
                                 "plaintext": sector[1],
                                 "value": [
-                                    {"children": [
-                                        {"text": sector[1]}], "type": "p"}
+                                    {"children": [{"text": sector[1]}], "type": "p"}
                                 ],
                             },
                             divider_id: {
@@ -932,8 +927,7 @@ def eu_sector_policies_view(obj, data, request):
                                 "description": [
                                     {
                                         "children": [
-                                            {"style-primary": True,
-                                                "text": sector[0]}
+                                            {"style-primary": True, "text": sector[0]}
                                         ],
                                         "type": "h3",
                                     }
@@ -1059,7 +1053,7 @@ view_convertors = {
     # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/253391
     # right-side navigation. We could solve it with a context navigation portlet: https://taskman.eionet.europa.eu/issues/161493
     # /observatory/policy-context/country-profiles/austria
-    "countries-list": obs_countries_list,
+    "countries-list": nop_view,
     # it's a tooltip. It needs a custom block converter with https://github.com/eea/volto-slate-label
     # Ticket: https://taskman.eionet.europa.eu/issues/253394
     # /countries-regions/countries/liechtenstein
@@ -1122,8 +1116,7 @@ def filter_acecontent_to_block(tile_dm, obj, request):
     macro_regions = data.get("macro_regions")
     sortBy = None
     trans_macro_regions = []
-    sortingValues = {"effective": "EFFECTIVE",
-                     "modified": "MODIFIED", "getId": "NAME"}
+    sortingValues = {"effective": "EFFECTIVE", "modified": "MODIFIED", "getId": "NAME"}
     otherRegions = {
         "Macaronesia",
         "Caribbean Area",
