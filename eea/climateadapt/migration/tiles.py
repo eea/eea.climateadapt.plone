@@ -494,6 +494,11 @@ def obs_countries_map(obj, data, request):
 
     return {"blocks": blocks}
 
+def obs_countries_heat_index(obj, data, request):
+    blocks = [[make_uid(), {"@type": "countryMapHeatIndex"}]]
+
+    return {"blocks": blocks}
+
 
 def nop_view(obj, data, request):
     return {"blocks": []}
@@ -1047,10 +1052,11 @@ view_convertors = {
     # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/161493
     # /observatory/policy-context/country-profiles/country-profiles
     "countries-context-pagelet": obs_countries_map,
+    # "countries-heat-index": nop_view,
+    "countries-heat-index": obs_countries_heat_index,
     # /observatory/evidence/national-and-sub-national-warning-systems/national-and-sub-national-warning-systems
     # a colored map with countries and two types of classification. Needs
     # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/253391
-    "countries-heat-index": nop_view,
     # right-side navigation. We could solve it with a context navigation portlet: https://taskman.eionet.europa.eu/issues/161493
     # /observatory/policy-context/country-profiles/austria
     "countries-list": obs_countries_list,
