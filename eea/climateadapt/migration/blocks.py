@@ -83,6 +83,7 @@ def make_obs_countries_header(countrycode):
         "@type": "countryFlag",
         "country_name": countrycode.upper(),
         "show_flag": True,
+        "show_dropdown": True,
         "show_name": True,
     }
 
