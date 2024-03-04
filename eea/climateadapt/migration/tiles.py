@@ -495,7 +495,6 @@ def obs_countries_map(obj, data, request):
     return {"blocks": blocks}
 
 def obs_countries_heat_index(obj, data, request):
-    import pdb; pdb.set_trace()
     blocks = [[make_uid(), {"@type": "countryMapHeatIndex"}]]
 
     return {"blocks": blocks}
