@@ -818,13 +818,13 @@ def observatory_indicators_list(obj, data, request):
             {
                 "@id": make_uid(),
                 "field": {"label": "Health impacts", "value": "health_impacts"},
-                "hidden": False,
+                "hidden": True,
                 "multiple": False,
                 "type": "checkboxFacet",
             },
             {
                 "@id": make_uid(),
-                "field": {"label": "Origin website", "value": "origin_website"},
+                "field": {"label": "Source", "value": "origin_website"},
                 "hidden": False,
                 "multiple": False,
                 "type": "checkboxFacet",
@@ -870,7 +870,37 @@ def observatory_indicators_list(obj, data, request):
         "showSearchInput": True,
         "showTotalResults": True,
     }
-    blocks = [[make_uid(), searchblock]]
+    stats_block = {
+        "@type": "collectionStats",
+        "aggregateField": {"label": "Health impacts", "value": "health_impacts"},
+        "href": [],
+        "query": {
+            "query": [
+                {
+                    "i": "include_in_observatory",
+                    "o": "plone.app.querystring.operation.boolean.isTrue",
+                    "v": "",
+                },
+                {
+                    "i": "path",
+                    "o": "plone.app.querystring.operation.string.absolutePath",
+                    "v": "/" + current_lang,
+                },
+                {
+                    "i": "portal_type",
+                    "o": "plone.app.querystring.operation.selection.any",
+                    "v": [
+                        "eea.climateadapt.c3sindicator",
+                        "eea.climateadapt.indicator",
+                    ],
+                },
+            ],
+            "sort_order": "ascending",
+        },
+        "queryParameterStyle": "SearchBlock",
+        "showLabel": True,
+    }
+    blocks = [[make_uid(), stats_block], [make_uid(), searchblock]]
     return {"blocks": blocks}
 
 
