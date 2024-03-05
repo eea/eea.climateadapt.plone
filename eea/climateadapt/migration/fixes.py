@@ -617,9 +617,9 @@ def fix_obs_countries(context):
     if len(context.blocks) != 2:
         return
 
-    last = context.blocks_layout["items"][-1:][0]
-    block = context.blocks[last]
-    if block.get("@type") != "columnsBlock":
+    lastuid = context.blocks_layout["items"][-1:][0]
+    mainblock = context.blocks[lastuid]
+    if mainblock.get("@type") != "columnsBlock":
         return
 
     context.subject = ("countryprofile",)
@@ -633,16 +633,15 @@ def fix_obs_countries(context):
             if country is not None:
                 context.blocks[buid] = make_obs_countries_header(country)
 
-    lastcoluid = block["data"]["blocks_layout"]["items"][-1]
-    lastcol = block["data"]["blocks"][lastcoluid]
-
-    listuid = lastcol["blocks_layout"]["items"][-1]
-    listblock = lastcol["blocks"][listuid]
-    listblock["querystring"]["query"][0]["v"] = ".."
-
-    firstcoluid = block["data"]["blocks_layout"]["items"][0]
     # __import__("pdb").set_trace()
-    firstcol = block["data"]["blocks"][firstcoluid]
+    # lastcoluid = block["data"]["blocks_layout"]["items"][-1]
+    # lastcol = block["data"]["blocks"][lastcoluid]
+    # listuid = lastcol["blocks_layout"]["items"][-1]
+    # listblock = lastcol["blocks"][listuid]
+    # listblock["querystring"]["query"][0]["v"] = ".."
+
+    firstcoluid = mainblock["data"]["blocks_layout"]["items"][0]
+    firstcol = mainblock["data"]["blocks"][firstcoluid]
 
     first_table_node_uid = None
     content_table_node_uid = None
@@ -683,6 +682,17 @@ def fix_obs_countries(context):
             "styles": {"style_name": None, "backgroundColor": "#e6e7e8"},
             "data": {"blocks": blocks, "blocks_layout": {"items": items}},
         }
+
+    # replace the column with the content of the column
+    # context.blocks[firstcoluid] = firstcol
+    context.blocks_layout["items"] = context.blocks_layout["items"][:-1]
+
+    uids = firstcol["blocks_layout"]["items"][:]
+    context.blocks_layout["items"] += uids
+    for uid in uids:
+        context.blocks[uid] = firstcol["blocks"][uid]
+
+    del context.blocks[lastuid]
 
 
 @inpath("knowledge/tools/adaptation-support-tool")
