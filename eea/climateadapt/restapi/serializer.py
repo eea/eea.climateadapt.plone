@@ -1,16 +1,44 @@
+from plone.app.textfield.interfaces import IRichText
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
 from plone.restapi.serializer.blocks import SlateBlockSerializerBase, uid_to_url
+from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeToJson
+from plone.restapi.serializer.dxfields import DefaultFieldSerializer
 from zope.component import adapter
 from zope.interface import Interface, implementer
 
 from eea.climateadapt.behaviors import IAceProject, IAdaptationOption, ICaseStudy
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
+from plone.api import portal
 
 from .utils import cca_content_serializer
+from lxml.html import fragments_fromstring, tostring
+
+
+@adapter(IRichText, IDexterityContent, IEEAClimateAdaptInstalled)
+class RichttextFieldSerializer(DefaultFieldSerializer):
+    def externalize(self, text):
+        site = portal.get()
+        site_url = site.absolute_url()
+        frags = fragments_fromstring(text)
+        for frag in frags:
+            for link in frag.xpath("a"):
+                href = link.get("href")
+                if not href.startswith(site_url):
+                    link.set("target", "_blank")
+        res = unicode("\n").join([tostring(e) for e in frags])
+        return res
+
+    def __call__(self):
+        value = self.get_value()
+        output = json_compatible(value, self.context)
+        if output:
+            output["data"] = self.externalize(output["data"])
+
+        return output
 
 
 @implementer(IBlockFieldSerializationTransformer)
@@ -98,7 +126,11 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
         images = item.contentValues({"portal_type": "Image"})
         suffix = "/@@images/image/large"
         result["cca_gallery"] = [
-            {"title": image.Title(), "url": image.absolute_url() + suffix, "description": image.Description()}
+            {
+                "title": image.Title(),
+                "url": image.absolute_url() + suffix,
+                "description": image.Description(),
+            }
             for image in images
         ]
 
