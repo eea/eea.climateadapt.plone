@@ -18,6 +18,13 @@ from .utils import cca_content_serializer
 from lxml.html import fragments_fromstring, tostring
 
 
+def serialize(possible_node):
+    if isinstance(possible_node, basestring):
+        # This happens for some fields that store non-markup values as richtext
+        return possible_node
+    return tostring(possible_node)
+
+
 @adapter(IRichText, IDexterityContent, IEEAClimateAdaptInstalled)
 class RichttextFieldSerializer(DefaultFieldSerializer):
     def externalize(self, text):
@@ -25,11 +32,13 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
         site_url = site.absolute_url()
         frags = fragments_fromstring(text)
         for frag in frags:
+            if isinstance(frag, basestring):
+                continue
             for link in frag.xpath("a"):
                 href = link.get("href")
                 if not href.startswith(site_url):
                     link.set("target", "_blank")
-        res = unicode("\n").join([tostring(e) for e in frags])
+        res = unicode("\n").join([serialize(e) for e in frags])
         return res
 
     def __call__(self):
