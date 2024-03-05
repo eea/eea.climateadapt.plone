@@ -29,6 +29,8 @@ languages = [lang for lang in LANGUAGES if lang != "en"]
 
 
 def onpath(path):
+    """returns true if object path ends with this path"""
+
     def decorator_factory(func):
         def decorator(context):
             url = context.absolute_url(relative=True)
@@ -97,6 +99,21 @@ def fix_vibiomapviewer(context):
     uid, block = make_vibriomap_block()
     context.blocks[uid] = block
     context.blocks_layout["items"].append(uid)
+
+
+@inpath("/observatory/evidence/health-effects")
+def fix_health_effects(context):
+    # fixes the first columns block that has two images side by side
+    for block in context.blocks.values():
+        if block["@type"] == "columnsBlock":
+            block["gridCols"] = ["fourFifths", "oneFifth"]
+            sec_col_uid = block["data"]["blocks_layout"]["items"][-1]
+            sec_col = block["data"]["blocks"][sec_col_uid]
+            for imgblock in sec_col["blocks"].values():
+                if imgblock["@type"] == "image":
+                    imgblock["align"] = "center"
+                    imgblock["size"] = "l"
+            context._p_changed = True
 
 
 @onpath("/help/Webinars")
@@ -851,6 +868,7 @@ content_fixers = [
     fix_climate_services_toc,
     fix_tutorial_videos,
     fix_vibiomapviewer,
+    fix_health_effects,
     fix_uast,
     fix_ast,
     fix_webinars,
