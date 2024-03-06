@@ -168,7 +168,7 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
         default=(),
         value_type=TextLine(
-            title="Single topic",
+            title=u"Single topic",
         ),
     )
 
