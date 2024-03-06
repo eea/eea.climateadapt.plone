@@ -78,8 +78,7 @@ class IAceItem(IImageScaleTraversable):
     form.fieldset(
         "categorization",
         label="Inclusion in the subsites",
-        fields=["include_in_observatory",
-                "include_in_mission", "health_impacts"],
+        fields=["include_in_observatory", "include_in_mission", "health_impacts"],
     )
 
     # form.fieldset('inclusion_health_observatory',
@@ -141,20 +140,22 @@ class IAceItem(IImageScaleTraversable):
     )
 
     title = TextLine(
-        title=_("Title"), description="Item Name (250 character limit)", required=True
+        title=_("Title"),
+        description=_("Item Name (250 character limit)"),
+        required=True,
     )
 
     long_description = RichText(
-        title=("Description"),
-        description="Provide a description of the " "item.(5,000 character limit)",
+        title=_("Description"),
+        description=_("Provide a description of the item.(5,000 character limit)"),
         required=True,
     )
 
     description = Text(
         title=_("Short summary"),
         required=False,
-        description="Enter a short summary that will be used in listings.",
-        missing_value="",
+        description=_("Enter a short summary that will be used in listings."),
+        missing_value=unicode(""),
     )
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
@@ -168,7 +169,7 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
         default=(),
         value_type=TextLine(
-            title=u"Single topic",
+            title=_("Single topic"),
         ),
     )
 
@@ -218,13 +219,15 @@ class IAceItem(IImageScaleTraversable):
 
     publication_date = Date(
         title=_("Date of item's creation"),
-        description="The date refers to the moment in which the item "
-        "has been prepared by contributing experts to be "
-        "submitted for the publication in Climate "
-        "ADAPT Publication/last update date."
-        " Please use the Calendar icon to add day/month/year. If you want to "
-        'add only the year, please select "day: 1", "month: January" '
-        "and then the year",
+        description=_(
+            "The date refers to the moment in which the item "
+            "has been prepared by contributing experts to be "
+            "submitted for the publication in Climate "
+            "ADAPT Publication/last update date."
+            " Please use the Calendar icon to add day/month/year. If you want to "
+            'add only the year, please select "day: 1", "month: January" '
+            "and then the year"
+        ),
         required=True,
     )
 
@@ -264,24 +267,28 @@ class IAceItem(IImageScaleTraversable):
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
-        default='{"geoElements":{"element":"GLOBAL", "macrotrans"'
-        ':null,"biotrans":null,"countries":[],'
-        '"subnational":[],"city":""}}',
-        description="Select the characterisation for this item",
+        default=unicode(
+            '{"geoElements":{"element":"GLOBAL", "macrotrans"'
+            ':null,"biotrans":null,"countries":[],'
+            '"subnational":[],"city":""}}'
+        ),
+        description=_("Select the characterisation for this item"),
     )
 
     comments = Text(
         title=_("Comments"),
         required=False,
-        default="",
-        description="Comments about this database item "
-        "[information entered below will not be "
-        "displayed on the public pages of "
-        "climate-adapt]",
+        default=unicode(""),
+        description=_(
+            "Comments about this database item "
+            "[information entered below will not be "
+            "displayed on the public pages of "
+            "climate-adapt]"
+        ),
     )
 
     contributor_list = RelationList(
-        title="Contributor(s)",
+        title=_("Contributor(s)"),
         default=[],
         description=_(
             'Select from the Climate ADAPT "Organisation" items'
@@ -300,7 +307,7 @@ class IAceItem(IImageScaleTraversable):
     other_contributor = Text(
         title=_("Other contributor(s)"),
         required=False,
-        default="",
+        default=unicode(""),
         description=_(
             "Please first verify if the contributor is "
             "already part of the Climate ADAPT Database."
@@ -371,9 +378,9 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    item_link = AbsoluteUrl(title=_("Item link"), required=False, default="")
+    item_link = AbsoluteUrl(title=_("Item link"), required=False, default=unicode(""))
 
-    uploader = Uploader(title=_("Uploaded by"), required=False, default="")
+    uploader = Uploader(title=_("Uploaded by"), required=False, default=unicode(""))
     # fix???
     data_type = Choice(
         title=_("Data Type"),
@@ -388,8 +395,9 @@ class IAceItem(IImageScaleTraversable):
         vocabulary="eea.climateadapt.aceitems_storagetypes",
     )
 
-    spatial_layer = TextLine(title=_("Spatial Layer"),
-                             required=False, default="")
+    spatial_layer = TextLine(
+        title=_("Spatial Layer"), required=False, default=unicode("")
+    )
 
     spatial_values = List(
         title=_("Countries"),
