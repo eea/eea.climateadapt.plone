@@ -1,3 +1,4 @@
+import transaction
 import json
 import logging
 
@@ -9,19 +10,18 @@ from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 
 from plone import api
 
-logger = logging.getLogger('eea.climateadapt.migration')
-default_profile = 'profile-eea.climateadapt:default'
+logger = logging.getLogger("eea.climateadapt.migration")
+default_profile = "profile-eea.climateadapt:default"
 
 
 def fixtiles(context):
-    """ Noop migrator, as it's already recorded in GS registry
-    """
+    """Noop migrator, as it's already recorded in GS registry"""
     pass
 
 
 def update_to_8(context):
     return
-    if context.readDataFile('eea.climateadapt.update.txt') is None:
+    if context.readDataFile("eea.climateadapt.update.txt") is None:
         return
 
     site = context.getSite()
@@ -32,43 +32,42 @@ def update_to_8(context):
 
 def update_to_9(context):
     return
-    if context.readDataFile('eea.climateadapt.update_9.txt') is None:
+    if context.readDataFile("eea.climateadapt.update_9.txt") is None:
         return
 
     _fix_content(context.getSite())
 
 
 def _fix_content(site):
-    """ Fix the tags in all objects in the site
-    """
+    """Fix the tags in all objects in the site"""
     # TODO: rename this function, needs better name
 
     catalog = site.portal_catalog
 
     searchTypes = [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool',
+        "eea.climateadapt.aceproject",
+        "eea.climateadapt.adaptationoption",
+        "eea.climateadapt.casestudy",
+        "eea.climateadapt.guidancedocument",
+        "eea.climateadapt.indicator",
+        "eea.climateadapt.informationportal",
+        "eea.climateadapt.mapgraphdataset",
+        "eea.climateadapt.organisation",
+        "eea.climateadapt.publicationreport",
+        "eea.climateadapt.researchproject",
+        "eea.climateadapt.tool",
     ]
-    results = catalog.searchResults({'portal_type': searchTypes})
+    results = catalog.searchResults({"portal_type": searchTypes})
 
     for brain in results:
         obj = aq_self(brain.getObject())
 
-        if not (hasattr(obj, 'special_tags') or hasattr(obj, 'specialtagging')):
+        if not (hasattr(obj, "special_tags") or hasattr(obj, "specialtagging")):
             continue
 
         tags = []
 
-        for attr in ['special_tags', 'specialtagging']:
+        for attr in ["special_tags", "specialtagging"]:
             st = getattr(obj, attr, []) or []
 
             if isinstance(st, basestring):
@@ -85,26 +84,24 @@ def _fix_content(site):
 
 
 def _fix_covers(self):
-    """ Fix tags in all cover tiles
-    """
+    """Fix tags in all cover tiles"""
     # TODO: rename this function, needs better name
 
-    covers = self.portal_catalog.searchResults(
-        portal_type='collective.cover.content')
+    covers = self.portal_catalog.searchResults(portal_type="collective.cover.content")
 
     for cover in covers:
         cover = cover.getObject()
 
-        if hasattr(cover, '__annotations__'):
+        if hasattr(cover, "__annotations__"):
             for tile_id in list(cover.__annotations__.keys()):
                 tile_id = tile_id.encode()
 
-                if 'plone.tiles.data' in tile_id:
+                if "plone.tiles.data" in tile_id:
                     tile = cover.__annotations__[tile_id]
 
-                    if 'special_tags' and 'search_text' in tile.keys():
-                        tile['special_tags'] = _fix_tags(tile['special_tags'])
-                        tile['search_text'] = _fix_tags(tile['search_text'])
+                    if "special_tags" and "search_text" in tile.keys():
+                        tile["special_tags"] = _fix_tags(tile["special_tags"])
+                        tile["search_text"] = _fix_tags(tile["search_text"])
                         tile._p_changed = True
                         cover.reindexObject()
 
@@ -113,9 +110,9 @@ def _fix_tags(tags):
     # TODO: rename this function, needs better name
 
     if isinstance(tags, (list, tuple)):
-        tags = [i.replace('-', '_') for i in tags]
+        tags = [i.replace("-", "_") for i in tags]
     elif tags:
-        tags = tags.replace('-', '_')
+        tags = tags.replace("-", "_")
 
     return list(set(filter(None, tags)))
 
@@ -126,10 +123,12 @@ def update_to_22(context):
     catalog = site.portal_catalog
 
     # Bring back the featured field values from the old database
-    ids = ("3402 3403 4704 4706 4202 3323 3505 4102 5301 5901 6301 3503 3504 "
-           "3326 3325 4302 4703 3502 4201 3401 3801 4705 3327 4301 6001 4901 "
-           "5001 5002 5003 5101 5201 4401 3311 5801 5503 5401 5501 5601 5902 "
-           "6201 6101 6202")
+    ids = (
+        "3402 3403 4704 4706 4202 3323 3505 4102 5301 5901 6301 3503 3504 "
+        "3326 3325 4302 4703 3502 4201 3401 3801 4705 3327 4301 6001 4901 "
+        "5001 5002 5003 5101 5201 4401 3311 5801 5503 5401 5501 5601 5902 "
+        "6201 6101 6202"
+    )
     ids = [int(x) for x in ids.split(" ") if x]
 
     for id in ids:
@@ -149,7 +148,7 @@ def update_to_22(context):
     for b in results:
         b = b.getObject()
 
-        if hasattr(b, 'sectors'):
+        if hasattr(b, "sectors"):
             if b.sectors is None:
                 continue
             else:
@@ -163,31 +162,31 @@ def update_to_22(context):
     for b in results:
         b = b.getObject()
 
-        if hasattr(b, 'sectors'):
+        if hasattr(b, "sectors"):
             if b.sectors is None:
                 continue
             else:
                 if "INFRASTRUCTURE" in b.sectors:
                     b.sectors.remove("INFRASTRUCTURE")
-                    b.sectors = sorted(set(b.sectors +
-                                           ["ENERGY", "TRANSPORT", "BUILDINGS"])
-                                       )
+                    b.sectors = sorted(
+                        set(b.sectors + ["ENERGY", "TRANSPORT", "BUILDINGS"])
+                    )
                     b.reindexObject()
                     b._p_changed = True
 
     # assign a measure id for all case studies, it's needed for the /sat map
-    _ids = sorted(filter(None, catalog.uniqueValuesFor('acemeasure_id')))
+    _ids = sorted(filter(None, catalog.uniqueValuesFor("acemeasure_id")))
     results = catalog.searchResults(portal_type="eea.climateadapt.casestudy")
 
     for b in results:
         obj = b.getObject()
-        mid = getattr(obj, '_acemeasure_id', None)
+        mid = getattr(obj, "_acemeasure_id", None)
 
         if mid:
             continue
         mid = _ids[-1] + 1
         obj._acemeasure_id = mid
-        obj.reindexObject(idxs=['acemeasure_id'])
+        obj.reindexObject(idxs=["acemeasure_id"])
         _ids.append(mid)
 
 
@@ -197,25 +196,26 @@ def update_to_23(context):
     catalog = site.portal_catalog
 
     MAPPING = {
-        'INFRASTRUCTURE': ["ENERGY", "TRANSPORT", "BUILDINGS"],
-        'AGRICULTURE': ["FORESTRY", "AGRICULTURE"],
-        'AGRI_AND_FOREST': ["FORESTRY", "AGRICULTURE"],
+        "INFRASTRUCTURE": ["ENERGY", "TRANSPORT", "BUILDINGS"],
+        "AGRICULTURE": ["FORESTRY", "AGRICULTURE"],
+        "AGRI_AND_FOREST": ["FORESTRY", "AGRICULTURE"],
     }
 
-    profiles = catalog.searchResults(
-        portal_type="eea.climateadapt.city_profile")
+    profiles = catalog.searchResults(portal_type="eea.climateadapt.city_profile")
 
     for b in profiles:
         obj = b.getObject()
 
-        if hasattr(obj, 'key_vulnerable_adaptation_sector'):
+        if hasattr(obj, "key_vulnerable_adaptation_sector"):
             if obj.key_vulnerable_adaptation_sector is None:
                 continue
 
             sectors = obj.key_vulnerable_adaptation_sector
 
             if isinstance(sectors, str):
-                sectors = set(sectors, )
+                sectors = set(
+                    sectors,
+                )
             else:
                 sectors = set(sectors)
 
@@ -235,19 +235,21 @@ def update_to_24(context):
     return
     site = context.getSite()
     catalog = site.portal_catalog
-    query = {'portal_type': [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool'
-    ]}
+    query = {
+        "portal_type": [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.researchproject",
+            "eea.climateadapt.tool",
+        ]
+    }
 
     results = catalog.searchResults(**query)
 
@@ -265,32 +267,34 @@ def update_to_25(context):
     return ""
     site = context.getSite()
     catalog = site.portal_catalog
-    query = {'portal_type': [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool'
-    ]}
+    query = {
+        "portal_type": [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.researchproject",
+            "eea.climateadapt.tool",
+        ]
+    }
     results = catalog.searchResults(**query)
 
     extension = {
-        'application/pdf': '.pdf',
-        'application/zip': '.zip',
-        'image/jpeg': '.jpg',
+        "application/pdf": ".pdf",
+        "application/zip": ".zip",
+        "image/jpeg": ".jpg",
     }
 
     for b in results:
         items = b.getObject().contentValues()
 
         for item in items:
-            if item.portal_type == 'File':
+            if item.portal_type == "File":
                 filex = item.file
                 filetype = guessMime(filex._data)
 
@@ -298,12 +302,13 @@ def update_to_25(context):
                     if filex.filename.find(extension[filetype]) == -1:
                         filex.contentType = filetype
                         filex.filename = filex.filename.replace(
-                            '.', extension[filetype])
+                            ".", extension[filetype]
+                        )
                         filex._p_changed = True
                         logger.info("Fixing file: %s", filex.filename)
                         logger.info("URL: %s", item.absolute_url())
                 else:
-                    logger.info('Not Fixed:')
+                    logger.info("Not Fixed:")
                     logger.info("Type: %s", filetype)
                     logger.info("URL: %s", item.absolute_url())
                     logger.info("Item: %s", item)
@@ -313,9 +318,11 @@ def update_to_26(context):
     return
     site = context.getSite()
     catalog = site.portal_catalog
-    query = {'portal_type': [
-        'eea.climateadapt.casestudy',
-    ]}
+    query = {
+        "portal_type": [
+            "eea.climateadapt.casestudy",
+        ]
+    }
     results = catalog.searchResults(**query)
 
     for b in results:
@@ -330,7 +337,7 @@ def update_to_26(context):
 
 
 def update_to_27(context):
-    """ Dummy upgrade """
+    """Dummy upgrade"""
 
     return
 
@@ -339,16 +346,18 @@ def update_to_28(context):
     return
     site = context.getSite()
     catalog = site.portal_catalog
-    query = {'portal_type': [
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.tool',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.researchproject',
-    ]}
+    query = {
+        "portal_type": [
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.tool",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.researchproject",
+        ]
+    }
     results = catalog.searchResults(**query)
 
     for b in results:
@@ -375,19 +384,21 @@ def update_to_29(context):
     return
     site = context.getSite()
     catalog = site.portal_catalog
-    query = {'portal_type': [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool',
-    ]}
+    query = {
+        "portal_type": [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.researchproject",
+            "eea.climateadapt.tool",
+        ]
+    }
     results = catalog.searchResults(**query)
 
     for b in results:
@@ -405,19 +416,21 @@ def update_to_30(context):
     return
     site = context.getSite()
     catalog = site.portal_catalog
-    query = {'portal_type': [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool',
-    ]}
+    query = {
+        "portal_type": [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.researchproject",
+            "eea.climateadapt.tool",
+        ]
+    }
     results = catalog.searchResults(**query)
 
     for b in results:
@@ -434,7 +447,7 @@ def update_to_30(context):
             obj.climate_impacts = ()
             changed = True
 
-        if hasattr(obj, 'relevance'):
+        if hasattr(obj, "relevance"):
             if obj.relevance is None:
                 logger.info("Fixing relevance on %s", obj.absolute_url())
                 obj.relevance = []
@@ -447,25 +460,27 @@ def update_to_30(context):
 
 
 def update_to_33(context):
-    """ Fix the value of the source field since we changed the field from
-        richtext to textline
+    """Fix the value of the source field since we changed the field from
+    richtext to textline
     """
 
     return
-    catalog = portal.get_tool(name='portal_catalog')
-    query = {'portal_type': [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool',
-    ]}
+    catalog = portal.get_tool(name="portal_catalog")
+    query = {
+        "portal_type": [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.researchproject",
+            "eea.climateadapt.tool",
+        ]
+    }
     results = catalog.searchResults(**query)
 
     for brain in results:
@@ -476,10 +491,10 @@ def update_to_33(context):
 
             continue
 
-        if hasattr(obj, 'source'):
+        if hasattr(obj, "source"):
             if obj.source:
                 bumblebee = ITransformer(obj)
-                obj.source = bumblebee(obj.source, 'text/plain')
+                obj.source = bumblebee(obj.source, "text/plain")
                 logger.info("Migrated source field for %s", obj.absolute_url())
                 obj._p_changed = True
                 obj.reindexObject()
@@ -490,18 +505,19 @@ def update_to_34(context):
     logger.info("Upgrading to 34")
 
     # need to reimport eea.climateadapt, it has updated registry settings
-    context.runImportStepFromProfile(default_profile, 'plone.app.registry')
+    context.runImportStepFromProfile(default_profile, "plone.app.registry")
 
 
 def update_to_35(context):
-    """ Migrate layer id from website to gis_layer_id field
-    """
+    """Migrate layer id from website to gis_layer_id field"""
 
     return
-    catalog = portal.get_tool(name='portal_catalog')
-    query = {'portal_type': [
-        'eea.climateadapt.mapgraphdataset',
-    ]}
+    catalog = portal.get_tool(name="portal_catalog")
+    query = {
+        "portal_type": [
+            "eea.climateadapt.mapgraphdataset",
+        ]
+    }
     results = catalog.searchResults(**query)
 
     for brain in results:
@@ -530,7 +546,7 @@ def check_layer_id(value):
     if not value:
         return False
 
-    if value.startswith('/') or value.startswith('http'):
+    if value.startswith("/") or value.startswith("http"):
         return False
 
     return True
@@ -541,11 +557,11 @@ def update_to_36(context):
     logger.info("Upgrading to 36")
 
     # need to reimport eea.climateadapt, it has updated registry settings
-    context.runImportStepFromProfile(default_profile, 'typeinfo')
-    context.runImportStepFromProfile(default_profile, 'propertiestool')
-    context.runImportStepFromProfile(default_profile, 'repositorytool')
-    context.runImportStepFromProfile(default_profile, 'workflow')
-    context.runImportStepFromProfile(default_profile, 'contentrules')
+    context.runImportStepFromProfile(default_profile, "typeinfo")
+    context.runImportStepFromProfile(default_profile, "propertiestool")
+    context.runImportStepFromProfile(default_profile, "repositorytool")
+    context.runImportStepFromProfile(default_profile, "workflow")
+    context.runImportStepFromProfile(default_profile, "contentrules")
 
 
 def update_to_37(context):
@@ -553,20 +569,19 @@ def update_to_37(context):
     logger.info("Upgrading to 37")
     logger.info("Setting the proper effective date for some aceprojects")
 
-    catalog = portal.get_tool(name='portal_catalog')
-    query = {'portal_type': 'eea.climateadapt.aceproject',
-             'review_state': 'published'}
+    catalog = portal.get_tool(name="portal_catalog")
+    query = {"portal_type": "eea.climateadapt.aceproject", "review_state": "published"}
     brains = catalog.searchResults(**query)
 
     for brain in brains:
         obj = brain.getObject()
 
         if obj.effective_date is None:
-            wf_history = obj.workflow_history.get('cca_items_workflow', [])
+            wf_history = obj.workflow_history.get("cca_items_workflow", [])
 
             for wf in wf_history:
-                if wf.get('action', '') == 'publish':
-                    obj.effective_date = wf.get('time', None)
+                if wf.get("action", "") == "publish":
+                    obj.effective_date = wf.get("time", None)
                     obj.reindexObject()
                     obj._p_changed = True
 
@@ -579,22 +594,25 @@ def update_to_39(context):
     logger.info("Upgrading to 39")
     logger.info("Setting the new macrotransnational regions for some aceitems")
 
-    catalog = portal.get_tool(name='portal_catalog')
-    query = {'portal_type': [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool']}
+    catalog = portal.get_tool(name="portal_catalog")
+    query = {
+        "portal_type": [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.researchproject",
+            "eea.climateadapt.tool",
+        ]
+    }
 
     brains = catalog.searchResults(**query)
-    logger.info('Got %s results.' % len(brains))
+    logger.info("Got %s results." % len(brains))
     items_count = 0
 
     for b in brains:
@@ -603,41 +621,41 @@ def update_to_39(context):
         items_count += 1
 
         if items_count % 100 == 0:
-            logger.info('Went through %s brains' % items_count)
+            logger.info("Went through %s brains" % items_count)
 
-        if obj.geochars in [None, u'', '', []]:
+        if obj.geochars in [None, "", "", []]:
             continue
 
         geochars = json.loads(obj.geochars)
-        macro = geochars['geoElements'].get('macrotrans', [])
+        macro = geochars["geoElements"].get("macrotrans", [])
         modified = False
 
         if macro:
-            if 'TRANS_MACRO_CAR_AREA' in macro:
-                macro.append(u'TRANS_MACRO_AMAZONIA')
+            if "TRANS_MACRO_CAR_AREA" in macro:
+                macro.append("TRANS_MACRO_AMAZONIA")
                 modified = True
 
-            if 'TRANS_MACRO_SE_EUR' in macro:
-                macro.remove('TRANS_MACRO_SE_EUR')
-                macro.append(u'TRANS_MACRO_DANUBE')
-                macro.append(u'TRANS_MACRO_ADR_IONIAN')
-                macro.append(u'TRANS_MACRO_BALKAN_MED')
+            if "TRANS_MACRO_SE_EUR" in macro:
+                macro.remove("TRANS_MACRO_SE_EUR")
+                macro.append("TRANS_MACRO_DANUBE")
+                macro.append("TRANS_MACRO_ADR_IONIAN")
+                macro.append("TRANS_MACRO_BALKAN_MED")
                 modified = True
 
-            if 'TRANS_MACRO_MACRONESIA' in macro:
-                macro.remove('TRANS_MACRO_MACRONESIA')
+            if "TRANS_MACRO_MACRONESIA" in macro:
+                macro.remove("TRANS_MACRO_MACRONESIA")
 
-                if 'TRANS_MACRO_ATL_AREA' not in macro:
-                    macro.append(u'TRANS_MACRO_ATL_AREA')
+                if "TRANS_MACRO_ATL_AREA" not in macro:
+                    macro.append("TRANS_MACRO_ATL_AREA")
                 modified = True
 
             if modified:
-                logger.info('Reindexing object %s' % obj.absolute_url())
-                geochars['geoElements']['macrotrans'] = macro
+                logger.info("Reindexing object %s" % obj.absolute_url())
+                geochars["geoElements"]["macrotrans"] = macro
                 obj.geochars = json.dumps(geochars).encode()
                 obj._p_changed = True
                 obj.reindexObject()
-    logger.info('Finished upgrade 39')
+    logger.info("Finished upgrade 39")
 
 
 def update_to_41(context):
@@ -645,11 +663,11 @@ def update_to_41(context):
     logger.info("Upgrading to 41")
     logger.info("Setting the search type to CONTENT for News/Events/Links")
 
-    catalog = portal.get_tool(name='portal_catalog')
-    query = {'portal_type': ['News Item', 'Event', 'Link']}
+    catalog = portal.get_tool(name="portal_catalog")
+    query = {"portal_type": ["News Item", "Event", "Link"]}
 
     brains = catalog.searchResults(**query)
-    logger.info('Got %s results.' % len(brains))
+    logger.info("Got %s results." % len(brains))
     items_count = 0
 
     for b in brains:
@@ -658,13 +676,13 @@ def update_to_41(context):
         items_count += 1
 
         if items_count % 100 == 0:
-            logger.info('Went through %s brains' % items_count)
+            logger.info("Went through %s brains" % items_count)
 
-        if not hasattr(obj, 'search_type'):
-            setattr(obj, 'search_type', 'CONTENT')
+        if not hasattr(obj, "search_type"):
+            setattr(obj, "search_type", "CONTENT")
             obj._p_changed = True
             obj.reindexObject()
-            logger.info('Reindexing object %s' % obj.absolute_url())
+            logger.info("Reindexing object %s" % obj.absolute_url())
 
 
 def update_to_42(context):
@@ -672,9 +690,9 @@ def update_to_42(context):
     logger.info("Upgrading to 42")
     logger.info("Updating the invalidating cache permission with new roles")
 
-    context.runImportStepFromProfile(default_profile, 'rolemap')
+    context.runImportStepFromProfile(default_profile, "rolemap")
 
-    logger.info('Finished upgrade 42')
+    logger.info("Finished upgrade 42")
 
 
 def update_to_43(context):
@@ -683,50 +701,53 @@ def update_to_43(context):
     logger.info("Importing workflow")
 
     context.runImportStepFromProfile(
-        'profile-eea.climateadapt:eeaclimateadapt_to_43', 'workflow')
+        "profile-eea.climateadapt:eeaclimateadapt_to_43", "workflow"
+    )
 
-    logger.info('Finished upgrade 43')
+    logger.info("Finished upgrade 43")
 
 
 def update_to_47(context):
     return
     logger.info("Upgrading to 47.")
 
-    catalog = portal.get_tool(name='portal_catalog')
-    query = {'portal_type': [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool',
-        # 'eea.climateadapt.city_profile',
-    ]}
+    catalog = portal.get_tool(name="portal_catalog")
+    query = {
+        "portal_type": [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.researchproject",
+            "eea.climateadapt.tool",
+            # 'eea.climateadapt.city_profile',
+        ]
+    }
     results = catalog.searchResults(**query)
-    logger.info('Got %s results.' % len(results))
+    logger.info("Got %s results." % len(results))
     items_count = 0
 
     for brain in results:
         obj = brain.getObject()
 
         if items_count % 100 == 0:
-            logger.info('Went through %s brains' % items_count)
+            logger.info("Went through %s brains" % items_count)
         items_count += 1
         modified = 0
         climate = obj.climate_impacts
         sectors = obj.sectors
 
-        if len(climate) == 7 and 'NONSPECIFIC' not in climate:
+        if len(climate) == 7 and "NONSPECIFIC" not in climate:
             modified += 1
-            climate = ['NONSPECIFIC']
-        if len(sectors) == 13 and 'NONSPECIFIC' not in sectors:
+            climate = ["NONSPECIFIC"]
+        if len(sectors) == 13 and "NONSPECIFIC" not in sectors:
             modified += 1
-            sectors = ['NONSPECIFIC']
+            sectors = ["NONSPECIFIC"]
 
         if modified != 0:
             obj.climate_impacts = climate
@@ -740,36 +761,38 @@ def update_to_57(context):
     return
     logger.info("Upgrading to 57.")
 
-    catalog = portal.get_tool(name='portal_catalog')
-    query = {'portal_type': [
-        'eea.climateadapt.aceproject',
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-        'eea.climateadapt.guidancedocument',
-        'eea.climateadapt.indicator',
-        'eea.climateadapt.informationportal',
-        'eea.climateadapt.mapgraphdataset',
-        'eea.climateadapt.organisation',
-        'eea.climateadapt.publicationreport',
-        'eea.climateadapt.researchproject',
-        'eea.climateadapt.tool',
-        # 'eea.climateadapt.city_profile',
-    ]}
+    catalog = portal.get_tool(name="portal_catalog")
+    query = {
+        "portal_type": [
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.researchproject",
+            "eea.climateadapt.tool",
+            # 'eea.climateadapt.city_profile',
+        ]
+    }
     results = catalog.searchResults(**query)
-    logger.info('Got %s results.' % len(results))
+    logger.info("Got %s results." % len(results))
     items_count = 0
 
     options = {}
-    options['create'] = False
-    options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
+    options["create"] = False
+    options["service_to_ping"] = "http://semantic.eea.europa.eu/ping"
     for brain in results:
         obj = brain.getObject()
 
         if items_count % 100 == 0:
-            logger.info('Went through %s brains' % items_count)
+            logger.info("Went through %s brains" % items_count)
         items_count += 1
 
-        if hasattr(obj, 'geochars'):
+        if hasattr(obj, "geochars"):
             if obj.geochars:
                 if obj.geochars.find("FYROM") != -1:
                     logger.info("Fixing geochars on %s", obj.absolute_url())
@@ -779,7 +802,7 @@ def update_to_57(context):
                     obj._p_changed = True
 
                     url = brain.getURL()
-                    options['obj_url'] = url + '/@@rdf'
+                    options["obj_url"] = url + "/@@rdf"
                     logger.info("Pinging: %s", url)
                     ping_CRSDS(context, options)
                     logger.info("Finished pinging: %s", url)
@@ -797,20 +820,22 @@ def update_to_65(setup_tool=None):
 def update_to_66(context):
     logger.info("Upgrading to 66.")
 
-    catalog = portal.get_tool(name='portal_catalog')
-    query = {'portal_type': [
-        'eea.climateadapt.adaptationoption',
-        'eea.climateadapt.casestudy',
-    ]}
+    catalog = portal.get_tool(name="portal_catalog")
+    query = {
+        "portal_type": [
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.casestudy",
+        ]
+    }
     results = catalog.searchResults(**query)
-    logger.info('Got %s results.' % len(results))
+    logger.info("Got %s results." % len(results))
     items_count = 0
 
     for brain in results:
         obj = brain.getObject()
 
         if items_count % 100 == 0:
-            logger.info('Went through %s brains' % items_count)
+            logger.info("Went through %s brains" % items_count)
         items_count += 1
         modified = False
 
@@ -831,7 +856,7 @@ def update_to_66(context):
             modified = True
 
         if modified is True:
-            logger.info('Updating %s' % obj.absolute_url())
+            logger.info("Updating %s" % obj.absolute_url())
             logger.info("NEW SECTORS %s" % ", ".join(updated_sectors))
             logger.info("NEW ELEM %s" % ", ".join(updated_elements))
             obj.sectors = updated_sectors
@@ -839,3 +864,19 @@ def update_to_66(context):
             obj.reindexObject()
             obj._p_changed = True
     logger.info("Finished upgrade 66.")
+
+
+def reindex_health_impacts(context):
+    catalog = portal.get_tool(name="portal_catalog")
+    keys = catalog.uniqueValuesFor("health_impacts")
+    brains = catalog.searchResults(health_impacts=keys)
+
+    i = 0
+    for brain in brains:
+        obj = brain.getObject()
+        obj.reindexObject()
+        i += 1
+        if i % 1000 == 0:
+            transaction.savepoint()
+
+    logger.info("Finished reindexing health_impacts.")

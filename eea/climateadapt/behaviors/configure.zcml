@@ -10,6 +10,7 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="eea.climateadapt2">
 
+    <include file="missing.zcml" />
     <adapter factory=".aceitem.KeywordsFieldWidget" />
     <adapter factory=".aceitem.SpecialTagsFieldWidget" />
 
@@ -20,9 +21,19 @@
     <adapter factory=".aceproject.KeywordsFieldWidget" />
     <adapter factory=".aceproject.SpecialTagsFieldWidget" />
 
+    <adapter factory=".missionstory.KeywordsFieldWidget" />
+
     <configure zcml:condition="installed plone.app.dexterity">
 
       <include package="plone.behavior" file="meta.zcml"/>
+
+      <plone:behavior
+        name="eea.nonstructural_folder"
+        title="Non-structural folder"
+        description="Allows folders to be non-clickable in main menu"
+        provides=".section.INonstructuralSection"
+        for="plone.dexterity.interfaces.IDexterityContent"
+      />
 
       <plone:behavior
         name="volto.preview_image"
@@ -45,6 +56,12 @@
       />
 
       <plone:behavior
+        title="Mission story details"
+        description="Settings for Mission stories"
+        provides=".missionstory.IMissionStory"
+      />
+
+      <plone:behavior
         name="plone.shortname"
         title="Short name"
         description="Gives the ability to rename an item from its edit form."
@@ -60,6 +77,14 @@
         provides=".toplevelnav.ITopLevelVisibility"
         for="plone.dexterity.interfaces.IDexterityContent"
       />
+
+
+      <plone:behavior
+        name="volto.blocks.editable.layout"
+        title="Blocks (Editable Layout)"
+        description="Enables Volto Blocks (editable layout) support"
+        provides=".blocks.IBlocksEditableLayout"
+        />
 
     </configure>
 

@@ -54,6 +54,8 @@ class C3SIndicatorsOverview(object):
         site = portal.get()
         base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
+        if category_id not in datastore['data']['themes']:
+            return {}
         res['description'] = datastore['data']['themes'][category_id]['description']
         for indicator in datastore['data']['themes'][category_id]['apps']:
             if indicator['title'] in items:

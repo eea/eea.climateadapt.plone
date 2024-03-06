@@ -6,11 +6,19 @@ import logging
 from eea.climateadapt.scripts import get_plone_site
 from eea.climateadapt.translation.core import get_all_objs
 
-from .config import IGNORED_CONTENT_TYPES
+from .config import IGNORED_CONTENT_TYPES, LANGUAGES
 from .content import migrate_content_to_volto
 
 logger = logging.getLogger("SiteMigrate")
 logger.setLevel(logging.WARNING)
+
+
+def allow(brain, root):
+    url = brain.getURL()
+    for lang in LANGUAGES:
+        bit = "/%s/%s/" % (lang, root)
+        if bit in url:
+            return True
 
 
 def _migrate_to_volto(site, request):
@@ -20,10 +28,16 @@ def _migrate_to_volto(site, request):
     logger.debug("Get the list of items ordered by levels...")
     brains = get_all_objs(site)
 
+    root = request.form.get("root", "")
+
     for brain in brains:
         if brain.portal_type in IGNORED_CONTENT_TYPES:
             continue
 
+        if root and not allow(brain, root):
+            continue
+
+        logger.info("migrate %s", brain.getURL())
         obj = brain.getObject()
         migrate_content_to_volto(obj, request)
 

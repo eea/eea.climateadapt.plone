@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<registry>
+
+  <!-- Rename retina_scales to highpixeldensity_scales. -->
+  <!-- ImportError: No module named IImagingSchema
+  <records interface="Products.CMFPlone.interfaces.IImagingSchema"
+           prefix="plone" />
+  -->
+  <records interface="eea.climateadapt.image_scales.interfaces.IImagingSchema"
+           prefix="plone" />
+</registry>

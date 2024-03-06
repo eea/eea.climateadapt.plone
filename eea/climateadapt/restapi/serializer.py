@@ -1,19 +1,53 @@
-from eea.climateadapt.behaviors import (IAceProject, IAdaptationOption,
-                                        ICaseStudy)
-from eea.climateadapt.browser.adaptationoption import find_related_casestudies
-from eea.climateadapt.interfaces import (IClimateAdaptContent,
-                                         IEEAClimateAdaptInstalled)
+from plone.app.textfield.interfaces import IRichText
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
-from plone.restapi.serializer.blocks import (SlateBlockSerializerBase,
-                                             uid_to_url)
-from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
-                                                SerializeToJson)
+from plone.restapi.serializer.blocks import SlateBlockSerializerBase, uid_to_url
+from plone.restapi.serializer.converters import json_compatible
+from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeToJson
+from plone.restapi.serializer.dxfields import DefaultFieldSerializer
 from zope.component import adapter
 from zope.interface import Interface, implementer
 
+from eea.climateadapt.behaviors import IAceProject, IAdaptationOption, ICaseStudy
+from eea.climateadapt.browser.adaptationoption import find_related_casestudies
+from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
+from plone.api import portal
+
 from .utils import cca_content_serializer
+from lxml.html import fragments_fromstring, tostring
+
+
+def serialize(possible_node):
+    if isinstance(possible_node, basestring):
+        # This happens for some fields that store non-markup values as richtext
+        return possible_node
+    return tostring(possible_node)
+
+
+@adapter(IRichText, IDexterityContent, IEEAClimateAdaptInstalled)
+class RichttextFieldSerializer(DefaultFieldSerializer):
+    def externalize(self, text):
+        site = portal.get()
+        site_url = site.absolute_url()
+        frags = fragments_fromstring(text)
+        for frag in frags:
+            if isinstance(frag, basestring):
+                continue
+            for link in frag.xpath("a"):
+                href = link.get("href")
+                if not href.startswith(site_url):
+                    link.set("target", "_blank")
+        res = unicode("\n").join([serialize(e) for e in frags])
+        return res
+
+    def __call__(self):
+        value = self.get_value()
+        output = json_compatible(value, self.context)
+        if output:
+            output["data"] = self.externalize(output["data"])
+
+        return output
 
 
 @implementer(IBlockFieldSerializationTransformer)
@@ -26,11 +60,12 @@ class SlateBlockSerializer(SlateBlockSerializerBase):
 
     def handle_img(self, child):
         if child.get("url"):
+            # __import__("pdb").set_trace()
             url = uid_to_url(child["url"])
-            if child.get('scale'):
-                url = "%s/@@images/image/%s" % (url, child['scale'])
+            if child.get("scale"):
+                url = "%s/@@images/image/%s" % (url, child["scale"])
             else:
-                url = "%s/@@images/image/large" % url
+                url = "%s/@@images/image/huge" % url
 
             child["url"] = url
 
@@ -80,7 +115,7 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
 
 
 @adapter(IAceProject, Interface)
-class AceProjectSerializer(SerializeFolderToJson):        # SerializeToJson
+class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(AceProjectSerializer, self).__call__(
             version=None, include_items=True
@@ -89,7 +124,7 @@ class AceProjectSerializer(SerializeFolderToJson):        # SerializeToJson
 
 
 @adapter(ICaseStudy, Interface)
-class CaseStudySerializer(SerializeFolderToJson):       # SerializeToJson
+class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(CaseStudySerializer, self).__call__(
             version=None, include_items=True
@@ -100,7 +135,11 @@ class CaseStudySerializer(SerializeFolderToJson):       # SerializeToJson
         images = item.contentValues({"portal_type": "Image"})
         suffix = "/@@images/image/large"
         result["cca_gallery"] = [
-            {"title": image.Title(), "url": image.absolute_url() + suffix}
+            {
+                "title": image.Title(),
+                "url": image.absolute_url() + suffix,
+                "description": image.Description(),
+            }
             for image in images
         ]
 

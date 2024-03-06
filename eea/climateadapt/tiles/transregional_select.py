@@ -260,7 +260,10 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
         if not region:
             return []
 
-        current_regions = regions[region]
+        current_regions = regions.get(region, None)
+        if not current_regions:
+            return []
+
         regions_translated = []
 
         for _r in current_regions[0]:

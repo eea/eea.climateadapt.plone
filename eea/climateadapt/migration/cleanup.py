@@ -1,8 +1,8 @@
 """ To be executed after migration is done and tested
 """
+
 import logging
 import plone.api
-import transaction
 
 from eea.climateadapt.translation.core import get_all_objs
 
@@ -76,8 +76,8 @@ def post_migration_cleanup(site, request):
             except Exception:
                 pass
 
-            if count % 10 == 0:
-                transaction.commit()
+            # if count % 10 == 0:
+            #     transaction.commit()
 
-    transaction.commit()
+    # transaction.commit()
     logger.info("--- Cleanup done ---")

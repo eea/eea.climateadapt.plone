@@ -1,9 +1,13 @@
 <configure
   xmlns="http://namespaces.zope.org/zope"
   xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
   xmlns:plone="http://namespaces.plone.org/plone">
 
   <include file="breadcrumbs.zcml" />
+
+  <!-- this is protected by have-plone5 condition in the original -->
+  <include file="multilingual.zcml" />
 
   <adapter factory=".serializer.GenericContentSerializer"/>
   <adapter factory=".serializer.GenericFolderSerializer"/>
@@ -12,6 +16,11 @@
   <adapter factory=".serializer.AdaptationOptionSerializer" />
   <adapter factory=".serializer.AceProjectSerializer" />
   <adapter factory=".serializer.CaseStudySerializer" />
+  <adapter factory=".serializer.RichttextFieldSerializer" />
+
+  <zcml:configure zcml:condition="not-installed collective.exportimport">
+    <adapter factory=".long_converter" />
+  </zcml:configure>
 
   <!-- <adapter factory=".long_converter" /> -->
   <adapter factory=".geolocation_converter" />
@@ -21,6 +30,15 @@
   <adapter
     factory=".workflow.WorkflowInfo"
     name="workflow"
+    />
+
+  <plone:service
+    method="POST"
+    factory=".querystats.QueryStatsPost"
+    for="Products.CMFCore.interfaces.IContentish"
+    permission="zope2.View"
+    name="@querystats"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
 
   <plone:service
@@ -117,11 +135,15 @@
     layer="plone.restapi.interfaces.IPloneRestapiLayer"
     />
 
-  <plone:behavior
-    name="volto.blocks.editable.layout"
-    title="Blocks (Editable Layout)"
-    description="Enables Volto Blocks (editable layout) support"
-    provides=".behaviors.IBlocksEditableLayout"
+
+  <adapter factory=".siblings.Siblings" name="siblings"/>
+
+  <plone:service
+    method="GET"
+    for="zope.interface.Interface"
+    factory=".siblings.SiblingsGet"
+    name="@siblings"
+    permission="zope2.View"
     />
 
 </configure>

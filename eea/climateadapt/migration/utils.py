@@ -1,6 +1,9 @@
 from uuid import uuid4
 import json
 import logging
+from uuid import uuid4
+import pycountry
+
 import requests
 
 SLATE_CONVERTER = "http://converter:8000/html"
@@ -51,3 +54,16 @@ def slate_to_blocks(slate):
 
 def make_uid():
     return str(uuid4())
+
+
+def get_country_alpha2(country_name):
+    fixed = {"Czechia": "Czech Republic"}
+    fixed_name = fixed.get(country_name, None) or country_name
+    try:
+        country = pycountry.countries.get(name=fixed_name)
+        if country:
+            return country.alpha2
+        else:
+            return None
+    except LookupError:
+        return None
