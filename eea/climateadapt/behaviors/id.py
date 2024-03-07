@@ -3,16 +3,19 @@
 
 from Acquisition import aq_base, aq_inner, aq_parent
 from eea.climateadapt import CcaAdminMessageFactory as _
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.locking.interfaces import ILockable
 from plone.supermodel import model
 from zope import schema
 from zope.container.interfaces import INameChooser
-from zope.interface import alsoProvides
+
+# from zope.interface import alsoProvides
 from zope.interface import provider
 import transaction
+
+
+# from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 
 
 @provider(IFormFieldProvider)
@@ -31,7 +34,7 @@ class IShortName(model.Schema):
     directives.write_permission(id="cmf.AddPortalContent")
 
 
-alsoProvides(IShortName["id"], ILanguageIndependentField)
+# alsoProvides(IShortName["id"], ILanguageIndependentField)
 
 
 class ShortName(object):
