@@ -99,9 +99,10 @@ class ContentToHtml(BrowserView):
             data["blocks"] = blockdata["blocks"]
 
         # json.dumps({"html": html, "data": data}, indent=2)
-        return "http://localhost:3000/" + self.copy(data).absolute_url(
+        url = "http://localhost:3000/" + self.copy(data).absolute_url(
             relative=1
         ).replace("cca/", "")
+        return self.request.response.redirect(url)
 
     def get_value(self, name):
         if name == "blocks":
