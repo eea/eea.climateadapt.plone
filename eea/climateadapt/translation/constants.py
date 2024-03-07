@@ -45,6 +45,7 @@ LANGUAGE_INDEPENDENT_FIELDS = [
     "event_language",
     # tibi
     "image",
+    "id",
 ]
 
 IGNORE_FIELDS = ["acronym", "id", "language", "portal_type", "contentType"]
