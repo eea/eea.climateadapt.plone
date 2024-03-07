@@ -7,6 +7,13 @@
   i18n:domain="eea.climateadapt.frontpage">
   <ul class="nav nav-tabs flex-wrapper policies-nav">
     <li class="climate-adapt-platforms-nav-item active">
+      <a tal:attributes="href python:view.translate_url('/en/eucra')"
+          href="/en/eucra"
+         data-toggle="tab" class="policies-nav-link" data-target="#eucra">
+        <p i18n:translate="">European Climate Risk Assessment<br />(EUCRA)</p>
+      </a>
+    </li>
+    <li class="climate-adapt-platforms-nav-item">
       <a tal:attributes="href python:view.translate_url('/en/mission')"
           href="/en/mission"
          data-toggle="tab" class="policies-nav-link" data-target="#eumission">
@@ -27,16 +34,27 @@
         <p i18n:translate="">European Climate Data Explorer</p>
       </a>
     </li>
-    <li class="climate-adapt-platforms-nav-item">
-      <a tal:attributes="href python:view.translate_url('/en/eucra')"
-          href="/en/eucra"
-         data-toggle="tab" class="policies-nav-link" data-target="#eucra">
-        <p i18n:translate="">European Climate Risk Assessment<br />(EUCRA)</p>
-      </a>
-    </li>
   </ul>
 
   <div class="tab-content policies-tab-content">
+    <!-- eucra -->
+    <div id="eucra" class="tab-pane active">
+      <div class="row">
+        <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+          <img data-src="{{ themeurl }}static/images/home-page/eucra.png"
+               class="lazyload" style="width:200px !important"
+               alt="Coastal areas" title="Coastal areas"/>
+        </div>
+        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+          <h3 i18n:translate="">Europe is not prepared for rapidly growing climate risks</h3>
+          <p i18n:translate="">Europe is the fastest warming continent in the world, and climate risks are threatening its energy and food security, ecosystems, infrastructure, water resources, financial stability, and people’s health. According to the first European Climate Risk Assessment (EUCRA) published by the EEA, many of these risks have already reached critical levels and can become catastrophic without urgent and decisive action.</p>
+                <a class="standard-button primary-button feature-btn"
+                href="/mission"
+                tal:attributes="href python:view.translate_url('https://www.eea.europa.eu/publications/european-climate-risk-assessment')"
+                 i18n:translate="">Go to the EUCRA</a>
+        </div>
+      </div>
+    </div>
 
     <!-- Platforms -->
     <div id="platforms" class="tab-pane">
@@ -77,7 +95,7 @@
     </div>
 
     <!-- EuMission -->
-    <div id="eumission" class="tab-pane active">
+    <div id="eumission" class="tab-pane">
       <div class="row">
         <div class="policy-image col-md-3 col-sm-3 col-xs-4">
           <img data-src="{{ themeurl }}static/images/home-page/eu_mission_climate.jpg"
@@ -91,25 +109,6 @@
                 href="/mission"
                 tal:attributes="href python:view.translate_url('/en/mission')"
                  i18n:translate="">Go to the Mission Portal</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- eucra -->
-    <div id="eucra" class="tab-pane">
-      <div class="row">
-        <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-          <img data-src="{{ themeurl }}static/images/home-page/eucra.png"
-               class="lazyload" style="width:200px !important"
-               alt="Coastal areas" title="Coastal areas"/>
-        </div>
-        <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-          <h3 i18n:translate="">European Climate Risk Assessment</h3>
-          <p i18n:translate="">The European Climate Risk Assessment provides an assessment of current and future climate change impacts and risks relating to the environment, economy and wider society in Europe.</p>
-                <a class="standard-button primary-button feature-btn"
-                href="/mission"
-                tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/key-eu-actions/climate_risk_assessment')"
-                 i18n:translate="">Go to the EUCRA</a>
         </div>
       </div>
     </div>
