@@ -1,3 +1,5 @@
+from lxml.html import fragments_fromstring, tostring
+from plone.api import portal
 from plone.app.textfield.interfaces import IRichText
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.behaviors import IBlocks
@@ -6,16 +8,19 @@ from plone.restapi.serializer.blocks import SlateBlockSerializerBase, uid_to_url
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeToJson
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
-from zope.component import adapter
+from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
 
-from eea.climateadapt.behaviors import IAceProject, IAdaptationOption, ICaseStudy, IOrganisation
+from eea.climateadapt.behaviors import (
+    IAceProject,
+    IAdaptationOption,
+    ICaseStudy,
+    IOrganisation,
+)
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
-from plone.api import portal
 
 from .utils import cca_content_serializer, get_contributions
-from lxml.html import fragments_fromstring, tostring
 
 
 def serialize(possible_node):
@@ -153,8 +158,6 @@ class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
             version=None, include_items=True
         )
         result = cca_content_serializer(self.context, result, self.request)
-        contributions = get_contributions(self.context, self.request)
-
-        # item = self.context
-        # import pdb; pdb.set_trace()
-        # return result
+        view = getMultiAdapter((self.context, self.request), name="view")
+        result["contributions"] = view.get_contributions()
+        return result
