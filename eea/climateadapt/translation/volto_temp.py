@@ -3,24 +3,25 @@
 
 from eea.climateadapt.translation.utils import (
     get_site_languages,
+    get_async_service,
 )
 from .core import (
     create_translation_object,
+    execute_translate_async,
 )
 import logging
 
 logger = logging.getLogger("eea.climateadapt")
 
 
-def translate_volto_html(html, en_obj, http_host):
+def translate_volto_html(html, en_obj):
     obj = en_obj
     options = {}
     options["obj_url"] = en_obj.absolute_url()
     options["uid"] = en_obj.UID()
-    options["http_host"] = http_host
+    options["http_host"] = en_obj.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
     options["is_volto"] = True
-    # options["http_host"] = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
-    __import__('pdb').set_trace()
+    options["html_content"] = html
 
     request_vars = {
         # 'PARENTS': obj.REQUEST['PARENTS']
@@ -32,14 +33,15 @@ def translate_volto_html(html, en_obj, http_host):
             if language == "en":
                 continue
 
-            # create_translation_object(obj, language)
-            # queue = self.async_service.getQueues()[""]
-            # self.async_service.queueJobInQueue(
-            #     queue,
-            #     ("translate",),
-            #     execute_translate_async,
-            #     obj,
-            #     options,
-            #     language,
-            #     request_vars,
-            # )
+            create_translation_object(en_obj, language)
+            async_service = get_async_service()
+            queue = async_service.getQueues()[""]
+            async_service.queueJobInQueue(
+                queue,
+                ("translate",),
+                execute_translate_async,
+                obj,
+                options,
+                language,
+                request_vars,
+            )

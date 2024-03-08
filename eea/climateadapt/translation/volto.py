@@ -95,7 +95,7 @@ class ContentToHtml(BrowserView):
                     self.values[k] = value
 
         html = self.index()
-        translate_volto_html(html, obj, '')
+        translate_volto_html(html, obj)
         if self.request.form.get("half"):
             return html
 

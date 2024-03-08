@@ -108,6 +108,68 @@ class Translation(Persistent):
         return self.text
 
 
+def retrieve_volto_html_translation(source_lang, html, obj_path, target_languages=None):
+    """ Request a translation for a html (based on volto export)
+    """
+    if not html:
+        return
+
+    if not target_languages:
+        target_languages = ["EN"]
+
+    encoded_html = base64.b64encode(html)
+
+    site_url = portal.get().absolute_url()
+
+    if "localhost" in site_url:
+        logger.warning(
+            "Using localhost, won't retrieve translation for: %s", html)
+
+    client = Client(
+        "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
+        wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS),
+    )
+
+    dest = "{}/@@translate-callback?source_lang={}&format=html&is_volto=1".format(
+        site_url, source_lang
+    )
+
+    resp = client.service.translate(
+        {
+            "priority": "5",
+            "external-reference": obj_path,
+            "caller-information": {
+                "application": "Marine_EEA_20180706",
+                "username": TRANS_USERNAME,
+            },
+            "document-to-translate-base64": {
+                "content": encoded_html,
+                "format": "html",
+                "fileName": "out",
+            },
+            "source-language": source_lang,
+            "target-languages": {"target-language": target_languages},
+            "domain": "GEN",
+            "output-format": "html",
+            "destinations": {
+                "http-destination": dest,
+            },
+        }
+    )
+
+    logger.info("Data translation request : html content")
+    logger.info("Response from translation request: %r", resp)
+
+    # if str(resp[0]) == '-':
+    #     # If the response is a negative number this means error. Error codes:
+    #     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
+    #     import pdb; pdb.set_trace()
+
+    res = {"transId": resp, "externalRefId": html}
+
+    return res
+
+
 def retrieve_html_translation(source_lang, html, obj_path, target_languages=None):
     """Send a call to automatic translation service, to translate a string
     Returns a json formatted string
