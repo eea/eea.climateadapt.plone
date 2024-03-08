@@ -9,12 +9,12 @@ from plone.restapi.serializer.dxfields import DefaultFieldSerializer
 from zope.component import adapter
 from zope.interface import Interface, implementer
 
-from eea.climateadapt.behaviors import IAceProject, IAdaptationOption, ICaseStudy
+from eea.climateadapt.behaviors import IAceProject, IAdaptationOption, ICaseStudy, IOrganisation
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
 from plone.api import portal
 
-from .utils import cca_content_serializer
+from .utils import cca_content_serializer, get_contributions
 from lxml.html import fragments_fromstring, tostring
 
 
@@ -144,3 +144,17 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
         ]
 
         return result
+
+
+@adapter(IOrganisation, Interface)
+class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
+    def __call__(self, version=None, include_items=True):
+        result = super(OrganisationSerializer, self).__call__(
+            version=None, include_items=True
+        )
+        result = cca_content_serializer(self.context, result, self.request)
+        contributions = get_contributions(self.context, self.request)
+
+        # item = self.context
+        # import pdb; pdb.set_trace()
+        # return result

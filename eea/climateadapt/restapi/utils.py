@@ -3,6 +3,12 @@ import json
 from eea.climateadapt.browser import get_date_updated, get_files
 from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
 from plone.restapi.serializer.converters import json_compatible
+from eea.climateadapt.translation.admin import get_translation_object
+from eea.climateadapt.translation.utils import get_current_language
+from zc.relation.interfaces import ICatalog
+from zope.intid.interfaces import IIntIds
+from zope.component import getUtility
+from plone import api
 
 
 def get_geographic(item, result={}):
@@ -62,3 +68,49 @@ def cca_content_serializer(item, result, request):
     result["language"] = getattr(item, "language", "en")
 
     return result
+
+
+def get_contributions(item, request):
+        current_language = get_current_language(item, request)
+        if current_language != "en":
+            en_obj = get_translation_object(item, "en")
+        else:
+            en_obj = item
+
+        relation_catalog = getUtility(ICatalog)
+        intids = getUtility(IIntIds, context=item)
+        import pdb; pdb.set_trace()
+        uid = intids.getId(en_obj)
+        response = []
+        urls = []
+
+
+        contributors = list(relation_catalog.findRelations({"to_id": uid}))
+        for relation in contributors:
+            if relation.from_attribute == "relatedItems":
+                continue
+
+            engl_obj = relation.from_object
+            obj = get_translation_object(engl_obj, current_language)
+            if obj is not None:
+                if api.content.get_state(obj) == "published":
+                    if obj.absolute_url() in urls or (
+                        not getattr(obj, "include_in_observatory")
+                    ):
+                        continue
+
+                    urls.append(obj.absolute_url())
+                    response.append(
+                        {
+                            "title": obj.title,
+                            "url": item.to_observatory_url(obj),
+                            "date": (
+                                getattr(obj, "publication_date", None)
+                                or obj.creation_date.asdatetime().date()
+                            ),
+                        }
+                    )
+
+        # print(response)
+        response.sort(key=lambda x: x.get("date"), reverse=True)
+        return response
