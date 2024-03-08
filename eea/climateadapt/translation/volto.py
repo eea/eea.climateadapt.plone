@@ -14,6 +14,8 @@ from Products.Five.browser import BrowserView
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from utils import get_value_representation
 
+from .volto_temp import translate_volto_html
+
 import logging
 import requests
 import json
@@ -93,7 +95,7 @@ class ContentToHtml(BrowserView):
                     self.values[k] = value
 
         html = self.index()
-        __import__('pdb').set_trace()
+        translate_volto_html(html, obj, '')
         if self.request.form.get("half"):
             return html
 

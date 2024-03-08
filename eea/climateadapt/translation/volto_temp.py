@@ -13,7 +13,6 @@ logger = logging.getLogger("eea.climateadapt")
 
 
 def translate_volto_html(html, en_obj, http_host):
-    __import__('pdb').set_trace()
     obj = en_obj
     options = {}
     options["obj_url"] = en_obj.absolute_url()
@@ -21,6 +20,7 @@ def translate_volto_html(html, en_obj, http_host):
     options["http_host"] = http_host
     options["is_volto"] = True
     # options["http_host"] = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
+    __import__('pdb').set_trace()
 
     request_vars = {
         # 'PARENTS': obj.REQUEST['PARENTS']
