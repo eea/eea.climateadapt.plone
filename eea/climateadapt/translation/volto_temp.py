@@ -10,6 +10,8 @@ from .core import (
     create_translation_object,
     execute_translate_async,
 )
+from eea.climateadapt.translation import retrieve_volto_html_translation
+
 import logging
 
 logger = logging.getLogger("eea.climateadapt")
@@ -35,14 +37,18 @@ def translate_volto_html(html, en_obj, http_host):
                 continue
 
             create_translation_object(en_obj, language)
-            async_service = get_async_service()
-            queue = async_service.getQueues()[""]
-            async_service.queueJobInQueue(
-                queue,
-                ("translate",),
-                execute_translate_async,
-                obj,
-                options,
-                language,
-                request_vars,
-            )
+            import pdb; pdb.set_trace()
+            retrieve_volto_html_translation('en', html, options['obj_url'], target_languages=None)
+            # retrieve_volto_html_translation(source_lang, html, obj_path, target_languages=None)
+
+            #async_service = get_async_service()
+            #queue = async_service.getQueues()[""]
+            #async_service.queueJobInQueue(
+            #    queue,
+            #    ("translate",),
+            #    execute_translate_async,
+            #    obj,
+            #    options,
+            #    language,
+            #    request_vars,
+            #)
