@@ -158,6 +158,8 @@ class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
         )
         result = cca_content_serializer(self.context, result, self.request)
         view = getMultiAdapter((self.context, self.request), name="view")
-        result["contributions"] = view.get_contributions()
-        # import pdb; pdb.set_trace()
+        contributions = view.get_contributions()
+        for contribution in contributions:
+            contribution.pop("date", None)
+        result["contributions"] = contributions
         return result
