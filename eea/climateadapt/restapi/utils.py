@@ -3,13 +3,6 @@ import json
 from eea.climateadapt.browser import get_date_updated, get_files
 from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
 from plone.restapi.serializer.converters import json_compatible
-from eea.climateadapt.translation.admin import get_translation_object
-from eea.climateadapt.translation.utils import get_current_language
-from zc.relation.interfaces import ICatalog
-from zope.intid.interfaces import IIntIds
-from zope.component import getUtility
-from plone import api
-
 
 def get_geographic(item, result={}):
     if not hasattr(item, "geochars") and not item.geochars:
