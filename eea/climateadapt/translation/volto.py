@@ -40,6 +40,8 @@ def get_blocks_as_html(obj):
 
 
 def get_content_from_html(html):
+    """Given an HTML string, converts it to Plone content data"""
+
     data = {"html": html}
     headers = {"Content-type": "application/json", "Accept": "application/json"}
 
