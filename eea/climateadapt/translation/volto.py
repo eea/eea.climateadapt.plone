@@ -95,7 +95,10 @@ class ContentToHtml(BrowserView):
                     self.values[k] = value
 
         html = self.index()
-        translate_volto_html(html, obj)
+        # TODO WIP
+        http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
+        translate_volto_html(html, obj, http_host)
+
         if self.request.form.get("half"):
             return html
 

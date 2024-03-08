@@ -15,12 +15,12 @@ import logging
 logger = logging.getLogger("eea.climateadapt")
 
 
-def translate_volto_html(html, en_obj):
+def translate_volto_html(html, en_obj, http_host):
     obj = en_obj
     options = {}
     options["obj_url"] = en_obj.absolute_url()
     options["uid"] = en_obj.UID()
-    options["http_host"] = en_obj.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
+    options["http_host"] = http_host
     options["is_volto"] = True
     options["html_content"] = html
 
