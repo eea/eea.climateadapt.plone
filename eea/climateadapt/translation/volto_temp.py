@@ -3,8 +3,9 @@
 
 from eea.climateadapt.translation.utils import (
     get_site_languages,
-    get_async_service,
 )
+from eea.climateadapt.asynctasks.utils import get_async_service
+
 from .core import (
     create_translation_object,
     execute_translate_async,
