@@ -20,8 +20,7 @@ from eea.climateadapt.behaviors import (
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
 
-from .utils import cca_content_serializer, get_contributions
-
+from .utils import cca_content_serializer
 
 def serialize(possible_node):
     if isinstance(possible_node, basestring):
@@ -160,4 +159,5 @@ class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
         result = cca_content_serializer(self.context, result, self.request)
         view = getMultiAdapter((self.context, self.request), name="view")
         result["contributions"] = view.get_contributions()
+        # import pdb; pdb.set_trace()
         return result
