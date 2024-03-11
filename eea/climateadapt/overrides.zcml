@@ -51,4 +51,10 @@
            provides="collective.excelexport.interfaces.IExportableFactory"
            name="cca_metadata"/>
 
+  <browser:page name="collective.excelexport"
+                for="*"
+                class=".excelexport.ExcelExport"
+                permission="zope2.View"
+  />
+
 </configure>
