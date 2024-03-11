@@ -14,7 +14,13 @@ from Products.Five.browser import BrowserView
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from utils import get_value_representation
 
-from .volto_temp import translate_volto_html
+from eea.climateadapt.translation.utils import get_site_languages
+from eea.climateadapt.asynctasks.utils import get_async_service
+from .core import (
+    create_translation_object,
+    execute_translate_async,
+)
+from eea.climateadapt.translation import retrieve_volto_html_translation
 
 import logging
 import requests
@@ -97,7 +103,8 @@ class ContentToHtml(BrowserView):
         html = self.index()
 
         if self.request.form.get("half"):
-            import pdb; pdb.set_trace()
+            import pdb
+            pdb.set_trace()
             http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
             translate_volto_html(html, obj, http_host)
             return html
@@ -120,3 +127,45 @@ class ContentToHtml(BrowserView):
         if name == "blocks":
             return get_blocks_as_html(self.context)
         return get_value_representation(self.context, name)
+
+
+def translate_volto_html(html, en_obj, http_host):
+    """ Input: html (generated from volto blocks and obj fields, as string)
+               en_obj - the object to be translated
+               http_host - website url
+
+        Make sure translation objects exists and request a translation for
+        all languages.
+    """
+    options = {}
+    options["obj_url"] = en_obj.absolute_url()
+    options["uid"] = en_obj.UID()
+    options["http_host"] = http_host
+    options["is_volto"] = True
+    options["html_content"] = html
+
+    if "/en/" in en_obj.absolute_url():
+        # run translate FULL (all languages)
+        for language in get_site_languages():
+            if language == "en":
+                continue
+
+            create_translation_object(en_obj, language)
+            retrieve_volto_html_translation(
+                'en', html, options['obj_url'], target_languages=language.upper())
+
+            # TODO: implement and use async translation for volto case, too
+            # request_vars = {
+            #     # 'PARENTS': obj.REQUEST['PARENTS']
+            # }
+            # async_service = get_async_service()
+            # queue = async_service.getQueues()[""]
+            # async_service.queueJobInQueue(
+            #    queue,
+            #    ("translate",),
+            #    execute_translate_async,
+            #    obj,
+            #    options,
+            #    language,
+            #    request_vars,
+            # )
