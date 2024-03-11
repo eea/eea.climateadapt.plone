@@ -11,6 +11,7 @@ from zope import event
 import base64
 import logging
 import os
+from eea.climateadapt.translation.volto import get_content_from_html
 
 from .interfaces import ITranslationContext
 from . import (
@@ -35,10 +36,9 @@ class TranslationCallback(BrowserView):
         form = self.request.form
         if form.get("is_volto", None) is not None:
             file = self.request.stdin
-            file.seek(0)
-            b64_str = file.read()
-            html_file = base64.decodestring(b64_str).decode("latin-1")
-            __import__('pdb').set_trace()
+            self.save_html_volto(form, file)
+            logger.info("Translate volto html")
+            return
 
         if form.get("format", None) == "html":
             file = self.request.stdin
@@ -262,6 +262,24 @@ class TranslationCallback(BrowserView):
                 # trans_obj.reindexObject()
             else:
                 logger.info("Cannot find tile")
+        logger.info("Html translation saved for %s", trans_obj.absolute_url())
+
+    def save_html_volto(self, form, file):
+        file.seek(0)
+        b64_str = file.read()
+        html_translated = base64.decodestring(b64_str).decode("latin-1")
+        site = portal.getSite()
+        trans_obj_path = form.get("external-reference")
+        if "https://" in trans_obj_path:
+            trans_obj_path = "/cca" + \
+                trans_obj_path.split(site.absolute_url())[-1]
+
+        trans_obj = site.unrestrictedTraverse(trans_obj_path)
+        force_unlock(trans_obj)
+
+        fielddata = get_content_from_html(html_translated)
+        for k, v in fielddata.items():
+            setattr(trans_obj, k, v)
         logger.info("Html translation saved for %s", trans_obj.absolute_url())
 
 

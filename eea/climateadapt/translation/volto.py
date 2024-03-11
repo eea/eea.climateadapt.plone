@@ -103,8 +103,9 @@ class ContentToHtml(BrowserView):
         html = self.index()
 
         if self.request.form.get("half"):
-            import pdb
-            pdb.set_trace()
+            return html
+
+        if self.request.form.get("full"):
             http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
             translate_volto_html(html, obj, http_host)
             return html
