@@ -37,9 +37,8 @@ class TranslationCallback(BrowserView):
             file = self.request.stdin
             file.seek(0)
             b64_str = file.read()
-            __import__('pdb').set_trace()
             html_file = base64.decodestring(b64_str).decode("latin-1")
-
+            __import__('pdb').set_trace()
 
         if form.get("format", None) == "html":
             file = self.request.stdin
