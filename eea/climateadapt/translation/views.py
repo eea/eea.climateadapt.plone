@@ -32,8 +32,15 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
-        __import__('pdb').set_trace()
         form = self.request.form
+        if form.get("is_volto", None) is not None:
+            file = self.request.stdin
+            file.seek(0)
+            b64_str = file.read()
+            __import__('pdb').set_trace()
+            html_file = base64.decodestring(b64_str).decode("latin-1")
+
+
         if form.get("format", None) == "html":
             file = self.request.stdin
             self.save_html_fields(form, file)

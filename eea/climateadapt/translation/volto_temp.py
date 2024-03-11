@@ -37,8 +37,7 @@ def translate_volto_html(html, en_obj, http_host):
                 continue
 
             create_translation_object(en_obj, language)
-            import pdb; pdb.set_trace()
-            retrieve_volto_html_translation('en', html, options['obj_url'], target_languages=None)
+            retrieve_volto_html_translation('en', html, options['obj_url'], target_languages=language.upper())
             # retrieve_volto_html_translation(source_lang, html, obj_path, target_languages=None)
 
             #async_service = get_async_service()

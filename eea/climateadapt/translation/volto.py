@@ -96,15 +96,12 @@ class ContentToHtml(BrowserView):
 
         html = self.index()
 
-        # TODO WIP
-        http_host = 'cca-p6.devel5cph.eionet.europa.eu'
-        # http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
-        translate_volto_html(html, obj, http_host)
-        return html
-
-
-
         if self.request.form.get("half"):
+            import pdb; pdb.set_trace()
+            # TODO WIP
+            http_host = 'cca-p6.devel5cph.eionet.europa.eu'
+            # http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
+            translate_volto_html(html, obj, http_host)
             return html
 
         data = get_content_from_html(html)
