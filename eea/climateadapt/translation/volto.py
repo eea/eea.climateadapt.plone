@@ -21,6 +21,7 @@ from .core import (
     execute_translate_async,
 )
 from eea.climateadapt.translation import retrieve_volto_html_translation
+from plone.app.multilingual.manager import TranslationManager
 
 import logging
 import requests
@@ -152,8 +153,14 @@ def translate_volto_html(html, en_obj, http_host):
                 continue
 
             create_translation_object(en_obj, language)
+
+            translations = TranslationManager(en_obj).get_translations()
+            trans_obj = translations[language]
+            trans_obj_url = trans_obj.absolute_url()
+            trans_obj_path = '/cca' + trans_obj_url.split(http_host)[-1]
+
             retrieve_volto_html_translation(
-                'en', html, options['obj_url'], target_languages=language.upper())
+                'en', html, trans_obj_path, target_languages=language.upper())
 
             # TODO: implement and use async translation for volto case, too
             # request_vars = {
