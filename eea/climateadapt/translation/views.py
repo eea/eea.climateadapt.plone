@@ -277,10 +277,15 @@ class TranslationCallback(BrowserView):
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
         force_unlock(trans_obj)
 
-        fielddata = get_content_from_html(html_translated)
+        fielddata = get_content_from_html(html_translated.encode("latin-1"))
         for k, v in fielddata.items():
+            if k != 'blocks':
+                setattr(trans_obj, k, v)
+        for k, v in fielddata['blocks'].items():
             setattr(trans_obj, k, v)
-        logger.info("Html translation saved for %s", trans_obj.absolute_url())
+        trans_obj._p_changed = True
+        trans_obj.reindexObject()
+        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
 
 
 class TranslationList(BrowserView):
