@@ -519,6 +519,103 @@ def fix_news_archive(context):
     context._p_changed = True
 
 
+@onpath("/newsletter")
+def fix_newsletter(context):
+    def get_year(text, years):
+        """ Extract the year: MARCH 2023 -> 2023 """
+        for year in years:
+            if str(year) in str(text):
+                return year
+        return None
+
+    # 1. Extract the list of td items containing the newsletters
+    blocks = context.blocks
+    res_blocks = []
+    for k in blocks.keys():
+        res_blocks.append(blocks[k])
+
+    years = [x for x in reversed(range(2015, 2024))]
+    res_tables = [x['value'] for x in res_blocks if 'url' in str(x)]
+
+    res = []
+    for table in res_tables:
+        tbody = table[0]['children'][0]
+        row = tbody['children'][0]
+        data = row['children']
+
+        for item in data:
+            newsletter = item['children'][0]
+            res.append(newsletter)
+
+    newsletters_data = []
+    filtered_res = [x for x in res if 'url' in str(x)]
+
+    # 2. Extract relevant info for each newsletter item
+    for newsletter_item in filtered_res:
+        n_data = {}
+        newsletter_url = newsletter_item['data']['url']
+        n_data['url'] = newsletter_url
+        # newsletter_info = newsletter_item['children']
+        # n_data['info'] = newsletter_info
+
+        for child in newsletter_item['children']:
+            if 'text' in child.keys():
+                if 'Issue' in child['text']:
+                    newsletter_title = child['text']
+                    n_data['title'] = newsletter_title
+                else:
+                    year = get_year(child, years)
+                    if year is not None:
+                        n_data['date_title'] = child['text']
+                        n_data['year'] = year
+
+            if 'scale' in child.keys():
+                if 'url' in child.keys():
+                    img_url = child['url']
+                    n_data['img_url'] = img_url
+
+        newsletters_data.append(n_data)
+
+    # 3. Group newsletters by year
+    n_by_year = {}
+    for year in years:
+        n_by_year[year] = []
+    for n_item in newsletters_data:
+        n_by_year[n_item['year']].append(n_item)
+
+    # TODO: 4. Generate nice listing blocks using the prepared information
+    # __import__('pdb').set_trace()
+
+    # "18354c46-7412-4362-92a0-06ba1a568431": {
+    #   "@type": "imagecards",
+    #   "align": "left",
+    #   "cards": [
+    #     {
+    #       "@id": "a423c8a7-e985-435e-b547-3c17c18829ee",
+    #       "attachedimage": "http://localhost:3000/newsletter/river-219972_1280.jpg",
+    #       "link": "http://localhost:3000/sandbox",
+    #       "text": [
+    #         {
+    #           "children": [
+    #             {
+    #               "text": "Text aici"
+    #             }
+    #           ],
+    #           "type": "p"
+    #         }
+    #       ],
+    #       "title": "Titlu aici"
+    #     },
+    #     {
+    #       "@id": "78c4d186-962e-4352-bc37-a38a94bc57e1",
+    #       ...
+    #     }
+    #   ],
+    #   "display": "round_tiled",
+    #   "image_scale": "large"
+    # },
+
+
 def fix_read_more(context):
     url = context.absolute_url(relative=True)
 
@@ -531,7 +628,8 @@ def fix_read_more(context):
     ]
 
     def get_columns_block_id(blocks):
-        columns_block = {k for k, v in blocks.items() if v["@type"] == "columnsBlock"}
+        columns_block = {
+            k for k, v in blocks.items() if v["@type"] == "columnsBlock"}
         col_id = list(columns_block)[0]
         return col_id
 
@@ -679,7 +777,8 @@ def fix_obs_countries(context):
             if isinstance(firstnode, dict) and firstnode.get("type") == "table":
                 if not first_table_node_uid:
                     first_table_node_uid = uid
-                    firstcol["blocks_layout"]["items"] = [x for x in items if x != uid]
+                    firstcol["blocks_layout"]["items"] = [
+                        x for x in items if x != uid]
                 else:
                     tbody = firstnode["children"][0]
                     tr = tbody["children"][0]
@@ -802,7 +901,8 @@ def fix_field_encoding(context):
 
 @inpath("countries-regions/transnational-regions/")
 def fix_preview_image(context):
-    folder_images = context.listFolderContents(contentFilter={"portal_type": "Image"})
+    folder_images = context.listFolderContents(
+        contentFilter={"portal_type": "Image"})
     folder_image = None
     if len(folder_images) > 0:
         folder_image = folder_images[0]
@@ -876,6 +976,7 @@ content_fixers = [
     fix_ast_header,
     fix_obs_countries,
     fix_layout_size,
+    fix_newsletter,
 ]
 
 folder_fixers = [

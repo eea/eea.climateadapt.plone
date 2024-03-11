@@ -523,6 +523,13 @@
                 i18n:domain="eea.climateadapt.frontpage">
                 <ul class="nav nav-tabs flex-wrapper policies-nav">
                   <li class="climate-adapt-platforms-nav-item active">
+                    <a tal:attributes="href python:view.translate_url('/en/eucra')"
+                        href="/en/eucra"
+                       data-toggle="tab" class="policies-nav-link" data-target="#eucra">
+                      <p i18n:translate="">European Climate Risk Assessment<br />(EUCRA)</p>
+                    </a>
+                  </li>
+                  <li class="climate-adapt-platforms-nav-item">
                     <a tal:attributes="href python:view.translate_url('/en/mission')"
                         href="/en/mission"
                        data-toggle="tab" class="policies-nav-link" data-target="#eumission">
@@ -543,17 +550,29 @@
                       <p i18n:translate="">European Climate Data Explorer</p>
                     </a>
                   </li>
-                  <li class="climate-adapt-platforms-nav-item">
-                    <a tal:attributes="href python:view.translate_url('/en/eucra')"
-                        href="/en/eucra"
-                       data-toggle="tab" class="policies-nav-link" data-target="#eucra">
-                      <p i18n:translate="">European Climate Risk Assessment<br />(EUCRA)</p>
-                    </a>
-                  </li>
                 </ul>
               
                 <div class="tab-content policies-tab-content">
-              
+
+                  <!-- eucra -->
+                  <div id="eucra" class="tab-pane active">
+                    <div class="row">
+                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
+                        <img data-src="/cca/++theme++climateadaptv2/static/images/home-page/eucra.png"
+                             class="lazyload" style="width:200px !important"
+                             alt="Coastal areas" title="Coastal areas"/>
+                      </div>
+                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
+                        <h3 i18n:translate="">European Climate Risk Assessment</h3>
+                        <p i18n:translate="">Europe is the fastest warming continent in the world, and climate risks are threatening its energy and food security, ecosystems, infrastructure, water resources, financial stability, and people’s health. According to the first ever European Climate Risk Assessment (EUCRA) published by the EEA, many of these risks have already reached critical levels and can become catastrophic without urgent and decisive action.</p>
+                              <a class="standard-button primary-button feature-btn"
+                              href="/mission"
+                              tal:attributes="href python:view.translate_url('https://www.eea.europa.eu/en/newsroom/news/europe-is-not-prepared-for')"
+                               i18n:translate="">Go to the EUCRA</a>
+                      </div>
+                    </div>
+                  </div>
+
                   <!-- Platforms -->
                   <div id="platforms" class="tab-pane">
                     <div class="row">
@@ -593,7 +612,7 @@
                   </div>
               
                   <!-- EuMission -->
-                  <div id="eumission" class="tab-pane active">
+                  <div id="eumission" class="tab-pane">
                     <div class="row">
                       <div class="policy-image col-md-3 col-sm-3 col-xs-4">
                         <img data-src="/cca/++theme++climateadaptv2/static/images/home-page/eu_mission_climate.jpg"
@@ -607,25 +626,6 @@
                               href="/mission"
                               tal:attributes="href python:view.translate_url('/en/mission')"
                                i18n:translate="">Go to the Mission Portal</a>
-                      </div>
-                    </div>
-                  </div>
-              
-                  <!-- eucra -->
-                  <div id="eucra" class="tab-pane">
-                    <div class="row">
-                      <div class="policy-image col-md-3 col-sm-3 col-xs-4">
-                        <img data-src="/cca/++theme++climateadaptv2/static/images/home-page/eucra.png"
-                             class="lazyload" style="width:200px !important"
-                             alt="Coastal areas" title="Coastal areas"/>
-                      </div>
-                      <div class="policy-description col-md-9 col-sm-9 col-xs-8">
-                        <h3 i18n:translate="">European Climate Risk Assessment</h3>
-                        <p i18n:translate="">The European Climate Risk Assessment provides an assessment of current and future climate change impacts and risks relating to the environment, economy and wider society in Europe.</p>
-                              <a class="standard-button primary-button feature-btn"
-                              href="/mission"
-                              tal:attributes="href python:view.translate_url('/en/eu-adaptation-policy/key-eu-actions/climate_risk_assessment')"
-                               i18n:translate="">Go to the EUCRA</a>
                       </div>
                     </div>
                   </div>
@@ -1603,23 +1603,23 @@
           <div class="main-box col-lg-3 col-md-6 col-sm-6 col-xs-12">
             <div class="box-container">
               <img class="lazyload"
-                   data-src="/cca/++theme++climateadaptv2/static/images/home-page/sun.png"
+                   data-src="/cca/++theme++climateadaptv2/static/images/home-page/new-eea-product.png"
                    title="Extreme summer weather in a changing climate: is Europe prepared?"
                    width="122"
                    height="73"
                    />
               <p class="covenant-text">
                 <a i18n:translate=""
-                    href="https://discomap.eea.europa.eu/climatechange">
-                  New EEA product "Extreme summer weather in a changing climate: is Europe prepared?"
+                    href="https://www.eea.europa.eu/en/newsroom/news/europe-is-not-prepared-for">
+                    New EEA product: European Climate Risk Assessment.
                 </a>
                 <span i18n:translate="">
-                  As our climate changes, the weather is becoming more extreme. The European Environment Agency looks at what might happen this summer; the impact of past weather events; what we can expect in the long term; and how prepared we are as a society.
+                  The assessment identifies 36 climate risks that pose major threats to Europe. Many of these have already reached critical levels and can become catastrophic without urgent and decisive action.
                 </span>
               </p>
               <div class="read-more-wrapper">
                 <a class="read-more"
-                    href="https://discomap.eea.europa.eu/climatechange">
+                    href="https://www.eea.europa.eu/en/newsroom/news/europe-is-not-prepared-for">
                   <i class="fa fa-angle-double-right"></i>
                   <span i18n:translate="">Read more</span>
                 </a>
