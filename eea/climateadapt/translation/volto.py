@@ -160,7 +160,7 @@ def translate_volto_html(html, en_obj, http_host):
             trans_obj_path = '/cca' + trans_obj_url.split(http_host)[-1]
 
             retrieve_volto_html_translation(
-                'en', html, trans_obj_path, target_languages=language.upper())
+                'en', html.encode("utf-8"), trans_obj_path, target_languages=language.upper())
 
             # TODO: implement and use async translation for volto case, too
             # request_vars = {
