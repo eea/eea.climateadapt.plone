@@ -3,7 +3,7 @@ from collective.excelexport.exportables.dexterityfields import \
     BaseFieldRenderer
 from zope.component import adapts
 from zope.interface import Interface
-from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
+from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple, IDict
 
 from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
 from plone.app.textfield.interfaces import IRichText
@@ -13,6 +13,127 @@ from plone.formwidget.geolocation.interfaces import IGeolocationField
 from Products.CMFPlone.utils import safe_unicode
 from z3c.form.interfaces import NO_VALUE
 from z3c.relationfield.interfaces import IRelationList
+from collective.excelexport.view import BaseExport
+from collective.excelexport.view import ExcelExport
+
+try:
+    from StringIO import StringIO  ## for Python 2
+except ImportError:
+    from io import StringIO  ## for Python 3
+from zope.component import getMultiAdapter
+from zope.component.interfaces import ComponentLookupError
+from collective.excelexport.interfaces import IStyles
+import xlwt
+from xlwt import CompoundDoc
+from zope.i18n import translate
+from zope.i18nmessageid.message import Message
+from copy import copy
+from DateTime import DateTime
+import datetime
+
+class ExcelExport(BaseExport):
+    """Excel export view
+    """
+
+    mimetype = "application/vnd.ms-excel"
+    extension = "xls"
+    encoding = "windows-1252"
+
+    def _format_render(self, render):
+        """Common formatting to unicode
+        """
+        if isinstance(render, Message):
+            render = translate(render, context=self.request)
+        elif isinstance(render, unicode):
+            pass
+        elif render is None:
+            render = u""
+        elif isinstance(render, str):
+            render = safe_unicode(render)
+        elif isinstance(render, datetime.datetime):
+            render = safe_unicode(render.strftime("%Y/%m/%d %H:%M"))
+        elif isinstance(render, (DateTime, datetime.date)):
+            try:
+                render = safe_unicode(render.strftime("%Y/%m/%d"))
+            except ValueError:
+                # when date < 1900
+                render = safe_unicode(render)
+        elif not isinstance(render, unicode):
+            render = safe_unicode(str(render))
+
+        return render
+
+    def write_sheet(self, sheet, sheetinfo, styles):
+        # values
+        for rownum, obj in enumerate(sheetinfo["objects"]):
+            _exportablenum = 0
+            for exportablenum, exportable in enumerate(sheetinfo["exportables"]):
+                try:
+                    # dexterity
+                    bound_obj = exportable.field.bind(obj).context
+                except AttributeError:
+                    bound_obj = obj
+
+                # check if is field is block
+                render = exportable.render_header()
+                render = self._format_render(render)
+                if render not in ['Blocks', 'Blocks Layout']:
+                    style = exportable.render_style(bound_obj, copy(styles.content))
+                    style_headers = getattr(style, "headers", styles.headers)
+                    style_content = getattr(style, "content", style)
+                    if rownum == 0:
+                        # headers
+                        render = exportable.render_header()
+                        render = self._format_render(render)
+                        sheet.write(0, _exportablenum, render, style_headers)
+
+                    render = exportable.render_value(bound_obj)
+                    render = self._format_render(render)
+                    sheet.write(rownum + 1, _exportablenum, render, style_content)
+                    _exportablenum += 1
+
+    def get_xldoc(self, sheetsinfo, styles):
+        xldoc = xlwt.Workbook(encoding="utf-8")
+        empty_doc = True
+        for sheetnum, sheetinfo in enumerate(sheetsinfo):
+            if len(sheetinfo["exportables"]) == 0:
+                continue
+
+            # sheet
+            empty_doc = False
+            title = self._format_render(sheetinfo["title"])
+            sheet_title = (
+                title.replace("'", " ").replace(":", "-").replace("/", "-")[:31]
+            )
+
+            try:
+                sheet = xldoc.add_sheet(sheet_title)
+            except Exception:
+                sheet = xldoc.add_sheet(sheet_title + " " + str(sheetnum))
+
+            self.write_sheet(sheet, sheetinfo, styles)
+
+        if empty_doc:
+            # empty doc
+            sheet = xldoc.add_sheet("sheet 1")
+            sheet.write(0, 0, u"", styles.content)
+
+        return xldoc
+
+    def get_data_buffer(self, sheetsinfo, policy=""):
+        string_buffer = StringIO()
+        try:
+            styles = getMultiAdapter(
+                (self.context, self.request), interface=IStyles, name=policy
+            )
+        except ComponentLookupError:
+            styles = getMultiAdapter((self.context, self.request), interface=IStyles)
+
+        xldoc = self.get_xldoc(sheetsinfo, styles)
+        doc = CompoundDoc.XlsDoc()
+        data = xldoc.get_biff_data()
+        doc.save(string_buffer, data)
+        return string_buffer
 
 
 class BaseRenderer(object):
@@ -138,7 +259,6 @@ class ListFieldRenderer(BaseFieldRenderer):
     def render_value(self, obj):
         """Gets the value to render in excel file from content value
         """
-
         value = self.get_value(obj)
 
         if not value or value == NO_VALUE:
@@ -161,7 +281,6 @@ class ListFieldRenderer(BaseFieldRenderer):
                 text = new_text
 
         return text
-
 
 class GeolocationFieldRenderer(BaseFieldRenderer):
     """ Geolocation field adapter for excel export"""
