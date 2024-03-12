@@ -2082,6 +2082,18 @@ msgstr "Description de l'étude de cas"
 msgid "Case Study Illustrations"
 msgstr "Illustrations d'étude de cas"
 
+#: ../../climateadapt/vocabulary.py:368
+msgid "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
+msgstr "Cas développé, mis en œuvre et partiellement financé en tant que mesure d'adaptation au changement climatique."
+
+#: ../../climateadapt/vocabulary.py:366
+msgid "Case developed and implemented as a Climate Change Adaptation Measure."
+msgstr "Cas développé et mis en œuvre en tant que mesure d’adaptation au changement climatique."
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
+msgstr "Cas principalement développé et mis en œuvre en raison d’autres objectifs politiques, mais avec une prise en compte significative des aspects d’adaptation au changement climatique"
+
 # ,
 # ,
 # ,
