@@ -1689,40 +1689,42 @@ def execute_translate_async(context, options, language, request_vars):
         for k, v in request_vars.items():
             context.REQUEST.set(k, v)
 
-    try:
-        settings = {
-            "language": language,
-            "uid": options["uid"],
-        }
+    settings = {
+        "language": language,
+        "uid": options["uid"],
+    }
 
-        translation_step_4(context, settings, async_request=True)
-        site_portal = portal.get()
-        site_portal.REQUEST = context.REQUEST
-        translate_obj(context, lang=language, one_step=True)
-        # trans_obj = get_translation_object(context, language)
-        # copy_missing_interfaces(context, trans_obj)
+    translation_step_4(context, settings, async_request=True)
+    site_portal = portal.get()
+    site_portal.REQUEST = context.REQUEST
 
-        # delete REQUEST to avoid pickle error
-        # del context.REQUEST
-        del site_portal.REQUEST
+    translate_obj(context, lang=language, one_step=True)
 
-        logger.info("Async translate for object %s", options["obj_url"])
+    # trans_obj = get_translation_object(context, language)
+    # copy_missing_interfaces(context, trans_obj)
 
-    except Exception as err:
-        # async_service = get_async_service()
+    # delete REQUEST to avoid pickle error
+    # del context.REQUEST
+    del site_portal.REQUEST
 
-        # re-schedule PING on error
-        # schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
-        # queue = async_service.getQueues()['']
-        # async_service.queueJobInQueueWithDelay(
-        #     None, schedule, queue, ('translate',),
-        #     execute_translate_step_4_async, context, options, language, request_vars
-        # )
+    logger.info("Async translate for object %s", options["obj_url"])
 
-        # mark the original job as failed
-        return "Translate rescheduled for object %s. " "Reason: %s " % (
-            options["obj_url"],
-            str(err),
-        )
+    # try:
+    # except Exception as err:
+    #     # async_service = get_async_service()
+    #
+    #     # re-schedule PING on error
+    #     # schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
+    #     # queue = async_service.getQueues()['']
+    #     # async_service.queueJobInQueueWithDelay(
+    #     #     None, schedule, queue, ('translate',),
+    #     #     execute_translate_step_4_async, context, options, language, request_vars
+    #     # )
+    #
+    #     # mark the original job as failed
+    #     return "Translate rescheduled for object %s. " "Reason: %s " % (
+    #         options["obj_url"],
+    #         str(err),
+    #     )
 
     return "Finished"
