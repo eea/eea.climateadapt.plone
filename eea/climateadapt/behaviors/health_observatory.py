@@ -1,10 +1,10 @@
-from zope.interface import provider
-from zope.schema import (URI, Bool, Choice, Date, Datetime, List, Text,
-                         TextLine, Tuple)
-
+from zope.interface import alsoProvides
 from eea.climateadapt import CcaAdminMessageFactory as _
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
+from zope.interface import provider
+from zope.schema import (Bool, Choice, List)
 
 
 @provider(IFormFieldProvider)
@@ -29,3 +29,8 @@ class IHealthObservatoryMetadata(model.Schema):
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.health_impacts"),
     )
+
+
+alsoProvides(IHealthObservatoryMetadata["include_in_observatory"], ILanguageIndependentField)
+alsoProvides(IHealthObservatoryMetadata["include_in_mission"], ILanguageIndependentField)
+alsoProvides(IHealthObservatoryMetadata["health_impacts"], ILanguageIndependentField)

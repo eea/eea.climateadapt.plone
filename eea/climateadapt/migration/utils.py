@@ -1,6 +1,6 @@
+from uuid import uuid4
 import json
 import logging
-from uuid import uuid4
 import pycountry
 
 import requests
@@ -12,13 +12,13 @@ logger = logging.getLogger("eea.climateadapt")
 
 
 def path(obj):
-    return "/" + "/".join(obj.absolute_url(relative=1).split('/')[2:])
+    return "/" + "/".join(obj.absolute_url(relative=1).split("/")[2:])
 
 
 def convert_to_blocks(text):
     data = {"html": text}
-    headers = {'Content-type': 'application/json',
-               'Accept': 'application/json'}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
     req = requests.post(
         BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
@@ -26,18 +26,18 @@ def convert_to_blocks(text):
         logger.debug(req.text)
         raise ValueError
 
-    blocks = req.json()['data']
+    blocks = req.json()["data"]
     return blocks
 
 
 def text_to_slate(text):
     data = {"html": text}
-    headers = {'Content-type': 'application/json',
-               'Accept': 'application/json'}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
     req = requests.post(
         SLATE_CONVERTER, data=json.dumps(data), headers=headers)
-    slate = req.json()['data']
+    slate = req.json()["data"]
     return slate
 
 

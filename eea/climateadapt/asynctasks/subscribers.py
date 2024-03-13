@@ -1,7 +1,9 @@
 """ Subscribers
 """
 import logging
+
 from plone.app.async.subscribers import set_quota
+
 logger = logging.getLogger('eea.climateadapt')
 
 
@@ -12,14 +14,14 @@ def get_maximum_threads(queue):
     """ Get the maximum threads per queue
     """
     return 1
-    
-    size = 0
-    for dispatcher_agent in queue.dispatchers.values():
-        if not dispatcher_agent.activated:
-            continue
-        for _agent in dispatcher_agent.values():
-            size += 3
-    return size or 1
+
+    # size = 0
+    # for dispatcher_agent in queue.dispatchers.values():
+    #     if not dispatcher_agent.activated:
+    #         continue
+    #     for _agent in dispatcher_agent.values():
+    #         size += 3
+    # return size or 1
 
 
 def configure_queue(event):

@@ -1,3 +1,5 @@
+from zope.interface import alsoProvides
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from eea.climateadapt import CcaAdminMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
@@ -16,8 +18,14 @@ class ITopLevelVisibility(model.Schema):
 
     show_in_top_level = schema.Bool(
         title=_("Show as top level section"),
-        description=_("If set on a page in a root, will show that page or "
-                      "folder in the global navigation menu"),
+        description=_(
+            "If set on a page in a root, will show that page or "
+            "folder in the global navigation menu"
+        ),
         required=False,
     )
     directives.write_permission(show_in_top_level="cmf.ManagePortal")
+
+
+alsoProvides(
+    ITopLevelVisibility["show_in_top_level"], ILanguageIndependentField)

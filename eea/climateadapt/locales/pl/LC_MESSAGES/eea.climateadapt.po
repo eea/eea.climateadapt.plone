@@ -1766,6 +1766,18 @@ msgstr "Opis studium przypadku"
 msgid "Case Study Illustrations"
 msgstr "Ilustracje studium przypadku"
 
+#: ../../climateadapt/vocabulary.py:368
+msgid "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
+msgstr "Przypadek opracowany, wdrożony i częściowo sfinansowany jako środek przystosowania się do zmiany klimatu."
+
+#: ../../climateadapt/vocabulary.py:366
+msgid "Case developed and implemented as a Climate Change Adaptation Measure."
+msgstr "Sprawa opracowana i wdrożona jako środek przystosowania się do zmiany klimatu."
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
+msgstr "Przypadek został opracowany i wdrożony głównie ze względu na inne cele polityki, ale ze znacznym uwzględnieniem aspektów adaptacji do zmiany klimatu"
+
 # ,
 # ,
 # ,

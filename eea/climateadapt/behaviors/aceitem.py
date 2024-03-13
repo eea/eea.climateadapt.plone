@@ -1,3 +1,4 @@
+from plone.app.dexterity.behaviors.metadata import IPublication
 from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.schema import AbsoluteUrl, Uploader
@@ -17,8 +18,6 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer
 from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple
-from plone.autoform import directives
-# , Year, PortalType,
 
 
 class IAceItem(IImageScaleTraversable):
@@ -33,7 +32,6 @@ class IAceItem(IImageScaleTraversable):
     dexteritytextindexer.searchable("sectors")
     dexteritytextindexer.searchable("climate_impacts")
     dexteritytextindexer.searchable("elements")
-    # dexteritytextindexer.searchable('year')
 
     dexteritytextindexer.searchable("websites")
     dexteritytextindexer.searchable("source")
@@ -48,12 +46,13 @@ class IAceItem(IImageScaleTraversable):
     dexteritytextindexer.searchable("metadata")
     dexteritytextindexer.searchable("special_tags")
 
+    # dexteritytextindexer.searchable('year')
     # directives.omitted(IAddForm, 'relatedItems')
     # directives.omitted(IEditForm, 'relatedItems')
 
     form.fieldset(
         "default",
-        label=u"Item Description",
+        label="Item Description",
         fields=[
             "title",
             "description",
@@ -68,19 +67,18 @@ class IAceItem(IImageScaleTraversable):
 
     form.fieldset(
         "reference_information",
-        label=u"Reference information",
+        label="Reference information",
         fields=["websites", "source", "special_tags", "comments"],
     )
 
     form.fieldset(
-        "geographic_information", label=u"Geographic Information", fields=["geochars"]
+        "geographic_information", label="Geographic Information", fields=["geochars"]
     )
 
     form.fieldset(
         "categorization",
-        label=u"Inclusion in the subsites",
-        fields=["include_in_observatory",
-                "include_in_mission", "health_impacts"],
+        label="Inclusion in the subsites",
+        fields=["include_in_observatory", "include_in_mission", "health_impacts"],
     )
 
     # form.fieldset('inclusion_health_observatory',
@@ -88,7 +86,7 @@ class IAceItem(IImageScaleTraversable):
     #              fields=['health_impacts', 'include_in_observatory']
     #              )
 
-    form.fieldset("backend", label=u"Backend fields", fields=[])
+    form.fieldset("backend", label="Backend fields", fields=[])
 
     # -----------[ "default" fields ]------------------
     # these are the richtext fields from the db:
@@ -96,89 +94,90 @@ class IAceItem(IImageScaleTraversable):
     #      'keyword', 'textsearch'])
 
     origin_website = List(
-        title=_(u"Item from third parties"),
+        title=_("Item from third parties"),
         description=_(
-            u"Used only to highlight items "
-            u"provided by Third parties."
-            u"<br>Please don't compile "
-            u"this field if you are a Climate-ADAPT expert "
-            u"creating a new item."
+            "Used only to highlight items "
+            "provided by Third parties."
+            "<br>Please don't compile "
+            "this field if you are a Climate-ADAPT expert "
+            "creating a new item."
         ),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.origin_website"),
     )
 
     logo = NamedBlobImage(
-        title=_(u"Logo"),
+        title=_("Logo"),
         description=_(
-            u"Upload a representative picture or logo for the item."
-            u" Recommended size: at least 360/180 px, aspect ratio 2x"
+            "Upload a representative picture or logo for the item."
+            " Recommended size: at least 360/180 px, aspect ratio 2x"
         ),
         required=False,
     )
 
     image = NamedBlobImage(
-        title=_(u"Thumbnail"),
+        title=_("Thumbnail"),
         description=_(
-            u"Upload a representative picture or logo for the item. "
-            u"Recommended size: at least 360/180 px, aspect ratio 2x. "
-            u"This image will be used in the search result page - cards view. "
-            u"If this image doesn't exist, then the logo image will be used."
+            "Upload a representative picture or logo for the item. "
+            "Recommended size: at least 360/180 px, aspect ratio 2x. "
+            "This image will be used in the search result page - cards view. "
+            "If this image doesn't exist, then the logo image will be used."
         ),
         required=False,
     )
 
     health_impacts = List(
-        title=_(u"Health impacts"),
+        title=_("Health impacts"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.health_impacts"),
     )
     include_in_observatory = Bool(
-        title=_(u"Include in observatory"), required=False, default=False
+        title=_("Include in observatory"), required=False, default=False
     )
 
     include_in_mission = Bool(
-        title=_(u"Include in the Mission Portal"), required=False, default=False
+        title=_("Include in the Mission Portal"), required=False, default=False
     )
 
     title = TextLine(
-        title=_(u"Title"), description=u"Item Name (250 character limit)", required=True
+        title=_("Title"),
+        description=_("Item Name (250 character limit)"),
+        required=True,
     )
 
     long_description = RichText(
-        title=(u"Description"),
-        description=u"Provide a description of the " u"item.(5,000 character limit)",
+        title=_("Description"),
+        description=_("Provide a description of the item.(5,000 character limit)"),
         required=True,
     )
 
     description = Text(
-        title=_(u"Short summary"),
+        title=_("Short summary"),
         required=False,
-        description=u"Enter a short summary that will be used in listings.",
-        missing_value=u'',
+        description=_("Enter a short summary that will be used in listings."),
+        missing_value=unicode(""),
     )
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     keywords = Tuple(
-        title=_(u"Keywords"),
+        title=_("Keywords"),
         description=_(
-            u"Describe and tag this item with relevant keywords."
-            u"Press Enter after writing your keyword."
+            "Describe and tag this item with relevant keywords."
+            "Press Enter after writing your keyword."
         ),
         required=False,
         missing_value=None,
         default=(),
         value_type=TextLine(
-            title=u"Single topic",
+            title=_("Single topic"),
         ),
     )
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
-        title=_(u"Sectors"),
+        title=_("Sectors"),
         description=_(
-            u"Select one or more relevant sector policies"
-            u" that this item relates to."
+            "Select one or more relevant sector policies" " that this item relates to."
         ),
         required=True,
         missing_value=[],
@@ -190,10 +189,10 @@ class IAceItem(IImageScaleTraversable):
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
-        title=_(u"Climate impacts"),
+        title=_("Climate impacts"),
         description=_(
-            u"Select one or more climate change impact topics that "
-            u"this item relates to."
+            "Select one or more climate change impact topics that "
+            "this item relates to."
         ),
         required=True,
         missing_value=[],
@@ -205,8 +204,8 @@ class IAceItem(IImageScaleTraversable):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_(u"Adaptation elements"),
-        description=_(u"Select one or more elements."),
+        title=_("Adaptation elements"),
+        description=_("Select one or more elements."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
@@ -219,19 +218,21 @@ class IAceItem(IImageScaleTraversable):
     #             )
 
     publication_date = Date(
-        title=_(u"Date of item's creation"),
-        description=u"The date refers to the moment in which the item "
-        u"has been prepared by contributing experts to be "
-        u"submitted for the publication in Climate "
-        u"ADAPT Publication/last update date."
-        u" Please use the Calendar icon to add day/month/year. If you want to "
-        u'add only the year, please select "day: 1", "month: January" '
-        u"and then the year",
+        title=_("Date of item's creation"),
+        description=_(
+            "The date refers to the moment in which the item "
+            "has been prepared by contributing experts to be "
+            "submitted for the publication in Climate "
+            "ADAPT Publication/last update date."
+            " Please use the Calendar icon to add day/month/year. If you want to "
+            'add only the year, please select "day: 1", "month: January" '
+            "and then the year"
+        ),
         required=True,
     )
 
     featured = Bool(
-        title=_(u"Featured"),
+        title=_("Featured"),
         required=False,
         default=False,
     )
@@ -240,10 +241,10 @@ class IAceItem(IImageScaleTraversable):
 
     directives.widget("websites", TextLinesWidget)
     websites = Tuple(
-        title=_(u"Websites"),
+        title=_("Websites"),
         description=_(
-            u"List the Websites where the item can be found or is "
-            u"described. Please place each website on a new line"
+            "List the Websites where the item can be found or is "
+            "described. Please place each website on a new line"
         ),
         required=False,
         value_type=URI(),
@@ -251,12 +252,12 @@ class IAceItem(IImageScaleTraversable):
     )
 
     source = RichText(
-        title=_(u"References"),
+        title=_("References"),
         required=False,
         description=_(
-            u"Describe the references (projects, a tools reports, etc.) "
-            u"related to this item, providing further information about "
-            u"it or its source."
+            "Describe the references (projects, a tools reports, etc.) "
+            "related to this item, providing further information about "
+            "it or its source."
         ),
     )
 
@@ -264,35 +265,39 @@ class IAceItem(IImageScaleTraversable):
 
     form.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
-        title=_(u"Geographic characterisation"),
+        title=_("Geographic characterisation"),
         required=True,
-        default=u'{"geoElements":{"element":"GLOBAL", "macrotrans"'
-        u':null,"biotrans":null,"countries":[],'
-        u'"subnational":[],"city":""}}',
-        description=u"Select the characterisation for this item",
+        default=unicode(
+            '{"geoElements":{"element":"GLOBAL", "macrotrans"'
+            ':null,"biotrans":null,"countries":[],'
+            '"subnational":[],"city":""}}'
+        ),
+        description=_("Select the characterisation for this item"),
     )
 
     comments = Text(
-        title=_(u"Comments"),
+        title=_("Comments"),
         required=False,
-        default=u"",
-        description=u"Comments about this database item "
-        u"[information entered below will not be "
-        u"displayed on the public pages of "
-        u"climate-adapt]",
+        default=unicode(""),
+        description=_(
+            "Comments about this database item "
+            "[information entered below will not be "
+            "displayed on the public pages of "
+            "climate-adapt]"
+        ),
     )
 
     contributor_list = RelationList(
-        title=u"Contributor(s)",
+        title=_("Contributor(s)"),
         default=[],
         description=_(
-            u'Select from the Climate ADAPT "Organisation" items'
-            u" the organisations contributing to/ involved in this"
-            u" item"
+            'Select from the Climate ADAPT "Organisation" items'
+            " the organisations contributing to/ involved in this"
+            " item"
         ),
         value_type=RelationChoice(
-            title=_(u"Related"),
-            vocabulary="eea.climateadapt.organisations"
+            title=_("Related"),
+            vocabulary="eea.climateadapt.organisations",
             # source=ObjPathSourceBinder(),
             # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
         ),
@@ -300,19 +305,19 @@ class IAceItem(IImageScaleTraversable):
     )
 
     other_contributor = Text(
-        title=_(u"Other contributor(s)"),
+        title=_("Other contributor(s)"),
         required=False,
-        default=u"",
+        default=unicode(""),
         description=_(
-            u"Please first verify if the contributor is "
-            u"already part of the Climate ADAPT Database."
-            u" If not, it is suggested to first create a "
-            u"new Organisation item "
-            u"(<a target='_blank' "
-            u"href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). "
-            u"As last alternative please add the new "
-            u"contributor(s) in the following box, using "
-            u"the official name"
+            "Please first verify if the contributor is "
+            "already part of the Climate ADAPT Database."
+            " If not, it is suggested to first create a "
+            "new Organisation item "
+            "(<a target='_blank' "
+            "href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). "
+            "As last alternative please add the new "
+            "contributor(s) in the following box, using "
+            "the official name"
         ),
     )
 
@@ -362,52 +367,49 @@ class IAceItem(IImageScaleTraversable):
     # -----------[ "backend" fields ]------------------
 
     special_tags = Tuple(
-        title=_(u"Special tagging"),
+        title=_("Special tagging"),
         description=_(
-            u"Used only by Climate-ADAPT administrator. Please don't "
-            u"compile this field if you are a Climate-ADAPT expert creating a new "
-            u"item."
+            "Used only by Climate-ADAPT administrator. Please don't "
+            "compile this field if you are a Climate-ADAPT expert creating a new "
+            "item."
         ),
         required=False,
         value_type=TextLine(),
         missing_value=None,
     )
 
-    # portal_type = PortalType(title=_(u"Portal type"),
-    #                          required=False, default=u"")
+    item_link = AbsoluteUrl(title=_("Item link"), required=False, default=unicode(""))
 
-    item_link = AbsoluteUrl(title=_(u"Item link"), required=False, default=u"")
-
-    uploader = Uploader(title=_(u"Uploaded by"), required=False, default=u"")
+    uploader = Uploader(title=_("Uploaded by"), required=False, default=unicode(""))
     # fix???
     data_type = Choice(
-        title=_(u"Data Type"),
+        title=_("Data Type"),
         required=False,
         vocabulary="eea.climateadapt.aceitems_datatypes",
     )
 
     # fix???
     storage_type = Choice(
-        title=_(u"Storage Type"),
+        title=_("Storage Type"),
         required=False,
         vocabulary="eea.climateadapt.aceitems_storagetypes",
     )
 
-    spatial_layer = TextLine(title=_(u"Spatial Layer"),
-                             required=False, default=u"")
+    spatial_layer = TextLine(
+        title=_("Spatial Layer"), required=False, default=unicode("")
+    )
 
     spatial_values = List(
-        title=_(u"Countries"),
-        description=_(u"European countries"),
+        title=_("Countries"),
+        description=_("European countries"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
 
-    important = Bool(title=_(u"High importance"),
-                     required=False, default=False)
+    important = Bool(title=_("High importance"), required=False, default=False)
 
     metadata = TextLine(
-        title=_(u"Metadata"),
+        title=_("Metadata"),
         required=False,
     )
 
@@ -472,20 +474,32 @@ def KeywordsFieldWidget(field, request):
     return widget
 
 
-alsoProvides(IAceItem['logo'], ILanguageIndependentField)
-alsoProvides(IAceItem['origin_website'], ILanguageIndependentField)
-alsoProvides(IAceItem['image'], ILanguageIndependentField)
-alsoProvides(IAceItem['contributor_list'], ILanguageIndependentField)
-alsoProvides(IAceItem['other_contributor'], ILanguageIndependentField)
-alsoProvides(IAceItem['keywords'], ILanguageIndependentField)
-alsoProvides(IAceItem['sectors'], ILanguageIndependentField)
-alsoProvides(IAceItem['climate_impacts'], ILanguageIndependentField)
-alsoProvides(IAceItem['elements'], ILanguageIndependentField)
-alsoProvides(IAceItem['websites'], ILanguageIndependentField)
-alsoProvides(IAceItem['special_tags'], ILanguageIndependentField)
-# alsoProvides(IAceItem['relatedItems'], ILanguageIndependentField)
-alsoProvides(IAceItem['geochars'], ILanguageIndependentField)
-alsoProvides(IAceItem['include_in_observatory'], ILanguageIndependentField)
-alsoProvides(IAceItem['include_in_mission'], ILanguageIndependentField)
-alsoProvides(IAceItem['health_impacts'], ILanguageIndependentField)
-alsoProvides(IAceItem['comments'], ILanguageIndependentField)
+alsoProvides(IAceItem["climate_impacts"], ILanguageIndependentField)
+alsoProvides(IAceItem["comments"], ILanguageIndependentField)
+alsoProvides(IAceItem["contributor_list"], ILanguageIndependentField)
+alsoProvides(IAceItem["data_type"], ILanguageIndependentField)
+alsoProvides(IAceItem["elements"], ILanguageIndependentField)
+alsoProvides(IAceItem["featured"], ILanguageIndependentField)
+alsoProvides(IAceItem["geochars"], ILanguageIndependentField)
+alsoProvides(IAceItem["health_impacts"], ILanguageIndependentField)
+alsoProvides(IAceItem["image"], ILanguageIndependentField)
+alsoProvides(IAceItem["important"], ILanguageIndependentField)
+alsoProvides(IAceItem["include_in_mission"], ILanguageIndependentField)
+alsoProvides(IAceItem["include_in_observatory"], ILanguageIndependentField)
+alsoProvides(IAceItem["item_link"], ILanguageIndependentField)
+alsoProvides(IAceItem["keywords"], ILanguageIndependentField)
+alsoProvides(IAceItem["logo"], ILanguageIndependentField)
+alsoProvides(IAceItem["metadata"], ILanguageIndependentField)
+alsoProvides(IAceItem["origin_website"], ILanguageIndependentField)
+alsoProvides(IAceItem["other_contributor"], ILanguageIndependentField)
+alsoProvides(IAceItem["publication_date"], ILanguageIndependentField)
+alsoProvides(IAceItem["sectors"], ILanguageIndependentField)
+alsoProvides(IAceItem["spatial_values"], ILanguageIndependentField)
+alsoProvides(IAceItem["special_tags"], ILanguageIndependentField)
+alsoProvides(IAceItem["storage_type"], ILanguageIndependentField)
+alsoProvides(IAceItem["uploader"], ILanguageIndependentField)
+alsoProvides(IAceItem["websites"], ILanguageIndependentField)
+alsoProvides(IAceItem["spatial_layer"], ILanguageIndependentField)
+
+alsoProvides(IPublication["effective"], ILanguageIndependentField)
+alsoProvides(IPublication["expires"], ILanguageIndependentField)

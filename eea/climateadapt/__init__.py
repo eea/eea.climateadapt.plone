@@ -1,7 +1,7 @@
 import OFS
 import transaction
 import collective.cover.config
-from zope.i18nmessageid import MessageFactory
+from zope.i18nmessageid import MessageFactory as BaseMessageFactory
 
 import Products.CMFCore.permissions
 from AccessControl import ClassSecurityInfo
@@ -11,10 +11,18 @@ from plone.dexterity.content import Container
 from plone.i18n import normalizer
 from App.ZApplication import ZApplicationWrapper
 
+
+class UnicodeMessageFactory(BaseMessageFactory):
+    def __call__(self, *args, **kwds):
+        unicode_args = [unicode(s) for s in args]
+        # __import__("pdb").set_trace()
+        return super(UnicodeMessageFactory, self).__call__(*unicode_args, **kwds)
+
+
 # Set up the i18n message factory for our package
-CcaMenuMessageFactory = MessageFactory("eea.climateadapt.menu")
-CcaAdminMessageFactory = MessageFactory("eea.climateadapt.admin")
-MessageFactory = MessageFactory("eea.climateadapt")
+CcaMenuMessageFactory = UnicodeMessageFactory("eea.climateadapt.menu")
+CcaAdminMessageFactory = UnicodeMessageFactory("eea.climateadapt.admin")
+MessageFactory = UnicodeMessageFactory("eea.climateadapt")
 
 # Change permission for manage_pasteObjects to "Add portal content"
 # See https://dev.plone.org/ticket/9177
@@ -77,21 +85,21 @@ def ZApplicationWrapper__repr__(self):
     """
     mod = self.__class__.__module__
     cls = self.__class__.__name__
-    mem = '0x' + hex(id(self))[2:].zfill(8).upper()
-    return '<{0}.{1} instance at {2}>'.format(mod, cls, mem)
+    mem = "0x" + hex(id(self))[2:].zfill(8).upper()
+    return "<{0}.{1} instance at {2}>".format(mod, cls, mem)
 
 
 ZApplicationWrapper.__repr__ = ZApplicationWrapper__repr__
 
 
 def isLinked(obj):
-    """ check if the given content object is linked from another one
-        WARNING: this function can be time consuming !!
-            It deletes the object in a subtransaction that is rollbacked.
-            In other words, the object is kept safe.
-            Nevertheless, this implies that it also deletes recursively
-            all object's subobjects and references, which can be very
-            expensive.
+    """check if the given content object is linked from another one
+    WARNING: this function can be time consuming !!
+        It deletes the object in a subtransaction that is rollbacked.
+        In other words, the object is kept safe.
+        Nevertheless, this implies that it also deletes recursively
+        all object's subobjects and references, which can be very
+        expensive.
     """
     # first check to see if link integrity handling has been enabled at all
     # and if so, if the removal of the object was already confirmed, i.e.
@@ -99,6 +107,7 @@ def isLinked(obj):
     # to import from plone.app.linkintegrity here, hence the try block...
     try:
         from plone.app.linkintegrity.interfaces import ILinkIntegrityInfo
+
         info = ILinkIntegrityInfo(obj.REQUEST)
     except (ImportError, TypeError):
         # if p.a.li isn't installed the following check can be cut short...
