@@ -109,8 +109,7 @@ def handle_cover_one_step(trans_obj, obj_en, language, source_language, trans_ob
 
         html_content = "<!doctype html>" + "<head><meta charset=utf-8></head><body>"
         for item in tile_html_fields:
-            html_tile = get_html_field(
-                item["field"], item["tile_id"], item["value"])
+            html_tile = get_html_field(item["field"], item["tile_id"], item["value"])
             html_content += html_tile
 
         html_content += "</body></html>"
@@ -241,8 +240,7 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
         if language != lang:
             continue
 
-        trans_obj = get_translation_object(
-            translations[language], obj_en, obj, version)
+        trans_obj = get_translation_object(translations[language], obj_en, obj, version)
 
         if trans_obj is not None:
             translate_obj_with_language(
@@ -269,6 +267,8 @@ def translatable_fields(trans_obj, fields):
 
 def get_value(obj, fieldname):
     raw_value = getattr(obj, fieldname)
+
+    is_richtext = hasattr(raw_value, "raw")
     value = getattr(raw_value, "raw", raw_value)
 
     if not value:
@@ -290,7 +290,7 @@ def get_value(obj, fieldname):
     if is_json(value):
         return None
 
-    return value
+    return (value, is_richtext)
 
 
 def translate_obj_with_language(
@@ -316,13 +316,18 @@ def translate_obj_with_language(
     rich_fields = set()
 
     for fieldname in translatable_fields(trans_obj, fields):
-        value, is_rich_field = get_value(obj, fieldname)
+        bits = get_value(obj, fieldname)
 
-        if is_rich_field:
-            rich_fields.add(fieldname)
+        if bits is None:
+            continue
+
+        value, is_rich_field = bits
 
         if not value:
             continue
+
+        if is_rich_field:
+            rich_fields.add(fieldname)
 
         force_unlock(trans_obj)
 
