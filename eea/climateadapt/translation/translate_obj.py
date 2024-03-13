@@ -317,16 +317,13 @@ def translate_obj_with_language(
 
     for fieldname in translatable_fields(trans_obj, fields):
         bits = get_value(obj, fieldname)
-        if value is None:
-            continue
-
         value, is_rich_field = bits
-
-        if is_rich_field:
-            rich_fields.add(fieldname)
 
         if not value:
             continue
+
+        if is_rich_field:
+            rich_fields.add(fieldname)
 
         force_unlock(trans_obj)
 
