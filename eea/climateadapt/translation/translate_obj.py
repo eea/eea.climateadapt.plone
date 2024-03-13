@@ -267,6 +267,8 @@ def translatable_fields(trans_obj, fields):
 
 def get_value(obj, fieldname):
     raw_value = getattr(obj, fieldname)
+
+    is_richtext = hasattr(raw_value, "raw")
     value = getattr(raw_value, "raw", raw_value)
 
     if not value:
@@ -288,7 +290,7 @@ def get_value(obj, fieldname):
     if is_json(value):
         return None
 
-    return value
+    return (value, is_richtext)
 
 
 def translate_obj_with_language(
@@ -315,7 +317,7 @@ def translate_obj_with_language(
 
     for fieldname in translatable_fields(trans_obj, fields):
         bits = get_value(obj, fieldname)
-        if bits is None:
+        if value is None:
             continue
 
         value, is_rich_field = bits
