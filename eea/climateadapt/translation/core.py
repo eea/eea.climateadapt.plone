@@ -1685,12 +1685,24 @@ def admin_some_translated(site, items):
     return {"Content types": portal_types, "Links": links, "fields": fields}
 
 
+def is_volto_context(context):
+    volto_contexts = ['/en/mission', '/en/observatory']
+    for value in volto_contexts:
+        if value in context.absolute_url():
+            return True
+    return False
+
+
 def execute_translate_async(context, options, language, request_vars):
     """translate via zc.async"""
     if options.get('is_volto', None) is not None:
         # retrieve_volto_html_translation(source_lang, html, obj_path, target_languages=None)
         __import__('pdb').set_trace()
         # TODO WIP
+        return
+
+    if is_volto_context(context):
+        logger.info("SKIP classic translation in volto context")
         return
 
     if not hasattr(context, "REQUEST"):
