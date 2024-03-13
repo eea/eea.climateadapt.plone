@@ -4,14 +4,12 @@
 import logging
 import plone.api
 
-from eea.climateadapt.translation.admin import get_all_objs
+from eea.climateadapt.translation.core import get_all_objs
 
 from plone.app.contenttypes.interfaces import IFolder
 from plone.dexterity.interfaces import IDexterityContainer
 
 from .config import IGNORED_CONTENT_TYPES
-
-# import transaction
 
 logger = logging.getLogger("SiteMigrate")
 logger.setLevel(logging.INFO)

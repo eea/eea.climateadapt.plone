@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+<head><meta charset=utf-8></head>
+<body>
+    <tal:rep tal:repeat="name view/order">
+      <div tal:attributes="data-field name" tal:content="structure python: view.values[name]" />
+    </tal:rep>
+</body>
+</html>

@@ -5,15 +5,12 @@ import logging
 
 from DateTime import DateTime
 
-# import time
 
-
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger("eea.climateadapt")
 
 
 def _unixtime(d):
-    """ Converts a datetime to unixtime
-    """
+    """Converts a datetime to unixtime"""
 
     if isinstance(d, DateTime):
         d = d.utcdatetime()
@@ -23,6 +20,7 @@ def _unixtime(d):
 
     return
 
+    # import time
     # try:
     #     return int(time.mktime(d.utctimetuple()))
     # except AttributeError:
@@ -32,15 +30,14 @@ def _unixtime(d):
 
 
 def shorten(t, to=254):
-    """ Shortens text and adds elipsis
-    """
+    """Shortens text and adds elipsis"""
 
     if isinstance(t, unicode):
-        el = u'...'
+        el = "..."
     else:
-        el = '...'
+        el = "..."
 
     if len(t) > to - 3:
-        t = t[:to - 3] + el
+        t = t[: to - 3] + el
 
     return t

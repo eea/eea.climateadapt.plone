@@ -23,16 +23,16 @@ from zeep.wsse.username import UsernameToken
 
 env = os.environ.get
 
-ANNOTATION_KEY = 'translation.cca.storage'
-TRANS_USERNAME = 'ipetchesi'        # TODO: get another username?
-MARINE_PASS = env('MARINE_PASS', '')
-SERVICE_URL = 'https://webgate.ec.europa.eu/etranslation/si/translate'
+ANNOTATION_KEY = "translation.cca.storage"
+TRANS_USERNAME = "ipetchesi"  # TODO: get another username?
+MARINE_PASS = env("MARINE_PASS", "")
+SERVICE_URL = "https://webgate.ec.europa.eu/etranslation/si/translate"
 
-logger = logging.getLogger('wise.msfd.translation')
+logger = logging.getLogger("wise.msfd.translation")
 
 
 def get_detected_lang(text):
-    """ Detect the language of the text, return None for short texts """
+    """Detect the language of the text, return None for short texts"""
 
     if len(text) < 50:
         return None
@@ -50,14 +50,14 @@ def get_detected_lang(text):
 # Detect the source language for countries which have more official languages
 TRANS_LANGUAGE_MAPPING = {
     # 'DE': lambda text: 'DE'
-    'BE': get_detected_lang,
-    'SE': get_detected_lang,
+    "BE": get_detected_lang,
+    "SE": get_detected_lang,
 }
 
 # For the following countries, the translation service uses
 # different country code
 ALTERNATE_COUNTRY_CODES = {
-    'SI': 'SL',
+    "SI": "SL",
 }
 
 
@@ -68,7 +68,7 @@ def get_mapped_language(country_code, text):
     if not detected_lang:
         return country_code
 
-    if detected_lang == 'en':
+    if detected_lang == "en":
         return country_code
 
     return detected_lang.upper()
@@ -85,7 +85,7 @@ def _get_country_code(country_code, text):
 
 
 def decode_text(text):
-    encoding = chardet.detect(text)['encoding']
+    encoding = chardet.detect(text)["encoding"]
     text_encoded = text.decode(encoding)
 
     # import unicodedata
@@ -108,103 +108,164 @@ class Translation(Persistent):
         return self.text
 
 
-def retrieve_html_translation(
-        source_lang, html, obj_path, target_languages=None, force=False):
-    """ Send a call to automatic translation service, to translate a string
-    Returns a json formatted string
+def retrieve_volto_html_translation(source_lang, html, obj_path, target_languages=None):
+    """ Request a translation for a html (based on volto export)
     """
     if not html:
         return
 
     if not target_languages:
-        target_languages = ['EN']
+        target_languages = ["EN"]
 
     encoded_html = base64.b64encode(html)
 
     site_url = portal.get().absolute_url()
 
-    if 'localhost' in site_url:
+    if "localhost" in site_url:
         logger.warning(
             "Using localhost, won't retrieve translation for: %s", html)
 
     client = Client(
-        'https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL',
-        wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS))
+        "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
+        wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS),
+    )
 
-    dest = '{}/@@translate-callback?source_lang={}&format=html'.format(
-            site_url, source_lang)
+    dest = "{}/@@translate-callback?source_lang={}&format=html&is_volto=1".format(
+        site_url, source_lang
+    )
 
     resp = client.service.translate(
-        {'priority': '5',
-         'external-reference': obj_path,
-         'caller-information': {'application': 'Marine_EEA_20180706',
-                                'username': TRANS_USERNAME},
-         "document-to-translate-base64": {
-            "content": encoded_html,
-            "format": "html",
-            "fileName": "out"
-         },
+        {
+            "priority": "5",
+            "external-reference": obj_path,
+            "caller-information": {
+                "application": "Marine_EEA_20180706",
+                "username": TRANS_USERNAME,
+            },
+            "document-to-translate-base64": {
+                "content": encoded_html,
+                "format": "html",
+                "fileName": "out",
+            },
+            "source-language": source_lang,
+            "target-languages": {"target-language": target_languages},
+            "domain": "GEN",
+            "output-format": "html",
+            "destinations": {
+                "http-destination": dest,
+            },
+        }
+    )
 
-         'source-language': source_lang,
-         'target-languages': {'target-language': target_languages},
-         'domain': 'GEN',
-         'output-format': 'html',
-         'destinations': {
-             'http-destination': dest,
-            }
-         })
-
-    logger.info('Data translation request : html content')
-    logger.info('Response from translation request: %r', resp)
+    logger.info("Data translation request : html content")
+    logger.info("Response from translation request: %r", resp)
 
     # if str(resp[0]) == '-':
     #     # If the response is a negative number this means error. Error codes:
     #     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
     #     import pdb; pdb.set_trace()
 
-    res = {
-        "transId": resp,
-        "externalRefId": html
-    }
+    res = {"transId": resp, "externalRefId": html}
 
     return res
 
 
-def retrieve_translation(country_code,
-                         text, target_languages=None, force=False):
-    """ Send a call to automatic translation service, to translate a string
+def retrieve_html_translation(source_lang, html, obj_path, target_languages=None):
+    """Send a call to automatic translation service, to translate a string
+    Returns a json formatted string
+    """
+    if not html:
+        return
+
+    if not target_languages:
+        target_languages = ["EN"]
+
+    encoded_html = base64.b64encode(html)
+
+    site_url = portal.get().absolute_url()
+
+    if "localhost" in site_url:
+        logger.warning(
+            "Using localhost, won't retrieve translation for: %s", html)
+
+    client = Client(
+        "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
+        wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS),
+    )
+
+    dest = "{}/@@translate-callback?source_lang={}&format=html".format(
+        site_url, source_lang
+    )
+
+    resp = client.service.translate(
+        {
+            "priority": "5",
+            "external-reference": obj_path,
+            "caller-information": {
+                "application": "Marine_EEA_20180706",
+                "username": TRANS_USERNAME,
+            },
+            "document-to-translate-base64": {
+                "content": encoded_html,
+                "format": "html",
+                "fileName": "out",
+            },
+            "source-language": source_lang,
+            "target-languages": {"target-language": target_languages},
+            "domain": "GEN",
+            "output-format": "html",
+            "destinations": {
+                "http-destination": dest,
+            },
+        }
+    )
+
+    logger.info("Data translation request : html content")
+    logger.info("Response from translation request: %r", resp)
+
+    # if str(resp[0]) == '-':
+    #     # If the response is a negative number this means error. Error codes:
+    #     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
+    #     import pdb; pdb.set_trace()
+
+    res = {"transId": resp, "externalRefId": html}
+
+    return res
+
+
+def translate_one_text_to_translation_storage(
+    country_code, text, target_languages=None, force=False
+):
+    """Send a call to automatic translation service, to translate a string
     Returns a json formatted string
     """
 
     country_code = _get_country_code(country_code, text)
 
     if not text:
-        return
+        return {}
 
     if not target_languages:
-        target_languages = ['EN']
+        target_languages = ["EN"]
 
     translation = get_translated(text, target_languages[0])
 
     if translation:
-        if not(force == 'True' or (u'....' in translation)):
+        if not (force == "True" or ("...." in translation)):
             # don't translate already translated strings, it overrides the
             # translation
-            res = {
-                'transId': translation,
-                'externalRefId': text,
-                'translated': True
-            }
-            logger.info('Data translation cached : %r', res)
+            res = {"transId": translation,
+                   "externalRefId": text, "translated": True}
+            logger.info("Data translation cached : %r", res)
             return res
 
     site_url = portal.get().absolute_url()
 
-    if 'localhost' in site_url:
+    if "localhost" in site_url:
         logger.warning(
             "Using localhost, won't retrieve translation for: %s", text)
 
-        #return {}
+        # return {}
 
     # if detected language is english skip translation
 
@@ -216,113 +277,117 @@ def retrieve_translation(country_code,
     #
     #     return
 
-    dest = '{}/@@translate-callback?source_lang={}'.format(site_url,
-                                                           country_code)
+    dest = "{}/@@translate-callback?source_lang={}".format(
+        site_url, country_code)
 
     # logger.info('Translate callback URL: %s', dest)
 
     data = {
-        'priority': 5,
-        'callerInformation': {
-            'application': 'Marine_EEA_20180706',
-            'username': TRANS_USERNAME,
+        "priority": 5,
+        "callerInformation": {
+            "application": "Marine_EEA_20180706",
+            "username": TRANS_USERNAME,
         },
-        'domain': 'SPD',
-        'externalReference': text,          # externalReference,
-        'textToTranslate': text,
-        'sourceLanguage': country_code,
-        'targetLanguages': target_languages,
-        'destinations': {
-            'httpDestinations':
-            [dest],
-        }
+        "domain": "SPD",
+        "externalReference": text,  # externalReference,
+        "textToTranslate": text,
+        "sourceLanguage": country_code,
+        "targetLanguages": target_languages,
+        "destinations": {
+            "httpDestinations": [dest],
+        },
     }
 
-    logger.info('Data translation request : %r', data)
+    logger.info("Data translation request : %r", data)
 
     resp = requests.post(
         SERVICE_URL,
-        auth=HTTPDigestAuth('Marine_EEA_20180706', MARINE_PASS),
+        auth=HTTPDigestAuth("Marine_EEA_20180706", MARINE_PASS),
         data=json.dumps(data),
-        headers={'Content-Type': 'application/json'}
+        headers={"Content-Type": "application/json"},
     )
-    logger.info('Response from translation request: %r', resp.content)
+    logger.info("Response from translation request: %r", resp.content)
 
-    res = {
-        "transId": resp.content,
-        "externalRefId": text
-    }
+    res = {"transId": resp.content, "externalRefId": text}
 
     return res
 
-def retrieve_translation_one_step(
-        country_code, text, target_languages=None,
-        force=False, uid=None, obj_path=None, field=None,
-        tile_data=None, tile_id=None):
-    """ Translate simple text fields in one step.
 
-        Send a call to automatic translation service, to translate a string
-        Returns a json formatted string
+def translate_one_field_in_one_step(
+    country_code,
+    text,
+    target_languages=None,
+    uid=None,
+    obj_path=None,
+    field=None,
+    tile_data=None,
+    tile_id=None,
+):
+    """Translate simple text fields in one step.
 
-        The result will be automatically saved to specified obj and field
-        on callback, without using annotations.
+    Send a call to automatic translation service, to translate a string
+    Returns a json formatted string
+
+    The result will be automatically saved to specified obj and field
+    on callback, without using annotations.
     """
-
-    country_code = _get_country_code(country_code, text)
-    site_url = portal.get().absolute_url()
-
-    is_cover = False
-    if tile_data is not None:
-        dest = '{}/@@translate-callback?one_step=true&source_lang={}&uid={}&field={}&is_cover=true&tile_id={}'.format(
-                site_url, country_code, uid, field, tile_id)
-        is_cover = True
 
     if not text:
         return
 
-    if not target_languages:
-        target_languages = ['EN']
+    country_code = _get_country_code(country_code, text)
+    site_url = portal.get().absolute_url()
 
-    if 'localhost' in site_url:
+    dest = ""
+
+    is_cover = False
+    if tile_data is not None:
+        dest = "{}/@@translate-callback?one_step=true&source_lang={}&uid={}&field={}&is_cover=true&tile_id={}".format(
+            site_url, country_code, uid, field, tile_id
+        )
+        is_cover = True
+
+    if not target_languages:
+        target_languages = ["EN"]
+
+    if "localhost" in site_url:
         logger.warning(
             "Using localhost, won't retrieve translation for: %s", text)
 
     if is_cover is False:
-        dest = '{}/@@translate-callback?one_step=true&source_lang={}&uid={}&field={}'.format(
-                site_url, country_code, uid, field)
+        dest = "{}/@@translate-callback?one_step=true&source_lang={}&uid={}&field={}".format(
+            site_url, country_code, uid, field
+        )
     data = {
-        'priority': 5,
-        'callerInformation': {
-            'application': 'Marine_EEA_20180706',
-            'username': TRANS_USERNAME,
+        "priority": 5,
+        "callerInformation": {
+            "application": "Marine_EEA_20180706",
+            "username": TRANS_USERNAME,
         },
-        'domain': 'SPD',
-        'externalReference': obj_path,
-        'textToTranslate': text,
-        'sourceLanguage': country_code,
-        'targetLanguages': target_languages,
-        'destinations': {
-            'httpDestinations':
-            [dest],
-        }
+        "domain": "SPD",
+        "externalReference": obj_path,
+        "textToTranslate": text,
+        "sourceLanguage": country_code,
+        "targetLanguages": target_languages,
+        "destinations": {
+            "httpDestinations": [dest],
+        },
     }
 
-    logger.info('One step translation request : %r', data)
+    logger.info("One step translation request : %r", data)
 
     resp = requests.post(
         SERVICE_URL,
-        auth=HTTPDigestAuth('Marine_EEA_20180706', MARINE_PASS),
+        auth=HTTPDigestAuth("Marine_EEA_20180706", MARINE_PASS),
         data=json.dumps(data),
-        headers={'Content-Type': 'application/json'}
+        headers={"Content-Type": "application/json"},
     )
-    logger.info('One step: resp from translation request: %r', resp.content)
+    logger.info("One step: resp from translation request: %r", resp.content)
 
-    res = {
-        "transId": resp.content,
-        "externalRefId": text
-    }
+    res = {"transId": resp.content, "externalRefId": text}
 
     return res
+
 
 def get_translation_keys(site=None):
     if site is None:
@@ -332,22 +397,24 @@ def get_translation_keys(site=None):
 
     return list(storage.keys())
 
+
 def get_translation_report(site=None):
     if site is None:
         site = portal.get()
 
     storage = ITranslationsStorage(site)
-    report = {'nr_keys': len(storage.keys()),'items':{}}
+    report = {"nr_keys": len(storage.keys()), "items": {}}
     data = storage.keys()
     for i in range(len(data)):
         storage_key = storage.get(data[i])
         languages = set(storage_key.keys())
         for language in languages:
-            if language not in report['items']:
-                report['items'][language] = 0
-            report['items'][language] += 1
+            if language not in report["items"]:
+                report["items"][language] = 0
+            report["items"][language] += 1
 
     return report
+
 
 def get_translation_key_values(key, site=None):
     if site is None:
@@ -359,11 +426,12 @@ def get_translation_key_values(key, site=None):
     if storage_key:
         languages = set(storage_key.keys())
         for language in languages:
-            res.append({
-                'language': language,
-                'translation': storage_key.get(language, None)
-            })
+            res.append(
+                {"language": language,
+                    "translation": storage_key.get(language, None)}
+            )
     return res
+
 
 def get_translated(value, language, site=None):
     language = _get_country_code(language, value)
@@ -376,10 +444,10 @@ def get_translated(value, language, site=None):
     translated = storage.get(value, {}).get(language, None)
 
     if translated:
-        if hasattr(translated, 'text'):
-            return translated.text.lstrip('?')
+        if hasattr(translated, "text"):
+            return translated.text.lstrip("?")
 
-        return translated.lstrip('?')
+        return translated.lstrip("?")
 
 
 def normalize(text):
@@ -387,12 +455,12 @@ def normalize(text):
         return text
 
     if isinstance(text, str):
-        text = text.decode('utf-8')
+        text = text.decode("utf-8")
 
     if not text:
         return text
 
-    text = text.strip().replace(u'\r\n', u'\n').replace(u'\r', u'\n')
+    text = text.strip().replace("\r\n", "\n").replace("\r", "\n")
 
     return text
 
@@ -421,8 +489,13 @@ def delete_translation(text, source_lang):
 def save_translation(original, translated, source_lang, target_lang, approved=False):
     source_lang = _get_country_code(source_lang, original)
 
-    logger.info('Translate callback save: %s :: %s :: %s :: %s',
-                original, translated, source_lang, target_lang)
+    logger.info(
+        "Translate callback save: %s :: %s :: %s :: %s",
+        original,
+        translated,
+        source_lang,
+        target_lang,
+    )
     site = portal.get()
 
     storage = ITranslationsStorage(site)
@@ -436,4 +509,4 @@ def save_translation(original, translated, source_lang, target_lang, approved=Fa
     translated = Translation(translated)
     storage_original[target_lang] = translated
 
-    logger.info('Saving to annotation: %s', translated)
+    logger.info("Saving to annotation: %s", translated)

@@ -4,7 +4,7 @@
 import logging
 
 from eea.climateadapt.scripts import get_plone_site
-from eea.climateadapt.translation.admin import get_all_objs
+from eea.climateadapt.translation.core import get_all_objs
 
 from .config import IGNORED_CONTENT_TYPES, LANGUAGES
 from .content import migrate_content_to_volto

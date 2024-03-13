@@ -16,6 +16,10 @@ from .publicationreport import IPublicationReport
 from .researchproject import IResearchProject
 from .tool import ITool
 
+from .patches import apply_patch
+
+apply_patch()
+
 __all__ = [
     IAceItem,
     ICaseStudy,

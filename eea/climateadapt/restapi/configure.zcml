@@ -23,6 +23,7 @@
     <adapter factory=".long_converter" />
   </zcml:configure>
 
+  <!-- <adapter factory=".long_converter" /> -->
   <adapter factory=".geolocation_converter" />
   <adapter factory=".richtext_value_converter" />
   <adapter factory=".deserializer.GeolocationFieldDeserializer" />
