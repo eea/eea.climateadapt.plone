@@ -4,6 +4,8 @@ The intention is to use eTranslation as a service to translate a complete Volto 
 by first converting the blocks to HTML, then ingest and convert that structure back to Volto blocks
 """
 
+# from langdetect import language
+from plone.app.multilingual.factory import DefaultTranslationFactory
 from zope.schema import getFieldsInOrder
 from plone.dexterity.utils import iterSchemata
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
@@ -36,11 +38,9 @@ CONTENT_CONVERTER = "http://converter:8000/html2content"
 
 def get_blocks_as_html(obj):
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(
-        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -54,11 +54,9 @@ def get_content_from_html(html):
     """Given an HTML string, converts it to Plone content data"""
 
     data = {"html": html}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER,
-                        data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -72,9 +70,18 @@ class ContentToHtml(BrowserView):
     """A page to test html marshalling"""
 
     def copy(self, fielddata):
-        site = api.portal.get()
-        sandbox = site.restrictedTraverse("sandbox")
-        copy = api.content.copy(source=self.context, target=sandbox)
+        language = "de"
+        obj = self.context
+        factory = DefaultTranslationFactory(obj)
+
+        translated_object = factory(language)
+
+        TranslationManager(obj).register_translation(language, translated_object)
+
+        # site = api.portal.get()
+        # sandbox = site.restrictedTraverse("sandbox")
+        # copy = api.content.copy(source=self.context, target=sandbox)
+        copy = translated_object
         for k, v in fielddata.items():
             setattr(copy, k, v)
 
@@ -132,12 +139,12 @@ class ContentToHtml(BrowserView):
 
 
 def translate_volto_html(html, en_obj, http_host):
-    """ Input: html (generated from volto blocks and obj fields, as string)
-               en_obj - the object to be translated
-               http_host - website url
+    """Input: html (generated from volto blocks and obj fields, as string)
+           en_obj - the object to be translated
+           http_host - website url
 
-        Make sure translation objects exists and request a translation for
-        all languages.
+    Make sure translation objects exists and request a translation for
+    all languages.
     """
     options = {}
     options["obj_url"] = en_obj.absolute_url()
@@ -157,10 +164,14 @@ def translate_volto_html(html, en_obj, http_host):
             translations = TranslationManager(en_obj).get_translations()
             trans_obj = translations[language]
             trans_obj_url = trans_obj.absolute_url()
-            trans_obj_path = '/cca' + trans_obj_url.split(http_host)[-1]
+            trans_obj_path = "/cca" + trans_obj_url.split(http_host)[-1]
 
             retrieve_volto_html_translation(
-                'en', html.encode("utf-8"), trans_obj_path, target_languages=language.upper())
+                "en",
+                html.encode("utf-8"),
+                trans_obj_path,
+                target_languages=language.upper(),
+            )
 
             # TODO: implement and use async translation for volto case, too
             # request_vars = {
