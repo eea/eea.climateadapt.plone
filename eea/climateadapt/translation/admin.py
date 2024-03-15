@@ -30,16 +30,6 @@ import logging
 logger = logging.getLogger("eea.climateadapt")
 
 
-class FixUrlsForTranslatedContent(BrowserView):
-    """Use this view to check all links for a new cloned language
-    Usage: /admin-fix-urls-translated-content?language=ro
-    """
-
-    def __call__(self, **kwargs):
-        kwargs.update(self.request.form)
-        return fix_urls_for_translated_content(getSite(), **kwargs)
-
-
 class TranslationListTypeFields(BrowserView):
     """Use this view to translate all json files to a language
 
