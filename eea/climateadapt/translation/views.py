@@ -281,11 +281,13 @@ class TranslationCallback(BrowserView):
         for k, v in fielddata.items():
             if k != 'blocks':
                 setattr(trans_obj, k, v)
-        for k, v in fielddata['blocks'].items():
-            setattr(trans_obj, k, v)
+        if fielddata.get('blocks', None) is not None:
+            for k, v in fielddata['blocks'].items():
+                setattr(trans_obj, k, v)
         trans_obj._p_changed = True
         trans_obj.reindexObject()
-        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
+        logger.info("Html volto translation saved for %s",
+                    trans_obj.absolute_url())
 
 
 class TranslationList(BrowserView):

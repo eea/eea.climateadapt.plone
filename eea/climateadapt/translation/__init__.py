@@ -133,6 +133,8 @@ def retrieve_volto_html_translation(http_host, source_lang, html, obj_path, targ
     dest = "{}/@@translate-callback?source_lang={}&format=html&is_volto=1".format(
         http_host, source_lang
     )
+    if "https://" not in dest:
+        dest = "https://" + dest
 
     resp = client.service.translate(
         {
