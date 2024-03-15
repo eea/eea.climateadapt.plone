@@ -5,11 +5,12 @@ by first converting the blocks to HTML, then ingest and convert that structure b
 """
 
 # from langdetect import language
+from plone.app.textfield.value import RichTextValue
+from plone.app.textfield.interfaces import IRichText
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from zope.schema import getFieldsInOrder
 from plone.dexterity.utils import iterSchemata
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from plone import api
 
 from Products.Five.browser import BrowserView
 
@@ -72,18 +73,36 @@ class ContentToHtml(BrowserView):
     def copy(self, fielddata):
         language = "de"
         obj = self.context
-        factory = DefaultTranslationFactory(obj)
+        tm = TranslationManager(obj)
+        translated_object = tm.get_translation(language)
 
-        translated_object = factory(language)
+        if translated_object is None:
+            factory = DefaultTranslationFactory(obj)
+            translated_object = factory(language)
+            tm.register_translation(language, translated_object)
 
-        TranslationManager(obj).register_translation(language, translated_object)
-
+        # from plone import api
         # site = api.portal.get()
         # sandbox = site.restrictedTraverse("sandbox")
         # copy = api.content.copy(source=self.context, target=sandbox)
+        # __import__("pdb").set_trace()
         copy = translated_object
-        for k, v in fielddata.items():
-            setattr(copy, k, v)
+
+        for schema in iterSchemata(obj):
+            for k, v in getFieldsInOrder(schema):
+                if (
+                    ILanguageIndependentField.providedBy(v)
+                    or k in LANGUAGE_INDEPENDENT_FIELDS
+                    or k not in fielddata
+                ):
+                    continue
+                # print(schema, k, v)
+                value = fielddata[k]
+                if IRichText.providedBy(v):
+                    value = RichTextValue(value)
+                setattr(copy, k, value)
+
+        # for k, v in fielddata.items():
 
         return copy
 
