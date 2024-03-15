@@ -23,7 +23,6 @@ from .core import (
     create_translation_object,
     execute_translate_async,
 )
-from eea.climateadapt.translation import retrieve_volto_html_translation
 from plone.app.multilingual.manager import TranslationManager
 
 import logging
@@ -39,9 +38,11 @@ CONTENT_CONVERTER = "http://converter:8000/html2content"
 
 def get_blocks_as_html(obj):
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(
+        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -55,9 +56,11 @@ def get_content_from_html(html):
     """Given an HTML string, converts it to Plone content data"""
 
     data = {"html": html}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER,
+                        data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -184,26 +187,19 @@ def translate_volto_html(html, en_obj, http_host):
             trans_obj = translations[language]
             trans_obj_url = trans_obj.absolute_url()
             trans_obj_path = "/cca" + trans_obj_url.split(http_host)[-1]
+            options['trans_obj_path'] = trans_obj_path
 
-            retrieve_volto_html_translation(
-                "en",
-                html.encode("utf-8"),
-                trans_obj_path,
-                target_languages=language.upper(),
+            request_vars = {
+                # 'PARENTS': obj.REQUEST['PARENTS']
+            }
+            async_service = get_async_service()
+            queue = async_service.getQueues()[""]
+            async_service.queueJobInQueue(
+                queue,
+                ("translate",),
+                execute_translate_async,
+                en_obj,
+                options,
+                language,
+                request_vars,
             )
-
-            # TODO: implement and use async translation for volto case, too
-            # request_vars = {
-            #     # 'PARENTS': obj.REQUEST['PARENTS']
-            # }
-            # async_service = get_async_service()
-            # queue = async_service.getQueues()[""]
-            # async_service.queueJobInQueue(
-            #    queue,
-            #    ("translate",),
-            #    execute_translate_async,
-            #    obj,
-            #    options,
-            #    language,
-            #    request_vars,
-            # )
