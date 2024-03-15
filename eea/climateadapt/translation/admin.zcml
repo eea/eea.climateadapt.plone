@@ -6,34 +6,7 @@
     i18n_domain="eea.climateadapt"
     >
 
-  <browser:page
-      name="admin-prepare-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.PrepareTranslation"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-verify-unlinked-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.VerifyUnlinkedTranslation"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-report-unlinked-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.ReportUnlinkedTranslation"
-      template="pt/report_unlinked_translation.pt"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-verify-cloned"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.VerifyClonedLanguage"
-      permission="cmf.ManagePortal"
-      />
+  <include package=".maintainance" />
 
   <browser:page
       name="admin-fix-urls-translated-content"
@@ -43,72 +16,9 @@
       />
 
   <browser:page
-      name="admin-verify-translation-fields"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.VerifyTranslationFields"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-translation-repaire"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.TranslateRepaire"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-translation-repaire-step-3"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.TranslateRepaireStep3"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-run-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.RunTranslation"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
       name="admin-some-translated"
       for="*"
       class=".admin.SomeTranslated"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-translate-step-1"
-      for="*"
-      class=".admin.TranslateStep1"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-translate-step-2"
-      for="*"
-      class=".admin.TranslateStep2"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-translate-step-3"
-      for="*"
-      class=".admin.TranslateStep3"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-translate-step-4"
-      for="*"
-      class=".admin.TranslateStep4"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="admin-translate-step-5"
-      for="*"
-      class=".admin.TranslateStep5"
       permission="cmf.ManagePortal"
       />
 
@@ -134,24 +44,10 @@
       />
 
   <browser:page
-      name="admin-publish-items"
-      for="*"
-      class=".admin.AdminPublishItems"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
       for="*"
       template="pt/translate_one_object.pt"
       class=".admin.TranslateOneObject"
       name="translate-object"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      for="*"
-      class=".admin.TranslateObjectAsync"
-      name="translate-this-async"
       permission="cmf.ManagePortal"
       />
 
