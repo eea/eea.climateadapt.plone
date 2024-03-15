@@ -89,6 +89,7 @@ class ExcelExport(BaseExport):
 
                     render = exportable.render_value(bound_obj)
                     render = self._format_render(render)
+                    render = render[0:32766]
                     sheet.write(rownum + 1, _exportablenum, render, style_content)
                     _exportablenum += 1
 
