@@ -12,7 +12,6 @@ from .core import (
     admin_some_translated,
     copy_missing_interfaces,
     create_translation_object,
-    fix_urls_for_translated_content,
     translate_obj,
     translation_list_type_fields,
     translation_step_4,
