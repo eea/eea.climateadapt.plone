@@ -28,6 +28,7 @@ from plone.app.multilingual.manager import TranslationManager
 import logging
 import requests
 import json
+import copy
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -199,7 +200,7 @@ def translate_volto_html(html, en_obj, http_host):
                 ("translate",),
                 execute_translate_async,
                 en_obj,
-                options,
+                copy.deepcopy(options),
                 language,
                 request_vars,
             )
