@@ -108,7 +108,7 @@ class Translation(Persistent):
         return self.text
 
 
-def retrieve_volto_html_translation(source_lang, html, obj_path, target_languages=None):
+def retrieve_volto_html_translation(http_host, source_lang, html, obj_path, target_languages=None):
     """ Request a translation for a html (based on volto export)
     """
     if not html:
@@ -119,7 +119,7 @@ def retrieve_volto_html_translation(source_lang, html, obj_path, target_language
 
     encoded_html = base64.b64encode(html)
 
-    site_url = portal.get().absolute_url()
+    site_url = portal.get().absolute_url()  # -> '/cca'
 
     if "localhost" in site_url:
         logger.warning(
@@ -131,7 +131,7 @@ def retrieve_volto_html_translation(source_lang, html, obj_path, target_language
     )
 
     dest = "{}/@@translate-callback?source_lang={}&format=html&is_volto=1".format(
-        site_url, source_lang
+        http_host, source_lang
     )
 
     resp = client.service.translate(

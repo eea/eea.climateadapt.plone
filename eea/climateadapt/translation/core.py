@@ -1697,6 +1697,7 @@ def execute_translate_async(context, options, language, request_vars):
     """translate via zc.async"""
     if options.get('is_volto', None) is not None:
         retrieve_volto_html_translation(
+            options['http_host'],
             "en",
             options['html_content'].encode("utf-8"),
             options['trans_obj_path'],
