@@ -1,32 +1,84 @@
 """Admin translation"""
 
-from eea.climateadapt import CcaAdminMessageFactory as _
-from Products.CMFCore.utils import getToolByName
+import json
+import logging
+from collections import defaultdict
+
 import transaction
-from eea.climateadapt.translation.utils import (
-    get_site_languages,
-)
-from Products.CMFPlone import utils
 from plone import api
-from .core import (
-    admin_some_translated,
-    copy_missing_interfaces,
-    create_translation_object,
-    translate_obj,
-    translation_list_type_fields,
-    translation_step_4,
-    translations_status,
-    translations_status_by_version,
-)
+from plone.app.multilingual.manager import TranslationManager
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import utils
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.globalrequest import getRequest
 from zope.site.hooks import getSite
-from plone.app.multilingual.manager import TranslationManager
 
-import logging
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.translation.utils import (
+    get_site_languages,
+)
+
+from .core import (
+    copy_missing_interfaces,
+    create_translation_object,
+    get_object_fields_values,
+    is_obj_skipped_for_translation,
+    translate_obj,
+    translation_step_4,
+    translations_status_by_version,
+)
 
 logger = logging.getLogger("eea.climateadapt")
+
+
+def translation_list_type_fields(site):
+    # used for whole-site translation
+    """Show each field for each type"""
+    catalog = site.portal_catalog
+    # TODO: remove this, it is jsut for demo purpose
+    limit = 10000
+    brains = catalog.searchResults(path="/cca/en", sort_limit=limit)
+    logger.info("I will start to create json files. Checking...")
+
+    res = {}
+
+    for brain in brains:
+        obj = brain.getObject()
+        obj_url = obj.absolute_url()
+        logger.info("PROCESS: %s", obj_url)
+        if is_obj_skipped_for_translation(obj):
+            continue
+        data = get_object_fields_values(obj)
+
+        if obj.portal_type == "collective.cover.content":
+            if obj.portal_type not in res:
+                res[obj.portal_type] = {}
+            tiles_id = obj.list_tiles()
+            for tile_id in tiles_id:
+                tile = obj.get_tile(tile_id)
+                tile_name = tile.__class__.__name__
+                if tile_name not in res[obj.portal_type]:
+                    res[obj.portal_type][tile_name] = {}
+                for field in tile.data.keys():
+                    if field not in res[obj.portal_type][tile_name]:
+                        res[obj.portal_type][tile_name][field] = []
+                    if len(res[obj.portal_type][tile_name][field]) < 5:
+                        res[obj.portal_type][tile_name][field].append(obj_url)
+        else:
+            if obj.portal_type not in res:
+                res[obj.portal_type] = {"item": [], "html": []}
+            for key in data["item"]:
+                if key not in res[obj.portal_type]["item"]:
+                    res[obj.portal_type]["item"].append(key)
+            for key in data["html"]:
+                if key not in res[obj.portal_type]["html"]:
+                    res[obj.portal_type]["html"].append(key)
+
+    json_object = json.dumps(res, indent=4)
+
+    with open("/tmp/portal_type_fields.json", "w") as outfile:
+        outfile.write(json_object)
 
 
 class TranslationListTypeFields(BrowserView):
@@ -37,18 +89,6 @@ class TranslationListTypeFields(BrowserView):
 
     def __call__(self):
         return translation_list_type_fields(getSite())
-
-
-class SomeTranslated(BrowserView):
-    """Prepare a list of links for each content type in order to verify
-    translation
-
-    Usage: /admin-some-translated?items=10
-    """
-
-    def __call__(self, **kwargs):
-        kwargs.update(self.request.form)
-        return admin_some_translated(getSite(), **kwargs)
 
 
 class RunTranslationSingleItem(BrowserView):
@@ -65,6 +105,31 @@ class RunTranslationSingleItem(BrowserView):
         result = translate_obj(obj)
         # transaction.commit()
         return result
+
+
+def translations_status(site, language=None):
+    if language is None:
+        return "Missing language."
+
+    path = "/cca/" + language
+    catalog = site.portal_catalog
+    brains = catalog.searchResults(path=path)
+
+    versions = defaultdict(int)
+    template = "<p>{} at version {}</p>"
+    logger.info("Translations status:")
+
+    for brain in brains:
+        obj = brain.getObject()
+        obj_version = int(getattr(obj, "version", 0))
+        versions[obj_version] += 1
+
+    res = []
+    for k, v in versions.items():
+        res.append(template.format(v, k))
+
+    logger.info(res)
+    return "".join(res)
 
 
 class TranslationStatus(BrowserView):

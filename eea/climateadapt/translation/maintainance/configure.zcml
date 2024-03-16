@@ -113,4 +113,11 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      name="admin-some-translated"
+      for="*"
+      class=".some_translated.SomeTranslated"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>

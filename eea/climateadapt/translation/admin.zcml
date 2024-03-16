@@ -9,13 +9,6 @@
   <include package=".maintainance" />
 
   <browser:page
-      name="admin-some-translated"
-      for="*"
-      class=".admin.SomeTranslated"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
       name="admin-translate-portal-type-fields"
       for="*"
       class=".admin.TranslationListTypeFields"

@@ -5,6 +5,7 @@ from datetime import datetime
 
 import transaction
 from plone.api import portal
+from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
 from zope.site.hooks import getSite
@@ -17,17 +18,40 @@ from .. import (
 from ..constants import source_richtext_types
 from ..core import (
     get_object_fields_values,
-    get_trans_obj_path_for_obj,
     get_translation_json_files,
     get_translation_object,
     get_translation_object_from_uid,
-    get_translation_object_path,
     is_obj_skipped_for_translation,
     translation_step_4,
     translation_step_5,
 )
 
 logger = logging.getLogger("eea.climateadapt")
+
+
+def get_trans_obj_path_for_obj(obj):
+    res = {}
+    try:
+        translations = TranslationManager(obj).get_translations()
+    except Exception:
+        logger.info("Error at getting translations for %s", obj.absolute_url())
+        translations = []
+
+    for language in translations:
+        trans_obj = translations[language]
+        trans_obj_url = trans_obj.absolute_url()
+
+        res[language] = trans_obj_url
+
+    return {"translated_obj_paths": res}
+
+
+def get_translation_object_path(obj, language, site_url):
+    trans_obj = get_translation_object(obj, language)
+    if not trans_obj:
+        return None
+    trans_obj_url = trans_obj.absolute_url()
+    return "/cca" + trans_obj_url.split(site_url)[-1]
 
 
 def translation_step_1(site, request):

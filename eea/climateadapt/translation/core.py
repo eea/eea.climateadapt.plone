@@ -1,7 +1,6 @@
 import json
 import logging
 import os
-from collections import defaultdict
 
 import transaction
 from Acquisition import aq_inner, aq_parent
@@ -10,14 +9,12 @@ from plone.api import portal
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.uuid.utils import uuidToObject
-from plone.behavior.interfaces import IBehaviorAssignable
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Testing.ZopeTestCase import utils as zopeUtils
 from zope.interface import alsoProvides
-from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.browser.admin import force_unlock
 
@@ -33,31 +30,6 @@ from .utils import get_object_fields_values
 # translate async => manual action
 
 logger = logging.getLogger("eea.climateadapt")
-
-
-def translations_status(site, language=None):
-    if language is None:
-        return "Missing language."
-
-    path = "/cca/" + language
-    catalog = site.portal_catalog
-    brains = catalog.searchResults(path=path)
-
-    versions = defaultdict(int)
-    template = "<p>{} at version {}</p>"
-    logger.info("Translations status:")
-
-    for brain in brains:
-        obj = brain.getObject()
-        obj_version = int(getattr(obj, "version", 0))
-        versions[obj_version] += 1
-
-    res = []
-    for k, v in versions.items():
-        res.append(template.format(v, k))
-
-    logger.info(res)
-    return "".join(res)
 
 
 def is_obj_skipped_for_translation(obj):
@@ -78,6 +50,7 @@ def is_obj_skipped_for_translation(obj):
 
 
 def get_translation_object(obj, language):
+    """Returns the translation object for a given language"""
     try:
         translations = TranslationManager(obj).get_translations()
     except Exception:
@@ -89,14 +62,6 @@ def get_translation_object(obj, language):
         return None
     trans_obj = translations[language]
     return trans_obj
-
-
-def get_translation_object_path(obj, language, site_url):
-    trans_obj = get_translation_object(obj, language)
-    if not trans_obj:
-        return None
-    trans_obj_url = trans_obj.absolute_url()
-    return "/cca" + trans_obj_url.split(site_url)[-1]
 
 
 def get_translation_object_from_uid(json_uid_file, catalog):
@@ -116,27 +81,11 @@ def get_translation_json_files(uid=None):
     return json_files
 
 
-def get_trans_obj_path_for_obj(obj):
-    res = {}
-    try:
-        translations = TranslationManager(obj).get_translations()
-    except Exception:
-        logger.info("Error at getting translations for %s", obj.absolute_url())
-        translations = []
-
-    for language in translations:
-        trans_obj = translations[language]
-        trans_obj_url = trans_obj.absolute_url()
-
-        res[language] = trans_obj_url
-
-    return {"translated_obj_paths": res}
-
-
 def translation_step_4(site, request, async_request=False):
     # used for whole-site translation
     """Copy fields values from en to given language for language independent
-    fields.
+        fields.
+    TODO: this is used in a lot of places in code. It needs to be properly documented
     """
     language = request.get("language", None)
     uid = request.get("uid", None)
@@ -354,55 +303,6 @@ def translation_step_4(site, request, async_request=False):
     return "Finalize step 4"
 
 
-def translation_list_type_fields(site):
-    # used for whole-site translation
-    """Show each field for each type"""
-    catalog = site.portal_catalog
-    # TODO: remove this, it is jsut for demo purpose
-    limit = 10000
-    brains = catalog.searchResults(path="/cca/en", sort_limit=limit)
-    logger.info("I will start to create json files. Checking...")
-
-    res = {}
-
-    for brain in brains:
-        obj = brain.getObject()
-        obj_url = obj.absolute_url()
-        logger.info("PROCESS: %s", obj_url)
-        if is_obj_skipped_for_translation(obj):
-            continue
-        data = get_object_fields_values(obj)
-
-        if obj.portal_type == "collective.cover.content":
-            if obj.portal_type not in res:
-                res[obj.portal_type] = {}
-            tiles_id = obj.list_tiles()
-            for tile_id in tiles_id:
-                tile = obj.get_tile(tile_id)
-                tile_name = tile.__class__.__name__
-                if tile_name not in res[obj.portal_type]:
-                    res[obj.portal_type][tile_name] = {}
-                for field in tile.data.keys():
-                    if field not in res[obj.portal_type][tile_name]:
-                        res[obj.portal_type][tile_name][field] = []
-                    if len(res[obj.portal_type][tile_name][field]) < 5:
-                        res[obj.portal_type][tile_name][field].append(obj_url)
-        else:
-            if obj.portal_type not in res:
-                res[obj.portal_type] = {"item": [], "html": []}
-            for key in data["item"]:
-                if key not in res[obj.portal_type]["item"]:
-                    res[obj.portal_type]["item"].append(key)
-            for key in data["html"]:
-                if key not in res[obj.portal_type]["html"]:
-                    res[obj.portal_type]["html"].append(key)
-
-    json_object = json.dumps(res, indent=4)
-
-    with open("/tmp/portal_type_fields.json", "w") as outfile:
-        outfile.write(json_object)
-
-
 def translations_status_by_version(site, version=0, language=None):
     """Show the list of urls of a version and language"""
     if language is None:
@@ -562,49 +462,6 @@ def get_all_objs(container):
     get_objs(container)
 
     return all_objs
-
-
-def admin_some_translated(site, items):
-    """Create a list of links to be tested (for translation) for each
-    content type
-    """
-    items = int(items)
-    catalog = site.portal_catalog
-    portal_types = []
-    links = {}
-    fields = {}
-
-    res = catalog.searchResults(path="/cca/en")
-    count = -1
-    for brain in res:
-        count += 1
-        logger.info(count)
-        obj = brain.getObject()
-
-        portal_type = obj.portal_type
-        if portal_type not in portal_types:
-            portal_types.append(portal_type)
-            links[portal_type] = []
-
-            # get behavior fields and values
-            behavior_assignable = IBehaviorAssignable(obj)
-            _fields = {}
-            if behavior_assignable:
-                behaviors = behavior_assignable.enumerateBehaviors()
-                for behavior in behaviors:
-                    for k, val in getFieldsInOrder(behavior.interface):
-                        _fields.update({k: val})
-
-            #  get schema fields and values
-            for k, val in getFieldsInOrder(obj.getTypeInfo().lookupSchema()):
-                _fields.update({k: val})
-
-            fields[portal_type] = [(x, _fields[x]) for x in _fields]
-
-        if len(links[portal_type]) < items:
-            links[portal_type].append(obj.absolute_url())
-
-    return {"Content types": portal_types, "Links": links, "fields": fields}
 
 
 def is_volto_context(context):
