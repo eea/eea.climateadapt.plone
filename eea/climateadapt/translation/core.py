@@ -81,6 +81,66 @@ def get_translation_json_files(uid=None):
     return json_files
 
 
+def handle_cover_step_4(obj, trans_obj, language, reindex):
+    try:
+        data_tiles = obj.get_tiles()
+        for data_tile in data_tiles:
+            if data_tile["type"] == "eea.climateadapt.cards_tile":
+                data_trans_tiles = obj.get_tiles()
+                for data_trans_tile in data_trans_tiles:
+                    if data_trans_tile["type"] == "eea.climateadapt.cards_tile":
+                        tile = obj.get_tile(data_tile["id"])
+                        try:
+                            trans_tile = trans_obj.get_tile(data_trans_tile["id"])
+                        except ValueError:
+                            logger.info("Tile not found.")
+                            trans_tile = None
+
+                        if trans_tile is not None:
+                            collection_obj = uuidToObject(tile.data["uuid"])
+                            collection_trans_obj = get_translation_object(
+                                collection_obj, language
+                            )
+
+                            dataManager = ITileDataManager(trans_tile)
+
+                            temp = dataManager.get()
+                            try:
+                                temp["uuid"] = IUUID(collection_trans_obj)
+                            except TypeError:
+                                logger.info("Collection not found.")
+
+                            dataManager.set(temp)
+            if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
+                tile = obj.get_tile(data_tile["id"])
+                tile_type = get_tile_type(tile, obj, trans_obj)
+                from_tile = obj.restrictedTraverse(
+                    "@@{0}/{1}".format(tile_type, tile.id)
+                )
+                to_tile = trans_obj.restrictedTraverse(
+                    "@@{0}/{1}".format(tile_type, tile.id)
+                )
+
+                from_data_mgr = ITileDataManager(from_tile)
+                to_data_mgr = ITileDataManager(to_tile)
+                from_data = from_data_mgr.get()
+
+                trans_tile = trans_obj.get_tile(data_tile["id"])
+                from_data["title"] = trans_tile.data["title"]
+                to_data_mgr.set(from_data)
+
+    except KeyError:
+        logger.info("Problem setting collection in tile for language")
+
+    force_unlock(obj)
+    layout_en = obj.getLayout()
+    if layout_en:
+        reindex = True
+        trans_obj.setLayout(layout_en)
+
+    return reindex
+
+
 def translation_step_4(site, request, async_request=False):
     # used for whole-site translation
     """Copy fields values from en to given language for language independent
@@ -144,63 +204,7 @@ def translation_step_4(site, request, async_request=False):
         if obj.portal_type == "collective.cover.content":
             # Set propper collection for current language
             # WE supose to have only one cards_tile in the list of tiles
-            try:
-                data_tiles = obj.get_tiles()
-                for data_tile in data_tiles:
-                    if data_tile["type"] == "eea.climateadapt.cards_tile":
-                        data_trans_tiles = obj.get_tiles()
-                        for data_trans_tile in data_trans_tiles:
-                            if data_trans_tile["type"] == "eea.climateadapt.cards_tile":
-                                tile = obj.get_tile(data_tile["id"])
-                                try:
-                                    trans_tile = trans_obj.get_tile(
-                                        data_trans_tile["id"]
-                                    )
-                                except ValueError:
-                                    logger.info("Tile not found.")
-                                    trans_tile = None
-
-                                if trans_tile is not None:
-                                    collection_obj = uuidToObject(tile.data["uuid"])
-                                    collection_trans_obj = get_translation_object(
-                                        collection_obj, language
-                                    )
-
-                                    dataManager = ITileDataManager(trans_tile)
-
-                                    temp = dataManager.get()
-                                    try:
-                                        temp["uuid"] = IUUID(collection_trans_obj)
-                                    except TypeError:
-                                        logger.info("Collection not found.")
-
-                                    dataManager.set(temp)
-                    if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
-                        tile = obj.get_tile(data_tile["id"])
-                        tile_type = get_tile_type(tile, obj, trans_obj)
-                        from_tile = obj.restrictedTraverse(
-                            "@@{0}/{1}".format(tile_type, tile.id)
-                        )
-                        to_tile = trans_obj.restrictedTraverse(
-                            "@@{0}/{1}".format(tile_type, tile.id)
-                        )
-
-                        from_data_mgr = ITileDataManager(from_tile)
-                        to_data_mgr = ITileDataManager(to_tile)
-                        from_data = from_data_mgr.get()
-
-                        trans_tile = trans_obj.get_tile(data_tile["id"])
-                        from_data["title"] = trans_tile.data["title"]
-                        to_data_mgr.set(from_data)
-
-            except KeyError:
-                logger.info("Problem setting collection in tile for language")
-
-            force_unlock(obj)
-            layout_en = obj.getLayout()
-            if layout_en:
-                reindex = True
-                trans_obj.setLayout(layout_en)
+            reindex = handle_cover_step_4(obj, trans_obj, language, reindex)
 
         if obj.portal_type in ("Folder", "Document"):
             force_unlock(obj)
@@ -301,32 +305,6 @@ def translation_step_4(site, request, async_request=False):
 
     logger.info("Finalize step 4")
     return "Finalize step 4"
-
-
-def translations_status_by_version(site, version=0, language=None):
-    """Show the list of urls of a version and language"""
-    if language is None:
-        return "Missing language."
-
-    path = "/cca/" + language
-    version = int(version)
-    catalog = site.portal_catalog
-    brains = catalog.searchResults()
-    brains = catalog.searchResults(path=path)
-
-    res = []
-    template = "<p>{}</p>"
-
-    for brain in brains:
-        obj = brain.getObject()
-        obj_version = int(getattr(obj, "version", 0))
-
-        if obj_version != version:
-            continue
-
-        res.append(template.format(obj.absolute_url()))
-
-    return "".join(res)
 
 
 def get_tile_type(tile, from_cover, to_cover):

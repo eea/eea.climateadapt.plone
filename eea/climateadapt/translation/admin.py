@@ -26,10 +26,35 @@ from .core import (
     is_obj_skipped_for_translation,
     translate_obj,
     translation_step_4,
-    translations_status_by_version,
 )
 
 logger = logging.getLogger("eea.climateadapt")
+
+
+def translations_status_by_version(site, version=0, language=None):
+    """Show the list of urls of a version and language"""
+    if language is None:
+        return "Missing language."
+
+    path = "/cca/" + language
+    version = int(version)
+    catalog = site.portal_catalog
+    brains = catalog.searchResults()
+    brains = catalog.searchResults(path=path)
+
+    res = []
+    template = "<p>{}</p>"
+
+    for brain in brains:
+        obj = brain.getObject()
+        obj_version = int(getattr(obj, "version", 0))
+
+        if obj_version != version:
+            continue
+
+        res.append(template.format(obj.absolute_url()))
+
+    return "".join(res)
 
 
 def translation_list_type_fields(site):
