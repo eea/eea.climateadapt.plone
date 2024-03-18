@@ -57,4 +57,12 @@
     template="pt/volto-html.pt"
     />
 
+
+  <browser:page
+      for="*"
+      class=".views.TranslateObjectAsync"
+      name="translate-this-async"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>

@@ -1,26 +1,34 @@
-""" Translation views
-"""
+"""Translation views"""
 
-from Products.Five.browser import BrowserView
-from bs4 import BeautifulSoup
-from eea.cache.event import InvalidateMemCacheEvent
-from eea.climateadapt.browser.admin import force_unlock
-from plone.api import portal
-from plone.app.textfield.value import RichTextValue
-from zope import event
 import base64
 import logging
 import os
+
+from bs4 import BeautifulSoup
+from plone.api import portal
+from plone.app.textfield.value import RichTextValue
+from Products.Five.browser import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
+from zope import event
+
+from eea.cache.event import InvalidateMemCacheEvent
+from eea.climateadapt.asynctasks.utils import get_async_service
+from eea.climateadapt.browser.admin import force_unlock
+from eea.climateadapt.translation.utils import (
+    get_current_language,
+    get_site_languages,
+)
 from eea.climateadapt.translation.volto import get_content_from_html
 
-from .interfaces import ITranslationContext
 from . import (
+    get_translation_key_values,
+    get_translation_keys,
+    get_translation_report,
     normalize,
     save_translation,
-    get_translation_keys,
-    get_translation_key_values,
-    get_translation_report,
 )
+from .core import create_translation_object, execute_translate_async
+from .interfaces import ITranslationContext
 
 logger = logging.getLogger("wise.msfd.translation")
 env = os.environ.get
@@ -54,8 +62,7 @@ class TranslationCallback(BrowserView):
             trans_obj_path = form.get("external-reference")
             if "https://" in trans_obj_path:
                 site = portal.getSite()
-                trans_obj_path = "/cca" + \
-                    trans_obj_path.split(site.absolute_url())[-1]
+                trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
             field = form.get("field", None)
             if uid is not None and field is not None:
                 form.pop("uid", None)
@@ -144,8 +151,7 @@ class TranslationCallback(BrowserView):
             tile_annot_id = "plone.tiles.data." + tile_id
             site = portal.getSite()
             if "https://" in trans_obj_path:
-                trans_obj_path = "/cca" + \
-                    trans_obj_path.split(site.absolute_url())[-1]
+                trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
             trans_obj = site.unrestrictedTraverse(trans_obj_path)
             tile = trans_obj.__annotations__.get(tile_annot_id, None)
 
@@ -163,7 +169,7 @@ class TranslationCallback(BrowserView):
 
             try:
                 trans_obj.__annotations__[tile_annot_id] = update
-            except Exception as err:
+            except Exception:
                 logger.info("One step: Error on saving translated tile field")
                 # import pdb; pdb.set_trace()
 
@@ -202,8 +208,7 @@ class TranslationCallback(BrowserView):
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
         if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + \
-                trans_obj_path.split(site.absolute_url())[-1]
+            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
 
         form.pop("format")
         form.pop("request-id")
@@ -230,8 +235,7 @@ class TranslationCallback(BrowserView):
         soup = BeautifulSoup(html_file, "lxml")  # it's seems better
         # for invalid HTML cases.
 
-        html_fields = soup.find_all(
-            "div", attrs={"class": "cca-translation-section"})
+        html_fields = soup.find_all("div", attrs={"class": "cca-translation-section"})
 
         for field in html_fields:
             field_name = field["data-field"]
@@ -271,23 +275,21 @@ class TranslationCallback(BrowserView):
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
         if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + \
-                trans_obj_path.split(site.absolute_url())[-1]
+            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
 
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
         force_unlock(trans_obj)
 
         fielddata = get_content_from_html(html_translated.encode("latin-1"))
         for k, v in fielddata.items():
-            if k != 'blocks':
+            if k != "blocks":
                 setattr(trans_obj, k, v)
-        if fielddata.get('blocks', None) is not None:
-            for k, v in fielddata['blocks'].items():
+        if fielddata.get("blocks", None) is not None:
+            for k, v in fielddata["blocks"].items():
                 setattr(trans_obj, k, v)
         trans_obj._p_changed = True
         trans_obj.reindexObject()
-        logger.info("Html volto translation saved for %s",
-                    trans_obj.absolute_url())
+        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
 
 
 class TranslationList(BrowserView):
@@ -315,3 +317,70 @@ class TranslationList(BrowserView):
 
     def report(self):
         return get_translation_report()
+
+
+class TranslateObjectAsync(BrowserView):
+    @property
+    def async_service(self):
+        return get_async_service()
+
+    def __call__(self):
+        messages = IStatusMessage(self.request)
+        messages.add("Translation process initiated.", type="info")
+        obj = self.context
+        options = {}
+        options["obj_url"] = obj.absolute_url()
+        options["uid"] = obj.UID()
+        options["http_host"] = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
+
+        request_vars = {
+            # 'PARENTS': obj.REQUEST['PARENTS']
+        }
+
+        # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
+        # for req_key in request_keys_to_copy:
+        #     request_vars[req_key] = getattr(obj.REQUEST, req_key)
+
+        if "/en/" in obj.absolute_url():
+            # run translate FULL (all languages)
+            for language in get_site_languages():
+                if language == "en":
+                    continue
+
+                if self.async_service is None:
+                    logger.warn("Can't translate_async, plone.app.async not installed!")
+                    return
+
+                create_translation_object(obj, language)
+                queue = self.async_service.getQueues()[""]
+                self.async_service.queueJobInQueue(
+                    queue,
+                    ("translate",),
+                    execute_translate_async,
+                    obj,
+                    options,
+                    language,
+                    request_vars,
+                )
+
+        else:
+            language = get_current_language(self.context, self.request)
+            en_path = "/".join(obj.getPhysicalPath())
+            en_path = en_path.replace("/{}/".format(language), "/en/")
+            obj_en = self.context.unrestrictedTraverse(
+                en_path.replace("/{}/".format(language), "/en/")
+            )
+
+            create_translation_object(obj_en, language)
+            queue = self.async_service.getQueues()[""]
+            self.async_service.queueJobInQueue(
+                queue,
+                ("translate",),
+                execute_translate_async,
+                obj_en,
+                options,
+                language,
+                request_vars,
+            )
+
+        self.request.response.redirect(obj.absolute_url())
