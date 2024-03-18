@@ -315,6 +315,7 @@ def translate_obj_with_language(
     # update field in obj
     rich_fields = set()
 
+    reindex = []
     for fieldname in translatable_fields(trans_obj, fields):
         bits = get_value(obj, fieldname)
 
@@ -356,14 +357,17 @@ def translate_obj_with_language(
                 setattr(trans_obj, fieldname, RichTextValue(encoded_text))
 
                 trans_obj._p_changed = True
-                trans_obj.reindexObject(idxs=[fieldname])
+                reindex.append(fieldname)
                 continue
 
             if fieldname not in rich_fields:
                 setattr(trans_obj, fieldname, encoded_text)
 
             trans_obj._p_changed = True
-            trans_obj.reindexObject(idxs=[fieldname])
+            reindex.append(fieldname)
+
+    if reindex:
+        trans_obj.reindexObject(idxs=reindex)
 
     if len(rich_fields) > 0:
         handle_obj_with_richfields(

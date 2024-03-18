@@ -27,8 +27,8 @@ from eea.climateadapt.translation.core import (
     create_translation_object,
     execute_translate_async,
     translate_obj,
-    translation_step_4,
-    translation_step_5,
+    trans_copy_field_data,
+    trans_sync_workflow_state,
 )
 from eea.climateadapt.translation.utils import get_current_language, get_site_languages
 
@@ -201,9 +201,11 @@ class TranslateActionExecutor(object):
         """Make sure all translations (cloned) objs exists for this obj"""
         transaction.savepoint()
         translations = TranslationManager(obj).get_translations()
+
         for language in get_site_languages():
             if language != "en" and language not in translations:
                 create_translation_object(obj, language)
+
         transaction.commit()
 
     def translate_obj(self, obj):
@@ -237,7 +239,7 @@ class TranslateActionExecutor(object):
                     "language": language,
                     "uid": obj.UID(),
                 }
-                translation_step_4(getSite(), settings)
+                trans_copy_field_data(getSite(), settings)
 
     def publish_translations(self, obj):
         """Run step 5 for this obj"""
@@ -248,7 +250,7 @@ class TranslateActionExecutor(object):
                     "language": language,
                     "uid": obj.UID(),
                 }
-                translation_step_5(getSite(), settings)
+                trans_sync_workflow_state(getSite(), settings)
 
 
 class TranslateAddForm(NullAddForm):
@@ -293,7 +295,7 @@ def execute_translate_step_4_async(context, options, language, request_vars):
             "language": language,
             "uid": options["uid"],
         }
-        res = translation_step_4(context, settings, async_request=True)
+        res = trans_copy_field_data(context, settings, async_request=True)
         logger.info("Async translate for object %s", options["obj_url"])
 
     except Exception as err:

@@ -20,12 +20,13 @@ from eea.climateadapt.browser.admin import force_unlock
 from . import (
     retrieve_volto_html_translation,
 )
-from .constants import contenttype_language_independent_fields
+
 from .translate_obj import translate_obj
 
 # steps => used to translate the entire website
 # translate in one step (when object is published)
 # translate async => manual action
+# from .constants import contenttype_language_independent_fields
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -179,17 +180,18 @@ def handle_folder_doc_step_4(obj, trans_obj, reindex, async_request):
     trans_obj.reindexObject()
 
 
-def translation_step_4(site, request, async_request=False):
+def trans_copy_field_data(site, request, async_request=False):
     """Copy fields values from en to given language for language independent
         fields.
     TODO: this is used in a lot of places in code. It needs to be properly documented
+
+    This used to be called translation_step_4
     """
     # used for whole-site translation
 
     language = request.get("language", None)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
-    # offset = int(request.get("offset", 0))
     portal_type = request.get("portal_type", None)
 
     if language is None:
@@ -205,11 +207,7 @@ def translation_step_4(site, request, async_request=False):
     if portal_type:
         search_data["portal_type"] = portal_type
 
-    # brains = catalog.searchResults(path='/cca/en', sort_limit=limit)
     brains = catalog.searchResults(search_data)
-
-    # brains = catalog.searchResults(path='/cca/en')
-    # site_url = portal.getSite().absolute_url()
     logger.info("Start copying values for language independent fields...")
 
     obj_count = 0
@@ -413,84 +411,17 @@ def is_volto_context(context):
     return False
 
 
-def execute_translate_async(context, options, language, request_vars):
-    """translate via zc.async"""
-    if options.get("is_volto", None) is not None:
-        retrieve_volto_html_translation(
-            options["http_host"],
-            "en",
-            options["html_content"].encode("utf-8"),
-            options["trans_obj_path"],
-            target_languages=language.upper(),
-        )
-        return
-
-    if is_volto_context(context):
-        logger.info("SKIP classic translation in volto context")
-        return
-
-    if not hasattr(context, "REQUEST"):
-        zopeUtils._Z2HOST = options["http_host"]
-        context = zopeUtils.makerequest(context)
-        context.REQUEST.other["SERVER_URL"] = context.REQUEST.other[
-            "SERVER_URL"
-        ].replace("http", "https")
-        # context.REQUEST['PARENTS'] = [context]
-
-        for k, v in request_vars.items():
-            context.REQUEST.set(k, v)
-
-    settings = {
-        "language": language,
-        "uid": options["uid"],
-    }
-
-    translation_step_4(context, settings, async_request=True)
-    site_portal = portal.get()
-    site_portal.REQUEST = context.REQUEST
-
-    translate_obj(context, lang=language, one_step=True)
-
-    # trans_obj = get_translation_object(context, language)
-    # copy_missing_interfaces(context, trans_obj)
-
-    # delete REQUEST to avoid pickle error
-    # del context.REQUEST
-    del site_portal.REQUEST
-
-    logger.info("Async translate for object %s", options["obj_url"])
-
-    # try:
-    # except Exception as err:
-    #     # async_service = get_async_service()
-    #
-    #     # re-schedule PING on error
-    #     # schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
-    #     # queue = async_service.getQueues()['']
-    #     # async_service.queueJobInQueueWithDelay(
-    #     #     None, schedule, queue, ('translate',),
-    #     #     execute_translate_step_4_async, context, options, language, request_vars
-    #     # )
-    #
-    #     # mark the original job as failed
-    #     return "Translate rescheduled for object %s. " "Reason: %s " % (
-    #         options["obj_url"],
-    #         str(err),
-    #     )
-
-    return "Finished"
-
-
-def translation_step_5(site, request):
+def trans_sync_workflow_state(site, request):
     """Publish translated items for a language and copy publishing and
     creation date from EN items.
+
+    This used to be translation_step_5
     """
 
     # used for whole-site translation
     language = request.get("language", None)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
-    # offset = int(request.get("offset", 0))
     portal_type = request.get("portal_type", None)
 
     if language is None:
@@ -551,45 +482,46 @@ def translation_step_5(site, request):
     return "Finalize step 5"
 
 
-# if obj.portal_type in contenttype_language_independent_fields:
-#     force_unlock(obj)
-#     obj_url = obj.absolute_url()
-#     logger.info("PROCESS: %s", obj_url)
-#
-#     translations = None
-#     try:
-#         translations = TranslationManager(obj).get_translations()
-#     except Exception:
-#         pass
-#
-#     if translations is None:
-#         continue
-#
-#     try:
-#         trans_obj = translations[language]
-#     except KeyError:
-#         logger.info("Missing translation for: %s", obj_url)
-#         continue
-#
-#     # fields = contenttype_language_independent_fields[obj.portal_type]
-#     # for key in fields:
-#     #     logger.info("Field: %s", key)
-#     #
-#     #     if key == "start":
-#     #         trans_obj.start = obj.start
-#     #         reindex = True
-#     #     elif key == "end":
-#     #         trans_obj.end = obj.end
-#     #         reindex = True
-#     #     elif key == "effective":
-#     #         trans_obj.setEffectiveDate(obj.effective_date)
-#     #         reindex = True
-#     #     elif key == "timezone":
-#     #         trans_obj.timezone = obj.timezone
-#     #         reindex = True
-#     #     else:
-#     #         try:
-#     #             setattr(trans_obj, key, getattr(obj, key))
-#     #             reindex = True
-#     #         except Exception:
-#     #             logger.info("Skip: %s %s", obj.portal_type, key)
+def execute_translate_async(context, options, language, request_vars):
+    """Translate via zc.async"""
+
+    if options.get("is_volto", None) is not None:
+        retrieve_volto_html_translation(
+            options["http_host"],
+            "en",
+            options["html_content"].encode("utf-8"),
+            options["trans_obj_path"],
+            target_languages=language.upper(),
+        )
+        return
+
+    if is_volto_context(context):
+        logger.info("SKIP classic translation in volto context")
+        return
+
+    if not hasattr(context, "REQUEST"):
+        zopeUtils._Z2HOST = options["http_host"]
+        context = zopeUtils.makerequest(context)
+        context.REQUEST.other["SERVER_URL"] = context.REQUEST.other[
+            "SERVER_URL"
+        ].replace("http", "https")
+        # context.REQUEST['PARENTS'] = [context]
+
+        for k, v in request_vars.items():
+            context.REQUEST.set(k, v)
+
+    settings = {
+        "language": language,
+        "uid": options["uid"],
+    }
+
+    trans_copy_field_data(context, settings, async_request=True)
+    site_portal = portal.get()
+    site_portal.REQUEST = context.REQUEST
+
+    translate_obj(context, lang=language, one_step=True)
+    del site_portal.REQUEST
+
+    logger.info("Async translate for object %s", options["obj_url"])
+
+    return "Finished"

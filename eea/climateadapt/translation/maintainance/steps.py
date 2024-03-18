@@ -21,8 +21,8 @@ from ..core import (
     get_translation_object,
     get_translation_object_from_uid,
     is_obj_skipped_for_translation,
-    translation_step_4,
-    translation_step_5,
+    trans_copy_field_data,
+    trans_sync_workflow_state,
 )
 from ..utils import get_object_fields_values
 
@@ -490,7 +490,7 @@ class TranslateStep4(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        return translation_step_4(getSite(), self.request)
+        return trans_copy_field_data(getSite(), self.request)
 
 
 class TranslateStep5(BrowserView):
@@ -503,4 +503,4 @@ class TranslateStep5(BrowserView):
 
     def __call__(self, **kwargs):
         kwargs.update(self.request.form)
-        return translation_step_5(getSite(), self.request)
+        return trans_sync_workflow_state(getSite(), self.request)

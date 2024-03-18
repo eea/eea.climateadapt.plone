@@ -24,7 +24,7 @@ from .core import (
     create_translation_object,
     is_obj_skipped_for_translation,
     translate_obj,
-    translation_step_4,
+    trans_copy_field_data,
 )
 from .utils import get_object_fields_values
 
@@ -262,7 +262,7 @@ class TranslateOneObject(BrowserView):
                     "language": language,
                     "uid": obj.UID(),
                 }
-                translation_step_4(getSite(), settings)
+                trans_copy_field_data(getSite(), settings)
 
 
 # @adapter(Interface, ITranslateAction, Interface)
