@@ -1,39 +1,42 @@
 # -*- coding: utf-8 -*-
-""" Content rules
-"""
+"""Content rules"""
+
 import logging
-import pytz
-import urllib
-from datetime import datetime, timedelta
+
+import transaction
+from DateTime import DateTime
+from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.api.portal import get_tool
-import transaction
-from OFS.SimpleItem import SimpleItem
-
-# from plone.app.contentrules import PloneMessageFactory as _
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.app.multilingual.manager import TranslationManager
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
-from Products.CMFPlone import utils
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import utils
 from Products.statusmessages.interfaces import IStatusMessage
 from Testing.ZopeTestCase import utils as zopeUtils
 from ZODB.POSException import ConflictError
-from zope.component import adapter, adapts, ComponentLookupError
+from zope.component import adapter, adapts
 from zope.interface import Interface, implementer, implements
 from zope.site.hooks import getSite
-from DateTime import DateTime
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.asynctasks.utils import get_async_service
-from eea.climateadapt.translation.core import create_translation_object
-from eea.climateadapt.translation.core import copy_missing_interfaces
-from eea.climateadapt.translation.core import execute_translate_async
-from eea.climateadapt.translation.core import translate_obj
-from eea.climateadapt.translation.core import translation_step_4
+from eea.climateadapt.translation.core import (
+    copy_missing_interfaces,
+    create_translation_object,
+    execute_translate_async,
+    translate_obj,
+    translation_step_4,
+    translation_step_5,
+)
 from eea.climateadapt.translation.utils import get_current_language, get_site_languages
-from eea.climateadapt.translation.core import translation_step_5
 
+# from datetime import datetime, timedelta
+# ComponentLookupError,
+# import pytz
+# import urllib
+# from plone.app.contentrules import PloneMessageFactory as _
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -351,8 +354,7 @@ class TranslateAsyncActionExecutor(object):
                     continue
 
                 if self.async_service is None:
-                    logger.warn(
-                        "Can't translate_asyn, plone.app.async not installed!")
+                    logger.warn("Can't translate_asyn, plone.app.async not installed!")
                     return
 
                 create_translation_object(obj, language)
@@ -428,8 +430,7 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
             logger.info("Synchronize states...")
             action = self.event.action
             translations = TranslationManager(obj).get_translations()
-            translated_objs = [translations[x]
-                               for x in translations if x != "en"]
+            translated_objs = [translations[x] for x in translations if x != "en"]
 
             for trans_obj in translated_objs:
                 self.set_new_state(trans_obj, action)

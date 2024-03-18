@@ -22,11 +22,11 @@ from eea.climateadapt.translation.utils import (
 from .core import (
     copy_missing_interfaces,
     create_translation_object,
-    get_object_fields_values,
     is_obj_skipped_for_translation,
     translate_obj,
     translation_step_4,
 )
+from .utils import get_object_fields_values
 
 logger = logging.getLogger("eea.climateadapt")
 

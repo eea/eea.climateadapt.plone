@@ -1,4 +1,3 @@
-import json
 import logging
 import os
 
@@ -23,7 +22,6 @@ from . import (
 )
 from .constants import contenttype_language_independent_fields
 from .translate_obj import translate_obj
-from .utils import get_object_fields_values
 
 # steps => used to translate the entire website
 # translate in one step (when object is published)
@@ -141,12 +139,53 @@ def handle_cover_step_4(obj, trans_obj, language, reindex):
     return reindex
 
 
+def handle_folder_doc_step_4(obj, trans_obj, reindex, async_request):
+    force_unlock(obj)
+
+    layout_en = obj.getLayout()
+    default_view_en = obj.getDefaultPage()
+    layout_default_view_en = None
+    if default_view_en:
+        try:
+            trans_obj.setDefaultPage(default_view_en)
+            reindex = True
+        except Exception:
+            logger.info("Can't set default page for: %s", trans_obj.absolute_url())
+    if not reindex:
+        reindex = True
+        trans_obj.setLayout(layout_en)
+
+    if default_view_en is not None:
+        layout_default_view_en = obj[default_view_en].getLayout()
+
+    # set the layout of the translated object to match the EN object
+
+    # also set the layout of the default view
+    if layout_default_view_en:
+        try:
+            trans_obj[default_view_en].setLayout(layout_default_view_en)
+        except Exception:
+            logger.info("Can't set layout for: %s", trans_obj.absolute_url())
+            raise
+
+    if async_request:
+        if hasattr(trans_obj, "REQUEST"):
+            del trans_obj.REQUEST
+
+        if hasattr(obj, "REQUEST"):
+            del obj.REQUEST
+
+    trans_obj._p_changed = True
+    trans_obj.reindexObject()
+
+
 def translation_step_4(site, request, async_request=False):
-    # used for whole-site translation
     """Copy fields values from en to given language for language independent
         fields.
     TODO: this is used in a lot of places in code. It needs to be properly documented
     """
+    # used for whole-site translation
+
     language = request.get("language", None)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
@@ -207,88 +246,12 @@ def translation_step_4(site, request, async_request=False):
             reindex = handle_cover_step_4(obj, trans_obj, language, reindex)
 
         if obj.portal_type in ("Folder", "Document"):
-            force_unlock(obj)
-
-            layout_en = obj.getLayout()
-            default_view_en = obj.getDefaultPage()
-            layout_default_view_en = None
-            if default_view_en:
-                try:
-                    trans_obj.setDefaultPage(default_view_en)
-                    reindex = True
-                except Exception:
-                    logger.info(
-                        "Can't set default page for: %s", trans_obj.absolute_url()
-                    )
-            if not reindex:
-                reindex = True
-                trans_obj.setLayout(layout_en)
-
-            if default_view_en is not None:
-                layout_default_view_en = obj[default_view_en].getLayout()
-
-            # set the layout of the translated object to match the EN object
-
-            # also set the layout of the default view
-            if layout_default_view_en:
-                try:
-                    trans_obj[default_view_en].setLayout(layout_default_view_en)
-                except Exception:
-                    logger.info("Can't set layout for: %s", trans_obj.absolute_url())
-                    continue
-
-            if async_request:
-                if hasattr(trans_obj, "REQUEST"):
-                    del trans_obj.REQUEST
-
-                if hasattr(obj, "REQUEST"):
-                    del obj.REQUEST
-
-            trans_obj._p_changed = True
-            trans_obj.reindexObject()
-
-        if obj.portal_type in contenttype_language_independent_fields:
-            force_unlock(obj)
-            obj_url = obj.absolute_url()
-            logger.info("PROCESS: %s", obj_url)
-
-            translations = None
             try:
-                translations = TranslationManager(obj).get_translations()
+                reindex = handle_folder_doc_step_4(
+                    obj, trans_obj, reindex, async_request
+                )
             except Exception:
-                pass
-
-            if translations is None:
                 continue
-
-            try:
-                trans_obj = translations[language]
-            except KeyError:
-                logger.info("Missing translation for: %s", obj_url)
-                continue
-
-            # fields = contenttype_language_independent_fields[obj.portal_type]
-            # for key in fields:
-            #     logger.info("Field: %s", key)
-            #
-            #     if key == "start":
-            #         trans_obj.start = obj.start
-            #         reindex = True
-            #     elif key == "end":
-            #         trans_obj.end = obj.end
-            #         reindex = True
-            #     elif key == "effective":
-            #         trans_obj.setEffectiveDate(obj.effective_date)
-            #         reindex = True
-            #     elif key == "timezone":
-            #         trans_obj.timezone = obj.timezone
-            #         reindex = True
-            #     else:
-            #         try:
-            #             setattr(trans_obj, key, getattr(obj, key))
-            #             reindex = True
-            #         except Exception:
-            #             logger.info("Skip: %s %s", obj.portal_type, key)
 
         if reindex is True:
             if async_request:
@@ -519,10 +482,11 @@ def execute_translate_async(context, options, language, request_vars):
 
 
 def translation_step_5(site, request):
-    # used for whole-site translation
     """Publish translated items for a language and copy publishing and
     creation date from EN items.
     """
+
+    # used for whole-site translation
     language = request.get("language", None)
     uid = request.get("uid", None)
     limit = int(request.get("limit", 0))
@@ -585,3 +549,47 @@ def translation_step_5(site, request):
 
     logger.info("Finalize step 5")
     return "Finalize step 5"
+
+
+# if obj.portal_type in contenttype_language_independent_fields:
+#     force_unlock(obj)
+#     obj_url = obj.absolute_url()
+#     logger.info("PROCESS: %s", obj_url)
+#
+#     translations = None
+#     try:
+#         translations = TranslationManager(obj).get_translations()
+#     except Exception:
+#         pass
+#
+#     if translations is None:
+#         continue
+#
+#     try:
+#         trans_obj = translations[language]
+#     except KeyError:
+#         logger.info("Missing translation for: %s", obj_url)
+#         continue
+#
+#     # fields = contenttype_language_independent_fields[obj.portal_type]
+#     # for key in fields:
+#     #     logger.info("Field: %s", key)
+#     #
+#     #     if key == "start":
+#     #         trans_obj.start = obj.start
+#     #         reindex = True
+#     #     elif key == "end":
+#     #         trans_obj.end = obj.end
+#     #         reindex = True
+#     #     elif key == "effective":
+#     #         trans_obj.setEffectiveDate(obj.effective_date)
+#     #         reindex = True
+#     #     elif key == "timezone":
+#     #         trans_obj.timezone = obj.timezone
+#     #         reindex = True
+#     #     else:
+#     #         try:
+#     #             setattr(trans_obj, key, getattr(obj, key))
+#     #             reindex = True
+#     #         except Exception:
+#     #             logger.info("Skip: %s %s", obj.portal_type, key)

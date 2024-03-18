@@ -17,7 +17,6 @@ from .. import (
 )
 from ..constants import source_richtext_types
 from ..core import (
-    get_object_fields_values,
     get_translation_json_files,
     get_translation_object,
     get_translation_object_from_uid,
@@ -25,6 +24,7 @@ from ..core import (
     translation_step_4,
     translation_step_5,
 )
+from ..utils import get_object_fields_values
 
 logger = logging.getLogger("eea.climateadapt")
 

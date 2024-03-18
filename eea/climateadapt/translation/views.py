@@ -337,6 +337,10 @@ class TranslateObjectAsync(BrowserView):
             # 'PARENTS': obj.REQUEST['PARENTS']
         }
 
+        if self.async_service is None:
+            logger.warn("Can't translate_async, plone.app.async not installed!")
+            return
+
         # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
         # for req_key in request_keys_to_copy:
         #     request_vars[req_key] = getattr(obj.REQUEST, req_key)
@@ -346,10 +350,6 @@ class TranslateObjectAsync(BrowserView):
             for language in get_site_languages():
                 if language == "en":
                     continue
-
-                if self.async_service is None:
-                    logger.warn("Can't translate_async, plone.app.async not installed!")
-                    return
 
                 create_translation_object(obj, language)
                 queue = self.async_service.getQueues()[""]
