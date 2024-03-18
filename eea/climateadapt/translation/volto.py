@@ -98,6 +98,11 @@ class ToHtml(BrowserView):
         html = self.index()
         return html
 
+    def get_value(self, name):
+        if name == "blocks":
+            return get_blocks_as_html(self.context)
+        return get_value_representation(self.context, name)
+
 
 class ContentToHtml(BrowserView):
     """A page to test html marshalling"""
@@ -163,11 +168,6 @@ class ContentToHtml(BrowserView):
             relative=1
         ).replace("cca/", "")
         return self.request.response.redirect(url)
-
-    def get_value(self, name):
-        if name == "blocks":
-            return get_blocks_as_html(self.context)
-        return get_value_representation(self.context, name)
 
 
 def translate_volto_html(html, en_obj, http_host):
