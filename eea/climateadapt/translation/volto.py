@@ -41,9 +41,11 @@ CONTENT_CONVERTER = "http://converter:8000/html2content"
 
 def get_blocks_as_html(obj):
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(
+        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -57,9 +59,11 @@ def get_content_from_html(html):
     """Given an HTML string, converts it to Plone content data"""
 
     data = {"html": html}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER,
+                        data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -136,7 +140,7 @@ class ContentToHtml(BrowserView):
 
     def __call__(self):
         obj = self.context
-        html = getMultiAdapter(self.context, self.request, name="tohtml")
+        html = getMultiAdapter((self.context, self.request), name="tohtml")
 
         if self.request.form.get("half"):
             return html

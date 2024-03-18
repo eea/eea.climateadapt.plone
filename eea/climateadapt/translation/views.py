@@ -328,11 +328,9 @@ class TranslateObjectAsync(BrowserView):
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
 
-        __import__('pdb').set_trace()
         obj = self.context
         html = getMultiAdapter(
-            self.context, self.context.REQUEST, name="tohtml")
-
+            (self.context, self.context.REQUEST), name="tohtml")
         http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
         translate_volto_html(html, obj, http_host)
 
