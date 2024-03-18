@@ -330,7 +330,7 @@ class TranslateObjectAsync(BrowserView):
 
         obj = self.context
         html = getMultiAdapter(
-            (self.context, self.context.REQUEST), name="tohtml")
+            (self.context, self.context.REQUEST), name="tohtml")()
         http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
         translate_volto_html(html, obj, http_host)
 

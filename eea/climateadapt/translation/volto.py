@@ -145,7 +145,7 @@ class ContentToHtml(BrowserView):
 
     def __call__(self):
         obj = self.context
-        html = getMultiAdapter((self.context, self.request), name="tohtml")
+        html = getMultiAdapter((self.context, self.request), name="tohtml")()
 
         if self.request.form.get("half"):
             return html
