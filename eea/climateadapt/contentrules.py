@@ -14,7 +14,6 @@ from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.statusmessages.interfaces import IStatusMessage
-from Testing.ZopeTestCase import utils as zopeUtils
 from ZODB.POSException import ConflictError
 from zope.component import adapter, adapts
 from zope.interface import Interface, implementer, implements
@@ -25,12 +24,13 @@ from eea.climateadapt.asynctasks.utils import get_async_service
 from eea.climateadapt.translation.core import (
     copy_missing_interfaces,
     create_translation_object,
-    execute_translate_async,
     translate_obj,
     trans_copy_field_data,
     trans_sync_workflow_state,
 )
-from eea.climateadapt.translation.utils import get_current_language, get_site_languages
+from eea.climateadapt.translation.utils import get_site_languages
+from zope.component import getMultiAdapter
+from eea.climateadapt.translation.volto import translate_volto_html
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -293,60 +293,10 @@ class TranslateAsyncActionExecutor(object):
 
     def __call__(self):
         obj = self.event.object
-        options = {}
-        options["obj_url"] = obj.absolute_url()
-        options["uid"] = obj.UID()
-        options["http_host"] = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
-
-        request_vars = {
-            # 'PARENTS': obj.REQUEST['PARENTS']
-        }
-
-        # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
-        # for req_key in request_keys_to_copy:
-        #     request_vars[req_key] = getattr(obj.REQUEST, req_key)
-
-        if "/en/" in obj.absolute_url():
-            # run translate FULL (all languages)
-            for language in get_site_languages():
-                if language == "en":
-                    continue
-
-                if self.async_service is None:
-                    logger.warn("Can't translate_asyn, plone.app.async not installed!")
-                    return
-
-                create_translation_object(obj, language)
-                queue = self.async_service.getQueues()[""]
-                self.async_service.queueJobInQueue(
-                    queue,
-                    ("translate",),
-                    execute_translate_async,
-                    obj,
-                    options,
-                    language,
-                    request_vars,
-                )
-
-        else:
-            language = get_current_language(self.context, self.request)
-            en_path = "/".join(obj.getPhysicalPath())
-            en_path = en_path.replace("/{}/".format(language), "/en/")
-            obj_en = self.context.unrestrictedTraverse(
-                en_path.replace("/{}/".format(language), "/en/")
-            )
-
-            create_translation_object(obj_en, language)
-            queue = self.async_service.getQueues()[""]
-            self.async_service.queueJobInQueue(
-                queue,
-                ("translate",),
-                execute_translate_async,
-                obj_en,
-                options,
-                language,
-                request_vars,
-            )
+        html = getMultiAdapter(
+            (self.context, self.context.REQUEST), name="tohtml")()
+        http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
+        translate_volto_html(html, obj, http_host)
 
         return True
 
@@ -389,7 +339,8 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
             logger.info("Synchronize states...")
             action = self.event.action
             translations = TranslationManager(obj).get_translations()
-            translated_objs = [translations[x] for x in translations if x != "en"]
+            translated_objs = [translations[x]
+                               for x in translations if x != "en"]
 
             for trans_obj in translated_objs:
                 self.set_new_state(trans_obj, action)
