@@ -1,5 +1,11 @@
+from .constants import LANGUAGE_INDEPENDENT_FIELDS
+from plone.dexterity.utils import iterSchemata
+from zope.schema import getFieldsInOrder
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 import logging
 import os
+from plone.app.textfield.value import RichTextValue
+from plone.app.textfield.interfaces import IRichText
 
 import transaction
 from Acquisition import aq_inner, aq_parent
@@ -542,3 +548,19 @@ def handle_link(en_obj, trans_obj):
         logger.info("Fixed with: %s", link)
         trans_obj.remoteUrl = link
     trans_obj._p_changed = True
+
+
+def save_field_data(canonical, trans_obj, fielddata):
+    for schema in iterSchemata(canonical):
+        for k, v in getFieldsInOrder(schema):
+            if (
+                ILanguageIndependentField.providedBy(v)
+                or k in LANGUAGE_INDEPENDENT_FIELDS
+                or k not in fielddata
+            ):
+                continue
+            # print(schema, k, v)
+            value = fielddata[k]
+            if IRichText.providedBy(v):
+                value = RichTextValue(value)
+            setattr(trans_obj, k, value)

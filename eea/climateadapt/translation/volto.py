@@ -5,8 +5,6 @@ by first converting the blocks to HTML, then ingest and convert that structure b
 """
 
 # from langdetect import language
-from plone.app.textfield.value import RichTextValue
-from plone.app.textfield.interfaces import IRichText
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from zope.schema import getFieldsInOrder
 from plone.dexterity.utils import iterSchemata
@@ -15,14 +13,11 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from Products.Five.browser import BrowserView
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from utils import get_value_representation
+from .utils import get_value_representation
 
 from eea.climateadapt.translation.utils import get_site_languages
 from eea.climateadapt.asynctasks.utils import get_async_service
-from .core import (
-    create_translation_object,
-    execute_translate_async,
-)
+from .core import create_translation_object, execute_translate_async, save_field_data
 from plone.app.multilingual.manager import TranslationManager
 
 import logging
@@ -121,19 +116,7 @@ class ContentToHtml(BrowserView):
         # __import__("pdb").set_trace()
         copy = translated_object
 
-        for schema in iterSchemata(obj):
-            for k, v in getFieldsInOrder(schema):
-                if (
-                    ILanguageIndependentField.providedBy(v)
-                    or k in LANGUAGE_INDEPENDENT_FIELDS
-                    or k not in fielddata
-                ):
-                    continue
-                # print(schema, k, v)
-                value = fielddata[k]
-                if IRichText.providedBy(v):
-                    value = RichTextValue(value)
-                setattr(copy, k, value)
+        save_field_data(obj, copy, fielddata)
 
         return copy
 

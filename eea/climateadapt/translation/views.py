@@ -32,6 +32,7 @@ from .core import (
     handle_cover_step_4,
     handle_folder_doc_step_4,
     handle_link,
+    save_field_data,
 )
 from .interfaces import ITranslationContext
 
@@ -286,12 +287,11 @@ class TranslationCallback(BrowserView):
         force_unlock(trans_obj)
 
         fielddata = get_content_from_html(html_translated.encode("latin-1"))
-        for k, v in fielddata.items():
-            if k != "blocks":
-                setattr(trans_obj, k, v)
-        if fielddata.get("blocks", None) is not None:
-            for k, v in fielddata["blocks"].items():
-                setattr(trans_obj, k, v)
+
+        if fielddata.get("blocks"):
+            blockdata = fielddata["blocks"]
+            fielddata["blocks_layout"] = blockdata["blocks_layout"]
+            fielddata["blocks"] = blockdata["blocks"]
 
         # sync workflow state
         # sync layout
@@ -301,6 +301,9 @@ class TranslationCallback(BrowserView):
 
         translations = TranslationManager(trans_obj).get_translations()
         en_obj = translations["en"]  # hardcoded, should use canonical
+
+        save_field_data(en_obj, trans_obj, fielddata)
+
         copy_missing_interfaces(en_obj, trans_obj)
 
         # layout_en = en_obj.getLayout()
