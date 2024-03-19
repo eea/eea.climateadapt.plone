@@ -293,9 +293,10 @@ class TranslateAsyncActionExecutor(object):
 
     def __call__(self):
         obj = self.event.object
-        html = getMultiAdapter(
-            (self.context, self.context.REQUEST), name="tohtml")()
+        html = getMultiAdapter((self.context, self.context.REQUEST), name="tohtml")()
         http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
+
+        # this triggers a call to eTranslation, so this process is async
         translate_volto_html(html, obj, http_host)
 
         return True
@@ -339,8 +340,7 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
             logger.info("Synchronize states...")
             action = self.event.action
             translations = TranslationManager(obj).get_translations()
-            translated_objs = [translations[x]
-                               for x in translations if x != "en"]
+            translated_objs = [translations[x] for x in translations if x != "en"]
 
             for trans_obj in translated_objs:
                 self.set_new_state(trans_obj, action)

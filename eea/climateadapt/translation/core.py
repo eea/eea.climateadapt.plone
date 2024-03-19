@@ -80,6 +80,32 @@ def get_translation_json_files(uid=None):
     return json_files
 
 
+def fix_cards_tile(obj, trans_obj, data_tile, data_trans_tile, language):
+    tile = obj.get_tile(data_tile["id"])
+    try:
+        trans_tile = trans_obj.get_tile(data_trans_tile["id"])
+    except ValueError:
+        logger.info("Tile not found.")
+        trans_tile = None
+
+    if trans_tile is not None:
+        collection_obj = uuidToObject(tile.data["uuid"])
+        collection_trans_obj = get_translation_object(collection_obj, language)
+
+        dataManager = ITileDataManager(trans_tile)
+
+        temp = dataManager.get()
+        try:
+            temp["uuid"] = IUUID(collection_trans_obj)
+        except TypeError:
+            logger.info("Collection not found.")
+
+        dataManager.set(temp)
+
+
+cover_fixes = {"eea.climateadapt.cards_tile": fix_cards_tile}
+
+
 def handle_cover_step_4(obj, trans_obj, language, reindex):
     try:
         data_tiles = obj.get_tiles()
@@ -87,29 +113,10 @@ def handle_cover_step_4(obj, trans_obj, language, reindex):
             if data_tile["type"] == "eea.climateadapt.cards_tile":
                 data_trans_tiles = obj.get_tiles()
                 for data_trans_tile in data_trans_tiles:
-                    if data_trans_tile["type"] == "eea.climateadapt.cards_tile":
-                        tile = obj.get_tile(data_tile["id"])
-                        try:
-                            trans_tile = trans_obj.get_tile(data_trans_tile["id"])
-                        except ValueError:
-                            logger.info("Tile not found.")
-                            trans_tile = None
+                    fixer = cover_fixes.get(data_trans_tile["type"], None)
+                    if fixer:
+                        fixer(obj, trans_obj, data_tile, data_trans_tile, language)
 
-                        if trans_tile is not None:
-                            collection_obj = uuidToObject(tile.data["uuid"])
-                            collection_trans_obj = get_translation_object(
-                                collection_obj, language
-                            )
-
-                            dataManager = ITileDataManager(trans_tile)
-
-                            temp = dataManager.get()
-                            try:
-                                temp["uuid"] = IUUID(collection_trans_obj)
-                            except TypeError:
-                                logger.info("Collection not found.")
-
-                            dataManager.set(temp)
             if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
                 tile = obj.get_tile(data_tile["id"])
                 tile_type = get_tile_type(tile, obj, trans_obj)
@@ -140,7 +147,7 @@ def handle_cover_step_4(obj, trans_obj, language, reindex):
     return reindex
 
 
-def handle_folder_doc_step_4(obj, trans_obj, reindex, async_request):
+def sync_obj_layout(obj, trans_obj, reindex, async_request):
     force_unlock(obj)
 
     layout_en = obj.getLayout()
@@ -176,8 +183,8 @@ def handle_folder_doc_step_4(obj, trans_obj, reindex, async_request):
         if hasattr(obj, "REQUEST"):
             del obj.REQUEST
 
-    trans_obj._p_changed = True
-    trans_obj.reindexObject()
+
+handle_folder_doc_step_4 = sync_obj_layout  # BBB
 
 
 def trans_copy_field_data(site, request, async_request=False):
