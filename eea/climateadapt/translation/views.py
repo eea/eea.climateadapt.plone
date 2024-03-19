@@ -15,7 +15,6 @@ from zope.component import getMultiAdapter
 
 from eea.cache.event import InvalidateMemCacheEvent
 from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.core import copy_missing_interfaces
 from eea.climateadapt.translation.volto import (
     get_content_from_html,
     translate_volto_html,
@@ -28,7 +27,12 @@ from . import (
     normalize,
     save_translation,
 )
-from .core import handle_cover_step_4, handle_folder_doc_step_4
+from .core import (
+    copy_missing_interfaces,
+    handle_cover_step_4,
+    handle_folder_doc_step_4,
+    handle_link,
+)
 from .interfaces import ITranslationContext
 
 logger = logging.getLogger("wise.msfd.translation")
@@ -307,6 +311,8 @@ class TranslationCallback(BrowserView):
             handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
         if trans_obj.portal_type in ("Folder", "Document"):
             handle_folder_doc_step_4(en_obj, trans_obj, False, False)
+        if trans_obj.portal_type in ["Link"]:
+            handle_link(en_obj, trans_obj)
 
         # TODO: sync workflow state
 
