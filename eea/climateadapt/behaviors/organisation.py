@@ -45,7 +45,7 @@ class IOrganisation(IAceItem, IBlocks):
     )
 
     organisational_key_activities = RichText(
-        title=_(u"Key activities within climate change and health"),
+        title=_(u"Key activities within climate change and health (relevant for the Observatory)"),
         description=u"Please describe the key activities"
         u" undertaken by your organisation that are related"
         u" to the topic of 'climate change and health'."
