@@ -10,6 +10,7 @@ from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeT
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
 from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
+from plone import api
 
 from eea.climateadapt.behaviors import (
     IAceProject,
@@ -21,6 +22,7 @@ from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
 
 from .utils import cca_content_serializer
+
 
 def serialize(possible_node):
     if isinstance(possible_node, basestring):
@@ -35,9 +37,14 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
         site = portal.get()
         site_url = site.absolute_url()
         frags = fragments_fromstring(text)
+        # __import__("pdb").set_trace()
         for frag in frags:
+            # el.set("style", None)
             if isinstance(frag, basestring):
                 continue
+            # remove all style attributes
+            for el in frag.xpath("//*[@style]"):
+                el.attrib.pop("style", None)
             for link in frag.xpath("a"):
                 href = link.get("href")
                 if not href.startswith(site_url):
@@ -49,7 +56,15 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
         value = self.get_value()
         output = json_compatible(value, self.context)
         if output:
-            output["data"] = self.externalize(output["data"])
+            portal_transforms = api.portal.get_tool(name="portal_transforms")
+            raw_html = output["data"]
+            # print("raw", raw_html)
+            data = portal_transforms.convertTo(
+                "text/x-html-safe", raw_html, mimetype="text/html"
+            )
+            html = data.getData()
+            # print("transformed", html)
+            output["data"] = self.externalize(html)
 
         return output
 

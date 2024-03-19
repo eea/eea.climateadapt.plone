@@ -1596,6 +1596,30 @@ organisation_layout_blocks = {
                                         "widget": "boolean",
                                     },
                                 },
+                                {
+                                    "@id": "eb6c5476-77d6-41b7-b8f9-74bdfc79c1c3",
+                                    "field": {
+                                        "id": "organisational_key_activities",
+                                        "title": "Key activities within climate change and health (relevant for the Observatory)",
+                                        "widget": "richtext"
+                                    }
+                                },
+                                {
+                                    "@id": "73b81b92-147f-46b6-9952-b25a76278d1e",
+                                    "field": {
+                                        "id": "organisational_websites",
+                                        "title": "Links to further information (relevant for the Observatory)",
+                                        "widget": "richtext"
+                                    }
+                                },
+                                {
+                                    "@id": "94f47853-ee98-409a-8f3e-11c8cec37466",
+                                    "field": {
+                                        "id": "organisational_contact_information",
+                                        "title": "Contact information (relevant for the Observatory)",
+                                        "widget": "richtext"
+                                    }
+                                }
                             ],
                             "variation": "default",
                         },

@@ -124,8 +124,7 @@ class TranslationUtilsMixin(object):
         if language == "EN":
             return value
 
-        translated = translate_one_text_to_translation_storage("EN", value, [
-                                                               language])
+        translated = translate_one_text_to_translation_storage("EN", value, [language])
 
         if "translated" in translated:
             encoded_text = translated["transId"].encode("latin-1")
@@ -149,8 +148,7 @@ class TranslationUtilsMixin(object):
 def get_current_language(context, request):
     try:
         context = context.aq_inner
-        portal_state = getMultiAdapter(
-            (context, request), name="plone_portal_state")
+        portal_state = getMultiAdapter((context, request), name="plone_portal_state")
         return portal_state.language()
     except Exception:
         return "en"
@@ -247,8 +245,7 @@ def is_json(input):
 
 def get_object_fields_values(obj):
     # TODO: perhaps a list by each portal_type
-    tile_fields = ["title", "text", "description",
-                   "tile_title", "footer", "alt_text"]
+    tile_fields = ["title", "text", "description", "tile_title", "footer", "alt_text"]
 
     data = {
         "portal_type": obj.portal_type,

@@ -1,4 +1,4 @@
-""" Utilities to convert to streamlined HTML and from HTML to volto blocks
+"""Utilities to convert to streamlined HTML and from HTML to volto blocks
 
 The intention is to use eTranslation as a service to translate a complete Volto page with blocks
 by first converting the blocks to HTML, then ingest and convert that structure back to Volto blocks
@@ -9,25 +9,23 @@ from plone.app.multilingual.factory import DefaultTranslationFactory
 from zope.schema import getFieldsInOrder
 from plone.dexterity.utils import iterSchemata
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from plone import api
 
 from Products.Five.browser import BrowserView
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from utils import get_value_representation
+from .utils import get_value_representation
 
 from eea.climateadapt.translation.utils import get_site_languages
 from eea.climateadapt.asynctasks.utils import get_async_service
-from .core import (
-    create_translation_object,
-    execute_translate_async,
-)
-from eea.climateadapt.translation import retrieve_volto_html_translation
+from .core import create_translation_object, execute_translate_async, save_field_data
 from plone.app.multilingual.manager import TranslationManager
 
 import logging
 import requests
 import json
+import copy
+
+from zope.component import getMultiAdapter
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -66,27 +64,7 @@ def get_content_from_html(html):
     return data
 
 
-class ContentToHtml(BrowserView):
-    """A page to test html marshalling"""
-
-    def copy(self, fielddata):
-        language = "de"
-        obj = self.context
-        factory = DefaultTranslationFactory(obj)
-
-        translated_object = factory(language)
-
-        TranslationManager(obj).register_translation(language, translated_object)
-
-        # site = api.portal.get()
-        # sandbox = site.restrictedTraverse("sandbox")
-        # copy = api.content.copy(source=self.context, target=sandbox)
-        copy = translated_object
-        for k, v in fielddata.items():
-            setattr(copy, k, v)
-
-        return copy
-
+class ToHtml(BrowserView):
     def __call__(self):
         obj = self.context
 
@@ -101,7 +79,7 @@ class ContentToHtml(BrowserView):
                     or k in LANGUAGE_INDEPENDENT_FIELDS
                 ):
                     continue
-                print(schema, k, v)
+                # print(schema, k, v)
                 self.fields[k] = v
                 value = self.get_value(k)
                 if value:
@@ -109,6 +87,42 @@ class ContentToHtml(BrowserView):
                     self.values[k] = value
 
         html = self.index()
+        return html
+
+    def get_value(self, name):
+        if name == "blocks":
+            return get_blocks_as_html(self.context)
+        return get_value_representation(self.context, name)
+
+
+class ContentToHtml(BrowserView):
+    """A page to test html marshalling"""
+
+    def copy(self, fielddata):
+        language = "de"
+        obj = self.context
+        tm = TranslationManager(obj)
+        translated_object = tm.get_translation(language)
+
+        if translated_object is None:
+            factory = DefaultTranslationFactory(obj)
+            translated_object = factory(language)
+            tm.register_translation(language, translated_object)
+
+        # from plone import api
+        # site = api.portal.get()
+        # sandbox = site.restrictedTraverse("sandbox")
+        # copy = api.content.copy(source=self.context, target=sandbox)
+        # __import__("pdb").set_trace()
+        copy = translated_object
+
+        save_field_data(obj, copy, fielddata)
+
+        return copy
+
+    def __call__(self):
+        obj = self.context
+        html = getMultiAdapter((self.context, self.request), name="tohtml")()
 
         if self.request.form.get("half"):
             return html
@@ -131,11 +145,6 @@ class ContentToHtml(BrowserView):
             relative=1
         ).replace("cca/", "")
         return self.request.response.redirect(url)
-
-    def get_value(self, name):
-        if name == "blocks":
-            return get_blocks_as_html(self.context)
-        return get_value_representation(self.context, name)
 
 
 def translate_volto_html(html, en_obj, http_host):
@@ -165,26 +174,19 @@ def translate_volto_html(html, en_obj, http_host):
             trans_obj = translations[language]
             trans_obj_url = trans_obj.absolute_url()
             trans_obj_path = "/cca" + trans_obj_url.split(http_host)[-1]
+            options["trans_obj_path"] = trans_obj_path
 
-            retrieve_volto_html_translation(
-                "en",
-                html.encode("utf-8"),
-                trans_obj_path,
-                target_languages=language.upper(),
+            request_vars = {
+                # 'PARENTS': obj.REQUEST['PARENTS']
+            }
+            async_service = get_async_service()
+            queue = async_service.getQueues()[""]
+            async_service.queueJobInQueue(
+                queue,
+                ("translate",),
+                execute_translate_async,
+                en_obj,
+                copy.deepcopy(options),
+                language,
+                request_vars,
             )
-
-            # TODO: implement and use async translation for volto case, too
-            # request_vars = {
-            #     # 'PARENTS': obj.REQUEST['PARENTS']
-            # }
-            # async_service = get_async_service()
-            # queue = async_service.getQueues()[""]
-            # async_service.queueJobInQueue(
-            #    queue,
-            #    ("translate",),
-            #    execute_translate_async,
-            #    obj,
-            #    options,
-            #    language,
-            #    request_vars,
-            # )

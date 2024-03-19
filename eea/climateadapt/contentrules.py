@@ -1,39 +1,36 @@
 # -*- coding: utf-8 -*-
-""" Content rules
-"""
+"""Content rules"""
+
 import logging
-import pytz
-import urllib
-from datetime import datetime, timedelta
+
+import transaction
+from DateTime import DateTime
+from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.api.portal import get_tool
-import transaction
-from OFS.SimpleItem import SimpleItem
-
-# from plone.app.contentrules import PloneMessageFactory as _
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.app.multilingual.manager import TranslationManager
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
-from Products.CMFPlone import utils
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import utils
 from Products.statusmessages.interfaces import IStatusMessage
-from Testing.ZopeTestCase import utils as zopeUtils
 from ZODB.POSException import ConflictError
-from zope.component import adapter, adapts, ComponentLookupError
+from zope.component import adapter, adapts
 from zope.interface import Interface, implementer, implements
 from zope.site.hooks import getSite
-from DateTime import DateTime
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.asynctasks.utils import get_async_service
-from eea.climateadapt.translation.core import create_translation_object
-from eea.climateadapt.translation.core import copy_missing_interfaces
-from eea.climateadapt.translation.core import execute_translate_async
-from eea.climateadapt.translation.core import translate_obj
-from eea.climateadapt.translation.core import translation_step_4
-from eea.climateadapt.translation.utils import get_current_language, get_site_languages
-from eea.climateadapt.translation.core import translation_step_5
-
+from eea.climateadapt.translation.core import (
+    copy_missing_interfaces,
+    create_translation_object,
+    translate_obj,
+    trans_copy_field_data,
+    trans_sync_workflow_state,
+)
+from eea.climateadapt.translation.utils import get_site_languages
+from zope.component import getMultiAdapter
+from eea.climateadapt.translation.volto import translate_volto_html
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -178,6 +175,7 @@ class TranslateActionExecutor(object):
             self.translate_obj(obj)
             self.publish_translations(obj)
             self.copy_interfaces(obj)  # TODO: delete. It's already included in
+
             # create_translation_object. It is used here only for testing
             # on old created content. Example: fixing interfaces for pages
             # like share-your-info
@@ -198,15 +196,17 @@ class TranslateActionExecutor(object):
         """Make sure all translations (cloned) objs exists for this obj"""
         transaction.savepoint()
         translations = TranslationManager(obj).get_translations()
+
         for language in get_site_languages():
             if language != "en" and language not in translations:
                 create_translation_object(obj, language)
+
         transaction.commit()
 
     def translate_obj(self, obj):
         """Send the obj to be translated"""
         try:
-            result = translate_obj(obj, one_step=True)
+            translate_obj(obj, one_step=True)
         except Exception as e:
             self.error(obj, str(e))
 
@@ -234,7 +234,7 @@ class TranslateActionExecutor(object):
                     "language": language,
                     "uid": obj.UID(),
                 }
-                translation_step_4(getSite(), settings)
+                trans_copy_field_data(getSite(), settings)
 
     def publish_translations(self, obj):
         """Run step 5 for this obj"""
@@ -245,7 +245,7 @@ class TranslateActionExecutor(object):
                     "language": language,
                     "uid": obj.UID(),
                 }
-                translation_step_5(getSite(), settings)
+                trans_sync_workflow_state(getSite(), settings)
 
 
 class TranslateAddForm(NullAddForm):
@@ -275,44 +275,6 @@ class TranslateAsyncAction(SimpleItem):
     summary = _("Translate object async")
 
 
-def execute_translate_step_4_async(context, options, language, request_vars):
-    """translate via zc.async"""
-    if not hasattr(context, "REQUEST"):
-        zopeUtils._Z2HOST = options["obj_url"]
-        context = zopeUtils.makerequest(context)
-        context.REQUEST["PARENTS"] = [context]
-
-        for k, v in request_vars:
-            context.REQUEST.set(k, v)
-
-    try:
-        settings = {
-            "language": language,
-            "uid": options["uid"],
-        }
-        res = translation_step_4(context, settings, async_request=True)
-        logger.info("Async translate for object %s", options["obj_url"])
-
-    except Exception as err:
-        # async_service = get_async_service()
-
-        # re-schedule PING on error
-        # schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
-        # queue = async_service.getQueues()['']
-        # async_service.queueJobInQueueWithDelay(
-        #     None, schedule, queue, ('translate',),
-        #     execute_translate_step_4_async, context, options, language, request_vars
-        # )
-
-        # mark the original job as failed
-        return "Translate rescheduled for object %s. " "Reason: %s " % (
-            options["obj_url"],
-            str(err),
-        )
-
-    return res
-
-
 class TranslateAsyncActionExecutor(object):
     """Translate async executor"""
 
@@ -331,61 +293,11 @@ class TranslateAsyncActionExecutor(object):
 
     def __call__(self):
         obj = self.event.object
-        options = {}
-        options["obj_url"] = obj.absolute_url()
-        options["uid"] = obj.UID()
-        options["http_host"] = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
+        html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+        http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
 
-        request_vars = {
-            # 'PARENTS': obj.REQUEST['PARENTS']
-        }
-
-        # request_keys_to_copy = ['_orig_env', 'environ', 'other', 'script']
-        # for req_key in request_keys_to_copy:
-        #     request_vars[req_key] = getattr(obj.REQUEST, req_key)
-
-        if "/en/" in obj.absolute_url():
-            # run translate FULL (all languages)
-            for language in get_site_languages():
-                if language == "en":
-                    continue
-
-                if self.async_service is None:
-                    logger.warn(
-                        "Can't translate_asyn, plone.app.async not installed!")
-                    return
-
-                create_translation_object(obj, language)
-                queue = self.async_service.getQueues()[""]
-                self.async_service.queueJobInQueue(
-                    queue,
-                    ("translate",),
-                    execute_translate_async,
-                    obj,
-                    options,
-                    language,
-                    request_vars,
-                )
-
-        else:
-            language = get_current_language(self.context, self.request)
-            en_path = "/".join(obj.getPhysicalPath())
-            en_path = en_path.replace("/{}/".format(language), "/en/")
-            obj_en = self.context.unrestrictedTraverse(
-                en_path.replace("/{}/".format(language), "/en/")
-            )
-
-            create_translation_object(obj_en, language)
-            queue = self.async_service.getQueues()[""]
-            self.async_service.queueJobInQueue(
-                queue,
-                ("translate",),
-                execute_translate_async,
-                obj_en,
-                options,
-                language,
-                request_vars,
-            )
+        # this triggers a call to eTranslation, so this process is async
+        translate_volto_html(html, obj, http_host)
 
         return True
 
@@ -428,8 +340,7 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
             logger.info("Synchronize states...")
             action = self.event.action
             translations = TranslationManager(obj).get_translations()
-            translated_objs = [translations[x]
-                               for x in translations if x != "en"]
+            translated_objs = [translations[x] for x in translations if x != "en"]
 
             for trans_obj in translated_objs:
                 self.set_new_state(trans_obj, action)
@@ -444,3 +355,41 @@ class SynchronizeStatesForTranslationsAddForm(NullAddForm):
 
     def create(self):
         return SynchronizeStatesForTranslationsAction()
+
+
+# def execute_translate_step_4_async(context, options, language, request_vars):
+#     """translate via zc.async"""
+#     if not hasattr(context, "REQUEST"):
+#         zopeUtils._Z2HOST = options["obj_url"]
+#         context = zopeUtils.makerequest(context)
+#         context.REQUEST["PARENTS"] = [context]
+#
+#         for k, v in request_vars:
+#             context.REQUEST.set(k, v)
+#
+#     try:
+#         settings = {
+#             "language": language,
+#             "uid": options["uid"],
+#         }
+#         res = trans_copy_field_data(context, settings, async_request=True)
+#         logger.info("Async translate for object %s", options["obj_url"])
+#
+#     except Exception as err:
+#         # async_service = get_async_service()
+#
+#         # re-schedule PING on error
+#         # schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
+#         # queue = async_service.getQueues()['']
+#         # async_service.queueJobInQueueWithDelay(
+#         #     None, schedule, queue, ('translate',),
+#         #     execute_translate_step_4_async, context, options, language, request_vars
+#         # )
+#
+#         # mark the original job as failed
+#         return "Translate rescheduled for object %s. " "Reason: %s " % (
+#             options["obj_url"],
+#             str(err),
+#         )
+#
+#     return res

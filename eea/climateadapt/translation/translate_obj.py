@@ -1,27 +1,32 @@
-from plone.app.textfield.value import RichTextValue
-from DateTime import DateTime
 import logging
-from zope.schema import getFieldsInOrder
-from eea.climateadapt.browser.admin import force_unlock
-from plone.app.multilingual.manager import TranslationManager
+
+from collective.cover.tiles.richtext import RichTextTile
+from DateTime import DateTime
 from plone.api import portal
+from plone.app.multilingual.manager import TranslationManager
+from plone.app.textfield.value import RichTextValue
 from plone.behavior.interfaces import IBehaviorAssignable
+from zope.schema import getFieldsInOrder
+
+from eea.climateadapt.browser.admin import force_unlock
+from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import (
     retrieve_html_translation,
-    translate_one_text_to_translation_storage,
     translate_one_field_in_one_step,
+    translate_one_text_to_translation_storage,
 )
 from eea.climateadapt.translation.constants import (
     IGNORE_FIELDS,
-    cca_event_languages,
     LANGUAGE_INDEPENDENT_FIELDS,
+    cca_event_languages,
     source_richtext_types,
     tile_fields,
 )
-from eea.climateadapt.translation.utils import get_object_fields_values
-from eea.climateadapt.translation.utils import is_language_independent_value
-from collective.cover.tiles.richtext import RichTextTile
-from eea.climateadapt.tiles.richtext import RichTextWithTitle
+from eea.climateadapt.translation.utils import (
+    get_object_fields_values,
+    is_language_independent_value,
+)
+
 from .utils import is_json
 
 logger = logging.getLogger("eea.climateadapt")
@@ -315,6 +320,7 @@ def translate_obj_with_language(
     # update field in obj
     rich_fields = set()
 
+    reindex = []
     for fieldname in translatable_fields(trans_obj, fields):
         bits = get_value(obj, fieldname)
 
@@ -356,14 +362,17 @@ def translate_obj_with_language(
                 setattr(trans_obj, fieldname, RichTextValue(encoded_text))
 
                 trans_obj._p_changed = True
-                trans_obj.reindexObject(idxs=[fieldname])
+                reindex.append(fieldname)
                 continue
 
             if fieldname not in rich_fields:
                 setattr(trans_obj, fieldname, encoded_text)
 
             trans_obj._p_changed = True
-            trans_obj.reindexObject(idxs=[fieldname])
+            reindex.append(fieldname)
+
+    if reindex:
+        trans_obj.reindexObject(idxs=reindex)
 
     if len(rich_fields) > 0:
         handle_obj_with_richfields(
