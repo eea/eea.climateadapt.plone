@@ -535,7 +535,10 @@ def execute_translate_async(context, options, language, request_vars):
 
 
 def handle_link(en_obj, trans_obj):
-    if en_obj.remoteUrl:
-        link = en_obj.remoteUrl.replace("/en/", "/%s/" % trans_obj.language)
+    link = getattr(en_obj, "remoteUrl", None)
+    logger.info("Fixing link %s (%s)", trans_obj.absolute_url(), link)
+    if link:
+        link = link.replace("/en/", "/%s/" % trans_obj.language)
+        logger.info("Fixed with: %s", link)
         trans_obj.remoteUrl = link
     trans_obj._p_changed = True
