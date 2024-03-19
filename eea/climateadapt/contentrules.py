@@ -293,7 +293,7 @@ class TranslateAsyncActionExecutor(object):
 
     def __call__(self):
         obj = self.event.object
-        html = getMultiAdapter((self.context, self.context.REQUEST), name="tohtml")()
+        html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
         http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
 
         # this triggers a call to eTranslation, so this process is async
