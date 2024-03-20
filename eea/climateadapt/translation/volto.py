@@ -5,27 +5,26 @@ by first converting the blocks to HTML, then ingest and convert that structure b
 """
 
 # from langdetect import language
-from plone.app.multilingual.factory import DefaultTranslationFactory
-from zope.schema import getFieldsInOrder
-from plone.dexterity.utils import iterSchemata
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+import copy
+import json
+import logging
 
+import requests
+from plone.api import portal
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.app.multilingual.factory import DefaultTranslationFactory
+from plone.app.multilingual.manager import TranslationManager
+from plone.dexterity.utils import iterSchemata
 from Products.Five.browser import BrowserView
+from zope.component import getMultiAdapter
+from zope.schema import getFieldsInOrder
+
+from eea.climateadapt.asynctasks.utils import get_async_service
+from eea.climateadapt.translation.utils import get_site_languages
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from .utils import get_value_representation
-
-from eea.climateadapt.translation.utils import get_site_languages
-from eea.climateadapt.asynctasks.utils import get_async_service
 from .core import create_translation_object, execute_translate_async, save_field_data
-from plone.app.multilingual.manager import TranslationManager
-
-import logging
-import requests
-import json
-import copy
-
-from zope.component import getMultiAdapter
+from .utils import get_value_representation
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -36,9 +35,11 @@ CONTENT_CONVERTER = "http://converter:8000/html2content"
 
 def get_blocks_as_html(obj):
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(
+        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -52,9 +53,11 @@ def get_content_from_html(html):
     """Given an HTML string, converts it to Plone content data"""
 
     data = {"html": html}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER,
+                        data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -128,7 +131,9 @@ class ContentToHtml(BrowserView):
             return html
 
         if self.request.form.get("full"):
-            http_host = self.context.REQUEST.environ["HTTP_X_FORWARDED_HOST"]
+            http_host = self.context.REQUEST.environ.get(
+                "HTTP_X_FORWARDED_HOST", portal.get().absolute_url()
+            )
             translate_volto_html(html, obj, http_host)
             return html
 
