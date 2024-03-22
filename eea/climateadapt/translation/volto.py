@@ -81,7 +81,8 @@ def get_cover_as_html(obj):
                 if data.get("text"):
                     frags = convert_richtext_to_fragments(data["text"])
                     children.append(
-                        E.DIV(*frags, **{"data-tile-field": "text"}))
+                        E.DIV(*frags, **{"data-tile-field": "text",
+                                         "data-tile-type": "richtext"}))
 
                 div = E.DIV(*children, **attribs)
                 elements.append(div)
@@ -117,17 +118,22 @@ def get_content_from_html(html):
         data["blocks_layout"] = blockdata["blocks_layout"]
         data["blocks"] = blockdata["blocks"]
 
+    # __import__('pdb').set_trace()
     if data.get("cover_layout"):
         frags = fragments_fromstring(data["cover_layout"])
         tiles = {}
         for frag in frags:
             # <div data-tile-id=".b3898bdb-017c-4dac-a2d4-556d59d0ea6d"><div data-tile-field="text">
             id = frag.get("data-tile-id")
+            isrichtext = frag.get('data-tile-type') == 'richtext'
             info = {}
 
             for child in frag:
                 fieldname = child.get("data-tile-field")
-                info[fieldname] = elements_to_text(child)
+                if isrichtext:
+                    info[fieldname] = elements_to_text(child)
+                else:
+                    info[fieldname] = child.text
             tiles[id] = info
 
         data['cover_layout'] = tiles
