@@ -587,5 +587,6 @@ def save_field_data(canonical, trans_obj, fielddata):
                     cover[fieldname] = RichTextValue(fieldvalue)
                 else:
                     cover[fieldname] = fieldvalue
+            trans_obj.__annotations__["plone.tiles.data.%s" % coverid] = cover
 
         trans_obj.__annotations__._p_changed = True
