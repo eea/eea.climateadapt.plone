@@ -280,7 +280,7 @@ class TranslationCallback(BrowserView):
         file.seek(0)
         b64_str = file.read()
         html_translated = base64.decodestring(b64_str).decode("latin-1")
-        logging.info("HTML from etranslation")
+        logger.info("HTML from etranslation")
         logger.info(html_translated)
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
