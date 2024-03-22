@@ -5,6 +5,7 @@ by first converting the blocks to HTML, then ingest and convert that structure b
 """
 
 # from langdetect import language
+import pdb
 from lxml.html import document_fromstring, fragments_fromstring
 from lxml.html import tostring
 from lxml.html import builder as E
@@ -125,11 +126,11 @@ def get_content_from_html(html):
         for frag in frags:
             # <div data-tile-id=".b3898bdb-017c-4dac-a2d4-556d59d0ea6d"><div data-tile-field="text">
             id = frag.get("data-tile-id")
-            isrichtext = frag.get('data-tile-type') == 'richtext'
             info = {}
 
             for child in frag:
                 fieldname = child.get("data-tile-field")
+                isrichtext = child.get('data-tile-type') == 'richtext'
                 if isrichtext:
                     info[fieldname] = elements_to_text(child)
                 else:
