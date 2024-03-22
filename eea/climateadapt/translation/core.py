@@ -310,9 +310,9 @@ def get_tile_type(tile, from_cover, to_cover):
 
 def copy_tiles(tiles, from_cover, to_cover):
     """Copy the tiles from cover to translated cover"""
-    logger.info("Copy tiles")
-    logger.info(from_cover.absolute_url())
-    logger.info(to_cover.absolute_url())
+    logger.info("Copy tiles from cover: %s", from_cover.absolute_url())
+    logger.info("Copy tiles to cover: %s", to_cover.absolute_url())
+
     for tile in tiles:
         tile_type = get_tile_type(tile, from_cover, to_cover)
 
@@ -379,7 +379,7 @@ def create_translation_object(obj, language):
         logger.info("Skip creating translation. Already exists.")
 
         if obj.portal_type == "collective.cover.content":
-            copy_tiles_to_translation(obj, translations[obj.language])
+            copy_tiles_to_translation(obj, translations[language])
 
         return
 
