@@ -48,7 +48,7 @@ def get_blocks_as_html(obj):
         raise ValueError
 
     html = req.json()["html"]
-    logger.info("Blocks converted to html:", html)
+    logger.info("Blocks converted to html: %s", html)
     return html
 
 
