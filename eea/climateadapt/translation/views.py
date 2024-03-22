@@ -138,6 +138,46 @@ class TranslationCallback(BrowserView):
             '<a href="/@@translate-key?key=' + original + '">available translations</a>'
         )
 
+    def save_html_volto(self, form, file):
+        file.seek(0)
+        b64_str = file.read()
+        html_translated = base64.decodestring(b64_str).decode("latin-1")
+        logger.info("HTML from etranslation")
+        logger.info(html_translated)
+        site = portal.getSite()
+        trans_obj_path = form.get("external-reference")
+        if "https://" in trans_obj_path:
+            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
+
+        trans_obj = site.unrestrictedTraverse(trans_obj_path)
+        force_unlock(trans_obj)
+
+        fielddata = get_content_from_html(html_translated.encode("latin-1"))
+
+        translations = TranslationManager(trans_obj).get_translations()
+        en_obj = translations["en"]  # hardcoded, should use canonical
+
+        save_field_data(en_obj, trans_obj, fielddata)
+
+        copy_missing_interfaces(en_obj, trans_obj)
+
+        # layout_en = en_obj.getLayout()
+        # if layout_en:
+        #     trans_obj.setLayout(layout_en)
+
+        if trans_obj.portal_type == "collective.cover.content":
+            handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
+        if trans_obj.portal_type in ("Folder", "Document"):
+            handle_folder_doc_step_4(en_obj, trans_obj, False, False)
+        if trans_obj.portal_type in ["Link"]:
+            handle_link(en_obj, trans_obj)
+
+        # TODO: sync workflow state
+
+        trans_obj._p_changed = True
+        trans_obj.reindexObject()
+        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
+
     def save_tile_field(self, form):
         """Save a simple text filed in a cover tile"""
         field = form.get("field", None)
@@ -275,60 +315,6 @@ class TranslationCallback(BrowserView):
             else:
                 logger.info("Cannot find tile")
         logger.info("Html translation saved for %s", trans_obj.absolute_url())
-
-    def save_html_volto(self, form, file):
-        file.seek(0)
-        b64_str = file.read()
-        html_translated = base64.decodestring(b64_str).decode("latin-1")
-        logger.info("HTML from etranslation")
-        logger.info(html_translated)
-        site = portal.getSite()
-        trans_obj_path = form.get("external-reference")
-        if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
-
-        trans_obj = site.unrestrictedTraverse(trans_obj_path)
-        force_unlock(trans_obj)
-
-        fielddata = get_content_from_html(html_translated.encode("latin-1"))
-
-        # if fielddata.get("blocks"):
-        #     blockdata = fielddata["blocks"]
-        #     fielddata["blocks_layout"] = blockdata["blocks_layout"]
-        #     fielddata["blocks"] = blockdata["blocks"]
-
-        # if fielddata.get("cover_layout"):
-        #     fielddata['cover_layout']
-
-        # sync workflow state
-        # sync layout
-        # special fixes for covers, folder, etc
-        # copy interfaces
-        # any other fixes
-
-        translations = TranslationManager(trans_obj).get_translations()
-        en_obj = translations["en"]  # hardcoded, should use canonical
-
-        save_field_data(en_obj, trans_obj, fielddata)
-
-        copy_missing_interfaces(en_obj, trans_obj)
-
-        # layout_en = en_obj.getLayout()
-        # if layout_en:
-        #     trans_obj.setLayout(layout_en)
-
-        if trans_obj.portal_type == "collective.cover.content":
-            handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
-        if trans_obj.portal_type in ("Folder", "Document"):
-            handle_folder_doc_step_4(en_obj, trans_obj, False, False)
-        if trans_obj.portal_type in ["Link"]:
-            handle_link(en_obj, trans_obj)
-
-        # TODO: sync workflow state
-
-        trans_obj._p_changed = True
-        trans_obj.reindexObject()
-        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
 
 
 class TranslationList(BrowserView):

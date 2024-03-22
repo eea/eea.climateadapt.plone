@@ -48,7 +48,7 @@ def get_blocks_as_html(obj):
         raise ValueError
 
     html = req.json()["html"]
-    print("html", html)
+    logger.info("Blocks converted to html:", html)
     return html
 
 
@@ -109,7 +109,7 @@ def get_content_from_html(html):
         raise ValueError
 
     data = req.json()["data"]
-    print("data", data)
+    logger.info("Data from converter: %s", data)
 
     # because the blocks deserializer returns {blocks, blocks_layout} and is saved in "blocks", we need to fix it
     if data.get("blocks"):
@@ -150,7 +150,6 @@ class ToHtml(BrowserView):
                     or k in LANGUAGE_INDEPENDENT_FIELDS
                 ):
                     continue
-                # print(schema, k, v)
                 self.fields[k] = v
                 value = self.get_value(k)
                 if value:

@@ -87,6 +87,7 @@ def get_translation_json_files(uid=None):
 
 
 def fix_cards_tile(obj, trans_obj, data_tile, data_trans_tile, language):
+    # We link the collection tile to the translated version
     tile = obj.get_tile(data_tile["id"])
     try:
         trans_tile = trans_obj.get_tile(data_trans_tile["id"])
