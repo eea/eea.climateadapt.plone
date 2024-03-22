@@ -364,10 +364,23 @@ def copy_missing_interfaces(en_obj, trans_obj):
             logger.info("Copied interface: %s" % interf[0])
 
 
+def copy_tiles_to_translation(en_obj, trans_obj):
+    tiles = [en_obj.get_tile(x) for x in en_obj.list_tiles()]
+    trans_obj.cover_layout = en_obj.cover_layout
+    copy_tiles(tiles, en_obj, trans_obj)
+
+
 def create_translation_object(obj, language):
     """Create translation object for an obj"""
-    if language in TranslationManager(obj).get_translations():
+    tm = TranslationManager(obj)
+    translations = tm.get_translations()
+
+    if language in translations:
         logger.info("Skip creating translation. Already exists.")
+
+        if obj.portal_type == "collective.cover.content":
+            copy_tiles_to_translation(obj, translations[obj.language])
+
         return
 
     check_full_path_exists(obj, language)
@@ -375,7 +388,7 @@ def create_translation_object(obj, language):
 
     translated_object = factory(language)
 
-    TranslationManager(obj).register_translation(language, translated_object)
+    tm.register_translation(language, translated_object)
 
     # https://github.com/plone/plone.app.multilingual/blob/2.x/src/plone/app/multilingual/manager.py#L85
     # translated_object.reindexObject()   ^ already reindexed.
@@ -389,12 +402,9 @@ def create_translation_object(obj, language):
     except Exception:
         logger.info("CREATE ITEM: cannot rename the item id - already exists.")
 
-    if obj.portal_type == "collective.cover.content":
-        tiles = [obj.get_tile(x) for x in obj.list_tiles()]
-        translated_object.cover_layout = obj.cover_layout
-        copy_tiles(tiles, obj, translated_object)
-
+    copy_tiles_to_translation(obj, translated_object)
     copy_missing_interfaces(obj, translated_object)
+
     translated_object.reindexObject()
 
 
