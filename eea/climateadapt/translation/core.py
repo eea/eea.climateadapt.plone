@@ -87,6 +87,7 @@ def get_translation_json_files(uid=None):
 
 
 def fix_cards_tile(obj, trans_obj, data_tile, data_trans_tile, language):
+    # We link the collection tile to the translated version
     tile = obj.get_tile(data_tile["id"])
     try:
         trans_tile = trans_obj.get_tile(data_trans_tile["id"])
@@ -275,7 +276,6 @@ def trans_copy_field_data(site, request, async_request=False):
             trans_obj._p_changed = True
             trans_obj.reindexObject()
             transaction.commit()  # TODO Improve. This is a fix for Event.
-            continue
 
     logger.info("Finalize step 4")
     return "Finalize step 4"
@@ -311,9 +311,9 @@ def get_tile_type(tile, from_cover, to_cover):
 
 def copy_tiles(tiles, from_cover, to_cover):
     """Copy the tiles from cover to translated cover"""
-    logger.info("Copy tiles")
-    logger.info(from_cover.absolute_url())
-    logger.info(to_cover.absolute_url())
+    logger.info("Copy tiles from cover: %s", from_cover.absolute_url())
+    logger.info("Copy tiles to cover: %s", to_cover.absolute_url())
+
     for tile in tiles:
         tile_type = get_tile_type(tile, from_cover, to_cover)
 
@@ -365,10 +365,23 @@ def copy_missing_interfaces(en_obj, trans_obj):
             logger.info("Copied interface: %s" % interf[0])
 
 
+def copy_tiles_to_translation(en_obj, trans_obj):
+    tiles = [en_obj.get_tile(x) for x in en_obj.list_tiles()]
+    trans_obj.cover_layout = en_obj.cover_layout
+    copy_tiles(tiles, en_obj, trans_obj)
+
+
 def create_translation_object(obj, language):
     """Create translation object for an obj"""
-    if language in TranslationManager(obj).get_translations():
+    tm = TranslationManager(obj)
+    translations = tm.get_translations()
+
+    if language in translations:
         logger.info("Skip creating translation. Already exists.")
+
+        if obj.portal_type == "collective.cover.content":
+            copy_tiles_to_translation(obj, translations[language])
+
         return
 
     check_full_path_exists(obj, language)
@@ -376,7 +389,7 @@ def create_translation_object(obj, language):
 
     translated_object = factory(language)
 
-    TranslationManager(obj).register_translation(language, translated_object)
+    tm.register_translation(language, translated_object)
 
     # https://github.com/plone/plone.app.multilingual/blob/2.x/src/plone/app/multilingual/manager.py#L85
     # translated_object.reindexObject()   ^ already reindexed.
@@ -390,12 +403,9 @@ def create_translation_object(obj, language):
     except Exception:
         logger.info("CREATE ITEM: cannot rename the item id - already exists.")
 
-    if obj.portal_type == "collective.cover.content":
-        tiles = [obj.get_tile(x) for x in obj.list_tiles()]
-        translated_object.cover_layout = obj.cover_layout
-        copy_tiles(tiles, obj, translated_object)
-
+    copy_tiles_to_translation(obj, translated_object)
     copy_missing_interfaces(obj, translated_object)
+
     translated_object.reindexObject()
 
 
@@ -508,6 +518,8 @@ def execute_translate_async(context, options, language, request_vars):
         )
         return
 
+    # NOTE: all the code below is for reference only. We only use the version above
+
     if is_volto_context(context):
         logger.info("SKIP classic translation in volto context")
         return
@@ -555,12 +567,26 @@ def save_field_data(canonical, trans_obj, fielddata):
         for k, v in getFieldsInOrder(schema):
             if (
                 ILanguageIndependentField.providedBy(v)
-                or k in LANGUAGE_INDEPENDENT_FIELDS
+                or k in LANGUAGE_INDEPENDENT_FIELDS + ["cover_layout"]
                 or k not in fielddata
             ):
                 continue
-            # print(schema, k, v)
+
             value = fielddata[k]
             if IRichText.providedBy(v):
                 value = RichTextValue(value)
             setattr(trans_obj, k, value)
+
+    if "cover_layout" in fielddata:
+        coverdata = fielddata["cover_layout"]
+        for tileid in coverdata.keys():
+            tile = trans_obj.__annotations__["plone.tiles.data.%s" % tileid]
+            for fieldname, fieldvalue in coverdata[tileid].items():
+                orig = tile[fieldname]
+                if isinstance(orig, RichTextValue):
+                    tile[fieldname] = RichTextValue(fieldvalue)
+                else:
+                    tile[fieldname] = fieldvalue
+            trans_obj.__annotations__["plone.tiles.data.%s" % tileid] = tile
+
+        trans_obj.__annotations__._p_changed = True
