@@ -275,7 +275,6 @@ def trans_copy_field_data(site, request, async_request=False):
             trans_obj._p_changed = True
             trans_obj.reindexObject()
             transaction.commit()  # TODO Improve. This is a fix for Event.
-            continue
 
     logger.info("Finalize step 4")
     return "Finalize step 4"
@@ -508,6 +507,8 @@ def execute_translate_async(context, options, language, request_vars):
         )
         return
 
+    # NOTE: all the code below is for reference only. We only use the version above
+
     if is_volto_context(context):
         logger.info("SKIP classic translation in volto context")
         return
@@ -555,12 +556,25 @@ def save_field_data(canonical, trans_obj, fielddata):
         for k, v in getFieldsInOrder(schema):
             if (
                 ILanguageIndependentField.providedBy(v)
-                or k in LANGUAGE_INDEPENDENT_FIELDS
+                or k in LANGUAGE_INDEPENDENT_FIELDS + ["cover_layout"]
                 or k not in fielddata
             ):
                 continue
-            # print(schema, k, v)
+
             value = fielddata[k]
             if IRichText.providedBy(v):
                 value = RichTextValue(value)
             setattr(trans_obj, k, value)
+
+    if "cover_layout" in fielddata:
+        coverdata = fielddata["cover_layout"]
+        for coverid in coverdata.keys():
+            cover = trans_obj.__annotations__["plone.tiles.data.%s" % coverid]
+            for fieldname, fieldvalue in coverdata[coverid].items():
+                orig = cover[fieldname]
+                if isinstance(orig, RichTextValue):
+                    cover[fieldname] = RichTextValue(fieldvalue)
+                else:
+                    cover[fieldname] = fieldvalue
+
+        trans_obj.__annotations__._p_changed = True

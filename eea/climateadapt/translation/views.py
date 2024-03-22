@@ -54,6 +54,8 @@ class TranslationCallback(BrowserView):
             logger.info("Translate volto html")
             return
 
+        # NOTE:: the code below is no longer used, we only use the above method
+
         if form.get("format", None) == "html":
             file = self.request.stdin
             self.save_html_fields(form, file)
@@ -288,10 +290,13 @@ class TranslationCallback(BrowserView):
 
         fielddata = get_content_from_html(html_translated.encode("latin-1"))
 
-        if fielddata.get("blocks"):
-            blockdata = fielddata["blocks"]
-            fielddata["blocks_layout"] = blockdata["blocks_layout"]
-            fielddata["blocks"] = blockdata["blocks"]
+        # if fielddata.get("blocks"):
+        #     blockdata = fielddata["blocks"]
+        #     fielddata["blocks_layout"] = blockdata["blocks_layout"]
+        #     fielddata["blocks"] = blockdata["blocks"]
+
+        # if fielddata.get("cover_layout"):
+        #     fielddata['cover_layout']
 
         # sync workflow state
         # sync layout
