@@ -132,6 +132,8 @@ def get_content_from_html(html):
 
         data['cover_layout'] = tiles
 
+    logger.info("Data with tiles decrypted %s", data)
+
     return data
 
 

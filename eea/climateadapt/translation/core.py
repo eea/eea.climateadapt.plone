@@ -579,14 +579,14 @@ def save_field_data(canonical, trans_obj, fielddata):
 
     if "cover_layout" in fielddata:
         coverdata = fielddata["cover_layout"]
-        for coverid in coverdata.keys():
-            cover = trans_obj.__annotations__["plone.tiles.data.%s" % coverid]
-            for fieldname, fieldvalue in coverdata[coverid].items():
-                orig = cover[fieldname]
+        for tileid in coverdata.keys():
+            tile = trans_obj.__annotations__["plone.tiles.data.%s" % tileid]
+            for fieldname, fieldvalue in coverdata[tileid].items():
+                orig = tile[fieldname]
                 if isinstance(orig, RichTextValue):
-                    cover[fieldname] = RichTextValue(fieldvalue)
+                    tile[fieldname] = RichTextValue(fieldvalue)
                 else:
-                    cover[fieldname] = fieldvalue
-            trans_obj.__annotations__["plone.tiles.data.%s" % coverid] = cover
+                    tile[fieldname] = fieldvalue
+            trans_obj.__annotations__["plone.tiles.data.%s" % tileid] = tile
 
         trans_obj.__annotations__._p_changed = True
