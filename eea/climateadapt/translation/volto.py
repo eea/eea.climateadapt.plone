@@ -5,6 +5,10 @@ by first converting the blocks to HTML, then ingest and convert that structure b
 """
 
 # from langdetect import language
+import pdb
+from lxml.html import document_fromstring, fragments_fromstring
+from lxml.html import tostring
+from lxml.html import builder as E
 import copy
 import json
 import logging
@@ -45,12 +49,56 @@ def get_blocks_as_html(obj):
         raise ValueError
 
     html = req.json()["html"]
-    print("html", html)
+    logger.info("Blocks converted to html: %s", html)
     return html
+
+
+def elements_to_text(children):
+    return unicode("").join(tostring(f).decode("utf-8") for f in children)
+
+
+def convert_richtext_to_fragments(mayberichtextvalue):
+    if mayberichtextvalue and mayberichtextvalue.raw:
+        return fragments_fromstring(mayberichtextvalue.raw)
+    return []
+
+
+def get_cover_as_html(obj):
+    elements = []
+    unwrapped = obj.aq_inner.aq_self
+    annot = getattr(unwrapped, "__annotations__", None)
+    m = "plone.tiles.data"
+
+    if annot:
+        for k in annot.keys():
+            if k.startswith(m):
+                attribs = {"data-tile-id": k[len(m) + 1:]}
+                children = []
+                data = annot[k]
+                if data.get("title"):
+                    children.append(
+                        E.DIV(data["title"], **{"data-tile-field": "title"})
+                    )
+                if data.get("text"):
+                    frags = convert_richtext_to_fragments(data["text"])
+                    children.append(
+                        E.DIV(*frags, **{"data-tile-field": "text",
+                                         "data-tile-type": "richtext"}))
+
+                div = E.DIV(*children, **attribs)
+                elements.append(div)
+
+    return elements_to_text(elements)
 
 
 def get_content_from_html(html):
     """Given an HTML string, converts it to Plone content data"""
+
+    # removing the cover_layout fragment, as it needs to be treated specially
+    # etree = document_fromstring(html)
+    # cover_layout = etree.find(".//div[@data-field='cover_layout']")
+    # if cover_layout:
+    #     cover_layout.getparent().remove(cover_layout)
 
     data = {"html": html}
     headers = {"Content-type": "application/json",
@@ -63,7 +111,36 @@ def get_content_from_html(html):
         raise ValueError
 
     data = req.json()["data"]
-    print("data", data)
+    logger.info("Data from converter: %s", data)
+
+    # because the blocks deserializer returns {blocks, blocks_layout} and is saved in "blocks", we need to fix it
+    if data.get("blocks"):
+        blockdata = data["blocks"]
+        data["blocks_layout"] = blockdata["blocks_layout"]
+        data["blocks"] = blockdata["blocks"]
+
+    # __import__('pdb').set_trace()
+    if data.get("cover_layout"):
+        frags = fragments_fromstring(data["cover_layout"])
+        tiles = {}
+        for frag in frags:
+            # <div data-tile-id=".b3898bdb-017c-4dac-a2d4-556d59d0ea6d"><div data-tile-field="text">
+            id = frag.get("data-tile-id")
+            info = {}
+
+            for child in frag:
+                fieldname = child.get("data-tile-field")
+                isrichtext = child.get('data-tile-type') == 'richtext'
+                if isrichtext:
+                    info[fieldname] = elements_to_text(child)
+                else:
+                    info[fieldname] = child.text
+            tiles[id] = info
+
+        data['cover_layout'] = tiles
+
+    logger.info("Data with tiles decrypted %s", data)
+
     return data
 
 
@@ -82,7 +159,6 @@ class ToHtml(BrowserView):
                     or k in LANGUAGE_INDEPENDENT_FIELDS
                 ):
                     continue
-                # print(schema, k, v)
                 self.fields[k] = v
                 value = self.get_value(k)
                 if value:
@@ -95,6 +171,9 @@ class ToHtml(BrowserView):
     def get_value(self, name):
         if name == "blocks":
             return get_blocks_as_html(self.context)
+        if name == "cover_layout":
+            value = get_cover_as_html(self.context)
+            return value
         return get_value_representation(self.context, name)
 
 
@@ -112,16 +191,9 @@ class ContentToHtml(BrowserView):
             translated_object = factory(language)
             tm.register_translation(language, translated_object)
 
-        # from plone import api
-        # site = api.portal.get()
-        # sandbox = site.restrictedTraverse("sandbox")
-        # copy = api.content.copy(source=self.context, target=sandbox)
-        # __import__("pdb").set_trace()
-        copy = translated_object
+        save_field_data(obj, translated_object, fielddata)
 
-        save_field_data(obj, copy, fielddata)
-
-        return copy
+        return translated_object
 
     def __call__(self):
         obj = self.context
@@ -139,12 +211,6 @@ class ContentToHtml(BrowserView):
 
         data = get_content_from_html(html)
 
-        # because the blocks deserializer returns {blocks, blocks_layout} and is saved in "blocks", we need to fix it
-        if data.get("blocks"):
-            blockdata = data["blocks"]
-            data["blocks_layout"] = blockdata["blocks_layout"]
-            data["blocks"] = blockdata["blocks"]
-
         # json.dumps({"html": html, "data": data}, indent=2)
         url = "http://localhost:3000/" + self.copy(data).absolute_url(
             relative=1
@@ -153,22 +219,28 @@ class ContentToHtml(BrowserView):
 
 
 def translate_volto_html(html, en_obj, http_host):
-    """Input: html (generated from volto blocks and obj fields, as string)
+    """The "new" method of triggering the translation of an object.
+
+    While this is named "volto", it is a generic system to translate Plone
+    content. The actual "ingestion" of translated data is performed in the
+    TranslationCallback view
+
+    Input: html (generated from volto blocks and obj fields, as string)
            en_obj - the object to be translated
            http_host - website url
 
-    Make sure translation objects exists and request a translation for
+    Makes sure translation objects exists and requests a translation for
     all languages.
     """
-    options = {}
-    options["obj_url"] = en_obj.absolute_url()
-    options["uid"] = en_obj.UID()
-    options["http_host"] = http_host
-    options["is_volto"] = True
-    options["html_content"] = html
+    options = {
+        "obj_url": en_obj.absolute_url(),
+        "uid": en_obj.UID(),
+        "http_host": http_host,
+        "is_volto": True,
+        "html_content": html,
+    }
 
     if "/en/" in en_obj.absolute_url():
-        # run translate FULL (all languages)
         for language in get_site_languages():
             if language == "en":
                 continue
