@@ -403,7 +403,9 @@ def create_translation_object(obj, language):
     except Exception:
         logger.info("CREATE ITEM: cannot rename the item id - already exists.")
 
-    copy_tiles_to_translation(obj, translated_object)
+    if obj.portal_type == "collective.cover.content":
+        copy_tiles_to_translation(obj, translated_object)
+
     copy_missing_interfaces(obj, translated_object)
 
     translated_object.reindexObject()
