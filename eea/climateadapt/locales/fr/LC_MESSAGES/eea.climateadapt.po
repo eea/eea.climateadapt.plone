@@ -18,7 +18,7 @@ msgstr ""
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:456
+#: ../../climateadapt/vocabulary.py:462
 msgid "-NONSPECIFIC-"
 msgstr "-NON SPECIFIQUE-"
 
@@ -1334,32 +1334,32 @@ msgid "A value for the quality of scaled images, from 1 (lowest) to 95 (highest)
 msgstr ""
 
 #,
-#: ../../climateadapt/vocabulary.py:567
+#: ../../climateadapt/vocabulary.py:573
 msgid "A1: Governance and Institutional: Policy Instruments"
 msgstr "A1: gouvernance et institutionnelle: instruments politiques"
 
 #,
-#: ../../climateadapt/vocabulary.py:583
+#: ../../climateadapt/vocabulary.py:589
 msgid "A1: Policy Instruments"
 msgstr "A1: Instruments politiques"
 
 #,
-#: ../../climateadapt/vocabulary.py:568
+#: ../../climateadapt/vocabulary.py:574
 msgid "A2: Governance and Institutional: Management and planning"
 msgstr "A2: gouvernance et institutionnelle: gestion et planification"
 
 #,
-#: ../../climateadapt/vocabulary.py:584
+#: ../../climateadapt/vocabulary.py:590
 msgid "A2: Management and planning"
 msgstr "A2: Gestion et planification"
 
 #,
-#: ../../climateadapt/vocabulary.py:585
+#: ../../climateadapt/vocabulary.py:591
 msgid "A3: Coordination cooperation and networks"
 msgstr "A3: coopération et réseaux de coordination"
 
 #,
-#: ../../climateadapt/vocabulary.py:569
+#: ../../climateadapt/vocabulary.py:575
 msgid "A3: Governance and Institutional: Coordination cooperation and networks"
 msgstr "A3: gouvernance et institutionnelle: coopération et réseaux de coordination"
 
@@ -1431,7 +1431,7 @@ msgstr "Détails d'adaptation"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:338
+#: ../../climateadapt/vocabulary.py:344
 msgid "Adaptation Measures and Actions"
 msgstr "Mesures et actions d'adaptation"
 
@@ -1474,7 +1474,7 @@ msgstr "Options d'Adaptation et Études de Cas"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:339
+#: ../../climateadapt/vocabulary.py:345
 msgid "Adaptation Plans and Strategies"
 msgstr "Plans et stratégies d'adaptation"
 
@@ -1735,7 +1735,7 @@ msgstr "Agriculture"
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:454
+#: ../../climateadapt/vocabulary.py:460
 msgid "Air pollution and aero-allergens"
 msgstr "Pollution atmosphérique et aéroallergènes"
 
@@ -1820,7 +1820,7 @@ msgstr "Alpin"
 msgid "Alpine Space"
 msgstr "Espace alpin"
 
-#: ../../climateadapt/vocabulary.py:478
+#: ../../climateadapt/vocabulary.py:484
 msgid "Aridity"
 msgstr ""
 
@@ -1915,22 +1915,22 @@ msgid "Atlantic Area"
 msgstr "Région de l'Atlantique"
 
 #,
-#: ../../climateadapt/vocabulary.py:570
+#: ../../climateadapt/vocabulary.py:576
 msgid "B1: Economic and Finance: Financing incentive instruments"
 msgstr "B1: économique et finance: financement des instruments d'incitation"
 
 #,
-#: ../../climateadapt/vocabulary.py:586
+#: ../../climateadapt/vocabulary.py:592
 msgid "B1: Financing incentive instruments"
 msgstr "B1: Financement des instruments d'incitation"
 
 #,
-#: ../../climateadapt/vocabulary.py:571
+#: ../../climateadapt/vocabulary.py:577
 msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
 msgstr "B2: économique et finance: instruments d'assurance et de partage des risques"
 
 #,
-#: ../../climateadapt/vocabulary.py:587
+#: ../../climateadapt/vocabulary.py:593
 msgid "B2: Insurance and risk sharing instruments"
 msgstr "B2: Instruments d'assurance et de partage des risques"
 
@@ -2032,22 +2032,22 @@ msgid "Business and industry"
 msgstr "Entreprise et industrie"
 
 #,
-#: ../../climateadapt/vocabulary.py:588
+#: ../../climateadapt/vocabulary.py:594
 msgid "C1: Grey options"
 msgstr "C1: Options grises"
 
 #,
-#: ../../climateadapt/vocabulary.py:572
+#: ../../climateadapt/vocabulary.py:578
 msgid "C1: Physical and technological: Grey options"
 msgstr "C1: Physique et technologique: Options grises"
 
 #,
-#: ../../climateadapt/vocabulary.py:573
+#: ../../climateadapt/vocabulary.py:579
 msgid "C2: Physical and technological: Technological options"
 msgstr "C2: physique et technologique: options technologiques"
 
 #,
-#: ../../climateadapt/vocabulary.py:589
+#: ../../climateadapt/vocabulary.py:595
 msgid "C2: Technological options"
 msgstr "C2: Options technologiques"
 
@@ -2082,15 +2082,15 @@ msgstr "Description de l'étude de cas"
 msgid "Case Study Illustrations"
 msgstr "Illustrations d'étude de cas"
 
-#: ../../climateadapt/vocabulary.py:368
+#: ../../climateadapt/vocabulary.py:374
 msgid "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
 msgstr "Cas développé, mis en œuvre et partiellement financé en tant que mesure d'adaptation au changement climatique."
 
-#: ../../climateadapt/vocabulary.py:366
+#: ../../climateadapt/vocabulary.py:372
 msgid "Case developed and implemented as a Climate Change Adaptation Measure."
 msgstr "Cas développé et mis en œuvre en tant que mesure d’adaptation au changement climatique."
 
-#: ../../climateadapt/vocabulary.py:369
+#: ../../climateadapt/vocabulary.py:375
 msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
 msgstr "Cas principalement développé et mis en œuvre en raison d’autres objectifs politiques, mais avec une prise en compte significative des aspects d’adaptation au changement climatique"
 
@@ -2437,7 +2437,7 @@ msgstr "Études de cas Climate-ADAPT"
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:452
+#: ../../climateadapt/vocabulary.py:458
 msgid "Climate-sensitive diseases"
 msgstr "Maladies influencées par le climat"
 
@@ -2460,11 +2460,11 @@ msgstr "Maladies influencées par le climat"
 msgid "Coastal areas"
 msgstr "Zones côtières"
 
-#: ../../climateadapt/vocabulary.py:482
+#: ../../climateadapt/vocabulary.py:488
 msgid "Coastal flooding"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:474
+#: ../../climateadapt/vocabulary.py:480
 msgid "Cold spells and frost"
 msgstr ""
 
@@ -2567,6 +2567,10 @@ msgstr "Le contenu des pages de l'Explorateur européen de données climatiques 
 msgid "Contributor:"
 msgstr "Contributeur"
 
+#: ../../climateadapt/vocabulary.py:334
+msgid "Cost-benefit analysis and maintenance costs"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -2642,7 +2646,7 @@ msgstr "Pays:"
 msgid "Created by:"
 msgstr "Créé par:"
 
-#: ../../climateadapt/vocabulary.py:461
+#: ../../climateadapt/vocabulary.py:467
 msgid "Critical Infrastructure"
 msgstr ""
 
@@ -2652,22 +2656,22 @@ msgid "Cultural heritage"
 msgstr "Héritage culturel"
 
 #,
-#: ../../climateadapt/vocabulary.py:590
+#: ../../climateadapt/vocabulary.py:596
 msgid "D1: Green options"
 msgstr "D1: Options vertes"
 
 #,
-#: ../../climateadapt/vocabulary.py:574
+#: ../../climateadapt/vocabulary.py:580
 msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
 msgstr "D1: Solutions basées sur la nature et approches basées sur les écosystèmes: Options vertes"
 
 #,
-#: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:597
 msgid "D2: Blue options"
 msgstr "D2: Options bleues"
 
 #,
-#: ../../climateadapt/vocabulary.py:575
+#: ../../climateadapt/vocabulary.py:581
 msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
 msgstr "D2: Solutions basées sur la nature et approches basées sur les écosystèmes: Options bleues"
 
@@ -2858,13 +2862,13 @@ msgstr "Téléchargez l'ordre du jour détaillé <a href=\"${DYNAMIC_CONTENT}\">
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:352
 msgid "Droughts"
 msgstr "Sécheresse"
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:451
+#: ../../climateadapt/vocabulary.py:457
 msgid "Droughts and floods"
 msgstr "Sécheresses et inondations"
 
@@ -2887,22 +2891,22 @@ msgid "Duration:"
 msgstr "Durée:"
 
 #,
-#: ../../climateadapt/vocabulary.py:592
+#: ../../climateadapt/vocabulary.py:598
 msgid "E1: Information and awareness raising"
 msgstr "E1: augmentation des informations et de la sensibilisation"
 
 #,
-#: ../../climateadapt/vocabulary.py:576
+#: ../../climateadapt/vocabulary.py:582
 msgid "E1: Knowledge and behavioural change: Information and awareness raising"
 msgstr "E1: Connaissances et changement de comportement: augmentation des informations et de la sensibilisation"
 
 #,
-#: ../../climateadapt/vocabulary.py:593
+#: ../../climateadapt/vocabulary.py:599
 msgid "E2: Capacity building empowering and lifestyle practices"
 msgstr "E2: Pratiques d'autonomisation et de style de vie de renforcement des capacités"
 
 #,
-#: ../../climateadapt/vocabulary.py:577
+#: ../../climateadapt/vocabulary.py:583
 msgid "E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices"
 msgstr "E2: Connaissances et changement de comportement: Pratiques d'autonomisation et de style de vie du renforcement des capacités"
 
@@ -2921,7 +2925,11 @@ msgstr "Missions de l'UE"
 msgid "EU funding of adaptation"
 msgstr "Financement européen de l'adaptation"
 
-#: ../../climateadapt/vocabulary.py:466
+#: ../../climateadapt/vocabulary.py:333
+msgid "Ecomic aspects"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:472
 msgid "Ecosystems and Nature Based Solutions"
 msgstr ""
 
@@ -2943,6 +2951,10 @@ msgstr ""
 #: ../../climateadapt/vocabulary.py:303
 msgid "Energy"
 msgstr "Énergie"
+
+#: ../../climateadapt/vocabulary.py:330
+msgid "Environmental aspects"
+msgstr ""
 
 # ,
 # ,
@@ -3026,7 +3038,7 @@ msgstr "Explorez les études de cas d'adaptation urbaine par localisation géogr
 msgid "External source"
 msgstr "Source externe"
 
-#: ../../climateadapt/vocabulary.py:476
+#: ../../climateadapt/vocabulary.py:482
 msgid "Extreme Precipitation"
 msgstr ""
 
@@ -3044,11 +3056,11 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:347
+#: ../../climateadapt/vocabulary.py:353
 msgid "Extreme Temperatures"
 msgstr "Températures extrêmes"
 
-#: ../../climateadapt/vocabulary.py:473
+#: ../../climateadapt/vocabulary.py:479
 msgid "Extreme heat"
 msgstr ""
 
@@ -3137,7 +3149,7 @@ msgstr "Découvrez comment contribuer différents types d'informations à Climat
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:348
+#: ../../climateadapt/vocabulary.py:354
 msgid "Flooding"
 msgstr "Inondation"
 
@@ -3506,7 +3518,7 @@ msgstr "Site Web du HHWS"
 msgid "Health"
 msgstr "Santé"
 
-#: ../../climateadapt/vocabulary.py:462
+#: ../../climateadapt/vocabulary.py:468
 msgid "Health and Wellbeing"
 msgstr ""
 
@@ -3532,7 +3544,7 @@ msgstr "Impact sur la santé:"
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:450
+#: ../../climateadapt/vocabulary.py:456
 msgid "Heat"
 msgstr "Chaleur"
 
@@ -3631,7 +3643,7 @@ msgstr "Catégories du GIEC"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:349
+#: ../../climateadapt/vocabulary.py:355
 msgid "Ice and Snow"
 msgstr "Glace et neige"
 
@@ -3854,7 +3866,7 @@ msgstr "Portails d'information"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:606
+#: ../../climateadapt/vocabulary.py:612
 msgid "Institutional: Economic options"
 msgstr "Institutionnel: Options économiques"
 
@@ -3871,7 +3883,7 @@ msgstr "Institutionnel: Options économiques"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:608
+#: ../../climateadapt/vocabulary.py:614
 msgid "Institutional: Government policies and programmes"
 msgstr "Institutionnel: politiques et programmes gouvernementaux"
 
@@ -3888,7 +3900,7 @@ msgstr "Institutionnel: politiques et programmes gouvernementaux"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:607
+#: ../../climateadapt/vocabulary.py:613
 msgid "Institutional: Law and regulations"
 msgstr "Institutionnel: droit et réglementation"
 
@@ -4014,7 +4026,7 @@ msgstr "Mots clés:"
 msgid "Land use planning"
 msgstr "Planification de l'utilisation des terres"
 
-#: ../../climateadapt/vocabulary.py:463
+#: ../../climateadapt/vocabulary.py:469
 msgid "Land-use and Food Systems"
 msgstr ""
 
@@ -4181,7 +4193,7 @@ msgstr "Lien vers les métadonnées:"
 msgid "Links to further information"
 msgstr "Liens vers de plus amples informations"
 
-#: ../../climateadapt/vocabulary.py:467
+#: ../../climateadapt/vocabulary.py:473
 msgid "Local Economic Systems"
 msgstr ""
 
@@ -4271,11 +4283,11 @@ msgstr "Cartes, graphiques et ensembles de données"
 msgid "Marine and Fisheries"
 msgstr "Maritime et pêches"
 
-#: ../../climateadapt/vocabulary.py:472
+#: ../../climateadapt/vocabulary.py:478
 msgid "Mean air temperature"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:475
+#: ../../climateadapt/vocabulary.py:481
 msgid "Mean precipitation"
 msgstr ""
 
@@ -4296,6 +4308,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 msgid "Mediterranean"
 msgstr "Méditerranée"
+
+#: ../../climateadapt/vocabulary.py:331
+msgid "Mitigation aspects"
+msgstr ""
 
 # ,
 # ,
@@ -4592,7 +4608,7 @@ msgstr "Objectifs"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:336
+#: ../../climateadapt/vocabulary.py:342
 msgid "Observations and Scenarios"
 msgstr "Observations et scénarios"
 
@@ -5163,7 +5179,7 @@ msgstr "Inscription:"
 msgid "Related documents and presentations"
 msgstr "Documents et présentations connexes"
 
-#: ../../climateadapt/vocabulary.py:481
+#: ../../climateadapt/vocabulary.py:487
 msgid "Relative sea level"
 msgstr ""
 
@@ -5202,6 +5218,10 @@ msgstr "Pertinence"
 #: ../../climateadapt/tiles/pt/filter_acecontent.pt:49
 msgid "Relevant tile"
 msgstr "Carreaux pertinents"
+
+#: ../../climateadapt/vocabulary.py:335
+msgid "Replication/upscaling potential"
+msgstr ""
 
 # ,
 # ,
@@ -5283,7 +5303,7 @@ msgstr "Catalogue de Ressources"
 msgid "Reviewed by:"
 msgstr "Revu par:"
 
-#: ../../climateadapt/vocabulary.py:477
+#: ../../climateadapt/vocabulary.py:483
 msgid "River flooding"
 msgstr ""
 
@@ -5334,7 +5354,7 @@ msgstr "Faites défiler vers le haut"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:350
+#: ../../climateadapt/vocabulary.py:356
 msgid "Sea Level Rise"
 msgstr "Elévation du niveau de la mer"
 
@@ -5426,7 +5446,7 @@ msgstr "Secteur"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:340
+#: ../../climateadapt/vocabulary.py:346
 msgid "Sector Policies"
 msgstr "Politiques sectorielles"
 
@@ -5581,7 +5601,7 @@ msgstr "Partagez vos informations"
 msgid "Show all sources"
 msgstr "Afficher toutes les sources"
 
-#: ../../climateadapt/vocabulary.py:480
+#: ../../climateadapt/vocabulary.py:486
 msgid "Snow and ice"
 msgstr ""
 
@@ -5598,7 +5618,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:605
+#: ../../climateadapt/vocabulary.py:611
 msgid "Social: Behavioural"
 msgstr "Social: comportemental"
 
@@ -5615,7 +5635,7 @@ msgstr "Social: comportemental"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:603
+#: ../../climateadapt/vocabulary.py:609
 msgid "Social: Educational options"
 msgstr "Social: Options éducatives"
 
@@ -5632,9 +5652,13 @@ msgstr "Social: Options éducatives"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:604
+#: ../../climateadapt/vocabulary.py:610
 msgid "Social: Informational"
 msgstr "Social: information"
+
+#: ../../climateadapt/vocabulary.py:332
+msgid "Societal aspects"
+msgstr ""
 
 # ,
 # ,
@@ -5783,7 +5807,7 @@ msgstr "Participation des parties prenantes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:351
+#: ../../climateadapt/vocabulary.py:357
 msgid "Storms"
 msgstr "Tempêtes"
 
@@ -5800,7 +5824,7 @@ msgstr "Tempêtes"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:601
+#: ../../climateadapt/vocabulary.py:607
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr "Structurel et physique: options d'adaptation basées sur les écosystèmes"
 
@@ -5817,7 +5841,7 @@ msgstr "Structurel et physique: options d'adaptation basées sur les écosystèm
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:599
+#: ../../climateadapt/vocabulary.py:605
 msgid "Structural and physical: Engineering and built environment options"
 msgstr "Structurel et physique: ingénierie et environnement bâti"
 
@@ -5834,7 +5858,7 @@ msgstr "Structurel et physique: ingénierie et environnement bâti"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:602
+#: ../../climateadapt/vocabulary.py:608
 msgid "Structural and physical: Service options"
 msgstr "Structurel et physique: options de service"
 
@@ -5851,7 +5875,7 @@ msgstr "Structurel et physique: options de service"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:600
+#: ../../climateadapt/vocabulary.py:606
 msgid "Structural and physical: Technological options"
 msgstr "Structurel et physique: options technologiques"
 
@@ -6256,7 +6280,7 @@ msgstr "Vidéos didactiques"
 msgid "URBACT"
 msgstr "URBACT"
 
-#: ../../climateadapt/translation/admin.py:2620
+#: ../../climateadapt/translation/admin.py:210
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
@@ -6392,11 +6416,11 @@ msgstr "Voir sur DRMKC"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:337
+#: ../../climateadapt/vocabulary.py:343
 msgid "Vulnerability Assessment"
 msgstr "Évaluation de la vulnérabilité"
 
-#: ../../climateadapt/vocabulary.py:464
+#: ../../climateadapt/vocabulary.py:470
 msgid "Water Management"
 msgstr ""
 
@@ -6414,7 +6438,7 @@ msgstr ""
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:352
+#: ../../climateadapt/vocabulary.py:358
 msgid "Water Scarcity"
 msgstr "Pénurie d'eau"
 
@@ -6498,13 +6522,13 @@ msgstr "Lorsque:"
 msgid "Where:"
 msgstr "Où:"
 
-#: ../../climateadapt/vocabulary.py:479
+#: ../../climateadapt/vocabulary.py:485
 msgid "Wildfire"
 msgstr ""
 
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:455
+#: ../../climateadapt/vocabulary.py:461
 msgid "Wildfires"
 msgstr "Feux de forêt"
 
