@@ -327,6 +327,12 @@ _elements = [
     ("JUSTRESILIENCE", "Just Resilience"),
     ("MRE", "MRE"),
     ("NATUREBASEDSOL", _("Nature-based solutions")),
+    ("ENVIRONMENTALASP", _("Environmental aspects")),
+    ("MITIGATIONASP", _("Mitigation aspects")),
+    ("SOCIETALASP", _("Societal aspects")),
+    ("ECONOMICASP", _("Ecomic aspects")),
+    ("COSTBENEFIT", _("Cost-benefit analysis and maintenance costs")),
+    ("RUPOTENTIAL", _("Replication/upscaling potential")),
 ]
 aceitem_elements_vocabulary = generic_vocabulary(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
