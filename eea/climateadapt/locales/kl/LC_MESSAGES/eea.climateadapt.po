@@ -380,7 +380,7 @@ msgstr ""
 msgid "Adaptation Details"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:322
 msgid "Adaptation Measures and Actions"
 msgstr ""
 
@@ -392,7 +392,7 @@ msgstr ""
 msgid "Adaptation Options and Case Studies"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:345
+#: ../../climateadapt/vocabulary.py:324
 msgid "Adaptation Plans and Strategies"
 msgstr ""
 
@@ -686,6 +686,10 @@ msgstr ""
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
 #: ../../climateadapt/browser/pt/casestudy_view.pt:350
 msgid "Climate impacts:"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:326
+msgid "Climate services"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:63
@@ -1450,7 +1454,7 @@ msgstr ""
 msgid "Objectives"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:323
 msgid "Observations and Scenarios"
 msgstr ""
 
@@ -1686,7 +1690,7 @@ msgstr ""
 msgid "Sector"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:321
 msgid "Sector Policies"
 msgstr ""
 
@@ -1991,7 +1995,7 @@ msgstr ""
 msgid "View on DRMKC"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:325
 msgid "Vulnerability Assessment"
 msgstr ""
 

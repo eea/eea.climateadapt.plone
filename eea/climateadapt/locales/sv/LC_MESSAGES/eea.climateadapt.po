@@ -384,7 +384,7 @@ msgid "Adaptation Details"
 msgstr "Anpassningsdetaljer"
 
 # ,
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:322
 msgid "Adaptation Measures and Actions"
 msgstr "Anpassningsåtgärder och åtgärder"
 
@@ -398,7 +398,7 @@ msgid "Adaptation Options and Case Studies"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:345
+#: ../../climateadapt/vocabulary.py:324
 msgid "Adaptation Plans and Strategies"
 msgstr "Anpassningsplaner och strategier"
 
@@ -708,6 +708,10 @@ msgstr "Klimatpåverkan"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:350
 msgid "Climate impacts:"
 msgstr "Klimatpåverkan:"
+
+#: ../../climateadapt/vocabulary.py:326
+msgid "Climate services"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:63
 msgid "Climate-ADAPT Event"
@@ -1525,7 +1529,7 @@ msgid "Objectives"
 msgstr "Mål"
 
 # ,
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:323
 msgid "Observations and Scenarios"
 msgstr "Observationer och scenarier"
 
@@ -1786,7 +1790,7 @@ msgid "Sector"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:321
 msgid "Sector Policies"
 msgstr "Sektorpolicy"
 
@@ -2117,7 +2121,7 @@ msgid "View on DRMKC"
 msgstr "Syn på drmkc"
 
 # ,
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:325
 msgid "Vulnerability Assessment"
 msgstr "Sårbarhetsbedömning"
 

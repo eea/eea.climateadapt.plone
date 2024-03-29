@@ -1355,7 +1355,7 @@ msgstr "Detalles de adaptación"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:322
 msgid "Adaptation Measures and Actions"
 msgstr "Medidas y acciones de adaptación"
 
@@ -1397,7 +1397,7 @@ msgstr "Opciones de adaptación y estudios de casos"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:345
+#: ../../climateadapt/vocabulary.py:324
 msgid "Adaptation Plans and Strategies"
 msgstr "Planes y estrategias de adaptación"
 
@@ -2295,6 +2295,10 @@ msgstr "Impactos climáticos"
 msgid "Climate impacts:"
 msgstr "Impactos climáticos:"
 
+#: ../../climateadapt/vocabulary.py:326
+msgid "Climate services"
+msgstr "Servicios climáticos"
+
 # ,
 # ,
 # ,
@@ -2452,7 +2456,7 @@ msgstr "Contribuyente:"
 
 #: ../../climateadapt/vocabulary.py:334
 msgid "Cost-benefit analysis and maintenance costs"
-msgstr ""
+msgstr "Análisis costo-beneficio y costos de mantenimiento"
 
 # ,
 # ,
@@ -2805,7 +2809,7 @@ msgstr "Financiación de la UE para la adaptación"
 
 #: ../../climateadapt/vocabulary.py:333
 msgid "Ecomic aspects"
-msgstr ""
+msgstr "Aspectos económicos"
 
 #: ../../climateadapt/vocabulary.py:472
 msgid "Ecosystems and Nature Based Solutions"
@@ -2832,7 +2836,7 @@ msgstr "Energía"
 
 #: ../../climateadapt/vocabulary.py:330
 msgid "Environmental aspects"
-msgstr ""
+msgstr "Aspectos ambientales"
 
 # ,
 # ,
@@ -4117,7 +4121,7 @@ msgstr "Mediterráneo"
 
 #: ../../climateadapt/vocabulary.py:331
 msgid "Mitigation aspects"
-msgstr ""
+msgstr "Aspectos de mitigación"
 
 # ,
 # ,
@@ -4398,7 +4402,7 @@ msgstr "Objetivos"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:323
 msgid "Observations and Scenarios"
 msgstr "Observaciones y escenarios"
 
@@ -4992,7 +4996,7 @@ msgstr "Ícono relevante"
 
 #: ../../climateadapt/vocabulary.py:335
 msgid "Replication/upscaling potential"
-msgstr ""
+msgstr "Potencial de replicación/mejora"
 
 # ,
 # ,
@@ -5209,7 +5213,7 @@ msgstr "Sector"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:321
 msgid "Sector Policies"
 msgstr "Políticas del sector"
 
@@ -5411,7 +5415,7 @@ msgstr "Social: Informativo"
 
 #: ../../climateadapt/vocabulary.py:332
 msgid "Societal aspects"
-msgstr ""
+msgstr "Aspectos sociales"
 
 # ,
 # ,
@@ -6127,7 +6131,7 @@ msgstr "Ver en DRMKC"
 # ,
 # ,
 # ,
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:325
 msgid "Vulnerability Assessment"
 msgstr "Evaluación de vulnerabilidad"
 

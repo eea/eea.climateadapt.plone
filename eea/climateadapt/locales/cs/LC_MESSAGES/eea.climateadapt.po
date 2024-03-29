@@ -384,7 +384,7 @@ msgid "Adaptation Details"
 msgstr "Podrobnosti o přizpůsobení"
 
 # ,
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:322
 msgid "Adaptation Measures and Actions"
 msgstr "Adaptační opatření a akce"
 
@@ -398,7 +398,7 @@ msgid "Adaptation Options and Case Studies"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:345
+#: ../../climateadapt/vocabulary.py:324
 msgid "Adaptation Plans and Strategies"
 msgstr "Adaptační plány a strategie"
 
@@ -708,6 +708,10 @@ msgstr "Dopady klimatu"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:350
 msgid "Climate impacts:"
 msgstr "Dopady klimatu:"
+
+#: ../../climateadapt/vocabulary.py:326
+msgid "Climate services"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:63
 msgid "Climate-ADAPT Event"
@@ -1525,7 +1529,7 @@ msgid "Objectives"
 msgstr "Cíle"
 
 # ,
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:323
 msgid "Observations and Scenarios"
 msgstr "Pozorování a scénáře"
 
@@ -1786,7 +1790,7 @@ msgid "Sector"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:321
 msgid "Sector Policies"
 msgstr "Politiky sektoru"
 
@@ -2117,7 +2121,7 @@ msgid "View on DRMKC"
 msgstr "Zobrazit na DRMKC"
 
 # ,
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:325
 msgid "Vulnerability Assessment"
 msgstr "Posouzení zranitelnosti"
 

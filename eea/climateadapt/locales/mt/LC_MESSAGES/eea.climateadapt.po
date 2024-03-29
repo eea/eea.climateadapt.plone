@@ -384,7 +384,7 @@ msgid "Adaptation Details"
 msgstr "Dettalji ta 'adattament"
 
 # ,
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:322
 msgid "Adaptation Measures and Actions"
 msgstr "Miżuri u azzjonijiet ta 'adattament"
 
@@ -398,7 +398,7 @@ msgid "Adaptation Options and Case Studies"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:345
+#: ../../climateadapt/vocabulary.py:324
 msgid "Adaptation Plans and Strategies"
 msgstr "Pjanijiet u strateġiji ta 'adattament"
 
@@ -708,6 +708,10 @@ msgstr "Impatti dwar il-klima"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:350
 msgid "Climate impacts:"
 msgstr "Impatti dwar il-klima:"
+
+#: ../../climateadapt/vocabulary.py:326
+msgid "Climate services"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:63
 msgid "Climate-ADAPT Event"
@@ -1525,7 +1529,7 @@ msgid "Objectives"
 msgstr "Għanijiet"
 
 # ,
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:323
 msgid "Observations and Scenarios"
 msgstr "Osservazzjonijiet u Xenarji"
 
@@ -1786,7 +1790,7 @@ msgid "Sector"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:321
 msgid "Sector Policies"
 msgstr "Politiki tas-settur"
 
@@ -2117,7 +2121,7 @@ msgid "View on DRMKC"
 msgstr "Veduta fuq DRMKC"
 
 # ,
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:325
 msgid "Vulnerability Assessment"
 msgstr "Valutazzjoni tal-Vulnerabilità"
 

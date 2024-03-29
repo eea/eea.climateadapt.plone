@@ -2364,6 +2364,19 @@ class RetagAO:
             logger.info("Retag elements for obj: %s",
                         obj.absolute_url())
 
+            languages = ['de', 'es', 'fr','it','pl']
+            for language in languages:
+                languagePath = obj.absolute_url_path().replace("/en/","/"+language+"/")
+                languageBrains = catalog.searchResults(
+                    {'portal_type': ['eea.climateadapt.casestudy','eea.climateadapt.adaptationoption'], 'path': languagePath})
+                for languageBrain in languageBrains:
+                    if languageBrain.getPath()==languagePath:
+                        languageObj = languageBrain.getObject();
+                        languageObj.elements = data
+                        languageObj._p_changed = True
+                        logger.info("Retag elements for obj language: %s",
+                                    languageObj.absolute_url())
+
         return response
 
 

@@ -384,7 +384,7 @@ msgid "Adaptation Details"
 msgstr "Informacija apie adaptaciją"
 
 # ,
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:322
 msgid "Adaptation Measures and Actions"
 msgstr "Adaptacijos priemonės ir veiksmai"
 
@@ -398,7 +398,7 @@ msgid "Adaptation Options and Case Studies"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:345
+#: ../../climateadapt/vocabulary.py:324
 msgid "Adaptation Plans and Strategies"
 msgstr "Adaptacijos planai ir strategijos"
 
@@ -708,6 +708,10 @@ msgstr "Klimato poveikis"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:350
 msgid "Climate impacts:"
 msgstr "Klimato poveikis:"
+
+#: ../../climateadapt/vocabulary.py:326
+msgid "Climate services"
+msgstr ""
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:63
 msgid "Climate-ADAPT Event"
@@ -1525,7 +1529,7 @@ msgid "Objectives"
 msgstr "Tikslai"
 
 # ,
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:323
 msgid "Observations and Scenarios"
 msgstr "Stebėjimai ir scenarijai"
 
@@ -1786,7 +1790,7 @@ msgid "Sector"
 msgstr ""
 
 # ,
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:321
 msgid "Sector Policies"
 msgstr "Sektoriaus politika"
 
@@ -2117,7 +2121,7 @@ msgid "View on DRMKC"
 msgstr "Vaizdas į DRMKC"
 
 # ,
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:325
 msgid "Vulnerability Assessment"
 msgstr "Pažeidžiamumo vertinimas"
 

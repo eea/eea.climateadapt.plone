@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-03-28 21:24+0000\n"
+"POT-Creation-Date: 2024-03-29 20:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,11 +82,11 @@ msgstr ""
 msgid "Acronym of the project"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:344
+#: ../../climateadapt/vocabulary.py:322
 msgid "Adaptation Measures and Actions"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:345
+#: ../../climateadapt/vocabulary.py:324
 msgid "Adaptation Plans and Strategies"
 msgstr ""
 
@@ -256,6 +256,10 @@ msgstr ""
 #: ../../climateadapt/behaviors/acemeasure.py:147
 #: ../../climateadapt/behaviors/aceproject.py:259
 msgid "Climate impacts"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:326
+msgid "Climate services"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:458
@@ -850,7 +854,7 @@ msgstr ""
 msgid "Objectives"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:342
+#: ../../climateadapt/vocabulary.py:323
 msgid "Observations and Scenarios"
 msgstr ""
 
@@ -1012,7 +1016,7 @@ msgstr ""
 msgid "Sector"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:321
 msgid "Sector Policies"
 msgstr ""
 
@@ -1332,7 +1336,7 @@ msgstr ""
 msgid "Video URL"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:343
+#: ../../climateadapt/vocabulary.py:325
 msgid "Vulnerability Assessment"
 msgstr ""
 
