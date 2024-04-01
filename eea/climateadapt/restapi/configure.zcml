@@ -156,4 +156,6 @@
   <!--     provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer" -->
   <!--     /> -->
 
+  <adapter factory=".countryprofile.CountryProfile" name="countryprofile"/>
+
 </configure>
