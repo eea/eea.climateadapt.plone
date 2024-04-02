@@ -290,6 +290,10 @@
       name="eea.climateadapt.keywords"
       component=".vocabulary.KeywordsVocabularyFactory"
       />
+  <utility
+      name="eea.climateadapt.object_provides"
+      component=".vocabulary.ObjectProvidesVocabulary"
+      />
 
   <utility
       name="eea.climateadapt.faceted_elements_voc"
