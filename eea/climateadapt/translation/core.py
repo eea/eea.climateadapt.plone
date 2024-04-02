@@ -1,32 +1,32 @@
-from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from plone.dexterity.utils import iterSchemata
-from zope.schema import getFieldsInOrder
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 import logging
 import os
-from plone.app.textfield.value import RichTextValue
-from plone.app.textfield.interfaces import IRichText
+from copy import deepcopy
 
 import transaction
 from Acquisition import aq_inner, aq_parent
 from plone import api
 from plone.api import portal
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.manager import TranslationManager
+from plone.app.textfield.interfaces import IRichText
+from plone.app.textfield.value import RichTextValue
 from plone.app.uuid.utils import uuidToObject
+from plone.dexterity.utils import iterSchemata
 from plone.tiles.interfaces import ITileDataManager
 from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Testing.ZopeTestCase import utils as zopeUtils
 from zope.interface import alsoProvides
+from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.browser.admin import force_unlock
 
 from . import (
     retrieve_volto_html_translation,
 )
-
+from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .translate_obj import translate_obj
 
 # steps => used to translate the entire website
@@ -403,7 +403,9 @@ def create_translation_object(obj, language):
     except Exception:
         logger.info("CREATE ITEM: cannot rename the item id - already exists.")
 
-    copy_tiles_to_translation(obj, translated_object)
+    if obj.portal_type == "collective.cover.content":
+        copy_tiles_to_translation(obj, translated_object)
+
     copy_missing_interfaces(obj, translated_object)
 
     translated_object.reindexObject()
@@ -580,7 +582,21 @@ def save_field_data(canonical, trans_obj, fielddata):
     if "cover_layout" in fielddata:
         coverdata = fielddata["cover_layout"]
         for tileid in coverdata.keys():
-            tile = trans_obj.__annotations__["plone.tiles.data.%s" % tileid]
+            full_tile_id = "plone.tiles.data.%s" % tileid
+
+            # tile is missing in the translation, so we may copy it from the original
+            tile = trans_obj.__annotations__.get(full_tile_id)
+            if tile is None:
+                tile = canonical.__annotations__.get(full_tile_id, None)
+                if tile is None:
+                    logger.warning(
+                        "Tile is missing from both the original and the translation: %s / %s",
+                        full_tile_id,
+                        trans_obj.absolute_url(),
+                    )
+                    continue
+                tile = deepcopy(tile)
+
             for fieldname, fieldvalue in coverdata[tileid].items():
                 orig = tile[fieldname]
                 if isinstance(orig, RichTextValue):
