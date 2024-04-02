@@ -713,7 +713,7 @@ def regions_section_view(obj, data, request):
                 "querystring": {
                     "query": [
                         {
-                            "i": "Subject",
+                            "i": "special_tags",
                             "o": "plone.app.querystring.operation.selection.any",
                             "v": ["transnational-region"],
                         }
