@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """A tile to implement the transregional select dropdown"""
 
+from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from collective.cover.tiles.base import IPersistentCoverTile, PersistentCoverTile
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -135,7 +136,7 @@ regions = {
             ("Romania", "/countries/romania"),
             ("Slovakia", "/countries/slovakia"),
             ("Slovenia", "/countries/slovenia"),
-            ("Bosnia and Herzegovina, ", ""),
+            ("Bosnia and Herzegovina", ""),
             ("Montenegro", ""),
             ("Serbia", ""),
             ("Ukraine", ""),
@@ -223,12 +224,12 @@ regions = {
 }
 
 
-def get_regions(context, current_lang):
+def get_regions(current_lang):
     site = getSite()
 
     catalog = getToolByName(site, "portal_catalog")
     q = {
-        "object_provides": "eea.climateadapt.interfaces.ITransnationalRegionMarker",
+        "object_provides": ITransnationalRegionMarker.__identifier__,
         "sort_on": "getObjPositionInParent",
         "path": {"query": "/cca/{}".format(current_lang)},
     }
@@ -238,18 +239,15 @@ def get_regions(context, current_lang):
 
     for b in brains:
         obj = b.getObject()
+        # TODO: this needs to be translation-aware
         if obj.title.lower() in [
             "balkan-mediterranean area",
             "black sea basin",
             "mediterranean sea basin",
         ]:
             continue
-        provides = [
-            "%s.%s" % (iface.__module__ or "", iface.__name__)
-            for iface in providedBy(obj)
-        ]
 
-        if "eea.climateadapt.interfaces.ITransnationalRegionMarker" in provides:
+        if ITransnationalRegionMarker.providedBy(obj):
             results.append(b)
 
     return [{"url": b.getURL(), "title": b.Title} for b in results]
@@ -302,7 +300,7 @@ class TransRegionalSelectTile(PersistentCoverTile, TranslationUtilsMixin):
         return False
 
     def regions(self):
-        return get_regions(self.context, self.current_lang)
+        return get_regions(self.current_lang)
 
     def countries(self):
         return get_countries(self.context, self.data, self.current_lang)

@@ -57,9 +57,11 @@ class TransnationalRegion(object):
         result = {
             "transnationalregion": {
                 "@id": "{}/@transnationalregion".format(self.context.absolute_url()),
-                "regions": get_regions(self.context, current_lang),
+                "regions": get_regions(current_lang),
                 "countries": get_countries(self.context, tile_data, current_lang),
             }
         }
+
+        print(result)
 
         return result
