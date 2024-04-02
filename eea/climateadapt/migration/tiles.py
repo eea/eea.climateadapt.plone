@@ -3,9 +3,6 @@ from collections import namedtuple
 from uuid import uuid4
 
 from bs4 import BeautifulSoup
-from eea.climateadapt.config import DEFAULT_LOCATIONS
-from eea.climateadapt.translation.utils import get_current_language
-from eea.climateadapt.vocabulary import BIOREGIONS
 from plone import api
 from plone.api import content
 from plone.app.uuid.utils import uuidToObject
@@ -14,8 +11,12 @@ from plone.restapi.serializer.converters import json_compatible
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.CatalogTool import sortable_title
 from zope.component.hooks import getSite
-from .config import SECTOR_POLICIES
 
+from eea.climateadapt.config import DEFAULT_LOCATIONS
+from eea.climateadapt.translation.utils import get_current_language
+from eea.climateadapt.vocabulary import BIOREGIONS
+
+from .config import SECTOR_POLICIES
 from .utils import convert_to_blocks, make_uid, path
 
 logger = logging.getLogger("eea.climateadapt")
@@ -713,10 +714,17 @@ def regions_section_view(obj, data, request):
                 "querystring": {
                     "query": [
                         {
-                            "i": "special_tags",
+                            "i": "object_provides",
                             "o": "plone.app.querystring.operation.selection.any",
-                            "v": ["transnational-region"],
-                        }
+                            "v": [
+                                "eea.climateadapt.interfaces.IMainTransnationalRegionMarker"
+                            ],
+                        },
+                        {
+                            "i": "path",
+                            "o": "plone.app.querystring.operation.string.relativePath",
+                            "v": ".",
+                        },
                     ],
                     "sort_on": "sortable_title",
                     "sort_order": "ascending",
