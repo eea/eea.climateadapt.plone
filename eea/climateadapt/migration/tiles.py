@@ -684,6 +684,73 @@ def help_categories_view(obj, data, request):
     }
 
 
+def regions_section_select_view(obj, data, request):
+    listing_uid = make_uid()
+    blocks = [
+        [
+            make_uid(),
+            {
+                "@type": "slate",
+                "plaintext": " Choose a region ",
+                "value": [
+                    {
+                        "children": [
+                            {"text": ""},
+                            {
+                                "children": [{"text": "Choose a region"}],
+                                "type": "strong",
+                            },
+                            {"text": ""},
+                        ],
+                        "type": "p",
+                    }
+                ],
+            },
+        ],
+        [
+            listing_uid,
+            {
+                "@type": "listing",
+                "block": listing_uid,
+                "headlineTag": "h3",
+                "itemModel": {
+                    "@type": "simpleItem",
+                    "callToAction": {"label": "Read more"},
+                    "hasDate": False,
+                    "hasEventDate": False,
+                    "hasLink": True,
+                    "maxDescription": 2,
+                    "maxTitle": 2,
+                    "styles": {},
+                    "titleOnImage": False,
+                },
+                "query": [],
+                "querystring": {
+                    "query": [
+                        {
+                            "i": "object_provides",
+                            "o": "plone.app.querystring.operation.selection.any",
+                            "v": [
+                                "eea.climateadapt.interfaces.ITransnationalRegionMarker"
+                            ],
+                        },
+                        {
+                            "i": "path",
+                            "o": "plone.app.querystring.operation.string.relativePath",
+                            "v": ".",
+                        },
+                    ],
+                    "sort_on": "sortable_title",
+                    "sort_order": "ascending",
+                },
+                "styles": {},
+                "variation": "summary",
+            },
+        ],
+    ]
+    return {"blocks": blocks}
+
+
 def regions_section_view(obj, data, request):
     current_lang = get_current_language(obj, request)
     item_model = {
@@ -1119,6 +1186,7 @@ view_convertors = {
     # migrate the image as "preview_image" in the regions items. Ticket: https://taskman.eionet.europa.eu/issues/161598
     # /countries-regions/transnational-regions/transnational-regions-and-other-regions-and-countries
     "regions-section": regions_section_view,
+    "regions-section-select": regions_section_select_view,
     # To be reimplemented as a homepage. Ticket for designer: https://taskman.eionet.europa.eu/issues/253404
     "urban-landing-page": nop_view,  # /countries-regions/local
     # Doesn't seem to do anything. To be investigated.
