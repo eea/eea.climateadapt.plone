@@ -503,8 +503,16 @@ def nop_view(obj, data, request):
 
 
 def c3s_indicators_overview_view(obj, data, request):
-    # TODO
-    return {"blocks": []}
+    return {
+        "blocks": [
+            [
+                make_uid(),
+                {
+                    "@type": "c3SIndicatorsOverviewBlock",
+                },
+            ]
+        ]
+    }
 
 
 def country_disclaimer_view(obj, data, request):
