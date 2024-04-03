@@ -1,3 +1,5 @@
+"""Plone Content Types content migrators"""
+
 from plone.app.contenttypes.interfaces import IEvent
 from plone.app.contenttypes.interfaces import INewsItem
 import json
