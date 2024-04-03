@@ -2,7 +2,9 @@
 
 import logging
 
+from plone.api import portal
 from plone.app.multilingual.api import get_translation_manager
+from plone.namedfile.file import NamedBlobImage
 from plone.tiles.interfaces import ITileDataManager
 
 from .blocks import (
@@ -912,6 +914,29 @@ def fix_c3s_indicators_listing(context):
     uid = make_uid()
     context.blocks_layout["items"].append(uid)
     context.blocks[uid] = {"@type": "c3SIndicatorListingBlock"}
+
+    topic = context.getId()
+    img_map = {
+        "agriculture": "img-agriculture.jpg",
+        "energy": "img-energy.jpg",
+        "health": "img-health.jpg",
+        "forestry": "img-forestry.jpg",
+        "tourism": "img-tourism.jpg",
+        "water-and-coastal": "img-coastal.jpg",
+    }
+    img_name = img_map.get(topic)
+    if img_name:
+        site = portal.get()
+        base_folder = site.restrictedTraverse("en/knowledge/c3sdataimg")
+        if img_name in base_folder.contentIds():
+            img = base_folder.restrictedTraverse(img_name)
+            field = img.image
+            if field:
+                data = field.open().read()
+                context.preview_image = NamedBlobImage(
+                    data=data, contentType=field.contentType, filename=field.filename
+                )
+
     context._p_changed = True
 
 
