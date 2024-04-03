@@ -93,7 +93,7 @@ class C3SIndicatorsOverview(TranslationUtilsMixin):
     def __call__(self, expand=False):
         if self.is_ecde_context() is True:
             indicators_data = self.get_indicators_data()
-            return {"c3s_indicators_overview": indicators_data}
+            return {"c3s_indicators_listing": indicators_data}
         else:
             return {}
 
