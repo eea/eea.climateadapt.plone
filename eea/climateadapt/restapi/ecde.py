@@ -60,8 +60,10 @@ class C3SIndicatorsOverview(TranslationUtilsMixin):
         site = portal.get()
         base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
+
         if category_id not in datastore["data"]["themes"]:
             return {}
+
         res["description"] = datastore["data"]["themes"][category_id]["description"]
 
         for indicator in datastore["data"]["themes"][category_id]["apps"]:
@@ -83,6 +85,7 @@ class C3SIndicatorsOverview(TranslationUtilsMixin):
                         "url": obj.absolute_url(),
                     }
                 )
+
         return res
 
     def __call__(self, expand=False):
