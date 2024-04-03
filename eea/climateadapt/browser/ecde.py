@@ -263,7 +263,7 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
         url = self.request["ACTUAL_URL"]
         category = url.split("/")[-1]
         category_id = category.lower().replace("-", " ")
-        category_path = category.lower()
+        # category_path = category.lower()
 
         catalog = api.portal.get_tool("portal_catalog")
         brains = catalog.searchResults(
@@ -284,6 +284,7 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
         base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         res['description'] = datastore['data']['themes'][category_id]['description']
+
         for indicator in datastore['data']['themes'][category_id]['apps']:
             if indicator['title'] in items:
                 obj = items[indicator['title']]['obj']
