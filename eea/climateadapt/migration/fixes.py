@@ -908,18 +908,22 @@ def fix_preview_image(context):
 
 
 def fix_c3s_indicators_listing(context):
-    layout = getattr(context.aq_inner.aq_self, "layout", None)
-    if layout:
-        fixer = pagelayout_fixers.get(layout)
-        if fixer:
-            fixer(context)
+    # adds the c3sIndicatorListing block
+    uid = make_uid()
+    context.blocks_layout["items"].append(uid)
+    context.blocks[uid] = {"@type": "c3sIndicatorListingBlock"}
+    context._p_changed = True
 
 
 pagelayout_fixers = {"c3s_indicators_listing": fix_c3s_indicators_listing}
 
 
 def fix_for_pagelayout(context):
-    pass
+    layout = getattr(context.aq_inner.aq_self, "layout", None)
+    if layout:
+        fixer = pagelayout_fixers.get(layout)
+        if fixer:
+            fixer(context)
 
 
 def getpath(obj):
