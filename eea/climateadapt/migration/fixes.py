@@ -1,10 +1,10 @@
-""" Post-migration "fixers", which are executed after an object has been migrated
-"""
-
+"""Post-migration "fixers", which are executed after an object has been migrated"""
 
 import logging
 
+from plone.api import portal
 from plone.app.multilingual.api import get_translation_manager
+from plone.namedfile.file import NamedBlobImage
 from plone.tiles.interfaces import ITileDataManager
 
 from .blocks import (
@@ -522,7 +522,7 @@ def fix_news_archive(context):
 @onpath("/newsletter")
 def fix_newsletter(context):
     def get_year(text, years):
-        """ Extract the year: MARCH 2023 -> 2023 """
+        """Extract the year: MARCH 2023 -> 2023"""
         for year in years:
             if str(year) in str(text):
                 return year
@@ -535,44 +535,44 @@ def fix_newsletter(context):
         res_blocks.append(blocks[k])
 
     years = [x for x in reversed(range(2015, 2024))]
-    res_tables = [x['value'] for x in res_blocks if 'url' in str(x)]
+    res_tables = [x["value"] for x in res_blocks if "url" in str(x)]
 
     res = []
     for table in res_tables:
-        tbody = table[0]['children'][0]
-        row = tbody['children'][0]
-        data = row['children']
+        tbody = table[0]["children"][0]
+        row = tbody["children"][0]
+        data = row["children"]
 
         for item in data:
-            newsletter = item['children'][0]
+            newsletter = item["children"][0]
             res.append(newsletter)
 
     newsletters_data = []
-    filtered_res = [x for x in res if 'url' in str(x)]
+    filtered_res = [x for x in res if "url" in str(x)]
 
     # 2. Extract relevant info for each newsletter item
     for newsletter_item in filtered_res:
         n_data = {}
-        newsletter_url = newsletter_item['data']['url']
-        n_data['url'] = newsletter_url
+        newsletter_url = newsletter_item["data"]["url"]
+        n_data["url"] = newsletter_url
         # newsletter_info = newsletter_item['children']
         # n_data['info'] = newsletter_info
 
-        for child in newsletter_item['children']:
-            if 'text' in child.keys():
-                if 'Issue' in child['text']:
-                    newsletter_title = child['text']
-                    n_data['title'] = newsletter_title
+        for child in newsletter_item["children"]:
+            if "text" in child.keys():
+                if "Issue" in child["text"]:
+                    newsletter_title = child["text"]
+                    n_data["title"] = newsletter_title
                 else:
                     year = get_year(child, years)
                     if year is not None:
-                        n_data['date_title'] = child['text']
-                        n_data['year'] = year
+                        n_data["date_title"] = child["text"]
+                        n_data["year"] = year
 
-            if 'scale' in child.keys():
-                if 'url' in child.keys():
-                    img_url = child['url']
-                    n_data['img_url'] = img_url
+            if "scale" in child.keys():
+                if "url" in child.keys():
+                    img_url = child["url"]
+                    n_data["img_url"] = img_url
 
         newsletters_data.append(n_data)
 
@@ -581,7 +581,7 @@ def fix_newsletter(context):
     for year in years:
         n_by_year[year] = []
     for n_item in newsletters_data:
-        n_by_year[n_item['year']].append(n_item)
+        n_by_year[n_item["year"]].append(n_item)
 
     # TODO: 4. Generate nice listing blocks using the prepared information
     # __import__('pdb').set_trace()
@@ -628,8 +628,7 @@ def fix_read_more(context):
     ]
 
     def get_columns_block_id(blocks):
-        columns_block = {
-            k for k, v in blocks.items() if v["@type"] == "columnsBlock"}
+        columns_block = {k for k, v in blocks.items() if v["@type"] == "columnsBlock"}
         col_id = list(columns_block)[0]
         return col_id
 
@@ -777,8 +776,7 @@ def fix_obs_countries(context):
             if isinstance(firstnode, dict) and firstnode.get("type") == "table":
                 if not first_table_node_uid:
                     first_table_node_uid = uid
-                    firstcol["blocks_layout"]["items"] = [
-                        x for x in items if x != uid]
+                    firstcol["blocks_layout"]["items"] = [x for x in items if x != uid]
                 else:
                     tbody = firstnode["children"][0]
                     tr = tbody["children"][0]
@@ -901,8 +899,7 @@ def fix_field_encoding(context):
 
 @inpath("countries-regions/transnational-regions/")
 def fix_preview_image(context):
-    folder_images = context.listFolderContents(
-        contentFilter={"portal_type": "Image"})
+    folder_images = context.listFolderContents(contentFilter={"portal_type": "Image"})
     folder_image = None
     if len(folder_images) > 0:
         folder_image = folder_images[0]
@@ -910,6 +907,48 @@ def fix_preview_image(context):
         image = folder_image.image
         context.preview_image = image
         context._p_changed = True
+
+
+def fix_c3s_indicators_listing(context):
+    # adds the c3sIndicatorListing block
+    uid = make_uid()
+    context.blocks_layout["items"].append(uid)
+    context.blocks[uid] = {"@type": "c3SIndicatorListingBlock"}
+
+    topic = context.getId()
+    img_map = {
+        "agriculture": "img-agriculture.jpg",
+        "energy": "img-energy.jpg",
+        "health": "img-health.jpg",
+        "forestry": "img-forestry.jpg",
+        "tourism": "img-tourism.jpg",
+        "water-and-coastal": "img-coastal.jpg",
+    }
+    img_name = img_map.get(topic)
+    if img_name:
+        site = portal.get()
+        base_folder = site.restrictedTraverse("en/knowledge/c3sdataimg")
+        if img_name in base_folder.contentIds():
+            img = base_folder.restrictedTraverse(img_name)
+            field = img.image
+            if field:
+                data = field.open().read()
+                context.preview_image = NamedBlobImage(
+                    data=data, contentType=field.contentType, filename=field.filename
+                )
+
+    context._p_changed = True
+
+
+pagelayout_fixers = {"c3s_indicators_listing": fix_c3s_indicators_listing}
+
+
+def fix_for_pagelayout(context):
+    layout = getattr(context.aq_inner.aq_self, "layout", None)
+    if layout:
+        fixer = pagelayout_fixers.get(layout)
+        if fixer:
+            fixer(context)
 
 
 def getpath(obj):
@@ -977,6 +1016,7 @@ content_fixers = [
     fix_obs_countries,
     fix_layout_size,
     fix_newsletter,
+    fix_for_pagelayout,
 ]
 
 folder_fixers = [
@@ -986,6 +1026,7 @@ folder_fixers = [
     fix_observatory_newsarchive,
     fix_observatory_eventsarchive,
     fix_layout_size,
+    fix_for_pagelayout,
 ]
 
 

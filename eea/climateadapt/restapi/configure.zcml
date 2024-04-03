@@ -80,8 +80,8 @@
     />
 
   <adapter
-    factory=".ecde.C3SIndicatorsGlossaryTable"
-    name="c3s_indicators_glossary_table_api"
+    factory=".ecde.C3SIndicatorsData"
+    name="c3s_indicators_data"
     />
 
   <plone:service
