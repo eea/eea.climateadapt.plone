@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 
+from zope.component import getMultiAdapter
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.climateadapt.translation.utils import (
     TranslationUtilsMixin,
@@ -27,11 +28,12 @@ class C3SIndicatorsOverview(TranslationUtilsMixin):
 
     def is_ecde_context(self):
         layout = getattr(self.context.aq_inner.aq_self, "layout", None)
-        # __import__("pdb").set_trace()
         if layout == "c3s_indicators_listing":
             return True
+
         # if "european-climate-data-explorer" in self.request["ACTUAL_URL"]:
         #     return True
+
         return False
 
     def get_indicators_data(self):
@@ -104,7 +106,7 @@ class C3SIndicatorsOverviewGet(Service):
 
 @implementer(IExpandableElement)
 @adapter(Interface, IEEAClimateAdaptInstalled)
-class C3SIndicatorsGlossaryTable(object):
+class C3SIndicatorsData(object):
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -114,24 +116,31 @@ class C3SIndicatorsGlossaryTable(object):
             return True
         return False
 
-    def get_indicators_data(self):
+    def get_glossary(self):
         site = portal.get()
         lg = get_current_language(self.context, self.request)
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
+
         if "glossary_table" in datastore["data"]:
             return datastore["data"]["glossary_table"]
+
         return ""
 
     def __call__(self, expand=False):
-        if self.is_ecde_context() is True:
-            indicators_data = self.get_indicators_data()
-        else:
+        if not self.is_ecde_context():
             return {}
-        return {"c3s_indicators_glossary_table": indicators_data}
+
+        data_view = getMultiAdapter(
+            (self.context, self.request), name="c3s_indicators_overview"
+        )
+        return {
+            "c3s_indicators_glossary_table": self.get_glossary(),
+            "c3s_indicators_overview": data_view(),
+        }
 
 
 class C3SIndicatorsGlossaryTableGet(Service):
     def reply(self):
-        table = C3SIndicatorsGlossaryTable(self.context, self.request)
+        table = C3SIndicatorsData(self.context, self.request)
         return table()

@@ -247,9 +247,11 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
 
 
 class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
-    """ Overview page for indicators. Registered as @@c3s_indicators_overview
+    """ Listing of indicators for a category (theme) page.
 
-    To be used from inside a collective.cover
+    Registered as @@c3s_indicators_listing
+
+    TODO: to be refactored according to the changes done in the restapi/ecde.py module
     """
 
     def __init__(self, context, request):
