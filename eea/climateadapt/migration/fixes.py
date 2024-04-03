@@ -911,7 +911,7 @@ def fix_c3s_indicators_listing(context):
     # adds the c3sIndicatorListing block
     uid = make_uid()
     context.blocks_layout["items"].append(uid)
-    context.blocks[uid] = {"@type": "c3sIndicatorListingBlock"}
+    context.blocks[uid] = {"@type": "c3SIndicatorListingBlock"}
     context._p_changed = True
 
 
