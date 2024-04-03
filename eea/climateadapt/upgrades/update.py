@@ -1,5 +1,8 @@
 from zope.interface import alsoProvides
-from eea.climateadapt.interfaces import IMainTransnationalRegionMarker
+from eea.climateadapt.interfaces import (
+    IMainTransnationalRegionMarker,
+    ITransnationalRegionMarker,
+)
 import transaction
 import json
 import logging
@@ -903,6 +906,7 @@ def update_transnational_regions(context):
 
     for brain in brains:
         obj = brain.getObject()
-        alsoProvides(obj, IMainTransnationalRegionMarker)
+        if ITransnationalRegionMarker.providedBy(obj):
+            alsoProvides(obj, IMainTransnationalRegionMarker)
         obj.reindexObject()
         logger.info("Remarked transnational region: %s", obj.absolute_url())
