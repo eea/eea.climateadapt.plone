@@ -12,6 +12,7 @@
   <include file="faceted.zcml" />
   <include file="depiction.zcml" />
   <include file="migrations.zcml" />
+  <include file="ecde.zcml" />
 
   <browser:page
       name="iterate_control"
@@ -258,37 +259,7 @@
       permission="zope2.View"
       />
 
-  <browser:page
-      name="c3s_indicators_overview"
-      for="*"
-      class="eea.climateadapt.browser.misc.C3sIndicatorsOverview"
-      template="pt/c3s_indicators_overview.pt"
-      permission="zope2.View"
-      />
 
-  <browser:page
-      name="c3s_indicators_glossary_table"
-      for="*"
-      class="eea.climateadapt.browser.misc.C3sIndicatorsOverview"
-      template="pt/c3s_indicators_glossary_table.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="c3s_indicators_listing"
-      for="*"
-      class="eea.climateadapt.browser.misc.C3sIndicatorsListing"
-      template="pt/c3s_indicators_listing.pt"
-      permission="zope2.View"
-      />
-
-  <browser:page
-      name="c3s_disclaimer"
-      for="*"
-      class="eea.climateadapt.browser.misc.C3sIndicatorsOverview"
-      template="pt/c3s_disclaimer.pt"
-      permission="zope2.View"
-      />
 
 
 

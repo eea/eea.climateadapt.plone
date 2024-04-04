@@ -1,68 +1,72 @@
-from plone.behavior.interfaces import IBehaviorAssignable
-from plone.formwidget.geolocation.geolocation import Geolocation
-from z3c.relationfield.relation import RelationValue
-from datetime import date
-from plone.namedfile.file import NamedBlobFile, NamedBlobImage, NamedFile, NamedImage
 import json
-from DateTime import DateTime
-from plone.app.textfield.value import RichTextValue
-from collective.cover.tiles.richtext import RichTextTile
-from eea.climateadapt.tiles.richtext import RichTextWithTitle
-from zope.schema import getFieldsInOrder
-from .constants import LANGUAGE_INDEPENDENT_FIELDS
 import urllib
+from datetime import date
 
-from eea.climateadapt.translation import translate_one_text_to_translation_storage
+from collective.cover.tiles.richtext import RichTextTile
+from DateTime import DateTime
 from plone import api
 from plone.app.multilingual.manager import TranslationManager
+from plone.app.textfield.value import RichTextValue
+from plone.behavior.interfaces import IBehaviorAssignable
+from plone.formwidget.geolocation.geolocation import Geolocation
+from plone.namedfile.file import NamedBlobFile, NamedBlobImage, NamedFile, NamedImage
 from Products.CMFCore.utils import getToolByName
+from z3c.relationfield.relation import RelationValue
 from zope.component import getMultiAdapter
+from zope.schema import getFieldsInOrder
+
+from eea.climateadapt.tiles.richtext import RichTextWithTitle
+from eea.climateadapt.translation import translate_one_text_to_translation_storage
+
+from .constants import LANGUAGE_INDEPENDENT_FIELDS
+
+
+def translated_url(context, url, current_lang):
+    """return the relative url for the object, including the current language
+    example for FR
+
+    /metadata/test -> /fr/metadata/test
+    /en/metadata/test -> /fr/metadata/test
+    """
+
+    replace_urls = [
+        "https://cca.devel5cph.eionet.europa.eu",
+        "https://climate-adapt.eea.europa.eu",
+    ]
+
+    portal_url = context.portal_url()
+
+    if portal_url in url:
+        relative_path = url.replace(portal_url, "")
+    else:
+        for r_url in replace_urls:
+            url = url.replace(r_url, "")
+
+        relative_path = url
+
+    if relative_path.startswith("/"):
+        relative_path = relative_path[1:]
+
+    relative_path_split = relative_path.split("/")
+
+    if relative_path_split[0] == current_lang:
+        return relative_path
+
+    if relative_path_split[0] == "en":
+        new_path = "/{}/{}".format(current_lang, relative_path_split[1:].join("/"))
+
+        return new_path
+
+    new_path = "/{}/{}".format(current_lang, relative_path)
+
+    return new_path
 
 
 class TranslationUtilsMixin(object):
     """Class with utility methods related to translations"""
 
     def translated_url(self, url):
-        """return the relative url for the object, including the current language
-        example for FR
-
-        /metadata/test -> /fr/metadata/test
-        /en/metadata/test -> /fr/metadata/test
-        """
-
-        replace_urls = [
-            "https://cca.devel5cph.eionet.europa.eu",
-            "https://climate-adapt.eea.europa.eu",
-        ]
-
-        portal_url = self.context.portal_url()
-
-        if portal_url in url:
-            relative_path = url.replace(portal_url, "")
-        else:
-            for r_url in replace_urls:
-                url = url.replace(r_url, "")
-
-            relative_path = url
-
-        if relative_path.startswith("/"):
-            relative_path = relative_path[1:]
-
-        relative_path_split = relative_path.split("/")
-
-        if relative_path_split[0] == self.current_lang:
-            return relative_path
-
-        if relative_path_split[0] == "en":
-            new_path = "/{}/{}".format(
-                self.current_lang, relative_path_split[1:].join("/")
-            )
-
-            return new_path
-
-        new_path = "/{}/{}".format(self.current_lang, relative_path)
-
-        return new_path
+        return translated_url(self.context, url, self.current_lang)
 
     def translated_object(self, object):
         url = object.absolute_url()

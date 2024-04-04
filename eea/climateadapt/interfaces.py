@@ -26,6 +26,10 @@ class ITransnationalRegionMarker(Interface):
     """ A marker interface for transnational region pages.
     """
 
+class IMainTransnationalRegionMarker(Interface):
+    """ A marker interface for a main transnational region pages.
+    """
+
 
 class IASTNavigationRoot(Interface):
     """ A marker interface for AST tools

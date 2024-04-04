@@ -3,6 +3,20 @@
            i18n_domain="eea.climateadapt">
 
    <genericsetup:upgradeSteps
+     source="70"
+     destination="71"
+     profile="eea.climateadapt:default">
+     <genericsetup:upgradeDepends
+       title="Update profile eeaclimate to v71"
+       import_profile="eea.climateadapt:eeaclimateadapt_to_71"
+     />
+     <genericsetup:upgradeStep
+        title="Remark transnational regions"
+        handler=".update.update_transnational_regions"
+        />
+   </genericsetup:upgradeSteps>
+
+   <genericsetup:upgradeSteps
      source="69"
      destination="70"
      profile="eea.climateadapt:default">

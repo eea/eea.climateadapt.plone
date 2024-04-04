@@ -19,8 +19,7 @@ from eea.climateadapt import MessageFactory as _
 
 
 def generic_vocabulary(_terms, sort=True):
-    """ Returns a zope vocabulary from a dict or a list
-    """
+    """Returns a zope vocabulary from a dict or a list"""
 
     if _terms and isinstance(_terms, dict):
         _terms = _terms.items()
@@ -31,9 +30,9 @@ def generic_vocabulary(_terms, sort=True):
         _terms = sorted(_terms, key=lambda x: x[0])
 
     def factory(context):
-        return SimpleVocabulary([
-            SimpleTerm(n, n.encode('utf-8'), l) for n, l in _terms
-        ])
+        return SimpleVocabulary(
+            [SimpleTerm(n, n.encode("utf-8"), l) for n, l in _terms]
+        )
 
     return factory
 
@@ -45,7 +44,6 @@ class KeywordsVocabulary(BKV):
 
 
 class CatalogVocabulary(BCV):
-
     def getTerm(self, value):
         if isinstance(value, basestring):
             # perhaps it's already a uid
@@ -65,42 +63,41 @@ class CatalogVocabulary(BCV):
 
 @implementer(IVocabularyFactory)
 class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
-
     def __call__(self, context, query=None):
         query = query or {}
 
-        if 'criteria' not in query:
-            query['criteria'] = []
+        if "criteria" not in query:
+            query["criteria"] = []
 
-        query['criteria'].append(
-            {u'i': u'portal_type',
-             u'o': u'plone.app.querystring.operation.selection.is',
-             u'v': [u'eea.climateadapt.adaptationoption']}
+        query["criteria"].append(
+            {
+                "i": "portal_type",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": ["eea.climateadapt.adaptationoption"],
+            }
         )
 
         parsed = {}
 
         if query:
-            parsed = queryparser.parseFormquery(context, query['criteria'])
+            parsed = queryparser.parseFormquery(context, query["criteria"])
 
-            if 'sort_on' in query:
-                parsed['sort_on'] = query['sort_on']
+            if "sort_on" in query:
+                parsed["sort_on"] = query["sort_on"]
 
-            if 'sort_order' in query:
-                parsed['sort_order'] = str(query['sort_order'])
+            if "sort_order" in query:
+                parsed["sort_order"] = str(query["sort_order"])
         try:
-            catalog = getToolByName(context, 'portal_catalog')
+            catalog = getToolByName(context, "portal_catalog")
         except AttributeError:
-            catalog = getToolByName(getSite(), 'portal_catalog')
+            catalog = getToolByName(getSite(), "portal_catalog")
 
-        if parsed.get('path'):
-            if parsed['path'].get('depth'):
-                parsed['path']['query'].append(
-                    u'/cca/metadata/adaptation-options'
-                )
+        if parsed.get("path"):
+            if parsed["path"].get("depth"):
+                parsed["path"]["query"].append("/cca/metadata/adaptation-options")
 
-                if u'/cca' in parsed['path']['query']:
-                    parsed['path']['query'].remove(u'/cca')
+                if "/cca" in parsed["path"]["query"]:
+                    parsed["path"]["query"].remove("/cca")
 
         brains = catalog(**parsed)
 
@@ -109,42 +106,41 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
 
 @implementer(IVocabularyFactory)
 class CaseStudiesVocabulary(CatalogVocabularyFactory):
-
     def __call__(self, context, query=None):
         query = query or {}
 
-        if 'criteria' not in query:
-            query['criteria'] = []
+        if "criteria" not in query:
+            query["criteria"] = []
 
-        query['criteria'].append(
-            {u'i': u'portal_type',
-             u'o': u'plone.app.querystring.operation.selection.is',
-             u'v': [u'eea.climateadapt.casestudy']}
+        query["criteria"].append(
+            {
+                "i": "portal_type",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": ["eea.climateadapt.casestudy"],
+            }
         )
 
         parsed = {}
 
         if query:
-            parsed = queryparser.parseFormquery(context, query['criteria'])
+            parsed = queryparser.parseFormquery(context, query["criteria"])
 
-            if 'sort_on' in query:
-                parsed['sort_on'] = query['sort_on']
+            if "sort_on" in query:
+                parsed["sort_on"] = query["sort_on"]
 
-            if 'sort_order' in query:
-                parsed['sort_order'] = str(query['sort_order'])
+            if "sort_order" in query:
+                parsed["sort_order"] = str(query["sort_order"])
         try:
-            catalog = getToolByName(context, 'portal_catalog')
+            catalog = getToolByName(context, "portal_catalog")
         except AttributeError:
-            catalog = getToolByName(getSite(), 'portal_catalog')
+            catalog = getToolByName(getSite(), "portal_catalog")
 
-        if parsed.get('path'):
-            if parsed['path'].get('depth'):
-                parsed['path']['query'].append(
-                    u'/cca/metadata/case-studies'
-                )
+        if parsed.get("path"):
+            if parsed["path"].get("depth"):
+                parsed["path"]["query"].append("/cca/metadata/case-studies")
 
-                if u'/cca' in parsed['path']['query']:
-                    parsed['path']['query'].remove(u'/cca')
+                if "/cca" in parsed["path"]["query"]:
+                    parsed["path"]["query"].remove("/cca")
 
         brains = catalog(**parsed)
 
@@ -153,47 +149,48 @@ class CaseStudiesVocabulary(CatalogVocabularyFactory):
 
 @implementer(IVocabularyFactory)
 class OrganisationsVocabulary(CatalogVocabularyFactory):
-
     def __call__(self, context, query=None):
         query = query or {}
 
-        if 'criteria' not in query:
-            query['criteria'] = []
+        if "criteria" not in query:
+            query["criteria"] = []
 
-        query['criteria'].append(
-            {u'i': u'portal_type',
-             u'o': u'plone.app.querystring.operation.selection.is',
-             u'v': [u'eea.climateadapt.organisation']}
+        query["criteria"].append(
+            {
+                "i": "portal_type",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": ["eea.climateadapt.organisation"],
+            }
         )
-        query['criteria'].append(
-            {u'i': u'review_state',
-             u'o': u'plone.app.querystring.operation.selection.is',
-             u'v': [u'published']}
+        query["criteria"].append(
+            {
+                "i": "review_state",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": ["published"],
+            }
         )
 
         parsed = {}
 
         if query:
-            parsed = queryparser.parseFormquery(context, query['criteria'])
+            parsed = queryparser.parseFormquery(context, query["criteria"])
 
-            if 'sort_on' in query:
-                parsed['sort_on'] = query['sort_on']
+            if "sort_on" in query:
+                parsed["sort_on"] = query["sort_on"]
 
-            if 'sort_order' in query:
-                parsed['sort_order'] = str(query['sort_order'])
+            if "sort_order" in query:
+                parsed["sort_order"] = str(query["sort_order"])
         try:
-            catalog = getToolByName(context, 'portal_catalog')
+            catalog = getToolByName(context, "portal_catalog")
         except AttributeError:
-            catalog = getToolByName(getSite(), 'portal_catalog')
+            catalog = getToolByName(getSite(), "portal_catalog")
 
-        if parsed.get('path'):
-            if parsed['path'].get('depth'):
-                parsed['path']['query'].append(
-                    u'/cca/metadata/organisations'
-                )
+        if parsed.get("path"):
+            if parsed["path"].get("depth"):
+                parsed["path"]["query"].append("/cca/metadata/organisations")
 
-                if u'/cca' in parsed['path']['query']:
-                    parsed['path']['query'].remove(u'/cca')
+                if "/cca" in parsed["path"]["query"]:
+                    parsed["path"]["query"].remove("/cca")
 
         brains = catalog(**parsed)
 
@@ -202,54 +199,54 @@ class OrganisationsVocabulary(CatalogVocabularyFactory):
 
 @implementer(IVocabularyFactory)
 class CCAItemsVocabulary(CatalogVocabularyFactory):
-
     def __call__(self, context, query=None):
         query = query or {}
 
-        if 'criteria' not in query:
-            query['criteria'] = []
+        if "criteria" not in query:
+            query["criteria"] = []
 
-        query['criteria'].append(
-            {u'i': u'portal_type',
-             u'o': u'plone.app.querystring.operation.selection.is',
-             u'v':
-             [
-                 u'eea.climateadapt.adaptationoption',
-                 u'eea.climateadapt.aceproject',
-                 u'eea.climateadapt.casestudy',
-                 u'eea.climateadapt.guidancedocument',
-                 u'eea.climateadapt.indicator',
-                 u'eea.climateadapt.informationportal',
-                 u'eea.climateadapt.mapgraphdataset',
-                 u'eea.climateadapt.organisation',
-                 u'eea.climateadapt.publicationreport',
-                 u'eea.climateadapt.researchproject',
-                 u'eea.climateadapt.tool',
-                 u'Folder',
-             ]}
+        query["criteria"].append(
+            {
+                "i": "portal_type",
+                "o": "plone.app.querystring.operation.selection.is",
+                "v": [
+                    "eea.climateadapt.adaptationoption",
+                    "eea.climateadapt.aceproject",
+                    "eea.climateadapt.casestudy",
+                    "eea.climateadapt.guidancedocument",
+                    "eea.climateadapt.indicator",
+                    "eea.climateadapt.informationportal",
+                    "eea.climateadapt.mapgraphdataset",
+                    "eea.climateadapt.organisation",
+                    "eea.climateadapt.publicationreport",
+                    "eea.climateadapt.researchproject",
+                    "eea.climateadapt.tool",
+                    "Folder",
+                ],
+            }
         )
 
         parsed = {}
 
         if query:
-            parsed = queryparser.parseFormquery(context, query['criteria'])
+            parsed = queryparser.parseFormquery(context, query["criteria"])
 
-            if 'sort_on' in query:
-                parsed['sort_on'] = query['sort_on']
+            if "sort_on" in query:
+                parsed["sort_on"] = query["sort_on"]
 
-            if 'sort_order' in query:
-                parsed['sort_order'] = str(query['sort_order'])
+            if "sort_order" in query:
+                parsed["sort_order"] = str(query["sort_order"])
         try:
-            catalog = getToolByName(context, 'portal_catalog')
+            catalog = getToolByName(context, "portal_catalog")
         except AttributeError:
-            catalog = getToolByName(getSite(), 'portal_catalog')
+            catalog = getToolByName(getSite(), "portal_catalog")
 
-        if parsed.get('path'):
-            if parsed['path'].get('depth'):
-                parsed['path']['query'].append(u'/cca/metadata')
+        if parsed.get("path"):
+            if parsed["path"].get("depth"):
+                parsed["path"]["query"].append("/cca/metadata")
 
-                if u'/cca' in parsed['path']['query']:
-                    parsed['path']['query'].remove(u'/cca')
+                if "/cca" in parsed["path"]["query"]:
+                    parsed["path"]["query"].remove("/cca")
         brains = catalog(**parsed)
 
         return CatalogVocabulary.fromItems(brains, context)
@@ -287,7 +284,7 @@ aceitem_storagetypes_vocabulary = generic_vocabulary(_storagetypes)
 alsoProvides(aceitem_storagetypes_vocabulary, IVocabularyFactory)
 
 
-_sectors = [    # this is the canonical
+_sectors = [  # this is the canonical
     #   ("OTHER", "Other"),
     #   ("TOURISM", "Tourism"),
     # ("AGRICULTURE", "Agriculture and Forest"),
@@ -352,81 +349,208 @@ _climateimpacts = [
     ("WATERSCARCE", _("Water Scarcity")),
     ("NONSPECIFIC", _("Non specific")),
 ]
-aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts,
-                                                       sort=False)
+aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts, sort=False)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
 
-_featured = [('CASEHOME', 'Feature this on the homepage'),
-             ('CASESEARCH', 'Feature this on study search results page')]
+_featured = [
+    ("CASEHOME", "Feature this on the homepage"),
+    ("CASESEARCH", "Feature this on study search results page"),
+]
 aceitem_featured_vocabulary = generic_vocabulary(_featured)
 alsoProvides(aceitem_featured_vocabulary, IVocabularyFactory)
 
 _relevance = [
-    ('IMPL_AS_CCA', _('Case developed and implemented as a Climate Change Adaptation Measure.')),
-    ('PARTFUND_AS_CCA',
-     _('Case developed and implemented and partially funded as a Climate Change Adaptation measure.')),
-    ('OTHER_POL_OBJ', _('Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects')),
+    (
+        "IMPL_AS_CCA",
+        _("Case developed and implemented as a Climate Change Adaptation Measure."),
+    ),
+    (
+        "PARTFUND_AS_CCA",
+        _(
+            "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
+        ),
+    ),
+    (
+        "OTHER_POL_OBJ",
+        _(
+            "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
+        ),
+    ),
 ]
 aceitem_relevance_vocabulary = generic_vocabulary(_relevance, False)
 alsoProvides(aceitem_relevance_vocabulary, IVocabularyFactory)
 
-_implementationtypes = (("grey", "Technical ('grey')"),
-                        ("green", "Ecological ('green')"),
-                        ("soft", "Behavioural / policy ('soft')")
-                        )
-acemeasure_implementationtype_vocabulary = generic_vocabulary(
-    _implementationtypes)
+_implementationtypes = (
+    ("grey", "Technical ('grey')"),
+    ("green", "Ecological ('green')"),
+    ("soft", "Behavioural / policy ('soft')"),
+)
+acemeasure_implementationtype_vocabulary = generic_vocabulary(_implementationtypes)
 alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
 
 # Used for aceitems
-european_countries = ['AD', 'AL', 'AM', 'AT', 'AZ', 'BA', 'BE', 'BG', 'BY',
-                      'CH', 'RS', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI',
-                      'FO', 'FR', 'GB', 'GE', 'GR', 'HR', 'HU', 'IE', 'IL',
-                      'IS', 'IT', 'KZ', 'LI', 'LT', 'LU', 'LV', 'MC', 'MD',
-                      'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'RU', 'SE', 'SI',
-                      'SK', 'SM', 'TR', 'UA', 'ME']
-ace_countries = [(x.alpha2, x.name) for x in pycountry.countries
-                 if x.alpha2 in european_countries]
-ace_countries = [x for x in ace_countries if x[0] != 'CZ']
-ace_countries.append((u'CZ', u'Czechia'))
+european_countries = [
+    "AD",
+    "AL",
+    "AM",
+    "AT",
+    "AZ",
+    "BA",
+    "BE",
+    "BG",
+    "BY",
+    "CH",
+    "RS",
+    "CY",
+    "CZ",
+    "DE",
+    "DK",
+    "EE",
+    "ES",
+    "FI",
+    "FO",
+    "FR",
+    "GB",
+    "GE",
+    "GR",
+    "HR",
+    "HU",
+    "IE",
+    "IL",
+    "IS",
+    "IT",
+    "KZ",
+    "LI",
+    "LT",
+    "LU",
+    "LV",
+    "MC",
+    "MD",
+    "MT",
+    "NL",
+    "NO",
+    "PL",
+    "PT",
+    "RO",
+    "RU",
+    "SE",
+    "SI",
+    "SK",
+    "SM",
+    "TR",
+    "UA",
+    "ME",
+]
+ace_countries = [
+    (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in european_countries
+]
+ace_countries = [x for x in ace_countries if x[0] != "CZ"]
+ace_countries.append(("CZ", "Czechia"))
 ace_countries = sorted(ace_countries, key=lambda x: x[0])
 # ace_countries.append(('FYROM', 'Former Yugoslav Republic of Macedonia'))
 # ace_countries.append(('MK', 'Republic of Macedonia'))
 
-ace_countries.append(('MK', 'Republic of North Macedonia'))
+ace_countries.append(("MK", "Republic of North Macedonia"))
 
-ace_countries.append(('XK',
-                      'Kosovo under UN Security Council Resolution 1244/99'))
+ace_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
 alsoProvides(ace_countries_vocabulary, IVocabularyFactory)
 
 
-eu_countries_selection = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR',
-                          'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU',
-                          'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE',
-                          'CH', 'TR', 'GB']
+eu_countries_selection = [
+    "AT",
+    "BE",
+    "BG",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IS",
+    "IE",
+    "IT",
+    "LV",
+    "LI",
+    "LT",
+    "LU",
+    "MT",
+    "NL",
+    "NO",
+    "PL",
+    "PT",
+    "RO",
+    "SK",
+    "SI",
+    "ES",
+    "SE",
+    "CH",
+    "TR",
+    "GB",
+]
 
 # Used for dropdowns
-ace_countries_selection = [(x.alpha2, x.name) for x in pycountry.countries
-                           if x.alpha2 in eu_countries_selection]
-ace_countries_selection = [x for x in ace_countries_selection if x[0] != 'CZ']
-ace_countries_selection.append((u'CZ', u'Czechia'))
+ace_countries_selection = [
+    (x.alpha2, x.name)
+    for x in pycountry.countries
+    if x.alpha2 in eu_countries_selection
+]
+ace_countries_selection = [x for x in ace_countries_selection if x[0] != "CZ"]
+ace_countries_selection.append(("CZ", "Czechia"))
 ace_countries_selection = sorted(ace_countries_selection, key=lambda x: x[0])
 
 # Used for faceted search in /data-and-downloads
-faceted_countries = ['AL', 'AT', 'BE', 'BG', 'BA', 'HR', 'CY', 'CZ', 'DK',
-                     'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT',
-                     'LV', 'LI', 'LT', 'LU', 'MT', 'ME', 'NL', 'NO', 'PL',
-                     'PT', 'RO', 'RS', 'SK', 'SI', 'ES', 'SE', 'CH', 'TR',
-                     'GB']
-faceted_countries = [(x.alpha2, x.name) for x in pycountry.countries
-                     if x.alpha2 in faceted_countries]
-faceted_countries.append(('MK', 'Republic of North Macedonia'))
-faceted_countries.append(
-    ('XK', 'Kosovo under UN Security Council Resolution 1244/99'))
+faceted_countries = [
+    "AL",
+    "AT",
+    "BE",
+    "BG",
+    "BA",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IS",
+    "IE",
+    "IT",
+    "LV",
+    "LI",
+    "LT",
+    "LU",
+    "MT",
+    "ME",
+    "NL",
+    "NO",
+    "PL",
+    "PT",
+    "RO",
+    "RS",
+    "SK",
+    "SI",
+    "ES",
+    "SE",
+    "CH",
+    "TR",
+    "GB",
+]
+faceted_countries = [
+    (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in faceted_countries
+]
+faceted_countries.append(("MK", "Republic of North Macedonia"))
+faceted_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 
 faceted_countries_dict = dict(faceted_countries)
 
@@ -437,70 +561,87 @@ _measure_types = (("A", "Case study"), ("M", "Adaptation option"))
 acemeasure_types = generic_vocabulary(_measure_types)
 alsoProvides(acemeasure_types, IVocabularyFactory)
 
-_origin_website = (("AdapteCCA", "AdapteCCA"),
-                   # ("Climate-ADAPT", "Climate-ADAPT"),
-                   ("EEA", "EEA"),
-                   ("EEA-archived", "EEA-archived"),
-                   ('DRMKC', 'DRMKC'), ('C3S', 'C3S'),
-                   ('Lancet Countdown', 'Lancet Countdown')
-                   )
+_origin_website = (
+    ("AdapteCCA", "AdapteCCA"),
+    # ("Climate-ADAPT", "Climate-ADAPT"),
+    ("EEA", "EEA"),
+    ("EEA-archived", "EEA-archived"),
+    ("DRMKC", "DRMKC"),
+    ("C3S", "C3S"),
+    ("Lancet Countdown", "Lancet Countdown"),
+)
 origin_website = generic_vocabulary(_origin_website)
 alsoProvides(origin_website, IVocabularyFactory)
 
-_health_impacts = (("Heat", _("Heat")),
-                   ("Droughts and floods", _("Droughts and floods")),
-                   ("Climate-sensitive diseases", _("Climate-sensitive diseases")),
-                   ("Air pollution and aero-allergens",
-                    _("Air pollution and aero-allergens")),
-                   ("Wildfires", _("Wildfires")),
-                   ("-NONSPECIFIC-", _("-NONSPECIFIC-")))
+_health_impacts = (
+    ("Heat", _("Heat")),
+    ("Droughts and floods", _("Droughts and floods")),
+    ("Climate-sensitive diseases", _("Climate-sensitive diseases")),
+    ("Air pollution and aero-allergens", _("Air pollution and aero-allergens")),
+    ("Wildfires", _("Wildfires")),
+    ("-NONSPECIFIC-", _("-NONSPECIFIC-")),
+)
 
 health_impacts = generic_vocabulary(_health_impacts, False)
 alsoProvides(health_impacts, IVocabularyFactory)
 
-_key_community_systems = (("Critical Infrastructure", _("Critical Infrastructure")),
-                   ("Health and Wellbeing", _("Health and Wellbeing")),
-                   ("Land-use and Food Systems", _("Land-use and Food Systems")),
-                   ("Water Management", _("Water Management")),
-                   ("Ecosystems and Nature Based Solutions", 
-                    _("Ecosystems and Nature Based Solutions")),
-                   ("Local Economic Systems", _("Local Economic Systems")))
+_key_community_systems = (
+    ("Critical Infrastructure", _("Critical Infrastructure")),
+    ("Health and Wellbeing", _("Health and Wellbeing")),
+    ("Land-use and Food Systems", _("Land-use and Food Systems")),
+    ("Water Management", _("Water Management")),
+    (
+        "Ecosystems and Nature Based Solutions",
+        _("Ecosystems and Nature Based Solutions"),
+    ),
+    ("Local Economic Systems", _("Local Economic Systems")),
+)
 
 key_community_systems = generic_vocabulary(_key_community_systems, False)
 alsoProvides(key_community_systems, IVocabularyFactory)
 
-_climate_threats = (("Mean air temperature", _("Mean air temperature")),
-                   ("Extreme heat", _("Extreme heat")),
-                   ("Cold spells and frost", _("Cold spells and frost")),
-                   ("Mean precipitation", _("Mean precipitation")),
-                   ("Extreme Precipitation", _("Extreme Precipitation")),
-                   ("River flooding", _("River flooding")),
-                   ("Aridity", _("Aridity")),
-                   ("Wildfire", _("Wildfire")),
-                   ("Snow and ice", _("Snow and ice")),
-                   ("Relative sea level", _("Relative sea level")),
-                   ("Coastal flooding", _("Coastal flooding")))
+_climate_threats = (
+    ("Mean air temperature", _("Mean air temperature")),
+    ("Extreme heat", _("Extreme heat")),
+    ("Cold spells and frost", _("Cold spells and frost")),
+    ("Mean precipitation", _("Mean precipitation")),
+    ("Extreme Precipitation", _("Extreme Precipitation")),
+    ("River flooding", _("River flooding")),
+    ("Aridity", _("Aridity")),
+    ("Wildfire", _("Wildfire")),
+    ("Snow and ice", _("Snow and ice")),
+    ("Relative sea level", _("Relative sea level")),
+    ("Coastal flooding", _("Coastal flooding")),
+)
 
 climate_threats = generic_vocabulary(_climate_threats, False)
 alsoProvides(climate_threats, IVocabularyFactory)
 
-_funding_programme = (("Other", "Other"),
-                      ("COST Action", "COST Action"),
-                      ("LIFE - Environment and climate action",
-                       "LIFE - Environment and climate action"),
-                      ("COPERNICUS - European earth observation programme",
-                       "COPERNICUS - European earth observation programme"),
-                      ("FP5: 1998/2002 - Fifth Framework Programme",
-                       "FP5: 1998/2002 - Fifth Framework Programme"),
-                      ("HORIZON 2020", "HORIZON 2020"),
-                      ("INTERREG", "INTERREG"),
-                      ("National Funding", "National Funding"),
-                      ("FP7: 2007/2013 - Seventh Framework Programme",
-                       "FP7: 2007/2013 - Seventh Framework Programme"),
-                      ("FP6: 2002/2006 - Sixth Framework Programme",
-                       "FP6: 2002/2006 - Sixth Framework Programme"),
-                      ("Horizon Europe", "Horizon Europe"),
-                      )
+_funding_programme = (
+    ("Other", "Other"),
+    ("COST Action", "COST Action"),
+    ("LIFE - Environment and climate action", "LIFE - Environment and climate action"),
+    (
+        "COPERNICUS - European earth observation programme",
+        "COPERNICUS - European earth observation programme",
+    ),
+    (
+        "FP5: 1998/2002 - Fifth Framework Programme",
+        "FP5: 1998/2002 - Fifth Framework Programme",
+    ),
+    ("HORIZON 2020", "HORIZON 2020"),
+    ("INTERREG", "INTERREG"),
+    ("National Funding", "National Funding"),
+    (
+        "FP7: 2007/2013 - Seventh Framework Programme",
+        "FP7: 2007/2013 - Seventh Framework Programme",
+    ),
+    (
+        "FP6: 2002/2006 - Sixth Framework Programme",
+        "FP6: 2002/2006 - Sixth Framework Programme",
+    ),
+    ("Horizon Europe", "Horizon Europe"),
+)
 
 funding_programme = generic_vocabulary(_funding_programme)
 alsoProvides(funding_programme, IVocabularyFactory)
@@ -523,11 +664,12 @@ _cca_types = [
 cca_types = generic_vocabulary(_cca_types)
 alsoProvides(cca_types, IVocabularyFactory)
 
-_a = namedtuple('_AceItemType', ['id', 'label'])
+_a = namedtuple("_AceItemType", ["id", "label"])
 aceitem_types = [_a(*x) for x in _cca_types]
 
-SpecialTagsVocabularyFactory = KeywordsVocabulary('special_tags')
-KeywordsVocabularyFactory = KeywordsVocabulary('keywords')
+SpecialTagsVocabularyFactory = KeywordsVocabulary("special_tags")
+KeywordsVocabularyFactory = KeywordsVocabulary("keywords")
+ObjectProvidesVocabulary = KeywordsVocabulary("object_provides")
 
 _governance = [
     ("TRANS", "Transnational region (stretching across country borders)"),
@@ -556,9 +698,18 @@ alsoProvides(language, IVocabularyFactory)
 
 
 _category = [
-    ("Grey", "Grey: technological and engineering solutions aiming mainly at the protection of infrastructures or people."),
-    ("Green", "Green: ecosystem-based approaches that use the multiple services of nature aiming at raising the resilience of ecosystems and their services."),
-    ("Soft", "Soft: managerial, legal and policy approaches that alter human behavior and styles of governance (e.g. spatial planning and policies), including financial/fiscal instruments, such as insurance"),
+    (
+        "Grey",
+        "Grey: technological and engineering solutions aiming mainly at the protection of infrastructures or people.",
+    ),
+    (
+        "Green",
+        "Green: ecosystem-based approaches that use the multiple services of nature aiming at raising the resilience of ecosystems and their services.",
+    ),
+    (
+        "Soft",
+        "Soft: managerial, legal and policy approaches that alter human behavior and styles of governance (e.g. spatial planning and policies), including financial/fiscal instruments, such as insurance",
+    ),
 ]
 category = generic_vocabulary(_category)
 alsoProvides(category, IVocabularyFactory)
@@ -566,15 +717,32 @@ alsoProvides(category, IVocabularyFactory)
 _key_type_measures = [
     ("A1", _("A1: Governance and Institutional: Policy Instruments")),
     ("A2", _("A2: Governance and Institutional: Management and planning")),
-    ("A3", _("A3: Governance and Institutional: Coordination cooperation and networks")),
+    (
+        "A3",
+        _("A3: Governance and Institutional: Coordination cooperation and networks"),
+    ),
     ("B1", _("B1: Economic and Finance: Financing incentive instruments")),
     ("B2", _("B2: Economic and Finance: Insurance and risk sharing instruments")),
     ("C1", _("C1: Physical and technological: Grey options")),
     ("C2", _("C2: Physical and technological: Technological options")),
-    ("D1", _("D1: Nature based Solutions and Ecosystem based approaches: Green options")),
-    ("D2", _("D2: Nature based Solutions and Ecosystem based approaches: Blue options")),
-    ("E1", _("E1: Knowledge and behavioural change: Information and awareness raising")),
-    ("E2", _("E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices")),
+    (
+        "D1",
+        _("D1: Nature based Solutions and Ecosystem based approaches: Green options"),
+    ),
+    (
+        "D2",
+        _("D2: Nature based Solutions and Ecosystem based approaches: Blue options"),
+    ),
+    (
+        "E1",
+        _("E1: Knowledge and behavioural change: Information and awareness raising"),
+    ),
+    (
+        "E2",
+        _(
+            "E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices"
+        ),
+    ),
 ]
 key_type_measures = generic_vocabulary(_key_type_measures)
 alsoProvides(key_type_measures, IVocabularyFactory)
@@ -596,7 +764,10 @@ key_type_measures_short = generic_vocabulary(_key_type_measures_short)
 alsoProvides(key_type_measures_short, IVocabularyFactory)
 
 _ipcc_category = [
-    ("STRUCT_ENG", _("Structural and physical: Engineering and built environment options")),
+    (
+        "STRUCT_ENG",
+        _("Structural and physical: Engineering and built environment options"),
+    ),
     ("STRUCT_TECH", _("Structural and physical: Technological options")),
     ("STRUCT_ECO", _("Structural and physical: Ecosystem-based adaptation options")),
     ("STRUCT_SER", _("Structural and physical: Service options")),
@@ -658,9 +829,9 @@ acesearch-geochars-lbl-TRANS_BIO_STEPPIC=Steppic
 
 BIOREGIONS = {}
 
-for line in filter(None, labels.split('\n')):
-    first, label = line.split('=')
-    name = first.split('-lbl-')[1]
+for line in filter(None, labels.split("\n")):
+    first, label = line.split("=")
+    name = first.split("-lbl-")[1]
     BIOREGIONS[name] = label
 
 

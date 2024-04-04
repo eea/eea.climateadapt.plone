@@ -1,3 +1,8 @@
+from zope.interface import alsoProvides
+from eea.climateadapt.interfaces import (
+    IMainTransnationalRegionMarker,
+    ITransnationalRegionMarker,
+)
 import transaction
 import json
 import logging
@@ -880,3 +885,28 @@ def reindex_health_impacts(context):
             transaction.savepoint()
 
     logger.info("Finished reindexing health_impacts.")
+
+
+def update_transnational_regions(context):
+    catalog = portal.get_tool(name="portal_catalog")
+    keys = [
+        "alpine-space",
+        "atlantic-area",
+        "baltic-sea-region",
+        "central-europe",
+        "danube",
+        "mediterranean",
+        "north-sea",
+        "north-west-europe",
+        "northern-periphery",
+        "south-west-europe",
+        "adriatic-ionian",
+    ]
+    brains = catalog.searchResults(id=keys)
+
+    for brain in brains:
+        obj = brain.getObject()
+        if ITransnationalRegionMarker.providedBy(obj):
+            alsoProvides(obj, IMainTransnationalRegionMarker)
+        obj.reindexObject()
+        logger.info("Remarked transnational region: %s", obj.absolute_url())
