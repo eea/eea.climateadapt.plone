@@ -1148,6 +1148,11 @@ def obs_countries_list(obj, data, request):
     return {"blocks": blocks}
 
 
+def country_profile_view(*args, **kw):
+    blocks = [[make_uid(), {"@type": "countryProfileDetail"}]]
+    return {"blocks": blocks}
+
+
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
     # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
@@ -1174,7 +1179,8 @@ view_convertors = {
     "country-disclaimer": country_disclaimer_view,
     # renders the main part of the country profile, extracted from JSON. Needs to be
     # reimplemented. Ticket: https://taskman.eionet.europa.eu/issues/253396
-    "country-profile": nop_view,  # /countries-regions/countries/finland
+    # /countries-regions/countries/finland
+    "country-profile": country_profile_view,
     # a listing of sector policies, with descriptions underneath. Doesn't fit the new
     # Design System, we need a ticket for the designer to reorganize with EEA DS. Ticket: https://taskman.eionet.europa.eu/issues/253400
     # /eu-adaptation-policy/sector-policies/index_html
