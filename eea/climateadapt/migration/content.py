@@ -1,13 +1,17 @@
 """Plone Content Types content migrators"""
 
-from plone.app.contenttypes.interfaces import IEvent
-from plone.app.contenttypes.interfaces import INewsItem
 import json
 import logging
 
 from collective.cover.interfaces import ICover
 from collective.cover.tiles.embed import IEmbedTile
 from collective.cover.tiles.richtext import IRichTextTile
+from plone.app.contenttypes.interfaces import IDocument, IEvent, IFolder, INewsItem
+from plone.dexterity.interfaces import IDexterityContent
+from plone.tiles.interfaces import ITileDataManager
+from zope.component import adapter, queryMultiAdapter
+from zope.interface import Interface, implementer
+
 from eea.climateadapt.browser.tilehelpers import ICarousel
 from eea.climateadapt.migration.interfaces import IMigrateToVolto
 from eea.climateadapt.tiles.ast import (
@@ -28,12 +32,13 @@ from eea.climateadapt.tiles.search_acecontent import (
 from eea.climateadapt.tiles.section_nav import ISectionNavTile
 from eea.climateadapt.tiles.shareinfo import IShareInfoTile
 from eea.climateadapt.tiles.transregional_select import ITransRegionalSelectTile
-from plone.app.contenttypes.interfaces import IDocument, IFolder
-from plone.dexterity.interfaces import IDexterityContent
-from plone.tiles.interfaces import ITileDataManager
-from zope.component import adapter, queryMultiAdapter
-from zope.interface import Interface, implementer
 
+from .blocks import (
+    make_folder_listing_block,
+    make_narrow_layout_block,
+    make_summary_block,
+    make_title_block,
+)
 from .config import COL_MAPPING, IGNORED_CONTENT_TYPES, IGNORED_PATHS, LANGUAGES
 from .fixes import fix_content, fix_folder, fix_layout_size
 from .tiles import (
@@ -47,13 +52,7 @@ from .tiles import (
     search_acecontent_to_block,
     share_info_tile_to_block,
 )
-from .utils import convert_to_blocks, make_uid, path
-from .blocks import (
-    make_folder_listing_block,
-    make_narrow_layout_block,
-    make_title_block,
-    make_summary_block,
-)
+from .utils import convert_to_blocks, get_country_alpha2, make_uid, path
 
 logger = logging.getLogger("ContentMigrate")
 logger.setLevel(logging.INFO)
@@ -61,6 +60,34 @@ logger.setLevel(logging.INFO)
 
 def nop_tile(tile_dm, obj, request):
     return {"blocks": []}
+
+
+def country_select_tile(data, obj, request):
+    flag_uid = make_uid()
+    iso = get_country_alpha2(obj.Title())
+    group_blocks = {}
+    group_blocks[flag_uid] = {
+        "@type": "countryFlag",
+        "country_name": iso,
+        "show_dropdown": True,
+        "show_flag": True,
+        "show_name": True,
+    }
+    group_blocks_layout = {"items": [flag_uid]}
+    block = {
+        "@type": "group",
+        "as": "div",
+        "data": {
+            "blocks": group_blocks,
+            "blocks_layout": group_blocks_layout,
+        },
+        "styles": {
+            "size": "container_width",
+            "style_name": "content-box-primary",
+            "useAsPageHeader": True,
+        },
+    }
+    return {"blocks": [[make_uid(), block]]}
 
 
 tile_converters = {
@@ -79,7 +106,8 @@ tile_converters = {
     IASTHeaderTile: nop_tile,  # use EEA DS banner subtitle
     IUrbanASTNavigationTile: nop_tile,  # use context navigation
     IFormTile: nop_tile,  # no migration
-    ICountrySelectTile: nop_tile,  # used in country profile page, no migration for now
+    # used in country profile page, no migration for now
+    ICountrySelectTile: country_select_tile,
     ICarousel: nop_tile,  # no migration
     # eea.climateadapt.browser.tilehelpers.ICarousel
 }

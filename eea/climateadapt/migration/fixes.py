@@ -2,6 +2,7 @@
 
 import logging
 
+from eea.climateadapt.interfaces import ICCACountry
 from plone.api import portal
 from plone.app.multilingual.api import get_translation_manager
 from plone.namedfile.file import NamedBlobImage
@@ -722,6 +723,30 @@ def fix_uast(context):
     return extract_first_column(context)
 
 
+@inpath("/countries-regions/countries/")
+def fix_cca_countries(context):
+    if not ICCACountry.providedBy(context):
+        return
+
+    # remove the title block
+    uid = None
+    disclaimer_block = None
+    for k, v in context.blocks.items():
+        if v.get("@type") == "title":
+            uid = k
+        if v.get("@type") == "slate":
+            disclaimer_block = k
+
+    uids = [uid, disclaimer_block]
+
+    context.blocks_layout["items"] = [
+        x for x in context.blocks_layout["items"] if x not in uids
+    ] + (disclaimer_block and [disclaimer_block] or [])
+
+    # move the disclaimer block to be the last
+    context._p_changed = True
+
+
 @inpath("observatory/policy-context/country-profiles/")
 def fix_obs_countries(context):
     # only for country profiles
@@ -1017,6 +1042,7 @@ content_fixers = [
     fix_layout_size,
     fix_newsletter,
     fix_for_pagelayout,
+    fix_cca_countries,
 ]
 
 folder_fixers = [
@@ -1027,6 +1053,7 @@ folder_fixers = [
     fix_observatory_eventsarchive,
     fix_layout_size,
     fix_for_pagelayout,
+    fix_cca_countries,
 ]
 
 
