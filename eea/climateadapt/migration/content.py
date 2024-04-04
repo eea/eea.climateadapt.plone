@@ -101,15 +101,17 @@ tile_converters = {
     IEmbedTile: embed_tile_to_block,
     ICardsTile: cards_tile_to_block,
     IGenericViewTile: genericview_tile_to_block,
+    # used in country profile page, no migration for now
+    ICountrySelectTile: country_select_tile,
+    # eea.climateadapt.browser.tilehelpers.ICarousel
+    #
+    #
     ISectionNavTile: nop_tile,  # use context navigation
     IASTNavigationTile: nop_tile,  # use context navigation
     IASTHeaderTile: nop_tile,  # use EEA DS banner subtitle
     IUrbanASTNavigationTile: nop_tile,  # use context navigation
     IFormTile: nop_tile,  # no migration
-    # used in country profile page, no migration for now
-    ICountrySelectTile: country_select_tile,
     ICarousel: nop_tile,  # no migration
-    # eea.climateadapt.browser.tilehelpers.ICarousel
 }
 
 
