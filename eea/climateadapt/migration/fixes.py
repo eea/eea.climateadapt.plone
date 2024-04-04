@@ -628,21 +628,6 @@ def fix_read_more(context):
         "/countries-regions/transnational-regions/carpathian-mountains",
     ]
 
-    def get_columns_block_id(blocks):
-        columns_block = {k for k, v in blocks.items() if v["@type"] == "columnsBlock"}
-        col_id = list(columns_block)[0]
-        return col_id
-
-    def get_read_more_block_id(blocks):
-        read_more_block = {
-            k for k, v in blocks.items() if v["@type"] == "readMoreBlock"
-        }
-        if read_more_block:
-            read_more_block_id = list(read_more_block)[0]
-            return read_more_block_id
-        else:
-            return None
-
     if are_in_path(url, SECTOR_POLICY_PATHS):
         col_id = get_block_id(context.blocks, "columnsBlock")
         col = context.blocks[col_id]
