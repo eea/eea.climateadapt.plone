@@ -1154,7 +1154,16 @@ def country_profile_view(*args, **kw):
 
 
 def casestudy_explorer_view(*args, **kw):
-    blocks = [[make_uid(), {"@type": "caseStudyExplorer"}]]
+    group_blocks = {}
+    block_uid = make_uid()
+    group_blocks[block_uid] = {"@type": "caseStudyExplorer"}
+    group_block = {
+        "@type": "group",
+        "as": "div",
+        "data": {"blocks": group_blocks, "blocks_layout": {"items": [block_uid]}},
+        "styles": {"size": "full"},
+    }
+    blocks = [[make_uid(), group_block]]
     return {"blocks": blocks}
 
 
