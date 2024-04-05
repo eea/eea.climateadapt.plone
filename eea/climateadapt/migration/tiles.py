@@ -1155,7 +1155,7 @@ def country_profile_view(*args, **kw):
 
 def casestudy_explorer_view(*args, **kw):
     blocks = [[make_uid(), {"@type": "caseStudyExplorer"}]]
-    return blocks
+    return {"blocks": blocks}
 
 
 view_convertors = {

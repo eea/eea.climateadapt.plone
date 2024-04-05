@@ -256,7 +256,9 @@ class MigrateCover(object):
                     for tile in tiles:
                         tileid = tile["id"]
                         data = self.convert_tile_to_volto_blocklist(tileid)
-                        tile_blocks = data.pop("blocks", [])
+                        tile_blocks = []
+                        if "blocks" in data:
+                            tile_blocks = data.pop("blocks")
                         attributes.update(data)
                         page_blocks.extend(tile_blocks)
 
