@@ -1153,6 +1153,11 @@ def country_profile_view(*args, **kw):
     return {"blocks": blocks}
 
 
+def casestudy_explorer_view(*args, **kw):
+    blocks = [[make_uid(), {"@type": "caseStudyExplorer"}]]
+    return blocks
+
+
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
     # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
@@ -1160,7 +1165,7 @@ view_convertors = {
     "c3s_indicators_overview": c3s_indicators_overview_view,
     # reimplemented as CaseStudyExplorer block
     # /knowledge/tools/case-study-explorer
-    "case-study-and-adaptation-options-map-viewer": nop_view,
+    "case-study-and-adaptation-options-map-viewer": casestudy_explorer_view,
     # renders a map of countries, with links to the countries. Needs a simple
     # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/161493
     # /observatory/policy-context/country-profiles/country-profiles
