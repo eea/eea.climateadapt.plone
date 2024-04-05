@@ -442,4 +442,11 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_72"
+      title="Upgrade profile for eea.climateadapt v72"
+      description=""
+      directory="profiles/upgrades/to_72"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
 </configure>
