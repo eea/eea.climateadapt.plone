@@ -2298,6 +2298,9 @@ class RetagAO:
             quotechar='"',
             #    dialect='excel',
         )
+
+        # import pdb; pdb.set_trace()
+
         _elements = {
             "adaptation_mesures_and_actions": "MEASUREACTION",
             "adaptation_plans_and_strategies": "PLANSTRATEGY",
@@ -2308,24 +2311,37 @@ class RetagAO:
             "observations_ans_scenarios": "OBSERVATIONS",
             "sector_policies": "EU_POLICY",
             "vulnerability_assessment": "VULNERABILITY",
-        }
+            "environmental_aspects": "ENVIRONMENTALASP",
+            "mitigation_aspects": "MITIGATIONASP",
+            "societal_aspects": "SOCIETALASP",
+            "ecomic_aspects": "ECONOMICASP",
+            "cost_benefit": "COSTBENEFIT",
+            "r_u_potential": "RUPOTENTIAL",
+       }
 
         for row in reader:
+            # import pdb; pdb.set_trace()
             item = {}
             item["title"] = row[0]
-            item["adaptation_mesures_and_actions"] = row[1]
-            item["adaptation_plans_and_strategies"] = row[2]
-            item["climate_services"] = row[3]
-            item["just_resilience"] = row[4]
+            item["adaptation_mesures_and_actions"] = row[4]
+            item["adaptation_plans_and_strategies"] = row[3]
+            item["climate_services"] = row[6]
+            item["just_resilience"] = row[8]
             item["mre"] = row[5]
-            item["nature_based_solutions"] = row[6]
-            item["observations_ans_scenarios"] = row[7]
-            item["sector_policies"] = row[8]
-            item["vulnerability_assessment"] = row[9]
+            item["nature_based_solutions"] = row[9]
+            item["observations_ans_scenarios"] = row[2]
+            item["sector_policies"] = row[7]
+            item["vulnerability_assessment"] = row[1]
+            item["environmental_aspects"] = row[10]
+            item["mitigation_aspects"] = row[11]
+            item["societal_aspects"] = row[12]
+            item["ecomic_aspects"] = row[13]
+            item["cost_benefit"] = row[14]
+            item["r_u_potential"] = row[15]
 
             obj = None
             brains = catalog.searchResults(
-                {'portal_type': 'eea.climateadapt.adaptationoption', 'path': '/cca/en'})
+                {'portal_type': ['eea.climateadapt.casestudy','eea.climateadapt.adaptationoption'], 'path': '/cca/en'})
             for brain in brains:
                 if brain.getObject().title == item['title']:
                     obj = brain.getObject()
@@ -2347,6 +2363,19 @@ class RetagAO:
             )
             logger.info("Retag elements for obj: %s",
                         obj.absolute_url())
+
+            languages = ['de', 'es', 'fr','it','pl']
+            for language in languages:
+                languagePath = obj.absolute_url_path().replace("/en/","/"+language+"/")
+                languageBrains = catalog.searchResults(
+                    {'portal_type': ['eea.climateadapt.casestudy','eea.climateadapt.adaptationoption'], 'path': "/cca"+languagePath})
+                for languageBrain in languageBrains:
+                    languageObj = languageBrain.getObject();
+                    if languageObj.absolute_url_path()==languagePath:
+                        languageObj.elements = data
+                        languageObj._p_changed = True
+                        logger.info("Retag elements for obj language: %s",
+                                    languageObj.absolute_url())
 
         return response
 
