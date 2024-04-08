@@ -19,6 +19,13 @@
     />
 
   <browser:page
+    name="volto_contenttree"
+    for="*"
+    class=".views.MigrateContentTree"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
     name="volto_migrate_site"
     for="*"
     class=".views.MigrateSiteToVolto"
