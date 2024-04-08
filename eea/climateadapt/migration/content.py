@@ -276,6 +276,7 @@ class MigrateCover(object):
         # TODO: ensure there's a page banner block (or title block)
 
         fix_content(self.context)
+        self.context.reindexObject()
 
 
 @adapter(IDocument, Interface)
@@ -316,6 +317,8 @@ class MigrateDocument(object):
         obj._p_changed = True
         fix_content(self.context)
         fix_layout_size(obj)
+
+        obj.reindexObject()
 
 
 def is_ignored_path(path):
