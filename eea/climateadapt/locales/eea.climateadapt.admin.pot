@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-03-12 13:10+0000\n"
+"POT-Creation-Date: 2024-03-29 20:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid ""
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:456
+#: ../../climateadapt/vocabulary.py:462
 msgid "-NONSPECIFIC-"
 msgstr ""
 
@@ -37,27 +37,27 @@ msgstr ""
 msgid "A value for the quality of scaled images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 88."
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:567
+#: ../../climateadapt/vocabulary.py:573
 msgid "A1: Governance and Institutional: Policy Instruments"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:583
+#: ../../climateadapt/vocabulary.py:589
 msgid "A1: Policy Instruments"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:568
+#: ../../climateadapt/vocabulary.py:574
 msgid "A2: Governance and Institutional: Management and planning"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:584
+#: ../../climateadapt/vocabulary.py:590
 msgid "A2: Management and planning"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:585
+#: ../../climateadapt/vocabulary.py:591
 msgid "A3: Coordination cooperation and networks"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:569
+#: ../../climateadapt/vocabulary.py:575
 msgid "A3: Governance and Institutional: Coordination cooperation and networks"
 msgstr ""
 
@@ -70,11 +70,11 @@ msgid "Abstracts"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceproject.py:164
-#: ../../climateadapt/behaviors/organisation.py:33
+#: ../../climateadapt/behaviors/organisation.py:32
 msgid "Acronym"
 msgstr ""
 
-#: ../../climateadapt/behaviors/organisation.py:34
+#: ../../climateadapt/behaviors/organisation.py:33
 msgid "Acronym of the organisation"
 msgstr ""
 
@@ -82,11 +82,11 @@ msgstr ""
 msgid "Acronym of the project"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:338
+#: ../../climateadapt/vocabulary.py:322
 msgid "Adaptation Measures and Actions"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:339
+#: ../../climateadapt/vocabulary.py:324
 msgid "Adaptation Plans and Strategies"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "Adaptation Sectors"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:208
+#: ../../climateadapt/behaviors/aceitem.py:207
 #: ../../climateadapt/behaviors/acemeasure.py:493
 #: ../../climateadapt/behaviors/aceproject.py:274
 msgid "Adaptation elements"
@@ -109,11 +109,11 @@ msgstr ""
 msgid "Adaptation portals and platforms"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:65
+#: ../../climateadapt/behaviors/ccaevent.py:64
 msgid "Agenda"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:71
+#: ../../climateadapt/behaviors/ccaevent.py:70
 msgid "Agenda document"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Agriculture"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:454
+#: ../../climateadapt/vocabulary.py:460
 msgid "Air pollution and aero-allergens"
 msgstr ""
 
@@ -142,27 +142,27 @@ msgstr ""
 msgid "Allowed image sizes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:478
+#: ../../climateadapt/vocabulary.py:484
 msgid "Aridity"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:570
+#: ../../climateadapt/vocabulary.py:576
 msgid "B1: Economic and Finance: Financing incentive instruments"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:586
+#: ../../climateadapt/vocabulary.py:592
 msgid "B1: Financing incentive instruments"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:571
+#: ../../climateadapt/vocabulary.py:577
 msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:587
+#: ../../climateadapt/vocabulary.py:593
 msgid "B2: Insurance and risk sharing instruments"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:77
+#: ../../climateadapt/behaviors/ccaevent.py:76
 msgid "Background documents"
 msgstr ""
 
@@ -175,13 +175,13 @@ msgstr ""
 msgid "Biogeographical regions"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acevideo.py:43
+#: ../../climateadapt/behaviors/acevideo.py:42
 #: ../../climateadapt/behaviors/adaptationoption.py:85
 #: ../../climateadapt/behaviors/casestudy.py:178
 msgid "Blocks"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acevideo.py:402
+#: ../../climateadapt/behaviors/acevideo.py:50
 #: ../../climateadapt/behaviors/adaptationoption.py:483
 #: ../../climateadapt/behaviors/casestudy.py:602
 msgid "Blocks Layout"
@@ -196,19 +196,19 @@ msgstr ""
 msgid "Business and industry"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:588
+#: ../../climateadapt/vocabulary.py:594
 msgid "C1: Grey options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:572
+#: ../../climateadapt/vocabulary.py:578
 msgid "C1: Physical and technological: Grey options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:573
+#: ../../climateadapt/vocabulary.py:579
 msgid "C2: Physical and technological: Technological options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:589
+#: ../../climateadapt/vocabulary.py:595
 msgid "C2: Technological options"
 msgstr ""
 
@@ -216,15 +216,15 @@ msgstr ""
 msgid "C3S Identifier"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:368
+#: ../../climateadapt/vocabulary.py:374
 msgid "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:366
+#: ../../climateadapt/vocabulary.py:372
 msgid "Case developed and implemented as a Climate Change Adaptation Measure."
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:369
+#: ../../climateadapt/vocabulary.py:375
 msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
 msgstr ""
 
@@ -252,13 +252,17 @@ msgstr ""
 msgid "Climate impact"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:193
+#: ../../climateadapt/behaviors/aceitem.py:192
 #: ../../climateadapt/behaviors/acemeasure.py:147
 #: ../../climateadapt/behaviors/aceproject.py:259
 msgid "Climate impacts"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:452
+#: ../../climateadapt/vocabulary.py:326
+msgid "Climate services"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:458
 msgid "Climate-sensitive diseases"
 msgstr ""
 
@@ -267,7 +271,7 @@ msgstr ""
 msgid "Coastal areas"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:482
+#: ../../climateadapt/vocabulary.py:488
 msgid "Coastal flooding"
 msgstr ""
 
@@ -275,15 +279,16 @@ msgstr ""
 msgid "Code"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:474
+#: ../../climateadapt/vocabulary.py:480
 msgid "Cold spells and frost"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:276
+#: ../../climateadapt/behaviors/aceitem.py:279
 #: ../../climateadapt/behaviors/acemeasure.py:357
 msgid "Comments"
 msgstr ""
 
+#: ../../climateadapt/behaviors/aceitem.py:282
 #: ../../climateadapt/behaviors/acemeasure.py:360
 #: ../../climateadapt/behaviors/aceproject.py:334
 msgid "Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"
@@ -291,11 +296,11 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/casestudy.py:83
 #: ../../climateadapt/behaviors/missionstory.py:132
-#: ../../climateadapt/behaviors/organisation.py:39
+#: ../../climateadapt/behaviors/organisation.py:38
 msgid "Contact"
 msgstr ""
 
-#: ../../climateadapt/behaviors/organisation.py:76
+#: ../../climateadapt/behaviors/organisation.py:75
 msgid "Contact information for the Observatory"
 msgstr ""
 
@@ -303,11 +308,15 @@ msgstr ""
 msgid "Contact of reference (institution and persons) who is directly involved in the development and implementation of the case. (500 char limit) "
 msgstr ""
 
+#: ../../climateadapt/behaviors/aceitem.py:291
+msgid "Contributor(s)"
+msgstr ""
+
 #: ../../climateadapt/behaviors/casestudy.py:128
 msgid "Copyright statement or other rights information for  the primary photo."
 msgstr ""
 
-#: ../../climateadapt/behaviors/organisation.py:40
+#: ../../climateadapt/behaviors/organisation.py:39
 msgid "Corporate email or link to contact form"
 msgstr ""
 
@@ -315,7 +324,11 @@ msgstr ""
 msgid "Cost / Benefit"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:400
+#: ../../climateadapt/vocabulary.py:334
+msgid "Cost-benefit analysis and maintenance costs"
+msgstr ""
+
+#: ../../climateadapt/behaviors/aceitem.py:403
 #: ../../climateadapt/behaviors/acemeasure.py:481
 #: ../../climateadapt/behaviors/aceproject.py:421
 msgid "Countries"
@@ -325,7 +338,7 @@ msgstr ""
 msgid "Created"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:461
+#: ../../climateadapt/vocabulary.py:467
 msgid "Critical Infrastructure"
 msgstr ""
 
@@ -333,23 +346,23 @@ msgstr ""
 msgid "Cultural heritage"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:590
+#: ../../climateadapt/vocabulary.py:596
 msgid "D1: Green options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:574
+#: ../../climateadapt/vocabulary.py:580
 msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:597
 msgid "D2: Blue options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:575
+#: ../../climateadapt/vocabulary.py:581
 msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:384
+#: ../../climateadapt/behaviors/aceitem.py:386
 msgid "Data Type"
 msgstr ""
 
@@ -357,19 +370,19 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:222
+#: ../../climateadapt/behaviors/aceitem.py:221
 #: ../../climateadapt/behaviors/acemeasure.py:198
 #: ../../climateadapt/behaviors/aceproject.py:223
 msgid "Date of item's creation"
 msgstr ""
 
 #: ../../climateadapt/behaviors/c3sindicator.py:108
-#: ../../climateadapt/behaviors/guidancedocument.py:22
-#: ../../climateadapt/behaviors/indicator.py:21
+#: ../../climateadapt/behaviors/guidancedocument.py:23
+#: ../../climateadapt/behaviors/indicator.py:24
 msgid "Date of item's publication"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acevideo.py:28
+#: ../../climateadapt/behaviors/acevideo.py:27
 msgid "Date of video's release"
 msgstr ""
 
@@ -409,7 +422,7 @@ msgstr ""
 msgid "Describe the objectives which triggered the adaptation measures (5,000 characters limit):"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:256
+#: ../../climateadapt/behaviors/aceitem.py:257
 #: ../../climateadapt/behaviors/acemeasure.py:323
 #: ../../climateadapt/behaviors/adaptationoption.py:77
 msgid "Describe the references (projects, a tools reports, etc.) related to this item, providing further information about it or its source."
@@ -423,6 +436,7 @@ msgstr ""
 msgid "Describe what are the main climate change impacts/risks and related challenges addressed by the adaptation solutions proposed by the case study. Possibly include quantitate scenarios/projections of future climate change considered by the case study (5,000 characters limit):"
 msgstr ""
 
+#: ../../climateadapt/behaviors/aceitem.py:149
 #: ../../climateadapt/behaviors/acemeasure.py:134
 #: ../../climateadapt/tiles/embedapp.py:25
 msgid "Description"
@@ -441,11 +455,11 @@ msgstr ""
 msgid "Disaster Risk Reduction"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:346
+#: ../../climateadapt/vocabulary.py:352
 msgid "Droughts"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:451
+#: ../../climateadapt/vocabulary.py:457
 msgid "Droughts and floods"
 msgstr ""
 
@@ -453,23 +467,27 @@ msgstr ""
 msgid "Duration"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:592
+#: ../../climateadapt/vocabulary.py:598
 msgid "E1: Information and awareness raising"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:576
+#: ../../climateadapt/vocabulary.py:582
 msgid "E1: Knowledge and behavioural change: Information and awareness raising"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:593
+#: ../../climateadapt/vocabulary.py:599
 msgid "E2: Capacity building empowering and lifestyle practices"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:577
+#: ../../climateadapt/vocabulary.py:583
 msgid "E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:466
+#: ../../climateadapt/vocabulary.py:333
+msgid "Ecomic aspects"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:472
 msgid "Ecosystems and Nature Based Solutions"
 msgstr ""
 
@@ -478,29 +496,37 @@ msgstr ""
 msgid "Energy"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:401
+#: ../../climateadapt/behaviors/aceitem.py:157
+msgid "Enter a short summary that will be used in listings."
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:330
+msgid "Environmental aspects"
+msgstr ""
+
+#: ../../climateadapt/behaviors/aceitem.py:404
 #: ../../climateadapt/behaviors/acemeasure.py:482
 #: ../../climateadapt/behaviors/aceproject.py:422
 msgid "European countries"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:82
+#: ../../climateadapt/behaviors/ccaevent.py:81
 msgid "Event Language"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:476
+#: ../../climateadapt/vocabulary.py:482
 msgid "Extreme Precipitation"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:347
+#: ../../climateadapt/vocabulary.py:353
 msgid "Extreme Temperatures"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:473
+#: ../../climateadapt/vocabulary.py:479
 msgid "Extreme heat"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:234
+#: ../../climateadapt/behaviors/aceitem.py:235
 #: ../../climateadapt/behaviors/acemeasure.py:210
 #: ../../climateadapt/behaviors/aceproject.py:296
 msgid "Featured"
@@ -511,7 +537,7 @@ msgstr ""
 msgid "Financial"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:348
+#: ../../climateadapt/vocabulary.py:354
 msgid "Flooding"
 msgstr ""
 
@@ -537,7 +563,7 @@ msgstr ""
 msgid "GIS Layer ID"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:267
+#: ../../climateadapt/behaviors/aceitem.py:268
 #: ../../climateadapt/behaviors/acemeasure.py:347
 #: ../../climateadapt/behaviors/aceproject.py:326
 msgid "Geographic characterisation"
@@ -556,21 +582,21 @@ msgstr ""
 msgid "Health"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:462
+#: ../../climateadapt/vocabulary.py:468
 msgid "Health and Wellbeing"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:132
+#: ../../climateadapt/behaviors/aceitem.py:130
 #: ../../climateadapt/behaviors/acemeasure.py:509
 #: ../../climateadapt/behaviors/aceproject.py:217
 msgid "Health impacts"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:450
+#: ../../climateadapt/vocabulary.py:456
 msgid "Heat"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:406
+#: ../../climateadapt/behaviors/aceitem.py:409
 #: ../../climateadapt/behaviors/acemeasure.py:522
 msgid "High importance"
 msgstr ""
@@ -587,11 +613,11 @@ msgstr ""
 msgid "IPCC adaptation options categories"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:349
+#: ../../climateadapt/vocabulary.py:355
 msgid "Ice and Snow"
 msgstr ""
 
-#: ../../climateadapt/behaviors/toplevelnav.py:19
+#: ../../climateadapt/behaviors/toplevelnav.py:21
 msgid "If set on a page in a root, will show that page or folder in the global navigation menu"
 msgstr ""
 
@@ -615,13 +641,13 @@ msgstr ""
 msgid "Important"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:137
+#: ../../climateadapt/behaviors/aceitem.py:135
 #: ../../climateadapt/behaviors/acemeasure.py:515
 #: ../../climateadapt/behaviors/aceproject.py:235
 msgid "Include in observatory"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:141
+#: ../../climateadapt/behaviors/aceitem.py:139
 #: ../../climateadapt/behaviors/acemeasure.py:519
 #: ../../climateadapt/behaviors/aceproject.py:239
 msgid "Include in the Mission Portal"
@@ -639,25 +665,29 @@ msgstr ""
 msgid "Information portals"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:606
+#: ../../climateadapt/vocabulary.py:612
 msgid "Institutional: Economic options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:608
+#: ../../climateadapt/vocabulary.py:614
 msgid "Institutional: Government policies and programmes"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:607
+#: ../../climateadapt/vocabulary.py:613
 msgid "Institutional: Law and regulations"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:99
+#: ../../climateadapt/behaviors/aceitem.py:144
+msgid "Item Name (250 character limit)"
+msgstr ""
+
+#: ../../climateadapt/behaviors/aceitem.py:97
 #: ../../climateadapt/behaviors/acemeasure.py:369
 #: ../../climateadapt/behaviors/aceproject.py:108
 msgid "Item from third parties"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:379
+#: ../../climateadapt/behaviors/aceitem.py:381
 msgid "Item link"
 msgstr ""
 
@@ -677,8 +707,8 @@ msgstr ""
 msgid "Key Type Measures"
 msgstr ""
 
-#: ../../climateadapt/behaviors/organisation.py:49
-msgid "Key activities within climate change and health"
+#: ../../climateadapt/behaviors/organisation.py:48
+msgid "Key activities within climate change and health (relevant for the Observatory)"
 msgstr ""
 
 #: ../../climateadapt/browser/admin.py:562
@@ -699,7 +729,7 @@ msgstr ""
 msgid "Land use planning"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:463
+#: ../../climateadapt/vocabulary.py:469
 msgid "Land-use and Food Systems"
 msgstr ""
 
@@ -723,11 +753,11 @@ msgstr ""
 msgid "Lifetime"
 msgstr ""
 
-#: ../../climateadapt/behaviors/organisation.py:63
+#: ../../climateadapt/behaviors/organisation.py:62
 msgid "Links to further information (relevant for the Observatory)"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:244
+#: ../../climateadapt/behaviors/aceitem.py:245
 #: ../../climateadapt/behaviors/aceproject.py:305
 msgid "List the Websites where the item can be found or is described. Please place each website on a new line"
 msgstr ""
@@ -736,11 +766,11 @@ msgstr ""
 msgid "List the Websites where the option can be found or is described. Note: may refer to the original document describing a measure and does not have to refer back to the project e.g. collected measures. NOTE: Add http:// in front of every website link."
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:467
+#: ../../climateadapt/vocabulary.py:473
 msgid "Local Economic Systems"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:112
+#: ../../climateadapt/behaviors/aceitem.py:110
 #: ../../climateadapt/behaviors/acemeasure.py:382
 #: ../../climateadapt/behaviors/aceproject.py:120
 msgid "Logo"
@@ -750,7 +780,7 @@ msgstr ""
 msgid "Macro-Transnational region"
 msgstr ""
 
-#: ../../climateadapt/behaviors/indicator.py:18
+#: ../../climateadapt/behaviors/indicator.py:21
 msgid "Map/Graphs"
 msgstr ""
 
@@ -763,11 +793,11 @@ msgstr ""
 msgid "Marine and Fisheries"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:472
+#: ../../climateadapt/vocabulary.py:478
 msgid "Mean air temperature"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:475
+#: ../../climateadapt/vocabulary.py:481
 msgid "Mean precipitation"
 msgstr ""
 
@@ -775,11 +805,15 @@ msgstr ""
 msgid "Measure Type"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:410
+#: ../../climateadapt/behaviors/aceitem.py:412
 msgid "Metadata"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:61
+#: ../../climateadapt/vocabulary.py:331
+msgid "Mitigation aspects"
+msgstr ""
+
+#: ../../climateadapt/behaviors/ccaevent.py:60
 msgid "More information on the event (URL)"
 msgstr ""
 
@@ -787,7 +821,7 @@ msgstr ""
 msgid "Mountain areas"
 msgstr ""
 
-#: ../../climateadapt/behaviors/organisation.py:45
+#: ../../climateadapt/behaviors/organisation.py:44
 msgid "Name"
 msgstr ""
 
@@ -820,19 +854,19 @@ msgstr ""
 msgid "Objectives"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:336
+#: ../../climateadapt/vocabulary.py:323
 msgid "Observations and Scenarios"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:95
+#: ../../climateadapt/behaviors/ccaevent.py:94
 msgid "Online registration (URL)"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:105
+#: ../../climateadapt/behaviors/ccaevent.py:104
 msgid "Online registration documents"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:99
+#: ../../climateadapt/behaviors/ccaevent.py:98
 msgid "Online registration message"
 msgstr ""
 
@@ -840,7 +874,7 @@ msgstr ""
 msgid "Organisations"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:303
+#: ../../climateadapt/behaviors/aceitem.py:308
 #: ../../climateadapt/behaviors/acemeasure.py:419
 msgid "Other contributor(s)"
 msgstr ""
@@ -849,7 +883,7 @@ msgstr ""
 msgid "Overview APP Toolbox URL"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:89
+#: ../../climateadapt/behaviors/ccaevent.py:88
 msgid "Participation"
 msgstr ""
 
@@ -865,7 +899,7 @@ msgstr ""
 msgid "Please first verify if the contributor is already part of the Climate ADAPT Database. If not, it is suggested to first create a new Organisation item (%s). As last alternative please add the new contributor(s) in the following box, using the official name"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:306
+#: ../../climateadapt/behaviors/aceitem.py:311
 msgid "Please first verify if the contributor is already part of the Climate ADAPT Database. If not, it is suggested to first create a new Organisation item (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last alternative please add the new contributor(s) in the following box, using the official name"
 msgstr ""
 
@@ -891,6 +925,10 @@ msgstr ""
 
 #: ../../climateadapt/behaviors/aceproject.py:204
 msgid "Provide Keywords related to the project. Press Enter after writing your keyword."
+msgstr ""
+
+#: ../../climateadapt/behaviors/aceitem.py:150
+msgid "Provide a description of the item.(5,000 character limit)"
 msgstr ""
 
 #: ../../climateadapt/behaviors/aceproject.py:290
@@ -926,27 +964,27 @@ msgstr ""
 msgid "Reference"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:254
+#: ../../climateadapt/behaviors/aceitem.py:255
 #: ../../climateadapt/behaviors/acemeasure.py:321
 #: ../../climateadapt/behaviors/adaptationoption.py:75
 msgid "References"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:101
+#: ../../climateadapt/contentrules.py:98
 msgid "Reindex object"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:294
+#: ../../climateadapt/behaviors/aceitem.py:299
 #: ../../climateadapt/behaviors/acemeasure.py:409
 #: ../../climateadapt/behaviors/aceproject.py:147
 msgid "Related"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acevideo.py:37
+#: ../../climateadapt/behaviors/acevideo.py:36
 msgid "Related documents and presentations"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:481
+#: ../../climateadapt/vocabulary.py:487
 msgid "Relative sea level"
 msgstr ""
 
@@ -954,11 +992,15 @@ msgstr ""
 msgid "Relevance"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:335
+msgid "Replication/upscaling potential"
+msgstr ""
+
 #: ../../climateadapt/vocabulary.py:267
 msgid "Research and knowledge projects"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:477
+#: ../../climateadapt/vocabulary.py:483
 msgid "River flooding"
 msgstr ""
 
@@ -966,7 +1008,7 @@ msgstr ""
 msgid "Scaled image quality"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:350
+#: ../../climateadapt/vocabulary.py:356
 msgid "Sea Level Rise"
 msgstr ""
 
@@ -974,7 +1016,7 @@ msgstr ""
 msgid "Sector"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:340
+#: ../../climateadapt/vocabulary.py:321
 msgid "Sector Policies"
 msgstr ""
 
@@ -988,7 +1030,7 @@ msgstr ""
 msgid "Select Key Type Measures. The options are:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:288
+#: ../../climateadapt/behaviors/aceitem.py:293
 msgid "Select from the Climate ADAPT \"Organisation\" items the organisations contributing to/ involved in this item"
 msgstr ""
 
@@ -1009,7 +1051,7 @@ msgstr ""
 msgid "Select one or more categories of adaptation options. The options are:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:194
+#: ../../climateadapt/behaviors/aceitem.py:193
 #: ../../climateadapt/behaviors/aceproject.py:260
 #: ../../climateadapt/behaviors/c3sindicator.py:95
 msgid "Select one or more climate change impact topics that this item relates to."
@@ -1019,7 +1061,7 @@ msgstr ""
 msgid "Select one or more climate change impact topics that this item relates to:"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:209
+#: ../../climateadapt/behaviors/aceitem.py:208
 #: ../../climateadapt/behaviors/acemeasure.py:494
 #: ../../climateadapt/behaviors/aceproject.py:275
 msgid "Select one or more elements."
@@ -1043,6 +1085,10 @@ msgstr ""
 msgid "Select only one category below that best describes how relevant this case study is to climate change adaptation:"
 msgstr ""
 
+#: ../../climateadapt/behaviors/aceitem.py:275
+msgid "Select the characterisation for this item"
+msgstr ""
+
 #: ../../climateadapt/behaviors/acemeasure.py:335
 msgid "Select the one governance level that relates to this adaptation option"
 msgstr ""
@@ -1051,15 +1097,15 @@ msgstr ""
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:50
+#: ../../climateadapt/contentrules.py:47
 msgid "Set object expiration date"
 msgstr ""
 
-#: ../../climateadapt/behaviors/id.py:22
+#: ../../climateadapt/behaviors/id.py:25
 msgid "Settings"
 msgstr ""
 
-#: ../../climateadapt/behaviors/id.py:27
+#: ../../climateadapt/behaviors/id.py:30
 msgid "Short name"
 msgstr ""
 
@@ -1068,24 +1114,32 @@ msgstr ""
 msgid "Short summary"
 msgstr ""
 
-#: ../../climateadapt/behaviors/toplevelnav.py:18
+#: ../../climateadapt/behaviors/toplevelnav.py:20
 msgid "Show as top level section"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:480
+#: ../../climateadapt/behaviors/aceitem.py:172
+msgid "Single topic"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:486
 msgid "Snow and ice"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:605
+#: ../../climateadapt/vocabulary.py:611
 msgid "Social: Behavioural"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:603
+#: ../../climateadapt/vocabulary.py:609
 msgid "Social: Educational options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:604
+#: ../../climateadapt/vocabulary.py:610
 msgid "Social: Informational"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:332
+msgid "Societal aspects"
 msgstr ""
 
 #: ../../climateadapt/behaviors/missionstory.py:117
@@ -1100,7 +1154,7 @@ msgstr ""
 msgid "Source"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:396
+#: ../../climateadapt/behaviors/aceitem.py:399
 #: ../../climateadapt/behaviors/acemeasure.py:477
 #: ../../climateadapt/behaviors/aceproject.py:415
 msgid "Spatial Layer"
@@ -1110,7 +1164,7 @@ msgstr ""
 msgid "Special Tagging"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:365
+#: ../../climateadapt/behaviors/aceitem.py:370
 #: ../../climateadapt/behaviors/acemeasure.py:528
 #: ../../climateadapt/behaviors/aceproject.py:395
 msgid "Special tagging"
@@ -1124,27 +1178,27 @@ msgstr ""
 msgid "Stakeholder participation"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:391
+#: ../../climateadapt/behaviors/aceitem.py:393
 msgid "Storage Type"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:351
+#: ../../climateadapt/vocabulary.py:357
 msgid "Storms"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:601
+#: ../../climateadapt/vocabulary.py:607
 msgid "Structural and physical: Ecosystem-based adaptation options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:599
+#: ../../climateadapt/vocabulary.py:605
 msgid "Structural and physical: Engineering and built environment options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:602
+#: ../../climateadapt/vocabulary.py:608
 msgid "Structural and physical: Service options"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:600
+#: ../../climateadapt/vocabulary.py:606
 msgid "Structural and physical: Technological options"
 msgstr ""
 
@@ -1152,7 +1206,7 @@ msgstr ""
 msgid "Sub Nationals"
 msgstr ""
 
-#: ../../climateadapt/behaviors/ccaevent.py:57
+#: ../../climateadapt/behaviors/ccaevent.py:56
 msgid "Subtitle"
 msgstr ""
 
@@ -1160,7 +1214,7 @@ msgstr ""
 msgid "Success / limitations"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:398
+#: ../../climateadapt/contentrules.py:317
 msgid "Synchronize states for translations"
 msgstr ""
 
@@ -1168,29 +1222,33 @@ msgstr ""
 msgid "Synopsis"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acevideo.py:403
+#: ../../climateadapt/behaviors/acevideo.py:51
 #: ../../climateadapt/behaviors/adaptationoption.py:484
 #: ../../climateadapt/behaviors/casestudy.py:603
 msgid "The JSON representation of the object blocks layout."
 msgstr ""
 
-#: ../../climateadapt/behaviors/acevideo.py:44
+#: ../../climateadapt/behaviors/acevideo.py:43
 #: ../../climateadapt/behaviors/adaptationoption.py:86
 #: ../../climateadapt/behaviors/casestudy.py:179
 msgid "The JSON representation of the object blocks."
 msgstr ""
 
-#: ../../climateadapt/behaviors/id.py:28
+#: ../../climateadapt/behaviors/aceitem.py:222
+msgid "The date refers to the moment in which the item has been prepared by contributing experts to be submitted for the publication in Climate ADAPT Publication/last update date. Please use the Calendar icon to add day/month/year. If you want to add only the year, please select \"day: 1\", \"month: January\" and then the year"
+msgstr ""
+
+#: ../../climateadapt/behaviors/id.py:31
 msgid "This name will be displayed in the URL."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:121
+#: ../../climateadapt/behaviors/aceitem.py:119
 #: ../../climateadapt/behaviors/acemeasure.py:391
 #: ../../climateadapt/behaviors/aceproject.py:129
 msgid "Thumbnail"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:145
+#: ../../climateadapt/behaviors/aceitem.py:143
 #: ../../climateadapt/behaviors/acemeasure.py:124
 #: ../../climateadapt/behaviors/aceproject.py:170
 msgid "Title"
@@ -1204,11 +1262,11 @@ msgstr ""
 msgid "Tourism"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:160
+#: ../../climateadapt/contentrules.py:157
 msgid "Translate object"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:282
+#: ../../climateadapt/contentrules.py:275
 msgid "Translate object async"
 msgstr ""
 
@@ -1221,28 +1279,28 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:137
+#: ../../climateadapt/contentrules.py:134
 msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
 msgstr ""
 
-#: ../../climateadapt/contentrules.py:190
-#: ../../climateadapt/translation/admin.py:2620
+#: ../../climateadapt/contentrules.py:188
+#: ../../climateadapt/translation/admin.py:210
 msgid "Unable to translate ${name} as part of content rule 'translate' action: ${error}"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:113
+#: ../../climateadapt/behaviors/aceitem.py:111
 #: ../../climateadapt/behaviors/acemeasure.py:383
 #: ../../climateadapt/behaviors/aceproject.py:121
 msgid "Upload a representative picture or logo for the item. Recommended size: at least 360/180 px, aspect ratio 2x"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:122
+#: ../../climateadapt/behaviors/aceitem.py:120
 #: ../../climateadapt/behaviors/acemeasure.py:392
 #: ../../climateadapt/behaviors/aceproject.py:130
 msgid "Upload a representative picture or logo for the item. Recommended size: at least 360/180 px, aspect ratio 2x. This image will be used in the search result page - cards view. If this image doesn't exist, then the logo image will be used."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:381
+#: ../../climateadapt/behaviors/aceitem.py:383
 msgid "Uploaded by"
 msgstr ""
 
@@ -1255,7 +1313,7 @@ msgstr ""
 msgid "Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:366
+#: ../../climateadapt/behaviors/aceitem.py:371
 #: ../../climateadapt/behaviors/acemeasure.py:529
 #: ../../climateadapt/behaviors/aceproject.py:396
 msgid "Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
@@ -1265,28 +1323,28 @@ msgstr ""
 msgid "Used only to highlight items provided by Third parties. <br>Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:100
+#: ../../climateadapt/behaviors/aceitem.py:98
 #: ../../climateadapt/behaviors/aceproject.py:109
 msgid "Used only to highlight items provided by Third parties.<br>Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
 msgstr ""
 
-#: ../../climateadapt/behaviors/acevideo.py:21
+#: ../../climateadapt/behaviors/acevideo.py:20
 msgid "Video Height"
 msgstr ""
 
-#: ../../climateadapt/behaviors/acevideo.py:17
+#: ../../climateadapt/behaviors/acevideo.py:16
 msgid "Video URL"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:337
+#: ../../climateadapt/vocabulary.py:325
 msgid "Vulnerability Assessment"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:464
+#: ../../climateadapt/vocabulary.py:470
 msgid "Water Management"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:352
+#: ../../climateadapt/vocabulary.py:358
 msgid "Water Scarcity"
 msgstr ""
 
@@ -1295,17 +1353,17 @@ msgstr ""
 msgid "Water management"
 msgstr ""
 
-#: ../../climateadapt/behaviors/aceitem.py:243
+#: ../../climateadapt/behaviors/aceitem.py:244
 #: ../../climateadapt/behaviors/acemeasure.py:306
 #: ../../climateadapt/behaviors/aceproject.py:304
 msgid "Websites"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:479
+#: ../../climateadapt/vocabulary.py:485
 msgid "Wildfire"
 msgstr ""
 
-#: ../../climateadapt/vocabulary.py:455
+#: ../../climateadapt/vocabulary.py:461
 msgid "Wildfires"
 msgstr ""
 

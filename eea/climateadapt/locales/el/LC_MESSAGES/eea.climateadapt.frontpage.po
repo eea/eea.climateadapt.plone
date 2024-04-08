@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2024-03-12 13:10+0000\n"
+"POT-Creation-Date: 2024-03-29 20:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,63 +56,63 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:811
+#: ../theme/climateadaptv2/index.html:810
 msgid "Adaptation options"
 msgstr "Επιλογές προσαρμογής"
 
-#: ../theme/climateadaptv2/index.html:1548
+#: ../theme/climateadaptv2/index.html:1547
 msgid "Adaptation support tool"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:928
+#: ../theme/climateadaptv2/index.html:927
 #: ../theme/climateadaptv2/tab-policies-rule.html:15
 msgid "Agriculture"
 msgstr "Γεωργία"
 
-#: ../theme/climateadaptv2/index.html:1471
+#: ../theme/climateadaptv2/index.html:1470
 msgid "Assessing adaptation options"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1453
+#: ../theme/climateadaptv2/index.html:1452
 msgid "Assessing risks and vulnerability <br /> to climate change"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:936
+#: ../theme/climateadaptv2/index.html:935
 #: ../theme/climateadaptv2/tab-policies-rule.html:23
 msgid "Biodiversity"
 msgstr "Βιοποικιλότητα"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1103
+#: ../theme/climateadaptv2/index.html:1102
 #: ../theme/climateadaptv2/tab-policies-rule.html:190
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
 msgstr "Η βιοποικιλότητα διαδραματίζει σημαντικό ρόλο στη ρύθμιση του κλίματος, καθιστώντας έτσι μια βασική συμβολή στον μετριασμό και την προσαρμογή της αλλαγής του κλίματος. Ταυτόχρονα, οι στόχοι μετριασμού της ικανοποίησης σε συνδυασμό με προσεγγίσεις που βασίζονται σε οικοσύστημα είναι απαραίτητες για την αποτροπή της απώλειας της βιοποικιλότητας. Ως εκ τούτου, είναι αδύνατο να αντιμετωπιστεί η απώλεια της βιοποικιλότητας χωρίς να αντιμετωπιστεί η αλλαγή του κλίματος, αλλά είναι εξίσου αδύνατο να αντιμετωπιστεί η αλλαγή του κλίματος χωρίς να αντιμετωπιστεί η απώλεια της βιοποικιλότητας."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:944
+#: ../theme/climateadaptv2/index.html:943
 #: ../theme/climateadaptv2/tab-policies-rule.html:31
 msgid "Buildings"
 msgstr "Κτίρια"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1118
+#: ../theme/climateadaptv2/index.html:1117
 #: ../theme/climateadaptv2/tab-policies-rule.html:205
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
 msgstr "Τα κτίρια μπορούν να είναι ευάλωτα στην αλλαγή του κλίματος. Στο μέλλον μπορεί να υπάρξει αύξηση του κινδύνου κατάρρευσης, μείωσης της κατάστασης και σημαντικής απώλειας αξίας ως αποτέλεσμα περισσότερων καταιγίδων, ζημιών από χιόνι ή καθίζηση, καταπάτηση του νερού, επιδεινούμενα εσωτερικά κλίμα και μειωμένη διάρκεια ζωής. Η Ευρωπαϊκή Επιτροπή στοχεύει να αυξήσει την κλιματική ανθεκτικότητα της υποδομής, συμπεριλαμβανομένων των κτιρίων. Τα νέα και τα υπάρχοντα κτίρια πρέπει να αξιολογούνται για ανθεκτικότητα σε τρέχοντες κινδύνους και μελλοντικές αλλαγές στο κλίμα και να προγραμματιστούν ή να αναβαθμιστούν ανάλογα. Μια βασική πολιτική που χρησιμοποιείται για την υποστήριξη της ανθεκτικότητας των κτιρίων είναι η πολιτική συνοχής (που επίσης αναφέρεται ως περιφερειακή πολιτική)."
 
-#: ../theme/climateadaptv2/index.html:952
+#: ../theme/climateadaptv2/index.html:951
 #: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Business and Industry"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1333
+#: ../theme/climateadaptv2/index.html:1332
 #: ../theme/climateadaptv2/tab-policies-rule.html:420
 msgid "By the end of the century, it is projected that European mountains will have changed physically. Glaciers will have experienced significant mass loss, but changes also impact the lower, mid-hills, and floodplain environments, thereby affecting water availability, agricultural production, tourism, and health sectors. Seasonal snow lines will be found at higher elevations, and snow seasons will become shorter. Tree lines will move up and forest patterns will change in lower elevations."
 msgstr ""
@@ -121,57 +121,57 @@ msgstr ""
 msgid "Case <br /> Studies"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1409
+#: ../theme/climateadaptv2/index.html:1408
 msgid "Case Studies Page"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:820
+#: ../theme/climateadaptv2/index.html:819
 msgid "Case studies"
 msgstr "Οι περιπτωσιολογικές μελέτες"
 
-#: ../theme/climateadaptv2/index.html:1423
+#: ../theme/climateadaptv2/index.html:1422
 msgid "Case studies booklet"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1724
+#: ../theme/climateadaptv2/index.html:1723
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
 msgstr "Ελέγξτε το <a href=\"../newsletter\"> ευρωπαϊκό ενημερωτικό δελτίο για την προσαρμογή του κλίματος </a> και εγγραφείτε για να το λάβετε στο e-mail σας:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1163
+#: ../theme/climateadaptv2/index.html:1162
 #: ../theme/climateadaptv2/tab-policies-rule.html:250
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
 msgstr "Η αλλαγή του κλίματος επηρεάζει τον ενεργειακό τομέα με πολλούς τρόπους, που κυμαίνονται από τις αλλαγές στη ζήτηση θέρμανσης και ψύξης. Σε επιπτώσεις στις συνθήκες παροχής ενέργειας - για παράδειγμα μειωμένη διαθεσιμότητα νερού για υδροηλεκτρική ενέργεια κατά τη διάρκεια παρατεταμένων ξηρασιών και μειωμένη διαθεσιμότητα νερού ψύξης που επηρεάζει την αποτελεσματικότητα των σταθμών ηλεκτροπαραγωγής. Επιπλέον, η ενεργειακή υποδομή μπορεί να είναι πιο εκτεθειμένη σε αποζημιώσεις μεταβάλλοντας τις κλιματικές συνθήκες. Η Ευρωπαϊκή Επιτροπή γενικά στοχεύει στην αύξηση της ανθεκτικότητας του κλίματος της υποδομής, συμπεριλαμβανομένης της ενέργειας, παρέχοντας στρατηγικά πλαίσια."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1088
+#: ../theme/climateadaptv2/index.html:1087
 #: ../theme/climateadaptv2/tab-policies-rule.html:175
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
 msgstr "Η αλλαγή του κλίματος έχει σύνθετες επιδράσεις στις βιο-φυσικές διαδικασίες που υποστηρίζουν τα γεωργικά συστήματα, με αρνητικές και θετικές συνέπειες σε διαφορετικές περιοχές της ΕΕ. Η αυξανόμενη ατμοσφαιρική συγκέντρωση CO2, οι υψηλότερες θερμοκρασίες, οι μεταβολές στα πρότυπα βροχόπτωσης και η συχνότητα των ακραίων συμβάντων επηρεάζουν τόσο το φυσικό περιβάλλον όσο και την ποσότητα, την ποιότητα και τη σταθερότητα της παραγωγής τροφίμων. Οι κλιματικές παραλλαγές επηρεάζουν τους υδάτινους πόρους, τα εδάφη, τα παράσιτα και τις ασθένειες, οδηγώντας σε σημαντικές αλλαγές στη γεωργία και την παραγωγή ζώων."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1221
+#: ../theme/climateadaptv2/index.html:1220
 #: ../theme/climateadaptv2/tab-policies-rule.html:308
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
 msgstr "Η αλλαγή του κλίματος αναμένεται να έχει σοβαρές επιπτώσεις στο θαλάσσιο περιβάλλον. Η αύξηση των θερμοκρασιών του νερού θα συμβάλει στην αναδιάρθρωση των θαλάσσιων οικοσυστημάτων με συνέπειες για την κυκλοφορία των ωκεανών, τη βιογεωχημική ποδηλασία και τη θαλάσσια βιοποικιλότητα. Η οξίνιση των ωκεανών θα επηρεάσει την ικανότητα ορισμένων ειδών που εκκρίνουν ανθρακικό ασβέστιο (όπως τα μαλάκια, τα πλακάκια και τα κοράλλια) για να παράγουν τα κελύφη ή τους σκελετούς τους. Επομένως, το θερμότερο και πιο όξινο θαλασσινό νερό θα επηρεάσει αρνητικά την αλιεία και την υδατοκαλλιέργεια."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1207
+#: ../theme/climateadaptv2/index.html:1206
 #: ../theme/climateadaptv2/tab-policies-rule.html:294
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
 msgstr "Η αλλαγή του κλίματος θα δημιουργήσει νέους κινδύνους για την υγεία και θα ενισχύσει τα τρέχοντα προβλήματα υγείας. Τόσο οι άμεσες όσο και οι έμμεσες επιπτώσεις στην υγεία των ανθρώπινων, φυτών και των ζώων αναμένονται από την αλλαγή του κλίματος. Οι άμεσες επιδράσεις προκύπτουν από τις αλλαγές στην ένταση και τη συχνότητα των ακραίων καιρικών γεγονότων όπως τα υλικά και οι πλημμύρες. Οι έμμεσες επιδράσεις μπορούν να γίνουν αισθητές μέσω αλλαγών στη συχνότητα εμφάνισης ασθενειών που μεταδίδονται από έντομα (δηλ. Νόσοι που προκαλούνται από φορέα που προκαλούνται από κουνούπια και τσιμπούρια), τρωκτικά ή αλλαγές στο νερό, τα τρόφιμα και την ποιότητα του αέρα. Η στρατηγική της Ευρωπαϊκής Επιτροπής της ΕΕ για την προσαρμογή στην αλλαγή του κλίματος συνοδεύεται από έγγραφο εργασίας προσωπικού."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1397
+#: ../theme/climateadaptv2/index.html:1396
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
 msgstr "Οι περιπτωσιολογικές μελέτες για το κλίμα παρουσιάζουν πρωτοβουλίες που εκτελούνται ήδη στην Ευρώπη για να προσαρμοστούν στην αλλαγή του κλίματος και να αυξήσουν την ανθεκτικότητα σε ακραίες καιρικές συνθήκες και αργή εκδήλωση."
 
@@ -182,7 +182,7 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:960
+#: ../theme/climateadaptv2/index.html:959
 #: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Coastal areas"
 msgstr "Παράκτιες περιοχές"
@@ -191,21 +191,21 @@ msgstr "Παράκτιες περιοχές"
 msgid "Country <br /> Profiles"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:968
+#: ../theme/climateadaptv2/index.html:967
 #: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Cultural Heritage"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:976
+#: ../theme/climateadaptv2/index.html:975
 #: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Disaster risk <br /> reduction"
 msgstr "Κίνδυνος καταστροφών <br /> Μείωση"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1147
+#: ../theme/climateadaptv2/index.html:1146
 #: ../theme/climateadaptv2/tab-policies-rule.html:234
 msgid "Disaster risk reduction"
 msgstr "Μείωση του κινδύνου καταστροφών"
@@ -218,13 +218,13 @@ msgstr ""
 msgid "EU Sector <br /> Policies"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1359
+#: ../theme/climateadaptv2/index.html:1358
 msgid "EU Sector Policies"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:983
+#: ../theme/climateadaptv2/index.html:982
 #: ../theme/climateadaptv2/tab-policies-rule.html:70
 msgid "Energy"
 msgstr "Ενέργεια"
@@ -251,50 +251,50 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1637
+#: ../theme/climateadaptv2/index.html:1636
 msgid "Events"
 msgstr "Εκδηλώσεις"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1178
+#: ../theme/climateadaptv2/index.html:1177
 #: ../theme/climateadaptv2/tab-policies-rule.html:265
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
 msgstr "Τα ακραία καιρικά φαινόμενα τα τελευταία χρόνια έχουν αυξήσει την επείγουσα ανάγκη για την προσαρμογή της αλλαγής του κλίματος στους διάφορους τομείς πολιτικής της ΕΕ. Υπάρχουν λίγες συγκεκριμένες δραστηριότητες στην ΕΕ για την προσαρμογή της αλλαγής του κλίματος στις πολιτικές για τους οικονομικούς και τους ασφαλιστικούς τομείς. Ωστόσο, πολλές ευρωπαϊκές πολιτικές που σχετίζονται με φυσικές καταστροφές (βλ. Μείωση του κινδύνου καταστροφών) είναι πολύ σημαντικές για τον οικονομικό και ασφαλιστικό τομέα, καθώς μπορούν να βοηθήσουν στην πρόληψη σημαντικών ζημιών και οικονομικών καταστροφών. Η Ευρωπαϊκή Επιτροπή έχει επίσης δεσμευτεί να αυξήσει τη χρηματοδότηση των δραστηριοτήτων που σχετίζονται με το κλίμα, εξασφαλίζοντας ότι τουλάχιστον το 20% του ευρωπαϊκού προϋπολογισμού είναι οι δαπάνες που σχετίζονται με το κλίμα."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:991
+#: ../theme/climateadaptv2/index.html:990
 #: ../theme/climateadaptv2/tab-policies-rule.html:78
 msgid "Financial"
 msgstr "Χρηματοοικονομική"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1597
+#: ../theme/climateadaptv2/index.html:1596
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
 msgstr "Μάθετε πώς να συνεισφέρετε διαφορετικούς τύπους πληροφοριών για το κλίμα προσαρμογής"
 
-#: ../theme/climateadaptv2/index.html:1277
+#: ../theme/climateadaptv2/index.html:1276
 #: ../theme/climateadaptv2/tab-policies-rule.html:364
 msgid "Firms face two main types of climate-related risks: direct physical risks and transition risks that arise from society’s response to climate change, mainly mitigation actions. Climate change can have significant impacts on supply chains, distribution, and sales in a number of ways. Heat negatively affects human health and can lead to poorer work performance (reduced productivity) or lower numbers of hours committed to work (labour supply)."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1355
+#: ../theme/climateadaptv2/index.html:1354
 msgid "For more informations visit:"
 msgstr "Για περισσότερες πληροφορίες επισκεφθείτε:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1558
+#: ../theme/climateadaptv2/index.html:1557
 msgid "For urban areas guidance visit:"
 msgstr "Για την επίσκεψη καθοδήγησης αστικών περιοχών:"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:999
+#: ../theme/climateadaptv2/index.html:998
 #: ../theme/climateadaptv2/tab-policies-rule.html:86
 msgid "Forestry"
 msgstr "Δασοκομία"
@@ -305,106 +305,106 @@ msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:587
+#: ../theme/climateadaptv2/index.html:586
 msgid "Go to the European Climate Data Explorer"
 msgstr "Μεταβείτε στον Ευρωπαϊκό Εξερευνητή Δεδομένων για το Κλίμα"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:606
+#: ../theme/climateadaptv2/index.html:605
 msgid "Go to the European Climate and Health Observatory"
 msgstr "Μεταβείτε στο Ευρωπαϊκό Παρατηρητήριο Κλίματος και Υγείας"
 
-#: ../theme/climateadaptv2/index.html:625
+#: ../theme/climateadaptv2/index.html:624
 msgid "Go to the Mission Portal"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:829
+#: ../theme/climateadaptv2/index.html:828
 msgid "Guidance"
 msgstr "Οδηγία"
 
-#: ../theme/climateadaptv2/index.html:801
+#: ../theme/climateadaptv2/index.html:800
 msgid "Guidance to search function"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1007
+#: ../theme/climateadaptv2/index.html:1006
 #: ../theme/climateadaptv2/tab-policies-rule.html:94
 msgid "Health"
 msgstr "Υγεία"
 
-#: ../theme/climateadaptv2/index.html:1015
+#: ../theme/climateadaptv2/index.html:1014
 #: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "ICT"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1462
+#: ../theme/climateadaptv2/index.html:1461
 msgid "Identifying adaptation options"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1480
+#: ../theme/climateadaptv2/index.html:1479
 msgid "Implementation"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1249
+#: ../theme/climateadaptv2/index.html:1248
 #: ../theme/climateadaptv2/tab-policies-rule.html:336
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
 msgstr "Στην Ευρώπη, σχεδόν το 73% του πληθυσμού ζει σε αστικές περιοχές και αυτό αναμένεται να αυξηθεί σε πάνω από 80% έως το 2050. Η αλλαγή του κλίματος είναι πιθανό να επηρεάσει σχεδόν όλα τα συστατικά των πόλεων και των πόλεων - το περιβάλλον, την οικονομία και την κοινωνία τους. Αυτό δημιουργεί νέες, πολύπλοκες προκλήσεις για τον πολεοδομικό σχεδιασμό και τη διαχείριση. Οι επιπτώσεις της αλλαγής του κλίματος στους κόμβους της οικονομικής δραστηριότητας, της κοινωνικής ζωής, του πολιτισμού και της καινοτομίας της Ευρώπης έχουν επιπτώσεις πολύ πέρα ​​από τα δημοτικά τους σύνορα."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:838
+#: ../theme/climateadaptv2/index.html:837
 msgid "Indicators"
 msgstr "Δείκτες"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:847
+#: ../theme/climateadaptv2/index.html:846
 msgid "Information portals"
 msgstr "Πύλες πληροφοριών"
 
-#: ../theme/climateadaptv2/index.html:1023
+#: ../theme/climateadaptv2/index.html:1022
 #: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Land use planning"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1319
+#: ../theme/climateadaptv2/index.html:1318
 #: ../theme/climateadaptv2/tab-policies-rule.html:406
 msgid "Land use planning is identified as one of the most effective processes to facilitate local adaptation to climate change. Existing processes and tools available through the municipal land use planning process in the EU, including official plans, zoning, and/or development permits, assist in minimizing the development risks to a municipality from the predicted impacts of increased floods, wildfires, landslides, and/or other natural hazards due to a changing climate."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1031
+#: ../theme/climateadaptv2/index.html:1030
 #: ../theme/climateadaptv2/tab-policies-rule.html:118
 msgid "Marine <br /> &amp; fisheries"
 msgstr "Marine <br /> & amp; ΕΙΔΗ ΑΛΙΕΙΑΣ"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1220
+#: ../theme/climateadaptv2/index.html:1219
 #: ../theme/climateadaptv2/tab-policies-rule.html:307
 msgid "Marine and fisheries"
 msgstr "Θαλάσσια και αλιεία"
 
-#: ../theme/climateadaptv2/index.html:1489
+#: ../theme/climateadaptv2/index.html:1488
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1696
+#: ../theme/climateadaptv2/index.html:1695
 msgid "More events"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1667
+#: ../theme/climateadaptv2/index.html:1666
 msgid "More news"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1039
+#: ../theme/climateadaptv2/index.html:1038
 #: ../theme/climateadaptv2/tab-policies-rule.html:126
 msgid "Mountain areas"
 msgstr ""
@@ -413,64 +413,64 @@ msgstr ""
 msgid "New <br /> Features"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1612
+#: ../theme/climateadaptv2/index.html:1611
 msgid "New EEA product: European Climate Risk Assessment."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1634
+#: ../theme/climateadaptv2/index.html:1633
 msgid "News"
 msgstr "Νέα"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1710
+#: ../theme/climateadaptv2/index.html:1709
 msgid "Newsletter"
 msgstr "Ενημερωτικό δελτίο"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:865
+#: ../theme/climateadaptv2/index.html:864
 msgid "Organisations"
 msgstr "Οργανώσεις"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1148
+#: ../theme/climateadaptv2/index.html:1147
 #: ../theme/climateadaptv2/tab-policies-rule.html:235
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
 msgstr "Τα τελευταία χρόνια, η Ευρώπη γνώρισε κάθε είδους φυσικές καταστροφές: σοβαρές πλημμύρες, ξηρασίες και δασικές πυρκαγιές με καταστροφικές επιπτώσεις στη ζωή των ανθρώπων, στην ευρωπαϊκή οικονομία και στο περιβάλλον. Κατά την τελευταία δεκαετία, η Ευρωπαϊκή Επιτροπή υιοθέτησε διάφορες στρατηγικές και ενέργειες για την αντιμετώπιση της μείωσης του κινδύνου καταστροφών, όπως, για παράδειγμα, η οδηγία πλημμύρας και η εφαρμογή της (χρονοδιάγραμμα), η δράση της ΕΕ για την έλλειψη νερού και την ξηρασία, την Πράσινη Βίβλο για την Ασφάλιση στο Πλαίσιο φυσικών και ανθρωπογενών καταστροφών."
 
-#: ../theme/climateadaptv2/index.html:1444
+#: ../theme/climateadaptv2/index.html:1443
 msgid "Preparing the ground for adaptation"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:883
+#: ../theme/climateadaptv2/index.html:882
 msgid "Publications and reports"
 msgstr "Εκδόσεις και αναφορές"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1713
+#: ../theme/climateadaptv2/index.html:1712
 msgid "RSS feed"
 msgstr "Feed RSS"
 
-#: ../theme/climateadaptv2/index.html:1624
+#: ../theme/climateadaptv2/index.html:1623
 msgid "Read more"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:892
+#: ../theme/climateadaptv2/index.html:891
 msgid "Research and knowledge projects"
 msgstr "Έργα έρευνας και γνώσης"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1133
+#: ../theme/climateadaptv2/index.html:1132
 #: ../theme/climateadaptv2/tab-policies-rule.html:220
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
 msgstr "Η άνοδος της στάθμης της θάλασσας μπορεί να προκαλέσει πλημμύρες, παράκτια διάβρωση και απώλεια χαμηλών παραθαλάσσιων συστημάτων. Θα αυξήσει επίσης τον κίνδυνο των υπερτάσεων καταιγίδων και την πιθανότητα εισβολής του αλμυρού νερού και μπορεί να θέσει σε κίνδυνο τα παράκτια οικοσυστήματα. Οι αναμενόμενες αυξήσεις στις θερμοκρασίες του νερού και στην οξίνιση των ωκεανών θα συμβάλουν στην αναδιάρθρωση των παράκτιων οικοσυστημάτων. με συνέπειες για την κυκλοφορία των ωκεανών και τη βιογεωχημική ποδηλασία."
@@ -485,164 +485,164 @@ msgstr "Αναζήτηση προσαρμοσμού του κλίματος"
 msgid "Search the <br /> Database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:909
+#: ../theme/climateadaptv2/index.html:908
 msgid "See complete database"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1418
+#: ../theme/climateadaptv2/index.html:1417
 msgid "See how Europe is adapting to climate change:"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1596
+#: ../theme/climateadaptv2/index.html:1595
 msgid "Share <span>your information</span>"
 msgstr "Μοιραστείτε <pan> τις πληροφορίες σας </span>"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1726
+#: ../theme/climateadaptv2/index.html:1725
 msgid "Sign me up!"
 msgstr "Εγγέγραψέ με!"
 
-#: ../theme/climateadaptv2/index.html:1347
+#: ../theme/climateadaptv2/index.html:1346
 #: ../theme/climateadaptv2/tab-policies-rule.html:434
 msgid "Since weather and climate have a decisive influence on the travel season and the choice of holiday destinations, the tourism industry is highly dependent on them. There is also a strong connection between nature and tourism, as well as between cultural heritage and tourism. Depending on the location and the time of the year tourism can be positively or negatively impacted by climate change."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1743
+#: ../theme/climateadaptv2/index.html:1742
 msgid "Subscribe"
 msgstr "Εγγραφείτε"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1741
+#: ../theme/climateadaptv2/index.html:1740
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
 msgstr "Εγγραφείτε στο <strong> RSS Feed < /strong> <br /> Και μείνετε ενημερωμένοι!"
 
-#: ../theme/climateadaptv2/index.html:624
+#: ../theme/climateadaptv2/index.html:623
 msgid "The EU Mission on Adaptation to Climate Change portal provides relevant information and resources to European regional and local authorities to prepare and plan for climate resilience."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:586
+#: ../theme/climateadaptv2/index.html:585
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
 msgstr "Ο ευρωπαϊκός εξερευνητής δεδομένων για το κλίμα παρέχει διαδραστική πρόσβαση σε πολλούς κλιματικούς δείκτες από την υπηρεσία αλλαγής του κλίματος του Κοπέρνικου για την υποστήριξη της προσαρμογής της αλλαγής του κλίματος."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:605
+#: ../theme/climateadaptv2/index.html:604
 msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
 msgstr "Το Ευρωπαϊκό Παρατηρητήριο Κλίματος και Υγείας παρέχει πρόσβαση σε ένα ευρύ φάσμα σχετικών δημοσιεύσεων, εργαλείων, ιστότοπων και άλλων πόρων που σχετίζονται με την αλλαγή του κλίματος και την υγεία."
 
-#: ../theme/climateadaptv2/index.html:1616
+#: ../theme/climateadaptv2/index.html:1615
 msgid "The assessment identifies 36 climate risks that pose major threats to Europe. Many of these have already reached critical levels and can become catastrophic without urgent and decisive action."
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1305
+#: ../theme/climateadaptv2/index.html:1304
 #: ../theme/climateadaptv2/tab-policies-rule.html:392
 msgid "The challenges posed by climate change for the ICT fall into two main categories: acute events and chronic stresses. Acute events (also termed critical or crisis events) include floods (pluvial, fluvial, coastal), ice storms, heatwaves, etc. Acute events compromise ICT infrastructures by destroying or disabling the physical assets that they depend on. Chronic stresses result from more gradual changes in climate norms, such as including changes in temperature ranges and humidity levels. While these impacts are less likely to have catastrophic consequences, they will lead to increased asset degradation, more frequent failures and shorter life spans."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:799
+#: ../theme/climateadaptv2/index.html:798
 msgid "The database contains quality checked information and is annotated by climate adaptation experts with keywords."
 msgstr "Η βάση δεδομένων περιέχει πληροφορίες ελέγχου ποιότητας και σχολιάζεται από εμπειρογνώμονες προσαρμογής του κλίματος με λέξεις -κλειδιά."
 
-#: ../theme/climateadaptv2/index.html:1291
+#: ../theme/climateadaptv2/index.html:1290
 #: ../theme/climateadaptv2/tab-policies-rule.html:378
 msgid "The impacts of catastrophic events on this heritage are coupled with the slow onset of changes arising from deterioration processes. Continuous increase in temperature and fluctuations in temperature and humidity or fluctuations in freeze–thaw cycles causes degradation and stress in materials, leading to a greater need for restoration and conservation. Biological degradation caused by microorganisms, for example, are more likely to occur."
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1235
+#: ../theme/climateadaptv2/index.html:1234
 #: ../theme/climateadaptv2/tab-policies-rule.html:322
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
 msgstr "Η ανάγκη προσαρμογής του συστήματος μεταφοράς με τον αντίκτυπο της κλιματικής αλλαγής έχει επισημανθεί από την προσαρμογή της Ευρωπαϊκής Επιτροπής (COM (2009) 148). Η προσαρμογή των μεταφορών αντιμετωπίζεται μέσω ενός συνδυασμού ευρωπαϊκών μεταφορών, αλλαγών του κλίματος και ερευνητικών πολιτικών. Η Ευρωπαϊκή Ένωση προωθεί τις βέλτιστες πρακτικές, την ενσωμάτωση της προσαρμογής στα προγράμματα ανάπτυξης υποδομών μεταφορών και παρέχει καθοδήγηση, π.χ. αναπτύσσοντας επαρκή πρότυπα για την κατασκευή. Η δράση επικεντρώνεται στην υποδομή μεταφορών και ιδιαίτερα στο Δίκτυο Μεταφορικών Μεταευρωμένων (Ten-T)."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1193
+#: ../theme/climateadaptv2/index.html:1192
 #: ../theme/climateadaptv2/tab-policies-rule.html:280
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
 msgstr "Ο γρήγορος ρυθμός της κλιματικής αλλαγής μπορεί να ξεπεράσει τη φυσική ικανότητα των δασικών οικοσυστημάτων να προσαρμοστούν. Αυτό οδηγεί σε αυξημένο κίνδυνο διαταραχών μέσω καταιγίδων, πυρκαγιάς, παρασίτων και ασθενειών με επιπτώσεις στην ανάπτυξη και την παραγωγή των δασών. Η οικονομική βιωσιμότητα της δασοκομίας θα επηρεαστεί, κυρίως στις νότιες περιοχές της Ευρώπης, καθώς και την ικανότητα των δασών να παρέχουν περιβαλλοντικές υπηρεσίες, συμπεριλαμβανομένων των αλλαγών στη λειτουργία του νεροχύτη άνθρακα. Το 2013, η Επιτροπή υιοθέτησε μια νέα δασική στρατηγική της ΕΕ, η οποία ανταποκρίνεται σε νέες προκλήσεις που αντιμετωπίζουν τα δάση και ο τομέας των δασών."
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:901
+#: ../theme/climateadaptv2/index.html:900
 msgid "Tools"
 msgstr "Εργαλεία"
 
-#: ../theme/climateadaptv2/index.html:1047
+#: ../theme/climateadaptv2/index.html:1046
 #: ../theme/climateadaptv2/tab-policies-rule.html:134
 msgid "Tourism"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1055
+#: ../theme/climateadaptv2/index.html:1054
 #: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Transport"
 msgstr "Μεταφορά"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1063
+#: ../theme/climateadaptv2/index.html:1062
 #: ../theme/climateadaptv2/tab-policies-rule.html:150
 msgid "Urban"
 msgstr "Αστικός"
 
-#: ../theme/climateadaptv2/index.html:1562
+#: ../theme/climateadaptv2/index.html:1561
 msgid "Urban Adaptation Support Tool"
 msgstr ""
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:874
+#: ../theme/climateadaptv2/index.html:873
 msgid "Videos"
 msgstr "Βίντεο"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1071
+#: ../theme/climateadaptv2/index.html:1070
 #: ../theme/climateadaptv2/tab-policies-rule.html:158
 msgid "Water <br /> management"
 msgstr "Νερό <br /> Διαχείριση"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1262
+#: ../theme/climateadaptv2/index.html:1261
 #: ../theme/climateadaptv2/tab-policies-rule.html:349
 msgid "Water management"
 msgstr "ΔΙΑΧΕΙΡΙΣΗ ΝΕΡΟΥ"
 
 # ,
 # ,
-#: ../theme/climateadaptv2/index.html:1263
+#: ../theme/climateadaptv2/index.html:1262
 #: ../theme/climateadaptv2/tab-policies-rule.html:350
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
 msgstr "Οι υδάτινοι πόροι επηρεάζονται άμεσα από την αλλαγή του κλίματος και η διαχείριση αυτών των πόρων επηρεάζει την ευπάθεια των οικοσυστημάτων, των κοινωνικοοικονομικών δραστηριοτήτων και της ανθρώπινης υγείας. Η διαχείριση των υδάτων αναμένεται επίσης να διαδραματίσει όλο και πιο κεντρικό ρόλο στην προσαρμογή. Η αλλαγή του κλίματος αναμένεται να οδηγήσει σε σημαντικές αλλαγές στη διαθεσιμότητα των υδάτων σε ολόκληρη την Ευρώπη με την αύξηση της έλλειψης νερού και της ξηρασίας κυρίως στη νότια Ευρώπη και στον αυξανόμενο κίνδυνο πλημμυρών σε όλη την Ευρώπη."
 
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
-#: ../theme/climateadaptv2/index.html:1409
+#: ../theme/climateadaptv2/index.html:1408
 msgid "case_studies_tab"
 msgstr ""
 
-#: ../theme/climateadaptv2/index.html:1406
+#: ../theme/climateadaptv2/index.html:1405
 msgid "criteria"
 msgstr ""
 
 #. Default: "Please check our ${page_url} for more help on how to search the database."
-#: ../theme/climateadaptv2/index.html:801
+#: ../theme/climateadaptv2/index.html:800
 msgid "guidance_link"
 msgstr ""
 
 # ,
-#: ../theme/climateadaptv2/index.html:788
+#: ../theme/climateadaptv2/index.html:787
 msgid "type here ..."
 msgstr "πληκτρολογίστε εδώ ..."

@@ -1148,6 +1148,25 @@ def obs_countries_list(obj, data, request):
     return {"blocks": blocks}
 
 
+def country_profile_view(*args, **kw):
+    blocks = [[make_uid(), {"@type": "countryProfileDetail"}]]
+    return {"blocks": blocks}
+
+
+def casestudy_explorer_view(*args, **kw):
+    group_blocks = {}
+    block_uid = make_uid()
+    group_blocks[block_uid] = {"@type": "caseStudyExplorer"}
+    group_block = {
+        "@type": "group",
+        "as": "div",
+        "data": {"blocks": group_blocks, "blocks_layout": {"items": [block_uid]}},
+        "styles": {"size": "full"},
+    }
+    blocks = [[make_uid(), group_block]]
+    return {"blocks": blocks}
+
+
 view_convertors = {
     # lists the indicators structured by information extracted from the ECDE
     # indicator. It needs to be reimplemented as a service. Ticket: https://taskman.eionet.europa.eu/issues/161483
@@ -1155,7 +1174,7 @@ view_convertors = {
     "c3s_indicators_overview": c3s_indicators_overview_view,
     # reimplemented as CaseStudyExplorer block
     # /knowledge/tools/case-study-explorer
-    "case-study-and-adaptation-options-map-viewer": nop_view,
+    "case-study-and-adaptation-options-map-viewer": casestudy_explorer_view,
     # renders a map of countries, with links to the countries. Needs a simple
     # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/161493
     # /observatory/policy-context/country-profiles/country-profiles
@@ -1166,25 +1185,18 @@ view_convertors = {
     # a colored map with countries and two types of classification. Needs
     # reimplementation. Ticket: https://taskman.eionet.europa.eu/issues/253391
     # right-side navigation. We could solve it with a context navigation portlet: https://taskman.eionet.europa.eu/issues/161493
-    # /observatory/policy-context/country-profiles/austria
-    "countries-list": nop_view,
     # it's a tooltip. It needs a custom block converter with https://github.com/eea/volto-slate-label
     # Ticket: https://taskman.eionet.europa.eu/issues/253394
     # /countries-regions/countries/liechtenstein
     "country-disclaimer": country_disclaimer_view,
     # renders the main part of the country profile, extracted from JSON. Needs to be
     # reimplemented. Ticket: https://taskman.eionet.europa.eu/issues/253396
-    "country-profile": nop_view,  # /countries-regions/countries/finland
+    # /countries-regions/countries/finland
+    "country-profile": country_profile_view,
     # a listing of sector policies, with descriptions underneath. Doesn't fit the new
     # Design System, we need a ticket for the designer to reorganize with EEA DS. Ticket: https://taskman.eionet.europa.eu/issues/253400
     # /eu-adaptation-policy/sector-policies/index_html
     "eu-sector-policies": eu_sector_policies_view,
-    # To be implemented as a homepage. Ticket??: https://taskman.eionet.europa.eu/issues/161511
-    "forest-landing-page": nop_view,  # /knowledge/forestry
-    # To be implemented as a homepage. Ticket??: https://taskman.eionet.europa.eu/issues/161481
-    "fp-countries-tile": nop_view,  # /
-    "fp-events-tile": nop_view,  # /
-    "fp-news-tile": nop_view,  # /
     # Card-based listing. To be implemented as a card listing. Ticket: https://taskman.eionet.europa.eu/issues/161514
     "help-categories": help_categories_view,  # /help/index_html
     # A search listing with tab-based prefilters. Should be reimplemented as search
@@ -1198,10 +1210,22 @@ view_convertors = {
     "regions-section-select": regions_section_select_view,
     # To be reimplemented as a homepage. Ticket for designer: https://taskman.eionet.europa.eu/issues/253404
     "urban-landing-page": nop_view,  # /countries-regions/local
-    # Doesn't seem to do anything. To be investigated.
-    "video-thumbs": nop_view,  # /help/Webinars
     # Should be provided by the banner block.
     "view_last_modified": nop_view,  # /countries-regions/countries/liechtenstein
+    #
+    # ---- not to be implemented
+    #
+    # Was implemented as a homepage. Ticket??: https://taskman.eionet.europa.eu/issues/161511
+    "forest-landing-page": nop_view,  # /knowledge/forestry
+    # implemented as a homepage. Ticket??: https://taskman.eionet.europa.eu/issues/161481
+    "fp-countries-tile": nop_view,  # /
+    "fp-events-tile": nop_view,  # /
+    "fp-news-tile": nop_view,  # /
+    # Doesn't seem to do anything. To be investigated.
+    "video-thumbs": nop_view,  # /help/Webinars
+    # /observatory/policy-context/country-profiles/austria
+    # we use the country selector flag block
+    "countries-list": nop_view,
 }
 
 _logged = []

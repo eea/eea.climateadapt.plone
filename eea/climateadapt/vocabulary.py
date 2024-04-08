@@ -315,15 +315,21 @@ aceitem_sectors_vocabulary = generic_vocabulary(_sectors, sort=False)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
 _elements = [
-    ("EU_POLICY", "Sector Policies"),
-    ("MEASUREACTION", "Adaptation Measures and Actions"),
-    ("OBSERVATIONS", "Observations and Scenarios"),
-    ("PLANSTRATEGY", "Adaptation Plans and Strategies"),
-    ("VULNERABILITY", "Vulnerability Assessment"),
-    ("CLIMATESERVICES", "Climate services"),
+    ("EU_POLICY", _("Sector Policies")),
+    ("MEASUREACTION", _("Adaptation Measures and Actions")),
+    ("OBSERVATIONS", _("Observations and Scenarios")),
+    ("PLANSTRATEGY", _("Adaptation Plans and Strategies")),
+    ("VULNERABILITY", _("Vulnerability Assessment")),
+    ("CLIMATESERVICES", _("Climate services")),
     ("JUSTRESILIENCE", "Just Resilience"),
     ("MRE", "MRE"),
     ("NATUREBASEDSOL", _("Nature-based solutions")),
+    ("ENVIRONMENTALASP", _("Environmental aspects")),
+    ("MITIGATIONASP", _("Mitigation aspects")),
+    ("SOCIETALASP", _("Societal aspects")),
+    ("ECONOMICASP", _("Ecomic aspects")),
+    ("COSTBENEFIT", _("Cost-benefit analysis and maintenance costs")),
+    ("RUPOTENTIAL", _("Replication/upscaling potential")),
 ]
 aceitem_elements_vocabulary = generic_vocabulary(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
