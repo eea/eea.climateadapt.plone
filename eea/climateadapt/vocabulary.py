@@ -1188,3 +1188,27 @@ SUBNATIONAL_REGIONS = {
     "SUBN_Northern_Ireland__GB_": "Northern Ireland (UK)",
     "SUBN_Extra_Regio_NUTS_2__GB_": "Extra-Regio NUTS 2 (UK)",
 }
+
+_rast_steps = [
+    ("PREPARING_GROUND", _("Step 1. Preparing the ground for adaptation")),
+    (
+        "ASSESSING_RISKS_VULNER",
+        _("Step 2. Assessing climate change risks and vulnerabilities"),
+    ),
+    ("IDENTIF_ADAPT_OPT", _("Step 3. Identifying adaptation options")),
+    ("ASSESSING_ADAPT_OPT", _("Step 4. Assessing and selecting adaptation options")),
+    ("IMPLEMENTATION", _("Step 5. Implementing adaptation")),
+    ("MONIT_AND_EVAL", _("Step 6. Monitoring and evaluating adaptation")),
+]
+rast_steps_vocabulary = generic_vocabulary(_rast_steps)
+alsoProvides(rast_steps_vocabulary, IVocabularyFactory)
+
+_eligible_entities = [
+    ("PUBLIC_BODIES", _("Public bodies")),
+    ("SOCIAL_CULTURAL", _("Social, cultural, educational bodies")),
+    ("PRIVATE_BODIES", _("Private bodies")),
+    ("NGOS", _("NGOs")),
+    ("OTHER", _("Other")),
+]
+eligible_entities_vocabulary = generic_vocabulary(_eligible_entities)
+alsoProvides(eligible_entities_vocabulary, IVocabularyFactory)
