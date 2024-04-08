@@ -22,22 +22,6 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     """MissionFundingCCA Interface"""
 
     form.fieldset(
-        "default",
-        label="Default",
-        fields=[
-            "objective",
-            "funding_type",
-            "budget_range",
-            "funding_rate",
-            "is_blended",
-            "is_consortium_required",
-            "authority",
-            "publication_page",
-            "general_info",
-            "further_info",
-        ],
-    )
-    form.fieldset(
         "mission_funding_metadata",
         label="Metadata",
         fields=[
@@ -92,7 +76,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     further_info = TextLine(title=_("Further information"), required=False)
     regions = TextLine(title=_("Region where the funding is offered"), required=False)
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    form.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     rast_steps = List(
         title=_("RAST step(s) of relevance"),
         required=False,
@@ -101,7 +85,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         ),
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    form.widget(eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     eligible_entities = List(
         title=_("Eligible to receive funding"),
         required=False,

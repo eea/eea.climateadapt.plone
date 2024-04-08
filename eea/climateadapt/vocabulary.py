@@ -94,7 +94,8 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
 
         if parsed.get("path"):
             if parsed["path"].get("depth"):
-                parsed["path"]["query"].append("/cca/metadata/adaptation-options")
+                parsed["path"]["query"].append(
+                    "/cca/metadata/adaptation-options")
 
                 if "/cca" in parsed["path"]["query"]:
                     parsed["path"]["query"].remove("/cca")
@@ -355,7 +356,8 @@ _climateimpacts = [
     ("WATERSCARCE", _("Water Scarcity")),
     ("NONSPECIFIC", _("Non specific")),
 ]
-aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts, sort=False)
+aceitem_climateimpacts_vocabulary = generic_vocabulary(
+    _climateimpacts, sort=False)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
 
@@ -392,7 +394,8 @@ _implementationtypes = (
     ("green", "Ecological ('green')"),
     ("soft", "Behavioural / policy ('soft')"),
 )
-acemeasure_implementationtype_vocabulary = generic_vocabulary(_implementationtypes)
+acemeasure_implementationtype_vocabulary = generic_vocabulary(
+    _implementationtypes)
 alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
 
 # Used for aceitems
@@ -459,7 +462,8 @@ ace_countries = sorted(ace_countries, key=lambda x: x[0])
 
 ace_countries.append(("MK", "Republic of North Macedonia"))
 
-ace_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
+ace_countries.append(
+    ("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
@@ -556,7 +560,8 @@ faceted_countries = [
     (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in faceted_countries
 ]
 faceted_countries.append(("MK", "Republic of North Macedonia"))
-faceted_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
+faceted_countries.append(
+    ("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 
 faceted_countries_dict = dict(faceted_countries)
 
@@ -626,7 +631,8 @@ alsoProvides(climate_threats, IVocabularyFactory)
 _funding_programme = (
     ("Other", "Other"),
     ("COST Action", "COST Action"),
-    ("LIFE - Environment and climate action", "LIFE - Environment and climate action"),
+    ("LIFE - Environment and climate action",
+     "LIFE - Environment and climate action"),
     (
         "COPERNICUS - European earth observation programme",
         "COPERNICUS - European earth observation programme",
@@ -1196,25 +1202,22 @@ SUBNATIONAL_REGIONS = {
 }
 
 _rast_steps = [
-    ("PREPARING_GROUND", _("Step 1. Preparing the ground for adaptation")),
-    (
-        "ASSESSING_RISKS_VULNER",
-        _("Step 2. Assessing climate change risks and vulnerabilities"),
-    ),
-    ("IDENTIF_ADAPT_OPT", _("Step 3. Identifying adaptation options")),
-    ("ASSESSING_ADAPT_OPT", _("Step 4. Assessing and selecting adaptation options")),
-    ("IMPLEMENTATION", _("Step 5. Implementing adaptation")),
-    ("MONIT_AND_EVAL", _("Step 6. Monitoring and evaluating adaptation")),
+    ("STEP_1", _("Step 1. Preparing the ground for adaptation")),
+    ("STEP_2", _("Step 2. Assessing climate change risks and vulnerabilities")),
+    ("STEP_3", _("Step 3. Identifying adaptation options")),
+    ("STEP_4", _("Step 4. Assessing and selecting adaptation options")),
+    ("STEP_5", _("Step 5. Implementing adaptation")),
+    ("STEP_6", _("Step 6. Monitoring and evaluating adaptation")),
 ]
 rast_steps_vocabulary = generic_vocabulary(_rast_steps)
 alsoProvides(rast_steps_vocabulary, IVocabularyFactory)
 
 _eligible_entities = [
-    ("PUBLIC_BODIES", _("Public bodies")),
-    ("SOCIAL_CULTURAL", _("Social, cultural, educational bodies")),
-    ("PRIVATE_BODIES", _("Private bodies")),
-    ("NGOS", _("NGOs")),
-    ("OTHER", _("Other")),
+    ("A_PUBLIC_BODIES", _("Public bodies")),
+    ("B_SOCIAL_CULTURAL", _("Social, cultural, educational bodies")),
+    ("C_PRIVATE_BODIES", _("Private bodies")),
+    ("D_NGOS", _("NGOs")),
+    ("E_OTHER", _("Other")),
 ]
 eligible_entities_vocabulary = generic_vocabulary(_eligible_entities)
 alsoProvides(eligible_entities_vocabulary, IVocabularyFactory)
