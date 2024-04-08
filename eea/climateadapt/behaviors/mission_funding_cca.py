@@ -1,20 +1,13 @@
 from eea.climateadapt import CcaAdminMessageFactory as _
-from zope.schema import Choice, List
+from zope.schema import Choice, List, TextLine, Bool, URI
 from plone.directives import form
 from plone.restapi.behaviors import IBlocks
 from plone.supermodel import model
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from zope.interface import alsoProvides, implementer, provider, alsoProvides
+from zope.interface import alsoProvides, provider
 
-
-from zope.schema import Choice, List, Tuple, TextLine, Bool, URI
 from plone.app.textfield import RichText
-# from plone.app.widgets.interfaces import IWidgetsLayer
-# from plone.restapi.behaviors import IBlocks
-# from z3c.form.widget import FieldWidget
-# from z3c.form.interfaces import IFieldWidget
-# from plone.autoform import directives
 
 
 @provider(IFormFieldProvider)
@@ -43,7 +36,9 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         required=False,
     )
 
-    budget_range = TextLine(title=_("Expected budget range proposals"), required=False)
+    budget_range = TextLine(
+        title=_("Expected budget range of proposals"), required=False
+    )
     funding_rate = TextLine(
         title=_("Funding rate (percentage of covered costs)"), required=False
     )
@@ -107,7 +102,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     )
 
     country = List(
-        title=_("Countries"),
+        title=_("Countries where the funding opportunity is offered"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
@@ -115,3 +110,11 @@ class IMissionFundingCCA(model.Schema, IBlocks):
 
 alsoProvides(IMissionFundingCCA["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["country"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["is_blended"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["publication_page"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["general_info"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["regions"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["rast_steps"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["eligible_entities"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
