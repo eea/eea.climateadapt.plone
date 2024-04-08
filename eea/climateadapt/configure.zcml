@@ -325,6 +325,16 @@
       component=".vocabulary.rich_header_level"
       />
 
+  <utility
+      name="eea.climateadapt.rast_steps"
+      component=".vocabulary.rast_steps_vocabulary"
+      />
+
+  <utility
+      name="eea.climateadapt.eligible_entities"
+      component=".vocabulary.eligible_entities_vocabulary"
+      />
+
     ------[ Marker interfaces: ]--------
 
   <interface interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
