@@ -474,3 +474,18 @@ class MigrateEvent(object):
 
         migrate_simplecontent_to_volto(self.context, make_metadata_blocks)
         self.context.reindexObject()
+
+
+@adapter(Interface, Interface)
+@implementer(IMigrateToVolto)
+class MigrateFallback(object):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        logger.info(
+            "Fallback migrator for (%s) %s",
+            self.context.portal_type,
+            self.context.absolute_url
+        )
