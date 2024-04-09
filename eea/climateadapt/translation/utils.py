@@ -32,6 +32,8 @@ def translated_url(context, url, current_lang):
     replace_urls = [
         "https://cca.devel5cph.eionet.europa.eu",
         "https://climate-adapt.eea.europa.eu",
+        "https://next-climate-adapt.eea.europa.eu",
+        "http://localhost:8080",
     ]
 
     portal_url = context.portal_url()
