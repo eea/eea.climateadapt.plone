@@ -63,7 +63,7 @@ def translated_url(context, url, current_lang):
         return relative_path
 
     if relative_path_split[0] == "en":
-        new_path = "/{}/{}".format(current_lang, relative_path_split[1:].join("/"))
+        new_path = "/{}/{}".format(current_lang, "/".join(relative_path_split[1:]))
 
         return new_path
 
