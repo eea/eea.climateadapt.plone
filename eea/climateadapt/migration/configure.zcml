@@ -40,6 +40,10 @@
     />
 
   <adapter
+      factory=".content.MigrateFallback"
+      />
+
+  <adapter
       factory=".content.MigrateCover"
       />
 
