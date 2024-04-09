@@ -6,7 +6,14 @@ import logging
 from collective.cover.interfaces import ICover
 from collective.cover.tiles.embed import IEmbedTile
 from collective.cover.tiles.richtext import IRichTextTile
-from plone.app.contenttypes.interfaces import IDocument, IEvent, IFolder, INewsItem
+from eea.climateadapt.translation.utils import translated_url
+from plone.app.contenttypes.interfaces import (
+    IDocument,
+    IEvent,
+    IFolder,
+    INewsItem,
+    ILink,
+)
 from plone.dexterity.interfaces import IDexterityContent
 from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter, queryMultiAdapter
@@ -474,3 +481,40 @@ class MigrateEvent(object):
 
         migrate_simplecontent_to_volto(self.context, make_metadata_blocks)
         self.context.reindexObject()
+
+
+@adapter(ILink, Interface)
+@implementer(IMigrateToVolto)
+class MigrateLink(object):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        if self.context.remoteUrl:
+            url = self.context.remoteUrl
+            url = translated_url(self.context, url, self.context.language)
+            if url != self.context.remoteUrl:
+                logger.info(
+                    "Fix link %s => %s (%s)",
+                    self.context.remoteUrl,
+                    url,
+                    self.context.absolute_url(),
+                )
+                self.context.remoteUrl = url
+                self.context.reindexObject()
+
+
+@adapter(Interface, Interface)
+@implementer(IMigrateToVolto)
+class MigrateFallback(object):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        logger.info(
+            "Fallback migrator for (%s) %s",
+            self.context.portal_type,
+            self.context.absolute_url(),
+        )

@@ -1,3 +1,138 @@
+mission_funding_cca_layout_items = [
+    "30d292ac-cc02-415d-ab8d-82bc97e90ac1",
+    "744523ca-8a19-4a56-9e86-aee5d5b9a100",
+    "c6711b42-26e5-4630-b05a-c396de1520d7",
+    "c0d65e60-b51c-487a-90fa-eab633b3fec7",
+]
+
+mission_funding_cca_layout_blocks = {
+    "c6711b42-26e5-4630-b05a-c396de1520d7": {
+        "styles": {},
+        "gridCols": ["twoThirds", "oneThird"],
+        "gridSize": 12,
+        "data": {
+            "blocks": {
+                "0006e3bd-a37f-4cd4-8573-63715dcf2009": {
+                    "blocks": {
+                        "5227a7c6-c586-4edb-8fce-fa6562edbc60": {"@type": "slate"},
+                        "fc1d8588-a13b-4795-814c-b50d1fe48d9e": {
+                            "data": {"widget": "array", "id": "country"},
+                            "@type": "metadata",
+                        },
+                        "d61459e1-554a-4eec-b213-a1b88e6da7da": {
+                            "data": {"widget": "string", "id": "regions"},
+                            "@type": "metadata",
+                        },
+                        "5b8409d8-f72e-4610-a728-64fd8c21ba46": {
+                            "data": {"widget": "array", "id": "eligible_entities"},
+                            "@type": "metadata",
+                        },
+                        "3c1c576c-1e70-4f22-bf21-380ffd23cb10": {
+                            "data": {"widget": "array", "id": "rast_steps"},
+                            "@type": "metadata",
+                        },
+                        "f8f5a2e9-0c18-4ad4-9101-16e72c1002ef": {
+                            "data": {"widget": "array", "id": "sectors"},
+                            "@type": "metadata",
+                        },
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "fc1d8588-a13b-4795-814c-b50d1fe48d9e",
+                            "d61459e1-554a-4eec-b213-a1b88e6da7da",
+                            "3c1c576c-1e70-4f22-bf21-380ffd23cb10",
+                            "5b8409d8-f72e-4610-a728-64fd8c21ba46",
+                            "f8f5a2e9-0c18-4ad4-9101-16e72c1002ef",
+                            "5227a7c6-c586-4edb-8fce-fa6562edbc60",
+                        ]
+                    },
+                },
+                "8843bdcf-6690-4ed4-8f83-bfb8c548ecf6": {
+                    "blocks": {
+                        "42d7fc40-a799-4a09-97c4-6a5a0fcee959": {
+                            "data": {"widget": "richtext", "id": "funding_type"},
+                            "@type": "metadata",
+                        },
+                        "367cce92-ff08-4713-b82d-1bfbeb5d20a9": {"@type": "slate"},
+                        "84394a35-8443-437f-87d8-9e62666e1532": {
+                            "data": {
+                                "widget": "boolean",
+                                "id": "is_consortium_required",
+                            },
+                            "@type": "metadata",
+                        },
+                        "ce408b00-e0a0-4699-8c70-890de9d16aaa": {
+                            "data": {"widget": "boolean", "id": "is_blended"},
+                            "@type": "metadata",
+                        },
+                        "f37af523-253e-419f-b999-32ccd229f9e6": {
+                            "data": {"widget": "string", "id": "budget_range"},
+                            "@type": "metadata",
+                        },
+                        "42498865-caf0-43ff-81b8-25a3805bd6c4": {
+                            "data": {"widget": "string", "id": "further_info"},
+                            "@type": "metadata",
+                        },
+                        "9ebe6edf-0522-4032-ae09-96529f214a0e": {
+                            "data": {"widget": "richtext", "id": "objective"},
+                            "@type": "metadata",
+                        },
+                        "53534fe7-d22d-4bdf-835c-f45308c25578": {
+                            "data": {"widget": "string", "id": "funding_rate"},
+                            "@type": "metadata",
+                        },
+                        "bbc974b2-c23a-4e3f-a007-6aa8b759dc59": {
+                            "data": {"widget": "url", "id": "publication_page"},
+                            "@type": "metadata",
+                        },
+                        "101edff3-8346-4f4e-9df0-2cb9d1a6b215": {
+                            "data": {"widget": "url", "id": "general_info"},
+                            "@type": "metadata",
+                        },
+                        "6846c161-a3ca-44cf-9909-533209f4eec2": {
+                            "data": {"widget": "string", "id": "authority"},
+                            "@type": "metadata",
+                        },
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "9ebe6edf-0522-4032-ae09-96529f214a0e",
+                            "42d7fc40-a799-4a09-97c4-6a5a0fcee959",
+                            "f37af523-253e-419f-b999-32ccd229f9e6",
+                            "53534fe7-d22d-4bdf-835c-f45308c25578",
+                            "ce408b00-e0a0-4699-8c70-890de9d16aaa",
+                            "84394a35-8443-437f-87d8-9e62666e1532",
+                            "6846c161-a3ca-44cf-9909-533209f4eec2",
+                            "bbc974b2-c23a-4e3f-a007-6aa8b759dc59",
+                            "101edff3-8346-4f4e-9df0-2cb9d1a6b215",
+                            "42498865-caf0-43ff-81b8-25a3805bd6c4",
+                            "367cce92-ff08-4713-b82d-1bfbeb5d20a9",
+                        ]
+                    },
+                },
+            },
+            "blocks_layout": {
+                "items": [
+                    "8843bdcf-6690-4ed4-8f83-bfb8c548ecf6",
+                    "0006e3bd-a37f-4cd4-8573-63715dcf2009",
+                ]
+            },
+        },
+        "@type": "columnsBlock",
+    },
+    "744523ca-8a19-4a56-9e86-aee5d5b9a100": {
+        "@type": "description",
+        "value": [{"type": "p", "children": [{"text": ""}]}],
+    },
+    "c0d65e60-b51c-487a-90fa-eab633b3fec7": {"@type": "slate"},
+    "30d292ac-cc02-415d-ab8d-82bc97e90ac1": {
+        "styles": {},
+        "@type": "title",
+        "copyrightIcon": "ri-copyright-line",
+    },
+}
+
+
 indicator_layout_items = [
     "b0fb074f-9ef6-40b6-b7c8-a5c16df31cb7",
     "7bbd49e4-bfcb-46cf-bfd6-2db8749f7a11",
@@ -1601,25 +1736,25 @@ organisation_layout_blocks = {
                                     "field": {
                                         "id": "organisational_key_activities",
                                         "title": "Key activities within climate change and health (relevant for the Observatory)",
-                                        "widget": "richtext"
-                                    }
+                                        "widget": "richtext",
+                                    },
                                 },
                                 {
                                     "@id": "73b81b92-147f-46b6-9952-b25a76278d1e",
                                     "field": {
                                         "id": "organisational_websites",
                                         "title": "Links to further information (relevant for the Observatory)",
-                                        "widget": "richtext"
-                                    }
+                                        "widget": "richtext",
+                                    },
                                 },
                                 {
                                     "@id": "94f47853-ee98-409a-8f3e-11c8cec37466",
                                     "field": {
                                         "id": "organisational_contact_information",
                                         "title": "Contact information (relevant for the Observatory)",
-                                        "widget": "richtext"
-                                    }
-                                }
+                                        "widget": "richtext",
+                                    },
+                                },
                             ],
                             "variation": "default",
                         },

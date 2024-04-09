@@ -6,6 +6,9 @@ from plone.supermodel import model
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from zope.interface import alsoProvides, provider
+from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
+from plone.schema import JSONField
+from .volto_layout import mission_funding_cca_layout_blocks, mission_funding_cca_layout_items
 
 from plone.app.textfield import RichText
 
@@ -107,6 +110,23 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
 
+    blocks = JSONField(
+        title=_("Blocks"),
+        description=_("The JSON representation of the object blocks."),
+        schema=BLOCKS_SCHEMA,
+        default=mission_funding_cca_layout_blocks,
+        required=False,
+    )
+
+    blocks_layout = JSONField(
+        title=_("Blocks Layout"),
+        description=_("The JSON representation of the object blocks layout."),
+        schema=LAYOUT_SCHEMA,
+        default={
+            "items": mission_funding_cca_layout_items,
+        },
+        required=False,
+    )
 
 alsoProvides(IMissionFundingCCA["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["country"], ILanguageIndependentField)
