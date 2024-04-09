@@ -1,5 +1,6 @@
 import json
 import urllib
+import logging
 from datetime import date
 
 from collective.cover.tiles.richtext import RichTextTile
@@ -19,6 +20,8 @@ from eea.climateadapt.tiles.richtext import RichTextWithTitle
 from eea.climateadapt.translation import translate_one_text_to_translation_storage
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
+
+logger = logging.getLogger("eea.climateadapt")
 
 
 def translated_url(context, url, current_lang):
@@ -49,6 +52,10 @@ def translated_url(context, url, current_lang):
 
     if relative_path.startswith("/"):
         relative_path = relative_path[1:]
+
+    if relative_path.startswith("http"):
+        logger.warn("Didn't convert translated url %s", url)
+        return url
 
     relative_path_split = relative_path.split("/")
 
