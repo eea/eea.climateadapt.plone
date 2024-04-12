@@ -305,7 +305,9 @@ ul li {
               </li>
              </ul>
             </div>
-            <div class="panel-body" tal:condition="python: not fieldset_websites" tal:content="structure python: view.convert_web_int(fieldset_data)">Data here</div>
+            <div class="panel-body" tal:condition="python: not fieldset_websites">
+              <div tal:content="structure python: view.convert_web_int(fieldset_data)">Data here</div>
+            </div>
           </div>
         </div>
       </tal:macro>
@@ -390,7 +392,7 @@ ul li {
             </a>
           </h4>
         </div>
-        <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:key_affected_sectors_${repeat/item/index}-body">
+        <div class="panel-collapse tiny-accbody collapse panel-body" tal:attributes="id string:key_affected_sectors_${repeat/item/index}-body">
           <table class="listing table-striped">
             <tr><td>Key affected sector(s)</td><td tal:content="item/SectorTitle" /></tr>
             <tr><td>Rating of the observed impacts of key hazards, including changes in frequency and magnitude</td><td tal:content="item/ImpactsKeyHazards" /></tr>
@@ -614,7 +616,7 @@ ul li {
                     </h4>
                   </div>
                   <div class="panel-collapse tiny-accbody collapse" tal:attributes="id python: id+'-body'">
-                    <div class="panel-body" tal:content="structure python: view.convert_web_int(fieldset_data)"></div>
+                    <div class="panel-body"><div tal:content="structure python: view.convert_web_int(fieldset_data)"></div></div>
                   </div>
               </div>
 
