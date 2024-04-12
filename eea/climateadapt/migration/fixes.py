@@ -857,13 +857,6 @@ def fix_layout_size(context):
 def fix_ast_header(context):
     obj = context
     url = obj.absolute_url(relative=True)
-    ignored_richtext_titles = [
-        'Additional Resources',
-        'Additional resources',
-        'Additional Sources',
-        'See also on Climate-ADAPT', 
-        'See also in Climate-ADAPT'
-    ]
 
     def migrate_ast_header(obj):
         title_block_id = get_block_id(obj.blocks, "title")
@@ -892,9 +885,10 @@ def fix_ast_header(context):
                 tile = obj.get_tile(tile)
                 tile_dm = ITileDataManager(tile)
                 data = tile_dm.get()
+                strip = data.get("dont_strip")
                 title = data.get("title")
                 if title:
-                    if title[:1].isdigit() or title not in ignored_richtext_titles:
+                    if title[:1].isdigit() or strip == True:
                         obj.title = title
 
         if "subtitle" not in obj.blocks[title_block_id]:
