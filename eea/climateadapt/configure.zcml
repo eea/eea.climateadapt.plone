@@ -335,6 +335,31 @@
       component=".vocabulary.eligible_entities_vocabulary"
       />
 
+  <utility
+      name="eea.climateadapt.readiness_for_use"
+      component=".vocabulary.readiness_for_use_vocabulary"
+      />
+
+  <utility
+      name="eea.climateadapt.geographical_scale"
+      component=".vocabulary.geographical_scale_vocabulary"
+      />
+
+  <utility
+      name="eea.climateadapt.tool_language"
+      component=".vocabulary.tool_language_vocabulary"
+      />
+
+  <utility
+      name="eea.climateadapt.most_useful_for"
+      component=".vocabulary.most_useful_for_vocabulary"
+      />
+
+  <utility
+      name="eea.climateadapt.user_requirements"
+      component=".vocabulary.user_requirements_vocabulary"
+      />
+
     ------[ Marker interfaces: ]--------
 
   <interface interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
