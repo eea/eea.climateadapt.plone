@@ -1,7 +1,6 @@
 from eea.climateadapt import CcaAdminMessageFactory as _
 from zope.schema import Choice, List
 from plone.directives import form
-from plone.restapi.behaviors import IBlocks
 from plone.supermodel import model
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
@@ -206,6 +205,7 @@ class IMissionTool(model.Schema, IBlocks):
         },
         required=False,
     )
+
 
 alsoProvides(IMissionTool['objective'], ILanguageIndependentField)
 alsoProvides(IMissionTool['short_description'], ILanguageIndependentField)

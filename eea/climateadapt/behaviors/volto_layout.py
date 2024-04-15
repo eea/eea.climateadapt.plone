@@ -1,28 +1,11 @@
 mission_tool_layout_items = [
   "cb563e40-c10f-4fa5-9248-b97a612b1963",
-  "507cbc2a-6b27-4127-9e62-cb1ce0f62aa4",
   "f8f78a60-bbf5-401d-bfbd-8da778287700",
   "e657b3ec-29ee-4b98-8847-476064324c5a",
   "6965efcb-74ba-4604-863c-ccd284039132",
 ]
 
 mission_tool_layout_blocks = {
-  "507cbc2a-6b27-4127-9e62-cb1ce0f62aa4": {
-    "@layout": "dbd30d8e-edd3-4209-b252-bb7414c293d3",
-    "@type": "slate",
-    "block": "b4d8f77a-7d2c-4083-a8de-fcb6192dd78d",
-    "plaintext": "",
-    "value": [
-      {
-        "children": [
-          {
-            "text": ""
-          }
-        ],
-        "type": "p"
-      }
-    ]
-  },
   "6965efcb-74ba-4604-863c-ccd284039132": {
     "@type": "slate",
     "plaintext": "",
