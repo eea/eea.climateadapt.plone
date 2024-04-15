@@ -1,14 +1,16 @@
 from eea.climateadapt import CcaAdminMessageFactory as _
 from zope.schema import Choice, List, TextLine, Bool, URI
 from plone.directives import form
-from plone.restapi.behaviors import IBlocks
 from plone.supermodel import model
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from zope.interface import alsoProvides, provider
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from .volto_layout import mission_funding_cca_layout_blocks, mission_funding_cca_layout_items
+from .volto_layout import (
+    mission_funding_cca_layout_blocks,
+    mission_funding_cca_layout_items,
+)
 
 from plone.app.textfield import RichText
 
@@ -127,6 +129,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         },
         required=False,
     )
+
 
 alsoProvides(IMissionFundingCCA["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["country"], ILanguageIndependentField)
