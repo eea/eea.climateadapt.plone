@@ -858,7 +858,8 @@ def fix_ast_header(context):
     obj = context
     url = obj.absolute_url(relative=True)
 
-    if are_in_path(url, AST_PATHS):
+    def migrate_ast_header(obj):
+        title_block_id = get_block_id(obj.blocks, "title")
         for tile in obj.list_tiles():
             if "ast_header" in obj.get_tile_type(tile):
                 tile = obj.get_tile(tile)
@@ -871,26 +872,34 @@ def fix_ast_header(context):
                 new_data = {
                     "@type": "title",
                     "hideContentType": True,
-                    "subtitle": subtitle,
+                    "subtitle": subtitle if step != 0 else title
                 }
                 obj.blocks[title_block_id] = new_data
-                obj.title = subtitle
+                if step == 0:
+                    obj.title = title
+                else: 
+                    obj.title = subtitle
 
         for tile in obj.list_tiles():
             if "richtext_with_title" in obj.get_tile_type(tile):
                 tile = obj.get_tile(tile)
                 tile_dm = ITileDataManager(tile)
                 data = tile_dm.get()
+                strip = data.get("dont_strip")
                 title = data.get("title")
-                if title and title[:1].isdigit():
-                    obj.title = title
+                if title:
+                    if title[:1].isdigit() or strip == True:
+                        obj.title = title
 
-        title_block_id = get_block_id(obj.blocks, "title")
         if "subtitle" not in obj.blocks[title_block_id]:
             obj.blocks[title_block_id]["subtitle"] = ""
 
         if obj.blocks[title_block_id]["subtitle"] == obj.title:
             obj.blocks[title_block_id]["subtitle"] = ""
+
+    if are_in_path(url, AST_PATHS):
+        if hasattr(obj, 'list_tiles'):
+            migrate_ast_header(obj)
 
     obj._p_changed = True
 
