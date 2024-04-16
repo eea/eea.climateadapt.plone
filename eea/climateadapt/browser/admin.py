@@ -1123,6 +1123,102 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
         return 'AdapteCCA current case study fixed import_ids'
 
 
+class MissionFundingImporter(BrowserView):
+    """ Import mission funding items from CSV
+    """
+
+    def __call__(self):
+        # metarow_index = 1
+        label_index = 2
+        start_index = 3
+
+        def tobool(value):
+            if value == 'YES':
+                return True
+            elif value == 'NO':
+                return False
+            return None
+
+        def text(column):
+            def convert(row, data):
+                value = row[column].strip()
+                return value
+            return convert
+
+        def choices(columns, value_map=None):
+            def convert(row, data):
+                value = []
+                labels = data[label_index][columns[0]:columns[-1]+1]
+                for i, col in enumerate(columns):
+                    if tobool(row[col]):
+                        if value_map:
+                            value.append(value_map[labels[i]])
+                        else:
+                            value.append(labels[i])
+                return value
+            return convert
+
+        def boolean_field(column):
+            def convert(row, data):
+                value = row[column].strip()
+                return tobool(value)
+            return convert
+
+        def richtext(column):
+            def convert(row, data):
+                value = row[column].strip()
+                # TODO: use inteligent text converter
+                return value
+            return convert
+
+        ast_map = {
+            "AST 1: Preparing the ground for adaptation": "AST_STEP_1",
+            "AST 2: Assessing risks and vulnerability to climate change": "AST_STEP_2",
+            "AST 3: Identifying adaptation options": "AST_STEP_3",
+            "AST 4: Assessing adaptation options": "AST_STEP_4",
+            "AST 5: Implementation": "AST_STEP_5",
+            "AST 6: Monitoring & Evaluation (M&E)": "AST_STEP_6"
+        }
+
+        # these are 0-based indexes
+        fields_definition = dict(
+            title=text(2),
+            objective=text(51),
+            budget_range=choices([38, 39, 40, 41]),
+            funding_rate=text(42),
+            is_blended=boolean_field(45),
+            is_consortium_required=boolean_field(46),
+            authority=text(53),
+            publication_page=text(71),
+            general_info=text(3),
+            regions=text(6),
+            rast_steps=choices([8, 9, 10, 11, 12, 13], ast_map),
+            eligible_entities=choices([14, 15, 16, 17]),
+            sectors=choices([18, 19, 20, 21, 22, 23, 24,
+                            25, 26, 27, 28, 29, 30, 31]),
+            # TODO
+            # funding_type=choices([32, 33, 34, 35]),
+            # further_info=richtext(),
+            # country=text()
+        )
+
+        fpath = resource_filename('eea.climateadapt.browser',
+                                  'data/mission_funding.csv')
+        toimport = []
+        # __import__('pdb').set_trace()
+        with open(fpath) as csvfile:
+            reader = csv.reader(csvfile, delimiter=",")
+            wholedata = list(reader)
+            for row in wholedata[start_index:]:
+                record = {}
+                for name, converter in fields_definition.items():
+                    value = converter(row, wholedata)
+                    record[name] = value
+                toimport.append(record)
+
+        return json.dumps(toimport)
+
+
 class ConvertPythonDatetime(BrowserView):
     """ Convert effective_date and creation_date from python datetime to
     DateTime
