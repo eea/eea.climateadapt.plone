@@ -60,6 +60,15 @@ mission_tool_layout_blocks = {
                         "showLabel": True
                       },
                       {
+                        "@id": "0e4eec63-2d9f-4107-8b59-0836f2d3be97",
+                        "field": {
+                          "id": "tool_language",
+                          "title": "Language(s) of the tool",
+                          "widget": "array"
+                        },
+                        "showLabel": True
+                      },
+                      {
                         "@id": "f423f448-d3da-4e14-8fb9-a3bd8cd84574",
                         "field": {
                           "id": "sectors",
