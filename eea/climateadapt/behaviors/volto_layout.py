@@ -1,76 +1,16 @@
 mission_tool_layout_items = [
-  "cb563e40-c10f-4fa5-9248-b97a612b1963",
-  "f8f78a60-bbf5-401d-bfbd-8da778287700",
-  "e657b3ec-29ee-4b98-8847-476064324c5a",
-  "6965efcb-74ba-4604-863c-ccd284039132",
+  "e7a26855-1cd7-47e7-bda7-0da3fba96486",
+  "801e89b5-16a5-4679-951a-4592b7e810ec",
+  "6a58672f-a112-43cf-9414-ddf0f4f87636",
+  "e89d047b-710c-45ef-a593-449db7354b87",
+  "cfb618c5-b6ba-4bc0-aedb-e8981f3ff532"
 ]
 
 mission_tool_layout_blocks = {
-  "6965efcb-74ba-4604-863c-ccd284039132": {
-    "@type": "slate",
-    "plaintext": "",
-    "value": [
-      {
-        "children": [
-          {
-            "text": ""
-          }
-        ],
-        "type": "p"
-      }
-    ]
-  },
-  "cb563e40-c10f-4fa5-9248-b97a612b1963": {
-    "@layout": "84e09670-6e2a-42be-b037-2a43f1678ba7",
-    "@type": "title",
-    "block": "0a10c6ae-de83-479c-95d8-b7da196d1bd4",
-    "copyrightIcon": "ri-copyright-line",
-    "styles": {}
-  },
-  "e657b3ec-29ee-4b98-8847-476064324c5a": {
-    "@type": "group",
-    "data": {
-      "blocks": {
-        "2e5f3594-3def-4264-ac18-947d9e0fdb6b": {
-          "@type": "slate",
-          "plaintext": " Disclaimer The contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages.",
-          "value": [
-            {
-              "children": [
-                {
-                  "text": ""
-                },
-                {
-                  "children": [
-                    {
-                      "text": "Disclaimer"
-                    }
-                  ],
-                  "type": "strong"
-                },
-                {
-                  "text": "\nThe contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages."
-                }
-              ],
-              "type": "p"
-            }
-          ]
-        }
-      },
-      "blocks_layout": {
-        "items": [
-          "2e5f3594-3def-4264-ac18-947d9e0fdb6b"
-        ]
-      }
-    },
-    "styles": {
-      "style_name": "content-box-gray"
-    }
-  },
-  "f8f78a60-bbf5-401d-bfbd-8da778287700": {
-    "@layout": "44e9f418-00dd-4eae-8d04-cd481e167a9f",
+  "6a58672f-a112-43cf-9414-ddf0f4f87636": {
+    "@layout": "f8f78a60-bbf5-401d-bfbd-8da778287700",
     "@type": "columnsBlock",
-    "block": "1e3a5ac8-6c83-47a6-94a5-584e52ed3073",
+    "block": "84da9fb4-ae4f-49f2-abd2-8e6a7f26bf4b",
     "data": {
       "blocks": {
         "3bbbfb67-81f5-4f24-a6e1-38ae3e152a45": {
@@ -1091,6 +1031,13 @@ mission_tool_layout_blocks = {
                 "widget": "richtext"
               }
             },
+            "e4ed1d5e-eed4-46ad-ae52-4eef79aafb4c": {
+              "@type": "metadata",
+              "data": {
+                "id": "output_image",
+                "widget": "image"
+              }
+            },
             "e7cef2b0-706f-4226-af1c-4c6d978d8066": {
               "@type": "slate",
               "plaintext": "Applications",
@@ -1152,6 +1099,7 @@ mission_tool_layout_blocks = {
               "cff10169-21e7-4f1a-83a0-4c1727805fe3",
               "43866770-60ad-4550-9c49-a07801be014c",
               "24fc147e-10ef-4506-95bf-90aef6773063",
+              "e4ed1d5e-eed4-46ad-ae52-4eef79aafb4c",
               "ef2503cb-f92e-440c-9da0-8ab3c8a31720",
               "2518ae1a-f1ef-47e0-ab9b-a29072f35c42",
               "9aa86e88-5be2-4c03-8e8a-bcdd0c0bb741",
@@ -1280,6 +1228,76 @@ mission_tool_layout_blocks = {
     ],
     "gridSize": 12,
     "styles": {}
+  },
+  "801e89b5-16a5-4679-951a-4592b7e810ec": {
+    "@layout": "2e0079dc-e162-4620-a4a7-d0277a0cc120",
+    "@type": "description",
+    "block": "9efaa228-1ac1-4bc3-b932-5c0aaa123d12"
+  },
+  "cfb618c5-b6ba-4bc0-aedb-e8981f3ff532": {
+    "@layout": "6965efcb-74ba-4604-863c-ccd284039132",
+    "@type": "slate",
+    "block": "7175ed80-d87f-4f30-a003-d40e3fc51ce2",
+    "plaintext": "",
+    "value": [
+      {
+        "children": [
+          {
+            "text": ""
+          }
+        ],
+        "type": "p"
+      }
+    ]
+  },
+  "e7a26855-1cd7-47e7-bda7-0da3fba96486": {
+    "@layout": "cb563e40-c10f-4fa5-9248-b97a612b1963",
+    "@type": "title",
+    "block": "31e16ca5-add7-4bb3-916d-3a6df95703c6",
+    "copyrightIcon": "ri-copyright-line",
+    "styles": {}
+  },
+  "e89d047b-710c-45ef-a593-449db7354b87": {
+    "@layout": "e657b3ec-29ee-4b98-8847-476064324c5a",
+    "@type": "group",
+    "block": "706e37d5-2e7a-4a2f-97e1-3d3b874c057a",
+    "data": {
+      "blocks": {
+        "2e5f3594-3def-4264-ac18-947d9e0fdb6b": {
+          "@type": "slate",
+          "plaintext": " Disclaimer The contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages.",
+          "value": [
+            {
+              "children": [
+                {
+                  "text": ""
+                },
+                {
+                  "children": [
+                    {
+                      "text": "Disclaimer"
+                    }
+                  ],
+                  "type": "strong"
+                },
+                {
+                  "text": "\nThe contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages."
+                }
+              ],
+              "type": "p"
+            }
+          ]
+        }
+      },
+      "blocks_layout": {
+        "items": [
+          "2e5f3594-3def-4264-ac18-947d9e0fdb6b"
+        ]
+      }
+    },
+    "styles": {
+      "style_name": "content-box-gray"
+    }
   },
 }
 

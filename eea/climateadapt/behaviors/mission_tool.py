@@ -1,5 +1,6 @@
 from eea.climateadapt import CcaAdminMessageFactory as _
 from zope.schema import Choice, List
+from plone.namedfile.field import NamedBlobImage
 from plone.directives import form
 from plone.supermodel import model
 from plone.autoform.interfaces import IFormFieldProvider
@@ -29,6 +30,7 @@ class IMissionTool(model.Schema, IBlocks):
             "rast_steps",
             "input",
             "output",
+            "output_image",
             "geographical_scale",
             "geographical_area",
             "climate_impacts",
@@ -94,6 +96,11 @@ class IMissionTool(model.Schema, IBlocks):
 
     output = RichText(
         title=_("Output(s)"),
+        required=False,
+    )
+
+    output_image = NamedBlobImage(
+        title=_("Output(s) image"),
         required=False,
     )
 
@@ -216,6 +223,7 @@ alsoProvides(IMissionTool['strengths_weaknesses'], ILanguageIndependentField)
 alsoProvides(IMissionTool['rast_steps'], ILanguageIndependentField)
 alsoProvides(IMissionTool['input'], ILanguageIndependentField)
 alsoProvides(IMissionTool['output'], ILanguageIndependentField)
+alsoProvides(IMissionTool['output_image'], ILanguageIndependentField)
 alsoProvides(IMissionTool['geographical_scale'], ILanguageIndependentField)
 alsoProvides(IMissionTool['geographical_area'], ILanguageIndependentField)
 alsoProvides(IMissionTool['climate_impacts'], ILanguageIndependentField)
