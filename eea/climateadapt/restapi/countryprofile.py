@@ -119,7 +119,7 @@ class CountryProfile(object):
         result = {
             "countryprofile": {
                 "@id": "{}/@countryprofile".format(self.context.absolute_url()),
-                "html": json.dumps(data),
+                "html": data,
             }
         }
 
