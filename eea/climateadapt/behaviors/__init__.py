@@ -16,6 +16,7 @@ from .publicationreport import IPublicationReport
 from .researchproject import IResearchProject
 from .tool import ITool
 from .mission_funding_cca import IMissionFundingCCA
+from .mission_tool import IMissionTool
 
 from .patches import apply_patch
 
@@ -40,4 +41,5 @@ __all__ = [
     IResearchProject,
     ITool,
     IMissionFundingCCA,
+    IMissionTool
 ]

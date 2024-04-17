@@ -1221,3 +1221,73 @@ _eligible_entities = [
 ]
 eligible_entities_vocabulary = generic_vocabulary(_eligible_entities)
 alsoProvides(eligible_entities_vocabulary, IVocabularyFactory)
+
+
+_readiness_for_use = [
+    ('A_TOOL_TESTED_IN_CASE_STUDIES', _('Tool tested in several case studies')),
+    ('B_TOOL_BROADLY_USED', _('Tool broadly used'))
+]
+readiness_for_use_vocabulary = generic_vocabulary(_readiness_for_use)
+alsoProvides(readiness_for_use_vocabulary, IVocabularyFactory)
+
+
+_geographical_scale = [
+    ('A_EUROPEAN', _('European')),
+    ('B_NATIONAL', _('National')),
+    ('C_REGIONAL', _('Regional')),
+    ('D_MUNICIPAL_LOCAL', _('Municipal/Local')),
+    ('E_BUILDING', _('Building'))
+]
+geographical_scale_vocabulary = generic_vocabulary(_geographical_scale)
+alsoProvides(geographical_scale_vocabulary, IVocabularyFactory)
+
+
+_tool_language = [
+    ("Bulgarian", "Bulgarian"),
+    ("Croatian", "Croatian"),
+    ("Czech", "Czech"),
+    ("Danish", "Danish"),
+    ("Dutch", "Dutch"),
+    ("English", "English"),
+    ("Estonian", "Estonian"),
+    ("Finnish", "Finnish"),
+    ("French", "French"),
+    ("German", "German"),
+    ("Greek", "Greek"),
+    ("Hungarian", "Hungarian"),
+    ("Irish", "Irish"),
+    ("Italian", "Italian"),
+    ("Latvian", "Latvian"),
+    ("Lithuanian", "Lithuanian"),
+    ("Maltese", "Maltese"),
+    ("Polish", "Polish"),
+    ("Portuguese", "Portuguese"),
+    ("Romanian", "Romanian"),
+    ("Slovak", "Slovak"),
+    ("Slovenian", "Slovenian"),
+    ("Spanish", "Spanish"),
+    ("Swedish", "Swedish"),
+]
+tool_language_vocabulary = generic_vocabulary(_tool_language)
+alsoProvides(tool_language_vocabulary, IVocabularyFactory)
+
+
+_most_useful_for = [
+    ('RESEARCHER', _('Researcher')),
+    ('REGIONAL_AUTHORITY', _('Staff of regional authority')),
+    ('PRACTITIONERS', _('Practitioners at the regional level')),
+    ('STAKEHOLDERS', _('Stakeholders')),
+    ('CITIZEN', _('Citizen'))
+]
+most_useful_for_vocabulary = generic_vocabulary(_most_useful_for)
+alsoProvides(most_useful_for_vocabulary, IVocabularyFactory)
+
+
+_user_requirements = [
+    ('A_BASIC', _('Basic')),
+    ('B_ADVANCED', _('Advanced')),
+    ('C_EXPERT', _('Expert')),
+]
+user_requirements_vocabulary = generic_vocabulary(_user_requirements)
+alsoProvides(user_requirements_vocabulary, IVocabularyFactory)
+
