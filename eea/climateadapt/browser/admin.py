@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from plone.app.textfield.value import RichTextValue
+from plone.api.content import create
 import csv
 import datetime
 import json
@@ -1168,7 +1170,7 @@ class MissionFundingImporter(BrowserView):
             def convert(row, data):
                 value = row[column].strip()
                 # TODO: use inteligent text converter
-                return value
+                return RichTextValue(value)
             return convert
 
         ast_map = {
@@ -1183,7 +1185,7 @@ class MissionFundingImporter(BrowserView):
         # these are 0-based indexes
         fields_definition = dict(
             title=text(2),
-            objective=text(51),
+            objective=richtext(51),
             budget_range=choices([38, 39, 40, 41]),
             funding_rate=text(42),
             is_blended=boolean_field(45),
@@ -1216,7 +1218,11 @@ class MissionFundingImporter(BrowserView):
                     record[name] = value
                 toimport.append(record)
 
-        return json.dumps(toimport)
+        for record in toimport:
+            create(type="mission_funding_cca",
+                   container=self.context, **record)
+
+        return len(toimport)
 
 
 class ConvertPythonDatetime(BrowserView):
