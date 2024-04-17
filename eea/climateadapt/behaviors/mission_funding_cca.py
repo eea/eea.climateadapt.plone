@@ -19,6 +19,8 @@ from plone.app.textfield import RichText
 class IMissionFundingCCA(model.Schema, IBlocks):
     """MissionFundingCCA Interface"""
 
+    # Name of the funding programme (C) = title
+
     form.fieldset(
         "mission_funding_metadata",
         label="Metadata",
@@ -34,18 +36,25 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     objective = RichText(
         title=_("Objective of the funding programme"),
         required=False,
+        # column: Summarise the objective of the programme (headline format max 300c including spaces)
     )
 
     funding_type = RichText(
         title=_("Type of funding"),
         required=False,
+        # column: Which type of funding is granted?
     )
 
     budget_range = TextLine(
-        title=_("Expected budget range of proposals"), required=False
+        title=_("Expected budget range of proposals"),
+        required=False,
+        # column: What is the expected budget range of proposals?
     )
+
     funding_rate = TextLine(
-        title=_("Funding rate (percentage of covered costs)"), required=False
+        title=_("Funding rate (percentage of covered costs)"),
+        required=False,
+        # column: How high is the funding rate? (percentage of covered costs)
     )
 
     is_blended = Bool(
@@ -54,26 +63,35 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         ),
         required=False,
         default=False,
+        # column: Can the received funding be combined with other funding sources (blended)?
     )
 
     is_consortium_required = Bool(
         title=_("Is a Consortium required to apply for the funding?"),
         required=False,
         default=False,
+        # column: Is a Consortium required to apply for the funding?
     )
+
+    # column: Which authority administers the funding programme?
     authority = TextLine(title=_("Administering authority"), required=False)
 
     publication_page = URI(
         title=_("Publication page"),
         required=False,
+        # column: Please provide a link to the publication page of the individual calls.
     )
 
     general_info = URI(
         title=_("General information"),
         required=False,
+        # column: Provide a link to general information on the funding programme:
     )
 
-    further_info = TextLine(title=_("Further information"), required=False)
+    # TODO:
+    further_info = RichText(title=_("Further information"), required=False)
+
+    # column: For which regions is the funding opportunity offered?
     regions = TextLine(title=_("Region where the funding is offered"), required=False)
 
     form.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -83,6 +101,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         value_type=Choice(
             vocabulary="eea.climateadapt.rast_steps",
         ),
+        # metacolumn: For which step of the AST can the funding be used?
     )
 
     form.widget(eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -92,24 +111,28 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         value_type=Choice(
             vocabulary="eea.climateadapt.eligible_entities",
         ),
+        # metacolumn: Who is eligible to receive funding?
     )
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_("Adaptation Sectors"),
         description=_(
-            "Select one or more relevant sector policies that " "this item relates to."
+            "Select one or more relevant sector policies that this item relates to."
         ),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_sectors",
         ),
+        # metacolumn: Which sectors can receive funding?
     )
 
     country = List(
         title=_("Countries where the funding opportunity is offered"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
+        # column: For which country is this funding opportunity offered?
+        # TODO: need manual intervention
     )
 
     blocks = JSONField(

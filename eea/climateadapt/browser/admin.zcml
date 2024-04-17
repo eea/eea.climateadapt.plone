@@ -204,4 +204,11 @@
         class=".fixblobs.FixBlobs"
         permission="cmf.ManagePortal"
         />
+
+    <browser:page
+        for="*"
+        name="import-mission-funding"
+        class=".admin.MissionFundingImporter"
+        permission="cmf.ManagePortal"
+        />
 </configure>
