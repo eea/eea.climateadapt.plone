@@ -1,6 +1,5 @@
 from eea.climateadapt import CcaAdminMessageFactory as _
 from zope.schema import Choice, List
-from plone.namedfile.field import NamedBlobImage
 from plone.directives import form
 from plone.supermodel import model
 from plone.autoform.interfaces import IFormFieldProvider
@@ -9,8 +8,6 @@ from zope.interface import alsoProvides, provider
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from .volto_layout import mission_tool_layout_blocks, mission_tool_layout_items
-
-from plone.app.textfield import RichText
 
 
 @provider(IFormFieldProvider)
@@ -21,44 +18,15 @@ class IMissionTool(model.Schema, IBlocks):
         "mission_tool_metadata",
         label="Metadata",
         fields = [
-            "objective",
-            "short_description",
-            "free_keywords",
             "readiness_for_use",
-            "applications",
-            "strengths_weaknesses",
             "rast_steps",
-            "input",
-            "output",
-            "output_image",
             "geographical_scale",
-            "geographical_area",
             "climate_impacts",
             "tool_language",
             "sectors",
             "most_useful_for",
-            "user_requirements",
-            "replicability",
-            "materials",
-            "website",
-            "contact",
-            "associated_project",
+            "user_requirements"
         ]
-    )
-
-    objective = RichText(
-        title=_("Objective(s)"),
-        required=False,
-    )
-
-    short_description = RichText(
-        title=_("Short description"),
-        required=False,
-    )
-
-    free_keywords = RichText(
-        title=_("Free keywords"),
-        required=False,
     )
 
     form.widget(readiness_for_use="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -70,16 +38,6 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    applications = RichText(
-        title=_("Applications"),
-        required=False,
-    )
-
-    strengths_weaknesses = RichText(
-        title=_("Strengths and weaknesses, comparative added value to other similar tools"),
-        required=False,
-    )
-
     form.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     rast_steps = List(
         title=_("RAST step(s) of relevance"),
@@ -87,21 +45,6 @@ class IMissionTool(model.Schema, IBlocks):
         value_type=Choice(
             vocabulary="eea.climateadapt.rast_steps",
         ),
-    )
-
-    input = RichText(
-        title=_("Input(s)"),
-        required=False,
-    )
-
-    output = RichText(
-        title=_("Output(s)"),
-        required=False,
-    )
-
-    output_image = NamedBlobImage(
-        title=_("Output(s) image"),
-        required=False,
     )
 
     form.widget(geographical_scale="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -113,14 +56,9 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    geographical_area = RichText(
-        title=_("Geographical area"),
-        required=False
-    )
-
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
-        title=_(u"Climate Impacts"),
+        title=_(u"Climate impacts"),
         description=_(
             u"Select one or more climate change impact topics that "
             u"this item relates to."
@@ -142,7 +80,7 @@ class IMissionTool(model.Schema, IBlocks):
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
-        title=_("Adaptation Sectors"),
+        title=_("Adaptation sectors"),
         description=_(
             "Select one or more relevant sector policies that " "this item relates to."
         ),
@@ -170,31 +108,6 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    replicability = RichText(
-        title=_("Replicability: Cost/effort for (new) usage"),
-        required=False
-    )
-
-    materials = RichText(
-        title=_("Materials or other support available"),
-        required=False
-    )
-
-    website = RichText(
-        title=_("Website and maintenance"),
-        required=False
-    )
-
-    contact = RichText(
-        title=_("Contact"),
-        required=False
-    )
-
-    associated_project = RichText(
-        title=_("Associated project(s)"),
-        required=False
-    )
-
     blocks = JSONField(
         title=_("Blocks"),
         description=_("The JSON representation of the object blocks."),
@@ -214,25 +127,12 @@ class IMissionTool(model.Schema, IBlocks):
     )
 
 
-alsoProvides(IMissionTool['objective'], ILanguageIndependentField)
-alsoProvides(IMissionTool['short_description'], ILanguageIndependentField)
-alsoProvides(IMissionTool['free_keywords'], ILanguageIndependentField)
 alsoProvides(IMissionTool['readiness_for_use'], ILanguageIndependentField)
-alsoProvides(IMissionTool['applications'], ILanguageIndependentField)
-alsoProvides(IMissionTool['strengths_weaknesses'], ILanguageIndependentField)
 alsoProvides(IMissionTool['rast_steps'], ILanguageIndependentField)
-alsoProvides(IMissionTool['input'], ILanguageIndependentField)
-alsoProvides(IMissionTool['output'], ILanguageIndependentField)
-alsoProvides(IMissionTool['output_image'], ILanguageIndependentField)
 alsoProvides(IMissionTool['geographical_scale'], ILanguageIndependentField)
-alsoProvides(IMissionTool['geographical_area'], ILanguageIndependentField)
 alsoProvides(IMissionTool['climate_impacts'], ILanguageIndependentField)
 alsoProvides(IMissionTool['tool_language'], ILanguageIndependentField)
 alsoProvides(IMissionTool['sectors'], ILanguageIndependentField)
 alsoProvides(IMissionTool['most_useful_for'], ILanguageIndependentField)
 alsoProvides(IMissionTool['user_requirements'], ILanguageIndependentField)
-alsoProvides(IMissionTool['replicability'], ILanguageIndependentField)
-alsoProvides(IMissionTool['materials'], ILanguageIndependentField)
-alsoProvides(IMissionTool['website'], ILanguageIndependentField)
-alsoProvides(IMissionTool['contact'], ILanguageIndependentField)
-alsoProvides(IMissionTool['associated_project'], ILanguageIndependentField)
+
