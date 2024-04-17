@@ -318,7 +318,7 @@ def is_ast(obj):
 
 def get_title_level(obj, title_level):
     if is_ast(obj):
-        return "h3"
+        return "h4"
 
     if title_level == "h1":
         return "h2"
