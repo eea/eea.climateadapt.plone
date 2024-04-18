@@ -310,21 +310,39 @@ def share_info_tile_to_block(tile_dm, obj, request):
     }
 
 
+def is_ast(obj):
+    # returns True if the obj is a cover inside the AST / UAST
+    path = obj.getPhysicalPath()
+    return ("adaptation-support-tool" in path) or ("urban-ast" in path)
+
+
+def get_title_level(obj, title_level):
+    if is_ast(obj):
+        return "h4"
+
+    if title_level == "h1":
+        return "h2"
+
+    return title_level
+
+
 def richtext_tile_to_blocks(tile_dm, obj, request):
     attributes = {}
     data = tile_dm.get()
     title_level = data.get("title_level")
     title = data.get("title")
+
     if isinstance(title, str):
         title = title.decode("utf-8")
 
     has_heading = False
-    if title_level == "h1" and title and title != "main content":
+    if title_level == "h1" and title and title != "main content" and not is_ast(obj):
         attributes["title"] = title
     else:
         # avoid titles in simple RichTextTile, we only want those from the RichTextWithTitle
         if title is not None and "title_level" in data and title != "main content":
             has_heading = True
+        title_level = get_title_level(obj, title_level)
 
     blocks = []
     text = data.get("text")
