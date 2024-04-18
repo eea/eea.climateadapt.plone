@@ -2355,6 +2355,9 @@ class RetagAO:
 
             obj.elements = data
             obj._p_changed = True
+            notify(ObjectModifiedEvent(obj))
+            obj.reindexObject()
+
             response.append(
                 {
                     "title": obj.title,

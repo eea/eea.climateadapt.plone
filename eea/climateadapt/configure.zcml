@@ -408,7 +408,7 @@
       handler=".acemeasure.handle_measure_added"
       />
 
-
+<!--
   <subscriber
       for="eea.climateadapt.acemeasure.ICaseStudy
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
@@ -426,6 +426,7 @@
            Products.CMFCore.interfaces.IActionSucceededEvent"
       handler=".acemeasure.handle_for_arcgis_sync"
       />
+-->
 
   <subscriber
       factory=".marshaller.GeoCharsFieldModifier"
