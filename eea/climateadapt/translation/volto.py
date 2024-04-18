@@ -5,15 +5,13 @@ by first converting the blocks to HTML, then ingest and convert that structure b
 """
 
 # from langdetect import language
-import pdb
-from lxml.html import document_fromstring, fragments_fromstring
-from lxml.html import tostring
-from lxml.html import builder as E
 import copy
 import json
 import logging
 
 import requests
+from lxml.html import builder as E
+from lxml.html import fragments_fromstring, tostring
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
@@ -79,12 +77,8 @@ def get_cover_as_html(obj):
                     )
                 if data.get("text"):
                     frags = convert_richtext_to_fragments(data["text"])
-                    children.append(
-                        E.DIV(
-                            *frags,
-                            **{"data-tile-field": "text", "data-tile-type": "richtext"},
-                        )
-                    )
+                    d = {"data-tile-field": "text", "data-tile-type": "richtext"}
+                    children.append(E.DIV(*frags, **d))
 
                 div = E.DIV(*children, **attribs)
                 elements.append(div)
