@@ -66,6 +66,7 @@ mission_tool_layout_blocks = {
   },
   "d2bd9399-cc4d-42cb-88e2-4e2e100d1a60": {
     "@type": "title",
+    "hideContentType": True,
     "copyrightIcon": "ri-copyright-line",
     "styles": {}
   },
@@ -868,114 +869,405 @@ mission_tool_layout_blocks = {
 
 
 mission_funding_cca_layout_items = [
-    "30d292ac-cc02-415d-ab8d-82bc97e90ac1",
-    "744523ca-8a19-4a56-9e86-aee5d5b9a100",
-    "c6711b42-26e5-4630-b05a-c396de1520d7",
-    "c0d65e60-b51c-487a-90fa-eab633b3fec7",
+  "02854b05-5430-49e4-a173-e5086fbd5a1e",
+  "b065092b-ab09-44d4-a029-40211414d1d1",
+  "b324fc76-135b-451b-9700-5d043c1b66ad",
+  "8919d136-4b8b-46f3-9e63-a212339080e8",
+  "82e61c6e-ac0f-4bfc-bffa-a875e64bc2f9"
 ]
 
 mission_funding_cca_layout_blocks = {
-    "c6711b42-26e5-4630-b05a-c396de1520d7": {
+    "02854b05-5430-49e4-a173-e5086fbd5a1e": {
+        "@type": "title",
+        "block": "adf568c6-68ed-4fa8-9065-06bbb95b5cc4",
+        "copyrightIcon": "ri-copyright-line",
+        "hideContentType": True,
         "styles": {},
-        "gridCols": ["twoThirds", "oneThird"],
-        "gridSize": 12,
+        "subtitle": "EU and National Funding of Climate Change Adaption",
+    },
+    "82e61c6e-ac0f-4bfc-bffa-a875e64bc2f9": {
+        "@type": "slate",
+        "block": "aaceed98-033b-4fcd-b490-922b77a3a3f3",
+    },
+    "b065092b-ab09-44d4-a029-40211414d1d1": {
+        "@type": "slate",
+        "plaintext": "",
+        "value": [{"children": [{"text": ""}], "type": "p"}],
+    },
+    "b324fc76-135b-451b-9700-5d043c1b66ad": {
+        "@type": "columnsBlock",
+        "block": "73fbc55b-39b5-4e47-a40d-eac526e6e7b0",
         "data": {
             "blocks": {
                 "0006e3bd-a37f-4cd4-8573-63715dcf2009": {
                     "blocks": {
-                        "5227a7c6-c586-4edb-8fce-fa6562edbc60": {"@type": "slate"},
-                        "fc1d8588-a13b-4795-814c-b50d1fe48d9e": {
-                            "data": {"widget": "array", "id": "country"},
-                            "@type": "metadata",
-                        },
-                        "d61459e1-554a-4eec-b213-a1b88e6da7da": {
-                            "data": {"widget": "string", "id": "regions"},
-                            "@type": "metadata",
-                        },
-                        "5b8409d8-f72e-4610-a728-64fd8c21ba46": {
-                            "data": {"widget": "array", "id": "eligible_entities"},
-                            "@type": "metadata",
-                        },
-                        "3c1c576c-1e70-4f22-bf21-380ffd23cb10": {
-                            "data": {"widget": "array", "id": "rast_steps"},
-                            "@type": "metadata",
-                        },
-                        "f8f5a2e9-0c18-4ad4-9101-16e72c1002ef": {
-                            "data": {"widget": "array", "id": "sectors"},
-                            "@type": "metadata",
-                        },
+                        "5227a7c6-c586-4edb-8fce-fa6562edbc60": {
+                            "@type": "group",
+                            "data": {
+                                "blocks": {
+                                    "2d2e2173-8a18-465f-bfed-eae505f42f7e": {
+                                        "@type": "slate",
+                                        "plaintext": " Countries where the funding opportunity is offered ",
+                                        "value": [
+                                            {
+                                                "children": [
+                                                    {"text": ""},
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "text": "Countries where the funding opportunity is offered"
+                                                            }
+                                                        ],
+                                                        "type": "strong",
+                                                    },
+                                                    {"text": ""},
+                                                ],
+                                                "type": "p",
+                                            }
+                                        ],
+                                    },
+                                    "5ef271ef-cbc9-4146-9919-5521d82a1fd7": {
+                                        "@type": "metadata",
+                                        "data": {"id": "country", "widget": "array"},
+                                    },
+                                    "60be69fd-6149-425a-a669-30b1923a5a9f": {
+                                        "@type": "slate",
+                                        "plaintext": " Eligible to receive funding ",
+                                        "value": [
+                                            {
+                                                "children": [
+                                                    {"text": ""},
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "text": "Eligible to receive funding"
+                                                            }
+                                                        ],
+                                                        "type": "strong",
+                                                    },
+                                                    {"text": ""},
+                                                ],
+                                                "type": "p",
+                                            }
+                                        ],
+                                    },
+                                    "7205f931-df30-445a-8155-29e9b94ffa48": {
+                                        "@type": "metadata",
+                                        "data": {
+                                            "id": "eligible_entities",
+                                            "widget": "array",
+                                        },
+                                    },
+                                    "9bad8534-6c5c-4d7c-aeb8-bfc64799555d": {
+                                        "@type": "metadata",
+                                        "data": {"id": "regions", "widget": "string"},
+                                    },
+                                    "ac09e6cc-d58d-45d9-93d9-9d99287b3443": {
+                                        "@type": "metadata",
+                                        "data": {"id": "rast_steps", "widget": "array"},
+                                    },
+                                    "c2a23483-0272-4497-952b-b2e604e98c18": {
+                                        "@type": "metadata",
+                                        "data": {"id": "sectors", "widget": "array"},
+                                    },
+                                    "c66f5797-6157-4233-a9c2-2e9896e7cc95": {
+                                        "@type": "slate",
+                                        "plaintext": " Adaptation sectors ",
+                                        "value": [
+                                            {
+                                                "children": [
+                                                    {"text": ""},
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "text": "Adaptation sectors"
+                                                            }
+                                                        ],
+                                                        "type": "strong",
+                                                    },
+                                                    {"text": ""},
+                                                ],
+                                                "type": "p",
+                                            }
+                                        ],
+                                    },
+                                    "c9d0fe5e-183c-453d-9433-92f1993d2337": {
+                                        "@type": "slate",
+                                        "plaintext": " Region where the funding is offered ",
+                                        "value": [
+                                            {
+                                                "children": [
+                                                    {"text": ""},
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "text": "Region where the funding is offered"
+                                                            }
+                                                        ],
+                                                        "type": "strong",
+                                                    },
+                                                    {"text": ""},
+                                                ],
+                                                "type": "p",
+                                            }
+                                        ],
+                                    },
+                                    "cf031b71-bf31-4bed-a81d-fc10f5037ecb": {
+                                        "@type": "slate",
+                                        "plaintext": " RAST step(s) of relevance ",
+                                        "value": [
+                                            {
+                                                "children": [
+                                                    {"text": ""},
+                                                    {
+                                                        "children": [
+                                                            {
+                                                                "text": "RAST step(s) of relevance"
+                                                            }
+                                                        ],
+                                                        "type": "strong",
+                                                    },
+                                                    {"text": ""},
+                                                ],
+                                                "type": "p",
+                                            }
+                                        ],
+                                    },
+                                    "f8870f67-6ff0-426b-a3fd-74781f916c1b": {
+                                        "@type": "slate",
+                                        "plaintext": "",
+                                        "value": [
+                                            {"children": [{"text": ""}], "type": "p"}
+                                        ],
+                                    },
+                                },
+                                "blocks_layout": {
+                                    "items": [
+                                        "2d2e2173-8a18-465f-bfed-eae505f42f7e",
+                                        "5ef271ef-cbc9-4146-9919-5521d82a1fd7",
+                                        "c9d0fe5e-183c-453d-9433-92f1993d2337",
+                                        "9bad8534-6c5c-4d7c-aeb8-bfc64799555d",
+                                        "cf031b71-bf31-4bed-a81d-fc10f5037ecb",
+                                        "ac09e6cc-d58d-45d9-93d9-9d99287b3443",
+                                        "60be69fd-6149-425a-a669-30b1923a5a9f",
+                                        "7205f931-df30-445a-8155-29e9b94ffa48",
+                                        "c66f5797-6157-4233-a9c2-2e9896e7cc95",
+                                        "c2a23483-0272-4497-952b-b2e604e98c18",
+                                        "f8870f67-6ff0-426b-a3fd-74781f916c1b",
+                                    ]
+                                },
+                            },
+                            "styles": {"backgroundColor": "#f9f9f9"},
+                        }
                     },
                     "blocks_layout": {
-                        "items": [
-                            "fc1d8588-a13b-4795-814c-b50d1fe48d9e",
-                            "d61459e1-554a-4eec-b213-a1b88e6da7da",
-                            "3c1c576c-1e70-4f22-bf21-380ffd23cb10",
-                            "5b8409d8-f72e-4610-a728-64fd8c21ba46",
-                            "f8f5a2e9-0c18-4ad4-9101-16e72c1002ef",
-                            "5227a7c6-c586-4edb-8fce-fa6562edbc60",
-                        ]
+                        "items": ["5227a7c6-c586-4edb-8fce-fa6562edbc60"]
                     },
                 },
                 "8843bdcf-6690-4ed4-8f83-bfb8c548ecf6": {
                     "blocks": {
-                        "42d7fc40-a799-4a09-97c4-6a5a0fcee959": {
-                            "data": {"widget": "richtext", "id": "funding_type"},
-                            "@type": "metadata",
+                        "00778cef-706c-4e3b-8d66-bd267a84c2f5": {
+                            "@type": "slate",
+                            "plaintext": "Funding rate (percentage of covered costs)",
+                            "value": [
+                                {
+                                    "children": [
+                                        {
+                                            "text": "Funding rate (percentage of covered costs)"
+                                        }
+                                    ],
+                                    "type": "h2",
+                                }
+                            ],
                         },
-                        "367cce92-ff08-4713-b82d-1bfbeb5d20a9": {"@type": "slate"},
+                        "2479aced-026b-44a1-ad7a-ae2240c4444d": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
+                        },
+                        "2582bbfb-f549-41f0-b240-a97689c565c9": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
+                        },
+                        "367cce92-ff08-4713-b82d-1bfbeb5d20a9": {
+                            "@type": "slate",
+                            "plaintext": "Objective of the funding programme",
+                            "value": [
+                                {
+                                    "children": [
+                                        {"text": "Objective of the funding programme"}
+                                    ],
+                                    "type": "h2",
+                                }
+                            ],
+                        },
+                        "39808ff5-c503-4477-beb0-c6a2d39a39cf": {
+                            "@type": "slate",
+                            "plaintext": "Administering authority",
+                            "value": [
+                                {
+                                    "children": [{"text": "Administering authority"}],
+                                    "type": "h2",
+                                }
+                            ],
+                        },
+                        "48136e82-d038-4223-a59a-9c8ab302fdeb": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
+                        },
+                        "745791ec-3a5b-469d-a247-b3bfa3b16ac7": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
+                        },
+                        "8300602c-3aec-467c-b548-3621648a1e05": {
+                            "@type": "slate",
+                            "plaintext": "Expected budget range of proposals",
+                            "value": [
+                                {
+                                    "children": [
+                                        {"text": "Expected budget range of proposals"}
+                                    ],
+                                    "type": "h2",
+                                }
+                            ],
+                        },
                         "84394a35-8443-437f-87d8-9e62666e1532": {
-                            "data": {
-                                "widget": "boolean",
-                                "id": "is_consortium_required",
-                            },
                             "@type": "metadata",
+                            "data": {
+                                "id": "is_consortium_required",
+                                "widget": "boolean",
+                            },
+                        },
+                        "8919a198-4aa9-42c0-bee4-f05d39e17c3d": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
+                        },
+                        "8c42e5fe-aad2-4289-be82-b93628981941": {
+                            "@type": "slate",
+                            "plaintext": "Type of funding",
+                            "value": [
+                                {
+                                    "children": [{"text": "Type of funding"}],
+                                    "type": "h2",
+                                }
+                            ],
+                        },
+                        "8e4ff2c4-ed63-4da3-b2eb-853ed22bc0f5": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
+                        },
+                        "93aede3d-c667-4414-9e30-ca01e22d614d": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
+                        },
+                        "9a7f4356-13b1-4e5d-a522-1c7aa5ee0c9f": {
+                            "@type": "slate",
+                            "plaintext": "Publication page",
+                            "value": [
+                                {
+                                    "children": [{"text": "Publication page"}],
+                                    "type": "h2",
+                                }
+                            ],
+                        },
+                        "9d9b8957-b56f-489a-9ab6-b0f2f29d6de1": {
+                            "@type": "slate",
+                            "plaintext": "Can the received funding be combined with other funding sources (blended)?",
+                            "value": [
+                                {
+                                    "children": [
+                                        {
+                                            "text": "Can the received funding be combined with other funding sources (blended)?"
+                                        }
+                                    ],
+                                    "type": "h2",
+                                }
+                            ],
+                        },
+                        "a4ac5f36-9f2e-411f-a5b5-3873085967e1": {
+                            "@type": "slate",
+                            "plaintext": "Is a Consortium required to apply for the funding?",
+                            "value": [
+                                {
+                                    "children": [
+                                        {
+                                            "text": "Is a Consortium required to apply for the funding?"
+                                        }
+                                    ],
+                                    "type": "h2",
+                                }
+                            ],
+                        },
+                        "a718c6ee-ae18-4ba1-bfa2-d55f0e6e51e1": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
+                        },
+                        "b53184c5-ea80-4f5b-8d9b-866c9a229d8c": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
                         },
                         "ce408b00-e0a0-4699-8c70-890de9d16aaa": {
-                            "data": {"widget": "boolean", "id": "is_blended"},
                             "@type": "metadata",
+                            "data": {"id": "is_blended", "widget": "boolean"},
                         },
-                        "f37af523-253e-419f-b999-32ccd229f9e6": {
-                            "data": {"widget": "string", "id": "budget_range"},
-                            "@type": "metadata",
+                        "d59748e2-f180-41d8-92b8-169298ad99a7": {
+                            "@type": "slate",
+                            "plaintext": "Further information",
+                            "value": [
+                                {
+                                    "children": [{"text": "Further information"}],
+                                    "type": "h2",
+                                }
+                            ],
                         },
-                        "42498865-caf0-43ff-81b8-25a3805bd6c4": {
-                            "data": {"widget": "string", "id": "further_info"},
-                            "@type": "metadata",
+                        "ea3d0882-9d0b-48cb-b8fb-474e46e36ee8": {
+                            "@type": "slate",
+                            "plaintext": "",
+                            "value": [{"children": [{"text": ""}], "type": "p"}],
                         },
-                        "9ebe6edf-0522-4032-ae09-96529f214a0e": {
-                            "data": {"widget": "richtext", "id": "objective"},
-                            "@type": "metadata",
-                        },
-                        "53534fe7-d22d-4bdf-835c-f45308c25578": {
-                            "data": {"widget": "string", "id": "funding_rate"},
-                            "@type": "metadata",
-                        },
-                        "bbc974b2-c23a-4e3f-a007-6aa8b759dc59": {
-                            "data": {"widget": "url", "id": "publication_page"},
-                            "@type": "metadata",
-                        },
-                        "101edff3-8346-4f4e-9df0-2cb9d1a6b215": {
-                            "data": {"widget": "url", "id": "general_info"},
-                            "@type": "metadata",
-                        },
-                        "6846c161-a3ca-44cf-9909-533209f4eec2": {
-                            "data": {"widget": "string", "id": "authority"},
-                            "@type": "metadata",
+                        "f3d89b73-579b-4407-8392-65fa4c919564": {
+                            "@type": "slate",
+                            "plaintext": "General information",
+                            "value": [
+                                {
+                                    "children": [{"text": "General information"}],
+                                    "type": "h2",
+                                }
+                            ],
                         },
                     },
                     "blocks_layout": {
                         "items": [
-                            "9ebe6edf-0522-4032-ae09-96529f214a0e",
-                            "42d7fc40-a799-4a09-97c4-6a5a0fcee959",
-                            "f37af523-253e-419f-b999-32ccd229f9e6",
-                            "53534fe7-d22d-4bdf-835c-f45308c25578",
-                            "ce408b00-e0a0-4699-8c70-890de9d16aaa",
-                            "84394a35-8443-437f-87d8-9e62666e1532",
-                            "6846c161-a3ca-44cf-9909-533209f4eec2",
-                            "bbc974b2-c23a-4e3f-a007-6aa8b759dc59",
-                            "101edff3-8346-4f4e-9df0-2cb9d1a6b215",
-                            "42498865-caf0-43ff-81b8-25a3805bd6c4",
                             "367cce92-ff08-4713-b82d-1bfbeb5d20a9",
+                            "745791ec-3a5b-469d-a247-b3bfa3b16ac7",
+                            "8c42e5fe-aad2-4289-be82-b93628981941",
+                            "8919a198-4aa9-42c0-bee4-f05d39e17c3d",
+                            "8300602c-3aec-467c-b548-3621648a1e05",
+                            "8e4ff2c4-ed63-4da3-b2eb-853ed22bc0f5",
+                            "00778cef-706c-4e3b-8d66-bd267a84c2f5",
+                            "b53184c5-ea80-4f5b-8d9b-866c9a229d8c",
+                            "9d9b8957-b56f-489a-9ab6-b0f2f29d6de1",
+                            "ce408b00-e0a0-4699-8c70-890de9d16aaa",
+                            "93aede3d-c667-4414-9e30-ca01e22d614d",
+                            "a4ac5f36-9f2e-411f-a5b5-3873085967e1",
+                            "84394a35-8443-437f-87d8-9e62666e1532",
+                            "ea3d0882-9d0b-48cb-b8fb-474e46e36ee8",
+                            "39808ff5-c503-4477-beb0-c6a2d39a39cf",
+                            "2582bbfb-f549-41f0-b240-a97689c565c9",
+                            "9a7f4356-13b1-4e5d-a522-1c7aa5ee0c9f",
+                            "a718c6ee-ae18-4ba1-bfa2-d55f0e6e51e1",
+                            "f3d89b73-579b-4407-8392-65fa4c919564",
+                            "48136e82-d038-4223-a59a-9c8ab302fdeb",
+                            "d59748e2-f180-41d8-92b8-169298ad99a7",
+                            "2479aced-026b-44a1-ad7a-ae2240c4444d",
                         ]
                     },
                 },
@@ -987,19 +1279,53 @@ mission_funding_cca_layout_blocks = {
                 ]
             },
         },
-        "@type": "columnsBlock",
-    },
-    "744523ca-8a19-4a56-9e86-aee5d5b9a100": {
-        "@type": "description",
-        "value": [{"type": "p", "children": [{"text": ""}]}],
-    },
-    "c0d65e60-b51c-487a-90fa-eab633b3fec7": {"@type": "slate"},
-    "30d292ac-cc02-415d-ab8d-82bc97e90ac1": {
+        "gridCols": ["twoThirds", "oneThird"],
+        "gridSize": 12,
         "styles": {},
-        "@type": "title",
-        "copyrightIcon": "ri-copyright-line",
     },
+    "8919d136-4b8b-46f3-9e63-a212339080e8" : {
+      "@type": "group",
+      "block": "020debe5-cf3e-4bd0-9cda-0b076ce344fc",
+      "data": {
+        "blocks": {
+          "fdeeb663-f794-48c1-a5c8-898180f470a8": {
+            "@type": "slate",
+            "plaintext": " Disclaimer The contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages.",
+            "value": [
+              {
+                "children": [
+                  {
+                    "text": ""
+                  },
+                  {
+                    "children": [
+                      {
+                        "text": "Disclaimer"
+                      }
+                    ],
+                    "type": "strong"
+                  },
+                  {
+                    "text": "\nThe contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages."
+                  }
+                ],
+                "type": "p"
+              }
+            ]
+          }
+        },
+        "blocks_layout": {
+          "items": [
+            "fdeeb663-f794-48c1-a5c8-898180f470a8"
+          ]
+        }
+      },
+      "styles": {
+        "style_name": "content-box-gray"
+      }
+  },
 }
+
 
 
 indicator_layout_items = [

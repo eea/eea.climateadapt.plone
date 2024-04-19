@@ -5,15 +5,13 @@ by first converting the blocks to HTML, then ingest and convert that structure b
 """
 
 # from langdetect import language
-import pdb
-from lxml.html import document_fromstring, fragments_fromstring
-from lxml.html import tostring
-from lxml.html import builder as E
 import copy
 import json
 import logging
 
 import requests
+from lxml.html import builder as E
+from lxml.html import fragments_fromstring, tostring
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
@@ -39,11 +37,9 @@ CONTENT_CONVERTER = "http://converter:8000/html2content"
 
 def get_blocks_as_html(obj):
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(
-        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -72,7 +68,7 @@ def get_cover_as_html(obj):
     if annot:
         for k in annot.keys():
             if k.startswith(m):
-                attribs = {"data-tile-id": k[len(m) + 1:]}
+                attribs = {"data-tile-id": k[len(m) + 1 :]}
                 children = []
                 data = annot[k]
                 if data.get("title"):
@@ -81,9 +77,8 @@ def get_cover_as_html(obj):
                     )
                 if data.get("text"):
                     frags = convert_richtext_to_fragments(data["text"])
-                    children.append(
-                        E.DIV(*frags, **{"data-tile-field": "text",
-                                         "data-tile-type": "richtext"}))
+                    d = {"data-tile-field": "text", "data-tile-type": "richtext"}
+                    children.append(E.DIV(*frags, **d))
 
                 div = E.DIV(*children, **attribs)
                 elements.append(div)
@@ -101,11 +96,9 @@ def get_content_from_html(html):
     #     cover_layout.getparent().remove(cover_layout)
 
     data = {"html": html}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER,
-                        data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -130,14 +123,14 @@ def get_content_from_html(html):
 
             for child in frag:
                 fieldname = child.get("data-tile-field")
-                isrichtext = child.get('data-tile-type') == 'richtext'
+                isrichtext = child.get("data-tile-type") == "richtext"
                 if isrichtext:
                     info[fieldname] = elements_to_text(child)
                 else:
                     info[fieldname] = child.text
             tiles[id] = info
 
-        data['cover_layout'] = tiles
+        data["cover_layout"] = tiles
 
     logger.info("Data with tiles decrypted %s", data)
 
@@ -232,6 +225,7 @@ def translate_volto_html(html, en_obj, http_host):
     Makes sure translation objects exists and requests a translation for
     all languages.
     """
+
     options = {
         "obj_url": en_obj.absolute_url(),
         "uid": en_obj.UID(),

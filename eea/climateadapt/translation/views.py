@@ -36,7 +36,7 @@ from .core import (
 )
 from .interfaces import ITranslationContext
 
-logger = logging.getLogger("wise.msfd.translation")
+logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
 
 
@@ -48,11 +48,13 @@ class TranslationCallback(BrowserView):
 
     def __call__(self):
         form = self.request.form
+
         if form.get("is_volto", None) is not None:
             file = self.request.stdin
             self.save_html_volto(form, file)
-            logger.info("Translate volto html")
             return
+
+        logger.info("Translation Callback Incoming: %s" % form)
 
         # NOTE:: the code below is no longer used, we only use the above method
 
@@ -140,10 +142,13 @@ class TranslationCallback(BrowserView):
 
     def save_html_volto(self, form, file):
         file.seek(0)
+
         b64_str = file.read()
         html_translated = base64.decodestring(b64_str).decode("latin-1")
-        logger.info("HTML from etranslation")
-        logger.info(html_translated)
+
+        logger.info("Translate volto html form: %s", form)
+        logger.info("Translate volto html: %s", html_translated)
+
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
         if "https://" in trans_obj_path:
