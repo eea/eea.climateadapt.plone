@@ -72,6 +72,9 @@ def get_cover_as_html(obj):
                 children = []
                 data = annot[k]
                 if data.get("title"):
+                    title = data.get("title")
+                    if not isinstance(title, unicode):
+                        title = title.decode("utf-8")
                     children.append(
                         E.DIV(data["title"], **{"data-tile-field": "title"})
                     )
