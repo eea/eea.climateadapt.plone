@@ -13,10 +13,6 @@ from zope.schema import URI, Bool, Choice, List, TextLine
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 
-from .volto_layout import (
-    mission_funding_cca_layout_blocks,
-    mission_funding_cca_layout_items,
-)
 
 fpath = resource_filename(
     "eea.climateadapt.behaviors", "volto_layout_missionfunding.json"
