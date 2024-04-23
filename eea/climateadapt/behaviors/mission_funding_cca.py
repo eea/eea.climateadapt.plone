@@ -88,7 +88,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # column: Provide a link to general information on the funding programme:
     )
 
-    # TODO:
+    # Please provide a link to additional useful information
     further_info = RichText(title=_("Further information"), required=False)
 
     # column: For which regions is the funding opportunity offered?
