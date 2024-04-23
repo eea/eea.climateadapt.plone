@@ -11,7 +11,6 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from zope.interface import alsoProvides, provider
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from .volto_layout import mission_tool_layout_blocks, mission_tool_layout_items
 
 fpath = resource_filename(
     "eea.climateadapt.behaviors", "volto_layout_mission_tools.json"
