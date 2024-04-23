@@ -140,12 +140,12 @@
               },
               "2582bbfb-f549-41f0-b240-a97689c565c9": {
                 "@type": "slate",
-                "plaintext": "European Commission administers the funding programme in shared responsibilities with national and regional managing authorities",
+                "plaintext": "",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": "European Commission administers the funding programme in shared responsibilities with national and regional managing authorities"
+                        "text": ""
                       }
                     ],
                     "type": "p"
@@ -204,24 +204,10 @@
               },
               "48136e82-d038-4223-a59a-9c8ab302fdeb": {
                 "@type": "slate",
-                "plaintext": " External link ",
+                "plaintext": "",
                 "value": [
                   {
                     "children": [
-                      {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "External link"
-                          }
-                        ],
-                        "data": {
-                          "url": "https://ec.europa.eu/regional_policy/in-your-country/managing-authorities_en"
-                        },
-                        "type": "link"
-                      },
                       {
                         "text": ""
                       }
@@ -232,12 +218,12 @@
               },
               "745791ec-3a5b-469d-a247-b3bfa3b16ac7": {
                 "@type": "slate",
-                "plaintext": "The Fund aims to strenghten the economic, social and territorial cohesion of the EU member states and contribute to the investment in the field of environment and trans-European networks in the area of transport infrastructure.",
+                "plaintext": "",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": "The Fund aims to strenghten the economic, social and territorial cohesion of the EU member states and contribute to the investment in the field of environment and trans-European networks in the area of transport infrastructure."
+                        "text": ""
                       }
                     ],
                     "type": "p"
@@ -293,12 +279,12 @@
               },
               "8e4ff2c4-ed63-4da3-b2eb-853ed22bc0f5": {
                 "@type": "slate",
-                "plaintext": "....",
+                "plaintext": "",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": "...."
+                        "text": ""
                       }
                     ],
                     "type": "p"
@@ -396,24 +382,10 @@
               },
               "a718c6ee-ae18-4ba1-bfa2-d55f0e6e51e1": {
                 "@type": "slate",
-                "plaintext": " External link ",
+                "plaintext": "",
                 "value": [
                   {
                     "children": [
-                      {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "External link"
-                          }
-                        ],
-                        "data": {
-                          "url": "https://ec.europa.eu/regional_policy/in-your-country/managing-authorities_en"
-                        },
-                        "type": "link"
-                      },
                       {
                         "text": ""
                       }
@@ -424,12 +396,12 @@
               },
               "b53184c5-ea80-4f5b-8d9b-866c9a229d8c": {
                 "@type": "slate",
-                "plaintext": "85% co-financing rate",
+                "plaintext": "",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": "85% co-financing rate"
+                        "text": ""
                       }
                     ],
                     "type": "p"
