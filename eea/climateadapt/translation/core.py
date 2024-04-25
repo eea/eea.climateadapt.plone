@@ -527,6 +527,7 @@ def execute_translate_async(context, options, language, request_vars=None):
 
         for k, v in request_vars.items():
             context.REQUEST.set(k, v)
+
     site_portal.REQUEST = context.REQUEST
 
     en_obj = context
@@ -546,7 +547,11 @@ def execute_translate_async(context, options, language, request_vars=None):
         options["trans_obj_path"],
         target_languages=language.upper(),
     )
-    return
+
+    del site_portal.REQUEST
+    del context.REQUEST
+    logger.info("Async translate for object %s", options["obj_url"])
+    return "Finished"
 
     # if options.get("is_volto", None) is not None:
 
