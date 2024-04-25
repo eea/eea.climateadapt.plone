@@ -37,11 +37,9 @@ CONTENT_CONVERTER = "http://converter:8000/html2content"
 
 def get_blocks_as_html(obj):
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(
-        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -70,7 +68,7 @@ def get_cover_as_html(obj):
     if annot:
         for k in annot.keys():
             if k.startswith(m):
-                attribs = {"data-tile-id": k[len(m) + 1:]}
+                attribs = {"data-tile-id": k[len(m) + 1 :]}
                 children = []
                 data = annot[k]
                 if data.get("title"):
@@ -82,8 +80,7 @@ def get_cover_as_html(obj):
                     )
                 if data.get("text"):
                     frags = convert_richtext_to_fragments(data["text"])
-                    d = {"data-tile-field": "text",
-                         "data-tile-type": "richtext"}
+                    d = {"data-tile-field": "text", "data-tile-type": "richtext"}
                     children.append(E.DIV(*frags, **d))
 
                 div = E.DIV(*children, **attribs)
@@ -102,11 +99,9 @@ def get_content_from_html(html):
     #     cover_layout.getparent().remove(cover_layout)
 
     data = {"html": html}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER,
-                        data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -204,6 +199,7 @@ class ContentToHtml(BrowserView):
             return html
 
         if self.request.form.get("full"):
+            # This triggers the actual async-callback process to translate
             http_host = self.context.REQUEST.environ.get(
                 "HTTP_X_FORWARDED_HOST", portal.get().absolute_url()
             )
