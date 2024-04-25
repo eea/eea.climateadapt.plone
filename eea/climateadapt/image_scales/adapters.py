@@ -51,7 +51,8 @@ class ImageScales(object):
                         if scales:
                             res[name] = scales
                     except POSKeyError:
-                        logger.error("No blobs for %s", self.context.absolute_url())
+                        logger.error("No blobs for %s",
+                                     self.context.absolute_url())
 
         return res
 
@@ -67,6 +68,7 @@ def _split_scale_info(allowed_size):
 
 def _get_scale_infos():
     """Returns list of (name, width, height) of the available image scales."""
+    # __import__("pdb").set_trace()
     if IImagingSchema is None:
         return []
     registry = getUtility(IRegistry)
@@ -119,7 +121,8 @@ class ImageFieldScales(object):
                 "filename": image.filename,
                 "content-type": image.contentType,
                 "size": image.getSize(),
-                "download": self._scale_view_from_url(url),
+                "download": "@@images/%s" % (self.field.__name__),
+                # self._scale_view_from_url(url),
                 "width": width,
                 "height": height,
                 "scales": scales,
@@ -135,11 +138,10 @@ class ImageFieldScales(object):
             return None
         # TODO: use an algorithm to detect change of modified image
         for scale in storage.values():
-            if (
-                scale["fieldname"] == fieldname and scale["width"] == width
-                # and scale["height"] == height
+            if scale["fieldname"] == fieldname and (
+                scale["width"] == width or scale["height"] == height
             ):
-                # __import__("pdb").set_trace()
+                # TODO: ^^ scaling is weird, we're being extra-permisive here
                 return scale
 
     def get_scales(self, field, width, height):
@@ -148,17 +150,27 @@ class ImageFieldScales(object):
         """
         scales = {}
 
-        for name, actual_width, actual_height in _get_scale_infos():
-            if actual_width > width:
-                # The width of the scale is larger than the original width.
-                # Scaling would simply return the original (or perhaps a copy
-                # with the same size).  We do not need this scale.
-                # If we *do* want this, we should call the scale method with
-                # mode="cover", so it scales up.
-                continue
+        scale_infos = _get_scale_infos()
+        for name, actual_width, actual_height in scale_infos:
+            # print(
+            #     "eea.climateadapt.image_scales looking up scale",
+            #     name,
+            #     actual_width,
+            #     actual_height,
+            #     width,
+            # )
+            # ('eea.climateadapt.image_scales looking up scale', u'huge', 1600, 65536, 1734)
+            # if actual_width > width:
+            #     # The width of the scale is larger than the original width.
+            #     # Scaling would simply return the original (or perhaps a copy
+            #     # with the same size).  We do not need this scale.
+            #     # If we *do* want this, we should call the scale method with
+            #     # mode="cover", so it scales up.
+            #     print("actual width bigger then width", actual_width, width)
+            #     continue
 
-                # Get the scale info without actually generating the scale,
-                # nor any old-style HiDPI scales.
+            # Get the scale info without actually generating the scale,
+            # nor any old-style HiDPI scales.
             try:
                 # TODO: try to retrieve the scale from annotation storage
                 # current code will always write a scale here
@@ -166,6 +178,7 @@ class ImageFieldScales(object):
                     field.__name__, width=actual_width, height=actual_height
                 )
                 if scale is None:
+                    # __import__("pdb").set_trace()
                     scale = self.images_view.scale(
                         field.__name__,
                         width=actual_width,
@@ -190,7 +203,8 @@ class ImageFieldScales(object):
                 actual_height = scale.height
 
             scales[name] = {
-                "download": self._scale_view_from_url(url),
+                "download": "@@images/%s/%s" % (field.__name__, name),
+                # self._scale_view_from_url(url),
                 "width": actual_width,
                 "height": actual_height,
             }
