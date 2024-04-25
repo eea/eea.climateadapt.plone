@@ -299,7 +299,7 @@ class TranslateAsyncActionExecutor(object):
             "HTTP_X_FORWARDED_HOST", site.absolute_url()
         )
 
-        # this triggers a call to eTranslation, so this process is async
+        # this will schedule several async jobs that call etranslation async
         translate_volto_html(html, obj, http_host)
 
         return True
