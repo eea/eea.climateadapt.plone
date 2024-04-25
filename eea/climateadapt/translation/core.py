@@ -510,10 +510,7 @@ def trans_sync_workflow_state(site, request):
 
 
 def execute_translate_async(context, options, language, request_vars=None):
-    """Translate via zc.async
-
-    This function is executed as part of a zc.async job
-    """
+    """Executed via zc.async, triggers the call to eTranslation"""
     request_vars = request_vars or {}
     site_portal = portal.get()
 

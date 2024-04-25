@@ -1,5 +1,6 @@
 """Translation views"""
 
+import cgi
 import base64
 import logging
 import os
@@ -47,14 +48,25 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
+        # for some reason this request acts strange
+        qs = self.request["QUERY_STRING"]
+        parsed = cgi.parse_qs(qs)
+        form = {}
+        for name, val in parsed.items():
+            form[name] = val[0]
+
+        _file = self.request._file.read()
+        logger.info("Translation Callback Incoming form: %s" % form)
+        logger.info("Translation Callback Incoming file: %s" % _file)
+
+        self.save_html_volto(form, _file)
+        return "ok"
+
         form = self.request.form
 
         if form.get("is_volto", None) is not None:
             file = self.request.stdin
-            self.save_html_volto(form, file)
             return
-
-        logger.info("Translation Callback Incoming: %s" % form)
 
         # NOTE:: the code below is no longer used, we only use the above method
 
@@ -72,7 +84,8 @@ class TranslationCallback(BrowserView):
             trans_obj_path = form.get("external-reference")
             if "https://" in trans_obj_path:
                 site = portal.getSite()
-                trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
+                trans_obj_path = "/cca" + \
+                    trans_obj_path.split(site.absolute_url())[-1]
             field = form.get("field", None)
             if uid is not None and field is not None:
                 form.pop("uid", None)
@@ -140,10 +153,9 @@ class TranslationCallback(BrowserView):
             '<a href="/@@translate-key?key=' + original + '">available translations</a>'
         )
 
-    def save_html_volto(self, form, file):
-        file.seek(0)
-
-        b64_str = file.read()
+    def save_html_volto(self, form, b64_str):
+        # file.seek(0)
+        # b64_str = file.read()
         html_translated = base64.decodestring(b64_str).decode("latin-1")
 
         logger.info("Translate volto html form: %s", form)
@@ -152,7 +164,8 @@ class TranslationCallback(BrowserView):
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
         if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
+            trans_obj_path = "/cca" + \
+                trans_obj_path.split(site.absolute_url())[-1]
 
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
         force_unlock(trans_obj)
@@ -181,7 +194,8 @@ class TranslationCallback(BrowserView):
 
         trans_obj._p_changed = True
         trans_obj.reindexObject()
-        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
+        logger.info("Html volto translation saved for %s",
+                    trans_obj.absolute_url())
 
     def save_tile_field(self, form):
         """Save a simple text filed in a cover tile"""
@@ -204,7 +218,8 @@ class TranslationCallback(BrowserView):
             tile_annot_id = "plone.tiles.data." + tile_id
             site = portal.getSite()
             if "https://" in trans_obj_path:
-                trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
+                trans_obj_path = "/cca" + \
+                    trans_obj_path.split(site.absolute_url())[-1]
             trans_obj = site.unrestrictedTraverse(trans_obj_path)
             tile = trans_obj.__annotations__.get(tile_annot_id, None)
 
@@ -261,7 +276,8 @@ class TranslationCallback(BrowserView):
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
         if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
+            trans_obj_path = "/cca" + \
+                trans_obj_path.split(site.absolute_url())[-1]
 
         form.pop("format")
         form.pop("request-id")
@@ -288,7 +304,8 @@ class TranslationCallback(BrowserView):
         soup = BeautifulSoup(html_file, "lxml")  # it's seems better
         # for invalid HTML cases.
 
-        html_fields = soup.find_all("div", attrs={"class": "cca-translation-section"})
+        html_fields = soup.find_all(
+            "div", attrs={"class": "cca-translation-section"})
 
         for field in html_fields:
             field_name = field["data-field"]
@@ -355,7 +372,8 @@ class TranslateObjectAsync(BrowserView):
         messages.add("Translation process initiated.", type="info")
 
         obj = self.context
-        html = getMultiAdapter((self.context, self.context.REQUEST), name="tohtml")()
+        html = getMultiAdapter(
+            (self.context, self.context.REQUEST), name="tohtml")()
         site = portal.getSite()
         http_host = self.context.REQUEST.environ.get(
             "HTTP_X_FORWARDED_HOST", site.absolute_url()
