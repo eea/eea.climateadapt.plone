@@ -122,7 +122,8 @@ def handle_cover_step_4(obj, trans_obj, language, reindex):
                 for data_trans_tile in data_trans_tiles:
                     fixer = cover_fixes.get(data_trans_tile["type"], None)
                     if fixer:
-                        fixer(obj, trans_obj, data_tile, data_trans_tile, language)
+                        fixer(obj, trans_obj, data_tile,
+                              data_trans_tile, language)
 
             if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
                 tile = obj.get_tile(data_tile["id"])
@@ -165,7 +166,8 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
             trans_obj.setDefaultPage(default_view_en)
             reindex = True
         except Exception:
-            logger.info("Can't set default page for: %s", trans_obj.absolute_url())
+            logger.info("Can't set default page for: %s",
+                        trans_obj.absolute_url())
     if not reindex:
         reindex = True
         trans_obj.setLayout(layout_en)
@@ -507,14 +509,27 @@ def trans_sync_workflow_state(site, request):
     return "Finalize step 5"
 
 
-def execute_translate_async(en_obj, options, language):
+def execute_translate_async(context, options, language, request_vars=None):
     """Translate via zc.async
 
     This function is executed as part of a zc.async job
     """
+    request_vars = request_vars or {}
     site_portal = portal.get()
-    site_portal.REQUEST = en_obj.REQUEST
 
+    if not hasattr(context, "REQUEST"):
+        zopeUtils._Z2HOST = options["http_host"]
+        context = zopeUtils.makerequest(context)
+        context.REQUEST.other["SERVER_URL"] = context.REQUEST.other[
+            "SERVER_URL"
+        ].replace("http", "https")
+        # context.REQUEST['PARENTS'] = [context]
+
+        for k, v in request_vars.items():
+            context.REQUEST.set(k, v)
+    site_portal.REQUEST = context.REQUEST
+
+    en_obj = context
     create_translation_object(en_obj, language)
 
     http_host = options["http_host"]
