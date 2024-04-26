@@ -535,7 +535,7 @@ def sync_translation_state(trans_obj, en_obj):
         # trans_obj.reindexObject()
 
 
-def execute_translate_async(en_obj, options, language, request_vars=None):
+def execute_translate_async(en_obj_path, options, language, request_vars=None):
     """Executed via zc.async, triggers the call to eTranslation"""
     request_vars = request_vars or {}
     site_portal = portal.get()
@@ -551,6 +551,9 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
         for k, v in request_vars.items():
             site_portal.REQUEST.set(k, v)
 
+    import pdb
+
+    pdb.set_trace()
     trans_obj = create_translation_object(en_obj, language)
     sync_translation_state(trans_obj, en_obj)
 
