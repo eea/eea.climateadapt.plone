@@ -6,7 +6,7 @@
     >
 
   <adapter factory=".contentrules.ReindexActionExecutor" />
-  <adapter factory=".contentrules.TranslateActionExecutor" />
+  <!-- <adapter factory=".contentrules.TranslateActionExecutor" /> -->
   <adapter factory=".contentrules.TranslateAsyncActionExecutor" />
   <adapter factory=".contentrules.SynchronizeStatesForTranslationsActionExecutor" />
 

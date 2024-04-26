@@ -25,8 +25,10 @@ from eea.climateadapt.asynctasks.utils import get_async_service
 from eea.climateadapt.translation.utils import get_site_languages
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from .core import create_translation_object, execute_translate_async, save_field_data
+from .core import execute_translate_async, save_field_data
 from .utils import get_value_representation
+
+# create_translation_object,
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -75,9 +77,12 @@ def get_cover_as_html(obj):
                     title = data.get("title")
                     if not isinstance(title, unicode):
                         title = title.decode("utf-8")
-                    children.append(
-                        E.DIV(data["title"], **{"data-tile-field": "title"})
-                    )
+                    try:
+                        d = {"data-tile-field": "title"}
+                        children.append(E.DIV(title, **d))
+                    except:
+                        __traceback_info__ = ("Wrong value for XML", str(title))
+
                 if data.get("text"):
                     frags = convert_richtext_to_fragments(data["text"])
                     d = {"data-tile-field": "text", "data-tile-type": "richtext"}
@@ -199,6 +204,7 @@ class ContentToHtml(BrowserView):
             return html
 
         if self.request.form.get("full"):
+            # This triggers the actual async-callback process to translate
             http_host = self.context.REQUEST.environ.get(
                 "HTTP_X_FORWARDED_HOST", portal.get().absolute_url()
             )
@@ -241,18 +247,6 @@ def translate_volto_html(html, en_obj, http_host):
         for language in get_site_languages():
             if language == "en":
                 continue
-
-            create_translation_object(en_obj, language)
-
-            translations = TranslationManager(en_obj).get_translations()
-            trans_obj = translations[language]
-            trans_obj_url = trans_obj.absolute_url()
-            trans_obj_path = "/cca" + trans_obj_url.split(http_host)[-1]
-            options["trans_obj_path"] = trans_obj_path
-
-            request_vars = {
-                # 'PARENTS': obj.REQUEST['PARENTS']
-            }
             async_service = get_async_service()
             queue = async_service.getQueues()[""]
             async_service.queueJobInQueue(
@@ -262,5 +256,4 @@ def translate_volto_html(html, en_obj, http_host):
                 en_obj,
                 copy.deepcopy(options),
                 language,
-                request_vars,
             )
