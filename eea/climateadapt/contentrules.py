@@ -192,7 +192,10 @@ class TranslateAsyncActionExecutor(object):
 
     def __call__(self):
         if not os.environ.get("TRANSLATE_ON_CHANGE"):
+            logger.warn(
+                "TranslateAsyncActionExecutor executed on the wrong server")
             return True
+
         obj = self.event.object
         html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
         site = api.portal.get()
