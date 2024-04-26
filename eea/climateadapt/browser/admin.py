@@ -1198,9 +1198,9 @@ class MissionFundingImporter(BrowserView):
             eligible_entities=choices([14, 15, 16, 17]),
             sectors=choices([18, 19, 20, 21, 22, 23, 24,
                             25, 26, 27, 28, 29, 30, 31]),
+            funding_type=choices([32, 33, 34, 35]),
+            further_info=richtext(75),
             # TODO
-            # funding_type=choices([32, 33, 34, 35]),
-            # further_info=richtext(),
             # country=text()
         )
 

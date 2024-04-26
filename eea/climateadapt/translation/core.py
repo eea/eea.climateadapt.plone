@@ -27,7 +27,7 @@ from . import (
     retrieve_volto_html_translation,
 )
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from .translate_obj import translate_obj
+# from .translate_obj import translate_obj
 
 # steps => used to translate the entire website
 # translate in one step (when object is published)
@@ -122,7 +122,8 @@ def handle_cover_step_4(obj, trans_obj, language, reindex):
                 for data_trans_tile in data_trans_tiles:
                     fixer = cover_fixes.get(data_trans_tile["type"], None)
                     if fixer:
-                        fixer(obj, trans_obj, data_tile, data_trans_tile, language)
+                        fixer(obj, trans_obj, data_tile,
+                              data_trans_tile, language)
 
             if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
                 tile = obj.get_tile(data_tile["id"])
@@ -165,7 +166,8 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
             trans_obj.setDefaultPage(default_view_en)
             reindex = True
         except Exception:
-            logger.info("Can't set default page for: %s", trans_obj.absolute_url())
+            logger.info("Can't set default page for: %s",
+                        trans_obj.absolute_url())
     if not reindex:
         reindex = True
         trans_obj.setLayout(layout_en)
@@ -507,24 +509,10 @@ def trans_sync_workflow_state(site, request):
     return "Finalize step 5"
 
 
-def execute_translate_async(context, options, language, request_vars):
-    """Translate via zc.async"""
-
-    if options.get("is_volto", None) is not None:
-        retrieve_volto_html_translation(
-            options["http_host"],
-            "en",
-            options["html_content"].encode("utf-8"),
-            options["trans_obj_path"],
-            target_languages=language.upper(),
-        )
-        return
-
-    # NOTE: all the code below is for reference only. We only use the version above
-
-    if is_volto_context(context):
-        logger.info("SKIP classic translation in volto context")
-        return
+def execute_translate_async(context, options, language, request_vars=None):
+    """Executed via zc.async, triggers the call to eTranslation"""
+    request_vars = request_vars or {}
+    site_portal = portal.get()
 
     if not hasattr(context, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
@@ -537,21 +525,68 @@ def execute_translate_async(context, options, language, request_vars):
         for k, v in request_vars.items():
             context.REQUEST.set(k, v)
 
-    settings = {
-        "language": language,
-        "uid": options["uid"],
-    }
-
-    trans_copy_field_data(context, settings, async_request=True)
-    site_portal = portal.get()
     site_portal.REQUEST = context.REQUEST
 
-    translate_obj(context, lang=language, one_step=True)
-    del site_portal.REQUEST
+    en_obj = context
+    create_translation_object(en_obj, language)
 
+    http_host = options["http_host"]
+    translations = TranslationManager(en_obj).get_translations()
+    trans_obj = translations[language]
+    trans_obj_url = trans_obj.absolute_url()
+    trans_obj_path = "/cca" + trans_obj_url.split(http_host)[-1]
+    options["trans_obj_path"] = trans_obj_path
+
+    retrieve_volto_html_translation(
+        options["http_host"],
+        "en",
+        options["html_content"].encode("utf-8"),
+        options["trans_obj_path"],
+        target_languages=language.upper(),
+    )
+
+    try:
+        del site_portal.REQUEST
+        del context.REQUEST
+    except AttributeError:
+        pass
     logger.info("Async translate for object %s", options["obj_url"])
-
     return "Finished"
+
+    # if options.get("is_volto", None) is not None:
+
+    # NOTE: all the code below is for reference only. We only use the version above
+
+    # if is_volto_context(context):
+    #     logger.info("SKIP classic translation in volto context")
+    #     return
+    #
+    # if not hasattr(context, "REQUEST"):
+    #     zopeUtils._Z2HOST = options["http_host"]
+    #     context = zopeUtils.makerequest(context)
+    #     context.REQUEST.other["SERVER_URL"] = context.REQUEST.other[
+    #         "SERVER_URL"
+    #     ].replace("http", "https")
+    #     # context.REQUEST['PARENTS'] = [context]
+    #
+    #     for k, v in request_vars.items():
+    #         context.REQUEST.set(k, v)
+    #
+    # settings = {
+    #     "language": language,
+    #     "uid": options["uid"],
+    # }
+    #
+    # trans_copy_field_data(context, settings, async_request=True)
+    # site_portal = portal.get()
+    # site_portal.REQUEST = context.REQUEST
+    #
+    # translate_obj(context, lang=language, one_step=True)
+    # del site_portal.REQUEST
+    #
+    # logger.info("Async translate for object %s", options["obj_url"])
+    #
+    # return "Finished"
 
 
 def handle_link(en_obj, trans_obj):
@@ -565,6 +600,8 @@ def handle_link(en_obj, trans_obj):
 
 
 def save_field_data(canonical, trans_obj, fielddata):
+    """Applies the data from fielddata to the translated object trans_obj"""
+
     for schema in iterSchemata(canonical):
         for k, v in getFieldsInOrder(schema):
             if (
@@ -581,6 +618,7 @@ def save_field_data(canonical, trans_obj, fielddata):
 
     if "cover_layout" in fielddata:
         coverdata = fielddata["cover_layout"]
+
         for tileid in coverdata.keys():
             full_tile_id = "plone.tiles.data.%s" % tileid
 

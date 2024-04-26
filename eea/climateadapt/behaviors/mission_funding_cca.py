@@ -1,18 +1,23 @@
-from eea.climateadapt import CcaAdminMessageFactory as _
-from zope.schema import Choice, List, TextLine, Bool, URI
-from plone.directives import form
-from plone.supermodel import model
-from plone.autoform.interfaces import IFormFieldProvider
+import json
+
+from pkg_resources import resource_filename
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from zope.interface import alsoProvides, provider
+from plone.app.textfield import RichText
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.directives import form
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from .volto_layout import (
-    mission_funding_cca_layout_blocks,
-    mission_funding_cca_layout_items,
-)
+from plone.supermodel import model
+from zope.interface import alsoProvides, provider
+from zope.schema import URI, Bool, Choice, List, TextLine
 
-from plone.app.textfield import RichText
+from eea.climateadapt import CcaAdminMessageFactory as _
+
+
+fpath = resource_filename(
+    "eea.climateadapt.behaviors", "volto_layout_missionfunding.json"
+)
+layout = json.load(open(fpath))
 
 
 @provider(IFormFieldProvider)
@@ -88,7 +93,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # column: Provide a link to general information on the funding programme:
     )
 
-    # TODO:
+    # Please provide a link to additional useful information
     further_info = RichText(title=_("Further information"), required=False)
 
     # column: For which regions is the funding opportunity offered?
@@ -139,7 +144,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         title=_("Blocks"),
         description=_("The JSON representation of the object blocks."),
         schema=BLOCKS_SCHEMA,
-        default=mission_funding_cca_layout_blocks,
+        default=layout["blocks"],
         required=False,
     )
 
@@ -147,9 +152,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": mission_funding_cca_layout_items,
-        },
+        default=layout["blocks_layout"],
         required=False,
     )
 

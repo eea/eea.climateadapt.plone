@@ -1,3 +1,7 @@
+import json
+
+from pkg_resources import resource_filename
+
 from eea.climateadapt import CcaAdminMessageFactory as _
 from zope.schema import Choice, List
 from plone.directives import form
@@ -7,8 +11,11 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from zope.interface import alsoProvides, provider
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from .volto_layout import mission_tool_layout_blocks, mission_tool_layout_items
 
+fpath = resource_filename(
+    "eea.climateadapt.behaviors", "volto_layout_mission_tools.json"
+)
+layout = json.load(open(fpath))
 
 @provider(IFormFieldProvider)
 class IMissionTool(model.Schema, IBlocks):
@@ -112,7 +119,7 @@ class IMissionTool(model.Schema, IBlocks):
         title=_("Blocks"),
         description=_("The JSON representation of the object blocks."),
         schema=BLOCKS_SCHEMA,
-        default=mission_tool_layout_blocks,
+        default=layout["blocks"],
         required=False,
     )
 
@@ -120,9 +127,7 @@ class IMissionTool(model.Schema, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": mission_tool_layout_items,
-        },
+        default=layout["blocks_layout"],
         required=False,
     )
 

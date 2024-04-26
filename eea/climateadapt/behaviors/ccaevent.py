@@ -166,3 +166,5 @@ alsoProvides(IAllowDiscussion["allow_discussion"], ILanguageIndependentField)
 
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 alsoProvides(IExcludeFromNavigation["exclude_from_nav"], ILanguageIndependentField)
+
+IExcludeFromNavigation["exclude_from_nav"].required = False

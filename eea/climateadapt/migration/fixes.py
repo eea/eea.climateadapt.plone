@@ -724,11 +724,38 @@ def fix_cca_countries(context):
 
     uids = [uid, disclaimer_block]
 
+    # move the disclaimer block to be the last
     context.blocks_layout["items"] = [
         x for x in context.blocks_layout["items"] if x not in uids
     ] + (disclaimer_block and [disclaimer_block] or [])
 
-    # move the disclaimer block to be the last
+    _types = [block["@type"] for block in context.blocks.values()]
+
+    if "countryProfileDetail" not in _types:
+        # these are the Turkey, Norway and...
+        # delete all slate blocks that are not disclaimer
+        todelete = []
+
+        for uid in context.blocks_layout["items"]:
+            block = context.blocks[uid]
+            if block["@type"] not in ["slate", "tabs_block"]:
+                continue
+            if "Last update" not in block.get("plaintext", ""):
+                todelete.append(uid)
+
+        for uid in todelete:
+            del context.blocks[uid]
+        context.blocks_layout["items"] = [
+            uid for uid in context.blocks_layout["items"] if uid not in todelete
+        ]
+        uid = make_uid()
+        block = {"@type": "countryProfileDetail"}
+        context.blocks_layout["items"].insert(
+            len(context.blocks_layout["items"]) - 2, uid
+        )
+        context.blocks[uid] = block
+        logger.info("Fixed country profile without countryProfileDetail")
+
     context._p_changed = True
 
 
@@ -872,12 +899,12 @@ def fix_ast_header(context):
                 new_data = {
                     "@type": "title",
                     "hideContentType": True,
-                    "subtitle": subtitle if step != 0 else title
+                    "subtitle": subtitle if step != 0 else title,
                 }
                 obj.blocks[title_block_id] = new_data
                 if step == 0:
                     obj.title = title
-                else: 
+                else:
                     obj.title = subtitle
 
         for tile in obj.list_tiles():
@@ -898,7 +925,7 @@ def fix_ast_header(context):
             obj.blocks[title_block_id]["subtitle"] = ""
 
     if are_in_path(url, AST_PATHS):
-        if hasattr(obj, 'list_tiles'):
+        if hasattr(obj, "list_tiles"):
             migrate_ast_header(obj)
 
     obj._p_changed = True

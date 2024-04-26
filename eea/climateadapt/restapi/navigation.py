@@ -31,6 +31,10 @@ class CatalogNavigationTabs(BaseCatalogNavigationTabs):
         return query
 
 
+def fix_url(url):
+    return url.replace("/cca/", "/")
+
+
 @implementer(IExpandableElement)
 @adapter(Interface, IPloneRestapiLayer)
 class Navigation(BaseNavigation):
@@ -60,7 +64,7 @@ class Navigation(BaseNavigation):
 
         if hasattr(brain, "getRemoteUrl") and brain.getRemoteUrl:
             entry["path"] = urlparse(brain.getRemoteUrl).path
-            entry["@id"] = brain.getRemoteUrl
+            entry["@id"] = fix_url(brain.getRemoteUrl)
 
         return entry
 
@@ -84,7 +88,7 @@ class Navigation(BaseNavigation):
         for entry in old:
             if entry.get("url"):
                 # quick hack to fix broken handling of Link Urls
-                entry["url"] = entry["url"].replace("/cca/", "/")
+                entry["url"] = fix_url(entry["url"])
         return old
 
     # @property
