@@ -516,7 +516,7 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
 
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
-        en_obj = zopeUtils.makerequest(en_obj)
+        site_portal = zopeUtils.makerequest(site_portal)
         server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
             "http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
@@ -533,7 +533,12 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
     translations = TranslationManager(en_obj).get_translations()
     trans_obj = translations[language]
     trans_obj_url = trans_obj.absolute_url()
-    trans_obj_path = "/cca" + trans_obj_url.split(http_host)[-1]
+    trans_obj_path = trans_obj_url.split(http_host)[-1]
+    if trans_obj_path.startswith("cca"):
+        trans_obj_path = "/" + trans_obj_path
+    else:
+        trans_obj_path = "/cca" + trans_obj_path
+
     options["trans_obj_path"] = trans_obj_path
 
     retrieve_volto_html_translation(
