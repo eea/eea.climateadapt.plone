@@ -514,18 +514,18 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
     request_vars = request_vars or {}
     site_portal = portal.get()
 
-    if not hasattr(en_obj, "REQUEST"):
+    if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         en_obj = zopeUtils.makerequest(en_obj)
-        server_url = en_obj.REQUEST.other["SERVER_URL"].replace(
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
             "http", "https")
-        en_obj.REQUEST.other["SERVER_URL"] = server_url
+        site_portal.REQUEST.other["SERVER_URL"] = server_url
         # context.REQUEST['PARENTS'] = [context]
 
         for k, v in request_vars.items():
-            en_obj.REQUEST.set(k, v)
+            site_portal.REQUEST.set(k, v)
 
-    site_portal.REQUEST = en_obj.REQUEST
+    # site_portal.REQUEST = en_obj.REQUEST
 
     create_translation_object(en_obj, language)
 
@@ -546,7 +546,7 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
 
     try:
         del site_portal.REQUEST
-        del context.REQUEST
+        del en_obj.REQUEST
     except AttributeError:
         pass
     logger.info("Async translate for object %s", options["obj_url"])
