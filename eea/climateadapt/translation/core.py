@@ -509,25 +509,24 @@ def trans_sync_workflow_state(site, request):
     return "Finalize step 5"
 
 
-def execute_translate_async(context, options, language, request_vars=None):
+def execute_translate_async(en_obj, options, language, request_vars=None):
     """Executed via zc.async, triggers the call to eTranslation"""
     request_vars = request_vars or {}
     site_portal = portal.get()
 
-    if not hasattr(context, "REQUEST"):
+    if not hasattr(en_obj, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
-        context = zopeUtils.makerequest(context)
-        context.REQUEST.other["SERVER_URL"] = context.REQUEST.other[
-            "SERVER_URL"
-        ].replace("http", "https")
+        en_obj = zopeUtils.makerequest(en_obj)
+        server_url = en_obj.REQUEST.other["SERVER_URL"].replace(
+            "http", "https")
+        en_obj.REQUEST.other["SERVER_URL"] = server_url
         # context.REQUEST['PARENTS'] = [context]
 
         for k, v in request_vars.items():
-            context.REQUEST.set(k, v)
+            en_obj.REQUEST.set(k, v)
 
-    site_portal.REQUEST = context.REQUEST
+    site_portal.REQUEST = en_obj.REQUEST
 
-    en_obj = context
     create_translation_object(en_obj, language)
 
     http_host = options["http_host"]
