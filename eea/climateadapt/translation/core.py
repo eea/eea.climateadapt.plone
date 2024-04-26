@@ -593,6 +593,7 @@ def execute_translate_async(en_obj_path, options, language, request_vars=None):
     try:
         del site_portal.REQUEST
         del en_obj.REQUEST
+        del trans_obj.REQUEST
     except AttributeError:
         pass
     logger.info("Async translate for object %s", options["obj_url"])
