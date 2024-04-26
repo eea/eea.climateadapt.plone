@@ -1,3 +1,4 @@
+from ZPublisher.BaseRequest import RequestContainer
 import logging
 import os
 from copy import deepcopy
@@ -537,12 +538,24 @@ def sync_translation_state(trans_obj, en_obj):
 
 def execute_translate_async(en_obj_path, options, language, request_vars=None):
     """Executed via zc.async, triggers the call to eTranslation"""
+
     request_vars = request_vars or {}
     site_portal = portal.get()
 
+    if isinstance(en_obj_path, basestring):
+        en_obj = site_portal.unrestrictedTraverse(en_obj_path)
+    else:
+        en_obj = en_obj_path
+
+    environ = {
+        "SERVER_NAME": options["http_host"],
+        "SERVER_PORT": 443,
+        "REQUEST_METHOD": "POST",
+    }
+
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
-        site_portal = zopeUtils.makerequest(site_portal)
+        site_portal = zopeUtils.makerequest(site_portal, environ)
         server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
             "http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
@@ -551,10 +564,10 @@ def execute_translate_async(en_obj_path, options, language, request_vars=None):
         for k, v in request_vars.items():
             site_portal.REQUEST.set(k, v)
 
-    import pdb
-
-    pdb.set_trace()
+    rc = RequestContainer(REQUEST=site_portal.REQUEST)
+    en_obj = en_obj.__of__(rc)
     trans_obj = create_translation_object(en_obj, language)
+    trans_obj = trans_obj.__of__(rc)
     sync_translation_state(trans_obj, en_obj)
 
     http_host = options["http_host"]
