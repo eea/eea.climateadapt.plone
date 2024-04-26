@@ -2,9 +2,13 @@
 """Content rules"""
 
 import logging
+import os
 
 import transaction
 from DateTime import DateTime
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.asynctasks.utils import get_async_service
+from eea.climateadapt.translation.volto import translate_volto_html
 from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.api.portal import get_tool
@@ -15,22 +19,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.statusmessages.interfaces import IStatusMessage
 from ZODB.POSException import ConflictError
-from zope.component import adapter, adapts
+from zope.component import adapter, adapts, getMultiAdapter
 from zope.interface import Interface, implementer, implements
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.asynctasks.utils import get_async_service
-from zope.component import getMultiAdapter
-from eea.climateadapt.translation.volto import translate_volto_html
-
-# from eea.climateadapt.translation.utils import get_site_languages
-# from zope.site.hooks import getSite
-# from eea.climateadapt.translation.core import (
-#     # copy_missing_interfaces,
-#     # create_translation_object,
-#     # translate_obj,
-#     # trans_copy_field_data,
-#     # trans_sync_workflow_state,
-# )
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -157,6 +147,168 @@ class TranslateAction(SimpleItem):
     summary = _("Translate object")
 
 
+class TranslateAddForm(NullAddForm):
+    """A translate action form"""
+
+    def create(self):
+        return TranslateAction()
+
+
+class TranslateAsyncAddForm(NullAddForm):
+    """A translate async action form"""
+
+    def create(self):
+        return TranslateAsyncAction()
+
+
+class ITranslateAsyncAction(Interface):
+    """Interface for run translate and translate_step_4 for and object"""
+
+
+class TranslateAsyncAction(SimpleItem):
+    """Async translate and translate_step_4 for and object"""
+
+    implements(ITranslateAsyncAction, IRuleElementData)
+
+    element = "eea.climateadapt.TranslateAsync"
+    summary = _("Translate object async")
+
+
+class TranslateAsyncActionExecutor(object):
+    """Translate async executor"""
+
+    implements(IExecutable)
+    adapts(Interface, ITranslateAsyncAction, Interface)
+    noasync_msg = "No instance for async operations was defined."
+
+    def __init__(self, context, element, event):
+        self.context = context
+        self.element = element
+        self.event = event
+
+    @property
+    def async_service(self):
+        return get_async_service()
+
+    def __call__(self):
+        if not os.environ.get("TRANSLATE_ON_CHANGE"):
+            return True
+        obj = self.event.object
+        html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+        site = api.portal.get()
+        http_host = self.context.REQUEST.environ.get(
+            "HTTP_X_FORWARDED_HOST", site.absolute_url()
+        )
+
+        # this will schedule several async jobs that call etranslation async
+        translate_volto_html(html, obj, http_host)
+
+        return True
+
+
+class ISynchronizeStatesForTranslationsAction(Interface):
+    """Interface for sync states for translation items action."""
+
+
+@implementer(ISynchronizeStatesForTranslationsAction, IRuleElementData)
+class SynchronizeStatesForTranslationsAction(SimpleItem):
+    """The actual persistent implementation of the action element."""
+
+    element = "eea.climateadapt.SynchronizeStatesForTranslations"
+    summary = _("Synchronize states for translations")
+
+
+@adapter(Interface, ISynchronizeStatesForTranslationsAction, Interface)
+@implementer(IExecutable)
+class SynchronizeStatesForTranslationsActionExecutor(object):
+    """Make sure the translated objects have the same state as EN object"""
+
+    def __init__(self, context, element, event):
+        self.context = context
+        self.element = element
+        self.event = event
+
+    def set_new_state(self, trans_obj, action):
+        """Set the new state"""
+        try:
+            wftool = getToolByName(trans_obj, "portal_workflow")
+            wftool.doActionFor(trans_obj, action)
+            transaction.commit()
+        except Exception:
+            logger.info("Synchronize states: not saved for trans object.")
+
+    def __call__(self):
+        obj = self.event.object
+
+        if "/en/" in obj.absolute_url():
+            logger.info("Synchronize states...")
+            action = self.event.action
+            translations = TranslationManager(obj).get_translations()
+            translated_objs = [translations[x]
+                               for x in translations if x != "en"]
+
+            for trans_obj in translated_objs:
+                self.set_new_state(trans_obj, action)
+        else:
+            logger.info("Synchronize states: no action.")
+
+        return True
+
+
+class SynchronizeStatesForTranslationsAddForm(NullAddForm):
+    """A translate action form"""
+
+    def create(self):
+        return SynchronizeStatesForTranslationsAction()
+
+
+# def execute_translate_step_4_async(context, options, language, request_vars):
+#     """translate via zc.async"""
+#     if not hasattr(context, "REQUEST"):
+#         zopeUtils._Z2HOST = options["obj_url"]
+#         context = zopeUtils.makerequest(context)
+#         context.REQUEST["PARENTS"] = [context]
+#
+#         for k, v in request_vars:
+#             context.REQUEST.set(k, v)
+#
+#     try:
+#         settings = {
+#             "language": language,
+#             "uid": options["uid"],
+#         }
+#         res = trans_copy_field_data(context, settings, async_request=True)
+#         logger.info("Async translate for object %s", options["obj_url"])
+#
+#     except Exception as err:
+#         # async_service = get_async_service()
+#
+#         # re-schedule PING on error
+#         # schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
+#         # queue = async_service.getQueues()['']
+#         # async_service.queueJobInQueueWithDelay(
+#         #     None, schedule, queue, ('translate',),
+#         #     execute_translate_step_4_async, context, options, language, request_vars
+#         # )
+#
+#         # mark the original job as failed
+#         return "Translate rescheduled for object %s. " "Reason: %s " % (
+#             options["obj_url"],
+#             str(err),
+#         )
+#
+#     return res
+
+# from eea.climateadapt.translation.utils import get_site_languages
+# from zope.site.hooks import getSite
+# from eea.climateadapt.translation.core import (
+#     # copy_missing_interfaces,
+#     # create_translation_object,
+#     # translate_obj,
+#     # trans_copy_field_data,
+#     # trans_sync_workflow_state,
+# )
+
 # @adapter(Interface, ITranslateAction, Interface)
 # @implementer(IExecutable)
 # class TranslateActionExecutor(object):
@@ -246,153 +398,3 @@ class TranslateAction(SimpleItem):
 #                     "uid": obj.UID(),
 #                 }
 #                 trans_sync_workflow_state(getSite(), settings)
-
-
-class TranslateAddForm(NullAddForm):
-    """A translate action form"""
-
-    def create(self):
-        return TranslateAction()
-
-
-class TranslateAsyncAddForm(NullAddForm):
-    """A translate async action form"""
-
-    def create(self):
-        return TranslateAsyncAction()
-
-
-class ITranslateAsyncAction(Interface):
-    """Interface for run translate and translate_step_4 for and object"""
-
-
-class TranslateAsyncAction(SimpleItem):
-    """Async translate and translate_step_4 for and object"""
-
-    implements(ITranslateAsyncAction, IRuleElementData)
-
-    element = "eea.climateadapt.TranslateAsync"
-    summary = _("Translate object async")
-
-
-class TranslateAsyncActionExecutor(object):
-    """Translate async executor"""
-
-    implements(IExecutable)
-    adapts(Interface, ITranslateAsyncAction, Interface)
-    noasync_msg = "No instance for async operations was defined."
-
-    def __init__(self, context, element, event):
-        self.context = context
-        self.element = element
-        self.event = event
-
-    @property
-    def async_service(self):
-        return get_async_service()
-
-    def __call__(self):
-        obj = self.event.object
-        html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
-        site = api.portal.get()
-        http_host = self.context.REQUEST.environ.get(
-            "HTTP_X_FORWARDED_HOST", site.absolute_url()
-        )
-
-        # this will schedule several async jobs that call etranslation async
-        translate_volto_html(html, obj, http_host)
-
-        return True
-
-
-class ISynchronizeStatesForTranslationsAction(Interface):
-    """Interface for sync states for translation items action."""
-
-
-@implementer(ISynchronizeStatesForTranslationsAction, IRuleElementData)
-class SynchronizeStatesForTranslationsAction(SimpleItem):
-    """The actual persistent implementation of the action element."""
-
-    element = "eea.climateadapt.SynchronizeStatesForTranslations"
-    summary = _("Synchronize states for translations")
-
-
-@adapter(Interface, ISynchronizeStatesForTranslationsAction, Interface)
-@implementer(IExecutable)
-class SynchronizeStatesForTranslationsActionExecutor(object):
-    """Make sure the translated objects have the same state as EN object"""
-
-    def __init__(self, context, element, event):
-        self.context = context
-        self.element = element
-        self.event = event
-
-    def set_new_state(self, trans_obj, action):
-        """Set the new state"""
-        try:
-            wftool = getToolByName(trans_obj, "portal_workflow")
-            wftool.doActionFor(trans_obj, action)
-            transaction.commit()
-        except Exception:
-            logger.info("Synchronize states: not saved for trans object.")
-
-    def __call__(self):
-        obj = self.event.object
-
-        if "/en/" in obj.absolute_url():
-            logger.info("Synchronize states...")
-            action = self.event.action
-            translations = TranslationManager(obj).get_translations()
-            translated_objs = [translations[x] for x in translations if x != "en"]
-
-            for trans_obj in translated_objs:
-                self.set_new_state(trans_obj, action)
-        else:
-            logger.info("Synchronize states: no action.")
-
-        return True
-
-
-class SynchronizeStatesForTranslationsAddForm(NullAddForm):
-    """A translate action form"""
-
-    def create(self):
-        return SynchronizeStatesForTranslationsAction()
-
-
-# def execute_translate_step_4_async(context, options, language, request_vars):
-#     """translate via zc.async"""
-#     if not hasattr(context, "REQUEST"):
-#         zopeUtils._Z2HOST = options["obj_url"]
-#         context = zopeUtils.makerequest(context)
-#         context.REQUEST["PARENTS"] = [context]
-#
-#         for k, v in request_vars:
-#             context.REQUEST.set(k, v)
-#
-#     try:
-#         settings = {
-#             "language": language,
-#             "uid": options["uid"],
-#         }
-#         res = trans_copy_field_data(context, settings, async_request=True)
-#         logger.info("Async translate for object %s", options["obj_url"])
-#
-#     except Exception as err:
-#         # async_service = get_async_service()
-#
-#         # re-schedule PING on error
-#         # schedule = datetime.now(pytz.UTC) + timedelta(hours=4)
-#         # queue = async_service.getQueues()['']
-#         # async_service.queueJobInQueueWithDelay(
-#         #     None, schedule, queue, ('translate',),
-#         #     execute_translate_step_4_async, context, options, language, request_vars
-#         # )
-#
-#         # mark the original job as failed
-#         return "Translate rescheduled for object %s. " "Reason: %s " % (
-#             options["obj_url"],
-#             str(err),
-#         )
-#
-#     return res
