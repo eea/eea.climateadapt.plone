@@ -2,9 +2,13 @@
 """Content rules"""
 
 import logging
+import os
 
 import transaction
 from DateTime import DateTime
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.asynctasks.utils import get_async_service
+from eea.climateadapt.translation.volto import translate_volto_html
 from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.api.portal import get_tool
@@ -15,22 +19,8 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.statusmessages.interfaces import IStatusMessage
 from ZODB.POSException import ConflictError
-from zope.component import adapter, adapts
+from zope.component import adapter, adapts, getMultiAdapter
 from zope.interface import Interface, implementer, implements
-from zope.site.hooks import getSite
-
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.asynctasks.utils import get_async_service
-from eea.climateadapt.translation.core import (
-    copy_missing_interfaces,
-    create_translation_object,
-    translate_obj,
-    trans_copy_field_data,
-    trans_sync_workflow_state,
-)
-from eea.climateadapt.translation.utils import get_site_languages
-from zope.component import getMultiAdapter
-from eea.climateadapt.translation.volto import translate_volto_html
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -157,97 +147,6 @@ class TranslateAction(SimpleItem):
     summary = _("Translate object")
 
 
-@adapter(Interface, ITranslateAction, Interface)
-@implementer(IExecutable)
-class TranslateActionExecutor(object):
-    """The executor for this action."""
-
-    def __init__(self, context, element, event):
-        self.context = context
-        self.element = element
-        self.event = event
-
-    def __call__(self):
-        obj = self.event.object
-        if "/en/" in obj.absolute_url():
-            self.create_translations(obj)
-            self.copy_fields(obj)
-            self.translate_obj(obj)
-            self.publish_translations(obj)
-            self.copy_interfaces(obj)  # TODO: delete. It's already included in
-
-            # create_translation_object. It is used here only for testing
-            # on old created content. Example: fixing interfaces for pages
-            # like share-your-info
-
-    def error(self, obj, error):
-        """Show error"""
-        request = getattr(self.context, "REQUEST", None)
-        if request is not None:
-            title = utils.pretty_title_or_id(obj, obj)
-            message = _(
-                "Unable to translate ${name} as part of content rule "
-                "'translate' action: ${error}",
-                mapping={"name": title, "error": error},
-            )
-            IStatusMessage(request).addStatusMessage(message, type="error")
-
-    def create_translations(self, obj):
-        """Make sure all translations (cloned) objs exists for this obj"""
-        transaction.savepoint()
-        translations = TranslationManager(obj).get_translations()
-
-        for language in get_site_languages():
-            if language != "en" and language not in translations:
-                create_translation_object(obj, language)
-
-        transaction.commit()
-
-    def translate_obj(self, obj):
-        """Send the obj to be translated"""
-        try:
-            translate_obj(obj, one_step=True)
-        except Exception as e:
-            self.error(obj, str(e))
-
-    def copy_interfaces(self, obj):
-        """Copy interfaces from en to translated obj"""
-        translations = TranslationManager(obj).get_translations()
-        for language in translations:
-            trans_obj = translations[language]
-            copy_missing_interfaces(obj, trans_obj)
-
-    def set_workflow_states(self, obj):
-        """Mark translations as not approved"""
-        translations = TranslationManager(obj).get_translations()
-        for language in translations:
-            this_obj = translations[language]
-            wftool = getToolByName(this_obj, "portal_workflow")
-            wftool.doActionFor(this_obj, "send_to_translation_not_approved")
-
-    def copy_fields(self, obj):
-        """Run step 4 for this obj"""
-        translations = TranslationManager(obj).get_translations()
-        for language in translations:
-            if language != "en":
-                settings = {
-                    "language": language,
-                    "uid": obj.UID(),
-                }
-                trans_copy_field_data(getSite(), settings)
-
-    def publish_translations(self, obj):
-        """Run step 5 for this obj"""
-        translations = TranslationManager(obj).get_translations()
-        for language in translations:
-            if language != "en":
-                settings = {
-                    "language": language,
-                    "uid": obj.UID(),
-                }
-                trans_sync_workflow_state(getSite(), settings)
-
-
 class TranslateAddForm(NullAddForm):
     """A translate action form"""
 
@@ -292,6 +191,11 @@ class TranslateAsyncActionExecutor(object):
         return get_async_service()
 
     def __call__(self):
+        if not os.environ.get("TRANSLATE_ON_CHANGE"):
+            logger.warn(
+                "TranslateAsyncActionExecutor executed on the wrong server")
+            return True
+
         obj = self.event.object
         html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
         site = api.portal.get()
@@ -299,7 +203,7 @@ class TranslateAsyncActionExecutor(object):
             "HTTP_X_FORWARDED_HOST", site.absolute_url()
         )
 
-        # this triggers a call to eTranslation, so this process is async
+        # this will schedule several async jobs that call etranslation async
         translate_volto_html(html, obj, http_host)
 
         return True
@@ -343,7 +247,8 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
             logger.info("Synchronize states...")
             action = self.event.action
             translations = TranslationManager(obj).get_translations()
-            translated_objs = [translations[x] for x in translations if x != "en"]
+            translated_objs = [translations[x]
+                               for x in translations if x != "en"]
 
             for trans_obj in translated_objs:
                 self.set_new_state(trans_obj, action)
@@ -396,3 +301,103 @@ class SynchronizeStatesForTranslationsAddForm(NullAddForm):
 #         )
 #
 #     return res
+
+# from eea.climateadapt.translation.utils import get_site_languages
+# from zope.site.hooks import getSite
+# from eea.climateadapt.translation.core import (
+#     # copy_missing_interfaces,
+#     # create_translation_object,
+#     # translate_obj,
+#     # trans_copy_field_data,
+#     # trans_sync_workflow_state,
+# )
+
+# @adapter(Interface, ITranslateAction, Interface)
+# @implementer(IExecutable)
+# class TranslateActionExecutor(object):
+#     """The executor for this action."""
+#
+#     def __init__(self, context, element, event):
+#         self.context = context
+#         self.element = element
+#         self.event = event
+#
+#     def __call__(self):
+#         obj = self.event.object
+#         if "/en/" in obj.absolute_url():
+#             self.create_translations(obj)
+#             self.copy_fields(obj)
+#             self.translate_obj(obj)
+#             self.publish_translations(obj)
+#             self.copy_interfaces(obj)  # TODO: delete. It's already included in
+#
+#             # create_translation_object. It is used here only for testing
+#             # on old created content. Example: fixing interfaces for pages
+#             # like share-your-info
+#
+#     def error(self, obj, error):
+#         """Show error"""
+#         request = getattr(self.context, "REQUEST", None)
+#         if request is not None:
+#             title = utils.pretty_title_or_id(obj, obj)
+#             message = _(
+#                 "Unable to translate ${name} as part of content rule "
+#                 "'translate' action: ${error}",
+#                 mapping={"name": title, "error": error},
+#             )
+#             IStatusMessage(request).addStatusMessage(message, type="error")
+#
+#     def create_translations(self, obj):
+#         """Make sure all translations (cloned) objs exists for this obj"""
+#         transaction.savepoint()
+#         translations = TranslationManager(obj).get_translations()
+#
+#         for language in get_site_languages():
+#             if language != "en" and language not in translations:
+#                 create_translation_object(obj, language)
+#
+#         transaction.commit()
+#
+#     def translate_obj(self, obj):
+#         """Send the obj to be translated"""
+#         try:
+#             translate_obj(obj, one_step=True)
+#         except Exception as e:
+#             self.error(obj, str(e))
+#
+#     def copy_interfaces(self, obj):
+#         """Copy interfaces from en to translated obj"""
+#         translations = TranslationManager(obj).get_translations()
+#         for language in translations:
+#             trans_obj = translations[language]
+#             copy_missing_interfaces(obj, trans_obj)
+#
+#     def set_workflow_states(self, obj):
+#         """Mark translations as not approved"""
+#         translations = TranslationManager(obj).get_translations()
+#         for language in translations:
+#             this_obj = translations[language]
+#             wftool = getToolByName(this_obj, "portal_workflow")
+#             wftool.doActionFor(this_obj, "send_to_translation_not_approved")
+#
+#     def copy_fields(self, obj):
+#         """Run step 4 for this obj"""
+#         translations = TranslationManager(obj).get_translations()
+#         for language in translations:
+#             if language != "en":
+#                 settings = {
+#                     "language": language,
+#                     "uid": obj.UID(),
+#                 }
+#                 trans_copy_field_data(getSite(), settings)
+#
+#     def publish_translations(self, obj):
+#         """Run step 5 for this obj"""
+#         translations = TranslationManager(obj).get_translations()
+#         for language in translations:
+#             if language != "en":
+#                 settings = {
+#                     "language": language,
+#                     "uid": obj.UID(),
+#                 }
+#                 trans_sync_workflow_state(getSite(), settings)

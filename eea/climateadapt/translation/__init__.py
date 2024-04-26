@@ -1,5 +1,5 @@
-""" Init
-"""
+"""Init"""
+
 import json
 import logging
 import os
@@ -108,9 +108,13 @@ class Translation(Persistent):
         return self.text
 
 
-def retrieve_volto_html_translation(http_host, source_lang, html, obj_path, target_languages=None):
-    """ Request a translation for a html (based on volto export)
+def retrieve_volto_html_translation(
+    http_host, source_lang, html, obj_path, target_languages=None
+):
+    """Makes a eTranslation webcall to request a translation for a html
+    (based on volto export)
     """
+
     if not html:
         return
 
