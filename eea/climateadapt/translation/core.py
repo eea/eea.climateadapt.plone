@@ -1,3 +1,4 @@
+from ZPublisher.BaseRequest import RequestContainer
 import logging
 import os
 from copy import deepcopy
@@ -384,7 +385,7 @@ def create_translation_object(obj, language):
         if obj.portal_type == "collective.cover.content":
             copy_tiles_to_translation(obj, translations[language])
 
-        return
+        return translations[language]
 
     check_full_path_exists(obj, language)
     factory = DefaultTranslationFactory(obj)
@@ -411,6 +412,8 @@ def create_translation_object(obj, language):
     copy_missing_interfaces(obj, translated_object)
 
     translated_object.reindexObject()
+
+    return translated_object
 
 
 def get_all_objs(container):
@@ -509,32 +512,74 @@ def trans_sync_workflow_state(site, request):
     return "Finalize step 5"
 
 
-def execute_translate_async(context, options, language, request_vars=None):
+def sync_translation_state(trans_obj, en_obj):
+    state = None
+
+    try:
+        state = api.content.get_state(en_obj)
+    except WorkflowException:
+        logger.error("Can't get state for original object: %s", en_obj)
+        pass
+
+    if state in ["published", "archived"]:
+        if api.content.get_state(trans_obj) != state:
+            wftool = getToolByName(trans_obj, "portal_workflow")
+            logger.info("%s %s", state, trans_obj.absolute_url())
+            if state == "published":
+                wftool.doActionFor(trans_obj, "publish")
+            elif state == "archived":
+                wftool.doActionFor(trans_obj, "archive")
+
+    if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
+        trans_obj.setEffectiveDate(en_obj.effective_date)
+        trans_obj._p_changed = True
+        # trans_obj.reindexObject()
+
+
+def execute_translate_async(en_obj_path, options, language, request_vars=None):
     """Executed via zc.async, triggers the call to eTranslation"""
+
     request_vars = request_vars or {}
     site_portal = portal.get()
 
-    if not hasattr(context, "REQUEST"):
+    if isinstance(en_obj_path, basestring):
+        en_obj = site_portal.unrestrictedTraverse(en_obj_path)
+    else:
+        en_obj = en_obj_path
+
+    environ = {
+        "SERVER_NAME": options["http_host"],
+        "SERVER_PORT": 443,
+        "REQUEST_METHOD": "POST",
+    }
+
+    if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
-        context = zopeUtils.makerequest(context)
-        context.REQUEST.other["SERVER_URL"] = context.REQUEST.other[
-            "SERVER_URL"
-        ].replace("http", "https")
+        site_portal = zopeUtils.makerequest(site_portal, environ)
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
+            "http", "https")
+        site_portal.REQUEST.other["SERVER_URL"] = server_url
         # context.REQUEST['PARENTS'] = [context]
 
         for k, v in request_vars.items():
-            context.REQUEST.set(k, v)
+            site_portal.REQUEST.set(k, v)
 
-    site_portal.REQUEST = context.REQUEST
-
-    en_obj = context
-    create_translation_object(en_obj, language)
+    rc = RequestContainer(REQUEST=site_portal.REQUEST)
+    en_obj = en_obj.__of__(rc)
+    trans_obj = create_translation_object(en_obj, language)
+    trans_obj = trans_obj.__of__(rc)
+    sync_translation_state(trans_obj, en_obj)
 
     http_host = options["http_host"]
     translations = TranslationManager(en_obj).get_translations()
     trans_obj = translations[language]
     trans_obj_url = trans_obj.absolute_url()
-    trans_obj_path = "/cca" + trans_obj_url.split(http_host)[-1]
+    trans_obj_path = trans_obj_url.split(http_host)[-1]
+    if trans_obj_path.startswith("cca"):
+        trans_obj_path = "/" + trans_obj_path
+    else:
+        trans_obj_path = "/cca" + trans_obj_path
+
     options["trans_obj_path"] = trans_obj_path
 
     retrieve_volto_html_translation(
@@ -547,7 +592,8 @@ def execute_translate_async(context, options, language, request_vars=None):
 
     try:
         del site_portal.REQUEST
-        del context.REQUEST
+        del en_obj.REQUEST
+        del trans_obj.REQUEST
     except AttributeError:
         pass
     logger.info("Async translate for object %s", options["obj_url"])
