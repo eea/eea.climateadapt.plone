@@ -335,9 +335,9 @@ def copy_tiles(tiles, from_cover, to_cover):
 
         else:
             logger.info("Missing tile type")
-            import pdb
-
-            pdb.set_trace()
+            # import pdb
+            #
+            # pdb.set_trace()
 
 
 def check_full_path_exists(obj, language):
@@ -566,6 +566,9 @@ def execute_translate_async(en_obj_path, options, language, request_vars=None):
 
         for k, v in request_vars.items():
             site_portal.REQUEST.set(k, v)
+
+    # this causes the modified event in plone.app.multilingual to skip some processing which otherwise crashes
+    site_portal.REQUEST.translation_info = {"tg": True}
 
     rc = RequestContainer(REQUEST=site_portal.REQUEST)
     en_obj = en_obj.__of__(rc)
