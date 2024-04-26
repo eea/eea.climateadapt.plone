@@ -384,7 +384,7 @@ def create_translation_object(obj, language):
         if obj.portal_type == "collective.cover.content":
             copy_tiles_to_translation(obj, translations[language])
 
-        return
+        return translations[language]
 
     check_full_path_exists(obj, language)
     factory = DefaultTranslationFactory(obj)
@@ -411,6 +411,8 @@ def create_translation_object(obj, language):
     copy_missing_interfaces(obj, translated_object)
 
     translated_object.reindexObject()
+
+    return translated_object
 
 
 def get_all_objs(container):
@@ -509,6 +511,30 @@ def trans_sync_workflow_state(site, request):
     return "Finalize step 5"
 
 
+def sync_translation_state(trans_obj, en_obj):
+    state = None
+
+    try:
+        state = api.content.get_state(en_obj)
+    except WorkflowException:
+        logger.error("Can't get state for original object: %s", en_obj)
+        pass
+
+    if state in ["published", "archived"]:
+        if api.content.get_state(trans_obj) != state:
+            wftool = getToolByName(trans_obj, "portal_workflow")
+            logger.info("%s %s", state, trans_obj.absolute_url())
+            if state == "published":
+                wftool.doActionFor(trans_obj, "publish")
+            elif state == "archived":
+                wftool.doActionFor(trans_obj, "archive")
+
+    if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
+        trans_obj.setEffectiveDate(en_obj.effective_date)
+        trans_obj._p_changed = True
+        # trans_obj.reindexObject()
+
+
 def execute_translate_async(en_obj, options, language, request_vars=None):
     """Executed via zc.async, triggers the call to eTranslation"""
     request_vars = request_vars or {}
@@ -525,9 +551,8 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
         for k, v in request_vars.items():
             site_portal.REQUEST.set(k, v)
 
-    # site_portal.REQUEST = en_obj.REQUEST
-
-    create_translation_object(en_obj, language)
+    trans_obj = create_translation_object(en_obj, language)
+    sync_translation_state(trans_obj, en_obj)
 
     http_host = options["http_host"]
     translations = TranslationManager(en_obj).get_translations()
