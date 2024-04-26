@@ -1,399 +1,395 @@
 {
   "blocks_layout": {
     "items": [
-      "4cffe744-806c-4a86-bf95-34c9095fa24a",
-      "b9069d0b-c366-4a79-a712-9264aa64c99a",
-      "cd4e05b0-cb17-4c31-ae85-95eb3c44f0c2"
+      "36b21f66-0d59-4ebd-afde-1a4f9e6905e7",
+      "425c49cb-05f0-4dfc-816e-f10da25b0279",
+      "5dea6f61-388e-4776-88bf-4729ddcbe4d0"
     ]
   },
 
   "blocks":{
-    "4cffe744-806c-4a86-bf95-34c9095fa24a":{
-      "@layout":"d2bd9399-cc4d-42cb-88e2-4e2e100d1a60",
-      "@type":"title",
-      "block":"6a50fbb1-7f4f-4ee7-86d2-e930bcc634d2",
-      "copyrightIcon":"ri-copyright-line",
-      "hideContentType":true,
-      "styles":{
-        
-      }
+    "36b21f66-0d59-4ebd-afde-1a4f9e6905e7": {
+      "@layout": "4cffe744-806c-4a86-bf95-34c9095fa24a",
+      "@type": "title",
+      "block": "528aa060-7241-409a-9e5b-91b28cb1df13",
+      "copyrightIcon": "ri-copyright-line",
+      "hideContentType": true,
+      "styles": {}
     },
-    "b9069d0b-c366-4a79-a712-9264aa64c99a":{
-      "@layout":"f0fcf311-cbaa-46af-9cae-ffd1cf315ac1",
-      "@type":"columnsBlock",
-      "block":"70db2fde-c651-48d7-a20b-9431b75a7757",
-      "data":{
-        "blocks":{
-          "445f96f9-0ee4-4b79-95bc-bef222d618ac":{
-            "blocks":{
-              "096df213-d62b-49c0-afc2-cdcb3be2caa5":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+    "425c49cb-05f0-4dfc-816e-f10da25b0279": {
+      "@layout": "b9069d0b-c366-4a79-a712-9264aa64c99a",
+      "@type": "columnsBlock",
+      "block": "6400ffeb-8e02-4cb1-a524-b744712f9321",
+      "data": {
+        "blocks": {
+          "445f96f9-0ee4-4b79-95bc-bef222d618ac": {
+            "blocks": {
+              "096df213-d62b-49c0-afc2-cdcb3be2caa5": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "22f71ac5-c749-433e-aeab-a551ce36c134":{
-                "@type":"slate",
-                "plaintext":"Output(s)",
-                "value":[
+              "22f71ac5-c749-433e-aeab-a551ce36c134": {
+                "@type": "slate",
+                "plaintext": "Output(s)",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Output(s)"
+                        "text": "Output(s)"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "239faff9-a13b-41d8-a4c1-4c2963dab186":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "239faff9-a13b-41d8-a4c1-4c2963dab186": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "27382edf-80f3-4156-86c9-eb528f77a722":{
-                "@type":"slate",
-                "plaintext":"Materials or other support available",
-                "value":[
+              "27382edf-80f3-4156-86c9-eb528f77a722": {
+                "@type": "slate",
+                "plaintext": "Materials or other support available",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Materials or other support available"
+                        "text": "Materials or other support available"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "28e963a2-4b8f-4b4f-8e43-abf3db23aa86":{
-                "@type":"metadata",
-                "data":{
-                  "id":"readiness_for_use",
-                  "widget":"array"
+              "28e963a2-4b8f-4b4f-8e43-abf3db23aa86": {
+                "@type": "metadata",
+                "data": {
+                  "id": "readiness_for_use",
+                  "widget": "array"
                 }
               },
-              "318d565e-f94e-4941-9094-030790d19752":{
-                "@type":"slate",
-                "plaintext":"Readiness for use",
-                "value":[
+              "318d565e-f94e-4941-9094-030790d19752": {
+                "@type": "slate",
+                "plaintext": "Readiness for use",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Readiness for use"
+                        "text": "Readiness for use"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "3325f49f-2119-47dd-8c24-cbb2fa62386c":{
-                "@type":"slate",
-                "plaintext":"Applications",
-                "value":[
+              "3325f49f-2119-47dd-8c24-cbb2fa62386c": {
+                "@type": "slate",
+                "plaintext": "Applications",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Applications"
+                        "text": "Applications"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "35361dfa-2bea-4d9c-b39a-b8f2cbfa54bc":{
-                "@type":"slate",
-                "plaintext":"Replicability: Cost/effort for (new) usage",
-                "value":[
+              "35361dfa-2bea-4d9c-b39a-b8f2cbfa54bc": {
+                "@type": "slate",
+                "plaintext": "Replicability: Cost/effort for (new) usage",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Replicability: Cost/effort for (new) usage"
+                        "text": "Replicability: Cost/effort for (new) usage"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "36ec31bb-d61e-43c3-961c-fad0e8984049":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "36ec31bb-d61e-43c3-961c-fad0e8984049": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "3b37973e-feba-4d70-a705-acbd3b1b7ffa":{
-                "@type":"slate",
-                "plaintext":"Free keywords",
-                "value":[
+              "3b37973e-feba-4d70-a705-acbd3b1b7ffa": {
+                "@type": "slate",
+                "plaintext": "Free keywords",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Free keywords"
+                        "text": "Free keywords"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "4431f59d-3d5c-4bb1-a4db-336b0c2df19c":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "4431f59d-3d5c-4bb1-a4db-336b0c2df19c": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "4bffc714-6eec-4f7b-a2f2-4e6369acc892":{
-                "@type":"slate",
-                "plaintext":"Objective(s)",
-                "value":[
+              "4bffc714-6eec-4f7b-a2f2-4e6369acc892": {
+                "@type": "slate",
+                "plaintext": "Objective(s)",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Objective(s)"
+                        "text": "Objective(s)"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "5b2f27d6-6cb4-4ba4-830b-1224ee247d55":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "5b2f27d6-6cb4-4ba4-830b-1224ee247d55": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "6156a531-019f-4828-b2f7-8ff5a9918c46":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "6156a531-019f-4828-b2f7-8ff5a9918c46": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "6ab16a7d-8461-4f27-8fa8-7210c56bf3e2":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "6ab16a7d-8461-4f27-8fa8-7210c56bf3e2": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "71377606-60ca-4d27-8b55-dd0ef50b9fd3":{
-                "@type":"slate",
-                "plaintext":"Input(s)",
-                "value":[
+              "71377606-60ca-4d27-8b55-dd0ef50b9fd3": {
+                "@type": "slate",
+                "plaintext": "Input(s)",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Input(s)"
+                        "text": "Input(s)"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "719e9ad8-f487-411e-8dea-638c1d89138c":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "719e9ad8-f487-411e-8dea-638c1d89138c": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "735a6ba2-4a0d-41f0-aba8-15df662c8696":{
-                "@type":"slate",
-                "plaintext":"Short description",
-                "value":[
+              "735a6ba2-4a0d-41f0-aba8-15df662c8696": {
+                "@type": "slate",
+                "plaintext": "Short description",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Short description"
+                        "text": "Short description"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "8731cff1-0e1a-4e6d-ae3b-c73c8c8e9678":{
-                "@type":"slate",
-                "plaintext":"Contact",
-                "value":[
+              "8731cff1-0e1a-4e6d-ae3b-c73c8c8e9678": {
+                "@type": "slate",
+                "plaintext": "Contact",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Contact"
+                        "text": "Contact"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "900bbef6-5b31-441e-909a-ad495f88bdca":{
-                "@type":"slate",
-                "plaintext":"Website and maintenance",
-                "value":[
+              "900bbef6-5b31-441e-909a-ad495f88bdca": {
+                "@type": "slate",
+                "plaintext": "Website and maintenance",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Website and maintenance"
+                        "text": "Website and maintenance"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "9776afb8-c700-4a10-9e9a-59fcc80be898":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "9776afb8-c700-4a10-9e9a-59fcc80be898": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "c805e014-ce95-491b-8490-3015dba86171":{
-                "@type":"image",
-                "copyrightIcon":"ri-copyright-line",
-                "styles":{
-                  
-                },
-                "url":""
+              "c805e014-ce95-491b-8490-3015dba86171": {
+                "@type": "image",
+                "copyrightIcon": "ri-copyright-line",
+                "styles": {},
+                "url": ""
               },
-              "cc600188-3d2f-464f-85b7-2a154c8c35d7":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "cc600188-3d2f-464f-85b7-2a154c8c35d7": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "ea60b7ae-e34e-435e-a172-383d26e5ade2":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "ea60b7ae-e34e-435e-a172-383d26e5ade2": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "ebe09bf6-748c-492f-b90c-3bbc2becfa89":{
-                "@type":"slate",
-                "plaintext":"Strengths and weaknesses, comparative added value to other similar tools",
-                "value":[
+              "ebe09bf6-748c-492f-b90c-3bbc2becfa89": {
+                "@type": "slate",
+                "plaintext": "Strengths and weaknesses, comparative added value to other similar tools",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Strengths and weaknesses, comparative added value to other similar tools"
+                        "text": "Strengths and weaknesses, comparative added value to other similar tools"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               },
-              "f3124a43-5b95-4929-a6ed-e7cee940d44c":{
-                "@type":"slate",
-                "plaintext":"",
-                "value":[
+              "f3124a43-5b95-4929-a6ed-e7cee940d44c": {
+                "@type": "slate",
+                "plaintext": "",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":""
+                        "text": ""
                       }
                     ],
-                    "type":"p"
+                    "type": "p"
                   }
                 ]
               },
-              "fd2388a9-593e-4e3d-8efa-62ff588067c0":{
-                "@type":"slate",
-                "plaintext":"Associated project(s)",
-                "value":[
+              "fd2388a9-593e-4e3d-8efa-62ff588067c0": {
+                "@type": "slate",
+                "plaintext": "Associated project(s)",
+                "value": [
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Associated project(s)"
+                        "text": "Associated project(s)"
                       }
                     ],
-                    "type":"h3"
+                    "type": "h3"
                   }
                 ]
               }
             },
-            "blocks_layout":{
-              "items":[
+            "blocks_layout": {
+              "items": [
                 "4bffc714-6eec-4f7b-a2f2-4e6369acc892",
                 "9776afb8-c700-4a10-9e9a-59fcc80be898",
                 "735a6ba2-4a0d-41f0-aba8-15df662c8696",
@@ -424,334 +420,364 @@
               ]
             }
           },
-          "babdf14c-1f3c-4749-8098-75515abe2782":{
-            "blocks":{
-              "67e8232b-432f-4137-9de1-3fe3c6ed57f0":{
-                "@type":"group",
-                "as":"div",
-                "data":{
-                  "blocks":{
-                    "03457647-7c17-4af5-b82a-519c8bfd2de6":{
-                      "@type":"metadataSection",
-                      "fields":[
+          "babdf14c-1f3c-4749-8098-75515abe2782": {
+            "blocks": {
+              "67e8232b-432f-4137-9de1-3fe3c6ed57f0": {
+                "@type": "group",
+                "as": "div",
+                "data": {
+                  "blocks": {
+                    "03457647-7c17-4af5-b82a-519c8bfd2de6": {
+                      "@type": "metadataSection",
+                      "fields": [
                         {
-                          "@id":"dbe9bc11-8f34-41ce-ac2f-7b9d2c0fb675",
-                          "field":{
-                            "id":"most_useful_for",
-                            "title":"Most useful for",
-                            "widget":"array"
+                          "@id": "dbe9bc11-8f34-41ce-ac2f-7b9d2c0fb675",
+                          "field": {
+                            "id": "most_useful_for",
+                            "title": "Most useful for",
+                            "widget": "array"
                           },
-                          "showLabel":true
+                          "showLabel": true
                         }
                       ],
-                      "variation":"default"
+                      "variation": "default"
                     },
-                    "1a111080-4d64-4e7f-a868-1e38f067f87d":{
-                      "@type":"metadataSection",
-                      "fields":[
+                    "1a111080-4d64-4e7f-a868-1e38f067f87d": {
+                      "@type": "metadataSection",
+                      "fields": [
                         {
-                          "@id":"29f461d3-8174-4266-98f5-c2c6d804de3b",
-                          "field":{
-                            "id":"rast_steps",
-                            "title":"RAST step(s) of relevance",
-                            "widget":"array"
+                          "@id": "29f461d3-8174-4266-98f5-c2c6d804de3b",
+                          "field": {
+                            "id": "rast_steps",
+                            "title": "RAST step(s) of relevance",
+                            "widget": "array"
                           },
-                          "showLabel":true
+                          "showLabel": true
                         }
                       ],
-                      "variation":"default"
+                      "variation": "default"
                     },
-                    "2bcee9f3-016f-438f-b0f2-f44dc86ec32f":{
-                      "@type":"metadataSection",
-                      "fields":[
+                    "1ed769ae-4eae-478c-ac49-7f5268f0b721": {
+                      "@type": "dividerBlock",
+                      "spacing": "s",
+                      "styles": {}
+                    },
+                    "2bcee9f3-016f-438f-b0f2-f44dc86ec32f": {
+                      "@type": "metadataSection",
+                      "fields": [
                         {
-                          "@id":"8769b573-55fc-42c1-a333-38de4083ba98",
-                          "field":{
-                            "id":"geographical_scale",
-                            "title":"Geographical scale",
-                            "widget":"array"
+                          "@id": "8769b573-55fc-42c1-a333-38de4083ba98",
+                          "field": {
+                            "id": "geographical_scale",
+                            "title": "Geographical scale",
+                            "widget": "array"
                           },
-                          "showLabel":true
+                          "showLabel": true
                         }
                       ],
-                      "variation":"default"
+                      "variation": "default"
                     },
-                    "3f75fcb6-8129-4679-8fc3-191e9816d40b":{
-                      "@type":"metadataSection",
-                      "fields":[
+                    "337354c9-1c79-468f-93d8-d0643eb85879": {
+                      "@type": "dividerBlock",
+                      "spacing": "s",
+                      "styles": {}
+                    },
+                    "3e0d82a7-d8d1-4935-9357-57c986710431": {
+                      "@type": "dividerBlock",
+                      "spacing": "s",
+                      "styles": {}
+                    },
+                    "3f75fcb6-8129-4679-8fc3-191e9816d40b": {
+                      "@type": "metadataSection",
+                      "fields": [
                         {
-                          "@id":"6230ca81-a22e-42e8-a968-a696ac28cfa4",
-                          "field":{
-                            "id":"user_requirements",
-                            "title":"User requirements",
-                            "widget":"array"
+                          "@id": "6230ca81-a22e-42e8-a968-a696ac28cfa4",
+                          "field": {
+                            "id": "user_requirements",
+                            "title": "User requirements",
+                            "widget": "array"
                           },
-                          "showLabel":true
+                          "showLabel": true
                         }
                       ],
-                      "variation":"default"
+                      "variation": "default"
                     },
-                    "5128adac-fef5-4bc1-b5db-9f7927b2932d":{
-                      "@type":"slate",
-                      "plaintext":"",
-                      "value":[
+                    "4bc3c1eb-ca56-4da5-ba62-0b8e4687e144": {
+                      "@type": "dividerBlock",
+                      "spacing": "s",
+                      "styles": {}
+                    },
+                    "5128adac-fef5-4bc1-b5db-9f7927b2932d": {
+                      "@type": "slate",
+                      "plaintext": "",
+                      "value": [
                         {
-                          "children":[
+                          "children": [
                             {
-                              "text":""
+                              "text": ""
                             }
                           ],
-                          "type":"p"
+                          "type": "p"
                         }
                       ]
                     },
-                    "72c937d9-cbe7-4fd6-85cd-447f6bb07273":{
-                      "@type":"slate",
-                      "plaintext":"",
-                      "value":[
+                    "72c937d9-cbe7-4fd6-85cd-447f6bb07273": {
+                      "@type": "slate",
+                      "plaintext": "",
+                      "value": [
                         {
-                          "children":[
+                          "children": [
                             {
-                              "text":""
+                              "text": ""
                             }
                           ],
-                          "type":"p"
+                          "type": "p"
                         }
                       ]
                     },
-                    "7c767f44-6197-4835-a205-5067832b9889":{
-                      "@type":"slate",
-                      "plaintext":" Geographical area ",
-                      "value":[
+                    "7c767f44-6197-4835-a205-5067832b9889": {
+                      "@type": "slate",
+                      "plaintext": " Geographical area ",
+                      "value": [
                         {
-                          "children":[
+                          "children": [
                             {
-                              "text":""
+                              "text": ""
                             },
                             {
-                              "children":[
+                              "children": [
                                 {
-                                  "text":"Geographical area"
+                                  "text": "Geographical area"
                                 }
                               ],
-                              "type":"strong"
+                              "type": "strong"
                             },
                             {
-                              "text":""
+                              "text": ""
                             }
                           ],
-                          "type":"p"
+                          "type": "p"
                         }
                       ]
                     },
-                    "91e67c23-86b9-43ed-823b-f23c9f6fb875":{
-                      "@type":"slate",
-                      "plaintext":"",
-                      "value":[
+                    "91e67c23-86b9-43ed-823b-f23c9f6fb875": {
+                      "@type": "slate",
+                      "plaintext": "",
+                      "value": [
                         {
-                          "children":[
+                          "children": [
                             {
-                              "text":""
+                              "text": ""
                             }
                           ],
-                          "type":"p"
+                          "type": "p"
                         }
                       ]
                     },
-                    "a508ac8a-479a-4dd2-a97f-c19e9c0cfe42":{
-                      "@type":"slate",
-                      "plaintext":"",
-                      "value":[
-                        {
-                          "children":[
-                            {
-                              "text":""
-                            }
-                          ],
-                          "type":"p"
-                        }
-                      ]
+                    "a508ac8a-479a-4dd2-a97f-c19e9c0cfe42": {
+                      "@type": "dividerBlock",
+                      "spacing": "s",
+                      "styles": {}
                     },
-                    "b2e2f403-9434-4bfa-b434-8bbc666dda1e":{
-                      "@type":"metadataSection",
-                      "fields":[
+                    "ac728daf-b2c1-43a7-bd9f-b78c5dbf4715": {
+                      "@type": "dividerBlock",
+                      "spacing": "s",
+                      "styles": {}
+                    },
+                    "b2e2f403-9434-4bfa-b434-8bbc666dda1e": {
+                      "@type": "metadataSection",
+                      "fields": [
                         {
-                          "@id":"23d42078-0e09-4666-abab-6c7fa3fac2bf",
-                          "field":{
-                            "id":"climate_impacts",
-                            "title":"Climate impacts",
-                            "widget":"array"
+                          "@id": "23d42078-0e09-4666-abab-6c7fa3fac2bf",
+                          "field": {
+                            "id": "climate_impacts",
+                            "title": "Climate impacts",
+                            "widget": "array"
                           },
-                          "showLabel":true
+                          "showLabel": true
                         }
                       ],
-                      "variation":"default"
+                      "variation": "default"
                     },
-                    "bce24d58-6efa-4ac1-8151-81b0826711af":{
-                      "@type":"metadataSection",
-                      "fields":[
+                    "bce24d58-6efa-4ac1-8151-81b0826711af": {
+                      "@type": "metadataSection",
+                      "fields": [
                         {
-                          "@id":"e247d2b2-c775-41cb-9eed-d32a17034328",
-                          "field":{
-                            "id":"sectors",
-                            "title":"Adaptation sectors",
-                            "widget":"array"
+                          "@id": "e247d2b2-c775-41cb-9eed-d32a17034328",
+                          "field": {
+                            "id": "sectors",
+                            "title": "Adaptation sectors",
+                            "widget": "array"
                           },
-                          "showLabel":true
+                          "showLabel": true
                         }
                       ],
-                      "variation":"default"
+                      "variation": "default"
                     },
-                    "c94abbdf-690a-4404-a74d-20c75d9ce320":{
-                      "@type":"slate",
-                      "plaintext":"",
-                      "value":[
+                    "c94abbdf-690a-4404-a74d-20c75d9ce320": {
+                      "@type": "slate",
+                      "plaintext": "",
+                      "value": [
                         {
-                          "children":[
+                          "children": [
                             {
-                              "text":""
+                              "text": ""
                             }
                           ],
-                          "type":"p"
+                          "type": "p"
                         }
                       ]
                     },
-                    "cfea6d1c-db2d-4e8d-8099-c239c74b00ee":{
-                      "@type":"slate",
-                      "plaintext":"",
-                      "value":[
+                    "cfea6d1c-db2d-4e8d-8099-c239c74b00ee": {
+                      "@type": "slate",
+                      "plaintext": "",
+                      "value": [
                         {
-                          "children":[
+                          "children": [
                             {
-                              "text":""
+                              "text": ""
                             }
                           ],
-                          "type":"p"
+                          "type": "p"
                         }
                       ]
                     },
-                    "d8ebca97-ffe1-4bb8-a940-aaf495f31482":{
-                      "@type":"slate"
+                    "d1700143-26db-4e3e-83f7-acfbb903a6ab": {
+                      "@type": "slate"
                     },
-                    "f02f7ca8-1463-42a0-8768-b194ca287d5c":{
-                      "@type":"slate",
-                      "plaintext":"",
-                      "value":[
+                    "d8ebca97-ffe1-4bb8-a940-aaf495f31482": {
+                      "@type": "slate"
+                    },
+                    "e0fe24b0-bd37-402d-97c9-804ad6546521": {
+                      "@type": "dividerBlock",
+                      "spacing": "s",
+                      "styles": {}
+                    },
+                    "f02f7ca8-1463-42a0-8768-b194ca287d5c": {
+                      "@type": "slate",
+                      "plaintext": "",
+                      "value": [
                         {
-                          "children":[
+                          "children": [
                             {
-                              "text":""
+                              "text": ""
                             }
                           ],
-                          "type":"p"
+                          "type": "p"
                         }
                       ]
                     },
-                    "f32c7dcb-53c5-49a0-96cf-91fc165a2e81":{
-                      "@type":"metadataSection",
-                      "fields":[
+                    "f32c7dcb-53c5-49a0-96cf-91fc165a2e81": {
+                      "@type": "metadataSection",
+                      "fields": [
                         {
-                          "@id":"a86f790f-5ab5-4438-b50a-6f6a68f2b275",
-                          "field":{
-                            "id":"tool_language",
-                            "title":"Language(s) of the tool",
-                            "widget":"array"
+                          "@id": "a86f790f-5ab5-4438-b50a-6f6a68f2b275",
+                          "field": {
+                            "id": "tool_language",
+                            "title": "Language(s) of the tool",
+                            "widget": "array"
                           },
-                          "showLabel":true
+                          "showLabel": true
                         }
                       ],
-                      "variation":"default"
+                      "variation": "default"
                     }
                   },
-                  "blocks_layout":{
-                    "items":[
+                  "blocks_layout": {
+                    "items": [
                       "1a111080-4d64-4e7f-a868-1e38f067f87d",
                       "5128adac-fef5-4bc1-b5db-9f7927b2932d",
+                      "1ed769ae-4eae-478c-ac49-7f5268f0b721",
                       "2bcee9f3-016f-438f-b0f2-f44dc86ec32f",
                       "cfea6d1c-db2d-4e8d-8099-c239c74b00ee",
+                      "337354c9-1c79-468f-93d8-d0643eb85879",
                       "7c767f44-6197-4835-a205-5067832b9889",
                       "f02f7ca8-1463-42a0-8768-b194ca287d5c",
+                      "4bc3c1eb-ca56-4da5-ba62-0b8e4687e144",
                       "b2e2f403-9434-4bfa-b434-8bbc666dda1e",
                       "c94abbdf-690a-4404-a74d-20c75d9ce320",
+                      "ac728daf-b2c1-43a7-bd9f-b78c5dbf4715",
                       "f32c7dcb-53c5-49a0-96cf-91fc165a2e81",
+                      "d1700143-26db-4e3e-83f7-acfbb903a6ab",
                       "a508ac8a-479a-4dd2-a97f-c19e9c0cfe42",
                       "bce24d58-6efa-4ac1-8151-81b0826711af",
                       "91e67c23-86b9-43ed-823b-f23c9f6fb875",
+                      "3e0d82a7-d8d1-4935-9357-57c986710431",
                       "03457647-7c17-4af5-b82a-519c8bfd2de6",
                       "72c937d9-cbe7-4fd6-85cd-447f6bb07273",
+                      "e0fe24b0-bd37-402d-97c9-804ad6546521",
                       "3f75fcb6-8129-4679-8fc3-191e9816d40b",
                       "d8ebca97-ffe1-4bb8-a940-aaf495f31482"
                     ]
-                  }
+                  },
+                  "selected": "d1700143-26db-4e3e-83f7-acfbb903a6ab"
                 },
-                "styles":{
-                  "backgroundColor":"#f9f9f9"
+                "styles": {
+                  "backgroundColor": "#f9f9f9"
                 }
               }
             },
-            "blocks_layout":{
-              "items":[
+            "blocks_layout": {
+              "items": [
                 "67e8232b-432f-4137-9de1-3fe3c6ed57f0"
               ]
             }
           }
         },
-        "blocks_layout":{
-          "items":[
+        "blocks_layout": {
+          "items": [
             "445f96f9-0ee4-4b79-95bc-bef222d618ac",
             "babdf14c-1f3c-4749-8098-75515abe2782"
           ]
         }
       },
-      "gridCols":[
+      "gridCols": [
         "twoThirds",
         "oneThird"
       ],
-      "gridSize":12,
-      "styles":{
-        
-      }
+      "gridSize": 12,
+      "styles": {}
     },
-    "cd4e05b0-cb17-4c31-ae85-95eb3c44f0c2":{
-      "@layout":"011d788f-2580-4f29-878a-299885de4e2f",
-      "@type":"group",
-      "block":"8193b4b8-eaec-436e-ba67-2dfa36151ce3",
-      "data":{
-        "blocks":{
-          "fdeeb663-f794-48c1-a5c8-898180f470a8":{
-            "@type":"slate",
-            "plaintext":" Disclaimer The contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages.",
-            "value":[
+    "5dea6f61-388e-4776-88bf-4729ddcbe4d0": {
+      "@layout": "cd4e05b0-cb17-4c31-ae85-95eb3c44f0c2",
+      "@type": "group",
+      "block": "597ef01a-7c6e-4dcd-9bde-d75baac4d378",
+      "data": {
+        "blocks": {
+          "fdeeb663-f794-48c1-a5c8-898180f470a8": {
+            "@type": "slate",
+            "plaintext": " Disclaimer The contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages.",
+            "value": [
               {
-                "children":[
+                "children": [
                   {
-                    "text":""
+                    "text": ""
                   },
                   {
-                    "children":[
+                    "children": [
                       {
-                        "text":"Disclaimer"
+                        "text": "Disclaimer"
                       }
                     ],
-                    "type":"strong"
+                    "type": "strong"
                   },
                   {
-                    "text":"\nThe contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages."
+                    "text": "\nThe contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages."
                   }
                 ],
-                "type":"p"
+                "type": "p"
               }
             ]
           }
         },
-        "blocks_layout":{
-          "items":[
+        "blocks_layout": {
+          "items": [
             "fdeeb663-f794-48c1-a5c8-898180f470a8"
           ]
         }
       },
-      "styles":{
-        "style_name":"content-box-gray"
+      "styles": {
+        "style_name": "content-box-gray"
       }
     }
   }
