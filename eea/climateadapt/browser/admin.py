@@ -206,11 +206,14 @@ class ForceUnlock(BrowserView):
     """
 
     def __call__(self):
-        annot = getattr(self.context, '__annotations__', {})
+        annot = getattr(self.context, '__annotations__', None)
 
         if hasattr(self.context, '_dav_writelocks'):
             del self.context._dav_writelocks
             self.context._p_changed = True
+
+        if annot is None:
+            return
 
         if 'plone.locking' in annot:
             del annot['plone.locking']
@@ -1170,6 +1173,66 @@ class MissionFundingImporter(BrowserView):
     """ Import mission funding items from CSV
     """
 
+    def set_nonmetadata_fields(self, obj, fields):
+        blocks_layout = obj.blocks_layout['items']
+
+        columnblock = None
+        for uid in blocks_layout:
+            block = obj.blocks[uid]
+            if block['@type'] == 'columnsBlock':
+                columnblock = block
+
+        firstcol_id = columnblock['data']['blocks_layout']['items'][0]
+        firstcol = columnblock['data']['blocks'][firstcol_id]
+        for k, v in fields.items():
+            if k == "objective":
+                pass
+        for i, block_id in enumerate(firstcol['blocks_layout']['items']):
+            nextuid = firstcol['blocks_layout']['items'][i + 1]
+            blocks = firstcol['blocks']
+            block = blocks[block_id]
+            text = block.get('plaintext', '')
+
+            if "Objective of the funding programme" in text:
+                blocks[nextuid] = self.text2slate(fields['objective'])
+
+            if "Funding rate (percentage of covered costs)" in text:
+                blocks[nextuid] = self.text2slate(fields['funding_rate'])
+
+            if "Administering authority" in text:
+                blocks[nextuid] = self.text2slate(fields['authority'])
+
+            if "Publication page" in text:
+                blocks[nextuid] = self.text2slate(fields['objective'])
+
+            if "General information" in text:
+                blocks[nextuid] = self.text2slate(fields['general_info'])
+
+            if "Further information" in text:
+                blocks[nextuid] = self.text2slate(fields['further_info'])
+
+            if block['@type'] == 'metadataSection':
+                if len(block['fields']) == 1:
+                    blocks[nextuid] = self.text2slate(
+                        fields['funding_type_other'])
+
+                if len(block['fields'] == 3):
+                    blocks[nextuid] = self.text2slate(fields['objective'])
+                    # is a consortium required
+
+    def text2slate(self, text):
+        return {
+            "@type": "slate",
+            "plaintext": text,
+            "value": [
+                {
+                    "children": [{"text": ""}, {"text": text}, {"text": ""}],
+                    "type": "p"
+                }
+            ]
+        }
+        pass
+
     def __call__(self):
         # metarow_index = 1
         label_index = 2
@@ -1211,7 +1274,7 @@ class MissionFundingImporter(BrowserView):
             def convert(row, data):
                 value = row[column].strip()
                 # TODO: use inteligent text converter
-                return RichTextValue(value)
+                return RichTextValue(unicode("<p>%s</p>" % value))
             return convert
 
         def richtext_links(column):
@@ -1241,31 +1304,32 @@ class MissionFundingImporter(BrowserView):
         # these are 0-based indexes
         fields_definition = dict(
             title=text(2),
-            funding_type=choices([32, 33, 34, 35]),
-            budget_range=choices([38, 39, 40, 41]),
 
             is_blended=boolean_field(45),
             is_consortium_required=boolean_field(46),
             country=country_field(4),
 
+            funding_type=choices([32, 33, 34, 35]),
+            budget_range=choices([38, 39, 40, 41]),
             rast_steps=choices([8, 9, 10, 11, 12, 13], ast_map),
             eligible_entities=choices([14, 15, 16, 17]),
             sectors=choices([18, 19, 20, 21, 22, 23, 24,
                             25, 26, 27, 28, 29, 30, 31]),
+            regions=richtext(6),
         )
         nonmetadata_fields = dict(
-            objective=text(51),
-            funding_type_other=text(36),
-            funding_rate=text(42),
-            further_info=text(75),
-            authority=text(53),
-            general_info=text(3),
-            regions=text(6),
+            objective=text(51),  # done
+            funding_type_other=text(36),  # done
+            funding_rate=text(42),  # done
+            further_info=text(75),  # done
+            authority=text(53),  # done
+            general_info=text(3),  # done
 
             # these are a lot of links 60-69
             publication_page=richtext_links(
                 [[60, 61], [62, 63], [64, 65], [66, 67], [68, 69]]),
         )
+        nonmetadata_record = {}
 
         fpath = resource_filename('eea.climateadapt.browser',
                                   'data/mission_funding.csv')
@@ -1279,11 +1343,17 @@ class MissionFundingImporter(BrowserView):
                 for name, converter in fields_definition.items():
                     value = converter(row, wholedata)
                     record[name] = value
+
+                for name, converter in nonmetadata_fields.items():
+                    value = converter(row, wholedata)
+                    nonmetadata_record[name] = value
                 toimport.append(record)
 
+        __import__('pdb').set_trace()
         for record in toimport:
             obj = create(type="mission_funding",
                          container=self.context, **record)
+            self.set_nonmetadata_fields(obj, nonmetadata_fields)
             print("Created", obj.absolute_url())
 
         return len(toimport)

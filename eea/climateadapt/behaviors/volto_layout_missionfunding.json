@@ -1,24 +1,9 @@
 {
-
-  "blocks_layout": {
-    "items": [
-      "02854b05-5430-49e4-a173-e5086fbd5a1e",
-      "b324fc76-135b-451b-9700-5d043c1b66ad",
-      "8919d136-4b8b-46f3-9e63-a212339080e8"
-    ]
-  },
-
   "blocks": {
-    "02854b05-5430-49e4-a173-e5086fbd5a1e": {
-      "@type": "title",
-      "copyrightIcon": "ri-copyright-line",
-      "hideContentType": true,
-      "styles": {},
-      "subtitle": ""
-    },
-    "b324fc76-135b-451b-9700-5d043c1b66ad": {
+    "7a3abdd8-1d5d-4941-9ff4-28bfb8feec57": {
+      "@layout": "b324fc76-135b-451b-9700-5d043c1b66ad",
       "@type": "columnsBlock",
-      "block": "73fbc55b-39b5-4e47-a40d-eac526e6e7b0",
+      "block": "57c9b754-c75a-4391-9c03-afe3d4263fdd",
       "data": {
         "blocks": {
           "0006e3bd-a37f-4cd4-8573-63715dcf2009": {
@@ -138,6 +123,39 @@
                   }
                 ]
               },
+              "12321e35-6131-4293-b646-d4d41b79638e": {
+                "@type": "metadataSection",
+                "fields": [
+                  {
+                    "@id": "43b3ba19-2482-4f76-95cc-01d9b4967ceb",
+                    "field": {
+                      "id": "budget_range",
+                      "title": "Expected budget range of proposals",
+                      "widget": "array"
+                    },
+                    "showLabel": true
+                  },
+                  {
+                    "@id": "d5019a92-9265-43d2-b194-1d6325361f52",
+                    "field": {
+                      "id": "is_blended",
+                      "title": "Can the received funding be combined with other funding sources (blended)?",
+                      "widget": "boolean"
+                    },
+                    "showLabel": true
+                  },
+                  {
+                    "@id": "3b6081da-c382-48ee-8048-ef33fb2159dc",
+                    "field": {
+                      "id": "is_consortium_required",
+                      "title": "Is a Consortium required to apply for the funding?",
+                      "widget": "boolean"
+                    },
+                    "showLabel": true
+                  }
+                ],
+                "variation": "default"
+              },
               "2582bbfb-f549-41f0-b240-a97689c565c9": {
                 "@type": "slate",
                 "plaintext": "",
@@ -230,23 +248,12 @@
                   }
                 ]
               },
-              "8300602c-3aec-467c-b548-3621648a1e05": {
+              "87f15b57-be2f-4033-96e1-357916afe5db": {
                 "@type": "slate",
-                "plaintext": " Expected budget range of proposals ",
+                "plaintext": "",
                 "value": [
                   {
                     "children": [
-                      {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Expected budget range of proposals"
-                          }
-                        ],
-                        "type": "strong"
-                      },
                       {
                         "text": ""
                       }
@@ -254,13 +261,6 @@
                     "type": "p"
                   }
                 ]
-              },
-              "84394a35-8443-437f-87d8-9e62666e1532": {
-                "@type": "metadata",
-                "data": {
-                  "id": "is_consortium_required",
-                  "widget": "boolean"
-                }
               },
               "8c78f5b0-81f8-49ea-b4a9-844ea03e2140": {
                 "@type": "metadataSection",
@@ -276,34 +276,6 @@
                   }
                 ],
                 "variation": "default"
-              },
-              "8e4ff2c4-ed63-4da3-b2eb-853ed22bc0f5": {
-                "@type": "slate",
-                "plaintext": "",
-                "value": [
-                  {
-                    "children": [
-                      {
-                        "text": ""
-                      }
-                    ],
-                    "type": "p"
-                  }
-                ]
-              },
-              "93aede3d-c667-4414-9e30-ca01e22d614d": {
-                "@type": "slate",
-                "plaintext": "",
-                "value": [
-                  {
-                    "children": [
-                      {
-                        "text": ""
-                      }
-                    ],
-                    "type": "p"
-                  }
-                ]
               },
               "9a7f4356-13b1-4e5d-a522-1c7aa5ee0c9f": {
                 "@type": "slate",
@@ -330,55 +302,8 @@
                   }
                 ]
               },
-              "9d9b8957-b56f-489a-9ab6-b0f2f29d6de1": {
-                "@type": "slate",
-                "plaintext": " Can the received funding be combined with other funding sources (blended)? ",
-                "value": [
-                  {
-                    "children": [
-                      {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Can the received funding be combined with other funding sources (blended)?"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
-                      }
-                    ],
-                    "type": "p"
-                  }
-                ]
-              },
-              "a4ac5f36-9f2e-411f-a5b5-3873085967e1": {
-                "@type": "slate",
-                "plaintext": " Is a Consortium required to apply for the funding? ",
-                "value": [
-                  {
-                    "children": [
-                      {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Is a Consortium required to apply for the funding?"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
-                      }
-                    ],
-                    "type": "p"
-                  }
-                ]
+              "9bc8986e-d885-49d4-b56e-a806ebc10ec0": {
+                "@type": "slate"
               },
               "a718c6ee-ae18-4ba1-bfa2-d55f0e6e51e1": {
                 "@type": "slate",
@@ -408,13 +333,6 @@
                   }
                 ]
               },
-              "ce408b00-e0a0-4699-8c70-890de9d16aaa": {
-                "@type": "metadata",
-                "data": {
-                  "id": "is_blended",
-                  "widget": "boolean"
-                }
-              },
               "d59748e2-f180-41d8-92b8-169298ad99a7": {
                 "@type": "slate",
                 "plaintext": " Further information ",
@@ -432,20 +350,6 @@
                         ],
                         "type": "strong"
                       },
-                      {
-                        "text": ""
-                      }
-                    ],
-                    "type": "p"
-                  }
-                ]
-              },
-              "ea3d0882-9d0b-48cb-b8fb-474e46e36ee8": {
-                "@type": "slate",
-                "plaintext": "",
-                "value": [
-                  {
-                    "children": [
                       {
                         "text": ""
                       }
@@ -486,23 +390,18 @@
                 "745791ec-3a5b-469d-a247-b3bfa3b16ac7",
                 "8c78f5b0-81f8-49ea-b4a9-844ea03e2140",
                 "037cf695-ef4d-443a-83f3-3e5be46d4609",
-                "8300602c-3aec-467c-b548-3621648a1e05",
-                "8e4ff2c4-ed63-4da3-b2eb-853ed22bc0f5",
                 "00778cef-706c-4e3b-8d66-bd267a84c2f5",
                 "b53184c5-ea80-4f5b-8d9b-866c9a229d8c",
-                "9d9b8957-b56f-489a-9ab6-b0f2f29d6de1",
-                "ce408b00-e0a0-4699-8c70-890de9d16aaa",
-                "93aede3d-c667-4414-9e30-ca01e22d614d",
-                "a4ac5f36-9f2e-411f-a5b5-3873085967e1",
-                "84394a35-8443-437f-87d8-9e62666e1532",
-                "ea3d0882-9d0b-48cb-b8fb-474e46e36ee8",
+                "12321e35-6131-4293-b646-d4d41b79638e",
+                "9bc8986e-d885-49d4-b56e-a806ebc10ec0",
                 "39808ff5-c503-4477-beb0-c6a2d39a39cf",
                 "2582bbfb-f549-41f0-b240-a97689c565c9",
                 "9a7f4356-13b1-4e5d-a522-1c7aa5ee0c9f",
                 "a718c6ee-ae18-4ba1-bfa2-d55f0e6e51e1",
                 "f3d89b73-579b-4407-8392-65fa4c919564",
                 "48136e82-d038-4223-a59a-9c8ab302fdeb",
-                "d59748e2-f180-41d8-92b8-169298ad99a7"
+                "d59748e2-f180-41d8-92b8-169298ad99a7",
+                "87f15b57-be2f-4033-96e1-357916afe5db"
               ]
             }
           }
@@ -521,9 +420,19 @@
       "gridSize": 12,
       "styles": {}
     },
-    "8919d136-4b8b-46f3-9e63-a212339080e8": {
+    "cc79e858-017e-4cf2-8d22-1fdb144e416e": {
+      "@layout": "02854b05-5430-49e4-a173-e5086fbd5a1e",
+      "@type": "title",
+      "block": "fd0936c8-fa76-418d-a6a9-26e29ef42fd7",
+      "copyrightIcon": "ri-copyright-line",
+      "hideContentType": true,
+      "styles": {},
+      "subtitle": ""
+    },
+    "e5a0e271-f8a3-46aa-bbc8-fef43c3a0a2e": {
+      "@layout": "8919d136-4b8b-46f3-9e63-a212339080e8",
       "@type": "group",
-      "block": "020debe5-cf3e-4bd0-9cda-0b076ce344fc",
+      "block": "32b11762-99f9-4e19-9b28-33d41b87a228",
       "data": {
         "blocks": {
           "fdeeb663-f794-48c1-a5c8-898180f470a8": {
@@ -562,5 +471,12 @@
         "style_name": "content-box-gray"
       }
     }
+  },
+  "blocks_layout": {
+    "items": [
+      "cc79e858-017e-4cf2-8d22-1fdb144e416e",
+      "7a3abdd8-1d5d-4941-9ff4-28bfb8feec57",
+      "e5a0e271-f8a3-46aa-bbc8-fef43c3a0a2e"
+    ]
   }
 }

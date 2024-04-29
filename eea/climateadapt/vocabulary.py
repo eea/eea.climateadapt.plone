@@ -30,9 +30,19 @@ def generic_vocabulary(_terms, sort=True):
         _terms = sorted(_terms, key=lambda x: x[0])
 
     def factory(context):
-        return SimpleVocabulary(
-            [SimpleTerm(n, n.encode("utf-8"), l) for n, l in _terms]
-        )
+        # import pdb
+        #
+        # pdb.set_trace()
+        terms = []
+        for _term in _terms:
+            value, title = _term
+            token = title.decode('utf-8').encode('utf-8', 'replace')
+            term = SimpleTerm(
+                value=value, token=token, title=title
+            )
+            terms.append(term)
+
+        return SimpleVocabulary(terms)
 
     return factory
 
@@ -94,8 +104,7 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
 
         if parsed.get("path"):
             if parsed["path"].get("depth"):
-                parsed["path"]["query"].append(
-                    "/cca/metadata/adaptation-options")
+                parsed["path"]["query"].append("/cca/metadata/adaptation-options")
 
                 if "/cca" in parsed["path"]["query"]:
                     parsed["path"]["query"].remove("/cca")
@@ -356,8 +365,7 @@ _climateimpacts = [
     ("WATERSCARCE", _("Water Scarcity")),
     ("NONSPECIFIC", _("Non specific")),
 ]
-aceitem_climateimpacts_vocabulary = generic_vocabulary(
-    _climateimpacts, sort=False)
+aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts, sort=False)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
 
@@ -394,8 +402,7 @@ _implementationtypes = (
     ("green", "Ecological ('green')"),
     ("soft", "Behavioural / policy ('soft')"),
 )
-acemeasure_implementationtype_vocabulary = generic_vocabulary(
-    _implementationtypes)
+acemeasure_implementationtype_vocabulary = generic_vocabulary(_implementationtypes)
 alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
 
 # Used for aceitems
@@ -462,8 +469,7 @@ ace_countries = sorted(ace_countries, key=lambda x: x[0])
 
 ace_countries.append(("MK", "Republic of North Macedonia"))
 
-ace_countries.append(
-    ("XK", "Kosovo under UN Security Council Resolution 1244/99"))
+ace_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
@@ -560,8 +566,7 @@ faceted_countries = [
     (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in faceted_countries
 ]
 faceted_countries.append(("MK", "Republic of North Macedonia"))
-faceted_countries.append(
-    ("XK", "Kosovo under UN Security Council Resolution 1244/99"))
+faceted_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 
 faceted_countries_dict = dict(faceted_countries)
 
@@ -631,8 +636,7 @@ alsoProvides(climate_threats, IVocabularyFactory)
 _funding_programme = (
     ("Other", "Other"),
     ("COST Action", "COST Action"),
-    ("LIFE - Environment and climate action",
-     "LIFE - Environment and climate action"),
+    ("LIFE - Environment and climate action", "LIFE - Environment and climate action"),
     (
         "COPERNICUS - European earth observation programme",
         "COPERNICUS - European earth observation programme",

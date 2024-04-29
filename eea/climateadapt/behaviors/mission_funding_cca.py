@@ -2,14 +2,14 @@ import json
 
 from pkg_resources import resource_filename
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from plone.app.textfield import RichText
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.directives import form
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from plone.supermodel import model
 from zope.interface import alsoProvides, provider
-from zope.schema import URI, Bool, Choice, List, TextLine
+from zope.schema import Bool, Choice, List as ListField
+from plone.app.textfield import RichText
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 
@@ -38,7 +38,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         ],
     )
 
-    funding_type = List(
+    funding_type = ListField(
         title=_("Type of funding"),
         required=False,
         value_type=Choice(
@@ -48,7 +48,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # column: Which type of funding is granted?
     )
 
-    budget_range = List(
+    budget_range = ListField(
         title=_("Expected budget range of proposals"),
         required=False,
         value_type=Choice(
@@ -74,7 +74,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     )
 
     form.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
-    rast_steps = List(
+    rast_steps = ListField(
         title=_("RAST step(s) of relevance"),
         required=False,
         value_type=Choice(
@@ -85,7 +85,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
 
     form.widget(
         eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
-    eligible_entities = List(
+    eligible_entities = ListField(
         title=_("Eligible to receive funding"),
         required=False,
         value_type=Choice(
@@ -95,7 +95,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     )
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
-    sectors = List(
+    sectors = ListField(
         title=_("Adaptation Sectors"),
         description=_(
             "Select one or more relevant sector policies that this item relates to."
@@ -107,13 +107,17 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # metacolumn: Which sectors can receive funding?
     )
 
-    country = List(
+    country = ListField(
         title=_("Countries where the funding opportunity is offered"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
         # column: For which country is this funding opportunity offered?
         # TODO: need manual intervention
     )
+
+    # column: For which regions is the funding opportunity offered?
+    regions = RichText(
+        title=_("Region where the funding is offered"), required=False)
 
     blocks = JSONField(
         title=_("Blocks"),
@@ -161,9 +165,6 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     # Please provide a link to additional useful information
     # further_info = RichText(title=_("Further information"), required=False)
     #
-    # column: For which regions is the funding opportunity offered?
-    # regions = TextLine(
-    #     title=_("Region where the funding is offered"), required=False)
 
 
 alsoProvides(IMissionFundingCCA["sectors"], ILanguageIndependentField)
