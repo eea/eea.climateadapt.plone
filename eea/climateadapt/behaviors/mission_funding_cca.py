@@ -31,7 +31,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         label="Metadata",
         fields=[
             "country",
-            "regions",
+            # "regions",
             "rast_steps",
             "eligible_entities",
             "sectors",
@@ -171,9 +171,9 @@ alsoProvides(IMissionFundingCCA["country"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["is_blended"], ILanguageIndependentField)
 alsoProvides(
     IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
-alsoProvides(IMissionFundingCCA["publication_page"], ILanguageIndependentField)
-alsoProvides(IMissionFundingCCA["general_info"], ILanguageIndependentField)
-alsoProvides(IMissionFundingCCA["regions"], ILanguageIndependentField)
+# alsoProvides(IMissionFundingCCA["publication_page"], ILanguageIndependentField)
+# alsoProvides(IMissionFundingCCA["general_info"], ILanguageIndependentField)
+# alsoProvides(IMissionFundingCCA["regions"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["rast_steps"], ILanguageIndependentField)
 alsoProvides(
     IMissionFundingCCA["eligible_entities"], ILanguageIndependentField)
