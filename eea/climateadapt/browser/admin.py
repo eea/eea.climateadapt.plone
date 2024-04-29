@@ -1186,7 +1186,9 @@ class MissionFundingImporter(BrowserView):
         firstcol = columnblock['data']['blocks'][firstcol_id]
 
         for i, block_id in enumerate(firstcol['blocks_layout']['items']):
-            nextuid = firstcol['blocks_layout']['items'][i + 1]
+            nextuid = None
+            if i < len(firstcol['blocks_layout']['items']) - 1:
+                nextuid = firstcol['blocks_layout']['items'][i + 1]
             blocks = firstcol['blocks']
             block = blocks[block_id]
             text = block.get('plaintext', '')
@@ -1214,7 +1216,7 @@ class MissionFundingImporter(BrowserView):
                     blocks[nextuid] = self.text2slate(
                         fields['funding_type_other'])
 
-                if len(block['fields'] == 3):
+                if len(block['fields']) == 3:
                     blocks[nextuid] = self.text2slate(fields['yes_consortium'])
                     # is a consortium required
 
