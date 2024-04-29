@@ -38,28 +38,23 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         ],
     )
 
-    objective = RichText(
-        title=_("Objective of the funding programme"),
-        required=False,
-        # column: Summarise the objective of the programme (headline format max 300c including spaces)
-    )
-
-    funding_type = RichText(
+    funding_type = List(
         title=_("Type of funding"),
         required=False,
+        value_type=Choice(
+            title=unicode("Type of funding"),
+            vocabulary="eea.climateadapt.mission.type_of_funding"
+        )
         # column: Which type of funding is granted?
     )
 
-    budget_range = TextLine(
+    budget_range = List(
         title=_("Expected budget range of proposals"),
         required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.mission.budget_range",
+        )
         # column: What is the expected budget range of proposals?
-    )
-
-    funding_rate = TextLine(
-        title=_("Funding rate (percentage of covered costs)"),
-        required=False,
-        # column: How high is the funding rate? (percentage of covered costs)
     )
 
     is_blended = Bool(
@@ -78,27 +73,6 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # column: Is a Consortium required to apply for the funding?
     )
 
-    # column: Which authority administers the funding programme?
-    authority = TextLine(title=_("Administering authority"), required=False)
-
-    publication_page = URI(
-        title=_("Publication page"),
-        required=False,
-        # column: Please provide a link to the publication page of the individual calls.
-    )
-
-    general_info = URI(
-        title=_("General information"),
-        required=False,
-        # column: Provide a link to general information on the funding programme:
-    )
-
-    # Please provide a link to additional useful information
-    further_info = RichText(title=_("Further information"), required=False)
-
-    # column: For which regions is the funding opportunity offered?
-    regions = TextLine(title=_("Region where the funding is offered"), required=False)
-
     form.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     rast_steps = List(
         title=_("RAST step(s) of relevance"),
@@ -109,7 +83,8 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # metacolumn: For which step of the AST can the funding be used?
     )
 
-    form.widget(eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    form.widget(
+        eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     eligible_entities = List(
         title=_("Eligible to receive funding"),
         required=False,
@@ -156,14 +131,51 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         required=False,
     )
 
+    # objective = RichText(
+    #     title=_("Objective of the funding programme"),
+    #     required=False,
+    #     # column: Summarise the objective of the programme (headline format max 300c including spaces)
+    # )
+    #
+    # funding_rate = TextLine(
+    #     title=_("Funding rate (percentage of covered costs)"),
+    #     required=False,
+    #     # column: How high is the funding rate? (percentage of covered costs)
+    # )
+    #
+    # column: Which authority administers the funding programme?
+    # authority = TextLine(title=_("Administering authority"), required=False)
+    #
+    # publication_page = URI(
+    #     title=_("Publication page"),
+    #     required=False,
+    #     # column: Please provide a link to the publication page of the individual calls.
+    # )
+    #
+    # general_info = URI(
+    #     title=_("General information"),
+    #     required=False,
+    #     # column: Provide a link to general information on the funding programme:
+    # )
+    #
+    # Please provide a link to additional useful information
+    # further_info = RichText(title=_("Further information"), required=False)
+    #
+    # column: For which regions is the funding opportunity offered?
+    # regions = TextLine(
+    #     title=_("Region where the funding is offered"), required=False)
+
 
 alsoProvides(IMissionFundingCCA["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["country"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["is_blended"], ILanguageIndependentField)
-alsoProvides(IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
+alsoProvides(
+    IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["publication_page"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["general_info"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["regions"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["rast_steps"], ILanguageIndependentField)
-alsoProvides(IMissionFundingCCA["eligible_entities"], ILanguageIndependentField)
-alsoProvides(IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
+alsoProvides(
+    IMissionFundingCCA["eligible_entities"], ILanguageIndependentField)
+alsoProvides(
+    IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from eea.climateadapt.vocabulary import ace_countries
 from plone.app.textfield.value import RichTextValue
 from plone.api.content import create
 import csv
@@ -1125,6 +1126,46 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
         return 'AdapteCCA current case study fixed import_ids'
 
 
+_ace_countries = ace_countries + [
+    ("MD", "Moldova")
+]
+ace_countries_mapping = {}
+for (k, v) in _ace_countries:
+    ace_countries_mapping[v] = k
+
+EU27 = [
+    "Austria",
+    "Belgium",
+    "Bulgaria",
+    "Croatia",
+    "Cyprus",
+    "Czechia",
+    "Denmark",
+    "Estonia",
+    "Finland",
+    "France",
+    "Germany",
+    "Greece",
+    "Hungary",
+    "Ireland",
+    "Italy",
+    "Latvia",
+    "Lithuania",
+    "Luxembourg",
+    "Malta",
+    "Netherlands",
+    "Poland",
+    "Portugal",
+    "Romania",
+    "Slovakia",
+    "Slovenia",
+    "Spain",
+    "Sweden",
+]
+
+eu_countries = ", ".join(EU27)
+
+
 class MissionFundingImporter(BrowserView):
     """ Import mission funding items from CSV
     """
@@ -1173,6 +1214,20 @@ class MissionFundingImporter(BrowserView):
                 return RichTextValue(value)
             return convert
 
+        def richtext_links(column):
+            def convert(row, data):
+                value = row[column].strip()
+                # TODO: use inteligent text converter
+                return RichTextValue(value)
+            return convert
+
+        def country_field(column_a):
+            def convert(row, data):
+                value = row[column_a].strip()
+                value = value.replace("EU-27", eu_countries).replace(".", " ")
+                return [ace_countries_mapping[x.strip()] for x in value.split(',')]
+            return convert
+
         ast_map = {
             "AST 1: Preparing the ground for adaptation": "AST_STEP_1",
             "AST 2: Assessing risks and vulnerability to climate change": "AST_STEP_2",
@@ -1181,27 +1236,35 @@ class MissionFundingImporter(BrowserView):
             "AST 5: Implementation": "AST_STEP_5",
             "AST 6: Monitoring & Evaluation (M&E)": "AST_STEP_6"
         }
+        # __import__('pdb').set_trace()
 
         # these are 0-based indexes
         fields_definition = dict(
             title=text(2),
-            objective=richtext(51),
+            funding_type=choices([32, 33, 34, 35]),
             budget_range=choices([38, 39, 40, 41]),
-            funding_rate=text(42),
+
             is_blended=boolean_field(45),
             is_consortium_required=boolean_field(46),
-            authority=text(53),
-            publication_page=text(71),
-            general_info=text(3),
-            regions=text(6),
+            country=country_field(4),
+
             rast_steps=choices([8, 9, 10, 11, 12, 13], ast_map),
             eligible_entities=choices([14, 15, 16, 17]),
             sectors=choices([18, 19, 20, 21, 22, 23, 24,
                             25, 26, 27, 28, 29, 30, 31]),
-            funding_type=choices([32, 33, 34, 35]),
-            further_info=richtext(75),
-            # TODO
-            # country=text()
+        )
+        nonmetadata_fields = dict(
+            objective=text(51),
+            funding_type_other=text(36),
+            funding_rate=text(42),
+            further_info=text(75),
+            authority=text(53),
+            general_info=text(3),
+            regions=text(6),
+
+            # these are a lot of links 60-69
+            publication_page=richtext_links(
+                [[60, 61], [62, 63], [64, 65], [66, 67], [68, 69]]),
         )
 
         fpath = resource_filename('eea.climateadapt.browser',
@@ -1219,8 +1282,9 @@ class MissionFundingImporter(BrowserView):
                 toimport.append(record)
 
         for record in toimport:
-            create(type="mission_funding_cca",
-                   container=self.context, **record)
+            obj = create(type="mission_funding",
+                         container=self.context, **record)
+            print("Created", obj.absolute_url())
 
         return len(toimport)
 

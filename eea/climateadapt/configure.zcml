@@ -196,6 +196,15 @@
       name="eea.climateadapt.aceitems_datatypes"
       component=".vocabulary.aceitem_datatypes_vocabulary"
       />
+
+  <utility
+      name="eea.climateadapt.mission.budget_range"
+      component=".vocabulary.budget_ranges_vocabulary"
+      />
+  <utility
+      name="eea.climateadapt.mission.type_of_funding"
+      component=".vocabulary.type_of_funding_vocabulary"
+      />
   <utility
       name="eea.climateadapt.aceitems_storagetypes"
       component=".vocabulary.aceitem_storagetypes_vocabulary"
