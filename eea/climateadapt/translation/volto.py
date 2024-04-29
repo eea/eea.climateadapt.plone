@@ -250,7 +250,7 @@ def translate_volto_html(html, en_obj, http_host):
     }
     en_obj_path = "/".join(en_obj.getPhysicalPath())
 
-    if "/en/" in en_obj.absolute_url():
+    if "/en/" in en_obj_path:
         for language in get_site_languages():
             if language == "en":
                 continue
@@ -260,7 +260,7 @@ def translate_volto_html(html, en_obj, http_host):
                 queue,
                 ("translate",),
                 execute_translate_async,
-                en_obj_path,
+                en_obj,
                 copy.deepcopy(options),
                 language,
             )
