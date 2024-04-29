@@ -270,7 +270,7 @@
                     "field": {
                       "id": "funding_type",
                       "title": "Type of funding",
-                      "widget": "richtext"
+                      "widget": "array"
                     },
                     "showLabel": true
                   }

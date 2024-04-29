@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from copy import deepcopy
 from eea.climateadapt.vocabulary import ace_countries
 from plone.app.textfield.value import RichTextValue
 from plone.api.content import create
@@ -1174,11 +1175,12 @@ class MissionFundingImporter(BrowserView):
     """
 
     def set_nonmetadata_fields(self, obj, fields):
+        blocks_copy = deepcopy(obj.blocks)
         blocks_layout = obj.blocks_layout['items']
 
         columnblock = None
         for uid in blocks_layout:
-            block = obj.blocks[uid]
+            block = blocks_copy[uid]
             if block['@type'] == 'columnsBlock':
                 columnblock = block
 
@@ -1220,6 +1222,8 @@ class MissionFundingImporter(BrowserView):
                     blocks[nextuid] = self.text2slate(fields['yes_consortium'])
                     # is a consortium required
 
+        return blocks_copy
+
     def links2slate(self, links):
         text = "\n".join([l[1] for l in links])
         children = [{"text": ""}]
@@ -1245,15 +1249,16 @@ class MissionFundingImporter(BrowserView):
 
     def text2slate(self, text):
         children = [{"text": ""}]
+
         if text.strip() not in ['0', "NO"]:
-            children.extend([{"text": text}, {"text": ""}])
+            children += [{"text": text}, {"text": ""}]
 
         return {
             "@type": "slate",
             "plaintext": text,
             "value": [
                 {
-                    "children": [],
+                    "children": children,
                     "type": "p"
                 }
             ]
@@ -1379,10 +1384,15 @@ class MissionFundingImporter(BrowserView):
                     value = converter(row, wholedata)
                     nonmetadata_record[name] = value
 
-        for record in toimport:
+        for i, record in enumerate(toimport):
+            if i != 2:
+                continue
+            # __import__('pdb').set_trace()
             obj = create(type="mission_funding",
                          container=self.context, **record)
-            self.set_nonmetadata_fields(obj, nonmetadata_record)
+            blocks = self.set_nonmetadata_fields(obj, nonmetadata_record)
+            obj.blocks = blocks
+            obj._p_changed = True
             print("Created", obj.absolute_url())
 
         return len(toimport)
