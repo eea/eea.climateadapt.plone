@@ -1184,9 +1184,7 @@ class MissionFundingImporter(BrowserView):
 
         firstcol_id = columnblock['data']['blocks_layout']['items'][0]
         firstcol = columnblock['data']['blocks'][firstcol_id]
-        for k, v in fields.items():
-            if k == "objective":
-                pass
+
         for i, block_id in enumerate(firstcol['blocks_layout']['items']):
             nextuid = firstcol['blocks_layout']['items'][i + 1]
             blocks = firstcol['blocks']
@@ -1203,7 +1201,7 @@ class MissionFundingImporter(BrowserView):
                 blocks[nextuid] = self.text2slate(fields['authority'])
 
             if "Publication page" in text:
-                blocks[nextuid] = self.text2slate(fields['objective'])
+                blocks[nextuid] = self.links2slate(fields['publication_page'])
 
             if "General information" in text:
                 blocks[nextuid] = self.text2slate(fields['general_info'])
@@ -1217,21 +1215,47 @@ class MissionFundingImporter(BrowserView):
                         fields['funding_type_other'])
 
                 if len(block['fields'] == 3):
-                    blocks[nextuid] = self.text2slate(fields['objective'])
+                    blocks[nextuid] = self.text2slate(fields['yes_consortium'])
                     # is a consortium required
 
-    def text2slate(self, text):
+    def links2slate(self, links):
+        text = "\n".join([l[1] for l in links])
+        children = [{"text": ""}]
+
+        for link, label in links:
+            if link.strip() == "0":
+                continue
+            el = {"type": "link", "data": {"url": link},
+                  "children": {"text": label}}
+            children.append(el)
+            children.append({"text": ""})
+
         return {
             "@type": "slate",
             "plaintext": text,
             "value": [
                 {
-                    "children": [{"text": ""}, {"text": text}, {"text": ""}],
+                    "children": children,
                     "type": "p"
                 }
             ]
         }
-        pass
+
+    def text2slate(self, text):
+        children = [{"text": ""}]
+        if text.strip() not in ['0', "NO"]:
+            children.extend([{"text": text}, {"text": ""}])
+
+        return {
+            "@type": "slate",
+            "plaintext": text,
+            "value": [
+                {
+                    "children": [],
+                    "type": "p"
+                }
+            ]
+        }
 
     def __call__(self):
         # metarow_index = 1
@@ -1274,14 +1298,19 @@ class MissionFundingImporter(BrowserView):
             def convert(row, data):
                 value = row[column].strip()
                 # TODO: use inteligent text converter
-                return RichTextValue(unicode("<p>%s</p>" % value))
+                return RichTextValue(unicode("<p>%s</p>") % value.decode('utf-8'))
             return convert
 
         def richtext_links(column):
             def convert(row, data):
-                value = row[column].strip()
-                # TODO: use inteligent text converter
-                return RichTextValue(value)
+                out = []
+                for (label_col, link_col) in column:
+                    label = row[label_col].strip()
+                    link = row[link_col].strip()
+                    out.append((link, label))
+
+                # returns pairs of (link, label)
+                return out
             return convert
 
         def country_field(column_a):
@@ -1299,7 +1328,6 @@ class MissionFundingImporter(BrowserView):
             "AST 5: Implementation": "AST_STEP_5",
             "AST 6: Monitoring & Evaluation (M&E)": "AST_STEP_6"
         }
-        # __import__('pdb').set_trace()
 
         # these are 0-based indexes
         fields_definition = dict(
@@ -1324,6 +1352,7 @@ class MissionFundingImporter(BrowserView):
             further_info=text(75),  # done
             authority=text(53),  # done
             general_info=text(3),  # done
+            yes_consortium=text(47),  # done
 
             # these are a lot of links 60-69
             publication_page=richtext_links(
@@ -1334,7 +1363,6 @@ class MissionFundingImporter(BrowserView):
         fpath = resource_filename('eea.climateadapt.browser',
                                   'data/mission_funding.csv')
         toimport = []
-        # __import__('pdb').set_trace()
         with open(fpath) as csvfile:
             reader = csv.reader(csvfile, delimiter=",")
             wholedata = list(reader)
@@ -1343,17 +1371,16 @@ class MissionFundingImporter(BrowserView):
                 for name, converter in fields_definition.items():
                     value = converter(row, wholedata)
                     record[name] = value
+                toimport.append(record)
 
                 for name, converter in nonmetadata_fields.items():
                     value = converter(row, wholedata)
                     nonmetadata_record[name] = value
-                toimport.append(record)
 
-        __import__('pdb').set_trace()
         for record in toimport:
             obj = create(type="mission_funding",
                          container=self.context, **record)
-            self.set_nonmetadata_fields(obj, nonmetadata_fields)
+            self.set_nonmetadata_fields(obj, nonmetadata_record)
             print("Created", obj.absolute_url())
 
         return len(toimport)
