@@ -30,9 +30,17 @@ def generic_vocabulary(_terms, sort=True):
         _terms = sorted(_terms, key=lambda x: x[0])
 
     def factory(context):
-        return SimpleVocabulary(
-            [SimpleTerm(n, n.encode("utf-8"), l) for n, l in _terms]
-        )
+        # import pdb
+        #
+        # pdb.set_trace()
+        terms = []
+        for _term in _terms:
+            value, title = _term
+            token = title.decode("utf-8").encode("utf-8", "replace")
+            term = SimpleTerm(value=value, token=token, title=title)
+            terms.append(term)
+
+        return SimpleVocabulary(terms)
 
     return factory
 
@@ -452,7 +460,7 @@ ace_countries = [
     (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in european_countries
 ]
 ace_countries = [x for x in ace_countries if x[0] != "CZ"]
-ace_countries.append(("CZ", "Czechia"))
+ace_countries.append((unicode("CZ"), "Czechia"))
 ace_countries = sorted(ace_countries, key=lambda x: x[0])
 # ace_countries.append(('FYROM', 'Former Yugoslav Republic of Macedonia'))
 # ace_countries.append(('MK', 'Republic of Macedonia'))
@@ -1232,19 +1240,19 @@ alsoProvides(eligible_entities_vocabulary, IVocabularyFactory)
 
 
 _readiness_for_use = [
-    ('A_TOOL_TESTED_IN_CASE_STUDIES', _('Tool tested in several case studies')),
-    ('B_TOOL_BROADLY_USED', _('Tool broadly used'))
+    ("A_TOOL_TESTED_IN_CASE_STUDIES", _("Tool tested in several case studies")),
+    ("B_TOOL_BROADLY_USED", _("Tool broadly used")),
 ]
 readiness_for_use_vocabulary = generic_vocabulary(_readiness_for_use)
 alsoProvides(readiness_for_use_vocabulary, IVocabularyFactory)
 
 
 _geographical_scale = [
-    ('A_EUROPEAN', _('European')),
-    ('B_NATIONAL', _('National')),
-    ('C_REGIONAL', _('Regional')),
-    ('D_MUNICIPAL_LOCAL', _('Municipal/Local')),
-    ('E_BUILDING', _('Building'))
+    ("A_EUROPEAN", _("European")),
+    ("B_NATIONAL", _("National")),
+    ("C_REGIONAL", _("Regional")),
+    ("D_MUNICIPAL_LOCAL", _("Municipal/Local")),
+    ("E_BUILDING", _("Building")),
 ]
 geographical_scale_vocabulary = generic_vocabulary(_geographical_scale)
 alsoProvides(geographical_scale_vocabulary, IVocabularyFactory)
@@ -1281,21 +1289,40 @@ alsoProvides(tool_language_vocabulary, IVocabularyFactory)
 
 
 _most_useful_for = [
-    ('RESEARCHER', _('Researcher')),
-    ('REGIONAL_AUTHORITY', _('Staff of regional authority')),
-    ('PRACTITIONERS', _('Practitioners at the regional level')),
-    ('STAKEHOLDERS', _('Stakeholders')),
-    ('CITIZEN', _('Citizen'))
+    ("RESEARCHER", _("Researcher")),
+    ("REGIONAL_AUTHORITY", _("Staff of regional authority")),
+    ("PRACTITIONERS", _("Practitioners at the regional level")),
+    ("STAKEHOLDERS", _("Stakeholders")),
+    ("CITIZEN", _("Citizen")),
 ]
 most_useful_for_vocabulary = generic_vocabulary(_most_useful_for)
 alsoProvides(most_useful_for_vocabulary, IVocabularyFactory)
 
 
 _user_requirements = [
-    ('A_BASIC', _('Basic')),
-    ('B_ADVANCED', _('Advanced')),
-    ('C_EXPERT', _('Expert')),
+    ("A_BASIC", _("Basic")),
+    ("B_ADVANCED", _("Advanced")),
+    ("C_EXPERT", _("Expert")),
 ]
 user_requirements_vocabulary = generic_vocabulary(_user_requirements)
 alsoProvides(user_requirements_vocabulary, IVocabularyFactory)
 
+budget_ranges = [
+    "< 50.000 €",
+    "50.000 - 100.000 €",
+    "100.001 € - 1M €",
+    "1M € - 10M €",
+    "> 10M €",
+]
+budget_ranges_vocabulary = generic_vocabulary(budget_ranges)
+alsoProvides(budget_ranges_vocabulary, IVocabularyFactory)
+
+
+type_of_funding = [
+    "Grants",
+    "Subsidies (or Prices)",
+    "financial instruments & budgetary guarantees (e.g. loan, debt, guaranty and equity investment)",
+    "Other",
+]
+type_of_funding_vocabulary = generic_vocabulary(type_of_funding)
+alsoProvides(type_of_funding_vocabulary, IVocabularyFactory)

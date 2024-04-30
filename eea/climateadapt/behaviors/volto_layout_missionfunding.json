@@ -1,24 +1,9 @@
 {
-
-  "blocks_layout": {
-    "items": [
-      "02854b05-5430-49e4-a173-e5086fbd5a1e",
-      "b324fc76-135b-451b-9700-5d043c1b66ad",
-      "8919d136-4b8b-46f3-9e63-a212339080e8"
-    ]
-  },
-
   "blocks": {
-    "02854b05-5430-49e4-a173-e5086fbd5a1e": {
-      "@type": "title",
-      "copyrightIcon": "ri-copyright-line",
-      "hideContentType": true,
-      "styles": {},
-      "subtitle": ""
-    },
-    "b324fc76-135b-451b-9700-5d043c1b66ad": {
+    "75ceefc8-260a-4ef3-80f7-aa1d258489af": {
+      "@layout": "7a3abdd8-1d5d-4941-9ff4-28bfb8feec57",
       "@type": "columnsBlock",
-      "block": "73fbc55b-39b5-4e47-a40d-eac526e6e7b0",
+      "block": "1e68d9c2-f044-444c-8194-66602c7d0323",
       "data": {
         "blocks": {
           "0006e3bd-a37f-4cd4-8573-63715dcf2009": {
@@ -45,7 +30,7 @@
                           "field": {
                             "id": "regions",
                             "title": "Region where the funding is offered",
-                            "widget": "string"
+                            "widget": "richtext"
                           },
                           "showLabel": true
                         },
@@ -101,42 +86,24 @@
             "blocks": {
               "00778cef-706c-4e3b-8d66-bd267a84c2f5": {
                 "@type": "slate",
-                "plaintext": " Funding rate (percentage of covered costs) ",
+                "plaintext": "Funding rate (percentage of covered costs)",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Funding rate (percentage of covered costs)"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
+                        "text": "Funding rate (percentage of covered costs)"
                       }
                     ],
-                    "type": "p"
+                    "type": "h3"
                   }
                 ]
               },
               "037cf695-ef4d-443a-83f3-3e5be46d4609": {
-                "@type": "slate",
-                "plaintext": "",
-                "value": [
-                  {
-                    "children": [
-                      {
-                        "text": ""
-                      }
-                    ],
-                    "type": "p"
-                  }
-                ]
+                "@type": "metadata",
+                "data": {
+                  "id": "funding_type",
+                  "widget": "array"
+                }
               },
               "2582bbfb-f549-41f0-b240-a97689c565c9": {
                 "@type": "slate",
@@ -154,51 +121,29 @@
               },
               "367cce92-ff08-4713-b82d-1bfbeb5d20a9": {
                 "@type": "slate",
-                "plaintext": " Objective of the funding programme ",
+                "plaintext": "Objective of the funding programme",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Objective of the funding programme"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
+                        "text": "Objective of the funding programme"
                       }
                     ],
-                    "type": "p"
+                    "type": "h3"
                   }
                 ]
               },
               "39808ff5-c503-4477-beb0-c6a2d39a39cf": {
                 "@type": "slate",
-                "plaintext": " Administering authority ",
+                "plaintext": "Administering authority",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Administering authority"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
+                        "text": "Administering authority"
                       }
                     ],
-                    "type": "p"
+                    "type": "h3"
                   }
                 ]
               },
@@ -216,6 +161,27 @@
                   }
                 ]
               },
+              "4bc33423-be02-4588-b64d-4f7743354e08": {
+                "@type": "slate",
+                "plaintext": "Expected budget range of proposals",
+                "value": [
+                  {
+                    "children": [
+                      {
+                        "text": "Expected budget range of proposals"
+                      }
+                    ],
+                    "type": "h3"
+                  }
+                ]
+              },
+              "72d2802e-aba6-47ad-bce1-99b251021d13": {
+                "@type": "metadata",
+                "data": {
+                  "id": "budget_range",
+                  "widget": "array"
+                }
+              },
               "745791ec-3a5b-469d-a247-b3bfa3b16ac7": {
                 "@type": "slate",
                 "plaintext": "",
@@ -230,54 +196,35 @@
                   }
                 ]
               },
-              "8300602c-3aec-467c-b548-3621648a1e05": {
+              "78e2c755-5ac8-4bb0-9ea8-9f54a0aea866": {
                 "@type": "slate",
-                "plaintext": " Expected budget range of proposals ",
+                "plaintext": "Type of funding",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Expected budget range of proposals"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
+                        "text": "Type of funding"
                       }
                     ],
-                    "type": "p"
+                    "type": "h3"
                   }
                 ]
               },
-              "84394a35-8443-437f-87d8-9e62666e1532": {
-                "@type": "metadata",
-                "data": {
-                  "id": "is_consortium_required",
-                  "widget": "boolean"
-                }
-              },
-              "8c78f5b0-81f8-49ea-b4a9-844ea03e2140": {
-                "@type": "metadataSection",
-                "fields": [
+              "7d56f705-7937-41ca-9883-2e068b3f8b27": {
+                "@type": "slate",
+                "plaintext": "Can the received funding be combined with other funding sources (blended)?",
+                "value": [
                   {
-                    "@id": "aae6f218-d9d8-4971-8359-266ff8e0c9c5",
-                    "field": {
-                      "id": "funding_type",
-                      "title": "Type of funding",
-                      "widget": "richtext"
-                    },
-                    "showLabel": true
+                    "children": [
+                      {
+                        "text": "Can the received funding be combined with other funding sources (blended)?"
+                      }
+                    ],
+                    "type": "h3"
                   }
-                ],
-                "variation": "default"
+                ]
               },
-              "8e4ff2c4-ed63-4da3-b2eb-853ed22bc0f5": {
+              "87f15b57-be2f-4033-96e1-357916afe5db": {
                 "@type": "slate",
                 "plaintext": "",
                 "value": [
@@ -291,94 +238,40 @@
                   }
                 ]
               },
-              "93aede3d-c667-4414-9e30-ca01e22d614d": {
+              "8e8cb101-f5f0-45cf-94af-420f36b6309f": {
                 "@type": "slate",
-                "plaintext": "",
+                "plaintext": "Is a Consortium required to apply for the funding?",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": ""
+                        "text": "Is a Consortium required to apply for the funding?"
                       }
                     ],
-                    "type": "p"
+                    "type": "h3"
                   }
                 ]
               },
               "9a7f4356-13b1-4e5d-a522-1c7aa5ee0c9f": {
                 "@type": "slate",
-                "plaintext": " Publication page ",
+                "plaintext": "Publication page",
                 "value": [
                   {
                     "children": [
                       {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Publication page"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
+                        "text": "Publication page"
                       }
                     ],
-                    "type": "p"
+                    "type": "h3"
                   }
                 ]
               },
-              "9d9b8957-b56f-489a-9ab6-b0f2f29d6de1": {
-                "@type": "slate",
-                "plaintext": " Can the received funding be combined with other funding sources (blended)? ",
-                "value": [
-                  {
-                    "children": [
-                      {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Can the received funding be combined with other funding sources (blended)?"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
-                      }
-                    ],
-                    "type": "p"
-                  }
-                ]
-              },
-              "a4ac5f36-9f2e-411f-a5b5-3873085967e1": {
-                "@type": "slate",
-                "plaintext": " Is a Consortium required to apply for the funding? ",
-                "value": [
-                  {
-                    "children": [
-                      {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Is a Consortium required to apply for the funding?"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
-                      }
-                    ],
-                    "type": "p"
-                  }
-                ]
+              "9bc8986e-d885-49d4-b56e-a806ebc10ec0": {
+                "@type": "metadata",
+                "data": {
+                  "id": "is_blended",
+                  "widget": "boolean"
+                }
               },
               "a718c6ee-ae18-4ba1-bfa2-d55f0e6e51e1": {
                 "@type": "slate",
@@ -408,39 +301,7 @@
                   }
                 ]
               },
-              "ce408b00-e0a0-4699-8c70-890de9d16aaa": {
-                "@type": "metadata",
-                "data": {
-                  "id": "is_blended",
-                  "widget": "boolean"
-                }
-              },
-              "d59748e2-f180-41d8-92b8-169298ad99a7": {
-                "@type": "slate",
-                "plaintext": " Further information ",
-                "value": [
-                  {
-                    "children": [
-                      {
-                        "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "Further information"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
-                      }
-                    ],
-                    "type": "p"
-                  }
-                ]
-              },
-              "ea3d0882-9d0b-48cb-b8fb-474e46e36ee8": {
+              "b68f38d1-cbb6-4573-8b01-5b4264ac2a0d": {
                 "@type": "slate",
                 "plaintext": "",
                 "value": [
@@ -454,28 +315,52 @@
                   }
                 ]
               },
-              "f3d89b73-579b-4407-8392-65fa4c919564": {
+              "c002a478-9dde-456c-a8e3-727af2a96254": {
                 "@type": "slate",
-                "plaintext": " General information ",
+                "plaintext": "",
                 "value": [
                   {
                     "children": [
                       {
                         "text": ""
-                      },
-                      {
-                        "children": [
-                          {
-                            "text": "General information"
-                          }
-                        ],
-                        "type": "strong"
-                      },
-                      {
-                        "text": ""
                       }
                     ],
                     "type": "p"
+                  }
+                ]
+              },
+              "c7bc2536-ab7d-4af3-94e0-c07729cdfbee": {
+                "@type": "metadata",
+                "data": {
+                  "id": "is_consortium_required",
+                  "widget": "boolean"
+                }
+              },
+              "d59748e2-f180-41d8-92b8-169298ad99a7": {
+                "@type": "slate",
+                "plaintext": "Further information",
+                "value": [
+                  {
+                    "children": [
+                      {
+                        "text": "Further information"
+                      }
+                    ],
+                    "type": "h3"
+                  }
+                ]
+              },
+              "f3d89b73-579b-4407-8392-65fa4c919564": {
+                "@type": "slate",
+                "plaintext": "General information",
+                "value": [
+                  {
+                    "children": [
+                      {
+                        "text": "General information"
+                      }
+                    ],
+                    "type": "h3"
                   }
                 ]
               }
@@ -484,25 +369,26 @@
               "items": [
                 "367cce92-ff08-4713-b82d-1bfbeb5d20a9",
                 "745791ec-3a5b-469d-a247-b3bfa3b16ac7",
-                "8c78f5b0-81f8-49ea-b4a9-844ea03e2140",
+                "78e2c755-5ac8-4bb0-9ea8-9f54a0aea866",
                 "037cf695-ef4d-443a-83f3-3e5be46d4609",
-                "8300602c-3aec-467c-b548-3621648a1e05",
-                "8e4ff2c4-ed63-4da3-b2eb-853ed22bc0f5",
+                "c002a478-9dde-456c-a8e3-727af2a96254",
                 "00778cef-706c-4e3b-8d66-bd267a84c2f5",
                 "b53184c5-ea80-4f5b-8d9b-866c9a229d8c",
-                "9d9b8957-b56f-489a-9ab6-b0f2f29d6de1",
-                "ce408b00-e0a0-4699-8c70-890de9d16aaa",
-                "93aede3d-c667-4414-9e30-ca01e22d614d",
-                "a4ac5f36-9f2e-411f-a5b5-3873085967e1",
-                "84394a35-8443-437f-87d8-9e62666e1532",
-                "ea3d0882-9d0b-48cb-b8fb-474e46e36ee8",
+                "4bc33423-be02-4588-b64d-4f7743354e08",
+                "72d2802e-aba6-47ad-bce1-99b251021d13",
+                "7d56f705-7937-41ca-9883-2e068b3f8b27",
+                "9bc8986e-d885-49d4-b56e-a806ebc10ec0",
+                "8e8cb101-f5f0-45cf-94af-420f36b6309f",
+                "c7bc2536-ab7d-4af3-94e0-c07729cdfbee",
+                "b68f38d1-cbb6-4573-8b01-5b4264ac2a0d",
                 "39808ff5-c503-4477-beb0-c6a2d39a39cf",
                 "2582bbfb-f549-41f0-b240-a97689c565c9",
                 "9a7f4356-13b1-4e5d-a522-1c7aa5ee0c9f",
                 "a718c6ee-ae18-4ba1-bfa2-d55f0e6e51e1",
                 "f3d89b73-579b-4407-8392-65fa4c919564",
                 "48136e82-d038-4223-a59a-9c8ab302fdeb",
-                "d59748e2-f180-41d8-92b8-169298ad99a7"
+                "d59748e2-f180-41d8-92b8-169298ad99a7",
+                "87f15b57-be2f-4033-96e1-357916afe5db"
               ]
             }
           }
@@ -521,9 +407,19 @@
       "gridSize": 12,
       "styles": {}
     },
-    "8919d136-4b8b-46f3-9e63-a212339080e8": {
+    "f0cc8f6d-0061-41b6-b091-fd6573f4f49b": {
+      "@layout": "cc79e858-017e-4cf2-8d22-1fdb144e416e",
+      "@type": "title",
+      "block": "68b4b049-b8b0-4194-b22f-0e984fbdc206",
+      "copyrightIcon": "ri-copyright-line",
+      "hideContentType": true,
+      "styles": {},
+      "subtitle": ""
+    },
+    "f8989985-68b5-4960-bf42-fac214473c37": {
+      "@layout": "e5a0e271-f8a3-46aa-bbc8-fef43c3a0a2e",
       "@type": "group",
-      "block": "020debe5-cf3e-4bd0-9cda-0b076ce344fc",
+      "block": "c01c5be7-7d6d-46ce-885c-eeb9930f8837",
       "data": {
         "blocks": {
           "fdeeb663-f794-48c1-a5c8-898180f470a8": {
@@ -562,5 +458,12 @@
         "style_name": "content-box-gray"
       }
     }
+  },
+  "blocks_layout": {
+    "items": [
+      "f0cc8f6d-0061-41b6-b091-fd6573f4f49b",
+      "75ceefc8-260a-4ef3-80f7-aa1d258489af",
+      "f8989985-68b5-4960-bf42-fac214473c37"
+    ]
   }
 }
