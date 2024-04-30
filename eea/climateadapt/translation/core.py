@@ -123,8 +123,7 @@ def handle_cover_step_4(obj, trans_obj, language, reindex):
                 for data_trans_tile in data_trans_tiles:
                     fixer = cover_fixes.get(data_trans_tile["type"], None)
                     if fixer:
-                        fixer(obj, trans_obj, data_tile,
-                              data_trans_tile, language)
+                        fixer(obj, trans_obj, data_tile, data_trans_tile, language)
 
             if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
                 tile = obj.get_tile(data_tile["id"])
@@ -167,8 +166,7 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
             trans_obj.setDefaultPage(default_view_en)
             reindex = True
         except Exception:
-            logger.info("Can't set default page for: %s",
-                        trans_obj.absolute_url())
+            logger.info("Can't set default page for: %s", trans_obj.absolute_url())
     if not reindex:
         reindex = True
         trans_obj.setLayout(layout_en)
@@ -352,7 +350,7 @@ def check_full_path_exists(obj, language):
     if language not in translations:
         # TODO, what if the parent path already exist in language
         # but is not linked in translation manager
-        create_translation_object(parent, language)
+        create_translation_object(parent.__of__(obj), language)
 
 
 def copy_missing_interfaces(en_obj, trans_obj):
@@ -559,8 +557,7 @@ def execute_translate_async(en_obj_path, options, language, request_vars=None):
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         # context.REQUEST['PARENTS'] = [context]
 
