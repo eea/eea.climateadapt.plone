@@ -62,6 +62,12 @@
       />
 
       <plone:behavior
+        title="Mission Funding"
+        description="Settings for Mission Funding"
+        provides=".mission_funding_cca.IMissionFundingCCA"
+      />
+
+      <plone:behavior
         name="plone.shortname"
         title="Short name"
         description="Gives the ability to rename an item from its edit form."
@@ -77,7 +83,6 @@
         provides=".toplevelnav.ITopLevelVisibility"
         for="plone.dexterity.interfaces.IDexterityContent"
       />
-
 
       <plone:behavior
         name="volto.blocks.editable.layout"

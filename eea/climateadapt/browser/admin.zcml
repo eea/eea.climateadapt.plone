@@ -208,7 +208,7 @@
     <browser:page
         for="*"
         name="import-mission-funding"
-        class=".admin.MissionFundingImporter"
+        class=".import_mission.MissionFundingImporter"
         permission="cmf.ManagePortal"
         />
 </configure>
