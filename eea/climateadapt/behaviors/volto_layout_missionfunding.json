@@ -30,7 +30,7 @@
                           "field": {
                             "id": "regions",
                             "title": "Region where the funding is offered",
-                            "widget": "string"
+                            "widget": "richtext"
                           },
                           "showLabel": true
                         },
