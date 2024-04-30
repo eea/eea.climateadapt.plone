@@ -183,9 +183,7 @@ class MissionFundingImporter(BrowserView):
 
             if "Publication page" in text:
                 linksblock = self.links2slate(fields["publication_page"])
-                # print(linksblock)
                 blocks[nextuid] = linksblock
-                # __import__("pdb").set_trace()
 
             if "General information" in text:
                 blocks[nextuid] = self.maybe_link(fields["general_info"])
@@ -193,13 +191,11 @@ class MissionFundingImporter(BrowserView):
             if "Further information" in text:
                 blocks[nextuid] = self.maybe_link(fields["further_info"])
 
-            if block["@type"] == "metadataSection":
-                if len(block["fields"]) == 1:
-                    blocks[nextuid] = self.text2slate(fields["funding_type_other"])
-
-                if len(block["fields"]) == 3:
+            if block["@type"] == "metadata":
+                if block["data"]["id"] == "is_consortium_required":
                     blocks[nextuid] = self.text2slate(fields["yes_consortium"])
-                    # is a consortium required
+                if block["data"]["id"] == "funding_type":
+                    blocks[nextuid] = self.text2slate(fields["funding_type_other"])
 
         return blocks_copy
 
