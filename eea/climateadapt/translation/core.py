@@ -556,8 +556,8 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         # context.REQUEST['PARENTS'] = [context]
 
-        for k, v in request_vars.items():
-            site_portal.REQUEST.set(k, v)
+        # for k, v in request_vars.items():
+        #     site_portal.REQUEST.set(k, v)
 
     # this causes the modified event in plone.app.multilingual to skip some processing which otherwise crashes
     site_portal.REQUEST.translation_info = {"tg": True}
