@@ -566,6 +566,7 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
     site_portal.REQUEST.translation_info = {"tg": True}
 
     en_obj = site_portal.restrictedTraverse(en_obj_path)
+
     en_obj = en_obj.__of__(site_portal)
 
     trans_obj = create_translation_object(en_obj, language, site_portal)
