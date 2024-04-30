@@ -215,7 +215,7 @@ class MissionFundingImporter(BrowserView):
                 children.extend([{"text": label}, {"text": "\n"}])
                 continue
 
-            el = {"type": "link", "data": {"url": link}, "children": {"text": label}}
+            el = {"type": "link", "data": {"url": link}, "children": [{"text": label}]}
             children.extend([el, {"text": "\n"}])
 
         return {
@@ -253,6 +253,7 @@ class MissionFundingImporter(BrowserView):
             ),
             regions=richtext(6),
         )
+
         nonmetadata_fields = dict(
             objective=text(51),  # done
             funding_type_other=text(36),  # done
@@ -266,7 +267,6 @@ class MissionFundingImporter(BrowserView):
                 [[60, 61], [62, 63], [64, 65], [66, 67], [68, 69]]
             ),
         )
-        nonmetadata_record = {}
 
         fpath = resource_filename(
             "eea.climateadapt.browser", "data/mission_funding.csv"
@@ -277,20 +277,21 @@ class MissionFundingImporter(BrowserView):
             wholedata = list(reader)
             for row in wholedata[START_INDEX:]:
                 record = {}
+                nonmetadata_record = {}
+
                 for name, converter in fields_definition.items():
                     value = converter(row, wholedata)
                     record[name] = value
-                toimport.append(record)
 
                 for name, converter in nonmetadata_fields.items():
                     value = converter(row, wholedata)
                     nonmetadata_record[name] = value
 
-        printed = []
-        for i, record in enumerate(toimport):
-            # if record["title"] != "Union Civil Protection Mechanism (UCPM)":
-            #     continue
+                toimport.append((record, nonmetadata_record))
 
+        printed = []
+
+        for record, nonmetadata_record in toimport:
             obj = create(type="mission_funding", container=self.context, **record)
             blocks = self.set_nonmetadata_fields(obj, nonmetadata_record)
             obj.blocks = blocks
