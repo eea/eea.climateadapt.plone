@@ -311,7 +311,7 @@ class MissionFundingImporter(BrowserView):
         printed = []
 
         for record, nonmetadata_record in toimport:
-            obj = create(type="mission_funding", container=self.context, **record)
+            obj = create(type="mission_funding_cca", container=self.context, **record)
             blocks = self.set_nonmetadata_fields(obj, nonmetadata_record)
             obj.blocks = blocks
             obj._p_changed = True
