@@ -93,9 +93,8 @@ def text(column):
 def choices(columns, value_map=None):
     def convert(row, data):
         value = []
-        labels = [
-            cell.strip() for cell in data[LABEL_INDEX][columns[0] : columns[-1] + 1]
-        ]
+        cells = data[LABEL_INDEX][columns[0] : columns[-1] + 1]
+        labels = [cell.strip() for cell in cells]
         for i, col in enumerate(columns):
             val = row[col].strip()
             if tobool(val):
@@ -128,6 +127,7 @@ def richtext(column):
 def richtext_links(column):
     def convert(row, data):
         out = []
+
         for label_col, link_col in column:
             label = row[label_col].strip()
             link = row[link_col].strip()
@@ -182,7 +182,10 @@ class MissionFundingImporter(BrowserView):
                 blocks[nextuid] = self.text2slate(fields["authority"])
 
             if "Publication page" in text:
-                blocks[nextuid] = self.links2slate(fields["publication_page"])
+                linksblock = self.links2slate(fields["publication_page"])
+                print(linksblock)
+                blocks[nextuid] = linksblock
+                # __import__("pdb").set_trace()
 
             if "General information" in text:
                 blocks[nextuid] = self.text2slate(fields["general_info"])
@@ -206,10 +209,14 @@ class MissionFundingImporter(BrowserView):
 
         for link, label in links:
             if link.strip() == "0":
+                if label.strip() == "0":
+                    continue
+
+                children.extend([{"text": label}, {"text": "\n"}])
                 continue
+
             el = {"type": "link", "data": {"url": link}, "children": {"text": label}}
-            children.append(el)
-            children.append({"text": ""})
+            children.extend([el, {"text": "\n"}])
 
         return {
             "@type": "slate",
@@ -279,14 +286,17 @@ class MissionFundingImporter(BrowserView):
                     value = converter(row, wholedata)
                     nonmetadata_record[name] = value
 
+        printed = []
         for i, record in enumerate(toimport):
-            if i != 2:
-                continue
-            # __import__('pdb').set_trace()
+            # if record["title"] != "Union Civil Protection Mechanism (UCPM)":
+            #     continue
+
             obj = create(type="mission_funding", container=self.context, **record)
             blocks = self.set_nonmetadata_fields(obj, nonmetadata_record)
             obj.blocks = blocks
             obj._p_changed = True
-            print("Created", obj.absolute_url())
+            url = obj.absolute_url()
+            print("Imported %s" % url)
+            printed.append(url)
 
-        return len(toimport)
+        return str(printed)
