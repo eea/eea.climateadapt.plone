@@ -213,13 +213,11 @@ class MissionFundingImporter(BrowserView):
                         "type": "p",
                         "children": [
                             {"text": ""},
-                            [
-                                {
-                                    "type": "link",
-                                    "data": {"url": text},
-                                    "children": [{"text": "External link"}],
-                                }
-                            ],
+                            {
+                                "type": "link",
+                                "data": {"url": text},
+                                "children": [{"text": "External link"}],
+                            },
                             {"text": ""},
                         ],
                     }
