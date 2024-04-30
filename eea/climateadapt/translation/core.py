@@ -374,7 +374,7 @@ def copy_tiles_to_translation(en_obj, trans_obj):
 
 def create_translation_object(obj, language):
     """Create translation object for an obj"""
-    rc = RequestContainer(REQUEST=obj.REQUEST)
+    # rc = RequestContainer(REQUEST=obj.REQUEST)
     tm = TranslationManager(obj)
     translations = tm.get_translations()
 
@@ -382,7 +382,7 @@ def create_translation_object(obj, language):
         logger.info("Skip creating translation. Already exists.")
 
         if obj.portal_type == "collective.cover.content":
-            trans_obj = translations[language].__of__(rc)
+            trans_obj = translations[language]  # .__of__(rc)
             copy_tiles_to_translation(obj, trans_obj)
 
         return translations[language]
@@ -391,7 +391,7 @@ def create_translation_object(obj, language):
     factory = DefaultTranslationFactory(obj)
 
     translated_object = factory(language)
-    translated_object = translated_object.__of__(rc)
+    # translated_object = translated_object.__of__(rc)
 
     tm.register_translation(language, translated_object)
 
