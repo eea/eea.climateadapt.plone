@@ -183,15 +183,15 @@ class MissionFundingImporter(BrowserView):
 
             if "Publication page" in text:
                 linksblock = self.links2slate(fields["publication_page"])
-                print(linksblock)
+                # print(linksblock)
                 blocks[nextuid] = linksblock
                 # __import__("pdb").set_trace()
 
             if "General information" in text:
-                blocks[nextuid] = self.text2slate(fields["general_info"])
+                blocks[nextuid] = self.maybe_link(fields["general_info"])
 
             if "Further information" in text:
-                blocks[nextuid] = self.text2slate(fields["further_info"])
+                blocks[nextuid] = self.maybe_link(fields["further_info"])
 
             if block["@type"] == "metadataSection":
                 if len(block["fields"]) == 1:
@@ -202,6 +202,31 @@ class MissionFundingImporter(BrowserView):
                     # is a consortium required
 
         return blocks_copy
+
+    def maybe_link(self, text):
+        if text.startswith("http"):
+            return {
+                "@type": "slate",
+                "plaintext": text,
+                "value": [
+                    {
+                        "type": "p",
+                        "children": [
+                            {"text": ""},
+                            [
+                                {
+                                    "type": "link",
+                                    "data": {"url": text},
+                                    "children": [{"text": "External link"}],
+                                }
+                            ],
+                            {"text": ""},
+                        ],
+                    }
+                ],
+            }
+        else:
+            return self.text2slate(text)
 
     def links2slate(self, links):
         text = "\n".join([bits[1] for bits in links])
@@ -259,8 +284,8 @@ class MissionFundingImporter(BrowserView):
             funding_type_other=text(36),  # done
             funding_rate=text(42),  # done
             further_info=text(75),  # done
-            authority=text(53),  # done
             general_info=text(3),  # done
+            authority=text(53),  # done
             yes_consortium=text(47),  # done
             # these are a lot of links 60-69
             publication_page=richtext_links(
