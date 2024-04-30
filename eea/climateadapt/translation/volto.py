@@ -246,7 +246,7 @@ def translate_volto_html(html, en_obj, http_host):
 
     logger.info("Called translate_volto_html for %s" % en_obj_path)
 
-    if "/en/" in en_obj_path:
+    if "cca/en" in en_obj_path:
         for language in get_site_languages():
             if language == "en":
                 continue
