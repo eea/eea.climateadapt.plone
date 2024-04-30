@@ -537,22 +537,17 @@ def sync_translation_state(trans_obj, en_obj):
         # trans_obj.reindexObject()
 
 
-def execute_translate_async(en_obj_path, options, language, request_vars=None):
+def execute_translate_async(en_obj, options, language, request_vars=None):
     """Executed via zc.async, triggers the call to eTranslation"""
 
-    request_vars = request_vars or {}
-    site_portal = portal.get()
-
-    if isinstance(en_obj_path, basestring):
-        en_obj = site_portal.unrestrictedTraverse(en_obj_path)
-    else:
-        en_obj = en_obj_path
+    en_obj_path = "/".join(en_obj.getPhysicalPath())
 
     environ = {
         "SERVER_NAME": options["http_host"],
         "SERVER_PORT": 443,
         "REQUEST_METHOD": "POST",
     }
+    site_portal = portal.get()
 
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
@@ -567,29 +562,18 @@ def execute_translate_async(en_obj_path, options, language, request_vars=None):
     # this causes the modified event in plone.app.multilingual to skip some processing which otherwise crashes
     site_portal.REQUEST.translation_info = {"tg": True}
 
-    rc = RequestContainer(REQUEST=site_portal.REQUEST)
-    en_obj = en_obj.__of__(rc)
+    en_obj = site_portal.restrictedTraverse(en_obj_path)
+
     trans_obj = create_translation_object(en_obj, language)
-    trans_obj = trans_obj.__of__(rc)
+    trans_obj_path = "/".join(trans_obj.getPhysicalPath())
+    trans_obj = site_portal.restrictedTraverse(trans_obj_path)
     sync_translation_state(trans_obj, en_obj)
-
-    http_host = options["http_host"]
-    translations = TranslationManager(en_obj).get_translations()
-    trans_obj = translations[language]
-    trans_obj_url = trans_obj.absolute_url()
-    trans_obj_path = trans_obj_url.split(http_host)[-1]
-    if trans_obj_path.startswith("cca"):
-        trans_obj_path = "/" + trans_obj_path
-    else:
-        trans_obj_path = "/cca" + trans_obj_path
-
-    options["trans_obj_path"] = trans_obj_path
 
     retrieve_volto_html_translation(
         options["http_host"],
         "en",
         options["html_content"].encode("utf-8"),
-        options["trans_obj_path"],
+        trans_obj_path,
         target_languages=language.upper(),
     )
 
