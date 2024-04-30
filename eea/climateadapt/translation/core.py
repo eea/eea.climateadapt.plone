@@ -366,13 +366,16 @@ def copy_missing_interfaces(en_obj, trans_obj):
             logger.info("Copied interface: %s" % interf[0])
 
 
-def copy_tiles_to_translation(en_obj, trans_obj):
+def copy_tiles_to_translation(en_obj, trans_obj, site_portal):
+    trans_obj_path = "/".join(trans_obj.getPhysicalPath())
+    trans_obj = site_portal.restrictedTraverse(trans_obj_path)
+    trans_obj = trans_obj.__of__(site_portal)
     tiles = [en_obj.get_tile(x) for x in en_obj.list_tiles()]
     trans_obj.cover_layout = en_obj.cover_layout
     copy_tiles(tiles, en_obj, trans_obj)
 
 
-def create_translation_object(obj, language):
+def create_translation_object(obj, language, site_portal):
     """Create translation object for an obj"""
     # rc = RequestContainer(REQUEST=obj.REQUEST)
     tm = TranslationManager(obj)
@@ -383,7 +386,7 @@ def create_translation_object(obj, language):
 
         if obj.portal_type == "collective.cover.content":
             trans_obj = translations[language]  # .__of__(rc)
-            copy_tiles_to_translation(obj, trans_obj)
+            copy_tiles_to_translation(obj, trans_obj, site_portal)
 
         return translations[language]
 
@@ -408,7 +411,7 @@ def create_translation_object(obj, language):
         logger.info("CREATE ITEM: cannot rename the item id - already exists.")
 
     if obj.portal_type == "collective.cover.content":
-        copy_tiles_to_translation(obj, translated_object)
+        copy_tiles_to_translation(obj, translated_object, site_portal)
 
     copy_missing_interfaces(obj, translated_object)
 
@@ -564,7 +567,9 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
 
     en_obj = site_portal.restrictedTraverse(en_obj_path)
 
-    trans_obj = create_translation_object(en_obj, language)
+    en_obj = en_obj.__of__(site_portal)
+
+    trans_obj = create_translation_object(en_obj, language, site_portal)
     trans_obj_path = "/".join(trans_obj.getPhysicalPath())
     trans_obj = site_portal.restrictedTraverse(trans_obj_path)
     sync_translation_state(trans_obj, en_obj)
