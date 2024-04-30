@@ -367,6 +367,10 @@ def copy_missing_interfaces(en_obj, trans_obj):
 
 
 def copy_tiles_to_translation(en_obj, trans_obj):
+    site_portal = portal.get()
+    trans_obj_path = "/".join(trans_obj.getPhysicalPath())
+    assert site_portal.REQUEST
+    trans_obj = site_portal.restrictedTraverse(trans_obj_path)
     tiles = [en_obj.get_tile(x) for x in en_obj.list_tiles()]
     trans_obj.cover_layout = en_obj.cover_layout
     copy_tiles(tiles, en_obj, trans_obj)
