@@ -338,19 +338,20 @@ def copy_tiles(tiles, from_cover, to_cover):
             # pdb.set_trace()
 
 
-def check_full_path_exists(obj, language):
+def check_full_path_exists(obj, language, site_portal):
     """Create full path for a object"""
 
     parent = aq_parent(aq_inner(obj))
     path = parent.getPhysicalPath()
-    if len(path) <= 2:
+
+    if len(path) <= 2:  # aborting, we've reached bottom
         return True
 
     translations = TranslationManager(parent).get_translations()
     if language not in translations:
         # TODO, what if the parent path already exist in language
         # but is not linked in translation manager
-        create_translation_object(parent.__of__(obj), language)
+        create_translation_object(parent, language, site_portal)
 
 
 def copy_missing_interfaces(en_obj, trans_obj):
@@ -390,7 +391,7 @@ def create_translation_object(obj, language, site_portal):
 
         return translations[language]
 
-    check_full_path_exists(obj, language)
+    check_full_path_exists(obj, language, site_portal)
     factory = DefaultTranslationFactory(obj)
 
     translated_object = factory(language)
