@@ -21,6 +21,7 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from Testing.ZopeTestCase import utils as zopeUtils
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
+from zope.component.hooks import setSite
 
 from eea.climateadapt.browser.admin import force_unlock
 
@@ -570,6 +571,7 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
         site_portal = zopeUtils.makerequest(site_portal, environ)
         server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
+        setSite(site_portal)
         # context.REQUEST['PARENTS'] = [context]
 
         # for k, v in request_vars.items():
