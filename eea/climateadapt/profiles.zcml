@@ -457,4 +457,12 @@
       directory="profiles/upgrades/to_73"
       provides="Products.GenericSetup.interfaces.EXTENSION"
     />
+
+    <genericsetup:registerProfile
+      name="eeaclimateadapt_to_74"
+      title="Upgrade profile for eea.climateadapt v74"
+      description=""
+      directory="profiles/upgrades/to_74"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
 </configure>
