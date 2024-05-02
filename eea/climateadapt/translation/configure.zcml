@@ -10,6 +10,11 @@
   <include file="admin.zcml" />
   <include file="viewlets.zcml" />
 
+  <adapter
+      for="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"
+      provides="plone.app.multilingual.interfaces.ITranslationLocator"
+      factory=".patches.DefaultTranslationLocator"/>
+
   <browser:page
     for="*"
     class=".views.TranslationCallback"

@@ -1,3 +1,4 @@
+from plone.restapi.interfaces import IPloneRestapiLayer
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Acquisition import aq_base
 from Acquisition import aq_inner
@@ -14,7 +15,7 @@ from zope.interface import implementer
 from zope.interface import implements
 from plone.restapi.interfaces import IExpandableElement
 
-# from plone.app.layout.navigation.root import getNavigationRoot
+from plone.app.layout.navigation.root import getNavigationRoot
 
 
 def get_url(item):
@@ -83,11 +84,16 @@ class CatalogNavigationBreadcrumbs(BrowserView):
             item = r_tuple[1]
 
             # Don't include it if it would be above the navigation root
-            itemPath = item.getPath()
+            # itemPath = item.getPath()
 
             id, item_url = get_view_url(item)
+
+            if hasattr(item, "nav_title") and item.nav_title:
+                title = item.nav_title
+            else:
+                title = (utils.pretty_title_or_id(context, item),)
             data = {
-                "Title": utils.pretty_title_or_id(context, item),
+                "Title": title,
                 "absolute_url": item_url,
             }
             result.append(data)
@@ -113,15 +119,13 @@ class PhysicalNavigationBreadcrumbs(BrowserView):
         name, item_url = get_view_url(context)
 
         if container is None:
-            return (
-                {
-                    "absolute_url": item_url,
-                    "Title": utils.pretty_title_or_id(context, context),
-                },
-            )
+            if hasattr(context, "nav_title") and context.nav_title:
+                title = context.nav_title
+            else:
+                title = (utils.pretty_title_or_id(context, context),)
+            return ({"absolute_url": item_url, "Title": title},)
 
         # view = getMultiAdapter((container, request), name="breadcrumbs_view")
-        # __import__("pdb").set_trace()
         view = CatalogNavigationBreadcrumbs(container, request)
         base = tuple(view.breadcrumbs())
 
@@ -135,18 +139,61 @@ class PhysicalNavigationBreadcrumbs(BrowserView):
         # this has been changed from the original file:
         # https://github.com/plone/Products.CMFPlone/blob/f028b0ce60bd62f2f5be5ccb9ecb911e73a258d1/Products/CMFPlone/browser/navigation.py
         if not utils.isDefaultPage(context, request):
-            base += (
-                {
-                    "absolute_url": item_url,
-                    "Title": utils.pretty_title_or_id(context, context),
-                },
-            )
+            if hasattr(context, "nav_title") and context.nav_title:
+                title = context.nav_title
+            else:
+                title = (utils.pretty_title_or_id(context, context),)
+            base += ({"absolute_url": item_url, "Title": title},)
 
         return base
 
 
+class NavTitleBreadcrumbs(BrowserView):
+    implements(INavigationBreadcrumbs)
+
+    def breadcrumbs(self):
+        context = aq_inner(self.context)
+        catalog = getToolByName(context, "portal_catalog")
+        query = {}
+
+        # Check to see if the current page is a folder default view, if so
+        # get breadcrumbs from the parent folder
+        currentPath = "/".join(context.getPhysicalPath())
+        query["path"] = {"query": currentPath, "navtree": 1, "depth": 0}
+
+        rawresult = catalog(**query)
+
+        # Sort items on path length
+        dec_result = [(len(r.getPath()), r) for r in rawresult]
+        dec_result.sort()
+
+        rootPath = getNavigationRoot(context)
+
+        # Build result dict
+        result = []
+        for r_tuple in dec_result:
+            item = r_tuple[1]
+
+            # Don't include it if it would be above the navigation root
+            itemPath = item.getPath()
+            if rootPath.startswith(itemPath):
+                continue
+
+            cid, item_url = get_view_url(item)
+            if hasattr(item, "nav_title") and item.nav_title:
+                title = item.nav_title
+            else:
+                title = (utils.pretty_title_or_id(context, item),)
+            data = {
+                "Title": title,
+                "absolute_url": item_url,
+            }
+            result.append(data)
+        return result
+
+
 @implementer(IExpandableElement)
-@adapter(Interface, Interface)
+@adapter(Interface, IPloneRestapiLayer)
 class PhysicalBreadcrumbs:
     def __init__(self, context, request):
         self.context = context
@@ -177,9 +224,49 @@ class PhysicalBreadcrumbs:
             items.append(item)
 
         result["physical-breadcrumbs"]["items"] = items
-        result["physical-breadcrumbs"][
-            "root"
-        ] = portal_state.navigation_root().absolute_url()
+        result["physical-breadcrumbs"]["root"] = (
+            portal_state.navigation_root().absolute_url()
+        )
+
+        return result
+
+
+@implementer(IExpandableElement)
+@adapter(Interface, IPloneRestapiLayer)
+class Breadcrumbs:
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, expand=False):
+        result = {
+            "breadcrumbs": {"@id": "%s/@breadcrumbs" % self.context.absolute_url()}
+        }
+        if not expand:
+            return result
+
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name="plone_portal_state"
+        )
+        breadcrumbs_view = getMultiAdapter(
+            (self.context, self.request), name="breadcrumbs_view"
+        )
+
+        items = []
+        breadcrumbs_view = NavTitleBreadcrumbs(self.context, self.request)
+        for crumb in breadcrumbs_view.breadcrumbs():
+            item = {
+                "title": crumb["Title"],
+                "@id": crumb["absolute_url"],
+            }
+            if crumb.get("nav_title", False):
+                item.update({"title": crumb["nav_title"]})
+
+            items.append(item)
+
+        result["breadcrumbs"]["items"] = items
+        result["breadcrumbs"]["root"] = portal_state.navigation_root().absolute_url()
+
         return result
 
 
