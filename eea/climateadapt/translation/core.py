@@ -548,6 +548,7 @@ def wrap_in_aquisition(obj_path, portal_obj):
 
     for bit in bits:
         obj = base.restrictedTraverse(bit).__of__(base)
+        base = obj
 
     return obj
 
