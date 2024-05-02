@@ -369,8 +369,7 @@ def copy_missing_interfaces(en_obj, trans_obj):
 
 def copy_tiles_to_translation(en_obj, trans_obj, site_portal):
     trans_obj_path = "/".join(trans_obj.getPhysicalPath())
-    trans_obj = site_portal.restrictedTraverse(trans_obj_path)
-    trans_obj = trans_obj.__of__(site_portal)
+    trans_obj = wrap_in_aquisition(trans_obj_path, site_portal)
     tiles = [en_obj.get_tile(x) for x in en_obj.list_tiles()]
     trans_obj.cover_layout = en_obj.cover_layout
     copy_tiles(tiles, en_obj, trans_obj)
@@ -386,7 +385,7 @@ def create_translation_object(obj, language, site_portal):
         logger.info("Skip creating translation. Already exists.")
 
         if obj.portal_type == "collective.cover.content":
-            trans_obj = translations[language]  # .__of__(rc)
+            trans_obj = translations[language]
             copy_tiles_to_translation(obj, trans_obj, site_portal)
 
         return translations[language]
@@ -395,7 +394,6 @@ def create_translation_object(obj, language, site_portal):
     factory = DefaultTranslationFactory(obj)
 
     translated_object = factory(language)
-    # translated_object = translated_object.__of__(rc)
 
     tm.register_translation(language, translated_object)
 
@@ -541,6 +539,19 @@ def sync_translation_state(trans_obj, en_obj):
         # trans_obj.reindexObject()
 
 
+def wrap_in_aquisition(obj_path, portal_obj):
+    portal_path = portal_obj.getPhysicalPath()
+    bits = obj_path.split("/")[len(portal_path) :]
+
+    base = portal_obj
+    obj = base
+
+    for bit in bits:
+        obj = base.restrictedTraverse(bit).__of__(base)
+
+    return obj
+
+
 def execute_translate_async(en_obj, options, language, request_vars=None):
     """Executed via zc.async, triggers the call to eTranslation"""
 
@@ -568,7 +579,7 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
 
     en_obj = site_portal.restrictedTraverse(en_obj_path)
 
-    en_obj = en_obj.__of__(site_portal)
+    en_obj = wrap_in_aquisition(en_obj_path, site_portal)
 
     trans_obj = create_translation_object(en_obj, language, site_portal)
     trans_obj_path = "/".join(trans_obj.getPhysicalPath())
