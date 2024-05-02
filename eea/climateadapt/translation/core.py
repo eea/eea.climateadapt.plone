@@ -21,6 +21,7 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from Testing.ZopeTestCase import utils as zopeUtils
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
+from zope.component.hooks import setSite
 
 from eea.climateadapt.browser.admin import force_unlock
 
@@ -338,19 +339,20 @@ def copy_tiles(tiles, from_cover, to_cover):
             # pdb.set_trace()
 
 
-def check_full_path_exists(obj, language):
+def check_full_path_exists(obj, language, site_portal):
     """Create full path for a object"""
 
     parent = aq_parent(aq_inner(obj))
     path = parent.getPhysicalPath()
-    if len(path) <= 2:
+
+    if len(path) <= 2:  # aborting, we've reached bottom
         return True
 
     translations = TranslationManager(parent).get_translations()
     if language not in translations:
         # TODO, what if the parent path already exist in language
         # but is not linked in translation manager
-        create_translation_object(parent.__of__(obj), language)
+        create_translation_object(parent, language, site_portal)
 
 
 def copy_missing_interfaces(en_obj, trans_obj):
@@ -368,8 +370,7 @@ def copy_missing_interfaces(en_obj, trans_obj):
 
 def copy_tiles_to_translation(en_obj, trans_obj, site_portal):
     trans_obj_path = "/".join(trans_obj.getPhysicalPath())
-    trans_obj = site_portal.restrictedTraverse(trans_obj_path)
-    trans_obj = trans_obj.__of__(site_portal)
+    trans_obj = wrap_in_aquisition(trans_obj_path, site_portal)
     tiles = [en_obj.get_tile(x) for x in en_obj.list_tiles()]
     trans_obj.cover_layout = en_obj.cover_layout
     copy_tiles(tiles, en_obj, trans_obj)
@@ -385,16 +386,15 @@ def create_translation_object(obj, language, site_portal):
         logger.info("Skip creating translation. Already exists.")
 
         if obj.portal_type == "collective.cover.content":
-            trans_obj = translations[language]  # .__of__(rc)
+            trans_obj = translations[language]
             copy_tiles_to_translation(obj, trans_obj, site_portal)
 
         return translations[language]
 
-    check_full_path_exists(obj, language)
+    check_full_path_exists(obj, language, site_portal)
     factory = DefaultTranslationFactory(obj)
 
     translated_object = factory(language)
-    # translated_object = translated_object.__of__(rc)
 
     tm.register_translation(language, translated_object)
 
@@ -540,6 +540,20 @@ def sync_translation_state(trans_obj, en_obj):
         # trans_obj.reindexObject()
 
 
+def wrap_in_aquisition(obj_path, portal_obj):
+    portal_path = portal_obj.getPhysicalPath()
+    bits = obj_path.split("/")[len(portal_path) :]
+
+    base = portal_obj
+    obj = base
+
+    for bit in bits:
+        obj = base.restrictedTraverse(bit).__of__(base)
+        base = obj
+
+    return obj
+
+
 def execute_translate_async(en_obj, options, language, request_vars=None):
     """Executed via zc.async, triggers the call to eTranslation"""
 
@@ -557,6 +571,7 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
         site_portal = zopeUtils.makerequest(site_portal, environ)
         server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
+        setSite(site_portal)
         # context.REQUEST['PARENTS'] = [context]
 
         # for k, v in request_vars.items():
@@ -567,7 +582,7 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
 
     en_obj = site_portal.restrictedTraverse(en_obj_path)
 
-    en_obj = en_obj.__of__(site_portal)
+    en_obj = wrap_in_aquisition(en_obj_path, site_portal)
 
     trans_obj = create_translation_object(en_obj, language, site_portal)
     trans_obj_path = "/".join(trans_obj.getPhysicalPath())
