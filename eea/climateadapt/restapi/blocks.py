@@ -51,7 +51,8 @@ class RelevantAceContentBlockSerializer(object):
         ace.data = block
         ace.current_lang = "en"
 
-        block["_v_results"] = ace.relevant_all_items()
+        if not block.get("items"):
+            block["_v_results"] = ace.relevant_all_items()
 
         return block
 
