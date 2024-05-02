@@ -23,74 +23,77 @@
 
     <adapter factory=".missionstory.KeywordsFieldWidget" />
 
-    <configure zcml:condition="installed plone.app.dexterity">
+    <include package="plone.behavior" file="meta.zcml"/>
 
-      <include package="plone.behavior" file="meta.zcml"/>
+    <plone:behavior
+      name="eea.nonstructural_folder"
+      title="Non-structural folder"
+      description="Allows folders to be non-clickable in main menu"
+      provides=".section.INonstructuralSection"
+      for="plone.dexterity.interfaces.IDexterityContent"
+    />
 
-      <plone:behavior
-        name="eea.nonstructural_folder"
-        title="Non-structural folder"
-        description="Allows folders to be non-clickable in main menu"
-        provides=".section.INonstructuralSection"
-        for="plone.dexterity.interfaces.IDexterityContent"
+    <plone:behavior
+      name="volto.preview_image"
+      title="Preview Image"
+      description="Preview image for listings"
+      provides=".preview.IPreview"
+      for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
+    <plone:behavior
+      title="Include in Health Observatory"
+      description="Settings for inclusion in Health Observatory"
+      provides=".health_observatory.IHealthObservatoryMetadata"
+    />
+
+    <plone:behavior
+      title="CCA Event details"
+      description="Settings for CCA Events"
+      provides=".ccaevent.ICcaEvent"
+    />
+
+    <plone:behavior
+      title="Mission story details"
+      description="Settings for Mission stories"
+      provides=".missionstory.IMissionStory"
+    />
+
+    <plone:behavior
+      title="Mission Funding"
+      description="Settings for Mission Funding"
+      provides=".mission_funding_cca.IMissionFundingCCA"
+    />
+
+    <plone:behavior
+      name="plone.shortname"
+      title="Short name"
+      description="Gives the ability to rename an item from its edit form."
+      factory=".id.ShortName"
+      provides=".id.IShortName"
+      for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
+    <plone:behavior
+      name="cca.toplevel"
+      title="Top level navigation"
+      description="Set top level navigation visibility for each item."
+      provides=".toplevelnav.ITopLevelVisibility"
+      for="plone.dexterity.interfaces.IDexterityContent"
+    />
+
+    <plone:behavior
+      name="volto.blocks.editable.layout"
+      title="Blocks (Editable Layout)"
+      description="Enables Volto Blocks (editable layout) support"
+      provides=".blocks.IBlocksEditableLayout"
       />
 
-      <plone:behavior
-        name="volto.preview_image"
-        title="Preview Image"
-        description="Preview image for listings"
-        provides=".preview.IPreview"
-        for="plone.dexterity.interfaces.IDexterityContent"
-      />
-
-      <plone:behavior
-        title="Include in Health Observatory"
-        description="Settings for inclusion in Health Observatory"
-        provides=".health_observatory.IHealthObservatoryMetadata"
-      />
-
-      <plone:behavior
-        title="CCA Event details"
-        description="Settings for CCA Events"
-        provides=".ccaevent.ICcaEvent"
-      />
-
-      <plone:behavior
-        title="Mission story details"
-        description="Settings for Mission stories"
-        provides=".missionstory.IMissionStory"
-      />
-
-      <plone:behavior
-        title="Mission Funding"
-        description="Settings for Mission Funding"
-        provides=".mission_funding_cca.IMissionFundingCCA"
-      />
-
-      <plone:behavior
-        name="plone.shortname"
-        title="Short name"
-        description="Gives the ability to rename an item from its edit form."
-        factory=".id.ShortName"
-        provides=".id.IShortName"
-        for="plone.dexterity.interfaces.IDexterityContent"
-      />
-
-      <plone:behavior
-        name="cca.toplevel"
-        title="Top level navigation"
-        description="Set top level navigation visibility for each item."
-        provides=".toplevelnav.ITopLevelVisibility"
-        for="plone.dexterity.interfaces.IDexterityContent"
-      />
-
-      <plone:behavior
-        name="volto.blocks.editable.layout"
-        title="Blocks (Editable Layout)"
-        description="Enables Volto Blocks (editable layout) support"
-        provides=".blocks.IBlocksEditableLayout"
-        />
-
-    </configure>
+  <plone:behavior
+    name="eea.climateadapt.navtitle"
+    title="Navigation title"
+    description="Navigation title used in sections, menus and doormats"
+    provides=".navtitle.INavTitle"
+    />
 
 </configure>

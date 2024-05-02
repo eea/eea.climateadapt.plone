@@ -117,7 +117,7 @@
     for="*"
     name="portal_tabs_view"
     layer="plone.restapi.interfaces.IPloneRestapiLayer"
-    class=".navigation.CatalogNavigationTabs"
+    class=".navigation.CustomCatalogNavigationTabs"
     permission="zope.Public"
     allowed_attributes="topLevelTabs"
     />
