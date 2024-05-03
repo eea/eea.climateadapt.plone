@@ -20,6 +20,7 @@ from Testing.ZopeTestCase import utils as zopeUtils
 from zope.component.hooks import setSite
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
+from zope.component.hooks import setSite
 
 from . import retrieve_volto_html_translation
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
