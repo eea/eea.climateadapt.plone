@@ -55,6 +55,7 @@ sectors_map = {
     "Energy": "ENERGY",
     "Tourism": "TOURISMSECTOR",
     "Biodiversity protection": "BIODIVERSITY",
+    "Biodiversity": "BIODIVERSITY",
     "Coastal Areas": "COASTAL",
     "Ecosystems restoration": "NONSPECIFIC",
     "Marine and Fisheries": "MARINE",
@@ -101,7 +102,10 @@ def choices(columns, value_map=None):
             val = row[col].strip()
             if tobool(val):
                 if value_map:
-                    mapped = value_map[labels[i]]
+                    try:
+                        mapped = value_map[labels[i]]
+                    except:
+                        __import__("pdb").set_trace()
                     if mapped:
                         value.append(mapped)
                 else:
@@ -265,30 +269,31 @@ class MissionFundingImporter(BrowserView):
         # these are 0-based indexes
         fields_definition = dict(
             title=text(2),
-            is_blended=boolean_field(45),
-            is_consortium_required=boolean_field(46),
+            is_blended=boolean_field(44),
+            is_consortium_required=boolean_field(45),
             country=country_field(4),
-            funding_type=choices([32, 33, 34, 35]),
-            budget_range=choices([38, 39, 40, 41]),
+            funding_type=choices([31, 32, 33, 34]),
+            budget_range=choices([36, 37, 38, 39]),
             rast_steps=choices([8, 9, 10, 11, 12, 13], ast_map),
             eligible_entities=choices([14, 15, 16, 17]),
             sectors=choices(
-                [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31], sectors_map
+                [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
+                sectors_map,  # , 30, 31
             ),
             regions=richtext(6),
         )
 
         nonmetadata_fields = dict(
-            objective=text(51),  # done
-            funding_type_other=text(36),  # done
-            funding_rate=text(42),  # done
-            further_info=text(75),  # done
+            objective=text(50),  # done
+            funding_type_other=text(35),  # done
+            funding_rate=text(41),  # done
+            further_info=text(74),  # done
             general_info=text(3),  # done
-            authority=text(53),  # done
-            yes_consortium=text(47),  # done
+            authority=text(52),  # done
+            yes_consortium=text(46),  # done
             # these are a lot of links 60-69
             publication_page=richtext_links(
-                [[60, 61], [62, 63], [64, 65], [66, 67], [68, 69]]
+                [[59, 60], [61, 62], [63, 64], [65, 66], [67, 68]]
             ),
         )
 
