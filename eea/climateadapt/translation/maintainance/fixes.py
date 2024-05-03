@@ -144,6 +144,7 @@ def fix_urls_for_translated_content(site, language=None):
         obj_path = "/cca" + obj_url.split(site_url)[-1]
         prefix = "/cca/" + language.lower() + "/"
         trans_obj_path = obj_path.replace("/cca/en/", prefix)
+
         try:
             trans_obj = site.unrestrictedTraverse(trans_obj_path)
         except Exception:

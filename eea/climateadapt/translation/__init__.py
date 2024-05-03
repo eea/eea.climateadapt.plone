@@ -126,8 +126,7 @@ def retrieve_volto_html_translation(
     site_url = portal.get().absolute_url()  # -> '/cca'
 
     if "localhost" in site_url:
-        logger.warning(
-            "Using localhost, won't retrieve translation for: %s", html)
+        logger.warning("Using localhost, won't retrieve translation for: %s", html)
 
     client = Client(
         "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
@@ -179,6 +178,8 @@ def retrieve_volto_html_translation(
 def retrieve_html_translation(source_lang, html, obj_path, target_languages=None):
     """Send a call to automatic translation service, to translate a string
     Returns a json formatted string
+
+    This is not used anymore
     """
     if not html:
         return
@@ -191,8 +192,7 @@ def retrieve_html_translation(source_lang, html, obj_path, target_languages=None
     site_url = portal.get().absolute_url()
 
     if "localhost" in site_url:
-        logger.warning(
-            "Using localhost, won't retrieve translation for: %s", html)
+        logger.warning("Using localhost, won't retrieve translation for: %s", html)
 
     client = Client(
         "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
@@ -260,16 +260,14 @@ def translate_one_text_to_translation_storage(
         if not (force == "True" or ("...." in translation)):
             # don't translate already translated strings, it overrides the
             # translation
-            res = {"transId": translation,
-                   "externalRefId": text, "translated": True}
+            res = {"transId": translation, "externalRefId": text, "translated": True}
             logger.info("Data translation cached : %r", res)
             return res
 
     site_url = portal.get().absolute_url()
 
     if "localhost" in site_url:
-        logger.warning(
-            "Using localhost, won't retrieve translation for: %s", text)
+        logger.warning("Using localhost, won't retrieve translation for: %s", text)
 
         # return {}
 
@@ -283,8 +281,7 @@ def translate_one_text_to_translation_storage(
     #
     #     return
 
-    dest = "{}/@@translate-callback?source_lang={}".format(
-        site_url, country_code)
+    dest = "{}/@@translate-callback?source_lang={}".format(site_url, country_code)
 
     # logger.info('Translate callback URL: %s', dest)
 
@@ -357,8 +354,7 @@ def translate_one_field_in_one_step(
         target_languages = ["EN"]
 
     if "localhost" in site_url:
-        logger.warning(
-            "Using localhost, won't retrieve translation for: %s", text)
+        logger.warning("Using localhost, won't retrieve translation for: %s", text)
 
     if is_cover is False:
         dest = "{}/@@translate-callback?one_step=true&source_lang={}&uid={}&field={}".format(
@@ -433,8 +429,7 @@ def get_translation_key_values(key, site=None):
         languages = set(storage_key.keys())
         for language in languages:
             res.append(
-                {"language": language,
-                    "translation": storage_key.get(language, None)}
+                {"language": language, "translation": storage_key.get(language, None)}
             )
     return res
 
