@@ -5,6 +5,7 @@ import cgi
 import logging
 import os
 
+import transaction
 from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.translation.volto import (
     get_content_from_html,
@@ -112,6 +113,34 @@ class TranslateObjectAsync(BrowserView):
         translate_volto_html(html, obj, http_host)
 
         self.request.response.redirect(obj.absolute_url())
+
+
+class TranslateFolderAsync(BrowserView):
+    def __call__(self):
+        context = self.context
+
+        brains = context.portal_catalog.searchResults(
+            path="/".join(context.getPhysicalPath())
+        )
+        site = portal.getSite()
+        site_url = site.absolute_url()
+
+        for i, brain in enumerate(brains):
+            obj = brain.getObject()
+
+            html = getMultiAdapter((obj, self.context.REQUEST), name="tohtml")()
+            http_host = self.context.REQUEST.environ.get(
+                "HTTP_X_FORWARDED_HOST", site_url
+            )
+
+            translate_volto_html(html, obj, http_host)
+
+            if i % 20 == 0:
+                transaction.commit()
+
+        messages = IStatusMessage(self.request)
+        messages.add("Translation process initiated.", type="info")
+        self.request.response.redirect(self.context.absolute_url())
 
 
 class TranslationList(BrowserView):

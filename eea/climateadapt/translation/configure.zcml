@@ -76,4 +76,11 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      for="*"
+      class=".views.TranslateFolderAsync"
+      name="translate-folder-async"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>
