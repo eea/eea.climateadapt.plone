@@ -58,7 +58,8 @@ sectors_map = {
     "Coastal Areas": "COASTAL",
     "Ecosystems restoration": "NONSPECIFIC",
     "Marine and Fisheries": "MARINE",
-    "Other": "NONSPECIFIC",
+    # "Other": "NONSPECIFIC",
+    "Other": None,
 }
 
 ast_map = {
@@ -95,13 +96,17 @@ def choices(columns, value_map=None):
         value = []
         cells = data[LABEL_INDEX][columns[0] : columns[-1] + 1]
         labels = [cell.strip() for cell in cells]
+
         for i, col in enumerate(columns):
             val = row[col].strip()
             if tobool(val):
                 if value_map:
-                    value.append(value_map[labels[i]])
+                    mapped = value_map[labels[i]]
+                    if mapped:
+                        value.append(mapped)
                 else:
                     value.append(labels[i])
+
         return value
 
     return convert
