@@ -20,7 +20,6 @@ from Testing.ZopeTestCase import utils as zopeUtils
 from zope.component.hooks import setSite
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
-from zope.component.hooks import setSite
 
 from . import retrieve_volto_html_translation
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
@@ -73,36 +72,29 @@ cover_fixes = {"eea.climateadapt.cards_tile": fix_cards_tile}
 def handle_cover_step_4(obj, trans_obj, language, reindex):
     """Used by save_html_volto. Adapts the cover data from one cover to another"""
 
-    try:
-        data_tiles = obj.get_tiles()
-        for data_tile in data_tiles:
-            if data_tile["type"] == "eea.climateadapt.cards_tile":
-                data_trans_tiles = obj.get_tiles()
-                for data_trans_tile in data_trans_tiles:
-                    fixer = cover_fixes.get(data_trans_tile["type"], None)
-                    if fixer:
-                        fixer(obj, trans_obj, data_tile, data_trans_tile, language)
+    data_tiles = obj.get_tiles()
 
-            if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
-                tile = obj.get_tile(data_tile["id"])
-                tile_type = get_tile_type(tile, obj, trans_obj)
-                from_tile = obj.restrictedTraverse(
-                    "@@{0}/{1}".format(tile_type, tile.id)
-                )
-                to_tile = trans_obj.restrictedTraverse(
-                    "@@{0}/{1}".format(tile_type, tile.id)
-                )
+    for data_tile in data_tiles:
+        if data_tile["type"] == "eea.climateadapt.cards_tile":
+            data_trans_tiles = obj.get_tiles()
+            for data_trans_tile in data_trans_tiles:
+                fixer = cover_fixes.get(data_trans_tile["type"], None)
+                if fixer:
+                    fixer(obj, trans_obj, data_tile, data_trans_tile, language)
 
-                from_data_mgr = ITileDataManager(from_tile)
-                to_data_mgr = ITileDataManager(to_tile)
-                from_data = from_data_mgr.get()
+        if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
+            tile_id = data_tile["id"]
+            plone_tile_id = "plone.tiles.data" + tile_id
+            trans_tile = trans_obj.__annotations__.get(plone_tile_id) or {}
+            saved_title = trans_tile.get("title")
 
-                trans_tile = trans_obj.get_tile(data_tile["id"])
-                from_data["title"] = trans_tile.data["title"]
-                to_data_mgr.set(from_data)
+            from_data = obj.__annotations__.get(plone_tile_id, None)
+            if from_data:
+                data = deepcopy(from_data)
+                if saved_title:
+                    data["title"] = saved_title
 
-    except KeyError:
-        logger.info("Problem setting collection in tile for language")
+                trans_obj.__annotations__[plone_tile_id] = data
 
     force_unlock(obj)
     layout_en = obj.getLayout()
