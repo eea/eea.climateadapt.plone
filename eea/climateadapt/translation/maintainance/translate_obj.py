@@ -27,7 +27,7 @@ from eea.climateadapt.translation.utils import (
     is_language_independent_value,
 )
 
-from .utils import is_json
+from ..utils import is_json
 
 logger = logging.getLogger("eea.climateadapt")
 

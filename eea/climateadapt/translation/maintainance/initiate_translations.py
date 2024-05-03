@@ -1,7 +1,7 @@
 from zope.site.hooks import getSite
 from Products.Five.browser import BrowserView
 
-from ..translate_obj import translate_obj
+from .translate_obj import translate_obj
 import transaction
 import logging
 

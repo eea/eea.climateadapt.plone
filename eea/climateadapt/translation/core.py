@@ -1,10 +1,8 @@
-from ZPublisher.BaseRequest import RequestContainer
 import logging
-import os
 from copy import deepcopy
 
-import transaction
 from Acquisition import aq_inner, aq_parent
+from eea.climateadapt.browser.admin import force_unlock
 from plone import api
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
@@ -19,41 +17,15 @@ from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Testing.ZopeTestCase import utils as zopeUtils
+from zope.component.hooks import setSite
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
 from zope.component.hooks import setSite
 
-from eea.climateadapt.browser.admin import force_unlock
-
-from . import (
-    retrieve_volto_html_translation,
-)
+from . import retrieve_volto_html_translation
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-# from .translate_obj import translate_obj
-
-# steps => used to translate the entire website
-# translate in one step (when object is published)
-# translate async => manual action
-# from .constants import contenttype_language_independent_fields
 
 logger = logging.getLogger("eea.climateadapt")
-
-
-def is_obj_skipped_for_translation(obj):
-    # skip by portal types
-    if obj.portal_type in ["eea.climateadapt.city_profile", "LIF"]:
-        return True
-
-    # DO NOT SKIP, images or pdfs from case-studies have description and title
-    # fields those are needed to be translated (or at least to be copied)
-    # skip by string in path
-    # skip_path_items = ['.jpg','.pdf','.png']
-    # obj_url = obj.absolute_url()
-    # if any(skip_item in obj_url for skip_item in skip_path_items):
-    # return True
-
-    # TODO: add here archived and other rules
-    return False
 
 
 def get_translation_object(obj, language):
@@ -69,23 +41,6 @@ def get_translation_object(obj, language):
         return None
     trans_obj = translations[language]
     return trans_obj
-
-
-def get_translation_object_from_uid(json_uid_file, catalog):
-    brains = catalog.searchResults(UID=json_uid_file.replace(".json", ""))
-    if 0 == len(brains):
-        return None
-    return brains[0].getObject()
-
-
-def get_translation_json_files(uid=None):
-    json_files = []
-    if uid:
-        if os.path.exists("/tmp/jsons/" + str(uid) + ".json"):
-            json_files.append(str(uid) + ".json")
-    else:
-        json_files = os.listdir("/tmp/jsons/")
-    return json_files
 
 
 def fix_cards_tile(obj, trans_obj, data_tile, data_trans_tile, language):
@@ -116,6 +71,8 @@ cover_fixes = {"eea.climateadapt.cards_tile": fix_cards_tile}
 
 
 def handle_cover_step_4(obj, trans_obj, language, reindex):
+    """Used by save_html_volto. Adapts the cover data from one cover to another"""
+
     try:
         data_tiles = obj.get_tiles()
         for data_tile in data_tiles:
@@ -157,6 +114,7 @@ def handle_cover_step_4(obj, trans_obj, language, reindex):
 
 
 def sync_obj_layout(obj, trans_obj, reindex, async_request):
+    """Used by save_html_volto"""
     force_unlock(obj)
 
     layout_en = obj.getLayout()
@@ -194,93 +152,6 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
 
 
 handle_folder_doc_step_4 = sync_obj_layout  # BBB
-
-
-def trans_copy_field_data(site, request, async_request=False):
-    """Copy fields values from en to given language for language independent
-        fields.
-    TODO: this is used in a lot of places in code. It needs to be properly documented
-
-    This used to be called translation_step_4
-    """
-    # used for whole-site translation
-
-    language = request.get("language", None)
-    uid = request.get("uid", None)
-    limit = int(request.get("limit", 0))
-    portal_type = request.get("portal_type", None)
-
-    if language is None:
-        return "Missing language parameter. (Example: ?language=it)"
-
-    catalog = site.portal_catalog
-    search_data = {}
-    search_data["path"] = "/cca/en"
-    if uid:
-        search_data["UID"] = uid
-    if limit:
-        search_data["sort_limit"] = limit
-    if portal_type:
-        search_data["portal_type"] = portal_type
-
-    brains = catalog.searchResults(search_data)
-    logger.info("Start copying values for language independent fields...")
-
-    obj_count = 0
-    for brain in brains:
-        if uid and uid != brain.UID:
-            continue
-        obj = brain.getObject()
-        obj_count += 1
-        logger.info("PROCESSING obj: %s", obj_count)
-
-        try:
-            translations = TranslationManager(obj).get_translations()
-        except Exception:  # TODO: logging
-            continue
-
-        try:
-            trans_obj = translations[language]
-            # set REQUEST otherwise will give error
-            # when executing trans_obj.setLayout()
-            if async_request:  # not hasattr(trans_obj, 'REQUEST'):
-                trans_obj.REQUEST = site.REQUEST
-                obj.REQUEST = site.REQUEST
-                # request = getattr(event.object, 'REQUEST', getRequest())
-
-        except KeyError:
-            logger.info("Missing translation for: %s", obj.absolute_url())
-            continue
-
-        reindex = False
-
-        if obj.portal_type == "collective.cover.content":
-            # Set propper collection for current language
-            # WE supose to have only one cards_tile in the list of tiles
-            reindex = handle_cover_step_4(obj, trans_obj, language, reindex)
-
-        if obj.portal_type in ("Folder", "Document"):
-            try:
-                reindex = handle_folder_doc_step_4(
-                    obj, trans_obj, reindex, async_request
-                )
-            except Exception:
-                continue
-
-        if reindex is True:
-            if async_request:
-                if hasattr(trans_obj, "REQUEST"):
-                    del trans_obj.REQUEST
-
-                if hasattr(obj, "REQUEST"):
-                    del obj.REQUEST
-
-            trans_obj._p_changed = True
-            trans_obj.reindexObject()
-            transaction.commit()  # TODO Improve. This is a fix for Event.
-
-    logger.info("Finalize step 4")
-    return "Finalize step 4"
 
 
 def get_tile_type(tile, from_cover, to_cover):
@@ -445,77 +316,6 @@ def is_volto_context(context):
     return False
 
 
-def trans_sync_workflow_state(site, request):
-    """Publish translated items for a language and copy publishing and
-    creation date from EN items.
-
-    This used to be translation_step_5
-    """
-
-    # used for whole-site translation
-    language = request.get("language", None)
-    uid = request.get("uid", None)
-    limit = int(request.get("limit", 0))
-    portal_type = request.get("portal_type", None)
-
-    if language is None:
-        return "Missing language parameter. (Example: ?language=it)"
-
-    catalog = site.portal_catalog
-    search_data = {}
-    search_data["path"] = "/cca/en"
-    if uid:
-        search_data["UID"] = uid
-    if limit:
-        search_data["sort_limit"] = limit
-    if portal_type:
-        search_data["portal_type"] = portal_type
-
-    brains = catalog.searchResults(search_data)
-    logger.info("Start publishing translated items...")
-
-    obj_count = 0
-    for brain in brains:
-        if uid and uid != brain.UID:
-            continue
-        obj = brain.getObject()
-        obj_count += 1
-        logger.info("PROCESSING obj: %s", obj_count)
-
-        try:
-            translations = TranslationManager(obj).get_translations()
-        except Exception:
-            continue  # TODO: logging
-
-        try:
-            trans_obj = translations[language]
-        except KeyError:
-            logger.info("Missing translation for: %s", obj.absolute_url())
-            continue
-
-        try:
-            state = api.content.get_state(obj)
-        except WorkflowException:
-            continue
-
-        if state in ["published", "archived"]:
-            if api.content.get_state(trans_obj) != state:
-                wftool = getToolByName(trans_obj, "portal_workflow")
-                logger.info("%s %s", state, trans_obj.absolute_url())
-                if state == "published":
-                    wftool.doActionFor(trans_obj, "publish")
-                elif state == "archived":
-                    wftool.doActionFor(trans_obj, "archive")
-
-        if obj.EffectiveDate() != trans_obj.EffectiveDate():
-            trans_obj.setEffectiveDate(obj.effective_date)
-            trans_obj._p_changed = True
-            trans_obj.reindexObject()
-
-    logger.info("Finalize step 5")
-    return "Finalize step 5"
-
-
 def sync_translation_state(trans_obj, en_obj):
     state = None
 
@@ -554,7 +354,7 @@ def wrap_in_aquisition(obj_path, portal_obj):
     return obj
 
 
-def execute_translate_async(en_obj, options, language, request_vars=None):
+def execute_translate_async(en_obj, options, language):
     """Executed via zc.async, triggers the call to eTranslation"""
 
     en_obj_path = "/".join(en_obj.getPhysicalPath())
@@ -603,43 +403,9 @@ def execute_translate_async(en_obj, options, language, request_vars=None):
         del trans_obj.REQUEST
     except AttributeError:
         pass
+
     logger.info("Async translate for object %s", options["obj_url"])
     return "Finished"
-
-    # if options.get("is_volto", None) is not None:
-
-    # NOTE: all the code below is for reference only. We only use the version above
-
-    # if is_volto_context(context):
-    #     logger.info("SKIP classic translation in volto context")
-    #     return
-    #
-    # if not hasattr(context, "REQUEST"):
-    #     zopeUtils._Z2HOST = options["http_host"]
-    #     context = zopeUtils.makerequest(context)
-    #     context.REQUEST.other["SERVER_URL"] = context.REQUEST.other[
-    #         "SERVER_URL"
-    #     ].replace("http", "https")
-    #     # context.REQUEST['PARENTS'] = [context]
-    #
-    #     for k, v in request_vars.items():
-    #         context.REQUEST.set(k, v)
-    #
-    # settings = {
-    #     "language": language,
-    #     "uid": options["uid"],
-    # }
-    #
-    # trans_copy_field_data(context, settings, async_request=True)
-    # site_portal = portal.get()
-    # site_portal.REQUEST = context.REQUEST
-    #
-    # translate_obj(context, lang=language, one_step=True)
-    # del site_portal.REQUEST
-    #
-    # logger.info("Async translate for object %s", options["obj_url"])
-    #
-    # return "Finished"
 
 
 def handle_link(en_obj, trans_obj):
