@@ -4,34 +4,30 @@ import json
 import logging
 from collections import defaultdict
 
+from eea.climateadapt import CcaAdminMessageFactory as _
 from Products.Five.browser import BrowserView
 from zope.site.hooks import getSite
 
-from eea.climateadapt import CcaAdminMessageFactory as _
-
-from .core import (
-    is_obj_skipped_for_translation,
-)
 from .utils import get_object_fields_values
 
-# copy_missing_interfaces,
-# create_translation_object,
-# translate_obj,
-# trans_copy_field_data,
-
-
-# from eea.climateadapt.translation.utils import (
-#     get_site_languages,
-# )
-# import transaction
-# from plone import api
-# from plone.app.multilingual.manager import TranslationManager
-# from Products.CMFCore.utils import getToolByName
-# from Products.CMFPlone import utils
-# from Products.statusmessages.interfaces import IStatusMessage
-# from zope.globalrequest import getRequest
-
 logger = logging.getLogger("eea.climateadapt")
+
+
+def is_obj_skipped_for_translation(obj):
+    # skip by portal types
+    if obj.portal_type in ["eea.climateadapt.city_profile", "LIF"]:
+        return True
+
+    # DO NOT SKIP, images or pdfs from case-studies have description and title
+    # fields those are needed to be translated (or at least to be copied)
+    # skip by string in path
+    # skip_path_items = ['.jpg','.pdf','.png']
+    # obj_url = obj.absolute_url()
+    # if any(skip_item in obj_url for skip_item in skip_path_items):
+    # return True
+
+    # TODO: add here archived and other rules
+    return False
 
 
 def translations_status_by_version(site, version=0, language=None):
@@ -117,22 +113,6 @@ class TranslationListTypeFields(BrowserView):
 
     def __call__(self):
         return translation_list_type_fields(getSite())
-
-
-# class RunTranslationSingleItem(BrowserView):
-#     """Translate a single item
-#
-#     To be used for testing translation without waiting for all objects to
-#     be updated
-#
-#     Usage: item/admin-translate-this
-#     """
-#
-#     def __call__(self):
-#         obj = self.context
-#         result = translate_obj(obj)
-#         # transaction.commit()
-#         return result
 
 
 def translations_status(site, language=None):
@@ -270,3 +250,34 @@ class TranslationStatus(BrowserView):
 
 # @adapter(Interface, ITranslateAction, Interface)
 # @implementer(IExecutable)
+
+# class RunTranslationSingleItem(BrowserView):
+#     """Translate a single item
+#
+#     To be used for testing translation without waiting for all objects to
+#     be updated
+#
+#     Usage: item/admin-translate-this
+#     """
+#
+#     def __call__(self):
+#         obj = self.context
+#         result = translate_obj(obj)
+#         # transaction.commit()
+#         return result
+# copy_missing_interfaces,
+# create_translation_object,
+# translate_obj,
+# trans_copy_field_data,
+
+
+# from eea.climateadapt.translation.utils import (
+#     get_site_languages,
+# )
+# import transaction
+# from plone import api
+# from plone.app.multilingual.manager import TranslationManager
+# from Products.CMFCore.utils import getToolByName
+# from Products.CMFPlone import utils
+# from Products.statusmessages.interfaces import IStatusMessage
+# from zope.globalrequest import getRequest
