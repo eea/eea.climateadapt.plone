@@ -95,17 +95,14 @@ def text(column):
 def choices(columns, value_map=None):
     def convert(row, data):
         value = []
-        cells = data[LABEL_INDEX][columns[0] : columns[-1] + 1]
+        cells = data[LABEL_INDEX][columns[0]: columns[-1] + 1]
         labels = [cell.strip() for cell in cells]
 
         for i, col in enumerate(columns):
             val = row[col].strip()
             if tobool(val):
                 if value_map:
-                    try:
-                        mapped = value_map[labels[i]]
-                    except:
-                        __import__("pdb").set_trace()
+                    mapped = value_map[labels[i]]
                     if mapped:
                         value.append(mapped)
                 else:
@@ -204,7 +201,8 @@ class MissionFundingImporter(BrowserView):
                 if block["data"]["id"] == "is_consortium_required":
                     blocks[nextuid] = self.text2slate(fields["yes_consortium"])
                 if block["data"]["id"] == "funding_type":
-                    blocks[nextuid] = self.text2slate(fields["funding_type_other"])
+                    blocks[nextuid] = self.text2slate(
+                        fields["funding_type_other"])
 
         return blocks_copy
 
@@ -243,7 +241,8 @@ class MissionFundingImporter(BrowserView):
                 children.extend([{"text": label}, {"text": "\n"}])
                 continue
 
-            el = {"type": "link", "data": {"url": link}, "children": [{"text": label}]}
+            el = {"type": "link", "data": {"url": link},
+                  "children": [{"text": label}]}
             children.extend([el, {"text": "\n"}])
 
         return {
@@ -321,7 +320,8 @@ class MissionFundingImporter(BrowserView):
         printed = []
 
         for record, nonmetadata_record in toimport:
-            obj = create(type="mission_funding_cca", container=self.context, **record)
+            obj = create(type="mission_funding_cca",
+                         container=self.context, **record)
             blocks = self.set_nonmetadata_fields(obj, nonmetadata_record)
             obj.blocks = blocks
             obj._p_changed = True
