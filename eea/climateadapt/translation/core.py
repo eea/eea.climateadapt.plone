@@ -1,5 +1,4 @@
 import logging
-import os
 from copy import deepcopy
 
 from Acquisition import aq_inner, aq_parent
@@ -43,23 +42,6 @@ def get_translation_object(obj, language):
         return None
     trans_obj = translations[language]
     return trans_obj
-
-
-def get_translation_object_from_uid(json_uid_file, catalog):
-    brains = catalog.searchResults(UID=json_uid_file.replace(".json", ""))
-    if 0 == len(brains):
-        return None
-    return brains[0].getObject()
-
-
-def get_translation_json_files(uid=None):
-    json_files = []
-    if uid:
-        if os.path.exists("/tmp/jsons/" + str(uid) + ".json"):
-            json_files.append(str(uid) + ".json")
-    else:
-        json_files = os.listdir("/tmp/jsons/")
-    return json_files
 
 
 def fix_cards_tile(obj, trans_obj, data_tile, data_trans_tile, language):

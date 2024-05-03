@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 import time
 from datetime import datetime
 
@@ -17,14 +18,27 @@ from .. import (
 )
 from ..admin import is_obj_skipped_for_translation
 from ..constants import source_richtext_types
-from ..core import (
-    get_translation_json_files,
-    get_translation_object,
-    get_translation_object_from_uid,
-)
+from ..core import get_translation_object
 from ..utils import get_object_fields_values
 
 logger = logging.getLogger("eea.climateadapt")
+
+
+def get_translation_json_files(uid=None):
+    json_files = []
+    if uid:
+        if os.path.exists("/tmp/jsons/" + str(uid) + ".json"):
+            json_files.append(str(uid) + ".json")
+    else:
+        json_files = os.listdir("/tmp/jsons/")
+    return json_files
+
+
+def get_translation_object_from_uid(json_uid_file, catalog):
+    brains = catalog.searchResults(UID=json_uid_file.replace(".json", ""))
+    if 0 == len(brains):
+        return None
+    return brains[0].getObject()
 
 
 def trans_sync_workflow_state(site, request):
