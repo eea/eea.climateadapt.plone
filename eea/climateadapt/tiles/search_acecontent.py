@@ -389,14 +389,11 @@ class AceTileMixin(object):
         combine = self.data.get("combine_results", False)
 
         if not combine:
-            if res:
-                if self.data.get("sortBy", "") == "NAME":
-                    return sorted(res, key=lambda o: o.sortable_title)
-                else:
-                    return res
+            return []
 
         for item in self.relevant_items():
             try:
+                # TODO: this needs to be removed as soon as possible. Performance issues
                 obj = item.getObject()
             except KeyError:        # this is an indexing problem
                 logger.warn(

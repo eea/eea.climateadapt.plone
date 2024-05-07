@@ -19,6 +19,9 @@
   <adapter factory=".serializer.OrganisationSerializer" />
   <adapter factory=".serializer.RichttextFieldSerializer" />
 
+  <adapter factory=".serializer.MissionToolSerializer" />
+  <adapter factory=".serializer.MissionFundingSerializer" />
+
   <zcml:configure zcml:condition="not-installed collective.exportimport">
     <adapter factory=".long_converter" />
   </zcml:configure>
