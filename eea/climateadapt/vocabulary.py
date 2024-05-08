@@ -335,7 +335,7 @@ _elements = [
     ("ENVIRONMENTALASP", _("Environmental aspects")),
     ("MITIGATIONASP", _("Mitigation aspects")),
     ("SOCIETALASP", _("Societal aspects")),
-    ("ECONOMICASP", _("Ecomic aspects")),
+    ("ECONOMICASP", _("Economic aspects")),
     ("COSTBENEFIT", _("Cost-benefit analysis and maintenance costs")),
     ("RUPOTENTIAL", _("Replication/upscaling potential")),
 ]
