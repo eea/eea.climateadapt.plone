@@ -7,7 +7,23 @@ from plone.api.content import create
 from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
 
-_ace_countries = ace_countries + [("MD", "Moldova")]
+_ace_countries = ace_countries + [
+    ("MD", "Moldova"),
+    ("MK", "North Macedonia"),
+    ("XK", "Kosovo"),
+    ("NZ", "New Zealand"),
+    ("TN", "Tunisia"),
+    ("DZ", "Algeria"),
+    ("LB", "Lebanon"),
+    ("JO", "Jordan"),
+    # ('Country not found:', 'New Zealand')
+    # ('Country not found:', 'Tunisia')
+    # ('Country not found:', 'T\xc3\xbcrkiye')
+    # ('Country not found:', 'Liechtenstein and Norway')
+    # ('Country not found:', 'Palestine')
+    # ('Country not found:', 'Norway and Switzerland')
+    # ('Country not found:', 'EEA')
+]
 ace_countries_mapping = {}
 for k, v in _ace_countries:
     ace_countries_mapping[v] = k
@@ -42,7 +58,10 @@ EU27 = [
     "Sweden",
 ]
 
+EEA = EU27 + ["Iceland", "Liechtenstein", "Norway"]
+
 eu_countries = ", ".join(EU27)
+eea_countries = ", ".join(EEA)
 
 sectors_map = {
     "Agriculture": "AGRICULTURE",
@@ -95,7 +114,7 @@ def text(column):
 def choices(columns, value_map=None):
     def convert(row, data):
         value = []
-        cells = data[LABEL_INDEX][columns[0]: columns[-1] + 1]
+        cells = data[LABEL_INDEX][columns[0] : columns[-1] + 1]
         labels = [cell.strip() for cell in cells]
 
         for i, col in enumerate(columns):
@@ -148,8 +167,27 @@ def richtext_links(column):
 def country_field(column_a):
     def convert(row, data):
         value = row[column_a].strip()
-        value = value.replace("EU-27", eu_countries).replace(".", " ")
-        return [ace_countries_mapping[x.strip()] for x in value.split(",")]
+        replacements = {
+            "EU-27": eu_countries,
+            ".": " ",
+            "Moldavia": "Moldova",
+            "T\xc3\xbcrkiye": "Turkey",
+            "Liechtenstein and Norway": "Liechtenstein, Norway",
+            "Norway and Switzerland": "Norway, Switzerland",
+            "EEA": eea_countries,
+        }
+        # value = value.replace().replace(".", " ")
+        for k, v in replacements.items():
+            value = value.replace(k, v)
+        out = []
+        for cname in value.split(","):
+            cname = cname.strip()
+            if cname not in ace_countries_mapping:
+                print("Country not found:", cname)
+                continue
+            out.append(ace_countries_mapping[cname])
+
+        return sorted(list(set(out)))
 
     return convert
 
@@ -201,8 +239,7 @@ class MissionFundingImporter(BrowserView):
                 if block["data"]["id"] == "is_consortium_required":
                     blocks[nextuid] = self.text2slate(fields["yes_consortium"])
                 if block["data"]["id"] == "funding_type":
-                    blocks[nextuid] = self.text2slate(
-                        fields["funding_type_other"])
+                    blocks[nextuid] = self.text2slate(fields["funding_type_other"])
 
         return blocks_copy
 
@@ -241,8 +278,7 @@ class MissionFundingImporter(BrowserView):
                 children.extend([{"text": label}, {"text": "\n"}])
                 continue
 
-            el = {"type": "link", "data": {"url": link},
-                  "children": [{"text": label}]}
+            el = {"type": "link", "data": {"url": link}, "children": [{"text": label}]}
             children.extend([el, {"text": "\n"}])
 
         return {
@@ -320,8 +356,7 @@ class MissionFundingImporter(BrowserView):
         printed = []
 
         for record, nonmetadata_record in toimport:
-            obj = create(type="mission_funding_cca",
-                         container=self.context, **record)
+            obj = create(type="mission_funding_cca", container=self.context, **record)
             blocks = self.set_nonmetadata_fields(obj, nonmetadata_record)
             obj.blocks = blocks
             obj._p_changed = True
