@@ -1,11 +1,11 @@
 from plone.rest.traverse import RESTWrapper
-from zope.component import adapter, getUtility
-from zope.interface import implementer, Interface
+from zope.component import adapter  # , getUtility
+from zope.interface import Interface, implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
 from zope.traversing.interfaces import ITraversable
 
-from plone.app.layout.navigation.interfaces import INavigationRoot
-from plone.contentrules.engine.interfaces import IRuleStorage
+# from plone.app.layout.navigation.interfaces import INavigationRoot
+# from plone.contentrules.engine.interfaces import IRuleStorage
 
 
 # @adapter(INavigationRoot, IBrowserRequest)
