@@ -355,7 +355,10 @@ def get_value_representation(obj, name):
             return None
 
     if isinstance(value, RichTextValue):
-        value = value.raw.replace("\r\n", "")
+        if value.raw:
+            value = value.raw.replace("\r\n", "")
+        else:
+            value = ""
 
     # if is_json(value):
     #     return None
