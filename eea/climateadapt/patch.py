@@ -195,9 +195,16 @@ def _get_events(self, ret_mode=RET_MODE_ACCESSORS, expand=True):
                                    sort=sort, sort_reverse=sort_reverse,
                                    ret_mode=ret_mode, expand=expand, **kw)
 
-    filtered_events = [
-        x for x in unfiltered_events if '/mission/' not in x.absolute_url()]
-    return filtered_events
+    events = []
+    for evt in unfiltered_events:
+        if hasattr(evt, 'url'): # this is an IEventAccessor
+            url = evt.url
+        else:
+            url = evt.absolute_url()
+        if '/mission/' not in url:
+            events.append(evt)
+
+    return events
 
 
 THREE_SECONDS = 3000
