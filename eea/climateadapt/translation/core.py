@@ -117,8 +117,7 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
             trans_obj.setDefaultPage(default_view_en)
             reindex = True
         except Exception:
-            logger.info("Can't set default page for: %s",
-                        trans_obj.absolute_url())
+            logger.info("Can't set default page for: %s", trans_obj.absolute_url())
     if not reindex:
         reindex = True
         trans_obj.setLayout(layout_en)
@@ -248,10 +247,13 @@ def create_translation_object(obj, language, site_portal):
 
     if language in translations:
         logger.info("Skip creating translation. Already exists.")
+        trans_obj = translations[language]
 
         if obj.portal_type == "collective.cover.content":
-            trans_obj = translations[language]
             copy_tiles_to_translation(obj, trans_obj, site_portal)
+
+        sync_translation_state(trans_obj, obj)
+        trans_obj.reindexObject()
 
         return translations[language]
 
@@ -335,7 +337,7 @@ def sync_translation_state(trans_obj, en_obj):
 
 def wrap_in_aquisition(obj_path, portal_obj):
     portal_path = portal_obj.getPhysicalPath()
-    bits = obj_path.split("/")[len(portal_path):]
+    bits = obj_path.split("/")[len(portal_path) :]
 
     base = portal_obj
     obj = base
@@ -362,8 +364,7 @@ def execute_translate_async(en_obj, options, language):
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         setSite(site_portal)
         # context.REQUEST['PARENTS'] = [context]
@@ -375,13 +376,11 @@ def execute_translate_async(en_obj, options, language):
     site_portal.REQUEST.translation_info = {"tg": True}
 
     en_obj = site_portal.restrictedTraverse(en_obj_path)
-
     en_obj = wrap_in_aquisition(en_obj_path, site_portal)
 
+    # trans_obj = site_portal.restrictedTraverse(trans_obj_path)
     trans_obj = create_translation_object(en_obj, language, site_portal)
     trans_obj_path = "/".join(trans_obj.getPhysicalPath())
-    trans_obj = site_portal.restrictedTraverse(trans_obj_path)
-    sync_translation_state(trans_obj, en_obj)
 
     retrieve_volto_html_translation(
         options["http_host"],
