@@ -1,0 +1,38 @@
+{
+    "blocks_layout": {
+        "items": [
+          "6cc87646-cbd3-40ea-8b18-8a737b4ec803",
+          "6bf526c2-eb09-4f5a-a2e3-1fb9a770da21",
+          "ec4b1440-16c3-4e28-ab58-fdb0cfdf7213"
+        ]
+    },
+
+    "blocks": {
+        "6bf526c2-eb09-4f5a-a2e3-1fb9a770da21": {
+          "@type": "metadata",
+          "data": {
+            "id": "description",
+            "widget": "description"
+          }
+        },
+        "6cc87646-cbd3-40ea-8b18-8a737b4ec803": {
+          "@type": "title",
+          "copyrightIcon": "ri-copyright-line",
+          "styles": {}
+        },
+        "ec4b1440-16c3-4e28-ab58-fdb0cfdf7213": {
+          "@type": "slate",
+          "plaintext": "",
+          "value": [
+            {
+              "children": [
+                {
+                  "text": ""
+                }
+              ],
+              "type": "p"
+            }
+          ]
+        }
+    }
+}

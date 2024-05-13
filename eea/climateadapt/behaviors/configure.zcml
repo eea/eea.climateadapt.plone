@@ -65,6 +65,12 @@
       provides=".mission_funding_cca.IMissionFundingCCA"
     />
 
+    <!-- <plone:behavior
+      title="Event details"
+      description="Settings for Event"
+      provides=".event.IMainEvent"
+    /> -->
+
     <plone:behavior
       name="plone.shortname"
       title="Short name"
