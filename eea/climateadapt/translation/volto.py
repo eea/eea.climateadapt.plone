@@ -220,7 +220,7 @@ class ContentToHtml(BrowserView):
         return self.request.response.redirect(url)
 
 
-def translate_volto_html(html, en_obj, http_host):
+def translate_volto_html(html, en_obj, http_host, language=None):
     """The "new" method of triggering the translation of an object.
 
     While this is named "volto", it is a generic system to translate Plone
@@ -245,9 +245,10 @@ def translate_volto_html(html, en_obj, http_host):
     en_obj_path = "/".join(en_obj.getPhysicalPath())
 
     logger.info("Called translate_volto_html for %s" % en_obj_path)
+    languages = language and [language] or get_site_languages()
 
     if "cca/en" in en_obj_path:
-        for language in get_site_languages():
+        for language in languages:
             if language == "en":
                 continue
             async_service = get_async_service()

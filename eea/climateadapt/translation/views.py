@@ -109,8 +109,9 @@ class TranslateObjectAsync(BrowserView):
         http_host = self.context.REQUEST.environ.get(
             "HTTP_X_FORWARDED_HOST", site.absolute_url()
         )
+        language = self.request.form.get("language", None)
 
-        translate_volto_html(html, obj, http_host)
+        translate_volto_html(html, obj, http_host, language)
 
         self.request.response.redirect(obj.absolute_url())
 
@@ -124,6 +125,7 @@ class TranslateFolderAsync(BrowserView):
         )
         site = portal.getSite()
         site_url = site.absolute_url()
+        language = self.request.form.get("language", None)
 
         for i, brain in enumerate(brains):
             obj = brain.getObject()
@@ -133,7 +135,7 @@ class TranslateFolderAsync(BrowserView):
                 "HTTP_X_FORWARDED_HOST", site_url
             )
 
-            translate_volto_html(html, obj, http_host)
+            translate_volto_html(html, obj, http_host, language)
 
             if i % 20 == 0:
                 transaction.commit()
