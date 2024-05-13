@@ -196,7 +196,7 @@ def _get_events(self, ret_mode=RET_MODE_ACCESSORS, expand=True):
                                    ret_mode=ret_mode, expand=expand, **kw)
 
     filtered_events = [
-        x for x in unfiltered_events if '/mission/' not in x.url]
+        x for x in unfiltered_events if '/mission/' not in x.absolute_url()]
     return filtered_events
 
 
