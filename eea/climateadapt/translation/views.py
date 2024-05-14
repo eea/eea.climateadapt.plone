@@ -155,7 +155,9 @@ class CreateTranslationStructure(BrowserView):
         context = self.context
 
         brains = context.portal_catalog.searchResults(
-            path="/".join(context.getPhysicalPath()), sort_on="path"
+            path="/".join(context.getPhysicalPath()),
+            portal_type="Folder",
+            sort_on="path",
         )
         site = portal.getSite()
         language = self.request.form.get("language", None)
@@ -165,7 +167,8 @@ class CreateTranslationStructure(BrowserView):
         for i, brain in enumerate(brains):
             obj = brain.getObject()
             trans_obj = create_translation_object(obj, language, site)
-            logger.info("Translated object: %s", trans_obj)
+            logger.info("Translated object %s: %s",
+                        i, trans_obj.absolute_url())
 
             if i % 20 == 0:
                 transaction.commit()
