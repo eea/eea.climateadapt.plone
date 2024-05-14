@@ -150,6 +150,10 @@ class TranslateFolderAsync(BrowserView):
         self.request.response.redirect(self.context.absolute_url())
 
 
+def split_list(lst, chunk_size):
+    return [lst[i: i + chunk_size] for i in range(0, len(lst), chunk_size)]
+
+
 class CreateTranslationStructure(BrowserView):
     def __call__(self):
         context = self.context
@@ -164,16 +168,51 @@ class CreateTranslationStructure(BrowserView):
         if not language:
             return "no language"
 
-        brain_count = len(brains)
-        for i, brain in enumerate(brains):
-            obj = brain.getObject()
-            trans_obj = create_translation_object(obj, language, site)
-            logger.info(
-                "Translated object %s: %s/%s", i, brain_count, trans_obj.absolute_url()
-            )
+        languages = [
+            # "bg",
+            # "hr",
+            # "cs",
+            # "da",
+            # "nl",
+            "et",
+            "fi",
+            "el",
+            "hu",
+            "ga",
+            "lv",
+            "lt",
+            "mt",
+            "pt",
+            "sk",
+            "sl",
+            "sv",
+        ]
 
-            if i % 20 == 0:
-                transaction.commit()
+        brain_count = len(brains)
+
+        for language in languages:
+            counted_brains = zip(range(len(brains), brains))
+            batched_brains = split_list(counted_brains, 20)
+
+            for batch in batched_brains:
+
+                def task():
+                    for i, brain in batch:
+                        obj = brain.getObject()
+                        trans_obj = create_translation_object(
+                            obj, language, site)
+                        logger.info(
+                            "Translated object %s %s/%s %s",
+                            language,
+                            i,
+                            brain_count,
+                            trans_obj.absolute_url(),
+                        )
+
+                try:
+                    transaction.run(task, retries=3)
+                except:
+                    logger.exception("Will continue")
 
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
