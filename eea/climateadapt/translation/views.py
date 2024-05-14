@@ -164,11 +164,13 @@ class CreateTranslationStructure(BrowserView):
         if not language:
             return "no language"
 
+        brain_count = len(brains)
         for i, brain in enumerate(brains):
             obj = brain.getObject()
             trans_obj = create_translation_object(obj, language, site)
-            logger.info("Translated object %s: %s",
-                        i, trans_obj.absolute_url())
+            logger.info(
+                "Translated object %s: %s/%s", i, brain_count, trans_obj.absolute_url()
+            )
 
             if i % 20 == 0:
                 transaction.commit()
