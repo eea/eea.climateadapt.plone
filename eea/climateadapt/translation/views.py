@@ -191,7 +191,7 @@ class CreateTranslationStructure(BrowserView):
         brain_count = len(brains)
 
         for language in languages:
-            counted_brains = zip(range(len(brains), brains))
+            counted_brains = zip(list(range(len(brains))), brains)
             batched_brains = split_list(counted_brains, 20)
 
             for batch in batched_brains:
@@ -209,8 +209,10 @@ class CreateTranslationStructure(BrowserView):
                             trans_obj.absolute_url(),
                         )
 
+                transaction.begin()
                 try:
-                    transaction.run(task, retries=3)
+                    task()
+                    transaction.commit()
                 except:
                     logger.exception("Will continue")
 
