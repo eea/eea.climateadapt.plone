@@ -308,7 +308,7 @@ class MissionFundingImporter(BrowserView):
             is_consortium_required=boolean_field(45),
             country=country_field(4),
             funding_type=choices([31, 32, 33, 34]),
-            budget_range=choices([36, 37, 38, 39]),
+            budget_range=choices([36, 37, 38, 39, 40]),
             rast_steps=choices([8, 9, 10, 11, 12, 13], ast_map),
             eligible_entities=choices([14, 15, 16, 17]),
             sectors=choices(

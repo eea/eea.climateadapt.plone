@@ -248,10 +248,13 @@ def create_translation_object(obj, language, site_portal):
 
     if language in translations:
         logger.info("Skip creating translation. Already exists.")
+        trans_obj = translations[language]
 
         if obj.portal_type == "collective.cover.content":
-            trans_obj = translations[language]
             copy_tiles_to_translation(obj, trans_obj, site_portal)
+
+        sync_translation_state(trans_obj, obj)
+        trans_obj.reindexObject()
 
         return translations[language]
 
@@ -278,6 +281,7 @@ def create_translation_object(obj, language, site_portal):
         copy_tiles_to_translation(obj, translated_object, site_portal)
 
     copy_missing_interfaces(obj, translated_object)
+    sync_translation_state(translated_object, obj)
 
     translated_object.reindexObject()
 
@@ -375,13 +379,11 @@ def execute_translate_async(en_obj, options, language):
     site_portal.REQUEST.translation_info = {"tg": True}
 
     en_obj = site_portal.restrictedTraverse(en_obj_path)
-
     en_obj = wrap_in_aquisition(en_obj_path, site_portal)
 
+    # trans_obj = site_portal.restrictedTraverse(trans_obj_path)
     trans_obj = create_translation_object(en_obj, language, site_portal)
     trans_obj_path = "/".join(trans_obj.getPhysicalPath())
-    trans_obj = site_portal.restrictedTraverse(trans_obj_path)
-    sync_translation_state(trans_obj, en_obj)
 
     retrieve_volto_html_translation(
         options["http_host"],

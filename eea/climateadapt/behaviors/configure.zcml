@@ -66,6 +66,12 @@
     />
 
     <plone:behavior
+      title="Event details"
+      description="Settings and layout for Event content type"
+      provides=".event.IMainEvent"
+    />
+
+    <plone:behavior
       name="plone.shortname"
       title="Short name"
       description="Gives the ability to rename an item from its edit form."

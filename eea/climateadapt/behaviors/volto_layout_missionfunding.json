@@ -13,18 +13,38 @@
                 "as": "div",
                 "data": {
                   "blocks": {
-                    "2d2e2173-8a18-465f-bfed-eae505f42f7e": {
+                    "95f40857-e232-45a7-b548-082ba05e283c": {
                       "@type": "metadataSection",
                       "fields": [
                         {
-                          "@id": "0cacbf48-15aa-40aa-993c-e1189e5d8628",
+                          "@id": "5a9c1478-a230-4bd6-bf74-ac53183a367e",
                           "field": {
                             "id": "country",
                             "title": "Countries where the funding opportunity is offered",
                             "widget": "array"
                           },
                           "showLabel": true
-                        },
+                        }
+                      ],
+                      "variation": "default"
+                    },
+                    "d41af755-2108-4b7c-a38f-7d343c61b366": {
+                      "@type": "slate",
+                      "plaintext": "",
+                      "value": [
+                        {
+                          "children": [
+                            {
+                              "text": ""
+                            }
+                          ],
+                          "type": "p"
+                        }
+                      ]
+                    },
+                    "2d2e2173-8a18-465f-bfed-eae505f42f7e": {
+                      "@type": "metadataSection",
+                      "fields": [
                         {
                           "@id": "258884ed-22f6-4a04-bf7f-62c8d9ed5599",
                           "field": {
@@ -67,6 +87,8 @@
                   },
                   "blocks_layout": {
                     "items": [
+                      "95f40857-e232-45a7-b548-082ba05e283c",
+                      "d41af755-2108-4b7c-a38f-7d343c61b366",
                       "2d2e2173-8a18-465f-bfed-eae505f42f7e"
                     ]
                   }
