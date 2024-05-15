@@ -81,17 +81,24 @@ Item = namedtuple(
 )
 
 
+def call(value):
+    if callable(value):
+        return value()
+
+    return value
+
+
 def relevant_items(obj, request, tile):
     site = getSite()
     data = tile.get()
     results = []
     items = []
+    site_path = site.getPhysicalPath()
 
     for item in assigned(tile):
         wftool = getToolByName(item, "portal_workflow")
         state = wftool.getInfoFor(item, "review_state")
         obj_path = item.getPhysicalPath()
-        site_path = site.getPhysicalPath()
         path = "/" + "/".join(obj_path[len(site_path) :])
 
         if not item:
@@ -124,6 +131,11 @@ def relevant_items(obj, request, tile):
                 items = sorted(items, key=lambda o: o.sortable_title)
 
     for item in items:
+
+        # obj_path = item.getPhysicalPath()
+        # path = "/" + "/".join(obj_path[len(site_path) :])
+        path = item.id
+
         o = {
             "@id": str(uuid4()),
             "item_title": item.Title,
@@ -132,15 +144,15 @@ def relevant_items(obj, request, tile):
                 {
                     "@id": path,
                     "@type": item.portal_type,
-                    "getId": item.getId,
-                    "UID": item.UID,
-                    "Title": item.Title,
-                    "title": item.Title,
+                    "getId": call(item.getId),
+                    "UID": call(item.UID),
+                    "Title": call(item.Title),
+                    "title": call(item.Title),
                     "meta_type": item.meta_type,
-                    "Description": item.Description,
-                    "created": item.created,
-                    "effective": item.effective,
-                    "modified": item.modified,
+                    "Description": call(item.Description),
+                    "created": json_compatible(call(item.created)),
+                    "effective": json_compatible(call(item.effective)),
+                    "modified": json_compatible(call(item.modified)),
                     "review_state": item.review_state,
                 }
             ],
