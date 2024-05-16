@@ -2,20 +2,18 @@
 
 from collections import namedtuple
 
+import pycountry
+from eea.climateadapt import MessageFactory as _
+from plone.app.querystring import queryparser
+from plone.app.vocabularies.catalog import CatalogVocabulary as BCV
+from plone.app.vocabularies.catalog import CatalogVocabularyFactory
+from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
+from plone.uuid.interfaces import IUUID
+from Products.CMFCore.utils import getToolByName
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides, implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
-
-import pycountry
-from plone.app.querystring import queryparser
-from plone.app.vocabularies.catalog import CatalogVocabulary as BCV
-from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
-from plone.app.vocabularies.catalog import CatalogVocabularyFactory
-from plone.uuid.interfaces import IUUID
-from Products.CMFCore.utils import getToolByName
-
-from eea.climateadapt import MessageFactory as _
 
 
 def generic_vocabulary(_terms, sort=True):
@@ -30,13 +28,10 @@ def generic_vocabulary(_terms, sort=True):
         _terms = sorted(_terms, key=lambda x: x[0])
 
     def factory(context):
-        # import pdb
-        #
-        # pdb.set_trace()
         terms = []
         for _term in _terms:
             value, title = _term
-            token = title.decode("utf-8").encode("utf-8", "replace")
+            token = value.decode("utf-8").encode("utf-8", "replace")
             term = SimpleTerm(value=value, token=token, title=title)
             terms.append(term)
 
@@ -275,6 +270,7 @@ _datatypes = [
     ("ORGANISATION", _("Organisations")),
     # ("VIDEOS", "Videos"),
 ]
+
 aceitem_datatypes_vocabulary = generic_vocabulary(_datatypes)
 alsoProvides(aceitem_datatypes_vocabulary, IVocabularyFactory)
 
@@ -319,6 +315,7 @@ _sectors = [  # this is the canonical
     ("WATERMANAGEMENT", _("Water management")),
     ("NONSPECIFIC", _("Non specific")),
 ]
+
 aceitem_sectors_vocabulary = generic_vocabulary(_sectors, sort=False)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
