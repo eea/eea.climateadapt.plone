@@ -329,6 +329,21 @@ _elements = [
     ("JUSTRESILIENCE", "Just Resilience"),
     ("MRE", "MRE"),
     ("NATUREBASEDSOL", _("Nature-based solutions")),
+]
+aceitem_elements_vocabulary = generic_vocabulary(_elements)
+alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
+
+#261447 - only for case studies we need 6 more elements
+_elements_case_study = [
+    ("EU_POLICY", _("Sector Policies")),
+    ("MEASUREACTION", _("Adaptation Measures and Actions")),
+    ("OBSERVATIONS", _("Observations and Scenarios")),
+    ("PLANSTRATEGY", _("Adaptation Plans and Strategies")),
+    ("VULNERABILITY", _("Vulnerability Assessment")),
+    ("CLIMATESERVICES", _("Climate services")),
+    ("JUSTRESILIENCE", "Just Resilience"),
+    ("MRE", "MRE"),
+    ("NATUREBASEDSOL", _("Nature-based solutions")),
     ("ENVIRONMENTALASP", _("Environmental aspects")),
     ("MITIGATIONASP", _("Mitigation aspects")),
     ("SOCIETALASP", _("Societal aspects")),
@@ -336,8 +351,8 @@ _elements = [
     ("COSTBENEFIT", _("Cost-benefit analysis and maintenance costs")),
     ("RUPOTENTIAL", _("Replication/upscaling potential")),
 ]
-aceitem_elements_vocabulary = generic_vocabulary(_elements)
-alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
+aceitem_elements_case_study_vocabulary = generic_vocabulary(_elements_case_study)
+alsoProvides(aceitem_elements_case_study_vocabulary, IVocabularyFactory)
 
 # Vocabulary for faceted search "Adaptation elements"
 fac_elements = [
