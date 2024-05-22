@@ -131,6 +131,16 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         ),
     )
 
+    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    elements = List(
+        title=_("Adaptation elements"),
+        description=_("Select one or more elements."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_elements_case_study",
+        ),
+    )
+
     # BBB fields, only used during migration
     primephoto = RelationChoice(
         title=_(u"Prime photo"),

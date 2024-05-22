@@ -1,14 +1,18 @@
-from plone.restapi.serializer.blocks import uid_to_url
+import logging
 from copy import deepcopy
-from plone.restapi.deserializer.blocks import path2uid
-from six import string_types
+
 from eea.climateadapt.tiles.search_acecontent import AceTileMixin
-from plone.restapi.interfaces import IBlockFieldDeserializationTransformer
 from plone.restapi.behaviors import IBlocks
-from plone.restapi.interfaces import IBlockFieldSerializationTransformer
+from plone.restapi.deserializer.blocks import path2uid
+from plone.restapi.interfaces import (IBlockFieldDeserializationTransformer,
+                                      IBlockFieldSerializationTransformer)
+from plone.restapi.serializer.blocks import uid_to_url
+from six import string_types
 from zope.component import adapter
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
+
+logger = logging.getLogger('eea.climateadapt')
 
 
 @implementer(IBlockFieldSerializationTransformer)
@@ -30,6 +34,28 @@ class SearchAceContentBlockSerializer(object):
 
         block["_v_results"] = ace.sections()
         # print('sections', block)
+
+        return block
+
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class ColumnBlockSerializationTransformer(object):
+    order = 100
+    block_type = "columnsBlock"
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, block):
+        data = block.get('data', {})
+        blocks_layout = data.get('blocks_layout', {}).get('items', [])
+        blocks = data.get('blocks', {})
+        for uid in blocks.keys():
+            if uid not in blocks_layout:
+                logger.warn("Removing unreferenced block in columnsBlock: %s", uid)
+                del blocks[uid]
 
         return block
 

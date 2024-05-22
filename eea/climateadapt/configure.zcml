@@ -218,6 +218,10 @@
       component=".vocabulary.aceitem_elements_vocabulary"
       />
   <utility
+      name="eea.climateadapt.aceitems_elements_case_study"
+      component=".vocabulary.aceitem_elements_case_study_vocabulary"
+      />
+  <utility
       name="eea.climateadapt.aceitems_climateimpacts"
       component=".vocabulary.aceitem_climateimpacts_vocabulary"
       />

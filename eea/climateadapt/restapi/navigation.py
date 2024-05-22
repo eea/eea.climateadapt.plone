@@ -2,16 +2,13 @@ from Acquisition import aq_inner
 from plone.memoize.view import memoize
 from plone.restapi.interfaces import IExpandableElement, IPloneRestapiLayer
 from plone.restapi.services.navigation.get import Navigation as BaseNavigation
-from plone.restapi.services.navigation.get import NavigationGet as BaseNavigationGet
+from plone.restapi.services.navigation.get import \
+    NavigationGet as BaseNavigationGet
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
-from Products.CMFPlone.browser.navigation import (
-    CatalogNavigationTabs as BaseCatalogNavigationTabs,
-)
-from Products.CMFPlone.browser.navigation import (
-    get_id,
-    get_view_url,
-)
+from Products.CMFPlone.browser.navigation import \
+    CatalogNavigationTabs as BaseCatalogNavigationTabs
+from Products.CMFPlone.browser.navigation import get_id, get_view_url
 from urlparse import urlparse
 from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
@@ -142,6 +139,11 @@ class Navigation(BaseNavigation):
         return entry
 
     def render_item(self, item, path):
+        if 'path' not in item:
+            # TODO: weird case, to be analysed
+            if "brain" in item:
+                del item["brain"]
+            return item
         sub = self.build_tree(item["path"], first_run=False)
 
         item.update({"items": sub})

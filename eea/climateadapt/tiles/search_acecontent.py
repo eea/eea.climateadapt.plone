@@ -16,7 +16,7 @@ from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
 from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
                                                 filters_to_query,
                                                 get_current_language)
-from eea.climateadapt.vocabulary import (BIOREGIONS, _climateimpacts,
+from eea.climateadapt.vocabulary import (BIOREGIONS, REMAPED_BIOREGIONS, _climateimpacts,
                                          _datatypes, _elements,
                                          _origin_website, _sectors,
                                          ace_countries_dict)
@@ -146,7 +146,7 @@ class AceTileMixin(object):
     def build_query(self):
 
         lang = get_current_language(self.context, self.request)
-        query = {"review_state": "published", "Language": lang}
+        query = {"review_state": "published", }     # "Language": lang
 
         # todo: do countries
         # map of {tile field: index name}
@@ -194,8 +194,9 @@ class AceTileMixin(object):
                             setting.append('Amazonia')
                             setting.append('Anatolian')
                             setting.append('Indian Ocean Area')
+                            regions.append('TRANS_MACRO_OUTERMOST')
                         for region_name in setting:
-                            for k, v in BIOREGIONS.items():
+                            for k, v in BIOREGIONS.items() + REMAPED_BIOREGIONS.items():
                                 if 'TRANS_MACRO' in k and v == region_name:
                                     regions.append(k)
                         query[index_name] = regions
@@ -214,8 +215,8 @@ class AceTileMixin(object):
             words = query.pop("SearchableText", u"").split(u" ")
             query["SearchableText"] = u" ".join(set(words + st))
 
-        query['language'] = lang
-        print(query)
+        query['Language'] = lang
+        # print('query in search_acecontent', query)
 
         return query
 
