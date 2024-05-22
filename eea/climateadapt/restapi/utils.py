@@ -4,6 +4,7 @@ from eea.climateadapt.browser import get_date_updated, get_files
 from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
 from plone.restapi.serializer.converters import json_compatible
 
+
 def get_geographic(item, result={}):
     if not hasattr(item, "geochars") and not item.geochars:
         return result
@@ -55,17 +56,19 @@ def cca_content_serializer(item, result, request):
         and item.long_description.output
         and "eea_index" in request.form
     ):
-        description = (
-            item.portal_transforms.convertTo("text/plain", item.long_description.output)
-            .getData()
-            .strip()
-        )
-        try:
-            result["description"] = description.decode("utf-8")
-        except Exception:
-            result["description"] = description.encode("utf-8")
+        converted = item.portal_transforms.convertTo(
+            "text/plain", item.long_description.output)
+        if converted is not None:
+            description = converted.getData() .strip()
+            try:
+                result["description"] = description.decode("utf-8")
+            except Exception:
+                result["description"] = description.encode("utf-8")
+        else:
+            result['description'] = ''
 
-    result["cca_last_modified"] = json_compatible(dates["cadapt_last_modified"])
+    result["cca_last_modified"] = json_compatible(
+        dates["cadapt_last_modified"])
     result["cca_published"] = json_compatible(dates["cadapt_published"])
     result["is_cca_content"] = True
     result["language"] = getattr(item, "language", "en")
