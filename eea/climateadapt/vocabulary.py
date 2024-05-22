@@ -97,7 +97,8 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
 
         if parsed.get("path"):
             if parsed["path"].get("depth"):
-                parsed["path"]["query"].append("/cca/metadata/adaptation-options")
+                parsed["path"]["query"].append(
+                    "/cca/metadata/adaptation-options")
 
                 if "/cca" in parsed["path"]["query"]:
                     parsed["path"]["query"].remove("/cca")
@@ -333,7 +334,7 @@ _elements = [
 aceitem_elements_vocabulary = generic_vocabulary(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 
-#261447 - only for case studies we need 6 more elements
+# 261447 - only for case studies we need 6 more elements
 _elements_case_study = [
     ("EU_POLICY", _("Sector Policies")),
     ("MEASUREACTION", _("Adaptation Measures and Actions")),
@@ -351,7 +352,8 @@ _elements_case_study = [
     ("COSTBENEFIT", _("Cost-benefit analysis and maintenance costs")),
     ("RUPOTENTIAL", _("Replication/upscaling potential")),
 ]
-aceitem_elements_case_study_vocabulary = generic_vocabulary(_elements_case_study)
+aceitem_elements_case_study_vocabulary = generic_vocabulary(
+    _elements_case_study)
 alsoProvides(aceitem_elements_case_study_vocabulary, IVocabularyFactory)
 
 # Vocabulary for faceted search "Adaptation elements"
@@ -375,7 +377,8 @@ _climateimpacts = [
     ("WATERSCARCE", _("Water Scarcity")),
     ("NONSPECIFIC", _("Non specific")),
 ]
-aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts, sort=False)
+aceitem_climateimpacts_vocabulary = generic_vocabulary(
+    _climateimpacts, sort=False)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
 
@@ -412,7 +415,8 @@ _implementationtypes = (
     ("green", "Ecological ('green')"),
     ("soft", "Behavioural / policy ('soft')"),
 )
-acemeasure_implementationtype_vocabulary = generic_vocabulary(_implementationtypes)
+acemeasure_implementationtype_vocabulary = generic_vocabulary(
+    _implementationtypes)
 alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
 
 # Used for aceitems
@@ -479,7 +483,8 @@ ace_countries = sorted(ace_countries, key=lambda x: x[0])
 
 ace_countries.append(("MK", "Republic of North Macedonia"))
 
-ace_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
+ace_countries.append(
+    ("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
@@ -576,7 +581,8 @@ faceted_countries = [
     (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in faceted_countries
 ]
 faceted_countries.append(("MK", "Republic of North Macedonia"))
-faceted_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
+faceted_countries.append(
+    ("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 
 faceted_countries_dict = dict(faceted_countries)
 
@@ -646,7 +652,8 @@ alsoProvides(climate_threats, IVocabularyFactory)
 _funding_programme = (
     ("Other", "Other"),
     ("COST Action", "COST Action"),
-    ("LIFE - Environment and climate action", "LIFE - Environment and climate action"),
+    ("LIFE - Environment and climate action",
+     "LIFE - Environment and climate action"),
     (
         "COPERNICUS - European earth observation programme",
         "COPERNICUS - European earth observation programme",
@@ -859,6 +866,15 @@ for line in filter(None, labels.split("\n")):
     first, label = line.split("=")
     name = first.split("-lbl-")[1]
     BIOREGIONS[name] = label
+
+REMAPED_BIOREGIONS = {
+    # 'TRANS_MACRO_MED_BASIN': 'Mediterranean',
+    'TRANS_MACRO_BLACKSEA_BASIN': 'Black Sea Basin',
+    'TRANS_MACRO_DANUBE': "Danube",
+    'TRANS_MACRO_MED': 'Mediterranean Sea Basin',
+    'TRANS_MACRO_MED_BASIN': 'Mediterranean Sea Basin',
+    'TRANS_MACRO_NORTHPERI': 'Northern Periphery',
+}
 
 
 SUBNATIONAL_REGIONS = {
