@@ -1,6 +1,5 @@
 """Translation views"""
 
-from .core import create_translation_object
 import base64
 import cgi
 import logging
@@ -8,28 +7,19 @@ import os
 
 import transaction
 from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.volto import (
-    get_content_from_html,
-    translate_volto_html,
-)
+from eea.climateadapt.translation.volto import (get_content_from_html,
+                                                translate_volto_html)
 from plone.api import portal
 from plone.app.multilingual.manager import TranslationManager
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getMultiAdapter
 
-from . import (
-    get_translation_key_values,
-    get_translation_keys,
-    get_translation_report,
-)
-from .core import (
-    copy_missing_interfaces,
-    handle_cover_step_4,
-    handle_folder_doc_step_4,
-    handle_link,
-    save_field_data,
-)
+from . import (get_translation_key_values, get_translation_keys,
+               get_translation_report)
+from .core import (copy_missing_interfaces, create_translation_object,
+                   handle_cover_step_4, handle_folder_doc_step_4, handle_link,
+                   save_field_data)
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
@@ -174,13 +164,13 @@ class CreateTranslationStructure(BrowserView):
             # "cs",
             # "da",
             # "nl",
-            "et",
-            "fi",
-            "el",
-            "hu",
-            "ga",
-            "lv",
-            "lt",
+            # "et",
+            # "fi",
+            #   "el",
+            #   "hu",
+            #   "ga",
+            #   "lv",
+            # "lt",
             "mt",
             "pt",
             "sk",
