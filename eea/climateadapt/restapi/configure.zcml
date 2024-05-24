@@ -102,6 +102,11 @@
     />
 
   <subscriber
+    factory=".blocks.GenericLinkFixer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+    />
+
+  <subscriber
     factory=".blocks.ColumnBlockSerializationTransformer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
     />
