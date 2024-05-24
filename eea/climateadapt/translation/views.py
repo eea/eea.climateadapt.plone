@@ -65,6 +65,7 @@ class HTMLIngestion(BrowserView):
         site = portal.getSite()
         trans_obj = site.unrestrictedTraverse(path)
         ingest_html(trans_obj, html)
+        return "ok"
 
 
 class TranslationCallback(BrowserView):
