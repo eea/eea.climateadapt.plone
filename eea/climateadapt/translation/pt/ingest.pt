@@ -1,0 +1,13 @@
+<form method="POST" action="./@@ingest-html">
+  <div>
+    <label>
+  HTML:
+    </label>
+  <textarea name="html"></textarea>
+  </div>
+  <div>
+  <label >Path:</label>
+    <input type="text" name="path" />
+  </div>
+  <input type="submit" value="Submit" />
+</form

@@ -25,6 +25,49 @@ logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
 
 
+def ingest_html(trans_obj, html):
+    force_unlock(trans_obj)
+
+    fielddata = get_content_from_html(html)
+
+    translations = TranslationManager(trans_obj).get_translations()
+    en_obj = translations["en"]  # hardcoded, should use canonical
+
+    save_field_data(en_obj, trans_obj, fielddata)
+
+    copy_missing_interfaces(en_obj, trans_obj)
+
+    # layout_en = en_obj.getLayout()
+    # if layout_en:
+    #     trans_obj.setLayout(layout_en)
+
+    if trans_obj.portal_type == "collective.cover.content":
+        handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
+    if trans_obj.portal_type in ("Folder", "Document"):
+        handle_folder_doc_step_4(en_obj, trans_obj, False, False)
+    if trans_obj.portal_type in ["Link"]:
+        handle_link(en_obj, trans_obj)
+
+    # TODO: sync workflow state
+
+    trans_obj._p_changed = True
+    trans_obj.reindexObject()
+
+
+class HTMLIngestion(BrowserView):
+    def __call__(self):
+        html = self.request.form.get('html', '').decode('utf-8')
+        path = self.request.form.get('path', '')
+
+        if not (html and path):
+            return self.index()
+
+        site = portal.getSite()
+        trans_obj = site.unrestrictedTraverse(path)
+        ingest_html(trans_obj, html)
+        return "ok"
+
+
 class TranslationCallback(BrowserView):
     """This view is called by the EC translation service.
     Saves the translation in Annotations (or directly in the object in case
@@ -61,32 +104,9 @@ class TranslationCallback(BrowserView):
                 trans_obj_path.split(site.absolute_url())[-1]
 
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
-        force_unlock(trans_obj)
+        html = html_translated.encode("latin-1")
+        ingest_html(trans_obj, html)
 
-        fielddata = get_content_from_html(html_translated.encode("latin-1"))
-
-        translations = TranslationManager(trans_obj).get_translations()
-        en_obj = translations["en"]  # hardcoded, should use canonical
-
-        save_field_data(en_obj, trans_obj, fielddata)
-
-        copy_missing_interfaces(en_obj, trans_obj)
-
-        # layout_en = en_obj.getLayout()
-        # if layout_en:
-        #     trans_obj.setLayout(layout_en)
-
-        if trans_obj.portal_type == "collective.cover.content":
-            handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
-        if trans_obj.portal_type in ("Folder", "Document"):
-            handle_folder_doc_step_4(en_obj, trans_obj, False, False)
-        if trans_obj.portal_type in ["Link"]:
-            handle_link(en_obj, trans_obj)
-
-        # TODO: sync workflow state
-
-        trans_obj._p_changed = True
-        trans_obj.reindexObject()
         logger.info("Html volto translation saved for %s",
                     trans_obj.absolute_url())
 
