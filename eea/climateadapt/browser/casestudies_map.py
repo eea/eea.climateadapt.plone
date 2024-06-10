@@ -6,7 +6,7 @@ from plone.api.portal import get_tool
 from Products.Five import BrowserView
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
-from collections import OrderedDict;
+from collections import OrderedDict
 
 from eea.climateadapt.vocabulary import (
     ipcc_category,
@@ -28,6 +28,9 @@ class Items(BrowserView):
         vocabulary_impacts = factory(self.context)
         factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_sectors")
         vocabulary_sectors = factory(self.context)
+        # 261447 - for case studies we have 6 more elements compared with other types
+        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_elements_case_study")
+        vocabulary_elements = factory(self.context)
 
         results = {
             "type": "FeatureCollection",
@@ -40,21 +43,14 @@ class Items(BrowserView):
                 "count": 10739,
             },
             "features": [],
-            "filters": {'sectors': [], 'impacts':[], 'measures':{}},
+            "filters": {'sectors': [], 'impacts': [], 'elements': [], 'measures': {}},
         }
         # Add available filters
-        factory = getUtility(
-            IVocabularyFactory, "eea.climateadapt.aceitems_sectors"
-        )
-        vocabulary = factory(self.context)
-        for term in vocabulary:
+        for term in vocabulary_sectors:
             results["filters"]['sectors'].append({"key": term.value, "value": term.title})
-
-        factory = getUtility(
-            IVocabularyFactory, "eea.climateadapt.aceitems_climateimpacts"
-        )
-        vocabulary = factory(self.context)
-        for term in vocabulary:
+        for term in vocabulary_elements:
+            results["filters"]['elements'].append({"key": term.value, "value": term.title})
+        for term in vocabulary_impacts:
             results["filters"]['impacts'].append({"key": term.value, "value": term.title})
 
         factory = getUtility(
@@ -116,6 +112,9 @@ class Items(BrowserView):
 
                 sectors_str = []
                 impacts_str = []
+                elements_str = []
+                # import pdb
+                # pdb.set_trace()
                 for sector in obj.sectors:
                     try:
                         sectors_str.append(vocabulary_sectors.getTerm(sector).title)
@@ -126,6 +125,12 @@ class Items(BrowserView):
                         impacts_str.append(vocabulary_impacts.getTerm(impact).title)
                     except:
                         """"""
+                if obj.elements:
+                    for element in obj.elements:
+                        try:
+                            elements_str.append(vocabulary_elements.getTerm(element).title)
+                        except:
+                            """"""
 
                 if obj.geolocation.longitude == 0:
                     logger.info(
@@ -146,6 +151,7 @@ class Items(BrowserView):
                             ),
                             # "sectors": obj.sectors,
                             "sectors": "," + (",".join(obj.sectors)) + ",",
+                            "elements": "," + (",".join(obj.elements)) if obj.elements else '' + ",",
                             "impacts": "," + (",".join(obj.climate_impacts)) + ",",
                             "ipccs": "," + (",".join(list_ipcc_categories)) + ",",
                             "ktms": "," + (",".join(list_key_type_measures)) + ",",
@@ -158,6 +164,7 @@ class Items(BrowserView):
                             else 20,
                             "sectors_str": ",".join(sectors_str),
                             "impacts_str": ",".join(impacts_str),
+                            "elements_str": ",".join(elements_str),
                             "ipcc_categories_str": ",".join(list_ipcc_categories),
                             "title": obj.title,
                             "description": long_description,
@@ -242,7 +249,7 @@ class Page(BrowserView):
             IVocabularyFactory, "eea.climateadapt.aceitems_key_type_measures"
         )
         vocabulary = factory(self.context)
-        response=OrderedDict()
+        response = OrderedDict()
         # import pdb; pdb.set_trace()
         # response.append({"key": "", "value": "Filter by IPCCS"})
         for term in vocabulary:
