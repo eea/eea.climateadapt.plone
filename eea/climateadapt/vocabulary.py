@@ -888,7 +888,7 @@ REMAPED_BIOREGIONS = {
     # 'TRANS_MACRO_MED_BASIN': 'Mediterranean',
     'TRANS_MACRO_BLACKSEA_BASIN': 'Black Sea Basin',
     'TRANS_MACRO_DANUBE': "Danube",
-    'TRANS_MACRO_MED': 'Mediterranean (Euro-Med)',
+    'TRANS_MACRO_MED': 'Mediterranean',
     'TRANS_MACRO_MED_BASIN': 'Mediterranean Sea Basin',
     'TRANS_MACRO_NORTHPERI': 'Northern Periphery',
 }

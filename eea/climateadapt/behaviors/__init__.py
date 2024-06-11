@@ -18,6 +18,7 @@ from .tool import ITool
 from .mission_funding_cca import IMissionFundingCCA
 from .mission_tool import IMissionTool
 from .event import IMainEvent
+from .news import IMainNews
 
 from .patches import apply_patch
 
@@ -43,5 +44,6 @@ __all__ = [
     ITool,
     IMissionFundingCCA,
     IMissionTool,
-    IMainEvent
+    IMainEvent,
+    IMainNews
 ]

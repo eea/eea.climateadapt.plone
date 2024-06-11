@@ -1,6 +1,5 @@
 """Translation views"""
 
-from .core import create_translation_object
 import base64
 import cgi
 import logging
@@ -8,31 +7,65 @@ import os
 
 import transaction
 from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.volto import (
-    get_content_from_html,
-    translate_volto_html,
-)
+from eea.climateadapt.translation.volto import (get_content_from_html,
+                                                translate_volto_html)
 from plone.api import portal
 from plone.app.multilingual.manager import TranslationManager
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getMultiAdapter
 
-from . import (
-    get_translation_key_values,
-    get_translation_keys,
-    get_translation_report,
-)
-from .core import (
-    copy_missing_interfaces,
-    handle_cover_step_4,
-    handle_folder_doc_step_4,
-    handle_link,
-    save_field_data,
-)
+from . import (get_translation_key_values, get_translation_keys,
+               get_translation_report)
+from .core import (copy_missing_interfaces, create_translation_object,
+                   handle_cover_step_4, handle_folder_doc_step_4, handle_link,
+                   save_field_data)
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
+
+
+def ingest_html(trans_obj, html):
+    force_unlock(trans_obj)
+
+    fielddata = get_content_from_html(html)
+
+    translations = TranslationManager(trans_obj).get_translations()
+    en_obj = translations["en"]  # hardcoded, should use canonical
+
+    save_field_data(en_obj, trans_obj, fielddata)
+
+    copy_missing_interfaces(en_obj, trans_obj)
+
+    # layout_en = en_obj.getLayout()
+    # if layout_en:
+    #     trans_obj.setLayout(layout_en)
+
+    if trans_obj.portal_type == "collective.cover.content":
+        handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
+    if trans_obj.portal_type in ("Folder", "Document"):
+        handle_folder_doc_step_4(en_obj, trans_obj, False, False)
+    if trans_obj.portal_type in ["Link"]:
+        handle_link(en_obj, trans_obj)
+
+    # TODO: sync workflow state
+
+    trans_obj._p_changed = True
+    trans_obj.reindexObject()
+
+
+class HTMLIngestion(BrowserView):
+    def __call__(self):
+        html = self.request.form.get('html', '').decode('utf-8')
+        path = self.request.form.get('path', '')
+
+        if not (html and path):
+            return self.index()
+
+        site = portal.getSite()
+        trans_obj = site.unrestrictedTraverse(path)
+        ingest_html(trans_obj, html)
+        return "ok"
 
 
 class TranslationCallback(BrowserView):
@@ -71,32 +104,9 @@ class TranslationCallback(BrowserView):
                 trans_obj_path.split(site.absolute_url())[-1]
 
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
-        force_unlock(trans_obj)
+        html = html_translated.encode("latin-1")
+        ingest_html(trans_obj, html)
 
-        fielddata = get_content_from_html(html_translated.encode("latin-1"))
-
-        translations = TranslationManager(trans_obj).get_translations()
-        en_obj = translations["en"]  # hardcoded, should use canonical
-
-        save_field_data(en_obj, trans_obj, fielddata)
-
-        copy_missing_interfaces(en_obj, trans_obj)
-
-        # layout_en = en_obj.getLayout()
-        # if layout_en:
-        #     trans_obj.setLayout(layout_en)
-
-        if trans_obj.portal_type == "collective.cover.content":
-            handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
-        if trans_obj.portal_type in ("Folder", "Document"):
-            handle_folder_doc_step_4(en_obj, trans_obj, False, False)
-        if trans_obj.portal_type in ["Link"]:
-            handle_link(en_obj, trans_obj)
-
-        # TODO: sync workflow state
-
-        trans_obj._p_changed = True
-        trans_obj.reindexObject()
         logger.info("Html volto translation saved for %s",
                     trans_obj.absolute_url())
 
@@ -174,13 +184,13 @@ class CreateTranslationStructure(BrowserView):
             # "cs",
             # "da",
             # "nl",
-            "et",
-            "fi",
-            "el",
-            "hu",
-            "ga",
-            "lv",
-            "lt",
+            # "et",
+            # "fi",
+            #   "el",
+            #   "hu",
+            #   "ga",
+            #   "lv",
+            # "lt",
             "mt",
             "pt",
             "sk",

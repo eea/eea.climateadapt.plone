@@ -104,6 +104,8 @@ class FindContentWithBlock(BrowserView):
         found = []
         for brain in brains:
             obj = brain.getObject()
+            if not hasattr(obj.aq_inner.aq_self, 'blocks'):
+                continue
             types = set()
             bt = BlockType(obj, types)
             traverser = BlocksTraverser(obj)

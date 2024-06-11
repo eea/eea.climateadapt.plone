@@ -11,8 +11,30 @@ from six import string_types
 from zope.component import adapter
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
+import json
 
 logger = logging.getLogger('eea.climateadapt')
+
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class GenericLinkFixer(object):
+    order = -2
+    block_type = None
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, block):
+        if block:
+            dumped = json.dumps(block)
+            if "next-climate-adapt.eea.europa" in dumped:
+                dumped = dumped.replace(
+                    u"next-climate-adapt", u"climate-adapt")
+                block = json.loads(dumped)
+
+        return block
 
 
 @implementer(IBlockFieldSerializationTransformer)
@@ -54,7 +76,8 @@ class ColumnBlockSerializationTransformer(object):
         blocks = data.get('blocks', {})
         for uid in blocks.keys():
             if uid not in blocks_layout:
-                logger.warn("Removing unreferenced block in columnsBlock: %s", uid)
+                logger.warn(
+                    "Removing unreferenced block in columnsBlock: %s", uid)
                 del blocks[uid]
 
         return block

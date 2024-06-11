@@ -347,8 +347,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     # directives.omitted(IAddForm, 'special_tags')
     directives.omitted(IEditForm, "important")
     directives.omitted(IAddForm, "important")
-    directives.omitted(IEditForm, "rating")
-    directives.omitted(IAddForm, "rating")
+    # directives.omitted(IEditForm, "rating")
+    # directives.omitted(IAddForm, "rating")
     directives.omitted(IEditForm, "spatial_layer")
     directives.omitted(IAddForm, "spatial_layer")
     directives.omitted(IEditForm, "spatial_values")
@@ -409,7 +409,7 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         default=False,
     )
 
-    rating = Int(title=_(u"Rating"), required=True, default=0)
+    # rating = Int(title=_(u"Rating"), required=True, default=0)
 
     spatial_layer = TextLine(
         title=_(u"Spatial Layer"),
@@ -472,7 +472,7 @@ alsoProvides(IAceProject["origin_website"], ILanguageIndependentField)
 alsoProvides(IAceProject["partners"], ILanguageIndependentField)
 alsoProvides(IAceProject["partners_source_link"], ILanguageIndependentField)
 alsoProvides(IAceProject["publication_date"], ILanguageIndependentField)
-alsoProvides(IAceProject["rating"], ILanguageIndependentField)
+# alsoProvides(IAceProject["rating"], ILanguageIndependentField)
 alsoProvides(IAceProject["sectors"], ILanguageIndependentField)
 alsoProvides(IAceProject["spatial_layer"], ILanguageIndependentField)
 alsoProvides(IAceProject["spatial_values"], ILanguageIndependentField)
