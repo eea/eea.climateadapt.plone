@@ -1,5 +1,6 @@
 import json
 
+from plone.schema import JSONField
 from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
@@ -20,6 +21,8 @@ from zope.interface import alsoProvides, implementer
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
 from plone.autoform import directives
+from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
+from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
 # from z3c.relationfield.schema import RelationChoice
 
 GEOCHARS = {
@@ -34,7 +37,7 @@ GEOCHARS = {
 }
 
 
-class IAceProject(form.Schema, IImageScaleTraversable):
+class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     """
     Defines content-type schema for Ace Project
     """
@@ -108,8 +111,8 @@ class IAceProject(form.Schema, IImageScaleTraversable):
         title=_(u"Item from third parties"),
         description=_(
             u"Used only to highlight items "
-            u"provided by Third parties."
-            u"<br>Please don't compile "
+            u"provided by Third parties. "
+            u"Please don't compile "
             u"this field if you are a Climate-ADAPT expert "
             u"creating a new item."
         ),
@@ -427,6 +430,24 @@ class IAceProject(form.Schema, IImageScaleTraversable):
     partners_source_link = URI(
         title=_(u"Partners Source Link"),
         description=(u"Provide URL from project partners"),
+        required=False,
+    )
+
+    blocks = JSONField(
+        title=_("Blocks"),
+        description=_("The JSON representation of the object blocks."),
+        schema=BLOCKS_SCHEMA,
+        default=aceproject_layout_blocks,
+        required=False,
+    )
+
+    blocks_layout = JSONField(
+        title=_("Blocks Layout"),
+        description=_("The JSON representation of the object blocks layout."),
+        schema=LAYOUT_SCHEMA,
+        default={
+            "items": aceproject_layout_items
+        },
         required=False,
     )
 
