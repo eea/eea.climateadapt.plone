@@ -236,7 +236,7 @@ def get_nap_nas(obj, text, country):
                 children = list(cells[2])
 
             text = [lxml.etree.tostring(c) for c in children]
-            value = "\n".join(text)
+            value = unicode("\n").join(text)
             key = normalized(key)
 
             if key is None:
@@ -248,7 +248,7 @@ def get_nap_nas(obj, text, country):
             is_nas_country = country in _COUNTRIES_WITH_NAS
 
             if (not value) and (is_nap_country or is_nas_country):
-                value = "<p>Established</p>"
+                value = unicode("<p>Established</p>")
 
             if "NAP" in key:
                 prop = "nap_info"
@@ -346,8 +346,8 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
             value = ""
             values = processed_data["Legal_Policies"].get(name, [])
 
-            is_nap_country = country_name in _COUNTRIES_WITH_NAP
-            is_nas_country = country_name in _COUNTRIES_WITH_NAS
+            # is_nap_country = country_name in _COUNTRIES_WITH_NAP
+            # is_nas_country = country_name in _COUNTRIES_WITH_NAS
 
             # if (not values) and (is_nap_country or is_nas_country):
             #     value = u"<p>Established</p>"
@@ -355,8 +355,10 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
             if values:
                 if name == "SAP":
                     value = [
-                        "<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
-                        "<p {4}>{2}</p></li>".format(
+                        unicode(
+                            "<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
+                            "<p {4}>{2}</p></li>"
+                        ).format(
                             v.get("Link"),
                             v.get("Title"),
                             v.get("Status"),
@@ -368,7 +370,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                     ]
                 else:
                     value = [
-                        "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                        unicode("<li><a href='{}'>{}</a><p {}>{}</p></li>").format(
                             v.get("Link"),
                             v.get("Title"),
                             "style='font-style:oblique;'",
@@ -376,7 +378,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                         )
                         for v in values
                     ]
-                value = "<ul>{}</ul>".format("".join(value))
+                value = unicode("<ul>{}</ul>").format("".join(value))
 
             prop = "{}_info".format(name.lower())
 
@@ -400,7 +402,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
         for key in _response:
             data = _response[key]
             _value = [
-                "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                unicode("<li><a href='{}'>{}</a><p {}>{}</p></li>").format(
                     v.get("Link"),
                     v["Title"].encode("ascii", "ignore").decode("ascii"),
                     "style='font-style:oblique;'",
@@ -409,8 +411,9 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                 for v in data
             ]
             if len(_value):
-                value += "<span>" + key + "</span>"
-                value += "<ul>" + "".join(_value) + "</ul>"
+                value += unicode("<span>") + key + unicode("</span>")
+                value += unicode("<ul>") + \
+                    unicode("").join(_value) + unicode("</ul>")
         res["mixed"] = value
 
         # import pdb; pdb.set_trace()
@@ -426,8 +429,10 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
                 if name == "SAP":
                     value = [
-                        "<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
-                        "<p {4}>{2}</p></li>".format(
+                        unicode(
+                            "<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
+                            "<p {4}>{2}</p></li>"
+                        ).format(
                             v.get("Link"),
                             v.get("Title"),
                             v.get("Status"),
@@ -439,7 +444,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                     ]
                 else:
                     value = [
-                        "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                        unicode("<li><a href='{}'>{}</a><p {}>{}</p></li>").format(
                             v.get("Link"),
                             v.get("Title"),
                             "style='font-style:oblique;'",
@@ -448,7 +453,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                         for v in data
                     ]
                 if len(value):
-                    value = "<ul>{}</ul>".format("".join(value))
+                    value = unicode("<ul>{}</ul>").format("".join(value))
                 else:
                     value = ""
 
@@ -461,7 +466,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
         values = processed_data["National_Circumstances"].get("CC_IVA", [])
         if values:
             value = [
-                "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                unicode("<li><a href='{}'>{}</a><p {}>{}</p></li>").format(
                     v.get("Link"),
                     v.get("Title"),
                     "style='font-style:oblique;'",
@@ -482,7 +487,9 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
         if values:
             value = [
-                "<li><a href='{0}'>{1}</a><p {5}>{3}</p>" "<p {4}>{2}</p></li>".format(
+                unicode(
+                    "<li><a href='{0}'>{1}</a><p {5}>{3}</p>" "<p {4}>{2}</p></li>"
+                ).format(
                     v.get("Website"),
                     v.get("Name"),
                     v.get("Status"),
@@ -492,7 +499,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                 )
                 for v in values
             ]
-            value = "<ul>{}</ul>".format("".join(value))
+            value = unicode("<ul>{}</ul>").format("".join(value))
 
             focus_vals = [
                 f for focus in values for f in focus.get("Focus", "").split("; ")
@@ -621,7 +628,7 @@ class CountryMetadataExtract(object):
             key = "".join(cells[0].itertext()).strip()
             children = list(cells[2])
             text = [lxml.etree.tostring(c) for c in children]
-            value = "\n".join(text)
+            value = unicode("\n").join(text)
             res[key] = value
 
         self.request.response.setHeader("Content-type", "application/json")
