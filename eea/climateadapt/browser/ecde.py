@@ -222,13 +222,13 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                                    _type, 'eea.cca') + unicode("</td>")
                 for j, indicator in enumerate(response[_category]['types'][_type]):
                     if j > 0:
-                        responseHtml += "<tr>"
+                        responseHtml += unicode("<tr>")
                     responseHtml += unicode("<td><a href=\"") + \
-                        indicator['cca_url']+"\">" + \
+                        indicator['cca_url']+unicode("\">") + \
                         indicator['cca_title'].decode(
                             'utf-8')+unicode("</a></td>")
-                    responseHtml += "<td><a href=\"" + \
-                        indicator['zip_url']+"\">" + \
+                    responseHtml += unicode("<td><a href=\"") + \
+                        indicator['zip_url']+unicode("\">") + \
                         translate_text(self.context, self.request,
                                        "Download", 'eea.cca')+unicode("</a></td>")
                     responseHtml += unicode("</tr>")
