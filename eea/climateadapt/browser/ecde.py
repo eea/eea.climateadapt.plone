@@ -190,41 +190,50 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                         indicator)
                     response[hazard_category]['total_indicators'] += 1
 
-        responseHtml = "<thead>" \
-            "<tr>" \
-            "<th>"+translate_text(self.context, self.request, "Hazard category", 'eea.cca')+"</th>" \
-            "<th>"+translate_text(self.context, self.request, "Hazard type", 'eea.cca')+"</th>" \
-            "<th>"+translate_text(self.context, self.request, "Indicator", 'eea.cca')+"</th>" \
-            "<th>"+translate_text(self.context, self.request, "Zip download", 'eea.cca')+"</th>" \
-            "</tr>" \
-            "</thead>" \
-            "<tbody>"
+        responseHtml = unicode("<thead>"
+                               "<tr>"
+                               "<th>" +
+                               translate_text(
+                                   self.context, self.request, "Hazard category", 'eea.cca')+"</th>"
+                               "<th>" +
+                               translate_text(
+                                   self.context, self.request, "Hazard type", 'eea.cca')+"</th>"
+                               "<th>" +
+                               translate_text(
+                                   self.context, self.request, "Indicator", 'eea.cca')+"</th>"
+                               "<th>" +
+                               translate_text(
+                                   self.context, self.request, "Zip download", 'eea.cca')+"</th>"
+                               "</tr>"
+                               "</thead>"
+                               "<tbody>")
         for _category in response.keys():
-            responseHtml += "<tr>"
-            responseHtml += "<td rowspan=\"" + \
+            responseHtml += unicode("<tr>")
+            responseHtml += unicode("<td rowspan=\"") + \
                 str(response[_category]['total_indicators'])+"\">" + \
                 translate_text(self.context, self.request,
-                               _category, 'eea.cca')+"</td>"
+                               _category, 'eea.cca')+unicode("</td>")
             for i, _type in enumerate(response[_category]['types'].keys()):
                 if i > 0:
-                    responseHtml += "<tr>"
-                responseHtml += "<td rowspan=\"" + \
+                    responseHtml += unicode("<tr>")
+                responseHtml += unicode("<td rowspan=\"") + \
                     str(len(response[_category]['types'][_type]))+"\">" + \
                     translate_text(self.context, self.request,
-                                   _type, 'eea.cca')+"</td>"
+                                   _type, 'eea.cca') + unicode("</td>")
                 for j, indicator in enumerate(response[_category]['types'][_type]):
                     if j > 0:
                         responseHtml += "<tr>"
-                    responseHtml += "<td><a href=\"" + \
+                    responseHtml += unicode("<td><a href=\"") + \
                         indicator['cca_url']+"\">" + \
-                        indicator['cca_title'].decode('utf-8')+"</a></td>"
+                        indicator['cca_title'].decode(
+                            'utf-8')+unicode("</a></td>")
                     responseHtml += "<td><a href=\"" + \
                         indicator['zip_url']+"\">" + \
                         translate_text(self.context, self.request,
-                                       "Download", 'eea.cca')+"</a></td>"
-                    responseHtml += "</tr>"
+                                       "Download", 'eea.cca')+unicode("</a></td>")
+                    responseHtml += unicode("</tr>")
 
-        return responseHtml + "</tbody>"
+        return responseHtml + unicode("</tbody>")
 
     def get_disclaimer(self):
         site = portal.get()
