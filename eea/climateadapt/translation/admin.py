@@ -1,12 +1,16 @@
 """Admin translation"""
 
-# import json
 import logging
 from collections import defaultdict
 
-from eea.climateadapt.blocks import BlocksTraverser, BlockType
+import transaction
+from plone.api import portal
 from Products.Five.browser import BrowserView
 from zope.site.hooks import getSite
+
+from eea.climateadapt.blocks import BlocksTraverser, BlockType
+
+from .core import create_translation_object
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -92,19 +96,18 @@ class TranslationStatus(BrowserView):
 
 
 class FindContentWithBlock(BrowserView):
-    """ Find the content that has a particular block
-    """
+    """Find the content that has a particular block"""
 
     def __call__(self):
         catalog = self.context.portal_catalog
         path = "/".join(self.context.getPhysicalPath())
         brains = catalog.searchResults(path=path, sort_on="path")
-        block_type = self.request.form['type']
+        block_type = self.request.form["type"]
 
         found = []
         for brain in brains:
             obj = brain.getObject()
-            if not hasattr(obj.aq_inner.aq_self, 'blocks'):
+            if not hasattr(obj.aq_inner.aq_self, "blocks"):
                 continue
             types = set()
             bt = BlockType(obj, types)
@@ -114,3 +117,73 @@ class FindContentWithBlock(BrowserView):
                 found.append(obj)
 
         return "\n".join([o.absolute_url() for o in found])
+
+
+def split_list(lst, chunk_size):
+    return [lst[i : i + chunk_size] for i in range(0, len(lst), chunk_size)]
+
+
+class CreateTranslationStructure(BrowserView):
+    def __call__(self):
+        context = self.context
+
+        brains = context.portal_catalog.searchResults(
+            path="/".join(context.getPhysicalPath()),
+            portal_type="Folder",
+            sort_on="path",
+        )
+        site = portal.getSite()
+        language = self.request.form.get("language", None)
+        if not language:
+            return "no language"
+
+        languages = [
+            # "bg",
+            # "hr",
+            # "cs",
+            # "da",
+            # "nl",
+            # "et",
+            # "fi",
+            #   "el",
+            #   "hu",
+            #   "ga",
+            #   "lv",
+            # "lt",
+            "mt",
+            "pt",
+            "sk",
+            "sl",
+            "sv",
+        ]
+
+        brain_count = len(brains)
+
+        for language in languages:
+            counted_brains = zip(list(range(len(brains))), brains)
+            batched_brains = split_list(counted_brains, 20)
+
+            for batch in batched_brains:
+
+                def task():
+                    for i, brain in batch:
+                        obj = brain.getObject()
+                        trans_obj = create_translation_object(obj, language, site)
+                        logger.info(
+                            "Translated object %s %s/%s %s",
+                            language,
+                            i,
+                            brain_count,
+                            trans_obj.absolute_url(),
+                        )
+
+                transaction.begin()
+                try:
+                    task()
+                    transaction.commit()
+                except:
+                    logger.exception("Will continue")
+
+        messages = IStatusMessage(self.request)
+        messages.add("Translation process initiated.", type="info")
+        self.request.response.redirect(self.context.absolute_url())

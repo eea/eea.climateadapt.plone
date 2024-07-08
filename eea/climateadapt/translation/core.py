@@ -1,8 +1,8 @@
 import logging
-from copy import deepcopy
 
+import requests
 from Acquisition import aq_inner, aq_parent
-from eea.climateadapt.browser.admin import force_unlock
+from lxml.html import fragments_fromstring, tostring
 from plone import api
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
@@ -21,10 +21,16 @@ from zope.component.hooks import setSite
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
 
+from eea.climateadapt.browser.admin import force_unlock
+
 from . import retrieve_volto_html_translation
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 
 logger = logging.getLogger("eea.climateadapt")
+
+SLATE_CONVERTER = "http://converter:8000/html"
+BLOCKS_CONVERTER = "http://converter:8000/blocks2html"
+CONTENT_CONVERTER = "http://converter:8000/html2content"
 
 
 def get_translation_object(obj, language):
@@ -69,42 +75,6 @@ def fix_cards_tile(obj, trans_obj, data_tile, data_trans_tile, language):
 cover_fixes = {"eea.climateadapt.cards_tile": fix_cards_tile}
 
 
-def handle_cover_step_4(obj, trans_obj, language, reindex):
-    """Used by save_html_volto. Adapts the cover data from one cover to another"""
-
-    data_tiles = obj.get_tiles()
-
-    for data_tile in data_tiles:
-        if data_tile["type"] == "eea.climateadapt.cards_tile":
-            data_trans_tiles = obj.get_tiles()
-            for data_trans_tile in data_trans_tiles:
-                fixer = cover_fixes.get(data_trans_tile["type"], None)
-                if fixer:
-                    fixer(obj, trans_obj, data_tile, data_trans_tile, language)
-
-        if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
-            tile_id = data_tile["id"]
-            plone_tile_id = "plone.tiles.data" + tile_id
-            trans_tile = trans_obj.__annotations__.get(plone_tile_id) or {}
-            saved_title = trans_tile.get("title")
-
-            from_data = obj.__annotations__.get(plone_tile_id, None)
-            if from_data:
-                data = deepcopy(from_data)
-                if saved_title:
-                    data["title"] = saved_title
-
-                trans_obj.__annotations__[plone_tile_id] = data
-
-    force_unlock(obj)
-    layout_en = obj.getLayout()
-    if layout_en:
-        reindex = True
-        trans_obj.setLayout(layout_en)
-
-    return reindex
-
-
 def sync_obj_layout(obj, trans_obj, reindex, async_request):
     """Used by save_html_volto"""
     force_unlock(obj)
@@ -112,13 +82,14 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
     layout_en = obj.getLayout()
     default_view_en = obj.getDefaultPage()
     layout_default_view_en = None
+
     if default_view_en:
         try:
             trans_obj.setDefaultPage(default_view_en)
             reindex = True
         except Exception:
-            logger.info("Can't set default page for: %s",
-                        trans_obj.absolute_url())
+            logger.info("Can't set default page for: %s", trans_obj.absolute_url())
+
     if not reindex:
         reindex = True
         trans_obj.setLayout(layout_en)
@@ -145,62 +116,6 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
 
 
 handle_folder_doc_step_4 = sync_obj_layout  # BBB
-
-
-def get_tile_type(tile, from_cover, to_cover):
-    """Return tile type"""
-    tiles_types = {
-        "RichTextWithTitle": "eea.climateadapt.richtext_with_title",
-        "EmbedTile": "collective.cover.embed",
-        "RichTextTile": "collective.cover.richtext",
-        "SearchAceContentTile": "eea.climateadapt.search_acecontent",
-        "GenericViewTile": "eea.climateadapt.genericview",
-        "RelevantAceContentItemsTile": "eea.climateadapt.relevant_acecontent",
-        "ASTNavigationTile": "eea.climateadapt.ast_navigation",
-        "ASTHeaderTile": "eea.climateadapt.ast_header",
-        "FilterAceContentItemsTile": "eea.climateadapt.filter_acecontent",
-        "TransRegionalSelectTile": "eea.climateadapt.transregionselect",
-        "SectionNavTile": "eea.climateadapt.section_nav",
-        "CountrySelectTile": "eea.climateadapt.countryselect",
-        "BannerTile": "collective.cover.banner",
-        "ShareInfoTile": "eea.climateadapt.shareinfo",
-        "FormTile": "eea.climateadapt.formtile",
-        "UrbanMenuTile": "eea.climateadapt.urbanmenu",
-        "CardsTile": "eea.climateadapt.cards_tile",
-    }
-    for a_type in tiles_types.keys():
-        if a_type in str(type(tile)):
-            return tiles_types[a_type]
-
-    return None
-
-
-def copy_tiles(tiles, from_cover, to_cover):
-    """Copy the tiles from cover to translated cover"""
-    logger.info("Copy tiles from cover: %s", from_cover.absolute_url())
-    logger.info("Copy tiles to cover: %s", to_cover.absolute_url())
-
-    for tile in tiles:
-        tile_type = get_tile_type(tile, from_cover, to_cover)
-
-        if tile_type is not None:
-            from_tile = from_cover.restrictedTraverse(
-                "@@{0}/{1}".format(tile_type, tile.id)
-            )
-
-            to_tile = to_cover.restrictedTraverse(
-                "@@{0}/{1}".format(tile_type, tile.id)
-            )
-
-            from_data_mgr = ITileDataManager(from_tile)
-            to_data_mgr = ITileDataManager(to_tile)
-            to_data_mgr.set(from_data_mgr.get())
-
-        else:
-            logger.info("Missing tile type")
-            # import pdb
-            #
-            # pdb.set_trace()
 
 
 def check_full_path_exists(obj, language, site_portal):
@@ -232,14 +147,6 @@ def copy_missing_interfaces(en_obj, trans_obj):
             logger.info("Copied interface: %s" % interf[0])
 
 
-def copy_tiles_to_translation(en_obj, trans_obj, site_portal):
-    trans_obj_path = "/".join(trans_obj.getPhysicalPath())
-    trans_obj = wrap_in_aquisition(trans_obj_path, site_portal)
-    tiles = [en_obj.get_tile(x) for x in en_obj.list_tiles()]
-    trans_obj.cover_layout = en_obj.cover_layout
-    copy_tiles(tiles, en_obj, trans_obj)
-
-
 def create_translation_object(obj, language, site_portal):
     """Create translation object for an obj"""
     # rc = RequestContainer(REQUEST=obj.REQUEST)
@@ -250,8 +157,8 @@ def create_translation_object(obj, language, site_portal):
         logger.info("Skip creating translation. Already exists.")
         trans_obj = translations[language]
 
-        if obj.portal_type == "collective.cover.content":
-            copy_tiles_to_translation(obj, trans_obj, site_portal)
+        # if obj.portal_type == "collective.cover.content":
+        #     copy_tiles_to_translation(obj, trans_obj, site_portal)
 
         sync_translation_state(trans_obj, obj)
         trans_obj.reindexObject()
@@ -277,8 +184,8 @@ def create_translation_object(obj, language, site_portal):
     except Exception:
         logger.info("CREATE ITEM: cannot rename the item id - already exists.")
 
-    if obj.portal_type == "collective.cover.content":
-        copy_tiles_to_translation(obj, translated_object, site_portal)
+    # if obj.portal_type == "collective.cover.content":
+    #     copy_tiles_to_translation(obj, translated_object, site_portal)
 
     copy_missing_interfaces(obj, translated_object)
     sync_translation_state(translated_object, obj)
@@ -339,7 +246,7 @@ def sync_translation_state(trans_obj, en_obj):
 
 def wrap_in_aquisition(obj_path, portal_obj):
     portal_path = portal_obj.getPhysicalPath()
-    bits = obj_path.split("/")[len(portal_path):]
+    bits = obj_path.split("/")[len(portal_path) :]
 
     base = portal_obj
     obj = base
@@ -366,8 +273,7 @@ def execute_translate_async(en_obj, options, language):
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         setSite(site_portal)
         # context.REQUEST['PARENTS'] = [context]
@@ -421,41 +327,97 @@ def save_field_data(canonical, trans_obj, fielddata):
         for k, v in getFieldsInOrder(schema):
             if (
                 ILanguageIndependentField.providedBy(v)
-                or k in LANGUAGE_INDEPENDENT_FIELDS + ["cover_layout"]
+                or k in LANGUAGE_INDEPENDENT_FIELDS  # + ["cover_layout"]
                 or k not in fielddata
             ):
                 continue
 
             value = fielddata[k]
+
             if IRichText.providedBy(v):
                 value = RichTextValue(value)
+
             setattr(trans_obj, k, value)
 
-    if "cover_layout" in fielddata:
-        coverdata = fielddata["cover_layout"]
 
-        for tileid in coverdata.keys():
-            full_tile_id = "plone.tiles.data.%s" % tileid
+def elements_to_text(children):
+    return unicode("").join(tostring(f).decode("utf-8") for f in children)
 
-            # tile is missing in the translation, so we may copy it from the original
-            tile = trans_obj.__annotations__.get(full_tile_id)
-            if tile is None:
-                tile = canonical.__annotations__.get(full_tile_id, None)
-                if tile is None:
-                    logger.warning(
-                        "Tile is missing from both the original and the translation: %s / %s",
-                        full_tile_id,
-                        trans_obj.absolute_url(),
-                    )
-                    continue
-                tile = deepcopy(tile)
 
-            for fieldname, fieldvalue in coverdata[tileid].items():
-                orig = tile[fieldname]
-                if isinstance(orig, RichTextValue):
-                    tile[fieldname] = RichTextValue(fieldvalue)
+def get_content_from_html(html):
+    """Given an HTML string, converts it to Plone content data"""
+
+    # removing the cover_layout fragment, as it needs to be treated specially
+    # etree = document_fromstring(html)
+    # cover_layout = etree.find(".//div[@data-field='cover_layout']")
+    # if cover_layout:
+    #     cover_layout.getparent().remove(cover_layout)
+
+    data = {"html": html}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
+
+    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
+    if req.status_code != 200:
+        logger.debug(req.text)
+        raise ValueError
+
+    data = req.json()["data"]
+    logger.info("Data from converter: %s", data)
+
+    # because the blocks deserializer returns {blocks, blocks_layout} and is saved in "blocks", we need to fix it
+    if data.get("blocks"):
+        blockdata = data["blocks"]
+        data["blocks_layout"] = blockdata["blocks_layout"]
+        data["blocks"] = blockdata["blocks"]
+
+    # __import__('pdb').set_trace()
+    if data.get("cover_layout"):
+        frags = fragments_fromstring(data["cover_layout"])
+        tiles = {}
+        for frag in frags:
+            # <div data-tile-id=".b3898bdb-017c-4dac-a2d4-556d59d0ea6d"><div data-tile-field="text">
+            id = frag.get("data-tile-id")
+            info = {}
+
+            for child in frag:
+                fieldname = child.get("data-tile-field")
+                isrichtext = child.get("data-tile-type") == "richtext"
+                if isrichtext:
+                    info[fieldname] = elements_to_text(child)
                 else:
-                    tile[fieldname] = fieldvalue
-            trans_obj.__annotations__["plone.tiles.data.%s" % tileid] = tile
+                    info[fieldname] = child.text
+            tiles[id] = info
 
-        trans_obj.__annotations__._p_changed = True
+        data["cover_layout"] = tiles
+
+    logger.info("Data with tiles decrypted %s", data)
+
+    return data
+
+
+def ingest_html(trans_obj, html):
+    force_unlock(trans_obj)
+    fielddata = get_content_from_html(html)
+
+    translations = TranslationManager(trans_obj).get_translations()
+    en_obj = translations["en"]  # hardcoded, should use canonical
+
+    save_field_data(en_obj, trans_obj, fielddata)
+
+    copy_missing_interfaces(en_obj, trans_obj)
+
+    # layout_en = en_obj.getLayout()
+    # if layout_en:
+    #     trans_obj.setLayout(layout_en)
+
+    # if trans_obj.portal_type == "collective.cover.content":
+    #     handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
+    if trans_obj.portal_type in ("Folder", "Document"):
+        handle_folder_doc_step_4(en_obj, trans_obj, False, False)
+    if trans_obj.portal_type in ["Link"]:
+        handle_link(en_obj, trans_obj)
+
+    # TODO: sync workflow state
+
+    trans_obj._p_changed = True
+    trans_obj.reindexObject()
