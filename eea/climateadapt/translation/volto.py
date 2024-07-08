@@ -5,126 +5,21 @@ by first converting the blocks to HTML, then ingest and convert that structure b
 """
 
 # from langdetect import language
-import copy
-import json
 import logging
 
-import requests
-
 from plone.api import portal
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.manager import TranslationManager
-from plone.dexterity.utils import iterSchemata
 from Products.Five.browser import BrowserView
 from zope.component import getMultiAdapter
-from zope.schema import getFieldsInOrder
 
-from eea.climateadapt.asynctasks.utils import get_async_service
-from eea.climateadapt.translation.utils import get_site_languages
-
-from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .core import (
-    BLOCKS_CONVERTER,
-    execute_translate_async,
-    save_field_data,
     get_content_from_html,
+    save_field_data,
 )
-from .utils import get_value_representation
+from .contentrules import queue_translate_volto_html
 
 logger = logging.getLogger("eea.climateadapt")
-
-
-def get_blocks_as_html(obj):
-    data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
-
-    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
-    if req.status_code != 200:
-        logger.debug(req.text)
-        raise ValueError
-
-    html = req.json()["html"]
-    logger.info("Blocks converted to html: %s", html)
-    return html
-
-
-def translate_volto_html(html, en_obj, http_host, language=None):
-    """The "new" method of triggering the translation of an object.
-
-    While this is named "volto", it is a generic system to translate Plone
-    content. The actual "ingestion" of translated data is performed in the
-    TranslationCallback view
-
-    Input: html (generated from volto blocks and obj fields, as string)
-           en_obj - the object to be translated
-           http_host - website url
-
-    Makes sure translation objects exists and requests a translation for
-    all languages.
-    """
-
-    options = {
-        "obj_url": en_obj.absolute_url(),
-        "uid": en_obj.UID(),
-        "http_host": http_host,
-        "is_volto": True,
-        "html_content": html,
-    }
-    en_obj_path = "/".join(en_obj.getPhysicalPath())
-
-    logger.info("Called translate_volto_html for %s" % en_obj_path)
-    languages = language and [language] or get_site_languages()
-
-    if "cca/en" in en_obj_path:
-        for language in languages:
-            if language == "en":
-                continue
-            async_service = get_async_service()
-            queue = async_service.getQueues()[""]
-            async_service.queueJobInQueue(
-                queue,
-                ("translate",),
-                execute_translate_async,
-                en_obj,
-                copy.deepcopy(options),
-                language,
-            )
-
-
-class ToHtml(BrowserView):
-    def __call__(self):
-        obj = self.context
-
-        self.fields = {}
-        self.order = []
-        self.values = {}
-
-        for schema in iterSchemata(obj):
-            for k, v in getFieldsInOrder(schema):
-                if (
-                    ILanguageIndependentField.providedBy(v)
-                    or k in LANGUAGE_INDEPENDENT_FIELDS
-                ):
-                    continue
-                self.fields[k] = v
-                value = self.get_value(k)
-                if value:
-                    self.order.append(k)
-                    self.values[k] = value
-
-        html = self.index()
-        return html
-
-    def get_value(self, name):
-        if name == "blocks":
-            return get_blocks_as_html(self.context)
-        # TODO: remove cover_layout related handling
-        if name == "cover_layout":
-            return None
-        #     value = get_cover_as_html(self.context)
-        #     return value
-        return get_value_representation(self.context, name)
 
 
 class ContentToHtml(BrowserView):
@@ -157,7 +52,7 @@ class ContentToHtml(BrowserView):
             http_host = self.context.REQUEST.environ.get(
                 "HTTP_X_FORWARDED_HOST", portal.get().absolute_url()
             )
-            translate_volto_html(html, obj, http_host)
+            queue_translate_volto_html(html, obj, http_host)
             return html
 
         data = get_content_from_html(html)
@@ -167,43 +62,3 @@ class ContentToHtml(BrowserView):
             relative=1
         ).replace("cca/", "")
         return self.request.response.redirect(url)
-
-
-# from lxml.html import builder as E
-# from lxml.html import fragments_fromstring, tostring
-# create_translation_object,
-# def convert_richtext_to_fragments(mayberichtextvalue):
-#     if mayberichtextvalue and mayberichtextvalue.raw:
-#         return fragments_fromstring(mayberichtextvalue.raw)
-#     return []
-# def get_cover_as_html(obj):
-#     elements = []
-#     unwrapped = obj.aq_inner.aq_self
-#     annot = getattr(unwrapped, "__annotations__", None)
-#     m = "plone.tiles.data"
-#
-#     if annot:
-#         for k in annot.keys():
-#             if k.startswith(m):
-#                 attribs = {"data-tile-id": k[len(m) + 1 :]}
-#                 children = []
-#                 data = annot[k]
-#                 if data.get("title"):
-#                     title = data.get("title")
-#                     if not isinstance(title, unicode):
-#                         title = title.decode("utf-8")
-#                     try:
-#                         d = {"data-tile-field": "title"}
-#                         children.append(E.DIV(title, **d))
-#                     except:
-#                         __traceback_info__ = ("Wrong value for XML", str(title))
-#
-#                 if data.get("text"):
-#                     frags = convert_richtext_to_fragments(data["text"])
-#                     d = {"data-tile-field": "text", "data-tile-type": "richtext"}
-#                     children.append(E.DIV(*frags, **d))
-#
-#                 div = E.DIV(*children, **attribs)
-#                 elements.append(div)
-#
-#     return elements_to_text(elements)

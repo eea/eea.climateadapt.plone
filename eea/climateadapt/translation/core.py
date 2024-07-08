@@ -1,3 +1,4 @@
+import json
 import logging
 
 import requests
@@ -10,10 +11,7 @@ from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.interfaces import IRichText
 from plone.app.textfield.value import RichTextValue
-from plone.app.uuid.utils import uuidToObject
 from plone.dexterity.utils import iterSchemata
-from plone.tiles.interfaces import ITileDataManager
-from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Testing.ZopeTestCase import utils as zopeUtils
@@ -46,33 +44,6 @@ def get_translation_object(obj, language):
         return None
     trans_obj = translations[language]
     return trans_obj
-
-
-def fix_cards_tile(obj, trans_obj, data_tile, data_trans_tile, language):
-    # We link the collection tile to the translated version
-    tile = obj.get_tile(data_tile["id"])
-    try:
-        trans_tile = trans_obj.get_tile(data_trans_tile["id"])
-    except ValueError:
-        logger.info("Tile not found.")
-        trans_tile = None
-
-    if trans_tile is not None:
-        collection_obj = uuidToObject(tile.data["uuid"])
-        collection_trans_obj = get_translation_object(collection_obj, language)
-
-        dataManager = ITileDataManager(trans_tile)
-
-        temp = dataManager.get()
-        try:
-            temp["uuid"] = IUUID(collection_trans_obj)
-        except TypeError:
-            logger.info("Collection not found.")
-
-        dataManager.set(temp)
-
-
-cover_fixes = {"eea.climateadapt.cards_tile": fix_cards_tile}
 
 
 def sync_obj_layout(obj, trans_obj, reindex, async_request):
@@ -157,9 +128,6 @@ def create_translation_object(obj, language, site_portal):
         logger.info("Skip creating translation. Already exists.")
         trans_obj = translations[language]
 
-        # if obj.portal_type == "collective.cover.content":
-        #     copy_tiles_to_translation(obj, trans_obj, site_portal)
-
         sync_translation_state(trans_obj, obj)
         trans_obj.reindexObject()
 
@@ -183,9 +151,6 @@ def create_translation_object(obj, language, site_portal):
             )
     except Exception:
         logger.info("CREATE ITEM: cannot rename the item id - already exists.")
-
-    # if obj.portal_type == "collective.cover.content":
-    #     copy_tiles_to_translation(obj, translated_object, site_portal)
 
     copy_missing_interfaces(obj, translated_object)
     sync_translation_state(translated_object, obj)
@@ -327,7 +292,7 @@ def save_field_data(canonical, trans_obj, fielddata):
         for k, v in getFieldsInOrder(schema):
             if (
                 ILanguageIndependentField.providedBy(v)
-                or k in LANGUAGE_INDEPENDENT_FIELDS  # + ["cover_layout"]
+                or k in LANGUAGE_INDEPENDENT_FIELDS
                 or k not in fielddata
             ):
                 continue
@@ -347,12 +312,6 @@ def elements_to_text(children):
 def get_content_from_html(html):
     """Given an HTML string, converts it to Plone content data"""
 
-    # removing the cover_layout fragment, as it needs to be treated specially
-    # etree = document_fromstring(html)
-    # cover_layout = etree.find(".//div[@data-field='cover_layout']")
-    # if cover_layout:
-    #     cover_layout.getparent().remove(cover_layout)
-
     data = {"html": html}
     headers = {"Content-type": "application/json", "Accept": "application/json"}
 
@@ -370,32 +329,13 @@ def get_content_from_html(html):
         data["blocks_layout"] = blockdata["blocks_layout"]
         data["blocks"] = blockdata["blocks"]
 
-    # __import__('pdb').set_trace()
-    if data.get("cover_layout"):
-        frags = fragments_fromstring(data["cover_layout"])
-        tiles = {}
-        for frag in frags:
-            # <div data-tile-id=".b3898bdb-017c-4dac-a2d4-556d59d0ea6d"><div data-tile-field="text">
-            id = frag.get("data-tile-id")
-            info = {}
-
-            for child in frag:
-                fieldname = child.get("data-tile-field")
-                isrichtext = child.get("data-tile-type") == "richtext"
-                if isrichtext:
-                    info[fieldname] = elements_to_text(child)
-                else:
-                    info[fieldname] = child.text
-            tiles[id] = info
-
-        data["cover_layout"] = tiles
-
     logger.info("Data with tiles decrypted %s", data)
 
     return data
 
 
 def ingest_html(trans_obj, html):
+    "Used by the translation callback"
     force_unlock(trans_obj)
     fielddata = get_content_from_html(html)
 
@@ -406,12 +346,6 @@ def ingest_html(trans_obj, html):
 
     copy_missing_interfaces(en_obj, trans_obj)
 
-    # layout_en = en_obj.getLayout()
-    # if layout_en:
-    #     trans_obj.setLayout(layout_en)
-
-    # if trans_obj.portal_type == "collective.cover.content":
-    #     handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
     if trans_obj.portal_type in ("Folder", "Document"):
         handle_folder_doc_step_4(en_obj, trans_obj, False, False)
     if trans_obj.portal_type in ["Link"]:
@@ -421,3 +355,17 @@ def ingest_html(trans_obj, html):
 
     trans_obj._p_changed = True
     trans_obj.reindexObject()
+
+
+def get_blocks_as_html(obj):
+    data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
+
+    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    if req.status_code != 200:
+        logger.debug(req.text)
+        raise ValueError
+
+    html = req.json()["html"]
+    logger.info("Blocks converted to html: %s", html)
+    return html

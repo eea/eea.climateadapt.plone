@@ -6,21 +6,21 @@ import logging
 import os
 
 import transaction
-from eea.climateadapt.translation.volto import (
-    translate_volto_html,
-)
 from plone.api import portal
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.dexterity.utils import iterSchemata
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getMultiAdapter
+from zope.schema import getFieldsInOrder
 
-# from .core import (
-#     copy_missing_interfaces,
-#     handle_cover_step_4,
-#     handle_folder_doc_step_4,
-#     handle_link,
-#     save_field_data,
-# )
+from eea.climateadapt.translation.contentrules import (
+    queue_translate_volto_html,
+)
+
+from .constants import LANGUAGE_INDEPENDENT_FIELDS
+from .core import get_blocks_as_html, ingest_html
+from .utils import get_value_representation
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
@@ -97,7 +97,7 @@ class TranslateObjectAsync(BrowserView):
         )
         language = self.request.form.get("language", None)
 
-        translate_volto_html(html, obj, http_host, language)
+        queue_translate_volto_html(html, obj, http_host, language)
 
         self.request.response.redirect(obj.absolute_url())
 
@@ -131,3 +131,38 @@ class TranslateFolderAsync(BrowserView):
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
         self.request.response.redirect(self.context.absolute_url())
+
+
+class ToHtml(BrowserView):
+    def __call__(self):
+        obj = self.context
+
+        self.fields = {}
+        self.order = []
+        self.values = {}
+
+        for schema in iterSchemata(obj):
+            for k, v in getFieldsInOrder(schema):
+                if (
+                    ILanguageIndependentField.providedBy(v)
+                    or k in LANGUAGE_INDEPENDENT_FIELDS
+                ):
+                    continue
+                self.fields[k] = v
+                value = self.get_value(k)
+                if value:
+                    self.order.append(k)
+                    self.values[k] = value
+
+        html = self.index()
+        return html
+
+    def get_value(self, name):
+        if name == "blocks":
+            return get_blocks_as_html(self.context)
+        # TODO: remove cover_layout related handling
+        if name == "cover_layout":
+            return None
+        #     value = get_cover_as_html(self.context)
+        #     return value
+        return get_value_representation(self.context, name)

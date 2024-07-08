@@ -49,7 +49,7 @@
 
   <browser:page
     for="*"
-    class=".volto.ToHtml"
+    class=".views.ToHtml"
     name="tohtml"
     permission="cmf.ManagePortal"
     template="pt/volto-html.pt"

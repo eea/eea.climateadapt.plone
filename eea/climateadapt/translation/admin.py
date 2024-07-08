@@ -6,6 +6,7 @@ from collections import defaultdict
 import transaction
 from plone.api import portal
 from Products.Five.browser import BrowserView
+from Products.statusmessages.interfaces import IStatusMessage
 from zope.site.hooks import getSite
 
 from eea.climateadapt.blocks import BlocksTraverser, BlockType
@@ -181,7 +182,7 @@ class CreateTranslationStructure(BrowserView):
                 try:
                     task()
                     transaction.commit()
-                except:
+                except Exception:
                     logger.exception("Will continue")
 
         messages = IStatusMessage(self.request)

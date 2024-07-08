@@ -6,9 +6,6 @@
     >
 
   <adapter factory=".contentrules.ReindexActionExecutor" />
-  <!-- <adapter factory=".contentrules.TranslateActionExecutor" /> -->
-  <adapter factory=".contentrules.TranslateAsyncActionExecutor" />
-  <adapter factory=".contentrules.SynchronizeStatesForTranslationsActionExecutor" />
 
   <browser:page
       name="eea.climateadapt.Reindex"
@@ -48,57 +45,4 @@
       addview="eea.climateadapt.ObjectDateExpiration"
       />
 
-  <browser:page
-      name="eea.climateadapt.Translate"
-      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
-      class=".contentrules.TranslateAddForm"
-      permission="plone.app.contentrules.ManageContentRules"
-      />
-
-  <plone:ruleAction
-      name="eea.climateadapt.Translate"
-      title="Translate object"
-      description="Translate and object"
-      for="*"
-      event="zope.component.interfaces.IObjectEvent"
-      schema=".contentrules.ITranslateAction"
-      factory=".contentrules.TranslateAction"
-      addview="eea.climateadapt.Translate"
-      />
-
-  <browser:page
-      name="eea.climateadapt.TranslateAsync"
-      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
-      class=".contentrules.TranslateAsyncAddForm"
-      permission="plone.app.contentrules.ManageContentRules"
-      />
-
-  <plone:ruleAction
-      name="eea.climateadapt.TranslateAsync"
-      title="Translate object async"
-      description="Translate async an object"
-      for="*"
-      event="zope.component.interfaces.IObjectEvent"
-      schema=".contentrules.ITranslateAsyncAction"
-      factory=".contentrules.TranslateAsyncAction"
-      addview="eea.climateadapt.TranslateAsync"
-      />
-
-  <browser:page
-      name="eea.climateadapt.SynchronizeStatesForTranslations"
-      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
-      class=".contentrules.SynchronizeStatesForTranslationsAddForm"
-      permission="plone.app.contentrules.ManageContentRules"
-      />
-
-  <plone:ruleAction
-      name="eea.climateadapt.SynchronizeStatesForTranslations"
-      title="Synchronize states for translations"
-      description="Make sure translation items have the same state as EN obj"
-      for="*"
-      event="zope.component.interfaces.IObjectEvent"
-      schema=".contentrules.ISynchronizeStatesForTranslationsAction"
-      factory=".contentrules.SynchronizeStatesForTranslationsAction"
-      addview="eea.climateadapt.SynchronizeStatesForTranslations"
-      />
 </configure>
