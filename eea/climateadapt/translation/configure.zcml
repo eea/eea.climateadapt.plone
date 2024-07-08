@@ -7,6 +7,8 @@
 
   <adapter factory=".app.annotfactory" />
 
+  <include file="patches.zcml" />
+
   <include file="admin.zcml" />
   <include file="viewlets.zcml" />
 
@@ -14,6 +16,7 @@
       for="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"
       provides="plone.app.multilingual.interfaces.ITranslationLocator"
       factory=".patches.DefaultTranslationLocator"/>
+
 
   <browser:page
     for="*"
