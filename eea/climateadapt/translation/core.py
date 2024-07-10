@@ -3,7 +3,7 @@ import logging
 
 import requests
 from Acquisition import aq_inner, aq_parent
-from lxml.html import fragments_fromstring, tostring
+from lxml.html import tostring
 from plone import api
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
