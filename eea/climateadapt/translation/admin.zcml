@@ -1,26 +1,26 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
-    i18n_domain="eea.climateadapt"
-    >
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
 
-  <include package=".maintainance" />
-
-  <browser:page
-      name="admin-translation-status"
-      for="*"
-      class=".admin.TranslationStatus"
-      permission="cmf.ManagePortal"
-      />
+  <!-- <include package=".maintainance" /> -->
 
   <browser:page
-      name="find-block"
-      for="*"
-      class=".admin.FindContentWithBlock"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-translation-status"
+    for="*"
+    class=".admin.TranslationStatus"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    name="find-block"
+    for="*"
+    class=".admin.FindContentWithBlock"
+    permission="cmf.ManagePortal"
+  />
 
   <!-- <browser:page -->
   <!--     for="*" -->
