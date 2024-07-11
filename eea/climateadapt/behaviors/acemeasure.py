@@ -490,8 +490,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_(u"Adaptation elements"),
-        description=_(u"Select one or more elements."),
+        title=_(u"Adaptation approaches"),
+        description=_(u"Select one or more approaches."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
