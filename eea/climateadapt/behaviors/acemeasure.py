@@ -72,7 +72,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
             "keywords",
             "sectors",
             "elements",
-            "featured",  # 'year',
+            # "featured",  # 'year',
         ],
     )
 
@@ -140,8 +140,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     description = Text(
         title=_("Short summary"),
         required=False,
-        description="Enter a short summary that will be used in listings.",
-        missing_value="",
+        description=_("Enter a short summary that will be used in listings."),
+        missing_value=unicode(""),
     )
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -171,7 +171,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=False,
         default=(),
         value_type=TextLine(
-            title="Single topic",
+            title=_("Single topic"),
         ),
         missing_value=(None),
     )
@@ -197,22 +197,24 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     publication_date = Date(
         title=_("Date of item's creation"),
-        description="The date refers to the moment in which the item "
-        "has been prepared by contributing expeerts to be "
-        "submitted for the publication in Climate "
-        "ADAPTPublication/last update date."
-        " Please use the Calendar icon to add day/month/year. If you want to "
-        'add only the year, please select "day: 1", "month: January" '
-        "and then the year",
+        description=_(
+            "The date refers to the moment in which the item "
+            "has been prepared by contributing expeerts to be "
+            "submitted for the publication in Climate "
+            "ADAPTPublication/last update date."
+            " Please use the Calendar icon to add day/month/year. If you want to "
+            'add only the year, please select "day: 1", "month: January" '
+            "and then the year"
+        ),
         required=True,
     )
 
-    featured = Bool(
-        title=_("Featured"),
-        description="Feature in search and Case Study Search Tool",
-        required=False,
-        default=False,
-    )
+    # featured = Bool(
+    #     title=_("Featured"),
+    #     description="Feature in search and Case Study Search Tool",
+    #     required=False,
+    #     default=False,
+    # )
 
     # -----------[ "additional_details" fields ]------------------
 
@@ -220,7 +222,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     stakeholder_participation = RichText(
         title=_("Stakeholder participation"),
         required=False,
-        default="",
+        default=unicode(""),
         description=_(
             "Describe the Information about actors involved, the "
             "form of participation and the participation process. "
@@ -236,7 +238,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     success_limitations = RichText(
         title=_("Success / limitations"),
         required=False,
-        default="",
+        default=unicode(""),
         description=_(
             "Describe factors that are decisive for a successful "
             "implementation and expected challenges or limiting "
@@ -249,7 +251,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     cost_benefit = RichText(
         title=_("Cost / Benefit"),
         required=False,
-        default="",
+        default=unicode(""),
         description=_(
             "Describe costs (possibly providing quantitative "
             "estimate) and funding sources. Describe benefits "
@@ -267,7 +269,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     legal_aspects = RichText(
         title=_("Legal aspects"),
         required=False,
-        default="",
+        default=unicode(""),
         description=_(
             "Describe the Legislation "
             "framework from which the case "
@@ -294,10 +296,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     lifetime = RichText(
         title=_("Lifetime"),
         required=False,
-        default="",
-        description="Describe the lifetime of the measure: "
-        "Time frame, e.g. 5-10 years, Brief explanation "
-        "(250 char limit)",
+        default=unicode(""),
+        description=_(
+            "Describe the lifetime of the measure: "
+            "Time frame, e.g. 5-10 years, Brief explanation "
+            "(250 char limit)"
+        ),
     )
 
     # -----------[ "reference_information" fields ]------------------
@@ -346,17 +350,17 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
-        default="""{
+        default=unicode("""{
                     "geoElements":{"element":"GLOBAL",
                     "macrotrans":null,"biotrans":null,"countries":[],
-                    "subnational":[],"city":""}}""",
-        description="Select the characterisation for this item",
+                    "subnational":[],"city":""}}"""),
+        description=_("Select the characterisation for this item"),
     )
 
     comments = Text(
         title=_("Comments"),
         required=False,
-        default="",
+        default=unicode(""),
         description=_(
             "Comments about this database item "
             "[information entered below will not be "
@@ -399,7 +403,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     contributor_list = RelationList(
-        title="Contributor(s)",
+        title=_("Contributor(s)"),
         default=[],
         description=_(
             "Select from the Climate ADAPT Organisation items the "
@@ -418,7 +422,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     other_contributor = Text(
         title=_("Other contributor(s)"),
         required=False,
-        default="",
+        default=unicode(""),
         description=_(
             "Please first verify if the contributor is "
             "already part of the Climate ADAPT Database."
@@ -474,8 +478,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype",
     )
 
-    spatial_layer = TextLine(title=_("Spatial Layer"),
-                             required=False, default="")
+    spatial_layer = TextLine(
+        title=_("Spatial Layer"), required=False, default=unicode("")
+    )
 
     spatial_values = List(
         title=_("Countries"),
@@ -500,7 +505,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     measure_type = Choice(
         title=_("Measure Type"),
-        required=True,
+        required=False,
         default="A",
         vocabulary="eea.climateadapt.acemeasure_types",
     )
@@ -552,13 +557,15 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     publication_date = Date(
         title=_("Date of item's creation"),
-        description="The date refers to the moment in which the item "
-        "has been prepared or  updated by contributing "
-        "experts to be submitted for the publication in "
-        "Climate ADAPT."
-        " Please use the Calendar icon to add day/month/year. If you want to "
-        'add only the year, please select "day: 1", "month: January" '
-        "and then the year",
+        description=_(
+            "The date refers to the moment in which the item "
+            "has been prepared or  updated by contributing "
+            "experts to be submitted for the publication in "
+            "Climate ADAPT."
+            " Please use the Calendar icon to add day/month/year. If you want to "
+            'add only the year, please select "day: 1", "month: January" '
+            "and then the year"
+        ),
         required=True,
     )
 
@@ -592,7 +599,7 @@ alsoProvides(IAceMeasure["climate_impacts"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["comments"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["contributor_list"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["elements"], ILanguageIndependentField)
-alsoProvides(IAceMeasure["featured"], ILanguageIndependentField)
+# alsoProvides(IAceMeasure["featured"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["geochars"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["governance_level"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["health_impacts"], ILanguageIndependentField)

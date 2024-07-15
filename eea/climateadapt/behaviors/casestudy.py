@@ -19,8 +19,8 @@ from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     """Case study"""
 
-    directives.omitted(IEditForm, "featured")
-    directives.omitted(IAddForm, "featured")
+    # directives.omitted(IEditForm, "featured")
+    # directives.omitted(IAddForm, "featured")
     directives.omitted(IEditForm, "primephoto")
     directives.omitted(IAddForm, "primephoto")
     directives.omitted(IEditForm, "supphotos")
@@ -84,7 +84,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     contact = RichText(
         title=_("Contact"),
         required=True,
-        default="",
+        default=unicode(""),
         description=_(
             "Contact of reference (institution and persons) who is "
             "directly involved in the development and "
@@ -93,7 +93,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     )
 
     adaptationoptions = RelationList(
-        title="Adaptation measures implemented in the case:",
+        title=_("Adaptation measures implemented in the case:"),
         default=[],
         description=_(
             "Select one or more adaptation options that this item " "relates to:"
@@ -126,7 +126,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     primary_photo_copyright = TextLine(
         title=_("Primary Photo Copyright"),
         required=False,
-        default="",
+        default=unicode(""),
         description=_(
             "Copyright statement or other rights information for  " "the primary photo."
         ),
@@ -149,7 +149,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         required=False,
     )
     supphotos = RelationList(
-        title="Gallery",
+        title=_("Gallery"),
         default=[],
         value_type=RelationChoice(
             title=_("Related"),

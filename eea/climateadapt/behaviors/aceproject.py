@@ -1,9 +1,6 @@
 import json
 
-from plone.schema import JSONField
 from collective import dexteritytextindexer
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
@@ -11,6 +8,8 @@ from plone.autoform import directives
 from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
+from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
+from plone.schema import JSONField
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.form.util import getSpecification
@@ -18,11 +17,23 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer
-from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
-                         TextLine, Tuple)
-from plone.autoform import directives
-from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
+from zope.schema import (
+    URI,
+    Bool,
+    Choice,
+    Date,
+    Datetime,
+    List,
+    Text,
+    TextLine,
+    Tuple,
+)
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+
 from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
+
 # from z3c.relationfield.schema import RelationChoice
 
 GEOCHARS = {
@@ -66,7 +77,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
 
     form.fieldset(
         "default",
-        label=u"Item Description",
+        label="Item Description",
         fields=[
             "acronym",
             "title",
@@ -86,19 +97,19 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
 
     form.fieldset(
         "reference_information",
-        label=u"Reference information",
+        label="Reference information",
         fields=["websites", "source", "special_tags", "partners_source_link"],
     )
 
     form.fieldset(
         "geographic_information",
-        label=u"Geographic Information",
+        label="Geographic Information",
         fields=["geochars", "comments"],
     )
 
     form.fieldset(
         "categorization",
-        label=u"Inclusion in the subsites",
+        label="Inclusion in the subsites",
         fields=["include_in_observatory",
                 "include_in_mission", "health_impacts"],
     )
@@ -108,47 +119,47 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     # These fields are richtext in the db:
     # set(['keywords', 'partners', 'admincomment', 'abstracts', 'source'])
     origin_website = List(
-        title=_(u"Item from third parties"),
+        title=_("Item from third parties"),
         description=_(
-            u"Used only to highlight items "
-            u"provided by Third parties. "
-            u"Please don't compile "
-            u"this field if you are a Climate-ADAPT expert "
-            u"creating a new item."
+            "Used only to highlight items "
+            "provided by Third parties. "
+            "Please don't compile "
+            "this field if you are a Climate-ADAPT expert "
+            "creating a new item."
         ),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.origin_website"),
     )
     logo = NamedBlobImage(
-        title=_(u"Logo"),
+        title=_("Logo"),
         description=_(
-            u"Upload a representative picture or logo for the item."
-            u" Recommended size: at least 360/180 px, aspect ratio 2x"
+            "Upload a representative picture or logo for the item."
+            " Recommended size: at least 360/180 px, aspect ratio 2x"
         ),
         required=False,
     )
 
     image = NamedBlobImage(
-        title=_(u"Thumbnail"),
+        title=_("Thumbnail"),
         description=_(
-            u"Upload a representative picture or logo for the item. "
-            u"Recommended size: at least 360/180 px, aspect ratio 2x. "
-            u"This image will be used in the search result page - cards view. "
-            u"If this image doesn't exist, then the logo image will be used."
+            "Upload a representative picture or logo for the item. "
+            "Recommended size: at least 360/180 px, aspect ratio 2x. "
+            "This image will be used in the search result page - cards view. "
+            "If this image doesn't exist, then the logo image will be used."
         ),
         required=False,
     )
 
     contributor_list = RelationList(
-        title=u"Contributor(s)",
+        title=_("Contributor(s)"),
         default=[],
         description=_(
-            u"Select from the Climate ADAPT Organisation items the "
-            u"organisations contributing to/ involved in this item"
+            "Select from the Climate ADAPT Organisation items the "
+            "organisations contributing to/ involved in this item"
         ),
         value_type=RelationChoice(
-            title=_(u"Related"),
-            vocabulary="eea.climateadapt.organisations"
+            title=_("Related"),
+            vocabulary="eea.climateadapt.organisations",
             # source=ObjPathSourceBinder(),
             # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
         ),
@@ -156,46 +167,46 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     )
 
     funding_programme = Choice(
-        title=_(u"Funding Programme"),
+        title=_("Funding Programme"),
         required=False,
         # value_type = Choice(
-        vocabulary="eea.climateadapt.funding_programme"
+        vocabulary="eea.climateadapt.funding_programme",
         #    )
     )
 
     acronym = TextLine(
-        title=_(u"Acronym"),
-        description=_(u"Acronym of the project"),
+        title=_("Acronym"),
+        description=_("Acronym of the project"),
         required=True,
     )
 
     title = TextLine(
-        title=_(u"Title"),
-        description=_(u"Project title or name"),
+        title=_("Title"),
+        description=_("Project title or name"),
         required=True,
     )
 
     dexteritytextindexer.searchable("long_description")
     long_description = RichText(
-        title=_(u"Abstracts"),
+        title=_("Abstracts"),
         description=_(
-            u"Provide information focusing on project output. "
-            u"Possibly on specific Website features."
+            "Provide information focusing on project output. "
+            "Possibly on specific Website features."
         ),
         required=True,
     )
 
     lead = TextLine(
-        title=_(u"Lead"),
-        description=_(u"Lead organisation or individual of the project"),
+        title=_("Lead"),
+        description=_("Lead organisation or individual of the project"),
         required=True,
     )
 
     dexteritytextindexer.searchable("partners")
     partners = RichText(
-        title=_(u"Partners"),
+        title=_("Partners"),
         description=_(
-            u"Provide information about project partners " u"(organisation names)."
+            "Provide information about project partners " "(organisation names)."
         ),
         required=True,
     )
@@ -203,51 +214,52 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     dexteritytextindexer.searchable("keywords")
     keywords = Tuple(
-        title=_(u"Keywords"),
+        title=_("Keywords"),
         description=_(
-            u"Provide Keywords related to the project. "
-            u"Press Enter after writing your keyword."
+            "Provide Keywords related to the project. "
+            "Press Enter after writing your keyword."
         ),
         required=False,
         default=(),
         value_type=TextLine(
-            title=u"Single topic",
+            title=_("Single topic"),
         ),
         missing_value=(None),
     )
 
     health_impacts = List(
-        title=_(u"Health impacts"),
+        title=_("Health impacts"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.health_impacts"),
     )
 
     publication_date = Date(
-        title=_(u"Date of item's creation"),
-        description=u"The date refers to the moment in which the item "
-        u"has been prepared by contributing expeerts to be "
-        u"submitted for the publication in Climate "
-        u"ADAPTPublication/last update date."
-        u" Please use the Calendar icon to add day/month/year. If you want to "
-        u'add only the year, please select "day: 1", "month: January" '
-        u"and then the year",
+        title=_("Date of item's creation"),
+        description=_(
+            "The date refers to the moment in which the item "
+            "has been prepared by contributing expeerts to be "
+            "submitted for the publication in Climate "
+            "ADAPTPublication/last update date."
+            " Please use the Calendar icon to add day/month/year. If you want to "
+            'add only the year, please select "day: 1", "month: January" '
+            "and then the year"
+        ),
         required=True,
     )
 
     include_in_observatory = Bool(
-        title=_(u"Include in observatory"), required=False, default=False
+        title=_("Include in observatory"), required=False, default=False
     )
 
     include_in_mission = Bool(
-        title=_(u"Include in the Mission Portal"), required=False, default=False
+        title=_("Include in the Mission Portal"), required=False, default=False
     )
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
-        title=_(u"Sectors"),
+        title=_("Sectors"),
         description=_(
-            u"Select one or more relevant sector policies that "
-            u"this item relates to."
+            "Select one or more relevant sector policies that " "this item relates to."
         ),
         required=True,
         missing_value=[],
@@ -259,10 +271,10 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
-        title=_(u"Climate impacts"),
+        title=_("Climate impacts"),
         description=_(
-            u"Select one or more climate change impact topics that "
-            u"this item relates to."
+            "Select one or more climate change impact topics that "
+            "this item relates to."
         ),
         missing_value=[],
         default=None,
@@ -274,8 +286,8 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_(u"Adaptation elements"),
-        description=_(u"Select one or more elements."),
+        title=_("Adaptation elements"),
+        description=_("Select one or more elements."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
@@ -283,20 +295,19 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     )
 
     funding = TextLine(
-        title=_(u"Further information on the funding"),
-        description=_(u"Provide source of funding"),
+        title=_("Further information on the funding"),
+        description=_("Provide source of funding"),
         required=False,
     )
 
     duration = TextLine(
-        title=_(u"Duration"),
-        description=_(
-            u"Provide duration of project - Start and end date [yr]"),
+        title=_("Duration"),
+        description=_("Provide duration of project - Start and end date [yr]"),
         required=False,
     )
 
     featured = Bool(
-        title=_(u"Featured"),
+        title=_("Featured"),
         required=False,
         default=False,
     )
@@ -304,10 +315,10 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     # -----------[ "reference_information" fields ]------------------
     directives.widget("websites", TextLinesWidget)
     websites = Tuple(
-        title=_(u"Websites"),
+        title=_("Websites"),
         description=_(
-            u"List the Websites where the item can be found or is "
-            u"described. Please place each website on a new line"
+            "List the Websites where the item can be found or is "
+            "described. Please place each website on a new line"
         ),
         required=False,
         value_type=URI(),
@@ -316,9 +327,9 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
 
     dexteritytextindexer.searchable("source")
     source = TextLine(
-        title=_(u"Reference"),
+        title=_("Reference"),
         description=_(
-            u"Provide source from which project was retrieved (e.g. " u"specific DB) "
+            "Provide source from which project was retrieved (e.g. " "specific DB) "
         ),
         required=False,
     )
@@ -326,18 +337,18 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     # -----------[ "geographic_information" fields ]------------------
     form.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
-        title=_(u"Geographic characterisation"),
+        title=_("Geographic characterisation"),
         required=True,
         default=unicode(json.dumps(GEOCHARS)),
-        description=u"Select the characterisation for this item",
+        description=_("Select the characterisation for this item"),
     )
 
     comments = Text(
-        title=_(u"Source"),
+        title=_("Source"),
         description=_(
-            u"Comments about this database item [information entered"
-            u" below will not be displayed on the public pages of "
-            u"climate-adapt]"
+            "Comments about this database item [information entered"
+            " below will not be displayed on the public pages of "
+            "climate-adapt]"
         ),
         required=False,
     )
@@ -366,24 +377,24 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     # end
 
     creation_date = Datetime(
-        title=_(u"Created"),
+        title=_("Created"),
         required=False,
     )
 
     modification_date = Datetime(
-        title=_(u"Last Modified"),
+        title=_("Last Modified"),
         required=False,
     )
 
     id = TextLine(
-        title=_(u"Object ID"),
+        title=_("Object ID"),
         required=False,
     )
 
     specialtagging = TextLine(
-        title=_(u"Special Tagging"),
+        title=_("Special Tagging"),
         description=_(
-            u"Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item"
+            "Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item"
         ),
         required=False,
     )
@@ -395,11 +406,11 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     #     )
 
     special_tags = Tuple(
-        title=_(u"Special tagging"),
+        title=_("Special tagging"),
         description=_(
-            u"Used only by Climate-ADAPT administrator. Please don't "
-            u"compile this field if you are a Climate-ADAPT expert creating a new "
-            u"item."
+            "Used only by Climate-ADAPT administrator. Please don't "
+            "compile this field if you are a Climate-ADAPT expert creating a new "
+            "item."
         ),
         required=False,
         value_type=TextLine(),
@@ -407,7 +418,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     )
 
     important = Bool(
-        title=_(u"Important"),
+        title=_("Important"),
         required=False,
         default=False,
     )
@@ -415,21 +426,21 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     # rating = Int(title=_(u"Rating"), required=True, default=0)
 
     spatial_layer = TextLine(
-        title=_(u"Spatial Layer"),
+        title=_("Spatial Layer"),
         required=False,
-        default=u"",
+        default=unicode(""),
     )
 
     spatial_values = List(
-        title=_(u"Countries"),
-        description=_(u"European countries"),
+        title=_("Countries"),
+        description=_("European countries"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
 
     partners_source_link = URI(
-        title=_(u"Partners Source Link"),
-        description=(u"Provide URL from project partners"),
+        title=_("Partners Source Link"),
+        description=_("Provide URL from project partners"),
         required=False,
     )
 
@@ -445,9 +456,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": aceproject_layout_items
-        },
+        default={"items": aceproject_layout_items},
         required=False,
     )
 
