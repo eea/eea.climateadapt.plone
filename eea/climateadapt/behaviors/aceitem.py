@@ -1,8 +1,5 @@
-from plone.app.dexterity.behaviors.metadata import IPublication
 from collective import dexteritytextindexer
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.schema import AbsoluteUrl, Uploader
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+from plone.app.dexterity.behaviors.metadata import IPublication
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
@@ -18,6 +15,10 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer
 from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.schema import AbsoluteUrl, Uploader
+from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 
 class IAceItem(IImageScaleTraversable):
@@ -78,7 +79,8 @@ class IAceItem(IImageScaleTraversable):
     form.fieldset(
         "categorization",
         label="Inclusion in the subsites",
-        fields=["include_in_observatory", "include_in_mission", "health_impacts"],
+        fields=["include_in_observatory",
+                "include_in_mission", "health_impacts"],
     )
 
     # form.fieldset('inclusion_health_observatory',
@@ -147,7 +149,8 @@ class IAceItem(IImageScaleTraversable):
 
     long_description = RichText(
         title=_("Description"),
-        description=_("Provide a description of the item.(5,000 character limit)"),
+        description=_(
+            "Provide a description of the item.(5,000 character limit)"),
         required=True,
     )
 
@@ -349,8 +352,8 @@ class IAceItem(IImageScaleTraversable):
     directives.omitted(IAddForm, "metadata")
     directives.omitted(IEditForm, "metadata")
 
-    directives.omitted(IAddForm, "rating")
-    directives.omitted(IEditForm, "rating")
+    # directives.omitted(IAddForm, "rating")
+    # directives.omitted(IEditForm, "rating")
 
     # directives.omitted(IAddForm, 'special_tags')
     # directives.omitted(IEditForm, 'special_tags')
@@ -378,9 +381,11 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    item_link = AbsoluteUrl(title=_("Item link"), required=False, default=unicode(""))
+    item_link = AbsoluteUrl(title=_("Item link"),
+                            required=False, default=unicode(""))
 
-    uploader = Uploader(title=_("Uploaded by"), required=False, default=unicode(""))
+    uploader = Uploader(title=_("Uploaded by"),
+                        required=False, default=unicode(""))
     # fix???
     data_type = Choice(
         title=_("Data Type"),

@@ -1,6 +1,5 @@
 from collective import dexteritytextindexer
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+from collective.geolocationbehavior.geolocation import IGeolocatable
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
@@ -15,14 +14,17 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer  # , implements
-from zope.schema import (URI, Bool, Choice, Date, Int, List, Text, TextLine,
-                         Tuple)
-from plone.autoform import directives
+from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple  # Int,
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+
+# from plone.autoform import directives
 
 ADD_ORGANISATION_URL = (
-    u"<a target='_blank' "
-    u"href='/metadata/organisations/++add++eea.climateadapt.organisation'>"
-    u"click here</a>"
+    "<a target='_blank' "
+    "href='/metadata/organisations/++add++eea.climateadapt.organisation'>"
+    "click here</a>"
 )
 
 
@@ -60,7 +62,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset(
         "default",
-        label=u"Item Description",
+        label="Item Description",
         fields=[
             "publication_date",
             "title",
@@ -76,7 +78,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset(
         "additional_details",
-        label=u"Additional Details",
+        label="Additional Details",
         fields=[
             "stakeholder_participation",
             "success_limitations",
@@ -94,7 +96,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset(
         "reference_information",
-        label=u"Reference information",
+        label="Reference information",
         fields=["websites", "source", "special_tags",
                 "comments"],  # 'contact',
     )
@@ -107,13 +109,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.fieldset(
         "geographic_information",
-        label=u"Geographic Information",
+        label="Geographic Information",
         fields=["governance_level", "geochars"],
     )
 
     form.fieldset(
         "categorization",
-        label=u"Inclusion in the Health Observatory",
+        label="Inclusion in the Health Observatory",
         fields=["include_in_observatory",
                 "include_in_mission", "health_impacts"],
     )
@@ -121,35 +123,35 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # -----------[ "default" fields ]------------------
 
     title = TextLine(
-        title=_(u"Title"),
+        title=_("Title"),
         description=_(
-            u"Name of the case study clearly "
-            u"identifying its scope and location "
-            u"(250 character limit)"
+            "Name of the case study clearly "
+            "identifying its scope and location "
+            "(250 character limit)"
         ),
         required=True,
     )
 
     long_description = RichText(
-        title=_(u"Description"),
+        title=_("Description"),
         required=True,
     )
 
     description = Text(
-        title=_(u"Short summary"),
+        title=_("Short summary"),
         required=False,
-        description=u"Enter a short summary that will be used in listings.",
-        missing_value=u"",
+        description="Enter a short summary that will be used in listings.",
+        missing_value="",
     )
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
-        title=_(u"Climate impacts"),
+        title=_("Climate impacts"),
         missing_value=[],
         default=None,
         description=_(
-            u"Select one or more climate change impact topics that "
-            u"this item relates to:"
+            "Select one or more climate change impact topics that "
+            "this item relates to:"
         ),
         required=True,
         value_type=Choice(
@@ -160,26 +162,25 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     keywords = Tuple(
         description=_(
-            u"Describe and tag this item with relevant keywords. "
-            u"Press Enter after writing your keyword. "
-            u"Use specific and not general key words (e.g. avoid "
-            u"words as: adaption, climate change, measure, "
-            u"integrated approach, etc.):"
+            "Describe and tag this item with relevant keywords. "
+            "Press Enter after writing your keyword. "
+            "Use specific and not general key words (e.g. avoid "
+            "words as: adaption, climate change, measure, "
+            "integrated approach, etc.):"
         ),
         required=False,
         default=(),
         value_type=TextLine(
-            title=u"Single topic",
+            title="Single topic",
         ),
         missing_value=(None),
     )
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
-        title=_(u"Sectors"),
+        title=_("Sectors"),
         description=_(
-            u"Select one or more relevant sector policies"
-            u" that this item relates to:"
+            "Select one or more relevant sector policies" " that this item relates to:"
         ),
         required=True,
         missing_value=[],
@@ -195,20 +196,20 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # required=False,)
 
     publication_date = Date(
-        title=_(u"Date of item's creation"),
-        description=u"The date refers to the moment in which the item "
-        u"has been prepared by contributing expeerts to be "
-        u"submitted for the publication in Climate "
-        u"ADAPTPublication/last update date."
-        u" Please use the Calendar icon to add day/month/year. If you want to "
-        u'add only the year, please select "day: 1", "month: January" '
-        u"and then the year",
+        title=_("Date of item's creation"),
+        description="The date refers to the moment in which the item "
+        "has been prepared by contributing expeerts to be "
+        "submitted for the publication in Climate "
+        "ADAPTPublication/last update date."
+        " Please use the Calendar icon to add day/month/year. If you want to "
+        'add only the year, please select "day: 1", "month: January" '
+        "and then the year",
         required=True,
     )
 
     featured = Bool(
-        title=_(u"Featured"),
-        description=u"Feature in search and Case Study Search Tool",
+        title=_("Featured"),
+        description="Feature in search and Case Study Search Tool",
         required=False,
         default=False,
     )
@@ -217,99 +218,99 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable("stakeholder_participation")
     stakeholder_participation = RichText(
-        title=_(u"Stakeholder participation"),
+        title=_("Stakeholder participation"),
         required=False,
-        default=u"",
+        default="",
         description=_(
-            u"Describe the Information about actors involved, the "
-            u"form of participation and the participation process. "
-            u" Focus should be on the level of participation needed "
-            u"and/or adopted already (from information, to full "
-            u"commitment in the deliberation/implementation "
-            u"process), with useful notes e.g. regarding "
-            u"motivations. (5,000 character limit)"
+            "Describe the Information about actors involved, the "
+            "form of participation and the participation process. "
+            " Focus should be on the level of participation needed "
+            "and/or adopted already (from information, to full "
+            "commitment in the deliberation/implementation "
+            "process), with useful notes e.g. regarding "
+            "motivations. (5,000 character limit)"
         ),
     )
 
     dexteritytextindexer.searchable("success_limitations")
     success_limitations = RichText(
-        title=_(u"Success / limitations"),
+        title=_("Success / limitations"),
         required=False,
-        default=u"",
+        default="",
         description=_(
-            u"Describe factors that are decisive for a successful "
-            u"implementation and expected challenges or limiting "
-            u"factors which may hinder the process and need to be "
-            u"considered (5,000 character limit)"
+            "Describe factors that are decisive for a successful "
+            "implementation and expected challenges or limiting "
+            "factors which may hinder the process and need to be "
+            "considered (5,000 character limit)"
         ),
     )
 
     dexteritytextindexer.searchable("cost_benefit")
     cost_benefit = RichText(
-        title=_(u"Cost / Benefit"),
+        title=_("Cost / Benefit"),
         required=False,
-        default=u"",
+        default="",
         description=_(
-            u"Describe costs (possibly providing quantitative "
-            u"estimate) and funding sources. Describe benefits "
-            u"provided by implemented solutions, i.e.: positive "
-            u"outcomes related climate change adaptation, "
-            u"co-benefits in other areas, quantitative estimation "
-            u"of benefits and related methodologies (e.g. "
-            u"monetization of benefits for cost benefit analysis, "
-            u"indicators of effectiveness of actions implemented, "
-            u"etc.) (5,000 characters limit)"
+            "Describe costs (possibly providing quantitative "
+            "estimate) and funding sources. Describe benefits "
+            "provided by implemented solutions, i.e.: positive "
+            "outcomes related climate change adaptation, "
+            "co-benefits in other areas, quantitative estimation "
+            "of benefits and related methodologies (e.g. "
+            "monetization of benefits for cost benefit analysis, "
+            "indicators of effectiveness of actions implemented, "
+            "etc.) (5,000 characters limit)"
         ),
     )
 
     dexteritytextindexer.searchable("legal_aspects")
     legal_aspects = RichText(
-        title=_(u"Legal aspects"),
+        title=_("Legal aspects"),
         required=False,
-        default=u"",
+        default="",
         description=_(
-            u"Describe the Legislation "
-            u"framework from which the case "
-            u"originated, relevant institutional"
-            u" opportunities and constrains, "
-            u"which determined the case as it "
-            u"is (5000 character limit):"
+            "Describe the Legislation "
+            "framework from which the case "
+            "originated, relevant institutional"
+            " opportunities and constrains, "
+            "which determined the case as it "
+            "is (5000 character limit):"
         ),
     )
 
     dexteritytextindexer.searchable("implementation_time")
     implementation_time = RichText(
-        title=_(u"Implementation Time"),
+        title=_("Implementation Time"),
         required=False,
         default=None,
         description=_(
-            u"Describe the time needed to implement the measure. "
-            u"Include: Time frame, e.g. 5-10 years, Brief "
-            u"explanation(250 char limit)"
+            "Describe the time needed to implement the measure. "
+            "Include: Time frame, e.g. 5-10 years, Brief "
+            "explanation(250 char limit)"
         ),
     )
 
     dexteritytextindexer.searchable("lifetime")
     lifetime = RichText(
-        title=_(u"Lifetime"),
+        title=_("Lifetime"),
         required=False,
-        default=u"",
-        description=u"Describe the lifetime of the measure: "
-        u"Time frame, e.g. 5-10 years, Brief explanation "
-        u"(250 char limit)",
+        default="",
+        description="Describe the lifetime of the measure: "
+        "Time frame, e.g. 5-10 years, Brief explanation "
+        "(250 char limit)",
     )
 
     # -----------[ "reference_information" fields ]------------------
 
     directives.widget("websites", TextLinesWidget)
     websites = Tuple(
-        title=_(u"Websites"),
+        title=_("Websites"),
         description=_(
-            u"List the Websites where the option can be found"
-            u" or is described. Note: may refer to the original "
-            u"document describing a measure and does not have to "
-            u"refer back to the project e.g. collected measures. "
-            u"NOTE: Add http:// in front of every website link."
+            "List the Websites where the option can be found"
+            " or is described. Note: may refer to the original "
+            "document describing a measure and does not have to "
+            "refer back to the project e.g. collected measures. "
+            "NOTE: Add http:// in front of every website link."
         ),
         required=False,
         value_type=URI(),
@@ -318,12 +319,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable("source")
     source = TextLine(
-        title=_(u"References"),
+        title=_("References"),
         required=False,
         description=_(
-            u"Describe the references (projects, a tools reports, etc.) "
-            u"related to this item, providing further information about "
-            u"it or its source."
+            "Describe the references (projects, a tools reports, etc.) "
+            "related to this item, providing further information about "
+            "it or its source."
         ),
     )
 
@@ -331,10 +332,9 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     governance_level = List(
-        title=_(u"Governance Level"),
+        title=_("Governance Level"),
         description=_(
-            u"Select the one governance level that relates to this "
-            u"adaptation option"
+            "Select the one governance level that relates to this " "adaptation option"
         ),
         required=False,
         value_type=Choice(
@@ -344,70 +344,70 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
-        title=_(u"Geographic characterisation"),
+        title=_("Geographic characterisation"),
         required=True,
-        default=u"""{
+        default="""{
                     "geoElements":{"element":"GLOBAL",
                     "macrotrans":null,"biotrans":null,"countries":[],
                     "subnational":[],"city":""}}""",
-        description=u"Select the characterisation for this item",
+        description="Select the characterisation for this item",
     )
 
     comments = Text(
-        title=_(u"Comments"),
+        title=_("Comments"),
         required=False,
-        default=u"",
+        default="",
         description=_(
-            u"Comments about this database item "
-            u"[information entered below will not be "
-            u"displayed on the public pages of "
-            u"climate-adapt]"
+            "Comments about this database item "
+            "[information entered below will not be "
+            "displayed on the public pages of "
+            "climate-adapt]"
         ),
     )
 
     origin_website = List(
-        title=_(u"Item from third parties"),
+        title=_("Item from third parties"),
         description=_(
-            u"Used only to highlight items "
-            u"provided by Third parties. "
-            u"<br>Please don't compile "
-            u"this field if you are a Climate-ADAPT expert "
-            u"creating a new item."
+            "Used only to highlight items "
+            "provided by Third parties. "
+            "<br>Please don't compile "
+            "this field if you are a Climate-ADAPT expert "
+            "creating a new item."
         ),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.origin_website"),
     )
 
     logo = NamedBlobImage(
-        title=_(u"Logo"),
+        title=_("Logo"),
         description=_(
-            u"Upload a representative picture or logo for the item."
-            u" Recommended size: at least 360/180 px, aspect ratio 2x"
+            "Upload a representative picture or logo for the item."
+            " Recommended size: at least 360/180 px, aspect ratio 2x"
         ),
         required=False,
     )
 
     image = NamedBlobImage(
-        title=_(u"Thumbnail"),
+        title=_("Thumbnail"),
         description=_(
-            u"Upload a representative picture or logo for the item. "
-            u"Recommended size: at least 360/180 px, aspect ratio 2x. "
-            u"This image will be used in the search result page - cards view. "
-            u"If this image doesn't exist, then the logo image will be used."
+            "Upload a representative picture or logo for the item. "
+            "Recommended size: at least 360/180 px, aspect ratio 2x. "
+            "This image will be used in the search result page - cards view. "
+            "If this image doesn't exist, then the logo image will be used."
         ),
         required=False,
     )
 
     contributor_list = RelationList(
-        title=u"Contributor(s)",
+        title="Contributor(s)",
         default=[],
         description=_(
-            u"Select from the Climate ADAPT Organisation items the "
-            u"organisations contributing to/ involved in this item"
+            "Select from the Climate ADAPT Organisation items the "
+            "organisations contributing to/ involved in this item"
         ),
         value_type=RelationChoice(
-            title=_(u"Related"),
-            vocabulary="eea.climateadapt.organisations"
+            title=_("Related"),
+            vocabulary="eea.climateadapt.organisations",
             # source=ObjPathSourceBinder(),
             # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
         ),
@@ -416,17 +416,17 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # TODO: this will be a widget
     other_contributor = Text(
-        title=_(u"Other contributor(s)"),
+        title=_("Other contributor(s)"),
         required=False,
-        default=u"",
+        default="",
         description=_(
-            u"Please first verify if the contributor is "
-            u"already part of the Climate ADAPT Database."
-            u" If not, it is suggested to first create a "
-            u"new Organisation item (%s). As last"
-            u" alternative please add the new "
-            u"contributor(s) in the following box, using "
-            u"the official name" % ADD_ORGANISATION_URL
+            "Please first verify if the contributor is "
+            "already part of the Climate ADAPT Database."
+            " If not, it is suggested to first create a "
+            "new Organisation item (%s). As last"
+            " alternative please add the new "
+            "contributor(s) in the following box, using "
+            "the official name" % ADD_ORGANISATION_URL
         ),
     )
 
@@ -457,8 +457,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     directives.omitted(IAddForm, "measure_type")
     directives.omitted(IEditForm, "important")
     directives.omitted(IAddForm, "important")
-    directives.omitted(IEditForm, "rating")
-    directives.omitted(IAddForm, "rating")
+    # directives.omitted(IEditForm, "rating")
+    # directives.omitted(IAddForm, "rating")
     # directives.omitted(IAddForm, "modification_date")
     # directives.omitted(IEditForm, "modification_date")
     # directives.omitted(IAddForm, "creation_date")
@@ -468,18 +468,18 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # end
 
     implementation_type = Choice(
-        title=_(u"Implementation Type"),
+        title=_("Implementation Type"),
         required=False,
         default=None,
         vocabulary="eea.climateadapt.acemeasure_implementationtype",
     )
 
-    spatial_layer = TextLine(title=_(u"Spatial Layer"),
-                             required=False, default=u"")
+    spatial_layer = TextLine(title=_("Spatial Layer"),
+                             required=False, default="")
 
     spatial_values = List(
-        title=_(u"Countries"),
-        description=_(u"European countries"),
+        title=_("Countries"),
+        description=_("European countries"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
@@ -490,8 +490,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_(u"Adaptation elements"),
-        description=_(u"Select one or more elements."),
+        title=_("Adaptation elements"),
+        description=_("Select one or more elements."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
@@ -499,37 +499,36 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     measure_type = Choice(
-        title=_(u"Measure Type"),
+        title=_("Measure Type"),
         required=True,
         default="A",
         vocabulary="eea.climateadapt.acemeasure_types",
     )
 
     health_impacts = List(
-        title=_(u"Health impacts"),
+        title=_("Health impacts"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.health_impacts"),
     )
 
     include_in_observatory = Bool(
-        title=_(u"Include in observatory"), required=False, default=False
+        title=_("Include in observatory"), required=False, default=False
     )
 
     include_in_mission = Bool(
-        title=_(u"Include in the Mission Portal"), required=False, default=False
+        title=_("Include in the Mission Portal"), required=False, default=False
     )
 
-    important = Bool(title=_(u"High importance"),
-                     required=False, default=False)
+    important = Bool(title=_("High importance"), required=False, default=False)
 
-    rating = Int(title=_(u"Rating"), required=True, default=0)
+    # rating = Int(title=_("Rating"), required=True, default=0)
 
     special_tags = Tuple(
-        title=_(u"Special tagging"),
+        title=_("Special tagging"),
         description=_(
-            u"Used only by Climate-ADAPT administrator. Please don't "
-            u"compile this field if you are a Climate-ADAPT expert creating a new "
-            u"item."
+            "Used only by Climate-ADAPT administrator. Please don't "
+            "compile this field if you are a Climate-ADAPT expert creating a new "
+            "item."
         ),
         required=False,
         value_type=TextLine(),
@@ -552,14 +551,14 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # )
 
     publication_date = Date(
-        title=_(u"Date of item's creation"),
-        description=u"The date refers to the moment in which the item "
-        u"has been prepared or  updated by contributing "
-        u"experts to be submitted for the publication in "
-        u"Climate ADAPT."
-        u" Please use the Calendar icon to add day/month/year. If you want to "
-        u'add only the year, please select "day: 1", "month: January" '
-        u"and then the year",
+        title=_("Date of item's creation"),
+        description="The date refers to the moment in which the item "
+        "has been prepared or  updated by contributing "
+        "experts to be submitted for the publication in "
+        "Climate ADAPT."
+        " Please use the Calendar icon to add day/month/year. If you want to "
+        'add only the year, please select "day: 1", "month: January" '
+        "and then the year",
         required=True,
     )
 
@@ -608,12 +607,12 @@ alsoProvides(IAceMeasure["publication_date"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["sectors"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["special_tags"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["websites"], ILanguageIndependentField)
-alsoProvides(IAceMeasure['implementation_type'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['important'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['measure_type'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['rating'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['spatial_layer'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['spatial_values'], ILanguageIndependentField)
+alsoProvides(IAceMeasure["implementation_type"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["important"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["measure_type"], ILanguageIndependentField)
+# alsoProvides(IAceMeasure["rating"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["spatial_layer"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["spatial_values"], ILanguageIndependentField)
 
-from collective.geolocationbehavior.geolocation import IGeolocatable
-alsoProvides(IGeolocatable['geolocation'], ILanguageIndependentField)
+
+alsoProvides(IGeolocatable["geolocation"], ILanguageIndependentField)
