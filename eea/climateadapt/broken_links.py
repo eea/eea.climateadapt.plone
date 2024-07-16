@@ -1,5 +1,3 @@
-from eea.climateadapt.restapi.slate import iterate_children
-from plone.restapi.behaviors import IBlocks
 import logging
 import re
 from collections import defaultdict
@@ -10,11 +8,12 @@ from BeautifulSoup import BeautifulSoup
 from DateTime import DateTime
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemataForType
+from plone.restapi.behaviors import IBlocks
 from Products.CMFPlone.utils import getToolByName
-from ZODB.PersistentMapping import PersistentMapping
 from zope.annotation.interfaces import IAnnotations
 
 from eea.climateadapt.behaviors.aceitem import IAceItem
+from eea.climateadapt.restapi.slate import iterate_children
 
 logger = logging.getLogger("eea.climateadapt")
 
