@@ -282,7 +282,6 @@ def recursively_extract_links(site):
             logger.info("Done %s objects" % count)
 
     logger.info("Finished getting links.")
-    __import__("pdb").set_trace()
 
     return urls
 
@@ -294,13 +293,6 @@ def compute_broken_links(site):
     annot = IAnnotations(site)["broken_links_data"]
     now = DateTime()
     links = recursively_extract_links(site)
-
-    # if isinstance(annot, list):
-    #     # store old data
-    #     old_data = annot
-    #     annot = PersistentMapping()
-    #     IAnnotations(site)["broken_links_data"] = annot
-    #     annot["pre_nov7_data"] = old_data
 
     for info in links:
         res = check_link(info["link"])
