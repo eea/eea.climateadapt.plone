@@ -1,3 +1,5 @@
+from eea.climateadapt.restapi.slate import iterate_children
+from plone.restapi.behaviors import IBlocks
 import logging
 import re
 from collections import defaultdict
@@ -178,8 +180,63 @@ def convert_aceitem(obj):
     return urls
 
 
+def iterate_blocks(obj):
+    blocks = getattr(obj, "blocks", None)
+    layout = getattr(obj, "blocks_layout", {})
+
+    if not blocks:
+        raise StopIteration
+
+    if layout:
+        items = layout.get("items")
+        for uid in items:
+            block = blocks[uid]
+            if block:
+                yield block
+
+
+def handle_link(node):
+    url = node.get("data", {}).get("url")
+    return url
+
+
+SLATE_NODE_HANDLERS = {"link": handle_link}
+
+
+def extract_slate(block):
+    value = (block or {}).get("value", [])
+    children = iterate_children(value or [])
+    urls = []
+
+    for child in children:
+        node_type = child.get("type")
+        if node_type:
+            handler = SLATE_NODE_HANDLERS.get(node_type)
+            if handler:
+                link = handler(child)
+                if link:
+                    urls.append(link)
+
+    return urls
+
+
+BLOCK_EXTRACTORS = {"slate": extract_slate}
+
+
+def convert_blocks(obj):
+    urls = []
+    for block in iterate_blocks(obj):
+        if not block:
+            continue
+        extractor = BLOCK_EXTRACTORS.get(block.get("@type"))
+        if extractor:
+            urls.extend(extractor(block))
+    return urls
+
+
 CONVERTORS = {
     IAceItem: convert_aceitem,
+    IBlocks: convert_blocks,
 }
 
 
