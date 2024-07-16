@@ -161,9 +161,8 @@ def extract_richtext(obj, fieldname):
         text = field.output
         if text:
             bs = BeautifulSoup(text)
-            urls = bs.findAll("a", attrs={"href": re.compile("^https?://")})
-            if urls:
-                __import__("pdb").set_trace()
+            links = bs.findAll("a", attrs={"href": re.compile("^https?://")})
+            urls.extend([link.get("href") for link in links])
     elif isinstance(field, basestring):
         urls = discover_links(field)
 
