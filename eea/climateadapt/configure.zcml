@@ -1,21 +1,21 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:zcml="http://namespaces.zope.org/zcml"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:grok="http://namespaces.zope.org/grok"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:monkey="http://namespaces.plone.org/monkey"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
-    i18n_domain="eea.climateadapt"
-    >
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
 
   <include
-      package="plone.restapi"
-      file="permissions.zcml"
-      />
+    package="plone.restapi"
+    file="permissions.zcml"
+  />
 
   <plone:CORSPolicy
     allow_origin="http://localhost:3000"
@@ -24,404 +24,405 @@
     expose_headers="Content-Length"
     allow_headers="Accept,Authorization,Content-Type"
     max_age="3600"
-    />
+  />
 
   <includeDependencies package="." />
 
   <i18n:registerTranslations directory="locales" />
 
   <include
-      package="plone.resource"
-      file="meta.zcml"
-      />
+    package="plone.resource"
+    file="meta.zcml"
+  />
   <include
-      package="z3c.jbot"
-      file="meta.zcml"
-      />
+    package="z3c.jbot"
+    file="meta.zcml"
+  />
   <include package="plone.app.theming" />
   <include package="plone.app.async" />
-  <include package="plone.app.registry" />
+  <include
+    package="plone.app.registry" />
 
   <include package=".asynctasks" />
   <include package=".widgets" />
-  <include package=".browser" />
+  <include
+    package=".browser" />
   <include package=".tiles" />
   <!-- <include package=".sat" /> -->
   <!-- <include package="._importer" /> -->
   <include package=".upgrades" />
-  <include package=".restapi" />
+  <include
+    package=".restapi" />
   <include package=".behaviors" />
   <include package=".translation" />
-  <include package=".migration" />
+  <include
+    package=".migration" />
   <configure zcml:condition="not-installed Products.CMFPlone.image_scales">
     <include package=".image_scales" />
   </configure>
 
   <include file="skins.zcml" />
-  <include file="profiles.zcml" />
+  <include
+    file="profiles.zcml" />
   <include file="stringinterp.zcml" />
   <include file="cache.zcml" />
-  <include file="contentrules.zcml" />
+  <include
+    file="contentrules.zcml" />
   <include file="theme.zcml" />
 
   <browser:jbot
-      directory="browser/pt-overrides"
-      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-      />
+    directory="browser/pt-overrides"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+  />
 
-  <class class=".acemeasure.CaseStudy">
+  <class
+    class=".acemeasure.CaseStudy">
     <implements interface="plone.app.imagecropping.dx.IImageCroppingDX" />
   </class>
 
-  <class class="collective.cover.content.Cover">
+  <class
+    class="collective.cover.content.Cover">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
   </class>
 
-  <class class="plone.app.contenttypes.content.Document">
+  <class
+    class="plone.app.contenttypes.content.Document">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
   </class>
 
-  <class class="eea.pdf.themes.page.body.Body">
+  <class
+    class="eea.pdf.themes.page.body.Body">
     <implements interface="plone.app.blocks.interfaces.IBlocksTransformEnabled" />
   </class>
 
-  <class class="plone.dexterity.content.Container">
+  <class
+    class="plone.dexterity.content.Container">
     <implements interface="eea.pdf.interfaces.ICollectionPDFAware" />
   </class>
 
-  <class class="plone.dexterity.content.Container">
+  <class
+    class="plone.dexterity.content.Container">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
   </class>
 
-  <class class="plone.namedfile.field.NamedBlobImage">
+  <class
+    class="plone.namedfile.field.NamedBlobImage">
     <implements interface="plone.rfc822.interfaces.IPrimaryField" />
-  </class>
-
-    -------[ Marker Interface for News/Events/Links ]-------
-
-  <class class="plone.app.contenttypes.content.Link">
+  </class> -------[ Marker
+  Interface for News/Events/Links ]------- <class class="plone.app.contenttypes.content.Link">
     <implements interface="eea.climateadapt.interfaces.INewsEventsLinks" />
   </class>
 
-  <class class="plone.app.contenttypes.content.NewsItem">
+  <class
+    class="plone.app.contenttypes.content.NewsItem">
     <implements interface="eea.climateadapt.interfaces.INewsEventsLinks" />
   </class>
 
-  <class class="plone.app.contenttypes.content.Event">
+  <class
+    class="plone.app.contenttypes.content.Event">
     <implements interface="eea.climateadapt.interfaces.INewsEventsLinks" />
-  </class>
-
-    -------[ Catalog indexes adapters ]-------
-
+  </class> -------[
+  Catalog indexes adapters ]------- <adapter
+    factory=".catalog.aceitem_id"
+    name="aceitem_id"
+  />
   <adapter
-      factory=".catalog.aceitem_id"
-      name="aceitem_id"
-      />
+    factory=".catalog.acemeasure_id"
+    name="acemeasure_id"
+  />
   <adapter
-      factory=".catalog.acemeasure_id"
-      name="acemeasure_id"
-      />
+    factory=".catalog.aceproject_id"
+    name="aceproject_id"
+  />
   <adapter
-      factory=".catalog.aceproject_id"
-      name="aceproject_id"
-      />
+    factory=".catalog.countries"
+    name="countries"
+  />
   <adapter
-      factory=".catalog.countries"
-      name="countries"
-      />
+    factory=".catalog.imported_ids"
+    name="imported_ids"
+  />
   <adapter
-      factory=".catalog.imported_ids"
-      name="imported_ids"
-      />
+    factory=".catalog.search_type"
+    name="search_type"
+  />
   <adapter
-      factory=".catalog.search_type"
-      name="search_type"
-      />
+    factory=".catalog.search_type_for_newsevents"
+    name="search_type"
+  />
   <adapter
-      factory=".catalog.search_type_for_newsevents"
-      name="search_type"
-      />
-  <adapter
-      factory=".catalog.featured"
-      name="featured"
-      />
+    factory=".catalog.featured"
+    name="featured"
+  />
 
   <adapter
-      factory=".catalog.get_aceitem_description"
-      name="Description"
-      />
+    factory=".catalog.get_aceitem_description"
+    name="Description"
+  />
   <adapter
-      factory=".catalog.get_aceitem_description_indicator"
-      name="Description"
-      />
+    factory=".catalog.get_aceitem_description_indicator"
+    name="Description"
+  />
   <adapter
-      factory=".catalog.get_aceproject_description"
-      name="Description"
-      />
+    factory=".catalog.get_aceproject_description"
+    name="Description"
+  />
   <adapter
-      factory=".catalog.get_adaptation_option_description"
-      name="Description"
-      />
+    factory=".catalog.get_adaptation_option_description"
+    name="Description"
+  />
 
   <adapter
-      factory=".catalog.get_casestudy_description"
-      name="Description"
-      />
+    factory=".catalog.get_casestudy_description"
+    name="Description"
+  />
 
   <adapter
-      factory=".catalog.cover_description"
-      name="Description"
-      />
+    factory=".catalog.cover_description"
+    name="Description"
+  />
 
   <adapter
-      factory=".catalog.image_field_indexer"
-      name="image_field"
-      />
+    factory=".catalog.image_field_indexer"
+    name="image_field"
+  />
 
   <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
 
   <adapter
-      factory=".catalog.bio_regions"
-      name="bio_regions"
-      />
+    factory=".catalog.bio_regions"
+    name="bio_regions"
+  />
   <adapter
-      factory=".catalog.macro_regions"
-      name="macro_regions"
-      />
-  <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> -->
-
-    ----[ Vocabularies: ]------
-
-  <utility
-      name="eea.climateadapt.aceitems_datatypes"
-      component=".vocabulary.aceitem_datatypes_vocabulary"
-      />
+    factory=".catalog.macro_regions"
+    name="macro_regions"
+  />
+  <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> --> ----[ Vocabularies: ]------ <utility
+    name="eea.climateadapt.aceitems_datatypes"
+    component=".vocabulary.aceitem_datatypes_vocabulary"
+  />
 
   <utility
-      name="eea.climateadapt.mission.budget_range"
-      component=".vocabulary.budget_ranges_vocabulary"
-      />
+    name="eea.climateadapt.mission.budget_range"
+    component=".vocabulary.budget_ranges_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.mission.type_of_funding"
-      component=".vocabulary.type_of_funding_vocabulary"
-      />
+    name="eea.climateadapt.mission.type_of_funding"
+    component=".vocabulary.type_of_funding_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.aceitems_storagetypes"
-      component=".vocabulary.aceitem_storagetypes_vocabulary"
-      />
+    name="eea.climateadapt.aceitems_storagetypes"
+    component=".vocabulary.aceitem_storagetypes_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.aceitems_sectors"
-      component=".vocabulary.aceitem_sectors_vocabulary"
-      />
+    name="eea.climateadapt.aceitems_sectors"
+    component=".vocabulary.aceitem_sectors_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.aceitems_elements"
-      component=".vocabulary.aceitem_elements_vocabulary"
-      />
+    name="eea.climateadapt.aceitems_elements"
+    component=".vocabulary.aceitem_elements_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.aceitems_elements_case_study"
-      component=".vocabulary.aceitem_elements_case_study_vocabulary"
-      />
+    name="eea.climateadapt.aceitems_elements_case_study"
+    component=".vocabulary.aceitem_elements_case_study_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.aceitems_climateimpacts"
-      component=".vocabulary.aceitem_climateimpacts_vocabulary"
-      />
+    name="eea.climateadapt.aceitems_climateimpacts"
+    component=".vocabulary.aceitem_climateimpacts_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.aceitems_featured"
-      component=".vocabulary.aceitem_featured_vocabulary"
-      />
+    name="eea.climateadapt.aceitems_featured"
+    component=".vocabulary.aceitem_featured_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.aceitems_relevance"
-      component=".vocabulary.aceitem_relevance_vocabulary"
-      />
+    name="eea.climateadapt.aceitems_relevance"
+    component=".vocabulary.aceitem_relevance_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.aceitems_governancelevel"
-      component=".vocabulary.governance_level"
-      />
+    name="eea.climateadapt.aceitems_governancelevel"
+    component=".vocabulary.governance_level"
+  />
   <utility
-      name="eea.climateadapt.event_language"
-      component=".vocabulary.language"
-      />
+    name="eea.climateadapt.event_language"
+    component=".vocabulary.language"
+  />
 
   <utility
-      name="eea.climateadapt.aceitems_category"
-      component=".vocabulary.category"
-      />
+    name="eea.climateadapt.aceitems_category"
+    component=".vocabulary.category"
+  />
   <utility
-      name="eea.climateadapt.aceitems_ipcc_category"
-      component=".vocabulary.ipcc_category"
-      />
+    name="eea.climateadapt.aceitems_ipcc_category"
+    component=".vocabulary.ipcc_category"
+  />
   <utility
-      name="eea.climateadapt.aceitems_key_type_measures"
-      component=".vocabulary.key_type_measures"
-      />
+    name="eea.climateadapt.aceitems_key_type_measures"
+    component=".vocabulary.key_type_measures"
+  />
   <utility
-      name="eea.climateadapt.aceitems_key_type_measures_short"
-      component=".vocabulary.key_type_measures_short"
-      />
+    name="eea.climateadapt.aceitems_key_type_measures_short"
+    component=".vocabulary.key_type_measures_short"
+  />
   <utility
-      name="eea.climateadapt.acemeasure_implementationtype"
-      component=".vocabulary.acemeasure_implementationtype_vocabulary"
-      />
+    name="eea.climateadapt.acemeasure_implementationtype"
+    component=".vocabulary.acemeasure_implementationtype_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.ace_countries"
-      component=".vocabulary.ace_countries_vocabulary"
-      />
+    name="eea.climateadapt.ace_countries"
+    component=".vocabulary.ace_countries_vocabulary"
+  />
   <utility
-      name="eea.climateadapt.acemeasure_types"
-      component=".vocabulary.acemeasure_types"
-      />
+    name="eea.climateadapt.acemeasure_types"
+    component=".vocabulary.acemeasure_types"
+  />
   <utility
-      name="eea.climateadapt.origin_website"
-      component=".vocabulary.origin_website"
-      />
+    name="eea.climateadapt.origin_website"
+    component=".vocabulary.origin_website"
+  />
   <utility
-      name="eea.climateadapt.health_impacts"
-      component=".vocabulary.health_impacts"
-      />
+    name="eea.climateadapt.health_impacts"
+    component=".vocabulary.health_impacts"
+  />
   <utility
-      name="eea.climateadapt.funding_programme"
-      component=".vocabulary.funding_programme"
-      />
+    name="eea.climateadapt.funding_programme"
+    component=".vocabulary.funding_programme"
+  />
   <utility
-      name="eea.climateadapt.key_community_systems"
-      component=".vocabulary.key_community_systems"
-      />
+    name="eea.climateadapt.key_community_systems"
+    component=".vocabulary.key_community_systems"
+  />
   <utility
-      name="eea.climateadapt.climate_threats"
-      component=".vocabulary.climate_threats"
-      />
+    name="eea.climateadapt.climate_threats"
+    component=".vocabulary.climate_threats"
+  />
   <utility
-      name="eea.climateadapt.cca_types"
-      component=".vocabulary.cca_types"
-      />
+    name="eea.climateadapt.cca_types"
+    component=".vocabulary.cca_types"
+  />
 
   <utility
-      name="eea.climateadapt.special_tags"
-      component=".vocabulary.SpecialTagsVocabularyFactory"
-      />
+    name="eea.climateadapt.special_tags"
+    component=".vocabulary.SpecialTagsVocabularyFactory"
+  />
   <utility
-      name="eea.climateadapt.keywords"
-      component=".vocabulary.KeywordsVocabularyFactory"
-      />
+    name="eea.climateadapt.keywords"
+    component=".vocabulary.KeywordsVocabularyFactory"
+  />
   <utility
-      name="eea.climateadapt.object_provides"
-      component=".vocabulary.ObjectProvidesVocabulary"
-      />
+    name="eea.climateadapt.object_provides"
+    component=".vocabulary.ObjectProvidesVocabulary"
+  />
 
   <utility
-      name="eea.climateadapt.faceted_elements_voc"
-      component=".vocabulary.faceted_elements"
-      />
+    name="eea.climateadapt.faceted_elements_voc"
+    component=".vocabulary.faceted_elements"
+  />
   <utility
-      factory=".vocabulary.AdaptationOptionsVocabulary"
-      name="eea.climateadapt.adaptation_options"
-      />
+    factory=".vocabulary.AdaptationOptionsVocabulary"
+    name="eea.climateadapt.adaptation_options"
+  />
   <utility
-      factory=".vocabulary.CaseStudiesVocabulary"
-      name="eea.climateadapt.case_studies"
-      />
+    factory=".vocabulary.CaseStudiesVocabulary"
+    name="eea.climateadapt.case_studies"
+  />
   <utility
-      factory=".vocabulary.OrganisationsVocabulary"
-      name="eea.climateadapt.organisations"
-      />
+    factory=".vocabulary.OrganisationsVocabulary"
+    name="eea.climateadapt.organisations"
+  />
   <utility
-      name="eea.climateadapt.faceted_countries"
-      component=".vocabulary.faceted_countries_vocabulary"
-      />
+    name="eea.climateadapt.faceted_countries"
+    component=".vocabulary.faceted_countries_vocabulary"
+  />
   <utility
-      factory=".vocabulary.CCAItemsVocabulary"
-      name="eea.climateadapt.cca_items"
-      />
-
-  <utility
-      name="eea.climateadapt.rich_header_level"
-      component=".vocabulary.rich_header_level"
-      />
+    factory=".vocabulary.CCAItemsVocabulary"
+    name="eea.climateadapt.cca_items"
+  />
 
   <utility
-      name="eea.climateadapt.rast_steps"
-      component=".vocabulary.rast_steps_vocabulary"
-      />
+    name="eea.climateadapt.rich_header_level"
+    component=".vocabulary.rich_header_level"
+  />
 
   <utility
-      name="eea.climateadapt.eligible_entities"
-      component=".vocabulary.eligible_entities_vocabulary"
-      />
+    name="eea.climateadapt.rast_steps"
+    component=".vocabulary.rast_steps_vocabulary"
+  />
 
   <utility
-      name="eea.climateadapt.readiness_for_use"
-      component=".vocabulary.readiness_for_use_vocabulary"
-      />
+    name="eea.climateadapt.eligible_entities"
+    component=".vocabulary.eligible_entities_vocabulary"
+  />
 
   <utility
-      name="eea.climateadapt.geographical_scale"
-      component=".vocabulary.geographical_scale_vocabulary"
-      />
+    name="eea.climateadapt.readiness_for_use"
+    component=".vocabulary.readiness_for_use_vocabulary"
+  />
 
   <utility
-      name="eea.climateadapt.tool_language"
-      component=".vocabulary.tool_language_vocabulary"
-      />
+    name="eea.climateadapt.geographical_scale"
+    component=".vocabulary.geographical_scale_vocabulary"
+  />
 
   <utility
-      name="eea.climateadapt.most_useful_for"
-      component=".vocabulary.most_useful_for_vocabulary"
-      />
+    name="eea.climateadapt.tool_language"
+    component=".vocabulary.tool_language_vocabulary"
+  />
 
   <utility
-      name="eea.climateadapt.user_requirements"
-      component=".vocabulary.user_requirements_vocabulary"
-      />
+    name="eea.climateadapt.most_useful_for"
+    component=".vocabulary.most_useful_for_vocabulary"
+  />
 
-    ------[ Marker interfaces: ]--------
-
-  <interface interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
-  <interface interface="eea.climateadapt.interfaces.IMainTransnationalRegionMarker" />
-  <interface interface="eea.climateadapt.interfaces.IASTNavigationRoot" />
-  <interface interface="eea.climateadapt.interfaces.ISiteSearchFacetedView" />
-  <interface interface="eea.climateadapt.interfaces.IClimateAdaptSharePage" />
-  <interface interface="eea.climateadapt.interfaces.ICountriesRoot" />
-  <interface interface="eea.climateadapt.interfaces.ICitiesListingsRoot" />
-  <interface interface="eea.climateadapt.interfaces.ICCACountry" />
-
-
-    ------[ Widgets: ]--------
-
-  <adapter factory=".browser.admin.CcaItemsFieldWidget" />
-
-    ------[ Subscribers: ]--------
-
-  <subscriber
-      for="plone.dexterity.interfaces.IDexterityContent
+  <utility
+    name="eea.climateadapt.user_requirements"
+    component=".vocabulary.user_requirements_vocabulary"
+  /> ------[ Marker interfaces: ]-------- <interface
+    interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
+  <interface
+    interface="eea.climateadapt.interfaces.IMainTransnationalRegionMarker" />
+  <interface
+    interface="eea.climateadapt.interfaces.IASTNavigationRoot" />
+  <interface
+    interface="eea.climateadapt.interfaces.ISiteSearchFacetedView" />
+  <interface
+    interface="eea.climateadapt.interfaces.IClimateAdaptSharePage" />
+  <interface
+    interface="eea.climateadapt.interfaces.ICountriesRoot" />
+  <interface
+    interface="eea.climateadapt.interfaces.ICitiesListingsRoot" />
+  <interface
+    interface="eea.climateadapt.interfaces.ICCACountry" /> ------[ Widgets: ]-------- <adapter
+    factory=".browser.admin.CcaItemsFieldWidget" /> ------[ Subscribers: ]-------- <subscriber
+    for="plone.dexterity.interfaces.IDexterityContent
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-      handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
-      />
+    handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+  />
 
   <subscriber
-      for="plone.dexterity.interfaces.IDexterityContent
+    for="plone.dexterity.interfaces.IDexterityContent
            Products.CMFCore.interfaces.IActionSucceededEvent"
-      handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
-      />
+    handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
+  />
 
   <subscriber
-      for="zope.interface.Interface
+    for="zope.interface.Interface
            Products.CMFCore.interfaces.IActionSucceededEvent"
-      handler=".events.invalidate_cache_faceted_object_row"
-      />
+    handler=".events.invalidate_cache_faceted_object_row"
+  />
 
   <subscriber
-      for="zope.interface.Interface
+    for="zope.interface.Interface
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-      handler=".events.invalidate_cache_faceted_object_row"
-      />
+    handler=".events.invalidate_cache_faceted_object_row"
+  />
 
   <subscriber
-      for="eea.climateadapt.acemeasure.IAceMeasure
+    for="eea.climateadapt.acemeasure.IAceMeasure
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
-      handler=".acemeasure.handle_measure_added"
-      />
+    handler=".acemeasure.handle_measure_added"
+  />
 
-<!--
+  <!--
   <subscriber
       for="eea.climateadapt.acemeasure.ICaseStudy
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
@@ -442,158 +443,146 @@
 -->
 
   <subscriber
-      factory=".marshaller.GeoCharsFieldModifier"
-      provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
-      />
+    factory=".marshaller.GeoCharsFieldModifier"
+    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
+  />
 
   <subscriber
-      factory=".marshaller.CountryModifier"
-      provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
-      />
+    factory=".marshaller.CountryModifier"
+    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
+  />
 
   <subscriber
-      factory=".marshaller.ContributorModifier"
-      provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
-      />
+    factory=".marshaller.ContributorModifier"
+    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
+  />
 
   <subscriber
-      factory=".marshaller.IssuedFieldModifier"
-      provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
-      />
+    factory=".marshaller.IssuedFieldModifier"
+    provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
+  />
 
-  <adapter factory=".marshaller.Geolocation2Surf" />
+  <adapter
+    factory=".marshaller.Geolocation2Surf" />
   <adapter factory=".marshaller.File2Surf" />
-  <adapter factory=".marshaller.Image2Surf" />
+  <adapter
+    factory=".marshaller.Image2Surf" />
   <adapter factory=".marshaller.Collection2Surf" />
   <adapter
-      factory=".marshaller.CountryTitle2Surf"
-      name="title"
-      />
-
-    ------[ Workflow Message Functionality: ]--------
-
-  <subscriber
-      for=".workflow.IWorkflowMessageEvent"
-      handler=".events.trigger_contentrules"
-      />
+    factory=".marshaller.CountryTitle2Surf"
+    name="title"
+  /> ------[ Workflow Message Functionality: ]-------- <subscriber
+    for=".workflow.IWorkflowMessageEvent"
+    handler=".events.trigger_contentrules"
+  />
 
   <interface
-      interface=".workflow.IWorkflowMessageEvent"
-      type="plone.contentrules.rule.interfaces.IRuleEventType"
-      name="ClimateAdapt: workflow transition with message"
-      />
+    interface=".workflow.IWorkflowMessageEvent"
+    type="plone.contentrules.rule.interfaces.IRuleEventType"
+    name="ClimateAdapt: workflow transition with message"
+  />
 
   <adapter
-      factory=".workflow.workflow_message"
-      provides="plone.stringinterp.interfaces.IStringSubstitution"
-      for="*"
-      name="cca_workflow_message"
-      />
+    factory=".workflow.workflow_message"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    for="*"
+    name="cca_workflow_message"
+  />
 
   <browser:page
-      name="set_workflow_message"
-      for="Products.CMFCore.interfaces.IContentish"
-      class=".workflow.WorkflowTransitionMessage"
-      permission="cmf.ReviewPortalContent"
-      />
-
-    ------[ Workflow transitions: ]--------
-  <subscriber
-      for="zope.interface.Interface
+    name="set_workflow_message"
+    for="Products.CMFCore.interfaces.IContentish"
+    class=".workflow.WorkflowTransitionMessage"
+    permission="cmf.ReviewPortalContent"
+  /> ------[ Workflow transitions: ]-------- <subscriber
+    for="zope.interface.Interface
       Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-      handler=".events.handle_workflow_change"
-      />
-
-    ------[ Indicator Message Functionality: ]--------
-
-  <subscriber
-      for=".indicator.IIndicatorMessageEvent"
-      handler=".events.trigger_indicator_contentrule"
-      />
+    handler=".events.handle_workflow_change"
+  /> ------[ Indicator Message Functionality: ]-------- <subscriber
+    for=".indicator.IIndicatorMessageEvent"
+    handler=".events.trigger_indicator_contentrule"
+  />
 
   <interface
-      interface=".indicator.IIndicatorMessageEvent"
-      type="plone.contentrules.rule.interfaces.IRuleEventType"
-      name="Indicator modified"
-      />
+    interface=".indicator.IIndicatorMessageEvent"
+    type="plone.contentrules.rule.interfaces.IRuleEventType"
+    name="Indicator modified"
+  />
 
   <adapter
-      factory=".indicator.indicator_message"
-      provides="plone.stringinterp.interfaces.IStringSubstitution"
-      for="*"
-      name="cca_indicator_message"
-      />
+    factory=".indicator.indicator_message"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    for="*"
+    name="cca_indicator_message"
+  />
 
   <subscriber
-      for="plone.app.iterate.interfaces.IWorkingCopy
+    for="plone.app.iterate.interfaces.IWorkingCopy
            OFS.interfaces.IObjectWillBeRemovedEvent"
-      handler=".events.handle_iterate_wc_deletion"
-      />
+    handler=".events.handle_iterate_wc_deletion"
+  />
 
   <adapter
-      factory=".traversal.AcquisitionNamespace"
-      name="aq"
-      />
+    factory=".traversal.AcquisitionNamespace"
+    name="aq"
+  />
 
   <subscriber
-      for="plone.dexterity.interfaces.IDexterityContent
+    for="plone.dexterity.interfaces.IDexterityContent
            zope.lifecycleevent.interfaces.IObjectRemovedEvent"
-      handler=".events.remove_broken_relations"
-      />
-
-    ------[ Monkey Patched ]--------
-
-  <include package="collective.monkeypatcher" />
+    handler=".events.remove_broken_relations"
+  /> ------[ Monkey Patched ]-------- <include
+    package="collective.monkeypatcher" />
 
   <monkey:patch
-      original="isLinked"
-      replacement="eea.climateadapt.isLinked"
-      module="Products.CMFPlone.utils"
-      description="Patch Plone isLinked"
-      preserveOriginal="false"
-      />
+    original="isLinked"
+    replacement="eea.climateadapt.isLinked"
+    module="Products.CMFPlone.utils"
+    description="Patch Plone isLinked"
+    preserveOriginal="false"
+  />
 
   <monkey:patch
-      original="getCache"
-      replacement="eea.climateadapt.patch.getCache"
-      module="plone.app.theming.transform"
-      description="Patch getCache"
-      preserveOriginal="false"
-      />
+    original="getCache"
+    replacement="eea.climateadapt.patch.getCache"
+    module="plone.app.theming.transform"
+    description="Patch getCache"
+    preserveOriginal="false"
+  />
 
   <monkey:patch
-      description="Refs #159767 - Fix plone.app.search to include language filter"
-      class="plone.app.search.browser.Search"
-      original="results"
-      preserveOriginal="false"
-      replacement="eea.climateadapt.patch.results" />
+    description="Refs #159767 - Fix plone.app.search to include language filter"
+    class="plone.app.search.browser.Search"
+    original="results"
+    preserveOriginal="false"
+    replacement="eea.climateadapt.patch.results" />
 
   <monkey:patch
-      description="Refs #162035 - Make internal ZCatalog compatible with Plone 6"
-      class="plone.restapi.serializer.summary.DefaultJSONSummarySerializer"
-      original="metadata_fields"
-      preserveOriginal="false"
-      replacement="eea.climateadapt.patch.metadata_fields" />
+    description="Refs #162035 - Make internal ZCatalog compatible with Plone 6"
+    class="plone.restapi.serializer.summary.DefaultJSONSummarySerializer"
+    original="metadata_fields"
+    preserveOriginal="false"
+    replacement="eea.climateadapt.patch.metadata_fields" />
 
     <monkey:patch
-      description="Patch getTerm to fix UnicodeEncodeError: 'ascii' codec can't encode character..."
-      class="plone.app.vocabularies.users.UsersVocabulary"
-      original="getTerm"
-      preserveOriginal="false"
-      replacement="eea.climateadapt.patch.getTerm" />
+    description="Patch getTerm to fix UnicodeEncodeError: 'ascii' codec can't encode character..."
+    class="plone.app.vocabularies.users.UsersVocabulary"
+    original="getTerm"
+    preserveOriginal="false"
+    replacement="eea.climateadapt.patch.getTerm" />
 
     <monkey:patch
-      description="Refs #252993 - Patch _get_events to exclude events from Mission subsite."
-      class="plone.app.event.browser.event_listing.EventListing"
-      original="_get_events"
-      preserveOriginal="false"
-      replacement="eea.climateadapt.patch._get_events" />
+    description="Refs #252993 - Patch _get_events to exclude events from Mission subsite."
+    class="plone.app.event.browser.event_listing.EventListing"
+    original="_get_events"
+    preserveOriginal="false"
+    replacement="eea.climateadapt.patch._get_events" />
 
     <monkey:patch
-      description="Patch _modified_since in scales AnnotationStorage to avoid invalidation of scales in the same transaction"
-      class="plone.scale.storage.AnnotationStorage"
-      original="_modified_since"
-      preserveOriginal="true"
-      replacement="eea.climateadapt.patch.__patched_modified_since" />
+    description="Patch _modified_since in scales AnnotationStorage to avoid invalidation of scales in the same transaction"
+    class="plone.scale.storage.AnnotationStorage"
+    original="_modified_since"
+    preserveOriginal="true"
+    replacement="eea.climateadapt.patch.__patched_modified_since" />
 
 </configure>
