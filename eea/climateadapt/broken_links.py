@@ -75,10 +75,11 @@ def discover_links(string_to_search):
     return result
 
 
-def check_link(link):
+def check_link_status(link):
     """Check the links and return only the broken ones with the respective
     status codes
     """
+    # return {"status": "404", "url": link}
 
     if link:
         if isinstance(link, unicode):
@@ -298,15 +299,15 @@ def compute_broken_links(site):
 
     results = []
     annot = IAnnotations(site)["broken_links_data"]
-    now = DateTime()
     links = recursively_extract_links(site)
 
     for info in links:
-        res = check_link(info["link"])
+        res = check_link_status(info["link"])
         if res is not None:
             res["object_url"] = info["object_url"]
             results.append(res)
 
+    now = DateTime()
     annot[now] = results
     dates = annot.keys()
 
@@ -332,9 +333,9 @@ class BrokenLinksService(Service):
     #
     #     return state == 'published'
 
-    def url(self, path):
-        path = "/".join(path[2:])
-        return path
+    # def url(self, path):
+    #     path = "/".join(path[2:])
+    #     return path
 
     def results(self):
         portal = api.portal.get()
@@ -344,6 +345,7 @@ class BrokenLinksService(Service):
 
         broken_links = []
 
+        # __import__("pdb").set_trace()
         for date in latest_dates:
             for info in annot[date]:
                 if "en" not in info["object_url"]:
@@ -370,7 +372,8 @@ class BrokenLinksService(Service):
 
                     item["url"] = info["url"]
                     item["status"] = info["status"]
-                    item["object_url"] = self.url(info["object_url"])
+                    item["object_url"] = info["object_url"].replace(
+                        "/cca/", "/")
 
                     broken_links.append(item)
 
