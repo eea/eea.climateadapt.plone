@@ -852,14 +852,6 @@
   />
 
   <browser:page
-    name="broken-links"
-    for="*"
-    class=".misc.DetectBrokenLinksView"
-    template="pt/detect_links.pt"
-    permission="zope2.View"
-  />
-
-  <browser:page
     name="export-excel"
     for="*"
     class=".misc.ExcelCsvExportView"

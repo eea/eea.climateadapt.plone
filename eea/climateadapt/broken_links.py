@@ -1,19 +1,27 @@
 import logging
 import re
 from collections import defaultdict
+from datetime import datetime
+from io import BytesIO
 
 import requests
 import transaction
+import xlsxwriter
 from BeautifulSoup import BeautifulSoup
 from DateTime import DateTime
+from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemataForType
 from plone.restapi.behaviors import IBlocks
+from plone.restapi.services import Service
 from Products.CMFPlone.utils import getToolByName
 from zope.annotation.interfaces import IAnnotations
 
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from eea.climateadapt.restapi.slate import iterate_children
+
+# from Products.Five.browser import BrowserView
+# from plone.api.content import get_state
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -308,3 +316,134 @@ def compute_broken_links(site):
 
     IAnnotations(site)._p_changed = True
     transaction.commit()
+
+
+class BrokenLinksService(Service):
+    """Get workflow information"""
+
+    items_to_display = 200
+
+    # def show_obj(self, path):
+    #     """ Don't show objects which are not published
+    #     """
+    #     path = '/'.join(path)
+    #     obj = self.context.restrictedTraverse(path)
+    #     state = get_state(obj)
+    #
+    #     return state == 'published'
+
+    def url(self, path):
+        path = "/".join(path[2:])
+        return path
+
+    def results(self):
+        portal = api.portal.get()
+        annot = IAnnotations(portal)["broken_links_data"]
+        latest_dates = sorted(annot.keys())[-5:]
+        res = {}
+
+        broken_links = []
+
+        for date in latest_dates:
+            for info in annot[date]:
+                if "en" not in info["object_url"]:
+                    continue
+
+                item = {}
+
+                # try:
+                #     obj = self.context.unrestrictedTraverse(info["object_url"])
+                # except:
+                #     continue
+                # state = get_state(obj)
+                state = None
+                if state not in ["private", "archived"]:
+                    if "climate-adapt.eea" in info["url"]:
+                        item["state"] = "internal"
+                    else:
+                        item["state"] = "external"
+
+                    item["date"] = date.Date() if isinstance(
+                        date, DateTime) else date
+                    if isinstance(date, str) and date == "pre_nov7_data":
+                        continue
+
+                    item["url"] = info["url"]
+                    item["status"] = info["status"]
+                    item["object_url"] = self.url(info["object_url"])
+
+                    broken_links.append(item)
+
+        broken_links.sort(key=lambda i: i["date"])
+
+        for link in broken_links:
+            res[link["url"]] = link
+
+        # self.chunk_index = int(self.request.form.get("index", 0)) or 0
+        # chunks = []
+        #
+        # for i in range(0, len(res), self.items_to_display):
+        #     chunks.append(dict(res.items()[i: i + self.items_to_display]))
+        #
+        # return chunks
+
+        return res
+
+    def data_to_xls(self, data):
+        headers = [
+            ("url", "Destination Links"),
+            ("status", "Status Code"),
+            ("object_url", "Object Url"),
+            ("date", "Date"),
+            ("state", "Type"),
+        ]
+
+        # Create a workbook and add a worksheet.
+        out = BytesIO()
+        workbook = xlsxwriter.Workbook(out, {"in_memory": True})
+
+        wtitle = "Broken-Links"
+        worksheet = workbook.add_worksheet(wtitle[:30])
+
+        for i, (key, title) in enumerate(headers):
+            worksheet.write(0, i, title or "")
+
+        row_index = 1
+
+        for chunk in data:
+            for url, row in chunk.items():
+                for i, (key, title) in enumerate(headers):
+                    value = row[key]
+                    worksheet.write(row_index, i, value or "")
+
+                row_index += 1
+
+        workbook.close()
+        out.seek(0)
+
+        return out
+
+    def download_as_excel(self):
+        xlsdata = self.results()
+        xlsio = self.data_to_xls(xlsdata)
+        sh = self.request.response.setHeader
+
+        sh(
+            "Content-Type",
+            "application/vnd.openxmlformats-officedocument." "spreadsheetml.sheet",
+        )
+        fname = "-".join(["Broken-Links",
+                         str(datetime.now().replace(microsecond=0))])
+        sh("Content-Disposition", "attachment; filename=%s.xlsx" % fname)
+
+        return xlsio.read()
+
+    def reply(self):
+        if "download-excel" in self.request.form:
+            return self.download_as_excel()
+
+        info = {
+            "@id": self.context.absolute_url() + "/@broken_links",
+            "broken_links": self.results(),
+        }
+        return info
