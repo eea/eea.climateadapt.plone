@@ -1,5 +1,22 @@
+from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
+                         TextLine, Tuple)
+from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
+from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+from eea.climateadapt import CcaAdminMessageFactory as _
+from zope.schema import (
+    URI,
+    Bool,
+    Choice,
+    Date,
+    Datetime,
+    List,
+    Text,
+    TextLine,
+    Tuple,
+)
 import json
 
+from plone.schema import JSONField
 from collective import dexteritytextindexer
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
@@ -17,23 +34,6 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer
-from zope.schema import (
-    URI,
-    Bool,
-    Choice,
-    Date,
-    Datetime,
-    List,
-    Text,
-    TextLine,
-    Tuple,
-)
-
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-
-from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
-
 # from z3c.relationfield.schema import RelationChoice
 
 GEOCHARS = {
@@ -126,6 +126,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
             "Please don't compile "
             "this field if you are a Climate-ADAPT expert "
             "creating a new item."
+
         ),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.origin_website"),
@@ -286,8 +287,8 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_("Adaptation elements"),
-        description=_("Select one or more elements."),
+        title=_(u"Adaptation approaches"),
+        description=_(u"Select one or more approaches."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
@@ -457,6 +458,24 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
         default={"items": aceproject_layout_items},
+        required=False,
+    )
+
+    blocks = JSONField(
+        title=_("Blocks"),
+        description=_("The JSON representation of the object blocks."),
+        schema=BLOCKS_SCHEMA,
+        default=aceproject_layout_blocks,
+        required=False,
+    )
+
+    blocks_layout = JSONField(
+        title=_("Blocks Layout"),
+        description=_("The JSON representation of the object blocks layout."),
+        schema=LAYOUT_SCHEMA,
+        default={
+            "items": aceproject_layout_items
+        },
         required=False,
     )
 
