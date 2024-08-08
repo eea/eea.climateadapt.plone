@@ -134,8 +134,8 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_("Adaptation elements"),
-        description=_("Select one or more elements."),
+        title=_("Adaptation approaches"),
+        description=_("Select one or more approaches."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements_case_study",
@@ -438,7 +438,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
                                             "@id": "ad026a59-e3e0-44a6-b809-46edead10a44",
                                             "field": {
                                                 "id": "elements",
-                                                "title": "Adaptation elements",
+                                                "title": "Adaptation approaches",
                                                 "widget": "array",
                                             },
                                         },
@@ -597,6 +597,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
                 "template": "default",
                 "verticalAlign": "flex-start",
             },
+
         },
         required=False,
     )
@@ -608,7 +609,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         default={
             "items": [
                 "3f1f3ddd-0c38-4408-9ab7-5191099dec50",
-                "d4ea2e59-b6ba-44e7-a720-06d31d9d3e5c",
+                "d4ea2e59-b6ba-44e7-a720-06d31d9d3e5c"
             ]
         },
         required=False,

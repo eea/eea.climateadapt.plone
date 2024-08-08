@@ -207,8 +207,8 @@ class IAceItem(IImageScaleTraversable):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_("Adaptation elements"),
-        description=_("Select one or more elements."),
+        title=_("Adaptation approaches"),
+        description=_("Select one or more approaches."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",

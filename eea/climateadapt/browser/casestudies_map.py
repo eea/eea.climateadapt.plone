@@ -143,6 +143,11 @@ class Items(BrowserView):
                 long_description = ""
                 if brain.long_description:
                     long_description = brain.long_description.raw
+                origin_adaptecca_value = 20
+                if (isinstance(obj.origin_website, list) and
+                        len(obj.origin_website) and
+                        "AdapteCCA" in obj.origin_website):
+                    origin_adaptecca_value = 10
                 results["features"].append(
                     {
                         "properties": {
@@ -159,9 +164,10 @@ class Items(BrowserView):
                             "adaptation_options_links": "<>".join(
                                 list_adaptation_options_links
                             ),
-                            "origin_adaptecca": 10
-                            if "AdapteCCA" in obj.origin_website
-                            else 20,
+                            "origin_adaptecca": origin_adaptecca_value,
+                            # "origin_adaptecca": 10
+                            # if "AdapteCCA" in obj.origin_website
+                            # else 20,
                             "sectors_str": ",".join(sectors_str),
                             "impacts_str": ",".join(impacts_str),
                             "elements_str": ",".join(elements_str),
