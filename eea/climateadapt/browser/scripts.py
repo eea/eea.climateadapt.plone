@@ -1,9 +1,15 @@
+# TODO: this file location is not ideal
+from eea.climateadapt.broken_links import compute_broken_links
+from eea.climateadapt.browser.external_links import (
+    AdapteCCACaseStudyImporter,
+    DRMKCImporter,
+)
+from eea.climateadapt.browser.misc import _archive_news
 from eea.climateadapt.scripts import get_plone_site
-from eea.climateadapt.browser.misc import _archive_news, compute_broken_links
-from eea.climateadapt.browser.external_links import AdapteCCACaseStudyImporter, DRMKCImporter
+
 
 def import_drmkc():
-    """ A cron callable script to get DRMKC projects
+    """A cron callable script to get DRMKC projects
 
     This should be run through the zope client script running machinery,:
 
@@ -16,7 +22,7 @@ def import_drmkc():
 
 
 def sync_adaptecca_casestudies():
-    """ A cron callable script to get AdapteCCA case studies
+    """A cron callable script to get AdapteCCA case studies
 
     This should be run through the zope client script running machinery,:
 
@@ -28,7 +34,7 @@ def sync_adaptecca_casestudies():
 
 
 def get_broken_links():
-    """ A cron callable script to get data regarding broken links
+    """A cron callable script to get data regarding broken links
 
     This should be run through the zope client script running machinery,:
 
@@ -39,7 +45,7 @@ def get_broken_links():
 
 
 def archive_news():
-    """ A cron callable script which archives news automatically
+    """A cron callable script which archives news automatically
 
     This should be run through the zope client script running machinery:
 
