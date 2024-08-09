@@ -7,6 +7,8 @@
 
   <adapter factory=".app.annotfactory" />
 
+  <include file="patches.zcml" />
+
   <include file="admin.zcml" />
   <include file="viewlets.zcml" />
 
@@ -32,30 +34,6 @@
 
   <browser:page
     for="*"
-    template="pt/list.pt"
-    class=".views.TranslationList"
-    name="translate-list"
-    permission="cmf.ManagePortal"
-    />
-
-  <browser:page
-    for="*"
-    template="pt/key.pt"
-    class=".views.TranslationList"
-    name="translate-key"
-    permission="cmf.ManagePortal"
-    />
-
-  <browser:page
-    for="*"
-    template="pt/report.pt"
-    class=".views.TranslationList"
-    name="translate-report"
-    permission="cmf.ManagePortal"
-    />
-
-  <browser:page
-    for="*"
     template="pt/export-menu-pot.pt"
     class=".export.MenuPot"
     name="export-menu-po"
@@ -71,7 +49,7 @@
 
   <browser:page
     for="*"
-    class=".volto.ToHtml"
+    class=".views.ToHtml"
     name="tohtml"
     permission="cmf.ManagePortal"
     template="pt/volto-html.pt"
@@ -91,11 +69,4 @@
       permission="cmf.ManagePortal"
       />
 
-
-  <browser:page
-      for="*"
-      class=".views.CreateTranslationStructure"
-      name="cts"
-      permission="cmf.ManagePortal"
-      />
 </configure>
