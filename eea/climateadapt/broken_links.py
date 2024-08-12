@@ -90,11 +90,13 @@ def check_link_status(link):
 
                 return {"status": 504, "url": link}
 
-        try:
-            if link[0:7].find("http") == -1:
-                link = "http://" + link
-        except Exception as err:
-            logger.error(err)
+        link = link.strip()
+        if link.startswith("."):
+            # we ignore relative links
+            return None
+
+        if not link.startswith("http"):
+            link = "https://" + link
 
         logger.warning("Now checking: %s", link)
 
@@ -324,19 +326,6 @@ class BrokenLinksService(Service):
 
     items_to_display = 200
 
-    # def show_obj(self, path):
-    #     """ Don't show objects which are not published
-    #     """
-    #     path = '/'.join(path)
-    #     obj = self.context.restrictedTraverse(path)
-    #     state = get_state(obj)
-    #
-    #     return state == 'published'
-
-    # def url(self, path):
-    #     path = "/".join(path[2:])
-    #     return path
-
     def results(self):
         portal = api.portal.get()
         annot = IAnnotations(portal)["broken_links_data"]
@@ -381,14 +370,6 @@ class BrokenLinksService(Service):
 
         for link in broken_links:
             res[link["url"]] = link
-
-        # self.chunk_index = int(self.request.form.get("index", 0)) or 0
-        # chunks = []
-        #
-        # for i in range(0, len(res), self.items_to_display):
-        #     chunks.append(dict(res.items()[i: i + self.items_to_display]))
-        #
-        # return chunks
 
         return res
 
@@ -449,4 +430,5 @@ class BrokenLinksService(Service):
             "@id": self.context.absolute_url() + "/@broken_links",
             "broken_links": self.results(),
         }
+
         return info
