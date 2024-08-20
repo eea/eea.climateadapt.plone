@@ -15,12 +15,12 @@ from plone.dexterity.utils import iterSchemataForType
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.services import Service
 from Products.CMFPlone.utils import getToolByName
+from Products.Five.browser import BrowserView
 from zope.annotation.interfaces import IAnnotations
 
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from eea.climateadapt.restapi.slate import iterate_children
 
-# from Products.Five.browser import BrowserView
 # from plone.api.content import get_state
 
 logger = logging.getLogger("eea.climateadapt")
@@ -79,8 +79,6 @@ def check_link_status(link):
     """Check the links and return only the broken ones with the respective
     status codes
     """
-    # return {"status": "404", "url": link}
-
     if link:
         if isinstance(link, unicode):
             try:
@@ -91,12 +89,18 @@ def check_link_status(link):
                 return {"status": 504, "url": link}
 
         link = link.strip()
-        if link.startswith("."):
-            # we ignore relative links
+
+        if (
+            link.startswith(".")
+            or ("resolveuid" in link)
+            or ("climate-adapt.eea" in link)
+        ):
             return None
 
         if not link.startswith("http"):
             link = "https://" + link
+
+        # return {"status": "404", "url": link}
 
         logger.warning("Now checking: %s", link)
 
@@ -112,14 +116,14 @@ def check_link_status(link):
             logger.info("Trying again with link: %s", link)
             try:
                 requests.head(link, timeout=30, allow_redirects=True)
-            except:
+            except Exception:
                 return {"status": "504", "url": link}
         except requests.exceptions.TooManyRedirects:
             logger.info("Redirected.")
             logger.info("Trying again with link: %s", link)
             try:
                 requests.head(link, timeout=30, allow_redirects=True)
-            except:
+            except Exception:
                 return {"status": "301", "url": link}
         except requests.exceptions.URLRequired:
             return {"status": "400", "url": link}
@@ -127,28 +131,28 @@ def check_link_status(link):
             return {"status": "305", "url": link}
         except requests.exceptions.HTTPError:
             return {"status": "505", "url": link}
-        except:
+        except Exception:
             return {"status": "404", "url": link}
 
     return
 
 
-PORTAL_TYPES = [
-    "eea.climateadapt.aceproject",
-    "eea.climateadapt.adaptationoption",
-    "eea.climateadapt.casestudy",
-    "eea.climateadapt.guidancedocument",
-    "eea.climateadapt.indicator",
-    "eea.climateadapt.informationportal",
-    "eea.climateadapt.mapgraphdataset",
-    "eea.climateadapt.organisation",
-    "eea.climateadapt.publicationreport",
-    "eea.climateadapt.researchproject",
-    "eea.climateadapt.tool",
-    "collective.cover.content",
-    "Document",
-    "Folder",
-]
+# PORTAL_TYPES = [
+#     "eea.climateadapt.aceproject",
+#     "eea.climateadapt.adaptationoption",
+#     "eea.climateadapt.casestudy",
+#     "eea.climateadapt.guidancedocument",
+#     "eea.climateadapt.indicator",
+#     "eea.climateadapt.informationportal",
+#     "eea.climateadapt.mapgraphdataset",
+#     "eea.climateadapt.organisation",
+#     "eea.climateadapt.publicationreport",
+#     "eea.climateadapt.researchproject",
+#     "eea.climateadapt.tool",
+#     "collective.cover.content",
+#     "Document",
+#     "Folder",
+# ]
 
 
 def extract_websites(obj):
@@ -249,6 +253,59 @@ CONVERTORS = {
     IBlocks: convert_blocks,
 }
 
+PORTAL_TYPES_BLACKLIST = [
+    "ATBooleanCriterion",
+    "ATCurrentAuthorCriterion",
+    "ATDateCriteria",
+    "ATDateRangeCriterion",
+    "ATListCriterion",
+    "ATPathCriterion",
+    "ATRelativePathCriterion",
+    "ATPortalTypeCriterion",
+    "ATReferenceCriterion",
+    "ATSelectionCriterion",
+    "ATSimpleIntCriterion",
+    "ATSimpleStringCriterion",
+    "ATSortCriterion",
+    "Discussion Item",
+    "Plone Site",
+    "TempFolder",
+    "Collection",
+    # "Document",
+    # "Folder",
+    "Link",
+    "File",
+    "Image",
+    # "News Item",
+    # "Event",
+    # "collective.cover.content",
+    "EasyForm",
+    # "eea.climateadapt.aceproject",
+    # "eea.climateadapt.adaptationoption",
+    # "eea.climateadapt.casestudy",
+    # "eea.climateadapt.guidancedocument",
+    # "eea.climateadapt.indicator",
+    # "eea.climateadapt.informationportal",
+    # "eea.climateadapt.mapgraphdataset",
+    # "eea.climateadapt.organisation",
+    # "eea.climateadapt.publicationreport",
+    # "eea.climateadapt.researchproject",
+    # "eea.climateadapt.tool",
+    "Topic",
+    "PDFTool",
+    "PDFTheme",
+    "AliasVocabulary",
+    "SimpleVocabulary",
+    "SimpleVocabularyTerm",
+    "SortedSimpleVocabulary",
+    "TreeVocabulary",
+    "TreeVocabularyTerm",
+    "VdexFileVocabulary",
+    "VocabularyLibrary",
+    "DepictionTool",
+    "RichImage",
+]
+
 
 def recursively_extract_links(site):
     """Gets the links for all our items by using the websites field
@@ -261,7 +318,7 @@ def recursively_extract_links(site):
     convertors = defaultdict(list)
     for _type in types:
         portal_type = _type.getId()
-        if portal_type not in PORTAL_TYPES:
+        if portal_type in PORTAL_TYPES_BLACKLIST:
             continue
         for schemata in iterSchemataForType(portal_type):
             for iface in [schemata] + list(schemata.getBases()):
@@ -271,9 +328,10 @@ def recursively_extract_links(site):
 
     urls = []
 
-    brains = catalog.searchResults(portal_type=PORTAL_TYPES, path="/cca/en")
+    brains = catalog.searchResults(path="/cca/en")
     count = 0
     logger.info("Got %s objects" % len(brains))
+
     for b in brains:
         obj = b.getObject()
         path = obj.getPhysicalPath()
@@ -319,6 +377,12 @@ def compute_broken_links(site):
 
     IAnnotations(site)._p_changed = True
     transaction.commit()
+
+
+class DetectBrokenLinksView(BrowserView):
+    def __call__(self):
+        compute_broken_links(self.context)
+        return "ok"
 
 
 class BrokenLinksService(Service):

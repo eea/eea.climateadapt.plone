@@ -21,12 +21,11 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
   />
 
-  <!-- <browser:page -->
-  <!--   name="broken-links" -->
-  <!--   for="*" -->
-  <!--   class=".broken_links.DetectBrokenLinksView" -->
-  <!--   template="browser/pt/detect_links.pt" -->
-  <!--   permission="zope2.View" -->
-  <!-- /> -->
+  <browser:page
+    name="compute-broken-links"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    class=".broken_links.DetectBrokenLinksView"
+    permission="cmf.ManagePortal"
+  />
 
 </configure>
