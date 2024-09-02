@@ -1,12 +1,5 @@
 from copy import deepcopy
 
-from eea.climateadapt.behaviors import (IAceProject, IAdaptationOption,
-                                        ICaseStudy, IOrganisation)
-from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
-from eea.climateadapt.behaviors.mission_tool import IMissionTool
-from eea.climateadapt.browser.adaptationoption import find_related_casestudies
-from eea.climateadapt.interfaces import (IClimateAdaptContent,
-                                         IEEAClimateAdaptInstalled)
 from lxml.html import fragments_fromstring, tostring
 from plone import api
 from plone.api import portal
@@ -14,14 +7,23 @@ from plone.app.textfield.interfaces import IRichText
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
-from plone.restapi.serializer.blocks import (SlateBlockSerializerBase,
-                                             uid_to_url)
+from plone.restapi.serializer.blocks import SlateBlockSerializerBase, uid_to_url
 from plone.restapi.serializer.converters import json_compatible
-from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
-                                                SerializeToJson)
+from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeToJson
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
 from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
+
+from eea.climateadapt.behaviors import (
+    IAceProject,
+    IAdaptationOption,
+    ICaseStudy,
+    IOrganisation,
+)
+from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
+from eea.climateadapt.behaviors.mission_tool import IMissionTool
+from eea.climateadapt.browser.adaptationoption import find_related_casestudies
+from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
 
 from .utils import cca_content_serializer
 
@@ -160,6 +162,7 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
                 "title": image.Title(),
                 "url": image.absolute_url() + suffix,
                 "description": image.Description(),
+                "rights": getattr(image.aq_inner.aq_self, "rights"),
             }
             for image in images
         ]
@@ -188,7 +191,7 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
         firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
         firstcol = columnblock["data"]["blocks"][firstcol_id]
 
-        description = ''
+        description = ""
         for i, block_id in enumerate(firstcol["blocks_layout"]["items"]):
             nextuid = None
             if i < len(firstcol["blocks_layout"]["items"]) - 1:
@@ -198,10 +201,10 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
             text = block.get("plaintext", "")
 
             if "Objective of the funding programme" in text:
-                description = blocks[nextuid].get('plaintext')
+                description = blocks[nextuid].get("plaintext")
 
-        if not result.get('description'):
-            result['description'] = description
+        if not result.get("description"):
+            result["description"] = description
 
         return result
 
@@ -227,7 +230,7 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
         firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
         firstcol = columnblock["data"]["blocks"][firstcol_id]
 
-        description = ''
+        description = ""
         for i, block_id in enumerate(firstcol["blocks_layout"]["items"]):
             nextuid = None
             if i < len(firstcol["blocks_layout"]["items"]) - 1:
@@ -237,10 +240,10 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
             text = block.get("plaintext", "")
 
             if "Objective(s)" in text:
-                description = blocks[nextuid].get('plaintext')
+                description = blocks[nextuid].get("plaintext")
 
-        if not result.get('description'):
-            result['description'] = description
+        if not result.get("description"):
+            result["description"] = description
         return result
 
 
