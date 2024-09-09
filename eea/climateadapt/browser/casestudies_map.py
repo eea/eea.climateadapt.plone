@@ -168,10 +168,10 @@ class Items(BrowserView):
                             # "origin_adaptecca": 10
                             # if "AdapteCCA" in obj.origin_website
                             # else 20,
-                            "sectors_str": ",".join(sectors_str),
-                            "impacts_str": ",".join(impacts_str),
-                            "elements_str": ",".join(elements_str),
-                            "ipcc_categories_str": ",".join(list_ipcc_categories),
+                            "sectors_str": ", ".join(sectors_str),
+                            "impacts_str": ", ".join(impacts_str),
+                            "elements_str": ", ".join(elements_str),
+                            "ipcc_categories_str": ", ".join(list_ipcc_categories),
                             "title": obj.title,
                             "description": long_description,
                             "url": brain.getURL(),
