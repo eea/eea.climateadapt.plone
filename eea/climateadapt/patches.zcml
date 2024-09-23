@@ -64,6 +64,13 @@
     class="plone.scale.storage.AnnotationStorage"
     original="_modified_since"
     preserveOriginal="true"
-    replacement="eea.climateadapt.patch.__patched_modified_since" />
+    replacement="eea.climateadapt.patch.patched_modified_since" />
+
+  <monkey:patch
+    description="Patch addCreator to only add one creator"
+    class="plone.dexterity.content.DexterityContent"
+    original="addCreator"
+    preserveOriginal="true"
+    replacement="eea.climateadapt.patch.patched_addCreator" />
 
 </configure>
