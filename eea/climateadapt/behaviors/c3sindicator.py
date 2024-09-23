@@ -65,7 +65,11 @@ class IC3sIndicator(IIndicator):
     )
 
     overview_app_toolbox_url = TextLine(
-        title=_(u"Overview APP Toolbox URL"), required=True
+        title=_(u"Overview APP Toolbox URL"), required=False
+    )
+
+    overview_app_toolbox_url_v2 = TextLine(
+        title=_(u"Overview APP Toolbox URL V2"), description=u"used for items after ecde_identifier option", required=False
     )
 
     overview_app_parameters = Text(title=(u"Overview APP parameters"), required=True)
@@ -121,6 +125,7 @@ class IC3sIndicator(IIndicator):
 
 alsoProvides(IC3sIndicator["c3s_identifier"], ILanguageIndependentField)
 alsoProvides(IC3sIndicator["overview_app_toolbox_url"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["overview_app_toolbox_url_v2"], ILanguageIndependentField)
 alsoProvides(IC3sIndicator["overview_app_parameters"], ILanguageIndependentField)
 alsoProvides(IC3sIndicator["details_app_toolbox_url"], ILanguageIndependentField)
 alsoProvides(IC3sIndicator["details_app_parameters"], ILanguageIndependentField)
