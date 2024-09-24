@@ -392,18 +392,18 @@ alsoProvides(aceitem_featured_vocabulary, IVocabularyFactory)
 _relevance = [
     (
         "IMPL_AS_CCA",
-        _("Case developed and implemented as a Climate Change Adaptation Measure."),
+        _("Case developed and implemented as a climate change adaptation measure."),
     ),
     (
         "PARTFUND_AS_CCA",
         _(
-            "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
+            "Case partially developed, implemented and funded as a climate change adaptation measure."
         ),
     ),
     (
         "OTHER_POL_OBJ",
         _(
-            "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
+            "Case mainly developed and implemented because of other policy objectives, but with significant consideration of climate change adaptation aspects."
         ),
     ),
 ]
