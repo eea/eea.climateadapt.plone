@@ -66,8 +66,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         fields=[
             "publication_date",
             "title",
-            "long_description",
             "description",
+            "long_description",
             "climate_impacts",
             "keywords",
             "sectors",
@@ -236,7 +236,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable("success_limitations")
     success_limitations = RichText(
-        title=_("Success / limitations"),
+        title=_("Success and limiting factors"),
         required=False,
         default=unicode(""),
         description=_(
@@ -249,7 +249,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable("cost_benefit")
     cost_benefit = RichText(
-        title=_("Cost / Benefit"),
+        title=_("Costs and benefits"),
         required=False,
         default=unicode(""),
         description=_(
@@ -282,7 +282,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable("implementation_time")
     implementation_time = RichText(
-        title=_("Implementation Time"),
+        title=_("Implementation time"),
         required=False,
         default=None,
         description=_(

@@ -273,7 +273,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
                                             "@id": "8b66f602-4098-4083-ae4e-0d45a6061c41",
                                             "field": {
                                                 "id": "success_limitations",
-                                                "title": "Success / limitations",
+                                                "title": "Success and limiting factors",
                                                 "widget": "richtext",
                                             },
                                         },
@@ -281,7 +281,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
                                             "@id": "07bf6b42-bdef-4505-8a80-369d4f096d34",
                                             "field": {
                                                 "id": "cost_benefit",
-                                                "title": "Cost / Benefit",
+                                                "title": "Costs and benefits",
                                                 "widget": "richtext",
                                             },
                                         },
@@ -297,7 +297,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
                                             "@id": "6f100215-d407-4049-be3e-8c15c45f48b9",
                                             "field": {
                                                 "id": "implementation_time",
-                                                "title": "Implementation Time",
+                                                "title": "Implementation time",
                                                 "widget": "richtext",
                                             },
                                         },

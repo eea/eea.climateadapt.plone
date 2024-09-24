@@ -2913,7 +2913,7 @@ case_study_layout_blocks = {
                                     "@id": "ae0e8da3-2cd2-4395-908f-0af3e46a942d",
                                     "field": {
                                         "id": "success_limitations",
-                                        "title": "Success / limitations",
+                                        "title": "Success and limiting factors",
                                         "widget": "richtext"
                                     }
                                 },
@@ -2921,7 +2921,7 @@ case_study_layout_blocks = {
                                     "@id": "80286b54-736a-4ebc-b09a-71ddef8d8bd8",
                                     "field": {
                                         "id": "cost_benefit",
-                                        "title": "Cost / Benefit",
+                                        "title": "Costs and benefits",
                                         "widget": "richtext"
                                     }
                                 },
@@ -2937,7 +2937,7 @@ case_study_layout_blocks = {
                                     "@id": "db32e80b-a32d-4af0-933e-1f56a2b21aec",
                                     "field": {
                                         "id": "implementation_time",
-                                        "title": "Implementation Time",
+                                        "title": "Implementation time",
                                         "widget": "richtext"
                                     }
                                 },
