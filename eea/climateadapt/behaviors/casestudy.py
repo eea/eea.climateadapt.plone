@@ -47,7 +47,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     )
 
     objectives = RichText(
-        title=_("Objectives"),
+        title=_("Objectives of the adaptation measure"),
         required=True,
         default=None,
         description=_(

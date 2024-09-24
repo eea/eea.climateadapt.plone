@@ -3089,7 +3089,7 @@ case_study_layout_blocks = {
                                     "@id": "d903f345-1f5b-402a-8ca3-9d7108fe60af",
                                     "field": {
                                         "id": "objectives",
-                                        "title": "Objectives",
+                                        "title": "Objectives of the adaptation measure",
                                         "widget": "richtext"
                                     }
                                 },
