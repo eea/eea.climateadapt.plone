@@ -703,6 +703,7 @@ aceitem_types = [_a(*x) for x in _cca_types]
 SpecialTagsVocabularyFactory = KeywordsVocabulary("special_tags")
 KeywordsVocabularyFactory = KeywordsVocabulary("keywords")
 ObjectProvidesVocabulary = KeywordsVocabulary("object_provides")
+UpdatingNotesVocabularyFactory = KeywordsVocabulary("updating_notes")
 
 _governance = [
     ("TRANS", "Transnational region (stretching across country borders)"),

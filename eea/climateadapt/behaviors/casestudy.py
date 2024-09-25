@@ -10,7 +10,7 @@ from plone.schema import JSONField
 from z3c.form.interfaces import IAddForm, IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import alsoProvides
-from zope.schema import Choice, List, TextLine
+from zope.schema import Choice, List, TextLine, Tuple
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
@@ -31,6 +31,22 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     # directives.omitted(IAddForm, 'year')
     # directives.omitted(IEditForm, 'relatedItems')
     # directives.omitted(IAddForm, 'relatedItems')
+
+    directives.widget("updating_notes", vocabulary="updating_notes_vocabulary")
+    updating_notes = Tuple(
+        title=_("Updating notes"),
+        required=False,
+        default=(),
+        missing_value=None,
+        value_type=TextLine(
+            title=u"Single topic",
+        ))
+
+    policy_legal_background = RichText(
+        title=_("Policy and legal background"),
+        required=False,
+        default=None,
+    )
 
     challenges = RichText(
         title=_("Challenges"),

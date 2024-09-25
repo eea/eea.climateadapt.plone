@@ -474,4 +474,12 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
   />
 
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_76"
+    title="Upgrade profile for eea.climateadapt v76"
+    description=""
+    directory="profiles/upgrades/to_76"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
 </configure>

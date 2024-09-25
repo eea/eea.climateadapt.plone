@@ -3038,6 +3038,14 @@ case_study_layout_blocks = {
                                     }
                                 },
                                 {
+                                    "@id": "fef80485-7212-4d52-8923-a7d030edc313",
+                                    "field": {
+                                    "id": "updating_notes",
+                                    "title": "Updating notes",
+                                    "widget": "array"
+                                    }
+                                },
+                                {
                                     "@id": "c591457f-1d18-4136-b506-5594ce81e549",
                                     "field": {
                                         "id": "logo",
@@ -3083,6 +3091,14 @@ case_study_layout_blocks = {
                                         "id": "challenges",
                                         "title": "Challenges",
                                         "widget": "richtext"
+                                    }
+                                },
+                                {
+                                    "@id": "dae44adf-b17b-4bdb-83d1-6fdd9446ef8f",
+                                    "field": {
+                                    "id": "policy_legal_background",
+                                    "title": "Policy and legal background",
+                                    "widget": "richtext"
                                     }
                                 },
                                 {

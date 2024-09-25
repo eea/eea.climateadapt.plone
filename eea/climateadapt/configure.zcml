@@ -322,6 +322,11 @@
   />
 
   <utility
+    name="updating_notes_vocabulary"
+    component=".vocabulary.UpdatingNotesVocabularyFactory"
+  />
+
+  <utility
     name="eea.climateadapt.faceted_elements_voc"
     component=".vocabulary.faceted_elements"
   />
