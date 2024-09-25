@@ -161,6 +161,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     keywords = Tuple(
+        title=_(u"Keywords"),
         description=_(
             "Describe and tag this item with relevant keywords. "
             "Press Enter after writing your keyword. "
