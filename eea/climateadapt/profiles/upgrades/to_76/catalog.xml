@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+  <index name="updating_notes" meta_type="KeywordIndex">
+    <indexed_attr value="updating_notes"/>
+  </index>
+</object>
