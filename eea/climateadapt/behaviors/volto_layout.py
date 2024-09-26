@@ -3102,6 +3102,14 @@ case_study_layout_blocks = {
                                     }
                                 },
                                 {
+                                    "@id": "c5480561-405a-4634-b925-bb31f1bef472",
+                                    "field": {
+                                        "id": "relevance",
+                                        "title": "Relevance",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
                                     "@id": "d903f345-1f5b-402a-8ca3-9d7108fe60af",
                                     "field": {
                                         "id": "objectives",
@@ -3126,14 +3134,6 @@ case_study_layout_blocks = {
                                     }
                                 },
                                 {
-                                    "@id": "c5480561-405a-4634-b925-bb31f1bef472",
-                                    "field": {
-                                        "id": "relevance",
-                                        "title": "Relevance",
-                                        "widget": "array"
-                                    }
-                                },
-                                {
                                     "@id": "775a5368-df44-42b4-814e-02efb7f79d61",
                                     "field": {
                                         "id": "keywords",
@@ -3153,7 +3153,7 @@ case_study_layout_blocks = {
                                     "@id": "ad026a59-e3e0-44a6-b809-46edead10a44",
                                     "field": {
                                         "id": "elements",
-                                        "title": "Adaptation elements",
+                                        "title": "Adaptation approaches",
                                         "widget": "array"
                                     }
                                 },

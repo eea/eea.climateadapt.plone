@@ -175,32 +175,31 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         required=False,
     )
 
-    # form.fieldset(
-    #     "default",
-    #     label=u"Item Description",
-    #     fields=[
-    #         'title',
-    #         'description',
-    #         'long_description',
-    #         'primary_photo',
-    #         'primary_photo_copyright',
-    #         'origin_website',
-    #         'logo',
-    #         'image',
-    #         'contributor_list',
-    #         'other_contributor',
-    #         "climate_impacts",
-    #         "challenges",
-    #         "objectives",
-    #         "adaptationoptions",
-    #         "solutions",
-    #         "relevance",
-    #         "keywords",
-    #         "sectors",
-    #         "elements",
-    #         # "featured",  # 'year',
-    #     ],
-    # )
+    form.fieldset(
+        "default",
+        label=u"Item Description",
+        fields=[
+            "updating_notes",
+            "primary_photo",
+            "primary_photo_copyright",
+            "challenges",
+            "policy_legal_background",
+            "relevance",
+            "objectives",
+            "adaptationoptions",
+            "solutions",
+            # "keywords",
+            # "sectors",
+            # "elements",
+            # 'origin_website',
+            # 'logo',
+            # 'image',
+            # 'contributor_list',
+            # 'other_contributor',
+            # "featured",  # 'year',
+        ],
+    )
+
 
     blocks = JSONField(
         title=_("Blocks"),
