@@ -92,7 +92,8 @@ def _fix_covers(self):
     """Fix tags in all cover tiles"""
     # TODO: rename this function, needs better name
 
-    covers = self.portal_catalog.searchResults(portal_type="collective.cover.content")
+    covers = self.portal_catalog.searchResults(
+        portal_type="collective.cover.content")
 
     for cover in covers:
         cover = cover.getObject()
@@ -206,7 +207,8 @@ def update_to_23(context):
         "AGRI_AND_FOREST": ["FORESTRY", "AGRICULTURE"],
     }
 
-    profiles = catalog.searchResults(portal_type="eea.climateadapt.city_profile")
+    profiles = catalog.searchResults(
+        portal_type="eea.climateadapt.city_profile")
 
     for b in profiles:
         obj = b.getObject()
@@ -575,7 +577,8 @@ def update_to_37(context):
     logger.info("Setting the proper effective date for some aceprojects")
 
     catalog = portal.get_tool(name="portal_catalog")
-    query = {"portal_type": "eea.climateadapt.aceproject", "review_state": "published"}
+    query = {"portal_type": "eea.climateadapt.aceproject",
+             "review_state": "published"}
     brains = catalog.searchResults(**query)
 
     for brain in brains:
@@ -910,3 +913,22 @@ def update_transnational_regions(context):
             alsoProvides(obj, IMainTransnationalRegionMarker)
         obj.reindexObject()
         logger.info("Remarked transnational region: %s", obj.absolute_url())
+
+
+def update_budget_ranges(context):
+    catalog = portal.get_tool(name="portal_catalog")
+    from eea.climateadapt.vocabulary import budget_ranges_reverse_map
+
+    brains = catalog.searchResults(portal_type="mission_funding_cca")
+    for brain in brains:
+        obj = brain.getObject()
+        ranges = getattr(obj, "budget_range", None)
+        if ranges:
+            obj.budget_range = [budget_ranges_reverse_map[x]
+                                for x in obj.budget_range]
+            obj._p_changed = True
+            logger.info(
+                "Migrated budget_range for %s, %r", obj.absolute_url(), obj.budget_range
+            )
+
+    logger.info("Done migrating budget_range")
