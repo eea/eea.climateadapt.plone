@@ -887,11 +887,11 @@ for line in filter(None, labels.split("\n")):
 
 REMAPED_BIOREGIONS = {
     # 'TRANS_MACRO_MED_BASIN': 'Mediterranean',
-    'TRANS_MACRO_BLACKSEA_BASIN': 'Black Sea Basin',
-    'TRANS_MACRO_DANUBE': "Danube",
-    'TRANS_MACRO_MED': 'Mediterranean',
-    'TRANS_MACRO_MED_BASIN': 'Mediterranean Sea Basin',
-    'TRANS_MACRO_NORTHPERI': 'Northern Periphery',
+    "TRANS_MACRO_BLACKSEA_BASIN": "Black Sea Basin",
+    "TRANS_MACRO_DANUBE": "Danube",
+    "TRANS_MACRO_MED": "Mediterranean",
+    "TRANS_MACRO_MED_BASIN": "Mediterranean Sea Basin",
+    "TRANS_MACRO_NORTHPERI": "Northern Periphery",
 }
 
 
@@ -1360,7 +1360,20 @@ budget_ranges = [
     "1M € - 10M €",
     "> 10M €",
 ]
-budget_ranges_vocabulary = generic_vocabulary(budget_ranges)
+
+budget_ranges_map = [
+    ("lt50k", "< 50.000 €"),
+    ("50k-100k", "50.000 - 100.000 €"),
+    ("100k-1M", "100.001 € - 1M €"),
+    ("1M-10M", "1M € - 10M €"),
+    ("gt10M", "> 10M €"),
+]
+
+budget_ranges_reverse_map = {}
+for token, label in budget_ranges_map:
+    budget_ranges_reverse_map[label] = token
+
+budget_ranges_vocabulary = generic_vocabulary(budget_ranges_map)
 alsoProvides(budget_ranges_vocabulary, IVocabularyFactory)
 
 

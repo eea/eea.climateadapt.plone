@@ -3,6 +3,16 @@
   i18n_domain="eea.climateadapt">
 
   <genericsetup:upgradeSteps
+    source="76"
+    destination="77"
+    profile="eea.climateadapt:default">
+    <genericsetup:upgradeStep
+      title="Migrate budget_range for Mission Funding"
+      handler=".update.update_budget_ranges"
+    />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
     source="75"
     destination="76"
     profile="eea.climateadapt:default">
