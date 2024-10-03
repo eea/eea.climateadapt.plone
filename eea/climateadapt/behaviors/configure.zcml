@@ -101,6 +101,15 @@
       provides=".blocks.IBlocksEditableLayout"
       />
 
+    <plone:behavior
+        name="cca.behavior.seo.seo_fields"
+        title="SEO Fields"
+        description="This behavior adds extra fields to a Content Type for SEO optimisation"
+        provides=".seo_fields.ISEOFields"
+        factory=".seo_fields.SEOFields"
+        marker="..interfaces.ISEOFieldsMarker"
+        />
+
   <plone:behavior
     name="eea.climateadapt.navtitle"
     title="Navigation title"
