@@ -3,6 +3,16 @@
   i18n_domain="eea.climateadapt">
 
   <genericsetup:upgradeSteps
+    source="77"
+    destination="78"
+    profile="eea.climateadapt:default">
+    <genericsetup:upgradeStep
+      title="Fix creators"
+      handler=".update.fix_creators"
+    />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
     source="76"
     destination="77"
     profile="eea.climateadapt:default">

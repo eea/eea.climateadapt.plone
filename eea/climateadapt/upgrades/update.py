@@ -932,3 +932,80 @@ def update_budget_ranges(context):
             )
 
     logger.info("Done migrating budget_range")
+
+
+admin_users = (
+    "ghitab",
+    "tibiadmin",
+    "tibi",
+    "tiberich",
+    "eugentripon",
+    "iulianpetchesi",
+    "krisztina",
+)
+
+
+def get_new_creator(creators, wf_creator):
+    if wf_creator not in admin_users:
+        return [wf_creator]
+
+    filtered_creators = [x for x in creators if x not in admin_users]
+
+    if filtered_creators:
+        return [filtered_creators[0]]
+
+    return [wf_creator]
+
+
+def fix_creators(context):
+    catalog = portal.get_tool(name="portal_catalog")
+    brains = catalog.searchResults(
+        missing_index=True, path="/cca/en"
+    )  # this returns all objects
+
+    for brain in brains:
+        try:
+            raw_obj = brain.getObject()
+            url = raw_obj.absolute_url()
+            obj = raw_obj.aq_inner.aq_self
+            creators = obj.creators
+        except Exception:
+            continue
+
+        if len(creators) == 1 and creators[0] not in admin_users:
+            continue
+
+        try:
+            wfh = obj.workflow_history
+        except Exception:
+            # logger.info("No workflow: %s", url)
+            continue
+
+        wf_creator = None
+
+        workflow = wfh.get("cca_webpages_workflow", {}) or wfh.get(
+            "cca_items_workflow", {}
+        )
+
+        wf_data = [(x["actor"], x["time"])
+                   for x in workflow if x["action"] is None]
+
+        if wf_data:
+            wf_creator = wf_data[0][0]
+
+        if not wf_creator:
+            continue
+
+        creators = get_new_creator(creators, wf_creator)
+        if creators != obj.creators:
+            logger.info(
+                "Fixing creator for %s, %s => %s",
+                url,
+                obj.creators,
+                creators,
+            )
+            obj.creators = creators
+            obj._p_changed = True
+            obj.reindexObject(idxs=["Creator"])
+
+    logger.info("Done fixing creators")
