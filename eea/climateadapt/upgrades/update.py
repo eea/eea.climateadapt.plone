@@ -92,7 +92,8 @@ def _fix_covers(self):
     """Fix tags in all cover tiles"""
     # TODO: rename this function, needs better name
 
-    covers = self.portal_catalog.searchResults(portal_type="collective.cover.content")
+    covers = self.portal_catalog.searchResults(
+        portal_type="collective.cover.content")
 
     for cover in covers:
         cover = cover.getObject()
@@ -206,7 +207,8 @@ def update_to_23(context):
         "AGRI_AND_FOREST": ["FORESTRY", "AGRICULTURE"],
     }
 
-    profiles = catalog.searchResults(portal_type="eea.climateadapt.city_profile")
+    profiles = catalog.searchResults(
+        portal_type="eea.climateadapt.city_profile")
 
     for b in profiles:
         obj = b.getObject()
@@ -575,7 +577,8 @@ def update_to_37(context):
     logger.info("Setting the proper effective date for some aceprojects")
 
     catalog = portal.get_tool(name="portal_catalog")
-    query = {"portal_type": "eea.climateadapt.aceproject", "review_state": "published"}
+    query = {"portal_type": "eea.climateadapt.aceproject",
+             "review_state": "published"}
     brains = catalog.searchResults(**query)
 
     for brain in brains:
@@ -910,3 +913,99 @@ def update_transnational_regions(context):
             alsoProvides(obj, IMainTransnationalRegionMarker)
         obj.reindexObject()
         logger.info("Remarked transnational region: %s", obj.absolute_url())
+
+
+def update_budget_ranges(context):
+    catalog = portal.get_tool(name="portal_catalog")
+    from eea.climateadapt.vocabulary import budget_ranges_reverse_map
+
+    brains = catalog.searchResults(portal_type="mission_funding_cca")
+    for brain in brains:
+        obj = brain.getObject()
+        ranges = getattr(obj, "budget_range", None)
+        if ranges:
+            obj.budget_range = [budget_ranges_reverse_map[x]
+                                for x in obj.budget_range]
+            obj._p_changed = True
+            logger.info(
+                "Migrated budget_range for %s, %r", obj.absolute_url(), obj.budget_range
+            )
+
+    logger.info("Done migrating budget_range")
+
+
+admin_users = (
+    "ghitab",
+    "tibiadmin",
+    "tibi",
+    "tiberich",
+    "eugentripon",
+    "iulianpetchesi",
+    "krisztina",
+)
+
+
+def get_new_creator(creators, wf_creator):
+    if wf_creator not in admin_users:
+        return [wf_creator]
+
+    filtered_creators = [x for x in creators if x not in admin_users]
+
+    if filtered_creators:
+        return [filtered_creators[0]]
+
+    return [wf_creator]
+
+
+def fix_creators(context):
+    catalog = portal.get_tool(name="portal_catalog")
+    brains = catalog.searchResults(
+        missing_index=True, path="/cca/en"
+    )  # this returns all objects
+
+    for brain in brains:
+        try:
+            raw_obj = brain.getObject()
+            url = raw_obj.absolute_url()
+            obj = raw_obj.aq_inner.aq_self
+            creators = obj.creators
+        except Exception:
+            continue
+
+        if len(creators) == 1 and creators[0] not in admin_users:
+            continue
+
+        try:
+            wfh = obj.workflow_history
+        except Exception:
+            # logger.info("No workflow: %s", url)
+            continue
+
+        wf_creator = None
+
+        workflow = wfh.get("cca_webpages_workflow", {}) or wfh.get(
+            "cca_items_workflow", {}
+        )
+
+        wf_data = [(x["actor"], x["time"])
+                   for x in workflow if x["action"] is None]
+
+        if wf_data:
+            wf_creator = wf_data[0][0]
+
+        if not wf_creator:
+            continue
+
+        creators = get_new_creator(creators, wf_creator)
+        if creators != obj.creators:
+            logger.info(
+                "Fixing creator for %s, %s => %s",
+                url,
+                obj.creators,
+                creators,
+            )
+            obj.creators = creators
+            obj._p_changed = True
+            obj.reindexObject(idxs=["Creator"])
+
+    logger.info("Done fixing creators")

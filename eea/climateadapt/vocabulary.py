@@ -392,18 +392,18 @@ alsoProvides(aceitem_featured_vocabulary, IVocabularyFactory)
 _relevance = [
     (
         "IMPL_AS_CCA",
-        _("Case developed and implemented as a Climate Change Adaptation Measure."),
+        _("Case developed and implemented as a climate change adaptation measure."),
     ),
     (
         "PARTFUND_AS_CCA",
         _(
-            "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
+            "Case partially developed, implemented and funded as a climate change adaptation measure."
         ),
     ),
     (
         "OTHER_POL_OBJ",
         _(
-            "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
+            "Case mainly developed and implemented because of other policy objectives, but with significant consideration of climate change adaptation aspects."
         ),
     ),
 ]
@@ -703,6 +703,7 @@ aceitem_types = [_a(*x) for x in _cca_types]
 SpecialTagsVocabularyFactory = KeywordsVocabulary("special_tags")
 KeywordsVocabularyFactory = KeywordsVocabulary("keywords")
 ObjectProvidesVocabulary = KeywordsVocabulary("object_provides")
+UpdatingNotesVocabularyFactory = KeywordsVocabulary("updating_notes")
 
 _governance = [
     ("TRANS", "Transnational region (stretching across country borders)"),
@@ -886,11 +887,11 @@ for line in filter(None, labels.split("\n")):
 
 REMAPED_BIOREGIONS = {
     # 'TRANS_MACRO_MED_BASIN': 'Mediterranean',
-    'TRANS_MACRO_BLACKSEA_BASIN': 'Black Sea Basin',
-    'TRANS_MACRO_DANUBE': "Danube",
-    'TRANS_MACRO_MED': 'Mediterranean',
-    'TRANS_MACRO_MED_BASIN': 'Mediterranean Sea Basin',
-    'TRANS_MACRO_NORTHPERI': 'Northern Periphery',
+    "TRANS_MACRO_BLACKSEA_BASIN": "Black Sea Basin",
+    "TRANS_MACRO_DANUBE": "Danube",
+    "TRANS_MACRO_MED": "Mediterranean",
+    "TRANS_MACRO_MED_BASIN": "Mediterranean Sea Basin",
+    "TRANS_MACRO_NORTHPERI": "Northern Periphery",
 }
 
 
@@ -1359,7 +1360,20 @@ budget_ranges = [
     "1M € - 10M €",
     "> 10M €",
 ]
-budget_ranges_vocabulary = generic_vocabulary(budget_ranges)
+
+budget_ranges_map = [
+    ("lt50k", "< 50.000 €"),
+    ("50k-100k", "50.000 - 100.000 €"),
+    ("100k-1M", "100.001 € - 1M €"),
+    ("1M-10M", "1M € - 10M €"),
+    ("gt10M", "> 10M €"),
+]
+
+budget_ranges_reverse_map = {}
+for token, label in budget_ranges_map:
+    budget_ranges_reverse_map[label] = token
+
+budget_ranges_vocabulary = generic_vocabulary(budget_ranges_map)
 alsoProvides(budget_ranges_vocabulary, IVocabularyFactory)
 
 
