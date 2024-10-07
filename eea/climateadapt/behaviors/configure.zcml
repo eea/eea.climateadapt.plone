@@ -1,111 +1,119 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:zcml="http://namespaces.zope.org/zcml"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:grok="http://namespaces.zope.org/grok"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="eea.climateadapt2">
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="eea.climateadapt2">
 
-    <include file="missing.zcml" />
-    <adapter factory=".aceitem.KeywordsFieldWidget" />
-    <adapter factory=".aceitem.SpecialTagsFieldWidget" />
+  <include file="missing.zcml" />
+  <adapter factory=".aceitem.KeywordsFieldWidget" />
+  <adapter factory=".aceitem.SpecialTagsFieldWidget" />
 
-    <!-- <adapter factory=".acemeasure.AdaptationOptionsFieldWidget" /> -->
-    <adapter factory=".acemeasure.KeywordsFieldWidget" />
-    <adapter factory=".acemeasure.SpecialTagsFieldWidget" />
+  <!-- <adapter factory=".acemeasure.AdaptationOptionsFieldWidget" /> -->
+  <adapter factory=".acemeasure.KeywordsFieldWidget" />
+  <adapter factory=".acemeasure.SpecialTagsFieldWidget" />
 
-    <adapter factory=".aceproject.KeywordsFieldWidget" />
-    <adapter factory=".aceproject.SpecialTagsFieldWidget" />
+  <adapter factory=".aceproject.KeywordsFieldWidget" />
+  <adapter factory=".aceproject.SpecialTagsFieldWidget" />
 
-    <adapter factory=".missionstory.KeywordsFieldWidget" />
+  <adapter factory=".missionstory.KeywordsFieldWidget" />
 
-    <include package="plone.behavior" file="meta.zcml"/>
+  <include package="plone.behavior" file="meta.zcml" />
 
-    <plone:behavior
-      name="eea.nonstructural_folder"
-      title="Non-structural folder"
-      description="Allows folders to be non-clickable in main menu"
-      provides=".section.INonstructuralSection"
-      for="plone.dexterity.interfaces.IDexterityContent"
-    />
+  <plone:behavior
+    name="eea.nonstructural_folder"
+    title="Non-structural folder"
+    description="Allows folders to be non-clickable in main menu"
+    provides=".section.INonstructuralSection"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
 
-    <plone:behavior
-      name="volto.preview_image"
-      title="Preview Image"
-      description="Preview image for listings"
-      provides=".preview.IPreview"
-      for="plone.dexterity.interfaces.IDexterityContent"
-    />
+  <plone:behavior
+    name="volto.preview_image"
+    title="Preview Image"
+    description="Preview image for listings"
+    provides=".preview.IPreview"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
 
-    <plone:behavior
-      title="Include in Health Observatory"
-      description="Settings for inclusion in Health Observatory"
-      provides=".health_observatory.IHealthObservatoryMetadata"
-    />
+  <plone:behavior
+    title="Include in Health Observatory"
+    description="Settings for inclusion in Health Observatory"
+    provides=".health_observatory.IHealthObservatoryMetadata"
+  />
 
-    <plone:behavior
-      title="CCA Event details"
-      description="Settings for CCA Events"
-      provides=".ccaevent.ICcaEvent"
-    />
+  <plone:behavior
+    title="CCA Event details"
+    description="Settings for CCA Events"
+    provides=".ccaevent.ICcaEvent"
+  />
 
-    <plone:behavior
-      title="Mission story details"
-      description="Settings for Mission stories"
-      provides=".missionstory.IMissionStory"
-    />
+  <plone:behavior
+    title="Mission story details"
+    description="Settings for Mission stories"
+    provides=".missionstory.IMissionStory"
+  />
 
-    <plone:behavior
-      title="Mission Funding"
-      description="Settings for Mission Funding"
-      provides=".mission_funding_cca.IMissionFundingCCA"
-    />
+  <plone:behavior
+    title="Mission Funding"
+    description="Settings for Mission Funding"
+    provides=".mission_funding_cca.IMissionFundingCCA"
+  />
 
-    <plone:behavior
-      title="Event details"
-      description="Settings and layout for Event content type"
-      provides=".event.IMainEvent"
-    />
+  <plone:behavior
+    title="Event details"
+    description="Settings and layout for Event content type"
+    provides=".event.IMainEvent"
+  />
 
-    <plone:behavior
-      title="News details"
-      description="Settings and layout for News content type"
-      provides=".news.IMainNews"
-    />
+  <plone:behavior
+    title="News details"
+    description="Settings and layout for News content type"
+    provides=".news.IMainNews"
+  />
 
-    <plone:behavior
-      name="plone.shortname"
-      title="Short name"
-      description="Gives the ability to rename an item from its edit form."
-      factory=".id.ShortName"
-      provides=".id.IShortName"
-      for="plone.dexterity.interfaces.IDexterityContent"
-    />
+  <plone:behavior
+    name="plone.shortname"
+    title="Short name"
+    description="Gives the ability to rename an item from its edit form."
+    factory=".id.ShortName"
+    provides=".id.IShortName"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
 
-    <plone:behavior
-      name="cca.toplevel"
-      title="Top level navigation"
-      description="Set top level navigation visibility for each item."
-      provides=".toplevelnav.ITopLevelVisibility"
-      for="plone.dexterity.interfaces.IDexterityContent"
-    />
+  <plone:behavior
+    name="cca.toplevel"
+    title="Top level navigation"
+    description="Set top level navigation visibility for each item."
+    provides=".toplevelnav.ITopLevelVisibility"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
 
-    <plone:behavior
-      name="volto.blocks.editable.layout"
-      title="Blocks (Editable Layout)"
-      description="Enables Volto Blocks (editable layout) support"
-      provides=".blocks.IBlocksEditableLayout"
-      />
+  <plone:behavior
+    name="volto.blocks.editable.layout"
+    title="Blocks (Editable Layout)"
+    description="Enables Volto Blocks (editable layout) support"
+    provides=".blocks.IBlocksEditableLayout"
+  />
+
+  <plone:behavior
+    name="eea.climateadapt.seo"
+    title="SEO Fields"
+    description="This behavior adds extra fields to a Content Type for SEO optimisation"
+    provides=".seo_fields.ISEOFields"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
 
   <plone:behavior
     name="eea.climateadapt.navtitle"
     title="Navigation title"
     description="Navigation title used in sections, menus and doormats"
     provides=".navtitle.INavTitle"
-    />
+  />
 
 </configure>
