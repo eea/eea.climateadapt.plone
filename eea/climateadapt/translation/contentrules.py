@@ -57,6 +57,7 @@ def queue_translate_volto_html(html, en_obj, http_host, language=None):
                 queue,
                 ("translate",),
                 execute_translate_async,
+                en_obj,
                 en_obj_path,
                 copy.deepcopy(options),
                 language,
