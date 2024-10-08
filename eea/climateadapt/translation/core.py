@@ -467,7 +467,7 @@ def get_blocks_as_html(obj):
     return html
 
 
-def sync_language_independent_fields(en_obj_path, options):
+def sync_language_independent_fields(context, en_obj_path, options):
     site_portal = setup_site_portal(options)
     environ = {
         "SERVER_NAME": options["http_host"],
@@ -493,8 +493,11 @@ def sync_language_independent_fields(en_obj_path, options):
     for translation in translations:
         trans_obj = transmanager.get_translation(translation)
         if fieldmanager.copy_fields(trans_obj):
-            print("plone.app.multilingual translation reindex", translation)
-            translation.reindexObject()
+            print(
+                "plone.app.multilingual translation reindex",
+                trans_obj.absolute_url(relative=1),
+            )
+            trans_obj.reindexObject()
 
     try:
         del site_portal.REQUEST

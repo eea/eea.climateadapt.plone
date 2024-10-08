@@ -100,6 +100,7 @@ def copy_fields_patched(self, translation):
 
 
 def handle_modified_patched(self, content):
+    # import pdb; pdb.set_trace()
     fieldmanager = ILanguageIndependentFieldsManager(content)
     if not fieldmanager.has_independent_fields():
         return
@@ -119,8 +120,9 @@ def handle_modified_patched(self, content):
         queue = async_service.getQueues()[""]
         async_service.queueJobInQueue(
             queue,
-            ("sync_language_independent_fields",),
+            ("translate",),
             sync_language_independent_fields,
+            content,
             en_obj_path,
             options,
         )
