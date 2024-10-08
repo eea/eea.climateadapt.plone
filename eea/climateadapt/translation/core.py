@@ -1,5 +1,8 @@
+from plone.app.multilingual.interfaces import ILanguageIndependentFieldsManager
+import base64
 import json
 import logging
+import os
 
 import requests
 from Acquisition import aq_inner, aq_parent
@@ -15,20 +18,96 @@ from plone.dexterity.utils import iterSchemata
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Testing.ZopeTestCase import utils as zopeUtils
+from zeep import Client
+from zeep.wsse.username import UsernameToken
 from zope.component.hooks import setSite
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
+from plone.app.multilingual.interfaces import ITranslationManager
 
 from eea.climateadapt.browser.admin import force_unlock
 
-from . import retrieve_volto_html_translation
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
+
+env = os.environ.get
+
+TRANS_USERNAME = "ipetchesi"  # TODO: get another username?
+MARINE_PASS = env("MARINE_PASS", "")
+SERVICE_URL = "https://webgate.ec.europa.eu/etranslation/si/translate"
 
 logger = logging.getLogger("eea.climateadapt")
 
 SLATE_CONVERTER = "http://converter:8000/html"
 BLOCKS_CONVERTER = "http://converter:8000/blocks2html"
 CONTENT_CONVERTER = "http://converter:8000/html2content"
+
+
+def call_etranslation_service(
+    http_host, source_lang, html, obj_path, target_languages=None
+):
+    """Makes a eTranslation webcall to request a translation for a html
+    (based on volto export)
+    """
+
+    if not html:
+        return
+
+    if not target_languages:
+        target_languages = ["EN"]
+
+    encoded_html = base64.b64encode(html)
+
+    site_url = portal.get().absolute_url()  # -> '/cca'
+
+    if "localhost" in site_url:
+        logger.warning(
+            "Using localhost, won't retrieve translation for: %s", html)
+
+    client = Client(
+        "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
+        wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS),
+    )
+
+    dest = "{}/@@translate-callback?source_lang={}&format=html&is_volto=1".format(
+        http_host, source_lang
+    )
+    if "https://" not in dest:
+        dest = "https://" + dest
+
+    resp = client.service.translate(
+        {
+            "priority": "5",
+            "external-reference": obj_path,
+            "caller-information": {
+                "application": "Marine_EEA_20180706",
+                "username": TRANS_USERNAME,
+            },
+            "document-to-translate-base64": {
+                "content": encoded_html,
+                "format": "html",
+                "fileName": "out",
+            },
+            "source-language": source_lang,
+            "target-languages": {"target-language": target_languages},
+            "domain": "GEN",
+            "output-format": "html",
+            "destinations": {
+                "http-destination": dest,
+            },
+        }
+    )
+
+    logger.info("Data translation request : html content")
+    logger.info("Response from translation request: %r", resp)
+
+    # if str(resp[0]) == '-':
+    #     # If the response is a negative number this means error. Error codes:
+    #     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
+    #     import pdb; pdb.set_trace()
+
+    res = {"transId": resp, "externalRefId": html}
+
+    return res
 
 
 def get_translation_object(obj, language):
@@ -103,7 +182,7 @@ def check_full_path_exists(obj, language, site_portal):
     if language not in translations:
         # TODO, what if the parent path already exist in language
         # but is not linked in translation manager
-        create_translation_object(parent, language, site_portal)
+        setup_translation_object(parent, language, site_portal)
 
 
 def copy_missing_interfaces(en_obj, trans_obj):
@@ -119,8 +198,9 @@ def copy_missing_interfaces(en_obj, trans_obj):
             logger.info("Copied interface: %s" % interf[0])
 
 
-def create_translation_object(obj, language, site_portal):
+def setup_translation_object(obj, language, site_portal):
     """Create translation object for an obj"""
+
     # rc = RequestContainer(REQUEST=obj.REQUEST)
     tm = TranslationManager(obj)
     translations = tm.get_translations()
@@ -224,11 +304,7 @@ def wrap_in_aquisition(obj_path, portal_obj):
     return obj
 
 
-def execute_translate_async(en_obj_path, options, language):
-    """Executed via zc.async, triggers the call to eTranslation"""
-
-    # en_obj_path = "/".join(en_obj.getPhysicalPath())
-
+def setup_site_portal(options):
     environ = {
         "SERVER_NAME": options["http_host"],
         "SERVER_PORT": 443,
@@ -248,6 +324,20 @@ def execute_translate_async(en_obj_path, options, language):
         # for k, v in request_vars.items():
         #     site_portal.REQUEST.set(k, v)
 
+    return site_portal
+
+
+def execute_translate_async(en_obj_path, options, language):
+    """Executed via zc.async, triggers the call to eTranslation
+
+    Creates the translation object, if it doesn't exist
+
+    """
+
+    # en_obj_path = "/".join(en_obj.getPhysicalPath())
+
+    site_portal = setup_site_portal(options)
+
     # this causes the modified event in plone.app.multilingual to skip some processing which otherwise crashes
     site_portal.REQUEST.translation_info = {"tg": True}
 
@@ -255,10 +345,10 @@ def execute_translate_async(en_obj_path, options, language):
     en_obj = wrap_in_aquisition(en_obj_path, site_portal)
 
     # trans_obj = site_portal.restrictedTraverse(trans_obj_path)
-    trans_obj = create_translation_object(en_obj, language, site_portal)
+    trans_obj = setup_translation_object(en_obj, language, site_portal)
     trans_obj_path = "/".join(trans_obj.getPhysicalPath())
 
-    retrieve_volto_html_translation(
+    call_etranslation_service(
         options["http_host"],
         "en",
         options["html_content"].encode("utf-8"),
@@ -375,3 +465,33 @@ def get_blocks_as_html(obj):
     html = req.json()["html"]
     logger.info("Blocks converted to html: %s", html)
     return html
+
+
+def sync_language_independent_fields(en_obj_path, options):
+    site_portal = setup_site_portal(options)
+    environ = {
+        "SERVER_NAME": options["http_host"],
+        "SERVER_PORT": 443,
+        "REQUEST_METHOD": "POST",
+    }
+
+    if not hasattr(site_portal, "REQUEST"):
+        zopeUtils._Z2HOST = options["http_host"]
+        site_portal = zopeUtils.makerequest(site_portal, environ)
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
+            "http", "https")
+        site_portal.REQUEST.other["SERVER_URL"] = server_url
+        setSite(site_portal)
+
+    content = wrap_in_aquisition(en_obj_path, site_portal)
+    fieldmanager = ILanguageIndependentFieldsManager(content)
+
+    transmanager = ITranslationManager(content)
+    translations = transmanager.get_translated_languages()
+    translations.remove("en")
+
+    for translation in translations:
+        trans_obj = transmanager.get_translation(translation)
+        if fieldmanager.copy_fields(trans_obj):
+            print("plone.app.multilingual translation reindex", translation)
+            translation.reindexObject()

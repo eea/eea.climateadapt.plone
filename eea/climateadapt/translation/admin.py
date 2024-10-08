@@ -11,7 +11,7 @@ from zope.site.hooks import getSite
 
 from eea.climateadapt.blocks import BlocksTraverser, BlockType
 
-from .core import create_translation_object
+from .core import setup_translation_object
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -121,7 +121,7 @@ class FindContentWithBlock(BrowserView):
 
 
 def split_list(lst, chunk_size):
-    return [lst[i : i + chunk_size] for i in range(0, len(lst), chunk_size)]
+    return [lst[i: i + chunk_size] for i in range(0, len(lst), chunk_size)]
 
 
 class CreateTranslationStructure(BrowserView):
@@ -169,7 +169,8 @@ class CreateTranslationStructure(BrowserView):
                 def task():
                     for i, brain in batch:
                         obj = brain.getObject()
-                        trans_obj = create_translation_object(obj, language, site)
+                        trans_obj = setup_translation_object(
+                            obj, language, site)
                         logger.info(
                             "Translated object %s %s/%s %s",
                             language,

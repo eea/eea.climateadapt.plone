@@ -1,13 +1,6 @@
-# fix the translation locator to allow it to properly work in async
-
-# from plone.app.multilingual.interfaces import ILanguageIndependentFieldsManager
-# from plone.app.multilingual.dx.cloner import LanguageIndependentFieldsManager
-# from plone.base.interfaces import ILanguage
-# from plone.base.utils import safe_text
-# ITranslationManager,
-# from zope.intid.interfaces import IIntIds
-# from z3c.relationfield import RelationValue
-
+from eea.climateadapt.asynctasks.utils import get_async_service
+import logging
+from plone.app.multilingual.interfaces import ILanguageIndependentFieldsManager
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationLocator as Base
@@ -20,7 +13,10 @@ from z3c.relationfield.interfaces import IRelationList, IRelationValue
 from zope.component import queryAdapter  # getUtility,
 from zope.interface import implementer
 
-from .core import wrap_in_aquisition
+from .core import wrap_in_aquisition, sync_language_independent_fields
+
+logger = logging.getLogger("eea.climateadapt")
+
 
 _marker = object()
 
@@ -38,19 +34,10 @@ class DefaultTranslationLocator(Base):
         return parent
 
 
-# def copy_relation_patched(self, relation_value, target_language):
-#     if not relation_value or relation_value.isBroken():
-#         return
-#
-#     obj = relation_value.to_object
-#     intids = getUtility(IIntIds)
-#     translation = ITranslationManager(obj).get_translation(target_language)
-#     if translation:
-#         return RelationValue(intids.getId(translation))
-#     return RelationValue(intids.getId(obj))
-
-
 def copy_fields_patched(self, translation):
+    # import pdb
+    #
+    # pdb.set_trace()
     print("patched copy fields", translation)
     # copy and adapted from https://github.com/plone/plone.app.multilingual/blob/9e7491294f01f7bd21a45e00231d54873ad0eed6/src/plone/app/multilingual/dx/cloner.py
     changed = False
@@ -105,3 +92,53 @@ def copy_fields_patched(self, translation):
     # we need to inform subscriber to trigger an ObjectModifiedEvent
     # on that translation.
     return changed
+
+
+def handle_modified_patched(self, content):
+    fieldmanager = ILanguageIndependentFieldsManager(content)
+    if not fieldmanager.has_independent_fields():
+        return
+
+    en_obj_path = content.getPhysicalPath()
+    if "cca/en" not in en_obj_path:
+        return
+
+    http_host = self.context.REQUEST.environ.get(
+        "HTTP_X_FORWARDED_HOST", portal.get().absolute_url()
+    )
+    options = {"http_host": http_host}
+
+    logger.info("Queing job to copy language independent fields %s", en_obj_path)
+    async_service = get_async_service()
+    queue = async_service.getQueues()[""]
+    async_service.queueJobInQueue(
+        queue,
+        ("sync_language_independent_fields",),
+        sync_language_independent_fields,
+        en_obj_path,
+        options,
+    )
+
+    return self._old_handle_modified(content)
+
+
+# fix the translation locator to allow it to properly work in async
+# from plone.app.multilingual.interfaces import ILanguageIndependentFieldsManager
+# from plone.app.multilingual.dx.cloner import LanguageIndependentFieldsManager
+# from plone.base.interfaces import ILanguage
+# from plone.base.utils import safe_text
+# ITranslationManager,
+# from zope.intid.interfaces import IIntIds
+# from z3c.relationfield import RelationValue
+
+
+# def copy_relation_patched(self, relation_value, target_language):
+#     if not relation_value or relation_value.isBroken():
+#         return
+#
+#     obj = relation_value.to_object
+#     intids = getUtility(IIntIds)
+#     translation = ITranslationManager(obj).get_translation(target_language)
+#     if translation:
+#         return RelationValue(intids.getId(translation))
+#     return RelationValue(intids.getId(obj))
