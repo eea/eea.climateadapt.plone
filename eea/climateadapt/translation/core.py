@@ -495,3 +495,8 @@ def sync_language_independent_fields(en_obj_path, options):
         if fieldmanager.copy_fields(trans_obj):
             print("plone.app.multilingual translation reindex", translation)
             translation.reindexObject()
+
+    try:
+        del site_portal.REQUEST
+    except AttributeError:
+        pass

@@ -1,19 +1,24 @@
-from eea.climateadapt.asynctasks.utils import get_async_service
 import logging
-from plone.app.multilingual.interfaces import ILanguageIndependentFieldsManager
+
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationLocator as Base
 from plone.app.multilingual.interfaces import (
     ILanguage,
+    ILanguageIndependentFieldsManager,
     ITranslationLocator,
 )
 from plone.dexterity.utils import iterSchemata
 from z3c.relationfield.interfaces import IRelationList, IRelationValue
-from zope.component import queryAdapter  # getUtility,
+from zope.component import (
+    ComponentLookupError,
+    queryAdapter,  # getUtility,
+)
 from zope.interface import implementer
 
-from .core import wrap_in_aquisition, sync_language_independent_fields
+from eea.climateadapt.asynctasks.utils import get_async_service
+
+from .core import sync_language_independent_fields, wrap_in_aquisition
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -99,27 +104,32 @@ def handle_modified_patched(self, content):
     if not fieldmanager.has_independent_fields():
         return
 
-    en_obj_path = content.getPhysicalPath()
+    en_obj_path = "/".join(content.getPhysicalPath())
     if "cca/en" not in en_obj_path:
         return
 
-    http_host = self.context.REQUEST.environ.get(
+    http_host = content.REQUEST.environ.get(
         "HTTP_X_FORWARDED_HOST", portal.get().absolute_url()
     )
     options = {"http_host": http_host}
 
     logger.info("Queing job to copy language independent fields %s", en_obj_path)
-    async_service = get_async_service()
-    queue = async_service.getQueues()[""]
-    async_service.queueJobInQueue(
-        queue,
-        ("sync_language_independent_fields",),
-        sync_language_independent_fields,
-        en_obj_path,
-        options,
-    )
+    try:
+        async_service = get_async_service()
+        queue = async_service.getQueues()[""]
+        async_service.queueJobInQueue(
+            queue,
+            ("sync_language_independent_fields",),
+            sync_language_independent_fields,
+            en_obj_path,
+            options,
+        )
+    except ComponentLookupError:
+        logger.error(
+            "Unable to queue job to copy language independent fields %s", en_obj_path
+        )
 
-    return self._old_handle_modified(content)
+    # return self._old_handle_modified(content)
 
 
 # fix the translation locator to allow it to properly work in async
