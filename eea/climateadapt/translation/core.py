@@ -327,11 +327,12 @@ def setup_site_portal(options):
     return site_portal
 
 
-def execute_translate_async(en_obj, en_obj_path, options, language):
+def execute_translate_async(en_obj_path, options, language):
     """Async Job: triggers the call to eTranslation
 
     Creates the translation object, if it doesn't exist
     """
+    print("Args", en_obj_path, options, language)
 
     # en_obj_path = "/".join(en_obj.getPhysicalPath())
 
@@ -467,8 +468,7 @@ def get_blocks_as_html(obj):
 
 
 def sync_language_independent_fields(context, en_obj_path, options):
-    """ Async Job: copies the language independent fields to all translations
-    """
+    """Async Job: copies the language independent fields to all translations"""
     site_portal = setup_site_portal(options)
     environ = {
         "SERVER_NAME": options["http_host"],
