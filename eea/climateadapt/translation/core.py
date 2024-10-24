@@ -332,7 +332,7 @@ def execute_translate_async(context, **kwargs):
 
     Creates the translation object, if it doesn't exist
     """
-    en_obj_path = kwargs["en_obj_path"]
+    en_obj_path = kwargs["path"]
     options = kwargs["options"]
     language = kwargs["language"]
 
