@@ -48,7 +48,7 @@ def queue_translate_volto_html(html, en_obj, http_host, language=None):
     languages = language and [language] or get_site_languages()
 
     if "cca/en" in en_obj_path:
-        for language in languages:
+        for language in ["de"]:  # temporary
             if language == "en":
                 continue
             async_service = get_async_service()
@@ -57,10 +57,10 @@ def queue_translate_volto_html(html, en_obj, http_host, language=None):
                 queue,
                 ("translate",),
                 execute_translate_async,
-                en_obj,
-                en_obj_path,
-                copy.deepcopy(options),
-                language,
+                en_obj,  # this is the context
+                path=en_obj_path,
+                options=copy.deepcopy(options),
+                language=language,
             )
 
 

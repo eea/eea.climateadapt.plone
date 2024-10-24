@@ -327,13 +327,16 @@ def setup_site_portal(options):
     return site_portal
 
 
-def execute_translate_async(en_obj_path, options, language):
+def execute_translate_async(context, **kwargs):
     """Async Job: triggers the call to eTranslation
 
     Creates the translation object, if it doesn't exist
     """
-    print("Args", en_obj_path, options, language)
+    en_obj_path = kwargs["en_obj_path"]
+    options = kwargs["options"]
+    language = kwargs["language"]
 
+    # print("Args", en_obj_path, options, language)
     # en_obj_path = "/".join(en_obj.getPhysicalPath())
 
     site_portal = setup_site_portal(options)
