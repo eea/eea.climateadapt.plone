@@ -287,7 +287,10 @@ def sync_translation_state(trans_obj, en_obj):
     if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
         trans_obj.setEffectiveDate(en_obj.effective_date)
         trans_obj._p_changed = True
-        # trans_obj.reindexObject()
+
+    if en_obj.__ac_local_roles__ != trans_obj.__ac_local_roles__:
+        trans_obj._p_changed = True
+        trans_obj.__ac_local_roles__ = en_obj.__ac_local_roles__
 
 
 def wrap_in_aquisition(obj_path, portal_obj):
