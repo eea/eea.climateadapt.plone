@@ -114,7 +114,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     form.fieldset(
-        "categorization",
+        "inclusion",
         label="Inclusion in the Health Observatory",
         fields=["include_in_observatory",
                 "include_in_mission", "health_impacts"],
