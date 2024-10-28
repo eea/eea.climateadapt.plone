@@ -207,12 +207,13 @@ def setup_translation_object(obj, language, site_portal):
 
     if language in translations:
         logger.info("Skip creating translation. Already exists.")
-        trans_obj = translations[language]
+        translated_object = translations[language]
 
-        sync_translation_state(trans_obj, obj)
-        trans_obj.reindexObject()
+        copy_missing_interfaces(obj, translated_object)
+        sync_translation_state(translated_object, obj)
+        translated_object.reindexObject()
 
-        return translations[language]
+        return translated_object
 
     check_full_path_exists(obj, language, site_portal)
     factory = DefaultTranslationFactory(obj)

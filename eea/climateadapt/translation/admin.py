@@ -139,18 +139,18 @@ class CreateTranslationStructure(BrowserView):
             return "no language"
 
         languages = [
-            # "bg",
-            # "hr",
-            # "cs",
-            # "da",
-            # "nl",
-            # "et",
-            # "fi",
-            #   "el",
-            #   "hu",
-            #   "ga",
-            #   "lv",
-            # "lt",
+            "bg",
+            "hr",
+            "cs",
+            "da",
+            "nl",
+            "et",
+            "fi",
+            "el",
+            "hu",
+            "ga",
+            "lv",
+            "lt",
             "mt",
             "pt",
             "sk",
@@ -184,7 +184,7 @@ class CreateTranslationStructure(BrowserView):
                     task()
                     transaction.commit()
                 except Exception:
-                    logger.exception("Will continue")
+                    logger.exception("Exception, but will continue")
 
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
