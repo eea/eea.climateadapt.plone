@@ -14,6 +14,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
+from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.translation.contentrules import (
     queue_translate_volto_html,
 )
@@ -90,6 +91,7 @@ class TranslateObjectAsync(BrowserView):
         messages.add("Translation process initiated.", type="info")
 
         obj = self.context
+        force_unlock(obj)
         html = getMultiAdapter((self.context, self.context.REQUEST), name="tohtml")()
         site = portal.getSite()
         http_host = self.context.REQUEST.environ.get(
@@ -124,6 +126,7 @@ class TranslateFolderAsync(BrowserView):
                 "HTTP_X_FORWARDED_HOST", site_url
             )
 
+            force_unlock(obj)
             queue_translate_volto_html(html, obj, http_host, language)
 
             if i % 20 == 0:
