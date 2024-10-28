@@ -118,6 +118,7 @@ class TranslateFolderAsync(BrowserView):
         for i, brain in enumerate(brains):
             obj = brain.getObject()
 
+            logger.info("Queuing %s for translation", obj.absolute_url())
             html = getMultiAdapter((obj, self.context.REQUEST), name="tohtml")()
             http_host = self.context.REQUEST.environ.get(
                 "HTTP_X_FORWARDED_HOST", site_url

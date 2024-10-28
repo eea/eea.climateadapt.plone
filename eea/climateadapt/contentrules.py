@@ -19,7 +19,7 @@ from .translation.contentrules import (
     TranslateAction,
     TranslateAsyncAction,
     SynchronizeStatesForTranslationsAction,
-)  # BBB
+)  # BBB, don't remove, they're referenced from the database
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 
