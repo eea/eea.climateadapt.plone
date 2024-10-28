@@ -123,7 +123,7 @@ class TranslateFolderAsync(BrowserView):
                 "HTTP_X_FORWARDED_HOST", site_url
             )
 
-            translate_volto_html(html, obj, http_host, language)
+            queue_translate_volto_html(html, obj, http_host, language)
 
             if i % 20 == 0:
                 transaction.commit()
