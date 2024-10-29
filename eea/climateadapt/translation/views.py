@@ -129,8 +129,8 @@ class TranslateFolderAsync(BrowserView):
             force_unlock(obj)
             queue_translate_volto_html(html, obj, http_host, language)
 
-            if i % 20 == 0:
-                transaction.commit()
+            # if i % 20 == 0:
+            #     transaction.commit()
 
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
