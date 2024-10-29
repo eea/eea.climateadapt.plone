@@ -130,7 +130,7 @@ class CreateTranslationStructure(BrowserView):
 
         brains = context.portal_catalog.searchResults(
             path="/".join(context.getPhysicalPath()),
-            portal_type="Folder",
+            # portal_type="Folder",
             sort_on="path",
         )
         site = portal.getSite()
