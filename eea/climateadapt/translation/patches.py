@@ -122,7 +122,7 @@ def handle_modified_patched(self, content):
             queue,
             ("translate",),
             sync_language_independent_fields,
-            content,
+            None,
             en_obj_path,
             options,
         )

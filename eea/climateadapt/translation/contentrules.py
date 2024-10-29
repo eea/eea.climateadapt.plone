@@ -57,7 +57,7 @@ def queue_translate_volto_html(html, en_obj, http_host, language=None):
                 queue,
                 ("translate",),
                 execute_translate_async,
-                en_obj,  # this is the context
+                None,  # this is the context
                 path=en_obj_path,
                 options=copy.deepcopy(options),
                 language=language,
@@ -120,8 +120,7 @@ class TranslateAsyncActionExecutor(object):
 
     def __call__(self):
         if not os.environ.get("TRANSLATE_ON_CHANGE"):
-            logger.warn(
-                "TranslateAsyncActionExecutor executed on the wrong server")
+            logger.warn("TranslateAsyncActionExecutor executed on the wrong server")
             return True
 
         obj = self.event.object
@@ -175,8 +174,7 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
             logger.info("Synchronize states...")
             action = self.event.action
             translations = TranslationManager(obj).get_translations()
-            translated_objs = [translations[x]
-                               for x in translations if x != "en"]
+            translated_objs = [translations[x] for x in translations if x != "en"]
 
             for trans_obj in translated_objs:
                 self.set_new_state(trans_obj, action)
