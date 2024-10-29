@@ -121,7 +121,7 @@ class FindContentWithBlock(BrowserView):
 
 
 def split_list(lst, chunk_size):
-    return [lst[i : i + chunk_size] for i in range(0, len(lst), chunk_size)]
+    return [lst[i: i + chunk_size] for i in range(0, len(lst), chunk_size)]
 
 
 class CreateTranslationStructure(BrowserView):
@@ -170,8 +170,12 @@ class CreateTranslationStructure(BrowserView):
 
                 def task():
                     for i, brain in batch:
+                        if "sandbox" in brain.getURL():
+                            # we don't translate sandbox objects, too much bother
+                            continue
                         obj = brain.getObject()
-                        trans_obj = setup_translation_object(obj, language, site)
+                        trans_obj = setup_translation_object(
+                            obj, language, site)
                         logger.info(
                             "Translated object %s %s/%s %s",
                             language,
@@ -190,3 +194,13 @@ class CreateTranslationStructure(BrowserView):
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
         self.request.response.redirect(self.context.absolute_url())
+
+
+class ResetAsync(BrowserView):
+    def __cal__(self):
+        queue = self.context._p_jar.root()['zc.async']['']
+        from zc.async .queue import Queue
+        Queue.__init__(queue)
+        import transaction
+        transaction.commit()
+        return "done"

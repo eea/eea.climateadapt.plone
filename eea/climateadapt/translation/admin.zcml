@@ -36,6 +36,14 @@
     permission="cmf.ManagePortal"
   />
 
+  <browser:page
+    for="*"
+    name="reset_async"
+    permission="cmf.ManagePortal"
+    class=".admin.ResetAsync"
+  />
+
+
   <!-- <browser:page -->
   <!--   for="*" -->
   <!--   template="pt/list.pt" -->
