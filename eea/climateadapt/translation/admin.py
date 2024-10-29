@@ -189,6 +189,7 @@ class CreateTranslationStructure(BrowserView):
 
                 transaction.begin()
                 task()
+                transaction.savepoint()
                 # try:
                 #     task()
                 #     transaction.commit()
