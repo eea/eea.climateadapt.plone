@@ -188,11 +188,12 @@ class CreateTranslationStructure(BrowserView):
                         )
 
                 transaction.begin()
-                try:
-                    task()
-                    transaction.commit()
-                except Exception:
-                    logger.exception("Exception, but will continue")
+                task()
+                # try:
+                #     task()
+                #     transaction.commit()
+                # except Exception:
+                #     logger.exception("Exception, but will continue")
 
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
