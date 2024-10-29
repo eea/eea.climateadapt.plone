@@ -134,9 +134,6 @@ class CreateTranslationStructure(BrowserView):
             sort_on="path",
         )
         site = portal.getSite()
-        language = self.request.form.get("language", None)
-        if not language:
-            return "no language"
 
         languages = [
             "bg",
@@ -157,6 +154,11 @@ class CreateTranslationStructure(BrowserView):
             "sl",
             "sv",
         ]
+
+        language = self.request.form.get("language", None)
+
+        if language:
+            languages = [language]
 
         brain_count = len(brains)
 
