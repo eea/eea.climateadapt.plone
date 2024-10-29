@@ -173,6 +173,7 @@ class CreateTranslationStructure(BrowserView):
                 def task():
                     for i, brain in batch:
                         obj = brain.getObject()
+                        logger.info("Setting up %s", obj.absolute_url())
                         if "sandbox" in obj.absolute_url():
                             # we don't translate sandbox objects, too much bother
                             continue
