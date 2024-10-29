@@ -130,6 +130,8 @@ class CreateTranslationStructure(BrowserView):
 
         brains = context.portal_catalog.searchResults(
             path="/".join(context.getPhysicalPath()),
+            object_provides=[
+                'plone.app.multilingual.interfaces.ITranslatable'],
             # portal_type="Folder",
             sort_on="path",
         )
