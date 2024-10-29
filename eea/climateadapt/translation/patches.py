@@ -18,7 +18,7 @@ from zope.interface import implementer
 
 from eea.climateadapt.asynctasks.utils import get_async_service
 
-from .core import sync_language_independent_fields, wrap_in_aquisition
+from .core import DummyPersistent, sync_language_independent_fields, wrap_in_aquisition
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -122,7 +122,7 @@ def handle_modified_patched(self, content):
             queue,
             ("translate",),
             sync_language_independent_fields,
-            None,
+            DummyPersistent(),
             en_obj_path,
             options,
         )

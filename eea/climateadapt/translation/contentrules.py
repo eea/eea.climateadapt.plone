@@ -15,7 +15,7 @@ from zope.interface import Interface, implementer, implements
 from eea.climateadapt.asynctasks.utils import get_async_service
 from eea.climateadapt.translation.utils import get_site_languages
 
-from .core import execute_translate_async
+from .core import DummyPersistent, execute_translate_async
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -57,7 +57,7 @@ def queue_translate_volto_html(html, en_obj, http_host, language=None):
                 queue,
                 ("translate",),
                 execute_translate_async,
-                None,  # this is the context
+                DummyPersistent(),  # this is the context
                 path=en_obj_path,
                 options=copy.deepcopy(options),
                 language=language,
