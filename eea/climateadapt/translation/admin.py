@@ -177,15 +177,19 @@ class CreateTranslationStructure(BrowserView):
                         if "sandbox" in obj.absolute_url():
                             # we don't translate sandbox objects, too much bother
                             continue
-                        trans_obj = setup_translation_object(
-                            obj, language, site)
-                        logger.info(
-                            "Translated object %s %s/%s %s",
-                            language,
-                            i,
-                            brain_count,
-                            trans_obj.absolute_url(),
-                        )
+                        try:
+                            trans_obj = setup_translation_object(
+                                obj, language, site)
+                            logger.info(
+                                "Translated object %s %s/%s %s",
+                                language,
+                                i,
+                                brain_count,
+                                trans_obj.absolute_url(),
+                            )
+                        except:
+                            logger.exception(
+                                "Error setting up translation object %s", obj.absolute_url())
 
                 transaction.begin()
                 task()
