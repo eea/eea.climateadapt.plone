@@ -104,7 +104,7 @@ class TranslateObjectAsync(BrowserView):
 
         queue_translate_volto_html(html, obj, http_host, language)
 
-        self.request.response.redirect(obj.absolute_url())
+        return self.request.response.redirect(obj.absolute_url())
 
 
 class TranslateFolderAsync(BrowserView):
@@ -140,7 +140,7 @@ class TranslateFolderAsync(BrowserView):
 
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
-        self.request.response.redirect(self.context.absolute_url())
+        return self.request.response.redirect(self.context.absolute_url())
 
 
 class ToHtml(BrowserView):

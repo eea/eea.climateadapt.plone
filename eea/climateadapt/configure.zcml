@@ -134,6 +134,12 @@
     factory=".catalog.aceitem_id"
     name="aceitem_id"
   />
+
+  <adapter
+    factory=".catalog.funding"
+    name="funding"
+  />
+
   <adapter
     factory=".catalog.acemeasure_id"
     name="acemeasure_id"

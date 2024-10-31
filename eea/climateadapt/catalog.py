@@ -51,6 +51,17 @@ def aceproject_id(object):
 
 
 @indexer(Interface)
+def funding(object):
+    unwrapped = object
+    try:
+        unwrapped = object.aq_inner.aq_self
+    except Exception:
+        pass
+    if hasattr(unwrapped, "funding"):
+        return unwrapped.funding
+
+
+@indexer(Interface)
 def countries(object):
     """Provides a list of countries this item "belongs" to
 
@@ -233,9 +244,11 @@ def image_field_indexer(obj):
     base_obj = aq_base(obj)
 
     image_field = ""
-    if getattr(base_obj, "preview_image_link", False) \
-        and not base_obj.preview_image_link.isBroken():
-        image_field = 'preview_image'
+    if (
+        getattr(base_obj, "preview_image_link", False)
+        and not base_obj.preview_image_link.isBroken()
+    ):
+        image_field = "preview_image"
 
     fields = ["preview_image", "image", "logo", "primary_photo"]
 
