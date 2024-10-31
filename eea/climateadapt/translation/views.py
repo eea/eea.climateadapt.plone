@@ -76,13 +76,15 @@ class TranslationCallback(BrowserView):
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
         if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
+            trans_obj_path = "/cca" + \
+                trans_obj_path.split(site.absolute_url())[-1]
 
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
         html = html_translated.encode("latin-1")
         ingest_html(trans_obj, html)
 
-        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
+        logger.info("Html volto translation saved for %s",
+                    trans_obj.absolute_url())
 
 
 class TranslateObjectAsync(BrowserView):
@@ -92,7 +94,8 @@ class TranslateObjectAsync(BrowserView):
 
         obj = self.context
         force_unlock(obj)
-        html = getMultiAdapter((self.context, self.context.REQUEST), name="tohtml")()
+        html = getMultiAdapter(
+            (self.context, self.context.REQUEST), name="tohtml")()
         site = portal.getSite()
         http_host = self.context.REQUEST.environ.get(
             "HTTP_X_FORWARDED_HOST", site.absolute_url()
@@ -119,9 +122,12 @@ class TranslateFolderAsync(BrowserView):
 
         for i, brain in enumerate(brains):
             obj = brain.getObject()
+            if "sandbox" in obj.absolute_url():
+                continue
 
             logger.info("Queuing %s for translation", obj.absolute_url())
-            html = getMultiAdapter((obj, self.context.REQUEST), name="tohtml")()
+            html = getMultiAdapter(
+                (obj, self.context.REQUEST), name="tohtml")()
             http_host = self.context.REQUEST.environ.get(
                 "HTTP_X_FORWARDED_HOST", site_url
             )
