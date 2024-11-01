@@ -77,7 +77,7 @@ class IAceItem(IImageScaleTraversable):
     )
 
     form.fieldset(
-        "categorization",
+        "inclusion",
         label="Inclusion in the subsites",
         fields=["include_in_observatory",
                 "include_in_mission", "health_impacts"],

@@ -1,3 +1,5 @@
+from Products.PluginIndexes.common import safe_callable
+from Missing import MV
 from eea.climateadapt.translation.utils import get_current_language
 from plone.app.theming.transform import _Cache
 from zope.globalrequest import getRequest
@@ -229,3 +231,18 @@ def patched_addCreator(self, creator=None):
         # do not add creator if one is already set
         return
     return self._old_addCreator(creator)
+
+
+def patched_recordify(self, object):
+    """turns an object into a record tuple"""
+    record = []
+    # the unique id is always the first element
+    for x in self.names:
+        attr = getattr(object, x, MV)
+        if getattr(attr, "_p_jar", None):  # the patch
+            record.append(None)
+            continue
+        if attr is not MV and safe_callable(attr):
+            attr = attr()
+        record.append(attr)
+    return tuple(record)

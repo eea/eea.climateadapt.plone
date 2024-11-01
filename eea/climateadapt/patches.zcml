@@ -46,6 +46,13 @@
     replacement="eea.climateadapt.patch.metadata_fields" />
 
   <monkey:patch
+    description="Don't call persistent objects"
+    class="Products.ZCatalog.Catalog.Catalog"
+    original="recordify"
+    preserveOriginal="true"
+    replacement="eea.climateadapt.patch.patched_recordify" />
+
+  <monkey:patch
     description="Patch getTerm to fix UnicodeEncodeError: 'ascii' codec can't encode character..."
     class="plone.app.vocabularies.users.UsersVocabulary"
     original="getTerm"

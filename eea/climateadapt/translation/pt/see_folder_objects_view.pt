@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <title>See folder objects</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <style>
+td {
+  border: 1px solid black;
+  padding: 2px;
+}
+    </style>
+  </head>
+  <body tal:define="brains python: context.portal_catalog.searchResults(path='/'.join(context.getPhysicalPath())); languages python: sorted([b.getId for b in context.portal_catalog.searchResults(portal_type='LRF')])">
+    <h2 tal:content="python: str(len(brains)) +  ' objects'" />
+
+      <p><a href="" tal:attributes="href string:${context/absolute_url}/@@translate-folder-async">Translate the entire folder</a>
+      <tal:rep repeat="lang languages">
+      <td>
+        <a href="" tal:attributes="href string:${context/absolute_url}/@@translate-folder-async?language=${lang}" tal:content="lang">RO</a>
+      </td>
+      </tal:rep>
+      </p>
+
+      <table>
+        <tr tal:repeat="brain brains">
+
+          <td>
+            <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title</a>
+          </td>
+
+          <td>
+            <span tal:content="python: brain.getPath().replace('/cca', '')" />
+          </td>
+
+          <td><span tal:content="brain/portal_type" /></td>
+          <td><span tal:content="brain/review_state" /></td>
+
+          <td>
+            <a href="" tal:attributes="href string:${brain/getURL}/@@translate-this-async">Translate all langs</a>
+          </td>
+
+          <td tal:repeat="lang languages">
+            <a href="" tal:attributes="href string:${brain/getURL}/@@translate-this-async?language=${lang}" tal:content="lang">RO</a>
+          </td>
+
+          <!--<td>-->
+          <!--  <a href="" tal:attributes="href string:${brain/getURL}/@@volto_migrate">Migrate</a>-->
+          <!--</td>-->
+
+          <!--<td>-->
+          <!--  <a tal:attributes="href python:'https://next-climate-adapt.eea.europa.eu' + brain.getPath().replace('/cca', '')">See on Next</a>-->
+          <!--</td>-->
+
+        </tr>
+      </table>
+
+      <!--<p>WARNING!!! <a href="" tal:attributes="href string:${context/absolute_url}/@@volto_contenttree">Migrate the entire folder</a></p>-->
+
+  </body>
+</html>

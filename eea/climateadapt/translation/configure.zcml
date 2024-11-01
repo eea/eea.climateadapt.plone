@@ -7,20 +7,23 @@
 
   <adapter factory=".app.annotfactory" />
 
+  <include file="patches.zcml" />
+
   <include file="admin.zcml" />
   <include file="viewlets.zcml" />
+  <include file="contentrules.zcml" />
 
   <adapter
-      for="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"
-      provides="plone.app.multilingual.interfaces.ITranslationLocator"
-      factory=".patches.DefaultTranslationLocator"/>
+    for="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"
+    provides="plone.app.multilingual.interfaces.ITranslationLocator"
+    factory=".patches.DefaultTranslationLocator" />
 
   <browser:page
     for="*"
     class=".views.TranslationCallback"
     name="translate-callback"
     permission="zope2.View"
-    />
+  />
 
   <browser:page
     for="*"
@@ -28,31 +31,7 @@
     name="ingest-html"
     permission="cmf.ManagePortal"
     template="pt/ingest.pt"
-    />
-
-  <browser:page
-    for="*"
-    template="pt/list.pt"
-    class=".views.TranslationList"
-    name="translate-list"
-    permission="cmf.ManagePortal"
-    />
-
-  <browser:page
-    for="*"
-    template="pt/key.pt"
-    class=".views.TranslationList"
-    name="translate-key"
-    permission="cmf.ManagePortal"
-    />
-
-  <browser:page
-    for="*"
-    template="pt/report.pt"
-    class=".views.TranslationList"
-    name="translate-report"
-    permission="cmf.ManagePortal"
-    />
+  />
 
   <browser:page
     for="*"
@@ -60,42 +39,35 @@
     class=".export.MenuPot"
     name="export-menu-po"
     permission="cmf.ManagePortal"
-    />
+  />
 
   <browser:page
     for="*"
     class=".volto.ContentToHtml"
     name="volto-html"
     permission="cmf.ManagePortal"
-    />
+  />
 
   <browser:page
     for="*"
-    class=".volto.ToHtml"
+    class=".views.ToHtml"
     name="tohtml"
     permission="cmf.ManagePortal"
     template="pt/volto-html.pt"
-    />
+  />
 
   <browser:page
-      for="*"
-      class=".views.TranslateObjectAsync"
-      name="translate-this-async"
-      permission="cmf.ManagePortal"
-      />
+    for="*"
+    class=".views.TranslateObjectAsync"
+    name="translate-this-async"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      for="*"
-      class=".views.TranslateFolderAsync"
-      name="translate-folder-async"
-      permission="cmf.ManagePortal"
-      />
+    for="*"
+    class=".views.TranslateFolderAsync"
+    name="translate-folder-async"
+    permission="cmf.ManagePortal"
+  />
 
-
-  <browser:page
-      for="*"
-      class=".views.CreateTranslationStructure"
-      name="cts"
-      permission="cmf.ManagePortal"
-      />
 </configure>
