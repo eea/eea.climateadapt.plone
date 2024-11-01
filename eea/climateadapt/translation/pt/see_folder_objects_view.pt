@@ -9,7 +9,7 @@ td {
 }
     </style>
   </head>
-  <body tal:define="brains python: context.portal_catalog.searchResults(path='/'.join(context.getPhysicalPath())); languages python: [b.getId for b in context.portal_catalog.searchResults(portal_type='LRF')]">
+  <body tal:define="brains python: context.portal_catalog.searchResults(path='/'.join(context.getPhysicalPath())); languages python: sorted([b.getId for b in context.portal_catalog.searchResults(portal_type='LRF')])">
     <h2 tal:content="python: str(len(brains)) +  ' objects'" />
 
       <p><a href="" tal:attributes="href string:${context/absolute_url}/@@translate-folder-async">Translate the entire folder</a>

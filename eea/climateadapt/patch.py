@@ -239,7 +239,7 @@ def patched_recordify(self, object):
     # the unique id is always the first element
     for x in self.names:
         attr = getattr(object, x, MV)
-        if getattr(object, "_p_jar", None):  # the patch
+        if getattr(attr, "_p_jar", None):  # the patch
             record.append(None)
             continue
         if attr is not MV and safe_callable(attr):
