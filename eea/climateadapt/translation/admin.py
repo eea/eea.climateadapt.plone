@@ -221,11 +221,16 @@ class ReindexTree(BrowserView):
         brains = self.context.portal_catalog.searchResults(
             sort_on='path', path=path)
 
+        total = len(brains)
         for i, brain in enumerate(brains):
+            if brain.Title:
+                continue
+
             obj = brain.getObject()
-            logger.info("Reindexing %s", "/".join(obj.getPhysicalPath()))
+            logger.info("Reindexing %s of %s: %s", i, total,
+                        "/".join(obj.getPhysicalPath()))
             obj.reindexObject()
-            if i % 100 == 0:
+            if i % 10 == 0:
                 transaction.savepoint()
 
         return "ok"
