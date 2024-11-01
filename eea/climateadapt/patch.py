@@ -1,4 +1,4 @@
-from Products.PluginIndexes.util import safe_callable
+from Products.PluginIndexes.common import safe_callable
 from Missing import MV
 from eea.climateadapt.translation.utils import get_current_language
 from plone.app.theming.transform import _Cache
