@@ -47,7 +47,12 @@ def copy_fields_patched(self, translation):
     # copy and adapted from https://github.com/plone/plone.app.multilingual/blob/9e7491294f01f7bd21a45e00231d54873ad0eed6/src/plone/app/multilingual/dx/cloner.py
     changed = False
 
-    target_language = queryAdapter(translation, ILanguage).get_language()
+    adapter = queryAdapter(translation, ILanguage)
+    if adapter is None:
+        logger.exception(
+            "Didn't find language for translation: %s", translation)
+        return
+    target_language = adapter.get_language()
 
     for schema in iterSchemata(self.context):
         context_adapter = None
