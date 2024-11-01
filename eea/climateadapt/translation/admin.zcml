@@ -43,6 +43,12 @@
     class=".admin.ResetAsync"
   />
 
+  <browser:page
+    for="*"
+    name="reindex_tree_view"
+    permission="cmf.ManagePortal"
+    class=".admin.ReindexTree"
+  />
 
   <!-- <browser:page -->
   <!--   for="*" -->

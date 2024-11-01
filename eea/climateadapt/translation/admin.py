@@ -213,3 +213,19 @@ class ResetAsync(BrowserView):
         import transaction
         transaction.commit()
         return "done"
+
+
+class ReindexTree(BrowserView):
+    def __call__(self):
+        path = '/'.join(self.context.getPhysicalPath())
+        brains = self.context.portal_catalog.searchResults(
+            sort_on='path', path=path)
+
+        for i, brain in enumerate(brains):
+            obj = brain.getObject()
+            logger.info("Reindexing %s", "/".join(obj.getPhysicalPath()))
+            obj.reindexObject()
+            if i % 100 == 0:
+                transaction.savepoint()
+
+        return "ok"
