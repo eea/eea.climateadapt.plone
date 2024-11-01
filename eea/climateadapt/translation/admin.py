@@ -223,13 +223,13 @@ class ReindexTree(BrowserView):
 
         total = len(brains)
         for i, brain in enumerate(brains):
-            if brain.Title:
-                continue
+            # if brain.Title:
+            #     continue
 
             obj = brain.getObject()
             logger.info("Reindexing %s of %s: %s", i, total,
                         "/".join(obj.getPhysicalPath()))
-            obj.reindexObject()
+            obj.reindexObject(idxs=["object_provides"])
             if i % 10 == 0:
                 transaction.savepoint()
 
