@@ -45,6 +45,13 @@
 
   <browser:page
     for="*"
+    name="set_tree_language"
+    permission="cmf.ManagePortal"
+    class=".admin.SetTreeLanguage"
+  />
+
+  <browser:page
+    for="*"
     name="reindex_tree_view"
     permission="cmf.ManagePortal"
     class=".admin.ReindexTree"

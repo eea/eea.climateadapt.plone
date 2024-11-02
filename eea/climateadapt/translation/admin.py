@@ -229,8 +229,31 @@ class ReindexTree(BrowserView):
             obj = brain.getObject()
             logger.info("Reindexing %s of %s: %s", i, total,
                         "/".join(obj.getPhysicalPath()))
-            obj.reindexObject(idxs=["object_provides"])
+            obj.reindexObject(idxs=["object_provides", "Language"])
             if i % 10 == 0:
                 transaction.savepoint()
 
+        return "ok"
+
+
+class SetTreeLanguage(BrowserView):
+
+    def __call__(self):
+        path = '/'.join(self.context.getPhysicalPath())
+        brains = self.context.portal_catalog.searchResults(
+            sort_on='path', path=path
+        )
+
+        language = self.request.form.get('language', 'en')
+
+        total = len(brains)
+        for i, brain in enumerate(brains):
+            obj = brain.getObject()
+            obj.language = language
+            obj._p_changed = True
+            obj.reindexObject(idxs=["Language"])
+            logger.info("Reindexing %s of %s: %s", i, total,
+                        "/".join(obj.getPhysicalPath()))
+            if i % 10 == 0:
+                transaction.savepoint()
         return "ok"
