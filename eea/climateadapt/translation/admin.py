@@ -330,13 +330,14 @@ class FixFolderOrder(BrowserView):
                     if trans:
                         test_path = trans.getPhysicalPath()[:-1]
 
-                        if test_path != base_path:
+                        if test_path == base_path:
+                            new_id = trans.getId()
+                            orig_order_set.remove(new_id)
+                            trans_order.append(new_id)
+                        else:
                             logger.warning(
                                 "Translated object is in another folder: %s (should be: %s )",
                                 base_path, "/".join(trans.getPhysicalPath()))
-                        else:
-                            orig_order_set.remove(id)
-                            trans_order.append(trans.getId())
                     else:
                         logger.info("Original without translation: %s (%s)",
                                     "/".join(other.getPhysicalPath()), language)
