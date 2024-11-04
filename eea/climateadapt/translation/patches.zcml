@@ -39,7 +39,7 @@
   />
 
   <monkey:patch
-    original="_pos"
+    original="_order"
     replacement=".patches.patched_default_order_order"
     class="plone.folder.default.DefaultOrdering"
     description="For translations, delegate ordering to canonical objects"
