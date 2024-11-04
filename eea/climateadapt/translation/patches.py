@@ -152,9 +152,10 @@ def patched_default_order_init(self, context):
             canonical = ITranslationManager(context).get_translation("en")
             if canonical:
                 self.context = canonical
-                logger.debug("Using canonical %s for %s", canonical, context)
-
-            return
+                logger.info("Using canonical %s for %s", canonical, context)
+                return
+            else:
+                logger.info("Could not find canonical for %s", context)
 
     self.context = context
 
