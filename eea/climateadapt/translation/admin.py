@@ -321,7 +321,8 @@ class FixFolderOrder(BrowserView):
             for id in proper_order:
                 if id in obj_ids:
                     trans_order.append(id)
-                    orig_order_set.remove(id)
+                    if id in orig_order_set:
+                        orig_order_set.remove(id)
                 else:
                     # was the object translated with another id?
                     other = canonical._getOb(id)
@@ -364,7 +365,8 @@ class FixFolderOrder(BrowserView):
             for (id, position) in proper_pos.items():
                 if id in obj_ids:
                     trans_pos[id] = position
-                    orig_order_set.remove(id)
+                    if id in orig_order_set:
+                        orig_order_set.remove(id)
                 else:
                     # was the object translated with another id?
                     other = canonical._getOb(id)
