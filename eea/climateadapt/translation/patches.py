@@ -1,3 +1,5 @@
+from zope.annotation.interfaces import IAnnotations
+from BTrees.OIBTree import OIBTree
 from plone.app.multilingual.interfaces import ITranslationManager
 from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
 from Acquisition import aq_self
@@ -143,6 +145,7 @@ def handle_modified_patched(self, content):
 
 def patched_default_order_init(self, context):
     """Delegate ordering to the canonical version of an object"""
+    self._is_translation = False
 
     if IDexterityTranslatable.providedBy(context):
         aq_context = aq_self(context)
@@ -151,7 +154,9 @@ def patched_default_order_init(self, context):
         if lang and lang != "en":
             canonical = ITranslationManager(context).get_translation("en")
             if canonical:
+                self._is_translation = True
                 self.context = canonical
+                self.translation = context
                 import logging
 
                 logger = logging.getLogger("eea.climateadapt")
@@ -168,6 +173,37 @@ def patched_default_order_init(self, context):
                 logger.info("Could not find canonical for %s", context.absolute_url())
 
     self.context = context
+
+
+def patched_default_order_pos(self, create=False):
+    annotations = IAnnotations(self.context)
+
+    if self._is_translation:
+        ids = self.translation.contentIds()
+        pos = annotations.get(self.POS_KEY, {})
+        res = {}
+        for k in pos.keys():
+            if k in ids:
+                res[k] = pos[k]
+        return res
+    else:
+        if create:
+            return annotations.setdefault(self.POS_KEY, OIBTree())
+        return annotations.get(self.POS_KEY, {})
+
+
+def patched_default_order_order(self, create=False):
+    annotations = IAnnotations(self.context)
+
+    if self._is_translation:
+        ids = self.translation.contentIds()
+        pos = annotations.get(self.ORDER_KEY, [])
+        res = [k for k in pos if k in ids]
+        return res
+    else:
+        if create:
+            return annotations.setdefault(self.POS_KEY, OIBTree())
+        return annotations.get(self.POS_KEY, {})
 
 
 # fix the translation locator to allow it to properly work in async
