@@ -306,6 +306,8 @@ class FixFolderOrder(BrowserView):
                 self.fix_pos(obj, canonical, annotations,
                              trans_annot, language, base_path)
 
+        return "done"
+
     def fix_order(self, obj, canonical, annotations, trans_annot, language, base_path):
         tree = obj._tree
         obj_ids = list(tree.keys())
