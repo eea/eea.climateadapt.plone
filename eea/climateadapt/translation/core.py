@@ -237,9 +237,10 @@ def setup_translation_object(obj, language, site_portal):
     if trans is not None:
         # todo: fix the trans
         logger.warning(
-            "Translation object exists, but it's not properly recorded",
-            trans.absolute_url(),
-            obj.absolute_url(),
+            "Translation object exists, but it's not properly recorded %s %s %s",
+            "/".join(trans.getPhysicalPath()),
+            "/".join(obj.getPhysicalPath()),
+            # trans_path,
         )
         trans.reindexObject()
         return trans
