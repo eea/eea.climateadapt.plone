@@ -328,8 +328,13 @@ class FixFolderOrder(BrowserView):
                 else:
                     # was the object translated with another id?
                     other = canonical._getOb(id)
-                    trans = ITranslationManager(
-                        other).get_translation(language)
+                    try:
+                        trans = ITranslationManager(
+                            other).get_translation(language)
+                    except TypeError:
+                        logger.warning("Object not translatable: %s",
+                                       "/".join(other.getPhysicalPath()))
+                        continue
                     if trans:
                         test_path = trans.getPhysicalPath()[:-1]
 
