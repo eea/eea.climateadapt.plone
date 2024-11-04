@@ -31,6 +31,10 @@ logger = logging.getLogger("eea.climateadapt")
 _marker = object()
 
 
+def path(obj):
+    return "/".join(obj.getPhysicalPath())
+
+
 @implementer(ITranslationLocator)
 class DefaultTranslationLocator(Base):
     def __call__(self, language):
@@ -162,15 +166,15 @@ def patched_default_order_init(self, context):
                 logger = logging.getLogger("eea.climateadapt")
                 logger.info(
                     "Using canonical %s for %s",
-                    canonical.absolute_url(),
-                    context.absolute_url(),
+                    path(canonical),
+                    path(context),
                 )
                 return
             else:
                 import logging
 
                 logger = logging.getLogger("eea.climateadapt")
-                logger.info("Could not find canonical for %s", context.absolute_url())
+                logger.info("Could not find canonical for %s", path(context))
 
     self.context = context
 
@@ -190,7 +194,7 @@ def patched_default_order_pos(self, create=False):
             return res
         except Exception:
             logger.exception(
-                "Could not properly get order %s", self.translation.absolute_url()
+                "Could not properly get order %s", path(self.translation)
             )
     else:
         if create:
@@ -210,12 +214,31 @@ def patched_default_order_order(self, create=False):
             return res
         except Exception:
             logger.exception(
-                "Could not properly get order %s", self.translation.absolute_url()
+                "Could not properly get order %s", path(self.translation)
             )
     else:
         if create:
             return annotations.setdefault(self.POS_KEY, OIBTree())
         return annotations.get(self.POS_KEY, {})
+
+
+def patched_default_getObjectPosition(self, obj_id):
+    """see interfaces.py"""
+    pos = self._pos()
+    if obj_id in pos:
+        return pos[obj_id]
+
+    # TODO: lookup the position for the translation of that object
+    logger.warning(
+        "Could not find position of %s in %s", obj_id, path(self.context)
+    )
+    return 0
+
+    # raise ValueError(
+    #     'No object with id "{:s}" exists in "{:s}".'.format(
+    #         obj_id, "/".join(self.context.getPhysicalPath())
+    #     )
+    # )
 
 
 # fix the translation locator to allow it to properly work in async

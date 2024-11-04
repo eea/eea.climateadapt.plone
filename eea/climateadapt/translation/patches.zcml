@@ -46,6 +46,14 @@
     preserveOriginal="true"
   />
 
+  <monkey:patch
+    original="getObjectPosition"
+    replacement=".patches.patched_default_getObjectPosition"
+    class="plone.folder.default.DefaultOrdering"
+    description="For translations, delegate ordering to canonical objects"
+    preserveOriginal="true"
+  />
+
   <!-- <adapter -->
   <!--     for="plone.app.multilingual.dx.interfaces.IDexterityTranslatable" -->
   <!--     provides="plone.app.multilingual.interfaces.ILanguageIndependentFieldsManager" -->
