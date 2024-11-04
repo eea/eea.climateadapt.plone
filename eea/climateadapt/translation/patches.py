@@ -152,7 +152,7 @@ def patched_default_order_init(self, context):
             canonical = ITranslationManager(context).get_translation("en")
             if canonical:
                 self.context = canonical
-                print("Set canonical", canonical)
+                logger.debug("Using canonical %s for %s", canonical, context)
 
             return
 
