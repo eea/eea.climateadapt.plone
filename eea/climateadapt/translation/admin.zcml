@@ -57,6 +57,13 @@
     class=".admin.ReindexTree"
   />
 
+  <browser:page
+    for="*"
+    name="fix_folder_order"
+    permission="cmf.ManagePortal"
+    class=".admin.FixFolderOrder"
+  />
+
   <!-- <browser:page -->
   <!--   for="*" -->
   <!--   template="pt/list.pt" -->

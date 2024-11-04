@@ -340,6 +340,8 @@ class FixFolderOrder(BrowserView):
             for key in orig_order_set:      # append remaining keys that were not found in canonical
                 trans_order.append(key)
             trans_annot[self.ORDER_KEY] = trans_order
+            logger.info("Fixed order for %s. Old: %r. New: %r",
+                        "/".join(obj.getPhysicalPath()), orig_order, list(trans_order))
 
     def fix_pos(self, obj, canonical, annotations, trans_annot, language, base_path):
         tree = obj._tree
@@ -377,3 +379,5 @@ class FixFolderOrder(BrowserView):
                                     "/".join(other.getPhysicalPath()), language)
 
             trans_annot[self.POS_KEY] = trans_pos
+            logger.info("Fixed position for %s. Old: %r. New: %r",
+                        "/".join(obj.getPhysicalPath()), orig_pos, dict(trans_pos))
