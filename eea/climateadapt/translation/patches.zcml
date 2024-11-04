@@ -22,13 +22,13 @@
     preserveOriginal="true"
   />
 
-  <monkey:patch
-    original="__init__"
-    replacement=".patches.patched_default_order_init"
-    class="plone.folder.default.DefaultOrdering"
-    description="For translations, delegate ordering to canonical objects"
-    preserveOriginal="true"
-  />
+  <!-- <monkey:patch -->
+  <!--   original="__init__" -->
+  <!--   replacement=".patches.patched_default_order_init" -->
+  <!--   class="plone.folder.default.DefaultOrdering" -->
+  <!--   description="For translations, delegate ordering to canonical objects" -->
+  <!--   preserveOriginal="true" -->
+  <!-- /> -->
 
   <!-- <adapter -->
   <!--     for="plone.app.multilingual.dx.interfaces.IDexterityTranslatable" -->
