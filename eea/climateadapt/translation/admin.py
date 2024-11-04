@@ -1,5 +1,6 @@
 """Admin translation"""
 
+from plone.dexterity.interfaces import IDexterityContainer
 from BTrees.OIBTree import OIBTree
 from persistent.list import PersistentList
 from zope.annotation.interfaces import IAnnotations
@@ -279,6 +280,9 @@ class FixFolderOrder(BrowserView):
             obj = brain.getObject()
             base_path = obj.getPhysicalPath()
             if not IDexterityTranslatable.providedBy(obj):
+                continue
+
+            if not IDexterityContainer.providedBy(obj):
                 continue
 
             language = obj.language
