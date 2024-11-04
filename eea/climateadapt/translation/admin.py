@@ -308,7 +308,7 @@ class FixFolderOrder(BrowserView):
 
     def fix_order(self, obj, canonical, annotations, trans_annot, language, base_path):
         tree = obj._tree
-        ids = list(tree.keys())
+        obj_ids = list(tree.keys())
 
         # order is a list like: ['index_html', 'organisations', 'international']
         proper_order = list(annotations.get(self.ORDER_KEY, []))
@@ -319,7 +319,7 @@ class FixFolderOrder(BrowserView):
             # rebuild the order
             orig_order_set = set(orig_order)
             for id in proper_order:
-                if id in ids:
+                if id in obj_ids:
                     trans_order.append(id)
                     orig_order_set.remove(id)
                 else:
@@ -332,7 +332,8 @@ class FixFolderOrder(BrowserView):
 
                         if test_path == base_path:
                             new_id = trans.getId()
-                            orig_order_set.remove(new_id)
+                            if new_id in orig_order_set:
+                                orig_order_set.remove(new_id)
                             trans_order.append(new_id)
                         else:
                             logger.warning(
@@ -350,7 +351,7 @@ class FixFolderOrder(BrowserView):
 
     def fix_pos(self, obj, canonical, annotations, trans_annot, language, base_path):
         tree = obj._tree
-        ids = list(tree.keys())
+        obj_ids = list(tree.keys())
 
         # pos is a mapping like: {'index_html': 0, 'international': 2, 'organisations': 1}
         proper_pos = dict(annotations.get(self.POS_KEY, {}))
@@ -361,7 +362,7 @@ class FixFolderOrder(BrowserView):
             # rebuild the order
             orig_order_set = set(orig_pos.keys())
             for (id, position) in proper_pos.items():
-                if id in ids:
+                if id in obj_ids:
                     trans_pos[id] = position
                     orig_order_set.remove(id)
                 else:
@@ -372,13 +373,15 @@ class FixFolderOrder(BrowserView):
                     if trans:
                         test_path = trans.getPhysicalPath()[:-1]
 
-                        if test_path != base_path:
+                        if test_path == base_path:
+                            new_id = trans.getId()
+                            if new_id in orig_order_set:
+                                orig_order_set.remove(new_id)
+                            trans_pos[new_id] = position
+                        else:
                             logger.warning(
                                 "Translated object is in another folder: %s (should be: %s )",
                                 base_path, "/".join(trans.getPhysicalPath()))
-                        else:
-                            orig_order_set.remove(id)
-                            trans_pos[trans.getId()] = position
                     else:
                         logger.info("Original without translation: %s (%s)",
                                     "/".join(other.getPhysicalPath()), language)
