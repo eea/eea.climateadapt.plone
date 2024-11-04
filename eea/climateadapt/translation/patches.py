@@ -179,13 +179,19 @@ def patched_default_order_pos(self, create=False):
     annotations = IAnnotations(self.context)
 
     if self._is_translation:
-        ids = self.translation.contentIds()
-        pos = annotations.get(self.POS_KEY, {})
-        res = {}
-        for k in pos.keys():
-            if k in ids:
-                res[k] = pos[k]
-        return res
+        try:
+            tree = self.translation._tree
+            ids = list(tree.keys())
+            pos = annotations.get(self.POS_KEY, {})
+            res = {}
+            for k in pos.keys():
+                if k in ids:
+                    res[k] = pos[k]
+            return res
+        except Exception:
+            logger.exception(
+                "Could not properly get order %s", self.translation.absolute_url()
+            )
     else:
         if create:
             return annotations.setdefault(self.POS_KEY, OIBTree())
@@ -196,10 +202,16 @@ def patched_default_order_order(self, create=False):
     annotations = IAnnotations(self.context)
 
     if self._is_translation:
-        ids = self.translation.contentIds()
-        pos = annotations.get(self.ORDER_KEY, [])
-        res = [k for k in pos if k in ids]
-        return res
+        try:
+            tree = self.translation._tree
+            ids = list(tree.keys())
+            pos = annotations.get(self.ORDER_KEY, [])
+            res = [k for k in pos if k in ids]
+            return res
+        except Exception:
+            logger.exception(
+                "Could not properly get order %s", self.translation.absolute_url()
+            )
     else:
         if create:
             return annotations.setdefault(self.POS_KEY, OIBTree())
