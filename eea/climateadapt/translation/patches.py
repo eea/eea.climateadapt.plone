@@ -1,3 +1,6 @@
+from plone.app.multilingual.interfaces import ITranslationManager
+from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
+from Acquisition import aq_self
 import logging
 
 from plone.api import portal
@@ -49,8 +52,7 @@ def copy_fields_patched(self, translation):
 
     adapter = queryAdapter(translation, ILanguage)
     if adapter is None:
-        logger.exception(
-            "Didn't find language for translation: %s", translation)
+        logger.exception("Didn't find language for translation: %s", translation)
         return
     target_language = adapter.get_language()
 
@@ -137,6 +139,24 @@ def handle_modified_patched(self, content):
         )
 
     # return self._old_handle_modified(content)
+
+
+def patched_default_order_init(self, context):
+    """Delegate ordering to the canonical version of an object"""
+
+    if IDexterityTranslatable.providedBy(context):
+        aq_context = aq_self(context)
+        lang = getattr(aq_context, "language", None)
+
+        if lang and lang != "en":
+            canonical = ITranslationManager(context).get_translation("en")
+            if canonical:
+                self.context = canonical
+                print("Set canonical", canonical)
+
+            return
+
+    self.context = context
 
 
 # fix the translation locator to allow it to properly work in async
