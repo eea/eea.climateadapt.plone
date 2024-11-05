@@ -492,11 +492,14 @@ def ingest_html(trans_obj, html):
     translations = TranslationManager(trans_obj).get_translations()
 
     if "en" not in translations:
-        logger.warning(
-            "Could not find canonical for this object %s, aborting. Check its translation group",
-            "/".join(trans_obj.getPhysicalPath()),
+        msg = (
+            "Could not find canonical for this object %s, aborting. "
+            "Check its translation group" % "/".join(
+                trans_obj.getPhysicalPath())
         )
-        raise ValueError
+
+        logger.warning(msg)
+        raise ValueError(msg)
 
     en_obj = translations["en"]  # hardcoded, should use canonical
 
