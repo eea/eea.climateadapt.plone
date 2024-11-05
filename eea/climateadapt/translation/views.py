@@ -114,7 +114,8 @@ class TranslateFolderAsync(BrowserView):
         context = self.context
 
         brains = context.portal_catalog.searchResults(
-            path="/".join(context.getPhysicalPath())
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
         )
         site = portal.getSite()
         site_url = site.absolute_url()
