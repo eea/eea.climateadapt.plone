@@ -496,7 +496,7 @@ def ingest_html(trans_obj, html):
             "Could not find canonical for this object %s, aborting. Check its translation group",
             "/".join(trans_obj.getPhysicalPath()),
         )
-        return
+        raise ValueError
 
     en_obj = translations["en"]  # hardcoded, should use canonical
 
