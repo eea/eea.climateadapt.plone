@@ -490,6 +490,14 @@ def ingest_html(trans_obj, html):
     fielddata = get_content_from_html(html)
 
     translations = TranslationManager(trans_obj).get_translations()
+
+    if "en" not in translations:
+        logger.warning(
+            "Could not find canonical for this object %s, aborting. Check its translation group",
+            "/".join(trans_obj.getPhysicalPath()),
+        )
+        return
+
     en_obj = translations["en"]  # hardcoded, should use canonical
 
     save_field_data(en_obj, trans_obj, fielddata)
