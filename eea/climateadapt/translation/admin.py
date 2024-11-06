@@ -257,11 +257,13 @@ class SetTreeLanguage(BrowserView):
             obj = brain.getObject()
             obj.language = language
             obj._p_changed = True
-            obj.reindexObject(idxs=["Language"])
+            obj.reindexObject(
+                idxs=["Language", "TranslationGroup", "object_provides"])
             logger.info("Reindexing %s of %s: %s", i, total,
                         "/".join(obj.getPhysicalPath()))
             if i % 10 == 0:
                 transaction.savepoint()
+
         return "ok"
 
 
