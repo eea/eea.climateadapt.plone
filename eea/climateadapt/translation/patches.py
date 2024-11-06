@@ -1,3 +1,8 @@
+from zope.annotation.interfaces import IAnnotations
+from BTrees.OIBTree import OIBTree
+from plone.app.multilingual.interfaces import ITranslationManager
+from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
+from Acquisition import aq_self
 import logging
 
 from plone.api import portal
@@ -26,6 +31,10 @@ logger = logging.getLogger("eea.climateadapt")
 _marker = object()
 
 
+def path(obj):
+    return "/".join(obj.getPhysicalPath())
+
+
 @implementer(ITranslationLocator)
 class DefaultTranslationLocator(Base):
     def __call__(self, language):
@@ -49,8 +58,7 @@ def copy_fields_patched(self, translation):
 
     adapter = queryAdapter(translation, ILanguage)
     if adapter is None:
-        logger.exception(
-            "Didn't find language for translation: %s", translation)
+        logger.exception("Didn't find language for translation: %s", translation)
         return
     target_language = adapter.get_language()
 
@@ -137,6 +145,100 @@ def handle_modified_patched(self, content):
         )
 
     # return self._old_handle_modified(content)
+
+
+def patched_default_order_init(self, context):
+    """Delegate ordering to the canonical version of an object"""
+    self._is_translation = False
+
+    if IDexterityTranslatable.providedBy(context):
+        aq_context = aq_self(context)
+        lang = getattr(aq_context, "language", None)
+
+        if lang and lang != "en":
+            canonical = ITranslationManager(context).get_translation("en")
+            if canonical:
+                self._is_translation = True
+                self.context = canonical
+                self.translation = context
+                import logging
+
+                logger = logging.getLogger("eea.climateadapt")
+                logger.info(
+                    "Using canonical %s for %s",
+                    path(canonical),
+                    path(context),
+                )
+                return
+            else:
+                import logging
+
+                logger = logging.getLogger("eea.climateadapt")
+                logger.info("Could not find canonical for %s", path(context))
+
+    self.context = context
+
+
+def patched_default_order_pos(self, create=False):
+    annotations = IAnnotations(self.context)
+
+    if self._is_translation:
+        try:
+            tree = self.translation._tree
+            ids = list(tree.keys())
+            pos = annotations.get(self.POS_KEY, {})
+            res = {}
+            for k in pos.keys():
+                if k in ids:
+                    res[k] = pos[k]
+            return res
+        except Exception:
+            logger.exception(
+                "Could not properly get order %s", path(self.translation)
+            )
+    else:
+        if create:
+            return annotations.setdefault(self.POS_KEY, OIBTree())
+        return annotations.get(self.POS_KEY, {})
+
+
+def patched_default_order_order(self, create=False):
+    annotations = IAnnotations(self.context)
+
+    if self._is_translation:
+        try:
+            tree = self.translation._tree
+            ids = list(tree.keys())
+            pos = annotations.get(self.ORDER_KEY, [])
+            res = [k for k in pos if k in ids]
+            return res
+        except Exception:
+            logger.exception(
+                "Could not properly get order %s", path(self.translation)
+            )
+    else:
+        if create:
+            return annotations.setdefault(self.POS_KEY, OIBTree())
+        return annotations.get(self.POS_KEY, {})
+
+
+def patched_default_getObjectPosition(self, obj_id):
+    """see interfaces.py"""
+    pos = self._pos()
+    if obj_id in pos:
+        return pos[obj_id]
+
+    # TODO: lookup the position for the translation of that object
+    logger.warning(
+        "Could not find position of %s in %s", obj_id, path(self.context)
+    )
+    return 0
+
+    # raise ValueError(
+    #     'No object with id "{:s}" exists in "{:s}".'.format(
+    #         obj_id, "/".join(self.context.getPhysicalPath())
+    #     )
+    # )
 
 
 # fix the translation locator to allow it to properly work in async

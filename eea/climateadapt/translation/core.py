@@ -203,6 +203,24 @@ def copy_missing_interfaces(en_obj, trans_obj):
             logger.info("Copied interface: %s" % interf[0])
 
 
+def safe_traverse(obj, trans_path):
+    parts = trans_path.strip("/").split("/")
+    current_obj = obj
+
+    for part in parts:
+        if hasattr(current_obj, "objectIds") and callable(current_obj.objectIds):
+            if part in current_obj.objectIds():
+                current_obj = current_obj[part]
+            else:
+                return None
+        # elif hasattr(current_obj, part):
+        #     current_obj = getattr(current_obj, part)
+        else:
+            return None
+
+    return current_obj
+
+
 def setup_translation_object(obj, language, site_portal):
     """Create translation object for an obj"""
 
@@ -230,18 +248,20 @@ def setup_translation_object(obj, language, site_portal):
 
     trans = None
     try:
-        trans = obj.unrestrictedTraverse(trans_path)
+        trans = safe_traverse(obj, trans_path)
     except Exception:
         pass
 
     if trans is not None:
         # todo: fix the trans
         logger.warning(
-            "Translation object exists, but it's not properly recorded",
-            trans.absolute_url(),
-            obj.absolute_url(),
+            "Translation object exists, but it's not properly recorded %s %s %s",
+            "/".join(trans.getPhysicalPath()),
+            "/".join(obj.getPhysicalPath()),
+            # trans_path,
         )
         trans.reindexObject()
+
         return trans
 
     check_ancestors_path_exists(obj, language, site_portal)
@@ -470,6 +490,17 @@ def ingest_html(trans_obj, html):
     fielddata = get_content_from_html(html)
 
     translations = TranslationManager(trans_obj).get_translations()
+
+    if "en" not in translations:
+        msg = (
+            "Could not find canonical for this object %s, aborting. "
+            "Check its translation group" % "/".join(
+                trans_obj.getPhysicalPath())
+        )
+
+        logger.warning(msg)
+        raise ValueError(msg)
+
     en_obj = translations["en"]  # hardcoded, should use canonical
 
     save_field_data(en_obj, trans_obj, fielddata)
