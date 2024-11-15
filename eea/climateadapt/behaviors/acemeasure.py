@@ -60,65 +60,65 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # dexteritytextindexer.searchable('year')
     dexteritytextindexer.searchable("publication_date")
 
-    form.fieldset(
-        "default",
-        label="Item Description",
-        fields=[
-            "publication_date",
-            "title",
-            "description",
-            "long_description",
-            "climate_impacts",
-            "keywords",
-            "sectors",
-            "elements",
-            # "featured",  # 'year',
-        ],
-    )
-
-    form.fieldset(
-        "additional_details",
-        label="Additional Details",
-        fields=[
-            "stakeholder_participation",
-            "success_limitations",
-            "cost_benefit",
-            "legal_aspects",
-            "implementation_time",
-            "lifetime",
-        ],
-    )
-
-    # form.fieldset('inclusion_health_observatory',
-    #              label=u'Inclusion in health observatory',
-    #              fields=['include_in_observatory', 'health_impacts']
-    #              )
-
-    form.fieldset(
-        "reference_information",
-        label="Reference information",
-        fields=["websites", "source", "special_tags",
-                "comments"],  # 'contact',
-    )
-
-    # richtext fields in database:
-    # set(['legalaspects', 'implementationtime', 'description', 'source',
-    # 'objectives', 'stakeholderparticipation', 'admincomment', 'comments',
-    # 'challenges', 'keywords', 'contact', 'solutions', 'costbenefit',
-    # 'succeslimitations', 'lifetime'])
-
-    form.fieldset(
-        "geographic_information",
-        label="Geographic Information",
-        fields=["governance_level", "geochars"],
-    )
-
-    form.fieldset(
-        "inclusion",
-        label="Inclusion in the Health Observatory",
-        fields=["include_in_observatory",
-                "include_in_mission", "health_impacts"],
-    )
+    # form.fieldset(
+    #     "default",
+    #     label="Item Description",
+    #     fields=[
+    #         "publication_date",
+    #         "title",
+    #         "description",
+    #         "long_description",
+    #         "climate_impacts",
+    #         "keywords",
+    #         "sectors",
+    #         "elements",
+    #         # "featured",  # 'year',
+    #     ],
+    # )
+    #
+    # form.fieldset(
+    #     "additional_details",
+    #     label="Additional Details",
+    #     fields=[
+    #         "stakeholder_participation",
+    #         "success_limitations",
+    #         "cost_benefit",
+    #         "legal_aspects",
+    #         "implementation_time",
+    #         "lifetime",
+    #     ],
+    # )
+    #
+    # # form.fieldset('inclusion_health_observatory',
+    # #              label=u'Inclusion in health observatory',
+    # #              fields=['include_in_observatory', 'health_impacts']
+    # #              )
+    #
+    # form.fieldset(
+    #     "reference_information",
+    #     label="Reference information",
+    #     fields=["websites", "source", "special_tags",
+    #             "comments"],  # 'contact',
+    # )
+    #
+    # # richtext fields in database:
+    # # set(['legalaspects', 'implementationtime', 'description', 'source',
+    # # 'objectives', 'stakeholderparticipation', 'admincomment', 'comments',
+    # # 'challenges', 'keywords', 'contact', 'solutions', 'costbenefit',
+    # # 'succeslimitations', 'lifetime'])
+    #
+    # form.fieldset(
+    #     "geographic_information",
+    #     label="Geographic Information",
+    #     fields=["governance_level", "geochars"],
+    # )
+    #
+    # form.fieldset(
+    #     "inclusion",
+    #     label="Inclusion in the Health Observatory",
+    #     fields=["include_in_observatory",
+    #             "include_in_mission", "health_impacts"],
+    # )
 
     # -----------[ "default" fields ]------------------
 
@@ -161,7 +161,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     keywords = Tuple(
-        title=_(u"Keywords"),
+        title=_("Keywords"),
         description=_(
             "Describe and tag this item with relevant keywords. "
             "Press Enter after writing your keyword. "
@@ -496,8 +496,8 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_(u"Adaptation approaches"),
-        description=_(u"Select one or more approaches."),
+        title=_("Adaptation approaches"),
+        description=_("Select one or more approaches."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
