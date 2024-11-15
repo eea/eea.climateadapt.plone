@@ -1,5 +1,15 @@
-from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
-                         TextLine, Tuple)
+from zope.schema import (
+    URI,
+    Bool,
+    Choice,
+    Date,
+    Datetime,
+    Int,
+    List,
+    Text,
+    TextLine,
+    Tuple,
+)
 from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from eea.climateadapt import CcaAdminMessageFactory as _
@@ -75,44 +85,44 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     dexteritytextindexer.searchable("spatial_layer")
     dexteritytextindexer.searchable("spatial_values")
 
-    form.fieldset(
-        "default",
-        label="Item Description",
-        fields=[
-            "acronym",
-            "title",
-            "lead",
-            "long_description",
-            "partners",
-            "keywords",
-            "sectors",
-            "climate_impacts",
-            "elements",
-            "funding",
-            "funding_programme",
-            "duration",
-            "featured",
-        ],
-    )
-
-    form.fieldset(
-        "reference_information",
-        label="Reference information",
-        fields=["websites", "source", "special_tags", "partners_source_link"],
-    )
-
-    form.fieldset(
-        "geographic_information",
-        label="Geographic Information",
-        fields=["geochars", "comments"],
-    )
-
-    form.fieldset(
-        "inclusion",
-        label="Inclusion in the subsites",
-        fields=["include_in_observatory",
-                "include_in_mission", "health_impacts"],
-    )
+    # form.fieldset(
+    #     "default",
+    #     label="Item Description",
+    #     fields=[
+    #         "acronym",
+    #         "title",
+    #         "lead",
+    #         "long_description",
+    #         "partners",
+    #         "keywords",
+    #         "sectors",
+    #         "climate_impacts",
+    #         "elements",
+    #         "funding",
+    #         "funding_programme",
+    #         "duration",
+    #         "featured",
+    #     ],
+    # )
+    #
+    # form.fieldset(
+    #     "reference_information",
+    #     label="Reference information",
+    #     fields=["websites", "source", "special_tags", "partners_source_link"],
+    # )
+    #
+    # form.fieldset(
+    #     "geographic_information",
+    #     label="Geographic Information",
+    #     fields=["geochars", "comments"],
+    # )
+    #
+    # form.fieldset(
+    #     "inclusion",
+    #     label="Inclusion in the subsites",
+    #     fields=["include_in_observatory",
+    #             "include_in_mission", "health_impacts"],
+    # )
 
     # -----------[ "default" fields ]------------------
 
@@ -126,7 +136,6 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
             "Please don't compile "
             "this field if you are a Climate-ADAPT expert "
             "creating a new item."
-
         ),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.origin_website"),
@@ -287,8 +296,8 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_(u"Adaptation approaches"),
-        description=_(u"Select one or more approaches."),
+        title=_("Adaptation approaches"),
+        description=_("Select one or more approaches."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
@@ -473,9 +482,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": aceproject_layout_items
-        },
+        default={"items": aceproject_layout_items},
         required=False,
     )
 

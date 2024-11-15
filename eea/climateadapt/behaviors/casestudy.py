@@ -39,8 +39,9 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         default=(),
         missing_value=None,
         value_type=TextLine(
-            title=u"Single topic",
-        ))
+            title="Single topic",
+        ),
+    )
 
     policy_legal_background = RichText(
         title=_("Policy and legal background"),
@@ -175,31 +176,30 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         required=False,
     )
 
-    form.fieldset(
-        "default",
-        label=u"Item Description",
-        fields=[
-            "updating_notes",
-            "primary_photo",
-            "primary_photo_copyright",
-            "challenges",
-            "policy_legal_background",
-            "relevance",
-            "objectives",
-            "adaptationoptions",
-            "solutions",
-            # "keywords",
-            # "sectors",
-            # "elements",
-            # 'origin_website',
-            # 'logo',
-            # 'image',
-            # 'contributor_list',
-            # 'other_contributor',
-            # "featured",  # 'year',
-        ],
-    )
-
+    # form.fieldset(
+    #     "default",
+    #     label=u"Item Description",
+    #     fields=[
+    #         "updating_notes",
+    #         "primary_photo",
+    #         "primary_photo_copyright",
+    #         "challenges",
+    #         "policy_legal_background",
+    #         "relevance",
+    #         "objectives",
+    #         "adaptationoptions",
+    #         "solutions",
+    #         # "keywords",
+    #         # "sectors",
+    #         # "elements",
+    #         # 'origin_website',
+    #         # 'logo',
+    #         # 'image',
+    #         # 'contributor_list',
+    #         # 'other_contributor',
+    #         # "featured",  # 'year',
+    #     ],
+    # )
 
     blocks = JSONField(
         title=_("Blocks"),
@@ -213,9 +213,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": case_study_layout_items
-        },
+        default={"items": case_study_layout_items},
         required=False,
     )
 

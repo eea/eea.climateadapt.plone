@@ -1,8 +1,8 @@
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from zope.component import adapter
-from zope.interface import alsoProvides, implementer, provider, alsoProvides
-from zope.schema import (Choice, List, Tuple, TextLine)
+from zope.interface import alsoProvides, implementer, provider
+from zope.schema import Choice, List, Tuple, TextLine
 from plone.directives import form
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
@@ -15,49 +15,51 @@ from z3c.form.interfaces import IFieldWidget
 from z3c.form.util import getSpecification
 from plone.autoform import directives
 
+
 @provider(IFormFieldProvider)
 class IMissionStory(model.Schema, IBlocks):
-    """ MissionStory Interface"""
-    form.fieldset(
-        "mission_story_info",
-        label=u"Mission Story Fieldset",
-        fields=[
-            "keywords",
-            "climate_impacts",
-            "sectors",
-            "key_system",
-            "country",
-            "funding_programme",
-            "key_learnings",
-            "about_the_region",
-            "solution",
-            "synopsis",
-            "further_information",
-            "contact"
-        ],
-    )
+    """MissionStory Interface"""
+
+    # form.fieldset(
+    #     "mission_story_info",
+    #     label=u"Mission Story Fieldset",
+    #     fields=[
+    #         "keywords",
+    #         "climate_impacts",
+    #         "sectors",
+    #         "key_system",
+    #         "country",
+    #         "funding_programme",
+    #         "key_learnings",
+    #         "about_the_region",
+    #         "solution",
+    #         "synopsis",
+    #         "further_information",
+    #         "contact"
+    #     ],
+    # )
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     keywords = Tuple(
-        title=_(u"Keywords"),
+        title=_("Keywords"),
         description=_(
-            u"Describe and tag this item with relevant keywords. "
-            u"Press Enter after writing your keyword. "
+            "Describe and tag this item with relevant keywords. "
+            "Press Enter after writing your keyword. "
         ),
         required=False,
         default=(),
         missing_value=None,
         value_type=TextLine(
-            title=u"Single topic",
+            title="Single topic",
         ),
     )
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
-        title=_(u"Climate Impacts"),
+        title=_("Climate Impacts"),
         description=_(
-            u"Select one or more climate change impact topics that "
-            u"this item relates to."
+            "Select one or more climate change impact topics that "
+            "this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -67,10 +69,9 @@ class IMissionStory(model.Schema, IBlocks):
 
     form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
-        title=_(u"Adaptation Sectors"),
+        title=_("Adaptation Sectors"),
         description=_(
-            u"Select one or more relevant sector policies that "
-            u"this item relates to."
+            "Select one or more relevant sector policies that " "this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -80,10 +81,9 @@ class IMissionStory(model.Schema, IBlocks):
 
     form.widget(key_system="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_system = List(
-        title=_(u"Key Community Systems"),
+        title=_("Key Community Systems"),
         description=_(
-            u"Select one or more key community system that "
-            u"this item relates to."
+            "Select one or more key community system that " "this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -92,46 +92,47 @@ class IMissionStory(model.Schema, IBlocks):
     )
 
     funding_programme = Choice(
-        title=_(u"Funding Programme"),
+        title=_("Funding Programme"),
         required=False,
-        vocabulary="eea.climateadapt.funding_programme"
+        vocabulary="eea.climateadapt.funding_programme",
     )
 
     country = List(
-        title=_(u"Countries"),
+        title=_("Countries"),
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
 
     key_learnings = RichText(
-        title=_(u"Key Learnings"),
+        title=_("Key Learnings"),
         required=False,
     )
 
     about_the_region = RichText(
-        title=_(u"About the Region"),
+        title=_("About the Region"),
         required=False,
     )
 
     solution = RichText(
-        title=_(u"Solution"),
+        title=_("Solution"),
         required=False,
     )
 
     synopsis = RichText(
-        title=_(u"Synopsis"),
+        title=_("Synopsis"),
         required=False,
     )
 
     further_information = RichText(
-        title=_(u"Further Information"),
+        title=_("Further Information"),
         required=False,
     )
 
     contact = RichText(
-        title=_(u"Contact"),
+        title=_("Contact"),
         required=False,
     )
+
 
 @adapter(getSpecification(IMissionStory["keywords"]), IWidgetsLayer)
 @implementer(IFieldWidget)
@@ -141,8 +142,9 @@ def KeywordsFieldWidget(field, request):
 
     return widget
 
+
 alsoProvides(IMissionStory["climate_impacts"], ILanguageIndependentField)
-alsoProvides(IMissionStory['keywords'], ILanguageIndependentField)
+alsoProvides(IMissionStory["keywords"], ILanguageIndependentField)
 alsoProvides(IMissionStory["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionStory["key_system"], ILanguageIndependentField)
 alsoProvides(IMissionStory["funding_programme"], ILanguageIndependentField)

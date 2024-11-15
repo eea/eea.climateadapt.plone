@@ -20,11 +20,11 @@ from eea.climateadapt import CcaAdminMessageFactory as _
 
 @provider(IFormFieldProvider)
 class IShortName(model.Schema):
-    model.fieldset(
-        "settings",
-        label=_("Settings"),
-        fields=["id"],
-    )
+    # model.fieldset(
+    #     "settings",
+    #     label=_("Settings"),
+    #     fields=["id"],
+    # )
 
     id = schema.ASCIILine(
         title=_("Short name"),
