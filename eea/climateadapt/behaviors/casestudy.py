@@ -39,7 +39,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         default=(),
         missing_value=None,
         value_type=TextLine(
-            title="Single topic",
+            title=_("Single topic"),
         ),
     )
 
