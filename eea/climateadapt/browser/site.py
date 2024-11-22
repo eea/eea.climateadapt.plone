@@ -346,7 +346,7 @@ class Navbar(ExternalTemplateHeader):
                     sections.pop(idx)
 
             return sections
-        except Exception, e:
+        except Exception as e:
             logger.exception("Error while rendering navigation menu: %s", e)
 
             site_url = self.context.portal_url()

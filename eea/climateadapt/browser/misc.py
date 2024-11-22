@@ -1,7 +1,7 @@
 import json
 import logging
 import re
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from datetime import datetime
 from email.MIMEText import MIMEText
 from io import BytesIO
@@ -47,8 +47,8 @@ logger = logging.getLogger('eea.climateadapt')
 
 
 class Captcha(object):
-    subject = u""
-    captcha = u""
+    subject = ""
+    captcha = ""
 
     def __init__(self, context):
         self.context = context
@@ -174,12 +174,12 @@ class CalculateItemStatistics(BrowserView):
         for year in range(1969, 2018):
             annot = IAnnotations(self.context)
             annotation = annot['cca-item-statistics'][year]
-            keys = annotation.keys()
+            keys = list(annotation.keys())
 
             for key in keys:
                 if annotation[key]['total'] == 0:
                     annotation.pop(key, None)
-            keys = annotation.keys()
+            keys = list(annotation.keys())
 
             if len(keys) == 0:
                 IAnnotations(self.context)['cca-item-statistics'].pop(year)
@@ -207,14 +207,14 @@ class getItemStatistics(BrowserView):
         types = []
 
         for pair in all_types:
-            if pair.keys()[0] in annotations[year].keys():
+            if list(pair.keys())[0] in list(annotations[year].keys()):
                 types.append(pair)
 
         return types
 
     def get_years(self):
         """ Gets the years present in IAnnotations and sorts them ascending """
-        years = IAnnotations(self.context)['cca-item-statistics'].keys()
+        years = list(IAnnotations(self.context)['cca-item-statistics'].keys())
         years.sort()
 
         return years
@@ -293,7 +293,7 @@ class RedirectToSearchView (BrowserView):
     def __call__(self):
         current_language = get_current_language(self.context, self.request)
         portal_state = getMultiAdapter((self.context, self.request),
-                                       name=u'plone_portal_state')
+                                       name='plone_portal_state')
 
         typeOfDataTo = self.request.other['ACTUAL_URL'].split('/')[-1]
         typeOfDataValues = {
@@ -320,20 +320,20 @@ class RedirectToSearchView (BrowserView):
         else:
             querystring = self.request.form.get('SearchableText', "")
             query = {
-                u'display_type': u'list',
-                u'highlight': {
-                    u'fields': {
-                        u'*': {
+                'display_type': 'list',
+                'highlight': {
+                    'fields': {
+                        '*': {
                         }
                     }
                 },
-                u'query': {
-                    u'bool': {
-                        u'must':
-                            [{u'term': {u'hasWorkflowState': u'published'}},
-                             {u'query_string': {u'analyze_wildcard': True,
-                                                u'default_operator': u'OR',
-                                                u'query': querystring}
+                'query': {
+                    'bool': {
+                        'must':
+                            [{'term': {'hasWorkflowState': 'published'}},
+                             {'query_string': {'analyze_wildcard': True,
+                                                'default_operator': 'OR',
+                                                'query': querystring}
                               }]
                     }
                 }
@@ -343,7 +343,7 @@ class RedirectToSearchView (BrowserView):
                     "bool": {"should": [{"term": {"typeOfData": typeOfDataValues[typeOfDataTo]}}]}}
 
             link = link + '?source=' + \
-                urllib.quote(json.dumps(query))+'&lang='+current_language
+                urllib.parse.quote(json.dumps(query))+'&lang='+current_language
 
         return self.request.response.redirect(link)
 
@@ -417,7 +417,7 @@ class DetectBrokenLinksView (BrowserView):
         chunks = []
 
         for i in range(0, len(res), self.items_to_display):
-            chunks.append(dict(res.items()[i:i + self.items_to_display]))
+            chunks.append(dict(list(res.items())[i:i + self.items_to_display]))
 
         return chunks
 
@@ -443,7 +443,7 @@ class DetectBrokenLinksView (BrowserView):
         row_index = 1
 
         for chunk in data:
-            for url, row in chunk.items():
+            for url, row in list(chunk.items()):
                 for i, (key, title) in enumerate(headers):
                     value = row[key]
                     worksheet.write(row_index, i, value or '')
@@ -510,7 +510,7 @@ class ClearMacrotransnationalRegions (BrowserView):
         return brains
 
     def clear_regions(self, obj):
-        if obj.geochars in [None, u'', '', []]:
+        if obj.geochars in [None, '', '', []]:
             return
 
         geochars = json.loads(obj.geochars)
@@ -539,7 +539,7 @@ class GetItemsForMacrotransRegions(BrowserView):
         for b in self.catalog_search():
             obj = b.getObject()
 
-            if obj.geochars in [None, u'', '', []]:
+            if obj.geochars in [None, '', '', []]:
                 continue
             geochars = json.loads(obj.geochars)
             macro = geochars['geoElements'].get('macrotrans', [])
@@ -609,11 +609,11 @@ def convert_to_string(item):
     if not item:
         return ''
 
-    if not isinstance(item, basestring):
+    if not isinstance(item, str):
         new_item = ""
         try:
             iterator = iter(item)
-        except TypeError, err:
+        except TypeError as err:
             value = getattr(item, 'raw', None)
 
             if value:
@@ -643,9 +643,9 @@ def discover_links(string_to_search):
     try:
         result = re.findall(REGEX, string_to_search) or []
 
-        if isinstance(result, basestring):
+        if isinstance(result, str):
             result = [result]
-    except Exception, err:
+    except Exception as err:
         logger.error(err)
         result = []
 
@@ -675,7 +675,7 @@ def compute_broken_links(site):
             results.append(res)
 
     annot[now] = results
-    dates = annot.keys()
+    dates = list(annot.keys())
 
     if len(dates) >= 5:  # maximum no. of dates stored
         # delete oldest data except 'pre_nov7_data'
@@ -781,7 +781,7 @@ def check_link(link):
     """
 
     if link:
-        if isinstance(link, unicode):
+        if isinstance(link, str):
             try:
                 link = link.encode()
             except UnicodeEncodeError:
@@ -792,7 +792,7 @@ def check_link(link):
         try:
             if link[0:7].find('http') == -1:
                 link = 'http://' + link
-        except Exception, err:
+        except Exception as err:
             logger.error(err)
 
         logger.warning("Now checking: %s", link)
@@ -831,19 +831,19 @@ def check_link(link):
 
 
 class IContactForm(form.Schema):
-    name = schema.TextLine(title=u"Name:", required=True)
-    email = Email(title=u"Email:", required=True)
-    feedback = schema.Choice(title=u"Type of feedback:", required=True,
+    name = schema.TextLine(title="Name:", required=True)
+    email = Email(title="Email:", required=True)
+    feedback = schema.Choice(title="Type of feedback:", required=True,
                              values=[
                                  "Request for information",
                                  "Suggestion for Improvement",
                                  "Broken link",
                              ])
-    message = schema.Text(title=u"Message:", required=True)
+    message = schema.Text(title="Message:", required=True)
 
     captcha = schema.TextLine(
-        title=u"Captcha",
-        description=u"",
+        title="Captcha",
+        description="",
         required=False
     )
 
@@ -855,8 +855,8 @@ class ContactForm(form.SchemaForm):
     schema = IContactForm
     ignoreContext = True
 
-    label = u"Contact CLIMATE-ADAPT"
-    description = u""" Please use the contact form below if you have questions
+    label = "Contact CLIMATE-ADAPT"
+    description = """ Please use the contact form below if you have questions
     on CLIMATE-ADAPT, to suggest improvements for CLIMATE-ADAPT or to report
     broken links.
     """
@@ -864,7 +864,7 @@ class ContactForm(form.SchemaForm):
     fields = field.Fields(IContactForm)
     fields['captcha'].widgetFactory = CaptchaFieldWidget
 
-    @button.buttonAndHandler(u"Submit")
+    @button.buttonAndHandler("Submit")
     def handleApply(self, action):
         data, errors = self.extractData()
 
@@ -881,7 +881,7 @@ class ContactForm(form.SchemaForm):
             try:
                 valid = captcha.validate(data['captcha'])
             except WrongCaptchaCode:
-                show_message(message=u"Invalid Captcha.",
+                show_message(message="Invalid Captcha.",
                              request=self.request, type='error')
                 return
 
@@ -898,25 +898,25 @@ class ContactForm(form.SchemaForm):
                 for m in CONTACT_MAIL_LIST:
                     mime_msg['To'] = m
 
-                self.description = u"Email Sent."
+                self.description = "Email Sent."
                 IStatusMessage(self.request).addStatusMessage(
                     "Email SENT",
                     'info')
                 return mail_host.send(mime_msg.as_string())
             else:
-                self.description = u"Please complete the Captcha."
+                self.description = "Please complete the Captcha."
 
 
 class IContactFooterForm(form.Schema):
 
-    name = schema.TextLine(title=u"Name:", required=True)
-    email = Email(title=u"Your Email:", required=True)
-    subject = schema.TextLine(title=u"Subject", required=True)
-    message = schema.Text(title=u"Message:", required=True)
+    name = schema.TextLine(title="Name:", required=True)
+    email = Email(title="Your Email:", required=True)
+    subject = schema.TextLine(title="Subject", required=True)
+    message = schema.Text(title="Message:", required=True)
 
     captcha = schema.TextLine(
-        title=u"Captcha",
-        description=u"",
+        title="Captcha",
+        description="",
         required=False
     )
 
@@ -928,8 +928,8 @@ class ContactFooterForm(form.SchemaForm):
     schema = IContactFooterForm
     ignoreContext = True
 
-    label = u"Contact form"
-    description = u""" Climate-ADAPT aims to support Europe in adapting to
+    label = "Contact form"
+    description = """ Climate-ADAPT aims to support Europe in adapting to
     climate change. It is an initiative of the European Commission and helps
     users to access and share data and information on expected climate change
     in Europe. Fill in this form to contact the site owners.
@@ -938,7 +938,7 @@ class ContactFooterForm(form.SchemaForm):
     fields = field.Fields(IContactFooterForm)
     fields['captcha'].widgetFactory = CaptchaFieldWidget
 
-    @button.buttonAndHandler(u"Submit")
+    @button.buttonAndHandler("Submit")
     def handleApply(self, action):
         data, errors = self.extractData()
 
@@ -956,7 +956,7 @@ class ContactFooterForm(form.SchemaForm):
             try:
                 valid = captcha.validate(data['captcha'])
             except WrongCaptchaCode:
-                show_message(message=u"Invalid Captcha.",
+                show_message(message="Invalid Captcha.",
                              request=self.request, type='error')
                 return
 
@@ -980,7 +980,7 @@ is sending feedback about the site you administer at %(url)s.
             mime_msg['From'] = data.get('email')
             mime_msg['To'] = str(api.portal.getSite().email_from_address)
 
-            self.description = u"Email Sent."
+            self.description = "Email Sent."
 
             IStatusMessage(self.request).addStatusMessage(
                 "Email SENT",
@@ -988,7 +988,7 @@ is sending feedback about the site you administer at %(url)s.
 
             return mail_host.send(mime_msg.as_string())
         else:
-            self.description = u"Please complete the Captcha."
+            self.description = "Please complete the Captcha."
 
 
 CaptchaForm = wrap_form(ContactForm)
@@ -1023,7 +1023,7 @@ class ViewGoogleAnalyticsReport(BrowserView):
         site = portal.get()
         report = site.__annotations__.get('google-analytics-cache-data', {})
 
-        reports = reversed(sorted(report.items(), key=lambda x: int(x[1])))
+        reports = reversed(sorted(list(report.items()), key=lambda x: int(x[1])))
 
         return islice(reports, 0, 10)
 

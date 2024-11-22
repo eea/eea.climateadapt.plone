@@ -256,7 +256,10 @@ def import_casestudy(data, location):
     intids = getUtility(IIntIds)
 
     measure_ids = s2li(data.adaptationoptions) or []
-    measures = filter(None, [get_measure(x, location) for x in measure_ids])
+    measures = [
+        _f
+        for _f in [get_measure(x, location) for x in measure_ids]
+        if _f is not None]
     measures = [RelationValue(intids.getId(m)) for m in measures]
 
     primephoto = None
@@ -355,7 +358,7 @@ def import_image(data, location):
 
         return None
 
-    filename = unicode("{0}.{1}".format(data.imageid, data.type_))
+    filename = str("{0}.{1}".format(data.imageid, data.type_))
     item = createAndPublishContentInContainer(
         location,
         'Image',
@@ -363,7 +366,7 @@ def import_image(data, location):
         id=filename,
         image=NamedBlobImage(filename=filename, data=file_data)
     )
-    info = map(str, [data.imageid])
+    info = list(map(str, [data.imageid]))
     IAnnotations(item)['eea.climateadapt.imported_ids'] = PersistentList(info)
 
     item.reindexObject()
@@ -397,7 +400,7 @@ def import_dlfileentry(data, location):
             str(data.name),
             data.version
         ))
-    elif data.treepath == u'/0/':
+    elif data.treepath == '/0/':
         fpath = ('./document_library/{0}/{1}/{2}/{3}'.format(
             str(data.companyid),
             str(data.repositoryid),
@@ -422,7 +425,7 @@ def import_dlfileentry(data, location):
 
     file_data = open(fpath).read()
     # filename = str(data.name) + '.' + data.extension
-    filename = unicode("{0}.{1}".format(data.fileentryid, data.extension))
+    filename = str("{0}.{1}".format(data.fileentryid, data.extension))
 
     if 'jpg' in data.extension or 'png' in data.extension:
         item = createAndPublishContentInContainer(
@@ -444,12 +447,12 @@ def import_dlfileentry(data, location):
         )
 
     # item._uuid = data.uuid_
-    info = map(str, [data.uuid_,
+    info = list(map(str, [data.uuid_,
                      data.name,
                      data.fileentryid,
                      data.largeimageid,
                      # data.smallimageid,
-                     ])
+                     ]))
     IAnnotations(item)['eea.climateadapt.imported_ids'] = PersistentList(info)
 
     logger.debug("Imported %s from sql dlentry %s",
@@ -546,7 +549,7 @@ def import_layout(layout, site):
     if layout.friendlyurl in no_import_layouts:
         return
 
-    if layout.type_ == u'control-panel':
+    if layout.type_ == 'control-panel':
         # we skip control panel pages
 
         return
@@ -557,7 +560,7 @@ def import_layout(layout, site):
 
     settings = parse_settings(layout.typesettings)
 
-    if layout.type_ == u'link_to_layout':
+    if layout.type_ == 'link_to_layout':
         # TODO: warning: log this, they may create recursions
         llid = int(settings['linkToLayoutId'][0])
         ll = session.query(sql.Layout).filter_by(layoutid=llid).one()
@@ -581,8 +584,8 @@ def import_layout(layout, site):
 
     structure['name'] = strip_xml(layout.name)
 
-    for column, portlet_ids in filter(lambda kv: is_column(kv[0]),
-                                      settings.items()):
+    for column, portlet_ids in [kv for kv in list(settings.items()) 
+                                if is_column(kv[0])]:
         structure[column] = []   # a column is a list of portlets
 
         for portletid in portlet_ids:
@@ -634,15 +637,15 @@ def import_city_profile(container, journal):
     'b_signature_date': '1435190400000',
     'c_m_stage_of_the_implementation_cycle': 'Preparing the ground',
     'd_adaptation_strategy_date_of_approval': '1435190400000',
-    'd_adaptation_strategy_name': u'Development Strategy 2015 \u2013 2022',
-    'd_adaptation_strategy_summary': u'The Development Strategy 2015 \u2013 2022 of the Municipality of Valka is a strategic document that establishes objectives and priorities for sustainable and integrated socio-economic development. The Strategy contains the vision, objectives, and priorities of the development of municipality, the investment plan necessary for the realisation of the Strategy, and a monitoring and evaluation system. While climate change adaptation is not the focus of the Development Strategy, the creation of a Local Adaption Strategy of Valka Municipality is planned.',
+    'd_adaptation_strategy_name': u'Development Strategy 2015 \\u2013 2022',
+    'd_adaptation_strategy_summary': u'The Development Strategy 2015 \\u2013 2022 of the Municipality of Valka is a strategic document that establishes objectives and priorities for sustainable and integrated socio-economic development. The Strategy contains the vision, objectives, and priorities of the development of municipality, the investment plan necessary for the realisation of the Strategy, and a monitoring and evaluation system. While climate change adaptation is not the focus of the Development Strategy, the creation of a Local Adaption Strategy of Valka Municipality is planned.',
     'd_adaptation_strategy_weblink': 'http://valka.lv/pasvaldiba/dokumenti/attistibas-programma/',
     'd_m_developed_an_adaptationstrategy': 'No, Mayors Adapt is the first example of my city considering adaptation and we will develop an adaptation strategy',
     'e_adaptation_weblink': 'http://valka.lv/pasvaldiba/dokumenti/attistibas-programma/',
     'e_additional_information_on_adaptation_responses': '-',
     'e_m_motivation': "The main current impact of the climate changes to Valka's territory is the changing in the natural environment as well as social and economic consequences (including damaging economic infrastructure). By identifying and adapting to the current and future impacts of climate change, Valka hopes to strengthen its resilience to these changes, reduce the costs of damage, protect livelihoods, create jobs, and promote economic growth in the region.",
     'e_m_planed_adaptation_actions': 'The Adaption Strategy of Valka will define concrete actions that tackle problems related to climate change (for example, detailed measures for floods, forest fires, air quality and temperature).',
-    'f_m_action_event_long_description': u'Valka is actively working to increase energy efficiency and the use of energy from renewable sources but such efforts also have adaptation\u2013related benefits. One of  the most important activities involves complex energy saving measures for public educational institutions (Valka Music School, Valka Primary School and Valka Sport Hall) and apartment buildings. The energy efficiency and heat resistance measures implemented include insulating facades and roofs; replacing windows, doors, and floors; renewing heating systems; reconstructing lighting and electrical power systems; and installing ventilation systems. By renovating buildings, Valka is also improving their resistance to the impacts of extreme temperatures.',
+    'f_m_action_event_long_description': u'Valka is actively working to increase energy efficiency and the use of energy from renewable sources but such efforts also have adaptation\\u2013related benefits. One of  the most important activities involves complex energy saving measures for public educational institutions (Valka Music School, Valka Primary School and Valka Sport Hall) and apartment buildings. The energy efficiency and heat resistance measures implemented include insulating facades and roofs; replacing windows, doors, and floors; renewing heating systems; reconstructing lighting and electrical power systems; and installing ventilation systems. By renovating buildings, Valka is also improving their resistance to the impacts of extreme temperatures.',
     'f_m_action_event_title': 'Improving of the heat resistance of municipal buildings',
     'f_picture_caption': "Valka's renovated Sports Hall",
     'f_sectors_concerned': ['Financial', 'Energy', 'Urban'],
@@ -658,12 +661,12 @@ def import_city_profile(container, journal):
             vocab = vocab_factory(context)
             t2t_map = {t.title.lower(): t.token for t in vocab}
         else:
-            t2t_map = {v.lower(): k for k, v in vocab_factory.iteritems()}
+            t2t_map = {v.lower(): k for k, v in list(vocab_factory.items())}
 
         def t2tmap(values):
             tokens = []
 
-            if isinstance(values, basestring):
+            if isinstance(values, str):
                 if values.lower() == 'select':
                     return tokens
                 token = t2t_map.get(values.lower())
@@ -1001,7 +1004,7 @@ def import_template_transnationalregion(site, layout, structure):
 
         if type_ == 'dynamic':
             for info in record[2]:
-                if isinstance(info, basestring):
+                if isinstance(info, str):
                     continue
                 t, name, text = info
                 country['Summary'].append((name, text[0]))
@@ -1670,7 +1673,7 @@ def import_template_1_column(site, layout, structure):
     # - two columns with an iframe below
     # - several portlets (with rich text) one below another
 
-    cover_title = unicode(structure['name'])
+    cover_title = str(structure['name'])
 
     # detect /transnational-regions pages
     def is_transnational_region():
@@ -1710,8 +1713,8 @@ def import_template_1_column(site, layout, structure):
     def _import_two_columns():
         content = structure['column-1'][0][1].get('content')
 
-        col1 = u"".join(content)
-        col2 = u"".join(structure['column-1'][1][1]['content'][0])
+        col1 = "".join(content)
+        col2 = "".join(structure['column-1'][1][1]['content'][0])
 
         col1_tile = make_richtext_tile(cover, {'title': 'col1', 'text': col1})
         col2_tile = make_richtext_tile(cover, {'title': 'col1', 'text': col2})
@@ -1777,7 +1780,7 @@ def import_template_1_column(site, layout, structure):
 
         return cover_layout
 
-    if layout.friendlyurl == u'/tools/urban-ast/contact':
+    if layout.friendlyurl == '/tools/urban-ast/contact':
         form_tile = make_tile(cover, structure.get('column-1', []))
 
         form_group = make_group(12, form_tile)
@@ -1854,7 +1857,7 @@ def import_template_2_columns_ii(site, layout, structure):
                      layout.friendlyurl, '2_columns_ii')
         raise ValueError
 
-    if layout.friendlyurl == u'/mayors-adapt/register':
+    if layout.friendlyurl == '/mayors-adapt/register':
         # this is the /mayors-adapt page
         title = structure['name']
 
@@ -1906,7 +1909,7 @@ def import_template_2_columns_iii(site, layout, structure):
 
             for _type, name, payload in structure['column-1'][0][1]['content']:
                 if _type == 'image':
-                    if isinstance(payload, basestring):
+                    if isinstance(payload, str):
                         image_id = payload
                     else:
                         image_id = payload[0]
@@ -1914,7 +1917,7 @@ def import_template_2_columns_iii(site, layout, structure):
                     image = get_repofile_by_id(site, image_id)
 
                 if _type == 'dynamic' and name == 'Title':
-                    if isinstance(payload, basestring):
+                    if isinstance(payload, str):
                         title = payload
                     else:
                         title = payload[0]
@@ -2065,7 +2068,7 @@ def import_template_ace_layout_5(site, layout, structure):
         for bit in texts:
             title = _titles[bit[1]]
             text = bit[2][0]
-            main_text += u"<h3>{0}</h3>\n{1}".format(title, text)
+            main_text += "<h3>{0}</h3>\n{1}".format(title, text)
     else:
         main_text = texts[0]
 
@@ -2139,12 +2142,12 @@ def _import_transnational_region_page(site, layout, structure):
                 for bit in payload:
                     title = _titles[bit[1]]
                     text = bit[2][0]
-                    _info['main_text'] += u"<h3>{0}</h3>\n{1}".format(
+                    _info['main_text'] += "<h3>{0}</h3>\n{1}".format(
                         title, text)
             else:
                 text = payload[0]
                 title = _titles[name]
-                _info['main_text'] += u"<h3>{0}</h3>\n{1}".format(
+                _info['main_text'] += "<h3>{0}</h3>\n{1}".format(
                     title, text)
 
     cover = create_cover_at(site, layout.friendlyurl, title=_info['title'])
@@ -2387,7 +2390,7 @@ def import_journal_articles(site):
             logger.debug("Created Event at %s with effective %s" %
                          (event.absolute_url(), str(publish_date)))
         else:
-            print "no structure id"
+            print("no structure id")
             import pdb
             pdb.set_trace()
 
@@ -2398,14 +2401,14 @@ def import_journal_articles(site):
         type='Collection',
         title='News',
         slug='news',
-        sort_on=u'effective',
+        sort_on='effective',
         sort_reversed=True,
-        query=[{u'i': u'portal_type',
-                u'o': u'plone.app.querystring.operation.selection.is',
-                u'v': [u'News Item']},
-               {u'i': u'path',
-                u'o': u'plone.app.querystring.operation.string.relativePath',
-                u'v': u'..'}],)
+        query=[{'i': 'portal_type',
+                'o': 'plone.app.querystring.operation.selection.is',
+                'v': ['News Item']},
+               {'i': 'path',
+                'o': 'plone.app.querystring.operation.string.relativePath',
+                'v': '..'}],)
     parent.setDefaultPage('news')
 
     for info in session.query(sql.Journalarticle).filter_by(type_='news'):
@@ -2480,11 +2483,11 @@ def get_default_location(site, _type):
             title=title,
         )
         roles = dest.__ac_local_roles__
-        roles.update(AuthenticatedUsers=[u'Contributor', u'Reader'])
+        roles.update(AuthenticatedUsers=['Contributor', 'Reader'])
         # roles.update(ContentReviewers=[u'Contributor', u'Reviewer', u'Editor',
         #                                u'Reader'])
         roles.update({'extranet-cca-powerusers':
-                      [u'Contributor', u'Editor', u'Reader']})
+                      ['Contributor', 'Editor', 'Reader']})
         dest.immediately_addable_types = [factory]
         dest.locally_allowed_types = [factory]
         dest.constrain_types_mode = 1
@@ -2727,10 +2730,10 @@ def tweak_site(site):
 
     # set permissions
     # {'extranet-cca-managers': [u'Contributor', u'Reviewer', u'Editor', u'Reader']}
-    site.__ac_local_roles__.update({'extranet-cca-managers': [u'Manager'],
-                                    'extranet-cca-editors': [u'Contributor'],
-                                    'extranet-cca-checkers': [u'Reader'],
-                                    'extranet-cca-reviewers': [u'Reviewer'],
+    site.__ac_local_roles__.update({'extranet-cca-managers': ['Manager'],
+                                    'extranet-cca-editors': ['Contributor'],
+                                    'extranet-cca-checkers': ['Reader'],
+                                    'extranet-cca-reviewers': ['Reviewer'],
                                     })
     site._p_changed = True
 
@@ -2748,7 +2751,7 @@ def tweak_site(site):
     site['city-profile'].__ac_local_roles__.update(
         {'extranet-cca-ma-managers': ['Contributor', 'Reviewer', 'Editor']})
 
-    _content = u"""
+    _content = """
     <div class="asset-abstract ">
     <h3 class="asset-title"><a href="countries" data-linktype="external" data-val="/countries">Country information page</a></h3>
     <div class="asset-content">
@@ -2769,7 +2772,7 @@ def tweak_site(site):
     createAndPublishContentInContainer(
         site,
         'Document',
-        title=u'More latest updates',
+        title='More latest updates',
         text=t2r(_content)
     )
 

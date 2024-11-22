@@ -14,12 +14,12 @@ from eea.climateadapt.translation.utils import TranslationUtilsMixin, translated
 
 class ITransRegionalSelectTile(IPersistentCoverTile):
     title = schema.TextLine(
-        title=unicode("Title"),
+        title=str("Title"),
         required=False,
     )
 
     region = schema.Choice(
-        title=unicode("Region"),
+        title=str("Region"),
         vocabulary="eea.climateadapt.regions",
         required=True,
     )

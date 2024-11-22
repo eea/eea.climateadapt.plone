@@ -72,7 +72,7 @@ def are_in_path(url, paths):
 
 
 def get_block_id(blocks, type):
-    block = {k for k, v in blocks.items() if v["@type"] == type}
+    block = {k for k, v in list(blocks.items()) if v["@type"] == type}
     if block:
         return list(block)[0]
     else:
@@ -105,12 +105,12 @@ def fix_vibiomapviewer(context):
 @inpath("/observatory/evidence/health-effects")
 def fix_health_effects(context):
     # fixes the first columns block that has two images side by side
-    for block in context.blocks.values():
+    for block in list(context.blocks.values()):
         if block["@type"] == "columnsBlock":
             block["gridCols"] = ["fourFifths", "oneFifth"]
             sec_col_uid = block["data"]["blocks_layout"]["items"][-1]
             sec_col = block["data"]["blocks"][sec_col_uid]
-            for imgblock in sec_col["blocks"].values():
+            for imgblock in list(sec_col["blocks"].values()):
                 if imgblock["@type"] == "image":
                     imgblock["align"] = "center"
                     imgblock["size"] = "l"
@@ -532,10 +532,10 @@ def fix_newsletter(context):
     # 1. Extract the list of td items containing the newsletters
     blocks = context.blocks
     res_blocks = []
-    for k in blocks.keys():
+    for k in list(blocks.keys()):
         res_blocks.append(blocks[k])
 
-    years = [x for x in reversed(range(2015, 2024))]
+    years = [x for x in reversed(list(range(2015, 2024)))]
     res_tables = [x["value"] for x in res_blocks if "url" in str(x)]
 
     res = []
@@ -560,7 +560,7 @@ def fix_newsletter(context):
         # n_data['info'] = newsletter_info
 
         for child in newsletter_item["children"]:
-            if "text" in child.keys():
+            if "text" in list(child.keys()):
                 if "Issue" in child["text"]:
                     newsletter_title = child["text"]
                     n_data["title"] = newsletter_title
@@ -570,8 +570,8 @@ def fix_newsletter(context):
                         n_data["date_title"] = child["text"]
                         n_data["year"] = year
 
-            if "scale" in child.keys():
-                if "url" in child.keys():
+            if "scale" in list(child.keys()):
+                if "url" in list(child.keys()):
                     img_url = child["url"]
                     n_data["img_url"] = img_url
 
@@ -637,7 +637,7 @@ def fix_read_more(context):
         read_more_block_id = get_block_id(first_col["blocks"], "readMoreBlock")
         tiles = {
             k
-            for k, v in first_col["blocks"].items()
+            for k, v in list(first_col["blocks"].items())
             if v["@type"] == "relevantAceContent" or v["@type"] == "filterAceContent"
         }
         if read_more_block_id:
@@ -716,7 +716,7 @@ def fix_cca_countries(context):
     # remove the title block
     uid = None
     disclaimer_block = None
-    for k, v in context.blocks.items():
+    for k, v in list(context.blocks.items()):
         if v.get("@type") == "title":
             uid = k
         if v.get("@type") == "slate":
@@ -729,7 +729,7 @@ def fix_cca_countries(context):
         x for x in context.blocks_layout["items"] if x not in uids
     ] + (disclaimer_block and [disclaimer_block] or [])
 
-    _types = [block["@type"] for block in context.blocks.values()]
+    _types = [block["@type"] for block in list(context.blocks.values())]
 
     if "countryProfileDetail" not in _types:
         # these are the Turkey, Norway and...
@@ -858,7 +858,7 @@ def fix_layout_size(context):
     items = context.blocks_layout["items"]
 
     # skip this fix if a layoutSettings block already exists
-    for block in page_blocks.values():
+    for block in list(page_blocks.values()):
         if block.get("@type") == "layoutSettings":
             return
 

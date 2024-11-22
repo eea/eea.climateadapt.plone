@@ -129,4 +129,4 @@ def export_po(text, location_name="menu", domain="cca_menu"):
 
 
 if __name__ == "__main__":
-    print(export_po(menu))
+    print((export_po(menu)))

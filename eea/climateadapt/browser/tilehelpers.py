@@ -70,25 +70,25 @@ class ICarousel(IPersistentCoverTile):
     #               )
 
     form.fieldset('slide2',
-                  label=u'Slide 1',
+                  label='Slide 1',
                   fields=['s2_title', 's2_description', 's2_primary_photo',
                           's2_read_more_text', 's2_read_more_link']
                   )
 
     form.fieldset('slide8',
-                  label=u'Slide 2',
+                  label='Slide 2',
                   fields=['s8_title', 's8_description', 's8_primary_photo',
                           's8_read_more_text', 's8_read_more_link']
                   )
 
     form.fieldset('slide5',
-                  label=u'Slide 5',
+                  label='Slide 5',
                   fields=['s5_title', 's5_description', 's5_primary_photo',
                           's5_read_more_text', 's5_read_more_link']
                   )
 
     form.fieldset('slide7',
-                  label=u'Slide 7',
+                  label='Slide 7',
                   fields=['s7_title', 's7_description', 's7_primary_photo',
                           's7_read_more_text', 's7_read_more_link']
                   )
@@ -111,60 +111,60 @@ class ICarousel(IPersistentCoverTile):
     #                                 required=False)
 
     # Slide 2 fields
-    s2_title = schema.Text(title=u"Second slide Title", required=True)
-    s2_description = RichText(title=u"Second slide description",
+    s2_title = schema.Text(title="Second slide Title", required=True)
+    s2_description = RichText(title="Second slide description",
                               required=False)
 
     s2_primary_photo = NamedBlobImage(
-        title=(u"Second Slide Photo"),
+        title=("Second Slide Photo"),
         required=True,
     )
 
-    s2_read_more_text = schema.Text(title=u"Second slide read more text",
+    s2_read_more_text = schema.Text(title="Second slide read more text",
                                     required=False)
-    s2_read_more_link = schema.Text(title=u"Second slide read more link",
+    s2_read_more_link = schema.Text(title="Second slide read more link",
                                     required=False)
 
     # Slide 5 fields
-    s5_title = schema.Text(title=u"Fifth slide title", required=True)
-    s5_description = RichText(title=u"Fifth slide text", required=False)
+    s5_title = schema.Text(title="Fifth slide title", required=True)
+    s5_description = RichText(title="Fifth slide text", required=False)
 
     s5_primary_photo = NamedBlobImage(
-        title=(u"Fifth slide photo"),
+        title=("Fifth slide photo"),
         required=True,
     )
 
-    s5_read_more_text = schema.Text(title=u"Fifth slide read more text",
+    s5_read_more_text = schema.Text(title="Fifth slide read more text",
                                     required=False)
-    s5_read_more_link = schema.Text(title=u"Fifth slide read more link",
+    s5_read_more_link = schema.Text(title="Fifth slide read more link",
                                     required=False)
 
     # Slide 7 fields
-    s7_title = schema.Text(title=u"Seventh slide title", required=True)
-    s7_description = RichText(title=u"Seventh slide text", required=False)
+    s7_title = schema.Text(title="Seventh slide title", required=True)
+    s7_description = RichText(title="Seventh slide text", required=False)
 
     s7_primary_photo = NamedBlobImage(
-        title=(u"Seventh slide photo"),
+        title=("Seventh slide photo"),
         required=True,
     )
 
-    s7_read_more_text = schema.Text(title=u"Seventh slide read more text",
+    s7_read_more_text = schema.Text(title="Seventh slide read more text",
                                     required=False)
-    s7_read_more_link = schema.Text(title=u"Seventh slide read more link",
+    s7_read_more_link = schema.Text(title="Seventh slide read more link",
                                     required=False)
 
     # Slide 8 fields
-    s8_title = schema.Text(title=u"Slide title", required=True)
-    s8_description = RichText(title=u"Slide text", required=False)
+    s8_title = schema.Text(title="Slide title", required=True)
+    s8_description = RichText(title="Slide text", required=False)
 
     s8_primary_photo = NamedBlobImage(
-        title=(u"Slide photo"),
+        title=("Slide photo"),
         required=True,
     )
 
-    s8_read_more_text = schema.Text(title=u"Slide read more text",
+    s8_read_more_text = schema.Text(title="Slide read more text",
                                     required=False)
-    s8_read_more_link = schema.Text(title=u"Slide read more link",
+    s8_read_more_link = schema.Text(title="Slide read more link",
                                     required=False)
 
 
@@ -183,7 +183,7 @@ class Carousel(PersistentCoverTile):
         tile = ITileDataManager(self)
         data = tile.annotations[tile.key]
 
-        for key in data.keys():
+        for key in list(data.keys()):
             if slide_id in key:
                 setattr(self, key, data.get(key, ''))
 
@@ -237,8 +237,8 @@ class Carousel(PersistentCoverTile):
 
     @view.memoize
     def html2text(self, html):
-        if not isinstance(html, basestring):
-            return u""
+        if not isinstance(html, str):
+            return ""
         portal_transforms = api.portal.get_tool(name='portal_transforms')
         data = portal_transforms.convertTo('text/plain',
                                            html, mimetype='text/html')

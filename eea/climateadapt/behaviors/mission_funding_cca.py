@@ -42,7 +42,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         title=_("Type of funding"),
         required=False,
         value_type=Choice(
-            title=unicode("Type of funding"),
+            title=str("Type of funding"),
             vocabulary="eea.climateadapt.mission.type_of_funding"
         )
         # column: Which type of funding is granted?

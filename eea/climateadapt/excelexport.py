@@ -3,7 +3,7 @@ from collective.excelexport.exportables.dexterityfields import \
     BaseFieldRenderer
 from zope.component import adapts
 from zope.interface import Interface
-from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple, IDict
+from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
 
 from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
 from plone.app.textfield.interfaces import IRichText
@@ -14,12 +14,8 @@ from Products.CMFPlone.utils import safe_unicode
 from z3c.form.interfaces import NO_VALUE
 from z3c.relationfield.interfaces import IRelationList
 from collective.excelexport.view import BaseExport
-from collective.excelexport.view import ExcelExport
 
-try:
-    from StringIO import StringIO  ## for Python 2
-except ImportError:
-    from io import StringIO  ## for Python 3
+from io import StringIO  ## for Python 3
 from zope.component import getMultiAdapter
 from zope.component.interfaces import ComponentLookupError
 from collective.excelexport.interfaces import IStyles
@@ -44,10 +40,10 @@ class ExcelExport(BaseExport):
         """
         if isinstance(render, Message):
             render = translate(render, context=self.request)
-        elif isinstance(render, unicode):
+        elif isinstance(render, str):
             pass
         elif render is None:
-            render = u""
+            render = ""
         elif isinstance(render, str):
             render = safe_unicode(render)
         elif isinstance(render, datetime.datetime):
@@ -58,7 +54,7 @@ class ExcelExport(BaseExport):
             except ValueError:
                 # when date < 1900
                 render = safe_unicode(render)
-        elif not isinstance(render, unicode):
+        elif not isinstance(render, str):
             render = safe_unicode(str(render))
 
         return render
@@ -117,7 +113,7 @@ class ExcelExport(BaseExport):
         if empty_doc:
             # empty doc
             sheet = xldoc.add_sheet("sheet 1")
-            sheet.write(0, 0, u"", styles.content)
+            sheet.write(0, 0, "", styles.content)
 
         return xldoc
 
@@ -277,7 +273,7 @@ class ListFieldRenderer(BaseFieldRenderer):
                 new_text = []
 
                 for item in text:
-                    if isinstance(item, (str, unicode)):
+                    if isinstance(item, str):
                         new_text.append(item + ';\n')
                 text = new_text
 

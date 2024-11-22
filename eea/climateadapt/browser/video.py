@@ -17,7 +17,7 @@ class VideoView(DefaultView, AceViewApi):
 
     Warning: the embed code is not sanitized.
     """
-    type_label = u"Video"
+    type_label = "Video"
 
     def embed_url(self):
         # first, test to see if it could be a youtube video

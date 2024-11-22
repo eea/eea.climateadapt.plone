@@ -72,7 +72,7 @@ def translations_status(site, language=None):
         versions[obj_version] += 1
 
     res = []
-    for k, v in versions.items():
+    for k, v in list(versions.items()):
         res.append(template.format(v, k))
 
     logger.info(res)

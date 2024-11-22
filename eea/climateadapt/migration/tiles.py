@@ -36,7 +36,7 @@ def assigned(tile):
     results = list()
 
     if uuids:
-        ordered_uuids = [(k, v) for k, v in uuids.items()]
+        ordered_uuids = [(k, v) for k, v in list(uuids.items())]
         ordered_uuids.sort(key=lambda x: x[1]["order"])
 
         for uuid in [i[0] for i in ordered_uuids]:
@@ -1301,11 +1301,11 @@ def filter_acecontent_to_block(tile_dm, obj, request):
     for region_name in regions:
         if "Other Regions" == region_name:
             trans_macro_regions.append("Other Regions")
-        for k, v in BIOREGIONS.items():
+        for k, v in list(BIOREGIONS.items()):
             if "TRANS_MACRO" in k and v == region_name:
                 trans_macro_regions.append(k)
 
-    for k, v in sortingValues.items():
+    for k, v in list(sortingValues.items()):
         if v == data.get("sortBy"):
             sortBy = k
 

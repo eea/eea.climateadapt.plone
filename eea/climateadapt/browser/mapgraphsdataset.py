@@ -12,7 +12,7 @@ from plone.memoize import view
 class MapGraphDatasetView(DefaultView, AceViewApi):
     """ Maps graph datasets view
     """
-    type_label = u"Map Graph Data Set"
+    type_label = "Map Graph Data Set"
 
     @view.memoize
     def compose_layer_link(self):

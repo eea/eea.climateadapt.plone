@@ -14,7 +14,7 @@ from App.ZApplication import ZApplicationWrapper
 
 class UnicodeMessageFactory(BaseMessageFactory):
     def __call__(self, *args, **kwds):
-        unicode_args = [unicode(s) for s in args]
+        unicode_args = [str(s) for s in args]
         # __import__("pdb").set_trace()
         return super(UnicodeMessageFactory, self).__call__(*unicode_args, **kwds)
 

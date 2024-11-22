@@ -24,7 +24,7 @@ class ICcaEvent(model.Schema, IDXEvent, IBlocks):
     """ CcaEvent Interface"""
     model.fieldset(
         "cca_event_info",
-        label=u"CCA Event details",
+        label="CCA Event details",
         fields=[
             "image",
             "subtitle",
@@ -42,66 +42,66 @@ class ICcaEvent(model.Schema, IDXEvent, IBlocks):
     )
 
     image = NamedBlobImage(
-        title=_(u"Thumbnail"),
+        title=_("Thumbnail"),
         description=_(
-            u"Upload a representative picture or logo for the item. "
-            u"Recommended size: at least 360/180 px, aspect ratio 2x. "
-            u"This image will be used in the search result page - cards view. "
-            u"If this image doesn't exist, then the logo image will be used."
+            "Upload a representative picture or logo for the item. "
+            "Recommended size: at least 360/180 px, aspect ratio 2x. "
+            "This image will be used in the search result page - cards view. "
+            "If this image doesn't exist, then the logo image will be used."
         ),
         required=False,
     )
 
     subtitle = TextLine(
-        title=_(u"Subtitle"), required=False
+        title=_("Subtitle"), required=False
     )
 
     online_event_url = TextLine(
-        title=_(u"More information on the event (URL)"), required=False
+        title=_("More information on the event (URL)"), required=False
     )
 
     agenda = RichText(
-        title=_(u"Agenda"),
+        title=_("Agenda"),
         required=False,
         default=None
      )
 
     agenda_file = NamedFile(
-        title=_(u"Agenda document"),
+        title=_("Agenda document"),
         required=False,
     )
 
 
     background_documents = NamedFile(
-        title=_(u"Background documents"),
+        title=_("Background documents"),
         required=False,
     )
 
     event_language = Choice(
-        title=_(u"Event Language"),
+        title=_("Event Language"),
         required=True,
         default='English',
         vocabulary="eea.climateadapt.event_language",
     )
 
     participation = RichText(
-        title=_(u"Participation"),
+        title=_("Participation"),
         required=False,
         default=None
     )
 
     online_registration = TextLine(
-        title=_(u"Online registration (URL)"), required=False
+        title=_("Online registration (URL)"), required=False
     )
 
     online_registration_message = RichText(
-        title=_(u"Online registration message"),
+        title=_("Online registration message"),
         required=False,
         default=None
     )
 
     online_registration_documents = NamedFile(
-        title=_(u"Online registration documents"),
+        title=_("Online registration documents"),
         required=False,
     )
 

@@ -31,7 +31,7 @@ class GenericLinkFixer(object):
             dumped = json.dumps(block)
             if "next-climate-adapt.eea.europa" in dumped:
                 dumped = dumped.replace(
-                    u"next-climate-adapt", u"climate-adapt")
+                    "next-climate-adapt", "climate-adapt")
                 block = json.loads(dumped)
 
         return block
@@ -74,7 +74,7 @@ class ColumnBlockSerializationTransformer(object):
         data = block.get('data', {})
         blocks_layout = data.get('blocks_layout', {}).get('items', [])
         blocks = data.get('blocks', {})
-        for uid in blocks.keys():
+        for uid in list(blocks.keys()):
             if uid not in blocks_layout:
                 logger.warn(
                     "Removing unreferenced block in columnsBlock: %s", uid)
@@ -167,7 +167,7 @@ class ResolveUIDSerializerBase(object):
 
     def __call__(self, value):
         for field in self.fields:
-            if field in value.keys():
+            if field in list(value.keys()):
                 link = value.get(field, "")
                 if isinstance(link, string_types):
                     value[field] = uid_to_url(link)

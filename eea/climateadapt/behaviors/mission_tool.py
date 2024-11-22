@@ -65,10 +65,10 @@ class IMissionTool(model.Schema, IBlocks):
 
     form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
-        title=_(u"Climate impacts"),
+        title=_("Climate impacts"),
         description=_(
-            u"Select one or more climate change impact topics that "
-            u"this item relates to."
+            "Select one or more climate change impact topics that "
+            "this item relates to."
         ),
         required=False,
         value_type=Choice(

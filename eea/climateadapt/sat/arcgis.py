@@ -11,7 +11,7 @@ from eea.climateadapt.sat.utils import _measure_id
 
 logger = logging.getLogger("eea.climateadapt.arcgis")
 
-REFERER = u'climate-adapt.europa.eu CaseStudies Sync'
+REFERER = 'climate-adapt.europa.eu CaseStudies Sync'
 
 
 def _get_token_service_url(endpoint):

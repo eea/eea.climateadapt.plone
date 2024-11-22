@@ -35,7 +35,7 @@ class ExternalTemplateHeader(BrowserView):
                                   'portal_properties')['site_properties']
 
             return _extract_menu(ptool.getProperty('main_navigation_menu'))
-        except Exception, e:
+        except Exception as e:
             logger.exception("Error while rendering navigation menu: %s", e)
 
             return _extract_menu(DEFAULT_MENU)

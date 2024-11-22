@@ -405,8 +405,8 @@ def get_translation_report(site=None):
         site = portal.get()
 
     storage = ITranslationsStorage(site)
-    report = {"nr_keys": len(storage.keys()), "items": {}}
-    data = storage.keys()
+    report = {"nr_keys": len(list(storage.keys())), "items": {}}
+    data = list(storage.keys())
     for i in range(len(data)):
         storage_key = storage.get(data[i])
         languages = set(storage_key.keys())
@@ -452,7 +452,7 @@ def get_translated(value, language, site=None):
 
 
 def normalize(text):
-    if not isinstance(text, basestring):
+    if not isinstance(text, str):
         return text
 
     if isinstance(text, str):

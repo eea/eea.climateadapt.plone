@@ -2,7 +2,7 @@
 import csv
 import json
 import logging
-import urlparse
+import urllib.parse
 from datetime import date
 from datetime import datetime
 
@@ -321,7 +321,7 @@ def search_for(content_types=[], tag="", at_least_one=[],
         })
         for brain in found:
             obj = brain.getObject()
-            if obj.UID() not in res.keys():
+            if obj.UID() not in list(res.keys()):
                 res[obj.UID()] = {
                     'obj': obj,
                     'reason_terms': [],
@@ -337,7 +337,7 @@ def search_for(content_types=[], tag="", at_least_one=[],
             })
             for brain in found:
                 obj = brain.getObject()
-                if obj.UID() not in res.keys():
+                if obj.UID() not in list(res.keys()):
                     res[obj.UID()] = {
                         'obj': obj,
                         'reason_terms': [text_to_search],
@@ -355,7 +355,7 @@ def search_for(content_types=[], tag="", at_least_one=[],
         temp = res
         res = {}
 
-        for item_id in temp.keys():
+        for item_id in list(temp.keys()):
             item = temp[item_id]
             obj = item['obj']
 
@@ -383,7 +383,7 @@ def justify_migration(objs={}, action=""):
     """ Human readable explanation of modified objects
     """
     res = []
-    for item_id in objs.keys():
+    for item_id in list(objs.keys()):
         item = objs[item_id]
         obj = item['obj']
         logger.info("----------------------")
@@ -408,11 +408,11 @@ def migrate_delete_tag(objs=[], tag=""):
         Do the same for their translated items
     """
     regions = {}
-    for k, v in BIOREGIONS.items():
+    for k, v in list(BIOREGIONS.items()):
         if 'TRANS_MACRO' in k:
             regions[v] = k
 
-    for item_id in objs.keys():
+    for item_id in list(objs.keys()):
         item = objs[item_id]
         obj = item['obj']
         try:
@@ -470,7 +470,7 @@ def migrate_delete_tag(objs=[], tag=""):
             translations = None
 
         if translations is not None:
-            for language in translations.keys():
+            for language in list(translations.keys()):
                 trans_obj = translations[language]
                 trans_obj.geochars = prepared_val
                 trans_obj._p_changed = True
@@ -486,11 +486,11 @@ def migrate_add_tag(objs=[], tag=""):
         Do the same for their translated items
     """
     regions = {}
-    for k, v in BIOREGIONS.items():
+    for k, v in list(BIOREGIONS.items()):
         if 'TRANS_MACRO' in k:
             regions[v] = k
 
-    for item_id in objs.keys():
+    for item_id in list(objs.keys()):
         item = objs[item_id]
         obj = item['obj']
         try:
@@ -549,7 +549,7 @@ def migrate_add_tag(objs=[], tag=""):
             translations = None
 
         if translations is not None:
-            for language in translations.keys():
+            for language in list(translations.keys()):
                 trans_obj = translations[language]
                 trans_obj.geochars = prepared_val
                 trans_obj._p_changed = True
@@ -628,7 +628,7 @@ class MigrateAdaptationOptionItems(BrowserView):
                         translations = None
 
                     if translations is not None:
-                        for language in translations.keys():
+                        for language in list(translations.keys()):
                             trans_obj = translations[language]
                             trans_obj.key_type_measures = ktm
                             trans_obj.ipcc_category = ipcc
@@ -985,7 +985,7 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
             portal_type="eea.climateadapt.indicator")
 
         regions = {}
-        for k, v in BIOREGIONS.items():
+        for k, v in list(BIOREGIONS.items()):
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
@@ -1065,7 +1065,7 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
                     translations = None
 
                 if translations is not None:
-                    for language in translations.keys():
+                    for language in list(translations.keys()):
                         trans_obj = translations[language]
                         trans_obj.geochars = prepared_val
                         trans_obj._p_changed = True
@@ -1124,14 +1124,14 @@ class CaseStudies:
             }
 
         new_not_found = []
-        for x in items_new.keys():
-            if x not in items.keys():
+        for x in list(items_new.keys()):
+            if x not in list(items.keys()):
                 new_not_found.append(x)
 
         old_not_found = []
         old_not_found_urls = []
-        for x in items.keys():
-            if x not in items_new.keys():
+        for x in list(items.keys()):
+            if x not in list(items_new.keys()):
                 old_not_found.append(x)
                 not_found_obj = items[x]
                 if get_state(not_found_obj) not in ['archived', 'private']:
@@ -1143,19 +1143,19 @@ class CaseStudies:
         logger.info("Case studies not found in database: %s", new_not_found)
 
         regions = {}
-        for k, v in BIOREGIONS.items():
+        for k, v in list(BIOREGIONS.items()):
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
         sub_regions = {}
-        for k, v in SUBNATIONAL_REGIONS.items():
+        for k, v in list(SUBNATIONAL_REGIONS.items()):
             if 'SUBN_' in k:
                 sub_regions[v] = k
 
         list_new_values = []
         list_new_sub_values = []
 
-        for item in items_new.keys():
+        for item in list(items_new.keys()):
             new_values = extract_vals(items_new[item]['trans_macro'])
             new_sub_values = extract_subnational_vals(
                 items_new[item]['subnational'])
@@ -1244,7 +1244,7 @@ class CaseStudies:
                     translations = None
 
                 if translations is not None:
-                    for language in translations.keys():
+                    for language in list(translations.keys()):
                         trans_obj = translations[language]
                         trans_obj.geochars = prepared_val
                         trans_obj._p_changed = True
@@ -1259,12 +1259,12 @@ class CaseStudies:
 
         # Make sure all values are defined in our vocabulary
         missing_definitions = [x for x in set(
-            list_new_values) if x not in BIOREGIONS.values()]
+            list_new_values) if x not in list(BIOREGIONS.values())]
         logger.info("Values to be added in BIOREGIONS definition: %s",
                     missing_definitions)
         missing_sub_definitions = [x for x in set(
             list_new_sub_values) if x.encode(
-                'utf-8') not in SUBNATIONAL_REGIONS.values()]
+                'utf-8') not in list(SUBNATIONAL_REGIONS.values())]
         logger.info("Values to be added in SUBNATIONAL definition: %s",
                     missing_sub_definitions)
 
@@ -1289,7 +1289,7 @@ class ContributingOrganisationPartner():
             object = site.restrictedTraverse(local_path)
             if object:
                 return object
-        except Exception, e:
+        except Exception as e:
             return None
 
         return None
@@ -1321,7 +1321,7 @@ class ContributingOrganisationPartner():
         }
 
         util = getUtility(IIntIds, context=self.context)
-        for title in map_organisations.keys():
+        for title in list(map_organisations.keys()):
             orgs = self.context.portal_catalog.searchResults(
                 portal_type="eea.climateadapt.organisation", getId=map_organisations[title]['url'])
             if not orgs:
@@ -1637,7 +1637,7 @@ class AllObjectsNotify:
             object = site.restrictedTraverse(local_path)
             if object:
                 return object
-        except Exception, e:
+        except Exception as e:
             return None
 
         return None
@@ -1669,7 +1669,7 @@ class AllObjectsNotify:
         }
 
         util = getUtility(IIntIds, context=self.context)
-        for title in map_organisations.keys():
+        for title in list(map_organisations.keys()):
             orgs = self.context.portal_catalog.searchResults(
                 portal_type="eea.climateadapt.organisation", getId=map_organisations[title]['url'])
             if not orgs:
@@ -1797,7 +1797,7 @@ class UpdateHealthItemsFields:
         }
 
         util = getUtility(IIntIds, context=self.context)
-        for title in map_organisations.keys():
+        for title in list(map_organisations.keys()):
             orgs = self.context.portal_catalog.searchResults(
                 portal_type="eea.climateadapt.organisation", getId=title
             )
@@ -1838,10 +1838,10 @@ class UpdateHealthItemsFields:
                 itemsFound.append(item)
                 continue
 
-            currentPath = urlparse.urlparse(item["url"]).path
+            currentPath = urllib.parse.urlparse(item["url"]).path
             try:
                 obj = portal.unrestrictedTraverse(currentPath[1:])
-            except Exception, e:
+            except Exception as e:
                 logger.warning("NOT FOUND: %s", item['url'])
                 continue
 
@@ -1911,7 +1911,7 @@ class TransnationalRegions:
 
         regions = {}
         site = api.portal.get()
-        for k, v in BIOREGIONS.items():
+        for k, v in list(BIOREGIONS.items()):
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
@@ -1936,7 +1936,7 @@ class TransnationalRegions:
 
             try:
                 obj = site.restrictedTraverse(local_path.strip())
-            except Exception, e:
+            except Exception as e:
                 obj = None
 
             if not obj:

@@ -46,7 +46,7 @@ class VolatileSmartField(object):
         self.request = request
 
     def __call__(self, block):
-        keys = [k for k in block.keys() if k.startswith("_v_")]
+        keys = [k for k in list(block.keys()) if k.startswith("_v_")]
         for k in keys:
             del block[k]
 

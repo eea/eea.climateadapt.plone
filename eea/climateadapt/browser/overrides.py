@@ -34,20 +34,20 @@ from z3c.form.util import getSpecification
 from z3c.form.widget import FieldWidget
 
 thematic_sectors = SimpleVocabulary([
-    SimpleTerm(value='AGRICULTURE', title=_(u'Agriculture')),
-    SimpleTerm(value='FORESTRY', title=_(u'Forestry')),
-    SimpleTerm(value='BIODIVERSITY', title=_(u'Biodiversity')),
-    SimpleTerm(value='COASTAL', title=_(u'Coastal areas')),
+    SimpleTerm(value='AGRICULTURE', title=_('Agriculture')),
+    SimpleTerm(value='FORESTRY', title=_('Forestry')),
+    SimpleTerm(value='BIODIVERSITY', title=_('Biodiversity')),
+    SimpleTerm(value='COASTAL', title=_('Coastal areas')),
     SimpleTerm(value='DISASTERRISKREDUCTION',
-               title=_(u'Disaster Risk Reduction')),
-    SimpleTerm(value='FINANCIAL', title=_(u'Financial')),
-    SimpleTerm(value='HEALTH', title=_(u'Health')),
-    SimpleTerm(value='URBAN', title=_(u'Urban')),
-    SimpleTerm(value='MARINE', title=_(u'Marine and Fisheries')),
-    SimpleTerm(value='ENERGY', title=_(u'Energy')),
-    SimpleTerm(value='TRANSPORT', title=_(u'Transport')),
-    SimpleTerm(value='BUILDINGS', title=_(u'Buildings')),
-    SimpleTerm(value='WATERMANAGEMENT', title=_(u'Water management')),
+               title=_('Disaster Risk Reduction')),
+    SimpleTerm(value='FINANCIAL', title=_('Financial')),
+    SimpleTerm(value='HEALTH', title=_('Health')),
+    SimpleTerm(value='URBAN', title=_('Urban')),
+    SimpleTerm(value='MARINE', title=_('Marine and Fisheries')),
+    SimpleTerm(value='ENERGY', title=_('Energy')),
+    SimpleTerm(value='TRANSPORT', title=_('Transport')),
+    SimpleTerm(value='BUILDINGS', title=_('Buildings')),
+    SimpleTerm(value='WATERMANAGEMENT', title=_('Water management')),
 ])
 
 
@@ -56,9 +56,9 @@ class IEnhancedPersonalPreferencesSchema(prefs.IPersonalPreferences):
         and add the thematic_sectors field.
     """
     thematic_sectors = List(
-        title=_(u'Professional thematic domain'),
-        description=_(u"Select the sectors for which you want to receive a "
-                      u"notification email when an item is modified."),
+        title=_('Professional thematic domain'),
+        description=_("Select the sectors for which you want to receive a "
+                      "notification email when an item is modified."),
         required=True,
         value_type=Choice(
             vocabulary=thematic_sectors))
@@ -290,7 +290,7 @@ class FolderPdfBody (BrowserView):
             if not body:
                 continue
 
-            if isinstance(body, unicode):
+            if isinstance(body, str):
                 body = body.encode('utf-8')
 
             if (self.theme(self.context).id == theme.id and

@@ -29,8 +29,8 @@ class IndicatorMessageEvent(ObjectEvent):
 class indicator_message(BaseSubstitution):
     adapts(IContentish)
 
-    category = u'CCA Indicator harvest'
-    description = u"Content of message with modified indicators."
+    category = 'CCA Indicator harvest'
+    description = "Content of message with modified indicators."
 
     def safe_call(self):
         message = getattr(threadlocals, MESSAGE_KEY, '#ERROR GETTING MESSAGE')

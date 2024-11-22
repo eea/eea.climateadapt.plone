@@ -20,8 +20,8 @@ def generic_vocabulary(_terms, sort=True):
     """Returns a zope vocabulary from a dict or a list"""
 
     if _terms and isinstance(_terms, dict):
-        _terms = _terms.items()
-    elif _terms and isinstance(_terms[0], basestring):
+        _terms = list(_terms.items())
+    elif _terms and isinstance(_terms[0], str):
         _terms = [(x, x) for x in _terms]
 
     if sort:
@@ -48,7 +48,7 @@ class KeywordsVocabulary(BKV):
 
 class CatalogVocabulary(BCV):
     def getTerm(self, value):
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             # perhaps it's already a uid
             uid = value
         else:
@@ -476,7 +476,7 @@ ace_countries = [
     (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in european_countries
 ]
 ace_countries = [x for x in ace_countries if x[0] != "CZ"]
-ace_countries.append((unicode("CZ"), "Czechia"))
+ace_countries.append((str("CZ"), "Czechia"))
 ace_countries = sorted(ace_countries, key=lambda x: x[0])
 # ace_countries.append(('FYROM', 'Former Yugoslav Republic of Macedonia'))
 # ace_countries.append(('MK', 'Republic of Macedonia'))
@@ -879,7 +879,7 @@ acesearch-geochars-lbl-TRANS_BIO_STEPPIC=Steppic
 
 BIOREGIONS = {}
 
-for line in filter(None, labels.split("\n")):
+for line in [_f for _f in labels.split("\n") if _f is not None]:
     first, label = line.split("=")
     name = first.split("-lbl-")[1]
     BIOREGIONS[name] = label

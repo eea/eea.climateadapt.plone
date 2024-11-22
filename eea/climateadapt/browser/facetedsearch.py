@@ -84,7 +84,7 @@ class DoSearch(BrowserView, FacetedQueryHandler):
         return dict(SEARCH_TYPES)
 
     def render(self, name, brains):
-        print "rendering ", name
+        print("rendering ", name)
 
         view = queryMultiAdapter((self.context, self.request),
                                  name='faceted_listing_' + name)
@@ -103,7 +103,7 @@ class DoSearch(BrowserView, FacetedQueryHandler):
 
         try:
             search_type = [
-                x for x in self.labels.keys()
+                x for x in list(self.labels.keys())
 
                 if x in self.request.QUERY_STRING.split(
                     "search_type=")[-1]][0]
@@ -171,7 +171,7 @@ class ListingView(BrowserView):
         )
 
     def key(method, self, name, brains):
-        print "caching ", name
+        print("caching ", name)
 
         cache_key = cacheKeyFacetedNavigation(method, self, name, brains)
         cache_key += (name, )
@@ -180,7 +180,7 @@ class ListingView(BrowserView):
 
     @cache(key, dependencies=['eea.facetednavigation'])  # , lifetime=36000
     def render(self, name, brains):
-        print "rendering ", name
+        print("rendering ", name)
 
         # if name != 'DOCUMENT':
         #     return ''
@@ -241,8 +241,8 @@ class ListingGeneric(BrowserView):
     #     return self.index()
 
     def html2text(self, html):
-        if not isinstance(html, basestring):
-            return u""
+        if not isinstance(html, str):
+            return ""
         portal_transforms = api.portal.get_tool(name='portal_transforms')
         data = portal_transforms.convertTo('text/plain',
                                            html, mimetype='text/html')
@@ -291,9 +291,9 @@ class ListingGeneric(BrowserView):
         return False
 
 
-_IMG_FEATURED = u"""<img
+_IMG_FEATURED = """<img
 src="++theme++climateadapt/static/cca/img/featured-icon.png" />"""
-_IMG_NEW = u"""<img src="++theme++climateadapt/static/cca/img/new-en.gif" />"""
+_IMG_NEW = """<img src="++theme++climateadapt/static/cca/img/new-en.gif" />"""
 
 
 class BaseSectionRenderer(ListingGeneric):
@@ -338,7 +338,7 @@ class BaseSectionRenderer(ListingGeneric):
             row = self.render_row(brain)
             rows.append(row)
 
-        rows = u"".join(rows)
+        rows = "".join(rows)
         values = {
             "rows": rows,
         }
@@ -350,7 +350,7 @@ class FacetedListingGeneric(BaseSectionRenderer):
     """ Rendering the Publication and Reports section
     """
 
-    _TEMPLATE_ROW = u"""
+    _TEMPLATE_ROW = """
 <tr>
 <td>
 » {img_featured}
@@ -365,7 +365,7 @@ class FacetedListingGeneric(BaseSectionRenderer):
 </tr>
 """
 
-    _TEMPLATE = u"""
+    _TEMPLATE = """
 <table class="listing-table">
   <thead>
     <tr>
@@ -385,7 +385,7 @@ class FacetedListingNoYear(BaseSectionRenderer):
     """ Same as generic, but misses the Year column
     """
 
-    _TEMPLATE_ROW = u"""
+    _TEMPLATE_ROW = """
 <tr>
 <td>
 » {img_featured}{img_new}
@@ -395,7 +395,7 @@ class FacetedListingNoYear(BaseSectionRenderer):
 </tr>
 """
 
-    _TEMPLATE = u"""
+    _TEMPLATE = """
 <table class="listing-table">
   <thead>
     <tr>

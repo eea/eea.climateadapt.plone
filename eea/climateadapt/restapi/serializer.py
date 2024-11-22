@@ -27,7 +27,7 @@ from .utils import cca_content_serializer
 
 
 def serialize(possible_node):
-    if isinstance(possible_node, basestring):
+    if isinstance(possible_node, str):
         # This happens for some fields that store non-markup values as richtext
         return possible_node
     return tostring(possible_node)
@@ -42,7 +42,7 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
         # __import__("pdb").set_trace()
         for frag in frags:
             # el.set("style", None)
-            if isinstance(frag, basestring):
+            if isinstance(frag, str):
                 continue
             # remove all style attributes
             for el in frag.xpath("//*[@style]"):
@@ -51,7 +51,7 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
                 href = link.get("href")
                 if not href.startswith(site_url):
                     link.set("target", "_blank")
-        res = unicode("\n").join([serialize(e) for e in frags])
+        res = str("\n").join([serialize(e) for e in frags])
         return res
 
     def __call__(self):

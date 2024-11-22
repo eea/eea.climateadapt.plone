@@ -168,7 +168,7 @@ def get_tile_type(tile, from_cover, to_cover):
         "UrbanMenuTile": "eea.climateadapt.urbanmenu",
         "CardsTile": "eea.climateadapt.cards_tile",
     }
-    for a_type in tiles_types.keys():
+    for a_type in list(tiles_types.keys()):
         if a_type in str(type(tile)):
             return tiles_types[a_type]
 
@@ -434,7 +434,7 @@ def save_field_data(canonical, trans_obj, fielddata):
     if "cover_layout" in fielddata:
         coverdata = fielddata["cover_layout"]
 
-        for tileid in coverdata.keys():
+        for tileid in list(coverdata.keys()):
             full_tile_id = "plone.tiles.data.%s" % tileid
 
             # tile is missing in the translation, so we may copy it from the original
@@ -450,7 +450,7 @@ def save_field_data(canonical, trans_obj, fielddata):
                     continue
                 tile = deepcopy(tile)
 
-            for fieldname, fieldvalue in coverdata[tileid].items():
+            for fieldname, fieldvalue in list(coverdata[tileid].items()):
                 orig = tile[fieldname]
                 if isinstance(orig, RichTextValue):
                     tile[fieldname] = RichTextValue(fieldvalue)

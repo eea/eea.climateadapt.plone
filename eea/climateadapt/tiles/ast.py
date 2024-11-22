@@ -13,7 +13,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 class IASTNavigationTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=False,
     )
 
@@ -54,7 +54,7 @@ class ASTNavigationTile(PersistentCoverTile):
     is_configurable = False
     is_editable = False
     is_droppable = False
-    short_name = u'AST Navigation'
+    short_name = 'AST Navigation'
 
     def is_empty(self):
         return False
@@ -66,7 +66,7 @@ class ASTNavigationTile(PersistentCoverTile):
 class IUrbanASTNavigationTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=False,
     )
 
@@ -84,7 +84,7 @@ class UrbanASTNavigationTile(PersistentCoverTile):
     is_configurable = False
     is_editable = False
     is_droppable = False
-    short_name = u'AST Navigation'
+    short_name = 'AST Navigation'
 
     def is_empty(self):
         return False
@@ -96,7 +96,7 @@ class UrbanASTNavigationTile(PersistentCoverTile):
 class IUrbanMenuTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=False,
     )
 
@@ -112,7 +112,7 @@ class UrbanMenuTile(PersistentCoverTile):
     is_configurable = False
     is_editable = False
     is_droppable = False
-    short_name = u'Urban Menu'
+    short_name = 'Urban Menu'
 
     def is_empty(self):
         return False
@@ -121,12 +121,12 @@ class UrbanMenuTile(PersistentCoverTile):
 class IASTHeaderTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=False,
     )
 
     step = schema.Int(
-        title=u"AST Step",
+        title="AST Step",
         required=True,
         default=1,
     )
@@ -143,7 +143,7 @@ class ASTHeaderTile(PersistentCoverTile):
     is_configurable = False
     is_editable = True
     is_droppable = False
-    short_name = u'AST Header'
+    short_name = 'AST Header'
 
     def is_empty(self):
         return False

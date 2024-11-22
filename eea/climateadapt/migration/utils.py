@@ -57,7 +57,7 @@ def make_uid():
 
 def get_country_alpha2(country_name):
     fixed = {
-        u"Czechia": u"Czech Republic"
+        "Czechia": "Czech Republic"
     }
     fixed_name = fixed.get(country_name, None) or country_name
     try:

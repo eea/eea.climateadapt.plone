@@ -1,7 +1,7 @@
 """ Override AjaxSelectWidget to make better functionality
 """
 
-from HTMLParser import HTMLParser
+from html.parser import HTMLParser
 from plone.app.widgets.dx import AjaxSelectWidget
 from plone.app.widgets.dx import AjaxSelectWidgetConverter as BaseDC
 from plone.app.widgets.dx import IAjaxSelectWidget

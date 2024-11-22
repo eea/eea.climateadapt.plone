@@ -15,7 +15,7 @@ logger = logging.getLogger("eea.climateadapt.stringinterp")
 class LdapMailsForThematicExperts(BaseSubstitution):
     adapts(IContentish)
 
-    category = u'CCA Thematic Experts'
+    category = 'CCA Thematic Experts'
 
     def safe_call(self):
         acl = getToolByName(self.context, 'acl_users')
@@ -75,13 +75,13 @@ class LdapMailsForThematicExperts(BaseSubstitution):
 
 class cca_thematicexperts(LdapMailsForThematicExperts):
     group = 'extranet-cca-thematicexperts'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'
 
 
 class BaseLDAPLookupEmailSubstitution(BaseSubstitution):
     adapts(IContentish)
 
-    category = u'CCA Groups'
+    category = 'CCA Groups'
 
     def safe_call(self):
         acl = getToolByName(self.context, 'acl_users')
@@ -109,44 +109,44 @@ class BaseLDAPLookupEmailSubstitution(BaseSubstitution):
 
 class cca_ma(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-ma'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'
 
 
 class cca_ma_contacts(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-ma-contacts'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'
 
 
 class cca_ma_managers(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-ma-managers'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'
 
 
 class cca_newsevents(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-newsevents'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'
 
 
 class cca_powerusers(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-powerusers'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'
 
 
 class cca_reviewers(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-reviewers'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'
 
 
 class cca_managers(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-managers'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'
 
 
 class cca_checkers(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-checkers'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'
 
 
 class cca_editors(BaseLDAPLookupEmailSubstitution):
     group = 'extranet-cca-editors'
-    description = group + u' E-Mails'
+    description = group + ' E-Mails'

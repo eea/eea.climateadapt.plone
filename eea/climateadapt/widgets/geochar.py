@@ -14,8 +14,8 @@ class IGeoCharWidget(z3c.form.interfaces.ITextAreaWidget):
 class GeoCharWidget(z3c.form.browser.textarea.TextAreaWidget):
     zope.interface.implementsOnly(IGeoCharWidget)
 
-    klass = u'geochar-widget'
-    value = u''
+    klass = 'geochar-widget'
+    value = ''
 
     def update(self):
         super(z3c.form.browser.textarea.TextAreaWidget, self).update()

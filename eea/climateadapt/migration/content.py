@@ -227,7 +227,7 @@ class MigrateCover(object):
 
         if len(tiles) == 1:
             blocks = []
-            for data in tiles.values():
+            for data in list(tiles.values()):
                 blocks.extend(data.get("blocks", []))
 
             title_uid, titleblock = make_title_block()
@@ -434,7 +434,7 @@ def migrate_simplecontent_to_volto(obj, make_metadata_blocks):
     voltoblocks = []
 
     if obj.text:
-        if isinstance(obj.text, basestring):
+        if isinstance(obj.text, str):
             text = obj.text
         else:
             text = obj.text.raw

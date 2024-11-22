@@ -53,16 +53,16 @@ def check_at_blobs(context):
                 try:
                     field.get_size(context)
                 except POSKeyError:
-                    print("Found damaged AT FileField %s on %s" % (
-                            id, context.absolute_url()))
+                    print(("Found damaged AT FileField %s on %s" % (
+                            id, context.absolute_url())))
                     return True
                 except SystemError:
                     # retry on SystemError('error return without exception set',)
                     try:
                         field.get_size(context)
                     except POSKeyError:
-                        print("Found damaged AT FileField %s on %s" % (
-                                id, context.absolute_url()))
+                        print(("Found damaged AT FileField %s on %s" % (
+                                id, context.absolute_url())))
                         return True
 
     return False
@@ -77,15 +77,15 @@ def check_dexterity_blobs(context):
     if isinstance(context, DexterityContent):
 
         # Iterate through all Python object attributes
-        for key, value in context.__dict__.items():
+        for key, value in list(context.__dict__.items()):
             # Ignore non-contentish attributes to speed up us a bit
             if not key.startswith("_"):
                 if INamedFile.providedBy(value):
                     try:
                         value.getSize()
                     except POSKeyError:
-                        print("Found damaged Dexterity plone.app.NamedFile \
-                                %s on %s" % (key, context.absolute_url()))
+                        print(("Found damaged Dexterity plone.app.NamedFile \
+                                %s on %s" % (key, context.absolute_url())))
 
                         add_broken_link(
                             url=context.absolute_url(),
@@ -99,8 +99,8 @@ def check_dexterity_blobs(context):
                         try:
                             value.getSize()
                         except POSKeyError:
-                            print("Found damaged Dexterity plone.app.NamedFile \
-                                    %s on %s" % (key, context.absolute_url()))
+                            print(("Found damaged Dexterity plone.app.NamedFile \
+                                    %s on %s" % (key, context.absolute_url())))
 
                             add_broken_link(
                                 url=context.absolute_url(),
@@ -122,7 +122,7 @@ def fix_blobs(context, only_check=True):
     """
 
     if check_at_blobs(context) or check_dexterity_blobs(context):
-        print("Bad blobs found on %s" % context.absolute_url() + " -> deleting")
+        print(("Bad blobs found on %s" % context.absolute_url() + " -> deleting"))
 
         add_broken_link(
             url=context.absolute_url(),
@@ -143,7 +143,7 @@ def fix_blobs_advanced(context, only_check=True):
     try:
         context.get_size()
     except Exception:
-        print("MAYBE: {0} -> deleting".format(context.absolute_url()))
+        print(("MAYBE: {0} -> deleting".format(context.absolute_url())))
         add_broken_link(
             url=context.absolute_url(),
             creation=context.creation_date,

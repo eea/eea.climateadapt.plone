@@ -10,8 +10,8 @@ from mimetypes import guess_type
 import os
 
 import sys
-import SocketServer
-import urlparse
+import socketserver
+import urllib.parse
 import datetime
 from dateutil import rrule
 import json
@@ -80,7 +80,7 @@ def calculate_occurrences(data):
     while True:
         try:
             # Get a date
-            date = iterator.next()
+            date = next(iterator)
         except StopIteration:
             # No more dates
             break
@@ -136,7 +136,7 @@ def calculate_occurrences(data):
     num_occurrences = 0
     while True:
         try:
-            iterator.next()
+            next(iterator)
             num_occurrences += 1
         except StopIteration:
             break
@@ -169,8 +169,8 @@ def application(environ, start_response):
         length = int(environ['CONTENT_LENGTH'])
         data_string = environ['wsgi.input'].read(length)
 
-        data = urlparse.parse_qs(data_string)
-        print "Recieved data:", data
+        data = urllib.parse.parse_qs(data_string)
+        print("Recieved data:", data)
         # Check for required parameters:
         for x in ('year', 'month', 'day', 'rrule', 'format'):
             assert x in data
@@ -196,7 +196,7 @@ def application(environ, start_response):
         return [response_body]
 
 httpd = make_server('', port, application)
-print "Serving at port", port
+print("Serving at port", port)
 
 # Respond to requests until process is killed
 while True:

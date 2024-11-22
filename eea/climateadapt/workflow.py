@@ -34,8 +34,8 @@ class IWorkflowMessageSchema(form.Schema):
     """
 
     directives.mode(workflow_action='hidden')
-    workflow_action = schema.ASCIILine(title=u"Workflow action")
-    message = schema.Text(title=u"Message", required=True)
+    workflow_action = schema.ASCIILine(title="Workflow action")
+    message = schema.Text(title="Message", required=True)
 
 
 class WorkflowTransitionMessage(form.SchemaForm):
@@ -51,12 +51,12 @@ class WorkflowTransitionMessage(form.SchemaForm):
     schema = IWorkflowMessageSchema
     ignoreContext = True
 
-    label = u"Send comment for this action"
+    label = "Send comment for this action"
 
     @property
     def description(self):
         action = self.request.get('form.widgets.workflow_action')
-        return u"This will trigger the {0} transition".format(action)
+        return "This will trigger the {0} transition".format(action)
 
     def updateWidgets(self, prefix=None):
         super(WorkflowTransitionMessage, self).updateWidgets()
@@ -65,7 +65,7 @@ class WorkflowTransitionMessage(form.SchemaForm):
             self.widgets['workflow_action'].value = v
         return
 
-    @button.buttonAndHandler(u"Save")
+    @button.buttonAndHandler("Save")
     def handleApply(self, action):
         data, errors = self.extractData()
         if errors:
@@ -79,7 +79,7 @@ class WorkflowTransitionMessage(form.SchemaForm):
         notify(WorkflowMessageEvent(self.context))
         transition(obj=self.context, transition=action, comment=msg)
 
-        self.status = msg = u"Message will be further processed."
+        self.status = msg = "Message will be further processed."
         show_message(message=msg, request=self.request, type='info')
         return self.request.response.redirect(self.context.absolute_url())
 
@@ -87,8 +87,8 @@ class WorkflowTransitionMessage(form.SchemaForm):
 class workflow_message(BaseSubstitution):
     adapts(IContentish)
 
-    category = u'CCA Utils'
-    description = u"Content of message set in workflow form."
+    category = 'CCA Utils'
+    description = "Content of message set in workflow form."
 
     def safe_call(self):
         req = getRequest()

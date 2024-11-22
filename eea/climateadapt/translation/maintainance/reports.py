@@ -256,7 +256,7 @@ def verify_translation_fields(site, request):
             import pdb
 
             pdb.set_trace()
-        for field in fields.keys():
+        for field in list(fields.keys()):
             if field in skip_fields:
                 continue
             # TODO: check if we need to log if this is FALSE
@@ -277,10 +277,10 @@ def verify_translation_fields(site, request):
                         trans_obj_val = ""
                 if len(obj_val) and 0 == len(trans_obj_val):
                     mark_field = True
-            elif isinstance(getattr(obj, field), unicode):
+            elif isinstance(getattr(obj, field), str):
                 obj_val = getattr(obj, field)
                 trans_obj_val = ""
-                if isinstance(getattr(trans_obj, field), unicode):
+                if isinstance(getattr(trans_obj, field), str):
                     trans_obj_val = getattr(trans_obj, field)
                 elif isinstance(getattr(trans_obj, field), RichTextValue):
                     trans_obj_val = getattr(trans_obj, field).output

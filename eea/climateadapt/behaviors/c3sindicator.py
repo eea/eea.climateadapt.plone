@@ -51,36 +51,36 @@ class IC3sIndicator(IIndicator):
     #directives.omitted(IAddForm, "health_impacts")
 
     indicator_title = TextLine(
-        title=_(u"Indicator title"), required=False
+        title=_("Indicator title"), required=False
     )
 
     definition_app = RichText(
-        title=(u"App definition"),
-        description=u"Provide a short description",
+        title=("App definition"),
+        description="Provide a short description",
         required=False,
     )
 
     c3s_identifier = TextLine(
-        title=_(u"C3S Identifier"), required=True
+        title=_("C3S Identifier"), required=True
     )
 
     overview_app_toolbox_url = TextLine(
-        title=_(u"Overview APP Toolbox URL"), required=True
+        title=_("Overview APP Toolbox URL"), required=True
     )
 
-    overview_app_parameters = Text(title=(u"Overview APP parameters"), required=True)
+    overview_app_parameters = Text(title=("Overview APP parameters"), required=True)
 
     details_app_toolbox_url = TextLine(
-        title=_(u"Details APP Toolbox URL"), required=False
+        title=_("Details APP Toolbox URL"), required=False
     )
 
-    details_app_parameters = Text(title=(u"Details APP parameters"), required=False)
+    details_app_parameters = Text(title=("Details APP parameters"), required=False)
 
     sectors = List(
-        title=_(u"Sectors"),
+        title=_("Sectors"),
         description=_(
-            u"Select one or more relevant sector policies"
-            u" that this item relates to."
+            "Select one or more relevant sector policies"
+            " that this item relates to."
         ),
         required=False,
         missing_value=[],
@@ -91,10 +91,10 @@ class IC3sIndicator(IIndicator):
     )
 
     climate_impacts = List(
-        title=_(u"Climate impacts"),
+        title=_("Climate impacts"),
         description=_(
-            u"Select one or more climate change impact topics that "
-            u"this item relates to."
+            "Select one or more climate change impact topics that "
+            "this item relates to."
         ),
         required=False,
         missing_value=[],
@@ -105,12 +105,12 @@ class IC3sIndicator(IIndicator):
     )
 
     publication_date = Date(
-        title=_(u"Date of item's publication"),
-        description=u"The date refers to the latest date of publication of "
-        u"the item."
-        u" Please use the Calendar icon to add day/month/year. If you want to "
-        u"add only the year, please select \"day: 1\", \"month: January\" "
-        u"and then the year",
+        title=_("Date of item's publication"),
+        description="The date refers to the latest date of publication of "
+        "the item."
+        " Please use the Calendar icon to add day/month/year. If you want to "
+        "add only the year, please select \"day: 1\", \"month: January\" "
+        "and then the year",
         required=False
     )
 

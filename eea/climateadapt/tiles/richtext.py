@@ -11,18 +11,18 @@ class IRichTextWithTitle(IRichTextTile):
     """
 
     title = schema.TextLine(
-        title=CcaAdminMessageFactory(u'Title'),
+        title=CcaAdminMessageFactory('Title'),
         required=False,
     )
 
     dont_strip = schema.Bool(
-        title=CcaAdminMessageFactory(u"Don't sanitize HTML"),
-        description=CcaAdminMessageFactory(u"Use with care!"),
+        title=CcaAdminMessageFactory("Don't sanitize HTML"),
+        description=CcaAdminMessageFactory("Use with care!"),
         default=False,
     )
 
     title_level = schema.Choice(
-        title=CcaAdminMessageFactory(u"Change header style."),
+        title=CcaAdminMessageFactory("Change header style."),
         default="h1",
         vocabulary="eea.climateadapt.rich_header_level",
     )

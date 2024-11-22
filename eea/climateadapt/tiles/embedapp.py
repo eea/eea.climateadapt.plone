@@ -12,17 +12,17 @@ from zope.interface import implements
 class IEmbedAppTile(IPersistentCoverTile):
 
     embed = schema.Text(
-        title=u'Embedding view',
+        title='Embedding view',
         required=False,
     )
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=False,
     )
 
     description = schema.Text(
-        title=_(u'Description'),
+        title=_('Description'),
         required=False,
     )
 
@@ -36,7 +36,7 @@ class EmbedAppTile(PersistentCoverTile):
     is_configurable = True
     is_editable = True
     is_droppable = False
-    short_name = u'Embed Application'
+    short_name = 'Embed Application'
 
     def is_empty(self):
         return not (self.data.get('embed', None) or

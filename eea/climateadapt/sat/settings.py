@@ -14,11 +14,11 @@ logger = logging.getLogger('eea.climateadapt.arcgis')
 # FEATURE = "casestudies_pointLayer"
 
 _DEFAULTS = {
-    'username': u"eea_casestudies",
+    'username': "eea_casestudies",
     'password': os.environ.get('GISPASS', ""),
-    'server': u"LcQjj2sL7Txk9Lag",
+    'server': "LcQjj2sL7Txk9Lag",
     # 'feature_service': u"casestudies_pointLayer_clone",
-    'feature_service': u"casestudies_pointLayer",
+    'feature_service': "casestudies_pointLayer",
     'skip_rabbitmq': True,
 }
 
@@ -35,19 +35,19 @@ class IArcGISClientSettings(Interface):
     """ Client settings for ArcGIS
     """
 
-    username = TextLine(title=u"Username", required=True,
+    username = TextLine(title="Username", required=True,
                         default=_DEFAULTS['username'])
-    password = TextLine(title=u"Password", required=True)
+    password = TextLine(title="Password", required=True)
 
-    server = TextLine(title=u"Server name",
+    server = TextLine(title="Server name",
                       required=True, default=_DEFAULTS['server'])
 
-    feature_service = TextLine(title=u"Feature Service",
+    feature_service = TextLine(title="Feature Service",
                                required=True,
                                default=_DEFAULTS['feature_service'])
 
-    skip_rabbitmq = Bool(title=u"Disable message queue",
-                         description=u"Direct processing, without RabbitMQ",
+    skip_rabbitmq = Bool(title="Disable message queue",
+                         description="Direct processing, without RabbitMQ",
                          required=False, default=False)
 
 
@@ -60,7 +60,7 @@ ArcGISClientControlPanelView = layout.wrap_form(
     ArcGISClientControlPanelForm,
     ControlPanelFormWrapper
 )
-ArcGISClientControlPanelView.label = u"ArcGIS Synchronisation settings"
+ArcGISClientControlPanelView.label = "ArcGIS Synchronisation settings"
 
 
 def get_settings():
@@ -78,7 +78,7 @@ def get_endpoint_url(settings=None):
     if settings is None:
         settings = get_settings()
 
-    return u"https://services.arcgis.com/{0}/ArcGIS/rest".format(
+    return "https://services.arcgis.com/{0}/ArcGIS/rest".format(
             settings.server)
 
 

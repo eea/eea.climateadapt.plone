@@ -16,7 +16,7 @@ class Year(TextLine):
         if not v:
             return
         if v < 1800 or v > 2200:
-            raise ValueError(u"Value outside of normal range: 1800-2200")
+            raise ValueError("Value outside of normal range: 1800-2200")
 
     def fromUnicode(self, str):
         """

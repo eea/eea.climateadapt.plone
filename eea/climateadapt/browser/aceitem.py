@@ -275,7 +275,7 @@ class OrganisationFormExtender(FormExtender):
         self.form.groups = [
             group
             for group in self.form.groups
-            if (group.label not in labels and len(group.fields.values()) > 0)
+            if (group.label not in labels and len(list(group.fields.values())) > 0)
         ]
 
 
@@ -298,7 +298,7 @@ class AceItemFormExtender(FormExtender):
         self.form.groups = [
             group
             for group in self.form.groups
-            if (group.label not in labels and len(group.fields.values()) > 0)
+            if (group.label not in labels and len(list(group.fields.values())) > 0)
         ]
 
 

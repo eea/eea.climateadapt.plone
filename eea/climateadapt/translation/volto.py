@@ -52,7 +52,7 @@ def get_blocks_as_html(obj):
 
 
 def elements_to_text(children):
-    return unicode("").join(tostring(f).decode("utf-8") for f in children)
+    return str("").join(tostring(f).decode("utf-8") for f in children)
 
 
 def convert_richtext_to_fragments(mayberichtextvalue):
@@ -68,14 +68,14 @@ def get_cover_as_html(obj):
     m = "plone.tiles.data"
 
     if annot:
-        for k in annot.keys():
+        for k in list(annot.keys()):
             if k.startswith(m):
                 attribs = {"data-tile-id": k[len(m) + 1 :]}
                 children = []
                 data = annot[k]
                 if data.get("title"):
                     title = data.get("title")
-                    if not isinstance(title, unicode):
+                    if not isinstance(title, str):
                         title = title.decode("utf-8")
                     try:
                         d = {"data-tile-field": "title"}

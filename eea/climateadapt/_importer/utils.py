@@ -36,7 +36,7 @@ import lxml.etree
 import lxml.html
 import random
 import re
-import urlparse
+import urllib.parse
 
 
 logger = logging.getLogger('eea.climateadapt.importer')
@@ -79,7 +79,7 @@ def createAndPublishContentInContainer(*args, **kwargs):
 
 def printe(e):
     """ debug function to easily see an etree as pretty printed xml"""
-    print lxml.etree.tostring(e, pretty_print=True)
+    print(lxml.etree.tostring(e, pretty_print=True))
 
 
 def s2l(text, separator=';', separators=None, relaxed=False):
@@ -102,7 +102,7 @@ def s2l(text, separator=';', separators=None, relaxed=False):
         tags = []
         for t in z:
             tags.extend(t)
-        tags = filter(None, [x.strip() for x in tags])
+        tags = [_f for _f in [x.strip() for x in tags] if _f is not None]
         # TODO: lower() used to be called on some of this relaxed tags
 
     tags = [c.strip() for c in tags]
@@ -112,27 +112,27 @@ def s2l(text, separator=';', separators=None, relaxed=False):
 def s2li(text, separator=';', relaxed=False):
     """Converts a string in form: u'123;456;' to a list of int"""
     if text:
-        return map(int, s2l(text, separator=separator, relaxed=relaxed))
+        return list(map(int, s2l(text, separator=separator, relaxed=relaxed)))
     return None
 
 
 def t2r(text):
     if text:
         if not text.startswith('<'):
-            text = u"<div>{0}</div>".format(text)
+            text = "<div>{0}</div>".format(text)
     return RichTextValue(text or '', 'text/html', 'text/html')
 
 
 def r2t(text):
     # convert html strings to plain text
     nodes = lxml.html.fragments_fromstring(text)
-    if nodes and isinstance(nodes[0], basestring):
+    if nodes and isinstance(nodes[0], str):
         # a plain text is not converted to etree by lxml
         try:
-            return u'\r'.join(nodes).strip()
+            return '\r'.join(nodes).strip()
         except:
             return nodes[0] # junk in the rest of the file
-    return u'\r'.join([t.text_content() for t in nodes]).strip()
+    return '\r'.join([t.text_content() for t in nodes]).strip()
 
 
 def to_decimal(val):
@@ -165,7 +165,7 @@ def parse_settings(text):
         if not line:
             continue
         k, v = line.split('=', 1)
-        v = filter(None, v.split(','))
+        v = [_f for _f in v.split(',') if _f is not None]
         # if len(v) == 1:
         #     v = v[0]
         out[k] = v
@@ -182,20 +182,20 @@ def detect_richtext_fields(session):
     """
     result = {}
     for klass in [sql.AceAceitem, sql.AceProject, sql.AceMeasure]:
-        print "Looking up", klass
+        print("Looking up", klass)
         richtext = set()
         for obj in session.query(klass):
-            for name in obj.__dict__.keys():
+            for name in list(obj.__dict__.keys()):
                 if name in richtext:
                     continue
                 value = getattr(obj, name)
-                if isinstance(value, basestring):
+                if isinstance(value, str):
                     if is_html(value):
                         richtext.add(name)
         result[klass] = richtext
-    for k, v in result.items():
-        print "=" * 20
-        print "Richtext fields for ", k, ": ", v
+    for k, v in list(result.items()):
+        print("=" * 20)
+        print("Richtext fields for ", k, ": ", v)
 
 
 def solve_dynamic_element(node):
@@ -217,7 +217,7 @@ def solve_dynamic_element(node):
     if type_ == 'text_area':
         return ('text',
                 node.get('name'),
-                [unicode(x) for x in node.xpath("dynamic-content/text()")]
+                [str(x) for x in node.xpath("dynamic-content/text()")]
                 )
 
     if type_ == 'text_box':
@@ -279,10 +279,10 @@ SOLVERS = {
 
 def strip_xml(xmlstr):
     if ("<xml" in xmlstr) or ("<?xml" in xmlstr):
-        res = unicode(lxml.etree.fromstring(xmlstr.encode('utf-8')).xpath(
+        res = str(lxml.etree.fromstring(xmlstr.encode('utf-8')).xpath(
             "*/text()")[0])
     else:
-        res = unicode(xmlstr)
+        res = str(xmlstr)
     return res
 
 
@@ -313,7 +313,7 @@ def _clean_portlet_settings(d):
     }
 
     res = {}
-    for k, v in d.items():
+    for k, v in list(d.items()):
         if k not in _conv:
             continue
         res[_conv[k]] = _clean(v)
@@ -329,7 +329,7 @@ def _clean_portlet_settings(d):
     # change back search_type to be a list
     if 'search_type' in res:
         search_type = res['search_type']
-        if isinstance(search_type, basestring):
+        if isinstance(search_type, str):
             res['search_type'] = [search_type]
 
     if 'userdefaultsector' in d:
@@ -342,13 +342,13 @@ def _clean_portlet_settings(d):
     # change back sector to be a list
     if 'sector' in res:
         sector = res['sector']
-        if isinstance(sector, basestring):
+        if isinstance(sector, str):
             res['sector'] = [sector]
 
     # change back element to be a list
     if 'element_type' in res:
         element_type = res['element_type']
-        if isinstance(element_type, basestring):
+        if isinstance(element_type, str):
             res['element_type'] = [element_type]
 
     return res
@@ -423,7 +423,7 @@ def extract_portlet_info(session, portletid, layout):
             except Exception:
                 continue
             if value is not None:
-                res.append(unicode(value))
+                res.append(str(value))
         if len(res) == 0:
             prefs[name] = None
         elif len(res) == 1:
@@ -433,9 +433,9 @@ def extract_portlet_info(session, portletid, layout):
 
     portlet_title = None
     if prefs.get('portletSetupUseCustomTitle') == "true":
-        for k, v in prefs.items():
+        for k, v in list(prefs.items()):
             if k.startswith('portletSetupTitle'):
-                portlet_title = unicode(v)
+                portlet_title = str(v)
 
     article = _get_article_for_portlet(session, portlet)
     if article is not None:
@@ -464,7 +464,7 @@ def extract_simplified_info_from_article_content(content):
 def get_template_for_layout(layout):
     settings = parse_settings(layout.typesettings)
 
-    if layout.type_ == u'link_to_layout':
+    if layout.type_ == 'link_to_layout':
         return "link to layout"
 
     template = settings['layout-template-id'][0]
@@ -500,17 +500,17 @@ def make_tile(cover, col, css_class=None, no_titles=False):
         else:
             return make_richtext_with_title_tile(cover, _content)
 
-    if payload.get('freeparameter') == u'1':
+    if payload.get('freeparameter') == '1':
         return make_aceitem_filter_tile(cover, payload)
 
     if tile_name and 'SimpleFilterportlet' in tile_name:
         return make_aceitem_relevant_content_tile(cover, payload)
 
-    if payload.get('paging') == u'1':
+    if payload.get('paging') == '1':
         # this is the search portlet on the right
         return make_aceitem_search_tile(cover, payload)
     else:
-        print "Fallback tile"
+        print("Fallback tile")
         return make_aceitem_relevant_content_tile(cover, payload)
 
 
@@ -534,7 +534,7 @@ def make_ast_header_tile(cover, payload):
 
 
 def get_form_fields(content):
-    fields_types = [k for k in content.keys() if k.startswith('fieldType')]
+    fields_types = [k for k in list(content.keys()) if k.startswith('fieldType')]
     fields = []
     for f in sorted(fields_types):
         if not content.get(f):
@@ -542,7 +542,7 @@ def get_form_fields(content):
         field = {}
         fname = f.replace('fieldType','')
         foptional = content.get('fieldOptional{fname}'.format(fname=fname))
-        frequired = foptional == u'false' and True or False
+        frequired = foptional == 'false' and True or False
         field['name'] = fname
         field['required'] = frequired
         field['options'] = content.get(
@@ -594,11 +594,11 @@ def make_form_fields_model(form_obj, content):
         lxml.etree.SubElement(field, 'description')
         req = lxml.etree.SubElement(field, 'required')
         req.text = str(f['required'])
-        if f['type'] == u'text':
+        if f['type'] == 'text':
             field.set('type', 'zope.schema.TextLine')
-            if f['label'].lower() == u'email':
+            if f['label'].lower() == 'email':
                 validators.append('isValidEmail')
-        elif f['type'] == u'options':
+        elif f['type'] == 'options':
             # https://github.com/plone/plone.supermodel/blob/master/plone/supermodel/fields.txt#L1237
             field.set('type', 'zope.schema.Choice')
             options = s2l(f['options'], separator=',')
@@ -610,7 +610,7 @@ def make_form_fields_model(form_obj, content):
             for o in options:
                 opt = lxml.etree.SubElement(values, 'element')
                 opt.text = o
-        elif f['type'] == u'textarea':
+        elif f['type'] == 'textarea':
             field.set('type', 'zope.schema.Text')
         validators_str = '|'.join(validators)
         field.set('{{{ns}}}validators'.format(ns=efns), validators_str)
@@ -682,7 +682,7 @@ def make_form_actions_model(form_obj, content):
     nsmap['easyform'] = easyformns
     model = lxml.etree.Element('model', nsmap=nsmap)
     schema = lxml.etree.SubElement(model, 'schema')
-    if content.get('sendAsEmail') == u'true':
+    if content.get('sendAsEmail') == 'true':
         field = lxml.etree.SubElement(
             schema, 'field', name='mailer',
             type="collective.easyform.actions.Mailer")
@@ -717,7 +717,7 @@ def make_form_actions_model(form_obj, content):
         lxml.etree.SubElement(field, 'showFields')
         title = lxml.etree.SubElement(field, 'title')
         title.text = 'Mailer'
-    if content.get('saveToDatabase') == u'true':
+    if content.get('saveToDatabase') == 'true':
         field = lxml.etree.SubElement(
             schema, 'field', name='store_submissions',
             type="collective.easyform.actions.SaveData")
@@ -728,7 +728,7 @@ def make_form_actions_model(form_obj, content):
         lxml.etree.SubElement(field, 'showFields')
         title = lxml.etree.SubElement(field, 'title')
         title.text = 'Stored form submissions'
-    if content.get('saveToFile') == u'true':
+    if content.get('saveToFile') == 'true':
         # TODO: this needs to be investigated
         pass
     return lxml.etree.tostring(model).decode()
@@ -740,9 +740,9 @@ def make_form_content(context, content):
         context,
         'EasyForm',
         title=content.get('title'),
-        submitLabel=u'Send'
+        submitLabel='Send'
     )
-    form_prologue = u'<p>{prologue}</p>'.format(prologue=form_prologue)
+    form_prologue = '<p>{prologue}</p>'.format(prologue=form_prologue)
     form_obj.formPrologue = t2r(form_prologue)
 
     fields_model_str = make_form_fields_model(form_obj, content)
@@ -848,7 +848,7 @@ def make_transregion_dropdown_tile(cover, options=None):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.transregionselect'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
-    options.update({'title': u"Trans regional select"})
+    options.update({'title': "Trans regional select"})
     ITileDataManager(tile).set(options)
 
     return {
@@ -862,7 +862,7 @@ def make_ast_navigation_tile(cover):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.ast_navigation'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
-    ITileDataManager(tile).set({'title': u"AST Navigation"})
+    ITileDataManager(tile).set({'title': "AST Navigation"})
 
     return {
         'tile-type': typeName,
@@ -875,7 +875,7 @@ def make_urbanast_navigation_tile(cover):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.urbanast_navigation'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
-    ITileDataManager(tile).set({'title': u"UrbanAST Navigation"})
+    ITileDataManager(tile).set({'title': "UrbanAST Navigation"})
 
     return {
         'tile-type': typeName,
@@ -888,7 +888,7 @@ def make_urbanmenu_title(cover):
     id = getUtility(IUUIDGenerator)()
     typeName = 'eea.climateadapt.urbanmenu'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
-    ITileDataManager(tile).set({'title': u"Urban Menu"})
+    ITileDataManager(tile).set({'title': "Urban Menu"})
 
     return {
         'tile-type': typeName,
@@ -905,7 +905,7 @@ def make_countries_dropdown_tile(cover, image=None):
     if image is not None:
         uuid = image.__dict__['_plone.uuid']
 
-    ITileDataManager(tile).set({'title': u"Country select", 'image_uuid': uuid})
+    ITileDataManager(tile).set({'title': "Country select", 'image_uuid': uuid})
 
     return {
         'tile-type': typeName,
@@ -966,8 +966,8 @@ def make_richtext_tile(cover, content):
     typeName = 'collective.cover.richtext'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
 
-    content['text'] = t2r(unicode(fix_links(site, unicode(content['text']))))
-    content['title'] = unicode(content['title'])
+    content['text'] = t2r(str(fix_links(site, str(content['text']))))
+    content['title'] = str(content['title'])
 
     css_class = content.pop('css_class', None)
 
@@ -993,8 +993,8 @@ def make_richtext_with_title_tile(cover, content):
     typeName = 'eea.climateadapt.richtext_with_title'
     tile = cover.restrictedTraverse('@@%s/%s' % (typeName, id))
 
-    content['text'] = t2r(fix_links(site, unicode(content['text'])))
-    content['title'] = unicode(content['title'])
+    content['text'] = t2r(fix_links(site, str(content['text'])))
+    content['title'] = str(content['title'])
     content['dont_strip'] = True
 
     css_class = content.pop('css_class', None)
@@ -1253,7 +1253,7 @@ def create_plone_content(parent, **kw):
 
 def log_call(wrapped):
     def wrapper(*args, **kwargs):
-        logger.debug("Calling %s", wrapped.func_name)
+        logger.debug("Calling %s", wrapped.__name__)
         return wrapped(*args, **kwargs)
     return wrapper
 
@@ -1267,7 +1267,7 @@ def render(path, options):
 def render_accordion(payload):
     return render('templates/accordion.pt',
                           {'payload': payload,
-                           'rand': lambda: unicode(random.randint(1, 10000))
+                           'rand': lambda: str(random.randint(1, 10000))
                            }
                           )
 
@@ -1275,7 +1275,7 @@ def render_accordion(payload):
 def render_tabs(payload):
     return render('templates/tabs.pt',
                           {'payload': payload,
-                           'rand': lambda: unicode(random.randint(1, 10000))
+                           'rand': lambda: str(random.randint(1, 10000))
                            }
                           )
 
@@ -1378,7 +1378,7 @@ def fix_links(site, text):
 
         image = get_image_from_link(site, src)
 
-        if isinstance(image, basestring):
+        if isinstance(image, str):
             pass
         else:
             if image is not None:
@@ -1394,7 +1394,7 @@ def fix_links(site, text):
             if not res:
                 continue
             if href != res:
-                if not isinstance(res, basestring):
+                if not isinstance(res, str):
                     res = localize(res, site)
                     #res = '/' + '/'.join(res.getPhysicalPath()[2:])
                 logger.debug("Changed <a> link %s to %s", href, res)
@@ -1409,7 +1409,7 @@ UUID_RE = re.compile(
 
 
 def get_repofile_by_id(context, id):
-    if isinstance(id, basestring):
+    if isinstance(id, str):
         id = id.strip()
         if not id:
             return None
@@ -1432,8 +1432,8 @@ def get_repofile_by_id(context, id):
 def get_param_from_link(text, param='uuid'):
     """ Extracts a query parameter from a link text
     """
-    link = urlparse.urlparse(text)
-    d = urlparse.parse_qs(link.query)
+    link = urllib.parse.urlparse(text)
+    d = urllib.parse.parse_qs(link.query)
     if param in d:
         return d[param][0]
 
@@ -1472,7 +1472,7 @@ def get_image_from_link(site, link):
         return get_repofile_by_id(site, image_id)
 
     #raise ValueError("Image not found for link: {0}".format(link))
-    print("Image not found for link: {0}".format(link))
+    print(("Image not found for link: {0}".format(link)))
     return link     #TODO: put the error back
 
 
@@ -1485,14 +1485,14 @@ def _get_imported_aceitem(site, id):
     catalog = getToolByName(site, 'portal_catalog')
     coll = MAP_OF_OBJECTS['aceitems']
     if len(coll) == 0:
-        for pt in ACE_ITEM_TYPES.values():
+        for pt in list(ACE_ITEM_TYPES.values()):
             brains = catalog.searchResults(portal_type=pt)
             for b in brains:
                 obj = b.getObject()
                 coll[obj._aceitem_id] = obj
 
     try:
-        return coll[long(id)]
+        return coll[int(id)]
     except:
         logger.warning("Could not find aceitem with id %s", id)
         return
@@ -1509,7 +1509,7 @@ def _get_imported_aceproject(site, id):
             coll[obj._aceproject_id] = obj
 
     try:
-        return coll[long(id)]
+        return coll[int(id)]
     except:
         logger.warning("Could not find aceproject with id %s", id)
         return
@@ -1526,7 +1526,7 @@ def _get_imported_acemeasure(site, id):
                 coll[obj._acemeasure_id] = obj
 
     try:
-        return coll[long(id)]
+        return coll[int(id)]
     except:
         logger.warning("Could not find acemeasure with id %s", id)
         return
@@ -1538,7 +1538,7 @@ def get_relateditems(saobj, context):
     util = getUtility(IIntIds, context=context)
     ids = [util.getId(f) for f in files]
     if ids:
-        print ids, saobj
+        print(ids, saobj)
 
     return [RelationValue(id) for id in ids]
 

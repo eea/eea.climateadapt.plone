@@ -3,6 +3,7 @@ from collections import defaultdict, namedtuple
 
 import plone.api as api
 from Products.Five.browser import BrowserView
+from functools import reduce
 
 # from plone.app.layout.viewlets.content import ContentHistoryViewlet
 

@@ -36,7 +36,7 @@ class RebuildRelationsControlpanel(BrowserView):
         if rebuild:
             rebuild_relations(flush_and_rebuild_intids=flush_and_rebuild_intids)
             self.done = True
-            api.portal.show_message(u"Finished! See log for details.", self.request)
+            api.portal.show_message("Finished! See log for details.", self.request)
 
         self.relations_stats, self.broken = get_relations_stats()
         return self.index()
@@ -57,7 +57,7 @@ class InspectRelationsControlpanel(BrowserView):
         view_action = []
 
         if not self.relation:
-            api.portal.show_message(u"Please select a relation", self.request)
+            api.portal.show_message("Please select a relation", self.request)
             return self.index()
 
         intids = queryUtility(IIntIds)
@@ -152,18 +152,18 @@ def get_all_relations():
                 info[rel.from_attribute] += 1
             except AttributeError as ex:
                 logger.info(
-                    u"Something went wrong while storing {0}: \n {1}".format(rel, ex)
+                    "Something went wrong while storing {0}: \n {1}".format(rel, ex)
                 )
         else:
             logger.info(
-                u"Dropping relation {} from {} to {}".format(
+                "Dropping relation {} from {} to {}".format(
                     rel.from_attribute, rel.from_object, rel.to_object
                 )
             )
     msg = ""
-    for k, v in info.items():
-        msg += u"{}: {}\n".format(k, v)
-    logger.info(u"\nFound the following relations:\n{}".format(msg))
+    for k, v in list(info.items()):
+        msg += "{}: {}\n".format(k, v)
+    logger.info("\nFound the following relations:\n{}".format(msg))
     return results
 
 
@@ -216,7 +216,7 @@ def restore_relations(context=None, all_relations=None):
             unique_relations.append(i)
             seen_add(hashable)
         else:
-            logger.info(u"Dropping duplicate: {}".format(hashable))
+            logger.info("Dropping duplicate: {}".format(hashable))
 
     if len(unique_relations) < len(all_relations):
         logger.info(
@@ -228,25 +228,25 @@ def restore_relations(context=None, all_relations=None):
     for index, item in enumerate(all_relations, start=1):
         if not index % 500:
             logger.info(
-                u"Restored {} of {} relations...".format(index, len(all_relations))
+                "Restored {} of {} relations...".format(index, len(all_relations))
             )
         source_obj = uuidToObject(item["from_uuid"])
         target_obj = uuidToObject(item["to_uuid"])
 
         if not source_obj:
-            logger.info(u"{} is missing".format(item["from_uuid"]))
+            logger.info("{} is missing".format(item["from_uuid"]))
             continue
 
         if not target_obj:
-            logger.info(u"{} is missing".format(item["to_uuid"]))
+            logger.info("{} is missing".format(item["to_uuid"]))
             continue
 
         if not IDexterityContent.providedBy(source_obj):
-            logger.info(u"{} is no dexterity content".format(source_obj.portal_type))
+            logger.info("{} is no dexterity content".format(source_obj.portal_type))
             continue
 
         if not IDexterityContent.providedBy(target_obj):
-            logger.info(u"{} is no dexterity content".format(target_obj.portal_type))
+            logger.info("{} is no dexterity content".format(target_obj.portal_type))
             continue
 
         from_attribute = item["from_attribute"]
@@ -269,7 +269,7 @@ def restore_relations(context=None, all_relations=None):
         if field_and_schema is None:
             # the from_attribute is no field
             # we could either create a fresh relation or log the case
-            logger.info(u"No field. Setting relation: {}".format(item))
+            logger.info("No field. Setting relation: {}".format(item))
             event._setRelation(source_obj, from_attribute, RelationValue(to_id))
             continue
 
@@ -339,11 +339,11 @@ def link_objects(source, target, relationship):
     Other relations they will only be added to the relation-catalog.
     """
     if not IDexterityContent.providedBy(source):
-        logger.info(u"{} is no dexterity content".format(source.portal_type))
+        logger.info("{} is no dexterity content".format(source.portal_type))
         return
 
     if not IDexterityContent.providedBy(target):
-        logger.info(u"{} is no dexterity content".format(target.portal_type))
+        logger.info("{} is no dexterity content".format(target.portal_type))
         return
 
     relation_catalog = getUtility(ICatalog)
@@ -381,7 +381,7 @@ def link_objects(source, target, relationship):
     if field_and_schema is None:
         # The relationship is not the name of a field. Only create a relation.
         logger.info(
-            u"No field. Setting relation {} from {} to {}".format(
+            "No field. Setting relation {} from {} to {}".format(
                 source.absolute_url(), target.absolute_url(), relationship
             )
         )
@@ -426,7 +426,7 @@ def link_objects(source, target, relationship):
 def get_relations(obj, attribute=None, backrels=False, restricted=True, as_dict=False):
     """Get specific relations or backrelations for a content object"""
     if not IDexterityContent.providedBy(obj):
-        logger.info(u"{} is no dexterity content".format(obj))
+        logger.info("{} is no dexterity content".format(obj))
         return
 
     results = []
@@ -529,7 +529,7 @@ def relation(obj, attribute, restricted=True):
     Only valid if the attribute is the name of a relationChoice field on the object.
     """
     if not attribute:
-        raise RuntimeError(u'Missing parameter "attribute"')
+        raise RuntimeError('Missing parameter "attribute"')
 
     check_for_relationchoice(obj, attribute)
     items = get_relations(obj, attribute=attribute, restricted=restricted)
@@ -550,13 +550,13 @@ def backrelation(obj, attribute, restricted=True):
     One example is parent -> child where only one parent can exist.
     """
     if not attribute:
-        raise RuntimeError(u'Missing parameter "attribute"')
+        raise RuntimeError('Missing parameter "attribute"')
 
     items = get_relations(
         obj, attribute=attribute, backrels=True, restricted=restricted
     )
     if len(items) > 1:
-        raise RuntimeError(u"Multiple incoming relations of type {}.".format(attribute))
+        raise RuntimeError("Multiple incoming relations of type {}.".format(attribute))
 
     if items:
         source_obj = items[0]
@@ -577,12 +577,12 @@ def check_for_relationchoice(obj, attribute):
     field_and_schema = get_field_and_schema_for_fieldname(attribute, obj.portal_type)
     if field_and_schema is None:
         # No field found
-        raise RuntimeError(u"{} is no field on {}.".format(attribute, obj.portal_type))
+        raise RuntimeError("{} is no field on {}.".format(attribute, obj.portal_type))
     field, schema = field_and_schema
     if not isinstance(field, (Relation, RelationChoice)):
         # No RelationChoice field found
         raise RuntimeError(
-            u"{} is no RelationChoice field for {}.".format(attribute, obj.portal_type)
+            "{} is no RelationChoice field for {}.".format(attribute, obj.portal_type)
         )
 
 
@@ -613,25 +613,25 @@ def cleanup_intids(context=None):
     intids = getUtility(IIntIds)
     all_refs = [
         "{}.{}".format(i.object.__class__.__module__, i.object.__class__.__name__)
-        for i in intids.refs.values()
+        for i in list(intids.refs.values())
     ]
     logger.info(Counter(all_refs))
 
     count = 0
-    refs = [i for i in intids.refs.values() if isinstance(i.object, RelationValue)]
+    refs = [i for i in list(intids.refs.values()) if isinstance(i.object, RelationValue)]
     for ref in refs:
         intids.unregister(ref)
         count += 1
     logger.info("Removed all {} RelationValues from IntId-tool".format(count))
 
     count = 0
-    for ref in intids.refs.values():
+    for ref in list(intids.refs.values()):
         if "broken" in repr(ref.object):
             intids.unregister(ref)
     logger.info("Removed {} broken refs from IntId-tool".format(count))
     all_refs = [
         "{}.{}".format(i.object.__class__.__module__, i.object.__class__.__name__)
-        for i in intids.refs.values()
+        for i in list(intids.refs.values())
     ]
     logger.info(Counter(all_refs))
 

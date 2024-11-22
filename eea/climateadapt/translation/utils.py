@@ -1,5 +1,5 @@
 import json
-import urllib
+import urllib.request, urllib.parse, urllib.error
 import logging
 from datetime import date
 
@@ -179,9 +179,8 @@ def translate_text(context, request, text, domain="eea.climateadapt", language=N
 def get_site_languages():
     try:
         languages = (
-            TranslationManager(api.portal.get().restrictedTraverse("en"))
-            .get_translations()
-            .keys()
+            list(TranslationManager(api.portal.get().restrictedTraverse("en"))
+            .get_translations().keys())
         )
         return languages
     except Exception:
@@ -211,7 +210,7 @@ def filters_to_query(args):
         else:
             res.append(["filters[{0}][values][0]".format(i), val])
 
-    return urllib.urlencode(dict(res))
+    return urllib.parse.urlencode(dict(res))
 
 
 def get_object_fields(obj):
@@ -231,7 +230,6 @@ def is_language_independent_value(value):
     if (
         isinstance(value, bool)
         or isinstance(value, int)
-        or isinstance(value, long)
         or isinstance(value, tuple)
         or isinstance(value, list)
         or isinstance(value, set)

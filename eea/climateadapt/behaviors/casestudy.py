@@ -30,49 +30,49 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     # directives.omitted(IAddForm, 'relatedItems')
 
     challenges = RichText(
-        title=_(u"Challenges"),
+        title=_("Challenges"),
         required=True,
         default=None,
         description=_(
-            u"Describe what are the main climate change "
-            u"impacts/risks and related challenges addressed by the "
-            u"adaptation solutions proposed by the case study. "
-            u"Possibly include quantitate scenarios/projections of "
-            u"future climate change considered by the case study "
-            u"(5,000 characters limit):"
+            "Describe what are the main climate change "
+            "impacts/risks and related challenges addressed by the "
+            "adaptation solutions proposed by the case study. "
+            "Possibly include quantitate scenarios/projections of "
+            "future climate change considered by the case study "
+            "(5,000 characters limit):"
         ),
     )
 
     objectives = RichText(
-        title=_(u"Objectives"),
+        title=_("Objectives"),
         required=True,
         default=None,
         description=_(
-            u"Describe the objectives which triggered the "
-            u"adaptation measures (5,000 characters limit):"
+            "Describe the objectives which triggered the "
+            "adaptation measures (5,000 characters limit):"
         ),
     )
 
     solutions = RichText(
-        title=_(u"Solutions"),
+        title=_("Solutions"),
         required=True,
         default=None,
         description=_(
-            u"Describe the climate change adaptation solution(s) "
-            u"implemented (5,000 characters limit):"
+            "Describe the climate change adaptation solution(s) "
+            "implemented (5,000 characters limit):"
         ),
     )
 
     form.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     relevance = List(
-        title=_(u"Relevance"),
+        title=_("Relevance"),
         required=True,
         missing_value=[],
         default=None,
         description=_(
-            u"Select only one category below that best describes "
-            u"how relevant this case study is to climate change "
-            u"adaptation:"
+            "Select only one category below that best describes "
+            "how relevant this case study is to climate change "
+            "adaptation:"
         ),
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_relevance",
@@ -80,24 +80,24 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     )
 
     contact = RichText(
-        title=_(u"Contact"),
+        title=_("Contact"),
         required=True,
-        default=u"",
+        default="",
         description=_(
-            u"Contact of reference (institution and persons) who is "
-            u"directly involved in the development and "
-            u"implementation of the case. (500 char limit) "
+            "Contact of reference (institution and persons) who is "
+            "directly involved in the development and "
+            "implementation of the case. (500 char limit) "
         ),
     )
 
     adaptationoptions = RelationList(
-        title=u"Adaptation measures implemented in the case:",
+        title="Adaptation measures implemented in the case:",
         default=[],
         description=_(
-            u"Select one or more adaptation options that this item " u"relates to:"
+            "Select one or more adaptation options that this item " "relates to:"
         ),
         value_type=RelationChoice(
-            title=_(u"Related"),
+            title=_("Related"),
             vocabulary="eea.climateadapt.adaptation_options"
             # source=ObjPathSourceBinder(),
             # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
@@ -106,28 +106,28 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     )
 
     primary_photo = NamedBlobImage(
-        title=_(u"Primary photo"),
+        title=_("Primary photo"),
         required=False,
     )
 
     # dexteritytextindexer.searchable("source")
     source = RichText(
-        title=_(u"References"),
+        title=_("References"),
         required=False,
         description=_(
-            u"Describe the references (projects, a tools reports, etc.) "
-            u"related to this item, providing further information about "
-            u"it or its source."
+            "Describe the references (projects, a tools reports, etc.) "
+            "related to this item, providing further information about "
+            "it or its source."
         ),
     )
 
     primary_photo_copyright = TextLine(
-        title=_(u"Primary Photo Copyright"),
+        title=_("Primary Photo Copyright"),
         required=False,
-        default=u"",
+        default="",
         description=_(
-            u"Copyright statement or other rights information for  "
-            u"the primary photo."
+            "Copyright statement or other rights information for  "
+            "the primary photo."
         ),
     )
 
@@ -143,15 +143,15 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
 
     # BBB fields, only used during migration
     primephoto = RelationChoice(
-        title=_(u"Prime photo"),
+        title=_("Prime photo"),
         source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
         required=False,
     )
     supphotos = RelationList(
-        title=u"Gallery",
+        title="Gallery",
         default=[],
         value_type=RelationChoice(
-            title=_(u"Related"),
+            title=_("Related"),
             source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
         ),
         required=False,

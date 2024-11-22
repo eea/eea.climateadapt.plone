@@ -28,7 +28,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         """ Given an indicator html page URL, it resolves to an imported indicator
         """
         html_page = json_indicator_page.split('/')[-1]
-        for iid, info in self.data.get('indicators', {}).items():
+        for iid, info in list(self.data.get('indicators', {}).items()):
             if info['overviewpage'] == html_page:
                 for indicator in self.indicators:
                     if indicator.c3s_identifier == info['identifier']:
@@ -131,7 +131,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                                             brain.absolute_url())
 
                         else:
-                            print "Not found: " + item['title']
+                            print("Not found: " + item['title'])
 
         for side in response:
             for cindex, category in enumerate(overview_page['category_order_'+side]):
@@ -161,10 +161,10 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         data = datastore['data']['overview_table']
         response = OrderedDict()
 
-        for hazard_category in data.keys():
+        for hazard_category in list(data.keys()):
             response[hazard_category] = {
                 'types': OrderedDict(), 'total_indicators': 0}
-            for hazard_type in data[hazard_category].keys():
+            for hazard_type in list(data[hazard_category].keys()):
                 response[hazard_category]['types'][hazard_type] = []
                 for indicator in data[hazard_category][hazard_type]:
                     c3s_identifier = indicator['identifier']
@@ -199,7 +199,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
             "</tr>" \
             "</thead>" \
             "<tbody>"
-        for _category in response.keys():
+        for _category in list(response.keys()):
             responseHtml += "<tr>"
             responseHtml += "<td rowspan=\"" + \
                 str(response[_category]['total_indicators'])+"\">" + \

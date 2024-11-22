@@ -16,7 +16,7 @@ from zope.interface import implements
 class ICountrySelectTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=False,
     )
 
@@ -34,7 +34,7 @@ class CountrySelectTile(PersistentCoverTile):
     is_configurable = False
     is_editable = False
     is_droppable = False
-    short_name = u'Select country'
+    short_name = 'Select country'
 
     @view.memoize
     def is_empty(self):
@@ -47,7 +47,7 @@ class CountrySelectTile(PersistentCoverTile):
         #              ace_countries_selection]
 
         # return sorted(countries, key=lambda c: c[1])
-        clist = filter(lambda country:  country[0] != 'GB', ace_countries_selection)
+        clist = [country for country in ace_countries_selection if country[0] != 'GB']
         return sorted(clist, key=lambda c: c[1])
 
 

@@ -63,7 +63,7 @@ class GeoCharsFieldModifier(object):
         value = self.context.geochars
 
         if not value:
-            return u""
+            return ""
 
         value = json.loads(value)
 
@@ -94,26 +94,26 @@ class GeoCharsFieldModifier(object):
     def _render_geochar_element(self, value):
         value = BIOREGIONS[value]
 
-        return u"region:{0}".format(value)
+        return "region:{0}".format(value)
 
     def _render_geochar_macrotrans(self, value):
-        tpl = u"macro-transnational-region:{0}"
+        tpl = "macro-transnational-region:{0}"
 
-        return tpl.format(u", ".join([BIOREGIONS[x] for x in value]))
+        return tpl.format(", ".join([BIOREGIONS[x] for x in value]))
 
     def _render_geochar_biotrans(self, value):
-        tpl = u"biographical-regions:{0}"
+        tpl = "biographical-regions:{0}"
 
-        return tpl.format(u", ".join([BIOREGIONS.get(x, x) for x in value]))
+        return tpl.format(", ".join([BIOREGIONS.get(x, x) for x in value]))
 
     def _render_geochar_countries(self, value):
-        tpl = u"countries:{0}"
+        tpl = "countries:{0}"
         value = [ace_countries_dict.get(x, x) for x in value]
 
-        return tpl.format(u", ".join(value))
+        return tpl.format(", ".join(value))
 
     def _render_geochar_subnational(self, value):
-        tpl = u"sub-nationals:{0}"
+        tpl = "sub-nationals:{0}"
 
         out = []
 
@@ -127,7 +127,7 @@ class GeoCharsFieldModifier(object):
             else:
                 logger.error("Subnational region not found: %s", line)
 
-        text = u", ".join([x.decode("utf-8") for x in out])
+        text = ", ".join([x.decode("utf-8") for x in out])
 
         return tpl.format(text)
 
@@ -135,9 +135,9 @@ class GeoCharsFieldModifier(object):
         text = value
 
         if isinstance(value, (list, tuple)):
-            text = u", ".join(value)
+            text = ", ".join(value)
 
-        return u"city:{0}".format(text)
+        return "city:{0}".format(text)
 
 
 class CountryTitle2Surf(DXField2Surf):
@@ -148,7 +148,7 @@ class CountryTitle2Surf(DXField2Surf):
     def value(self):
         title = self.context.Title()
 
-        if isinstance(title, unicode):
+        if isinstance(title, str):
             title = title.encode("utf-8")
 
         return title + " - ClimateADAPT country profile"
@@ -207,7 +207,7 @@ class IssuedFieldModifier(object):
         utc_date = timezone.localize(value)
         value = rdflib.term.Literal(
             utc_date,
-            datatype=rdflib.term.URIRef(u"http://www.w3.org/2001/XMLSchema#dateTime"),
+            datatype=rdflib.term.URIRef("http://www.w3.org/2001/XMLSchema#dateTime"),
         )
         setattr(resource, "dcterms_issued", value)
         setattr(resource, "eea_issued", value)

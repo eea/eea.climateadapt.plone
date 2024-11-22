@@ -2,6 +2,6 @@
 """
 
 from Products.PluggableAuthService import registerMultiPlugin
-import roleplugin
+from . import roleplugin
 
 registerMultiPlugin(roleplugin.CityMayorUserFactory.meta_type)

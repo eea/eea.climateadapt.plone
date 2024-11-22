@@ -19,12 +19,12 @@ from eea.climateadapt.translation.utils import TranslationUtilsMixin
 class IShareInfoTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=False,
     )
 
     shareinfo_type = schema.Choice(
-        title=u"Share info type",
+        title="Share info type",
         vocabulary="eea.climateadapt.cca_types",
         required=False
     )
@@ -43,7 +43,7 @@ class ShareInfoTile(PersistentCoverTile, TranslationUtilsMixin):
     is_configurable = True
     is_editable = True
     is_droppable = False
-    short_name = u'Share info'
+    short_name = 'Share info'
 
     def is_anon(self):
         return api.user.is_anonymous()
@@ -63,4 +63,4 @@ class ShareInfoTile(PersistentCoverTile, TranslationUtilsMixin):
     def link_title(self):
         type_ = self.data.get('shareinfo_type')
         label = dict(_cca_types)[type_]
-        return u"Add a {0}".format(label)
+        return "Add a {0}".format(label)

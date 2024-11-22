@@ -9,7 +9,7 @@ from Products.CMFPlone import utils
 from Products.CMFPlone.browser.navigation import \
     CatalogNavigationTabs as BaseCatalogNavigationTabs
 from Products.CMFPlone.browser.navigation import get_id, get_view_url
-from urlparse import urlparse
+from urllib.parse import urlparse
 from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
 

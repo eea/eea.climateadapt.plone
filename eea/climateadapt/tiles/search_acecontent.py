@@ -52,18 +52,18 @@ logger = logging.getLogger("eea.climateadapt")
 class ISearchAceContentTile(IPersistentCoverTile):
 
     title = TextLine(
-        title=u"Title",
+        title="Title",
         required=False,
     )
 
     search_text = TextLine(
-        title=u"Search Text",
+        title="Search Text",
         required=False,
-        default=u"",
+        default="",
     )
 
     origin_website = List(
-        title=u"Origin website",
+        title="Origin website",
         required=False,
         value_type=Choice(
             vocabulary='eea.climateadapt.origin_website'
@@ -71,7 +71,7 @@ class ISearchAceContentTile(IPersistentCoverTile):
     )
 
     search_type = List(
-        title=u"Aceitem type",
+        title="Aceitem type",
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.search_types_vocabulary",
@@ -79,7 +79,7 @@ class ISearchAceContentTile(IPersistentCoverTile):
     )
 
     element_type = List(
-        title=u"Element type",
+        title="Element type",
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.element_types_vocabulary",
@@ -87,7 +87,7 @@ class ISearchAceContentTile(IPersistentCoverTile):
     )
 
     sector = List(
-        title=u"Sector",
+        title="Sector",
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_sectors",
@@ -95,37 +95,37 @@ class ISearchAceContentTile(IPersistentCoverTile):
     )
 
     special_tags = List(
-        title=u"Special tags",
+        title="Special tags",
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.special_tags"),
     )
 
     countries = List(
-        title=u"Countries",
+        title="Countries",
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
 
     macro_regions = List(
-        title=u"Macro-Transnational Regions",
+        title="Macro-Transnational Regions",
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.regions"),
     )
 
     bio_regions = List(
-        title=u"Biogeographical Regions",
+        title="Biogeographical Regions",
         required=False,
         value_type=Choice(vocabulary="eea.climateadapt.bioregions"),
     )
 
     funding_programme = Choice(
         vocabulary="eea.climateadapt.funding_programme",
-        title=u"Funding programmes",
+        title="Funding programmes",
         required=False,
     )
 
     nr_items = Int(
-        title=u"Nr of items to show",
+        title="Nr of items to show",
         required=True,
         default=5,
     )
@@ -179,7 +179,7 @@ class AceTileMixin(object):
             if sort in ("MODIFIED", "EFFECTIVE"):
                 query["sort_order"] = "reverse"
 
-        for setting_name, index_name in map.items():
+        for setting_name, index_name in list(map.items()):
             setting = self.data.get(setting_name, "")
 
             if setting:
@@ -196,7 +196,7 @@ class AceTileMixin(object):
                             setting.append('Indian Ocean Area')
                             regions.append('TRANS_MACRO_OUTERMOST')
                         for region_name in setting:
-                            for k, v in BIOREGIONS.items() + REMAPED_BIOREGIONS.items():
+                            for k, v in list(BIOREGIONS.items()) + list(REMAPED_BIOREGIONS.items()):
                                 if 'TRANS_MACRO' in k and v == region_name:
                                     regions.append(k)
                         query[index_name] = regions
@@ -210,10 +210,10 @@ class AceTileMixin(object):
         if st:
             query.pop("special_tags", None)
 
-            if isinstance(st, basestring):
-                st = st.split(u" ")
-            words = query.pop("SearchableText", u"").split(u" ")
-            query["SearchableText"] = u" ".join(set(words + st))
+            if isinstance(st, str):
+                st = st.split(" ")
+            words = query.pop("SearchableText", "").split(" ")
+            query["SearchableText"] = " ".join(set(words + st))
 
         query['Language'] = lang
         # print('query in search_acecontent', query)
@@ -226,7 +226,7 @@ class AceTileMixin(object):
         q.update(kw)
         x = {}
 
-        for index, v in q.items():
+        for index, v in list(q.items()):
             if v:
                 if index not in ["sort_on", "sort_order"]:
                     if isinstance(v, (tuple, list)):
@@ -248,7 +248,7 @@ class AceTileMixin(object):
 
         # now that the "query" is built, map it to EEA Search format
 
-        for k, v in x.items():
+        for k, v in list(x.items()):
 
             if k == "search_type":
                 terms.append(('objectProvides',
@@ -285,7 +285,7 @@ class AceTileMixin(object):
                 temp_terms = []
                 for s in v:
                     if 'TRANS_MACRO_' in s:
-                        for key, val in BIOREGIONS.items():
+                        for key, val in list(BIOREGIONS.items()):
                             if 'TRANS_MACRO_' in key and key == s:
                                 if val in self.list_of_other_regions():
                                     val = 'Other Regions'
@@ -440,7 +440,7 @@ class SearchAceContentTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMi
     is_configurable = True
     is_editable = True
     is_droppable = False
-    short_name = u"Search AceContent"
+    short_name = "Search AceContent"
 
     @ view.memoize
     def is_empty(self):
@@ -460,24 +460,24 @@ sortby_def = {
 }
 
 sortbyterms = [SimpleTerm(value=k, token=k, title=v)
-               for k, v in sortby_def.items()]
+               for k, v in list(sortby_def.items())]
 sortby_vocabulary = SimpleVocabulary(sortbyterms)
 
 
 class IRelevantAceContentItemsTile(ISearchAceContentTile):
 
     show_share_btn = Bool(
-        title=u"Show the share button",
+        title="Show the share button",
         default=False,
     )
 
     combine_results = Bool(
-        title=u"Show listing results, in addition to assigned items",
+        title="Show listing results, in addition to assigned items",
         default=False,
     )
 
     uuids = Dict(
-        title=u"Elements",
+        title="Elements",
         key_type=TextLine(),
         value_type=Dict(
             key_type=TextLine(),
@@ -487,7 +487,7 @@ class IRelevantAceContentItemsTile(ISearchAceContentTile):
     )
 
     sortBy = Choice(
-        title=u"Sort order for results and assigned items",
+        title="Sort order for results and assigned items",
         vocabulary=sortby_vocabulary,
     )
 
@@ -503,7 +503,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
     implements(IRelevantAceContentItemsTile, IListTile)
 
-    short_name = u"Relevant AceContent"
+    short_name = "Relevant AceContent"
 
     is_configurable = True
     is_editable = True
@@ -515,7 +515,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
 
     @ property
     def is_available(self):
-        return bool(self.items() or self.assigned())
+        return bool(list(self.items()) or self.assigned())
 
     # def show_share_btn(self):
     #     search_type = self.data.get('search_type')
@@ -546,19 +546,19 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         """Return accepted drag/drop content types for this tile."""
 
         cca_types = [
-            u"eea.climateadapt.adaptationoption",
-            u"eea.climateadapt.aceproject",
-            u"eea.climateadapt.casestudy",
-            u"eea.climateadapt.guidancedocument",
-            u"eea.climateadapt.c3sindicator",
-            u"eea.climateadapt.indicator",
-            u"eea.climateadapt.informationportal",
-            u"eea.climateadapt.mapgraphdataset",
-            u"eea.climateadapt.organisation",
-            u"eea.climateadapt.publicationreport",
-            u"eea.climateadapt.researchproject",
-            u"eea.climateadapt.tool",
-            u"eea.climateadapt.video",
+            "eea.climateadapt.adaptationoption",
+            "eea.climateadapt.aceproject",
+            "eea.climateadapt.casestudy",
+            "eea.climateadapt.guidancedocument",
+            "eea.climateadapt.c3sindicator",
+            "eea.climateadapt.indicator",
+            "eea.climateadapt.informationportal",
+            "eea.climateadapt.mapgraphdataset",
+            "eea.climateadapt.organisation",
+            "eea.climateadapt.publicationreport",
+            "eea.climateadapt.researchproject",
+            "eea.climateadapt.tool",
+            "eea.climateadapt.video",
         ]
 
         return cca_types + [
@@ -653,7 +653,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
                 else:
                     return res
 
-        for item in self.items():
+        for item in list(self.items()):
             obj = item.getObject()
             if '/'+current_language+'/' not in item.getURL():
                 item = self.translated_object(item)
@@ -688,7 +688,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         results = list()
 
         if uuids:
-            ordered_uuids = [(k, v) for k, v in uuids.items()]
+            ordered_uuids = [(k, v) for k, v in list(uuids.items())]
             ordered_uuids.sort(key=lambda x: x[1]["order"])
 
             for uuid in [i[0] for i in ordered_uuids]:
@@ -756,7 +756,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         #     return
 
         order_list = [int(val.get("order", 0))
-                      for key, val in uuids_dict.items()]
+                      for key, val in list(uuids_dict.items())]
 
         if len(order_list) == 0:
             # First entry
@@ -767,9 +767,9 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
             order = order_list.pop() + 1
 
         for uuid in uuids:
-            if uuid not in uuids_dict.keys():
+            if uuid not in list(uuids_dict.keys()):
                 entry = dict()
-                entry[u"order"] = unicode(order)
+                entry["order"] = str(order)
                 uuids_dict[uuid] = entry
                 order += 1
 
@@ -817,7 +817,7 @@ class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, Translation
         old_data = data_mgr.get()
         uuids = data_mgr.get()["uuids"]
 
-        if uuid in uuids.keys():
+        if uuid in list(uuids.keys()):
             del uuids[uuid]
         old_data["uuids"] = uuids
         data_mgr.set(old_data)
@@ -833,19 +833,19 @@ class IFilterAceContentItemsTile(IRelevantAceContentItemsTile):
 
 class IFilteringSchema(form.Schema):
     impact = Choice(
-        title=_(u"Climate impact"),
+        title=_("Climate impact"),
         vocabulary="eea.climateadapt.aceitems_climateimpacts",
         required=False,
     )
 
     sector = Choice(
-        title=_(u"Sector"),
+        title=_("Sector"),
         vocabulary="eea.climateadapt.aceitems_sectors",
         required=False,
     )
 
     key_type_measure = Choice(
-        title=_(u"Key Type Measure"),
+        title=_("Key Type Measure"),
         vocabulary="eea.climateadapt.aceitems_key_type_measures_short",
         required=False,
     )
@@ -856,8 +856,8 @@ class FilteringForm(Form):  # form.SchemaForm):
 
     template = ViewPageTemplateFile("pt/filter_form.pt")
 
-    label = u""
-    description = u""
+    label = ""
+    description = ""
 
     prefix = ""
     ignoreContext = True
@@ -877,20 +877,20 @@ class FilteringForm(Form):  # form.SchemaForm):
 
 
 impacts_no_value = StaticWidgetAttribute(
-    _(u"All climate impacts"), view=FilteringForm, field=IFilteringSchema["impact"]
+    _("All climate impacts"), view=FilteringForm, field=IFilteringSchema["impact"]
 )
 sectors_no_value = StaticWidgetAttribute(
-    _(u"All adaptation sectors"), view=FilteringForm, field=IFilteringSchema["sector"]
+    _("All adaptation sectors"), view=FilteringForm, field=IFilteringSchema["sector"]
 )
 key_type_measures_no_value = StaticWidgetAttribute(
-    _(u"All key type measures"), view=FilteringForm, field=IFilteringSchema["key_type_measure"]
+    _("All key type measures"), view=FilteringForm, field=IFilteringSchema["key_type_measure"]
 )
 
 
 class FilterAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
     implements(IFilterAceContentItemsTile)
 
-    short_name = u"Filterable relevant AceContent"
+    short_name = "Filterable relevant AceContent"
 
     is_configurable = True
     is_editable = True

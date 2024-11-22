@@ -19,12 +19,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 class ICardsTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u"Title",
+        title="Title",
         required=True,
     )
 
     uuid = schema.TextLine(
-        title=u"UUID",
+        title="UUID",
         required=False,
         readonly=True,
     )
@@ -46,7 +46,7 @@ class CardsTile(PersistentCoverTile):
     is_configurable = True
     is_editable = True
     is_droppable = True
-    short_name = u"Cards"
+    short_name = "Cards"
 
     def is_empty(self):
         return (

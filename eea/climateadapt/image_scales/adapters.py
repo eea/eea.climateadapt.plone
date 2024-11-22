@@ -40,7 +40,7 @@ class ImageScales(object):
         obj = aq_inner(self.context)
         res = {}
         for schema in iterSchemata(self.context):
-            for name, field in getFields(schema).items():
+            for name, field in list(getFields(schema).items()):
                 # serialize the field
                 serializer = queryMultiAdapter(
                     (field, obj, self.request), IImageScalesFieldAdapter
@@ -137,7 +137,7 @@ class ImageFieldScales(object):
         if storage is None:
             return None
         # TODO: use an algorithm to detect change of modified image
-        for scale in storage.values():
+        for scale in list(storage.values()):
             if scale["fieldname"] == fieldname and (
                 scale["width"] == width or scale["height"] == height
             ):

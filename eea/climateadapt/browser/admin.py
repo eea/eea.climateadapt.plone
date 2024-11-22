@@ -106,17 +106,17 @@ class CheckCopyPasteLocation(BrowserView):
 
 
 class InvalidMenuConfiguration(Invalid):
-    __doc__ = u"The menu format is invalid"
+    __doc__ = "The menu format is invalid"
 
 
 class IMainNavigationMenu(form.Schema):
-    menu = schema.Text(title=u"Menu structure text", required=True)
+    menu = schema.Text(title="Menu structure text", required=True)
 
     @invariant
     def check_menu(data):
         try:
             _extract_menu(data.menu)
-        except Exception, e:
+        except Exception as e:
             raise InvalidMenuConfiguration(e)
 
 
@@ -127,8 +127,8 @@ class MainNavigationMenuEdit(form.SchemaForm):
     schema = IMainNavigationMenu
     ignoreContext = False
 
-    label = u"Fill in the content of the main menu"
-    description = u"""This should be a structure for the main menu. Use a single
+    label = "Fill in the content of the main menu"
+    description = """This should be a structure for the main menu. Use a single
     empty line to separate main menu entries. All lines after the main menu
     entry, and before an empty line, will form entries in that section menu. To
     create a submenu for a section, start a line with a dash (-).  Links should
@@ -145,7 +145,7 @@ class MainNavigationMenuEdit(form.SchemaForm):
 
         return content
 
-    @button.buttonAndHandler(u"Save")
+    @button.buttonAndHandler("Save")
     def handleApply(self, action):
         data, errors = self.extractData()
 
@@ -156,7 +156,7 @@ class MainNavigationMenuEdit(form.SchemaForm):
 
         self.ptool._updateProperty('main_navigation_menu', data['menu'])
 
-        self.status = u"Saved, please check."
+        self.status = "Saved, please check."
 
 
 class HealthNavigationMenuEdit(form.SchemaForm):
@@ -166,8 +166,8 @@ class HealthNavigationMenuEdit(form.SchemaForm):
     schema = IMainNavigationMenu
     ignoreContext = False
 
-    label = u"Fill in the content of the health navigation menu"
-    description = u"""This should be a structure for health menu. Use a single
+    label = "Fill in the content of the health navigation menu"
+    description = """This should be a structure for health menu. Use a single
     empty line to separate main menu entries. All lines after the main menu
     entry, and before an empty line, will form entries in that section menu. To
     create a submenu for a section, start a line with a dash (-).  Links should
@@ -184,7 +184,7 @@ class HealthNavigationMenuEdit(form.SchemaForm):
 
         return content
 
-    @button.buttonAndHandler(u"Save")
+    @button.buttonAndHandler("Save")
     def handleApply(self, action):
         data, errors = self.extractData()
 
@@ -195,7 +195,7 @@ class HealthNavigationMenuEdit(form.SchemaForm):
 
         self.ptool._updateProperty('health_navigation_menu', data['menu'])
 
-        self.status = u"Saved, please check."
+        self.status = "Saved, please check."
 
 
 class ForceUnlock(BrowserView):
@@ -435,13 +435,13 @@ class SpecialTagsObjects (BrowserView):
 
 
 class IAddKeywordForm(form.Schema):
-    keyword = schema.TextLine(title=u"Keyword:", required=True)
+    keyword = schema.TextLine(title="Keyword:", required=True)
     ccaitems = RelationList(
-        title=u"Select where to implement the new keyword",
+        title="Select where to implement the new keyword",
         default=[],
-        description=(u"Items related to the keyword:"),
+        description=("Items related to the keyword:"),
         value_type=RelationChoice(
-            title=(u"Related"),
+            title=("Related"),
             vocabulary="eea.climateadapt.cca_items"
         ),
         required=False,
@@ -452,10 +452,10 @@ class AddKeywordForm (form.SchemaForm):
     schema = IAddKeywordForm
     ignoreContext = True
 
-    label = u"Add keyword"
-    description = u""" Enter the new keyword you want to add """
+    label = "Add keyword"
+    description = """ Enter the new keyword you want to add """
 
-    @button.buttonAndHandler(u"Submit")
+    @button.buttonAndHandler("Submit")
     def handleApply(self, action):
         data, errors = self.extractData()
 
@@ -563,7 +563,7 @@ class KeywordsAdminView (BrowserView):
 
         logger.info("Deleted keyword: %s", keyword)
         message = _(
-            u"Keyword succesfully deleted: ${kw_old}.",
+            "Keyword succesfully deleted: ${kw_old}.",
             mapping={"kw_old": keyword},
         )
         IStatusMessage(self.request).addStatusMessage(message, type="success")
@@ -593,7 +593,7 @@ class KeywordsAdminView (BrowserView):
 
         logger.info("Finished renaming: %s TO %s", keyword, newkeyword)
         message = _(
-            u"Keyword succesfully renamed: ${kw_old} to ${kw_new}.",
+            "Keyword succesfully renamed: ${kw_old} to ${kw_new}.",
             mapping={"kw_old": keyword, "kw_new": newkeyword},
         )
         IStatusMessage(self.request).addStatusMessage(message, type="success")
@@ -627,7 +627,7 @@ class GoogleAnalyticsAPIEditForm(RegistryEditForm):
 ConfigureGoogleAnalyticsAPI = layout.wrap_form(
     GoogleAnalyticsAPIEditForm, ControlPanelFormWrapper)
 
-ConfigureGoogleAnalyticsAPI.label = u"Setup Google Analytics API Integration"
+ConfigureGoogleAnalyticsAPI.label = "Setup Google Analytics API Integration"
 
 
 def initialize_analyticsreporting(credentials_data):
@@ -898,7 +898,7 @@ class GetBrokenCreationDates(BrowserView):
             if not hasattr(obj, 'creation_date'):
                 continue
 
-            if not isinstance(obj.creation_date, basestring):
+            if not isinstance(obj.creation_date, str):
                 continue
 
             res.append(obj)
@@ -1042,7 +1042,7 @@ class MigrateTiles(BrowserView):
             tile = cover.get_tile(tid)
 
             if not tile.assigned():
-                brains = tile.items()
+                brains = list(tile.items())
                 uids = [b.UID for b in brains]
 
                 if uids:
@@ -1053,11 +1053,11 @@ class MigrateTiles(BrowserView):
                     old_data['sortBy'] = 'NAME'
                     data_mgr.set(old_data)
 
-                    print("Fixed cover %s, tile %s with uids %r" % (
+                    print(("Fixed cover %s, tile %s with uids %r" % (
                         cover.absolute_url(),
                         tid,
                         uids,
-                    ))
+                    )))
 
                     logger.info("Fixed cover %s, tile %s with uids %r",
                                 cover.absolute_url(),
@@ -1199,27 +1199,27 @@ class ExportDbItems(BrowserView):
                     line.append(_type.replace('eea.climateadapt.', ''))
                     line.append(brain.getURL())
                     # keywords
-                    temp = u''
+                    temp = ''
                     if brain.keywords:
-                        temp = u','.join(brain.keywords).encode('utf-8')
+                        temp = ','.join(brain.keywords).encode('utf-8')
                     line.append(temp)
 
                     obj = brain.getObject()
                     # sectors
-                    temp = u''
+                    temp = ''
                     if hasattr(obj, "sectors"):
-                        temp = u','.join(obj.sectors)
+                        temp = ','.join(obj.sectors)
                     line.append(temp)
                     # elements
-                    temp = u''
+                    temp = ''
                     if hasattr(obj, "elements"):
                         if obj.elements:
-                            temp = u','.join(obj.elements)
+                            temp = ','.join(obj.elements)
                     line.append(temp)
                     # impacts
-                    temp = u''
+                    temp = ''
                     if hasattr(obj, "climate_impacts"):
-                        temp = u','.join(obj.climate_impacts)
+                        temp = ','.join(obj.climate_impacts)
                     line.append(temp)
                     # searchable text
                     indexer = getMultiAdapter(
@@ -1227,10 +1227,10 @@ class ExportDbItems(BrowserView):
                     temp = indexer()
                     line.append(temp)
                     # websites
-                    temp = u''
+                    temp = ''
                     if hasattr(obj, "websites"):
                         if obj.websites is not None:
-                            temp = u','.join(obj.websites)
+                            temp = ','.join(obj.websites)
                     line.append(temp)
 
                     res.append(line)

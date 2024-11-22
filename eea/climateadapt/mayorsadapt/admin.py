@@ -51,7 +51,7 @@ class CityAdminView (BrowserView):
     def get_status(self, city):
         try:
             return get_state(city)
-        except Exception, e:
+        except Exception as e:
             return "Error: %s" % e
 
 

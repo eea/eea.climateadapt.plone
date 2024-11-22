@@ -32,7 +32,7 @@ def _unixtime(d):
 def shorten(t, to=254):
     """Shortens text and adds elipsis"""
 
-    if isinstance(t, unicode):
+    if isinstance(t, str):
         el = "..."
     else:
         el = "..."

@@ -8,19 +8,17 @@ from collections import OrderedDict
 
 import lxml.etree
 import lxml.html
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from eea.climateadapt.vocabulary import ace_countries
 from pkg_resources import resource_filename
 from plone.api import portal
 from plone.intelligenttext.transforms import (
     WebIntelligentToHtmlConverter,
-    convertWebIntelligentPlainTextToHtml as convWebInt,
     safe_decode
 )
 from eea.climateadapt.translation.utils import (
     TranslationUtilsMixin,
-    translate_text,
-    get_current_language
+    translate_text
 )
 from eea.climateadapt import MessageFactory as _
 from Products.Five.browser import BrowserView
@@ -31,11 +29,11 @@ def parse_csv(path):
     wf = resource_filename("eea.climateadapt", path)
 
     reader = csv.reader(open(wf))
-    cols = reader.next()
+    cols = next(reader)
     out = []
 
     for line in reader:
-        out.append(dict(zip(cols, line)))
+        out.append(dict(list(zip(cols, line))))
 
     return out
 
@@ -54,7 +52,7 @@ def get_country_code(country_name):
 
 
 def setup_discodata(annotations):
-    response = urllib2.urlopen(DISCODATA_URL)
+    response = urllib.request.urlopen(DISCODATA_URL)
     data = json.loads(response.read())
     annotations['discodata'] = {
         'timestamp': datetime.now(),
@@ -95,15 +93,15 @@ def get_discodata_for_country(country_code):
     #import pdb; pdb.set_trace()
         # remove the countryCode as we don't need it
     processed_data = {
-        k: unicode(v)
-        for k, v in orig_data.items()
+        k: str(v)
+        for k, v in list(orig_data.items())
         if k not in ['countryCode', 'ReportNet3HistoricReleaseId']
     }
 
     # some values are strings, and need to be transformed
     #import pdb; pdb.set_trace()
     # into Python objects
-    for k, val in processed_data.items():
+    for k, val in list(processed_data.items()):
         try:
             if val == 'None':
                 processed_data[k] = None
@@ -228,7 +226,7 @@ def get_nap_nas(obj, text, country):
             cells = row.xpath("td")
             # key = cells[0].text_content().strip()
             # key = ''.join(cells[0].itertext()).strip()
-            key = " ".join([c for c in cells[0].itertext() if type(c) is not unicode])
+            key = " ".join([c for c in cells[0].itertext() if type(c) is not str])
 
             if key in [None, ""]:
                 key = cells[0].text_content().strip()
@@ -239,7 +237,7 @@ def get_nap_nas(obj, text, country):
                 children = list(cells[2])
 
             text = [lxml.etree.tostring(c) for c in children]
-            value = u"\n".join(text)
+            value = "\n".join(text)
             key = normalized(key)
 
             if key is None:
@@ -251,7 +249,7 @@ def get_nap_nas(obj, text, country):
             is_nas_country = country in _COUNTRIES_WITH_NAS
 
             if (not value) and (is_nap_country or is_nas_country):
-                value = u"<p>Established</p>"
+                value = "<p>Established</p>"
 
             if "NAP" in key:
                 prop = "nap_info"
@@ -273,12 +271,7 @@ def get_nap_nas(obj, text, country):
 
 
 PY3 = sys.version_info[0] == 3
-if PY3:
-    from html.entities import name2codepoint
-    unicode = str
-    unichr = chr
-else:
-    from htmlentitydefs import name2codepoint
+from html.entities import name2codepoint
 
 
 class CCAWebIntelligentToHtmlConverter(WebIntelligentToHtmlConverter):
@@ -296,9 +289,9 @@ class CCAWebIntelligentToHtmlConverter(WebIntelligentToHtmlConverter):
         # an entity with &amp;, so < becomes &lt; becomes &amp;lt;
         text = text.replace('&', '&amp;')
         # Make funny characters into html entity defs
-        for entity, codepoint in name2codepoint.items():
+        for entity, codepoint in list(name2codepoint.items()):
             if entity != 'amp':
-                text = text.replace(unichr(codepoint), '&' + entity + ';')
+                text = text.replace(chr(codepoint), '&' + entity + ';')
 
         text = self.urlRegexp.subn(self.replaceURL, text)[0]
         text = self.emailRegexp.subn(self.replaceEmail, text)[0]
@@ -344,7 +337,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
         # setup National adaptation policy - NAS, NAP and SAP
         for name in ('NAS', 'NAP', 'SAP'):
-            value = u''
+            value = ''
             values = processed_data['Legal_Policies'].get(name, [])
 
             is_nap_country = country_name in _COUNTRIES_WITH_NAP
@@ -356,8 +349,8 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
             if values:
                 if name == 'SAP':
                     value = [
-                        u"<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
-                        u"<p {4}>{2}</p></li>".format(
+                        "<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
+                        "<p {4}>{2}</p></li>".format(
                             v.get('Link'), v.get('Title'),
                             v.get('Status'), v.get('Sector'),
                             "style='font-style:oblique;'",
@@ -367,12 +360,12 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                     ]
                 else:
                     value = [
-                        u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                        "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
                             v.get('Link'), v.get('Title'),
                             "style='font-style:oblique;'", v.get('Status'))
                         for v in values
                     ]
-                value = u"<ul>{}</ul>".format(
+                value = "<ul>{}</ul>".format(
                     ''.join(value)
                 )
 
@@ -386,7 +379,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
             key=lambda i: i['Type']
         )
         _response = {}
-        sorted_items = filter(lambda x: x['Status'].endswith(('completed', '(adopted)')), sorted_items)
+        sorted_items = [x for x in sorted_items if x['Status'].endswith(('completed', '(adopted)'))]
         for item in sorted_items:
             _type = item['Type']
             _type = _type[3:_type.find('(')]
@@ -394,11 +387,11 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                 _response[_type] = []
             _response[_type].append(item)
 
-        value = u''
+        value = ''
         for key in _response:
             data = _response[key]
             _value = [
-                u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
                     v.get('Link'), v['Title'].encode('ascii', 'ignore').decode('ascii'),
                     "style='font-style:oblique;'", v.get('Status'))
                 for v in data
@@ -416,13 +409,13 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
             # setup National adaptation policy - NAS, NAP and SAP
             #import pdb; pdb.set_trace()
             for name in ('NAS', 'NAP', 'SAP'):
-                value = u''
-                data = filter(lambda c: '('+name+')' in c['Type'] , values)
+                value = ''
+                data = [c for c in values if '('+name+')' in c['Type']]
 
                 if name == 'SAP':
                     value = [
-                        u"<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
-                        u"<p {4}>{2}</p></li>".format(
+                        "<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
+                        "<p {4}>{2}</p></li>".format(
                             v.get('Link'), v.get('Title'),
                             v.get('Status'), v.get('Sector'),
                             "style='font-style:oblique;'",
@@ -432,17 +425,17 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                     ]
                 else:
                     value = [
-                        u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                        "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
                             v.get('Link'), v.get('Title'),
                             "style='font-style:oblique;'", v.get('Status'))
                         for v in data
                     ]
                 if len(value):
-                    value = u"<ul>{}</ul>".format(
+                    value = "<ul>{}</ul>".format(
                         ''.join(value)
                     )
                 else:
-                    value = u''
+                    value = ''
 
                 prop = "{}_mixed".format(name.lower())
 
@@ -450,23 +443,23 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
 
         # setup Climate change impact and vulnerability assessments
-        value = u""
+        value = ""
         values = processed_data['National_Circumstances'].get('CC_IVA', [])
         if values:
             value = [
-                u"<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
                     v.get('Link'), v.get('Title'),
                     "style='font-style:oblique;'", v.get('Status'))
                 for v in values
             ]
-            value = u"<ul>{}</ul>".format(
+            value = "<ul>{}</ul>".format(
                 ''.join(value)
             )
 
         res["cciva_info"] = value
 
         # setup Adaptation portals and platforms
-        value = u""
+        value = ""
         try:
             values = processed_data['Contact'].get('CCIV_Portal_Platform', [])
         except:
@@ -474,8 +467,8 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
 
         if values:
             value = [
-                u"<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
-                u"<p {4}>{2}</p></li>".format(
+                "<li><a href='{0}'>{1}</a><p {5}>{3}</p>"
+                "<p {4}>{2}</p></li>".format(
                     v.get('Website'), v.get('Name'),
                     v.get('Status'), v.get('Focus'),
                     "style='font-style:oblique;'",
@@ -483,7 +476,7 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
                 )
                 for v in values
             ]
-            value = u"<ul>{}</ul>".format(
+            value = "<ul>{}</ul>".format(
                 ''.join(value)
             )
 
@@ -605,7 +598,7 @@ class CountryMetadataExtract(object):
             key = "".join(cells[0].itertext()).strip()
             children = list(cells[2])
             text = [lxml.etree.tostring(c) for c in children]
-            value = u"\n".join(text)
+            value = "\n".join(text)
             res[key] = value
 
         self.request.response.setHeader("Content-type", "application/json")
@@ -733,15 +726,14 @@ class CountryProfileData(BrowserView):
         # import pdb; pdb.set_trace()
 
         return _text
-        # return convWebInt(text.strip())
 
     def get_sub_national_websites(self):
         data = self.get_processed_data()
 
-        if 'Sub_National_Adaptation' not in data.keys():
+        if 'Sub_National_Adaptation' not in list(data.keys()):
             return []
         data = data['Sub_National_Adaptation']
-        if 'Sub_National_Websites' not in data.keys():
+        if 'Sub_National_Websites' not in list(data.keys()):
             return []
         data = data['Sub_National_Websites']
 
@@ -750,10 +742,10 @@ class CountryProfileData(BrowserView):
     def get_sub_national_publications(self):
         data = self.get_processed_data()
 
-        if 'Sub_National_Adaptation' not in data.keys():
+        if 'Sub_National_Adaptation' not in list(data.keys()):
             return []
         data = data['Sub_National_Adaptation']
-        if 'Sub_National_Publications' not in data.keys():
+        if 'Sub_National_Publications' not in list(data.keys()):
             return []
         data = data['Sub_National_Publications']
 
@@ -841,13 +833,13 @@ class CountryProfileData(BrowserView):
             if len(temp)==2:
                 typeName = temp[1]
             typeName = typeName.strip()
-            if typeName not in response.keys():
+            if typeName not in list(response.keys()):
                 response[typeName] = []
             if item['Status'][1] == "-":
                 item['Status'] = item['Status'][2:]
             response[typeName].append({'status':item['Status'], 'title':item['Title'],'link':self.fix_link(item.get('Link','#'))})
 
-        keys = response.keys()
+        keys = list(response.keys())
         return {'keys':keys, 'items':response}
 
     def hazards_table(self):
@@ -868,12 +860,12 @@ class CountryProfileData(BrowserView):
 
         for item in items:
             occurence = item['Occurrence']
-            if occurence not in response.keys():
+            if occurence not in list(response.keys()):
                 response[occurence] = {}
             group = item['Group']
             if group == 'SolidMass':
                 group = 'Solid mass'
-            if group not in response[occurence].keys():
+            if group not in list(response[occurence].keys()):
                 response[occurence][group] = {'AC':{'hazards':[], 'trend':[]}, 'CH':{'hazards':[], 'trend':[]}}
             accuteChronic = item['Type']
             event = item['Event']
@@ -971,24 +963,24 @@ class CountryProfileData(BrowserView):
 
         for item in items:
             occurence = item['Occurrence']
-            if occurence not in response.keys():
+            if occurence not in list(response.keys()):
                 response[occurence] = {}
             group = item['Group']
-            if group not in response[occurence].keys():
+            if group not in list(response[occurence].keys()):
                 response[occurence][group] = {}
             event = item['Event']
             if occurence == 'Future' and item['PatternValue'][0] == '0':
                 continue
             if occurence == 'Observed' and item['YesNo_Value'] == 'NO':
                 continue
-            if event not in response[occurence][group].keys():
+            if event not in list(response[occurence][group].keys()):
                 response[occurence][group][event] = []
 
             response[occurence][group][event].append(item)
 
         #import pdb; pdb.set_trace()
 
-        keys = response.keys()
+        keys = list(response.keys())
         keys.sort()
         return {'keys':keys, 'items':response}
 

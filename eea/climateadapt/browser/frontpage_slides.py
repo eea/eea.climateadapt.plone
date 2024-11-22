@@ -24,7 +24,7 @@ from zope.schema import TextLine
 class FrontpageSlideSchema(form.Schema):
     form.fieldset(
         "default",
-        label=u"Item Description",
+        label="Item Description",
         fields=[
             "title",
             "long_description",
@@ -34,22 +34,22 @@ class FrontpageSlideSchema(form.Schema):
     )
 
     title = TextLine(
-        title=(u"Title"), description=u"Item Name (250 character limit)", required=True
+        title=("Title"), description="Item Name (250 character limit)", required=True
     )
 
     long_description = RichText(
-        title=(u"Description"),
-        description=u"Provide a description of the " u"item.(5,000 character limit)",
+        title=("Description"),
+        description="Provide a description of the " "item.(5,000 character limit)",
         required=True,
     )
 
     category = TextLine(
-        title=(u"Category"),
-        description=u"Slider thumbnail title. " u"Keep it short (25 character limit)",
+        title=("Category"),
+        description="Slider thumbnail title. " "Keep it short (25 character limit)",
         required=True,
     )
 
-    read_more_link = TextLine(title=u"Read more link", required=False)
+    read_more_link = TextLine(title="Read more link", required=False)
 
 
 class IFrontpageSlide(FrontpageSlideSchema):
@@ -211,8 +211,8 @@ class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
 
     @view.memoize
     def html2text(self, html):
-        if not isinstance(html, basestring):
-            return u""
+        if not isinstance(html, str):
+            return ""
         portal_transforms = api.portal.get_tool(name="portal_transforms")
         data = portal_transforms.convertTo(
             "text/plain", html, mimetype="text/html")

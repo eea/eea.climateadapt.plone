@@ -155,7 +155,7 @@ class IAceItem(IImageScaleTraversable):
         title=_("Short summary"),
         required=False,
         description=_("Enter a short summary that will be used in listings."),
-        missing_value=unicode(""),
+        missing_value=str(""),
     )
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
@@ -267,7 +267,7 @@ class IAceItem(IImageScaleTraversable):
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
-        default=unicode(
+        default=str(
             '{"geoElements":{"element":"GLOBAL", "macrotrans"'
             ':null,"biotrans":null,"countries":[],'
             '"subnational":[],"city":""}}'
@@ -278,7 +278,7 @@ class IAceItem(IImageScaleTraversable):
     comments = Text(
         title=_("Comments"),
         required=False,
-        default=unicode(""),
+        default=str(""),
         description=_(
             "Comments about this database item "
             "[information entered below will not be "
@@ -307,7 +307,7 @@ class IAceItem(IImageScaleTraversable):
     other_contributor = Text(
         title=_("Other contributor(s)"),
         required=False,
-        default=unicode(""),
+        default=str(""),
         description=_(
             "Please first verify if the contributor is "
             "already part of the Climate ADAPT Database."
@@ -378,9 +378,9 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    item_link = AbsoluteUrl(title=_("Item link"), required=False, default=unicode(""))
+    item_link = AbsoluteUrl(title=_("Item link"), required=False, default=str(""))
 
-    uploader = Uploader(title=_("Uploaded by"), required=False, default=unicode(""))
+    uploader = Uploader(title=_("Uploaded by"), required=False, default=str(""))
     # fix???
     data_type = Choice(
         title=_("Data Type"),
@@ -396,7 +396,7 @@ class IAceItem(IImageScaleTraversable):
     )
 
     spatial_layer = TextLine(
-        title=_("Spatial Layer"), required=False, default=unicode("")
+        title=_("Spatial Layer"), required=False, default=str("")
     )
 
     spatial_values = List(

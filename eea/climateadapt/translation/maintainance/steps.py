@@ -338,10 +338,10 @@ def translation_step_2(site, request, force_uid=None):
         # LOOP object tiles
         tile_html_fields = []
         if "tile" in json_data:
-            for tile_id in json_data["tile"].keys():
+            for tile_id in list(json_data["tile"].keys()):
                 tile_data = json_data["tile"][tile_id]
                 # LOOP tile text items
-                for key in tile_data["item"].keys():
+                for key in list(tile_data["item"].keys()):
                     res = translate_one_text_to_translation_storage(
                         "EN", tile_data["item"][key], [language.upper()]
                     )
@@ -349,7 +349,7 @@ def translation_step_2(site, request, force_uid=None):
                     if "translated" in res:
                         nr_items_translated += 1
                 # LOOP tile HTML items
-                for key in tile_data["html"].keys():
+                for key in list(tile_data["html"].keys()):
                     value = tile_data["html"][key]
                     value = value.replace("\r", "")
                     value = value.replace("\n", "")
@@ -395,7 +395,7 @@ def translation_step_2(site, request, force_uid=None):
             )
 
         # LOOP object text items
-        for key in json_data["item"].keys():
+        for key in list(json_data["item"].keys()):
             res = translate_one_text_to_translation_storage(
                 "EN", json_data["item"][key], [language.upper()]
             )
@@ -415,7 +415,7 @@ def translation_step_2(site, request, force_uid=None):
             html_content = "<!doctype html><head><meta charset=utf-8></head>"
             html_content += "<body>"
 
-            for key in json_data["html"].keys():
+            for key in list(json_data["html"].keys()):
                 value = json_data["html"][key].replace("\r\n", "")
                 html_section = (
                     "<div class='cca-translation-section'"
@@ -520,13 +520,13 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type=None):
         return
     have_change = False
     if "tile" in json_data:
-        for tile_id in json_data["tile"].keys():
+        for tile_id in list(json_data["tile"].keys()):
             tile_data = json_data["tile"][tile_id]
             tile_annot_id = "plone.tiles.data." + tile_id
             tile = trans_obj.__annotations__.get(tile_annot_id, None)
             if not tile:
                 continue
-            for key in tile_data["item"].keys():
+            for key in list(tile_data["item"].keys()):
                 try:
                     update = tile.data
                 except AttributeError:
@@ -546,7 +546,7 @@ def translation_step_3_one_file(json_file, language, catalog, portal_type=None):
                 # tile.data.update(update)
                 trans_obj.__annotations__[tile_annot_id] = update
 
-    for key in json_data["item"].keys():
+    for key in list(json_data["item"].keys()):
         translated_msg = get_translated(json_data["item"][key], language.upper())
 
         if translated_msg:

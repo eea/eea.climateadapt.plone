@@ -12,12 +12,12 @@ from zope.interface import implements
 class IGenericViewTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=True,
     )
 
     view_name = schema.TextLine(
-        title=u'View name',
+        title='View name',
         required=True,
     )
 
@@ -33,7 +33,7 @@ class GenericViewTile(PersistentCoverTile):
     is_configurable = False
     is_editable = True
     is_droppable = False
-    short_name = u'Generic View'
+    short_name = 'Generic View'
 
     def is_empty(self):
         return False
@@ -45,5 +45,5 @@ class GenericViewTile(PersistentCoverTile):
             if view:
                 return view()
             else:
-                return u"View not found: %s" % view_name
+                return "View not found: %s" % view_name
         return ""

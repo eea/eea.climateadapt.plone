@@ -10,7 +10,7 @@ from zope.component import adapter
 from zope.interface import implementer
 
 
-@adapter(long)
+@adapter(int)
 @implementer(IJsonCompatible)
 def long_converter(value):
     return safe_unicode(str(value))

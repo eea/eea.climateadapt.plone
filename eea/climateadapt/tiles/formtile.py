@@ -16,12 +16,12 @@ from zope.component.interfaces import ComponentLookupError
 class IFormTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=False,
     )
 
     form_uuid = schema.TextLine(
-        title=u'Form UUID',
+        title='Form UUID',
         required=True
     )
 
@@ -47,6 +47,6 @@ class FormTile(PersistentCoverTile):
         try:
             embedded_view = getMultiAdapter((obj, self.request), name="embedded")
         except ComponentLookupError as e:
-            print e
+            print(e)
             return ''
         return embedded_view

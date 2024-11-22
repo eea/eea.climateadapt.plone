@@ -4,7 +4,7 @@ import logging
 
 import requests
 import transaction
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 from DateTime import DateTime
 from eea.climateadapt._importer import utils as u
 from lxml.etree import fromstring
@@ -14,7 +14,7 @@ from plone.i18n.normalizer import idnormalizer
 from six.moves.html_parser import HTMLParser
 from zope.annotation.interfaces import IAnnotations
 
-from admin import Item
+from .admin import Item
 
 html_unescape = HTMLParser().unescape
 logger = logging.getLogger('eea.climateadapt')
@@ -22,7 +22,7 @@ logger = logging.getLogger('eea.climateadapt')
 
 class DRMKCItem:
     def __init__(self, result):
-        for attr in result.keys():
+        for attr in list(result.keys()):
             setattr(self, attr, result[attr])
 
 
@@ -65,7 +65,7 @@ class DRMKCImporter():
             creation_date=DateTime(f.CreatedOnDate),
             acronym=f.Acronym,
             source='DRMKC',
-            lead=f.CreatedByUser[u'DisplayName'],
+            lead=f.CreatedByUser['DisplayName'],
             partners=u.t2r(''),
             sectors=[],
             climate_impacts=[],
@@ -115,7 +115,7 @@ class DRMKCImporter():
             creation_date=DateTime(f.CreatedOnDate),
             acronym=f.Acronym,
             source='DRMKC',
-            lead=f.CreatedByUser[u'DisplayName'],
+            lead=f.CreatedByUser['DisplayName'],
             partners=u.t2r(''),
             sectors=[],
             climate_impacts=[],
@@ -159,7 +159,7 @@ class DRMKCImporter():
 
         item = self.container[shortname]
 
-        for attr in kwargs.keys():
+        for attr in list(kwargs.keys()):
             setattr(item, attr, kwargs[attr])  # (object, name, value)
 
         item.reindexObject()
@@ -169,7 +169,7 @@ class DRMKCImporter():
 
     def response_import(self, result):
         if not result['CreatedByUser']:  # edgecase when result['CreatedByUser'] is None
-            result['CreatedByUser'] = {u'DisplayName': u''}
+            result['CreatedByUser'] = {'DisplayName': ''}
 
         f = DRMKCItem(result)
         import_id = f.Id
@@ -247,30 +247,30 @@ class AdapteCCACaseStudyImporter():
         # }
 
         map = {
-            u"Water management": "WATERMANAGEMENT",
-            u"Ecosystem-based approaches (GI)": "ECOSYSTEM",
-            u"Urban": "URBAN",
-            u"Urban Planning and Construction": "URBAN",
-            u"Urban areas": "URBAN",
-            u"Disaster Risk Reduction": "DISASTERRISKREDUCTION",
-            u"Biodiversity": "BIODIVERSITY",
-            u"Coastal areas": "COASTAL",
-            u"BUILDINGS": "BUILDINGS",
-            u"Forestry": "FORESTRY ",
-            u"Forests": "FORESTRY ",
-            u"Agrarian sector": "AGRICULTURE",
-            u"Agriculture": "AGRICULTURE",
-            u"MARINE": "MARINE",
-            u"Financial": "FINANCIAL",
-            u"Energy": "ENERGY",
-            u"Transport": "TRANSPORT",
-            u"Health": "HEALTH",
-            u"Water resources": "WATERMANAGEMENT",
+            "Water management": "WATERMANAGEMENT",
+            "Ecosystem-based approaches (GI)": "ECOSYSTEM",
+            "Urban": "URBAN",
+            "Urban Planning and Construction": "URBAN",
+            "Urban areas": "URBAN",
+            "Disaster Risk Reduction": "DISASTERRISKREDUCTION",
+            "Biodiversity": "BIODIVERSITY",
+            "Coastal areas": "COASTAL",
+            "BUILDINGS": "BUILDINGS",
+            "Forestry": "FORESTRY ",
+            "Forests": "FORESTRY ",
+            "Agrarian sector": "AGRICULTURE",
+            "Agriculture": "AGRICULTURE",
+            "MARINE": "MARINE",
+            "Financial": "FINANCIAL",
+            "Energy": "ENERGY",
+            "Transport": "TRANSPORT",
+            "Health": "HEALTH",
+            "Water resources": "WATERMANAGEMENT",
 
-            u"Rural areas": "Rural areas",
-            u"Transnational region (stretching across country borders)PORT": "Transnational region",
+            "Rural areas": "Rural areas",
+            "Transnational region (stretching across country borders)PORT": "Transnational region",
 
-            u"Transporte": "TRANSPORT",
+            "Transporte": "TRANSPORT",
         }
 
         return list(set([map.get(x, 'NONSPECIFIC') for x in l]))
@@ -293,22 +293,22 @@ class AdapteCCACaseStudyImporter():
         # }
 
         map = {
-            u"Flooding": "FLOODING",
-            u"Sea level rise": "SEALEVELRISE",
-            u"Ice and Snow": "ICEANDSNOW",
-            u"Extreme temperatures": "EXTREMETEMP",
-            u"Extreme temperature (heat and cold waves)": "EXTREMETEMP",
-            u"Storms": "STORM",
-            u"Drought": "DROUGHT",
-            u"Water Scarcity": "WATERSCARCE",
-            u"Desertification / Forest and land degradation": "DROUGHT",
+            "Flooding": "FLOODING",
+            "Sea level rise": "SEALEVELRISE",
+            "Ice and Snow": "ICEANDSNOW",
+            "Extreme temperatures": "EXTREMETEMP",
+            "Extreme temperature (heat and cold waves)": "EXTREMETEMP",
+            "Storms": "STORM",
+            "Drought": "DROUGHT",
+            "Water Scarcity": "WATERSCARCE",
+            "Desertification / Forest and land degradation": "DROUGHT",
         }
 
         return list(set([map.get(x, 'NONSPECIFIC') for x in l]))
 
     def html2text(self, html):
-        if not isinstance(html, basestring):
-            return u""
+        if not isinstance(html, str):
+            return ""
         portal_transforms = api.portal.get_tool(name='portal_transforms')
         data = portal_transforms.convertTo('text/plain',
                                            html, mimetype='text/html')
@@ -331,11 +331,11 @@ class AdapteCCACaseStudyImporter():
         level = [x.strip() for x in level.split('\n')]
 
         map = {
-            u"Local": "LC",
-            u"Regional": "SNA",
-            u"Sub National Regions": "SNA",
-            u"National": "NAT",
-            u"Transnational region (stretching across country borders)": "TRANS",
+            "Local": "LC",
+            "Regional": "SNA",
+            "Sub National Regions": "SNA",
+            "National": "NAT",
+            "Transnational region (stretching across country borders)": "TRANS",
         }
 
         # 'governance_level': ['LC', 'NAT', 'SNA'],
@@ -351,13 +351,13 @@ class AdapteCCACaseStudyImporter():
         # }
 
         map = {
-            u"Mediterranean": "TRANS_BIO_MEDIT",
-            u"Alpine": "TRANS_BIO_ALPINE",
-            u"Atlantic": "TRANS_BIO_ATLANTIC",
-            u"Pannonian": "TRANS_BIO_PANNONIAN",
-            u"Boreal": "TRANS_BIO_BOREAL",
-            u"Continental": "TRANS_BIO_CONTINENTAL",
-            u"Arctic": "TRANS_BIO_ARCTIC",
+            "Mediterranean": "TRANS_BIO_MEDIT",
+            "Alpine": "TRANS_BIO_ALPINE",
+            "Atlantic": "TRANS_BIO_ATLANTIC",
+            "Pannonian": "TRANS_BIO_PANNONIAN",
+            "Boreal": "TRANS_BIO_BOREAL",
+            "Continental": "TRANS_BIO_CONTINENTAL",
+            "Arctic": "TRANS_BIO_ARCTIC",
         }
 
         # TODO: is this a list or just a bio region?
@@ -378,7 +378,7 @@ class AdapteCCACaseStudyImporter():
 
         item = self.case_studies_folder[shortname]
 
-        for attr in kwargs.keys():
+        for attr in list(kwargs.keys()):
             setattr(item, attr, kwargs[attr])  # (object, name, value)
 
         item.reindexObject()
@@ -515,7 +515,7 @@ class AdapteCCACaseStudyImporter():
         return item
 
     def __call__(self):
-        response = urllib2.urlopen('http://bio.devplx.com/adaptecca/cases_en.xml')
+        response = urllib.request.urlopen('http://bio.devplx.com/adaptecca/cases_en.xml')
         AdapteCCA_data = response.read()
         e = fromstring(AdapteCCA_data)
         for node in e.xpath('//item'):

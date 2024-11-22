@@ -15,12 +15,12 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 class ISectionNavTile(IPersistentCoverTile):
 
     title = schema.TextLine(
-        title=u'Title',
+        title='Title',
         required=True,
     )
 
     uuid = schema.TextLine(
-        title=u'UUID',
+        title='UUID',
         required=False,
         readonly=True,
     )
@@ -37,7 +37,7 @@ class SectionNavTile(PersistentCoverTile):
     is_configurable = True
     is_editable = True
     is_droppable = True
-    short_name = u'Section Navigation'
+    short_name = 'Section Navigation'
 
     def is_empty(self):
         return self.data.get('uuid', None) is None or \

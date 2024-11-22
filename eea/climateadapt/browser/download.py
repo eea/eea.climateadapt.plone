@@ -1,6 +1,6 @@
 import csv
 import logging
-import urlparse
+import urllib.parse
 from datetime import date
 from io import BytesIO as StringIO
 

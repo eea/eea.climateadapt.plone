@@ -79,7 +79,7 @@ class TranslationCallback(BrowserView):
         qs = self.request["QUERY_STRING"]
         parsed = cgi.parse_qs(qs)
         form = {}
-        for name, val in parsed.items():
+        for name, val in list(parsed.items()):
             form[name] = val[0]
 
         _file = self.request._file.read()
@@ -201,7 +201,7 @@ class CreateTranslationStructure(BrowserView):
         brain_count = len(brains)
 
         for language in languages:
-            counted_brains = zip(list(range(len(brains))), brains)
+            counted_brains = list(zip(list(range(len(brains))), brains))
             batched_brains = split_list(counted_brains, 20)
 
             for batch in batched_brains:

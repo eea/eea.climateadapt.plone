@@ -21,20 +21,20 @@ from plone.z3cform.layout import wrap_form
 
 
 class Captcha(object):
-    subject = u""
-    captcha = u""
+    subject = ""
+    captcha = ""
 
     def __init__(self, context):
         self.context = context
 
 
 class IRegisterCityForm(form.Schema):
-    name = schema.TextLine(title=u"City Name", required=True)
-    email = Email(title=u"Contact eMail:", required=True)
+    name = schema.TextLine(title="City Name", required=True)
+    email = Email(title="Contact eMail:", required=True)
 
     captcha = schema.TextLine(
-        title=u"Captcha",
-        description=u"",
+        title="Captcha",
+        description="",
         required=False
     )
 
@@ -55,8 +55,8 @@ class RegisterCityForm(form.SchemaForm):
     schema = IRegisterCityForm
     ignoreContext = True
 
-    label = u"City Profile"
-    description = u""" If you are a city representative currently signing up
+    label = "City Profile"
+    description = """ If you are a city representative currently signing up
     to the Mayors Adapt initiative, please submit the form below and we will
     set up a city profile fact sheet site for you to showcase your city’s work
     on Climate-ADAPT. For any questions please do not hesitate to get in touch
@@ -66,24 +66,24 @@ class RegisterCityForm(form.SchemaForm):
     fields = field.Fields(IRegisterCityForm)
     fields['captcha'].widgetFactory = CaptchaFieldWidget
 
-    @button.buttonAndHandler(u"Submit")
+    @button.buttonAndHandler("Submit")
     def handleApply(self, action):
         data, errors = self.extractData()
         if errors:
             self.status = self.formErrorsMessage
             return
 
-        msg = u"""Registration process completed. You will receive an email
+        msg = """Registration process completed. You will receive an email
 message with details on how to proceed further."""
 
-        if data.has_key('captcha'):
+        if 'captcha' in data:
             # Verify the user input against the captcha
             captcha = CaptchaValidator(self.context, self.request, None, IRegisterCityForm['captcha'], None)
 
             try:
                 valid = captcha.validate(data['captcha'])
             except WrongCaptchaCode:
-                show_message(message=u"Invalid Captcha.",
+                show_message(message="Invalid Captcha.",
                              request=self.request, type='error')
                 return
 
@@ -96,7 +96,7 @@ message with details on how to proceed further."""
                 notify(CityProfileRegisterEvent(obj))
                 show_message(message=msg, request=self.request, type='info')
             else:
-                show_message(message=u"Please complete the Captcha.",
+                show_message(message="Please complete the Captcha.",
                              request=self.request, type='error')
 
 
@@ -152,7 +152,7 @@ class CitiesListingJson(BrowserView):
         q = {
             'portal_type': 'eea.climateadapt.city_profile'
         }
-        for k, v in self.request.form.items():
+        for k, v in list(self.request.form.items()):
             v = v and v.strip() or None
             if v:
                 q[k] = v

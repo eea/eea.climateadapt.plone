@@ -1,4 +1,4 @@
-from eea.climateadapt.behaviors import (IAceItem, IAction, IC3sIndicator,
+from eea.climateadapt.behaviors import (IAction,
                                         IGuidanceDocument, IIndicator,
                                         IInformationPortal, IMapGraphDataset,
                                         IOrganisation, IPublicationReport,

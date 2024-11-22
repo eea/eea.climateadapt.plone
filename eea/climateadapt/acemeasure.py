@@ -5,7 +5,7 @@ import json
 import logging
 from datetime import date
 
-from eea.climateadapt.behaviors import (IAceMeasure, IAdaptationOption,
+from eea.climateadapt.behaviors import (IAdaptationOption,
                                         ICaseStudy)
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.sat.datamanager import queue_callback
@@ -54,7 +54,7 @@ class CaseStudy(dexterity.Container):
             chars = json.loads(self.geochars)
             els = chars["geoElements"]
 
-            if "biotrans" not in els.keys():
+            if "biotrans" not in list(els.keys()):
                 return ""
             bio = els["biotrans"]
 
@@ -158,7 +158,10 @@ def handle_measure_added(obj, event):
     """Assign a new measureid to this AceMeasure"""
 
     catalog = get_tool(name="portal_catalog")
-    ids = sorted(filter(None, catalog.uniqueValuesFor("acemeasure_id")))
+    ids = sorted(
+        value
+        for value in catalog.uniqueValuesFor("acemeasure_id")
+        if value is not None)
     obj._acemeasure_id = ids[-1] + 1
     obj.reindexObject(idxs=["acemeasure_id"])
 

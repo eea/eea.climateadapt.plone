@@ -20,16 +20,16 @@ if len(sys.argv) > 1:
 if len(sys.argv) > 2:
     outputFilename = sys.argv[2]
 
-print "Merging libraries."
+print("Merging libraries.")
 merged = mergejs.run(sourceDirectory, None, configFilename)
-print "Setting the filename to "+filename
+print("Setting the filename to "+filename)
 merged = merged.replace('scriptName: "proj4js.js",','scriptName: "'+filename+'",');
-print "Compressing."
+print("Compressing.")
 minimized = jsmin.jsmin(merged)
-print "Adding license file."
+print("Adding license file.")
 minimized = file("license.txt").read() + minimized
 
-print "Writing to %s." % outputFilename
+print("Writing to %s." % outputFilename)
 file(outputFilename, "w").write(minimized)
 
-print "Done."
+print("Done.")

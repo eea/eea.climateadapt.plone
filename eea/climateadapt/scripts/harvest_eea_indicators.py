@@ -39,7 +39,7 @@ def create_message(result):
     for row in result.fetchone():
         m = list()
         for i in range(0, len(variables)):
-            value = unicode(row[i])
+            value = str(row[i])
 
             if row[i].__class__.__name__ == 'IRI':
                 # formatted_value = "<a href={0}>{0}</a>".format(value)

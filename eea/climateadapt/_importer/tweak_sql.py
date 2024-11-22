@@ -79,10 +79,10 @@ RELATIONS = {
 
 def fix_relations(session):
     try:
-        for kname, rels in RELATIONS.items():
+        for kname, rels in list(RELATIONS.items()):
             logger.info("Setting relations for %s", kname)
             klass = getattr(sql, kname)
-            for name, info in rels.items():
+            for name, info in list(rels.items()):
                 other = getattr(sql, info['other'])
                 pj = "and_(%s.%s==%s.%s)" % (info['other'], info['fk'], kname,
                                             info['fk'])
@@ -93,7 +93,7 @@ def fix_relations(session):
                                 )
                 setattr(klass, name, rel)
         sql.AceAceitem.metadata_ = Column('metadata', Text)
-    except Exception, e:
+    except Exception as e:
         logger.warning("Error in setting database relationship: %s", e)
 
 

@@ -11,4 +11,4 @@ class ITranslationContext(Interface):
     """
     """
 
-    language = Attribute(u"Language code")
+    language = Attribute("Language code")

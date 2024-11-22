@@ -75,7 +75,7 @@ def _fix_content(site):
         for attr in ["special_tags", "specialtagging"]:
             st = getattr(obj, attr, []) or []
 
-            if isinstance(st, basestring):
+            if isinstance(st, str):
                 tags.append(st)
             else:
                 tags.extend(st)
@@ -104,7 +104,7 @@ def _fix_covers(self):
                 if "plone.tiles.data" in tile_id:
                     tile = cover.__annotations__[tile_id]
 
-                    if "special_tags" and "search_text" in tile.keys():
+                    if "special_tags" and "search_text" in list(tile.keys()):
                         tile["special_tags"] = _fix_tags(tile["special_tags"])
                         tile["search_text"] = _fix_tags(tile["search_text"])
                         tile._p_changed = True
@@ -119,7 +119,7 @@ def _fix_tags(tags):
     elif tags:
         tags = tags.replace("-", "_")
 
-    return list(set(filter(None, tags)))
+    return list(set([_f for _f in tags if _f is not None]))
 
 
 def update_to_22(context):
@@ -180,7 +180,9 @@ def update_to_22(context):
                     b._p_changed = True
 
     # assign a measure id for all case studies, it's needed for the /sat map
-    _ids = sorted(filter(None, catalog.uniqueValuesFor("acemeasure_id")))
+    _ids = sorted([
+        _f for _f in catalog.uniqueValuesFor("acemeasure_id") 
+        if _f is not None])
     results = catalog.searchResults(portal_type="eea.climateadapt.casestudy")
 
     for b in results:
@@ -224,7 +226,7 @@ def update_to_23(context):
             else:
                 sectors = set(sectors)
 
-            for val in MAPPING.keys():
+            for val in list(MAPPING.keys()):
                 if val in sectors:
                     sectors.remove(val)
                     sectors.update(MAPPING.get(val))

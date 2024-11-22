@@ -80,8 +80,8 @@ def retrieve_translation(country_code, text, target_languages=None, force=False)
     )
     logger.warning("Response from translation request: %r", resp.content)
 
-    if isinstance(resp, long):
-        if resp == long("-20028L"):
+    if isinstance(resp, int):
+        if resp == int("-20028"):
             # 250 docs or 500 texts
             logger.error("LIMITS EXCEEDED, requests rejected by eTranslation")
             time.sleep(60)
@@ -217,10 +217,10 @@ def translation_step_2(request=None):
         # LOPP object tiles
         tile_html_fields = []
         if "tile" in json_data:
-            for tile_id in json_data["tile"].keys():
+            for tile_id in list(json_data["tile"].keys()):
                 tile_data = json_data["tile"][tile_id]
                 # LOOP tile text items
-                for key in tile_data["item"].keys():
+                for key in list(tile_data["item"].keys()):
                     res = retrieve_translation(
                         "EN", tile_data["item"][key], [language.upper()]
                     )
@@ -228,7 +228,7 @@ def translation_step_2(request=None):
                     if "translated" in res:
                         nr_items_translated += 1
                 # LOOP tile HTML items
-                for key in tile_data["html"].keys():
+                for key in list(tile_data["html"].keys()):
                     value = tile_data["html"][key]
                     value = value.replace("\r", "")
                     value = value.replace("\n", "")
@@ -274,7 +274,7 @@ def translation_step_2(request=None):
             )
 
         # LOOP object text items
-        for key in json_data["item"].keys():
+        for key in list(json_data["item"].keys()):
             res = retrieve_translation(
                 "EN", json_data["item"][key], [language.upper()])
             nr_items += 1
@@ -293,7 +293,7 @@ def translation_step_2(request=None):
             html_content = "<!doctype html><head><meta charset=utf-8></head>"
             html_content += "<body>"
 
-            for key in json_data["html"].keys():
+            for key in list(json_data["html"].keys()):
                 value = json_data["html"][key].replace("\r\n", "")
                 html_section = (
                     "<div class='cca-translation-section'"
