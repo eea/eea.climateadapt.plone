@@ -26,7 +26,7 @@
     max_age="3600"
     />
 
-  <includeDependencies package="." />
+  <include package="." />
 
   <i18n:registerTranslations directory="locales" />
 
