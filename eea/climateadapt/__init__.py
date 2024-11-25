@@ -6,7 +6,7 @@ from zope.i18nmessageid import MessageFactory as BaseMessageFactory
 import Products.CMFCore.permissions
 from AccessControl import ClassSecurityInfo
 from AccessControl.class_init import InitializeClass
-from eea.notifications import utils
+# from eea.notifications import utils
 from plone.dexterity.content import Container
 from plone.i18n import normalizer
 from App.ZApplication import ZApplicationWrapper
@@ -62,15 +62,15 @@ LABELS = {}
 
 
 # Monkey eea.notifications get_tags
-def get_tags_cca(obj):
-    try:
-        tags = obj.keywords
-    except Exception:
-        tags = ()
-    return tags
+# def get_tags_cca(obj):
+#     try:
+#         tags = obj.keywords
+#     except Exception:
+#         tags = ()
+#     return tags
 
 
-utils.get_tags = get_tags_cca
+# utils.get_tags = get_tags_cca
 
 # Raven repr monkey patch #129327
 
