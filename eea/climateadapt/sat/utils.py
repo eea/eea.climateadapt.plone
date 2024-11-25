@@ -79,7 +79,7 @@ def _measure_id(obj):
     catalog = get_tool(name='portal_catalog')
     ids = sorted([
         _f for _f in catalog.uniqueValuesFor('acemeasure_id')
-        if _f is not None])
+        if _f])
     obj._acemeasure_id = ids[-1] + 1
     obj.reindexObject(idxs=['acemeasure_id'])
 

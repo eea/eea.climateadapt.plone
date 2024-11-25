@@ -879,7 +879,7 @@ acesearch-geochars-lbl-TRANS_BIO_STEPPIC=Steppic
 
 BIOREGIONS = {}
 
-for line in [_f for _f in labels.split("\n") if _f is not None]:
+for line in [_f for _f in labels.split("\n") if _f]:
     first, label = line.split("=")
     name = first.split("-lbl-")[1]
     BIOREGIONS[name] = label

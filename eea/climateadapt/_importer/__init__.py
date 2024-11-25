@@ -259,7 +259,7 @@ def import_casestudy(data, location):
     measures = [
         _f
         for _f in [get_measure(x, location) for x in measure_ids]
-        if _f is not None]
+        if _f]
     measures = [RelationValue(intids.getId(m)) for m in measures]
 
     primephoto = None

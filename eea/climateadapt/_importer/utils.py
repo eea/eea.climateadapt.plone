@@ -102,7 +102,7 @@ def s2l(text, separator=';', separators=None, relaxed=False):
         tags = []
         for t in z:
             tags.extend(t)
-        tags = [_f for _f in [x.strip() for x in tags] if _f is not None]
+        tags = [_f for _f in [x.strip() for x in tags] if _f]
         # TODO: lower() used to be called on some of this relaxed tags
 
     tags = [c.strip() for c in tags]
@@ -165,7 +165,7 @@ def parse_settings(text):
         if not line:
             continue
         k, v = line.split('=', 1)
-        v = [_f for _f in v.split(',') if _f is not None]
+        v = [_f for _f in v.split(',') if _f]
         # if len(v) == 1:
         #     v = v[0]
         out[k] = v

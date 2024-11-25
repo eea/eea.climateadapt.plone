@@ -119,7 +119,7 @@ def _fix_tags(tags):
     elif tags:
         tags = tags.replace("-", "_")
 
-    return list(set([_f for _f in tags if _f is not None]))
+    return list(set([_f for _f in tags if _f]))
 
 
 def update_to_22(context):
@@ -182,7 +182,7 @@ def update_to_22(context):
     # assign a measure id for all case studies, it's needed for the /sat map
     _ids = sorted([
         _f for _f in catalog.uniqueValuesFor("acemeasure_id") 
-        if _f is not None])
+        if _f])
     results = catalog.searchResults(portal_type="eea.climateadapt.casestudy")
 
     for b in results:

@@ -161,7 +161,7 @@ def handle_measure_added(obj, event):
     ids = sorted(
         value
         for value in catalog.uniqueValuesFor("acemeasure_id")
-        if value is not None)
+        if value)
     obj._acemeasure_id = ids[-1] + 1
     obj.reindexObject(idxs=["acemeasure_id"])
 
