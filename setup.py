@@ -7,7 +7,7 @@ PATH = NAME.split(".") + ["version.txt"]
 VERSION = open(os.path.join(*PATH)).read().strip()
 
 
-long_description = (
+long_description = '\n\n'.join(
     (
         open("README.rst").read()
         + "\n"
