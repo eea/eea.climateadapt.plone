@@ -1,6 +1,5 @@
 import OFS
 import transaction
-import collective.cover.config
 from zope.i18nmessageid import MessageFactory as BaseMessageFactory
 
 import Products.CMFCore.permissions
@@ -26,11 +25,6 @@ MessageFactory = UnicodeMessageFactory("eea.climateadapt")
 
 # Change permission for manage_pasteObjects to "Add portal content"
 # See https://dev.plone.org/ticket/9177
-
-# TODO: Find a way to do this without patching __ac_permissions__ directly
-# monkey patch plone.dexterity.content.Container
-# patch collective.cover grid system
-collective.cover.config.DEFAULT_GRID_SYSTEM = "bootstrap3"
 
 # patch max length URL fragment generation, makes for shorter IDs for content
 normalizer.MAX_URL_LENGTH = 100

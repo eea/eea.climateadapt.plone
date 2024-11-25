@@ -73,10 +73,6 @@
     <implements interface="plone.app.imagecropping.dx.IImageCroppingDX" />
   </class>
 
-  <class class="collective.cover.content.Cover">
-    <implements interface="eea.pdf.interfaces.IPDFAware" />
-  </class>
-
   <class class="plone.app.contenttypes.content.Document">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
   </class>

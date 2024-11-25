@@ -51,7 +51,7 @@ setup(
         # laszlo remove "eea.rabbitmq.plone",
         # laszlo remove "langdetect",
         # laszlo remove "chardet",
-        # laszlo remove "zeep==3.4.0", 
+        # laszlo remove "zeep==3.4.0",
         # "google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],

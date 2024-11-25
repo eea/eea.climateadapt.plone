@@ -48,14 +48,6 @@
   <!--   /> -->
   <adapter factory="eea.climateadapt.browser.overrides.RichTextFieldWidget" />
 
-  <adapter
-    for="zope.annotation.interfaces.IAnnotatable
-    eea.climateadapt.interfaces.IEEAClimateAdaptInstalled
-    plone.tiles.interfaces.ITileType"
-    provides="collective.cover.tiles.edit.ICoverTileEditView"
-    factory=".integration.CustomTileEdit"
-    />
-
   <class class=".integration.CustomTileEdit">
     <require
       permission="cmf.ModifyPortalContent"
@@ -77,20 +69,4 @@
     allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy"
     />
 
-  <!-- <browser:page -->
-  <!--   name="images" -->
-  <!--   for="eea.climateadapt.interfaces.IClimateAdaptContent" -->
-  <!--   class=".integration.AceContentImagesTraverser" -->
-  <!--   allowed_attributes="scale" -->
-  <!--   permission="zope2.View" -->
-  <!--   /> -->
-  <!--  -->
-  <!-- <browser:page -->
-  <!--   name="images" -->
-  <!--   for="collective.cover.content.Cover" -->
-  <!--   class=".integration.AceContentImagesTraverser" -->
-  <!--   allowed_attributes="scale" -->
-  <!--   permission="zope2.View" -->
-  <!--   /> -->
-  <!--  -->
 </configure>
