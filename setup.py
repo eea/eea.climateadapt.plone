@@ -38,20 +38,20 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "setuptools",
-        "plone.app.dexterity",
-        "plone.namedfile [blobs]",
+        # laszlo remove "setuptools",
+        # laszlo remove "plone.app.dexterity",
+        # laszlo remove "plone.namedfile [blobs]",
         # -*- Extra requirements: -*-
-        "z3c.jbot",
-        "pycountry",
-        "collective.dexteritytextindexer",
-        "collective.easyform",
-        "tokenlib",
-        "eea.rabbitmq.client",  # schedule jobs
-        "eea.rabbitmq.plone",
-        "langdetect",
-        "chardet",
-        "zeep==3.4.0",
+        # laszlo remove "z3c.jbot",
+        # laszlo remove "pycountry",
+        # laszlo remove "collective.dexteritytextindexer",
+        # laszlo remove "collective.easyform",
+        # laszlo remove "tokenlib",
+        # laszlo remove "eea.rabbitmq.client",  # schedule jobs
+        # laszlo remove "eea.rabbitmq.plone",
+        # laszlo remove "langdetect",
+        # laszlo remove "chardet",
+        # laszlo remove "zeep==3.4.0", 
         # "google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],
