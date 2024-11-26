@@ -14,7 +14,7 @@ from eea.climateadapt.sat.settings import get_settings
 from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
 from eea.climateadapt.utils import _unixtime, shorten
 from eea.climateadapt.vocabulary import BIOREGIONS
-from eea.rabbitmq.plone.rabbitmq import queue_msg
+# from eea.rabbitmq.plone.rabbitmq import queue_msg
 from plone.api.portal import get_tool
 from plone.directives import dexterity
 from zope.interface import implements
@@ -149,7 +149,8 @@ def handle_for_arcgis_sync(obj, event):
         return
 
     try:
-        queue_msg(msg, queue="eea.climateadapt.casestudies")
+        # queue_msg(msg, queue="eea.climateadapt.casestudies")
+        pass
     except Exception:
         logger.exception("Couldn't queue RabbitMQ message for case study event")
 
