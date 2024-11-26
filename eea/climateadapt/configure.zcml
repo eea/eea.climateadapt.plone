@@ -43,7 +43,7 @@
   <include package="plone.app.registry" />
 
   <!-- <include package=".asynctasks" /> -->
-  <include package=".widgets" />
+  <!-- <include package=".widgets" /> -->
   <include package=".browser" />
   <!-- <include package=".tiles" /> -->
   <!-- <include package=".sat" /> -->
