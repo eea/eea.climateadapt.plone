@@ -473,7 +473,9 @@ european_countries = [
     "ME",
 ]
 ace_countries = [
-    (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in european_countries
+    (x.alpha_2, x.name)
+    for x in pycountry.countries
+    if x.alpha_2 in european_countries
 ]
 ace_countries = [x for x in ace_countries if x[0] != "CZ"]
 ace_countries.append((str("CZ"), "Czechia"))
@@ -529,9 +531,9 @@ eu_countries_selection = [
 
 # Used for dropdowns
 ace_countries_selection = [
-    (x.alpha2, x.name)
+    (x.alpha_2, x.name)
     for x in pycountry.countries
-    if x.alpha2 in eu_countries_selection
+    if x.alpha_2 in eu_countries_selection
 ]
 ace_countries_selection = [x for x in ace_countries_selection if x[0] != "CZ"]
 ace_countries_selection.append(("CZ", "Czechia"))
@@ -578,7 +580,9 @@ faceted_countries = [
     "GB",
 ]
 faceted_countries = [
-    (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in faceted_countries
+    (x.alpha_2, x.name)
+    for x in pycountry.countries
+    if x.alpha_2 in faceted_countries
 ]
 faceted_countries.append(("MK", "Republic of North Macedonia"))
 faceted_countries.append(
