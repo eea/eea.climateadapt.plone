@@ -43,7 +43,7 @@ setup(
         # laszlo remove "plone.namedfile [blobs]",
         # -*- Extra requirements: -*-
         # laszlo remove "z3c.jbot",
-        # laszlo remove "pycountry",
+        "pycountry",
         # laszlo remove "collective.dexteritytextindexer",
         # laszlo remove "collective.easyform",
         # laszlo remove "tokenlib",
@@ -51,7 +51,7 @@ setup(
         # laszlo remove "eea.rabbitmq.plone",
         # laszlo remove "langdetect",
         # laszlo remove "chardet",
-        # laszlo remove "zeep==3.4.0", 
+        # laszlo remove "zeep==3.4.0",
         # "google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],
