@@ -208,6 +208,20 @@
     expression="" id="tiny_mce_gzip.js" inline="False"
     insert-after="jquery.tinymce.js"/>
  <javascript authenticated="True" bundle="default" cacheable="True"
+    compression="none" conditionalcomment="" cookable="True" enabled="True"
+    expression="" id="++resource++collective.cover/js/contentchooser.js"
+    inline="False" insert-after="tiny_mce_gzip.js"/>
+ <javascript authenticated="True" bundle="default" cacheable="True"
+    compression="none" conditionalcomment="" cookable="True" enabled="True"
+    expression=""
+    id="++resource++collective.cover/js/vendor/jquery.endless-scroll.js"
+    inline="False"
+    insert-after="++resource++collective.cover/js/contentchooser.js"/>
+ <javascript authenticated="True" bundle="default" cacheable="True"
+    compression="none" conditionalcomment="" cookable="True" enabled="True"
+    expression="" id="++resource++select2/select2.min.js" inline="False"
+    insert-after="++resource++collective.cover/js/vendor/jquery.endless-scroll.js"/>
+ <javascript authenticated="True" bundle="default" cacheable="True"
     compression="safe" conditionalcomment="" cookable="True" enabled="True"
     expression=""
     id="++resource++plone.formwidget.autocomplete/formwidget-autocomplete.js"

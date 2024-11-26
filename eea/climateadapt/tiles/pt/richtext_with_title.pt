@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="collective.cover">
+
+  <body>
+    <tal:text define="text view/getText">
+      <p tal:condition="python: not text and view.is_compose_mode()" i18n:translate="">
+        Please edit the tile to enter some text.
+      </p>
+      <div class="cover-richtext-tile tile-content" tal:define="fields view/data">
+        <tal:title define="htmltag python:fields.get('title_level') or 'h3';
+                               viewdata fields/title"
+                               condition="viewdata">
+                    <p tal:replace="structure string:<$htmltag>$viewdata</$htmltag>"></p>
+        </tal:title>
+
+        <div tal:condition="fields/dont_strip">
+          <div tal:replace="structure fields/text/raw" />
+        </div>
+        <div tal:condition="not: fields/dont_strip">
+          <div tal:replace="structure fields/text/output" />
+        </div>
+      </div>
+    </tal:text>
+  </body>
+</html>

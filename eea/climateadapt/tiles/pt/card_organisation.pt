@@ -1,0 +1,41 @@
+<div class="ui column col-md-3 col-sm-4 card organisation">
+  <div class="card-inner-wrapper logo">
+
+    <div class="image"
+      tal:define="logo python: getattr(context, 'logo', None);
+        logo_url python: logo and (context.absolute_url() + '/@@images/logo') or '++theme++climateadaptv2/static/images/placeholder-logo.png';
+      "
+      tal:attributes="style string:background-image: url('$logo_url')"
+      >
+    <a alt="Logo" href=""
+      tal:attributes="href view/organisation_link" tal:content="context/Title">
+      Logo
+      </a>
+    </div>
+
+    <div class="card-content">
+      <a href=""
+         class="card-header"
+         tal:content="context/Title"
+         tal:attributes="href view/organisation_link">
+        Organisation title
+      </a>
+    </div>
+
+    <div class="card-extra">
+      <div class="website" tal:define="website_link view/website_link">
+        <a tal:condition="website_link"
+           tal:attributes="href website_link" i18n:translate="">Web site</a>
+      </div>
+      <!-- <div class="contact" tal:define="contact context/contact | nothing">
+        <a tal:condition="contact"
+           tal:attributes="href view/contact_link">Contact</a>
+      </div> -->
+      <div class="contributions">
+        <a href="" tal:attributes="href view/contributions_link" i18n:translate="">
+          Observatory contributions
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
