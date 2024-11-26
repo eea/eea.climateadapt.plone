@@ -7,7 +7,7 @@ from Products.GenericSetup.context import SnapshotImportContext
 from Products.GenericSetup.interfaces import IBody
 from bs4 import BeautifulSoup
 from collections import defaultdict
-from collective.cover.tiles.configuration import TilesConfigurationScreen
+# from collective.cover.tiles.configuration import TilesConfigurationScreen
 from collective.easyform.api import CONTEXT_KEY
 from collective.easyform.api import set_actions, set_fields
 from decimal import Decimal
@@ -806,13 +806,13 @@ def make_text_from_articlejournal(content):
     return render('templates/readmore_text.pt', payload)
 
 
-def set_css_class(cover, tile, css_class):
-    if css_class:
-        tile_conf_adapter = TilesConfigurationScreen(cover, None, tile)
+# def set_css_class(cover, tile, css_class):
+#     if css_class:
+#         tile_conf_adapter = TilesConfigurationScreen(cover, None, tile)
 
-        conf = tile_conf_adapter.get_configuration()
-        conf['css_class'] = css_class
-        tile_conf_adapter.set_configuration(conf)
+#         conf = tile_conf_adapter.get_configuration()
+#         conf['css_class'] = css_class
+#         tile_conf_adapter.set_configuration(conf)
 
 
 def make_aceitem_search_tile(cover, info):

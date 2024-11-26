@@ -3,9 +3,9 @@
 import json
 import logging
 
-from collective.cover.interfaces import ICover
-from collective.cover.tiles.embed import IEmbedTile
-from collective.cover.tiles.richtext import IRichTextTile
+# from collective.cover.interfaces import ICover
+# from collective.cover.tiles.embed import IEmbedTile
+# from collective.cover.tiles.richtext import IRichTextTile
 from eea.climateadapt.translation.utils import translated_url
 from plone.app.contenttypes.interfaces import (
     IDocument,
@@ -98,14 +98,14 @@ def country_select_tile(data, obj, request):
 
 
 tile_converters = {
-    IRichTextTile: richtext_tile_to_blocks,
+    # IRichTextTile: richtext_tile_to_blocks,
     IRichTextWithTitle: richtext_tile_to_blocks,
     ISearchAceContentTile: search_acecontent_to_block,
     IRelevantAceContentItemsTile: relevant_acecontent_to_block,
     IFilterAceContentItemsTile: filter_acecontent_to_block,
     IShareInfoTile: share_info_tile_to_block,
     ITransRegionalSelectTile: region_select_to_block,
-    IEmbedTile: embed_tile_to_block,
+    # IEmbedTile: embed_tile_to_block,
     ICardsTile: cards_tile_to_block,
     IGenericViewTile: genericview_tile_to_block,
     # used in country profile page, no migration for now
@@ -122,168 +122,168 @@ tile_converters = {
 }
 
 
-@adapter(ICover, Interface)
-@implementer(IMigrateToVolto)
-class MigrateCover(object):
-    """Migrate the tiles of a cover to volto blocks"""
+# @adapter(ICover, Interface)
+# @implementer(IMigrateToVolto)
+# class MigrateCover(object):
+#     """Migrate the tiles of a cover to volto blocks"""
 
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
+#     def __init__(self, context, request):
+#         self.context = context
+#         self.request = request
 
-    def _blocklist_to_blocks(self, blockslist):
-        blocks_layout = {"items": [b[0] for b in blockslist]}
-        blocks_data = {}
-        for b in blockslist:
-            blocks_data[b[0]] = b[1]
+#     def _blocklist_to_blocks(self, blockslist):
+#         blocks_layout = {"items": [b[0] for b in blockslist]}
+#         blocks_data = {}
+#         for b in blockslist:
+#             blocks_data[b[0]] = b[1]
 
-        return blocks_data, blocks_layout
+#         return blocks_data, blocks_layout
 
-    def convert_tile_to_volto_blocklist(self, tileid):
-        tile = self.context.get_tile(tileid)
-        tile_dm = ITileDataManager(tile)
-        schema = tile_dm.tileType.schema
-        converter = tile_converters.get(schema, None)
+#     def convert_tile_to_volto_blocklist(self, tileid):
+#         tile = self.context.get_tile(tileid)
+#         tile_dm = ITileDataManager(tile)
+#         schema = tile_dm.tileType.schema
+#         converter = tile_converters.get(schema, None)
 
-        if not converter:
-            logger.warning("You need to implement converter for block: %s", schema)
-            return {"blocks": []}
+#         if not converter:
+#             logger.warning("You need to implement converter for block: %s", schema)
+#             return {"blocks": []}
 
-        data = converter(tile_dm, self.context, self.request)
-        if not data:
-            logger.warning("Tile did not convert to blocks: %s", schema)
-            return {"blocks": []}
+#         data = converter(tile_dm, self.context, self.request)
+#         if not data:
+#             logger.warning("Tile did not convert to blocks: %s", schema)
+#             return {"blocks": []}
 
-        return data
+#         return data
 
-    def make_column_block(self, row):
-        attributes = {}
-        children = row["children"]
-        columns_storage = {
-            "blocks": {},  # these are the columns
-            "blocks_layout": {"items": []},
-        }
+#     def make_column_block(self, row):
+#         attributes = {}
+#         children = row["children"]
+#         columns_storage = {
+#             "blocks": {},  # these are the columns
+#             "blocks_layout": {"items": []},
+#         }
 
-        data = {
-            "@type": "columnsBlock",
-            "data": columns_storage,  # stores columns as "blocks"
-            "gridSize": 12,
-            "gridCols": [COL_MAPPING[column["column-size"]] for column in children],
-        }
+#         data = {
+#             "@type": "columnsBlock",
+#             "data": columns_storage,  # stores columns as "blocks"
+#             "gridSize": 12,
+#             "gridCols": [COL_MAPPING[column["column-size"]] for column in children],
+#         }
 
-        for column in children:
-            uid = make_uid()
+#         for column in children:
+#             uid = make_uid()
 
-            blocks = {}
-            blocks_layout = []
+#             blocks = {}
+#             blocks_layout = []
 
-            for tile in column["children"]:
-                if tile.get("type") == "row":
-                    # some of the columns haven't been filled
-                    if not tile.get("children"):
-                        continue
+#             for tile in column["children"]:
+#                 if tile.get("type") == "row":
+#                     # some of the columns haven't been filled
+#                     if not tile.get("children"):
+#                         continue
 
-                    # this type of content is a nasty inherited since the migration of
-                    # content from Liferea, due to the lack of nested columns in
-                    # collective.cover
-                    # So we convert this row to a separate columns block
-                    (block_id, blockdata) = self.make_column_block(tile)
-                    blocks[block_id] = blockdata
-                    blocks_layout.append(block_id)
-                    continue
+#                     # this type of content is a nasty inherited since the migration of
+#                     # content from Liferea, due to the lack of nested columns in
+#                     # collective.cover
+#                     # So we convert this row to a separate columns block
+#                     (block_id, blockdata) = self.make_column_block(tile)
+#                     blocks[block_id] = blockdata
+#                     blocks_layout.append(block_id)
+#                     continue
 
-                if tile.get("id", None) is None:
-                    logger.warning("Implement row.")
-                    continue
-                    # TODO new row and columns case (recursive?)
-                    # /cca/en/knowledge/tools/adaptation-support-tool/step-3-2/
-                tile_data = self.convert_tile_to_volto_blocklist(tile["id"])
-                blocklist = tile_data.pop("blocks", [])
-                attributes.update(tile_data)
-                tile_blocks, tile_blocks_layout = self._blocklist_to_blocks(blocklist)
-                blocks.update(tile_blocks)
-                blocks_layout.extend(tile_blocks_layout["items"])
+#                 if tile.get("id", None) is None:
+#                     logger.warning("Implement row.")
+#                     continue
+#                     # TODO new row and columns case (recursive?)
+#                     # /cca/en/knowledge/tools/adaptation-support-tool/step-3-2/
+#                 tile_data = self.convert_tile_to_volto_blocklist(tile["id"])
+#                 blocklist = tile_data.pop("blocks", [])
+#                 attributes.update(tile_data)
+#                 tile_blocks, tile_blocks_layout = self._blocklist_to_blocks(blocklist)
+#                 blocks.update(tile_blocks)
+#                 blocks_layout.extend(tile_blocks_layout["items"])
 
-            columns_storage["blocks"][uid] = {
-                "blocks": blocks,
-                "blocks_layout": {"items": blocks_layout},
-            }
-            columns_storage["blocks_layout"]["items"].append(uid)
+#             columns_storage["blocks"][uid] = {
+#                 "blocks": blocks,
+#                 "blocks_layout": {"items": blocks_layout},
+#             }
+#             columns_storage["blocks_layout"]["items"].append(uid)
 
-        return [make_uid(), data]
+#         return [make_uid(), data]
 
-    def __call__(self):
-        # allow some blocks to set content metadata fields
-        # todo: convert cover layout to columns block layout
+#     def __call__(self):
+#         # allow some blocks to set content metadata fields
+#         # todo: convert cover layout to columns block layout
 
-        attributes = {}
-        tiles = {}
+#         attributes = {}
+#         tiles = {}
 
-        for tileid in self.context.list_tiles():
-            data = self.convert_tile_to_volto_blocklist(tileid)
-            tiles[tileid] = data
-            # blocks.extend(data.pop('blocks', []))
-            attributes.update(data)
+#         for tileid in self.context.list_tiles():
+#             data = self.convert_tile_to_volto_blocklist(tileid)
+#             tiles[tileid] = data
+#             # blocks.extend(data.pop('blocks', []))
+#             attributes.update(data)
 
-        if len(tiles) == 1:
-            blocks = []
-            for data in list(tiles.values()):
-                blocks.extend(data.get("blocks", []))
+#         if len(tiles) == 1:
+#             blocks = []
+#             for data in list(tiles.values()):
+#                 blocks.extend(data.get("blocks", []))
 
-            title_uid, titleblock = make_title_block()
-            blocks_layout = {"items": [title_uid] + [b[0] for b in blocks]}
-            blocks_data = {}
-            blocks_data[title_uid] = titleblock
+#             title_uid, titleblock = make_title_block()
+#             blocks_layout = {"items": [title_uid] + [b[0] for b in blocks]}
+#             blocks_data = {}
+#             blocks_data[title_uid] = titleblock
 
-            for uid, block in blocks:
-                blocks_data[uid] = block
+#             for uid, block in blocks:
+#                 blocks_data[uid] = block
 
-            self.context.blocks_layout = blocks_layout
-            self.context.blocks = blocks_data
-        else:
-            cover_layout = []
+#             self.context.blocks_layout = blocks_layout
+#             self.context.blocks = blocks_data
+#         else:
+#             cover_layout = []
 
-            if self.context.cover_layout:
-                cover_layout = json.loads(self.context.cover_layout)
-            else:
-                logger.warning("No cover layout at %s", self.context.absolute_url())
+#             if self.context.cover_layout:
+#                 cover_layout = json.loads(self.context.cover_layout)
+#             else:
+#                 logger.warning("No cover layout at %s", self.context.absolute_url())
 
-            page_blocks = []
+#             page_blocks = []
 
-            for row in cover_layout:
-                assert row["type"] == "row"
-                columns = row["children"]
-                if len(columns) > 1:
-                    column = self.make_column_block(row)
-                    page_blocks.append(column)
-                else:
-                    tiles = columns[0].get("children", None)
-                    if tiles is None:
-                        continue
-                    for tile in tiles:
-                        tileid = tile["id"]
-                        data = self.convert_tile_to_volto_blocklist(tileid)
-                        tile_blocks = []
-                        if "blocks" in data:
-                            tile_blocks = data.pop("blocks")
-                        attributes.update(data)
-                        page_blocks.extend(tile_blocks)
+#             for row in cover_layout:
+#                 assert row["type"] == "row"
+#                 columns = row["children"]
+#                 if len(columns) > 1:
+#                     column = self.make_column_block(row)
+#                     page_blocks.append(column)
+#                 else:
+#                     tiles = columns[0].get("children", None)
+#                     if tiles is None:
+#                         continue
+#                     for tile in tiles:
+#                         tileid = tile["id"]
+#                         data = self.convert_tile_to_volto_blocklist(tileid)
+#                         tile_blocks = []
+#                         if "blocks" in data:
+#                             tile_blocks = data.pop("blocks")
+#                         attributes.update(data)
+#                         page_blocks.extend(tile_blocks)
 
-            titleuid, titleblock = make_title_block()
-            blocks_layout = {"items": [titleuid] + [b[0] for b in page_blocks]}
-            blocks_data = {}
-            blocks_data[titleuid] = titleblock
+#             titleuid, titleblock = make_title_block()
+#             blocks_layout = {"items": [titleuid] + [b[0] for b in page_blocks]}
+#             blocks_data = {}
+#             blocks_data[titleuid] = titleblock
 
-            for uid, block in page_blocks:
-                blocks_data[uid] = block
+#             for uid, block in page_blocks:
+#                 blocks_data[uid] = block
 
-            self.context.blocks_layout = blocks_layout
-            self.context.blocks = blocks_data
+#             self.context.blocks_layout = blocks_layout
+#             self.context.blocks = blocks_data
 
-        # TODO: ensure there's a page banner block (or title block)
+#         # TODO: ensure there's a page banner block (or title block)
 
-        fix_content(self.context)
-        self.context.reindexObject()
+#         fix_content(self.context)
+#         self.context.reindexObject()
 
 
 @adapter(IDocument, Interface)

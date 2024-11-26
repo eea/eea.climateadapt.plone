@@ -51,7 +51,7 @@
             <element value="File"/>
             <element value="Document"/>
             <element value="Link"/>
-            <element value="collective.cover.content"/>
+            <!-- <element value="collective.cover.content"/> -->
         </property>
     </object>
     <object name="site_properties" meta_type="Plone Property Sheet">

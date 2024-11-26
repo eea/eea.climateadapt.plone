@@ -3,52 +3,52 @@
 
 import json
 
-from collective.cover.tiles.base import (IPersistentCoverTile,
-                                         PersistentCoverTile)
-from eea.climateadapt.vocabulary import ace_countries_selection
-from plone.memoize import view
+# from collective.cover.tiles.base import (IPersistentCoverTile,
+#                                          PersistentCoverTile)
+# from eea.climateadapt.vocabulary import ace_countries_selection
+# from plone.memoize import view
 from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from zope import schema
-from zope.interface import implements
+# from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+# from zope import schema
+# from zope.interface import implements
 
 
-class ICountrySelectTile(IPersistentCoverTile):
+# class ICountrySelectTile(IPersistentCoverTile):
 
-    title = schema.TextLine(
-        title='Title',
-        required=False,
-    )
+#     title = schema.TextLine(
+#         title='Title',
+#         required=False,
+#     )
 
 
-class CountrySelectTile(PersistentCoverTile):
-    """ CountrySelect tile
+# class CountrySelectTile(PersistentCoverTile):
+#     """ CountrySelect tile
 
-    Shows a dropdown select for a region
-    """
+#     Shows a dropdown select for a region
+#     """
 
-    implements(ICountrySelectTile)
+#     implements(ICountrySelectTile)
 
-    index = ViewPageTemplateFile('pt/country_select.pt')
+#     index = ViewPageTemplateFile('pt/country_select.pt')
 
-    is_configurable = False
-    is_editable = False
-    is_droppable = False
-    short_name = 'Select country'
+#     is_configurable = False
+#     is_editable = False
+#     is_droppable = False
+#     short_name = 'Select country'
 
-    @view.memoize
-    def is_empty(self):
-        return False
+#     @view.memoize
+#     def is_empty(self):
+#         return False
 
-    @view.memoize
-    def countries(self):
+#     @view.memoize
+#     def countries(self):
 
-        # countries = [(c[0], c[1].replace(" ", "-")) for c in
-        #              ace_countries_selection]
+#         # countries = [(c[0], c[1].replace(" ", "-")) for c in
+#         #              ace_countries_selection]
 
-        # return sorted(countries, key=lambda c: c[1])
-        clist = [country for country in ace_countries_selection if country[0] != 'GB']
-        return sorted(clist, key=lambda c: c[1])
+#         # return sorted(countries, key=lambda c: c[1])
+#         clist = [country for country in ace_countries_selection if country[0] != 'GB']
+#         return sorted(clist, key=lambda c: c[1])
 
 
 class SettingsPage(BrowserView):
