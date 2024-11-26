@@ -153,5 +153,4 @@ contenttype_language_independent_fields = {
     ],
     "File": ["file", "effective", "filename"],
     "Image": ["image", "effective", "filename"],
-    "collective.cover.content": ["effective", "template_layout"],
 }

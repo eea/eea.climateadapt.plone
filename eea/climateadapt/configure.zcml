@@ -26,7 +26,7 @@
     max_age="3600"
     />
 
-  <includeDependencies package="." />
+  <include package="." />
 
   <i18n:registerTranslations directory="locales" />
 
@@ -71,10 +71,6 @@
 
   <class class=".acemeasure.CaseStudy">
     <implements interface="plone.app.imagecropping.dx.IImageCroppingDX" />
-  </class>
-
-  <class class="collective.cover.content.Cover">
-    <implements interface="eea.pdf.interfaces.IPDFAware" />
   </class>
 
   <class class="plone.app.contenttypes.content.Document">
