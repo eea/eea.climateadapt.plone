@@ -15,7 +15,7 @@ from plone.app.contenttypes.interfaces import (
     ILink,
 )
 from plone.dexterity.interfaces import IDexterityContent
-from plone.tiles.interfaces import ITileDataManager
+# from plone.tiles.interfaces import ITileDataManager
 from zope.component import adapter, queryMultiAdapter
 from zope.interface import Interface, implementer
 
