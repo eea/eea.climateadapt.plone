@@ -40,7 +40,7 @@ from eea.facetednavigation.subtypes.interfaces import IFacetedNavigable
 from persistent.list import PersistentList
 from plone.api import portal
 from plone.api.content import move
-from plone.formwidget.geolocation.geolocation import Geolocation
+# from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.namedfile.file import NamedBlobFile, NamedBlobImage
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
@@ -292,8 +292,8 @@ def import_casestudy(data, location):
     latitude, longitude = to_decimal(data.lat), to_decimal(data.lon)
     geoloc = None
 
-    if latitude and longitude:
-        geoloc = Geolocation(latitude=latitude, longitude=longitude)
+    # if latitude and longitude:
+    #     geoloc = Geolocation(latitude=latitude, longitude=longitude)
 
     item = createAndPublishContentInContainer(
         location,
@@ -821,9 +821,9 @@ def import_city_profile(container, journal):
     geoloc_lat = s2d(mapped_data.pop('city_latitude'))
     geoloc_long = s2d(mapped_data.pop('city_longitude'))
 
-    if geoloc_lat and geoloc_long:
-        geoloc = Geolocation(latitude=geoloc_lat, longitude=geoloc_long)
-        mapped_data['geolocation'] = geoloc
+    # if geoloc_lat and geoloc_long:
+        # geoloc = Geolocation(latitude=geoloc_lat, longitude=geoloc_long)
+        # mapped_data['geolocation'] = geoloc
 
     city = createAndPublishContentInContainer(
         container,

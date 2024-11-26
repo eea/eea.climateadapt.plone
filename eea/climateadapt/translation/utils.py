@@ -9,7 +9,7 @@ from plone import api
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.value import RichTextValue
 from plone.behavior.interfaces import IBehaviorAssignable
-from plone.formwidget.geolocation.geolocation import Geolocation
+# from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.namedfile.file import NamedBlobFile, NamedBlobImage, NamedFile, NamedImage
 from Products.CMFCore.utils import getToolByName
 from z3c.relationfield.relation import RelationValue
@@ -241,7 +241,7 @@ def is_language_independent_value(value):
         or isinstance(value, DateTime)
         or isinstance(value, date)
         or isinstance(value, RelationValue)
-        or isinstance(value, Geolocation)
+        # or isinstance(value, Geolocation)
     ):
         return True
     return False

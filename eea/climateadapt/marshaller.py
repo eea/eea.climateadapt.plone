@@ -13,7 +13,7 @@ from eea.rdfmarshaller.interfaces import ISurfResourceModifier, ISurfSession
 from eea.rdfmarshaller.value import Value2Surf
 from plone.app.contenttypes.interfaces import ICollection
 from plone.dexterity.interfaces import IDexterityContent
-from plone.formwidget.geolocation.interfaces import IGeolocation
+# from plone.formwidget.geolocation.interfaces import IGeolocation
 from plone.namedfile.interfaces import INamedBlobFile, INamedBlobImage
 from Products.CMFCore.utils import getToolByName
 from zope.component import adapts
@@ -154,18 +154,18 @@ class CountryTitle2Surf(DXField2Surf):
         return title + " - ClimateADAPT country profile"
 
 
-class Geolocation2Surf(Value2Surf):
-    """IValue2Surf implementation for plone.formwidget.Geolocation """
+# class Geolocation2Surf(Value2Surf):
+#     """IValue2Surf implementation for plone.formwidget.Geolocation """
 
-    adapts(IGeolocation)
+#     adapts(IGeolocation)
 
-    def __init__(self, value):
-        self.value = value
-        self.longitude = "longitude: %s" % value.longitude
-        self.latitude = "latitude: %s" % value.latitude
+#     def __init__(self, value):
+#         self.value = value
+#         self.longitude = "longitude: %s" % value.longitude
+#         self.latitude = "latitude: %s" % value.latitude
 
-    def __call__(self, *args, **kwds):
-        return [self.longitude, self.latitude]
+#     def __call__(self, *args, **kwds):
+#         return [self.longitude, self.latitude]
 
 
 class File2Surf(Value2Surf):

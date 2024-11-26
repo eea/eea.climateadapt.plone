@@ -9,7 +9,7 @@ from eea.climateadapt.schema import AbsoluteUrl, PortalType, Uploader, Year
 from plone.app.textfield.interfaces import IRichText
 from plone.api import content, portal
 from plone.dexterity.interfaces import IDexterityFTI
-from plone.formwidget.geolocation.interfaces import IGeolocationField
+# from plone.formwidget.geolocation.interfaces import IGeolocationField
 from Products.CMFPlone.utils import safe_unicode
 from z3c.form.interfaces import NO_VALUE
 from z3c.relationfield.interfaces import IRelationList
@@ -279,26 +279,26 @@ class ListFieldRenderer(BaseFieldRenderer):
 
         return text
 
-class GeolocationFieldRenderer(BaseFieldRenderer):
-    """ Geolocation field adapter for excel export"""
-    adapts(IGeolocationField, Interface, Interface)
+# class GeolocationFieldRenderer(BaseFieldRenderer):
+#     """ Geolocation field adapter for excel export"""
+#     adapts(IGeolocationField, Interface, Interface)
 
-    def _get_text(self, value):
-        return value
+#     def _get_text(self, value):
+#         return value
 
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+#         value = self.get_value(obj)
 
-        if not value or value == NO_VALUE:
-            return ""
+#         if not value or value == NO_VALUE:
+#             return ""
 
-        text = safe_unicode(self._get_text(value))
+#         text = safe_unicode(self._get_text(value))
 
-        location = {'latitude': text.latitude, 'longitude': text.longitude}
+#         location = {'latitude': text.latitude, 'longitude': text.longitude}
 
-        return str(location)
+#         return str(location)
 
 
 class TupleFieldRenderer(BaseFieldRenderer):
