@@ -9,19 +9,19 @@ import json
 from eea.climateadapt.translation.utils import (
     TranslationUtilsMixin, translate_text)
 
-from collective.cover.tiles.base import (IPersistentCoverTile,
-                                         PersistentCoverTile)
-from zope import schema
+# from collective.cover.tiles.base import (IPersistentCoverTile,
+#                                          PersistentCoverTile)
+# from zope import schema
 from zope.component.hooks import getSite
-from zope.interface import implements
+# from zope.interface import implements
 
-from plone import api
+# from plone import api
 from plone.api import portal
-from plone.app.textfield import RichText
-from plone.directives import form
+# from plone.app.textfield import RichText
+# from plone.directives import form
 from plone.memoize import view
-from plone.namedfile.field import NamedBlobImage
-from plone.tiles.interfaces import ITileDataManager
+# from plone.namedfile.field import NamedBlobImage
+# from plone.tiles.interfaces import ITileDataManager
 from Products.Five.browser import BrowserView
 
 
@@ -60,222 +60,222 @@ class FrontPageCountries(BrowserView, TranslationUtilsMixin):
         return res
 
 
-class ICarousel(IPersistentCoverTile):
-    """ Frontpage carousel tile schema """
-    # form.fieldset('slide1',
-    #               label=u'Slide 1',
-    #               fields=['s1_title', 's1_description', 's1_primary_photo',
-    #                       's1_photo_copyright', 's1_read_more_text',
-    #                       's1_read_more_link']
-    #               )
+# class ICarousel(IPersistentCoverTile):
+#     """ Frontpage carousel tile schema """
+#     # form.fieldset('slide1',
+#     #               label=u'Slide 1',
+#     #               fields=['s1_title', 's1_description', 's1_primary_photo',
+#     #                       's1_photo_copyright', 's1_read_more_text',
+#     #                       's1_read_more_link']
+#     #               )
 
-    form.fieldset('slide2',
-                  label='Slide 1',
-                  fields=['s2_title', 's2_description', 's2_primary_photo',
-                          's2_read_more_text', 's2_read_more_link']
-                  )
+#     form.fieldset('slide2',
+#                   label='Slide 1',
+#                   fields=['s2_title', 's2_description', 's2_primary_photo',
+#                           's2_read_more_text', 's2_read_more_link']
+#                   )
 
-    form.fieldset('slide8',
-                  label='Slide 2',
-                  fields=['s8_title', 's8_description', 's8_primary_photo',
-                          's8_read_more_text', 's8_read_more_link']
-                  )
+#     form.fieldset('slide8',
+#                   label='Slide 2',
+#                   fields=['s8_title', 's8_description', 's8_primary_photo',
+#                           's8_read_more_text', 's8_read_more_link']
+#                   )
 
-    form.fieldset('slide5',
-                  label='Slide 5',
-                  fields=['s5_title', 's5_description', 's5_primary_photo',
-                          's5_read_more_text', 's5_read_more_link']
-                  )
+#     form.fieldset('slide5',
+#                   label='Slide 5',
+#                   fields=['s5_title', 's5_description', 's5_primary_photo',
+#                           's5_read_more_text', 's5_read_more_link']
+#                   )
 
-    form.fieldset('slide7',
-                  label='Slide 7',
-                  fields=['s7_title', 's7_description', 's7_primary_photo',
-                          's7_read_more_text', 's7_read_more_link']
-                  )
+#     form.fieldset('slide7',
+#                   label='Slide 7',
+#                   fields=['s7_title', 's7_description', 's7_primary_photo',
+#                           's7_read_more_text', 's7_read_more_link']
+#                   )
 
-    # Slide 1 fields
-    # s1_title = schema.Text(title=u"First slide Title", required=True)
-    # s1_description = RichText(title=u"First slide description",
-    # required=False)
+#     # Slide 1 fields
+#     # s1_title = schema.Text(title=u"First slide Title", required=True)
+#     # s1_description = RichText(title=u"First slide description",
+#     # required=False)
 
-    # s1_primary_photo = NamedBlobImage(
-    #     title=(u"First Slide Photo"),
-    #     required=False,
-    # )
+#     # s1_primary_photo = NamedBlobImage(
+#     #     title=(u"First Slide Photo"),
+#     #     required=False,
+#     # )
 
-    # s1_photo_copyright = schema.Text(title=u"Photo Copyright", required=True)
+#     # s1_photo_copyright = schema.Text(title=u"Photo Copyright", required=True)
 
-    # s1_read_more_text = schema.Text(title=u"First slide read more text",
-    #                                 required=False)
-    # s1_read_more_link = schema.Text(title=u"First slide read more link",
-    #                                 required=False)
+#     # s1_read_more_text = schema.Text(title=u"First slide read more text",
+#     #                                 required=False)
+#     # s1_read_more_link = schema.Text(title=u"First slide read more link",
+#     #                                 required=False)
 
-    # Slide 2 fields
-    s2_title = schema.Text(title="Second slide Title", required=True)
-    s2_description = RichText(title="Second slide description",
-                              required=False)
+#     # Slide 2 fields
+#     s2_title = schema.Text(title="Second slide Title", required=True)
+#     s2_description = RichText(title="Second slide description",
+#                               required=False)
 
-    s2_primary_photo = NamedBlobImage(
-        title=("Second Slide Photo"),
-        required=True,
-    )
+#     s2_primary_photo = NamedBlobImage(
+#         title=("Second Slide Photo"),
+#         required=True,
+#     )
 
-    s2_read_more_text = schema.Text(title="Second slide read more text",
-                                    required=False)
-    s2_read_more_link = schema.Text(title="Second slide read more link",
-                                    required=False)
+#     s2_read_more_text = schema.Text(title="Second slide read more text",
+#                                     required=False)
+#     s2_read_more_link = schema.Text(title="Second slide read more link",
+#                                     required=False)
 
-    # Slide 5 fields
-    s5_title = schema.Text(title="Fifth slide title", required=True)
-    s5_description = RichText(title="Fifth slide text", required=False)
+#     # Slide 5 fields
+#     s5_title = schema.Text(title="Fifth slide title", required=True)
+#     s5_description = RichText(title="Fifth slide text", required=False)
 
-    s5_primary_photo = NamedBlobImage(
-        title=("Fifth slide photo"),
-        required=True,
-    )
+#     s5_primary_photo = NamedBlobImage(
+#         title=("Fifth slide photo"),
+#         required=True,
+#     )
 
-    s5_read_more_text = schema.Text(title="Fifth slide read more text",
-                                    required=False)
-    s5_read_more_link = schema.Text(title="Fifth slide read more link",
-                                    required=False)
+#     s5_read_more_text = schema.Text(title="Fifth slide read more text",
+#                                     required=False)
+#     s5_read_more_link = schema.Text(title="Fifth slide read more link",
+#                                     required=False)
 
-    # Slide 7 fields
-    s7_title = schema.Text(title="Seventh slide title", required=True)
-    s7_description = RichText(title="Seventh slide text", required=False)
+#     # Slide 7 fields
+#     s7_title = schema.Text(title="Seventh slide title", required=True)
+#     s7_description = RichText(title="Seventh slide text", required=False)
 
-    s7_primary_photo = NamedBlobImage(
-        title=("Seventh slide photo"),
-        required=True,
-    )
+#     s7_primary_photo = NamedBlobImage(
+#         title=("Seventh slide photo"),
+#         required=True,
+#     )
 
-    s7_read_more_text = schema.Text(title="Seventh slide read more text",
-                                    required=False)
-    s7_read_more_link = schema.Text(title="Seventh slide read more link",
-                                    required=False)
+#     s7_read_more_text = schema.Text(title="Seventh slide read more text",
+#                                     required=False)
+#     s7_read_more_link = schema.Text(title="Seventh slide read more link",
+#                                     required=False)
 
-    # Slide 8 fields
-    s8_title = schema.Text(title="Slide title", required=True)
-    s8_description = RichText(title="Slide text", required=False)
+#     # Slide 8 fields
+#     s8_title = schema.Text(title="Slide title", required=True)
+#     s8_description = RichText(title="Slide text", required=False)
 
-    s8_primary_photo = NamedBlobImage(
-        title=("Slide photo"),
-        required=True,
-    )
+#     s8_primary_photo = NamedBlobImage(
+#         title=("Slide photo"),
+#         required=True,
+#     )
 
-    s8_read_more_text = schema.Text(title="Slide read more text",
-                                    required=False)
-    s8_read_more_link = schema.Text(title="Slide read more link",
-                                    required=False)
+#     s8_read_more_text = schema.Text(title="Slide read more text",
+#                                     required=False)
+#     s8_read_more_link = schema.Text(title="Slide read more link",
+#                                     required=False)
 
 
-class Carousel(PersistentCoverTile):
-    """ Frontpage Carousel tile
-    """
-    implements(ICarousel)
+# class Carousel(PersistentCoverTile):
+#     """ Frontpage Carousel tile
+#     """
+#     implements(ICarousel)
 
-    is_configurable = True
-    is_editable = True
-    is_droppable = False
-    ignoreContext = False
-    short_name = 'eea.carousel.tile'
+#     is_configurable = True
+#     is_editable = True
+#     is_droppable = False
+#     ignoreContext = False
+#     short_name = 'eea.carousel.tile'
 
-    def get_tile(self, slide_id):
-        tile = ITileDataManager(self)
-        data = tile.annotations[tile.key]
+#     def get_tile(self, slide_id):
+#         tile = ITileDataManager(self)
+#         data = tile.annotations[tile.key]
 
-        for key in list(data.keys()):
-            if slide_id in key:
-                setattr(self, key, data.get(key, ''))
+#         for key in list(data.keys()):
+#             if slide_id in key:
+#                 setattr(self, key, data.get(key, ''))
 
-        return self
+#         return self
 
-    def get_image(self, image, fieldname):
-        url = self.context.absolute_url() + '/@@edit-tile/' + self.short_name
-        url += '/{0}/++widget++{1}.{2}'.format(self.id, self.short_name,
-                                               fieldname)
-        # '/' + self.id + '/++widget++' + self.short_name + '.' + fieldname
-        url += '/@@download/' + image.filename
+#     def get_image(self, image, fieldname):
+#         url = self.context.absolute_url() + '/@@edit-tile/' + self.short_name
+#         url += '/{0}/++widget++{1}.{2}'.format(self.id, self.short_name,
+#                                                fieldname)
+#         # '/' + self.id + '/++widget++' + self.short_name + '.' + fieldname
+#         url += '/@@download/' + image.filename
 
-        return url
+#         return url
 
-    def news_items(self):
-        """ Gets the most recent updated news/events item"""
-        site = getSite()
-        catalog = site.portal_catalog
-        result = catalog.searchResults({'portal_type': ['News Item', 'Event'],
-                                        'review_state': 'published',
-                                        'sort_on': 'effective',
-                                        'sort_order': 'reverse'},
-                                       full_objects=True)[0]
+#     def news_items(self):
+#         """ Gets the most recent updated news/events item"""
+#         site = getSite()
+#         catalog = site.portal_catalog
+#         result = catalog.searchResults({'portal_type': ['News Item', 'Event'],
+#                                         'review_state': 'published',
+#                                         'sort_on': 'effective',
+#                                         'sort_order': 'reverse'},
+#                                        full_objects=True)[0]
 
-        return result.getObject()
+#         return result.getObject()
 
-    def last_casestudy(self):
-        """ Gets the most recent updated casestudy"""
-        site = getSite()
-        catalog = site.portal_catalog
-        brain = catalog.searchResults({
-            'portal_type': 'eea.climateadapt.casestudy',
-            'review_state': 'published',
-            'sort_on': 'effective',
-            'sort_order': 'descending',
-        }, full_objects=True)[0]
+#     def last_casestudy(self):
+#         """ Gets the most recent updated casestudy"""
+#         site = getSite()
+#         catalog = site.portal_catalog
+#         brain = catalog.searchResults({
+#             'portal_type': 'eea.climateadapt.casestudy',
+#             'review_state': 'published',
+#             'sort_on': 'effective',
+#             'sort_order': 'descending',
+#         }, full_objects=True)[0]
 
-        cs = brain.getObject()
+#         cs = brain.getObject()
 
-        return {
-            'image':
-            "{0}/@@images/primary_photo/?c={1}".format(
-                cs.absolute_url(),
-                brain.modified and brain.modified.ISO() or ''
-            ),
-            'title': cs.Title(),
-            'description': self.html2text(cs.long_description.output),
-            'url': cs.absolute_url(),
+#         return {
+#             'image':
+#             "{0}/@@images/primary_photo/?c={1}".format(
+#                 cs.absolute_url(),
+#                 brain.modified and brain.modified.ISO() or ''
+#             ),
+#             'title': cs.Title(),
+#             'description': self.html2text(cs.long_description.output),
+#             'url': cs.absolute_url(),
 
-        }
+#         }
 
-    @view.memoize
-    def html2text(self, html):
-        if not isinstance(html, str):
-            return ""
-        portal_transforms = api.portal.get_tool(name='portal_transforms')
-        data = portal_transforms.convertTo('text/plain',
-                                           html, mimetype='text/html')
-        text = data.getData()
+#     @view.memoize
+#     def html2text(self, html):
+#         if not isinstance(html, str):
+#             return ""
+#         portal_transforms = api.portal.get_tool(name='portal_transforms')
+#         data = portal_transforms.convertTo('text/plain',
+#                                            html, mimetype='text/html')
+#         text = data.getData()
 
-        return text
+#         return text
 
-    def last_dbitem(self):
-        """ Gets the most recent updated aceitem"""
-        site = getSite()
-        catalog = site.portal_catalog
-        result = catalog.searchResults({
-            'portal_type': [
-                'eea.climateadapt.informationportal',
-                'eea.climateadapt.guidancedocument',
-                'eea.climateadapt.tool',
-                'eea.climateadapt.mapgraphdataset',
-                'eea.climateadapt.indicator',
-                'eea.climateadapt.organisation'
-            ],
-            'review_state': 'published',
-            'sort_by': 'effective'}, full_objects=True)[0]
+#     def last_dbitem(self):
+#         """ Gets the most recent updated aceitem"""
+#         site = getSite()
+#         catalog = site.portal_catalog
+#         result = catalog.searchResults({
+#             'portal_type': [
+#                 'eea.climateadapt.informationportal',
+#                 'eea.climateadapt.guidancedocument',
+#                 'eea.climateadapt.tool',
+#                 'eea.climateadapt.mapgraphdataset',
+#                 'eea.climateadapt.indicator',
+#                 'eea.climateadapt.organisation'
+#             ],
+#             'review_state': 'published',
+#             'sort_by': 'effective'}, full_objects=True)[0]
 
-        return result.getObject()
+#         return result.getObject()
 
-    def last_publication(self):
-        """ Gets the most recent updated publication and report"""
-        site = getSite()
-        catalog = site.portal_catalog
-        result = catalog.searchResults({
-            'portal_type': 'eea.climateadapt.publicationreport',
-            'review_state': 'published',
-            'sort_on': 'effective',
-            'sort_order': 'descending',
-        }, full_objects=True)[0]
+#     def last_publication(self):
+#         """ Gets the most recent updated publication and report"""
+#         site = getSite()
+#         catalog = site.portal_catalog
+#         result = catalog.searchResults({
+#             'portal_type': 'eea.climateadapt.publicationreport',
+#             'review_state': 'published',
+#             'sort_on': 'effective',
+#             'sort_order': 'descending',
+#         }, full_objects=True)[0]
 
-        return result.getObject()
+#         return result.getObject()
 
 
 class ListingTile(BrowserView, TranslationUtilsMixin):

@@ -13,7 +13,7 @@
     <object name="eea.climateadapt.publicationreport" meta_type="Dexterity FTI" />
     <object name="eea.climateadapt.researchproject" meta_type="Dexterity FTI" />
     <object name="eea.climateadapt.tool" meta_type="Dexterity FTI" />
-    <object name="collective.cover.content" meta_type="Dexterity FTI"/>
+    <!-- <object name="collective.cover.content" meta_type="Dexterity FTI"/> -->
     <object name="eea.climateadapt.video" meta_type="Dexterity FTI" />
     <object name="FrontpageSlide" meta_type="Dexterity FTI" />
     <object name="mission_story" meta_type="Dexterity FTI"/>

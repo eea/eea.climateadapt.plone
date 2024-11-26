@@ -2,7 +2,7 @@ import json
 import logging
 
 from Acquisition import aq_base
-from collective.cover.interfaces import ICover, ISearchableText
+# from collective.cover.interfaces import ICover, ISearchableText
 from eea.climateadapt.aceitem import IAceItem, IC3sIndicator
 from eea.climateadapt.behaviors.aceproject import IAceProject
 from eea.climateadapt.behaviors.adaptationoption import IAdaptationOption
@@ -11,9 +11,9 @@ from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.api.portal import get_tool
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
-from Products.CMFPlone.utils import safe_unicode
+# from Products.CMFPlone.utils import safe_unicode
 from zope.annotation.interfaces import IAnnotations
-from zope.component import queryAdapter
+# from zope.component import queryAdapter
 from zope.interface import Interface
 
 # from eea.climateadapt.browser.frontpage_slides import IRichImage
@@ -79,11 +79,11 @@ def countries(object):
         return value
 
 
-@indexer(ICover)
-def search_type(object):
-    """"""
+# @indexer(ICover)
+# def search_type(object):
+#     """"""
 
-    return "CONTENT"
+#     return "CONTENT"
 
 
 @indexer(INewsEventsLinks)
@@ -189,41 +189,41 @@ LANGUAGE = "english"
 SENTENCES_COUNT = 2
 
 
-@indexer(ICover)
-def cover_description(obj):
-    """Simplify the long description rich text in a simple max 200 chars
-    "summary"
-    """
+# @indexer(ICover)
+# def cover_description(obj):
+#     """Simplify the long description rich text in a simple max 200 chars
+#     "summary"
+#     """
 
-    v = obj.Description()
-    if v not in [None, ""]:
-        return v
+#     v = obj.Description()
+#     if v not in [None, ""]:
+#         return v
 
-    portal_transforms = get_tool(name="portal_transforms")
-    tiles = obj.get_tiles()
-    text = []
-    for tile in tiles:
-        # tile_obj = obj.unrestrictedTraverse(
-        # "@@{0}/{1}".format(tile["type"], tile["id"]))
-        tile_annot_id = "plone.tiles.data." + tile["id"]
-        tile_obj = obj.__annotations__.get(tile_annot_id, None)
+#     portal_transforms = get_tool(name="portal_transforms")
+#     tiles = obj.get_tiles()
+#     text = []
+#     for tile in tiles:
+#         # tile_obj = obj.unrestrictedTraverse(
+#         # "@@{0}/{1}".format(tile["type"], tile["id"]))
+#         tile_annot_id = "plone.tiles.data." + tile["id"]
+#         tile_obj = obj.__annotations__.get(tile_annot_id, None)
 
-        searchable = queryAdapter(tile_obj, ISearchableText)
-        if searchable:
-            text.append(searchable.SearchableText())
-        else:
-            try:
-                data = portal_transforms.convertTo(
-                    "text/plain", tile_obj["text"].raw, mimetype="text/html"
-                )
-                text.append(data.getData().strip())
-            except Exception:
-                continue
+#         searchable = queryAdapter(tile_obj, ISearchableText)
+#         if searchable:
+#             text.append(searchable.SearchableText())
+#         else:
+#             try:
+#                 data = portal_transforms.convertTo(
+#                     "text/plain", tile_obj["text"].raw, mimetype="text/html"
+#                 )
+#                 text.append(data.getData().strip())
+#             except Exception:
+#                 continue
 
-    text = [safe_unicode(entry) for entry in text if entry]
+#     text = [safe_unicode(entry) for entry in text if entry]
 
-    text = " ".join(text)
-    return text[:200]
+#     text = " ".join(text)
+#     return text[:200]
 
 
 @indexer(IDexterityContent)

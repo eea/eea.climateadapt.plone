@@ -4,7 +4,7 @@ from collections import namedtuple
 
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
-from collective.cover.browser.cover import Standard
+# from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import (
     BIOREGIONS,
     SUBNATIONAL_REGIONS,
@@ -406,11 +406,11 @@ def redirect(site, REQUEST, key, itemid):
     return REQUEST.RESPONSE.redirect(ob.absolute_url(), status=301)
 
 
-class CoverNoTitleView(Standard):
-    """A template for covers that doesn't include the title"""
+# class CoverNoTitleView(Standard):
+#     """A template for covers that doesn't include the title"""
 
-    def __call__(self):
-        return self.index()
+#     def __call__(self):
+#         return self.index()
 
 
 class IterateControl(Control):

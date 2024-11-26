@@ -48,13 +48,13 @@
   <!--   /> -->
   <adapter factory="eea.climateadapt.browser.overrides.RichTextFieldWidget" />
 
-  <adapter
+  <!-- <adapter
     for="zope.annotation.interfaces.IAnnotatable
     eea.climateadapt.interfaces.IEEAClimateAdaptInstalled
     plone.tiles.interfaces.ITileType"
     provides="collective.cover.tiles.edit.ICoverTileEditView"
     factory=".integration.CustomTileEdit"
-    />
+    /> -->
 
   <class class=".integration.CustomTileEdit">
     <require

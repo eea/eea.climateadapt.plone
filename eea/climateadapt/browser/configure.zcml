@@ -48,10 +48,10 @@
       mode="display"
       />
 
-  <browser:menuItems
+  <!-- <browser:menuItems
       menu="plone_displayviews"
       for="collective.cover.content.ICover"
-      >
+      > -->
     <browser:menuItem
         title="Standard with no title"
         action="no_title_cover_view"

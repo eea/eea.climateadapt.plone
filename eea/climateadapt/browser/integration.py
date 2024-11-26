@@ -5,9 +5,9 @@ import inspect
 from types import FunctionType
 
 from Acquisition import Explicit, aq_inner
-from collective.cover.interfaces import ITileEditForm
-from collective.cover.tiles.edit import CustomEditForm as CoverEditForm
-from collective.cover.tiles.edit import CustomTileEdit as CoverTileEdit
+# from collective.cover.interfaces import ITileEditForm
+# from collective.cover.tiles.edit import CustomEditForm as CoverEditForm
+# from collective.cover.tiles.edit import CustomTileEdit as CoverTileEdit
 from eea.climateadapt.browser.aceitem import (GuidanceDocumentAddForm,
                                               IndicatorAddForm,
                                               InformationPortalAddForm,
@@ -28,7 +28,7 @@ from plone.app.layout.globals.layout import LayoutPolicy
 from plone.app.widgets.browser import vocabulary as vocab
 from plone.dexterity.browser.add import DefaultAddView
 from plone.namedfile.scaling import ImageScaling
-from plone.tiles.interfaces import ITileDataManager
+# from plone.tiles.interfaces import ITileDataManager
 from UserDict import UserDict
 from zope.component import queryUtility
 from zope.interface import implementer
@@ -170,20 +170,20 @@ class PloneLayout(LayoutPolicy):
             return super(PloneLayout, self).__init__(context, request)
 
 
-@implementer(ITileEditForm)
-class CustomEditForm(CoverEditForm):
+# @implementer(ITileEditForm)
+# class CustomEditForm(CoverEditForm):
 
-    def getContent(self):
-        dataManager = ITileDataManager(self.getTile())
-        val = dataManager.get()
-        context = AcquisitionAwareDict(val)
-        context.REQUEST = self.request
+#     def getContent(self):
+#         dataManager = ITileDataManager(self.getTile())
+#         val = dataManager.get()
+#         context = AcquisitionAwareDict(val)
+#         context.REQUEST = self.request
 
-        return context.__of__(self.context)
+#         return context.__of__(self.context)
 
 
-class CustomTileEdit(CoverTileEdit):
-    form = CustomEditForm
+# class CustomTileEdit(CoverTileEdit):
+#     form = CustomEditForm
 
 
 class IconWrapper(Traversable):

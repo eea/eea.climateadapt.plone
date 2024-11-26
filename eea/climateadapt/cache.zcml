@@ -11,9 +11,9 @@
 
     -----[ eea.cache integration ]-----------
 
-    <class class="collective.cover.content.Cover">
+    <!-- <class class="collective.cover.content.Cover">
         <implements interface="eea.cache.interfaces.ICacheAware" />
-    </class>
+    </class> -->
 
     <class class=".acemeasure.CaseStudy">
         <implements interface="eea.cache.interfaces.ICacheAware" />
