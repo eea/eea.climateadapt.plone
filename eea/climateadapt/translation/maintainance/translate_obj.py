@@ -1,6 +1,6 @@
 import logging
 
-from collective.cover.tiles.richtext import RichTextTile
+# from collective.cover.tiles.richtext import RichTextTile
 from DateTime import DateTime
 from plone.api import portal
 from plone.app.multilingual.manager import TranslationManager
@@ -154,7 +154,7 @@ def handle_cover(trans_obj, language, source_language, trans_obj_path):
                     encoded_text = translated["transId"].encode("latin-1")
                     tile.data.update({field: encoded_text})
 
-        if isinstance(tile, RichTextWithTitle) or isinstance(tile, RichTextTile):
+        if isinstance(tile, RichTextWithTitle):  # or isinstance(tile, RichTextTile):
             try:
                 value = tile.data.get("text").raw
             except Exception:

@@ -3,7 +3,7 @@ import urllib.request, urllib.parse, urllib.error
 import logging
 from datetime import date
 
-from collective.cover.tiles.richtext import RichTextTile
+# from collective.cover.tiles.richtext import RichTextTile
 from DateTime import DateTime
 from plone import api
 from plone.app.multilingual.manager import TranslationManager
@@ -268,32 +268,32 @@ def get_object_fields_values(obj):
     }
 
     # get tile data
-    if obj.portal_type == "collective.cover.content":
-        tiles_id = obj.list_tiles()
-        for tile_id in tiles_id:
-            data["tile"][tile_id] = {"item": {}, "html": {}}
-            tile = obj.get_tile(tile_id)
-            for field in tile_fields:
-                value = None
-                if isinstance(tile, RichTextWithTitle) or isinstance(
-                    tile, RichTextTile
-                ):
-                    if field in tile_fields:
-                        try:
-                            if isinstance(tile.data.get(field), RichTextValue):
-                                value = tile.data.get(field).raw
-                                if value:
-                                    data["tile"][tile_id]["html"][field] = value
-                            else:
-                                value = tile.data.get(field)
-                                if value:
-                                    data["tile"][tile_id]["item"][field] = value
-                        except Exception:
-                            value = None
-                else:
-                    value = tile.data.get(field, None)
-                    if value:
-                        data["tile"][tile_id]["item"][field] = value
+    # if obj.portal_type == "collective.cover.content":
+    #     tiles_id = obj.list_tiles()
+    #     for tile_id in tiles_id:
+    #         data["tile"][tile_id] = {"item": {}, "html": {}}
+    #         tile = obj.get_tile(tile_id)
+    #         for field in tile_fields:
+    #             value = None
+    #             if isinstance(tile, RichTextWithTitle) or isinstance(
+    #                 tile, RichTextTile
+    #             ):
+    #                 if field in tile_fields:
+    #                     try:
+    #                         if isinstance(tile.data.get(field), RichTextValue):
+    #                             value = tile.data.get(field).raw
+    #                             if value:
+    #                                 data["tile"][tile_id]["html"][field] = value
+    #                         else:
+    #                             value = tile.data.get(field)
+    #                             if value:
+    #                                 data["tile"][tile_id]["item"][field] = value
+    #                     except Exception:
+    #                         value = None
+    #             else:
+    #                 value = tile.data.get(field, None)
+    #                 if value:
+    #                     data["tile"][tile_id]["item"][field] = value
 
     skip_fields = [
         "acronym",
