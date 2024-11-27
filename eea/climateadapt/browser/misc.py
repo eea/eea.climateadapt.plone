@@ -15,10 +15,10 @@ from DateTime import DateTime
 from dateutil.tz import gettz
 from eea.climateadapt.config import CONTACT_MAIL_LIST
 from eea.climateadapt.schema import Email
-from eea.climateadapt.translation.utils import (
-    filters_to_query,
-    get_current_language,
-)
+# from eea.climateadapt.translation.utils import (
+#     filters_to_query,
+#     get_current_language,
+# )
 from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
@@ -291,7 +291,9 @@ class RedirectToSearchView (BrowserView):
         self.request = request
 
     def __call__(self):
-        current_language = get_current_language(self.context, self.request)
+        # TODO fix current language
+        # current_language = get_current_language(self.context, self.request)
+        current_language = 'en'
         portal_state = getMultiAdapter((self.context, self.request),
                                        name='plone_portal_state')
 
@@ -1149,6 +1151,8 @@ def create_contributions_link(language='en', organisation_id=None):
         terms.append(('language', [language]))
 
         url = "/" + language + "/observatory/catalogue/?"
-        query = filters_to_query(terms)
+        # TODO fix query
+        # query = filters_to_query(terms)
+        query = ''
 
         return "{}{}".format(url, query)

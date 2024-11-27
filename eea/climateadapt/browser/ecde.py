@@ -4,16 +4,21 @@ from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from collections import OrderedDict
 from zope.annotation.interfaces import IAnnotations
-from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
-                                                get_current_language,
-                                                translate_text)
+# from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+#                                                 get_current_language,
+#                                                 translate_text)
 from plone.app.multilingual.manager import TranslationManager
 from plone.api import content, portal
 
 logger = logging.getLogger('eea.climateadapt')
 
+# TODO properly use the translate_text from translation utils
+def translate_text(context, request, text, domain="eea.climateadapt", language=None):
+    return text
 
-class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
+
+# TODO add TranslationUtilsMixin to inheritance
+class C3sIndicatorsOverview(BrowserView):
     """ Overview page for indicators. Registered as @@c3s_indicators_overview
 
     To be used from inside a collective.cover
@@ -37,7 +42,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
     @property
     def data(self):
         site = portal.get()
-        lg = get_current_language(self.context, self.request)
+        # lg = get_current_language(self.context, self.request)
         lg = "en"
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
@@ -45,7 +50,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
 
     def get_categories(self):
         site = portal.get()
-        lg = get_current_language(self.context, self.request)
+        # lg = get_current_language(self.context, self.request)
         lg = "en"
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
@@ -228,14 +233,16 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
 
     def get_disclaimer(self):
         site = portal.get()
-        lg = get_current_language(self.context, self.request)
+        # lg = get_current_language(self.context, self.request)
+        lg = 'en'
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         return datastore['data']['html_pages']['disclaimer']['page_text']
 
     def get_glossary_table(self):
         site = portal.get()
-        lg = get_current_language(self.context, self.request)
+        # lg = get_current_language(self.context, self.request)
+        lg = 'en'
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get('c3s_json_data', {})
         if 'glossary_table' in datastore['data']:

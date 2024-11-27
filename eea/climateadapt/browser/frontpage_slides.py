@@ -2,9 +2,9 @@ from collections import namedtuple
 
 from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
-                                                filters_to_query,
-                                                translate_text)
+# from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+#                                                 filters_to_query,
+#                                                 translate_text)
 from plone import api
 from plone.api.portal import get_tool, getSite
 from plone.app.textfield import RichText
@@ -19,6 +19,11 @@ from zope.schema import TextLine
 # from zope.lifecycleevent import modified
 # from plone.namedfile.field import NamedBlobImage
 # from plone.namedfile.interfaces import IImageScaleTraversable
+
+
+# TODO properly use the translate_text from translation utils
+def translate_text(context, request, text, domain="eea.climateadapt", language=None):
+    return text
 
 
 class FrontpageSlideSchema(form.Schema):
@@ -62,7 +67,8 @@ class FrontpageSlide(dexterity.Container):
     implements(IFrontpageSlide, IEEAClimateAdaptInstalled)
 
 
-class FrontpageSlidesView(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class FrontpageSlidesView(BrowserView):
     """BrowserView for the frontpage slides which will be loaded through diazo"""
 
     def __call__(self):
@@ -301,7 +307,8 @@ SEARCH_TYPES_ICONS = [
 ]
 
 
-class FrontpageSearch(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class FrontpageSearch(BrowserView):
 
     # TODO: implement cache using eea.cache
     # @cache
@@ -324,7 +331,9 @@ class FrontpageSearch(BrowserView, TranslationUtilsMixin):
             ('objectProvides', type_),
             ('language', self.current_lang),
         ]
-        query = filters_to_query(args)
+        # TODO fix query
+        # query = filters_to_query(args)
+        query = ''
 
         link = "{0}/data-and-downloads/?{1}".format(self.current_lang, query)
         # "?lang={0}&source=".format(self.current_lang)

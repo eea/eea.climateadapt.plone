@@ -11,7 +11,7 @@ from eea.climateadapt.vocabulary import (
     ace_countries_dict,
 )
 from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.translation.utils import translate_text
+# from eea.climateadapt.translation.utils import translate_text
 from eea.geotags.behavior.geotags import ISingleGeoTag
 from plone import api
 from plone.api.user import get
@@ -347,7 +347,10 @@ class AceViewApi(object):
         return False
 
     def translate_text(self, text):
-        return translate_text(self.context, self.request, text)
+        # TODO translate text
+        # return translate_text(self.context, self.request, text)
+
+        return text
 
 
 class ViewAceItem(BrowserView):

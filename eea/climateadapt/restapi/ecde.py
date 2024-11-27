@@ -3,10 +3,10 @@ import logging
 
 from zope.component import getMultiAdapter
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-from eea.climateadapt.translation.utils import (
-    TranslationUtilsMixin,
-    get_current_language,
-)
+# from eea.climateadapt.translation.utils import (
+#     TranslationUtilsMixin,
+#     get_current_language,
+# )
 from plone import api
 from plone.api import portal
 from plone.app.multilingual.manager import TranslationManager
@@ -19,9 +19,10 @@ from zope.interface import Interface, implementer
 logger = logging.getLogger("eea.climateadapt")
 
 
+# TODO TranslationUtilsMixin add to inheritance
 @implementer(IExpandableElement)
 @adapter(Interface, IEEAClimateAdaptInstalled)
-class C3SIndicatorsOverview(TranslationUtilsMixin):
+class C3SIndicatorsOverview(object):
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -57,7 +58,8 @@ class C3SIndicatorsOverview(TranslationUtilsMixin):
             obj = brain.getObject()
             items[obj.title] = {"url": brain.getURL(), "obj": obj}
 
-        current_lang = get_current_language(self.context, self.request)
+        # current_lang = get_current_language(self.context, self.request)
+        current_lang = 'en'
 
         site = portal.get()
         base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]

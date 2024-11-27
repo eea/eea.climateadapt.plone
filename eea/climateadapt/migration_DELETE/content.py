@@ -6,7 +6,7 @@ import logging
 # from collective.cover.interfaces import ICover
 # from collective.cover.tiles.embed import IEmbedTile
 # from collective.cover.tiles.richtext import IRichTextTile
-from eea.climateadapt.translation.utils import translated_url
+# from eea.climateadapt.translation.utils import translated_url
 from plone.app.contenttypes.interfaces import (
     IDocument,
     IEvent,
@@ -493,7 +493,7 @@ class MigrateLink(object):
     def __call__(self):
         if self.context.remoteUrl:
             url = self.context.remoteUrl
-            url = translated_url(self.context, url, self.context.language)
+            # url = translated_url(self.context, url, self.context.language)
             if url != self.context.remoteUrl:
                 logger.info(
                     "Fix link %s => %s (%s)",

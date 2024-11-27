@@ -16,10 +16,10 @@ from plone.intelligenttext.transforms import (
     WebIntelligentToHtmlConverter,
     safe_decode
 )
-from eea.climateadapt.translation.utils import (
-    TranslationUtilsMixin,
-    translate_text
-)
+# from eea.climateadapt.translation.utils import (
+#     TranslationUtilsMixin,
+#     translate_text
+# )
 from eea.climateadapt import MessageFactory as _
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -310,7 +310,8 @@ class CCAWebIntelligentToHtmlConverter(WebIntelligentToHtmlConverter):
         return text
 
 
-class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class CountriesMetadataExtract(BrowserView):
     """Extract metadata from all country profiles, exports as json"""
 
     def extract_country_metadata_discodata(self, obj):
@@ -553,9 +554,11 @@ class CountriesMetadataExtract(BrowserView, TranslationUtilsMixin):
             ]
 
         self.request.response.setHeader("Content-type", "application/json")
-        data = [];
+        data = []
         for marker in _MARKERS:
-            data.append([marker[1],translate_text(self.context, self.request, marker[1], 'eea.cca', self.current_lang)])
+            # TODO translate text
+            # data.append([marker[1],translate_text(self.context, self.request, marker[1], 'eea.cca', self.current_lang)])
+            data.append([marker[1], marker[1]])
 
         return json.dumps([res, [x[1] for x in _MARKERS], data])
 

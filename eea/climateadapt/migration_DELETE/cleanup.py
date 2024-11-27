@@ -4,7 +4,7 @@
 import logging
 import plone.api
 
-from eea.climateadapt.translation.core import get_all_objs
+# from eea.climateadapt.translation.core import get_all_objs
 
 from plone.app.contenttypes.interfaces import IFolder
 from plone.dexterity.interfaces import IDexterityContainer
@@ -27,7 +27,8 @@ def is_folderish(obj):
 def post_migration_cleanup(site, request):
     """Remove old index_html leaf page"""
     logger.info("--- START CLEANUP ---")
-    brains = get_all_objs(site)
+    # brains = get_all_objs(site)
+    brains = []
 
     count = 0
 

@@ -13,7 +13,7 @@ from Products.CMFPlone.CatalogTool import sortable_title
 from zope.component.hooks import getSite
 
 from eea.climateadapt.config import DEFAULT_LOCATIONS
-from eea.climateadapt.translation.utils import get_current_language
+# from eea.climateadapt.translation.utils import get_current_language
 from eea.climateadapt.vocabulary import BIOREGIONS
 
 from .config import SECTOR_POLICIES
@@ -21,6 +21,9 @@ from .utils import convert_to_blocks, make_uid, path
 
 logger = logging.getLogger("eea.climateadapt")
 
+
+def get_current_language(context, request):
+    return 'en'
 
 def assigned(tile):
     """Return the list of objects stored in the tile as UUID. If an UUID

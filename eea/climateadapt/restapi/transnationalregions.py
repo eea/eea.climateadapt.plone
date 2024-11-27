@@ -9,7 +9,7 @@ from zope.interface import Interface, implementer
 
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.tiles.transregional_select import get_countries, get_regions
-from eea.climateadapt.translation.utils import get_current_language
+# from eea.climateadapt.translation.utils import get_current_language
 
 
 def iterate_tiles(cover_layout):
@@ -52,7 +52,8 @@ class TransnationalRegion(object):
         # TODO: this needs to be reimplemented as a behavior when we move to Plone 6 and get rid of Covers
 
         tile_data = cover.get_tile(tile_id).data
-        current_lang = get_current_language(self.context, self.request)
+        # current_lang = get_current_language(self.context, self.request)
+        current_lang = 'en'
 
         result = {
             "transnationalregion": {

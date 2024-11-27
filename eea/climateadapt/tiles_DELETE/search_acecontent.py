@@ -5,7 +5,7 @@ It renders a search "portlet" for Ace content
 import logging
 from collections import namedtuple
 
-from AccessControl import Unauthorized
+# from AccessControl import Unauthorized
 # from collective.cover.interfaces import ICoverUIDsProvider
 # from collective.cover.tiles.base import (IPersistentCoverTile,
 #                                          PersistentCoverTile)
@@ -13,9 +13,9 @@ from AccessControl import Unauthorized
 from eea.climateadapt import MessageFactory as _
 # from eea.climateadapt.catalog import get_aceitem_description
 from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
-from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
-                                                filters_to_query,
-                                                get_current_language)
+# from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+#                                                 filters_to_query,
+#                                                 get_current_language)
 from eea.climateadapt.vocabulary import (BIOREGIONS, REMAPED_BIOREGIONS, _climateimpacts,
                                          _datatypes, _elements,
                                          _origin_website, _sectors,
@@ -145,7 +145,8 @@ class AceTileMixin(object):
 
     def build_query(self):
 
-        lang = get_current_language(self.context, self.request)
+        # lang = get_current_language(self.context, self.request)
+        lang = 'en'
         query = {"review_state": "published", }     # "Language": lang
 
         # todo: do countries
@@ -299,7 +300,8 @@ class AceTileMixin(object):
             if k == "SearchableText":
                 terms.append(('q', v))
 
-        query = filters_to_query(terms)
+        # query = filters_to_query(terms)
+        query = ''
 
         return "{}{}".format(url, query)        # urllib.quote(json.dumps(q))
 

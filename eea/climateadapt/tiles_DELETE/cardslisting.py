@@ -3,16 +3,16 @@
 
 # from collective.cover.tiles.base import (IPersistentCoverTile,
 #                                          PersistentCoverTile)
-from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
-                                                get_current_language)
-from eea.climateadapt.browser.misc import create_contributions_link
+# from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+#                                                 get_current_language)
+# from eea.climateadapt.browser.misc import create_contributions_link
 # from zope import schema
 # from zope.interface import implements
 
 # from plone.app.uuid.utils import uuidToObject
 # from plone.tiles.interfaces import ITileDataManager
 # from plone.uuid.interfaces import IUUID
-from Products.Five.browser import BrowserView
+# from Products.Five.browser import BrowserView
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
@@ -92,47 +92,47 @@ from Products.Five.browser import BrowserView
 #         pass
 
 
-class IndicatorCard(BrowserView):
-    """Indicator @@card view"""
+# class IndicatorCard(BrowserView):
+#     """Indicator @@card view"""
 
-    def indicator_link(self):
-        language = get_current_language(self.context, self.request)
-        link = "/"+language+"/observatory/++aq++" + \
-            "/".join(self.context.getPhysicalPath()[2:])
-        # link = link.replace("++aq++en/", "++aq++"+language+"/")
-        link = link.replace("++aq++"+language+"/", "++aq++")
-        return link
+#     def indicator_link(self):
+#         language = get_current_language(self.context, self.request)
+#         link = "/"+language+"/observatory/++aq++" + \
+#             "/".join(self.context.getPhysicalPath()[2:])
+#         # link = link.replace("++aq++en/", "++aq++"+language+"/")
+#         link = link.replace("++aq++"+language+"/", "++aq++")
+#         return link
 
 
-class OrganisationCard(BrowserView, TranslationUtilsMixin):
-    """Organisation @@card view"""
+# class OrganisationCard(BrowserView, TranslationUtilsMixin):
+#     """Organisation @@card view"""
 
-    # index = ViewPageTemplateFile("pt/card_organisation.pt")
-    def contact_link(self):
-        contact = getattr(self.context, "contact", "") or ""
-        if contact.startswith("mailto"):
-            return contact
+#     # index = ViewPageTemplateFile("pt/card_organisation.pt")
+#     def contact_link(self):
+#         contact = getattr(self.context, "contact", "") or ""
+#         if contact.startswith("mailto"):
+#             return contact
 
-        if contact.startswith("http"):
-            return contact
+#         if contact.startswith("http"):
+#             return contact
 
-        if "@" in contact:
-            return "mailto:%s" % contact
+#         if "@" in contact:
+#             return "mailto:%s" % contact
 
-        return "https://%s" % contact
+#         return "https://%s" % contact
 
-    def contributions_link(self):
-        return create_contributions_link(self.current_lang, self.context.id)
+#     def contributions_link(self):
+#         return create_contributions_link(self.current_lang, self.context.id)
 
-    def website_link(self):
-        websites = getattr(self.context, "websites", [])
-        if not websites:
-            return None
-        return websites[0]
+#     def website_link(self):
+#         websites = getattr(self.context, "websites", [])
+#         if not websites:
+#             return None
+#         return websites[0]
 
-    def organisation_link(self):
-        language = get_current_language(self.context, self.request)
-        link = "/"+language+"/observatory/++aq++" + \
-            "/".join(self.context.getPhysicalPath()[2:])
-        link = link.replace("++aq++"+language+"/", "++aq++")
-        return link
+#     def organisation_link(self):
+#         language = get_current_language(self.context, self.request)
+#         link = "/"+language+"/observatory/++aq++" + \
+#             "/".join(self.context.getPhysicalPath()[2:])
+#         link = link.replace("++aq++"+language+"/", "++aq++")
+#         return link

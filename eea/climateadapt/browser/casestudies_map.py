@@ -1,18 +1,18 @@
 import json
 import logging
 
-from eea.climateadapt.translation.utils import translate_text
+# from eea.climateadapt.translation.utils import translate_text
 from plone.api.portal import get_tool
 from Products.Five import BrowserView
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 from collections import OrderedDict
 
-from eea.climateadapt.vocabulary import (
-    ipcc_category,
-    aceitem_sectors_vocabulary,
-    aceitem_climateimpacts_vocabulary,
-)
+# from eea.climateadapt.vocabulary import (
+#     ipcc_category,
+#     aceitem_sectors_vocabulary,
+#     aceitem_climateimpacts_vocabulary,
+# )
 
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -58,7 +58,9 @@ class Items(BrowserView):
         )
         vocabulary = factory(self.context)
         for term in vocabulary:
-            temp = translate_text(self.context, self.request, term.title)
+            # TODO translate text
+            # temp = translate_text(self.context, self.request, term.title)
+            temp = term.title
             titleSplit = temp.split(":")
             nameCategory = titleSplit[1].strip()
             if nameCategory not in results["filters"]['measures']:
@@ -234,7 +236,9 @@ class Page(BrowserView):
         # import pdb; pdb.set_trace()
         # response.append({"key": "", "value": "Filter by IPCCS"})
         for term in vocabulary:
-            temp = translate_text(self.context, self.request, term.title)
+            # TODO translate text
+            # temp = translate_text(self.context, self.request, term.title)
+            temp = term.title
             titleSplit = temp.split(":")
             if titleSplit[0] not in response:
                 response[titleSplit[0]] = []
@@ -253,7 +257,9 @@ class Page(BrowserView):
         # import pdb; pdb.set_trace()
         # response.append({"key": "", "value": "Filter by IPCCS"})
         for term in vocabulary:
-            temp = translate_text(self.context, self.request, term.title)
+            # TODO translate text
+            # temp = translate_text(self.context, self.request, term.title)
+            temp = term.title
             titleSplit = temp.split(":")
             if titleSplit[1] not in response:
                 response[titleSplit[1]] = []

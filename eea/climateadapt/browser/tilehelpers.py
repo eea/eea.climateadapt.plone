@@ -6,8 +6,8 @@ developed and tested.
 
 import json
 
-from eea.climateadapt.translation.utils import (
-    TranslationUtilsMixin, translate_text)
+# from eea.climateadapt.translation.utils import (
+#     TranslationUtilsMixin, translate_text)
 
 # from collective.cover.tiles.base import (IPersistentCoverTile,
 #                                          PersistentCoverTile)
@@ -35,7 +35,8 @@ class AceContentSearch(BrowserView):
                                              full_objects=True)[:3]
 
 
-class FrontPageCountries(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class FrontPageCountries(BrowserView):
     """ A view to render the frontpage tile with countries and
         country select form
     """
@@ -278,7 +279,8 @@ class FrontPageCountries(BrowserView, TranslationUtilsMixin):
 #         return result.getObject()
 
 
-class ListingTile(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class ListingTile(BrowserView):
     """ Helper for listing tiles on fronpage
     """
 
@@ -293,8 +295,9 @@ class NewsTile(ListingTile):
     def more_url(self):
         return [
             self.parent.absolute_url(),
-            translate_text(self.context, self.request,
-                "More news", 'eea.climateadapt.frontpage', self.current_lang)
+            "More news"
+            # translate_text(self.context, self.request,
+            #     "More news", 'eea.climateadapt.frontpage', self.current_lang)
         ]
 
     @property
@@ -353,8 +356,9 @@ class EventsTile(ListingTile):
     def more_url(self):
         return [
             self.parent.absolute_url(),
-            translate_text(self.context, self.request, "More events",
-                           'eea.climateadapt.frontpage', self.current_lang)
+            "More news"
+            # translate_text(self.context, self.request, "More events",
+            #                'eea.climateadapt.frontpage', self.current_lang)
         ]
 
     @property
@@ -416,7 +420,8 @@ class LastUpdateTile(BrowserView):
         return portal.get_localized_time(datetime=modifiedTime)
 
 
-class CountriesTileMetadata(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class CountriesTileMetadata(BrowserView):
     def __call__(self):
         countries_folder = self.context.unrestrictedTraverse(
             '{}/countries-regions/countries'.format(self.current_lang)

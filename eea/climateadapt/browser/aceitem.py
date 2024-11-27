@@ -3,8 +3,8 @@
 
 from eea.climateadapt.browser import AceViewApi
 from eea.climateadapt.browser.misc import create_contributions_link
-from eea.climateadapt.translation.core import get_translation_object
-from eea.climateadapt.translation.utils import get_current_language
+# from eea.climateadapt.translation.core import get_translation_object
+# from eea.climateadapt.translation.utils import get_current_language
 from plone import api
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
@@ -120,16 +120,22 @@ class OrganisationView(DefaultView, AceViewApi):
         return 0
 
     def to_observatory_url(self, obj):
-        current_language = get_current_language(self.context, self.request)
+        # TODO get current language
+        # current_language = get_current_language(self.context, self.request)
+        current_language = "en"
         segments = obj.getPhysicalPath()[2:]
         if segments[0] != "metadata":
             segments = segments[1:]
         return "/" + current_language + "/observatory/++aq++" + "/".join(segments)
 
     def get_contributions(self):
-        current_language = get_current_language(self.context, self.request)
+        # TODO get current language
+        # current_language = get_current_language(self.context, self.request)
+        current_language = "en"
         if current_language != "en":
-            en_obj = get_translation_object(self.context, "en")
+            # TODO get translation object
+            # en_obj = get_translation_object(self.context, "en")
+            en_obj = self.context
         else:
             en_obj = self.context
 
@@ -145,7 +151,9 @@ class OrganisationView(DefaultView, AceViewApi):
                 continue
 
             engl_obj = relation.from_object
-            obj = get_translation_object(engl_obj, current_language)
+            # TODO get translation object
+            # obj = get_translation_object(engl_obj, current_language)
+            obj = engl_obj
             if obj is not None:
                 if api.content.get_state(obj) == "published":
                     if obj.absolute_url() in urls or (

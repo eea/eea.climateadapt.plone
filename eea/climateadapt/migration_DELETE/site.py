@@ -4,7 +4,7 @@
 import logging
 
 from eea.climateadapt.scripts import get_plone_site
-from eea.climateadapt.translation.core import get_all_objs
+# from eea.climateadapt.translation.core import get_all_objs
 
 from .config import IGNORED_CONTENT_TYPES, LANGUAGES
 from .content import migrate_content_to_volto
@@ -26,8 +26,8 @@ def _migrate_to_volto(site, request):
 
     logger.info("--- START CONTENT MIGRATION ---")
     logger.debug("Get the list of items ordered by levels...")
-    brains = get_all_objs(site)
-
+    # brains = get_all_objs(site)
+    brains = []
     root = request.form.get("root", "")
 
     for brain in brains:

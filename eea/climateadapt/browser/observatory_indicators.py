@@ -3,7 +3,7 @@ import logging
 from plone.api.portal import get_tool
 from Products.Five import BrowserView
 
-from eea.climateadapt.translation.utils import TranslationUtilsMixin
+# from eea.climateadapt.translation.utils import TranslationUtilsMixin
 
 # from eea.climateadapt.vocabulary import _origin_website
 # from zope.component import getUtility
@@ -12,8 +12,8 @@ from eea.climateadapt.translation.utils import TranslationUtilsMixin
 
 logger = logging.getLogger("eea.climateadapt")
 
-
-class ObservatoryIndicators(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class ObservatoryIndicators(BrowserView):
     def map_origin_wesite(self, name):
         if name == "Lancet Countdown":
             return "Lancet Countdown in Europe"

@@ -1,4 +1,4 @@
-from eea.climateadapt.translation.utils import get_current_language
+# from eea.climateadapt.translation.utils import get_current_language
 from plone.app.theming.transform import _Cache
 from zope.globalrequest import getRequest
 from zope.schema.vocabulary import SimpleTerm
@@ -27,7 +27,9 @@ def getCache(settings):
 
     plone_site = getSite()
     req = getRequest()
-    current_lang = get_current_language(plone_site, req)
+    # TODO get current_lang
+    # current_lang = get_current_language(plone_site, req)
+    current_lang = 'en'
     key = "{}/{}".format(plone_site.absolute_url(), current_lang)
     cache = caches.get(key)
     if cache is None:

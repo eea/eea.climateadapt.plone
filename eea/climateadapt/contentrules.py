@@ -8,7 +8,7 @@ import transaction
 from DateTime import DateTime
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.asynctasks.utils import get_async_service
-from eea.climateadapt.translation.volto import translate_volto_html
+# from eea.climateadapt.translation.volto import translate_volto_html
 from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.api.portal import get_tool
@@ -204,7 +204,8 @@ class TranslateAsyncActionExecutor(object):
         )
 
         # this will schedule several async jobs that call etranslation async
-        translate_volto_html(html, obj, http_host)
+        # TODO translate
+        # translate_volto_html(html, obj, http_host)
 
         return True
 
