@@ -2,8 +2,8 @@
 
 from AccessControl import ClassSecurityInfo
 from AccessControl.users import BasicUser
-from App.class_init import InitializeClass
-from App.special_dtml import DTMLFile
+from AccessControl.class_init import InitializeClass
+from DocumentTemplate.DTML import DTMLFile
 from Products.PluggableAuthService.PluggableAuthService import PluggableAuthService
 from Products.PluggableAuthService.interfaces.plugins import IAnonymousUserFactoryPlugin
 from Products.PluggableAuthService.interfaces.plugins import IUserEnumerationPlugin
