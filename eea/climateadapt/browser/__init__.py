@@ -12,7 +12,7 @@ from eea.climateadapt.vocabulary import (
 )
 from eea.climateadapt import MessageFactory as _
 # from eea.climateadapt.translation.utils import translate_text
-from eea.geotags.behavior.geotags import ISingleGeoTag
+# from eea.geotags.behavior.geotags import ISingleGeoTag
 from plone import api
 from plone.api.user import get
 from plone.app.iterate.browser.control import Control
@@ -74,9 +74,11 @@ def get_files(context):
 
 class AceViewApi(object):
     def geotag(self):
-        tag = queryAdapter(self.context, ISingleGeoTag)
+        # TODO fix geotag
+        return ''
+        # tag = queryAdapter(self.context, ISingleGeoTag)
 
-        return tag
+        # return tag
 
     def get_review_info(self):
         """Return review information.
