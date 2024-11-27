@@ -104,6 +104,31 @@ class RastBlockSerializationTransformer(object):
 
 @implementer(IBlockFieldSerializationTransformer)
 @adapter(IBlocks, IBrowserRequest)
+class SearchlibBlockSerializationTransformer(object):
+    order = 100
+    block_type = "searchlib"
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, block):
+        defaultFilters = block.get("defaultFilters", [])
+        defaultLang = getattr(self.context, "language", "en")
+
+        for filt in defaultFilters:
+            if filt.get("name") == "language":
+                filt["value"] = {
+                    "field": "language",
+                    "type": "any",
+                    "values": [defaultLang],
+                }
+
+        return block
+
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
 class RelevantAceContentBlockSerializer(object):
     order = 100
     block_type = "relevantAceContent"
