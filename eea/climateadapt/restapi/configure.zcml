@@ -9,8 +9,8 @@
   <!-- this is protected by have-plone5 condition in the original -->
   <include file="multilingual.zcml" />
 
-  <adapter factory=".serializer.GenericContentSerializer"/>
-  <adapter factory=".serializer.GenericFolderSerializer"/>
+  <adapter factory=".serializer.GenericContentSerializer" />
+  <adapter factory=".serializer.GenericFolderSerializer" />
 
   <adapter factory=".serializer.ClimateAdaptContentSerializer" />
   <adapter factory=".serializer.AdaptationOptionSerializer" />
@@ -34,7 +34,7 @@
   <adapter
     factory=".workflow.WorkflowInfo"
     name="workflow"
-    />
+  />
 
   <plone:service
     method="POST"
@@ -43,7 +43,7 @@
     permission="zope2.View"
     name="@querystats"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+  />
 
   <plone:service
     method="GET"
@@ -52,12 +52,12 @@
     permission="zope2.View"
     name="@workflow"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+  />
 
   <adapter
     factory=".actions.Actions"
     name="actions"
-    />
+  />
 
   <plone:service
     method="GET"
@@ -66,12 +66,12 @@
     permission="zope2.View"
     name="@actions"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+  />
 
   <adapter
     factory=".ecde.C3SIndicatorsOverview"
     name="c3s_indicators_overview_api"
-    />
+  />
 
   <plone:service
     method="GET"
@@ -80,12 +80,12 @@
     permission="zope2.View"
     name="@c3s_indicators_overview_api"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+  />
 
   <adapter
     factory=".ecde.C3SIndicatorsData"
     name="c3s_indicators_data"
-    />
+  />
 
   <plone:service
     method="GET"
@@ -94,37 +94,41 @@
     permission="zope2.View"
     name="@c3s_indicators_glossary_table_api"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+  />
 
   <subscriber
     factory=".serializer.SlateBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  />
 
   <subscriber
     factory=".blocks.GenericLinkFixer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  />
 
   <subscriber
     factory=".blocks.ColumnBlockSerializationTransformer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  />
+  <subscriber
+    factory=".blocks.RastBlockSerializationTransformer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
 
   <subscriber
     factory=".deserializer.VolatileSmartField"
     provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
-    />
+  />
 
   <subscriber
     factory=".blocks.SearchAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  />
 
   <subscriber
     factory=".blocks.RelevantAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  />
 
   <browser:page
     for="*"
@@ -133,12 +137,12 @@
     class=".navigation.CustomCatalogNavigationTabs"
     permission="zope.Public"
     allowed_attributes="topLevelTabs"
-    />
+  />
 
   <adapter
     factory=".navigation.Navigation"
     name="navigation"
-    />
+  />
 
   <plone:service
     method="GET"
@@ -147,10 +151,10 @@
     permission="zope2.View"
     name="@navigation"
     layer="plone.restapi.interfaces.IPloneRestapiLayer"
-    />
+  />
 
 
-  <adapter factory=".siblings.Siblings" name="siblings"/>
+  <adapter factory=".siblings.Siblings" name="siblings" />
 
   <plone:service
     method="GET"
@@ -158,27 +162,27 @@
     factory=".siblings.SiblingsGet"
     name="@siblings"
     permission="zope2.View"
-    />
+  />
 
   <subscriber
-      factory=".slate.SlateTableBlockSerializer"
-      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-      />
+    factory=".slate.SlateTableBlockSerializer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
   <!-- <subscriber -->
   <!--     factory=".slate.SlateTableBlockDeserializerRoot" -->
   <!--     provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer" -->
   <!--     /> -->
 
-  <adapter factory=".countryprofile.CountryProfile" name="countryprofile"/>
-  <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions"/>
+  <adapter factory=".countryprofile.CountryProfile" name="countryprofile" />
+  <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions" />
 
   <subscriber
-      factory=".blocks.ResolveUIDDeserializer"
-      provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
-      />
+    factory=".blocks.ResolveUIDDeserializer"
+    provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
+  />
 
   <subscriber
-      factory=".blocks.ResolveUIDSerializer"
-      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-      />
+    factory=".blocks.ResolveUIDSerializer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
 </configure>

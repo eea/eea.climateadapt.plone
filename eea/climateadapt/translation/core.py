@@ -65,8 +65,7 @@ def call_etranslation_service(
     site_url = portal.get().absolute_url()  # -> '/cca'
 
     if "localhost" in site_url:
-        logger.warning(
-            "Using localhost, won't retrieve translation for: %s", html)
+        logger.warning("Using localhost, won't retrieve translation for: %s", html)
 
     client = Client(
         "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
@@ -143,8 +142,7 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
             trans_obj.setDefaultPage(default_view_en)
             reindex = True
         except Exception:
-            logger.info("Can't set default page for: %s",
-                        trans_obj.absolute_url())
+            logger.info("Can't set default page for: %s", trans_obj.absolute_url())
 
     if not reindex:
         reindex = True
@@ -345,7 +343,7 @@ def sync_translation_state(trans_obj, en_obj):
 
 def wrap_in_aquisition(obj_path, portal_obj):
     portal_path = portal_obj.getPhysicalPath()
-    bits = obj_path.split("/")[len(portal_path):]
+    bits = obj_path.split("/")[len(portal_path) :]
 
     base = portal_obj
     obj = base
@@ -368,8 +366,7 @@ def setup_site_portal(options):
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         setSite(site_portal)
         # context.REQUEST['PARENTS'] = [context]
@@ -457,15 +454,13 @@ def elements_to_text(children):
     return unicode("").join(tostring(f).decode("utf-8") for f in children)
 
 
-def get_content_from_html(html):
+def get_content_from_html(html, language=None):
     """Given an HTML string, converts it to Plone content data"""
 
-    data = {"html": html}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    data = {"html": html, "language": language}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER,
-                        data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -485,17 +480,17 @@ def get_content_from_html(html):
 
 
 def ingest_html(trans_obj, html):
-    "Used by the translation callback"
+    """Used by the translation callback"""
+
     force_unlock(trans_obj)
-    fielddata = get_content_from_html(html)
+    fielddata = get_content_from_html(html, language=trans_obj.language)
 
     translations = TranslationManager(trans_obj).get_translations()
 
     if "en" not in translations:
         msg = (
             "Could not find canonical for this object %s, aborting. "
-            "Check its translation group" % "/".join(
-                trans_obj.getPhysicalPath())
+            "Check its translation group" % "/".join(trans_obj.getPhysicalPath())
         )
 
         logger.warning(msg)
@@ -519,12 +514,12 @@ def ingest_html(trans_obj, html):
 
 
 def get_blocks_as_html(obj):
-    data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    """Uses the external converter service to convert the blocks to HTML representation"""
 
-    req = requests.post(
-        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
+
+    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -546,8 +541,7 @@ def sync_language_independent_fields(context, en_obj_path, options):
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         setSite(site_portal)
 
