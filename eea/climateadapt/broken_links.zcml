@@ -1,0 +1,31 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
+
+  <plone:service
+    method="GET"
+    factory=".broken_links.BrokenLinksService"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    permission="zope2.View"
+    name="@broken_links"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+  />
+
+  <browser:page
+    name="compute-broken-links"
+    for="plone.app.layout.navigation.interfaces.INavigationRoot"
+    class=".broken_links.DetectBrokenLinksView"
+    permission="cmf.ManagePortal"
+  />
+
+</configure>

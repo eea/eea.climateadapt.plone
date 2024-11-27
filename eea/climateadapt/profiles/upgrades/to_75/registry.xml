@@ -1,0 +1,15 @@
+<registry>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+    prefix="plone.app.querystring.field.sectors">
+    <value key="title">Sectors</value>
+    <value key="description"></value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.selection.any</element>
+    </value>
+    <value key="vocabulary">eea.climateadapt.aceitems_sectors</value>
+    <value key="group">Metadata</value>
+  </records>
+
+</registry>
