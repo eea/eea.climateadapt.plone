@@ -26,25 +26,25 @@ class IMissionFundingCCA(model.Schema, IBlocks):
 
     # Name of the funding programme (C) = title
 
-    form.fieldset(
-        "mission_funding_metadata",
-        label="Metadata",
-        fields=[
-            "country",
-            # "regions",
-            "rast_steps",
-            "eligible_entities",
-            "sectors",
-        ],
-    )
+    # form.fieldset(
+    #     "mission_funding_metadata",
+    #     label="Metadata",
+    #     fields=[
+    #         "country",
+    #         # "regions",
+    #         "rast_steps",
+    #         "eligible_entities",
+    #         "sectors",
+    #     ],
+    # )
 
     funding_type = ListField(
         title=_("Type of funding"),
         required=False,
         value_type=Choice(
             title=str("Type of funding"),
-            vocabulary="eea.climateadapt.mission.type_of_funding"
-        )
+            vocabulary="eea.climateadapt.mission.type_of_funding",
+        ),
         # column: Which type of funding is granted?
     )
 
@@ -53,7 +53,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.mission.budget_range",
-        )
+        ),
         # column: What is the expected budget range of proposals?
     )
 

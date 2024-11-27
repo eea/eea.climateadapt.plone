@@ -1,8 +1,5 @@
-from plone.app.dexterity.behaviors.metadata import IPublication
 from collective import dexteritytextindexer
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.schema import AbsoluteUrl, Uploader
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+from plone.app.dexterity.behaviors.metadata import IPublication
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.app.widgets.interfaces import IWidgetsLayer
@@ -18,6 +15,10 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer
 from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.schema import AbsoluteUrl, Uploader
+from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 
 class IAceItem(IImageScaleTraversable):
@@ -50,43 +51,44 @@ class IAceItem(IImageScaleTraversable):
     # directives.omitted(IAddForm, 'relatedItems')
     # directives.omitted(IEditForm, 'relatedItems')
 
-    form.fieldset(
-        "default",
-        label="Item Description",
-        fields=[
-            "title",
-            "description",
-            "long_description",
-            "keywords",
-            "sectors",
-            "climate_impacts",
-            "elements",
-            "featured",
-        ],
-    )
-
-    form.fieldset(
-        "reference_information",
-        label="Reference information",
-        fields=["websites", "source", "special_tags", "comments"],
-    )
-
-    form.fieldset(
-        "geographic_information", label="Geographic Information", fields=["geochars"]
-    )
-
-    form.fieldset(
-        "categorization",
-        label="Inclusion in the subsites",
-        fields=["include_in_observatory", "include_in_mission", "health_impacts"],
-    )
-
-    # form.fieldset('inclusion_health_observatory',
-    #              label=u'Inclusion in the Health Observatory',
-    #              fields=['health_impacts', 'include_in_observatory']
-    #              )
-
-    form.fieldset("backend", label="Backend fields", fields=[])
+    # form.fieldset(
+    #     "default",
+    #     label="Item Description",
+    #     fields=[
+    #         "title",
+    #         "description",
+    #         "long_description",
+    #         "keywords",
+    #         "sectors",
+    #         "climate_impacts",
+    #         "elements",
+    #         "featured",
+    #     ],
+    # )
+    #
+    # form.fieldset(
+    #     "reference_information",
+    #     label="Reference information",
+    #     fields=["websites", "source", "special_tags", "comments"],
+    # )
+    #
+    # form.fieldset(
+    #     "geographic_information", label="Geographic Information", fields=["geochars"]
+    # )
+    #
+    # form.fieldset(
+    #     "inclusion",
+    #     label="Inclusion in the subsites",
+    #     fields=["include_in_observatory",
+    #             "include_in_mission", "health_impacts"],
+    # )
+    #
+    # # form.fieldset('inclusion_health_observatory',
+    # #              label=u'Inclusion in the Health Observatory',
+    # #              fields=['health_impacts', 'include_in_observatory']
+    # #              )
+    #
+    # form.fieldset("backend", label="Backend fields", fields=[])
 
     # -----------[ "default" fields ]------------------
     # these are the richtext fields from the db:
@@ -147,7 +149,8 @@ class IAceItem(IImageScaleTraversable):
 
     long_description = RichText(
         title=_("Description"),
-        description=_("Provide a description of the item.(5,000 character limit)"),
+        description=_(
+            "Provide a description of the item.(5,000 character limit)"),
         required=True,
     )
 
@@ -204,8 +207,8 @@ class IAceItem(IImageScaleTraversable):
 
     form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_("Adaptation elements"),
-        description=_("Select one or more elements."),
+        title=_("Adaptation approaches"),
+        description=_("Select one or more approaches."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
@@ -349,8 +352,8 @@ class IAceItem(IImageScaleTraversable):
     directives.omitted(IAddForm, "metadata")
     directives.omitted(IEditForm, "metadata")
 
-    directives.omitted(IAddForm, "rating")
-    directives.omitted(IEditForm, "rating")
+    # directives.omitted(IAddForm, "rating")
+    # directives.omitted(IEditForm, "rating")
 
     # directives.omitted(IAddForm, 'special_tags')
     # directives.omitted(IEditForm, 'special_tags')
@@ -378,9 +381,11 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    item_link = AbsoluteUrl(title=_("Item link"), required=False, default=str(""))
+    item_link = AbsoluteUrl(title=_("Item link"),
+                            required=False, default=str(""))
 
-    uploader = Uploader(title=_("Uploaded by"), required=False, default=str(""))
+    uploader = Uploader(title=_("Uploaded by"),
+                        required=False, default=str(""))
     # fix???
     data_type = Choice(
         title=_("Data Type"),

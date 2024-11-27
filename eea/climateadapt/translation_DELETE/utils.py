@@ -17,7 +17,7 @@ from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.tiles.richtext import RichTextWithTitle
-from eea.climateadapt.translation import translate_one_text_to_translation_storage
+# from eea.climateadapt.translation import translate_one_text_to_translation_storage
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 
@@ -63,7 +63,8 @@ def translated_url(context, url, current_lang):
         return relative_path
 
     if relative_path_split[0] == "en":
-        new_path = "/{}/{}".format(current_lang, "/".join(relative_path_split[1:]))
+        new_path = "/{}/{}".format(current_lang,
+                                   "/".join(relative_path_split[1:]))
 
         return new_path
 
@@ -129,23 +130,23 @@ class TranslationUtilsMixin(object):
 
         return current_language
 
-    def get_translation_for_text(self, value, language=None):
-        if not language:
-            language = self.current_lang
-
-        language = language.upper()
-
-        if language == "EN":
-            return value
-
-        translated = translate_one_text_to_translation_storage("EN", value, [language])
-
-        if "translated" in translated:
-            encoded_text = translated["transId"].encode("latin-1")
-
-            return encoded_text
-
-        return value
+    # def get_translation_for_text(self, value, language=None):
+    #     if not language:
+    #         language = self.current_lang
+    #
+    #     language = language.upper()
+    #
+    #     if language == "EN":
+    #         return value
+    #
+    #     translated = translate_one_text_to_translation_storage("EN", value, [language])
+    #
+    #     if "translated" in translated:
+    #         encoded_text = translated["transId"].encode("latin-1")
+    #
+    #         return encoded_text
+    #
+    #     return value
 
     def get_i18n_for_text(self, text, domain="eea.climateadapt", language=None):
         if not language:
@@ -162,7 +163,8 @@ class TranslationUtilsMixin(object):
 def get_current_language(context, request):
     try:
         context = context.aq_inner
-        portal_state = getMultiAdapter((context, request), name="plone_portal_state")
+        portal_state = getMultiAdapter(
+            (context, request), name="plone_portal_state")
         return portal_state.language()
     except Exception:
         return "en"
@@ -257,7 +259,8 @@ def is_json(input):
 
 def get_object_fields_values(obj):
     # TODO: perhaps a list by each portal_type
-    tile_fields = ["title", "text", "description", "tile_title", "footer", "alt_text"]
+    tile_fields = ["title", "text", "description",
+                   "tile_title", "footer", "alt_text"]
 
     data = {
         "portal_type": obj.portal_type,

@@ -10,11 +10,12 @@ from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.tiles.richtext import RichTextWithTitle
-from eea.climateadapt.translation import (
-    retrieve_html_translation,
-    translate_one_field_in_one_step,
-    translate_one_text_to_translation_storage,
-)
+
+# from eea.climateadapt.translation import (
+#     # retrieve_html_translation,
+#     # translate_one_field_in_one_step,
+#     # translate_one_text_to_translation_storage,
+# )
 from eea.climateadapt.translation.constants import (
     IGNORE_FIELDS,
     LANGUAGE_INDEPENDENT_FIELDS,
@@ -114,7 +115,8 @@ def handle_cover_one_step(trans_obj, obj_en, language, source_language, trans_ob
 
         html_content = "<!doctype html>" + "<head><meta charset=utf-8></head><body>"
         for item in tile_html_fields:
-            html_tile = get_html_field(item["field"], item["tile_id"], item["value"])
+            html_tile = get_html_field(
+                item["field"], item["tile_id"], item["value"])
             html_content += html_tile
 
         html_content += "</body></html>"
@@ -245,7 +247,8 @@ def translate_obj(obj, lang=None, version=None, one_step=False):
         if language != lang:
             continue
 
-        trans_obj = get_translation_object(translations[language], obj_en, obj, version)
+        trans_obj = get_translation_object(
+            translations[language], obj_en, obj, version)
 
         if trans_obj is not None:
             translate_obj_with_language(

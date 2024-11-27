@@ -112,7 +112,7 @@ class CityProfile(dexterity.Container):
                                         publictoken,
                                         self.getId()
                                         )
-        print("Token url: ", url)
+        print(("Token url: ", url))
         return url
 
     #security.declareProtected('Modify portal content', 'get_private_edit_link')
@@ -126,7 +126,7 @@ class CityProfile(dexterity.Container):
                                         self._get_public_token(),
                                         self.getId()
                                         )
-        print("Token url: ", url)
+        print(("Token url: ", url))
         return url
 
     def can_reset_token(self):

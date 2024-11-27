@@ -178,7 +178,7 @@ class Items(BrowserView):
             #    break
             case_study_index = len(nodes)
             obj = brain.getObject()
-            print(brain.getURL)
+            print((brain.getURL))
             list_ipcc_categories = []
             adaptation_options = obj.adaptationoptions
             for ao_related in adaptation_options:
@@ -208,7 +208,7 @@ class Items(BrowserView):
             for sector_name in obj.sectors:
                 if sector_name == 'NONSPECIFIC':
                     continue
-                print('---S:'+sector_name)
+                print(('---S:'+sector_name))
                 if sector_name not in list(index_sectors.keys()):
                     index_sectors[sector_name] = len(nodes)
                     nodes.append({
@@ -217,7 +217,7 @@ class Items(BrowserView):
             for impact_name in obj.climate_impacts:
                 if impact_name == 'NONSPECIFIC':
                     continue
-                print('---I:'+impact_name)
+                print(('---I:'+impact_name))
                 if impact_name not in list(index_impacts.keys()):
                     index_impacts[impact_name] = len(nodes)
                     nodes.append({
@@ -342,7 +342,7 @@ class Plotly(BrowserView):
                             name_arr = name.split(': ')
                             name_category = name_arr[0]
                             name_value = name_arr[1]
-                            print(name_category+':'+name_value)
+                            print((name_category+':'+name_value))
                             if name_category not in list(indexes['nodes'].keys()):
                                 #indexes['ipcc_categories'][name_category] = len(nodes)
                                 indexes['nodes'][name_category] = len(nodes)
@@ -364,7 +364,7 @@ class Plotly(BrowserView):
                     ipcc_have_data['err'] = ipcc_have_data['err'] +1
 
                     logger.error('Failed: '+ str(e))
-                    print(brain.getURL())
+                    print((brain.getURL()))
 
             tag = lxml.etree.fromstring('<p>'+obj.long_description.raw.encode('utf-8').decode('utf-8')+'</p>')
             lxml.etree.strip_tags(tag, '*')

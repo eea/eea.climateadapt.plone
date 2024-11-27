@@ -6,58 +6,34 @@ import logging
 import os
 
 import transaction
-from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.volto import (get_content_from_html,
-                                                translate_volto_html)
 from plone.api import portal
-from plone.app.multilingual.manager import TranslationManager
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.dexterity.utils import iterSchemata
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getMultiAdapter
+from zope.schema import getFieldsInOrder
 
-from . import (get_translation_key_values, get_translation_keys,
-               get_translation_report)
-from .core import (copy_missing_interfaces, create_translation_object,
-                   handle_cover_step_4, handle_folder_doc_step_4, handle_link,
-                   save_field_data)
+from eea.climateadapt.browser.admin import force_unlock
+from eea.climateadapt.translation.contentrules import (
+    queue_translate_volto_html,
+)
+
+from .constants import LANGUAGE_INDEPENDENT_FIELDS
+from .core import get_blocks_as_html, ingest_html
+from .utils import get_value_representation
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
 
 
-def ingest_html(trans_obj, html):
-    force_unlock(trans_obj)
-
-    fielddata = get_content_from_html(html)
-
-    translations = TranslationManager(trans_obj).get_translations()
-    en_obj = translations["en"]  # hardcoded, should use canonical
-
-    save_field_data(en_obj, trans_obj, fielddata)
-
-    copy_missing_interfaces(en_obj, trans_obj)
-
-    # layout_en = en_obj.getLayout()
-    # if layout_en:
-    #     trans_obj.setLayout(layout_en)
-
-    if trans_obj.portal_type == "collective.cover.content":
-        handle_cover_step_4(en_obj, trans_obj, trans_obj.language, False)
-    if trans_obj.portal_type in ("Folder", "Document"):
-        handle_folder_doc_step_4(en_obj, trans_obj, False, False)
-    if trans_obj.portal_type in ["Link"]:
-        handle_link(en_obj, trans_obj)
-
-    # TODO: sync workflow state
-
-    trans_obj._p_changed = True
-    trans_obj.reindexObject()
-
-
 class HTMLIngestion(BrowserView):
+    """A special view to allow manually submit an HTML translated by
+    eTranslation, but that wasn't properly submitted through the callback"""
+
     def __call__(self):
-        html = self.request.form.get('html', '').decode('utf-8')
-        path = self.request.form.get('path', '')
+        html = self.request.form.get("html", "").decode("utf-8")
+        path = self.request.form.get("path", "")
 
         if not (html and path):
             return self.index()
@@ -117,6 +93,7 @@ class TranslateObjectAsync(BrowserView):
         messages.add("Translation process initiated.", type="info")
 
         obj = self.context
+        force_unlock(obj)
         html = getMultiAdapter(
             (self.context, self.context.REQUEST), name="tohtml")()
         site = portal.getSite()
@@ -125,17 +102,20 @@ class TranslateObjectAsync(BrowserView):
         )
         language = self.request.form.get("language", None)
 
-        translate_volto_html(html, obj, http_host, language)
+        queue_translate_volto_html(html, obj, http_host, language)
 
-        self.request.response.redirect(obj.absolute_url())
+        return self.request.response.redirect(obj.absolute_url())
 
 
 class TranslateFolderAsync(BrowserView):
+    """Exposed in /see_folder_objects"""
+
     def __call__(self):
         context = self.context
 
         brains = context.portal_catalog.searchResults(
-            path="/".join(context.getPhysicalPath())
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
         )
         site = portal.getSite()
         site_url = site.absolute_url()
@@ -143,118 +123,57 @@ class TranslateFolderAsync(BrowserView):
 
         for i, brain in enumerate(brains):
             obj = brain.getObject()
+            if "sandbox" in obj.absolute_url():
+                continue
 
+            logger.info("Queuing %s for translation", obj.absolute_url())
             html = getMultiAdapter(
                 (obj, self.context.REQUEST), name="tohtml")()
             http_host = self.context.REQUEST.environ.get(
                 "HTTP_X_FORWARDED_HOST", site_url
             )
 
-            translate_volto_html(html, obj, http_host, language)
+            force_unlock(obj)
+            queue_translate_volto_html(html, obj, http_host, language)
 
-            if i % 20 == 0:
-                transaction.commit()
+            # if i % 20 == 0:
+            #     transaction.commit()
 
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
-        self.request.response.redirect(self.context.absolute_url())
+        return self.request.response.redirect(self.context.absolute_url())
 
 
-def split_list(lst, chunk_size):
-    return [lst[i: i + chunk_size] for i in range(0, len(lst), chunk_size)]
-
-
-class CreateTranslationStructure(BrowserView):
+class ToHtml(BrowserView):
     def __call__(self):
-        context = self.context
+        obj = self.context
 
-        brains = context.portal_catalog.searchResults(
-            path="/".join(context.getPhysicalPath()),
-            portal_type="Folder",
-            sort_on="path",
-        )
-        site = portal.getSite()
-        language = self.request.form.get("language", None)
-        if not language:
-            return "no language"
+        self.fields = {}
+        self.order = []
+        self.values = {}
 
-        languages = [
-            # "bg",
-            # "hr",
-            # "cs",
-            # "da",
-            # "nl",
-            # "et",
-            # "fi",
-            #   "el",
-            #   "hu",
-            #   "ga",
-            #   "lv",
-            # "lt",
-            "mt",
-            "pt",
-            "sk",
-            "sl",
-            "sv",
-        ]
+        for schema in iterSchemata(obj):
+            for k, v in getFieldsInOrder(schema):
+                if (
+                    ILanguageIndependentField.providedBy(v)
+                    or k in LANGUAGE_INDEPENDENT_FIELDS
+                ):
+                    continue
+                self.fields[k] = v
+                value = self.get_value(k)
+                if value:
+                    self.order.append(k)
+                    self.values[k] = value
 
-        brain_count = len(brains)
+        html = self.index()
+        return html
 
-        for language in languages:
-            counted_brains = list(zip(list(range(len(brains))), brains))
-            batched_brains = split_list(counted_brains, 20)
-
-            for batch in batched_brains:
-
-                def task():
-                    for i, brain in batch:
-                        obj = brain.getObject()
-                        trans_obj = create_translation_object(
-                            obj, language, site)
-                        logger.info(
-                            "Translated object %s %s/%s %s",
-                            language,
-                            i,
-                            brain_count,
-                            trans_obj.absolute_url(),
-                        )
-
-                transaction.begin()
-                try:
-                    task()
-                    transaction.commit()
-                except:
-                    logger.exception("Will continue")
-
-        messages = IStatusMessage(self.request)
-        messages.add("Translation process initiated.", type="info")
-        self.request.response.redirect(self.context.absolute_url())
-
-
-class TranslationList(BrowserView):
-    """This view is called by the EC translation service.
-    Saves the translation in Annotations
-
-    Used with multiple templates, registered as /@@translate-list, /@@translate-report, /@@translate-key
-
-    TODO: remove this, no longer needed
-    """
-
-    def list(self):
-        form = self.request.form
-        search = form.get("search", None)
-        limit = int(form.get("limit", 10))
-
-        data = get_translation_keys()
-        if search:
-            data = [item for item in data if search in item]
-        if len(data) > limit:
-            data = data[0:limit]
-        return data
-
-    def keys(self):
-        key = self.request.form["key"]
-        return get_translation_key_values(key)
-
-    def report(self):
-        return get_translation_report()
+    def get_value(self, name):
+        if name == "blocks":
+            return get_blocks_as_html(self.context)
+        # TODO: remove cover_layout related handling
+        if name == "cover_layout":
+            return None
+        #     value = get_cover_as_html(self.context)
+        #     return value
+        return get_value_representation(self.context, name)

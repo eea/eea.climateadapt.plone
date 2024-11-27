@@ -79,7 +79,7 @@ def createAndPublishContentInContainer(*args, **kwargs):
 
 def printe(e):
     """ debug function to easily see an etree as pretty printed xml"""
-    print(lxml.etree.tostring(e, pretty_print=True))
+    print((lxml.etree.tostring(e, pretty_print=True)))
 
 
 def s2l(text, separator=';', separators=None, relaxed=False):
@@ -182,7 +182,7 @@ def detect_richtext_fields(session):
     """
     result = {}
     for klass in [sql.AceAceitem, sql.AceProject, sql.AceMeasure]:
-        print("Looking up", klass)
+        print(("Looking up", klass))
         richtext = set()
         for obj in session.query(klass):
             for name in list(obj.__dict__.keys()):
@@ -194,8 +194,8 @@ def detect_richtext_fields(session):
                         richtext.add(name)
         result[klass] = richtext
     for k, v in list(result.items()):
-        print("=" * 20)
-        print("Richtext fields for ", k, ": ", v)
+        print(("=" * 20))
+        print(("Richtext fields for ", k, ": ", v))
 
 
 def solve_dynamic_element(node):
@@ -1538,7 +1538,7 @@ def get_relateditems(saobj, context):
     util = getUtility(IIntIds, context=context)
     ids = [util.getId(f) for f in files]
     if ids:
-        print(ids, saobj)
+        print((ids, saobj))
 
     return [RelationValue(id) for id in ids]
 

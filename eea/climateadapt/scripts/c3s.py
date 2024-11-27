@@ -28,6 +28,11 @@ from collections import OrderedDict
 logger = logging.getLogger("eea.climateadapt")
 logging.basicConfig()
 
+# SOURCE_URL = (
+#     "https://raw.githubusercontent.com/bopen/c3s-430a-portal/"
+#     "static-generator-uncached/data/data_consolidated.json"
+# )
+
 SOURCE_URL = (
     "https://raw.githubusercontent.com/bopen/c3s-430a-portal/"
     "static-generator-acceptance/data/data_consolidated.json"
@@ -56,22 +61,19 @@ def update_object(obj, indicator):
     else:
         obj.c3s_theme = [indicator["theme"]]
 
-    obj.overview_app_toolbox_url = indicator["detail"]
-    # obj.overview_app_parameters = "{}"
-    # if indicator["vars"]["overview"]:
-    #    obj.overview_app_parameters = json.dumps(
-    #        {"workflowParams": indicator["vars"]["overview"]}
-    #    )
-    obj.overview_app_parameters = indicator["overview"]
-
-    # obj.details_app_toolbox_url = indicator["detail"]
-    # obj.details_app_parameters = "{}"
-    # if indicator["vars"]["detail"]:
-    #    obj.details_app_parameters = json.dumps(
-    #        {"workflowParams": indicator["vars"]["detail"]}
-    #    )
-
     obj.c3s_identifier = indicator.get("identifier", "")
+    obj.overview_app_ecde_identifier = indicator.get("ecde_identifier", "")
+    print(("ECDE identifier", obj.overview_app_ecde_identifier))
+
+    if len(obj.overview_app_ecde_identifier):
+        obj.overview_app_toolbox_url_v2 = indicator["detail"]
+    else:
+        obj.overview_app_toolbox_url = indicator["detail"]
+        obj.overview_app_parameters = indicator.get("overview", "")
+    print(('overview_app_toolbox_url', obj.overview_app_toolbox_url))
+    print(('overview_app_parameters', obj.overview_app_parameters))
+    print(('overview_app_toolbox_url v2', obj.overview_app_toolbox_url_v2))
+
     obj.sectors = []
     obj.climate_impacts = []
     obj.origin_website = ['C3S']

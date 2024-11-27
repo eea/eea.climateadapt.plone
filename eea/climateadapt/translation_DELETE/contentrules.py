@@ -73,7 +73,7 @@ class TranslateAction(SimpleItem):
     """The actual persistent implementation of the action element."""
 
     element = "eea.climateadapt.Translate"
-    summary = unicode("Translate object")
+    summary = str("Translate object")
 
 
 class TranslateAddForm(NullAddForm):
@@ -100,7 +100,7 @@ class TranslateAsyncAction(SimpleItem):
     implements(ITranslateAsyncAction, IRuleElementData)
 
     element = "eea.climateadapt.TranslateAsync"
-    summary = unicode("Translate object async")
+    summary = str("Translate object async")
 
 
 class TranslateAsyncActionExecutor(object):
@@ -145,7 +145,7 @@ class SynchronizeStatesForTranslationsAction(SimpleItem):
     """The actual persistent implementation of the action element."""
 
     element = "eea.climateadapt.SynchronizeStatesForTranslations"
-    summary = unicode("Synchronize states for translations")
+    summary = str("Synchronize states for translations")
 
 
 @adapter(Interface, ISynchronizeStatesForTranslationsAction, Interface)

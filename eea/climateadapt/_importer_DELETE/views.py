@@ -80,7 +80,7 @@ class SingleImporterView(BrowserView):
                 try:
                     ll = session.query(sql.Layout).filter_by(layoutid=llid).one()
                 except:
-                    print("Got error on layout", layout.friendlyurl)
+                    print(("Got error on layout", layout.friendlyurl))
                     continue
                     import pdb; pdb.set_trace()
                 this_url = layout.friendlyurl
@@ -100,11 +100,11 @@ class SingleImporterView(BrowserView):
             try:
                 cover = import_layout(layout, site)
             except:
-                print("Couldn't import layout %s", layout.friendlyurl)
+                print(("Couldn't import layout %s", layout.friendlyurl))
             if cover:
                 cover._imported_comment = \
                     "Imported from layout {0}".format(layout.layoutid)
-                print("Created cover at %s" % cover.absolute_url())
+                print(("Created cover at %s" % cover.absolute_url()))
 
     def import_dlentries(self):
         from eea.climateadapt._importer import import_dlfileentry
@@ -175,14 +175,14 @@ class SingleImporterView(BrowserView):
             if acemeasure.mao_type == 'A':
                 obj = import_casestudy(acemeasure, site['casestudy'])
                 imported.append(obj)
-                print("Imported Case Study {0} from id {1}".format(
-                    obj.absolute_url(), acemeasure.measureid))
+                print(("Imported Case Study {0} from id {1}".format(
+                    obj.absolute_url(), acemeasure.measureid)))
             else:
                 obj = import_adaptationoption(acemeasure,
                                               site['metadata']['adaptation-options'])
                 imported.append(obj)
-                print("Imported Adaptation Option {0} from id {1}".format(
-                    obj.absolute_url(), acemeasure.measureid))
+                print(("Imported Adaptation Option {0} from id {1}".format(
+                    obj.absolute_url(), acemeasure.measureid)))
 
         if imported:
             return self.request.response.redirect(imported[0].absolute_url())
@@ -214,8 +214,8 @@ class SingleImporterView(BrowserView):
         for project in to_import:
             obj = import_aceproject(project, site['aceprojects'])
             imported.append(obj)
-            print("Imported Project {0} from id {1}".format(
-                obj.absolute_url(), project.projectid))
+            print(("Imported Project {0} from id {1}".format(
+                obj.absolute_url(), project.projectid)))
         if imported:
             return self.request.response.redirect(imported[0].absolute_url())
         else:
@@ -266,7 +266,7 @@ class SingleImporterView(BrowserView):
                     name = str(pref.find('name').text)
                     values = pref.findall('value')
                     if len(values) > 1:
-                        print(len(values), name, portlet.portletid)
+                        print((len(values), name, portlet.portletid))
                     res = []
                     for node in values:
                         try:

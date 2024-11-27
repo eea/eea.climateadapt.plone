@@ -84,7 +84,7 @@ class DoSearch(BrowserView, FacetedQueryHandler):
         return dict(SEARCH_TYPES)
 
     def render(self, name, brains):
-        print("rendering ", name)
+        print(("rendering ", name))
 
         view = queryMultiAdapter((self.context, self.request),
                                  name='faceted_listing_' + name)
@@ -171,7 +171,7 @@ class ListingView(BrowserView):
         )
 
     def key(method, self, name, brains):
-        print("caching ", name)
+        print(("caching ", name))
 
         cache_key = cacheKeyFacetedNavigation(method, self, name, brains)
         cache_key += (name, )
@@ -180,7 +180,7 @@ class ListingView(BrowserView):
 
     @cache(key, dependencies=['eea.facetednavigation'])  # , lifetime=36000
     def render(self, name, brains):
-        print("rendering ", name)
+        print(("rendering ", name))
 
         # if name != 'DOCUMENT':
         #     return ''

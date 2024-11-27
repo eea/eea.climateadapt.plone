@@ -136,7 +136,7 @@ class C3sIndicatorsOverview(BrowserView):
                                             brain.absolute_url())
 
                         else:
-                            print("Not found: " + item['title'])
+                            print(("Not found: " + item['title']))
 
         for side in response:
             for cindex, category in enumerate(overview_page['category_order_'+side]):
@@ -209,27 +209,28 @@ class C3sIndicatorsOverview(BrowserView):
             responseHtml += "<td rowspan=\"" + \
                 str(response[_category]['total_indicators'])+"\">" + \
                 translate_text(self.context, self.request,
-                               _category, 'eea.cca')+"</td>"
+                               _category, 'eea.cca')+str("</td>")
             for i, _type in enumerate(response[_category]['types'].keys()):
                 if i > 0:
-                    responseHtml += "<tr>"
-                responseHtml += "<td rowspan=\"" + \
+                    responseHtml += str("<tr>")
+                responseHtml += str("<td rowspan=\"") + \
                     str(len(response[_category]['types'][_type]))+"\">" + \
                     translate_text(self.context, self.request,
-                                   _type, 'eea.cca')+"</td>"
+                                   _type, 'eea.cca') + str("</td>")
                 for j, indicator in enumerate(response[_category]['types'][_type]):
                     if j > 0:
-                        responseHtml += "<tr>"
-                    responseHtml += "<td><a href=\"" + \
-                        indicator['cca_url']+"\">" + \
-                        indicator['cca_title'].decode('utf-8')+"</a></td>"
-                    responseHtml += "<td><a href=\"" + \
-                        indicator['zip_url']+"\">" + \
+                        responseHtml += str("<tr>")
+                    responseHtml += str("<td><a href=\"") + \
+                        indicator['cca_url']+str("\">") + \
+                        indicator['cca_title'].decode(
+                            'utf-8')+str("</a></td>")
+                    responseHtml += str("<td><a href=\"") + \
+                        indicator['zip_url']+str("\">") + \
                         translate_text(self.context, self.request,
-                                       "Download", 'eea.cca')+"</a></td>"
-                    responseHtml += "</tr>"
+                                       "Download", 'eea.cca')+str("</a></td>")
+                    responseHtml += str("</tr>")
 
-        return responseHtml + "</tbody>"
+        return responseHtml + str("</tbody>")
 
     def get_disclaimer(self):
         site = portal.get()

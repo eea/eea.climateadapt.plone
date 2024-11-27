@@ -1,3 +1,5 @@
+from Products.PluginIndexes.common import safe_callable
+from Missing import MV
 # from eea.climateadapt.translation.utils import get_current_language
 from plone.app.theming.transform import _Cache
 from zope.globalrequest import getRequest
@@ -38,15 +40,15 @@ def getCache(settings):
 
 
 def filtered_search_paths(context, paths):
-    """ Input: ['/cca/en'] or ['/cca/en', '/cca/de', ...]
-        Return: the list of paths to be used in search (excluding Mission)
+    """Input: ['/cca/en'] or ['/cca/en', '/cca/de', ...]
+    Return: the list of paths to be used in search (excluding Mission)
     """
     res = []
     for path in paths:
         container = context.unrestrictedTraverse(path, None)
         contents = container.listFolderContents()
         paths_in_context = ["/".join(x.getPhysicalPath()) for x in contents]
-        filtered_paths = [x for x in paths_in_context if '/mission' not in x]
+        filtered_paths = [x for x in paths_in_context if "/mission" not in x]
         for s_path in filtered_paths:
             res.append(s_path)
 
@@ -54,10 +56,10 @@ def filtered_search_paths(context, paths):
 
 
 def results(self, query=None, batch=True, b_size=10, b_start=0):
-    """ https://github.com/plone/plone.app.search/blob/1.1.x/plone/app/search/browser.py#L33
-        Get properly wrapped search results from the catalog.
-        Everything in Plone that performs searches should go through this view.
-        'query' should be a dictionary of catalog parameters.
+    """https://github.com/plone/plone.app.search/blob/1.1.x/plone/app/search/browser.py#L33
+    Get properly wrapped search results from the catalog.
+    Everything in Plone that performs searches should go through this view.
+    'query' should be a dictionary of catalog parameters.
     """
     if query is None:
         query = {}
@@ -97,12 +99,12 @@ def results(self, query=None, batch=True, b_size=10, b_start=0):
 
     # FILTER MISSION CONTENT
     # Refs #252993 - Also exclude content from Mission subsite.
-    if updated_path == '/cca':
+    if updated_path == "/cca":
         search_paths = ["/cca/" + language for language in languages]
     else:
         search_paths = [updated_path]
 
-    query["path"] = {'query': filtered_search_paths(
+    query["path"] = {"query": filtered_search_paths(
         self.context, search_paths)}
     # Customization end -------------------------------------------------------
 
@@ -143,7 +145,7 @@ def metadata_fields(self):
             fields_cache = set(catalog.schema()) | NON_METADATA_ATTRIBUTES
             self.request.set("_summary_fields_cache", fields_cache)
         additional_metadata_fields = fields_cache
-    image_metadata_fields = set(['image_field', 'image_scales'])
+    image_metadata_fields = set(["image_field", "image_scales"])
 
     return DEFAULT_METADATA_FIELDS | additional_metadata_fields | image_metadata_fields
 
@@ -158,7 +160,7 @@ def getTerm(self, userid):
     fullname = userid
     user = self._users.getUserById(userid, None)
     if user:
-        fullname = user.getProperty('fullname', None) or userid
+        fullname = user.getProperty("fullname", None) or userid
 
     return SimpleTerm(userid, token, fullname)
 
@@ -169,41 +171,48 @@ def _get_events(self, ret_mode=RET_MODE_ACCESSORS, expand=True):
     kw = {}
     if self.uid:
         # In this case, restrict search for single event
-        kw['UID'] = self.uid
+        kw["UID"] = self.uid
     else:
         if self.path:
-            kw['path'] = self.path
+            kw["path"] = self.path
         elif self.settings.current_folder_only:
-            kw['path'] = '/'.join(context.getPhysicalPath())
+            kw["path"] = "/".join(context.getPhysicalPath())
 
         if self.tags:
-            kw['Subject'] = {'query': self.tags, 'operator': 'and'}
+            kw["Subject"] = {"query": self.tags, "operator": "and"}
 
         if self.searchable_text:
-            kw['SearchableText'] = self.searchable_text
+            kw["SearchableText"] = self.searchable_text
 
     # kw['b_start'] = self.b_start
     # kw['b_size']  = self.b_size
 
     start, end = self._start_end
 
-    sort = 'start'
+    sort = "start"
     sort_reverse = False
-    if self.mode in ('past', 'all'):
+    if self.mode in ("past", "all"):
         sort_reverse = True
 
     # override starts here:
-    unfiltered_events = get_events(context, start=start, end=end,
-                                   sort=sort, sort_reverse=sort_reverse,
-                                   ret_mode=ret_mode, expand=expand, **kw)
+    unfiltered_events = get_events(
+        context,
+        start=start,
+        end=end,
+        sort=sort,
+        sort_reverse=sort_reverse,
+        ret_mode=ret_mode,
+        expand=expand,
+        **kw
+    )
 
     events = []
     for evt in unfiltered_events:
-        if hasattr(evt, 'url'): # this is an IEventAccessor
+        if hasattr(evt, "url"):  # this is an IEventAccessor
             url = evt.url
         else:
             url = evt.absolute_url()
-        if '/mission/' not in url:
+        if "/mission/" not in url:
             events.append(evt)
 
     return events
@@ -212,8 +221,30 @@ def _get_events(self, ret_mode=RET_MODE_ACCESSORS, expand=True):
 THREE_SECONDS = 3000
 
 
-def __patched_modified_since(self, since, offset=THREE_SECONDS):
+def patched_modified_since(self, since, offset=THREE_SECONDS):
     # __import__('pdb').set_trace()
     res = self._old__modified_since(since, offset)
-    #print("Is modified", res, since, offset)
+    # print("Is modified", res, since, offset)
     return res
+
+
+def patched_addCreator(self, creator=None):
+    if len(self.creators) > 0:
+        # do not add creator if one is already set
+        return
+    return self._old_addCreator(creator)
+
+
+def patched_recordify(self, object):
+    """turns an object into a record tuple"""
+    record = []
+    # the unique id is always the first element
+    for x in self.names:
+        attr = getattr(object, x, MV)
+        if getattr(attr, "_p_jar", None):  # the patch
+            record.append(None)
+            continue
+        if attr is not MV and safe_callable(attr):
+            attr = attr()
+        record.append(attr)
+    return tuple(record)

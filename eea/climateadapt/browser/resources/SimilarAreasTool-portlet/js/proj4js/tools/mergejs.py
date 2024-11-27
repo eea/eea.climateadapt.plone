@@ -83,7 +83,7 @@ def usage(filename):
     """
     Displays a usage message.
     """
-    print("%s [-c <config file>] <output.js> <directory> [...]" % filename)
+    print(("%s [-c <config file>] <output.js> <directory> [...]" % filename))
 
 
 class Config:
@@ -166,7 +166,7 @@ def run (sourceDirectory, outputFilename = None, configFile = None):
     ## Import file source code
     ## TODO: Do import when we walk the directories above?
     for filepath in allFiles:
-        print("Importing: %s" % filepath)
+        print(("Importing: %s" % filepath))
         fullpath = os.path.join(sourceDirectory, filepath)
         content = open(fullpath, "U").read() # TODO: Ensure end of line @ EOF?
         files[filepath] = SourceFile(filepath, content) # TODO: Chop path?
@@ -183,7 +183,7 @@ def run (sourceDirectory, outputFilename = None, configFile = None):
         nodes = []
         routes = []
         ## Resolve the dependencies
-        print("Resolution pass %s... " % resolution_pass)
+        print(("Resolution pass %s... " % resolution_pass))
         resolution_pass += 1 
 
         for filepath, info in list(files.items()):
@@ -195,7 +195,7 @@ def run (sourceDirectory, outputFilename = None, configFile = None):
             for filepath in dependencyLevel:
                 order.append(filepath)
                 if filepath not in files:
-                    print("Importing: %s" % filepath)
+                    print(("Importing: %s" % filepath))
                     fullpath = os.path.join(sourceDirectory, filepath)
                     content = open(fullpath, "U").read() # TODO: Ensure end of line @ EOF?
                     files[filepath] = SourceFile(filepath, content) # TODO: Chop path?
@@ -229,17 +229,17 @@ def run (sourceDirectory, outputFilename = None, configFile = None):
 
     for fp in order:
         f = files[fp]
-        print("Exporting: ", f.filepath)
+        print(("Exporting: ", f.filepath))
         result.append(HEADER % f.filepath)
         source = f.source
         result.append(source)
         if not source.endswith("\n"):
             result.append("\n")
 
-    print("\nTotal files merged: %d " % len(files))
+    print(("\nTotal files merged: %d " % len(files)))
 
     if outputFilename:
-        print("\nGenerating: %s" % (outputFilename))
+        print(("\nGenerating: %s" % (outputFilename)))
         open(outputFilename, "w").write("".join(result))
     return "".join(result)
 
@@ -262,6 +262,6 @@ if __name__ == "__main__":
     configFile = None
     if options and options[0][0] == "-c":
         configFile = options[0][1]
-        print("Parsing configuration file: %s" % filename)
+        print(("Parsing configuration file: %s" % filename))
 
     run( sourceDirectory, outputFilename, configFile )

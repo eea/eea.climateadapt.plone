@@ -4,17 +4,17 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from zope.interface import provider
-from zope.schema import (Bool, Choice, List)
+from zope.schema import Bool, Choice, List
 
 
 @provider(IFormFieldProvider)
 class IHealthObservatoryMetadata(model.Schema):
-    model.fieldset(
-        "health_inclusion",
-        label="Inclusion in the subsites",
-        fields=["include_in_observatory",
-                "include_in_mission", "health_impacts"],
-    )
+    # model.fieldset(
+    #     "health_inclusion",
+    #     label=u"Inclusion in the subsites",
+    #     fields=["include_in_observatory",
+    #             "include_in_mission", "health_impacts"],
+    # )
 
     include_in_observatory = Bool(
         title=_("Include in observatory"), required=False, default=False
@@ -31,6 +31,11 @@ class IHealthObservatoryMetadata(model.Schema):
     )
 
 
-alsoProvides(IHealthObservatoryMetadata["include_in_observatory"], ILanguageIndependentField)
-alsoProvides(IHealthObservatoryMetadata["include_in_mission"], ILanguageIndependentField)
-alsoProvides(IHealthObservatoryMetadata["health_impacts"], ILanguageIndependentField)
+alsoProvides(
+    IHealthObservatoryMetadata["include_in_observatory"], ILanguageIndependentField
+)
+alsoProvides(
+    IHealthObservatoryMetadata["include_in_mission"], ILanguageIndependentField
+)
+alsoProvides(
+    IHealthObservatoryMetadata["health_impacts"], ILanguageIndependentField)

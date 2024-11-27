@@ -170,7 +170,7 @@ def application(environ, start_response):
         data_string = environ['wsgi.input'].read(length)
 
         data = urllib.parse.parse_qs(data_string)
-        print("Recieved data:", data)
+        print(("Recieved data:", data))
         # Check for required parameters:
         for x in ('year', 'month', 'day', 'rrule', 'format'):
             assert x in data
@@ -196,7 +196,7 @@ def application(environ, start_response):
         return [response_body]
 
 httpd = make_server('', port, application)
-print("Serving at port", port)
+print(("Serving at port", port))
 
 # Respond to requests until process is killed
 while True:

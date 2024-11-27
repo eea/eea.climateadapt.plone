@@ -17,12 +17,12 @@ if len(sys.argv) > 2:
 
 print("Merging libraries.")
 merged = mergejs.run(sourceDirectory, None, configFilename)
-print("Setting the filename to "+filename)
+print(("Setting the filename to "+filename))
 merged = merged.replace('scriptName: "proj4js.js",','scriptName: "'+filename+'",');
 print("Adding license file.")
 merged = file("license.txt").read() + merged
 
-print("Writing to %s." % outputFilename)
+print(("Writing to %s." % outputFilename))
 file(outputFilename, "w").write(merged)
 
 print("Done.")

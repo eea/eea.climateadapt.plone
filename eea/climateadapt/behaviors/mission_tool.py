@@ -17,26 +17,28 @@ fpath = resource_filename(
 )
 layout = json.load(open(fpath))
 
+
 @provider(IFormFieldProvider)
 class IMissionTool(model.Schema, IBlocks):
     """MissionTool Interface"""
 
-    form.fieldset(
-        "mission_tool_metadata",
-        label="Metadata",
-        fields = [
-            "readiness_for_use",
-            "rast_steps",
-            "geographical_scale",
-            "climate_impacts",
-            "tool_language",
-            "sectors",
-            "most_useful_for",
-            "user_requirements"
-        ]
-    )
+    # form.fieldset(
+    #     "mission_tool_metadata",
+    #     label="Metadata",
+    #     fields = [
+    #         "readiness_for_use",
+    #         "rast_steps",
+    #         "geographical_scale",
+    #         "climate_impacts",
+    #         "tool_language",
+    #         "sectors",
+    #         "most_useful_for",
+    #         "user_requirements"
+    #     ]
+    # )
 
-    form.widget(readiness_for_use="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    form.widget(
+        readiness_for_use="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     readiness_for_use = List(
         title=_("Readiness for use"),
         required=False,
@@ -54,7 +56,8 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    form.widget(geographical_scale="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    form.widget(
+        geographical_scale="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     geographical_scale = List(
         title=_("Geographical scale"),
         required=False,
@@ -106,7 +109,8 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    form.widget(user_requirements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    form.widget(
+        user_requirements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     user_requirements = List(
         title=_("User requirements"),
         required=False,
@@ -132,12 +136,11 @@ class IMissionTool(model.Schema, IBlocks):
     )
 
 
-alsoProvides(IMissionTool['readiness_for_use'], ILanguageIndependentField)
-alsoProvides(IMissionTool['rast_steps'], ILanguageIndependentField)
-alsoProvides(IMissionTool['geographical_scale'], ILanguageIndependentField)
-alsoProvides(IMissionTool['climate_impacts'], ILanguageIndependentField)
-alsoProvides(IMissionTool['tool_language'], ILanguageIndependentField)
-alsoProvides(IMissionTool['sectors'], ILanguageIndependentField)
-alsoProvides(IMissionTool['most_useful_for'], ILanguageIndependentField)
-alsoProvides(IMissionTool['user_requirements'], ILanguageIndependentField)
-
+alsoProvides(IMissionTool["readiness_for_use"], ILanguageIndependentField)
+alsoProvides(IMissionTool["rast_steps"], ILanguageIndependentField)
+alsoProvides(IMissionTool["geographical_scale"], ILanguageIndependentField)
+alsoProvides(IMissionTool["climate_impacts"], ILanguageIndependentField)
+alsoProvides(IMissionTool["tool_language"], ILanguageIndependentField)
+alsoProvides(IMissionTool["sectors"], ILanguageIndependentField)
+alsoProvides(IMissionTool["most_useful_for"], ILanguageIndependentField)
+alsoProvides(IMissionTool["user_requirements"], ILanguageIndependentField)

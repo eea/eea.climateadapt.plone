@@ -32,7 +32,7 @@ def convert_to_string(item):
     if not item:
         return ""
 
-    if not isinstance(item, basestring):
+    if not isinstance(item, str):
         new_item = ""
         try:
             iterator = iter(item)
@@ -66,7 +66,7 @@ def discover_links(string_to_search):
     try:
         result = re.findall(REGEX, string_to_search) or []
 
-        if isinstance(result, basestring):
+        if isinstance(result, str):
             result = [result]
     except Exception as err:
         logger.error(err)
@@ -80,7 +80,7 @@ def check_link_status(link):
     status codes
     """
     if link:
-        if isinstance(link, unicode):
+        if isinstance(link, str):
             try:
                 link = link.encode()
             except UnicodeEncodeError:
@@ -158,8 +158,8 @@ def check_link_status(link):
 def extract_websites(obj):
     urls = []
     if hasattr(obj, "websites"):
-        if isinstance(obj.websites, basestring):
-            lines = obj.websites.split(unicode("\n"))
+        if isinstance(obj.websites, str):
+            lines = obj.websites.split(str("\n"))
             for line in lines:
                 if line.strip():
                     urls.append(line.strip())
@@ -179,7 +179,7 @@ def extract_richtext(obj, fieldname):
             bs = BeautifulSoup(text)
             links = bs.findAll("a", attrs={"href": re.compile("^https?://")})
             urls.extend([link.get("href") for link in links])
-    elif isinstance(field, basestring):
+    elif isinstance(field, str):
         urls = discover_links(field)
 
     return urls
@@ -369,7 +369,7 @@ def compute_broken_links(site):
 
     now = DateTime()
     annot[now] = results
-    dates = annot.keys()
+    dates = list(annot.keys())
 
     if len(dates) >= 5:  # maximum no. of dates stored
         # delete oldest data except 'pre_nov7_data'
@@ -459,7 +459,7 @@ class BrokenLinksService(Service):
         row_index = 1
 
         for chunk in data:
-            for url, row in chunk.items():
+            for url, row in list(chunk.items()):
                 for i, (key, title) in enumerate(headers):
                     value = row[key]
                     worksheet.write(row_index, i, value or "")
