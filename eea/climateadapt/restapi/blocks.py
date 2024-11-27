@@ -95,7 +95,7 @@ class RastBlockSerializationTransformer(object):
 
     def __call__(self, block):
         if block.get("root_path"):
-            block["root_path"] = block.root_path.replace(
+            block["root_path"] = block["root_path"].replace(
                 "/en/", "/%s/" % (self.context.language or "en")
             )
 
