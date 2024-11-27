@@ -3,7 +3,7 @@ import logging
 import re
 import urllib.request, urllib.parse, urllib.error
 from datetime import datetime
-from email.MIMEText import MIMEText
+from email.mime.text import MIMEText
 from io import BytesIO
 from itertools import islice
 
