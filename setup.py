@@ -52,6 +52,7 @@ setup(
         "langdetect",
         "chardet",
         "zeep==3.4.0",
+        "XlsxWriter==1.2.7",
         # "google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],
