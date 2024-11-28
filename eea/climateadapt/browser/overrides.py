@@ -20,15 +20,15 @@ from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 # from plone.app.textfield.interfaces import IRichText
-from plone.app.users.browser import personalpreferences as prefs
+# from plone.app.users.browser import personalpreferences as prefs
 # from plone.app.widgets.dx import RichTextWidget
 # from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.memoize.instance import memoize
 from Products.CMFPlone import utils
 from Products.CMFPlone.browser.navigation import CatalogSiteMap
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+# from Products.Five.browser import BrowserView
+# from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 # from z3c.form.interfaces import IFieldWidget, IFormLayer
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
@@ -51,40 +51,40 @@ thematic_sectors = SimpleVocabulary([
 ])
 
 
-class IEnhancedPersonalPreferencesSchema(prefs.IPersonalPreferences):
-    """ Use all the fields from the default user personal preferences schema,
-        and add the thematic_sectors field.
-    """
-    thematic_sectors = List(
-        title=_('Professional thematic domain'),
-        description=_("Select the sectors for which you want to receive a "
-                      "notification email when an item is modified."),
-        required=True,
-        value_type=Choice(
-            vocabulary=thematic_sectors))
+# class IEnhancedPersonalPreferencesSchema(prefs.IPersonalPreferences):
+#     """ Use all the fields from the default user personal preferences schema,
+#         and add the thematic_sectors field.
+#     """
+#     thematic_sectors = List(
+#         title=_('Professional thematic domain'),
+#         description=_("Select the sectors for which you want to receive a "
+#                       "notification email when an item is modified."),
+#         required=True,
+#         value_type=Choice(
+#             vocabulary=thematic_sectors))
 
 
-class EnhancedPersonalPreferencesPanelAdapter(
-        prefs.PersonalPreferencesPanelAdapter):
-    """ Adapter for the personalpreferences panel
-    """
+# class EnhancedPersonalPreferencesPanelAdapter(
+#         prefs.PersonalPreferencesPanelAdapter):
+#     """ Adapter for the personalpreferences panel
+#     """
 
-    def get_thematic_sectors(self):
-        value = []
-        thematic_sectors = self.context.getProperty('thematic_sectors', '')
+#     def get_thematic_sectors(self):
+#         value = []
+#         thematic_sectors = self.context.getProperty('thematic_sectors', '')
 
-        if thematic_sectors:
-            value = thematic_sectors.split(',')
+#         if thematic_sectors:
+#             value = thematic_sectors.split(',')
 
-        return value
+#         return value
 
-    def set_thematic_sectors(self, value):
-        thematic_sectors = ','.join(value)
+#     def set_thematic_sectors(self, value):
+#         thematic_sectors = ','.join(value)
 
-        return self.context.setMemberProperties(
-            {'thematic_sectors': thematic_sectors})
+#         return self.context.setMemberProperties(
+#             {'thematic_sectors': thematic_sectors})
 
-    thematic_sectors = property(get_thematic_sectors, set_thematic_sectors)
+#     thematic_sectors = property(get_thematic_sectors, set_thematic_sectors)
 
 
 # class CustomizedPersonalPrefPanel(prefs.PersonalPreferencesPanel):
@@ -418,8 +418,8 @@ class DisplaySubMenuItem(DSMI):
 #     return FieldWidget(field, OverrideRichText(request))
 
 
-class PasswordAccountPanel(prefs.PasswordAccountPanel):
-    template = ViewPageTemplateFile('pt/password-account-panel.pt')
+# class PasswordAccountPanel(prefs.PasswordAccountPanel):
+#     template = ViewPageTemplateFile('pt/password-account-panel.pt')
 
 
 class CustomizedCatalogSiteMap(CatalogSiteMap):

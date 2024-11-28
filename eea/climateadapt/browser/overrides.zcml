@@ -37,15 +37,15 @@
     permission="eea.pdf.download"
     /> -->
 
-  <class class=".overrides.FolderPdfBody">
+  <!-- <class class=".overrides.FolderPdfBody">
     <implements interface="plone.app.blocks.interfaces.IBlocksTransformEnabled" />
-  </class>
+  </class> -->
 
-  <adapter
+  <!-- <adapter
     provides=".overrides.IEnhancedPersonalPreferencesSchema"
     for="Products.CMFCore.interfaces.ISiteRoot"
     factory=".overrides.EnhancedPersonalPreferencesPanelAdapter"
-    />
+    /> -->
 
   <!-- <browser:page
     for="Products.CMFPlone.Portal.PloneSite"
@@ -55,12 +55,12 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     /> -->
 
-  <browser:page
+  <!-- <browser:page
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     name="change-password"
     class=".overrides.PasswordAccountPanel"
     permission="cmf.SetOwnPassword"
-    />
+    /> -->
 
   <browser:page
     for="*"
