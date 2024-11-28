@@ -190,7 +190,7 @@
       permission="cmf.ManagePortal"
       />
 
-    <browser:page
+    <!-- <browser:page
         for="*"
         name="fix-blobs-only-check"
         class=".fixblobs.FixBlobsOnlyCheck"
@@ -203,7 +203,7 @@
         name="fix-blobs-imsure-delete"
         class=".fixblobs.FixBlobs"
         permission="cmf.ManagePortal"
-        />
+        /> -->
 
     <browser:page
         for="*"

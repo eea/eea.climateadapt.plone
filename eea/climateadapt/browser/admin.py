@@ -8,8 +8,8 @@ from io import BytesIO as StringIO
 # from apiclient.discovery import build
 from DateTime import DateTime
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.browser.fixblobs import (check_at_blobs,
-                                               check_dexterity_blobs)
+# from eea.climateadapt.browser.fixblobs import (check_at_blobs,
+#                                                check_dexterity_blobs)
 from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
@@ -935,30 +935,30 @@ class GetBrokenCreationDates(BrowserView):
 
         return "Fixed {} results!".format(len(results))
 
-    def fix_broken_dates(self):
-        results = self.results()
+    # def fix_broken_dates(self):
+    #     results = self.results()
 
-        for row in results:
-            obj = row[0]
+    #     for row in results:
+    #         obj = row[0]
 
-            if obj.portal_type in ('File', 'Image'):
-                continue
+    #         if obj.portal_type in ('File', 'Image'):
+    #             continue
 
-            if check_at_blobs(obj) or check_dexterity_blobs(obj):
-                continue
+    #         if check_at_blobs(obj) or check_dexterity_blobs(obj):
+    #             continue
 
-            new_creator = row[3]
-            new_creation_date = row[5]
-            creators = [
-                x for x in obj.creators if x != new_creator
-            ]
-            creators = tuple([new_creator] + creators)
-            obj.creators = creators
-            obj.creation_date = new_creation_date
-            obj._p_changed = True
-            obj.reindexObject(idxs=["creators", "creation_date"])
+    #         new_creator = row[3]
+    #         new_creation_date = row[5]
+    #         creators = [
+    #             x for x in obj.creators if x != new_creator
+    #         ]
+    #         creators = tuple([new_creator] + creators)
+    #         obj.creators = creators
+    #         obj.creation_date = new_creation_date
+    #         obj._p_changed = True
+    #         obj.reindexObject(idxs=["creators", "creation_date"])
 
-        return "Fixed {} objects!".format(len(results))
+    #     return "Fixed {} objects!".format(len(results))
 
     def __call__(self):
         if "fix-broken-dates" in self.request.form:
