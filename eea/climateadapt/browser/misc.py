@@ -23,7 +23,7 @@ from Products.CMFPlone.utils import getToolByName, isExpired
 from Products.Five.browser import BrowserView
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
-from zope.interface import Interface, implements
+from zope.interface import Interface, implementer
 
 # from eea.climateadapt.translation.utils import (
 #     filters_to_query,
@@ -251,22 +251,19 @@ class ISimplifiedResourceRegistriesView(Interface):
     """A view with simplified resource registries"""
 
 
+@implementer(ISimplifiedResourceRegistriesView)
 class TransRegionView(BrowserView):
     """Custom view for /transnational-regions"""
 
-    implements(ISimplifiedResourceRegistriesView)
 
-
+@implementer(ISimplifiedResourceRegistriesView)
 class CountriesView(BrowserView):
     """Custom view for http://climate-adapt.eea.europa.eu/countries"""
 
-    implements(ISimplifiedResourceRegistriesView)
 
-
+@implementer(ISimplifiedResourceRegistriesView)
 class MapViewerView(BrowserView):
     """Custom view for http://climate-adapt.eea.europa.eu/tools/map-viewer"""
-
-    implements(ISimplifiedResourceRegistriesView)
 
     def __call__(self):
         return self.request.response.redirect(

@@ -5,64 +5,54 @@ from eea.climateadapt.behaviors import (IAction,
                                         IResearchProject, ITool)
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.directives import dexterity
-from zope.interface import implements
+from zope.interface import implementer
 
 
+@implementer(IPublicationReport, IClimateAdaptContent)
 class PublicationReport(dexterity.Container):
-    implements(IPublicationReport, IClimateAdaptContent)
-
     search_type = "DOCUMENT"
 
 
+@implementer(IInformationPortal, IClimateAdaptContent)
 class InformationPortal(dexterity.Container):
-    implements(IInformationPortal, IClimateAdaptContent)
-
     search_type = "INFORMATIONSOURCE"
 
 
+@implementer(IGuidanceDocument, IClimateAdaptContent)
 class GuidanceDocument(dexterity.Container):
-    implements(IGuidanceDocument, IClimateAdaptContent)
-
     search_type = "GUIDANCE"
 
 
+@implementer(ITool, IClimateAdaptContent)
 class Tool(dexterity.Container):
-    implements(ITool, IClimateAdaptContent)
-
     search_type = "TOOL"
 
 
+@implementer(IOrganisation, IClimateAdaptContent)
 class Organisation(dexterity.Container):
-    implements(IOrganisation, IClimateAdaptContent)
-
     search_type = "ORGANISATION"
 
 
+@implementer(IIndicator, IClimateAdaptContent)
 class Indicator(dexterity.Container):
-    implements(IIndicator, IClimateAdaptContent)
-
     search_type = "INDICATOR"
 
 
+@implementer(IIndicator, IClimateAdaptContent)
 class C3sIndicator(dexterity.Container):
-    implements(IIndicator, IClimateAdaptContent)
-
     search_type = "INDICATOR"
 
 
+@implementer(IMapGraphDataset, IClimateAdaptContent)
 class MapGraphDataset(dexterity.Container):
-    implements(IMapGraphDataset, IClimateAdaptContent)
-
     search_type = "MAPGRAPHDATASET"
 
 
+@implementer(IResearchProject, IClimateAdaptContent)
 class ResearchProject(dexterity.Container):
-    implements(IResearchProject, IClimateAdaptContent)
-
     search_type = "RESEARCHPROJECT"
 
 
+@implementer(IAction, IClimateAdaptContent)
 class Action(dexterity.Container):
-    implements(IAction, IClimateAdaptContent)
-
     search_type = "ACTION"

@@ -10,7 +10,7 @@ from plone.app.multilingual.manager import TranslationManager
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFCore.utils import getToolByName
 from zope.component import adapter, adapts, getMultiAdapter
-from zope.interface import Interface, implementer, implements
+from zope.interface import Interface, implementer
 
 from eea.climateadapt.asynctasks.utils import get_async_service
 from eea.climateadapt.translation.utils import get_site_languages
@@ -94,19 +94,19 @@ class ITranslateAsyncAction(Interface):
     """Interface for run translate and translate_step_4 for and object"""
 
 
+@implementer(ITranslateAsyncAction, IRuleElementData)
 class TranslateAsyncAction(SimpleItem):
     """Async translate and translate_step_4 for and object"""
 
-    implements(ITranslateAsyncAction, IRuleElementData)
 
     element = "eea.climateadapt.TranslateAsync"
     summary = str("Translate object async")
 
 
+@implementer(IExecutable)
 class TranslateAsyncActionExecutor(object):
     """Translate async executor"""
 
-    implements(IExecutable)
     adapts(Interface, ITranslateAsyncAction, Interface)
 
     def __init__(self, context, element, event):

@@ -17,7 +17,7 @@ from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile.interfaces import INamedBlobFile, INamedBlobImage
 from Products.CMFCore.utils import getToolByName
 from zope.component import adapts
-from zope.interface import Interface, implements
+from zope.interface import Interface, implementer
 
 from .vocabulary import ace_countries
 
@@ -44,11 +44,10 @@ class Collection2Surf(Dexterity2Surf):
 
             return self._blacklist
 
-
+@implementer(ISurfResourceModifier)
 class GeoCharsFieldModifier(object):
     """Add geographic information to rdf export"""
 
-    implements(ISurfResourceModifier)
     adapts(IDexterityContent)
 
     def __init__(self, context):
@@ -186,10 +185,10 @@ class Image2Surf(Value2Surf):
         self.value = value.filename
 
 
+@implementer(ISurfResourceModifier)
 class IssuedFieldModifier(object):
     """Add publishing information to rdf export"""
 
-    implements(ISurfResourceModifier)
     adapts(IDexterityContent)
 
     def __init__(self, context):
@@ -216,10 +215,10 @@ class IssuedFieldModifier(object):
 country_to_code = {v: k for k, v in ace_countries}
 
 
+@implementer(ISurfResourceModifier)
 class CountryModifier(object):
     """Add publishing information to rdf export"""
 
-    implements(ISurfResourceModifier)
     adapts(ICCACountry)
 
     def __init__(self, context):
@@ -259,10 +258,10 @@ class CountryModifier(object):
         setattr(resource, "dcterms_spatial", st)
 
 
+@implementer(ISurfResourceModifier)
 class ContributorModifier(object):
     """ Add contributor information to rdf export"""
 
-    implements(ISurfResourceModifier)
     adapts(IDexterityContent)
 
     def __init__(self, context):

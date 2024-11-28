@@ -17,21 +17,18 @@ from eea.climateadapt.vocabulary import BIOREGIONS
 # from eea.rabbitmq.plone.rabbitmq import queue_msg
 from plone.api.portal import get_tool
 from plone.directives import dexterity
-from zope.interface import implements
+from zope.interface import implementer
 
 logger = logging.getLogger("eea.climateadapt.acemeasure")
 
-
+@implementer(IAdaptationOption, IClimateAdaptContent)
 class AdaptationOption(dexterity.Container):
     """The AdaptationObject content type."""
 
-    implements(IAdaptationOption, IClimateAdaptContent)
-
     search_type = "MEASURE"
 
-
+@implementer(ICaseStudy, IClimateAdaptContent)
 class CaseStudy(dexterity.Container):
-    implements(ICaseStudy, IClimateAdaptContent)
 
     search_type = "ACTION"
 

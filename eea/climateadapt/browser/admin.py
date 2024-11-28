@@ -39,14 +39,14 @@ from Products.statusmessages.interfaces import IStatusMessage
 from six.moves.html_parser import HTMLParser
 from z3c.form import button
 from z3c.form import form as z3cform
-from z3c.form.interfaces import IFieldWidget
-from z3c.form.util import getSpecification
-from z3c.form.widget import FieldWidget
+# from z3c.form.interfaces import IFieldWidget
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
-from zope.component import adapter, getMultiAdapter, getUtility
-from zope.interface import (Interface, Invalid, implementer, implements,
+from zope.component import getMultiAdapter, getUtility
+from zope.interface import (Interface, Invalid, implementer,
                             invariant)
 
 html_unescape = HTMLParser().unescape
@@ -348,10 +348,10 @@ class SpecialTagsInterface(Interface):
     """ Marker interface for /tags-admin """
 
 
+@implementer(SpecialTagsInterface)
 class SpecialTagsView(BrowserView):
     """ Custom view for administration of special tags
     """
-    implements(SpecialTagsInterface)
 
     def __call__(self):
         portal_state = getMultiAdapter(

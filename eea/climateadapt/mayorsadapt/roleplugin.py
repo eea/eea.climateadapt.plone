@@ -9,7 +9,7 @@ from Products.PluggableAuthService.interfaces.plugins import IAnonymousUserFacto
 from Products.PluggableAuthService.interfaces.plugins import IUserEnumerationPlugin
 from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
 from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
-from zope.interface import implements
+from zope.interface import implementer
 
 CITYMAYOR = 'CityMayor'
 
@@ -65,6 +65,7 @@ class CityMayorUser(BasicUser):
         return ()
 
 
+@implementer(IAnonymousUserFactoryPlugin, IUserEnumerationPlugin)
 class CityMayorUserFactory(BasePlugin):
     """ A user factory that uses CityMayorUser as its users
 
@@ -90,8 +91,6 @@ class CityMayorUserFactory(BasePlugin):
 
     meta_type = "CityMayor User Factory"
     security = ClassSecurityInfo()
-
-    implements(IAnonymousUserFactoryPlugin, IUserEnumerationPlugin)
 
     def __init__(self, id, title=None):
         self._id = self.id = id

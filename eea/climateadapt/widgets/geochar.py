@@ -6,14 +6,14 @@ import z3c.form.widget
 import zope
 import zope.interface
 import zope.schema.interfaces
-
+from zope.interface import implementer
 
 class IGeoCharWidget(z3c.form.interfaces.ITextAreaWidget):
     pass
 
-class GeoCharWidget(z3c.form.browser.textarea.TextAreaWidget):
-    zope.interface.implementsOnly(IGeoCharWidget)
 
+@implementer(IGeoCharWidget)
+class GeoCharWidget(z3c.form.browser.textarea.TextAreaWidget):
     klass = 'geochar-widget'
     value = ''
 
@@ -36,4 +36,3 @@ class GeoCharWidget(z3c.form.browser.textarea.TextAreaWidget):
 def GeoCharFieldWidget(field, request):
     """IFieldWidget factory for WysiwygWidget."""
     return z3c.form.widget.FieldWidget(field, GeoCharWidget(request))
-

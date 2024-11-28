@@ -11,7 +11,7 @@ from plone.app.textfield import RichText
 from plone.directives import dexterity, form
 from plone.memoize import view
 from Products.Five.browser import BrowserView
-from zope.interface import implements
+from zope.interface import implementer
 from zope.schema import TextLine
 
 # import json
@@ -61,10 +61,9 @@ class IFrontpageSlide(FrontpageSlideSchema):
     """ Interface for the FrontapgeSlide content type """
 
 
+@implementer(IFrontpageSlide, IEEAClimateAdaptInstalled)
 class FrontpageSlide(dexterity.Container):
     """ Slide content type for which the richtext behavior is activated """
-
-    implements(IFrontpageSlide, IEEAClimateAdaptInstalled)
 
 
 # TODO add TranslationUtilsMixin to inheritance

@@ -9,7 +9,7 @@ from plone.directives import dexterity, form
 from tokenlib.errors import ExpiredTokenError
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
-from zope.interface import Interface, implements
+from zope.interface import Interface, implementer
 import binascii
 import os
 import os.path
@@ -68,9 +68,8 @@ def check_public_token(context, request):
 
     return NOTGOOD
 
-
+@implementer(ICityProfile)
 class CityProfile(dexterity.Container):
-    implements(ICityProfile)
 
     search_type = "MAYORSADAPT"
     security = ClassSecurityInfo()

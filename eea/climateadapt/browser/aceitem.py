@@ -15,11 +15,10 @@ from plone.z3cform.fieldsets.extensible import FormExtender
 from zc.relation.interfaces import ICatalog
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
-from zope.interface import classImplements  # , implements
+from zope.interface import classImplements
 from zope.intid.interfaces import IIntIds
 
 # from itertools import chain, islice
-# from zope.interface import implements
 # from eea.depiction.browser.interfaces import IImageView
 # from Products.Five.browser import BrowserView
 

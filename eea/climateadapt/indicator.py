@@ -7,7 +7,7 @@ from plone.stringinterp.adapters import BaseSubstitution
 from Products.CMFCore.interfaces import IContentish
 from zope.component import adapts
 from zope.component.interfaces import IObjectEvent, ObjectEvent
-from zope.interface import implements
+from zope.interface import implementer
 
 # from zope.event import notify
 # from Products.Five.browser import BrowserView
@@ -21,9 +21,8 @@ class IIndicatorMessageEvent(IObjectEvent):
     """ An event with a message for the workflow transition
     """
 
-
+@implementer(IIndicatorMessageEvent)
 class IndicatorMessageEvent(ObjectEvent):
-    implements(IIndicatorMessageEvent)
 
 
 class indicator_message(BaseSubstitution):

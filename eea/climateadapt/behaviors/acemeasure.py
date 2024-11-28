@@ -13,7 +13,7 @@ from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 # from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 # from zope.component import adapter
-from zope.interface import alsoProvides, implementer  # , implements
+from zope.interface import alsoProvides, implementer
 from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple  # Int,
 
 from eea.climateadapt import CcaAdminMessageFactory as _

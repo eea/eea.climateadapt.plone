@@ -14,7 +14,7 @@ from zope.component import adapts
 from zope.component.interfaces import ObjectEvent, IObjectEvent
 from zope.event import notify
 from zope.globalrequest import getRequest
-from zope.interface import implements
+from zope.interface import implementer
 
 
 ANNOT_KEY = 'CCA_WORKFLOW_MESSAGE'
@@ -24,9 +24,8 @@ class IWorkflowMessageEvent(IObjectEvent):
     """ An event with a message for the workflow transition
     """
 
-
+@implementer(IWorkflowMessageEvent)
 class WorkflowMessageEvent(ObjectEvent):
-    implements(IWorkflowMessageEvent)
 
 
 class IWorkflowMessageSchema(form.Schema):

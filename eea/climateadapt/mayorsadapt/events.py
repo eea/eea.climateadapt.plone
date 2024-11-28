@@ -1,4 +1,4 @@
-from zope.interface import implements
+from zope.interface import implementer
 from zope.component.interfaces import ObjectEvent, IObjectEvent
 from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
 
@@ -23,20 +23,23 @@ class ICityProfileRegisterEvent(IObjectEvent):
     """
 
 
+@implementer(IResetTokenEvent)
 class ResetTokenEvent(ObjectEvent):
-    implements(IResetTokenEvent)
+    """"""
 
 
+@implementer(ITokenAboutToExpireEvent)
 class TokenAboutToExpireEvent(ObjectEvent):
-    implements(ITokenAboutToExpireEvent)
+    """"""
 
-
+@implementer(ITokenExpiredEvent)
 class TokenExpiredEvent(ObjectEvent):
-    implements(ITokenExpiredEvent)
+    """"""
 
 
+@implementer(ICityProfileRegisterEvent)
 class CityProfileRegisterEvent(ObjectEvent):
-    implements(ICityProfileRegisterEvent)
+    """"""
 
 
 def mayor_logout(event):

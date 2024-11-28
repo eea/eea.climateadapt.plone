@@ -1,6 +1,6 @@
 from eea.climateadapt.browser.misc import ISimplifiedResourceRegistriesView
 from Products.Five.browser import BrowserView
-from zope.interface import implements
+# from zope.interface import implementer
 
 raise ValueError("Should not be imported")
 
