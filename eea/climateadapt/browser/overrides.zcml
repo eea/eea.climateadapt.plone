@@ -21,7 +21,7 @@
 
   <adapter factory=".overrides.WidgetsLayerRichTextFieldWidget" />
   <adapter factory=".overrides.FormLayerRichTextFieldWidget" />
-  <adapter factory=".overrides.RichTextFieldWidget" />
+  <!-- <adapter factory=".overrides.RichTextFieldWidget" /> -->
 
   <browser:resource
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"

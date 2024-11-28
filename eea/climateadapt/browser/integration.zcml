@@ -46,7 +46,7 @@
   <!--        eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
   <!--   factory="eea.climateadapt.browser.overrides.FormLayerRichTextFieldWidget" -->
   <!--   /> -->
-  <adapter factory="eea.climateadapt.browser.overrides.RichTextFieldWidget" />
+  <!-- <adapter factory="eea.climateadapt.browser.overrides.RichTextFieldWidget" /> -->
 
   <!-- <adapter
     for="zope.annotation.interfaces.IAnnotatable
