@@ -109,12 +109,12 @@
       permission="cmf.ManagePortal"
       />
 
-  <browser:page
+  <!-- <browser:page
       name="refresh-google-analytics-report"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class=".admin.RefreshGoogleAnalyticsReport"
       permission="cmf.ManagePortal"
-      />
+      /> -->
 
   <browser:page
       name="gopdb"

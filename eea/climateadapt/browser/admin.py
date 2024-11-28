@@ -5,7 +5,7 @@ import json
 import logging
 from io import BytesIO as StringIO
 
-from googleapiclient.discovery import build
+# from apiclient.discovery import build
 from DateTime import DateTime
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.browser.fixblobs import (check_at_blobs,
@@ -630,22 +630,22 @@ ConfigureGoogleAnalyticsAPI = layout.wrap_form(
 ConfigureGoogleAnalyticsAPI.label = "Setup Google Analytics API Integration"
 
 
-def initialize_analyticsreporting(credentials_data):
-    """Initializes an Analytics Reporting API V4 service object.
+# def initialize_analyticsreporting(credentials_data):
+#     """Initializes an Analytics Reporting API V4 service object.
 
-    Returns:
-    An authorized Analytics Reporting API V4 service object.
-    """
-    SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
-    # json_data = json.loads(open(KEY_FILE_LOCATION).read())
-    credentials = ServiceAccountCredentials.from_json_keyfile_dict(
-        credentials_data, SCOPES)
+#     Returns:
+#     An authorized Analytics Reporting API V4 service object.
+#     """
+#     SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
+#     # json_data = json.loads(open(KEY_FILE_LOCATION).read())
+#     credentials = ServiceAccountCredentials.from_json_keyfile_dict(
+#         credentials_data, SCOPES)
 
-    # Build the service object.
+#     # Build the service object.
 
-    analytics = build('analyticsreporting', 'v4', credentials=credentials)
+#     analytics = build('analyticsreporting', 'v4', credentials=credentials)
 
-    return analytics
+#     return analytics
 
 
 def custom_report(analytics, view_id):
@@ -735,43 +735,43 @@ def parse_response(response):
     return result
 
 
-def _refresh_analytics_data(site):
+# def _refresh_analytics_data(site):
 
-    registry = getUtility(IRegistry, context=site)
-    s = registry.forInterface(IGoogleAnalyticsAPI)
+#     registry = getUtility(IRegistry, context=site)
+#     s = registry.forInterface(IGoogleAnalyticsAPI)
 
-    credentials_data = json.loads(s.credentials_json)
-    view_id = s.analytics_app_id
+#     credentials_data = json.loads(s.credentials_json)
+#     view_id = s.analytics_app_id
 
-    analytics = initialize_analyticsreporting(credentials_data)
-    response = custom_report(analytics, view_id)
+#     analytics = initialize_analyticsreporting(credentials_data)
+#     response = custom_report(analytics, view_id)
 
-    res = parse_response(response)
+#     res = parse_response(response)
 
-    site.__annotations__['google-analytics-cache-data'] = res
-    site.__annotations__._p_changed = True
+#     site.__annotations__['google-analytics-cache-data'] = res
+#     site.__annotations__._p_changed = True
 
-    import transaction
-    transaction.commit()
+#     import transaction
+#     transaction.commit()
 
-    return res
-
-
-def refresh_analytics_data(site=None):
-    if site is None:
-        site = get_plone_site()
-    _refresh_analytics_data(site)
+#     return res
 
 
-class RefreshGoogleAnalyticsReport(BrowserView):
-    """ A view to manually refresh google analytics report data
-    """
+# def refresh_analytics_data(site=None):
+#     if site is None:
+#         site = get_plone_site()
+#     _refresh_analytics_data(site)
 
-    def __call__(self):
 
-        site = portal.get()
+# class RefreshGoogleAnalyticsReport(BrowserView):
+#     """ A view to manually refresh google analytics report data
+#     """
 
-        return refresh_analytics_data(site)
+#     def __call__(self):
+
+#         site = portal.get()
+
+#         return refresh_analytics_data(site)
 
 
 class ViewGoogleAnalyticsReport(BrowserView):
