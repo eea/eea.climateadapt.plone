@@ -47,13 +47,13 @@
     factory=".overrides.EnhancedPersonalPreferencesPanelAdapter"
     />
 
-  <browser:page
+  <!-- <browser:page
     for="Products.CMFPlone.Portal.PloneSite"
     name="personal-preferences"
     class=".overrides.CustomizedPersonalPrefPanel"
     permission="cmf.SetOwnProperties"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    /> -->
 
   <browser:page
     for="plone.app.layout.navigation.interfaces.INavigationRoot"

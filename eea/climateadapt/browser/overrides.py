@@ -16,7 +16,7 @@ from eea.climateadapt import MessageFactory as _
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
 # from plone.app.contenttypes.behaviors.richtext import \
 #     IRichText as IRichTextBehavior
-from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
+# from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
 # from plone.app.textfield.interfaces import IRichText
@@ -87,19 +87,19 @@ class EnhancedPersonalPreferencesPanelAdapter(
     thematic_sectors = property(get_thematic_sectors, set_thematic_sectors)
 
 
-class CustomizedPersonalPrefPanel(prefs.PersonalPreferencesPanel):
-    form_fields = form.FormFields(IEnhancedPersonalPreferencesSchema)
+# class CustomizedPersonalPrefPanel(prefs.PersonalPreferencesPanel):
+#     form_fields = form.FormFields(IEnhancedPersonalPreferencesSchema)
 
-    # Apply same widget overrides as in the base class
+#     # Apply same widget overrides as in the base class
 
-    form_fields['language'].custom_widget = prefs.LanguageWidget
+#     form_fields['language'].custom_widget = prefs.LanguageWidget
 
-    form_fields['wysiwyg_editor'].custom_widget = prefs.WysiwygEditorWidget
+#     form_fields['wysiwyg_editor'].custom_widget = prefs.WysiwygEditorWidget
 
-    # Our widget
+#     # Our widget
 
-    form_fields['thematic_sectors'].custom_widget = \
-        MultiCheckBoxVocabularyWidget
+#     form_fields['thematic_sectors'].custom_widget = \
+#         MultiCheckBoxVocabularyWidget
 
 
 class DisplaySubMenuItem(DSMI):
