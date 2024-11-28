@@ -13,10 +13,10 @@ from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
-from eea.climateadapt.scripts import get_plone_site
-from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
+# from eea.climateadapt.scripts import get_plone_site
+# from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 from lxml.etree import fromstring
-from oauth2client.service_account import ServiceAccountCredentials
+# from oauth2client.service_account import ServiceAccountCredentials
 from pkg_resources import resource_filename
 from plone import api
 from plone.api import portal
@@ -276,72 +276,72 @@ class ListTilesWithTitleView (BrowserView):
                 self.walk(x)
 
 
-class ForcePingObjectCRView(BrowserView):
-    """ Force pingcr on objects between a set interval """
+# class ForcePingObjectCRView(BrowserView):
+#     """ Force pingcr on objects between a set interval """
 
-    def __call__(self):
-        cat = get_tool('portal_catalog')
-        obj = self.context
+#     def __call__(self):
+#         cat = get_tool('portal_catalog')
+#         obj = self.context
 
-        # query = {
-        #     'review_state': ['published', 'archived']       ## , 'private'
-        # }
-        # results = cat.searchResults(query)
-        # logger.info("Found %s objects " % len(results))
+#         # query = {
+#         #     'review_state': ['published', 'archived']       ## , 'private'
+#         # }
+#         # results = cat.searchResults(query)
+#         # logger.info("Found %s objects " % len(results))
 
-        count = 0
-        options = {}
-        options['create'] = False
-        options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
-        # context = res.getObject()
-        url = obj.absolute_url()
+#         count = 0
+#         options = {}
+#         options['create'] = False
+#         options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
+#         # context = res.getObject()
+#         url = obj.absolute_url()
 
-        if 'https' in url:
-            url = url.replace('https', 'http')
+#         if 'https' in url:
+#             url = url.replace('https', 'http')
 
-        options['obj_url'] = url + '/@@rdf'
-        logger.info("Pinging: %s", url)
-        ping_CRSDS(obj, options)
-        logger.info("Finished pinging: %s", url)
+#         options['obj_url'] = url + '/@@rdf'
+#         logger.info("Pinging: %s", url)
+#         ping_CRSDS(obj, options)
+#         logger.info("Finished pinging: %s", url)
 
-        return 'Finished'
+#         return 'Finished'
 
 
-class ForcePingCRView(BrowserView):
-    """ Force pingcr on objects between a set interval """
+# class ForcePingCRView(BrowserView):
+#     """ Force pingcr on objects between a set interval """
 
-    def __call__(self):
-        cat = get_tool('portal_catalog')
+#     def __call__(self):
+#         cat = get_tool('portal_catalog')
 
-        query = {
-            'review_state': ['published', 'archived']  # , 'private'
-        }
-        results = cat.searchResults(query)
+#         query = {
+#             'review_state': ['published', 'archived']  # , 'private'
+#         }
+#         results = cat.searchResults(query)
 
-        logger.info("Found %s objects " % len(results))
+#         logger.info("Found %s objects " % len(results))
 
-        count = 0
-        options = {}
-        options['create'] = False
-        options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
-        for res in results:
-            context = res.getObject()
-            url = res.getURL()
+#         count = 0
+#         options = {}
+#         options['create'] = False
+#         options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
+#         for res in results:
+#             context = res.getObject()
+#             url = res.getURL()
 
-            if 'https' in url:
-                url = url.replace('https', 'http')
+#             if 'https' in url:
+#                 url = url.replace('https', 'http')
 
-            options['obj_url'] = url + '/@@rdf'
-            logger.info("Pinging: %s", url)
-            ping_CRSDS(context, options)
-            logger.info("Finished pinging: %s", url)
+#             options['obj_url'] = url + '/@@rdf'
+#             logger.info("Pinging: %s", url)
+#             ping_CRSDS(context, options)
+#             logger.info("Finished pinging: %s", url)
 
-            count += 1
-            if count % 100 == 0:
-                logger.info('Went through %s brains' % count)
+#             count += 1
+#             if count % 100 == 0:
+#                 logger.info('Went through %s brains' % count)
 
-        logger.info('Finished pinging all brains')
-        return 'Finished'
+#         logger.info('Finished pinging all brains')
+#         return 'Finished'
 
 
 class SpecialTagsInterface(Interface):

@@ -11,7 +11,7 @@ from Acquisition import aq_self
 from plone.api import portal
 from plone.app.textfield.interfaces import ITransformer
 from Products.MimetypesRegistry.mime_types.magic import guessMime
-from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
+# from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 
 from plone import api
 

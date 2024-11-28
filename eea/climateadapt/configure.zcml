@@ -470,7 +470,7 @@
       />
 -->
 
-  <subscriber
+  <!-- <subscriber
     factory=".marshaller.GeoCharsFieldModifier"
     provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
   />
@@ -488,8 +488,8 @@
   <subscriber
     factory=".marshaller.IssuedFieldModifier"
     provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
-  />
-
+  /> -->
+<!-- 
   <adapter
     factory=".marshaller.Geolocation2Surf" />
   <adapter factory=".marshaller.File2Surf" />
@@ -499,7 +499,7 @@
   <adapter
     factory=".marshaller.CountryTitle2Surf"
     name="title"
-  />
+  /> -->
 
   <!-- ========Workflow Message Functionality: ]========  -->
 
