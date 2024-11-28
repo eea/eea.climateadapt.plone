@@ -12,7 +12,7 @@ from Acquisition import aq_inner
 from eea.climateadapt import MessageFactory as _
 # from eea.pdf.interfaces import IPDFTool
 # from OFS.interfaces import ITraversable
-from plone.app.content.browser.interfaces import IContentsPage
+# from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
 # from plone.app.contenttypes.behaviors.richtext import \
 #     IRichText as IRichTextBehavior
@@ -109,8 +109,9 @@ class DisplaySubMenuItem(DSMI):
 
     @memoize
     def disabled(self):
-        if IContentsPage.providedBy(self.request):
-            return True
+        # TODO IContentsPage as it's not used in Plone 5 anymore
+        # if IContentsPage.providedBy(self.request):
+        #     return True
         context = self.context
 
         if self.context_state.is_default_page():
