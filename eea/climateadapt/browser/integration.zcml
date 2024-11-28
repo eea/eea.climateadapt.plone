@@ -9,13 +9,13 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="eea.climateadapt">
 
-  <browser:page
+  <!-- <browser:page
     name="getVocabulary"
     for="*"
     class=".integration.VocabularyView"
     permission="zope2.View"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    /> -->
 
   <adapter
     for="Products.CMFCore.interfaces.IFolderish
