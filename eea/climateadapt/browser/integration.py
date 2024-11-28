@@ -29,7 +29,7 @@ from plone.app.layout.globals.layout import LayoutPolicy
 from plone.dexterity.browser.add import DefaultAddView
 from plone.namedfile.scaling import ImageScaling
 # from plone.tiles.interfaces import ITileDataManager
-from UserDict import UserDict
+from collections import UserDict
 # from zope.component import queryUtility
 from zope.interface import implementer
 from zope.interface.common.mapping import IMapping
