@@ -29,10 +29,10 @@ from plone.app.layout.globals.layout import LayoutPolicy
 from plone.dexterity.browser.add import DefaultAddView
 from plone.namedfile.scaling import ImageScaling
 # from plone.tiles.interfaces import ITileDataManager
-from collections import UserDict
+# from collections import UserDict
 # from zope.component import queryUtility
-from zope.interface import implementer
-from zope.interface.common.mapping import IMapping
+# from zope.interface import implementer
+# from zope.interface.common.mapping import IMapping
 # from zope.schema.interfaces import IVocabularyFactory
 
 
@@ -146,18 +146,18 @@ class AddView(DefaultAddView):
 # a simple dict).
 
 
-@implementer(IMapping)
-class AcquisitionAwareDict(Explicit, Traversable, UserDict):
-    def __init__(self, *args, **kwargs):
-        super(AcquisitionAwareDict, self).__init__()
-        UserDict.__init__(self, *args, **kwargs)
+# @implementer(IMapping)
+# class AcquisitionAwareDict(Explicit, Traversable, UserDict):
+#     def __init__(self, *args, **kwargs):
+#         super(AcquisitionAwareDict, self).__init__()
+#         UserDict.__init__(self, *args, **kwargs)
 
-    def absolute_url(self):
-        return self.aq_parent.absolute_url()
+#     def absolute_url(self):
+#         return self.aq_parent.absolute_url()
 
-    @property
-    def portal_type(self):
-        return self.aq_parent.portal_type
+#     @property
+#     def portal_type(self):
+#         return self.aq_parent.portal_type
 
 
 class PloneLayout(LayoutPolicy):
