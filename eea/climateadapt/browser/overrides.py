@@ -3,7 +3,7 @@ Various page overrides
 """
 
 from zope.component import adapter, getMultiAdapter, queryUtility
-from zope.formlib import form
+from z3c.form import form
 # from zope.interface import implementer
 from zope.schema import Choice, List
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
