@@ -5,7 +5,7 @@ import json
 import logging
 from io import BytesIO as StringIO
 
-from apiclient.discovery import build
+from googleapiclient.discovery import build
 from DateTime import DateTime
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.browser.fixblobs import (check_at_blobs,
