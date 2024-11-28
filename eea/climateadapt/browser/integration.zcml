@@ -56,12 +56,12 @@
     factory=".integration.CustomTileEdit"
     /> -->
 
-  <class class=".integration.CustomTileEdit">
+  <!-- <class class=".integration.CustomTileEdit">
     <require
       permission="cmf.ModifyPortalContent"
       interface="zope.publisher.interfaces.browser.IBrowserPage"
       />
-  </class>
+  </class> -->
 
   <adapter
     for=".integration.AcquisitionAwareDict zope.schema.interfaces.IField"
