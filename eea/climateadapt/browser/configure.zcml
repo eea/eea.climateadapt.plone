@@ -1122,14 +1122,14 @@
     class=".main.FullWidthContentTypes"
     permission="zope.Public"
   />
-
+<!-- 
   <browser:page
     name="ast.pdf"
     for="eea.pdf.interfaces.IPDFAware"
     class="eea.pdf.browser.app.download.Download"
     permission="eea.pdf.download"
     layer="eea.pdf.interfaces.ILayer"
-  />
+  /> -->
 
   <browser:page
     name="case_study_contacts.csv"

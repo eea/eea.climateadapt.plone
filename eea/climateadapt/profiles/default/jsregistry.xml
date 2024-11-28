@@ -330,14 +330,14 @@
     expression="python:'pdf.' in request['URL0'] or '.pdf' in request['URL0']"
     id="pdf.print.js" inline="False"
     insert-after="++resource++collective.sweeteditor.js/handlebars-v4.0.2.js"/>
- <javascript authenticated="False" bundle="default" cacheable="True"
+ <!-- <javascript authenticated="False" bundle="default" cacheable="True"
     compression="safe" conditionalcomment="" cookable="True" enabled="False"
     expression="" id="++resource++eea.pdf.js" inline="False"
     insert-after="pdf.print.js"/>
  <javascript authenticated="False" bundle="default" cacheable="True"
     compression="none" conditionalcomment="" cookable="True" enabled="False"
     expression="python: member is None" id="screentimeanalytics.js"
-    inline="False" insert-after="++resource++eea.pdf.js"/>
+    inline="False" insert-after="++resource++eea.pdf.js"/> -->
  <javascript authenticated="False" bundle="default" cacheable="True"
     compression="none" conditionalcomment="" cookable="True" enabled="False"
     expression="" id="++resource++eea.jquery.screentimeanalytics.js"

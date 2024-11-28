@@ -82,7 +82,7 @@
     <implements interface="eea.pdf.interfaces.IPDFAware" />
   </class> -->
 
-  <class
+  <!-- <class
     class="plone.app.contenttypes.content.Document">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
   </class>
@@ -100,7 +100,7 @@
   <class
     class="plone.dexterity.content.Container">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
-  </class>
+  </class> -->
 
   <class
     class="plone.namedfile.field.NamedBlobImage">
