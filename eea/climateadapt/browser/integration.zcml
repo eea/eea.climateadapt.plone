@@ -63,19 +63,19 @@
       />
   </class> -->
 
-  <adapter
+  <!-- <adapter
     for=".integration.AcquisitionAwareDict zope.schema.interfaces.IField"
     provides="z3c.form.interfaces.IDataManager"
     factory="z3c.form.datamanager.DictionaryField"
-    />
+    /> -->
 
-  <browser:page
+  <!-- <browser:page
     for=".integration.AcquisitionAwareDict"
     name="plone_layout"
     class=".integration.PloneLayout"
     permission="zope.Public"
     allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy"
-    />
+    /> -->
 
   <!-- <browser:page -->
   <!--   name="images" -->
