@@ -4,34 +4,34 @@ Various page overrides
 
 from zope.component import adapter, getMultiAdapter, queryUtility
 from zope.formlib import form
-from zope.interface import implementer
+# from zope.interface import implementer
 from zope.schema import Choice, List
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from Acquisition import aq_inner
 from eea.climateadapt import MessageFactory as _
 from eea.pdf.interfaces import IPDFTool
-from OFS.interfaces import ITraversable
+# from OFS.interfaces import ITraversable
 from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
-from plone.app.contenttypes.behaviors.richtext import \
-    IRichText as IRichTextBehavior
+# from plone.app.contenttypes.behaviors.richtext import \
+#     IRichText as IRichTextBehavior
 from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
-from plone.app.textfield.interfaces import IRichText
+# from plone.app.textfield.interfaces import IRichText
 from plone.app.users.browser import personalpreferences as prefs
-from plone.app.widgets.dx import RichTextWidget
-from plone.app.widgets.interfaces import IWidgetsLayer
+# from plone.app.widgets.dx import RichTextWidget
+# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.memoize.instance import memoize
 from Products.CMFPlone import utils
 from Products.CMFPlone.browser.navigation import CatalogSiteMap
 from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from z3c.form.interfaces import IFieldWidget, IFormLayer
-from z3c.form.util import getSpecification
-from z3c.form.widget import FieldWidget
+# from z3c.form.interfaces import IFieldWidget, IFormLayer
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
 
 thematic_sectors = SimpleVocabulary([
     SimpleTerm(value='AGRICULTURE', title=_('Agriculture')),
@@ -338,83 +338,83 @@ class FolderPdfBody (BrowserView):
         return self.template(**kwargs)
 
 
-class OverrideRichText(RichTextWidget):
-    """ Richtext field override for tinymce tabs plugin """
+# class OverrideRichText(RichTextWidget):
+#     """ Richtext field override for tinymce tabs plugin """
 
-    def _base_args(self):
-        # Get options
+#     def _base_args(self):
+#         # Get options
 
-        # CCA specific: fix the parent in context of cover configuration, with
-        # richtext field in cover. We need a traversable context, so we'll get
-        # one from request, if not possible otherwise.
-        # See https://taskman.eionet.europa.eu/issues/100350
+#         # CCA specific: fix the parent in context of cover configuration, with
+#         # richtext field in cover. We need a traversable context, so we'll get
+#         # one from request, if not possible otherwise.
+#         # See https://taskman.eionet.europa.eu/issues/100350
 
-        if not ITraversable.providedBy(self.context):
-            for parent in self.request.PARENTS:
-                if ITraversable.providedBy(parent):
-                    self.context = parent
+#         if not ITraversable.providedBy(self.context):
+#             for parent in self.request.PARENTS:
+#                 if ITraversable.providedBy(parent):
+#                     self.context = parent
 
-                    break
+#                     break
 
-        args = super(OverrideRichText, self)._base_args()
+#         args = super(OverrideRichText, self)._base_args()
 
-        # Get tinymce options
-        tinyoptions = args['pattern_options']['tiny']
-        buttons = 'tabs tabsDelete tabsItemDelete tabsItemInsertAfter '\
-            'tabsItemInsertBefore accordion accordionDelete '\
-            'accordionItemDelete accordionItemInsertAfter '\
-            'accordionItemInsertBefore '
-        toolbar = tinyoptions['toolbar']
-        # plugins = tinyoptions['plugins']
+#         # Get tinymce options
+#         tinyoptions = args['pattern_options']['tiny']
+#         buttons = 'tabs tabsDelete tabsItemDelete tabsItemInsertAfter '\
+#             'tabsItemInsertBefore accordion accordionDelete '\
+#             'accordionItemDelete accordionItemInsertAfter '\
+#             'accordionItemInsertBefore '
+#         toolbar = tinyoptions['toolbar']
+#         # plugins = tinyoptions['plugins']
 
-        # Modify toolbar
-        toolbar = toolbar.split('|')
-        toolbar[5] = toolbar[5] + buttons
-        toolbar = '|'.join(toolbar)
+#         # Modify toolbar
+#         toolbar = toolbar.split('|')
+#         toolbar[5] = toolbar[5] + buttons
+#         toolbar = '|'.join(toolbar)
 
-        # Override
-        args['pattern_options']['tiny']['theme_advanced_buttons3'] = buttons
-        args['pattern_options']['tiny']['toolbar'] = toolbar
-        args['pattern_options']['tiny']['plugins'].append('tabs')
-        args['pattern_options']['tiny']['plugins'].append('accordion')
-        args['pattern_options']['tiny']['plugins'].remove('contextmenu')
+#         # Override
+#         args['pattern_options']['tiny']['theme_advanced_buttons3'] = buttons
+#         args['pattern_options']['tiny']['toolbar'] = toolbar
+#         args['pattern_options']['tiny']['plugins'].append('tabs')
+#         args['pattern_options']['tiny']['plugins'].append('accordion')
+#         args['pattern_options']['tiny']['plugins'].remove('contextmenu')
 
-        # Disable relative urls
-        args['pattern_options']['tiny']['relative_urls'] = False
-        args['pattern_options']['tiny']['convert_urls'] = False
+#         # Disable relative urls
+#         args['pattern_options']['tiny']['relative_urls'] = False
+#         args['pattern_options']['tiny']['convert_urls'] = False
 
-        return args
+#         return args
 
-    def render(self):
-        # on the first render throws POSKeyError: 'No blob file'
-        # try to re-render if error happens
-        nr_of_tries = 0
+#     def render(self):
+#         # on the first render throws POSKeyError: 'No blob file'
+#         # try to re-render if error happens
+#         nr_of_tries = 0
         
-        while nr_of_tries < 3:
-            try:
-                return super(OverrideRichText, self).render()
-            except Exception as e:
-                pass
+#         while nr_of_tries < 3:
+#             try:
+#                 return super(OverrideRichText, self).render()
+#             except Exception as e:
+#                 pass
 
-            nr_of_tries = nr_of_tries + 1
-
-
-@adapter(getSpecification(IRichTextBehavior['text']), IWidgetsLayer)
-@implementer(IFieldWidget)
-def WidgetsLayerRichTextFieldWidget(field, request):
-    return FieldWidget(field, OverrideRichText(request))
+#             nr_of_tries = nr_of_tries + 1
 
 
-@adapter(getSpecification(IRichTextBehavior['text']), IFormLayer)
-@implementer(IFieldWidget)
-def FormLayerRichTextFieldWidget(field, request):
-    return FieldWidget(field, OverrideRichText(request))
+# @adapter(getSpecification(IRichTextBehavior['text']), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def WidgetsLayerRichTextFieldWidget(field, request):
+#     return FieldWidget(field, OverrideRichText(request))
 
 
-@adapter(IRichText, IWidgetsLayer)
-@implementer(IFieldWidget)
-def RichTextFieldWidget(field, request):
-    return FieldWidget(field, OverrideRichText(request))
+# @adapter(getSpecification(IRichTextBehavior['text']), IFormLayer)
+# @implementer(IFieldWidget)
+# def FormLayerRichTextFieldWidget(field, request):
+#     return FieldWidget(field, OverrideRichText(request))
+
+
+# @adapter(IRichText, IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def RichTextFieldWidget(field, request):
+#     return FieldWidget(field, OverrideRichText(request))
 
 
 class PasswordAccountPanel(prefs.PasswordAccountPanel):

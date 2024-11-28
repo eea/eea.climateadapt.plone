@@ -9,7 +9,7 @@ from itertools import islice
 
 import requests
 import transaction
-from dateutil.tz import gettz
+# from dateutil.tz import gettz
 # from eea.climateadapt.config import CONTACT_MAIL_LIST
 # from eea.climateadapt.schema import Email
 
@@ -17,7 +17,7 @@ from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
-from plone.app.widgets.dx import DatetimeWidgetConverter as BaseConverter
+# from plone.app.widgets.dx import DatetimeWidgetConverter as BaseConverter
 from plone.memoize import view
 from Products.CMFPlone.utils import getToolByName, isExpired
 from Products.Five.browser import BrowserView
@@ -690,16 +690,16 @@ class ViewGoogleAnalyticsReport(BrowserView):
         return islice(reports, 0, 10)
 
 
-class DatetimeDataConverter(BaseConverter):
-    """Avoid problem with missing tzinfo from default datetime widgets"""
+# class DatetimeDataConverter(BaseConverter):
+#     """Avoid problem with missing tzinfo from default datetime widgets"""
 
-    def toFieldValue(self, value):
-        logger.warn("dateconvertwidget", value)
-        value = super(DatetimeDataConverter, self).toFieldValue(value)
-        if value is not self.field.missing_value:
-            if not getattr(value, "tzinfo", None):
-                value = value.replace(tzinfo=gettz())
-        return value
+#     def toFieldValue(self, value):
+#         logger.warn("dateconvertwidget", value)
+#         value = super(DatetimeDataConverter, self).toFieldValue(value)
+#         if value is not self.field.missing_value:
+#             if not getattr(value, "tzinfo", None):
+#                 value = value.replace(tzinfo=gettz())
+#         return value
 
 
 class VibrioProxy(BrowserView):

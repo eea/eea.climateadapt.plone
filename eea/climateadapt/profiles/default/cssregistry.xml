@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <object name="portal_css" meta_type="Stylesheets Registry">
 
-    <stylesheet id="++resource++plone.app.widgets.css" cacheable="True"
+    <!-- <stylesheet id="++resource++plone.app.widgets.css" cacheable="True"
        compression="none"
        expression="python:member is not None" rel="stylesheet" rendering="link"
-       insert-after="++resource++collection.css" />
+       insert-after="++resource++collection.css" /> -->
 
     <stylesheet id="controlpanel.css" cacheable="True" compression="safe"
        expression="python:member is not None" rel="stylesheet" rendering="link"

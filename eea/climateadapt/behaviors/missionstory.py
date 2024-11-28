@@ -1,18 +1,18 @@
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-from zope.component import adapter
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from zope.component import adapter
 from zope.interface import alsoProvides, implementer, provider
 from zope.schema import Choice, List, Tuple, TextLine
 from plone.directives import form
 from plone.app.textfield import RichText
-from plone.app.widgets.interfaces import IWidgetsLayer
+# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.restapi.behaviors import IBlocks
 from plone.supermodel import model
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from z3c.form.widget import FieldWidget
-from z3c.form.interfaces import IFieldWidget
-from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
+# from z3c.form.interfaces import IFieldWidget
+# from z3c.form.util import getSpecification
 from plone.autoform import directives
 
 
@@ -134,13 +134,13 @@ class IMissionStory(model.Schema, IBlocks):
     )
 
 
-@adapter(getSpecification(IMissionStory["keywords"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def KeywordsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.keywords"
+# @adapter(getSpecification(IMissionStory["keywords"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def KeywordsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.keywords"
 
-    return widget
+#     return widget
 
 
 alsoProvides(IMissionStory["climate_impacts"], ILanguageIndependentField)

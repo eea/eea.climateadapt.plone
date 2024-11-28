@@ -23,8 +23,8 @@ from plone.api import portal
 from plone.api.portal import get_tool, getSite
 from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
                                                      RegistryEditForm)
-from plone.app.widgets.dx import RelatedItemsWidget
-from plone.app.widgets.interfaces import IWidgetsLayer
+# from plone.app.widgets.dx import RelatedItemsWidget
+# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.directives import form
 from plone.i18n.normalizer import idnormalizer
 from plone.indexer.interfaces import IIndexer
@@ -479,18 +479,18 @@ class AddKeywordForm (form.SchemaForm):
             return self.status
 
 
-@adapter(getSpecification(IAddKeywordForm['ccaitems']), IWidgetsLayer)
-@implementer(IFieldWidget)
-def CcaItemsFieldWidget(field, request):
-    """ The vocabulary view is overridden so that
-        the widget will show all cca items
-        Check browser/overrides.py for more details
-    """
-    widget = FieldWidget(field, RelatedItemsWidget(request))
-    widget.vocabulary = 'eea.climateadapt.cca_items'
-    widget.vocabulary_override = True
+# @adapter(getSpecification(IAddKeywordForm['ccaitems']), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def CcaItemsFieldWidget(field, request):
+#     """ The vocabulary view is overridden so that
+#         the widget will show all cca items
+#         Check browser/overrides.py for more details
+#     """
+#     widget = FieldWidget(field, RelatedItemsWidget(request))
+#     widget.vocabulary = 'eea.climateadapt.cca_items'
+#     widget.vocabulary_override = True
 
-    return widget
+#     return widget
 
 
 class KeywordsAdminView (BrowserView):

@@ -2,22 +2,22 @@ from collective import dexteritytextindexer
 from collective.geolocationbehavior.geolocation import IGeolocatable
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-from plone.app.widgets.interfaces import IWidgetsLayer
+# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
-from z3c.form.util import getSpecification
-from z3c.form.widget import FieldWidget
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-from zope.component import adapter
+# from zope.component import adapter
 from zope.interface import alsoProvides, implementer  # , implements
 from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple  # Int,
 
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 # from plone.autoform import directives
 
@@ -573,26 +573,26 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # summary = Text(title=_(u"Summary"), required=False, default=u"")
 
 
-@adapter(getSpecification(IAceMeasure["keywords"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def KeywordsFieldWidget(field, request):
-    """The vocabulary view is overridden so that
-    the widget will work properly
-    Check browser/overrides.py for more details
-    """
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.keywords"
+# @adapter(getSpecification(IAceMeasure["keywords"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def KeywordsFieldWidget(field, request):
+#     """The vocabulary view is overridden so that
+#     the widget will work properly
+#     Check browser/overrides.py for more details
+#     """
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.keywords"
 
-    return widget
+#     return widget
 
 
-@adapter(getSpecification(IAceMeasure["special_tags"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def SpecialTagsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.special_tags"
+# @adapter(getSpecification(IAceMeasure["special_tags"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def SpecialTagsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.special_tags"
 
-    return widget
+#     return widget
 
 
 alsoProvides(IAceMeasure["climate_impacts"], ILanguageIndependentField)

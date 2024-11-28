@@ -9,14 +9,14 @@
     expression="python:member is None"
     id="++resource++plone.app.jquerytools.form.js" inline="False"
     insert-after="++resource++plone.app.jquery.js"/>
- <javascript authenticated="True" bundle="default" cacheable="True"
+ <!-- <javascript authenticated="True" bundle="default" cacheable="True"
     compression="none" conditionalcomment="" cookable="True" enabled="True"
     expression="" id="++resource++plone.app.widgets.js" inline="False"
     insert-after="++resource++plone.app.jquerytools.form.js"/>
  <javascript authenticated="True" bundle="default" cacheable="True"
     compression="none" conditionalcomment="" cookable="True" enabled="True"
     expression="" id="++resource++plone.app.jquerytools.dateinput.js"
-    inline="False" insert-after="++resource++plone.app.widgets.js"/>
+    inline="False" insert-after="++resource++plone.app.widgets.js"/> -->
  <javascript authenticated="True" bundle="jqueryui" cacheable="True"
     compression="none" conditionalcomment="" cookable="True" enabled="True"
     expression="" id="collective.js.jqueryui.custom.min.js" inline="False"

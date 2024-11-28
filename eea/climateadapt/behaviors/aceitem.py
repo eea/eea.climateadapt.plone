@@ -2,7 +2,7 @@ from collective import dexteritytextindexer
 from plone.app.dexterity.behaviors.metadata import IPublication
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-from plone.app.widgets.interfaces import IWidgetsLayer
+# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
@@ -460,23 +460,23 @@ class IAceItem(IImageScaleTraversable):
     # TODO: special search behaviour, should aggregate most fields
 
 
-@adapter(getSpecification(IAceItem["special_tags"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def SpecialTagsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.special_tags"
+# @adapter(getSpecification(IAceItem["special_tags"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def SpecialTagsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.special_tags"
 
-    return widget
+#     return widget
 
 
-@adapter(getSpecification(IAceItem["keywords"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def KeywordsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.keywords"
-    # widget.vocabulary = 'plone.app.vocabularies.Catalog'
+# @adapter(getSpecification(IAceItem["keywords"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def KeywordsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.keywords"
+#     # widget.vocabulary = 'plone.app.vocabularies.Catalog'
 
-    return widget
+#     return widget
 
 
 alsoProvides(IAceItem["climate_impacts"], ILanguageIndependentField)

@@ -33,12 +33,12 @@
       />
   </class>
 
-  <configure package="plone.app.widgets">
+  <!-- <configure package="plone.app.widgets">
     <browser:resource
       name="plone.app.widgets-tinymce-content.min.css"
       file="static/widgets-tinymce-content.min.css"
       />
-  </configure>
+  </configure> -->
 
   <!-- Fix RichText widget: the plone.app.widgets provided one has proper relatedItems configuration -->
   <!-- <adapter -->
