@@ -5,9 +5,8 @@ from Products.CMFCore.interfaces import IContentish
 from plone.api.content import transition
 from plone.api.portal import show_message
 from plone.autoform import directives
-from plone.directives import form
 from plone.stringinterp.adapters import BaseSubstitution
-from z3c.form import button     #, field
+from z3c.form import button, form     #, field
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts
@@ -15,6 +14,7 @@ from zope.component.interfaces import ObjectEvent, IObjectEvent
 from zope.event import notify
 from zope.globalrequest import getRequest
 from zope.interface import implementer
+from zope.interface import Interface
 
 
 ANNOT_KEY = 'CCA_WORKFLOW_MESSAGE'
@@ -28,7 +28,7 @@ class IWorkflowMessageEvent(IObjectEvent):
 class WorkflowMessageEvent(ObjectEvent):
 
 
-class IWorkflowMessageSchema(form.Schema):
+class IWorkflowMessageSchema(Interface):
     """ Schema to set message on transition
     """
 
@@ -37,7 +37,7 @@ class IWorkflowMessageSchema(form.Schema):
     message = schema.Text(title="Message", required=True)
 
 
-class WorkflowTransitionMessage(form.SchemaForm):
+class WorkflowTransitionMessage(form.Form):
     """ A form to trigger a workflow transition, together with workflow message
 
     How to use: set the URL for the workflow transition to something like:

@@ -18,7 +18,6 @@ from zope.component.hooks import getSite
 # from plone import api
 from plone.api import portal
 # from plone.app.textfield import RichText
-# from plone.directives import form
 from plone.memoize import view
 # from plone.namedfile.field import NamedBlobImage
 # from plone.tiles.interfaces import ITileDataManager

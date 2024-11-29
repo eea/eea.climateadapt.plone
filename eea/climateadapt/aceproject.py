@@ -2,9 +2,9 @@ from zope.interface import implementer
 
 from eea.climateadapt.behaviors import IAceProject
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from plone.directives import dexterity
+from plone.dexterity.content import Container
 
 @implementer(IAceProject, IClimateAdaptContent)
-class AceProject(dexterity.Container):
+class AceProject(Container):
 
     search_type = "RESEARCHPROJECT"

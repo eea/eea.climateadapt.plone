@@ -23,7 +23,6 @@ from eea.climateadapt.vocabulary import (BIOREGIONS, REMAPED_BIOREGIONS, _climat
 # from plone import api
 # from plone.api import portal
 # from plone.app.uuid.utils import uuidToObject
-from plone.directives import form
 from plone.memoize import view
 # from plone.tiles.interfaces import ITileDataManager
 # from plone.uuid.interfaces import IUUID
@@ -34,7 +33,7 @@ from z3c.form.field import Fields
 from z3c.form.form import Form
 from z3c.form.widget import StaticWidgetAttribute
 from zope.component.hooks import getSite
-# from zope.interface import implements
+from zope.interface import Interface
 from zope.schema import Bool, Choice, Dict, Int, List, TextLine
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
@@ -833,7 +832,7 @@ Item = namedtuple("Item", ["Title", "Description",
 #     """
 
 
-class IFilteringSchema(form.Schema):
+class IFilteringSchema(Interface):
     impact = Choice(
         title=_("Climate impact"),
         vocabulary="eea.climateadapt.aceitems_climateimpacts",

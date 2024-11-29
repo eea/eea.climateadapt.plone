@@ -11,7 +11,7 @@ from zope.schema import (
     Tuple,
 )
 from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from eea.climateadapt import CcaAdminMessageFactory as _
 from zope.schema import (
     URI,
@@ -32,7 +32,6 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 # from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
-from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
@@ -43,7 +42,7 @@ from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 # from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 # from zope.component import adapter
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides, implementer, Interface
 # from z3c.relationfield.schema import RelationChoice
 
 GEOCHARS = {
@@ -58,7 +57,7 @@ GEOCHARS = {
 }
 
 
-class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
+class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     """
     Defines content-type schema for Ace Project
     """
@@ -265,7 +264,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         title=_("Include in the Mission Portal"), required=False, default=False
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_("Sectors"),
         description=_(
@@ -279,7 +278,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         ),
     )
 
-    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
@@ -294,7 +293,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         ),
     )
 
-    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
         title=_("Adaptation approaches"),
         description=_("Select one or more approaches."),
@@ -345,7 +344,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     )
 
     # -----------[ "geographic_information" fields ]------------------
-    form.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    directives.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,

@@ -1,6 +1,6 @@
+from plone.autoform import directives
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-from plone.directives import form
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from z3c.relationfield.schema import RelationChoice, RelationList
@@ -24,7 +24,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
     # directives.omitted(IEditForm, 'year')
     # directives.omitted(IAddForm, 'year')
 
-    form.widget(
+    directives.widget(
         key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_type_measures = List(
         title=_("Key Type Measures"),
@@ -35,7 +35,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         ),
     )
 
-    form.widget(ipcc_category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(ipcc_category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     ipcc_category = List(
         title=_("IPCC adaptation options categories"),
         description=_(

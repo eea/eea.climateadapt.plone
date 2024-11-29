@@ -25,7 +25,6 @@ from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
                                                      RegistryEditForm)
 # from plone.app.widgets.dx import RelatedItemsWidget
 # from plone.app.widgets.interfaces import IWidgetsLayer
-from plone.directives import form
 from plone.i18n.normalizer import idnormalizer
 from plone.indexer.interfaces import IIndexer
 from plone.dexterity.utils import datify
@@ -38,7 +37,7 @@ from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from six.moves.html_parser import HTMLParser
 from z3c.form import button
-from z3c.form import form as z3cform
+from z3c.form import form
 # from z3c.form.interfaces import IFieldWidget
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
@@ -109,7 +108,7 @@ class InvalidMenuConfiguration(Invalid):
     __doc__ = "The menu format is invalid"
 
 
-class IMainNavigationMenu(form.Schema):
+class IMainNavigationMenu(Interface):
     menu = schema.Text(title="Menu structure text", required=True)
 
     @invariant
@@ -120,7 +119,7 @@ class IMainNavigationMenu(form.Schema):
             raise InvalidMenuConfiguration(e)
 
 
-class MainNavigationMenuEdit(form.SchemaForm):
+class MainNavigationMenuEdit(form.Form):
     """ A page to edit the main site navigation menu
     """
 
@@ -159,7 +158,7 @@ class MainNavigationMenuEdit(form.SchemaForm):
         self.status = "Saved, please check."
 
 
-class HealthNavigationMenuEdit(form.SchemaForm):
+class HealthNavigationMenuEdit(form.Form):
     """ A page to edit the main site navigation menu
     """
 
@@ -434,7 +433,7 @@ class SpecialTagsObjects (BrowserView):
         return json.dumps(tag_obj)
 
 
-class IAddKeywordForm(form.Schema):
+class IAddKeywordForm(Interface):
     keyword = schema.TextLine(title="Keyword:", required=True)
     ccaitems = RelationList(
         title="Select where to implement the new keyword",
@@ -448,7 +447,7 @@ class IAddKeywordForm(form.Schema):
     )
 
 
-class AddKeywordForm (form.SchemaForm):
+class AddKeywordForm(form.Form):
     schema = IAddKeywordForm
     ignoreContext = True
 
@@ -620,7 +619,7 @@ class GoogleAnalyticsAPIEditForm(RegistryEditForm):
     Define form logic
     """
 
-    z3cform.extends(RegistryEditForm)
+    form.extends(RegistryEditForm)
     schema = IGoogleAnalyticsAPI
 
 

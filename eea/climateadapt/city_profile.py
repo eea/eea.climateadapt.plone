@@ -5,7 +5,7 @@ from AccessControl.SecurityInfo import ClassSecurityInfo
 from datetime import date, timedelta
 from plone.api import user
 from plone.api.portal import getSite
-from plone.directives import dexterity, form
+from plone.dexterity.content import Container
 from tokenlib.errors import ExpiredTokenError
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
@@ -27,7 +27,7 @@ EXPIRED = object()
 NOTGOOD = False
 
 
-class ICityProfile(form.Schema):
+class ICityProfile(Interface):
     """
     Defines content-type schema for CityProfile
     """
@@ -69,7 +69,7 @@ def check_public_token(context, request):
     return NOTGOOD
 
 @implementer(ICityProfile)
-class CityProfile(dexterity.Container):
+class CityProfile(Container):
 
     search_type = "MAYORSADAPT"
     security = ClassSecurityInfo()

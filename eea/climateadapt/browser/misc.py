@@ -31,7 +31,6 @@ from zope.interface import Interface, implementer
 # )
 
 # from plone.api.portal import show_message
-# from plone.directives import form
 # from plone.formwidget.captcha.validator import CaptchaValidator, WrongCaptchaCode
 # from plone.formwidget.captcha.widget import CaptchaFieldWidget
 # from plone.z3cform.layout import wrap_form

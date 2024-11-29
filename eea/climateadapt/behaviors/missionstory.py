@@ -3,11 +3,11 @@ from eea.climateadapt import CcaAdminMessageFactory as _
 # from zope.component import adapter
 from zope.interface import alsoProvides, implementer, provider
 from zope.schema import Choice, List, Tuple, TextLine
-from plone.directives import form
 from plone.app.textfield import RichText
 # from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.restapi.behaviors import IBlocks
 from plone.supermodel import model
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 # from z3c.form.widget import FieldWidget
@@ -54,7 +54,7 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate Impacts"),
         description=_(
@@ -67,7 +67,7 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_("Adaptation Sectors"),
         description=_(
@@ -79,7 +79,7 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    form.widget(key_system="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(key_system="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_system = List(
         title=_("Key Community Systems"),
         description=_(

@@ -10,13 +10,13 @@ from eea.climateadapt.mayorsadapt.vocabulary import _stage_implementation_cycle
 from eea.climateadapt.schema import Email
 from eea.climateadapt.vocabulary import ace_countries
 from plone.api.portal import show_message
-from plone.directives import form
 from plone.formwidget.captcha.widget import CaptchaFieldWidget
 from plone.formwidget.captcha.validator import CaptchaValidator, WrongCaptchaCode
 from plone.memoize import view
-from z3c.form import button, field, validator
+from z3c.form import button, field, validator, form
 from zope import schema
 from zope.event import notify
+from zope.interface import Interface
 from plone.z3cform.layout import wrap_form
 
 
@@ -28,7 +28,7 @@ class Captcha(object):
         self.context = context
 
 
-class IRegisterCityForm(form.Schema):
+class IRegisterCityForm(Interface):
     name = schema.TextLine(title="City Name", required=True)
     email = Email(title="Contact eMail:", required=True)
 
@@ -48,7 +48,7 @@ class CityProfileRegister(Implicit):
         self.email = email
 
 
-class RegisterCityForm(form.SchemaForm):
+class RegisterCityForm(form.Form):
     """ Mayors adapt register city form
     """
 

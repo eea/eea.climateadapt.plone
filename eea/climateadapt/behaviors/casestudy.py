@@ -2,7 +2,6 @@ from plone.app.contenttypes.interfaces import IImage
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
-from plone.directives import form
 from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.field import NamedBlobImage
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
@@ -83,7 +82,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         ),
     )
 
-    form.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     relevance = List(
         title=_("Relevance"),
         required=True,
@@ -150,7 +149,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         ),
     )
 
-    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
         title=_("Adaptation approaches"),
         description=_("Select one or more approaches."),

@@ -8,10 +8,11 @@ from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from plone import api
 from plone.api.portal import get_tool, getSite
 from plone.app.textfield import RichText
-from plone.directives import dexterity, form
+from plone.autoform import directives
+from plone.dexterity.content import Container
 from plone.memoize import view
 from Products.Five.browser import BrowserView
-from zope.interface import implementer
+from zope.interface import implementer, Interface
 from zope.schema import TextLine
 
 # import json
@@ -26,8 +27,8 @@ def translate_text(context, request, text, domain="eea.climateadapt", language=N
     return text
 
 
-class FrontpageSlideSchema(form.Schema):
-    form.fieldset(
+class FrontpageSlideSchema(Interface):
+    directives.fieldset(
         "default",
         label="Item Description",
         fields=[
@@ -62,7 +63,7 @@ class IFrontpageSlide(FrontpageSlideSchema):
 
 
 @implementer(IFrontpageSlide, IEEAClimateAdaptInstalled)
-class FrontpageSlide(dexterity.Container):
+class FrontpageSlide(Container):
     """ Slide content type for which the richtext behavior is activated """
 
 

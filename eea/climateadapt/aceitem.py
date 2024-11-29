@@ -4,55 +4,55 @@ from eea.climateadapt.behaviors import (IAction,
                                         IOrganisation, IPublicationReport,
                                         IResearchProject, ITool)
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from plone.directives import dexterity
+from plone.dexterity.content import Container
 from zope.interface import implementer
 
 
 @implementer(IPublicationReport, IClimateAdaptContent)
-class PublicationReport(dexterity.Container):
+class PublicationReport(Container):
     search_type = "DOCUMENT"
 
 
 @implementer(IInformationPortal, IClimateAdaptContent)
-class InformationPortal(dexterity.Container):
+class InformationPortal(Container):
     search_type = "INFORMATIONSOURCE"
 
 
 @implementer(IGuidanceDocument, IClimateAdaptContent)
-class GuidanceDocument(dexterity.Container):
+class GuidanceDocument(Container):
     search_type = "GUIDANCE"
 
 
 @implementer(ITool, IClimateAdaptContent)
-class Tool(dexterity.Container):
+class Tool(Container):
     search_type = "TOOL"
 
 
 @implementer(IOrganisation, IClimateAdaptContent)
-class Organisation(dexterity.Container):
+class Organisation(Container):
     search_type = "ORGANISATION"
 
 
 @implementer(IIndicator, IClimateAdaptContent)
-class Indicator(dexterity.Container):
+class Indicator(Container):
     search_type = "INDICATOR"
 
 
 @implementer(IIndicator, IClimateAdaptContent)
-class C3sIndicator(dexterity.Container):
+class C3sIndicator(Container):
     search_type = "INDICATOR"
 
 
 @implementer(IMapGraphDataset, IClimateAdaptContent)
-class MapGraphDataset(dexterity.Container):
+class MapGraphDataset(Container):
     search_type = "MAPGRAPHDATASET"
 
 
 @implementer(IResearchProject, IClimateAdaptContent)
-class ResearchProject(dexterity.Container):
+class ResearchProject(Container):
     search_type = "RESEARCHPROJECT"
 
 
 @implementer(IAction, IClimateAdaptContent)
-class Action(dexterity.Container):
+class Action(Container):
     search_type = "ACTION"

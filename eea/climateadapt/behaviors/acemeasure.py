@@ -4,7 +4,6 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 # from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
-from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
@@ -13,7 +12,7 @@ from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 # from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 # from zope.component import adapter
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides, implementer, Interface
 from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple  # Int,
 
 from eea.climateadapt import CcaAdminMessageFactory as _
@@ -28,7 +27,7 @@ ADD_ORGANISATION_URL = (
 )
 
 
-class IAceMeasure(form.Schema, IImageScaleTraversable):
+class IAceMeasure(Interface, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Measure
     """
@@ -144,7 +143,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         missing_value="",
     )
 
-    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         missing_value=[],
@@ -177,7 +176,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         missing_value=(None),
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_("Sectors"),
         description=_(
@@ -334,7 +333,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
-    form.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     governance_level = List(
         title=_("Governance Level"),
         description=_(
@@ -346,7 +345,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         ),
     )
 
-    form.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    directives.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
@@ -493,7 +492,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # TODO: specialtagging is not used in any view jsp, only in add and edit
     # views
 
-    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
         title=_("Adaptation approaches"),
         description=_("Select one or more approaches."),

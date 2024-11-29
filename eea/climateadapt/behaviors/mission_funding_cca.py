@@ -2,8 +2,8 @@ import json
 
 from pkg_resources import resource_filename
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from plone.supermodel import model
@@ -73,7 +73,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # column: Is a Consortium required to apply for the funding?
     )
 
-    form.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     rast_steps = ListField(
         title=_("RAST step(s) of relevance"),
         required=False,
@@ -83,7 +83,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # metacolumn: For which step of the AST can the funding be used?
     )
 
-    form.widget(
+    directives.widget(
         eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     eligible_entities = ListField(
         title=_("Eligible to receive funding"),
@@ -94,7 +94,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # metacolumn: Who is eligible to receive funding?
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = ListField(
         title=_("Adaptation Sectors"),
         description=_(
