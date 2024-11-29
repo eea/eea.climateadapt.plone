@@ -9,8 +9,8 @@
   <include file="integration.zcml" />
   <include file="admin.zcml" />
   <include file="frontpage.zcml" />
-  <include
-    file="faceted.zcml" />
+  <!-- <include
+    file="faceted.zcml" /> -->
   <include file="depiction.zcml" />
   <include file="migrations.zcml" />
   <include
