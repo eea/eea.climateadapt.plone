@@ -3,7 +3,7 @@ import logging
 
 from Acquisition import aq_base
 # from collective.cover.interfaces import ICover, ISearchableText
-from eea.climateadapt.aceitem import IAceItem, IC3sIndicator
+# from eea.climateadapt.aceitem import IAceItem, IC3sIndicator
 from eea.climateadapt.behaviors.aceproject import IAceProject
 from eea.climateadapt.behaviors.adaptationoption import IAdaptationOption
 from eea.climateadapt.behaviors.casestudy import ICaseStudy
@@ -171,14 +171,14 @@ def _get_aceitem_description(object):
     return text
 
 
-@indexer(IC3sIndicator)
-def get_aceitem_description_indicator(object):
-    return _get_aceitem_description(object)
+# @indexer(IC3sIndicator)
+# def get_aceitem_description_indicator(object):
+#     return _get_aceitem_description(object)
 
 
-@indexer(IAceItem)
-def get_aceitem_description(object):
-    return _get_aceitem_description(object)
+# @indexer(IAceItem)
+# def get_aceitem_description(object):
+#     return _get_aceitem_description(object)
 
 
 @indexer(IAceProject)

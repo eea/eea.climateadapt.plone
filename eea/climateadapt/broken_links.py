@@ -12,13 +12,13 @@ from DateTime import DateTime
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemataForType
-from plone.restapi.behaviors import IBlocks
+# from plone.restapi.behaviors import IBlocks
 from plone.restapi.services import Service
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zope.annotation.interfaces import IAnnotations
 
-from eea.climateadapt.behaviors.aceitem import IAceItem
+# from eea.climateadapt.behaviors.aceitem import IAceItem
 from eea.climateadapt.restapi.slate import iterate_children
 
 # from plone.api.content import get_state
@@ -248,10 +248,10 @@ def convert_blocks(obj):
     return urls
 
 
-CONVERTORS = {
-    IAceItem: convert_aceitem,
-    IBlocks: convert_blocks,
-}
+# CONVERTORS = {
+#     IAceItem: convert_aceitem,
+#     IBlocks: convert_blocks,
+# }
 
 PORTAL_TYPES_BLACKLIST = [
     "ATBooleanCriterion",
