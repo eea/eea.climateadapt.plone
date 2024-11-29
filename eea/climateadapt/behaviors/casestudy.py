@@ -12,11 +12,12 @@ from zope.interface import alsoProvides
 from zope.schema import Choice, List, TextLine, Tuple
 
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.behaviors.acemeasure import IAceMeasure
+# from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 from .volto_layout import case_study_layout_blocks, case_study_layout_items
 
 
-class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
+# class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
+class ICaseStudy(IBlocks):  # , IGeolocatable):
     """Case study"""
 
     # directives.omitted(IEditForm, "featured")

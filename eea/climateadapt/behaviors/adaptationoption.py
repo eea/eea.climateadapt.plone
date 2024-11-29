@@ -12,10 +12,11 @@ from zope.schema import (
 )
 
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.behaviors.acemeasure import IAceMeasure
+# from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 
 
-class IAdaptationOption(IAceMeasure, IBlocks):
+# class IAdaptationOption(IAceMeasure, IBlocks):
+class IAdaptationOption(IBlocks):
     """Adaptation Option"""
 
     # directives.omitted(IEditForm, 'featured')
