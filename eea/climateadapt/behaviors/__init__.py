@@ -4,7 +4,7 @@
 # from .acevideo import IAceVideo
 # from .action import IAction
 from .adaptationoption import IAdaptationOption
-from .c3sindicator import IC3sIndicator
+# from .c3sindicator import IC3sIndicator
 from .casestudy import ICaseStudy
 from .ccaevent import ICcaEvent
 # from .guidancedocument import IGuidanceDocument
@@ -32,7 +32,7 @@ __all__ = [
     # IAceProject,
     # IAceVideo,
     # IAction,
-    IC3sIndicator,
+    # IC3sIndicator,
     ICcaEvent,
     # IGuidanceDocument,
     # IIndicator,
