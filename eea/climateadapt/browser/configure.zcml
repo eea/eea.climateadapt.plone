@@ -221,29 +221,29 @@
   <!--   permission="cmf.ManagePortal" -->
   <!-- /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="no_title_cover_view"
     for="*"
     class=".CoverNoTitleView"
     template="pt/no_title_cover_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="column_view"
     for="*"
     class=".CoverNoTitleView"
     template="pt/cover_column_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="vertical_tab_view"
     for="*"
     class=".CoverNoTitleView"
     template="pt/vertical_tab_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
   <browser:page
     name="view"
