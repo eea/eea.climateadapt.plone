@@ -8,13 +8,13 @@
 
   <!-- <include package="plone.tiles" file="meta.zcml" /> -->
 
-  <browser:page
+  <!-- <browser:page
       name="slides-frontpage"
       for="*"
       permission="zope.Public"
       template="pt/frontpage/slides.pt"
       class=".frontpage_slides.FrontpageSlidesView"
-      />
+      /> -->
 
 
   <browser:page
