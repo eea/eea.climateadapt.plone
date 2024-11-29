@@ -139,12 +139,12 @@
       template="pt/get_missing_languages.pt"
       />
 
-  <browser:page
+  <!-- <browser:page
       name="migrate-tiles"
       for="*"
       class=".admin.MigrateTiles"
       permission="cmf.ManagePortal"
-      />
+      /> -->
 
   <!--browser:page
     name="import-adaptecca"

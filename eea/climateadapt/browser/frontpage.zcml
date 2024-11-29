@@ -6,7 +6,7 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="eea.climateadapt">
 
-  <include package="plone.tiles" file="meta.zcml" />
+  <!-- <include package="plone.tiles" file="meta.zcml" /> -->
 
   <browser:page
       name="slides-frontpage"

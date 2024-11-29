@@ -29,8 +29,8 @@ from plone.i18n.normalizer import idnormalizer
 from plone.indexer.interfaces import IIndexer
 from plone.dexterity.utils import datify
 from plone.memoize import view
-from plone.registry.interfaces import IRegistry
-from plone.tiles.interfaces import ITileDataManager
+# from plone.registry.interfaces import IRegistry
+# from plone.tiles.interfaces import ITileDataManager
 from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
@@ -1030,49 +1030,49 @@ class GetMissingLanguages(BrowserView):
         return self.index()
 
 
-class MigrateTiles(BrowserView):
+# class MigrateTiles(BrowserView):
 
-    def process(self, cover):
-        tileids = cover.list_tiles(
-            types=['eea.climateadapt.relevant_acecontent']
-        )
+#     def process(self, cover):
+#         tileids = cover.list_tiles(
+#             types=['eea.climateadapt.relevant_acecontent']
+#         )
 
-        for tid in tileids:
-            tile = cover.get_tile(tid)
+#         for tid in tileids:
+#             tile = cover.get_tile(tid)
 
-            if not tile.assigned():
-                brains = list(tile.items())
-                uids = [b.UID for b in brains]
+#             if not tile.assigned():
+#                 brains = list(tile.items())
+#                 uids = [b.UID for b in brains]
 
-                if uids:
-                    tile.populate_with_uuids(uids)
+#                 if uids:
+#                     tile.populate_with_uuids(uids)
 
-                    data_mgr = ITileDataManager(tile)
-                    old_data = data_mgr.get()
-                    old_data['sortBy'] = 'NAME'
-                    data_mgr.set(old_data)
+#                     data_mgr = ITileDataManager(tile)
+#                     old_data = data_mgr.get()
+#                     old_data['sortBy'] = 'NAME'
+#                     data_mgr.set(old_data)
 
-                    print(("Fixed cover %s, tile %s with uids %r" % (
-                        cover.absolute_url(),
-                        tid,
-                        uids,
-                    )))
+#                     print(("Fixed cover %s, tile %s with uids %r" % (
+#                         cover.absolute_url(),
+#                         tid,
+#                         uids,
+#                     )))
 
-                    logger.info("Fixed cover %s, tile %s with uids %r",
-                                cover.absolute_url(),
-                                tid,
-                                uids,
-                                )
+#                     logger.info("Fixed cover %s, tile %s with uids %r",
+#                                 cover.absolute_url(),
+#                                 tid,
+#                                 uids,
+#                                 )
 
-    def __call__(self):
-        catalog = get_tool('portal_catalog')
-        brains = catalog(portal_type='collective.cover.content')
+#     def __call__(self):
+#         catalog = get_tool('portal_catalog')
+#         brains = catalog(portal_type='collective.cover.content')
 
-        for brain in brains:
-            obj = brain.getObject()
-            self.process(obj)
+#         for brain in brains:
+#             obj = brain.getObject()
+#             self.process(obj)
 
-        return 'done'
+#         return 'done'
 
 
 class Item:
