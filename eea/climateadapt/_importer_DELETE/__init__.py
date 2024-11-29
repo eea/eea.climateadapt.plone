@@ -45,7 +45,7 @@ from plone.namedfile.file import NamedBlobFile, NamedBlobImage
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
 from pytz import timezone, utc
-from six.moves.html_parser import HTMLParser
+from html import unescape as html_unescape
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from z3c.relationfield.relation import RelationValue
@@ -66,9 +66,6 @@ additional_sharepage_layouts = [
     '/share-your-info/indicators',
     '/share-your-info/map-graph-data'
 ]
-
-
-html_unescape = HTMLParser().unescape
 
 
 @log_call

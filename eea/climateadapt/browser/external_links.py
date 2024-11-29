@@ -11,12 +11,12 @@ from lxml.etree import fromstring
 from persistent.mapping import PersistentMapping
 from plone import api
 from plone.i18n.normalizer import idnormalizer
-from six.moves.html_parser import HTMLParser
+from html import unescape as html_unescape
 from zope.annotation.interfaces import IAnnotations
 
 from .admin import Item
 
-html_unescape = HTMLParser().unescape
+# html_unescape = HTMLParser().unescape
 logger = logging.getLogger('eea.climateadapt')
 
 

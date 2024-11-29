@@ -35,7 +35,7 @@ from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
-from six.moves.html_parser import HTMLParser
+# from html import unescape
 from z3c.form import button
 from z3c.form import form
 # from z3c.form.interfaces import IFieldWidget
@@ -48,7 +48,7 @@ from zope.component import getMultiAdapter, getUtility
 from zope.interface import (Interface, Invalid, implementer,
                             invariant)
 
-html_unescape = HTMLParser().unescape
+# html_unescape = unescape
 
 logger = logging.getLogger('eea.climateadapt')
 
