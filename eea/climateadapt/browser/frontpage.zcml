@@ -47,7 +47,7 @@
     class=".tilehelpers.CountriesTileMetadata"
     />
 
-  <plone:tile
+  <!-- <plone:tile
     name="eea.carousel.tile"
     title="Frontpage Tile"
     description="Carousel Frontpage"
@@ -58,7 +58,7 @@
     permission="zope2.View"
     for="*"
     template="pt/frontpage/fp-carousel-tile.pt"
-    />
+    /> -->
 
   <browser:page
     name="fp-casestudies-tile"
