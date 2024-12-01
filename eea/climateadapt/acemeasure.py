@@ -11,7 +11,7 @@ from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.sat.datamanager import queue_callback
 from eea.climateadapt.sat.handlers import HANDLERS
 from eea.climateadapt.sat.settings import get_settings
-from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
+# from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
 from eea.climateadapt.utils import _unixtime, shorten
 from eea.climateadapt.vocabulary import BIOREGIONS
 # from eea.rabbitmq.plone.rabbitmq import queue_msg
@@ -67,68 +67,68 @@ class CaseStudy(Container):
 
             return ""
 
-    def _repr_for_arcgis(self):
-        is_featured = getattr(self, "featured", False)
-        # is_highlight = getattr(self, 'highlight', False)
-        # classes = {
-        #     (False, False): 'normal',
-        #     (True, False): 'featured',
-        #     (True, True): 'featured-highlight',
-        #     (False, True): 'highlight',
-        # }
-        # client_cls = classes[(is_featured, is_highlight)]
-        client_cls = is_featured and "featured" or "normal"
+    # def _repr_for_arcgis(self):
+    #     is_featured = getattr(self, "featured", False)
+    #     # is_highlight = getattr(self, 'highlight', False)
+    #     # classes = {
+    #     #     (False, False): 'normal',
+    #     #     (True, False): 'featured',
+    #     #     (True, True): 'featured-highlight',
+    #     #     (False, True): 'highlight',
+    #     # }
+    #     # client_cls = classes[(is_featured, is_highlight)]
+    #     client_cls = is_featured and "featured" or "normal"
 
-        if self.geolocation and self.geolocation.latitude:
-            geo = to_arcgis_coords(
-                self.geolocation.longitude, self.geolocation.latitude
-            )
-            geometry = {
-                "x": geo[0],
-                "y": geo[1],
-            }
-        else:
-            geometry = {"x": "", "y": ""}
+    #     if self.geolocation and self.geolocation.latitude:
+    #         geo = to_arcgis_coords(
+    #             self.geolocation.longitude, self.geolocation.latitude
+    #         )
+    #         geometry = {
+    #             "x": geo[0],
+    #             "y": geo[1],
+    #         }
+    #     else:
+    #         geometry = {"x": "", "y": ""}
 
-        if self.effective_date is not None:
-            if hasattr(self.effective_date, "date"):
-                effective = self.effective_date.date()
-            else:
-                effective = self.effective_date.asdatetime().date()
-        else:
-            effective = date.today()  # todo? item not published?
+    #     if self.effective_date is not None:
+    #         if hasattr(self.effective_date, "date"):
+    #             effective = self.effective_date.date()
+    #         else:
+    #             effective = self.effective_date.asdatetime().date()
+    #     else:
+    #         effective = date.today()  # todo? item not published?
 
-        today = date.today()
-        timedelta = today - effective
+    #     today = date.today()
+    #     timedelta = today - effective
 
-        if timedelta.days > 90:
-            newitem = "no"
-        else:
-            newitem = "yes"
+    #     if timedelta.days > 90:
+    #         newitem = "no"
+    #     else:
+    #         newitem = "yes"
 
-        res = {
-            "attributes": {
-                "area": self._get_area(),
-                "itemname": self.Title(),
-                "desc_": self._short_description(),
-                "website": self.websites and self.websites[0] or "",
-                "sectors": ";".join(self.sectors or []),
-                "risks": ";".join(self.climate_impacts or []),
-                "measureid": getattr(self, "_acemeasure_id", "") or self.UID(),
-                "featured": is_featured and "yes" or "no",
-                "newitem": newitem,
-                "casestudyf": "CASESEARCH;",  # TODO: implement this
-                "client_cls": client_cls,
-                "Creator": self.creators[-1],
-                "CreationDate": _unixtime(self.creation_date),
-                "EditDate": _unixtime(self.modification_date),
-                "Editor": self.workflow_history["cca_items_workflow"][-1]["actor"],
-                "EffectiveDate": _unixtime(self.effective_date),
-            },
-            "geometry": geometry,
-        }
+    #     res = {
+    #         "attributes": {
+    #             "area": self._get_area(),
+    #             "itemname": self.Title(),
+    #             "desc_": self._short_description(),
+    #             "website": self.websites and self.websites[0] or "",
+    #             "sectors": ";".join(self.sectors or []),
+    #             "risks": ";".join(self.climate_impacts or []),
+    #             "measureid": getattr(self, "_acemeasure_id", "") or self.UID(),
+    #             "featured": is_featured and "yes" or "no",
+    #             "newitem": newitem,
+    #             "casestudyf": "CASESEARCH;",  # TODO: implement this
+    #             "client_cls": client_cls,
+    #             "Creator": self.creators[-1],
+    #             "CreationDate": _unixtime(self.creation_date),
+    #             "EditDate": _unixtime(self.modification_date),
+    #             "Editor": self.workflow_history["cca_items_workflow"][-1]["actor"],
+    #             "EffectiveDate": _unixtime(self.effective_date),
+    #         },
+    #         "geometry": geometry,
+    #     }
 
-        return res
+    #     return res
 
 
 def handle_for_arcgis_sync(obj, event):
