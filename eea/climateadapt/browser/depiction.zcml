@@ -49,13 +49,13 @@
       allowed_interface="eea.depiction.browser.interfaces.IImageView"
       />
 
-  <browser:page
+  <!-- <browser:page
       for="eea.climateadapt.aceitem.IPublicationReport"
       name="imgview"
       class=".depiction.CCAContentDepictionView"
       permission="zope.Public"
       allowed_interface="eea.depiction.browser.interfaces.IImageView"
-      />
+      /> -->
 
   <browser:page
       for="eea.climateadapt.aceproject.IAceProject"

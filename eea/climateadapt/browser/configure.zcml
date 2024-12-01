@@ -265,13 +265,13 @@
 
 
 
-  <browser:page
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.aceitem.IPublicationReport"
     class="eea.climateadapt.browser.aceitem.PublicationReportView"
     template="pt/publicationreport_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
   <browser:page
     name="view"
@@ -452,20 +452,21 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .video.VideoAddForm"
   />
-  -----[ Publication Reports Form customizations ]---- <browser:page
+  -----[ Publication Reports Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.aceitem.IPublicationReport"
     class=".aceitem.PublicationReportEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".aceitem.AceItemFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.aceitem.IPublicationReport
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.PublicationReportEditForm"
-  />
+  /> -->
 
   <adapter
     factory=".aceitem.AceItemFormExtender"
