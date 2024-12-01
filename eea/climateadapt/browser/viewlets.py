@@ -14,7 +14,7 @@ from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import base_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
-from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
+# from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.site.hooks import getSite
@@ -239,11 +239,11 @@ class PathBarViewlet(BasePathBarViewlet):
         return url
 
 
-class CookiesViewlet(CookiePolicyViewlet):
-    render = ViewPageTemplateFile("pt/cookiepolicy.pt")
+# class CookiesViewlet(CookiePolicyViewlet):
+#     render = ViewPageTemplateFile("pt/cookiepolicy.pt")
 
-    def update(self):
-        return super(CookiesViewlet, self).render()
+#     def update(self):
+#         return super(CookiesViewlet, self).render()
 
 
 class ArchivedStateViewlet(ViewletBase):

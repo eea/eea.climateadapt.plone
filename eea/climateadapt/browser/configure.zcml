@@ -1041,13 +1041,13 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
   />
 
-  <browser:viewlet
+  <!-- <browser:viewlet
     name="tlspu.cookiepolicy"
     manager="plone.app.layout.viewlets.interfaces.IBelowContent"
     class=".viewlets.CookiesViewlet"
     permission="zope2.View"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-  />
+  /> -->
 
   <browser:viewlet
     name="plone.personal_bar"
