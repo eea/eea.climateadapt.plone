@@ -253,13 +253,13 @@
     permission="zope2.View"
   /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.aceitem.IC3sIndicator"
     class="eea.climateadapt.browser.aceitem.C3sIndicatorView"
     template="pt/c3sindicator_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
 
 
@@ -570,20 +570,21 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.IndicatorEditForm"
   />
-  -----[ C3sIndicators Form customizations ]---- <browser:page
+  -----[ C3sIndicators Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.aceitem.IC3sIndicator"
     class=".aceitem.C3sIndicatorEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".aceitem.AceItemFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.aceitem.IC3sIndicator
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.C3sIndicatorEditForm"
-  />
+  /> -->
 
   <adapter
     factory=".aceitem.C3sIndicatorFormExtender"
