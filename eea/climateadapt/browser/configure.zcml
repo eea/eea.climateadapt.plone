@@ -654,13 +654,14 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceproject.AceProjectAddForm"
   />
-  ------ <browser:page
+  ------ 
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.acevideo.IAceVideo"
     class="eea.climateadapt.browser.video.VideoView"
     template="pt/video_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
   <browser:page
     name="view"
