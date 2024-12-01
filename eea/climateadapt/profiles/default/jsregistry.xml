@@ -232,7 +232,7 @@
     id="++resource++plone.formwidget.autocomplete/jquery.autocomplete.min.js"
     inline="False"
     insert-after="++resource++plone.formwidget.autocomplete/formwidget-autocomplete.js"/>
- <javascript authenticated="True" bundle="default" cacheable="True"
+ <!-- <javascript authenticated="True" bundle="default" cacheable="True"
     compression="none" conditionalcomment="" cookable="True" enabled="True"
     expression="" id="++resource++plone.formwidget.contenttree/contenttree.js"
     inline="False"
@@ -241,7 +241,7 @@
     compression="none" conditionalcomment="" cookable="True" enabled="True"
     expression="" id="++resource++plone.formwidget.querystring.querywidget.js"
     inline="False"
-    insert-after="++resource++plone.formwidget.contenttree/contenttree.js"/>
+    insert-after="++resource++plone.formwidget.contenttree/contenttree.js"/> -->
  <javascript authenticated="False" bundle="default" cacheable="True"
     compression="safe" conditionalcomment="" cookable="True" enabled="False"
     expression="" id="++resource++plone.app.event.portlet_calendar.js"

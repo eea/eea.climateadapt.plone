@@ -1,8 +1,8 @@
-from plone.app.contenttypes.interfaces import IImage
+# from plone.app.contenttypes.interfaces import IImage
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
-from plone.formwidget.contenttree import ObjPathSourceBinder
+# from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.field import NamedBlobImage
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
@@ -161,20 +161,20 @@ class ICaseStudy(IBlocks):  # , IGeolocatable):
     )
 
     # BBB fields, only used during migration
-    primephoto = RelationChoice(
-        title=_("Prime photo"),
-        source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
-        required=False,
-    )
-    supphotos = RelationList(
-        title=_("Gallery"),
-        default=[],
-        value_type=RelationChoice(
-            title=_("Related"),
-            source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
-        ),
-        required=False,
-    )
+    # primephoto = RelationChoice(
+    #     title=_("Prime photo"),
+    #     source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
+    #     required=False,
+    # )
+    # supphotos = RelationList(
+    #     title=_("Gallery"),
+    #     default=[],
+    #     value_type=RelationChoice(
+    #         title=_("Related"),
+    #         source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
+    #     ),
+    #     required=False,
+    # )
 
     # form.fieldset(
     #     "default",
