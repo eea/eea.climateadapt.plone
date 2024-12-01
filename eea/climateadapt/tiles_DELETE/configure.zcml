@@ -220,12 +220,12 @@
     template="pt/card_organisation.pt"
     />
 
-  <browser:page
+  <!-- <browser:page
     for="eea.climateadapt.aceitem.IIndicator"
     name="card"
     class=".cardslisting.IndicatorCard"
     permission="zope2.View"
     template="pt/card_indicator.pt"
-    />
+    /> -->
 
 </configure>

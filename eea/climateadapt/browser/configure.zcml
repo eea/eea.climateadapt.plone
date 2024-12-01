@@ -245,13 +245,13 @@
     permission="zope2.View"
   /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.aceitem.IIndicator"
     class="eea.climateadapt.browser.aceitem.IndicatorView"
     template="pt/indicator_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
   <browser:page
     name="view"
@@ -547,13 +547,13 @@
     permission="cmf.ModifyPortalContent"
   />
 
-  <adapter
+  <!-- <adapter
     factory=".aceitem.AceItemFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.aceitem.IIndicator
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.IndicatorEditForm"
-  />
+  /> -->
 
   <adapter
     factory=".aceitem.AceItemFormExtender"
