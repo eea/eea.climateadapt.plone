@@ -273,45 +273,45 @@
     permission="zope2.View"
   /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.aceitem.IInformationPortal"
     class="eea.climateadapt.browser.aceitem.InformationPortalView"
     template="pt/informationportal_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.aceitem.IGuidanceDocument"
     class="eea.climateadapt.browser.aceitem.GuidanceDocumentView"
     template="pt/guidancedocument_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.aceitem.ITool"
     class="eea.climateadapt.browser.aceitem.ToolView"
     template="pt/tool_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.aceitem.IMapGraphDataset"
     class="eea.climateadapt.browser.mapgraphsdataset.MapGraphDatasetView"
     template="pt/mapgraphdataset_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.aceitem.IOrganisation"
     class="eea.climateadapt.browser.aceitem.OrganisationView"
     template="pt/organisation_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
   <browser:page
     name="view"
@@ -408,20 +408,21 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .adaptationoption.AdaptationOptionAddForm"
   />
-  -----[ Maps Graphs Form customizations ]---- <browser:page
+  -----[ Maps Graphs Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.aceitem.IMapGraphDataset"
     class=".mapgraphsdataset.MapsEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".mapgraphsdataset.MapsFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.aceitem.IMapGraphDataset
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .mapgraphsdataset.MapsEditForm"
-  />
+  /> -->
 
   <adapter
     factory=".mapgraphsdataset.MapsFormExtender"
@@ -475,20 +476,21 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.PublicationReportAddForm"
   />
-  -----[ Information Portals Form customizations ]---- <browser:page
+  -----[ Information Portals Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.aceitem.IInformationPortal"
     class=".aceitem.InformationPortalEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".aceitem.AceItemFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.aceitem.IInformationPortal
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.InformationPortalEditForm"
-  />
+  /> -->
 
   <adapter
     factory=".aceitem.AceItemFormExtender"
@@ -497,20 +499,21 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.InformationPortalAddForm"
   />
-  -----[ Maps Graphs Form customizations ]---- <browser:page
+  -----[ Maps Graphs Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.aceitem.IGuidanceDocument"
     class=".aceitem.GuidanceDocumentEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".aceitem.AceItemFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.aceitem.IGuidanceDocument
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.GuidanceDocumentEditForm"
-  />
+  /> -->
 
   <adapter
     factory=".aceitem.AceItemFormExtender"
@@ -519,20 +522,21 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.GuidanceDocumentAddForm"
   />
-  -----[ Tools Form customizations ]---- <browser:page
+  -----[ Tools Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.aceitem.ITool"
     class=".aceitem.ToolEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".aceitem.AceItemFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.aceitem.ITool
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.ToolEditForm"
-  />
+  /> -->
 
   <adapter
     factory=".aceitem.AceItemFormExtender"
@@ -541,12 +545,13 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.ToolAddForm"
   />
-  -----[ Indicators Form customizations ]---- <browser:page
+  -----[ Indicators Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.aceitem.IIndicator"
     class=".aceitem.IndicatorEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
   <!-- <adapter
     factory=".aceitem.AceItemFormExtender"
@@ -602,20 +607,21 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.C3sIndicatorEditForm"
   />
-  -----[ Organisations Form customizations ]---- <browser:page
+  -----[ Organisations Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.aceitem.IOrganisation"
     class=".aceitem.OrganisationEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".aceitem.OrganisationFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.aceitem.IOrganisation
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.OrganisationEditForm"
-  />
+  /> -->
 
   <adapter
     factory=".aceitem.OrganisationFormExtender"
