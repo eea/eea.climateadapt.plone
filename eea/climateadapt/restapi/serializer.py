@@ -15,10 +15,10 @@ from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
 
 from eea.climateadapt.behaviors import (
-    IAceProject,
+    # IAceProject,
     IAdaptationOption,
     ICaseStudy,
-    IOrganisation,
+    # IOrganisation,
 )
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
 from eea.climateadapt.behaviors.mission_tool import IMissionTool
@@ -137,13 +137,13 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
         return cca_content_serializer(self.context, result, self.request)
 
 
-@adapter(IAceProject, Interface)
-class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
-    def __call__(self, version=None, include_items=True):
-        result = super(AceProjectSerializer, self).__call__(
-            version=None, include_items=True
-        )
-        return cca_content_serializer(self.context, result, self.request)
+# @adapter(IAceProject, Interface)
+# class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
+#     def __call__(self, version=None, include_items=True):
+#         result = super(AceProjectSerializer, self).__call__(
+#             version=None, include_items=True
+#         )
+#         return cca_content_serializer(self.context, result, self.request)
 
 
 @adapter(ICaseStudy, Interface)
@@ -247,16 +247,16 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
         return result
 
 
-@adapter(IOrganisation, Interface)
-class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
-    def __call__(self, version=None, include_items=True):
-        result = super(OrganisationSerializer, self).__call__(
-            version=None, include_items=True
-        )
-        result = cca_content_serializer(self.context, result, self.request)
-        view = getMultiAdapter((self.context, self.request), name="view")
-        contributions = view.get_contributions()
-        for contribution in contributions:
-            contribution.pop("date", None)
-        result["contributions"] = contributions
-        return result
+# @adapter(IOrganisation, Interface)
+# class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
+#     def __call__(self, version=None, include_items=True):
+#         result = super(OrganisationSerializer, self).__call__(
+#             version=None, include_items=True
+#         )
+#         result = cca_content_serializer(self.context, result, self.request)
+#         view = getMultiAdapter((self.context, self.request), name="view")
+#         contributions = view.get_contributions()
+#         for contribution in contributions:
+#             contribution.pop("date", None)
+#         result["contributions"] = contributions
+#         return result

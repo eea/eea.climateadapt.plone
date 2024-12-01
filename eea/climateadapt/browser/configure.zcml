@@ -431,28 +431,29 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .mapgraphsdataset.MapsAddForm"
   />
-  -----[ Videos Form customizations ]---- <browser:page
+  -----[ Videos Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.acevideo.IAceVideo"
     class=".video.VideoEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".video.VideoFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.acevideo.IAceVideo
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .video.VideoEditForm"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".video.VideoFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.acevideo.IAceVideo
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .video.VideoAddForm"
-  />
+  /> -->
   -----[ Publication Reports Form customizations ]---- 
   <!-- <browser:page
     name="edit"
@@ -630,20 +631,21 @@
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceitem.OrganisationAddForm"
   />
-  -----[ Ace Project Form customizations ]---- <browser:page
+  -----[ Ace Project Form customizations ]---- 
+  <!-- <browser:page
     name="edit"
     for="eea.climateadapt.aceproject.IAceProject"
     class=".aceproject.AceProjectEditView"
     permission="cmf.ModifyPortalContent"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".aceproject.AceProjectFormExtender"
     provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
     for="eea.climateadapt.aceproject.IAceProject
            zope.publisher.interfaces.browser.IDefaultBrowserLayer
            .aceproject.AceProjectEditForm"
-  />
+  /> -->
 
   <adapter
     factory=".aceproject.AceProjectFormExtender"
@@ -669,13 +671,13 @@
   />
 
 
-  <browser:page
+  <!-- <browser:page
     name="view"
     for="eea.climateadapt.aceproject.IAceProject"
     class="eea.climateadapt.browser.aceproject.AceProjectView"
     template="pt/aceproject_view.pt"
     permission="zope2.View"
-  />
+  /> -->
 
   <browser:page
     name="site_navbar"
