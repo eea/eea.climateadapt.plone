@@ -148,7 +148,7 @@ alsoProvides(IEventBasic["start"], ILanguageIndependentField)
 alsoProvides(IEventBasic["end"], ILanguageIndependentField)
 alsoProvides(IEventBasic["whole_day"], ILanguageIndependentField)
 alsoProvides(IEventBasic["open_end"], ILanguageIndependentField)
-alsoProvides(IEventBasic["timezone"], ILanguageIndependentField)
+# alsoProvides(IEventBasic["timezone"], ILanguageIndependentField)
 alsoProvides(IEventBasic["sync_uid"], ILanguageIndependentField)
 
 
