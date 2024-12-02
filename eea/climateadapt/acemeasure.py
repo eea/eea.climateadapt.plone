@@ -1,25 +1,26 @@
-""" CaseStudy and AdaptationOption implementations
-"""
+"""CaseStudy and AdaptationOption implementations"""
 
 import json
 import logging
-from datetime import date
+# from datetime import date
 
-from eea.climateadapt.behaviors import (IAdaptationOption,
-                                        ICaseStudy)
+from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from eea.climateadapt.sat.datamanager import queue_callback
-from eea.climateadapt.sat.handlers import HANDLERS
-from eea.climateadapt.sat.settings import get_settings
-# from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
-from eea.climateadapt.utils import _unixtime, shorten
+from eea.climateadapt.utils import shorten  # _unixtime,
 from eea.climateadapt.vocabulary import BIOREGIONS
-# from eea.rabbitmq.plone.rabbitmq import queue_msg
+
 from plone.api.portal import get_tool
 from plone.dexterity.content import Container
 from zope.interface import implementer
 
+# from eea.climateadapt.sat.datamanager import queue_callback
+# from eea.climateadapt.sat.handlers import HANDLERS
+# from eea.climateadapt.sat.settings import get_settings
+# from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
+# from eea.rabbitmq.plone.rabbitmq import queue_msg
+
 logger = logging.getLogger("eea.climateadapt.acemeasure")
+
 
 @implementer(IAdaptationOption, IClimateAdaptContent)
 class AdaptationOption(Container):
@@ -27,9 +28,9 @@ class AdaptationOption(Container):
 
     search_type = "MEASURE"
 
+
 @implementer(ICaseStudy, IClimateAdaptContent)
 class CaseStudy(Container):
-
     search_type = "ACTION"
 
     def _short_description(self):
@@ -131,35 +132,32 @@ class CaseStudy(Container):
     #     return res
 
 
-def handle_for_arcgis_sync(obj, event):
-    """Dispatch event to RabbitMQ to trigger synchronization to ArcGIS"""
-    event_name = event.__class__.__name__
-    uid = _measure_id(obj)
-    msg = "{0}|{1}".format(event_name, uid)
-    logger.info("Queuing RabbitMQ message: %s", msg)
-
-    settings = get_settings()
-
-    if settings.skip_rabbitmq:
-        queue_callback(lambda: HANDLERS[event_name](obj, uid))
-
-        return
-
-    try:
-        # queue_msg(msg, queue="eea.climateadapt.casestudies")
-        pass
-    except Exception:
-        logger.exception("Couldn't queue RabbitMQ message for case study event")
+# def handle_for_arcgis_sync(obj, event):
+#     """Dispatch event to RabbitMQ to trigger synchronization to ArcGIS"""
+#     event_name = event.__class__.__name__
+#     uid = _measure_id(obj)
+#     msg = "{0}|{1}".format(event_name, uid)
+#     logger.info("Queuing RabbitMQ message: %s", msg)
+#
+#     settings = get_settings()
+#
+#     if settings.skip_rabbitmq:
+#         queue_callback(lambda: HANDLERS[event_name](obj, uid))
+#
+#         return
+#
+#     try:
+#         # queue_msg(msg, queue="eea.climateadapt.casestudies")
+#         pass
+#     except Exception:
+#         logger.exception("Couldn't queue RabbitMQ message for case study event")
 
 
 def handle_measure_added(obj, event):
     """Assign a new measureid to this AceMeasure"""
 
     catalog = get_tool(name="portal_catalog")
-    ids = sorted(
-        value
-        for value in catalog.uniqueValuesFor("acemeasure_id")
-        if value)
+    ids = sorted(value for value in catalog.uniqueValuesFor("acemeasure_id") if value)
     obj._acemeasure_id = ids[-1] + 1
     obj.reindexObject(idxs=["acemeasure_id"])
 
