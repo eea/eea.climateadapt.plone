@@ -126,32 +126,32 @@
 
   <!-- =======[ Catalog indexes adapters ]=======  -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.aceitem_id"
     name="aceitem_id"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.funding"
     name="funding"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.acemeasure_id"
     name="acemeasure_id"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.aceproject_id"
     name="aceproject_id"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.countries"
     name="countries"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.imported_ids"
     name="imported_ids"
-  />
+  /> -->
   <!-- <adapter
     factory=".catalog.search_type"
     name="search_type"
@@ -160,53 +160,53 @@
     factory=".catalog.search_type_for_newsevents"
     name="search_type"
   /> -->
-  <adapter
+  <!-- <adapter
     factory=".catalog.featured"
     name="featured"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.get_aceitem_description"
     name="Description"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.get_aceitem_description_indicator"
     name="Description"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.get_aceproject_description"
     name="Description"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.get_adaptation_option_description"
     name="Description"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.get_casestudy_description"
     name="Description"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.cover_description"
     name="Description"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.image_field_indexer"
     name="image_field"
-  />
+  /> -->
 
   <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.bio_regions"
     name="bio_regions"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.macro_regions"
     name="macro_regions"
-  />
+  /> -->
   <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> --> ----[ Vocabularies: ]------ <utility
     name="eea.climateadapt.aceitems_datatypes"
     component=".vocabulary.aceitem_datatypes_vocabulary"
