@@ -124,15 +124,15 @@
     provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
   />
 
-  <subscriber
+  <!-- <subscriber
     factory=".blocks.SearchAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-  />
+  /> -->
 
-  <subscriber
+  <!-- <subscriber
     factory=".blocks.RelevantAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-  />
+  /> -->
 
   <browser:page
     for="*"
@@ -178,7 +178,7 @@
   <!--     /> -->
 
   <adapter factory=".countryprofile.CountryProfile" name="countryprofile" />
-  <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions" />
+  <!-- <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions" /> -->
 
   <subscriber
     factory=".blocks.ResolveUIDDeserializer"

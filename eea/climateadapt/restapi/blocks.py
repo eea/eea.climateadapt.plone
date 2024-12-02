@@ -1,7 +1,7 @@
 import logging
 from copy import deepcopy
 
-from eea.climateadapt.tiles.search_acecontent import AceTileMixin
+# from eea.climateadapt.tiles.search_acecontent import AceTileMixin
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer.blocks import path2uid
 from plone.restapi.interfaces import (
@@ -39,27 +39,27 @@ class GenericLinkFixer(object):
         return block
 
 
-@implementer(IBlockFieldSerializationTransformer)
-@adapter(IBlocks, IBrowserRequest)
-class SearchAceContentBlockSerializer(object):
-    order = 100
-    block_type = "searchAceContent"
+# @implementer(IBlockFieldSerializationTransformer)
+# @adapter(IBlocks, IBrowserRequest)
+# class SearchAceContentBlockSerializer(object):
+#     order = 100
+#     block_type = "searchAceContent"
 
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
+#     def __init__(self, context, request):
+#         self.context = context
+#         self.request = request
 
-    def __call__(self, block):
-        ace = AceTileMixin()
-        ace.context = self.context
-        ace.request = self.request
-        ace.data = block
-        ace.current_lang = "en"
+#     def __call__(self, block):
+#         ace = AceTileMixin()
+#         ace.context = self.context
+#         ace.request = self.request
+#         ace.data = block
+#         ace.current_lang = "en"
 
-        block["_v_results"] = ace.sections()
-        # print('sections', block)
+#         block["_v_results"] = ace.sections()
+#         # print('sections', block)
 
-        return block
+#         return block
 
 
 @implementer(IBlockFieldSerializationTransformer)
@@ -128,27 +128,27 @@ class SearchlibBlockSerializationTransformer(object):
         return block
 
 
-@implementer(IBlockFieldSerializationTransformer)
-@adapter(IBlocks, IBrowserRequest)
-class RelevantAceContentBlockSerializer(object):
-    order = 100
-    block_type = "relevantAceContent"
+# @implementer(IBlockFieldSerializationTransformer)
+# @adapter(IBlocks, IBrowserRequest)
+# class RelevantAceContentBlockSerializer(object):
+#     order = 100
+#     block_type = "relevantAceContent"
 
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
+#     def __init__(self, context, request):
+#         self.context = context
+#         self.request = request
 
-    def __call__(self, block):
-        ace = AceTileMixin()
-        ace.context = self.context
-        ace.request = self.request
-        ace.data = block
-        ace.current_lang = "en"
+#     def __call__(self, block):
+#         ace = AceTileMixin()
+#         ace.context = self.context
+#         ace.request = self.request
+#         ace.data = block
+#         ace.current_lang = "en"
 
-        if not block.get("items"):
-            block["_v_results"] = ace.relevant_all_items()
+#         if not block.get("items"):
+#             block["_v_results"] = ace.relevant_all_items()
 
-        return block
+#         return block
 
 
 class ResolveUIDDeserializerBase(object):
