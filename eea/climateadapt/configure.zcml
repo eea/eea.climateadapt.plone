@@ -44,7 +44,8 @@
 
   <!-- <include package=".asynctasks" /> -->
   <!-- <include package=".widgets" /> -->
-  <include package=".browser" />
+  <include
+    package=".browser" />
   <!-- <include package=".tiles" /> -->
   <!-- <include package=".sat" /> -->
   <!-- <include package="._importer" /> -->
@@ -54,7 +55,8 @@
   <include package=".behaviors" />
   <!-- <include package=".translation" /> -->
   <!-- <include package=".migration" /> -->
-  <configure zcml:condition="not-installed Products.CMFPlone.image_scales">
+  <configure
+    zcml:condition="not-installed Products.CMFPlone.image_scales">
     <include package=".image_scales" />
   </configure>
 
@@ -207,7 +209,8 @@
     factory=".catalog.macro_regions"
     name="macro_regions"
   /> -->
-  <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> --> ----[ Vocabularies: ]------ <utility
+  <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> --> ----[
+  Vocabularies: ]------ <utility
     name="eea.climateadapt.aceitems_datatypes"
     component=".vocabulary.aceitem_datatypes_vocabulary"
   />
@@ -432,17 +435,17 @@
     handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
   /> -->
 
-  <subscriber
-    for="zope.interface.Interface
-           Products.CMFCore.interfaces.IActionSucceededEvent"
-    handler=".events.invalidate_cache_faceted_object_row"
-  />
+  <!-- <subscriber -->
+  <!--   for="zope.interface.Interface -->
+  <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+  <!--   handler=".events.invalidate_cache_faceted_object_row" -->
+  <!-- /> -->
 
-  <subscriber
-    for="zope.interface.Interface
-           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-    handler=".events.invalidate_cache_faceted_object_row"
-  />
+  <!-- <subscriber -->
+  <!--   for="zope.interface.Interface -->
+  <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+  <!--   handler=".events.invalidate_cache_faceted_object_row" -->
+  <!-- /> -->
 
   <!-- <subscriber
     for="eea.climateadapt.acemeasure.IAceMeasure
@@ -489,7 +492,7 @@
     factory=".marshaller.IssuedFieldModifier"
     provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
   /> -->
-<!-- 
+  <!--
   <adapter
     factory=".marshaller.Geolocation2Surf" />
   <adapter factory=".marshaller.File2Surf" />

@@ -4,7 +4,7 @@ import transaction
 from zope import component
 from zope.event import notify
 
-from eea.cache import event
+# from eea.cache import event
 from plone.app.contentrules.handlers import execute, execute_rules
 from plone.app.iterate.dexterity.utils import get_baseline
 from plone.app.iterate.event import WorkingCopyDeletedEvent
@@ -14,9 +14,9 @@ from zope.globalrequest import getRequest
 
 from DateTime import DateTime
 
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger("eea.climateadapt")
 
-InvalidateCacheEvent = event.InvalidateCacheEvent
+# InvalidateCacheEvent = event.InvalidateCacheEvent
 
 
 def trigger_contentrules(event):
@@ -29,7 +29,7 @@ def trigger_indicator_contentrule(event):
 
 
 def handle_iterate_wc_deletion(object, event):
-    """ When a WorkingCopy is deleted, the problem was that the locking was not
+    """When a WorkingCopy is deleted, the problem was that the locking was not
     removed. We're manually triggering the IWorkingCopyDeletedEvent because
     the plone.app.iterate handler is registered for IWorkingCopyRelation, a
     derivate of Archetype's relations, which is not used in the dexterity
@@ -51,9 +51,9 @@ def invalidate_cache_faceted_object_row(obj, evt):
         uid = obj.UID()
     except Exception:
         # logger.warning("Could not detect UID for obj, %s", obj)
-        uid = ''
-    key = 'row-' + uid
-    notify(InvalidateCacheEvent(raw=False, key=key))
+        uid = ""
+    key = "row-" + uid
+    # notify(InvalidateCacheEvent(raw=False, key=key))
 
 
 def deletion_confirmed():
@@ -67,20 +67,23 @@ def deletion_confirmed():
     events are fired.
     """
     request = getRequest()
-    folder_delete = 'folder_delete' in request.URL
-    is_delete_confirmation = 'delete_confirmation' in request.URL
-    zmi_delete = 'manage_delObjects' in request.URL
-    is_post = request.REQUEST_METHOD == 'POST'
+    folder_delete = "folder_delete" in request.URL
+    is_delete_confirmation = "delete_confirmation" in request.URL
+    zmi_delete = "manage_delObjects" in request.URL
+    is_post = request.REQUEST_METHOD == "POST"
     # form_being_submitted = 'form.submitted' in request.form
     # return (is_delete_confirmation and is_post and form_being_submitted) \
     #     or (folder_delete and is_post)
-    return (is_delete_confirmation and is_post) \
-        or (folder_delete and is_post) or (zmi_delete and is_post)
+    return (
+        (is_delete_confirmation and is_post)
+        or (folder_delete and is_post)
+        or (zmi_delete and is_post)
+    )
 
 
 def remove_broken_relations(obj, event):
-    """ Event handler to remove broken relations when an object is
-        deleted/moved/added/modified
+    """Event handler to remove broken relations when an object is
+    deleted/moved/added/modified
     """
     if not deletion_confirmed():
         return
@@ -91,7 +94,7 @@ def remove_broken_relations(obj, event):
         if catalog is None:
             return
 
-        for relation in list(catalog.findRelations({'to_id': None})):
+        for relation in list(catalog.findRelations({"to_id": None})):
             catalog.unindex(relation)
             if relation in relation.from_object.relatedItems:
                 relation.from_object.relatedItems.remove(relation)
@@ -99,10 +102,10 @@ def remove_broken_relations(obj, event):
             relation.from_object.reindexObject()
 
         # transaction.commit()
-        if (request.form.get('ajax_load', None)):
-            if isinstance(request.form['ajax_load'], list):
-                request.form['ajax_load'].pop()
-                request.form['ajax_load'] = request.form['ajax_load'][0]
+        if request.form.get("ajax_load", None):
+            if isinstance(request.form["ajax_load"], list):
+                request.form["ajax_load"].pop()
+                request.form["ajax_load"] = request.form["ajax_load"][0]
         return
 
 
@@ -112,13 +115,15 @@ def handle_workflow_change(object, event):
         object.reindexObject()
         transaction.commit()
 
-    if event.new_state.title == 'Published':
+    if event.new_state.title == "Published":
         updateEffective(object, DateTime())
     else:
-        if event.status.get('action', None) is not None and (
-                event.old_state.title != event.new_state.title):
+        if event.status.get("action", None) is not None and (
+            event.old_state.title != event.new_state.title
+        ):
             updateEffective(object, None)
     return
+
 
 # from zope.annotation.interfaces import IAnnotations
 # from eea.climateadapt.browser.facetedsearch import CCA_TYPES
