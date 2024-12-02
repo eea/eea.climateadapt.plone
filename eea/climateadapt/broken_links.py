@@ -7,7 +7,7 @@ from io import BytesIO
 import requests
 import transaction
 import xlsxwriter
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 from DateTime import DateTime
 from plone import api
 from plone.app.textfield.value import RichTextValue
