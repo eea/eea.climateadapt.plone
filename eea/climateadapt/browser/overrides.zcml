@@ -13,14 +13,14 @@
   <!--   factory=".misc.DatetimeDataConverter" -->
   <!--   for="zope.schema.interfaces.IDatetime plone.app.widgets.dx.IDatetimeWidget" /> -->
 
-  eea.climateadapt.interfaces.IEEAClimateAdaptInstalled
-  <adapter for="* *"
+  <!-- eea.climateadapt.interfaces.IEEAClimateAdaptInstalled -->
+  <!-- <adapter for="* *"
     name="plone.contentmenu.display"
     factory=".overrides.DisplaySubMenuItem"
-    provides="plone.app.contentmenu.interfaces.IContentMenuItem" />
+    provides="plone.app.contentmenu.interfaces.IContentMenuItem" /> -->
 
-  <adapter factory=".overrides.WidgetsLayerRichTextFieldWidget" />
-  <adapter factory=".overrides.FormLayerRichTextFieldWidget" />
+  <!-- <adapter factory=".overrides.WidgetsLayerRichTextFieldWidget" /> -->
+  <!-- <adapter factory=".overrides.FormLayerRichTextFieldWidget" /> -->
   <!-- <adapter factory=".overrides.RichTextFieldWidget" /> -->
 
   <browser:resource
