@@ -2,8 +2,7 @@
 <object name="mission_story" meta_type="Dexterity FTI" i18n:domain="plone"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Mission Story</property>
- <property name="description"
-    i18n:translate=""></property>
+ <property name="description" i18n:translate=""></property>
  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
  <property name="factory">mission_story</property>
  <property
@@ -37,167 +36,27 @@
   <element value="eea.climateadapt.behaviors.preview.IPreview"/>
   <element value="volto.preview_image"/>
   <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
+  <element value="eea.climateadapt.behaviors.missionstory.IMissionStory"/>
+  <element
+     value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"/>
  </property>
  <property name="schema"></property>
  <property
     name="model_source">&lt;model xmlns:easyform="http://namespaces.plone.org/supermodel/easyform" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-    &lt;schema&gt;
-      &lt;fieldset name="cca-mission-story-fieldset" label="CCA Mission Story Fieldset"&gt;
-        &lt;field name="key_learnings" type="plone.app.textfield.RichText"&gt;
-          &lt;default&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/default&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Key Learnings&lt;/title&gt;
-        &lt;/field&gt;
-        &lt;field name="country" type="zope.schema.Set"&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Country&lt;/title&gt;
-          &lt;value_type type="zope.schema.Choice"&gt;
-            &lt;values&gt;
-              &lt;element&gt;Austria&lt;/element&gt;
-              &lt;element&gt;Belgium&lt;/element&gt;
-              &lt;element&gt;Bulgaria&lt;/element&gt;
-              &lt;element&gt;Croatia&lt;/element&gt;
-              &lt;element&gt;Cyprus&lt;/element&gt;
-              &lt;element&gt;Czechia&lt;/element&gt;
-              &lt;element&gt;Denmark&lt;/element&gt;
-              &lt;element&gt;Estonia&lt;/element&gt;
-              &lt;element&gt;Finland&lt;/element&gt;
-              &lt;element&gt;France&lt;/element&gt;
-              &lt;element&gt;Germany&lt;/element&gt;
-              &lt;element&gt;Greece&lt;/element&gt;
-              &lt;element&gt;Hungary&lt;/element&gt;
-              &lt;element&gt;Iceland&lt;/element&gt;
-              &lt;element&gt;Ireland&lt;/element&gt;
-              &lt;element&gt;Italy&lt;/element&gt;
-              &lt;element&gt;Latvia&lt;/element&gt;
-              &lt;element&gt;Lithuania&lt;/element&gt;
-              &lt;element&gt;Luxembourg&lt;/element&gt;
-              &lt;element&gt;Malta&lt;/element&gt;
-              &lt;element&gt;Netherlands&lt;/element&gt;
-              &lt;element&gt;Norway&lt;/element&gt;
-              &lt;element&gt;Poland&lt;/element&gt;
-              &lt;element&gt;Portugal&lt;/element&gt;
-              &lt;element&gt;Romania&lt;/element&gt;
-              &lt;element&gt;Slovakia&lt;/element&gt;
-              &lt;element&gt;Slovenia&lt;/element&gt;
-              &lt;element&gt;Spain&lt;/element&gt;
-              &lt;element&gt;Sweden&lt;/element&gt;
-              &lt;element&gt;Turkey&lt;/element&gt;
-            &lt;/values&gt;
-          &lt;/value_type&gt;
-        &lt;/field&gt;
-        &lt;field name="about_the_region" type="plone.app.textfield.RichText"&gt;
-          &lt;default&gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&lt;/default&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;About the Region&lt;/title&gt;
-        &lt;/field&gt;
-        &lt;field name="sectors" type="zope.schema.Set"&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Sectors&lt;/title&gt;
-          &lt;value_type type="zope.schema.Choice"&gt;
-            &lt;values&gt;
-              &lt;element&gt;Agriculture&lt;/element&gt;
-              &lt;element&gt;Biodiversity&lt;/element&gt;
-              &lt;element&gt;Buildings&lt;/element&gt;
-              &lt;element&gt;Business and industry&lt;/element&gt;
-              &lt;element&gt;Coastal areas&lt;/element&gt;
-              &lt;element&gt;Disaster Risk Reduction&lt;/element&gt;
-              &lt;element&gt;Energy&lt;/element&gt;
-              &lt;element&gt;Financial&lt;/element&gt;
-              &lt;element&gt;Forestry&lt;/element&gt;
-              &lt;element&gt;Health&lt;/element&gt;
-              &lt;element&gt;Marine and Fisheries&lt;/element&gt;
-              &lt;element&gt;Mountain areas&lt;/element&gt;
-              &lt;element&gt;Non specific&lt;/element&gt;
-              &lt;element&gt;Transport&lt;/element&gt;
-              &lt;element&gt;Urban&lt;/element&gt;
-              &lt;element&gt;Water management&lt;/element&gt;
-            &lt;/values&gt;
-          &lt;/value_type&gt;
-        &lt;/field&gt;
-        &lt;field name="key_system" type="zope.schema.Set"&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Key System&lt;/title&gt;
-          &lt;value_type type="zope.schema.Choice"&gt;
-            &lt;values&gt;
-              &lt;element&gt;Critical infrastructure&lt;/element&gt;
-              &lt;element&gt;Health &amp;amp; wellbeing&lt;/element&gt;
-              &lt;element&gt;Water management&lt;/element&gt;
-              &lt;element&gt;Land use &amp;amp; food systems&lt;/element&gt;
-              &lt;element&gt;Ecosystems &amp;amp; Nature-based Solutions&lt;/element&gt;
-            &lt;/values&gt;
-          &lt;/value_type&gt;
-        &lt;/field&gt;
-        &lt;field name="climate_threats" type="zope.schema.Set"&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Hazard Type&lt;/title&gt;
-          &lt;value_type type="zope.schema.Choice"&gt;
-            &lt;values&gt;
-              &lt;element&gt;Mean air temperature&lt;/element&gt;
-              &lt;element&gt;Extreme heat&lt;/element&gt;
-              &lt;element&gt;Cold spells and frost&lt;/element&gt;
-              &lt;element&gt;Mean precipitation&lt;/element&gt;
-              &lt;element&gt;Extreme Precipitation&lt;/element&gt;
-              &lt;element&gt;River flooding&lt;/element&gt;
-              &lt;element&gt;Aridity&lt;/element&gt;
-              &lt;element&gt;Wildfire&lt;/element&gt;
-              &lt;element&gt;Snow and ice&lt;/element&gt;
-              &lt;element&gt;Relative sea level&lt;/element&gt;
-              &lt;element&gt;Coastal flooding&lt;/element&gt;
-              &lt;element&gt;Other&lt;/element&gt;
-            &lt;/values&gt;
-          &lt;/value_type&gt;
-        &lt;/field&gt;
-        &lt;field name="solution" type="plone.app.textfield.RichText"&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Solution&lt;/title&gt;
-        &lt;/field&gt;
-        &lt;field name="synopsis" type="plone.app.textfield.RichText"&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Synopsis&lt;/title&gt;
-        &lt;/field&gt;
-        &lt;field name="further_information" type="plone.app.textfield.RichText"&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Further Information&lt;/title&gt;
-        &lt;/field&gt;
-        &lt;field name="contact" type="plone.app.textfield.RichText"&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Contact&lt;/title&gt;
-        &lt;/field&gt;
-        &lt;field name="region_" type="zope.schema.Text"&gt;
-          &lt;min_length/&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Region&lt;/title&gt;
-        &lt;/field&gt;
-        &lt;field name="hazards" type="zope.schema.Set"&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Hazards&lt;/title&gt;
-          &lt;value_type type="zope.schema.Choice"&gt;
-            &lt;values&gt;
-              &lt;element&gt;Droughts&lt;/element&gt;
-              &lt;element&gt;Extreme Temperatures&lt;/element&gt;
-              &lt;element&gt;Flooding&lt;/element&gt;
-              &lt;element&gt;Ice and Snow&lt;/element&gt;
-              &lt;element&gt;Sea Level Rise&lt;/element&gt;
-              &lt;element&gt;Storms&lt;/element&gt;
-              &lt;element&gt;Water Scarcity&lt;/element&gt;
-            &lt;/values&gt;
-          &lt;/value_type&gt;
-        &lt;/field&gt;
-      &lt;/fieldset&gt;
-      &lt;fieldset name="layout" label="Layout"&gt;
-        &lt;field name="blocks" type="plone.schema.jsonfield.JSONField"&gt;
-          &lt;default&gt;{u'82596a96-3b0c-4fff-bde0-35f3f2a7ad5b': {u'hideShareButton': True, u'placeholder': u'Please type the mission story title here...', u'@type': u'title', u'hideDownloadButton': True, u'copyrightIcon': u'ri-copyright-line'}, u'1d633d3b-1c96-4d28-a5f2-79103fac85dd': {u'@type': u'description', u'value': [{u'type': u'p', u'children': [{u'text': u''}]}]}, u'cbddb42b-9967-4b9d-976e-05b110eff907': {u'styles': {}, u'gridCols': [u'twoThirds', u'oneThird'], u'gridSize': 12, u'data': {u'blocks': {u'fbcd9746-ec70-417a-8b04-38d962188e90': {u'blocks': {u'b5477e5f-55d0-4b11-a2f5-23085f34ebf2': {u'styles': {}, u'as': u'div', u'data': {u'blocks': {u'e7ec559d-69d7-4432-a307-2b1f3cf51e7b': {u'plaintext': u' Keywords ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Keywords'}]}, {u'text': u''}]}]}, u'542c0569-efdf-4f5c-a06a-77e7732b716c': {u'data': {u'widget': u'textarea', u'id': u'region_'}, u'@type': u'metadata'}, u'c289c219-c641-407d-a228-f99f68c71fc2': {u'plaintext': u' Key System ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Key System'}]}, {u'text': u''}]}]}, u'1886e7b7-f10e-4526-b2c1-afe259588974': {u'@type': u'slate'}, u'96ac2b96-7c80-4570-9877-ba3a07c2716c': {u'plaintext': u' Sectors ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Sectors'}]}, {u'text': u''}]}]}, u'40b13b60-ac76-477d-bd9d-b58d9b3b8537': {u'plaintext': u' Country ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Country'}]}, {u'text': u''}]}]}, u'feed2486-426e-4b92-843e-88126f3f7fec': {u'data': {u'widget': u'array', u'id': u'sectors'}, u'@type': u'metadata'}, u'807db6b5-b4db-4012-80d5-51013e4a1aa9': {u'data': {u'widget': u'array', u'id': u'key_system'}, u'@type': u'metadata'}, u'b5162c1c-ed0d-4a60-93d6-3c5ab029b3b8': {u'plaintext': u'', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}]}]}, u'3388a4d8-eb8c-414e-83af-6125cfa6a7ab': {u'plaintext': u' Hazard Type ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Hazard Type'}]}, {u'text': u''}]}]}, u'cc324efb-4221-4f2f-9d4b-1ab38e442e7e': {u'plaintext': u' Region ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Region'}]}, {u'text': u''}]}]}, u'ab524e73-cac6-453e-9f5c-daa798bce3b0': {u'data': {u'widget': u'array', u'id': u'country'}, u'@type': u'metadata'}, u'c54ac841-15ae-437e-970d-d40b19aac06f': {u'data': {u'widget': u'array', u'id': u'climate_threats'}, u'@type': u'metadata'}}, u'blocks_layout': {u'items': [u'e7ec559d-69d7-4432-a307-2b1f3cf51e7b', u'b5162c1c-ed0d-4a60-93d6-3c5ab029b3b8', u'c289c219-c641-407d-a228-f99f68c71fc2', u'807db6b5-b4db-4012-80d5-51013e4a1aa9', u'96ac2b96-7c80-4570-9877-ba3a07c2716c', u'feed2486-426e-4b92-843e-88126f3f7fec', u'40b13b60-ac76-477d-bd9d-b58d9b3b8537', u'ab524e73-cac6-453e-9f5c-daa798bce3b0', u'cc324efb-4221-4f2f-9d4b-1ab38e442e7e', u'542c0569-efdf-4f5c-a06a-77e7732b716c', u'3388a4d8-eb8c-414e-83af-6125cfa6a7ab', u'c54ac841-15ae-437e-970d-d40b19aac06f', u'1886e7b7-f10e-4526-b2c1-afe259588974']}}, u'@type': u'group'}, u'da2f5c62-e3d9-4022-8b6b-9c1569ccbd79': {u'plaintext': u'', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}]}]}}, u'blocks_layout': {u'items': [u'b5477e5f-55d0-4b11-a2f5-23085f34ebf2', u'da2f5c62-e3d9-4022-8b6b-9c1569ccbd79']}}, u'7777c5a8-00a9-4963-adfd-5fb4547c4a71': {u'blocks': {u'bad38c1b-c5d3-46ba-9103-47a1aacec1e1': {u'@type': u'image', u'copyrightIcon': u'ri-copyright-line'}, u'18f3ac3d-f473-4959-b54f-2059b33d4023': {u'@type': u'slate'}, u'b4d9a2ed-0e30-4316-9d89-dcfb7cc820b0': {u'plaintext': u'Key Learnings', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Key Learnings'}]}]}, u'9126a8f4-7f16-46c5-9275-f3c58751238a': {u'plaintext': u'About the Region', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'About the Region'}]}]}, u'a5f8b146-8a96-475e-9748-edc9f4a8759e': {u'@type': u'slate'}, u'b4fda62b-8c39-4be9-920c-4e8e62bf2640': {u'data': {u'widget': u'richtext', u'id': u'about_the_region'}, u'@type': u'metadata'}, u'7b111480-5b6d-44d1-be46-adf0e429507a': {u'@type': u'image', u'copyrightIcon': u'ri-copyright-line'}, u'849acf60-f5ff-4d27-a46e-81a137c8a486': {u'@type': u'slate'}, u'20d02c41-0dfc-4e15-9b69-20d48c57ff10': {u'plaintext': u'', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}]}]}, u'd9521a99-4bd7-4d0d-a3e6-5afa73a8ee43': {u'data': {u'widget': u'richtext', u'id': u'key_learnings'}, u'@type': u'metadata'}, u'f744d36e-caf2-4320-93cc-6dc342e3e689': {u'data': {u'widget': u'richtext', u'id': u'solution'}, u'@type': u'metadata'}, u'57e7c293-f636-4e5b-97da-410a3ecb9c82': {u'@type': u'slate'}, u'eb6cd532-e5af-4eaf-857d-790ac5304ce3': {u'data': {u'widget': u'richtext', u'id': u'further_information'}, u'@type': u'metadata'}, u'a33513ac-b73a-45a3-8871-63331248d7ef': {u'plaintext': u'Further Information', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Further Information'}]}]}, u'606f48e3-0cff-4f81-8ad8-62e4585b0966': {u'data': {u'widget': u'richtext', u'id': u'synopsis'}, u'@type': u'metadata'}, u'087384f1-6d41-433d-bd81-9332094654ff': {u'plaintext': u'Summary', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Summary'}]}]}, u'9e9aa75b-2907-4dfb-8f4f-5a29c4913e44': {u'@type': u'image', u'copyrightIcon': u'ri-copyright-line'}, u'508df353-6c8e-44db-8715-f3cb6403d84d': {u'plaintext': u'Contact', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Contact'}]}]}, u'e6dd9fb5-2dda-43d0-9a26-4b3bc08a6388': {u'data': {u'widget': u'richtext', u'id': u'contact'}, u'@type': u'metadata'}, u'd3b7f57f-92cb-4730-beda-fbbe5a0086eb': {u'plaintext': u'Solution', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Solution'}]}]}, u'ce035639-a66f-4594-a333-00aca8e487e8': {u'@type': u'image', u'copyrightIcon': u'ri-copyright-line'}}, u'blocks_layout': {u'items': [u'b4d9a2ed-0e30-4316-9d89-dcfb7cc820b0', u'd9521a99-4bd7-4d0d-a3e6-5afa73a8ee43', u'bad38c1b-c5d3-46ba-9103-47a1aacec1e1', u'57e7c293-f636-4e5b-97da-410a3ecb9c82', u'9126a8f4-7f16-46c5-9275-f3c58751238a', u'b4fda62b-8c39-4be9-920c-4e8e62bf2640', u'ce035639-a66f-4594-a333-00aca8e487e8', u'20d02c41-0dfc-4e15-9b69-20d48c57ff10', u'd3b7f57f-92cb-4730-beda-fbbe5a0086eb', u'f744d36e-caf2-4320-93cc-6dc342e3e689', u'7b111480-5b6d-44d1-be46-adf0e429507a', u'18f3ac3d-f473-4959-b54f-2059b33d4023', u'087384f1-6d41-433d-bd81-9332094654ff', u'606f48e3-0cff-4f81-8ad8-62e4585b0966', u'9e9aa75b-2907-4dfb-8f4f-5a29c4913e44', u'849acf60-f5ff-4d27-a46e-81a137c8a486', u'a33513ac-b73a-45a3-8871-63331248d7ef', u'eb6cd532-e5af-4eaf-857d-790ac5304ce3', u'508df353-6c8e-44db-8715-f3cb6403d84d', u'e6dd9fb5-2dda-43d0-9a26-4b3bc08a6388', u'a5f8b146-8a96-475e-9748-edc9f4a8759e']}}}, u'blocks_layout': {u'items': [u'7777c5a8-00a9-4963-adfd-5fb4547c4a71', u'fbcd9746-ec70-417a-8b04-38d962188e90']}}, u'@type': u'columnsBlock'}, u'6c01e33e-bd4a-4897-9fd8-cb65a6120576': {u'styles': {u'theme': u'primary', u'inverted': True, u'icon': u'ri-file-download-fill'}, u'text': u'Download the Report', u'@type': u'callToActionBlock', u'target': u'_blank'}, u'6e58fc65-ae49-479f-84ef-5f6b9d5809e9': {u'plaintext': u' Disclaimer The contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages.', u'styles': {u'style_name': u'content-box-gray'}, u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Disclaimer'}]}, {u'text': u'\nThe contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages.'}]}]}, u'a711575e-bb70-4bf0-b604-c2bc49187004': {u'@type': u'slate'}}&lt;/default&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Blocks&lt;/title&gt;
-        &lt;/field&gt;
-        &lt;field name="blocks_layout" type="plone.schema.jsonfield.JSONField"&gt;
-          &lt;default&gt;{u'items': [u'82596a96-3b0c-4fff-bde0-35f3f2a7ad5b', u'1d633d3b-1c96-4d28-a5f2-79103fac85dd', u'6c01e33e-bd4a-4897-9fd8-cb65a6120576', u'a711575e-bb70-4bf0-b604-c2bc49187004', u'cbddb42b-9967-4b9d-976e-05b110eff907', u'6e58fc65-ae49-479f-84ef-5f6b9d5809e9']}&lt;/default&gt;
-          &lt;required&gt;False&lt;/required&gt;
-          &lt;title&gt;Blocks Layout&lt;/title&gt;
-        &lt;/field&gt;
-      &lt;/fieldset&gt;
-    &lt;/schema&gt;
+  &lt;schema&gt;
+  &lt;fieldset name="layout" label="Layout"&gt;
+  &lt;field name="blocks" type="plone.schema.jsonfield.JSONField"&gt;
+  &lt;default&gt;{u'82596a96-3b0c-4fff-bde0-35f3f2a7ad5b': {u'hideShareButton': True, u'placeholder': u'Please type the mission story title here...', u'@type': u'title', u'hideDownloadButton': True, u'copyrightIcon': u'ri-copyright-line'}, u'1d633d3b-1c96-4d28-a5f2-79103fac85dd': {u'@type': u'description', u'value': [{u'type': u'p', u'children': [{u'text': u''}]}]}, u'cbddb42b-9967-4b9d-976e-05b110eff907': {u'styles': {}, u'gridCols': [u'twoThirds', u'oneThird'], u'gridSize': 12, u'data': {u'blocks': {u'fbcd9746-ec70-417a-8b04-38d962188e90': {u'blocks': {u'b5477e5f-55d0-4b11-a2f5-23085f34ebf2': {u'styles': {}, u'as': u'div', u'data': {u'blocks': {u'bab95424-982e-4622-afa4-dc39085002f2': {u'data': {u'widget': u'array', u'id': u'keywords'}, u'@type': u'metadata'}, u'552b5ac5-ed18-49e8-9a63-4998ef75ea3c': {u'plaintext': u'', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}]}]}, u'c289c219-c641-407d-a228-f99f68c71fc2': {u'plaintext': u' Key Community Systems ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Key Community Systems'}]}, {u'text': u''}]}]}, u'1886e7b7-f10e-4526-b2c1-afe259588974': {u'plaintext': u' Climate Impacts ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Climate Impacts'}]}, {u'text': u''}]}]}, u'96ac2b96-7c80-4570-9877-ba3a07c2716c': {u'plaintext': u' Adaptation Sectors ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Adaptation Sectors'}]}, {u'text': u''}]}]}, u'40b13b60-ac76-477d-bd9d-b58d9b3b8537': {u'plaintext': u' Countries ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Countries'}]}, {u'text': u''}]}]}, u'feed2486-426e-4b92-843e-88126f3f7fec': {u'data': {u'widget': u'array', u'id': u'sectors'}, u'@type': u'metadata'}, u'807db6b5-b4db-4012-80d5-51013e4a1aa9': {u'data': {u'widget': u'array', u'id': u'key_system'}, u'@type': u'metadata'}, u'9737d100-5480-4ab4-bb7b-da428bcf582c': {u'data': {u'widget': u'array', u'id': u'climate_impacts'}, u'@type': u'metadata'}, u'f0146bcb-6977-42fb-abf1-758c5f20e0a5': {u'@type': u'slate'}, u'e7ec559d-69d7-4432-a307-2b1f3cf51e7b': {u'plaintext': u' Keywords ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Keywords'}]}, {u'text': u''}]}]}, u'250a4574-03d4-41eb-a086-bcf00b1d23ac': {u'plaintext': u' Funding Programme ', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Funding Programme'}]}, {u'text': u''}]}]}, u'ab524e73-cac6-453e-9f5c-daa798bce3b0': {u'data': {u'widget': u'array', u'id': u'country'}, u'@type': u'metadata'}, u'13817516-524c-4404-9f09-69152ce7d0bf': {u'data': {u'widget': u'choices', u'id': u'funding_programme'}, u'@type': u'metadata'}}, u'blocks_layout': {u'items': [u'e7ec559d-69d7-4432-a307-2b1f3cf51e7b', u'bab95424-982e-4622-afa4-dc39085002f2', u'f0146bcb-6977-42fb-abf1-758c5f20e0a5', u'1886e7b7-f10e-4526-b2c1-afe259588974', u'9737d100-5480-4ab4-bb7b-da428bcf582c', u'96ac2b96-7c80-4570-9877-ba3a07c2716c', u'feed2486-426e-4b92-843e-88126f3f7fec', u'c289c219-c641-407d-a228-f99f68c71fc2', u'807db6b5-b4db-4012-80d5-51013e4a1aa9', u'40b13b60-ac76-477d-bd9d-b58d9b3b8537', u'ab524e73-cac6-453e-9f5c-daa798bce3b0', u'250a4574-03d4-41eb-a086-bcf00b1d23ac', u'13817516-524c-4404-9f09-69152ce7d0bf', u'552b5ac5-ed18-49e8-9a63-4998ef75ea3c']}}, u'@type': u'group'}, u'da2f5c62-e3d9-4022-8b6b-9c1569ccbd79': {u'plaintext': u'', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}]}]}}, u'blocks_layout': {u'items': [u'b5477e5f-55d0-4b11-a2f5-23085f34ebf2', u'da2f5c62-e3d9-4022-8b6b-9c1569ccbd79']}}, u'7777c5a8-00a9-4963-adfd-5fb4547c4a71': {u'blocks': {u'bad38c1b-c5d3-46ba-9103-47a1aacec1e1': {u'@type': u'image', u'copyrightIcon': u'ri-copyright-line'}, u'd4de9dac-2666-4db4-9bbc-fddef5634c0c': {u'data': {u'widget': u'richtext', u'id': u'solution'}, u'@type': u'metadata'}, u'18f3ac3d-f473-4959-b54f-2059b33d4023': {u'@type': u'slate'}, u'9126a8f4-7f16-46c5-9275-f3c58751238a': {u'plaintext': u'About the Region', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'About the Region'}]}]}, u'849acf60-f5ff-4d27-a46e-81a137c8a486': {u'@type': u'slate'}, u'57e7c293-f636-4e5b-97da-410a3ecb9c82': {u'@type': u'slate'}, u'5d7740fb-0b2d-4797-af16-37992a65b7d9': {u'data': {u'widget': u'richtext', u'id': u'key_learnings'}, u'@type': u'metadata'}, u'a33513ac-b73a-45a3-8871-63331248d7ef': {u'plaintext': u'Further Information', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Further Information'}]}]}, u'1f301e87-f028-4b10-8217-0e4b12936ae7': {u'data': {u'widget': u'richtext', u'id': u'about_the_region'}, u'@type': u'metadata'}, u'508df353-6c8e-44db-8715-f3cb6403d84d': {u'plaintext': u'Contact', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Contact'}]}]}, u'11c529b3-00c0-4cf5-a787-13e42b4bff78': {u'data': {u'widget': u'richtext', u'id': u'synopsis'}, u'@type': u'metadata'}, u'b4d9a2ed-0e30-4316-9d89-dcfb7cc820b0': {u'plaintext': u'Key Learnings', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Key Learnings'}]}]}, u'20d02c41-0dfc-4e15-9b69-20d48c57ff10': {u'plaintext': u'', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}]}]}, u'9e9aa75b-2907-4dfb-8f4f-5a29c4913e44': {u'@type': u'image', u'copyrightIcon': u'ri-copyright-line'}, u'2ae000be-08e0-4d2a-98e5-30633cdc3c27': {u'plaintext': u'', u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}]}]}, u'd3b7f57f-92cb-4730-beda-fbbe5a0086eb': {u'plaintext': u'Solution', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Solution'}]}]}, u'ce035639-a66f-4594-a333-00aca8e487e8': {u'@type': u'image', u'copyrightIcon': u'ri-copyright-line'}, u'f366470c-2ec2-4cb4-8223-8075a772e5b9': {u'@type': u'slate'}, u'72f7d5d7-f05d-48a2-971e-fb0e1627df01': {u'data': {u'widget': u'richtext', u'id': u'further_information'}, u'@type': u'metadata'}, u'087384f1-6d41-433d-bd81-9332094654ff': {u'plaintext': u'Summary', u'@type': u'slate', u'value': [{u'type': u'h2', u'children': [{u'text': u'Summary'}]}]}, u'0ec09d9a-903a-4cc3-8050-b3f704844634': {u'data': {u'widget': u'richtext', u'id': u'contact'}, u'@type': u'metadata'}, u'8f2b70cb-350c-4da1-8a03-024bd85328f5': {u'@type': u'slate'}, u'7b111480-5b6d-44d1-be46-adf0e429507a': {u'@type': u'image', u'copyrightIcon': u'ri-copyright-line'}}, u'blocks_layout': {u'items': [u'b4d9a2ed-0e30-4316-9d89-dcfb7cc820b0', u'5d7740fb-0b2d-4797-af16-37992a65b7d9', u'bad38c1b-c5d3-46ba-9103-47a1aacec1e1', u'57e7c293-f636-4e5b-97da-410a3ecb9c82', u'9126a8f4-7f16-46c5-9275-f3c58751238a', u'1f301e87-f028-4b10-8217-0e4b12936ae7', u'ce035639-a66f-4594-a333-00aca8e487e8', u'20d02c41-0dfc-4e15-9b69-20d48c57ff10', u'd3b7f57f-92cb-4730-beda-fbbe5a0086eb', u'd4de9dac-2666-4db4-9bbc-fddef5634c0c', u'7b111480-5b6d-44d1-be46-adf0e429507a', u'18f3ac3d-f473-4959-b54f-2059b33d4023', u'087384f1-6d41-433d-bd81-9332094654ff', u'11c529b3-00c0-4cf5-a787-13e42b4bff78', u'f366470c-2ec2-4cb4-8223-8075a772e5b9', u'9e9aa75b-2907-4dfb-8f4f-5a29c4913e44', u'849acf60-f5ff-4d27-a46e-81a137c8a486', u'a33513ac-b73a-45a3-8871-63331248d7ef', u'72f7d5d7-f05d-48a2-971e-fb0e1627df01', u'2ae000be-08e0-4d2a-98e5-30633cdc3c27', u'508df353-6c8e-44db-8715-f3cb6403d84d', u'0ec09d9a-903a-4cc3-8050-b3f704844634', u'8f2b70cb-350c-4da1-8a03-024bd85328f5']}}}, u'blocks_layout': {u'items': [u'7777c5a8-00a9-4963-adfd-5fb4547c4a71', u'fbcd9746-ec70-417a-8b04-38d962188e90']}}, u'@type': u'columnsBlock'}, u'6c01e33e-bd4a-4897-9fd8-cb65a6120576': {u'styles': {u'theme': u'primary', u'inverted': True, u'icon': u'ri-file-download-fill'}, u'text': u'Download the Report', u'@type': u'callToActionBlock', u'target': u'_blank'}, u'6e58fc65-ae49-479f-84ef-5f6b9d5809e9': {u'plaintext': u' Disclaimer The contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages.', u'styles': {u'style_name': u'content-box-gray'}, u'@type': u'slate', u'value': [{u'type': u'p', u'children': [{u'text': u''}, {u'type': u'strong', u'children': [{u'text': u'Disclaimer'}]}, {u'text': u'\nThe contents and links to third-party items on this Mission webpage are developed by the MIP4Adapt team led by Ricardo, under contract CINEA/2022/OP/0013/SI2.884597 funded by the European Union and do not necessarily reflect those of the European Union, CINEA, or those of the European Environment Agency (EEA) as host of the Climate-ADAPT Platform. Neither the European Union nor CINEA nor the EEA accepts responsibility or liability arising out of or in connection with the information on these pages.'}]}]}, u'a711575e-bb70-4bf0-b604-c2bc49187004': {u'@type': u'slate'}}&lt;/default&gt;
+  &lt;required&gt;False&lt;/required&gt;
+  &lt;title&gt;Blocks&lt;/title&gt;
+  &lt;/field&gt;
+  &lt;field name="blocks_layout" type="plone.schema.jsonfield.JSONField"&gt;
+  &lt;default&gt;{u'items': [u'82596a96-3b0c-4fff-bde0-35f3f2a7ad5b', u'1d633d3b-1c96-4d28-a5f2-79103fac85dd', u'6c01e33e-bd4a-4897-9fd8-cb65a6120576', u'a711575e-bb70-4bf0-b604-c2bc49187004', u'cbddb42b-9967-4b9d-976e-05b110eff907', u'6e58fc65-ae49-479f-84ef-5f6b9d5809e9']}&lt;/default&gt;
+  &lt;required&gt;False&lt;/required&gt;
+  &lt;title&gt;Blocks Layout&lt;/title&gt;
+  &lt;/field&gt;
+  &lt;/fieldset&gt;
+  &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>

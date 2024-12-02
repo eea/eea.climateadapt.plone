@@ -1,19 +1,18 @@
 <?xml version="1.0"?>
-<object name="eea.climateadapt.organisation" meta_type="Dexterity FTI"
-   i18n:domain="eea.climateadapt"
+<object name="mission_tool" meta_type="Dexterity FTI" i18n:domain="plone"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
- <property name="title" i18n:translate="">Organisation</property>
- <property name="description" i18n:translate="">Organisation</property>
+ <property name="title" i18n:translate="">Mission Tool</property>
+ <property name="description" i18n:translate=""></property>
  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
- <property name="factory">eea.climateadapt.organisation</property>
+ <property name="factory">mission_tool</property>
  <property
-    name="add_view_expr">string:${folder_url}/++add++eea.climateadapt.organisation</property>
+    name="add_view_expr">string:${folder_url}/++add++mission_tool</property>
  <property name="link_target"></property>
  <property name="immediate_view">view</property>
  <property name="global_allow">True</property>
  <property name="filter_content_types">True</property>
  <property name="allowed_content_types">
-  <element value="File"/>
+  <element value="Image"/>
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">view</property>
@@ -22,25 +21,20 @@
  </property>
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
- <property name="klass">eea.climateadapt.aceitem.Organisation</property>
+ <property name="klass">eea.climateadapt.mission_tool.MissionTool</property>
  <property name="behaviors">
+  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
+  <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
+  <element value="volto.preview_image"/>
+  <element value="plone.shortname"/>
   <element
      value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"/>
-  <element
-     value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
-  <element
-     value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer"/>
-  <element value="plone.app.content.interfaces.INameFromTitle"/>
-  <element value="plone.app.lockingbehavior.behaviors.ILocking"/>
-  <element value="plone.app.relationfield.behavior.IRelatedItems"/>
-  <element value="plone.shortname"/>
-  <element value="volto.blocks"/>
-  <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>
  </property>
- <property name="schema">eea.climateadapt.aceitem.IOrganisation</property>
+ <property name="schema">eea.climateadapt.mission_tool.IMissionTool</property>
  <property
-    name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-      &lt;schema /&gt;
+    name="model_source">&lt;model xmlns:easyform="http://namespaces.plone.org/supermodel/easyform" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+  &lt;schema/&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>
@@ -49,8 +43,8 @@
  <alias from="sharing" to="@@sharing"/>
  <alias from="view" to="(selected layout)"/>
  <action title="View" action_id="view" category="object" condition_expr=""
-    description="" icon_expr="" link_target=""
-    url_expr="string:${object_url}/" visible="True">
+    description="" icon_expr="" link_target="" url_expr="string:${object_url}"
+    visible="True">
   <permission value="View"/>
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
