@@ -1,6 +1,6 @@
-from collective.excelexport.exportables.base import BaseExportableFactory
-from collective.excelexport.exportables.dexterityfields import \
-    BaseFieldRenderer
+# from collective.excelexport.exportables.base import BaseExportableFactory
+# from collective.excelexport.exportables.dexterityfields import \
+#     BaseFieldRenderer
 from zope.component import adapts
 from zope.interface import Interface
 from zope.schema.interfaces import IDatetime, IList, IText, ITextLine, ITuple
@@ -182,102 +182,102 @@ class CreatorRenderer(BaseRenderer):
         return 'creator'
 
 
-class MetadataExportablesFactory(BaseExportableFactory):
-    """Get fields content schema
-    """
-    adapts(IDexterityFTI, Interface, Interface)
-    weight = 100
+# class MetadataExportablesFactory(BaseExportableFactory):
+#     """Get fields content schema
+#     """
+#     adapts(IDexterityFTI, Interface, Interface)
+#     weight = 100
 
-    def get_exportables(self):
-        exportables = [
-            ObjectStateRenderer(),
-            CreatorRenderer()
-        ]
+#     def get_exportables(self):
+#         exportables = [
+#             ObjectStateRenderer(),
+#             CreatorRenderer()
+#         ]
 
-        return exportables
-
-
-class DateTimeFieldRenderer(BaseFieldRenderer):
-    """ Datetime field adapter for excel export"""
-    adapts(IDatetime, Interface, Interface)
-
-    def _get_text(self, value):
-        return portal.get_localized_time(datetime=value)
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        return text
+#         return exportables
 
 
-class RelationListFieldRenderer(BaseFieldRenderer):
-    """ Renderer for related items """
-    adapts(IRelationList, Interface, Interface)
+# class DateTimeFieldRenderer(BaseFieldRenderer):
+#     """ Datetime field adapter for excel export"""
+#     adapts(IDatetime, Interface, Interface)
 
-    def _get_text(self, value):
-        return value
+#     def _get_text(self, value):
+#         return portal.get_localized_time(datetime=value)
 
-    def render_value(self, obj):
-        """ Gets the value to render in excel file from content value
-        """
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+#         value = self.get_value(obj)
 
-        value = self.get_value(obj)
+#         if not value or value == NO_VALUE:
+#             return ""
 
-        if not value or value == NO_VALUE:
-            return ""
+#         text = safe_unicode(self._get_text(value))
 
-        text = safe_unicode(self._get_text(value))
-
-        new_text = []
-
-        for item in text:
-            if item.to_object is not None:
-                new_text.append(item.to_object.Title() + ';\n')
-            else:
-                pass
-
-        return new_text
+#         return text
 
 
-class ListFieldRenderer(BaseFieldRenderer):
-    """ List field adapter for excel export"""
-    adapts(IList, Interface, Interface)
+# class RelationListFieldRenderer(BaseFieldRenderer):
+#     """ Renderer for related items """
+#     adapts(IRelationList, Interface, Interface)
 
-    def _get_text(self, value):
-        return value
+#     def _get_text(self, value):
+#         return value
 
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
+#     def render_value(self, obj):
+#         """ Gets the value to render in excel file from content value
+#         """
 
-        if not value or value == NO_VALUE:
-            return ""
+#         value = self.get_value(obj)
 
-        text = safe_unicode(self._get_text(value))
+#         if not value or value == NO_VALUE:
+#             return ""
 
-        if isinstance(text, str) is False:
-            if len(text) > 40:
-                text = text[0:40]
+#         text = safe_unicode(self._get_text(value))
 
-            if isinstance(text, tuple):
-                text = tuple([x + ';\n' for x in text])
-            else:
-                new_text = []
+#         new_text = []
 
-                for item in text:
-                    if isinstance(item, str):
-                        new_text.append(item + ';\n')
-                text = new_text
+#         for item in text:
+#             if item.to_object is not None:
+#                 new_text.append(item.to_object.Title() + ';\n')
+#             else:
+#                 pass
 
-        return text
+#         return new_text
+
+
+# class ListFieldRenderer(BaseFieldRenderer):
+#     """ List field adapter for excel export"""
+#     adapts(IList, Interface, Interface)
+
+#     def _get_text(self, value):
+#         return value
+
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+#         value = self.get_value(obj)
+
+#         if not value or value == NO_VALUE:
+#             return ""
+
+#         text = safe_unicode(self._get_text(value))
+
+#         if isinstance(text, str) is False:
+#             if len(text) > 40:
+#                 text = text[0:40]
+
+#             if isinstance(text, tuple):
+#                 text = tuple([x + ';\n' for x in text])
+#             else:
+#                 new_text = []
+
+#                 for item in text:
+#                     if isinstance(item, str):
+#                         new_text.append(item + ';\n')
+#                 text = new_text
+
+#         return text
 
 # class GeolocationFieldRenderer(BaseFieldRenderer):
 #     """ Geolocation field adapter for excel export"""
@@ -301,161 +301,161 @@ class ListFieldRenderer(BaseFieldRenderer):
 #         return str(location)
 
 
-class TupleFieldRenderer(BaseFieldRenderer):
-    """ Tuple field adapter for excel export"""
-    adapts(ITuple, Interface, Interface)
+# class TupleFieldRenderer(BaseFieldRenderer):
+#     """ Tuple field adapter for excel export"""
+#     adapts(ITuple, Interface, Interface)
 
-    def _get_text(self, value):
-        return value
+#     def _get_text(self, value):
+#         return value
 
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+#         value = self.get_value(obj)
 
-        if not value or value == NO_VALUE:
-            return ""
+#         if not value or value == NO_VALUE:
+#             return ""
 
-        text = safe_unicode(self._get_text(value))
+#         text = safe_unicode(self._get_text(value))
 
-        if isinstance(text, str) is False:
-            if len(text) > 10:
-                text = text[0:10]
+#         if isinstance(text, str) is False:
+#             if len(text) > 10:
+#                 text = text[0:10]
 
-            if isinstance(text, tuple):
-                text = tuple([x + ';\n' for x in text])
-            else:
-                counter = 0
+#             if isinstance(text, tuple):
+#                 text = tuple([x + ';\n' for x in text])
+#             else:
+#                 counter = 0
 
-                while counter < len(text):
-                    text[counter] += ';\n'
-                    counter += 1
+#                 while counter < len(text):
+#                     text[counter] += ';\n'
+#                     counter += 1
 
-        return text
-
-
-class TextLineFieldRenderer(BaseFieldRenderer):
-    """ TextLine field adapter for excel export"""
-    adapts(ITextLine, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        return text
+#         return text
 
 
-class PortalTypeRenderer(BaseFieldRenderer):
-    """ Portal type adapter for excel export"""
-    adapts(PortalType, Interface, Interface)
+# class TextLineFieldRenderer(BaseFieldRenderer):
+#     """ TextLine field adapter for excel export"""
+#     adapts(ITextLine, Interface, Interface)
 
-    def _get_text(self, value):
-        return value
+#     def _get_text(self, value):
+#         return value
 
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+#         value = self.get_value(obj)
 
-        return portal.get().portal_types.get(obj.portal_type).title
+#         if not value or value == NO_VALUE:
+#             return ""
 
+#         text = safe_unicode(self._get_text(value))
 
-class AbsoluteUrlRenderer(BaseFieldRenderer):
-    """ Absolute url adapter for excel export"""
-    adapts(AbsoluteUrl, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-
-        return obj.absolute_url()
+#         return text
 
 
-class UploaderRenderer(BaseFieldRenderer):
-    """ Uploader adapter for excel export"""
-    adapts(Uploader, Interface, Interface)
+# class PortalTypeRenderer(BaseFieldRenderer):
+#     """ Portal type adapter for excel export"""
+#     adapts(PortalType, Interface, Interface)
 
-    def _get_text(self, value):
-        return value
+#     def _get_text(self, value):
+#         return value
 
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
 
-        return '; '.join(obj.creators)
-
-
-class TextFieldRenderer(BaseFieldRenderer):
-    """ Text field adapter for excel export"""
-    adapts(IText, Interface, Interface)
-
-    def _get_text(self, value):
-        return value
-
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
-
-        if not value or value == NO_VALUE:
-            return ""
-
-        text = safe_unicode(self._get_text(value))
-
-        return text
+#         return portal.get().portal_types.get(obj.portal_type).title
 
 
-class RichTextFieldRenderer(BaseFieldRenderer):
-    """ RichText field adapter for excel export"""
-    adapts(IRichText, Interface, Interface)
+# class AbsoluteUrlRenderer(BaseFieldRenderer):
+#     """ Absolute url adapter for excel export"""
+#     adapts(AbsoluteUrl, Interface, Interface)
 
-    def _get_text(self, value):
-        try:
-            v = value.output
-        except:
-            v = value
+#     def _get_text(self, value):
+#         return value
+
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+
+#         return obj.absolute_url()
+
+
+# class UploaderRenderer(BaseFieldRenderer):
+#     """ Uploader adapter for excel export"""
+#     adapts(Uploader, Interface, Interface)
+
+#     def _get_text(self, value):
+#         return value
+
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+
+#         return '; '.join(obj.creators)
+
+
+# class TextFieldRenderer(BaseFieldRenderer):
+#     """ Text field adapter for excel export"""
+#     adapts(IText, Interface, Interface)
+
+#     def _get_text(self, value):
+#         return value
+
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+#         value = self.get_value(obj)
+
+#         if not value or value == NO_VALUE:
+#             return ""
+
+#         text = safe_unicode(self._get_text(value))
+
+#         return text
+
+
+# class RichTextFieldRenderer(BaseFieldRenderer):
+#     """ RichText field adapter for excel export"""
+#     adapts(IRichText, Interface, Interface)
+
+#     def _get_text(self, value):
+#         try:
+#             v = value.output
+#         except:
+#             v = value
             
-        return v
+#         return v
 
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+#         value = self.get_value(obj)
 
-        if not value or value == NO_VALUE:
-            return ""
+#         if not value or value == NO_VALUE:
+#             return ""
 
-        text = safe_unicode(self._get_text(value))
+#         text = safe_unicode(self._get_text(value))
 
-        return text
+#         return text
 
 
-class YearFieldRenderer(BaseFieldRenderer):
-    """ Year field adapter for excel export"""
+# class YearFieldRenderer(BaseFieldRenderer):
+#     """ Year field adapter for excel export"""
 
-    adapts(Year, Interface, Interface)
+#     adapts(Year, Interface, Interface)
 
-    def _get_text(self, value):
-        return value
+#     def _get_text(self, value):
+#         return value
 
-    def render_value(self, obj):
-        """Gets the value to render in excel file from content value
-        """
-        value = self.get_value(obj)
+#     def render_value(self, obj):
+#         """Gets the value to render in excel file from content value
+#         """
+#         value = self.get_value(obj)
 
-        if not value or value == NO_VALUE:
-            return ""
-        text = safe_unicode(self._get_text(value))
+#         if not value or value == NO_VALUE:
+#             return ""
+#         text = safe_unicode(self._get_text(value))
 
-        return str(text)
+#         return str(text)
