@@ -152,14 +152,14 @@
     factory=".catalog.imported_ids"
     name="imported_ids"
   />
-  <adapter
+  <!-- <adapter
     factory=".catalog.search_type"
     name="search_type"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.search_type_for_newsevents"
     name="search_type"
-  />
+  /> -->
   <adapter
     factory=".catalog.featured"
     name="featured"
