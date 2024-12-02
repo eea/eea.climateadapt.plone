@@ -57,6 +57,6 @@
                 permission="zope2.View"
   /> -->
 
-  <adapter factory=".browser.fixes.DatetimeWidgetConverter" />
+  <!-- <adapter factory=".browser.fixes.DatetimeWidgetConverter" /> -->
 
 </configure>
