@@ -420,17 +420,17 @@
 
   <!-- ========Subscribers: ]========  -->
 
-  <subscriber
+  <!-- <subscriber
     for="plone.dexterity.interfaces.IDexterityContent
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
     handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
-  />
+  /> -->
 
-  <subscriber
+  <!-- <subscriber
     for="plone.dexterity.interfaces.IDexterityContent
            Products.CMFCore.interfaces.IActionSucceededEvent"
     handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
-  />
+  /> -->
 
   <subscriber
     for="zope.interface.Interface
