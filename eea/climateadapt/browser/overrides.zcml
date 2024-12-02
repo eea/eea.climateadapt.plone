@@ -71,13 +71,13 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     /> -->
 
-  <browser:viewletManager
+  <!-- <browser:viewletManager
     name="plone.resourceregistries.styles"
     provides="Products.ResourceRegistries.interfaces.IHtmlHeadStyles"
     template="pt-overrides/styles_viewlet_override.pt"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     permission="zope2.View"
-    />
+    /> -->
 
   <browser:viewlet
     name="plone.resourceregistries"
