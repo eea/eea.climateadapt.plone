@@ -503,16 +503,16 @@
 
   <!-- ========Workflow Message Functionality: ]========  -->
 
-  <subscriber
+  <!-- <subscriber
     for=".workflow.IWorkflowMessageEvent"
     handler=".events.trigger_contentrules"
-  />
+  /> -->
 
-  <interface
+  <!-- <interface
     interface=".workflow.IWorkflowMessageEvent"
     type="plone.contentrules.rule.interfaces.IRuleEventType"
     name="ClimateAdapt: workflow transition with message"
-  />
+  /> -->
 
   <adapter
     factory=".workflow.workflow_message"
