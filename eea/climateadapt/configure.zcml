@@ -62,7 +62,7 @@
   <include
     file="profiles.zcml" />
   <include file="stringinterp.zcml" />
-  <include file="cache.zcml" />
+  <!-- <include file="cache.zcml" /> -->
   <include
     file="contentrules.zcml" />
   <include file="theme.zcml" />
