@@ -33,13 +33,13 @@
     for="plone.dexterity.interfaces.IDexterityContent"
   />
 
-  <plone:behavior
+  <!-- <plone:behavior
     name="volto.preview_image"
     title="Preview Image"
     description="Preview image for listings"
     provides=".preview.IPreview"
     for="plone.dexterity.interfaces.IDexterityContent"
-  />
+  /> -->
 
   <plone:behavior
     title="Include in Health Observatory"
@@ -77,14 +77,14 @@
     provides=".news.IMainNews"
   />
 
-  <plone:behavior
+  <!-- <plone:behavior
     name="plone.shortname"
     title="Short name"
     description="Gives the ability to rename an item from its edit form."
     factory=".id.ShortName"
     provides=".id.IShortName"
     for="plone.dexterity.interfaces.IDexterityContent"
-  />
+  /> -->
 
   <plone:behavior
     name="cca.toplevel"
@@ -94,12 +94,12 @@
     for="plone.dexterity.interfaces.IDexterityContent"
   />
 
-  <plone:behavior
+  <!-- <plone:behavior
     name="volto.blocks.editable.layout"
     title="Blocks (Editable Layout)"
     description="Enables Volto Blocks (editable layout) support"
     provides=".blocks.IBlocksEditableLayout"
-  />
+  /> -->
 
   <plone:behavior
     name="eea.climateadapt.seo"
