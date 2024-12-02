@@ -11,17 +11,17 @@
   i18n_domain="eea.climateadapt2">
 
   <include file="missing.zcml" />
-  <adapter factory=".aceitem.KeywordsFieldWidget" />
-  <adapter factory=".aceitem.SpecialTagsFieldWidget" />
+  <!-- <adapter factory=".aceitem.KeywordsFieldWidget" /> -->
+  <!-- <adapter factory=".aceitem.SpecialTagsFieldWidget" /> -->
 
   <!-- <adapter factory=".acemeasure.AdaptationOptionsFieldWidget" /> -->
-  <adapter factory=".acemeasure.KeywordsFieldWidget" />
-  <adapter factory=".acemeasure.SpecialTagsFieldWidget" />
+  <!-- <adapter factory=".acemeasure.KeywordsFieldWidget" /> -->
+  <!-- <adapter factory=".acemeasure.SpecialTagsFieldWidget" /> -->
 
-  <adapter factory=".aceproject.KeywordsFieldWidget" />
-  <adapter factory=".aceproject.SpecialTagsFieldWidget" />
+  <!-- <adapter factory=".aceproject.KeywordsFieldWidget" /> -->
+  <!-- <adapter factory=".aceproject.SpecialTagsFieldWidget" /> -->
 
-  <adapter factory=".missionstory.KeywordsFieldWidget" />
+  <!-- <adapter factory=".missionstory.KeywordsFieldWidget" /> -->
 
   <include package="plone.behavior" file="meta.zcml" />
 
