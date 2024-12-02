@@ -92,42 +92,42 @@ def ZApplicationWrapper__repr__(self):
 ZApplicationWrapper.__repr__ = ZApplicationWrapper__repr__
 
 
-def isLinked(obj):
-    """check if the given content object is linked from another one
-    WARNING: this function can be time consuming !!
-        It deletes the object in a subtransaction that is rollbacked.
-        In other words, the object is kept safe.
-        Nevertheless, this implies that it also deletes recursively
-        all object's subobjects and references, which can be very
-        expensive.
-    """
-    # first check to see if link integrity handling has been enabled at all
-    # and if so, if the removal of the object was already confirmed, i.e.
-    # while replaying the request;  unfortunately this makes it necessary
-    # to import from plone.app.linkintegrity here, hence the try block...
-    try:
-        from plone.app.linkintegrity.interfaces import ILinkIntegrityInfo
+# def isLinked(obj):
+#     """check if the given content object is linked from another one
+#     WARNING: this function can be time consuming !!
+#         It deletes the object in a subtransaction that is rollbacked.
+#         In other words, the object is kept safe.
+#         Nevertheless, this implies that it also deletes recursively
+#         all object's subobjects and references, which can be very
+#         expensive.
+#     """
+#     # first check to see if link integrity handling has been enabled at all
+#     # and if so, if the removal of the object was already confirmed, i.e.
+#     # while replaying the request;  unfortunately this makes it necessary
+#     # to import from plone.app.linkintegrity here, hence the try block...
+#     try:
+#         from plone.app.linkintegrity.interfaces import ILinkIntegrityInfo
 
-        info = ILinkIntegrityInfo(obj.REQUEST)
-    except (ImportError, TypeError):
-        # if p.a.li isn't installed the following check can be cut short...
-        return False
-    if not info.integrityCheckingEnabled():
-        return False
-    if info.isConfirmedItem(obj):
-        return True
-    # otherwise, when not replaying the request already, it is tried to
-    # delete the object, making it possible to find out if it was referenced,
-    # i.e. in case a link integrity exception was raised
-    linked = False
-    parent = obj.aq_inner.aq_parent
-    try:
-        savepoint = transaction.savepoint()
-        parent.manage_delObjects(obj.getId())
-    except OFS.ObjectManager.BeforeDeleteException:
-        linked = True
-    except Exception:  # ignore other exceptions, not useful to us at this point
-        pass
-    finally:
-        savepoint.rollback()
-    return linked
+#         info = ILinkIntegrityInfo(obj.REQUEST)
+#     except (ImportError, TypeError):
+#         # if p.a.li isn't installed the following check can be cut short...
+#         return False
+#     if not info.integrityCheckingEnabled():
+#         return False
+#     if info.isConfirmedItem(obj):
+#         return True
+#     # otherwise, when not replaying the request already, it is tried to
+#     # delete the object, making it possible to find out if it was referenced,
+#     # i.e. in case a link integrity exception was raised
+#     linked = False
+#     parent = obj.aq_inner.aq_parent
+#     try:
+#         savepoint = transaction.savepoint()
+#         parent.manage_delObjects(obj.getId())
+#     except OFS.ObjectManager.BeforeDeleteException:
+#         linked = True
+#     except Exception:  # ignore other exceptions, not useful to us at this point
+#         pass
+#     finally:
+#         savepoint.rollback()
+#     return linked
