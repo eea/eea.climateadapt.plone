@@ -444,11 +444,11 @@
     handler=".events.invalidate_cache_faceted_object_row"
   />
 
-  <subscriber
+  <!-- <subscriber
     for="eea.climateadapt.acemeasure.IAceMeasure
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
     handler=".acemeasure.handle_measure_added"
-  />
+  /> -->
 
   <!--
   <subscriber
