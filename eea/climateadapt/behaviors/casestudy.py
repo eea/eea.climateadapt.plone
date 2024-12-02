@@ -22,10 +22,10 @@ class ICaseStudy(IBlocks):  # , IGeolocatable):
 
     # directives.omitted(IEditForm, "featured")
     # directives.omitted(IAddForm, "featured")
-    directives.omitted(IEditForm, "primephoto")
-    directives.omitted(IAddForm, "primephoto")
-    directives.omitted(IEditForm, "supphotos")
-    directives.omitted(IAddForm, "supphotos")
+    # directives.omitted(IEditForm, "primephoto")
+    # directives.omitted(IAddForm, "primephoto")
+    # directives.omitted(IEditForm, "supphotos")
+    # directives.omitted(IAddForm, "supphotos")
 
     # directives.omitted(IEditForm, 'year')
     # directives.omitted(IAddForm, 'year')
