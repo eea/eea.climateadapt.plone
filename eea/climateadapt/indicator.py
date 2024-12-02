@@ -6,8 +6,8 @@ import threading
 from plone.stringinterp.adapters import BaseSubstitution
 from Products.CMFCore.interfaces import IContentish
 from zope.component import adapts
-from zope.component.interfaces import IObjectEvent, ObjectEvent
-from zope.interface import implementer
+# from zope.component.interfaces import IObjectEvent, ObjectEvent
+# from zope.interface import implementer
 
 # from zope.event import notify
 # from Products.Five.browser import BrowserView
@@ -17,12 +17,12 @@ MESSAGE_KEY = 'cca_indicator_message'
 threadlocals = threading.local()
 
 
-class IIndicatorMessageEvent(IObjectEvent):
-    """ An event with a message for the workflow transition
-    """
+# class IIndicatorMessageEvent(IObjectEvent):
+#     """ An event with a message for the workflow transition
+#     """
 
-@implementer(IIndicatorMessageEvent)
-class IndicatorMessageEvent(ObjectEvent):
+# @implementer(IIndicatorMessageEvent)
+# class IndicatorMessageEvent(ObjectEvent):
 
 
 class indicator_message(BaseSubstitution):

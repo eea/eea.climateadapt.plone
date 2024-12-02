@@ -10,7 +10,7 @@ from z3c.form import button, form     #, field
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts
-from zope.component.interfaces import ObjectEvent, IObjectEvent
+# from zope.component.interfaces import ObjectEvent, IObjectEvent
 from zope.event import notify
 from zope.globalrequest import getRequest
 from zope.interface import implementer
@@ -20,12 +20,12 @@ from zope.interface import Interface
 ANNOT_KEY = 'CCA_WORKFLOW_MESSAGE'
 
 
-class IWorkflowMessageEvent(IObjectEvent):
-    """ An event with a message for the workflow transition
-    """
+# class IWorkflowMessageEvent(IObjectEvent):
+#     """ An event with a message for the workflow transition
+#     """
 
-@implementer(IWorkflowMessageEvent)
-class WorkflowMessageEvent(ObjectEvent):
+# @implementer(IWorkflowMessageEvent)
+# class WorkflowMessageEvent(ObjectEvent):
 
 
 class IWorkflowMessageSchema(Interface):
@@ -75,7 +75,7 @@ class WorkflowTransitionMessage(form.Form):
         msg = data['message'].strip()
 
         IAnnotations(self.request)[ANNOT_KEY] = msg
-        notify(WorkflowMessageEvent(self.context))
+        # notify(WorkflowMessageEvent(self.context))
         transition(obj=self.context, transition=action, comment=msg)
 
         self.status = msg = "Message will be further processed."
