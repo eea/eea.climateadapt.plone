@@ -415,8 +415,8 @@
 
   <!-- ========Widgets: ]========  -->
 
-  <adapter
-    factory=".browser.admin.CcaItemsFieldWidget" />
+  <!-- <adapter
+    factory=".browser.admin.CcaItemsFieldWidget" /> -->
 
   <!-- ========Subscribers: ]========  -->
 
