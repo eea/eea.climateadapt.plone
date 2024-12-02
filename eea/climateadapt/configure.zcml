@@ -537,16 +537,16 @@
 
   <!-- ========Indicator Message Functionality: ]========  -->
 
-  <subscriber
+  <!-- <subscriber
     for=".indicator.IIndicatorMessageEvent"
     handler=".events.trigger_indicator_contentrule"
-  />
+  /> -->
 
-  <interface
+  <!-- <interface
     interface=".indicator.IIndicatorMessageEvent"
     type="plone.contentrules.rule.interfaces.IRuleEventType"
     name="Indicator modified"
-  />
+  /> -->
 
   <adapter
     factory=".indicator.indicator_message"
