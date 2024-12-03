@@ -5,3 +5,4 @@ from zope.interface import implementer
 
 @implementer(IMissionFundingCCA)
 class MissionFundingCCA(Container):
+    """"""
