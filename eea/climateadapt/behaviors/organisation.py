@@ -56,7 +56,7 @@ class IOrganisation(IAceItem, IBlocks):
         required=False,
     )
 
-    directives.widget("organisational_links", TextLinesWidget)
+    # directives.widget("organisational_links", TextLinesWidget)
 
     organisational_websites = RichText(
         title=_("Links to further information (relevant for the Observatory)"),
