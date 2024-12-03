@@ -1,19 +1,20 @@
 from collections import namedtuple
 
 from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
-# from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 # from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
 #                                                 filters_to_query,
 #                                                 translate_text)
 from plone import api
 from plone.api.portal import get_tool, getSite
-# from plone.app.textfield import RichText
+from plone.app.textfield import RichText
+from plone.supermodel import model
 # from plone.autoform import directives
-# from plone.dexterity.content import Container
+from plone.dexterity.content import Container
 from plone.memoize import view
 from Products.Five.browser import BrowserView
-# from zope.interface import implementer, Interface
-# from zope.schema import TextLine
+from zope.interface import implementer, Interface
+from zope.schema import TextLine
 
 # import json
 # import urllib
@@ -27,44 +28,44 @@ def translate_text(context, request, text, domain="eea.climateadapt", language=N
     return text
 
 
-# class FrontpageSlideSchema(Interface):
-#     model.fieldset(
-#         "default",
-#         label="Item Description",
-#         fields=[
-#             "title",
-#             "long_description",
-#             "category",
-#             "read_more_link",
-#         ],
-#     )
+class FrontpageSlideSchema(Interface):
+    model.fieldset(
+        "default",
+        label="Item Description",
+        fields=[
+            "title",
+            "long_description",
+            "category",
+            "read_more_link",
+        ],
+    )
 
-#     title = TextLine(
-#         title=("Title"), description="Item Name (250 character limit)", required=True
-#     )
+    title = TextLine(
+        title=("Title"), description="Item Name (250 character limit)", required=True
+    )
 
-#     long_description = RichText(
-#         title=("Description"),
-#         description="Provide a description of the " "item.(5,000 character limit)",
-#         required=True,
-#     )
+    long_description = RichText(
+        title=("Description"),
+        description="Provide a description of the " "item.(5,000 character limit)",
+        required=True,
+    )
 
-#     category = TextLine(
-#         title=("Category"),
-#         description="Slider thumbnail title. " "Keep it short (25 character limit)",
-#         required=True,
-#     )
+    category = TextLine(
+        title=("Category"),
+        description="Slider thumbnail title. " "Keep it short (25 character limit)",
+        required=True,
+    )
 
-#     read_more_link = TextLine(title="Read more link", required=False)
-
-
-# class IFrontpageSlide(FrontpageSlideSchema):
-#     """ Interface for the FrontapgeSlide content type """
+    read_more_link = TextLine(title="Read more link", required=False)
 
 
-# @implementer(IFrontpageSlide, IEEAClimateAdaptInstalled)
-# class FrontpageSlide(Container):
-#     """ Slide content type for which the richtext behavior is activated """
+class IFrontpageSlide(FrontpageSlideSchema):
+    """ Interface for the FrontapgeSlide content type """
+
+
+@implementer(IFrontpageSlide, IEEAClimateAdaptInstalled)
+class FrontpageSlide(Container):
+    """ Slide content type for which the richtext behavior is activated """
 
 
 # TODO add TranslationUtilsMixin to inheritance
