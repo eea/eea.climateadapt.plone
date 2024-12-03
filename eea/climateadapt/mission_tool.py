@@ -5,3 +5,4 @@ from zope.interface import implementer
 
 @implementer(IMissionTool)
 class MissionTool(Container):
+    """"""
