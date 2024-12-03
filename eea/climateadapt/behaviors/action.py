@@ -1,5 +1,5 @@
-# from eea.climateadapt.behaviors.aceitem import IAceItem
+from eea.climateadapt.behaviors.aceitem import IAceItem
 
 
-# class IAction(IAceItem):
-#     """ Action Interface"""
+class IAction(IAceItem):
+    """ Action Interface"""
