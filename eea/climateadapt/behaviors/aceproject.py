@@ -71,7 +71,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
             "acronym",
             "title",
             "lead",
-            "long_description",
+            # "long_description",
             "partners",
             "keywords",
             "sectors",
