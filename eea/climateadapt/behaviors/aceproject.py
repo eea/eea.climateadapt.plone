@@ -87,7 +87,11 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     model.fieldset(
         "reference_information",
         label="Reference information",
-        fields=["websites", "source", "special_tags", "partners_source_link"],
+        fields=[
+            "websites",
+            # "source",
+            "special_tags",
+            "partners_source_link"],
     )
 
     model.fieldset(
