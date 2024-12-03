@@ -17,7 +17,7 @@ from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-from zope.component import adapter
+# from zope.component import adapter
 from zope.interface import alsoProvides, implementer, Interface
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
@@ -202,19 +202,19 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     # dexteritytextindexer.searchable("keywords")
-    # keywords = Tuple(
-    #     title=_("Keywords"),
-    #     description=_(
-    #         "Provide Keywords related to the project. "
-    #         "Press Enter after writing your keyword."
-    #     ),
-    #     required=False,
-    #     default=(),
-    #     value_type=TextLine(
-    #         title="Single topic",
-    #     ),
-    #     missing_value=(None),
-    # )
+    keywords = Tuple(
+        title=_("Keywords"),
+        description=_(
+            "Provide Keywords related to the project. "
+            "Press Enter after writing your keyword."
+        ),
+        required=False,
+        default=(),
+        value_type=TextLine(
+            title="Single topic",
+        ),
+        missing_value=(None),
+    )
 
     health_impacts = List(
         title=_("Health impacts"),
