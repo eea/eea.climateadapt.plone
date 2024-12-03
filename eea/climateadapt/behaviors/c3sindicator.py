@@ -42,8 +42,8 @@ class IC3sIndicator(IIndicator):
     # directives.omitted(IEditForm, 'comments')
     # directives.omitted(IAddForm, 'comments')
 
-    directives.omitted(IEditForm, "geographic_information")
-    directives.omitted(IAddForm, "geographic_information")
+    # directives.omitted(IEditForm, "geographic_information")
+    # directives.omitted(IAddForm, "geographic_information")
 
     #directives.omitted(IEditForm, "include_in_observatory")
     #directives.omitted(IAddForm, "include_in_observatory")
