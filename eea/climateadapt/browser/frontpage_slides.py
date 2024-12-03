@@ -28,7 +28,7 @@ def translate_text(context, request, text, domain="eea.climateadapt", language=N
 
 
 # class FrontpageSlideSchema(Interface):
-#     directives.fieldset(
+#     model.fieldset(
 #         "default",
 #         label="Item Description",
 #         fields=[

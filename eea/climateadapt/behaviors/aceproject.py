@@ -11,6 +11,7 @@ from plone.autoform import directives
 # from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
+from plone.supermodel import model
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 # from z3c.form.util import getSpecification
@@ -20,7 +21,6 @@ from zope.component import adapter
 from zope.interface import alsoProvides, implementer, Interface
 from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
                          TextLine, Tuple)
-from plone.autoform import directives
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
 # from z3c.relationfield.schema import RelationChoice
@@ -64,7 +64,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     # dexteritytextindexer.searchable("spatial_layer")
     # dexteritytextindexer.searchable("spatial_values")
 
-    directives.fieldset(
+    model.fieldset(
         "default",
         label="Item Description",
         fields=[
@@ -84,19 +84,19 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
         ],
     )
 
-    directives.fieldset(
+    model.fieldset(
         "reference_information",
         label="Reference information",
         fields=["websites", "source", "special_tags", "partners_source_link"],
     )
 
-    directives.fieldset(
+    model.fieldset(
         "geographic_information",
         label="Geographic Information",
         fields=["geochars", "comments"],
     )
 
-    directives.fieldset(
+    model.fieldset(
         "categorization",
         label="Inclusion in the subsites",
         fields=["include_in_observatory",

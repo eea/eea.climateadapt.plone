@@ -8,6 +8,7 @@ from plone.autoform import directives
 # from z3c.form import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
+from plone.supermodel import model
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 # from z3c.form.util import getSpecification
@@ -57,7 +58,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     # dexteritytextindexer.searchable('year')
     # dexteritytextindexer.searchable("publication_date")
 
-    directives.fieldset(
+    model.fieldset(
         "default",
         label="Item Description",
         fields=[
@@ -73,7 +74,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         ],
     )
 
-    directives.fieldset(
+    model.fieldset(
         "additional_details",
         label="Additional Details",
         fields=[
@@ -86,12 +87,12 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         ],
     )
 
-    # directives.fieldset('inclusion_health_observatory',
+    # model.fieldset('inclusion_health_observatory',
     #              label=u'Inclusion in health observatory',
     #              fields=['include_in_observatory', 'health_impacts']
     #              )
 
-    directives.fieldset(
+    model.fieldset(
         "reference_information",
         label="Reference information",
         fields=["websites", "source", "special_tags",
@@ -104,13 +105,13 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     # 'challenges', 'keywords', 'contact', 'solutions', 'costbenefit',
     # 'succeslimitations', 'lifetime'])
 
-    directives.fieldset(
+    model.fieldset(
         "geographic_information",
         label="Geographic Information",
         fields=["governance_level", "geochars"],
     )
 
-    directives.fieldset(
+    model.fieldset(
         "categorization",
         label="Inclusion in the Health Observatory",
         fields=["include_in_observatory",
