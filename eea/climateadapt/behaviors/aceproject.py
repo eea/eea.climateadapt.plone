@@ -5,7 +5,7 @@ from plone.schema import JSONField
 from eea.climateadapt import CcaAdminMessageFactory as _
 # from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-# from plone.app.textfield import RichText
+from plone.app.textfield import RichText
 # from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 # from plone.directives import form
@@ -192,13 +192,13 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     )
 
     # dexteritytextindexer.searchable("partners")
-    # partners = RichText(
-    #     title=_("Partners"),
-    #     description=_(
-    #         "Provide information about project partners " "(organisation names)."
-    #     ),
-    #     required=True,
-    # )
+    partners = RichText(
+        title=_("Partners"),
+        description=_(
+            "Provide information about project partners " "(organisation names)."
+        ),
+        required=True,
+    )
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     # dexteritytextindexer.searchable("keywords")
