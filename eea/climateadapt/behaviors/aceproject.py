@@ -3,18 +3,18 @@ import json
 from plone.schema import JSONField
 # from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 # from plone.app.textfield import RichText
-from plone.app.widgets.interfaces import IWidgetsLayer
+# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 # from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
-from z3c.form.util import getSpecification
-from z3c.form.widget import FieldWidget
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.component import adapter
 from zope.interface import alsoProvides, implementer, Interface
@@ -452,20 +452,20 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     )
 
 
-@adapter(getSpecification(IAceProject["keywords"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def KeywordsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.keywords"
-    return widget
+# @adapter(getSpecification(IAceProject["keywords"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def KeywordsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.keywords"
+#     return widget
 
 
-@adapter(getSpecification(IAceProject["special_tags"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def SpecialTagsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.special_tags"
-    return widget
+# @adapter(getSpecification(IAceProject["special_tags"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def SpecialTagsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.special_tags"
+#     return widget
 
 
 alsoProvides(IAceProject["acronym"], ILanguageIndependentField)
