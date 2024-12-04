@@ -12,7 +12,7 @@ def fix_storage_type(obj):
 
 
 def fix_missing_field_values(obj):
-    fields = ["publication_date", "geochars"]
+    fields = ["publication_date", "geochars", "sectors", "climate_impacts"]
     for field in fields:
         if field in obj and not obj[field]:
             del obj[field]
