@@ -132,6 +132,7 @@
  </state>
  <state state_id="private" title="Private">
   <description>Can only be seen and edited by the owner.</description>
+  <exit-transition transition_id="archive"/>
   <exit-transition transition_id="publish"/>
   <exit-transition transition_id="submit"/>
   <permission-map name="Access contents information" acquired="False">
@@ -244,6 +245,7 @@
   </permission-map>
   <permission-map name="Review portal content" acquired="False">
    <permission-role>Manager</permission-role>
+   <permission-role>Reviewer</permission-role>
   </permission-map>
   <permission-map name="Sharing page: Delegate roles" acquired="False">
    <permission-role>Manager</permission-role>
@@ -278,7 +280,6 @@
   <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">Publish</action>
   <guard>
    <guard-permission>Review portal content</guard-permission>
-   <guard-expression>python: not object.restrictedTraverse("@@iterate_control").is_checkout()</guard-expression>
   </guard>
  </transition>
  <transition transition_id="reject" title="Reviewer sends content back for re-drafting" new_state="private" trigger="USER" before_script="" after_script="">
