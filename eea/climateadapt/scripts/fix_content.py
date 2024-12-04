@@ -19,6 +19,9 @@ def fix_missing_field_values(obj):
         "climate_impacts",
         "overview_app_toolbox_url",
         "overview_app_parameters",
+        "websites",
+        "keywords",
+        "health_impacts",
     ]
     for field in fields:
         if field in obj and not obj[field]:
