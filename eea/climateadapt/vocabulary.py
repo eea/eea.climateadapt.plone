@@ -31,7 +31,8 @@ def generic_vocabulary(_terms, sort=True):
         terms = []
         for _term in _terms:
             value, title = _term
-            token = value.decode("utf-8").encode("utf-8", "replace")
+            # token = value.decode("utf-8").encode("utf-8", "replace")
+            token = value
             term = SimpleTerm(value=value, token=token, title=title)
             terms.append(term)
 
