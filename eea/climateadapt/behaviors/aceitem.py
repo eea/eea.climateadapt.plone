@@ -203,7 +203,7 @@ class IAceItem(IImageScaleTraversable):
         description=_(
             "Select one or more relevant sector policies" " that this item relates to."
         ),
-        required=False,  # TODO: set to False for the migration to plone6
+        required=True,  # TODO: set to False for the migration to plone6
         missing_value=[],
         default=None,
         value_type=Choice(
@@ -218,7 +218,7 @@ class IAceItem(IImageScaleTraversable):
             "Select one or more climate change impact topics that "
             "this item relates to."
         ),
-        required=False,  # TODO: set to False for the migration to plone6
+        required=True,  # TODO: set to False for the migration to plone6
         missing_value=[],
         default=None,
         value_type=Choice(
@@ -252,7 +252,7 @@ class IAceItem(IImageScaleTraversable):
             'add only the year, please select "day: 1", "month: January" '
             "and then the year"
         ),
-        required=False,  # TODO: set to False for the migration to plone6
+        required=True,  # TODO: set to False for the migration to plone6
     )
 
     # featured = Bool(

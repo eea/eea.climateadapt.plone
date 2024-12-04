@@ -8,6 +8,7 @@ from eea.climateadapt.behaviors import (
     IPublicationReport,
     IResearchProject,
     ITool,
+    IC3sIndicator,
 )
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from plone.dexterity.content import Container
@@ -44,7 +45,7 @@ class Indicator(Container):
     search_type = "INDICATOR"
 
 
-@implementer(IIndicator, IClimateAdaptContent)
+@implementer(IIndicator, IC3sIndicator, IClimateAdaptContent)
 class C3sIndicator(Container):
     search_type = "INDICATOR"
 
