@@ -12,7 +12,14 @@ def fix_storage_type(obj):
 
 
 def fix_missing_field_values(obj):
-    fields = ["publication_date", "geochars", "sectors", "climate_impacts"]
+    fields = [
+        "publication_date",
+        "geochars",
+        "sectors",
+        "climate_impacts",
+        "overview_app_toolbox_url",
+        "overview_app_parameters",
+    ]
     for field in fields:
         if field in obj and not obj[field]:
             del obj[field]
