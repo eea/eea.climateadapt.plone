@@ -1,26 +1,42 @@
 import json
 
 from plone.schema import JSONField
+
 # from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
+
 # from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
+
 # from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
+
 # from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.supermodel import model
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
+
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
+
 # from zope.component import adapter
 from zope.interface import alsoProvides, implementer, Interface
-from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
-                         TextLine, Tuple)
+from zope.schema import (
+    URI,
+    Bool,
+    Choice,
+    Date,
+    Datetime,
+    Int,
+    List,
+    Text,
+    TextLine,
+    Tuple,
+)
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
 # from z3c.relationfield.schema import RelationChoice
@@ -80,7 +96,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
             "funding",
             "funding_programme",
             "duration",
-            "featured",
+            # "featured",
         ],
     )
 
@@ -91,7 +107,8 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
             "websites",
             # "source",
             "special_tags",
-            "partners_source_link"],
+            "partners_source_link",
+        ],
     )
 
     model.fieldset(
@@ -103,8 +120,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     model.fieldset(
         "categorization",
         label="Inclusion in the subsites",
-        fields=["include_in_observatory",
-                "include_in_mission", "health_impacts"],
+        fields=["include_in_observatory", "include_in_mission", "health_impacts"],
     )
 
     # -----------[ "default" fields ]------------------
@@ -152,7 +168,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
         ),
         value_type=RelationChoice(
             title=_("Related"),
-            vocabulary="eea.climateadapt.organisations"
+            vocabulary="eea.climateadapt.organisations",
             # source=ObjPathSourceBinder(),
             # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
         ),
@@ -163,7 +179,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
         title=_("Funding Programme"),
         required=False,
         # value_type = Choice(
-        vocabulary="eea.climateadapt.funding_programme"
+        vocabulary="eea.climateadapt.funding_programme",
         #    )
     )
 
@@ -250,8 +266,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     sectors = List(
         title=_("Sectors"),
         description=_(
-            "Select one or more relevant sector policies that "
-            "this item relates to."
+            "Select one or more relevant sector policies that " "this item relates to."
         ),
         required=True,
         missing_value=[],
@@ -294,16 +309,15 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
 
     duration = TextLine(
         title=_("Duration"),
-        description=_(
-            "Provide duration of project - Start and end date [yr]"),
+        description=_("Provide duration of project - Start and end date [yr]"),
         required=False,
     )
 
-    featured = Bool(
-        title=_("Featured"),
-        required=False,
-        default=False,
-    )
+    # featured = Bool(
+    #     title=_("Featured"),
+    #     required=False,
+    #     default=False,
+    # )
 
     # -----------[ "reference_information" fields ]------------------
     directives.widget("websites", TextLinesWidget)
@@ -449,9 +463,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": aceproject_layout_items
-        },
+        default={"items": aceproject_layout_items},
         required=False,
     )
 
@@ -479,7 +491,7 @@ alsoProvides(IAceProject["contributor_list"], ILanguageIndependentField)
 alsoProvides(IAceProject["creation_date"], ILanguageIndependentField)
 alsoProvides(IAceProject["duration"], ILanguageIndependentField)
 alsoProvides(IAceProject["elements"], ILanguageIndependentField)
-alsoProvides(IAceProject["featured"], ILanguageIndependentField)
+# alsoProvides(IAceProject["featured"], ILanguageIndependentField)
 alsoProvides(IAceProject["funding"], ILanguageIndependentField)
 alsoProvides(IAceProject["funding_programme"], ILanguageIndependentField)
 alsoProvides(IAceProject["geochars"], ILanguageIndependentField)

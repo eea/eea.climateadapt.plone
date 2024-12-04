@@ -1,23 +1,27 @@
 # from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
+
 # from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
+
 # from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
+
 # from z3c.form import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.supermodel import model
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
+
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
+
 # from zope.component import adapter
 from zope.interface import alsoProvides, implementer, Interface  # , implements
-from zope.schema import (URI, Bool, Choice, Date, Int, List, Text, TextLine,
-                         Tuple)
+from zope.schema import URI, Bool, Choice, Date, Int, List, Text, TextLine, Tuple
 
 ADD_ORGANISATION_URL = (
     "<a target='_blank' "
@@ -70,7 +74,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
             "keywords",
             "sectors",
             "elements",
-            "featured",  # 'year',
+            # "featured",  # 'year',
         ],
     )
 
@@ -95,8 +99,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     model.fieldset(
         "reference_information",
         label="Reference information",
-        fields=["websites", "source", "special_tags",
-                "comments"],  # 'contact',
+        fields=["websites", "source", "special_tags", "comments"],  # 'contact',
     )
 
     # richtext fields in database:
@@ -114,8 +117,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     model.fieldset(
         "categorization",
         label="Inclusion in the Health Observatory",
-        fields=["include_in_observatory",
-                "include_in_mission", "health_impacts"],
+        fields=["include_in_observatory", "include_in_mission", "health_impacts"],
     )
 
     # -----------[ "default" fields ]------------------
@@ -178,8 +180,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     sectors = List(
         title=_("Sectors"),
         description=_(
-            "Select one or more relevant sector policies"
-            " that this item relates to:"
+            "Select one or more relevant sector policies" " that this item relates to:"
         ),
         required=True,
         missing_value=[],
@@ -206,12 +207,12 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         required=True,
     )
 
-    featured = Bool(
-        title=_("Featured"),
-        description="Feature in search and Case Study Search Tool",
-        required=False,
-        default=False,
-    )
+    # featured = Bool(
+    #     title=_("Featured"),
+    #     description="Feature in search and Case Study Search Tool",
+    #     required=False,
+    #     default=False,
+    # )
 
     # -----------[ "additional_details" fields ]------------------
 
@@ -333,8 +334,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     governance_level = List(
         title=_("Governance Level"),
         description=_(
-            "Select the one governance level that relates to this "
-            "adaptation option"
+            "Select the one governance level that relates to this " "adaptation option"
         ),
         required=False,
         value_type=Choice(
@@ -407,7 +407,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         ),
         value_type=RelationChoice(
             title=_("Related"),
-            vocabulary="eea.climateadapt.organisations"
+            vocabulary="eea.climateadapt.organisations",
             # source=ObjPathSourceBinder(),
             # source=CatalogSource(portal_type='eea.climateadapt.adaptionoption'),
         ),
@@ -474,8 +474,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype",
     )
 
-    spatial_layer = TextLine(title=_("Spatial Layer"),
-                             required=False, default="")
+    spatial_layer = TextLine(title=_("Spatial Layer"), required=False, default="")
 
     spatial_values = List(
         title=_("Countries"),
@@ -519,8 +518,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         title=_("Include in the Mission Portal"), required=False, default=False
     )
 
-    important = Bool(title=_("High importance"),
-                     required=False, default=False)
+    important = Bool(title=_("High importance"), required=False, default=False)
 
     rating = Int(title=_("Rating"), required=True, default=0)
 
@@ -593,7 +591,7 @@ alsoProvides(IAceMeasure["climate_impacts"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["comments"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["contributor_list"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["elements"], ILanguageIndependentField)
-alsoProvides(IAceMeasure["featured"], ILanguageIndependentField)
+# alsoProvides(IAceMeasure["featured"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["geochars"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["governance_level"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["health_impacts"], ILanguageIndependentField)
@@ -608,12 +606,12 @@ alsoProvides(IAceMeasure["publication_date"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["sectors"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["special_tags"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["websites"], ILanguageIndependentField)
-alsoProvides(IAceMeasure['implementation_type'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['important'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['measure_type'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['rating'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['spatial_layer'], ILanguageIndependentField)
-alsoProvides(IAceMeasure['spatial_values'], ILanguageIndependentField)
+alsoProvides(IAceMeasure["implementation_type"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["important"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["measure_type"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["rating"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["spatial_layer"], ILanguageIndependentField)
+alsoProvides(IAceMeasure["spatial_values"], ILanguageIndependentField)
 
 # from collective.geolocationbehavior.geolocation import IGeolocatable
 # alsoProvides(IGeolocatable['geolocation'], ILanguageIndependentField)

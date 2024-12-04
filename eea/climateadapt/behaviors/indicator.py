@@ -11,12 +11,12 @@ from .volto_layout import indicator_layout_blocks, indicator_layout_items
 
 
 class IIndicator(IAceItem, IBlocks):
-    """ Indicator Interface"""
+    """Indicator Interface"""
 
     # directives.omitted(IEditForm, 'year')
     # directives.omitted(IAddForm, 'year')
-    directives.omitted(IEditForm, "featured")
-    directives.omitted(IAddForm, "featured")
+    # directives.omitted(IEditForm, "featured")
+    # directives.omitted(IAddForm, "featured")
 
     map_graphs = Text(title=_("Map/Graphs"), required=False)
 
@@ -25,7 +25,7 @@ class IIndicator(IAceItem, IBlocks):
         description="The date refers to the latest date of publication of "
         "the item."
         " Please use the Calendar icon to add day/month/year. If you want to "
-        "add only the year, please select \"day: 1\", \"month: January\" "
+        'add only the year, please select "day: 1", "month: January" '
         "and then the year",
         required=True,
     )
@@ -42,10 +42,9 @@ class IIndicator(IAceItem, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": indicator_layout_items
-        },
+        default={"items": indicator_layout_items},
         required=False,
     )
 
-alsoProvides(IIndicator['publication_date'], ILanguageIndependentField)
+
+alsoProvides(IIndicator["publication_date"], ILanguageIndependentField)

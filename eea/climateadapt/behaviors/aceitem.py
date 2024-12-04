@@ -203,7 +203,7 @@ class IAceItem(IImageScaleTraversable):
         description=_(
             "Select one or more relevant sector policies" " that this item relates to."
         ),
-        required=True,
+        required=False,  # TODO: set to False for the migration to plone6
         missing_value=[],
         default=None,
         value_type=Choice(
@@ -218,7 +218,7 @@ class IAceItem(IImageScaleTraversable):
             "Select one or more climate change impact topics that "
             "this item relates to."
         ),
-        required=True,
+        required=False,  # TODO: set to False for the migration to plone6
         missing_value=[],
         default=None,
         value_type=Choice(
@@ -252,14 +252,14 @@ class IAceItem(IImageScaleTraversable):
             'add only the year, please select "day: 1", "month: January" '
             "and then the year"
         ),
-        required=True,
+        required=False,  # TODO: set to False for the migration to plone6
     )
 
-    featured = Bool(
-        title=_("Featured"),
-        required=False,
-        default=False,
-    )
+    # featured = Bool(
+    #     title=_("Featured"),
+    #     required=False,
+    #     default=False,
+    # )
 
     # -----------[ "reference_information" fields ]------------------
 
@@ -505,7 +505,7 @@ alsoProvides(IAceItem["comments"], ILanguageIndependentField)
 alsoProvides(IAceItem["contributor_list"], ILanguageIndependentField)
 alsoProvides(IAceItem["data_type"], ILanguageIndependentField)
 alsoProvides(IAceItem["elements"], ILanguageIndependentField)
-alsoProvides(IAceItem["featured"], ILanguageIndependentField)
+# alsoProvides(IAceItem["featured"], ILanguageIndependentField)
 alsoProvides(IAceItem["geochars"], ILanguageIndependentField)
 alsoProvides(IAceItem["health_impacts"], ILanguageIndependentField)
 alsoProvides(IAceItem["image"], ILanguageIndependentField)

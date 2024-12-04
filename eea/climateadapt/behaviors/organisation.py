@@ -15,7 +15,7 @@ from .volto_layout import organisation_layout_blocks, organisation_layout_items
 
 
 class IOrganisation(IAceItem, IBlocks):
-    """ Organisation Interface"""
+    """Organisation Interface"""
 
     # directives.omitted(IAddForm, 'year')
     # directives.omitted(IEditForm, 'year')
@@ -25,8 +25,8 @@ class IOrganisation(IAceItem, IBlocks):
     directives.omitted(IEditForm, "source")
     directives.omitted(IEditForm, "contributor_list")
     directives.omitted(IAddForm, "contributor_list")
-    directives.omitted(IEditForm, "featured")
-    directives.omitted(IAddForm, "featured")
+    # directives.omitted(IEditForm, "featured")
+    # directives.omitted(IAddForm, "featured")
 
     acronym = TextLine(
         title=_("Acronym"),
@@ -45,7 +45,9 @@ class IOrganisation(IAceItem, IBlocks):
     )
 
     organisational_key_activities = RichText(
-        title=_("Key activities within climate change and health (relevant for the Observatory)"),
+        title=_(
+            "Key activities within climate change and health (relevant for the Observatory)"
+        ),
         description="Please describe the key activities"
         " undertaken by your organisation that are related"
         " to the topic of 'climate change and health'."
@@ -109,14 +111,15 @@ class IOrganisation(IAceItem, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": organisation_layout_items
-        },
+        default={"items": organisation_layout_items},
         required=False,
     )
+
 
 alsoProvides(IOrganisation["acronym"], ILanguageIndependentField)
 alsoProvides(IOrganisation["contact"], ILanguageIndependentField)
 alsoProvides(IOrganisation["organisational_websites"], ILanguageIndependentField)
-alsoProvides(IOrganisation["organisational_contact_information"], ILanguageIndependentField)
+alsoProvides(
+    IOrganisation["organisational_contact_information"], ILanguageIndependentField
+)
 alsoProvides(IOrganisation["logo"], ILanguageIndependentField)
