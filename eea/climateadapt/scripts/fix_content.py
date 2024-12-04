@@ -11,6 +11,12 @@ def fix_storage_type(obj):
     return obj
 
 
+def fix_publication_date(obj):
+    if "publication_date" in obj and not obj["publication_date"]:
+        del obj["publication_date"]
+    return obj
+
+
 def main():
     # Read the file name from command line arguments
     if len(sys.argv) != 2:
@@ -29,7 +35,7 @@ def main():
             raise ValueError("JSON file must contain an array of objects.")
 
         # Define fixers as a list of functions
-        fixers: List[Callable[[dict], dict]] = [fix_storage_type]
+        fixers: List[Callable[[dict], dict]] = [fix_storage_type, fix_publication_date]
 
         # Apply each fixer to every object in the array
         for obj in data:
