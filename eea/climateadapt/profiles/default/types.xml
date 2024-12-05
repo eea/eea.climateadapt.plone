@@ -10,6 +10,8 @@
  <object name="Image" meta_type="Dexterity FTI"/>
  <object name="News Item" meta_type="Dexterity FTI"/>
  <object name="Event" meta_type="Dexterity FTI"/>
+ <object name="collective.cover.content" meta_type="Dexterity FTI"/>
+ <object name="EasyForm" meta_type="Dexterity FTI"/>
  <object name="eea.climateadapt.aceproject" meta_type="Dexterity FTI"/>
  <object name="eea.climateadapt.adaptationoption" meta_type="Dexterity FTI"/>
  <object name="eea.climateadapt.casestudy" meta_type="Dexterity FTI"/>
