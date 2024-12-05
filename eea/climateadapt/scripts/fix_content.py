@@ -29,6 +29,21 @@ def fix_missing_field_values(obj):
     return obj
 
 
+def fix_health_impacts(obj):
+    replaced = {
+        "Floods and storms": "Droughts and floods"
+        # "SOCIETALASP": ""
+    }
+    removed = []
+    if obj.get("health_impacts"):
+        obj["health_impacts"] = [
+            x for x in obj["health_impacts"] if x not in removed]
+        obj["health_impacts"] = [replaced.get(
+            x, x) for x in obj["health_impacts"]]
+
+    return obj
+
+
 def fix_elements(obj):
     replaced = {
         # "SOCIETALASP": ""
@@ -58,6 +73,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_missing_field_values,
     fix_elements,
     fix_sectors,
+    fix_health_impacts,
 ]
 
 
