@@ -74,6 +74,12 @@ def fix_sectors(obj):
     return obj
 
 
+def fix_titles(obj):
+    if obj.get("title"):
+        obj["title"] = obj.title.replace("\n", " ")
+    return obj
+
+
 fixers: List[Callable[[dict], dict]] = [
     fix_storage_type,
     fix_missing_field_values,
@@ -81,6 +87,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_sectors,
     fix_health_impacts,
     fix_keywords,
+    fix_titles,
 ]
 
 
