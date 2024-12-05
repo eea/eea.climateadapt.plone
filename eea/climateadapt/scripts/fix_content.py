@@ -74,6 +74,22 @@ def fix_sectors(obj):
     return obj
 
 
+def fix_origin_website(obj):
+    replaced = {
+        # "SOCIETALASP": ""
+    }
+    removed = ["Climate-ADAPT"]
+    if obj.get("origin_website"):
+        obj["origin_website"] = [
+            x for x in obj["origin_website"] if x not in removed
+        ]
+        obj["origin_website"] = [
+            replaced.get(x, x) for x in obj["origin_website"]
+        ]
+
+    return obj
+
+
 def fix_titles(obj):
     if obj.get("title"):
         obj["title"] = obj["title"].replace("\n", " ")
@@ -88,6 +104,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_health_impacts,
     fix_keywords,
     fix_titles,
+    fix_origin_website
 ]
 
 
