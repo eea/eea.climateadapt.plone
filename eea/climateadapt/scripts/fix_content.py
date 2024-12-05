@@ -28,6 +28,19 @@ def fix_missing_field_values(obj):
             del obj[field]
     return obj
 
+def fix_elements(obj):
+    replaced = {
+        # "SOCIETALASP": ""
+    }
+    removed = [
+        "SOCIETALASP"
+    ]
+    if obj.get('elements'):
+        obj['elements'] = [x for x in obj['elements'] if x not in removed]
+        obj['elements'] = [replaced.get(x, x) for x in obj['elements']]
+
+    return obj
+
 
 def main():
     # Read the file name from command line arguments
