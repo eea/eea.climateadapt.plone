@@ -56,6 +56,12 @@ def fix_elements(obj):
     return obj
 
 
+def fix_keywords(obj):
+    if obj.get("keywords"):
+        obj["keywords"] = [k for k in obj["keywords"] if k.strip()]
+    return obj
+
+
 def fix_sectors(obj):
     replaced = {
         # "SOCIETALASP": ""
@@ -74,6 +80,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_elements,
     fix_sectors,
     fix_health_impacts,
+    fix_keywords,
 ]
 
 
