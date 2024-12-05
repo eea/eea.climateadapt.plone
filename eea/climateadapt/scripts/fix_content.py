@@ -22,6 +22,7 @@ def fix_missing_field_values(obj):
         "websites",
         "keywords",
         "health_impacts",
+        "funding_programme",
     ]
     for field in fields:
         if field in obj and not obj[field]:
@@ -73,9 +74,22 @@ def fix_keywords(obj):
     return obj
 
 
+def _fix_invalid_url(url):
+    if url.startswith('www.'):
+        url = 'https://' + url
+
+    if not url.startswith('http'):
+        url = 'https://www.' + url
+
+    return url
+
+
 def fix_websites(obj):
     if obj.get("websites"):
-        obj["websites"] = [k.strip() for k in obj["websites"] if k.strip()]
+        obj["websites"] = [
+            _fix_invalid_url(k.strip())
+            for k in obj["websites"] if k.strip()
+        ]
     return obj
 
 
@@ -119,6 +133,15 @@ def fix_titles(obj):
     return obj
 
 
+def fix_spatial_layer(obj):
+    if (obj.get("spatial_layer")
+            and isinstance(obj["spatial_layer"], (list, tuple))):
+
+        obj["spatial_layer"] = ', '.join(obj["spatial_layer"])
+
+    return obj
+
+
 fixers: List[Callable[[dict], dict]] = [
     fix_storage_type,
     fix_missing_field_values,
@@ -130,6 +153,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_origin_website,
     fix_special_tags,
     fix_websites,
+    fix_spatial_layer,
 ]
 
 
