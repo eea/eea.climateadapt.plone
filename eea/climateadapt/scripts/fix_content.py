@@ -76,7 +76,7 @@ def fix_sectors(obj):
 
 def fix_titles(obj):
     if obj.get("title"):
-        obj["title"] = obj.title.replace("\n", " ")
+        obj["title"] = obj["title"].replace("\n", " ")
     return obj
 
 
