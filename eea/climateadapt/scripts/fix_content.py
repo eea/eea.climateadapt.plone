@@ -62,6 +62,12 @@ def fix_keywords(obj):
     return obj
 
 
+def fix_special_tags(obj):
+    if obj.get("special_tags"):
+        obj["special_tags"] = [k for k in obj["special_tags"] if k.strip()]
+    return obj
+
+
 def fix_sectors(obj):
     replaced = {
         # "SOCIETALASP": ""
@@ -104,7 +110,8 @@ fixers: List[Callable[[dict], dict]] = [
     fix_health_impacts,
     fix_keywords,
     fix_titles,
-    fix_origin_website
+    fix_origin_website,
+    fix_special_tags,
 ]
 
 
