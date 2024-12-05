@@ -271,7 +271,7 @@ class IAceItem(IImageScaleTraversable):
             "described. Please place each website on a new line"
         ),
         required=False,
-        value_type=URI(),
+        value_type=TextLine(),  # URI # TODO: plone6 needs to be fixed, some URLs are not valid URI
         # missing_value=None,
     )
 
