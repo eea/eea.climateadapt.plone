@@ -31,7 +31,10 @@ def fix_missing_field_values(obj):
 
 def fix_health_impacts(obj):
     replaced = {
-        "Floods and storms": "Droughts and floods"
+        "Floods and storms": "Droughts and floods",
+        "Infectious diseases": "Climate-sensitive diseases",
+        "Heat and cold": "Heat",
+        "Air quality and aeroallergens": "Air pollution and aero-allergens",
         # "SOCIETALASP": ""
     }
     removed = []
@@ -48,7 +51,7 @@ def fix_elements(obj):
     replaced = {
         # "SOCIETALASP": ""
     }
-    removed = ["SOCIETALASP"]
+    removed = ["SOCIETALASP", "COSTBENEFIT", "ECONOMICASP"]
     if obj.get("elements"):
         obj["elements"] = [x for x in obj["elements"] if x not in removed]
         obj["elements"] = [replaced.get(x, x) for x in obj["elements"]]
@@ -58,7 +61,21 @@ def fix_elements(obj):
 
 def fix_keywords(obj):
     if obj.get("keywords"):
-        obj["keywords"] = [k for k in obj["keywords"] if k.strip()]
+        # this splits the keywords by '\n' in cases like
+        # "Vegetation\nClimate change \nFire"
+        obj["keywords"] = [
+            keyword.strip()
+            for entry in obj["keywords"]
+            for keyword in entry.split('\n')
+        ]
+        obj["keywords"] = [k.strip() for k in obj["keywords"] if k.strip()]
+
+    return obj
+
+
+def fix_websites(obj):
+    if obj.get("websites"):
+        obj["websites"] = [k.strip() for k in obj["websites"] if k.strip()]
     return obj
 
 
@@ -112,6 +129,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_titles,
     fix_origin_website,
     fix_special_tags,
+    fix_websites,
 ]
 
 
