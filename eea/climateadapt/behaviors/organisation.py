@@ -37,7 +37,7 @@ class IOrganisation(IAceItem, IBlocks):
     contact = TextLine(
         title=_("Contact"),
         description=_("Corporate email or link to contact form"),
-        required=True,
+        required=False,  # TODO set to True after plone6 migration
     )
 
     title = TextLine(
