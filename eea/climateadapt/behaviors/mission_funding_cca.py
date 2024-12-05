@@ -8,7 +8,7 @@ from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from plone.supermodel import model
 from zope.interface import alsoProvides, provider
-from zope.schema import Bool, Choice, List as ListField
+from zope.schema import Bool, Choice, List as ListField, TextLine
 from plone.app.textfield import RichText
 
 from eea.climateadapt import CcaAdminMessageFactory as _
@@ -83,8 +83,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # metacolumn: For which step of the AST can the funding be used?
     )
 
-    directives.widget(
-        eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     eligible_entities = ListField(
         title=_("Eligible to receive funding"),
         required=False,
@@ -110,14 +109,16 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     country = ListField(
         title=_("Countries where the funding opportunity is offered"),
         required=False,
-        value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
+        # TODO: disabled for plone6 migration
+        # value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
+        value_type=TextLine(title="Country"),
+        #
         # column: For which country is this funding opportunity offered?
         # TODO: need manual intervention
     )
 
     # column: For which regions is the funding opportunity offered?
-    regions = RichText(
-        title=_("Region where the funding is offered"), required=False)
+    regions = RichText(title=_("Region where the funding is offered"), required=False)
 
     blocks = JSONField(
         title=_("Blocks"),
@@ -170,13 +171,10 @@ class IMissionFundingCCA(model.Schema, IBlocks):
 alsoProvides(IMissionFundingCCA["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["country"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["is_blended"], ILanguageIndependentField)
-alsoProvides(
-    IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
 # alsoProvides(IMissionFundingCCA["publication_page"], ILanguageIndependentField)
 # alsoProvides(IMissionFundingCCA["general_info"], ILanguageIndependentField)
 # alsoProvides(IMissionFundingCCA["regions"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["rast_steps"], ILanguageIndependentField)
-alsoProvides(
-    IMissionFundingCCA["eligible_entities"], ILanguageIndependentField)
-alsoProvides(
-    IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["eligible_entities"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
