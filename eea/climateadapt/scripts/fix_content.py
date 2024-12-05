@@ -41,10 +41,23 @@ def fix_elements(obj):
     return obj
 
 
+def fix_sectors(obj):
+    replaced = {
+        # "SOCIETALASP": ""
+    }
+    removed = ["ECOSYSTEM"]
+    if obj.get("sectors"):
+        obj["sectors"] = [x for x in obj["sectors"] if x not in removed]
+        obj["sectors"] = [replaced.get(x, x) for x in obj["sectors"]]
+
+    return obj
+
+
 fixers: List[Callable[[dict], dict]] = [
     fix_storage_type,
     fix_missing_field_values,
     fix_elements,
+    fix_sectors,
 ]
 
 
