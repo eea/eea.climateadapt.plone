@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object name="Folder" meta_type="Dexterity FTI" i18n:domain="plone"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Folder</property>
@@ -50,20 +50,24 @@
   <element value="eea.nonstructural_folder"/>
   <element value="eea.climateadapt.behaviors.blocks.IBlocksEditableLayout"/>
   <element value="eea.climateadapt.behaviors.navtitle.INavTitle"/>
+  <element value="volto.blocks.editable.layout"/>
+  <element value="plone.constraintypes"/>
+  <element value="plone.leadimage"/>
+  <element value="eea.climateadapt.seo"/>
  </property>
  <property name="schema"></property>
  <property
-    name="model_source">&lt;model xmlns:easyform="http://namespaces.plone.org/supermodel/easyform" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    name="model_source">&lt;model xmlns:easyform=&quot;http://namespaces.plone.org/supermodel/easyform&quot; xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot; xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot; xmlns:indexer=&quot;http://namespaces.plone.org/supermodel/indexer&quot; xmlns:lingua=&quot;http://namespaces.plone.org/supermodel/lingua&quot; xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot; xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot; xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
   &lt;schema&gt;
-  &lt;fieldset name="layout" label="Layout"&gt;
-  &lt;field name="blocks" type="plone.schema.jsonfield.JSONField"&gt;
-  &lt;default&gt;{u'fed15d9d-046a-472f-a2e6-75014016c1cb': {u'@type': u'slate'}, u'e28ec238-4cd7-4b72-8025-66da44a6062f': {u'@type': u'layoutSettings', u'layout_size': u'narrow_view'}, u'cb0f0cc0-266a-4728-89a0-539cdb18859c': {u'@type': u'title', u'copyrightIcon': u'ri-copyright-line'}}&lt;/default&gt;
+  &lt;fieldset name=&quot;layout&quot; label=&quot;Layout&quot;&gt;
+  &lt;field name=&quot;blocks&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
+  &lt;default&gt;{u&#x27;fed15d9d-046a-472f-a2e6-75014016c1cb&#x27;: {u&#x27;@type&#x27;: u&#x27;slate&#x27;}, u&#x27;e28ec238-4cd7-4b72-8025-66da44a6062f&#x27;: {u&#x27;@type&#x27;: u&#x27;layoutSettings&#x27;, u&#x27;layout_size&#x27;: u&#x27;narrow_view&#x27;}, u&#x27;cb0f0cc0-266a-4728-89a0-539cdb18859c&#x27;: {u&#x27;@type&#x27;: u&#x27;title&#x27;, u&#x27;copyrightIcon&#x27;: u&#x27;ri-copyright-line&#x27;}}&lt;/default&gt;
   &lt;description/&gt;
   &lt;required&gt;False&lt;/required&gt;
   &lt;title&gt;Blocks&lt;/title&gt;
   &lt;/field&gt;
-  &lt;field name="blocks_layout" type="plone.schema.jsonfield.JSONField"&gt;
-  &lt;default&gt;{u'items': [u'cb0f0cc0-266a-4728-89a0-539cdb18859c', u'e28ec238-4cd7-4b72-8025-66da44a6062f', u'fed15d9d-046a-472f-a2e6-75014016c1cb']}&lt;/default&gt;
+  &lt;field name=&quot;blocks_layout&quot; type=&quot;plone.schema.jsonfield.JSONField&quot;&gt;
+  &lt;default&gt;{u&#x27;items&#x27;: [u&#x27;cb0f0cc0-266a-4728-89a0-539cdb18859c&#x27;, u&#x27;e28ec238-4cd7-4b72-8025-66da44a6062f&#x27;, u&#x27;fed15d9d-046a-472f-a2e6-75014016c1cb&#x27;]}&lt;/default&gt;
   &lt;description/&gt;
   &lt;required&gt;False&lt;/required&gt;
   &lt;title&gt;Blocks Layout&lt;/title&gt;
@@ -79,13 +83,13 @@
  <alias from="sharing" to="@@sharing"/>
  <alias from="view" to="(selected layout)"/>
  <action title="View" action_id="view" category="object" condition_expr=""
-    description="" icon_expr="" link_target="" url_expr="string:${object_url}"
+    icon_expr="" link_target="" url_expr="string:${object_url}"
     visible="True">
   <permission value="View"/>
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
-    description="" icon_expr="" link_target=""
-    url_expr="string:${object_url}/edit" visible="True">
+    icon_expr="" link_target="" url_expr="string:${object_url}/edit"
+    visible="True">
   <permission value="Modify portal content"/>
  </action>
 </object>

@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object name="eea.climateadapt.adaptationoption" meta_type="Dexterity FTI"
    i18n:domain="eea.climateadapt"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
@@ -42,24 +42,24 @@
  <property
     name="schema">eea.climateadapt.acemeasure.IAdaptationOption</property>
  <property
-    name="model_source">&lt;model xmlns:easyform="http://namespaces.plone.org/supermodel/easyform" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema" i18n:domain="eea.climateadapt"&gt;
-    &lt;schema&gt;
-      &lt;field name="category" type="zope.schema.List"&gt;
-        &lt;description i18n:translate=""&gt;Select one or more categories of adaptation options: The 3 options are:&lt;/description&gt;
-        &lt;required&gt;False&lt;/required&gt;
-        &lt;title i18n:translate=""&gt;Category&lt;/title&gt;
-        &lt;value_type type="zope.schema.Choice"&gt;
-          &lt;vocabulary&gt;eea.climateadapt.aceitems_category&lt;/vocabulary&gt;
-        &lt;/value_type&gt;
-        &lt;form:widget type="z3c.form.browser.checkbox.CheckBoxFieldWidget"/&gt;
-      &lt;/field&gt;
-      &lt;field name="un_option" type="zope.schema.Choice"&gt;
-        &lt;description/&gt;
-        &lt;required&gt;False&lt;/required&gt;
-        &lt;title&gt;UN Option&lt;/title&gt;
-        &lt;values/&gt;
-      &lt;/field&gt;
-    &lt;/schema&gt;
+    name="model_source">&lt;model xmlns:easyform=&quot;http://namespaces.plone.org/supermodel/easyform&quot; xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot; xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot; xmlns:indexer=&quot;http://namespaces.plone.org/supermodel/indexer&quot; xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot; xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot; xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot; i18n:domain=&quot;eea.climateadapt&quot;&gt;
+  &lt;schema&gt;
+  &lt;field name=&quot;category&quot; type=&quot;zope.schema.List&quot;&gt;
+  &lt;description i18n:translate=&quot;&quot;&gt;Select one or more categories of adaptation options: The 3 options are:&lt;/description&gt;
+  &lt;required&gt;False&lt;/required&gt;
+  &lt;title i18n:translate=&quot;&quot;&gt;Category&lt;/title&gt;
+  &lt;value_type type=&quot;zope.schema.Choice&quot;&gt;
+  &lt;vocabulary&gt;eea.climateadapt.aceitems_category&lt;/vocabulary&gt;
+  &lt;/value_type&gt;
+  &lt;form:widget type=&quot;z3c.form.browser.checkbox.CheckBoxFieldWidget&quot;/&gt;
+  &lt;/field&gt;
+  &lt;field name=&quot;un_option&quot; type=&quot;zope.schema.Choice&quot;&gt;
+  &lt;description/&gt;
+  &lt;required&gt;False&lt;/required&gt;
+  &lt;title&gt;UN Option&lt;/title&gt;
+  &lt;values/&gt;
+  &lt;/field&gt;
+  &lt;/schema&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>
@@ -68,13 +68,13 @@
  <alias from="sharing" to="@@sharing"/>
  <alias from="view" to="(selected layout)"/>
  <action title="View" action_id="view" category="object" condition_expr=""
-    description="" icon_expr="" link_target=""
-    url_expr="string:${object_url}/" visible="True">
+    icon_expr="" link_target="" url_expr="string:${object_url}/"
+    visible="True">
   <permission value="View"/>
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
-    description="" icon_expr="" link_target=""
-    url_expr="string:${object_url}/edit" visible="True">
+    icon_expr="" link_target="" url_expr="string:${object_url}/edit"
+    visible="True">
   <permission value="Modify portal content"/>
  </action>
 </object>

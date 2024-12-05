@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object name="mission_funding_cca" meta_type="Dexterity FTI"
    i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Mission Funding of CCA</property>
@@ -37,7 +37,7 @@
  <property
     name="schema">eea.climateadapt.mission_funding_cca.IMissionFundingCCA</property>
  <property
-    name="model_source">&lt;model xmlns:easyform="http://namespaces.plone.org/supermodel/easyform" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:i18n="http://xml.zope.org/namespaces/i18n" xmlns:indexer="http://namespaces.plone.org/supermodel/indexer" xmlns:lingua="http://namespaces.plone.org/supermodel/lingua" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    name="model_source">&lt;model xmlns:easyform=&quot;http://namespaces.plone.org/supermodel/easyform&quot; xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot; xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot; xmlns:indexer=&quot;http://namespaces.plone.org/supermodel/indexer&quot; xmlns:lingua=&quot;http://namespaces.plone.org/supermodel/lingua&quot; xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot; xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot; xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
   &lt;schema/&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
@@ -47,13 +47,13 @@
  <alias from="sharing" to="@@sharing"/>
  <alias from="view" to="(selected layout)"/>
  <action title="View" action_id="view" category="object" condition_expr=""
-    description="" icon_expr="" link_target="" url_expr="string:${object_url}"
+    icon_expr="" link_target="" url_expr="string:${object_url}"
     visible="True">
   <permission value="View"/>
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
-    description="" icon_expr="" link_target=""
-    url_expr="string:${object_url}/edit" visible="True">
+    icon_expr="" link_target="" url_expr="string:${object_url}/edit"
+    visible="True">
   <permission value="Modify portal content"/>
  </action>
 </object>

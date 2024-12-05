@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object name="eea.climateadapt.aceproject" meta_type="Dexterity FTI"
    i18n:domain="eea.climateadapt"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
@@ -36,8 +36,8 @@
  </property>
  <property name="schema">eea.climateadapt.aceproject.IAceProject</property>
  <property
-    name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-      &lt;schema /&gt;
+    name="model_source">&lt;model xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
+  &lt;schema /&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>
@@ -46,13 +46,13 @@
  <alias from="sharing" to="@@sharing"/>
  <alias from="view" to="(selected layout)"/>
  <action title="View" action_id="view" category="object" condition_expr=""
-    description="" icon_expr="" link_target=""
-    url_expr="string:${object_url}/" visible="True">
+    icon_expr="" link_target="" url_expr="string:${object_url}/"
+    visible="True">
   <permission value="View"/>
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
-    description="" icon_expr="" link_target=""
-    url_expr="string:${object_url}/edit" visible="True">
+    icon_expr="" link_target="" url_expr="string:${object_url}/edit"
+    visible="True">
   <permission value="Modify portal content"/>
  </action>
 </object>
