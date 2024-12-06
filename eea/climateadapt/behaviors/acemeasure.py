@@ -310,7 +310,8 @@ class IAceMeasure(Interface, IImageScaleTraversable):
             "NOTE: Add http:// in front of every website link."
         ),
         required=False,
-        value_type=URI(),
+        # TODO: plone6 needs to be a URI
+        value_type=TextLine(),
         # missing_value=(),
     )
 
