@@ -24,6 +24,7 @@ def fix_missing_field_values(obj):
         "health_impacts",
         "funding_programme",
         "relevance",
+        "implementation_type",
     ]
     for field in fields:
         if field in obj and not obj[field]:
