@@ -1,27 +1,24 @@
-# from collective import dexteritytextindexer
-from eea.climateadapt import CcaAdminMessageFactory as _
-
-# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-
-# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
-
-# from z3c.form import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.supermodel import model
 from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
+from z3c.relationfield.schema import RelationChoice, RelationList
+from zope.interface import Interface, alsoProvides, implementer  # , implements
+from zope.schema import URI, Bool, Choice, Date, Int, List, Text, TextLine, Tuple
 
+from eea.climateadapt import CcaAdminMessageFactory as _
+
+# from z3c.form import form
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
-from z3c.relationfield.schema import RelationChoice, RelationList
-
 # from zope.component import adapter
-from zope.interface import alsoProvides, implementer, Interface  # , implements
-from zope.schema import URI, Bool, Choice, Date, Int, List, Text, TextLine, Tuple
+# from collective import dexteritytextindexer
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from plone.app.widgets.interfaces import IWidgetsLayer
 
 ADD_ORGANISATION_URL = (
     "<a target='_blank' "

@@ -1,7 +1,9 @@
 import json
 import logging
+
 # import re
 import urllib.request, urllib.parse, urllib.error
+
 # from datetime import datetime
 # from email.mime.text import MIMEText
 # from io import BytesIO
@@ -17,6 +19,7 @@ from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
+
 # from plone.app.widgets.dx import DatetimeWidgetConverter as BaseConverter
 from plone.memoize import view
 from Products.CMFPlone.utils import getToolByName, isExpired
@@ -172,7 +175,7 @@ class CalculateItemStatistics(BrowserView):
 
         for year in range(1969, 2018):
             annot = IAnnotations(self.context)
-            annotation = annot['cca-item-statistics'][year]
+            annotation = annot["cca-item-statistics"][year]
             keys = list(annotation.keys())
 
             for key in keys:
@@ -213,8 +216,8 @@ class getItemStatistics(BrowserView):
         return types
 
     def get_years(self):
-        """ Gets the years present in IAnnotations and sorts them ascending """
-        years = list(IAnnotations(self.context)['cca-item-statistics'].keys())
+        """Gets the years present in IAnnotations and sorts them ascending"""
+        years = list(IAnnotations(self.context)["cca-item-statistics"].keys())
         years.sort()
 
         return years
@@ -291,9 +294,10 @@ class RedirectToSearchView(BrowserView):
     def __call__(self):
         # TODO fix current language
         # current_language = get_current_language(self.context, self.request)
-        current_language = 'en'
-        portal_state = getMultiAdapter((self.context, self.request),
-                                       name='plone_portal_state')
+        current_language = "en"
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name="plone_portal_state"
+        )
 
         typeOfDataTo = self.request.other["ACTUAL_URL"].split("/")[-1]
         typeOfDataValues = {
@@ -327,36 +331,39 @@ class RedirectToSearchView(BrowserView):
         else:
             querystring = self.request.form.get("SearchableText", "")
             query = {
-                'display_type': 'list',
-                'highlight': {
-                    'fields': {
-                        '*': {
-                        }
+                "display_type": "list",
+                "highlight": {"fields": {"*": {}}},
+                "query": {
+                    "bool": {
+                        "must": [
+                            {"term": {"hasWorkflowState": "published"}},
+                            {
+                                "query_string": {
+                                    "analyze_wildcard": True,
+                                    "default_operator": "OR",
+                                    "query": querystring,
+                                }
+                            },
+                        ]
                     }
                 },
-                'query': {
-                    'bool': {
-                        'must':
-                            [{'term': {'hasWorkflowState': 'published'}},
-                             {'query_string': {'analyze_wildcard': True,
-                                                'default_operator': 'OR',
-                                                'query': querystring}
-                              }]
-                    }
-                }
             }
             if typeOfDataTo in typeOfDataValues:
                 query["query"]["bool"]["filter"] = {
                     "bool": {
                         "should": [
-                            {"term": {
-                                "typeOfData": typeOfDataValues[typeOfDataTo]}}
+                            {"term": {"typeOfData": typeOfDataValues[typeOfDataTo]}}
                         ]
                     }
                 }
 
-            link = link + '?source=' + \
-                urllib.parse.quote(json.dumps(query))+'&lang='+current_language
+            link = (
+                link
+                + "?source="
+                + urllib.parse.quote(json.dumps(query))
+                + "&lang="
+                + current_language
+            )
 
         return self.request.response.redirect(link)
 
@@ -401,7 +408,7 @@ class ClearMacrotransnationalRegions(BrowserView):
         return brains
 
     def clear_regions(self, obj):
-        if obj.geochars in [None, '', '', []]:
+        if obj.geochars in [None, "", "", []]:
             return
 
         geochars = json.loads(obj.geochars)
@@ -430,7 +437,7 @@ class GetItemsForMacrotransRegions(BrowserView):
         for b in self.catalog_search():
             obj = b.getObject()
 
-            if obj.geochars in [None, '', '', []]:
+            if obj.geochars in [None, "", "", []]:
                 continue
             geochars = json.loads(obj.geochars)
             macro = geochars["geoElements"].get("macrotrans", [])
@@ -478,8 +485,7 @@ class GetItemsForMacrotransRegions(BrowserView):
 def _archive_news(site):
     """Script that will get called by cron once per day"""
     catalog = getToolByName(site, "portal_catalog")
-    query = {"portal_type": ["News Item", "Link",
-                             "Event"], "review_state": "published"}
+    query = {"portal_type": ["News Item", "Link", "Event"], "review_state": "published"}
     brains = catalog.searchResults(**query)
 
     for b in brains:
@@ -669,9 +675,13 @@ def preventFolderDeletionEvent(object, event):
     for obj in object.listFolderContents():
         iterate_control = obj.restrictedTraverse("@@iterate_control")
 
-        if iterate_control.is_checkout():
-            # Cancel deletion
-            raise BeforeDeleteException
+        try:
+            if iterate_control.is_checkout():
+                # Cancel deletion
+                raise BeforeDeleteException
+        except AttributeError:
+            logger.info("Needs plone6 migration")
+            continue
 
 
 class ViewGoogleAnalyticsReport(BrowserView):
@@ -810,6 +820,6 @@ def create_contributions_link(language="en", organisation_id=None):
         url = "/" + language + "/observatory/catalogue/?"
         # TODO fix query
         # query = filters_to_query(terms)
-        query = ''
+        query = ""
 
         return "{}{}".format(url, query)
