@@ -23,6 +23,7 @@ def fix_missing_field_values(obj):
         "keywords",
         "health_impacts",
         "funding_programme",
+        "relevance",
     ]
     for field in fields:
         if field in obj and not obj[field]:
@@ -67,7 +68,7 @@ def fix_keywords(obj):
         obj["keywords"] = [
             keyword.strip()
             for entry in obj["keywords"]
-            for keyword in entry.split('\n')
+            for keyword in entry.split("\n")
         ]
         obj["keywords"] = [k.strip() for k in obj["keywords"] if k.strip()]
 
@@ -75,11 +76,11 @@ def fix_keywords(obj):
 
 
 def _fix_invalid_url(url):
-    if url.startswith('www.'):
-        url = 'https://' + url
+    if url.startswith("www."):
+        url = "https://" + url
 
-    if not url.startswith('http'):
-        url = 'https://www.' + url
+    if not url.startswith("http"):
+        url = "https://www." + url
 
     return url
 
@@ -87,8 +88,7 @@ def _fix_invalid_url(url):
 def fix_websites(obj):
     if obj.get("websites"):
         obj["websites"] = [
-            _fix_invalid_url(k.strip())
-            for k in obj["websites"] if k.strip()
+            _fix_invalid_url(k.strip()) for k in obj["websites"] if k.strip()
         ]
     return obj
 
@@ -118,11 +118,9 @@ def fix_origin_website(obj):
     removed = ["Climate-ADAPT"]
     if obj.get("origin_website"):
         obj["origin_website"] = [
-            x for x in obj["origin_website"] if x not in removed
-        ]
-        obj["origin_website"] = [
-            replaced.get(x, x) for x in obj["origin_website"]
-        ]
+            x for x in obj["origin_website"] if x not in removed]
+        obj["origin_website"] = [replaced.get(
+            x, x) for x in obj["origin_website"]]
 
     return obj
 
@@ -134,12 +132,14 @@ def fix_titles(obj):
 
 
 def fix_spatial_layer(obj):
-    if (obj.get("spatial_layer")
-            and isinstance(obj["spatial_layer"], (list, tuple))):
-
-        obj["spatial_layer"] = ', '.join(obj["spatial_layer"])
+    if obj.get("spatial_layer") and isinstance(obj["spatial_layer"], (list, tuple)):
+        obj["spatial_layer"] = ", ".join(obj["spatial_layer"])
 
     return obj
+
+
+# def fix_relevance(obj):
+#     if 'relevance' in obj and not obj['relevance']:
 
 
 fixers: List[Callable[[dict], dict]] = [
