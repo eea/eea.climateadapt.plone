@@ -214,88 +214,88 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     # -----------[ "additional_details" fields ]------------------
 
     # dexteritytextindexer.searchable("stakeholder_participation")
-    # stakeholder_participation = RichText(
-    #     title=_("Stakeholder participation"),
-    #     required=False,
-    #     default="",
-    #     description=_(
-    #         "Describe the Information about actors involved, the "
-    #         "form of participation and the participation process. "
-    #         " Focus should be on the level of participation needed "
-    #         "and/or adopted already (from information, to full "
-    #         "commitment in the deliberation/implementation "
-    #         "process), with useful notes e.g. regarding "
-    #         "motivations. (5,000 character limit)"
-    #     ),
-    # )
+    stakeholder_participation = RichText(
+        title=_("Stakeholder participation"),
+        required=False,
+        default="",
+        description=_(
+            "Describe the Information about actors involved, the "
+            "form of participation and the participation process. "
+            " Focus should be on the level of participation needed "
+            "and/or adopted already (from information, to full "
+            "commitment in the deliberation/implementation "
+            "process), with useful notes e.g. regarding "
+            "motivations. (5,000 character limit)"
+        ),
+    )
 
     # dexteritytextindexer.searchable("success_limitations")
-    # success_limitations = RichText(
-    #     title=_("Success / limitations"),
-    #     required=False,
-    #     default="",
-    #     description=_(
-    #         "Describe factors that are decisive for a successful "
-    #         "implementation and expected challenges or limiting "
-    #         "factors which may hinder the process and need to be "
-    #         "considered (5,000 character limit)"
-    #     ),
-    # )
+    success_limitations = RichText(
+        title=_("Success / limitations"),
+        required=False,
+        default="",
+        description=_(
+            "Describe factors that are decisive for a successful "
+            "implementation and expected challenges or limiting "
+            "factors which may hinder the process and need to be "
+            "considered (5,000 character limit)"
+        ),
+    )
 
     # dexteritytextindexer.searchable("cost_benefit")
-    # cost_benefit = RichText(
-    #     title=_("Cost / Benefit"),
-    #     required=False,
-    #     default="",
-    #     description=_(
-    #         "Describe costs (possibly providing quantitative "
-    #         "estimate) and funding sources. Describe benefits "
-    #         "provided by implemented solutions, i.e.: positive "
-    #         "outcomes related climate change adaptation, "
-    #         "co-benefits in other areas, quantitative estimation "
-    #         "of benefits and related methodologies (e.g. "
-    #         "monetization of benefits for cost benefit analysis, "
-    #         "indicators of effectiveness of actions implemented, "
-    #         "etc.) (5,000 characters limit)"
-    #     ),
-    # )
+    cost_benefit = RichText(
+        title=_("Cost / Benefit"),
+        required=False,
+        default="",
+        description=_(
+            "Describe costs (possibly providing quantitative "
+            "estimate) and funding sources. Describe benefits "
+            "provided by implemented solutions, i.e.: positive "
+            "outcomes related climate change adaptation, "
+            "co-benefits in other areas, quantitative estimation "
+            "of benefits and related methodologies (e.g. "
+            "monetization of benefits for cost benefit analysis, "
+            "indicators of effectiveness of actions implemented, "
+            "etc.) (5,000 characters limit)"
+        ),
+    )
 
     # dexteritytextindexer.searchable("legal_aspects")
-    # legal_aspects = RichText(
-    #     title=_("Legal aspects"),
-    #     required=False,
-    #     default="",
-    #     description=_(
-    #         "Describe the Legislation "
-    #         "framework from which the case "
-    #         "originated, relevant institutional"
-    #         " opportunities and constrains, "
-    #         "which determined the case as it "
-    #         "is (5000 character limit):"
-    #     ),
-    # )
+    legal_aspects = RichText(
+        title=_("Legal aspects"),
+        required=False,
+        default="",
+        description=_(
+            "Describe the Legislation "
+            "framework from which the case "
+            "originated, relevant institutional"
+            " opportunities and constrains, "
+            "which determined the case as it "
+            "is (5000 character limit):"
+        ),
+    )
 
     # dexteritytextindexer.searchable("implementation_time")
-    # implementation_time = RichText(
-    #     title=_("Implementation Time"),
-    #     required=False,
-    #     default=None,
-    #     description=_(
-    #         "Describe the time needed to implement the measure. "
-    #         "Include: Time frame, e.g. 5-10 years, Brief "
-    #         "explanation(250 char limit)"
-    #     ),
-    # )
+    implementation_time = RichText(
+        title=_("Implementation Time"),
+        required=False,
+        default=None,
+        description=_(
+            "Describe the time needed to implement the measure. "
+            "Include: Time frame, e.g. 5-10 years, Brief "
+            "explanation(250 char limit)"
+        ),
+    )
 
     # dexteritytextindexer.searchable("lifetime")
-    # lifetime = RichText(
-    #     title=_("Lifetime"),
-    #     required=False,
-    #     default="",
-    #     description="Describe the lifetime of the measure: "
-    #     "Time frame, e.g. 5-10 years, Brief explanation "
-    #     "(250 char limit)",
-    # )
+    lifetime = RichText(
+        title=_("Lifetime"),
+        required=False,
+        default="",
+        description="Describe the lifetime of the measure: "
+        "Time frame, e.g. 5-10 years, Brief explanation "
+        "(250 char limit)",
+    )
 
     # -----------[ "reference_information" fields ]------------------
 
@@ -316,15 +316,15 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     )
 
     # dexteritytextindexer.searchable("source")
-    # source = TextLine(
-    #     title=_("References"),
-    #     required=False,
-    #     description=_(
-    #         "Describe the references (projects, a tools reports, etc.) "
-    #         "related to this item, providing further information about "
-    #         "it or its source."
-    #     ),
-    # )
+    source = TextLine(
+        title=_("References"),
+        required=False,
+        description=_(
+            "Describe the references (projects, a tools reports, etc.) "
+            "related to this item, providing further information about "
+            "it or its source."
+        ),
+    )
 
     # -----------[ "geographic_information" fields ]------------------
 

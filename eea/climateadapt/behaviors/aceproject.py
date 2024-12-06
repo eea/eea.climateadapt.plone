@@ -196,14 +196,14 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     )
 
     # dexteritytextindexer.searchable("long_description")
-    # long_description = RichText(
-    #     title=_("Abstracts"),
-    #     description=_(
-    #         "Provide information focusing on project output. "
-    #         "Possibly on specific Website features."
-    #     ),
-    #     required=True,
-    # )
+    long_description = RichText(
+        title=_("Abstracts"),
+        description=_(
+            "Provide information focusing on project output. "
+            "Possibly on specific Website features."
+        ),
+        required=True,
+    )
 
     lead = TextLine(
         title=_("Lead"),
@@ -333,13 +333,13 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     )
 
     # dexteritytextindexer.searchable("source")
-    # source = TextLine(
-    #     title=_("Reference"),
-    #     description=_(
-    #         "Provide source from which project was retrieved (e.g. " "specific DB) "
-    #     ),
-    #     required=False,
-    # )
+    source = TextLine(
+        title=_("Reference"),
+        description=_(
+            "Provide source from which project was retrieved (e.g. " "specific DB) "
+        ),
+        required=False,
+    )
 
     # -----------[ "geographic_information" fields ]------------------
     directives.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
