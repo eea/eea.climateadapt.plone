@@ -77,6 +77,8 @@ def fix_keywords(obj):
 
 
 def _fix_invalid_url(url):
+    url = url.replace("\n", " ")
+    url = url.replace("\r", " ")
     return url
 
     if url.startswith("www."):
