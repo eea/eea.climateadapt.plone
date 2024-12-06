@@ -34,17 +34,7 @@
   </property>
   <property name="schema">eea.climateadapt.mission_tool.IMissionTool</property>
   <property
-    name="model_source">&lt;model
-    xmlns:easyform=&quot;http://namespaces.plone.org/supermodel/easyform&quot;
-    xmlns:form=&quot;http://namespaces.plone.org/supermodel/form&quot;
-    xmlns:i18n=&quot;http://xml.zope.org/namespaces/i18n&quot;
-    xmlns:indexer=&quot;http://namespaces.plone.org/supermodel/indexer&quot;
-    xmlns:lingua=&quot;http://namespaces.plone.org/supermodel/lingua&quot;
-    xmlns:marshal=&quot;http://namespaces.plone.org/supermodel/marshal&quot;
-    xmlns:security=&quot;http://namespaces.plone.org/supermodel/security&quot;
-    xmlns=&quot;http://namespaces.plone.org/supermodel/schema&quot;&gt;
-    &lt;schema/&gt;
-    &lt;/model&gt;</property>
+    name="model_source"></property>
   <property name="model_file"></property>
   <property name="schema_policy">dexterity</property>
   <alias from="(Default)" to="(dynamic view)" />
