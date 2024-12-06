@@ -1,7 +1,7 @@
+import json
 import logging
 from copy import deepcopy
 
-# from eea.climateadapt.tiles.search_acecontent import AceTileMixin
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer.blocks import path2uid
 from plone.restapi.interfaces import (
@@ -9,11 +9,13 @@ from plone.restapi.interfaces import (
     IBlockFieldSerializationTransformer,
 )
 from plone.restapi.serializer.blocks import uid_to_url
+from plone.restapi.serializer.converters import json_compatible
 from six import string_types
 from zope.component import adapter
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
-import json
+
+# from eea.climateadapt.tiles.search_acecontent import AceTileMixin
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -30,10 +32,10 @@ class GenericLinkFixer(object):
 
     def __call__(self, block):
         if block:
-            dumped = json.dumps(block)
+            converted = json_compatible(block)
+            dumped = json.dumps(converted)
             if "next-climate-adapt.eea.europa" in dumped:
-                dumped = dumped.replace(
-                    "next-climate-adapt", "climate-adapt")
+                dumped = dumped.replace("next-climate-adapt", "climate-adapt")
                 block = json.loads(dumped)
 
         return block
@@ -73,9 +75,9 @@ class ColumnBlockSerializationTransformer(object):
         self.request = request
 
     def __call__(self, block):
-        data = block.get('data', {})
-        blocks_layout = data.get('blocks_layout', {}).get('items', [])
-        blocks = data.get('blocks', {})
+        data = block.get("data", {})
+        blocks_layout = data.get("blocks_layout", {}).get("items", [])
+        blocks = data.get("blocks", {})
         for uid in list(blocks.keys()):
             if uid not in blocks_layout:
                 logger.warn("Removing unreferenced block in columnsBlock: %s", uid)
