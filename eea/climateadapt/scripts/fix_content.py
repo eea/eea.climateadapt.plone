@@ -192,16 +192,20 @@ def main():
 
         # Define fixers as a list of functions
         # Apply each fixer to every object in the array
+        fixed_data = []
         for obj in data:
             if "unexported_paths" in obj:
                 print(f"There are unexported_paths: \n, {obj['unexported_paths']}")
                 continue
+
             for fixer in fixers:
                 obj = fixer(obj)
 
+            fixed_data.append(obj)
+
         # Write the fixed data back to the file
         with open(filename, "w") as file:
-            json.dump(data, file, indent=4)
+            json.dump(fixed_data, file, indent=4)
 
         print(f"File '{filename}' has been processed successfully.")
 
