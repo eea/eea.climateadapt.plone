@@ -328,7 +328,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
             "described. Please place each website on a new line"
         ),
         required=False,
-        value_type=URI(),
+        value_type=TextLine(title="Website"),  # URI(), #plone6 compatibility
         # missing_value=(),
     )
 

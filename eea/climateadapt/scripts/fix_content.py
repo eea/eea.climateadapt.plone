@@ -42,10 +42,8 @@ def fix_health_impacts(obj):
     }
     removed = []
     if obj.get("health_impacts"):
-        obj["health_impacts"] = [
-            x for x in obj["health_impacts"] if x not in removed]
-        obj["health_impacts"] = [replaced.get(
-            x, x) for x in obj["health_impacts"]]
+        obj["health_impacts"] = [x for x in obj["health_impacts"] if x not in removed]
+        obj["health_impacts"] = [replaced.get(x, x) for x in obj["health_impacts"]]
 
     return obj
 
@@ -122,10 +120,8 @@ def fix_origin_website(obj):
     }
     removed = ["Climate-ADAPT"]
     if obj.get("origin_website"):
-        obj["origin_website"] = [
-            x for x in obj["origin_website"] if x not in removed]
-        obj["origin_website"] = [replaced.get(
-            x, x) for x in obj["origin_website"]]
+        obj["origin_website"] = [x for x in obj["origin_website"] if x not in removed]
+        obj["origin_website"] = [replaced.get(x, x) for x in obj["origin_website"]]
 
     return obj
 
@@ -139,6 +135,20 @@ def fix_titles(obj):
 def fix_spatial_layer(obj):
     if obj.get("spatial_layer") and isinstance(obj["spatial_layer"], (list, tuple)):
         obj["spatial_layer"] = ", ".join(obj["spatial_layer"])
+
+    return obj
+
+
+def fix_content_types(obj):
+    _type = obj.get("@type")
+    remapped = {"collective.cover.content": "Folder"}
+    if not _type:
+        import pdb
+
+        pdb.set_trace()
+
+    if _type in remapped:
+        obj["@type"] = remapped[_type]
 
     return obj
 
@@ -159,6 +169,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_special_tags,
     fix_websites,
     fix_spatial_layer,
+    fix_content_types,
 ]
 
 
@@ -182,6 +193,9 @@ def main():
         # Define fixers as a list of functions
         # Apply each fixer to every object in the array
         for obj in data:
+            if "unexported_paths" in obj:
+                print(f"There are unexported_paths: \n, {obj['unexported_paths']}")
+                continue
             for fixer in fixers:
                 obj = fixer(obj)
 
