@@ -12,11 +12,10 @@ from zope.schema import (
 )
 
 from eea.climateadapt import CcaAdminMessageFactory as _
-# from eea.climateadapt.behaviors.acemeasure import IAceMeasure
+from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 
 
-# class IAdaptationOption(IAceMeasure, IBlocks):
-class IAdaptationOption(IBlocks):
+class IAdaptationOption(IAceMeasure, IBlocks):
     """Adaptation Option"""
 
     # directives.omitted(IEditForm, 'featured')
@@ -25,8 +24,7 @@ class IAdaptationOption(IBlocks):
     # directives.omitted(IEditForm, 'year')
     # directives.omitted(IAddForm, 'year')
 
-    directives.widget(
-        key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_type_measures = List(
         title=_("Key Type Measures"),
         description=_("Select Key Type Measures. The options are:"),
@@ -51,8 +49,7 @@ class IAdaptationOption(IBlocks):
     casestudies = RelationList(
         title=_("Case studies implemented in the adaption"),
         default=[],
-        description=_(
-            "Select one or more case study that this item " "relates to:"),
+        description=_("Select one or more case study that this item " "relates to:"),
         value_type=RelationChoice(
             title=_("Related"),
             vocabulary="eea.climateadapt.case_studies",
