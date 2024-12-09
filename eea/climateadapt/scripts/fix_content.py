@@ -113,6 +113,10 @@ def fix_sectors(obj):
 
     return obj
 
+def fix_attendees(obj):
+    if obj.get("attendees"):
+        obj["attendees"] = [k for k in obj["attendees"] if k.strip()]
+    return obj
 
 def fix_origin_website(obj):
     replaced = {
@@ -170,6 +174,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_websites,
     fix_spatial_layer,
     fix_content_types,
+    fix_attendees,
 ]
 
 

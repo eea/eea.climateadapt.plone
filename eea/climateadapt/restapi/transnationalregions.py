@@ -9,7 +9,7 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
-# from eea.climateadapt.tiles.transregional_select import get_countries, get_regions
+from eea.climateadapt.tiles.transregional_select import get_countries, get_regions
 # from eea.climateadapt.translation.utils import get_current_language
 
 logger = logging.getLogger("eea.climateadapt")
