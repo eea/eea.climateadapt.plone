@@ -51,7 +51,7 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
                 el.attrib.pop("style", None)
             for link in frag.xpath("a"):
                 href = link.get("href")
-                if not href.startswith(site_url):
+                if href and not href.startswith(site_url):
                     link.set("target", "_blank")
         res = str("\n").join([serialize(e) for e in frags])
         return res
