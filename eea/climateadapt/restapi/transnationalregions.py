@@ -9,10 +9,11 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
-from eea.climateadapt.tiles.transregional_select import get_countries, get_regions
+# from eea.climateadapt.tiles.transregional_select import get_countries, get_regions
 # from eea.climateadapt.translation.utils import get_current_language
 
 logger = logging.getLogger("eea.climateadapt")
+
 
 def iterate_tiles(cover_layout):
     queue = deque(cover_layout)
@@ -38,7 +39,7 @@ class TransnationalRegion(object):
     def __call__(self, **kw):
         try:
             # current_lang = get_current_language(self.context, self.request)
-            current_lang = 'en'
+            current_lang = "en"
 
             if "index_html" in self.context.contentIds():
                 cover = self.context["index_html"]
@@ -59,14 +60,15 @@ class TransnationalRegion(object):
 
             tile_data = cover.get_tile(tile_id).data
         except Exception as e:
-            logger.warning('Error in processing transnational region: {}'.format(e))
+            logger.warning("Error in processing transnational region: {}".format(e))
             tile_data = {}
 
         result = {
             "transnationalregion": {
                 "@id": "{}/@transnationalregion".format(self.context.absolute_url()),
-                "regions": get_regions(current_lang),
-                "countries": get_countries(self.context, tile_data, current_lang),
+                # TODO plone6 this needs to be migrated
+                # "regions": get_regions(current_lang),
+                # "countries": get_countries(self.context, tile_data, current_lang),
             }
         }
 
