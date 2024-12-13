@@ -39,8 +39,9 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         default=(),
         missing_value=None,
         value_type=TextLine(
-            title=u"Single topic",
-        ))
+            title=_("Single topic"),
+        ),
+    )
 
     policy_legal_background = RichText(
         title=_("Policy and legal background"),
@@ -212,9 +213,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": case_study_layout_items
-        },
+        default={"items": case_study_layout_items},
         required=False,
     )
 

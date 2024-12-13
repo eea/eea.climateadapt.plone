@@ -51,44 +51,44 @@ class IAceItem(IImageScaleTraversable):
     # directives.omitted(IAddForm, 'relatedItems')
     # directives.omitted(IEditForm, 'relatedItems')
 
-    form.fieldset(
-        "default",
-        label="Item Description",
-        fields=[
-            "title",
-            "description",
-            "long_description",
-            "keywords",
-            "sectors",
-            "climate_impacts",
-            "elements",
-            "featured",
-        ],
-    )
-
-    form.fieldset(
-        "reference_information",
-        label="Reference information",
-        fields=["websites", "source", "special_tags", "comments"],
-    )
-
-    form.fieldset(
-        "geographic_information", label="Geographic Information", fields=["geochars"]
-    )
-
-    form.fieldset(
-        "inclusion",
-        label="Inclusion in the subsites",
-        fields=["include_in_observatory",
-                "include_in_mission", "health_impacts"],
-    )
-
-    # form.fieldset('inclusion_health_observatory',
-    #              label=u'Inclusion in the Health Observatory',
-    #              fields=['health_impacts', 'include_in_observatory']
-    #              )
-
-    form.fieldset("backend", label="Backend fields", fields=[])
+    # form.fieldset(
+    #     "default",
+    #     label="Item Description",
+    #     fields=[
+    #         "title",
+    #         "description",
+    #         "long_description",
+    #         "keywords",
+    #         "sectors",
+    #         "climate_impacts",
+    #         "elements",
+    #         "featured",
+    #     ],
+    # )
+    #
+    # form.fieldset(
+    #     "reference_information",
+    #     label="Reference information",
+    #     fields=["websites", "source", "special_tags", "comments"],
+    # )
+    #
+    # form.fieldset(
+    #     "geographic_information", label="Geographic Information", fields=["geochars"]
+    # )
+    #
+    # form.fieldset(
+    #     "inclusion",
+    #     label="Inclusion in the subsites",
+    #     fields=["include_in_observatory",
+    #             "include_in_mission", "health_impacts"],
+    # )
+    #
+    # # form.fieldset('inclusion_health_observatory',
+    # #              label=u'Inclusion in the Health Observatory',
+    # #              fields=['health_impacts', 'include_in_observatory']
+    # #              )
+    #
+    # form.fieldset("backend", label="Backend fields", fields=[])
 
     # -----------[ "default" fields ]------------------
     # these are the richtext fields from the db:

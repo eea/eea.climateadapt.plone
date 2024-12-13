@@ -1,5 +1,6 @@
 # NOTE: this is not actually used and loaded
 
+import logging
 import json
 from collections import deque
 
@@ -11,6 +12,7 @@ from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.tiles.transregional_select import get_countries, get_regions
 from eea.climateadapt.translation.utils import get_current_language
 
+logger = logging.getLogger("eea.climateadapt")
 
 def iterate_tiles(cover_layout):
     queue = deque(cover_layout)
@@ -34,25 +36,31 @@ class TransnationalRegion(object):
         self.request = request
 
     def __call__(self, **kw):
-        if "index_html" in self.context.contentIds():
-            cover = self.context["index_html"]
-        else:
-            cover = self.context
-
-        tile_id = None
-
-        layout = json.loads(cover.cover_layout)
-        for tile in iterate_tiles(layout):
-            if tile.get("tile-type") == "eea.climateadapt.transregionselect":
-                tile_id = tile["id"]
-
-        if not tile_id:
-            return {}
-
-        # TODO: this needs to be reimplemented as a behavior when we move to Plone 6 and get rid of Covers
-
-        tile_data = cover.get_tile(tile_id).data
         current_lang = get_current_language(self.context, self.request)
+
+        try:
+            if "index_html" in self.context.contentIds():
+                cover = self.context["index_html"]
+            else:
+                cover = self.context
+
+            tile_id = None
+
+            layout = json.loads(cover.cover_layout)
+            for tile in iterate_tiles(layout):
+                if tile.get("tile-type") == "eea.climateadapt.transregionselect":
+                    tile_id = tile["id"]
+
+            if not tile_id:
+                return {}
+
+            # TODO: this needs to be reimplemented as a behavior when we move to Plone 6 and get rid of Covers
+
+            tile_data = cover.get_tile(tile_id).data
+
+        except Exception as e:
+            logger.warning('Error in processing transnational region: {}'.format(e))
+            tile_data = {}
 
         result = {
             "transnationalregion": {

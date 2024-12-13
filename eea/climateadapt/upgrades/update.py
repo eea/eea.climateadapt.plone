@@ -960,8 +960,13 @@ def get_new_creator(creators, wf_creator):
 def fix_creators(context):
     catalog = portal.get_tool(name="portal_catalog")
     brains = catalog.searchResults(
-        missing_index=True, path="/cca/en"
+        missing_index=True,
+        path="/cca/en",
+        # path="/cca/en/countries-regions/transnational-regions/alpine-space",
     )  # this returns all objects
+    # import pdb
+    #
+    # pdb.set_trace()
 
     for brain in brains:
         try:
@@ -987,8 +992,9 @@ def fix_creators(context):
             "cca_items_workflow", {}
         )
 
-        wf_data = [(x["actor"], x["time"])
-                   for x in workflow if x["action"] is None]
+        wf_data = [
+            (x["actor"], x["time"]) for x in workflow if x["action"] is None
+        ] or [(x["actor"], x["time"]) for x in workflow]
 
         if wf_data:
             wf_creator = wf_data[0][0]

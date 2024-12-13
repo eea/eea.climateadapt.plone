@@ -10,11 +10,11 @@ from eea.climateadapt import CcaAdminMessageFactory as _
 class ISEOFields(model.Schema):
     """ """
 
-    model.fieldset(
-        "seofields",
-        label=_("SEO"),
-        fields=("seo_noindex",),
-    )
+    # model.fieldset(
+    #     "seofields",
+    #     label=_("SEO"),
+    #     fields=("seo_noindex",),
+    # )
 
     # based on https://github.com/kitconcept/kitconcept.seo/blob/main/src/kitconcept/seo/behaviors/seo.py
     # https://support.google.com/webmasters/answer/93710?hl=en

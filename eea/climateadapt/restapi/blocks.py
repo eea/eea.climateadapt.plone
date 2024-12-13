@@ -4,8 +4,10 @@ from copy import deepcopy
 from eea.climateadapt.tiles.search_acecontent import AceTileMixin
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer.blocks import path2uid
-from plone.restapi.interfaces import (IBlockFieldDeserializationTransformer,
-                                      IBlockFieldSerializationTransformer)
+from plone.restapi.interfaces import (
+    IBlockFieldDeserializationTransformer,
+    IBlockFieldSerializationTransformer,
+)
 from plone.restapi.serializer.blocks import uid_to_url
 from six import string_types
 from zope.component import adapter
@@ -13,7 +15,7 @@ from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
 import json
 
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger("eea.climateadapt")
 
 
 @implementer(IBlockFieldSerializationTransformer)
@@ -30,8 +32,7 @@ class GenericLinkFixer(object):
         if block:
             dumped = json.dumps(block)
             if "next-climate-adapt.eea.europa" in dumped:
-                dumped = dumped.replace(
-                    u"next-climate-adapt", u"climate-adapt")
+                dumped = dumped.replace("next-climate-adapt", "climate-adapt")
                 block = json.loads(dumped)
 
         return block
@@ -71,14 +72,57 @@ class ColumnBlockSerializationTransformer(object):
         self.request = request
 
     def __call__(self, block):
-        data = block.get('data', {})
-        blocks_layout = data.get('blocks_layout', {}).get('items', [])
-        blocks = data.get('blocks', {})
+        data = block.get("data", {})
+        blocks_layout = data.get("blocks_layout", {}).get("items", [])
+        blocks = data.get("blocks", {})
         for uid in blocks.keys():
             if uid not in blocks_layout:
-                logger.warn(
-                    "Removing unreferenced block in columnsBlock: %s", uid)
+                logger.warn("Removing unreferenced block in columnsBlock: %s", uid)
                 del blocks[uid]
+
+        return block
+
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class RastBlockSerializationTransformer(object):
+    order = 100
+    block_type = "rastBlock"
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, block):
+        if block.get("root_path"):
+            block["root_path"] = block["root_path"].replace(
+                "/en/", "/%s/" % (self.context.language or "en")
+            )
+
+        return block
+
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class SearchlibBlockSerializationTransformer(object):
+    order = 100
+    block_type = "searchlib"
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, block):
+        defaultFilters = block.get("defaultFilters", [])
+        defaultLang = getattr(self.context, "language", "en")
+
+        for filt in defaultFilters:
+            if filt.get("name") == "language":
+                filt["value"] = {
+                    "field": "language",
+                    "type": "any",
+                    "values": [defaultLang],
+                }
 
         return block
 
