@@ -1,4 +1,5 @@
 #!/bin/env python3
+from datetime import datetime
 import json
 import sys
 from typing import Callable, List
@@ -160,6 +161,17 @@ def fix_content_types(obj):
 # def fix_relevance(obj):
 #     if 'relevance' in obj and not obj['relevance']:
 
+def fix_publishing_date(obj):
+    """ fix objects with publication_date(effective) being after expiration date(expires) """
+    if obj.get("effective") and obj.get("expires"):
+        expiration_date = datetime.strptime(obj["expires"], "%Y-%m-%dT%H:%M:%S")
+        publication_date = datetime.strptime(obj["effective"], "%Y-%m-%dT%H:%M:%S")
+
+        if publication_date > expiration_date:
+            obj["effective"] = obj["expires"]
+
+    return obj
+
 
 fixers: List[Callable[[dict], dict]] = [
     fix_storage_type,
@@ -175,6 +187,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_spatial_layer,
     fix_content_types,
     fix_attendees,
+    fix_publishing_date,
 ]
 
 
