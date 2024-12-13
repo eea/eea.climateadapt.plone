@@ -596,6 +596,14 @@ indicator_layout_blocks = {
                                     },
                                 },
                                 {
+                                    "@id": "b5086acf-b9f7-4c23-8ea1-7584f2fbe49e",
+                                    "field": {
+                                        "id": "map_graphs_height",
+                                        "title": "Map/Graphs Height",
+                                        "widget": "textarea"
+                                    }
+                                },
+                                {
                                     "@id": "c0dbddd0-c93f-457f-ad86-f3c667f1edc3",
                                     "field": {
                                         "id": "origin_website",
