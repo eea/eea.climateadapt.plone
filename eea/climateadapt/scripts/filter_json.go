@@ -1,3 +1,4 @@
+// build with go build -o filter_json filter_json.go
 package main
 
 import (
