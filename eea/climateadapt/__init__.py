@@ -131,3 +131,51 @@ ZApplicationWrapper.__repr__ = ZApplicationWrapper__repr__
 #     finally:
 #         savepoint.rollback()
 #     return linked
+
+from collective.exportimport.import_content import ImportContent
+from collective.exportimport.import_content import get_absolute_blob_path
+from plone.namedfile.file import NamedBlobFile
+from plone.namedfile.file import NamedBlobImage
+
+# Monkey patching import_blob_paths
+_original_import_blob_paths = ImportContent.import_blob_paths
+
+def patched_import_blob_paths(self, new, item):
+    for key, value in item.items():
+        # Look for dictionaries with a blob_path key.
+        if not isinstance(value, dict):
+            continue
+        blob_path = value.get("blob_path")
+        if not blob_path:
+            continue
+        abs_blob_path = get_absolute_blob_path(new, blob_path)
+        if not abs_blob_path:
+            return
+            __traceback_info__ = item
+            raise ValueError("Blob path {} does not exist!".format(blob_path))
+
+        # Determine the class to use: file or image.
+        filename = value["filename"]
+        content_type = value["content-type"]
+        if key == "file":
+            klass = NamedBlobFile
+        elif key == "image":
+            klass = NamedBlobImage
+        elif content_type.startswith("image"):
+            klass = NamedBlobImage
+        else:
+            klass = NamedBlobFile
+
+        # Write the field.
+        with open(abs_blob_path, "rb") as myfile:
+            blobdata = myfile.read()
+        field_value = klass(
+            data=blobdata,
+            contentType=content_type,
+            filename=filename,
+        )
+        setattr(new, key, field_value)
+
+ImportContent.import_blob_paths = patched_import_blob_paths
+
+print("Monkey patch for ImportContent.import_blob_paths applied")
