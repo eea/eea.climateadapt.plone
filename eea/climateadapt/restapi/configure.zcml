@@ -143,19 +143,19 @@
     allowed_attributes="topLevelTabs"
   />
 
-  <!-- <adapter
+  <adapter
     factory=".navigation.Navigation"
     name="navigation"
-  /> -->
+  />
 
-  <!-- <plone:service
+  <plone:service
     method="GET"
     factory=".navigation.NavigationGet"
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@navigation"
-    layer="plone.restapi.interfaces.IPloneRestapiLayer"
-  /> -->
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+  />
 
 
   <adapter factory=".siblings.Siblings" name="siblings" />

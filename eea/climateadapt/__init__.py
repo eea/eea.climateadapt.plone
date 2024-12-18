@@ -132,6 +132,7 @@ ZApplicationWrapper.__repr__ = ZApplicationWrapper__repr__
 #         savepoint.rollback()
 #     return linked
 
+# TODO remove this after plone 6 migration
 from collective.exportimport.import_content import ImportContent
 from collective.exportimport.import_content import get_absolute_blob_path
 from plone.namedfile.file import NamedBlobFile

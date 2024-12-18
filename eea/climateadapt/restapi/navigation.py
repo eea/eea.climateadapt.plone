@@ -18,6 +18,8 @@ from zope.component import adapter, getMultiAdapter, getUtility
 from zope.interface import Interface, implementer
 from zope.i18n import translate
 
+from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+
 
 # if '/mission' not in self.context.absolute_url(relative=True):
 def is_outside_mission(context):
@@ -26,6 +28,10 @@ def is_outside_mission(context):
         return False
 
     return True
+
+
+class ICCARestapiLayer(IPloneRestapiLayer):
+    """Marker interface that defines a browser layer."""
 
 
 class CustomCatalogNavigationTabs(BaseCatalogNavigationTabs):
@@ -108,7 +114,7 @@ def fix_url(url):
 
 
 @implementer(IExpandableElement)
-@adapter(Interface, IPloneRestapiLayer)
+@adapter(Interface, ICCARestapiLayer)
 class Navigation(BaseNavigation):
     def __call__(self, expand=False):
         if self.request.form.get("expand.navigation.depth", False):
@@ -264,4 +270,5 @@ class Navigation(BaseNavigation):
 class NavigationGet(BaseNavigationGet):
     def reply(self):
         navigation = Navigation(self.context, self.request)
+        import pdb; pdb.set_trace()
         return navigation(expand=True)["navigation"]
