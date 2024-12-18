@@ -143,6 +143,8 @@
     allowed_attributes="topLevelTabs"
   />
     <!-- layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+    <!-- layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer" -->
+    <!-- layer="plone.restapi.interfaces.IPloneRestapiLayer" -->
     <!-- for="plone.dexterity.interfaces.IDexterityContent" -->
 
   <adapter

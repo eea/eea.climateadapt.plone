@@ -37,7 +37,8 @@ def is_outside_mission(context):
 class CustomCatalogNavigationTabs(BaseCatalogNavigationTabs):
     def customize_entry(self, entry, brain=None):
         if brain and hasattr(brain, "nav_title") and brain.nav_title:
-            entry["title"] = brain.nav_title
+            # entry["title"] = brain.nav_title
+            entry["name"] = brain.nav_title
 
     # customized to add support for nav_title
     def topLevelTabs(self, actions=None, category="portal_tabs"):
