@@ -4,14 +4,14 @@ from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
 from plone.restapi.interfaces import IExpandableElement, IPloneRestapiLayer
 from plone.restapi.services.navigation.get import Navigation as BaseNavigation
-from plone.restapi.services.navigation.get import \
-    NavigationGet as BaseNavigationGet
+from plone.restapi.services.navigation.get import NavigationGet as BaseNavigationGet
 from plone.restapi.serializer.converters import json_compatible
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.CMFPlone.utils import safe_unicode
-from Products.CMFPlone.browser.navigation import \
-    CatalogNavigationTabs as BaseCatalogNavigationTabs
+from Products.CMFPlone.browser.navigation import (
+    CatalogNavigationTabs as BaseCatalogNavigationTabs,
+)
 from Products.CMFPlone.browser.navigation import get_id, get_view_url
 from urllib.parse import urlparse
 from zope.component import adapter, getMultiAdapter, getUtility
@@ -30,8 +30,8 @@ def is_outside_mission(context):
     return True
 
 
-class ICCARestapiLayer(IPloneRestapiLayer):
-    """Marker interface that defines a browser layer."""
+# class ICCARestapiLayer(IPloneRestapiLayer):
+#     """Marker interface that defines a browser layer."""
 
 
 class CustomCatalogNavigationTabs(BaseCatalogNavigationTabs):
@@ -114,7 +114,7 @@ def fix_url(url):
 
 
 @implementer(IExpandableElement)
-@adapter(Interface, ICCARestapiLayer)
+@adapter(Interface, IEEAClimateAdaptInstalled)
 class Navigation(BaseNavigation):
     def __call__(self, expand=False):
         if self.request.form.get("expand.navigation.depth", False):
@@ -199,7 +199,7 @@ class Navigation(BaseNavigation):
                 continue
             # Customization:
             # Remove `and not context_path.startswith(brain_path)` from the condition
-            # to ensure we skip items marked as excluded (exclude_from_nav) even 
+            # to ensure we skip items marked as excluded (exclude_from_nav) even
             # if they are in the current context path.
             if brain.exclude_from_nav:
                 continue
@@ -236,7 +236,7 @@ class Navigation(BaseNavigation):
         return entry
 
     def render_item(self, item, path):
-        if 'path' not in item:
+        if "path" not in item:
             # TODO: weird case, to be analysed
             if "brain" in item:
                 del item["brain"]
@@ -270,5 +270,4 @@ class Navigation(BaseNavigation):
 class NavigationGet(BaseNavigationGet):
     def reply(self):
         navigation = Navigation(self.context, self.request)
-        import pdb; pdb.set_trace()
         return navigation(expand=True)["navigation"]

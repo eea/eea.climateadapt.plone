@@ -154,7 +154,7 @@
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@navigation"
-    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
   />
 
 
