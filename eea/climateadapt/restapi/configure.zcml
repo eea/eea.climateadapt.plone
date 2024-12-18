@@ -135,13 +135,15 @@
   /> -->
 
   <browser:page
-    for="*"
+    for="plone.dexterity.interfaces.IDexterityContent"
     name="portal_tabs_view"
-    layer="plone.restapi.interfaces.IPloneRestapiLayer"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     class=".navigation.CustomCatalogNavigationTabs"
     permission="zope.Public"
     allowed_attributes="topLevelTabs"
   />
+    <!-- layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+    <!-- for="plone.app.contenttypes.interfaces.IFolder" -->
 
   <adapter
     factory=".navigation.Navigation"
