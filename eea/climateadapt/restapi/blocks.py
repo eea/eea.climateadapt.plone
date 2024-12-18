@@ -129,6 +129,29 @@ class SearchlibBlockSerializationTransformer(object):
 
 @implementer(IBlockFieldSerializationTransformer)
 @adapter(IBlocks, IBrowserRequest)
+class ListingBlockSerializationTransformer(object):
+    order = 100
+    block_type = "listing"
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, block):
+        query = block.get("querystring", {}).get("query", [])
+        defaultLang = getattr(self.context, "language", "en")
+
+        for filt in query:
+            if filt.get("i") == "path":
+                path = filt.get("v", "")
+                if path.startswith("/en/"):
+                    filt["v"] = path.replace("/en/", "/%s/" % defaultLang)
+
+        return block
+
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
 class RelevantAceContentBlockSerializer(object):
     order = 100
     block_type = "relevantAceContent"

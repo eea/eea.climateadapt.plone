@@ -118,6 +118,10 @@
     factory=".blocks.SearchlibBlockSerializationTransformer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
   />
+  <subscriber
+    factory=".blocks.ListingBlockSerializationTransformer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
 
   <subscriber
     factory=".deserializer.VolatileSmartField"
