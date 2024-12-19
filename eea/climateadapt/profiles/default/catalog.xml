@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+   
+   <column value="health_impacts"/>
+   <column value="include_in_observatory"/>
+   <column value="nav_title"/>
+   <column value="origin_website"/>
+   <column value="search_type"/>
+   <column value="sectors"/>
+   <column value="elements"/>
+   <column value="special_tags"/>
+   <column value="year"/>
+
+   <index name="c3s_identifier" meta_type="FieldIndex">
+      <indexed_attr value="c3s_identifier"/>
+   </index>
+   <index name="show_in_top_level" meta_type="FieldIndex">
+      <indexed_attr value="show_in_top_level"/>
+   </index>
+   <index name="health_impacts" meta_type="KeywordIndex">
+      <indexed_attr value="health_impacts"/>
+   </index>
+   <index name="elements" meta_type="KeywordIndex">
+      <indexed_attr value="elements"/>
+   </index>
+   <index name="include_in_mission" meta_type="BooleanIndex">
+      <indexed_attr value="include_in_mission"/>
+   </index>
+   <index name="include_in_observatory" meta_type="BooleanIndex">
+      <indexed_attr value="include_in_observatory"/>
+   </index>
+   <index name="key_type_measures" meta_type="KeywordIndex">
+      <indexed_attr value="key_type_measures"/>
+   </index>
+   <index name="origin_website" meta_type="KeywordIndex">
+      <indexed_attr value="origin_website"/>
+   </index>
+   <index name="search_type" meta_type="KeywordIndex">
+      <indexed_attr value="search_type"/>
+   </index>
+   <index name="sectors" meta_type="KeywordIndex">
+      <indexed_attr value="sectors"/>
+   </index>
+
+</object>
