@@ -204,7 +204,7 @@ def iterate_blocks(obj):
     if layout:
         items = layout.get("items")
         for uid in items:
-            block = blocks[uid]
+            block = blocks.get(uid)
             if block:
                 yield block
 
@@ -358,10 +358,15 @@ def compute_broken_links(site):
     """Script that will get called by cron once per day"""
 
     results = []
-    annot = IAnnotations(site)["broken_links_data"]
     links = recursively_extract_links(site)
+    annot = IAnnotations(site)["broken_links_data"]
 
     for info in links:
+        if info["link"].startswith("/"):
+            continue
+            # import pdb
+            #
+            # pdb.set_trace()
         res = check_link_status(info["link"])
         if res is not None:
             res["object_url"] = info["object_url"]
@@ -418,15 +423,13 @@ class BrokenLinksService(Service):
                     else:
                         item["state"] = "external"
 
-                    item["date"] = date.Date() if isinstance(
-                        date, DateTime) else date
+                    item["date"] = date.Date() if isinstance(date, DateTime) else date
                     if isinstance(date, str) and date == "pre_nov7_data":
                         continue
 
                     item["url"] = info["url"]
                     item["status"] = info["status"]
-                    item["object_url"] = info["object_url"].replace(
-                        "/cca/", "/")
+                    item["object_url"] = info["object_url"].replace("/cca/", "/")
 
                     broken_links.append(item)
 
@@ -480,8 +483,7 @@ class BrokenLinksService(Service):
             "Content-Type",
             "application/vnd.openxmlformats-officedocument." "spreadsheetml.sheet",
         )
-        fname = "-".join(["Broken-Links",
-                         str(datetime.now().replace(microsecond=0))])
+        fname = "-".join(["Broken-Links", str(datetime.now().replace(microsecond=0))])
         sh("Content-Disposition", "attachment; filename=%s.xlsx" % fname)
 
         return xlsio.read()
