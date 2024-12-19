@@ -41,7 +41,6 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
         site = portal.get()
         site_url = site.absolute_url()
         frags = fragments_fromstring(text)
-        # __import__("pdb").set_trace()
         for frag in frags:
             # el.set("style", None)
             if isinstance(frag, basestring):
@@ -83,7 +82,6 @@ class SlateBlockSerializer(SlateBlockSerializerBase):
 
     def handle_img(self, child):
         if child.get("url"):
-            # __import__("pdb").set_trace()
             url = uid_to_url(child["url"])
             if child.get("scale"):
                 url = "%s/@@images/image/%s" % (url, child["scale"])
@@ -107,6 +105,8 @@ class GenericFolderSerializer(SerializeFolderToJson):
 
 @adapter(IDexterityContent, IEEAClimateAdaptInstalled)
 class GenericContentSerializer(SerializeToJson):
+    """Generic content serializer (everything that's not CCA-specific)"""
+
     def __call__(self, version=None, include_items=True):
         result = super(GenericContentSerializer, self).__call__(
             version=None, include_items=True
@@ -119,10 +119,13 @@ class GenericContentSerializer(SerializeToJson):
 
 @adapter(IClimateAdaptContent, Interface)
 class ClimateAdaptContentSerializer(SerializeToJson):
+    """Simple CCA content serializer (database items such as Video)"""
+
     def __call__(self, version=None, include_items=True):
         result = super(ClimateAdaptContentSerializer, self).__call__(
             version=None, include_items=True
         )
+
         return cca_content_serializer(self.context, result, self.request)
 
 
