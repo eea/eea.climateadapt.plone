@@ -454,6 +454,12 @@
     handler=".acemeasure.handle_measure_added"
   />
 
+  <subscriber
+    for="plone.dexterity.interfaces.IDexterityContent
+     zope.lifecycleevent.interfaces.IObjectAddedEvent"
+    handler=".events.fix_creators"
+  />
+
   <!--
   <subscriber
       for="eea.climateadapt.acemeasure.ICaseStudy
