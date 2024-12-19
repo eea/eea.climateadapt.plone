@@ -46,11 +46,7 @@ def use_blocks_from_fti(context, result):
 
     for schema in iterSchemata(context):
         for name, field in getFields(schema).items():
-            # if name == "blocks" and not field.default:
-            #     import pdb
-            #
-            #     pdb.set_trace()
-            if name == "blocks" and field.default:
+            if name == "blocks" and field.default and not blocks:
                 blocks = field.default
             if name == "blocks_layout" and field.default and not blocks_layout:
                 blocks_layout = field.default
