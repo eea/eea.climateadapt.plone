@@ -144,10 +144,10 @@ class Items(BrowserView):
                 if brain.long_description:
                     long_description = brain.long_description.raw
                 origin_adaptecca_value = 20
-                if (isinstance(obj.origin_website, list) and
-                        len(obj.origin_website) and
-                        "AdapteCCA" in obj.origin_website):
-                    origin_adaptecca_value = 10
+                # if (isinstance(obj.origin_website, list) and
+                #         len(obj.origin_website) and
+                #         "AdapteCCA" in obj.origin_website):
+                    # origin_adaptecca_value = 10
                 results["features"].append(
                     {
                         "properties": {
