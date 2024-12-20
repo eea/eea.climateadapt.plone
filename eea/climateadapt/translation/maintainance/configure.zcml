@@ -127,4 +127,28 @@
     permission="cmf.ManagePortal"
   />
 
+  <!-- <browser:page -->
+  <!--   for="*" -->
+  <!--   template="pt/list.pt" -->
+  <!--   class=".views.TranslationList" -->
+  <!--   name="translate-list" -->
+  <!--   permission="cmf.ManagePortal" -->
+  <!--   /> -->
+  <!---->
+  <!-- <browser:page -->
+  <!--   for="*" -->
+  <!--   template="pt/key.pt" -->
+  <!--   class=".views.TranslationList" -->
+  <!--   name="translate-key" -->
+  <!--   permission="cmf.ManagePortal" -->
+  <!--   /> -->
+  <!---->
+  <!-- <browser:page -->
+  <!--   for="*" -->
+  <!--   template="pt/report.pt" -->
+  <!--   class=".views.TranslationList" -->
+  <!--   name="translate-report" -->
+  <!--   permission="cmf.ManagePortal" -->
+  <!--   /> -->
+
 </configure>

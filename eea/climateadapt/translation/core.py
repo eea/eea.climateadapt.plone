@@ -1,4 +1,3 @@
-from plone.app.multilingual.interfaces import ILanguageIndependentFieldsManager
 import base64
 import json
 import logging
@@ -11,6 +10,10 @@ from plone import api
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
+from plone.app.multilingual.interfaces import (
+    ILanguageIndependentFieldsManager,
+    ITranslationManager,
+)
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.interfaces import IRichText
 from plone.app.textfield.value import RichTextValue
@@ -23,11 +26,15 @@ from zeep.wsse.username import UsernameToken
 from zope.component.hooks import setSite
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
-from plone.app.multilingual.interfaces import ITranslationManager
 
 from eea.climateadapt.browser.admin import force_unlock
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
+
+# from zope.component import getMultiAdapter
+# from eea.climateadapt.translation.contentrules import \
+#     queue_translate_volto_html
+
 
 env = os.environ.get
 
@@ -565,3 +572,13 @@ def sync_language_independent_fields(context, en_obj_path, options):
         del site_portal.REQUEST
     except AttributeError:
         pass
+
+
+# def translate_object_async(obj, language):
+#     force_unlock(obj)
+#     html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+#     site = portal.getSite()
+#     http_host = obj.REQUEST.environ.get(
+#         "HTTP_X_FORWARDED_HOST", site.absolute_url())
+#
+#     queue_translate_volto_html(html, obj, http_host, language)
