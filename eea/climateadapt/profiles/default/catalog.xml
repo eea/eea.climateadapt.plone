@@ -10,6 +10,7 @@
    <column value="elements"/>
    <column value="special_tags"/>
    <column value="year"/>
+   <column value="is_nonstructural_folder"/>
 
    <index name="c3s_identifier" meta_type="FieldIndex">
       <indexed_attr value="c3s_identifier"/>
