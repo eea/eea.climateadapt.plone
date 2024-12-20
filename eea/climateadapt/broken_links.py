@@ -100,6 +100,8 @@ def check_link_status(link):
         if not link.startswith("http"):
             link = "https://" + link
 
+        link = link.replace("http://", "https://")
+
         # return {"status": "404", "url": link}
 
         logger.warning("Now checking: %s", link)
@@ -107,32 +109,32 @@ def check_link_status(link):
         try:
             resp = requests.head(link, timeout=5, allow_redirects=True)
             if resp.status_code == 404:
-                return {"status": "404", "url": link}
+                return {"status": "NotFound", "url": link}
             # requests.head(link, timeout=5, allow_redirects=True)
         except requests.exceptions.ReadTimeout:
-            return {"status": "504", "url": link}
+            return {"status": "ReadTimeout", "url": link}
         except requests.exceptions.ConnectTimeout:
             logger.info("Timed out.")
             logger.info("Trying again with link: %s", link)
             try:
                 requests.head(link, timeout=30, allow_redirects=True)
             except Exception:
-                return {"status": "504", "url": link}
+                return {"status": "NotFound", "url": link}
         except requests.exceptions.TooManyRedirects:
             logger.info("Redirected.")
             logger.info("Trying again with link: %s", link)
             try:
                 requests.head(link, timeout=30, allow_redirects=True)
             except Exception:
-                return {"status": "301", "url": link}
+                return {"status": "Redirected", "url": link}
         except requests.exceptions.URLRequired:
-            return {"status": "400", "url": link}
+            return {"status": "BrokenUrl", "url": link}
         except requests.exceptions.ProxyError:
-            return {"status": "305", "url": link}
+            return {"status": "ProxyError", "url": link}
         except requests.exceptions.HTTPError:
-            return {"status": "505", "url": link}
+            return {"status": "UnknownError", "url": link}
         except Exception:
-            return {"status": "404", "url": link}
+            return {"status": "NotFound", "url": link}
 
     return
 
