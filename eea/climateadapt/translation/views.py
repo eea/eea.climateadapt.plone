@@ -117,7 +117,7 @@ class TranslateFolderAsync(BrowserView):
         for langcode, obj in translations.items():
             if langcode == "en":
                 continue
-            if obj.title:
+            if obj.title and langcode in untranslated:
                 untranslated.remove(langcode)
 
         return list(untranslated)
