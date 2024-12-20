@@ -33,6 +33,13 @@ def fix_missing_field_values(obj):
     return obj
 
 
+def fix_exclude_from_nav(obj):
+    """ for covers set exclude_from_nav to True because they are excluded from navigation"""
+    if obj.get("@type") == "collective.cover.content":
+        obj["exclude_from_nav"] = True
+
+    return obj
+
 def fix_health_impacts(obj):
     replaced = {
         "Floods and storms": "Droughts and floods",
@@ -174,6 +181,7 @@ def fix_publishing_date(obj):
 
 
 fixers: List[Callable[[dict], dict]] = [
+    fix_exclude_from_nav,
     fix_storage_type,
     fix_missing_field_values,
     fix_elements,
