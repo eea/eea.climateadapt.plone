@@ -145,7 +145,9 @@ class TranslateFolderAsync(BrowserView):
 
             force_unlock(obj)
             for language in langs:
-                logger.info("Queuing %s for translation", obj.absolute_url())
+                logger.info(
+                    "Queuing %s for translation for %s", obj.absolute_url(), language
+                )
                 html = getMultiAdapter((obj, self.context.REQUEST), name="tohtml")()
                 http_host = self.context.REQUEST.environ.get(
                     "HTTP_X_FORWARDED_HOST", site_url
