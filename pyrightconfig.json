@@ -1,5 +1,5 @@
 {
   "reportMissingImports": false,
   "reportGeneralTypeIssues": false,
-  "pythonVersion": "2"
+  "typeCheckingMode": "standard"
 }
