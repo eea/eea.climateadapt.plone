@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>See folder objects</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <style>
+td {
+  border: 1px solid black;
+  padding: 2px;
+}
+    </style>
+  </head>
+  <body tal:define="brains view/brains">
+    <h2 tal:content="python: str(len(brains)) +  ' objects'" />
+
+      <tal:rep repeat="lang view/good_lang_codes">
+      </tal:rep>
+
+      <table>
+        <tr tal:repeat="info brains">
+        <tal:def define="brain python: info[0]; untranslated_langs python: info[1]">
+
+          <td>
+            <a href="" tal:attributes="href brain/getURL" tal:content="brain/Title">Title</a>
+          </td>
+
+          <td>
+            <span tal:content="python: brain.getPath().replace('/cca', '')" />
+          </td>
+
+          <td><span tal:content="brain/portal_type" /></td>
+          <td><span tal:content="brain/review_state" /></td>
+
+
+          <td tal:repeat="lang view/good_lang_codes">
+            <a href="" tal:condition="python: lang in untranslated_langs"
+              tal:attributes="href string:${brain/getURL}/@@translate-this-async?language=${lang}"
+              tal:content="lang">RO</a>
+          </td>
+
+        </tal:def>
+
+
+        </tr>
+      </table>
+
+  </body>
+</html>

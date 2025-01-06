@@ -304,3 +304,39 @@ class FixFolderOrder(BrowserView):
                 trans_annot[self.POS_KEY] = trans_pos
                 logger.info("Fixed position for %s. Old: %r. New: %r",
                             "/".join(obj.getPhysicalPath()), orig_pos, dict(trans_pos))
+
+
+class SeeTranslationStatus(BrowserView):
+
+    good_lang_codes = ["fr", "de", "it", "es", "pl"]
+
+    def find_untranslated(self, obj):
+        tm = ITranslationManager(obj)
+        translations = tm.get_translations()
+        untranslated = set(self.good_lang_codes)
+
+        for langcode, obj in translations.items():
+            if langcode == "en":
+                continue
+            if obj.title and langcode in untranslated:
+                untranslated.remove(langcode)
+
+        return list(untranslated)
+
+    def brains(self):
+
+        context = self.context
+
+        brains = context.portal_catalog.searchResults(
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
+        )
+
+        result = []
+
+        for i, brain in enumerate(brains):
+            obj = brain.getObject()
+            langs = self.find_untranslated(obj)
+            result.append((brain, langs))
+
+        return result
