@@ -15,7 +15,8 @@ from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.contentrules import queue_translate_volto_html
+from eea.climateadapt.translation.contentrules import \
+    queue_translate_volto_html
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .core import get_blocks_as_html, ingest_html  # , translate_object_async
@@ -76,13 +77,15 @@ class TranslationCallback(BrowserView):
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
         if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
+            trans_obj_path = "/cca" + \
+                trans_obj_path.split(site.absolute_url())[-1]
 
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
         html = html_translated.encode("latin-1")
         ingest_html(trans_obj, html)
 
-        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
+        logger.info("Html volto translation saved for %s",
+                    trans_obj.absolute_url())
 
 
 class TranslateObjectAsync(BrowserView):
@@ -92,7 +95,8 @@ class TranslateObjectAsync(BrowserView):
 
         obj = self.context
         force_unlock(obj)
-        html = getMultiAdapter((self.context, self.context.REQUEST), name="tohtml")()
+        html = getMultiAdapter(
+            (self.context, self.context.REQUEST), name="tohtml")()
         site = portal.getSite()
         http_host = self.context.REQUEST.environ.get(
             "HTTP_X_FORWARDED_HOST", site.absolute_url()
@@ -148,7 +152,8 @@ class TranslateFolderAsync(BrowserView):
                 logger.info(
                     "Queuing %s for translation for %s", obj.absolute_url(), language
                 )
-                html = getMultiAdapter((obj, self.context.REQUEST), name="tohtml")()
+                html = getMultiAdapter(
+                    (obj, self.context.REQUEST), name="tohtml")()
                 http_host = self.context.REQUEST.environ.get(
                     "HTTP_X_FORWARDED_HOST", site_url
                 )
@@ -196,3 +201,66 @@ class ToHtml(BrowserView):
         #     value = get_cover_as_html(self.context)
         #     return value
         return get_value_representation(self.context, name)
+
+
+class TranslateMissing(BrowserView):
+    """A view to trigger the translation for missing translations"""
+
+    good_lang_codes = ["fr", "de", "it", "es", "pl"]
+    blacklist = [
+        "Image",
+        "File",
+        "LRF",
+        "LIF",
+        "Subsite",
+        "FrontpageSlide",
+    ]
+
+    def find_untranslated(self, obj):
+        tm = ITranslationManager(obj)
+        translations = tm.get_translations()
+        untranslated = set(self.good_lang_codes)
+
+        for langcode, obj in translations.items():
+            if langcode == "en":
+                continue
+            if obj.title and langcode in untranslated:
+                untranslated.remove(langcode)
+
+        return list(untranslated)
+
+    def __call__(self):
+        context = self.context
+        site = portal.getSite()
+        site_url = site.absolute_url()
+        fallback = env("SERVER_NAME", site_url)
+        http_host = self.context.REQUEST.environ.get(
+            "HTTP_X_FORWARDED_HOST", fallback)
+
+        brains = context.portal_catalog.searchResults(
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
+        )
+
+        result = []
+
+        for i, brain in enumerate(brains):
+            obj = brain.getObject()
+            if brain.portal_type in self.blacklist:
+                continue
+            if "sandbox" in obj.absolute_url():
+                continue
+            langs = self.find_untranslated(obj)
+            result.append((brain, langs))
+
+            force_unlock(obj)
+            for language in langs:
+                logger.info(
+                    "Queuing %s for translation for %s", obj.absolute_url(), language
+                )
+                html = getMultiAdapter(
+                    (obj, self.context.REQUEST), name="tohtml")()
+
+                queue_translate_volto_html(html, obj, http_host, language)
+
+        return result
