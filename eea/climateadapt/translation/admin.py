@@ -309,6 +309,14 @@ class FixFolderOrder(BrowserView):
 class SeeTranslationStatus(BrowserView):
 
     good_lang_codes = ["fr", "de", "it", "es", "pl"]
+    blacklist = [
+        "Image",
+        "File",
+        "LRF",
+        "LIF",
+        "Subsite",
+        "FrontpageSlide",
+    ]
 
     def find_untranslated(self, obj):
         tm = ITranslationManager(obj)
@@ -335,6 +343,8 @@ class SeeTranslationStatus(BrowserView):
         result = []
 
         for i, brain in enumerate(brains):
+            if brain.portal_type in self.blacklist:
+                continue
             obj = brain.getObject()
             langs = self.find_untranslated(obj)
             result.append((brain, langs))
