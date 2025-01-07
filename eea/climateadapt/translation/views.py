@@ -264,4 +264,4 @@ class TranslateMissing(BrowserView):
 
                 queue_translate_volto_html(html, obj, http_host, language)
 
-        return result
+        return "ok"
