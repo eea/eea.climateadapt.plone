@@ -1,21 +1,22 @@
-from Products.PluginIndexes.common import safe_callable
 from Missing import MV
-from eea.climateadapt.translation.utils import get_current_language
+from plone.app.contentlisting.interfaces import IContentListing
+from plone.app.contenttypes.behaviors.leadimage import ILeadImage
+from plone.app.event.base import RET_MODE_ACCESSORS, get_events
 from plone.app.theming.transform import _Cache
+from plone.restapi.deserializer import json_body
+from plone.restapi.serializer.summary import (DEFAULT_METADATA_FIELDS,
+                                              NON_METADATA_ATTRIBUTES)
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.PloneBatch import Batch
+from Products.PluginIndexes.common import safe_callable
+from Products.ZCTextIndex.ParseTree import ParseError
 from zope.globalrequest import getRequest
 from zope.schema.vocabulary import SimpleTerm
 from zope.site.hooks import getSite
-from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.PloneBatch import Batch
-from Products.ZCTextIndex.ParseTree import ParseError
-from plone.app.contentlisting.interfaces import IContentListing
-from plone.restapi.deserializer import json_body
-from plone.restapi.serializer.summary import (
-    NON_METADATA_ATTRIBUTES,
-    DEFAULT_METADATA_FIELDS,
-)
-from plone.app.event.base import get_events
-from plone.app.event.base import RET_MODE_ACCESSORS
+
+from eea.climateadapt.translation.utils import get_current_language
+
+ILeadImage.image_caption.title = unicode("Image copyright")
 
 
 def getCache(settings):
