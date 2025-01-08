@@ -16,7 +16,9 @@ from zope.site.hooks import getSite
 
 from eea.climateadapt.translation.utils import get_current_language
 
-ILeadImage.image_caption.title = unicode("Image copyright")
+# import pdb; pdb.set_trace()
+ILeadImage['image_caption'].title = unicode("Lead Image Copyright")
+
 
 
 def getCache(settings):
