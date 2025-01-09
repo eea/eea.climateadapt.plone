@@ -1,44 +1,34 @@
 import json
 
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.app.textfield import RichText
+# from plone.app.widgets.interfaces import IWidgetsLayer
+from plone.autoform import directives
+# from plone.directives import form
+from plone.namedfile.field import NamedBlobImage
+from plone.namedfile.interfaces import IImageScaleTraversable
+from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
+from plone.supermodel import model
+from z3c.form.browser.textlines import TextLinesWidget
+from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
+from z3c.relationfield.schema import RelationChoice, RelationList
+# from zope.component import adapter
+from zope.interface import Interface, alsoProvides, implementer
+from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
+                         TextLine, Tuple)
 
 # from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
 
-# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from plone.app.textfield import RichText
-
-# from plone.app.widgets.interfaces import IWidgetsLayer
-from plone.autoform import directives
-
-# from plone.directives import form
-from plone.namedfile.field import NamedBlobImage
-from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.supermodel import model
-from z3c.form.browser.textlines import TextLinesWidget
-from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
-
-# from z3c.form.util import getSpecification
-# from z3c.form.widget import FieldWidget
-from z3c.relationfield.schema import RelationChoice, RelationList
-
-# from zope.component import adapter
-from zope.interface import alsoProvides, implementer, Interface
-from zope.schema import (
-    URI,
-    Bool,
-    Choice,
-    Date,
-    Datetime,
-    Int,
-    List,
-    Text,
-    TextLine,
-    Tuple,
-)
-from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
+
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+
+
 # from z3c.relationfield.schema import RelationChoice
 
 GEOCHARS = {
@@ -80,48 +70,44 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     # dexteritytextindexer.searchable("spatial_layer")
     # dexteritytextindexer.searchable("spatial_values")
 
-    model.fieldset(
-        "default",
-        label="Item Description",
-        fields=[
-            "acronym",
-            "title",
-            "lead",
-            # "long_description",
-            "partners",
-            "keywords",
-            "sectors",
-            "climate_impacts",
-            "elements",
-            "funding",
-            "funding_programme",
-            "duration",
-            # "featured",
-        ],
-    )
-
-    model.fieldset(
-        "reference_information",
-        label="Reference information",
-        fields=[
-            "websites",
-            # "source",
-            "special_tags",
-            "partners_source_link",
-        ],
-    )
-
-    model.fieldset(
-        "geographic_information",
-        label="Geographic Information",
-        fields=["geochars", "comments"],
-    )
-
-    model.fieldset(
-        "categorization",
-        label="Inclusion in the subsites",
-        fields=["include_in_observatory", "include_in_mission", "health_impacts"],
-    )
+    # form.fieldset(
+    #     "default",
+    #     label="Item Description",
+    #     fields=[
+    #         "acronym",
+    #         "title",
+    #         "lead",
+    #         "long_description",
+    #         "partners",
+    #         "keywords",
+    #         "sectors",
+    #         "climate_impacts",
+    #         "elements",
+    #         "funding",
+    #         "funding_programme",
+    #         "duration",
+    #         "featured",
+    #     ],
+    # )
+    #
+    # form.fieldset(
+    #     "reference_information",
+    #     label="Reference information",
+    #     fields=["websites", "source", "special_tags", "partners_source_link"],
+    # )
+    #
+    # form.fieldset(
+    #     "geographic_information",
+    #     label="Geographic Information",
+    #     fields=["geochars", "comments"],
+    # )
+    #
+    # form.fieldset(
+    #     "inclusion",
+    #     label="Inclusion in the subsites",
+    #     fields=["include_in_observatory",
+    #             "include_in_mission", "health_impacts"],
+    # )
 
     # -----------[ "default" fields ]------------------
 
@@ -276,7 +262,8 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
         ),
     )
 
-    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
@@ -342,7 +329,8 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     )
 
     # -----------[ "geographic_information" fields ]------------------
-    directives.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    directives.widget(
+        geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,

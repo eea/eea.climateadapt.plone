@@ -23,11 +23,11 @@
   <!-- <adapter factory=".overrides.FormLayerRichTextFieldWidget" /> -->
   <!-- <adapter factory=".overrides.RichTextFieldWidget" /> -->
 
-  <browser:resource
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    name="plone.app.jquerytools.form.nonrequire.js"
-    file="resources/plone.app.jquerytools.form.nonrequire.js"
-    />
+  <!-- <browser:resource -->
+  <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!--   name="plone.app.jquerytools.form.nonrequire.js" -->
+  <!--   file="resources/plone.app.jquerytools.form.nonrequire.js" -->
+  <!--   /> -->
 
   <!-- <browser:page
     name="folder.pdf.body"
@@ -79,12 +79,12 @@
     permission="zope2.View"
     /> -->
 
-  <browser:viewlet
-    name="plone.resourceregistries"
-    manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-    template="pt-overrides/resourceregistries.pt"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    permission="zope2.View"
-    />
+  <!-- <browser:viewlet -->
+  <!--   name="plone.resourceregistries" -->
+  <!--   manager="plone.app.layout.viewlets.interfaces.IHtmlHead" -->
+  <!--   template="pt-overrides/resourceregistries.pt" -->
+  <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!--   permission="zope2.View" -->
+  <!--   /> -->
 
 </configure>

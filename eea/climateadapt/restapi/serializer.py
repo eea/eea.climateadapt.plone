@@ -7,23 +7,22 @@ from plone.app.textfield.interfaces import IRichText
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
-from plone.restapi.serializer.blocks import SlateBlockSerializerBase, uid_to_url
+from plone.restapi.serializer.blocks import (SlateBlockSerializerBase,
+                                             uid_to_url)
 from plone.restapi.serializer.converters import json_compatible
-from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeToJson
+from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
+                                                SerializeToJson)
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
 from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
 
-from eea.climateadapt.behaviors import (
-    # IAceProject,
-    IAdaptationOption,
-    ICaseStudy,
-    # IOrganisation,
-)
+from eea.climateadapt.behaviors import (IAceProject, IAdaptationOption,
+                                        ICaseStudy, IOrganisation)
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
 from eea.climateadapt.behaviors.mission_tool import IMissionTool
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
-from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
+from eea.climateadapt.interfaces import (IClimateAdaptContent,
+                                         IEEAClimateAdaptInstalled)
 
 from .utils import cca_content_serializer
 
@@ -41,7 +40,6 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
         site = portal.get()
         site_url = site.absolute_url()
         frags = fragments_fromstring(text)
-        # __import__("pdb").set_trace()
         for frag in frags:
             # el.set("style", None)
             if isinstance(frag, str):
@@ -83,7 +81,6 @@ class SlateBlockSerializer(SlateBlockSerializerBase):
 
     def handle_img(self, child):
         if child.get("url"):
-            # __import__("pdb").set_trace()
             url = uid_to_url(child["url"])
             if child.get("scale"):
                 url = "%s/@@images/image/%s" % (url, child["scale"])
@@ -107,6 +104,8 @@ class GenericFolderSerializer(SerializeFolderToJson):
 
 @adapter(IDexterityContent, IEEAClimateAdaptInstalled)
 class GenericContentSerializer(SerializeToJson):
+    """Generic content serializer (everything that's not CCA-specific)"""
+
     def __call__(self, version=None, include_items=True):
         result = super(GenericContentSerializer, self).__call__(
             version=None, include_items=True
@@ -119,10 +118,13 @@ class GenericContentSerializer(SerializeToJson):
 
 @adapter(IClimateAdaptContent, Interface)
 class ClimateAdaptContentSerializer(SerializeToJson):
+    """Simple CCA content serializer (database items such as Video)"""
+
     def __call__(self, version=None, include_items=True):
         result = super(ClimateAdaptContentSerializer, self).__call__(
             version=None, include_items=True
         )
+
         return cca_content_serializer(self.context, result, self.request)
 
 

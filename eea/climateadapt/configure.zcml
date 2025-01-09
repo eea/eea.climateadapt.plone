@@ -70,10 +70,10 @@
   <include file="theme.zcml" />
   <!-- <include file="patches.zcml" /> -->
 
-  <browser:jbot
-    directory="browser/pt-overrides"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-  />
+  <!-- <browser:jbot -->
+  <!--   directory="browser/pt-overrides" -->
+  <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!-- /> -->
 
   <!-- <class
     class=".acemeasure.CaseStudy">

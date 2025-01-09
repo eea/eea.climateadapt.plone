@@ -5,7 +5,6 @@ import logging
 
 import transaction
 from DateTime import DateTime
-from eea.climateadapt import CcaAdminMessageFactory as _
 # from eea.climateadapt.asynctasks.utils import get_async_service
 # from eea.climateadapt.translation.volto import translate_volto_html
 from OFS.SimpleItem import SimpleItem
@@ -18,13 +17,15 @@ from Products.statusmessages.interfaces import IStatusMessage
 from ZODB.POSException import ConflictError
 from zope.component import adapter
 from zope.interface import Interface, implementer
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+
 # from .translation.contentrules import (
 #     TranslateAction,
 #     TranslateAsyncAction,
 #     SynchronizeStatesForTranslationsAction,
 # )  # BBB, don't remove, they're referenced from the database
 
-from eea.climateadapt import CcaAdminMessageFactory as _
 
 logger = logging.getLogger("eea.climateadapt")
 

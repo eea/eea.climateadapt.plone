@@ -1,19 +1,20 @@
-from eea.climateadapt import CcaAdminMessageFactory as _
-# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-# from zope.component import adapter
-from zope.interface import alsoProvides, implementer, provider
-from zope.schema import Choice, List, Tuple, TextLine
-from plone.app.textfield import RichText
-# from plone.app.widgets.interfaces import IWidgetsLayer
-from plone.restapi.behaviors import IBlocks
-from plone.supermodel import model
-from plone.autoform import directives
-from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-# from z3c.form.widget import FieldWidget
+from plone.app.textfield import RichText
 # from z3c.form.interfaces import IFieldWidget
 # from z3c.form.util import getSpecification
 from plone.autoform import directives
+from plone.autoform.interfaces import IFormFieldProvider
+# from plone.app.widgets.interfaces import IWidgetsLayer
+from plone.restapi.behaviors import IBlocks
+from plone.supermodel import model
+from z3c.form.widget import FieldWidget
+# from zope.component import adapter
+from zope.interface import alsoProvides, implementer, provider
+from zope.schema import Choice, List, TextLine, Tuple
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 
 @provider(IFormFieldProvider)
@@ -54,7 +55,8 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate Impacts"),
         description=_(
@@ -79,7 +81,8 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(key_system="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        key_system="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_system = List(
         title=_("Key Community Systems"),
         description=_(
@@ -133,6 +136,12 @@ class IMissionStory(model.Schema, IBlocks):
         required=False,
     )
 
+
+# @adapter(getSpecification(IMissionStory["keywords"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def KeywordsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.keywords"
 
 # @adapter(getSpecification(IMissionStory["keywords"]), IWidgetsLayer)
 # @implementer(IFieldWidget)

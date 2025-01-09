@@ -1,9 +1,8 @@
-from zope.schema import Bool
-from plone.supermodel import model
-from zope.interface import provider
-from plone.autoform.interfaces import IFormFieldProvider
-from zope.interface import alsoProvides
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.supermodel import model
+from zope.interface import alsoProvides, provider
+from zope.schema import Bool
 
 
 @provider(IFormFieldProvider)

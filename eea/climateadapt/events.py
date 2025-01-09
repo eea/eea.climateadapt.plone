@@ -1,18 +1,19 @@
 import logging
+
 import transaction
-
-from zope import component
-from zope.event import notify
-
+from DateTime import DateTime
 # from eea.cache import event
+from plone.api.user import get_current
 from plone.app.contentrules.handlers import execute, execute_rules
 from plone.app.iterate.dexterity.utils import get_baseline
 from plone.app.iterate.event import WorkingCopyDeletedEvent
+from plone.dexterity.interfaces import IDexterityContent
 from zc.relation.interfaces import ICatalog
-from zope.component import queryUtility
+from zope import component
+from zope.component import adapter
+from zope.event import notify
 from zope.globalrequest import getRequest
-
-from DateTime import DateTime
+from zope.lifecycleevent.interfaces import IObjectAddedEvent
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -123,6 +124,19 @@ def handle_workflow_change(object, event):
         ):
             updateEffective(object, None)
     return
+
+
+@adapter(IDexterityContent, IObjectAddedEvent)
+def fix_creators(obj, event):
+    current_user = get_current()
+    if current_user:
+        user_id = current_user.getId()
+        obj.creators = [user_id]
+        logger.info(
+            "Fix user for copy/pasted object to %s for %s",
+            user_id,
+            "/".join(obj.getPhysicalPath()),
+        )
 
 
 # from zope.annotation.interfaces import IAnnotations

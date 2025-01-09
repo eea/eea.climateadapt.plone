@@ -1,15 +1,11 @@
-from plone.autoform import directives
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
+from plone.autoform import directives
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import alsoProvides
-from zope.schema import (
-    Choice,
-    Date,
-    List,
-)
+from zope.schema import Choice, Date, List
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
@@ -24,7 +20,8 @@ class IAdaptationOption(IAceMeasure, IBlocks):
     # directives.omitted(IEditForm, 'year')
     # directives.omitted(IAddForm, 'year')
 
-    directives.widget(key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_type_measures = List(
         title=_("Key Type Measures"),
         description=_("Select Key Type Measures. The options are:"),
@@ -34,7 +31,8 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         ),
     )
 
-    directives.widget(ipcc_category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        ipcc_category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     ipcc_category = List(
         title=_("IPCC adaptation options categories"),
         description=_(
@@ -49,7 +47,8 @@ class IAdaptationOption(IAceMeasure, IBlocks):
     casestudies = RelationList(
         title=_("Case studies implemented in the adaption"),
         default=[],
-        description=_("Select one or more case study that this item " "relates to:"),
+        description=_(
+            "Select one or more case study that this item " "relates to:"),
         value_type=RelationChoice(
             title=_("Related"),
             vocabulary="eea.climateadapt.case_studies",

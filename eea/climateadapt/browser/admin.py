@@ -7,12 +7,6 @@ from io import BytesIO as StringIO
 
 # from apiclient.discovery import build
 from DateTime import DateTime
-from eea.climateadapt import CcaAdminMessageFactory as _
-# from eea.climateadapt.browser.fixblobs import (check_at_blobs,
-#                                                check_dexterity_blobs)
-from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
-from eea.climateadapt.browser.site import _extract_menu
-from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 # from eea.climateadapt.scripts import get_plone_site
 # from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 from lxml.etree import fromstring
@@ -27,7 +21,6 @@ from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
 # from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.i18n.normalizer import idnormalizer
 from plone.indexer.interfaces import IIndexer
-from plone.dexterity.utils import datify
 from plone.memoize import view
 # from plone.registry.interfaces import IRegistry
 # from plone.tiles.interfaces import ITileDataManager
@@ -36,8 +29,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 # from html import unescape
-from z3c.form import button
-from z3c.form import form
+from z3c.form import button, form
 # from z3c.form.interfaces import IFieldWidget
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
@@ -45,31 +37,44 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter, getUtility
-from zope.interface import (Interface, Invalid, implementer,
-                            invariant)
+from zope.interface import Interface, Invalid, implementer, invariant
+from zope.site.hooks import getSite
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.blocks import BlocksTraverser, BlockType
+from eea.climateadapt.browser.fixblobs import (check_at_blobs,
+                                               check_dexterity_blobs)
+# from eea.climateadapt.browser.fixblobs import (check_at_blobs,
+#                                                check_dexterity_blobs)
+from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
+from eea.climateadapt.browser.site import _extract_menu
+from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
+from eea.climateadapt.scripts import get_plone_site
+
+# from collections import defaultdict
 
 # html_unescape = unescape
 
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger("eea.climateadapt")
 
 
 def force_unlock(context):
-    annot = getattr(context, '__annotations__', {})
+    annot = getattr(context, "__annotations__", {})
 
-    if hasattr(context, '_dav_writelocks'):
+    if hasattr(context, "_dav_writelocks"):
         del context._dav_writelocks
         context._p_changed = True
 
-    if 'plone.locking' in annot:
-        del annot['plone.locking']
+    if "plone.locking" in annot:
+        del annot["plone.locking"]
 
         context._p_changed = True
         annot._p_changed = True
 
 
 class CheckCopyPasteLocation(BrowserView):
-    """ Performs a check which doesn't allow user to Copy cca-items
-        if they belong to the group extranet-cca-editors
+    """Performs a check which doesn't allow user to Copy cca-items
+    if they belong to the group extranet-cca-editors
     """
 
     def __call__(self, action, object):
@@ -78,25 +83,27 @@ class CheckCopyPasteLocation(BrowserView):
     @view.memoize
     def check(self, action, object):
         portal_state = getMultiAdapter(
-            (self.context, self.request), name="plone_portal_state")
+            (self.context, self.request), name="plone_portal_state"
+        )
 
         member = portal_state.member()
 
         try:
-            if member.name == 'Anonymous User':
+            if member.name == "Anonymous User":
                 return False
         except Exception:
             pass  # 161069 Error while rendering plone.contentactions
 
         user = portal_state.member().getUser().getId()
-        groups = getToolByName(self, 'portal_groups').getGroupsByUserId(user)
+        groups = getToolByName(self, "portal_groups").getGroupsByUserId(user)
 
         for group in groups:
             if not group:
                 continue
-            if group.id == 'extranet-cca-editors' and 'metadata' in \
-                    self.context.getPhysicalPath():
-
+            if (
+                group.id == "extranet-cca-editors"
+                and "metadata" in self.context.getPhysicalPath()
+            ):
                 logger.info("Can't Copy: returning False")
 
                 return False
@@ -135,12 +142,11 @@ class MainNavigationMenuEdit(form.Form):
 
     @property
     def ptool(self):
-        return getToolByName(self.context,
-                             'portal_properties')['site_properties']
+        return getToolByName(self.context, "portal_properties")["site_properties"]
 
     @view.memoize
     def getContent(self):
-        content = {'menu': self.ptool.getProperty('main_navigation_menu')}
+        content = {"menu": self.ptool.getProperty("main_navigation_menu")}
 
         return content
 
@@ -153,7 +159,7 @@ class MainNavigationMenuEdit(form.Form):
 
             return
 
-        self.ptool._updateProperty('main_navigation_menu', data['menu'])
+        self.ptool._updateProperty("main_navigation_menu", data["menu"])
 
         self.status = "Saved, please check."
 
@@ -174,12 +180,11 @@ class HealthNavigationMenuEdit(form.Form):
 
     @property
     def ptool(self):
-        return getToolByName(self.context,
-                             'portal_properties')['site_properties']
+        return getToolByName(self.context, "portal_properties")["site_properties"]
 
     @view.memoize
     def getContent(self):
-        content = {'menu': self.ptool.getProperty('health_navigation_menu')}
+        content = {"menu": self.ptool.getProperty("health_navigation_menu")}
 
         return content
 
@@ -192,51 +197,49 @@ class HealthNavigationMenuEdit(form.Form):
 
             return
 
-        self.ptool._updateProperty('health_navigation_menu', data['menu'])
+        self.ptool._updateProperty("health_navigation_menu", data["menu"])
 
         self.status = "Saved, please check."
 
 
 class ForceUnlock(BrowserView):
-    """ Forcefully unlock a content item
-    """
+    """Forcefully unlock a content item"""
 
     def __call__(self):
-        annot = getattr(self.context, '__annotations__', None)
+        annot = getattr(self.context, "__annotations__", None)
 
-        if hasattr(self.context, '_dav_writelocks'):
+        if hasattr(self.context, "_dav_writelocks"):
             del self.context._dav_writelocks
             self.context._p_changed = True
 
         if annot is None:
             return
 
-        if 'plone.locking' in annot:
-            del annot['plone.locking']
+        if "plone.locking" in annot:
+            del annot["plone.locking"]
 
             self.context._p_changed = True
             annot._p_changed = True
 
         url = self.context.absolute_url()
-        props_tool = getToolByName(self.context, 'portal_properties')
+        props_tool = getToolByName(self.context, "portal_properties")
 
         if props_tool:
-            types_use_view = \
-                props_tool.site_properties.typesUseViewActionInListings
+            types_use_view = props_tool.site_properties.typesUseViewActionInListings
 
             if self.context.portal_type in types_use_view:
-                url += '/view'
+                url += "/view"
 
         return self.request.RESPONSE.redirect(url)
 
 
-class ListTilesWithTitleView (BrowserView):
-    """ View that lists all tiles with richtext title and their respective urls
-    """
+class ListTilesWithTitleView(BrowserView):
+    """View that lists all tiles with richtext title and their respective urls"""
 
     def __call__(self):
         covers = self.context.portal_catalog.searchResults(
-            portal_type='collective.cover.content')
+            portal_type="collective.cover.content"
+        )
         self.urls = []
 
         for cover in covers:
@@ -246,7 +249,7 @@ class ListTilesWithTitleView (BrowserView):
 
             self.walk(json.loads(cover.cover_layout))
 
-            if hasattr(cover, '__annotations__'):
+            if hasattr(cover, "__annotations__"):
                 for tile_id in self.tiles:
                     tile_id = tile_id.encode()
                     self.urls.append(cover.absolute_url())
@@ -258,18 +261,17 @@ class ListTilesWithTitleView (BrowserView):
         if not text:
             return
 
-        if text.startswith('/') or text.startswith('http'):
+        if text.startswith("/") or text.startswith("http"):
             return text
 
         return "http://" + text
 
     def walk(self, item):
         if isinstance(item, dict):
+            if item.get("tile-type") == "eea.climateadapt.richtext_with_title":
+                self.tiles.append(item["id"])
 
-            if item.get('tile-type') == 'eea.climateadapt.richtext_with_title':
-                self.tiles.append(item['id'])
-
-            self.walk(item.get('children', []))
+            self.walk(item.get("children", []))
         elif isinstance(item, list):
             for x in item:
                 self.walk(x)
@@ -344,7 +346,7 @@ class ListTilesWithTitleView (BrowserView):
 
 
 class SpecialTagsInterface(Interface):
-    """ Marker interface for /tags-admin """
+    """Marker interface for /tags-admin"""
 
 
 @implementer(SpecialTagsInterface)
@@ -354,27 +356,28 @@ class SpecialTagsView(BrowserView):
 
     def __call__(self):
         portal_state = getMultiAdapter(
-            (self.context, self.request), name="plone_portal_state")
+            (self.context, self.request), name="plone_portal_state"
+        )
 
-        action = self.request.form.get('action', None)
-        tag = self.request.form.get('tag', None)
+        action = self.request.form.get("action", None)
+        tag = self.request.form.get("tag", None)
 
         if portal_state.anonymous():
             return self.index()
 
         if action:
-            getattr(self, 'handle_' + action)(tag)
+            getattr(self, "handle_" + action)(tag)
 
         return self.index()
 
     @view.memoize
     def special_tags(self):
-        return self.context.portal_catalog.uniqueValuesFor('special_tags')
+        return self.context.portal_catalog.uniqueValuesFor("special_tags")
 
     def get_tag_length(self, tag):
         catalog = self.context.portal_catalog._catalog
 
-        return len(catalog.indexes['special_tags']._index[tag])
+        return len(catalog.indexes["special_tags"]._index[tag])
 
     def handle_delete(self, tag):
         catalog = self.context.portal_catalog
@@ -390,7 +393,8 @@ class SpecialTagsView(BrowserView):
                         key for key in obj.special_tags if key != tag]
                 elif isinstance(obj.special_tags, tuple):
                     obj.special_tags = tuple(
-                        key for key in obj.special_tags if key != tag)
+                        key for key in obj.special_tags if key != tag
+                    )
                 obj.reindexObject()
                 obj._p_changed = True
         logger.info("Deleted tag: %s", tag)
@@ -400,7 +404,7 @@ class SpecialTagsView(BrowserView):
 
     def handle_rename(self, tag):
         catalog = self.context.portal_catalog
-        newtag = self.request.form.get('newtag', None)
+        newtag = self.request.form.get("newtag", None)
 
         brains = catalog.searchResults(special_tags=tag)
 
@@ -414,21 +418,23 @@ class SpecialTagsView(BrowserView):
                     obj.special_tags.append(newtag)
                 elif isinstance(obj.special_tags, tuple):
                     obj.special_tags = tuple(
-                        key for key in obj.special_tags if key != tag)
-                    obj.special_tags += (newtag, )
+                        key for key in obj.special_tags if key != tag
+                    )
+                    obj.special_tags += (newtag,)
                 obj._p_changed = True
                 obj.reindexObject()
         logger.info("Finished renaming: %s TO %s", tag, newtag)
 
 
-class SpecialTagsObjects (BrowserView):
-    """ Gets the links for the special tags that we get in the request
-    """
+class SpecialTagsObjects(BrowserView):
+    """Gets the links for the special tags that we get in the request"""
 
     def __call__(self):
-        tag = self.request.form['special_tags'].decode('utf-8')
-        tag_obj = [b.getURL() + '/edit' for b in
-                   self.context.portal_catalog.searchResults(special_tags=tag)]
+        tag = self.request.form["special_tags"].decode("utf-8")
+        tag_obj = [
+            b.getURL() + "/edit"
+            for b in self.context.portal_catalog.searchResults(special_tags=tag)
+        ]
 
         return json.dumps(tag_obj)
 
@@ -463,8 +469,8 @@ class AddKeywordForm(form.Form):
 
             return
 
-        keyword = data.get('keyword', None)
-        objects = data.get('ccaitems', [])
+        keyword = data.get("keyword", None)
+        objects = data.get("ccaitems", [])
 
         if keyword:
             for obj in objects:
@@ -492,25 +498,24 @@ class AddKeywordForm(form.Form):
 #     return widget
 
 
-class KeywordsAdminView (BrowserView):
-    """ Custom view for the administration of keywords
-    """
+class KeywordsAdminView(BrowserView):
+    """Custom view for the administration of keywords"""
 
     def __call__(self):
-        action = self.request.form.get('action', None)
-        keyword = self.request.form.get('keyword', None)
+        action = self.request.form.get("action", None)
+        keyword = self.request.form.get("keyword", None)
 
         if action:
-            getattr(self, 'handle_' + action)(keyword)
+            getattr(self, "handle_" + action)(keyword)
 
         return self.index()
 
     @view.memoize
     def keywords(self):
-        if 'letter' not in self.request:
+        if "letter" not in self.request:
             return []
 
-        brains = self.context.portal_catalog.searchResults(path='/cca/en')
+        brains = self.context.portal_catalog.searchResults(path="/cca/en")
         keywords = []
         # keywords = self.context.portal_catalog.uniqueValuesFor('keywords')
 
@@ -523,7 +528,7 @@ class KeywordsAdminView (BrowserView):
         keywords = set(keywords)
         letter = self.request.letter
 
-        if letter == 'All':
+        if letter == "All":
             return keywords
 
         res = [k for k in keywords if k.startswith(letter)]
@@ -532,15 +537,15 @@ class KeywordsAdminView (BrowserView):
 
     @view.memoize
     def keywords_first_letters(self):
-        kw = self.context.portal_catalog.uniqueValuesFor('keywords')
+        kw = self.context.portal_catalog.uniqueValuesFor("keywords")
         res = sorted(set([k[0] for k in kw if k]))
 
-        return ['All'] + res
+        return ["All"] + res
 
     def get_keyword_length(self, key):
         catalog = self.context.portal_catalog._catalog
 
-        return len(catalog.indexes['keywords']._index[key])
+        return len(catalog.indexes["keywords"]._index[key])
 
     def handle_delete(self, keyword):
         catalog = self.context.portal_catalog
@@ -571,7 +576,7 @@ class KeywordsAdminView (BrowserView):
 
     def handle_rename(self, keyword):
         catalog = self.context.portal_catalog
-        newkeyword = self.request.form.get('newkeyword', None)
+        newkeyword = self.request.form.get("newkeyword", None)
 
         brains = catalog.searchResults(keywords=keyword)
 
@@ -586,7 +591,7 @@ class KeywordsAdminView (BrowserView):
                 elif isinstance(obj.keywords, tuple):
                     obj.keywords = tuple(
                         key for key in obj.keywords if key != keyword)
-                    obj.keywords += (newkeyword, )
+                    obj.keywords += (newkeyword,)
                 obj._p_changed = True
                 obj.reindexObject()
 
@@ -600,16 +605,15 @@ class KeywordsAdminView (BrowserView):
         self.request.response.redirect(self.request.URL0)
 
 
-class KeywordObjects (BrowserView):
-    """ Gets the links for the keyword that we get in the request
-    """
+class KeywordObjects(BrowserView):
+    """Gets the links for the keyword that we get in the request"""
 
     def __call__(self):
-        key = self.request.form['keyword'].decode('utf-8')
+        key = self.request.form["keyword"].decode("utf-8")
         brains = self.context.portal_catalog.searchResults(
-            keywords=key, path='/cca/en')
+            keywords=key, path="/cca/en")
 
-        key_obj = [b.getURL() + '/edit' for b in brains]
+        key_obj = [b.getURL() + "/edit" for b in brains]
 
         return json.dumps(key_obj)
 
@@ -624,7 +628,8 @@ class GoogleAnalyticsAPIEditForm(RegistryEditForm):
 
 
 ConfigureGoogleAnalyticsAPI = layout.wrap_form(
-    GoogleAnalyticsAPIEditForm, ControlPanelFormWrapper)
+    GoogleAnalyticsAPIEditForm, ControlPanelFormWrapper
+)
 
 ConfigureGoogleAnalyticsAPI.label = "Setup Google Analytics API Integration"
 
@@ -650,62 +655,47 @@ ConfigureGoogleAnalyticsAPI.label = "Setup Google Analytics API Integration"
 def custom_report(analytics, view_id):
     now = datetime.datetime.now()
 
-    return analytics.reports().batchGet(
-        body={"reportRequests": [
-            {
-                "viewId": view_id,
-                "dateRanges": [
+    return (
+        analytics.reports()
+        .batchGet(
+            body={
+                "reportRequests": [
                     {
-                        "startDate": "2018-04-13",
-                        "endDate": now.strftime("%Y-%m-%d")
-                    }
-                ],
-                "metrics": [
-                    {
-                        "expression": "ga:totalEvents"
-                    }
-                ],
-                "dimensions": [
-                    {
-                        "name": "ga:eventLabel"
-                    }
-                ],
-                "pivots": [
-                    {
-                        "dimensions": [
+                        "viewId": view_id,
+                        "dateRanges": [
                             {
-                                "name": "ga:sessionCount"
+                                "startDate": "2018-04-13",
+                                "endDate": now.strftime("%Y-%m-%d"),
                             }
                         ],
-                        "metrics": [
+                        "metrics": [{"expression": "ga:totalEvents"}],
+                        "dimensions": [{"name": "ga:eventLabel"}],
+                        "pivots": [
                             {
-                                "expression": "ga:users"
+                                "dimensions": [{"name": "ga:sessionCount"}],
+                                "metrics": [{"expression": "ga:users"}],
                             }
-                        ]
-                    }
-                ],
-                "orderBys": [
-                    {
-                        "fieldName": "ga:totalEvents",
-                        "sortOrder": "DESCENDING"
-                    }
-                ],
-                "dimensionFilterClauses": [
-                    {
-                        "filters": [
+                        ],
+                        "orderBys": [
+                            {"fieldName": "ga:totalEvents",
+                                "sortOrder": "DESCENDING"}
+                        ],
+                        "dimensionFilterClauses": [
                             {
-                                "dimensionName": "ga:eventCategory",
-                                "expressions": [
-                                    "database-search"
+                                "filters": [
+                                    {
+                                        "dimensionName": "ga:eventCategory",
+                                        "expressions": ["database-search"],
+                                    }
                                 ]
                             }
-                        ]
+                        ],
                     }
                 ]
             }
-        ]
-        }
-    ).execute()
+        )
+        .execute()
+    )
 
 
 def parse_response(response):
@@ -716,18 +706,18 @@ def parse_response(response):
     """
 
     result = {}
-    reports = response.get('reports', [])
+    reports = response.get("reports", [])
 
     if not reports:
         return result
 
     report = reports[0]
 
-    for row in report.get('data', {}).get('rows', []):
-        label = row['dimensions'][0]
+    for row in report.get("data", {}).get("rows", []):
+        label = row["dimensions"][0]
 
         # value = row['metrics'][0]['pivotValueRegions'][0]['values'][0]
-        value = row['metrics'][0]['values'][0]
+        value = row["metrics"][0]["values"][0]
 
         result[label] = value
 
@@ -774,30 +764,37 @@ def parse_response(response):
 
 
 class ViewGoogleAnalyticsReport(BrowserView):
-    """ A view to view the google analytics report data
-    """
+    """A view to view the google analytics report data"""
 
     def __call__(self):
-
         site = portal.get()
 
-        return str(site.__annotations__.get('google-analytics-cache-data', {}))
+        return str(site.__annotations__.get("google-analytics-cache-data", {}))
 
 
 class GoPDB(BrowserView):
     def __call__(self):
         import pdb
+
         pdb.set_trace()
         x = self.context.Creator()
 
 
 class GetBrokenCreationDates(BrowserView):
-    """ Get all objects with broken 'creator' and 'creation_date' and fix it
+    """Get all objects with broken 'creator' and 'creation_date' and fix it
     by getting the creator/creation_date from workflow_history
     """
+
     zone = DateTime().timezone()
-    bl_users = ('ghitab', 'tibiadmin', 'tibi', 'tiberich', 'eugentripon',
-                'iulianpetchesi', 'krisztina')
+    bl_users = (
+        "ghitab",
+        "tibiadmin",
+        "tibi",
+        "tiberich",
+        "eugentripon",
+        "iulianpetchesi",
+        "krisztina",
+    )
 
     def date_to_iso(self, date_time):
         if not date_time:
@@ -810,20 +807,17 @@ class GetBrokenCreationDates(BrowserView):
         if wf_creator not in self.bl_users:
             return wf_creator
 
-        filtered_creators = [
-            x for x in creators
-            if x not in self.bl_users
-        ]
+        filtered_creators = [x for x in creators if x not in self.bl_users]
 
         if filtered_creators:
             return filtered_creators[0]
 
-        return ''
+        return ""
 
     def results(self):
         catalog = api.portal.get_tool("portal_catalog")
 
-        brains = catalog.searchResults(path='/cca/en')
+        brains = catalog.searchResults(path="/cca/en")
         res = []
 
         for brain in brains:
@@ -842,16 +836,16 @@ class GetBrokenCreationDates(BrowserView):
             wf_creation_date = None
 
             wf_data = [
-                (x['actor'], x['time'])
-                for x in wfh.get('cca_webpages_workflow', {})
-                if x['action'] is None
+                (x["actor"], x["time"])
+                for x in wfh.get("cca_webpages_workflow", {})
+                if x["action"] is None
             ]
 
             if not wf_data:
                 wf_data = [
-                    (x['actor'], x['time'])
-                    for x in wfh.get('cca_items_workflow', {})
-                    if x['action'] is None
+                    (x["actor"], x["time"])
+                    for x in wfh.get("cca_items_workflow", {})
+                    if x["action"] is None
                 ]
 
             if wf_data:
@@ -867,9 +861,9 @@ class GetBrokenCreationDates(BrowserView):
                 continue
 
             # if wf_creator in self.bl_users:
-                # continue
+            # continue
 
-            if 'copy_of_' in obj.absolute_url():
+            if "copy_of_" in obj.absolute_url():
                 continue
 
             new_creator = self.get_new_creator(obj.creators, wf_creator)
@@ -877,15 +871,17 @@ class GetBrokenCreationDates(BrowserView):
             if not new_creator:
                 continue
 
-            res.append((obj, creator, wf_creator, new_creator, creation_date,
-                        wf_creation_date))
+            res.append(
+                (obj, creator, wf_creator, new_creator,
+                 creation_date, wf_creation_date)
+            )
 
         return res
 
     def results_string_dates(self):
         catalog = api.portal.get_tool("portal_catalog")
 
-        brains = catalog.searchResults(path='/cca/en')
+        brains = catalog.searchResults(path="/cca/en")
         res = []
 
         for brain in brains:
@@ -894,7 +890,7 @@ class GetBrokenCreationDates(BrowserView):
             except:
                 continue
 
-            if not hasattr(obj, 'creation_date'):
+            if not hasattr(obj, "creation_date"):
                 continue
 
             if not isinstance(obj.creation_date, str):
@@ -911,19 +907,19 @@ class GetBrokenCreationDates(BrowserView):
             wfh = obj.workflow_history
 
             new_creation_date = [
-                x['time']
-                for x in wfh.get('cca_webpages_workflow', {})
-                if x['action'] is None
+                x["time"]
+                for x in wfh.get("cca_webpages_workflow", {})
+                if x["action"] is None
             ]
 
             if not new_creation_date:
                 new_creation_date = [
-                    x['time']
-                    for x in wfh.get('cca_items_workflow', {})
-                    if x['action'] is None
+                    x["time"]
+                    for x in wfh.get("cca_items_workflow", {})
+                    if x["action"] is None
                 ]
 
-            new_creation_date = new_creation_date and new_creation_date[0] or ''
+            new_creation_date = new_creation_date and new_creation_date[0] or ""
 
             if not new_creation_date:
                 continue
@@ -969,19 +965,18 @@ class GetBrokenCreationDates(BrowserView):
         if "string-dates" in self.request.form:
             results = self.results_string_dates()
 
-            return [x.absolute_url() for x in results] or 'No results!'
+            return [x.absolute_url() for x in results] or "No results!"
 
         return self.index()
 
 
 class GetMissingLanguages(BrowserView):
-    """ Get all objects with missing 'language' field
-    """
+    """Get all objects with missing 'language' field"""
 
     def results(self):
         catalog = api.portal.get_tool("portal_catalog")
 
-        brains = catalog.searchResults(path='/cca')
+        brains = catalog.searchResults(path="/cca")
         res = []
 
         for brain in brains:
@@ -990,7 +985,7 @@ class GetMissingLanguages(BrowserView):
             except:
                 continue
 
-            language = getattr(obj, 'language')
+            language = getattr(obj, "language")
 
             if language:
                 continue
@@ -1081,62 +1076,60 @@ class Item:
 
     def __getattr__(self, name):
         org_name = name
-        name = 'field_' + name
+        name = "field_" + name
         field = self._node.find(name)
 
         if field is not None:
             return field.text
-        if org_name in ['item_id', 'item_changed']:
+        if org_name in ["item_id", "item_changed"]:
             field = self._node.find(org_name)
             return field.text
-        if org_name in ['sectors', 'keywords', 'impact', 'websites']:
-            return ''
-        if org_name in ['governance', 'websites']:
+        if org_name in ["sectors", "keywords", "impact", "websites"]:
+            return ""
+        if org_name in ["governance", "websites"]:
             return []
-        if org_name in ['regions']:
+        if org_name in ["regions"]:
             return {"geoElements": {"element": "EUROPE", "biotrans": []}}
         return None
 
 
 class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
-    """ AdapteCCA current case study fix import ids
-    """
+    """AdapteCCA current case study fix import ids"""
 
     def __call__(self):
-        fpath = resource_filename('eea.climateadapt.browser',
-                                  'data/cases_en_cdata.xml')
+        fpath = resource_filename(
+            "eea.climateadapt.browser", "data/cases_en_cdata.xml")
 
         s = open(fpath).read()
         e = fromstring(s)
-        container = getSite()['metadata']['case-studies']
+        container = getSite()["metadata"]["case-studies"]
 
-        for item_node in e.xpath('//item'):
-            item_id, field_title = '', ''
+        for item_node in e.xpath("//item"):
+            item_id, field_title = "", ""
             for child in item_node.iterchildren():
-                if child.tag == 'item_id':
+                if child.tag == "item_id":
                     item_id = child.text
-                if child.tag == 'field_title':
+                if child.tag == "field_title":
                     field_title = idnormalizer.normalize(child.text, None, 500)
 
             if item_id and field_title:
                 annot = IAnnotations(container[field_title])
-                annot['import_id'] = item_id
+                annot["import_id"] = item_id
 
-        return 'AdapteCCA current case study fixed import_ids'
+        return "AdapteCCA current case study fixed import_ids"
 
 
 class ConvertPythonDatetime(BrowserView):
-    """ Convert effective_date and creation_date from python datetime to
+    """Convert effective_date and creation_date from python datetime to
     DateTime
     """
 
     def __call__(self):
-
         brains = self.context.portal_catalog.searchResults(wrong_index=True)
         for brain in brains:
             obj = brain.getObject()
             obj = obj.aq_inner.aq_self
-            for name in ['creation_date', 'effective_date']:
+            for name in ["creation_date", "effective_date"]:
                 attr = getattr(obj, name, None)
                 if isinstance(attr, datetime.datetime):
                     setattr(obj, name, DateTime(attr))
@@ -1146,15 +1139,14 @@ class ConvertPythonDatetime(BrowserView):
 
 
 class ExportKeywordsCSV(BrowserView):
-    """ Export the list of keywords and the URLs of items using them
-    """
+    """Export the list of keywords and the URLs of items using them"""
 
     def __call__(self):
         catalog = api.portal.get_tool("portal_catalog")
 
         res = {}
         for _type in DB_ITEM_TYPES:
-            brains = catalog.searchResults(portal_type=_type, path='/cca/en')
+            brains = catalog.searchResults(portal_type=_type, path="/cca/en")
             for brain in brains:
                 if brain.keywords is None:
                     continue
@@ -1165,37 +1157,50 @@ class ExportKeywordsCSV(BrowserView):
                     res[keyword].append(brain.getURL())
 
         out = StringIO()
-        csv_writer = csv.writer(out, dialect='excel', delimiter=',')
+        csv_writer = csv.writer(out, dialect="excel", delimiter=",")
 
         for tag in sorted(res.keys()):
             csv_writer.writerow([tag.encode("utf-8"), "\n".join(res[tag])])
 
-        self.request.response.setHeader('Content-type', 'text/csv')
+        self.request.response.setHeader("Content-type", "text/csv")
         self.request.response.setHeader(
-            'Content-Disposition', 'attachment; filename="keywords.csv"')
+            "Content-Disposition", 'attachment; filename="keywords.csv"'
+        )
         out.seek(0)
         return out.getvalue()
 
 
 class ExportDbItems(BrowserView):
-    """ Export the list of keywords and the URLs of items using them
-    """
+    """Export the list of keywords and the URLs of items using them"""
 
     def __call__(self):
         catalog = api.portal.get_tool("portal_catalog")
 
         res = []
-        res.append(['UID', 'TITLE', 'TYPE', 'URL', 'KEYWORDS', 'SECTORS',
-                   'ELEMENTS', 'IMPACTS', 'SearchableText', 'WEBSITES'])
+        res.append(
+            [
+                "UID",
+                "TITLE",
+                "TYPE",
+                "URL",
+                "KEYWORDS",
+                "SECTORS",
+                "ELEMENTS",
+                "IMPACTS",
+                "SearchableText",
+                "WEBSITES",
+            ]
+        )
         for _type in DB_ITEM_TYPES:
             brains = catalog.searchResults(
-                portal_type=_type, path='/cca/en', review_state='published')
+                portal_type=_type, path="/cca/en", review_state="published"
+            )
             for brain in brains:
                 line = []
                 try:
                     line.append(brain.UID)
                     line.append(brain.Title)
-                    line.append(_type.replace('eea.climateadapt.', ''))
+                    line.append(_type.replace("eea.climateadapt.", ""))
                     line.append(brain.getURL())
                     # keywords
                     temp = ''
@@ -1222,7 +1227,8 @@ class ExportDbItems(BrowserView):
                     line.append(temp)
                     # searchable text
                     indexer = getMultiAdapter(
-                        (obj, catalog), IIndexer, name="SearchableText")
+                        (obj, catalog), IIndexer, name="SearchableText"
+                    )
                     temp = indexer()
                     line.append(temp)
                     # websites
@@ -1235,38 +1241,42 @@ class ExportDbItems(BrowserView):
                     res.append(line)
                 except Exception as Err:
                     import pdb
+
                     pdb.set_trace()
                     logger.info(brain.getURL())
                     logger.info(Err)
 
-#        out = StringIO()
-#        csv_writer = csv.writer(out, dialect='excel', delimiter=',')
+        #        out = StringIO()
+        #        csv_writer = csv.writer(out, dialect='excel', delimiter=',')
 
-        logger.info('CSV INIT')
-#        for line in res:
-#            try:
-#                csv_writer.writerow(line)
-#            except:
-#                import pdb; pdb.set_trace()
-#                logger.info(line)
+        logger.info("CSV INIT")
+        #        for line in res:
+        #            try:
+        #                csv_writer.writerow(line)
+        #            except:
+        #                import pdb; pdb.set_trace()
+        #                logger.info(line)
 
         with open("/tmp/db-items.csv", "w") as outfile:
-            csv_writer = csv.writer(outfile, dialect='excel', delimiter=',')
+            csv_writer = csv.writer(outfile, dialect="excel", delimiter=",")
             for line in res:
                 try:
                     csv_writer.writerow(line)
                 except:
                     import pdb
+
                     pdb.set_trace()
                     logger.info(line)
 
-        logger.info('CSV PREPARED')
+        logger.info("CSV PREPARED")
 
-#        self.request.response.setHeader('Content-type', 'text/csv')
-#        self.request.response.setHeader(
-#            'Content-Disposition', 'attachment; filename="db-items.csv"')
-#        out.seek(0)
-        logger.info('CSV READY')
+        #        self.request.response.setHeader('Content-type', 'text/csv')
+        #        self.request.response.setHeader(
+        #            'Content-Disposition', 'attachment; filename="db-items.csv"')
+        #        out.seek(0)
+        logger.info("CSV READY")
+
+
 #        return out.getvalue()
 #
 # class ReindexMetadataScales(BrowserView):
@@ -1286,4 +1296,27 @@ class ExportDbItems(BrowserView):
 #         # this is a mapping path -> uid
 #         for p in catalog._catalog.uids.keys():
 #             catalog._catalog.updateMetadata()
-#
+
+
+class FindContentWithBlock(BrowserView):
+    """Find the content that has a particular block"""
+
+    def __call__(self):
+        catalog = self.context.portal_catalog
+        path = "/".join(self.context.getPhysicalPath())
+        brains = catalog.searchResults(path=path, sort_on="path")
+        block_type = self.request.form["type"]
+
+        found = []
+        for brain in brains:
+            obj = brain.getObject()
+            if not hasattr(obj.aq_inner.aq_self, "blocks"):
+                continue
+            types = set()
+            bt = BlockType(obj, types)
+            traverser = BlocksTraverser(obj)
+            traverser(bt)
+            if block_type in types:
+                found.append(obj)
+
+        return "\n".join([o.absolute_url() for o in found])

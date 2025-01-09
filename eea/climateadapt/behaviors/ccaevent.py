@@ -1,30 +1,34 @@
-from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
+import json
+
+from pkg_resources import resource_filename
 from plone.app.dexterity.behaviors.discussion import IAllowDiscussion
-from plone.app.event.dx.behaviors import IEventRecurrence
-from plone.app.versioningbehavior.behaviors import IVersionable
-from plone.app.event.dx.behaviors import IEventBasic
-from plone.app.event.dx.behaviors import IEventLocation
+from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from plone.app.dexterity.behaviors.metadata import IDublinCore
-from plone.app.event.dx.behaviors import IEventContact
-from eea.climateadapt import CcaAdminMessageFactory as _
+from plone.app.event.dx.behaviors import (IEventBasic, IEventContact,
+                                          IEventLocation, IEventRecurrence)
 from plone.app.event.dx.interfaces import IDXEvent
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
+from plone.app.versioningbehavior.behaviors import IVersionable
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.namedfile.field import NamedBlobImage
-from plone.namedfile.field import NamedFile
+from plone.namedfile.field import NamedBlobImage, NamedFile
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from plone.supermodel import model
-from zope.interface import alsoProvides
-from zope.interface import provider
+from zope.interface import alsoProvides, provider
 from zope.schema import Choice, TextLine
-from .volto_layout import cca_event_blocks, cca_event_items
+
+from eea.climateadapt import CcaAdminMessageFactory as _
 
 # from plone.autoform import directives
 # from z3c.form.interfaces import IAddForm, IEditForm
 # from zope import schema
 # URI, Bool, Date, Datetime, Int, List, Text,
+
+fpath = resource_filename(
+    "eea.climateadapt.behaviors", "volto_layout_cca_event.json"
+)
+layout = json.load(open(fpath))
 
 
 # TODO: simplify this schema
@@ -106,7 +110,7 @@ class ICcaEvent(model.Schema, IDXEvent, IBlocks):
         title=_("Blocks"),
         description=_("The JSON representation of the object blocks."),
         schema=BLOCKS_SCHEMA,
-        default=cca_event_blocks,
+        default=layout["blocks"],
         required=False,
     )
 
@@ -114,7 +118,7 @@ class ICcaEvent(model.Schema, IDXEvent, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={"items": cca_event_items},
+        default=layout["blocks_layout"],
         required=False,
     )
 

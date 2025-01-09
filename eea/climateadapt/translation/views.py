@@ -5,7 +5,6 @@ import cgi
 import logging
 import os
 
-import transaction
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.dexterity.utils import iterSchemata
@@ -15,14 +14,14 @@ from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.contentrules import (
-    queue_translate_volto_html,
-)
+from eea.climateadapt.translation.contentrules import \
+    queue_translate_volto_html
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .core import get_blocks_as_html, ingest_html
 from .utils import get_value_representation
 
+# import transaction
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
 
@@ -110,8 +109,23 @@ class TranslateObjectAsync(BrowserView):
 class TranslateFolderAsync(BrowserView):
     """Exposed in /see_folder_objects"""
 
+    good_lang_codes = ["fr", "de", "it", "es", "pl"]
+
+    def find_untranslated(self, obj):
+        tm = ITranslationManager(obj)
+        translations = tm.get_translations()
+        untranslated = set(self.good_lang_codes)
+
+        for langcode, obj in translations.items():
+            if langcode == "en":
+                continue
+            if obj.title and langcode in untranslated:
+                untranslated.remove(langcode)
+
+        return list(untranslated)
+
     def __call__(self):
-        context = self.context
+        obj = self.context
 
         brains = context.portal_catalog.searchResults(
             path="/".join(context.getPhysicalPath()),
@@ -119,22 +133,30 @@ class TranslateFolderAsync(BrowserView):
         )
         site = portal.getSite()
         site_url = site.absolute_url()
-        language = self.request.form.get("language", None)
+        lang = self.request.form.get("language", None)
 
         for i, brain in enumerate(brains):
             obj = brain.getObject()
             if "sandbox" in obj.absolute_url():
                 continue
 
-            logger.info("Queuing %s for translation", obj.absolute_url())
-            html = getMultiAdapter(
-                (obj, self.context.REQUEST), name="tohtml")()
-            http_host = self.context.REQUEST.environ.get(
-                "HTTP_X_FORWARDED_HOST", site_url
-            )
+            if lang is None:
+                langs = self.find_untranslated(obj)
+            else:
+                langs = [lang]
 
             force_unlock(obj)
-            queue_translate_volto_html(html, obj, http_host, language)
+            for language in langs:
+                logger.info(
+                    "Queuing %s for translation for %s", obj.absolute_url(), language
+                )
+                html = getMultiAdapter(
+                    (obj, self.context.REQUEST), name="tohtml")()
+                http_host = self.context.REQUEST.environ.get(
+                    "HTTP_X_FORWARDED_HOST", site_url
+                )
+
+                queue_translate_volto_html(html, obj, http_host, language)
 
             # if i % 20 == 0:
             #     transaction.commit()
@@ -177,3 +199,67 @@ class ToHtml(BrowserView):
         #     value = get_cover_as_html(self.context)
         #     return value
         return get_value_representation(self.context, name)
+
+
+class TranslateMissing(BrowserView):
+    """A view to trigger the translation for missing translations"""
+
+    good_lang_codes = ["fr", "de", "it", "es", "pl"]
+    blacklist = [
+        "Image",
+        "File",
+        "LRF",
+        "LIF",
+        "Subsite",
+        "FrontpageSlide",
+    ]
+
+    def find_untranslated(self, obj):
+        tm = ITranslationManager(obj)
+        translations = tm.get_translations()
+        untranslated = set(self.good_lang_codes)
+
+        for langcode, obj in translations.items():
+            if langcode == "en":
+                continue
+            if obj.title and langcode in untranslated:
+                untranslated.remove(langcode)
+
+        return list(untranslated)
+
+    def __call__(self):
+        context = self.context
+        site = portal.getSite()
+        site_url = site.absolute_url()
+        fallback = env("SERVER_NAME", site_url)
+        http_host = self.context.REQUEST.environ.get(
+            "HTTP_X_FORWARDED_HOST", fallback)
+
+        brains = context.portal_catalog.searchResults(
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
+            review_state="published",
+        )
+
+        result = []
+
+        for i, brain in enumerate(brains):
+            obj = brain.getObject()
+            if brain.portal_type in self.blacklist:
+                continue
+            if "sandbox" in obj.absolute_url():
+                continue
+            langs = self.find_untranslated(obj)
+            result.append((brain, langs))
+
+            force_unlock(obj)
+            for language in langs:
+                logger.info(
+                    "Queuing %s for translation for %s", obj.absolute_url(), language
+                )
+                html = getMultiAdapter(
+                    (obj, self.context.REQUEST), name="tohtml")()
+
+                queue_translate_volto_html(html, obj, http_host, language)
+
+        return "ok"

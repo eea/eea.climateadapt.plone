@@ -1,13 +1,12 @@
 import logging
 
-
-from eea.climateadapt.interfaces import ICCACountry
-from zope.component import adapter, getMultiAdapter
-from plone.restapi.interfaces import IExpandableElement
-from zope.interface import implementer
-from zope.interface import Interface
 import lxml.html
 from lxml import etree
+from plone.restapi.interfaces import IExpandableElement
+from zope.component import adapter, getMultiAdapter
+from zope.interface import Interface, implementer
+
+from eea.climateadapt.interfaces import ICCACountry
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -40,7 +39,8 @@ class CountryProfile(object):
                         and "text" in self.context.__annotations__[annot]
                         and None == self.context.__annotations__[annot]["title"]
                     ):
-                        html = self.context.__annotations__[annot]["text"].output
+                        html = self.context.__annotations__[
+                            annot]["text"].output
             elif self.context.getId().lower() in ["norway", "liechtenstein"]:
                 for annot in list(self.context.__annotations__):
                     if (
@@ -48,7 +48,8 @@ class CountryProfile(object):
                         and "text" in self.context.__annotations__[annot]
                         and "main content" == self.context.__annotations__[annot]["title"]
                     ):
-                        html = self.context.__annotations__[annot]["text"].output
+                        html = self.context.__annotations__[
+                            annot]["text"].output
             else:
                 view = getMultiAdapter(
                     (self.context, self.request), name="country-profile")
@@ -74,7 +75,8 @@ class CountryProfile(object):
                 )
                 accordeon = []
                 for content in contents:
-                    aer = content.xpath('.//div[contains(@class,"panel-body")]')
+                    aer = content.xpath(
+                        './/div[contains(@class,"panel-body")]')
                     accordeon.append(
                         {
                             "title": content.xpath(
@@ -82,14 +84,15 @@ class CountryProfile(object):
                             )[0].text,
                             "value": "".join(
                                 [etree.tostring(child)
-                                for child in aer[0].iterchildren()]
+                                 for child in aer[0].iterchildren()]
                             ),
                         }
                     )
                 if len(accordeon):
                     data["top_accordeon"] = accordeon
                 # Check alert top message
-                _tmp = e.xpath('//div[contains(@class,"alert-warning")]/p/text()')
+                _tmp = e.xpath(
+                    '//div[contains(@class,"alert-warning")]/p/text()')
                 if isinstance(_tmp, list) and len(_tmp):
                     data["message_top"] = _tmp[0]
             else:
@@ -115,7 +118,8 @@ class CountryProfile(object):
                             menuContent.append(
                                 {"type": "accordeon", "value": accordeon})
                             accordeon = []
-                        menuContent.append({"type": "h2", "value": content.text})
+                        menuContent.append(
+                            {"type": "h2", "value": content.text})
                     elif content.tag == "table":
                         if len(accordeon):
                             menuContent.append(
@@ -160,7 +164,8 @@ class CountryProfile(object):
                             menuContent.append(
                                 {"type": "accordeon", "value": accordeon})
                             accordeon = []
-                        menuContent.append({"type": "h3", "value": content.text})
+                        menuContent.append(
+                            {"type": "h3", "value": content.text})
                     elif content.tag == "p":
                         if len(accordeon):
                             menuContent.append(
@@ -180,7 +185,8 @@ class CountryProfile(object):
                             }
                         )
                 if len(accordeon):
-                    menuContent.append({"type": "accordeon", "value": accordeon})
+                    menuContent.append(
+                        {"type": "accordeon", "value": accordeon})
                 data["content"].append(menuContent)
 
         except Exception as e:

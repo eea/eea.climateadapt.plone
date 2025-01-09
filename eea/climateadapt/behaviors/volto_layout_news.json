@@ -2,7 +2,7 @@
     "blocks_layout": {
         "items": [
             "08519226-1630-4b30-ac7f-d5145267f948",
-            "1b16cc84-3321-4773-ab6f-c7400e4165bb",
+            "4275e01c-1224-4fc0-9168-5e04b249ec46",
             "b22d3721-b968-42e7-8ac5-e2e62f9fac48"
         ]
     },
@@ -14,286 +14,43 @@
             "copyrightIcon": "ri-copyright-line",
             "styles": {}
         },
-        "1b16cc84-3321-4773-ab6f-c7400e4165bb": {
-            "@type": "tabs_block",
-            "data": {
-                "assetPosition": "top",
-                "blocks": {
-                    "410ddc24-7d8a-445b-8ade-6ab5ddf42ce7": {
-                        "@type": "tab",
-                        "assetPosition": "top",
-                        "blocks": {
-                            "45f9dfa7-132e-48a8-9e0d-8f3d47b50661": {
-                                "@type": "metadataSection",
-                                "fields": [
-                                    {
-                                        "@id": "9578805c-924f-4d24-be81-18dfb5043817",
-                                        "field": {
-                                            "id": "effective",
-                                            "title": "Publishing Date",
-                                            "widget": "datetime"
-                                        }
-                                    },
-                                    {
-                                        "@id": "ba38775a-0137-4c7b-8dd5-ea2373c41c8a",
-                                        "field": {
-                                            "id": "expires",
-                                            "title": "Expiration Date",
-                                            "widget": "datetime"
-                                        }
-                                    }
-                                ],
-                                "variation": "default"
-                            }
-                        },
-                        "blocks_layout": {
-                            "items": [
-                                "45f9dfa7-132e-48a8-9e0d-8f3d47b50661"
-                            ]
-                        },
-                        "iconSize": "small",
-                        "imageSize": "icon",
-                        "title": "Dates"
-                    },
-                    "4a4016e6-658e-4bea-9ca7-29147d414412": {
-                        "@type": "tab",
-                        "assetPosition": "top",
-                        "blocks": {
-                            "557f3c19-3694-456b-9b4d-5eb49418e2a9": {
-                                "@type": "metadataSection",
-                                "fields": [
-                                    {
-                                        "@id": "2a87808a-9470-417e-9ee9-9ccc051be825",
-                                        "field": {
-                                            "id": "exclude_from_nav",
-                                            "title": "Exclude from navigation",
-                                            "widget": "boolean"
-                                        }
-                                    },
-                                    {
-                                        "@id": "8c309ca4-5faa-4c2f-bca9-da83bb7963c9",
-                                        "field": {
-                                            "id": "allow_discussion",
-                                            "title": "Allow discussion",
-                                            "widget": "choices"
-                                        }
-                                    },
-                                    {
-                                        "@id": "a313fd82-e6ff-4e76-b036-20d0c3c88aec",
-                                        "field": {
-                                            "id": "id",
-                                            "title": "Short name",
-                                            "widget": "string"
-                                        }
-                                    }
-                                ],
-                                "variation": "default"
-                            }
-                        },
-                        "blocks_layout": {
-                            "items": [
-                                "557f3c19-3694-456b-9b4d-5eb49418e2a9"
-                            ]
-                        },
-                        "iconSize": "small",
-                        "imageSize": "icon",
-                        "title": "Settings"
-                    },
-                    "656f923c-ff5f-4c70-85a1-9490adc06335": {
-                        "@type": "tab",
-                        "assetPosition": "top",
-                        "blocks": {
-                            "5381392a-9f5b-4d39-9664-e368fb053f89": {
-                                "@type": "metadataSection",
-                                "fields": [
-                                    {
-                                        "@id": "f54e041c-67ec-40cd-9f07-f0e12f7fe064",
-                                        "field": {
-                                            "id": "creators",
-                                            "title": "Creators",
-                                            "widget": "array"
-                                        }
-                                    },
-                                    {
-                                        "@id": "b2cf3940-a73e-46f5-9c93-4090b286a432",
-                                        "field": {
-                                            "id": "contributors",
-                                            "title": "Contributors",
-                                            "widget": "array"
-                                        }
-                                    },
-                                    {
-                                        "@id": "dd86cfe0-fb58-43a3-a6dd-6d94f69c4e6d",
-                                        "field": {
-                                            "id": "rights",
-                                            "title": "Rights",
-                                            "widget": "textarea"
-                                        }
-                                    }
-                                ],
-                                "variation": "default"
-                            }
-                        },
-                        "blocks_layout": {
-                            "items": [
-                                "5381392a-9f5b-4d39-9664-e368fb053f89"
-                            ]
-                        },
-                        "iconSize": "small",
-                        "imageSize": "icon",
-                        "title": "Ownership"
-                    },
-                    "761d3e64-a54d-4b27-8cae-7a6cb4d8ba14": {
-                        "@type": "tab",
-                        "assetPosition": "top",
-                        "blocks": {
-                            "4275e01c-1224-4fc0-9168-5e04b249ec46": {
-                                "@type": "metadataSection",
-                                "fields": [
-                                    {
-                                        "@id": "3559b456-8c3e-429e-b0fa-10152721d941",
-                                        "field": {
-                                            "id": "description",
-                                            "title": "Summary",
-                                            "widget": "description"
-                                        }
-                                    },
-                                    {
-                                        "@id": "d7e5d58f-94ea-46cf-8fb2-ecf00e534f3a",
-                                        "field": {
-                                            "id": "text",
-                                            "title": "Text",
-                                            "widget": "richtext"
-                                        }
-                                    },
-                                    {
-                                        "@id": "13e4cf1c-767c-4a92-824e-61bb4ade8643",
-                                        "field": {
-                                            "id": "image",
-                                            "title": "Lead Image",
-                                            "widget": "image"
-                                        }
-                                    },
-                                    {
-                                        "@id": "20ef2142-9671-4b57-bd49-20dd6d09b5a1",
-                                        "field": {
-                                            "id": "image_caption",
-                                            "title": "Lead Image Caption",
-                                            "widget": "string"
-                                        }
-                                    }
-                                ],
-                                "variation": "default"
-                            }
-                        },
-                        "blocks_layout": {
-                            "items": [
-                                "4275e01c-1224-4fc0-9168-5e04b249ec46"
-                            ]
-                        },
-                        "iconSize": "small",
-                        "imageSize": "icon",
-                        "title": "Item Description"
-                    },
-                    "b0956f46-72fa-4f6a-b990-be8b5e900d06": {
-                        "@type": "tab",
-                        "assetPosition": "top",
-                        "blocks": {
-                            "d18b38dd-3da2-4668-86ca-cf54be3efec1": {
-                                "@type": "metadataSection",
-                                "fields": [
-                                    {
-                                        "@id": "51a35668-8fb7-4d73-9197-33b2d1febe44",
-                                        "field": {
-                                            "id": "subjects",
-                                            "title": "Tags",
-                                            "widget": "tags"
-                                        }
-                                    },
-                                    {
-                                        "@id": "93b91495-2111-4933-8af2-af941f8b73e3",
-                                        "field": {
-                                            "id": "relatedItems",
-                                            "title": "Related Items",
-                                            "widget": "relations"
-                                        }
-                                    }
-                                ],
-                                "variation": "default"
-                            }
-                        },
-                        "blocks_layout": {
-                            "items": [
-                                "d18b38dd-3da2-4668-86ca-cf54be3efec1"
-                            ]
-                        },
-                        "iconSize": "small",
-                        "imageSize": "icon",
-                        "title": "Categorization"
-                    },
-                    "eb1bafa0-d106-48cd-94d9-f743be64322e": {
-                        "@type": "tab",
-                        "assetPosition": "top",
-                        "blocks": {
-                            "bafac910-d69e-45d0-abb4-8cb771969f70": {
-                                "@type": "metadataSection",
-                                "fields": [
-                                    {
-                                        "@id": "0163ff44-d349-4d42-b2d6-b0b91cc985ee",
-                                        "field": {
-                                            "id": "include_in_observatory",
-                                            "title": "Include in observatory",
-                                            "widget": "boolean"
-                                        }
-                                    },
-                                    {
-                                        "@id": "d075120e-bac0-488c-9517-45a2b1af6218",
-                                        "field": {
-                                            "id": "include_in_mission",
-                                            "title": "Include in the Mission Portal",
-                                            "widget": "boolean"
-                                        }
-                                    },
-                                    {
-                                        "@id": "c53b8d1b-8660-4cc6-8b18-93e03b6c5103",
-                                        "field": {
-                                            "id": "health_impacts",
-                                            "title": "Health impacts",
-                                            "widget": "array"
-                                        }
-                                    }
-                                ],
-                                "variation": "default"
-                            }
-                        },
-                        "blocks_layout": {
-                            "items": [
-                                "bafac910-d69e-45d0-abb4-8cb771969f70"
-                            ]
-                        },
-                        "iconSize": "small",
-                        "imageSize": "icon",
-                        "title": "Inclusion in the subsites"
+        "4275e01c-1224-4fc0-9168-5e04b249ec46": {
+            "@type": "metadataSection",
+            "fields": [
+                {
+                    "@id": "3559b456-8c3e-429e-b0fa-10152721d941",
+                    "field": {
+                        "id": "description",
+                        "title": "Summary",
+                        "widget": "description"
                     }
                 },
-                "blocks_layout": {
-                    "items": [
-                        "761d3e64-a54d-4b27-8cae-7a6cb4d8ba14",
-                        "4a4016e6-658e-4bea-9ca7-29147d414412",
-                        "b0956f46-72fa-4f6a-b990-be8b5e900d06",
-                        "eb1bafa0-d106-48cd-94d9-f743be64322e",
-                        "410ddc24-7d8a-445b-8ade-6ab5ddf42ce7",
-                        "656f923c-ff5f-4c70-85a1-9490adc06335"
-                    ]
+                {
+                    "@id": "b2ba2bd4-274d-4f44-91e6-5423ca9e4448",
+                    "field": {
+                      "id": "remoteUrl",
+                      "title": "Weblink for further reading",
+                      "widget": "url"
+                    }
                 },
-                "iconSize": "small",
-                "imageSize": "icon"
-            },
-            "menuFluid": true,
-            "menuPointing": true,
-            "menuSecondary": true,
-            "variation": "default",
-            "verticalAlign": "flex-start"
+                {
+                    "@id": "13e4cf1c-767c-4a92-824e-61bb4ade8643",
+                    "field": {
+                        "id": "image",
+                        "title": "Lead Image",
+                        "widget": "image"
+                    }
+                },
+                {
+                    "@id": "20ef2142-9671-4b57-bd49-20dd6d09b5a1",
+                    "field": {
+                        "id": "image_caption",
+                        "title": "Lead Image Caption",
+                        "widget": "string"
+                    }
+                }
+            ],
+            "variation": "default"
         },
         "b22d3721-b968-42e7-8ac5-e2e62f9fac48": {
             "@type": "slate"

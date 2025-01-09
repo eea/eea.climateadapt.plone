@@ -15,15 +15,18 @@ This commands accepts various parameter. Look at __main__ to see what it does.
 import datetime
 import json
 import logging
+import urllib.error
+import urllib.parse
+import urllib.request
+from collections import OrderedDict
 
 import transaction
-import urllib.request, urllib.error, urllib.parse
-from eea.climateadapt.scripts import get_plone_site
-from plone.dexterity.utils import createContentInContainer
 from plone import api
 from plone.app.textfield.value import RichTextValue
+from plone.dexterity.utils import createContentInContainer
 from zope.annotation.interfaces import IAnnotations
-from collections import OrderedDict
+
+from eea.climateadapt.scripts import get_plone_site
 
 logger = logging.getLogger("eea.climateadapt")
 logging.basicConfig()

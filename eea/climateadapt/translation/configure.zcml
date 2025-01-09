@@ -70,4 +70,11 @@
     permission="cmf.ManagePortal"
   />
 
+  <browser:page
+    for="*"
+    class=".views.TranslateMissing"
+    name="translate-missing"
+    permission="cmf.ManagePortal"
+  />
+
 </configure>

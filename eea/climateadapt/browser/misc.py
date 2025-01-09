@@ -1,9 +1,9 @@
 import json
 import logging
-
+import urllib.error
+import urllib.parse
 # import re
-import urllib.request, urllib.parse, urllib.error
-
+import urllib.request
 # from datetime import datetime
 # from email.mime.text import MIMEText
 # from io import BytesIO
@@ -11,15 +11,10 @@ from itertools import islice
 
 import requests
 import transaction
-# from dateutil.tz import gettz
-# from eea.climateadapt.config import CONTACT_MAIL_LIST
-# from eea.climateadapt.schema import Email
-
 from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
-
 # from plone.app.widgets.dx import DatetimeWidgetConverter as BaseConverter
 from plone.memoize import view
 from Products.CMFPlone.utils import getToolByName, isExpired
@@ -27,6 +22,12 @@ from Products.Five.browser import BrowserView
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.interface import Interface, implementer
+
+# from dateutil.tz import gettz
+# from eea.climateadapt.config import CONTACT_MAIL_LIST
+# from eea.climateadapt.schema import Email
+
+
 
 # from eea.climateadapt.translation.utils import (
 #     filters_to_query,
@@ -176,7 +177,7 @@ class CalculateItemStatistics(BrowserView):
         for year in range(1969, 2018):
             annot = IAnnotations(self.context)
             annotation = annot["cca-item-statistics"][year]
-            keys = list(annotation.keys())
+            keys = annotation.keys()
 
             for key in keys:
                 if annotation[key]["total"] == 0:
@@ -217,7 +218,7 @@ class getItemStatistics(BrowserView):
 
     def get_years(self):
         """Gets the years present in IAnnotations and sorts them ascending"""
-        years = list(IAnnotations(self.context)["cca-item-statistics"].keys())
+        years = IAnnotations(self.context)["cca-item-statistics"].keys()
         years.sort()
 
         return years
@@ -292,9 +293,7 @@ class RedirectToSearchView(BrowserView):
         self.request = request
 
     def __call__(self):
-        # TODO fix current language
-        # current_language = get_current_language(self.context, self.request)
-        current_language = "en"
+        current_language = get_current_language(self.context, self.request)
         portal_state = getMultiAdapter(
             (self.context, self.request), name="plone_portal_state"
         )
@@ -352,7 +351,8 @@ class RedirectToSearchView(BrowserView):
                 query["query"]["bool"]["filter"] = {
                     "bool": {
                         "should": [
-                            {"term": {"typeOfData": typeOfDataValues[typeOfDataTo]}}
+                            {"term": {
+                                "typeOfData": typeOfDataValues[typeOfDataTo]}}
                         ]
                     }
                 }
@@ -485,7 +485,8 @@ class GetItemsForMacrotransRegions(BrowserView):
 def _archive_news(site):
     """Script that will get called by cron once per day"""
     catalog = getToolByName(site, "portal_catalog")
-    query = {"portal_type": ["News Item", "Link", "Event"], "review_state": "published"}
+    query = {"portal_type": ["News Item", "Link",
+                             "Event"], "review_state": "published"}
     brains = catalog.searchResults(**query)
 
     for b in brains:
@@ -691,7 +692,8 @@ class ViewGoogleAnalyticsReport(BrowserView):
         site = portal.get()
         report = site.__annotations__.get("google-analytics-cache-data", {})
 
-        reports = reversed(sorted(list(report.items()), key=lambda x: int(x[1])))
+        reports = reversed(
+            sorted(list(report.items()), key=lambda x: int(x[1])))
 
         return islice(reports, 0, 10)
 
