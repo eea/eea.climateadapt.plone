@@ -26,6 +26,14 @@
                     }
                 },
                 {
+                    "@id": "b2ba2bd4-274d-4f44-91e6-5423ca9e4448",
+                    "field": {
+                      "id": "remoteUrl",
+                      "title": "Weblink for further reading",
+                      "widget": "url"
+                    }
+                },
+                {
                     "@id": "13e4cf1c-767c-4a92-824e-61bb4ade8643",
                     "field": {
                         "id": "image",
