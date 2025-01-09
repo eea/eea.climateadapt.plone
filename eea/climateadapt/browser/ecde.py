@@ -1,18 +1,21 @@
 import logging
-from plone import api
-from Products.CMFPlone.utils import getToolByName
-from Products.Five.browser import BrowserView
 from collections import OrderedDict
-from zope.annotation.interfaces import IAnnotations
+
+from plone import api
+from plone.api import content, portal
 # from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
 #                                                 get_current_language,
 #                                                 translate_text)
 from plone.app.multilingual.manager import TranslationManager
-from plone.api import content, portal
+from Products.CMFPlone.utils import getToolByName
+from Products.Five.browser import BrowserView
+from zope.annotation.interfaces import IAnnotations
 
 logger = logging.getLogger('eea.climateadapt')
 
 # TODO properly use the translate_text from translation utils
+
+
 def translate_text(context, request, text, domain="eea.climateadapt", language=None):
     return text
 
@@ -195,18 +198,26 @@ class C3sIndicatorsOverview(BrowserView):
                         indicator)
                     response[hazard_category]['total_indicators'] += 1
 
-        responseHtml = "<thead>" \
-            "<tr>" \
-            "<th>"+translate_text(self.context, self.request, "Hazard category", 'eea.cca')+"</th>" \
-            "<th>"+translate_text(self.context, self.request, "Hazard type", 'eea.cca')+"</th>" \
-            "<th>"+translate_text(self.context, self.request, "Indicator", 'eea.cca')+"</th>" \
-            "<th>"+translate_text(self.context, self.request, "Zip download", 'eea.cca')+"</th>" \
-            "</tr>" \
-            "</thead>" \
-            "<tbody>"
-        for _category in list(response.keys()):
-            responseHtml += "<tr>"
-            responseHtml += "<td rowspan=\"" + \
+        responseHtml = str("<thead>"
+                           "<tr>"
+                           "<th>" +
+                           translate_text(
+                               self.context, self.request, "Hazard category", 'eea.cca')+"</th>"
+                           "<th>" +
+                           translate_text(
+                               self.context, self.request, "Hazard type", 'eea.cca')+"</th>"
+                           "<th>" +
+                           translate_text(
+                               self.context, self.request, "Indicator", 'eea.cca')+"</th>"
+                           "<th>" +
+                           translate_text(
+                               self.context, self.request, "Zip download", 'eea.cca')+"</th>"
+                           "</tr>"
+                           "</thead>"
+                           "<tbody>")
+        for _category in response.keys():
+            responseHtml += str("<tr>")
+            responseHtml += str("<td rowspan=\"") + \
                 str(response[_category]['total_indicators'])+"\">" + \
                 translate_text(self.context, self.request,
                                _category, 'eea.cca')+str("</td>")

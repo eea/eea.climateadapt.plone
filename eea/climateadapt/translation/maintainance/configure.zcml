@@ -1,123 +1,154 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
-    i18n_domain="eea.climateadapt"
-    >
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
 
   <browser:page
-      name="admin-run-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".initiate_translations.RunTranslation"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-run-translation"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    class=".initiate_translations.RunTranslation"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-publish-items"
-      for="*"
-      class=".publish_items.AdminPublishItems"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-publish-items"
+    for="*"
+    class=".publish_items.AdminPublishItems"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-prepare-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".prepare_translation.PrepareTranslation"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-prepare-translation"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    class=".prepare_translation.PrepareTranslation"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-verify-cloned"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".reports.VerifyClonedLanguage"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-verify-cloned"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    class=".reports.VerifyClonedLanguage"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-verify-translation-fields"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".reports.VerifyTranslationFields"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-verify-translation-fields"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    class=".reports.VerifyTranslationFields"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-report-unlinked-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".reports.ReportUnlinkedTranslation"
-      template="../pt/report_unlinked_translation.pt"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-report-unlinked-translation"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    class=".reports.ReportUnlinkedTranslation"
+    template="../pt/report_unlinked_translation.pt"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-verify-unlinked-translation"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".reports.VerifyUnlinkedTranslation"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-verify-unlinked-translation"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    class=".reports.VerifyUnlinkedTranslation"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-translate-step-1"
-      for="*"
-      class=".steps.TranslateStep1"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-translate-step-1"
+    for="*"
+    class=".steps.TranslateStep1"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-translate-step-2"
-      for="*"
-      class=".steps.TranslateStep2"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-translate-step-2"
+    for="*"
+    class=".steps.TranslateStep2"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-translate-step-3"
-      for="*"
-      class=".steps.TranslateStep3"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-translate-step-3"
+    for="*"
+    class=".steps.TranslateStep3"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-translate-step-4"
-      for="*"
-      class=".steps.TranslateStep4"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-translate-step-4"
+    for="*"
+    class=".steps.TranslateStep4"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-translate-step-5"
-      for="*"
-      class=".steps.TranslateStep5"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-translate-step-5"
+    for="*"
+    class=".steps.TranslateStep5"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-translation-repaire"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".fixes.TranslateRepaire"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-translation-repaire"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    class=".fixes.TranslateRepaire"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-translation-repaire-step-3"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".fixes.TranslateRepaireStep3"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-translation-repaire-step-3"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    class=".fixes.TranslateRepaireStep3"
+    permission="cmf.ManagePortal"
+  />
 
 
   <browser:page
-      name="admin-fix-urls-translated-content"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".fixes.FixUrlsForTranslatedContent"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-fix-urls-translated-content"
+    for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+    class=".fixes.FixUrlsForTranslatedContent"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
-      name="admin-some-translated"
-      for="*"
-      class=".some_translated.SomeTranslated"
-      permission="cmf.ManagePortal"
-      />
+    name="admin-some-translated"
+    for="*"
+    class=".some_translated.SomeTranslated"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    name="admin-translation-status"
+    for="*"
+    class=".admin.TranslationStatus"
+    permission="cmf.ManagePortal"
+  />
+
+  <!-- <browser:page -->
+  <!--   for="*" -->
+  <!--   template="pt/list.pt" -->
+  <!--   class=".views.TranslationList" -->
+  <!--   name="translate-list" -->
+  <!--   permission="cmf.ManagePortal" -->
+  <!--   /> -->
+  <!---->
+  <!-- <browser:page -->
+  <!--   for="*" -->
+  <!--   template="pt/key.pt" -->
+  <!--   class=".views.TranslationList" -->
+  <!--   name="translate-key" -->
+  <!--   permission="cmf.ManagePortal" -->
+  <!--   /> -->
+  <!---->
+  <!-- <browser:page -->
+  <!--   for="*" -->
+  <!--   template="pt/report.pt" -->
+  <!--   class=".views.TranslationList" -->
+  <!--   name="translate-report" -->
+  <!--   permission="cmf.ManagePortal" -->
+  <!--   /> -->
 
 </configure>

@@ -1,7 +1,7 @@
 # NOTE: this is not actually used and loaded
 
-import logging
 import json
+import logging
 from collections import deque
 
 from plone.restapi.interfaces import IExpandableElement
@@ -9,8 +9,11 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
+
 # from eea.climateadapt.tiles.transregional_select import get_countries, get_regions
 # from eea.climateadapt.translation.utils import get_current_language
+
+logger = logging.getLogger("eea.climateadapt")
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -37,10 +40,9 @@ class TransnationalRegion(object):
         self.request = request
 
     def __call__(self, **kw):
-        try:
-            # current_lang = get_current_language(self.context, self.request)
-            current_lang = "en"
+        current_lang = get_current_language(self.context, self.request)
 
+        try:
             if "index_html" in self.context.contentIds():
                 cover = self.context["index_html"]
             else:
@@ -59,8 +61,10 @@ class TransnationalRegion(object):
             # TODO: this needs to be reimplemented as a behavior when we move to Plone 6 and get rid of Covers
 
             tile_data = cover.get_tile(tile_id).data
+
         except Exception as e:
-            logger.warning("Error in processing transnational region: {}".format(e))
+            logger.warning(
+                'Error in processing transnational region: {}'.format(e))
             tile_data = {}
 
         result = {

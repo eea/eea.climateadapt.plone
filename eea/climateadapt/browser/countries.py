@@ -3,26 +3,28 @@ import json
 import logging
 import re
 import sys
-from datetime import datetime
+import urllib.error
+import urllib.parse
+import urllib.request
 from collections import OrderedDict
+from datetime import datetime
+from html.entities import name2codepoint
 
 import lxml.etree
 import lxml.html
-import urllib.request, urllib.error, urllib.parse
-from eea.climateadapt.vocabulary import ace_countries
 from pkg_resources import resource_filename
 from plone.api import portal
-from plone.intelligenttext.transforms import (
-    WebIntelligentToHtmlConverter,
-    safe_decode
-)
+from plone.intelligenttext.transforms import (WebIntelligentToHtmlConverter,
+                                              safe_decode)
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
 # from eea.climateadapt.translation.utils import (
 #     TranslationUtilsMixin,
 #     translate_text
 # )
 from eea.climateadapt import MessageFactory as _
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from eea.climateadapt.vocabulary import ace_countries
 
 
 def parse_csv(path):
@@ -222,7 +224,8 @@ def get_nap_nas(obj, text, country):
             cells = row.xpath("td")
             # key = cells[0].text_content().strip()
             # key = ''.join(cells[0].itertext()).strip()
-            key = " ".join([c for c in cells[0].itertext() if type(c) is not str])
+            key = " ".join(
+                [c for c in cells[0].itertext() if type(c) is not str])
 
             if key in [None, ""]:
                 key = cells[0].text_content().strip()
@@ -268,7 +271,6 @@ def get_nap_nas(obj, text, country):
 
 
 PY3 = sys.version_info[0] == 3
-from html.entities import name2codepoint
 
 
 class CCAWebIntelligentToHtmlConverter(WebIntelligentToHtmlConverter):
@@ -374,7 +376,8 @@ class CountriesMetadataExtract(BrowserView):
         values = processed_data["Legal_Policies"].get("AdaptationPolicies", [])
         sorted_items = sorted(values, key=lambda i: i["Type"])
         _response = {}
-        sorted_items = [x for x in sorted_items if x['Status'].endswith(('completed', '(adopted)'))]
+        sorted_items = [x for x in sorted_items if x['Status'].endswith(
+            ('completed', '(adopted)'))]
         for item in sorted_items:
             _type = item["Type"]
             _type = _type[3: _type.find("(")]
@@ -387,7 +390,8 @@ class CountriesMetadataExtract(BrowserView):
             data = _response[key]
             _value = [
                 "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
-                    v.get('Link'), v['Title'].encode('ascii', 'ignore').decode('ascii'),
+                    v.get('Link'), v['Title'].encode(
+                        'ascii', 'ignore').decode('ascii'),
                     "style='font-style:oblique;'", v.get('Status'))
                 for v in data
             ]
@@ -403,7 +407,7 @@ class CountriesMetadataExtract(BrowserView):
         res["sap_mixed"] = ""
         if values:
             # setup National adaptation policy - NAS, NAP and SAP
-            #import pdb; pdb.set_trace()
+            # import pdb; pdb.set_trace()
             for name in ('NAS', 'NAP', 'SAP'):
                 value = ''
                 data = [c for c in values if '('+name+')' in c['Type']]
@@ -548,9 +552,18 @@ class CountriesMetadataExtract(BrowserView):
         self.request.response.setHeader("Content-type", "application/json")
         data = []
         for marker in _MARKERS:
-            # TODO translate text
-            # data.append([marker[1],translate_text(self.context, self.request, marker[1], 'eea.cca', self.current_lang)])
-            data.append([marker[1], marker[1]])
+            data.append(
+                [
+                    marker[1],
+                    translate_text(
+                        self.context,
+                        self.request,
+                        marker[1],
+                        "eea.cca",
+                        self.current_lang,
+                    ),
+                ]
+            )
 
         return json.dumps([res, [x[1] for x in _MARKERS], data])
 
@@ -843,7 +856,7 @@ class CountryProfileData(BrowserView):
             )
 
         keys = list(response.keys())
-        return {'keys':keys, 'items':response}
+        return {'keys': keys, 'items': response}
 
     def hazards_table(self):
         country_name = self.verify_country_name(
@@ -875,7 +888,8 @@ class CountryProfileData(BrowserView):
             if group == 'SolidMass':
                 group = 'Solid mass'
             if group not in list(response[occurence].keys()):
-                response[occurence][group] = {'AC':{'hazards':[], 'trend':[]}, 'CH':{'hazards':[], 'trend':[]}}
+                response[occurence][group] = {
+                    'AC': {'hazards': [], 'trend': []}, 'CH': {'hazards': [], 'trend': []}}
             accuteChronic = item['Type']
             event = item['Event']
             if occurence == 'Future' and item['PatternValue'][0] == '0':

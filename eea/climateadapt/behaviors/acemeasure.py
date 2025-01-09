@@ -8,7 +8,8 @@ from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import Interface, alsoProvides, implementer  # , implements
-from zope.schema import URI, Bool, Choice, Date, Int, List, Text, TextLine, Tuple
+from zope.schema import (URI, Bool, Choice, Date, Int, List, Text, TextLine,
+                         Tuple)
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 
@@ -59,63 +60,65 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     # dexteritytextindexer.searchable('year')
     # dexteritytextindexer.searchable("publication_date")
 
-    model.fieldset(
-        "default",
-        label="Item Description",
-        fields=[
-            "publication_date",
-            "title",
-            "long_description",
-            "description",
-            "climate_impacts",
-            "keywords",
-            "sectors",
-            "elements",
-            # "featured",  # 'year',
-        ],
-    )
-
-    model.fieldset(
-        "additional_details",
-        label="Additional Details",
-        fields=[
-            "stakeholder_participation",
-            "success_limitations",
-            "cost_benefit",
-            "legal_aspects",
-            "implementation_time",
-            "lifetime",
-        ],
-    )
-
-    # model.fieldset('inclusion_health_observatory',
-    #              label=u'Inclusion in health observatory',
-    #              fields=['include_in_observatory', 'health_impacts']
-    #              )
-
-    model.fieldset(
-        "reference_information",
-        label="Reference information",
-        fields=["websites", "source", "special_tags", "comments"],  # 'contact',
-    )
-
-    # richtext fields in database:
-    # set(['legalaspects', 'implementationtime', 'description', 'source',
-    # 'objectives', 'stakeholderparticipation', 'admincomment', 'comments',
-    # 'challenges', 'keywords', 'contact', 'solutions', 'costbenefit',
-    # 'succeslimitations', 'lifetime'])
-
-    model.fieldset(
-        "geographic_information",
-        label="Geographic Information",
-        fields=["governance_level", "geochars"],
-    )
-
-    model.fieldset(
-        "categorization",
-        label="Inclusion in the Health Observatory",
-        fields=["include_in_observatory", "include_in_mission", "health_impacts"],
-    )
+    # form.fieldset(
+    #     "default",
+    #     label="Item Description",
+    #     fields=[
+    #         "publication_date",
+    #         "title",
+    #         "description",
+    #         "long_description",
+    #         "climate_impacts",
+    #         "keywords",
+    #         "sectors",
+    #         "elements",
+    #         # "featured",  # 'year',
+    #     ],
+    # )
+    #
+    # form.fieldset(
+    #     "additional_details",
+    #     label="Additional Details",
+    #     fields=[
+    #         "stakeholder_participation",
+    #         "success_limitations",
+    #         "cost_benefit",
+    #         "legal_aspects",
+    #         "implementation_time",
+    #         "lifetime",
+    #     ],
+    # )
+    #
+    # # form.fieldset('inclusion_health_observatory',
+    # #              label=u'Inclusion in health observatory',
+    # #              fields=['include_in_observatory', 'health_impacts']
+    # #              )
+    #
+    # form.fieldset(
+    #     "reference_information",
+    #     label="Reference information",
+    #     fields=["websites", "source", "special_tags",
+    #             "comments"],  # 'contact',
+    # )
+    #
+    # # richtext fields in database:
+    # # set(['legalaspects', 'implementationtime', 'description', 'source',
+    # # 'objectives', 'stakeholderparticipation', 'admincomment', 'comments',
+    # # 'challenges', 'keywords', 'contact', 'solutions', 'costbenefit',
+    # # 'succeslimitations', 'lifetime'])
+    #
+    # form.fieldset(
+    #     "geographic_information",
+    #     label="Geographic Information",
+    #     fields=["governance_level", "geochars"],
+    # )
+    #
+    # form.fieldset(
+    #     "inclusion",
+    #     label="Inclusion in the Health Observatory",
+    #     fields=["include_in_observatory",
+    #             "include_in_mission", "health_impacts"],
+    # )
 
     # -----------[ "default" fields ]------------------
 
@@ -141,7 +144,8 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         missing_value="",
     )
 
-    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         missing_value=[],
@@ -158,6 +162,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
     keywords = Tuple(
+        title=_("Keywords"),
         description=_(
             "Describe and tag this item with relevant keywords. "
             "Press Enter after writing your keyword. "
@@ -231,7 +236,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     # dexteritytextindexer.searchable("success_limitations")
     success_limitations = RichText(
-        title=_("Success / limitations"),
+        title=_("Success and limiting factors"),
         required=False,
         default="",
         description=_(
@@ -244,7 +249,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     # dexteritytextindexer.searchable("cost_benefit")
     cost_benefit = RichText(
-        title=_("Cost / Benefit"),
+        title=_("Costs and benefits"),
         required=False,
         default="",
         description=_(
@@ -277,7 +282,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     # dexteritytextindexer.searchable("implementation_time")
     implementation_time = RichText(
-        title=_("Implementation Time"),
+        title=_("Implementation time"),
         required=False,
         default=None,
         description=_(
@@ -328,7 +333,8 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
-    directives.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     governance_level = List(
         title=_("Governance Level"),
         description=_(
@@ -340,7 +346,8 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         ),
     )
 
-    directives.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    directives.widget(
+        geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
@@ -455,8 +462,8 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     directives.omitted(IAddForm, "measure_type")
     directives.omitted(IEditForm, "important")
     directives.omitted(IAddForm, "important")
-    directives.omitted(IEditForm, "rating")
-    directives.omitted(IAddForm, "rating")
+    # directives.omitted(IEditForm, "rating")
+    # directives.omitted(IAddForm, "rating")
     # directives.omitted(IAddForm, "modification_date")
     # directives.omitted(IEditForm, "modification_date")
     # directives.omitted(IAddForm, "creation_date")
@@ -472,7 +479,8 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype",
     )
 
-    spatial_layer = TextLine(title=_("Spatial Layer"), required=False, default="")
+    spatial_layer = TextLine(title=_("Spatial Layer"),
+                             required=False, default="")
 
     spatial_values = List(
         title=_("Countries"),
@@ -487,8 +495,8 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_("Adaptation elements"),
-        description=_("Select one or more elements."),
+        title=_("Adaptation approaches"),
+        description=_("Select one or more approaches."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
@@ -497,7 +505,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     measure_type = Choice(
         title=_("Measure Type"),
-        required=True,
+        required=False,
         default="A",
         vocabulary="eea.climateadapt.acemeasure_types",
     )
@@ -518,7 +526,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     important = Bool(title=_("High importance"), required=False, default=False)
 
-    rating = Int(title=_("Rating"), required=True, default=0)
+    # rating = Int(title=_("Rating"), required=True, default=0)
 
     special_tags = Tuple(
         title=_("Special tagging"),
@@ -549,13 +557,15 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     publication_date = Date(
         title=_("Date of item's creation"),
-        description="The date refers to the moment in which the item "
-        "has been prepared or  updated by contributing "
-        "experts to be submitted for the publication in "
-        "Climate ADAPT."
-        " Please use the Calendar icon to add day/month/year. If you want to "
-        'add only the year, please select "day: 1", "month: January" '
-        "and then the year",
+        description=_(
+            "The date refers to the moment in which the item "
+            "has been prepared or  updated by contributing "
+            "experts to be submitted for the publication in "
+            "Climate ADAPT."
+            " Please use the Calendar icon to add day/month/year. If you want to "
+            'add only the year, please select "day: 1", "month: January" '
+            "and then the year"
+        ),
         required=True,
     )
 
@@ -607,7 +617,7 @@ alsoProvides(IAceMeasure["websites"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["implementation_type"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["important"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["measure_type"], ILanguageIndependentField)
-alsoProvides(IAceMeasure["rating"], ILanguageIndependentField)
+# alsoProvides(IAceMeasure["rating"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["spatial_layer"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["spatial_values"], ILanguageIndependentField)
 

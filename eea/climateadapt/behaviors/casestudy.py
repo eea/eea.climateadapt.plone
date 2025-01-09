@@ -2,7 +2,6 @@
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
-
 # from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.namedfile.field import NamedBlobImage
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
@@ -13,8 +12,8 @@ from zope.interface import alsoProvides
 from zope.schema import Choice, List, TextLine, Tuple
 
 from eea.climateadapt import CcaAdminMessageFactory as _
-
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
+
 from .volto_layout import case_study_layout_blocks, case_study_layout_items
 
 
@@ -84,7 +83,8 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         ),
     )
 
-    directives.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     relevance = List(
         title=_("Relevance"),
         required=True,

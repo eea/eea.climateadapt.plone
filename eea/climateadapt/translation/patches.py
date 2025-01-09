@@ -1,29 +1,25 @@
-from zope.annotation.interfaces import IAnnotations
-from BTrees.OIBTree import OIBTree
-from plone.app.multilingual.interfaces import ITranslationManager
-from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
-from Acquisition import aq_self
 import logging
 
+from Acquisition import aq_self
+from BTrees.OIBTree import OIBTree
 from plone.api import portal
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.app.multilingual.dx.interfaces import (IDexterityTranslatable,
+                                                  ILanguageIndependentField)
 from plone.app.multilingual.factory import DefaultTranslationLocator as Base
 from plone.app.multilingual.interfaces import (
-    ILanguage,
-    ILanguageIndependentFieldsManager,
-    ITranslationLocator,
-)
+    ILanguage, ILanguageIndependentFieldsManager, ITranslationLocator,
+    ITranslationManager)
 from plone.dexterity.utils import iterSchemata
 from z3c.relationfield.interfaces import IRelationList, IRelationValue
-from zope.component import (
-    ComponentLookupError,
-    queryAdapter,  # getUtility,
-)
+from zope.annotation.interfaces import IAnnotations
+from zope.component import queryAdapter  # getUtility,
+from zope.component import ComponentLookupError
 from zope.interface import implementer
 
 from eea.climateadapt.asynctasks.utils import get_async_service
 
-from .core import DummyPersistent, sync_language_independent_fields, wrap_in_aquisition
+from .core import (DummyPersistent, sync_language_independent_fields,
+                   wrap_in_aquisition)
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -58,7 +54,8 @@ def copy_fields_patched(self, translation):
 
     adapter = queryAdapter(translation, ILanguage)
     if adapter is None:
-        logger.exception("Didn't find language for translation: %s", translation)
+        logger.exception(
+            "Didn't find language for translation: %s", translation)
         return
     target_language = adapter.get_language()
 

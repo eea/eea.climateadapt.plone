@@ -1,8 +1,11 @@
 import json
 
+from plone.dexterity.utils import iterSchemata
+from plone.restapi.serializer.converters import json_compatible
+from zope.schema import getFields
+
 from eea.climateadapt.browser import get_date_updated, get_files
 from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
-from plone.restapi.serializer.converters import json_compatible
 
 
 def get_geographic(item, result={}):
@@ -37,6 +40,23 @@ def get_geographic(item, result={}):
     return result
 
 
+def use_blocks_from_fti(context, result):
+    blocks = None
+    blocks_layout = None
+
+    for schema in iterSchemata(context):
+        for name, field in getFields(schema).items():
+            if name == "blocks" and field.default and not blocks:
+                blocks = field.default
+            if name == "blocks_layout" and field.default and not blocks_layout:
+                blocks_layout = field.default
+    if blocks:
+        result["blocks"] = blocks
+        result["blocks_layout"] = blocks_layout
+
+    return result
+
+
 def cca_content_serializer(item, result, request):
     """A generic enrichment that should be applied to all IClimateAdaptContent"""
 
@@ -57,20 +77,22 @@ def cca_content_serializer(item, result, request):
         and "eea_index" in request.form
     ):
         converted = item.portal_transforms.convertTo(
-            "text/plain", item.long_description.output)
+            "text/plain", item.long_description.output
+        )
         if converted is not None:
-            description = converted.getData() .strip()
+            description = converted.getData().strip()
             try:
                 result["description"] = description.decode("utf-8")
             except Exception:
                 result["description"] = description.encode("utf-8")
         else:
-            result['description'] = ''
+            result["description"] = ""
 
-    result["cca_last_modified"] = json_compatible(
-        dates["cadapt_last_modified"])
+    result["cca_last_modified"] = json_compatible(dates["cadapt_last_modified"])
     result["cca_published"] = json_compatible(dates["cadapt_published"])
     result["is_cca_content"] = True
     result["language"] = getattr(item, "language", "en")
+
+    result = use_blocks_from_fti(item, result)
 
     return result

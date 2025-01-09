@@ -7,7 +7,7 @@ from io import BytesIO
 import requests
 import transaction
 import xlsxwriter
-from bs4 import BeautifulSoup
+from BeautifulSoup import BeautifulSoup
 from DateTime import DateTime
 from plone import api
 from plone.app.textfield.value import RichTextValue
@@ -100,6 +100,8 @@ def check_link_status(link):
         if not link.startswith("http"):
             link = "https://" + link
 
+        link = link.replace("http://", "https://")
+
         # return {"status": "404", "url": link}
 
         logger.warning("Now checking: %s", link)
@@ -107,32 +109,32 @@ def check_link_status(link):
         try:
             resp = requests.head(link, timeout=5, allow_redirects=True)
             if resp.status_code == 404:
-                return {"status": "404", "url": link}
+                return {"status": "NotFound", "url": link}
             # requests.head(link, timeout=5, allow_redirects=True)
         except requests.exceptions.ReadTimeout:
-            return {"status": "504", "url": link}
+            return {"status": "ReadTimeout", "url": link}
         except requests.exceptions.ConnectTimeout:
             logger.info("Timed out.")
             logger.info("Trying again with link: %s", link)
             try:
                 requests.head(link, timeout=30, allow_redirects=True)
             except Exception:
-                return {"status": "504", "url": link}
+                return {"status": "NotFound", "url": link}
         except requests.exceptions.TooManyRedirects:
             logger.info("Redirected.")
             logger.info("Trying again with link: %s", link)
             try:
                 requests.head(link, timeout=30, allow_redirects=True)
             except Exception:
-                return {"status": "301", "url": link}
+                return {"status": "Redirected", "url": link}
         except requests.exceptions.URLRequired:
-            return {"status": "400", "url": link}
+            return {"status": "BrokenUrl", "url": link}
         except requests.exceptions.ProxyError:
-            return {"status": "305", "url": link}
+            return {"status": "ProxyError", "url": link}
         except requests.exceptions.HTTPError:
-            return {"status": "505", "url": link}
+            return {"status": "UnknownError", "url": link}
         except Exception:
-            return {"status": "404", "url": link}
+            return {"status": "NotFound", "url": link}
 
     return
 
@@ -204,7 +206,7 @@ def iterate_blocks(obj):
     if layout:
         items = layout.get("items")
         for uid in items:
-            block = blocks[uid]
+            block = blocks.get(uid)
             if block:
                 yield block
 
@@ -358,10 +360,15 @@ def compute_broken_links(site):
     """Script that will get called by cron once per day"""
 
     results = []
-    annot = IAnnotations(site)["broken_links_data"]
     links = recursively_extract_links(site)
+    annot = IAnnotations(site)["broken_links_data"]
 
     for info in links:
+        if info["link"].startswith("/"):
+            continue
+            # import pdb
+            #
+            # pdb.set_trace()
         res = check_link_status(info["link"])
         if res is not None:
             res["object_url"] = info["object_url"]
@@ -369,7 +376,7 @@ def compute_broken_links(site):
 
     now = DateTime()
     annot[now] = results
-    dates = list(annot.keys())
+    dates = annot.keys()
 
     if len(dates) >= 5:  # maximum no. of dates stored
         # delete oldest data except 'pre_nov7_data'
@@ -459,7 +466,7 @@ class BrokenLinksService(Service):
         row_index = 1
 
         for chunk in data:
-            for url, row in list(chunk.items()):
+            for url, row in chunk.items():
                 for i, (key, title) in enumerate(headers):
                     value = row[key]
                     worksheet.write(row_index, i, value or "")

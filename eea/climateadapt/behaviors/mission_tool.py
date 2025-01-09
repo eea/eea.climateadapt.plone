@@ -1,16 +1,16 @@
 import json
 
 from pkg_resources import resource_filename
-
-from eea.climateadapt import CcaAdminMessageFactory as _
-from zope.schema import Choice, List
-from plone.autoform import directives
-from plone.supermodel import model
-from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from zope.interface import alsoProvides, provider
+from plone.autoform import directives
+from plone.autoform.interfaces import IFormFieldProvider
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
+from plone.supermodel import model
+from zope.interface import alsoProvides, provider
+from zope.schema import Choice, List
+
+from eea.climateadapt import CcaAdminMessageFactory as _
 
 fpath = resource_filename(
     "eea.climateadapt.behaviors", "volto_layout_mission_tools.json"
@@ -47,7 +47,8 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     rast_steps = List(
         title=_("RAST step(s) of relevance"),
         required=False,
@@ -66,7 +67,8 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
@@ -79,7 +81,8 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(tool_language="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        tool_language="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     tool_language = List(
         title=_("Language(s) of the tool"),
         required=False,
@@ -100,7 +103,8 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(most_useful_for="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        most_useful_for="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     most_useful_for = List(
         title=_("Most useful for"),
         required=False,
