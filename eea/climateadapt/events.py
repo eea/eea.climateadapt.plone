@@ -2,7 +2,7 @@ import logging
 
 import transaction
 from DateTime import DateTime
-from eea.cache import event
+# from eea.cache import event
 from plone.api.user import get_current
 from plone.app.contentrules.handlers import execute, execute_rules
 from plone.app.iterate.dexterity.utils import get_baseline

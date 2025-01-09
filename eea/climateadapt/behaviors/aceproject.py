@@ -23,9 +23,11 @@ from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
 
 # from collective import dexteritytextindexer
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
+
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+
 
 # from z3c.relationfield.schema import RelationChoice
 

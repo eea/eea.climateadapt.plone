@@ -18,7 +18,8 @@ from zope.schema import (URI, Bool, Choice, Date,  # DateTime,; ASCIILine,
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.schema import AbsoluteUrl, Uploader
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 # from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 

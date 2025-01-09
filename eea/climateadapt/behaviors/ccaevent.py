@@ -1,3 +1,6 @@
+import json
+
+from pkg_resources import resource_filename
 from plone.app.dexterity.behaviors.discussion import IAllowDiscussion
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from plone.app.dexterity.behaviors.metadata import IDublinCore
