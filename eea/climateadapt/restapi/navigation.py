@@ -31,8 +31,8 @@ def is_outside_mission(context):
     return True
 
 
-# class ICCARestapiLayer(IPloneRestapiLayer):
-#     """Marker interface that defines a browser layer."""
+class ICCARestapiLayer(IPloneRestapiLayer):
+    """Marker interface that defines a browser layer."""
 
 
 class CustomCatalogNavigationTabs(BaseCatalogNavigationTabs):
