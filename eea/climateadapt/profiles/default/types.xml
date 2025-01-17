@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <object name="portal_types" meta_type="Plone Types Tool">
 
+  <object name="cca-event" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.aceproject" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.adaptationoption" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.casestudy" meta_type="Dexterity FTI" />
@@ -14,9 +15,14 @@
   <object name="eea.climateadapt.researchproject" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.tool" meta_type="Dexterity FTI" />
   <object name="eea.climateadapt.video" meta_type="Dexterity FTI" />
+  <object name="FrontpageSlide" meta_type="Dexterity FTI" />
+  <object name="LIF" meta_type="Dexterity FTI" />
+  <object name="LRF" meta_type="Dexterity FTI" />
+  <object name="mission_story" meta_type="Dexterity FTI" />
   <object name="mission_story" meta_type="Dexterity FTI" />
   <object name="mission_funding_cca" meta_type="Dexterity FTI" />
   <object name="mission_tool" meta_type="Dexterity FTI" />
+  <object name="Subsite" meta_type="Dexterity FTI" />
 
   <!-- <object name="collective.cover.content" meta_type="Dexterity FTI"/> -->
   <!-- <object name="FrontpageSlide" meta_type="Dexterity FTI" /> -->
