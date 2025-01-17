@@ -1,7 +1,9 @@
 #!/bin/env python3
 from datetime import datetime
 import json
+import os
 import sys
+import time
 from typing import Callable, List
 
 
@@ -199,7 +201,7 @@ fixers: List[Callable[[dict], dict]] = [
 ]
 
 
-def main():
+def main_single_file():
     # Read the file name from command line arguments
     if len(sys.argv) != 2:
         print("Usage: python script.py <filename>")
@@ -242,6 +244,70 @@ def main():
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
+def main():
+    # Read the folder name from command line arguments
+    if len(sys.argv) != 2:
+        print("Usage: python script.py <foldername>")
+        sys.exit(1)
+
+    foldername = sys.argv[1]
+
+    start_time = time.time()  # Start the timer
+
+    try:
+        # Ensure the folder exists
+        if not os.path.isdir(foldername):
+            raise ValueError(f"'{foldername}' is not a valid folder.")
+
+        # Get all JSON files in the folder
+        json_files = [
+            os.path.join(foldername, file)
+            for file in os.listdir(foldername)
+            if file.endswith(".json")
+        ]
+
+        total_files = len(json_files)
+
+        if total_files == 0:
+            print(f"No JSON files found in folder '{foldername}'.")
+            return
+
+        for index, filename in enumerate(json_files, start=1):
+            print(f"Processing file {index}/{total_files}: {filename}")
+
+            try:
+                # Open and load the JSON file
+                with open(filename, "r") as file:
+                    data = json.load(file)
+
+                # Ensure the file contains an object
+                if not isinstance(data, dict):
+                    print(f"Skipping file '{filename}': JSON file must contain a single object.")
+                    continue
+
+                # Apply each fixer to the object
+                for fixer in fixers:
+                    data = fixer(data)
+
+                # Write the fixed data back to the file
+                with open(filename, "w") as file:
+                    json.dump(data, file, indent=4)
+
+                print(f"File '{filename}' has been processed successfully.")
+
+            except json.JSONDecodeError:
+                import pdb; pdb.set_trace()
+                print(f"Error: File '{filename}' is not a valid JSON file.")
+            except Exception as e:
+                import pdb; pdb.set_trace()
+                print(f"An unexpected error occurred while processing '{filename}': {e}")
+
+        end_time = time.time()  # End the timer
+        duration = end_time - start_time
+        print(f"All files processed in {duration:.2f} seconds.")
+
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
 
 if __name__ == "__main__":
     main()
