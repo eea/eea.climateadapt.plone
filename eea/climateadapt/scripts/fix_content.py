@@ -159,6 +159,10 @@ def fix_spatial_layer(obj):
 def fix_content_types(obj):
     _type = obj.get("@type")
     remapped = {"collective.cover.content": "Folder"}
+
+    if "unexported_paths" in obj:
+        return
+
     if not _type:
         import pdb
 
