@@ -15,16 +15,20 @@ from zope.event import notify
 
 from eea.climateadapt.vocabulary import _health_impacts
 from plone import api
-from plone.api import portal
 from plone.api.portal import get_tool
 from plone.api.content import get_state
 from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
 from z3c.relationfield import RelationValue
-from zc.relation.interfaces import ICatalog
 from plone.app.multilingual.manager import TranslationManager
 
+from plone.restapi.blocks import visit_blocks
+from plone.restapi.deserializer.utils import path2uid
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.statusmessages.interfaces import IStatusMessage
+from zope.lifecycleevent import modified
 
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
@@ -2589,3 +2593,82 @@ class SyncAttributes:
         transaction.commit()
 
         return 'done'
+
+
+def clean_url(url):
+    """clean_url"""
+    if not url:
+        return url
+
+    hosts = [
+        'http://localhost:8080',
+        'http://backend:8080',
+        'https://climate-adapt.eea.europa.eu',
+    ]
+    for bit in hosts:
+        url = url.replace(bit, '')
+    return url
+
+
+class MigrateAbsoluteURLs(BrowserView):
+    """Migrate absolute URLs to resolveuid"""
+
+    fields = ["url", "href", "provider_url", "link", 'getRemoteUrl',
+                "attachedImage", 'attachedimage', 'getPath', 'getURL',
+                "preview_image", "@id"]
+    count = 0
+
+    def fix_url(self, block):
+        if isinstance(block, dict):  # If the current data is a dictionary
+            for key, value in block.items():
+                if key in self.fields:  # Check for the 'url' key with the target value
+                    if value and isinstance(value, str):
+                        cleaned_url = clean_url(value)
+
+                        if cleaned_url != value:
+                            block[key] = path2uid(
+                                context=self.context,
+                                link=cleaned_url)
+                            self.count += 1
+                else:
+                    self.fix_url(value)  # Recursively check the value
+
+        elif isinstance(block, list):  # If the current data is a list
+            for item in block:
+                self.fix_url(item)
+
+    def migrate(self):
+        """Migrate absolute URLs to resolveuid"""
+        brains = api.content.find(
+            context=self.context,
+            object_provides="plone.restapi.behaviors.IBlocks"
+        )
+
+        total = len(brains)
+        for idx, brain in enumerate(brains):
+            obj = brain.getObject()
+            # if obj.title == "Discover the key services, thematic features and tools of Climate-ADAPT":
+            #     import pdb; pdb.set_trace()
+            blocks = getattr(obj, "blocks", {})
+            # blocks_orig = copy.deepcopy(blocks)
+
+            if 'localhost' in str(blocks) or 'https://climate-adapt.eea.europa.eu' in str(blocks):
+                for block in visit_blocks(obj, blocks):
+                    self.fix_url(block)
+
+                modified(obj)
+
+            if idx % 100 == 0:
+                transaction.commit()
+                logger.info("Progress %s of %s. Migrated %s",
+                            idx, total, self.count)
+
+        return self.count
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        count = self.migrate()
+        IStatusMessage(self.request).addStatusMessage(
+            "Migrated {} absolute URLs!".format(count)
+        )
+        return self.request.response.redirect(self.context.absolute_url())
