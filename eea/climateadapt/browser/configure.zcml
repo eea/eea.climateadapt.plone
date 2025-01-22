@@ -25,6 +25,13 @@
   <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
   <!-- /> -->
 
+  <browser:page
+    name="migrate-absolute-urls"
+    for="*"
+    class=".migrate.MigrateAbsoluteURLs"
+    permission="cmf.ManagePortal"
+    />
+
   <browser:resourceDirectory
     name="eea.climateadapt"
     directory="resources"
