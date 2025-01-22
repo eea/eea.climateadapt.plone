@@ -28,6 +28,8 @@ def fix_missing_field_values(obj):
         "funding_programme",
         "relevance",
         "implementation_type",
+        "overview_app_ecde_identifier",
+        "subsite_css_class",
     ]
     for field in fields:
         if field in obj and not obj[field]:
@@ -312,12 +314,13 @@ def main():
                 pdb.set_trace()
                 print(f"Error: File '{filename}' is not a valid JSON file.")
             except Exception as e:
-                import pdb
+                if filename != "errors.json":
+                    import pdb
 
-                pdb.set_trace()
-                print(
-                    f"An unexpected error occurred while processing '{filename}': {e}"
-                )
+                    pdb.set_trace()
+                    print(
+                        f"An unexpected error occurred while processing '{filename}': {e}"
+                    )
 
         end_time = time.time()  # End the timer
         duration = end_time - start_time
