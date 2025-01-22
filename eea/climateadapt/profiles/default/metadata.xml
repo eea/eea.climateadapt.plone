@@ -1,0 +1,18 @@
+<metadata>
+  <version>1</version>
+  <dependencies>
+    <!-- <dependency>profile-plone.app.dexterity:default</dependency> -->
+    <!-- <dependency>profile-plone.app.contenttypes:default</dependency> -->
+    <!-- <dependency>profile-collective.cover:default</dependency> -->
+    <!-- <dependency>profile-collective.geolocationbehavior:default</dependency> -->
+    <!-- <dependency>profile-plone.app.theming:default</dependency> -->
+    <!-- <dependency>profile-eea.facetednavigation:default</dependency> -->
+    <!-- <dependency>profile-collective.js.datatables:default</dependency> -->
+    <!-- <dependency>profile-collective.easyform:default</dependency> -->
+    <!-- <dependency>profile-plone.formwidget.recaptcha:default</dependency> -->
+    <!-- <dependency>profile-collective.sweeteditor:default</dependency> -->
+    <!-- <dependency>profile-plone.app.ldap:ldap</dependency> -->
+    <!-- <dependency>profile-plone.app.querystring:default</dependency> -->
+    <!-- <dependency>profile-Products.CMFPlacefulWorkflow:CMFPlacefulWorkflow</dependency> -->
+  </dependencies>
+</metadata>
