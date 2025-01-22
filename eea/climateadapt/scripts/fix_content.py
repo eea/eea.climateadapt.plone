@@ -36,11 +36,12 @@ def fix_missing_field_values(obj):
 
 
 def fix_exclude_from_nav(obj):
-    """ for covers set exclude_from_nav to True because they are excluded from navigation"""
+    """for covers set exclude_from_nav to True because they are excluded from navigation"""
     if obj.get("@type") == "collective.cover.content":
         obj["exclude_from_nav"] = True
 
     return obj
+
 
 def fix_health_impacts(obj):
     replaced = {
@@ -123,10 +124,12 @@ def fix_sectors(obj):
 
     return obj
 
+
 def fix_attendees(obj):
     if obj.get("attendees"):
         obj["attendees"] = [k for k in obj["attendees"] if k.strip()]
     return obj
+
 
 def fix_origin_website(obj):
     replaced = {
@@ -170,8 +173,9 @@ def fix_content_types(obj):
 # def fix_relevance(obj):
 #     if 'relevance' in obj and not obj['relevance']:
 
+
 def fix_publishing_date(obj):
-    """ fix objects with publication_date(effective) being after expiration date(expires) """
+    """fix objects with publication_date(effective) being after expiration date(expires)"""
     if obj.get("effective") and obj.get("expires"):
         expiration_date = datetime.strptime(obj["expires"], "%Y-%m-%dT%H:%M:%S")
         publication_date = datetime.strptime(obj["effective"], "%Y-%m-%dT%H:%M:%S")
@@ -244,6 +248,7 @@ def main_single_file():
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
+
 def main():
     # Read the folder name from command line arguments
     if len(sys.argv) != 2:
@@ -282,7 +287,9 @@ def main():
 
                 # Ensure the file contains an object
                 if not isinstance(data, dict):
-                    print(f"Skipping file '{filename}': JSON file must contain a single object.")
+                    print(
+                        f"Skipping file '{filename}': JSON file must contain a single object."
+                    )
                     continue
 
                 # Apply each fixer to the object
@@ -296,11 +303,17 @@ def main():
                 print(f"File '{filename}' has been processed successfully.")
 
             except json.JSONDecodeError:
-                import pdb; pdb.set_trace()
+                import pdb
+
+                pdb.set_trace()
                 print(f"Error: File '{filename}' is not a valid JSON file.")
             except Exception as e:
-                import pdb; pdb.set_trace()
-                print(f"An unexpected error occurred while processing '{filename}': {e}")
+                import pdb
+
+                pdb.set_trace()
+                print(
+                    f"An unexpected error occurred while processing '{filename}': {e}"
+                )
 
         end_time = time.time()  # End the timer
         duration = end_time - start_time
@@ -308,6 +321,7 @@ def main():
 
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
 
 if __name__ == "__main__":
     main()
