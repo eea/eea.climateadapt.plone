@@ -31,6 +31,7 @@ def fix_missing_field_values(obj):
         "overview_app_ecde_identifier",
         "subsite_css_class",
         "event_url",
+        "title",
     ]
     for field in fields:
         if field in obj and not obj[field]:
