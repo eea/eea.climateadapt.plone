@@ -141,15 +141,17 @@
   <browser:page
     for="*"
     name="portal_tabs_view"
-    layer="plone.restapi.interfaces.IPloneRestapiLayer"
     class=".navigation.CustomCatalogNavigationTabs"
     permission="zope.Public"
     allowed_attributes="topLevelTabs"
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
   />
-    <!-- layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
-    <!-- layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer" -->
-    <!-- layer="plone.restapi.interfaces.IPloneRestapiLayer" -->
-    <!-- for="plone.dexterity.interfaces.IDexterityContent" -->
+
+  <!-- layer="plone.volto.interfaces.IPloneVoltoCoreLayer" -->
+  <!-- layer="plone.restapi.interfaces.IPloneRestapiLayer" -->
+  <!-- layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!-- layer="plone.restapi.interfaces.IPloneRestapiLayer" -->
+  <!-- for="plone.dexterity.interfaces.IDexterityContent" -->
 
   <adapter
     factory=".navigation.Navigation"

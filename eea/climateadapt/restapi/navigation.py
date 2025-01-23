@@ -4,15 +4,16 @@ from urllib.parse import urlparse
 from Acquisition import aq_inner
 from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
-from plone.restapi.interfaces import IExpandableElement, IPloneRestapiLayer
+from plone.volto.interfaces import IPloneVoltoCoreLayer
+from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.services.navigation.get import Navigation as BaseNavigation
-from plone.restapi.services.navigation.get import \
-    NavigationGet as BaseNavigationGet
+from plone.restapi.services.navigation.get import NavigationGet as BaseNavigationGet
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
-from Products.CMFPlone.browser.navigation import \
-    CatalogNavigationTabs as BaseCatalogNavigationTabs
+from Products.CMFPlone.browser.navigation import (
+    CatalogNavigationTabs as BaseCatalogNavigationTabs,
+)
 from Products.CMFPlone.browser.navigation import get_id, get_view_url
 from Products.CMFPlone.utils import safe_unicode
 from zope.component import adapter, getMultiAdapter, getUtility
@@ -31,7 +32,7 @@ def is_outside_mission(context):
     return True
 
 
-class ICCARestapiLayer(IPloneRestapiLayer):
+class ICCARestapiLayer(IPloneVoltoCoreLayer):
     """Marker interface that defines a browser layer."""
 
 
@@ -49,8 +50,7 @@ class CustomCatalogNavigationTabs(BaseCatalogNavigationTabs):
         member = mtool.getAuthenticatedMember().id
 
         portal_properties = getToolByName(context, "portal_properties")
-        self.navtree_properties = getattr(
-            portal_properties, "navtree_properties")
+        self.navtree_properties = getattr(portal_properties, "navtree_properties")
         self.site_properties = getattr(portal_properties, "site_properties")
         self.portal_catalog = getToolByName(context, "portal_catalog")
 
@@ -130,8 +130,7 @@ class Navigation(BaseNavigation):
         else:
             self.depth = 1
 
-        result = {"navigation": {
-            "@id": self.context.absolute_url() + "/@navigation"}}
+        result = {"navigation": {"@id": self.context.absolute_url() + "/@navigation"}}
         if not expand:
             return result
 
@@ -158,8 +157,7 @@ class Navigation(BaseNavigation):
                 entry["review_state"] = None
 
             if "title" not in entry:
-                entry["title"] = tab.get("name") or tab.get(
-                    "description") or tab["id"]
+                entry["title"] = tab.get("name") or tab.get("description") or tab["id"]
             else:
                 # translate Home tab
                 entry["title"] = translate(
@@ -184,19 +182,17 @@ class Navigation(BaseNavigation):
             query["is_folderish"] = True
 
         if self.settings["filter_on_workflow"]:
-            query["review_state"] = list(
-                self.settings["workflow_states_to_show"] or ())
+            query["review_state"] = list(self.settings["workflow_states_to_show"] or ())
 
         if not self.settings["show_excluded_items"]:
             query["exclude_from_nav"] = False
 
-        context_path = "/".join(self.context.getPhysicalPath())
+        # context_path = "/".join(self.context.getPhysicalPath())
         portal_catalog = getToolByName(self.context, "portal_catalog")
         brains = portal_catalog.searchResults(**query)
 
         registry = getUtility(IRegistry)
-        types_using_view = registry.get(
-            "plone.types_use_view_action_in_listings", [])
+        types_using_view = registry.get("plone.types_use_view_action_in_listings", [])
 
         for brain in brains:
             brain_path = brain.getPath()
