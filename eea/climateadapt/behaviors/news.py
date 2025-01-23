@@ -3,6 +3,7 @@ import json
 from pkg_resources import resource_filename
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
+from plone.namedfile import field as namedfile
 from plone.schema import JSONField
 from zope.interface import provider
 from zope.schema import URI
@@ -34,5 +35,11 @@ class IMainNews(IBlocks):
 
     remoteUrl = URI(
         title=_("Weblink for further reading"),
+        required=False,
+    )
+
+    promotional_image = namedfile.NamedBlobImage(
+        title=(u"Promotional image"),
+        description=(u"This image will not be directly exposed, but may be used by EEA staff to promote this news item."),
         required=False,
     )

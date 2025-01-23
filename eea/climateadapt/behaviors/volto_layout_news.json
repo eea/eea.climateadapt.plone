@@ -34,6 +34,14 @@
                     }
                 },
                 {
+                    "@id": "e726df31-1528-4688-8048-86836f274bc0",
+                    "field": {
+                      "id": "promotional_image",
+                      "title": "Promotional image",
+                      "widget": "image"
+                    }
+                },
+                {
                     "@id": "13e4cf1c-767c-4a92-824e-61bb4ade8643",
                     "field": {
                         "id": "image",
