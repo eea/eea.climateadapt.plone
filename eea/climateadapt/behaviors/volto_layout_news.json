@@ -40,22 +40,6 @@
                       "title": "Promotional image",
                       "widget": "image"
                     }
-                },
-                {
-                    "@id": "13e4cf1c-767c-4a92-824e-61bb4ade8643",
-                    "field": {
-                        "id": "image",
-                        "title": "Lead Image",
-                        "widget": "image"
-                    }
-                },
-                {
-                    "@id": "20ef2142-9671-4b57-bd49-20dd6d09b5a1",
-                    "field": {
-                        "id": "image_caption",
-                        "title": "Lead Image Caption",
-                        "widget": "string"
-                    }
                 }
             ],
             "variation": "default"
