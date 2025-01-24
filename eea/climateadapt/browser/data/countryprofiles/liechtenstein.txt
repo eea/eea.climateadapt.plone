@@ -1,0 +1,136 @@
+<div style="margin:30px;margin-right: 10px;" class="alert alert-warning alert-dismissable alert-redirect" role="alert">
+  <p>
+The information presented in these pages is based on the 2019 voluntary reporting of Liechtenstein, in line with the ''Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change'.
+</p>
+
+  
+  
+</div>
+
+<div class="sweet-tabs">
+<ul class="nav nav-tabs">
+<li class="active"><a href="#1576-0" data-toggle="tab">Summary</a></li>
+<li class=" "><a href="#1576-1" data-toggle="tab">Policy &amp; legal framework</a></li>
+<li class=" "><a href="#1576-2" data-toggle="tab">Sectors &amp; actions</a></li>
+<li class=" "><a href="#1576-3" data-toggle="tab">Assessments</a></li>
+<li class=" "><a href="#1576-4" data-toggle="tab">Engaging stakeholders</a></li>
+<li class=" "><a href="#1576-5" data-toggle="tab">Contact</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="1576-0">
+<table class="listing" style="width: 648px;" summary="">
+<thead>
+<tr>
+<th style="width: 236px;">Item</th>
+<th style="width: 201px;">Status</th>
+<th style="width: 130px;">Links</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="width: 236px;">National adaptation strategy</td>
+<td style="width: 201px;">Adopted</td>
+<td style="width: 130px;"><a href="https://www.llv.li/files/au/anpassungstrategieklimawandel-li.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.llv.li/files/au/anpassungstrategieklimawandel-li.pdf">Adaptation Strategy to Climate Change in Liechtenstein</a></td>
+</tr>
+<tr class="odd">
+<td style="width: 236px;">National adaptation plan</td>
+<td style="width: 201px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr class="odd">
+<td style="width: 236px;">Impacts, vulnerability and adaptation assessments</td>
+<td style="width: 201px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr class="odd">
+<td style="width: 236px;">Research programs</td>
+<td style="width: 201px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr class="odd">
+<td style="width: 236px;">Climate services / Met Office</td>
+<td style="width: 201px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr class="odd">
+<td style="width: 236px;">Web portal</td>
+<td style="width: 201px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr class="odd">
+<td style="width: 236px;">Monitoring, Indicators, Methodologies</td>
+<td style="width: 201px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr class="odd">
+<td style="width: 236px;">Training and education resources</td>
+<td style="width: 201px;"></td>
+<td style="width: 130px;"></td>
+</tr>
+<tr class="odd">
+<td style="width: 236px;">National Communication to UNFCCC</td>
+<td style="width: 201px;">
+<ul>
+<li>Last National Communication Submitted</li>
+</ul>
+</td>
+<td style="width: 130px;">
+<ul>
+<li><a href="http://unfccc.int/files/national_reports/annex_i_natcom_/application/pdf/8509731_liechtenstein-nc7-br3-1-nc7_br3_lie_2018.pdf" data-linktype="external" data-val="http://unfccc.int/files/national_reports/annex_i_natcom_/application/pdf/8509731_liechtenstein-nc7-br3-1-nc7_br3_lie_2018.pdf">UNFCCC NC7</a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane  " id="1576-1">
+<div>
+<p align="left"><strong>National Adaptation Strategy</strong></p>
+<p align="left">The adaptation strategy focuses on the scope of responsibility and consists of two parts: an adaptation strategy and an action plan. Key elements of the adaptation strategy are fundamental objectives and principles of adaptation, crucial common challenges for adaptation and adaptation strategies for the sectors most affected by climate change. The main affected sectors are water management, natural hazards prevention, forestry, agriculture, energy, biodiversity management, health, tourism and spatial planning. The adaptation strategy will be available by autumn 2014. The action plan, which is scheduled for the end of 2014, will determine precise adaptation measures.</p>
+</div>
+</div>
+<div class="tab-pane  " id="1576-2">
+<div>
+<p align="left">Based on the previous findings and within Liechtenstein's Adaptation strategy several sectors have been identified.</p>
+<p>The priority sectors are, according to the National Adaptation Strategy: water management, natural hazards prevention, forestry, agriculture, energy, biodiversity management, health, tourism and spatial development.</p>
+</div>
+</div>
+<div class="tab-pane  " id="1576-3">
+<div>
+<h4>Vulnerability assessments</h4>
+<p>It is difficult to transfer the consequences of global climate warming calculated on the basis of models to the spatial scale of Liechtenstein. The available climate models are not yet able to predict detailed regional consequences. Overall, the following general effects can be expected as a consequence of a further increase of the CO2 concentration and the associated rise in temperature and reduction of permafrost:</p>
+<p> </p>
+<p><strong>Health: </strong>The increase of heat waves intensities in combination with high tropospheric ozone concentrations represents the greatest risk that climate change poses to people's health. Another important health risk of climate change is the occurrence of vector-borne diseases. There is still a great deal of uncertainty as to what future developments will be.</p>
+<p><strong>Ecosystems:</strong> Warming changes the composition of forest vegetation. Deciduous trees may become more important than today. Additional weather instabilities (e.g., storms, avalanches) may have further negative effects on forest vegetation.</p>
+<p><strong>Water cycles and soil:</strong> The increasing weather instabilities may lead to floods in the winter and droughts in the summer. A great danger in this regard exists in the narrow Alpine valleys (mountain streams), where various protective measures (e.g., rock fall barriers and water course corrections) are necessary.</p>
+<p><strong>Tourism:</strong> Within the next decades Liechtenstein's tourism sector will have to deal with great challenges caused by climate change related developments in Liechtenstein's ecosystems. Especially the winter tourism sector will be hit by higher temperatures as the rise of the freezing level will lead to higher snow lines.</p>
+<p><strong>Other economic sectors: </strong>Global climate warming will affect further economic sectors in Liechtenstein. Because of the processes described above, agriculture and forestry will be affected directly. A rise in temperature will have a negative effect on the productivity of grain cultivation in the long term (Fuhrer 2003). The expected increase in elevation of the snow and permafrost boundaries and increasing weather instability also have an effect on the important recreation area of Malbun and Steg. The international engagement of the insurance sector will likely suffer the most severe consequences from an increase in the probability of losses.</p>
+<p> </p>
+<p><strong>Adaptation</strong>: It is already obvious that certain climate change related consequences will become irreversible. Adaptation deals with the question of how these future threats could be addressed and how potential future damages can be limited or even avoided.</p>
+<p>·          Natural hazard: Liechtenstein has established so called "Geological Risk Maps" with a special focus on residential areas. These maps provide regional information on the specific risks regarding avalanches, rock- and landslides and flooding.</p>
+<p>·          Agriculture: Identified adaptation measures are an increased use of appropriate corn provenances that have already anticipated future conditions of the changing environment. However, the use of genetically modified crops is not foreseen. The irrigation of agricultural fields will increasingly be used thereby causing conflicts with other public interests, especially during longer drought periods.</p>
+<p>·          Forestry: The increase of drought periods with consequential damages caused by insects, pathogens (viruses, bacteria, fungi) fire or storms will lead to a decrease of the forests protection abilities in Liechtenstein. Adaptation measures that address the problems of these projected situations and already executed are the conversion of spruce and fir stocks into mixed deciduous and coniferous forests.</p>
+<p>·          Tourism: Further examinations have to be concluded within the next years. The production of artificial snow, as currently practiced, is not considered to be a sustainable solution. Nevertheless, various municipalities and institutions have introduced new offerings for winter and summer tourism, in order to counter potential revenue losses. The focus is on strategies to promote "gentle tourism".</p>
+</div>
+</div>
+<div class="tab-pane  " id="1576-4">
+<div>
+<p align="left"><strong>Project "C3-Alps"</strong></p>
+<p align="left">C3-Alps is a transnational capitalisation project. The C3-Alps initiative is conducted by a transnational consortium of 17 partners from all Alpine countries. The partnership combines authorities responsible for climate adaptation policies on national and regional levels and expert institutions that support national and European adaptation strategies. C3-Alps is coordinated by the Environment Agency Austria and is co-funded by the <a href="http://www.alpine-space.eu/" rel="noopener" target="_blank">Alpine Space programme</a>, through the European Regional Development Fund– European Territorial Cooperation 2007-2013. The project's runtime will last from January 2012 to December 2014.</p>
+<p>Within this project (2012-2014), conducted by the Office of Environment, Liechtenstein assesses climate change impacts and vulnerabilities of Liechtenstein and identifies the need for adaptation action. Adaptation options will be discussed and assessed as well as strategies drafted.<br />In a second stage the action plan is developed with input from all the parties and stakeholders involved.</p>
+</div></div>
+<div class="tab-pane  " id="1576-5">
+<div>
+<p><strong>AMT FÜR UMWELT</strong><strong>/ OFFICE OF ENVIRONMENT </strong>  <br />Stabsstelle Internationales und Klima / Staff Unit International Affairs and Climate</p>
+<p>National Focal Point</p>
+<p>Heike Summer</p>
+<p>Gerberweg 5 / Postfach 684 / P. O. Box 684, 9490 Vaduz <br /><br />Tel. +423 / 236 61 96</p>
+<p>Mail <a href="mailto:heike.summer@llv.li">heike.summer@llv.li </a>   </p>
+<p>Website <a href="http://www.au.llv.li">www.au.llv.li</a> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+</div>
+</div>
+</div>
+</div>
