@@ -1070,12 +1070,12 @@
   <!--   permission="cmf.ManagePortal" -->
   <!-- /> -->
   <!---->
-  <!-- <browser:page -->
-  <!--   name="countries-metadata-extract" -->
-  <!--   for="*" -->
-  <!--   class=".countries.CountriesMetadataExtract" -->
-  <!--   permission="zope2.View" -->
-  <!-- /> -->
+  <browser:page
+    name="countries-metadata-extract"
+    for="*"
+    class=".countries.CountriesMetadataExtract"
+    permission="zope2.View"
+  />
 
   <!-- -->
   <!-- <browser:page -->
