@@ -3,6 +3,7 @@ from collective.exportimport.export_content import ExportContent
 from collective.exportimport.import_content import ImportContent
 from zope.interface import directlyProvidedBy
 
+from plone.restapi.interfaces import IJsonCompatible
 from plone.dexterity.utils import resolveDottedName
 from zope.interface import alsoProvides
 from eea.climateadapt.interfaces import (
@@ -11,6 +12,12 @@ from eea.climateadapt.interfaces import (
     IBalticRegionMarker,
     ICCACountry,
 )
+from zope.annotation.interfaces import IAnnotations
+
+ANNOTATIONS_TO_EXPORT = [
+    "",
+]
+ANNOTATIONS_KEY = "exportimport.annotations"
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +33,7 @@ MARKER_INTERFACES_KEY = "exportimport.marker_interfaces"
 class CustomExportContent(ExportContent):
     def global_dict_hook(self, item, obj):
         item = self.export_marker_interfaces(item, obj)
+        item = self.export_annotations(item, obj)
         return item
 
     def export_marker_interfaces(self, item, obj):
@@ -35,8 +43,29 @@ class CustomExportContent(ExportContent):
             item[MARKER_INTERFACES_KEY] = interfaces
         return item
 
+    def export_annotations(self, item, obj):
+        results = {}
+        annotations = IAnnotations(obj)
+        for key in ANNOTATIONS_TO_EXPORT:
+            data = annotations.get(key)
+            if data:
+                results[key] = IJsonCompatible(data, None)
+        if results:
+            item[ANNOTATIONS_KEY] = results
+        return item
+
 
 class CustomImportContent(ImportContent):
+    def global_obj_hook(self, obj, item):
+        item = self.import_annotations(obj, item)
+        return item
+
+    def import_annotations(self, obj, item):
+        annotations = IAnnotations(obj)
+        for key in item.get(ANNOTATIONS_KEY, []):
+            annotations[key] = item[ANNOTATIONS_KEY][key]
+        return item
+
     def global_obj_hook_before_deserializing(self, obj, item):
         """Apply marker interfaces before deserializing."""
         for iface_name in item.pop(MARKER_INTERFACES_KEY, []):
