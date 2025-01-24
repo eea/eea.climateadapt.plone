@@ -9,6 +9,7 @@ from eea.climateadapt.interfaces import (
     ITransnationalRegionMarker,
     IMainTransnationalRegionMarker,
     IBalticRegionMarker,
+    ICCACountry,
 )
 
 logger = logging.getLogger(__name__)
@@ -17,6 +18,7 @@ MARKER_INTERFACES_TO_EXPORT = [
     ITransnationalRegionMarker.__identifier__,
     IBalticRegionMarker.__identifier__,
     IMainTransnationalRegionMarker.__identifier__,
+    ICCACountry.identifier__,
 ]
 MARKER_INTERFACES_KEY = "exportimport.marker_interfaces"
 
