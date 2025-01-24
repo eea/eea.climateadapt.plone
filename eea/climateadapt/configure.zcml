@@ -50,8 +50,7 @@
   <!-- <include package=".sat" /> -->
   <!-- <include package="._importer" /> -->
   <!-- <include package=".upgrades" /> -->
-  <include
-    package=".restapi" />
+  <include package=".restapi" />
   <include package=".behaviors" />
   <!-- <include package=".translation" /> -->
   <!-- <include package=".migration" /> -->
@@ -576,5 +575,17 @@
   />
 
   <include file="./broken_links.zcml" />
+
+  <utility
+    name="eea.climateadapt.element_types_vocabulary"
+    component=".extra_vocabulary.ElementsVocabularyFactory" />
+  <utility
+    name="eea.climateadapt.search_types_vocabulary"
+    component=".extra_vocabulary.SearchTypesVocabularyFactory" />
+  <utility
+    name="eea.climateadapt.regions"
+    component=".extra_vocabulary.regions_vocabulary" />
+  <utility name="eea.climateadapt.bioregions"
+    component=".extra_vocabulary.bioregions_vocab_factory" />
 
 </configure>

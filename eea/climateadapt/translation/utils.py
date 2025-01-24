@@ -1,25 +1,28 @@
 import json
-import urllib.request, urllib.parse, urllib.error
+import urllib.request
+import urllib.parse
+import urllib.error
 import logging
 from datetime import date
 
-# from collective.cover.tiles.richtext import RichTextTile
 from DateTime import DateTime
 from plone import api
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.value import RichTextValue
 from plone.behavior.interfaces import IBehaviorAssignable
-# from plone.formwidget.geolocation.geolocation import Geolocation
+
 from plone.namedfile.file import NamedBlobFile, NamedBlobImage, NamedFile, NamedImage
 from Products.CMFCore.utils import getToolByName
 from z3c.relationfield.relation import RelationValue
 from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
-from eea.climateadapt.tiles.richtext import RichTextWithTitle
-# from eea.climateadapt.translation import translate_one_text_to_translation_storage
-
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
+
+# from collective.cover.tiles.richtext import RichTextTile
+# from plone.formwidget.geolocation.geolocation import Geolocation
+# from eea.climateadapt.tiles.richtext import RichTextWithTitle
+# from eea.climateadapt.translation import translate_one_text_to_translation_storage
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -63,8 +66,7 @@ def translated_url(context, url, current_lang):
         return relative_path
 
     if relative_path_split[0] == "en":
-        new_path = "/{}/{}".format(current_lang,
-                                   "/".join(relative_path_split[1:]))
+        new_path = "/{}/{}".format(current_lang, "/".join(relative_path_split[1:]))
 
         return new_path
 
@@ -163,8 +165,7 @@ class TranslationUtilsMixin(object):
 def get_current_language(context, request):
     try:
         context = context.aq_inner
-        portal_state = getMultiAdapter(
-            (context, request), name="plone_portal_state")
+        portal_state = getMultiAdapter((context, request), name="plone_portal_state")
         return portal_state.language()
     except Exception:
         return "en"
@@ -180,9 +181,10 @@ def translate_text(context, request, text, domain="eea.climateadapt", language=N
 
 def get_site_languages():
     try:
-        languages = (
-            list(TranslationManager(api.portal.get().restrictedTraverse("en"))
-            .get_translations().keys())
+        languages = list(
+            TranslationManager(api.portal.get().restrictedTraverse("en"))
+            .get_translations()
+            .keys()
         )
         return languages
     except Exception:
@@ -259,8 +261,7 @@ def is_json(input):
 
 def get_object_fields_values(obj):
     # TODO: perhaps a list by each portal_type
-    tile_fields = ["title", "text", "description",
-                   "tile_title", "footer", "alt_text"]
+    tile_fields = ["title", "text", "description", "tile_title", "footer", "alt_text"]
 
     data = {
         "portal_type": obj.portal_type,

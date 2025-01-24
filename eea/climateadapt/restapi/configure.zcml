@@ -188,7 +188,11 @@
   <!--     /> -->
 
   <adapter factory=".countryprofile.CountryProfile" name="countryprofile" />
-  <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions" />
+  <!-- <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions" /> -->
+  <subscriber
+    factory=".transnationalregions.TransnationRegionSelectSerializationTransformer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
 
   <subscriber
     factory=".blocks.ResolveUIDDeserializer"
