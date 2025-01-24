@@ -10,6 +10,7 @@ import xlsxwriter
 from BeautifulSoup import BeautifulSoup
 from DateTime import DateTime
 from plone import api
+from plone.api.content import get_state
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemataForType
 from plone.restapi.behaviors import IBlocks
@@ -20,8 +21,6 @@ from zope.annotation.interfaces import IAnnotations
 
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from eea.climateadapt.restapi.slate import iterate_children
-
-# from plone.api.content import get_state
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -107,7 +106,7 @@ def check_link_status(link):
         logger.warning("Now checking: %s", link)
 
         try:
-            resp = requests.head(link, timeout=5, allow_redirects=True)
+            resp = requests.head(link, timeout=30, allow_redirects=True)
             if resp.status_code == 404:
                 return {"status": "NotFound", "url": link}
             # requests.head(link, timeout=5, allow_redirects=True)
@@ -335,6 +334,8 @@ def recursively_extract_links(site):
     logger.info("Got %s objects" % len(brains))
 
     for b in brains:
+        if b.review_state != "published":
+            continue
         obj = b.getObject()
         path = obj.getPhysicalPath()
 
@@ -418,6 +419,7 @@ class BrokenLinksService(Service):
                 # except:
                 #     continue
                 # state = get_state(obj)
+                # # TODO: continue here
                 state = None
                 if state not in ["private", "archived"]:
                     if "climate-adapt.eea" in info["url"]:
@@ -425,13 +427,15 @@ class BrokenLinksService(Service):
                     else:
                         item["state"] = "external"
 
-                    item["date"] = date.Date() if isinstance(date, DateTime) else date
+                    item["date"] = date.Date() if isinstance(
+                        date, DateTime) else date
                     if isinstance(date, str) and date == "pre_nov7_data":
                         continue
 
                     item["url"] = info["url"]
                     item["status"] = info["status"]
-                    item["object_url"] = info["object_url"].replace("/cca/", "/")
+                    item["object_url"] = info["object_url"].replace(
+                        "/cca/", "/")
 
                     broken_links.append(item)
 
@@ -485,7 +489,8 @@ class BrokenLinksService(Service):
             "Content-Type",
             "application/vnd.openxmlformats-officedocument." "spreadsheetml.sheet",
         )
-        fname = "-".join(["Broken-Links", str(datetime.now().replace(microsecond=0))])
+        fname = "-".join(["Broken-Links",
+                         str(datetime.now().replace(microsecond=0))])
         sh("Content-Disposition", "attachment; filename=%s.xlsx" % fname)
 
         return xlsio.read()
