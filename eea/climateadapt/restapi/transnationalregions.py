@@ -11,6 +11,7 @@ from zope.publisher.interfaces.browser import IBrowserRequest
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
 from eea.climateadapt.translation.utils import get_current_language, translated_url
 
+
 logger = logging.getLogger("eea.climateadapt")
 
 regions = {

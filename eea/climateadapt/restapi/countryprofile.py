@@ -2,6 +2,7 @@ import logging
 
 import lxml.html
 from lxml import etree
+from pkg_resources import resource_filename
 from plone.restapi.interfaces import IExpandableElement
 from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
@@ -9,6 +10,32 @@ from zope.interface import Interface, implementer
 from eea.climateadapt.interfaces import ICCACountry
 
 logger = logging.getLogger("eea.climateadapt")
+
+
+def load_fixed_countries():
+    paths = [
+        resource_filename(
+            "eea.climateadapt.browser", "data/countryprofiles/turkey.txt"
+        ),
+        resource_filename(
+            "eea.climateadapt.browser", "data/countryprofiles/liechtenstein.txt"
+        ),
+        resource_filename(
+            "eea.climateadapt.browser", "data/countryprofiles/norway.txt"
+        ),
+    ]
+
+    res = {}
+    for path in paths:
+        with open(path) as fp:
+            data = fp.read()  # .decode("utf-8")
+            name = path.split("/")[-1].split(".")[0]
+            res[name] = data
+
+    return res
+
+
+fixed_data = load_fixed_countries()
 
 
 @implementer(IExpandableElement)
@@ -31,29 +58,18 @@ class CountryProfile(object):
             "message_top": None,
             "top_accordeon": None,
         }
-        if self.context.getId().lower() in ["turkiye", "turkey"]:
-            for annot in list(self.context.__annotations__):
-                if (
-                    "plone.tiles.data." in annot
-                    and "text" in self.context.__annotations__[annot]
-                    and self.context.__annotations__[annot]["title"] is None
-                ):
-                    html = self.context.__annotations__[annot]["text"].output
-        elif self.context.getId().lower() in ["norway", "liechtenstein"]:
-            for annot in list(self.context.__annotations__):
-                if (
-                    "plone.tiles.data." in annot
-                    and "text" in self.context.__annotations__[annot]
-                    and "main content" == self.context.__annotations__[annot]["title"]
-                ):
-                    html = self.context.__annotations__[annot]["text"].output
+        country_id = self.context.getId().lower()
+        if country_id in ["turkiye", "turkey"]:
+            html = fixed_data["turkey"]
+        elif country_id in fixed_data:
+            html = fixed_data[country_id]
         else:
             view = getMultiAdapter((self.context, self.request), name="country-profile")
             html = view().replace("<tal>", "").replace("</tal>", "")
 
         e = lxml.html.fromstring(html)
 
-        if self.context.getId().lower() in [
+        if country_id in [
             "turkiye",
             "turkey",
             "norway",
