@@ -44,4 +44,31 @@
       <element>sv</element>
     </value>
   </record>
+
+  <records interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema" prefix="plone">
+    <value key="allowed_sizes">
+      <element>big 80:80</element>
+      <element>fp-slide 1920:420</element>
+      <element>great 1200:65536</element>
+      <element>huge 1600:65536</element>
+      <element>icon 32:32</element>
+      <element>landscape 1370:771</element>
+      <element>large 800:65536</element>
+      <element>larger 1000:65536</element>
+      <element>listing 16:16</element>
+      <element>medium 60:60</element>
+      <element>mini 200:65536</element>
+      <element>panoramic 1920:1080</element>
+      <element>portrait 771:1370</element>
+      <element>preview 400:65536</element>
+      <element>print 2000:2000</element>
+      <element>small 48:48</element>
+      <element>teaser 600:65536</element>
+      <element>thumb 128:128</element>
+      <element>tile 64:64</element>
+      <element>tiny 24:24</element>
+      <element>wide 325:183</element>
+      <element>xlarge 950:950</element>
+    </value>
+  </records>
 </registry>
