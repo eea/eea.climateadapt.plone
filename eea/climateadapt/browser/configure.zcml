@@ -30,7 +30,7 @@
     for="*"
     class=".migrate.MigrateAbsoluteURLs"
     permission="cmf.ManagePortal"
-    />
+  />
 
   <browser:resourceDirectory
     name="eea.climateadapt"
@@ -914,21 +914,20 @@
   <!--   permission="zope2.View" -->
   <!-- /> -->
   <!---->
-  <!-- <browser:page -->
-  <!--   name="country-profile" -->
-  <!--   for="eea.climateadapt.interfaces.ICCACountry" -->
-  <!--   class=".countries.CountryProfileData" -->
-  <!--   template="pt/country-profile.pt" -->
-  <!--   permission="zope2.View" -->
-  <!-- /> -->
-  <!---->
-  <!-- <browser:page -->
-  <!--   name="country-profile-raw" -->
-  <!--   for="eea.climateadapt.interfaces.ICCACountry" -->
-  <!--   class=".countries.CountryProfileDataRaw" -->
-  <!--   template="pt/country-profile-raw.pt" -->
-  <!--   permission="zope2.View" -->
-  <!-- /> -->
+  <browser:page
+    name="country-profile"
+    for="eea.climateadapt.interfaces.ICCACountry"
+    class=".countries.CountryProfileData"
+    template="pt/country-profile.pt"
+    permission="zope2.View"
+  />
+  <browser:page
+    name="country-profile-raw"
+    for="eea.climateadapt.interfaces.ICCACountry"
+    class=".countries.CountryProfileDataRaw"
+    template="pt/country-profile-raw.pt"
+    permission="zope2.View"
+  />
   <!---->
   <!-- Tile helpers -->
 
