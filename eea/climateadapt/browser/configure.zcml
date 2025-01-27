@@ -25,6 +25,27 @@
   <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
   <!-- /> -->
 
+  <configure
+    package="collective.exportimport">
+    <browser:page
+      name="export_content"
+      for="zope.interface.Interface"
+      class="eea.climateadapt.browser.exportimport.CustomExportContent"
+      template="templates/export_content.pt"
+      permission="cmf.ManagePortal"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
+    <browser:page
+      name="import_content"
+      for="zope.interface.Interface"
+      class="eea.climateadapt.browser.exportimport.CustomImportContent"
+      template="templates/import_content.pt"
+      permission="cmf.ManagePortal"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+  </configure>
+
   <browser:page
     name="migrate-absolute-urls"
     for="*"

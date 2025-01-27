@@ -5,6 +5,95 @@ import os
 import sys
 import time
 from typing import Callable, List
+import logging
+
+logger = logging.getLogger("fixer")
+
+
+def get_blocks(obj):
+    """get_blocks"""
+
+    blocks_layout = obj.get("blocks_layout", {})
+    order = blocks_layout.get("items", [])
+    blocks = obj.get("blocks", {})
+
+    out = []
+    for _id in order:
+        if _id not in blocks:
+            continue
+        out.append((_id, blocks[_id]))
+
+    return out
+
+
+class BlocksTraverser(object):
+    """BlocksTraverser"""
+
+    def __init__(self, context):
+        self.context = context
+
+    def __call__(self, visitor):
+        for _, block_value in get_blocks(self.context):
+            # if visitor(block_value):
+            #     self.context._p_changed = True
+
+            self.handle_subblocks(block_value, visitor)
+
+    def handle_subblocks(self, block_value, visitor):
+        """handle_subblocks"""
+
+        if (
+            "data" in block_value
+            and isinstance(block_value["data"], dict)
+            and "blocks" in block_value["data"]
+        ):
+            for block in list(block_value["data"]["blocks"].values()):
+                visitor(block)
+
+                self.handle_subblocks(block, visitor)
+
+        if "blocks" in block_value:
+            for block in list(block_value["blocks"].values()):
+                visitor(block)
+
+                self.handle_subblocks(block, visitor)
+
+        if "columns" in block_value:
+            for block in list(block_value["columns"]):
+                visitor(block)
+                self.handle_subblocks(block, visitor)
+
+
+cca_url = "https://climate-adapt.eea.europa.eu"
+
+href_url_fields = ["@id", "getURL"]
+
+
+def fix_url(value):
+    return value.replace(cca_url, "")
+
+
+def _fix_teaser_internal_link(block):
+    if block.get("@type") == "teaser":
+        if block.get("preview_image"):
+            block["preview_image"] = fix_url(block["preview_image"])
+
+        for href in block.get("href", []):
+            for name in href_url_fields:
+                base_id = href.get(name)
+                if base_id and cca_url in base_id:
+                    href[name] = fix_url(base_id)
+                    logger.info("Fixed teaser href url: (%s) %s", name, base_id)
+
+
+block_fixers = [_fix_teaser_internal_link]
+
+
+def traverse_blocks(obj):
+    traverser = BlocksTraverser(obj)
+    for visitor in block_fixers:
+        traverser(visitor)
+    return obj
 
 
 def fix_storage_type(obj):
@@ -210,6 +299,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_content_types,
     fix_attendees,
     fix_publishing_date,
+    traverse_blocks,
 ]
 
 
