@@ -7,29 +7,37 @@ from io import BytesIO as StringIO
 
 # from apiclient.discovery import build
 from DateTime import DateTime
+
 # from eea.climateadapt.scripts import get_plone_site
 # from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 from lxml.etree import fromstring
+
 # from oauth2client.service_account import ServiceAccountCredentials
 from pkg_resources import resource_filename
 from plone import api
 from plone.api import portal
 from plone.api.portal import get_tool, getSite
-from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
-                                                     RegistryEditForm)
+from plone.app.registry.browser.controlpanel import (
+    ControlPanelFormWrapper,
+    RegistryEditForm,
+)
+
 # from plone.app.widgets.dx import RelatedItemsWidget
 # from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.i18n.normalizer import idnormalizer
 from plone.indexer.interfaces import IIndexer
 from plone.memoize import view
+
 # from plone.registry.interfaces import IRegistry
 # from plone.tiles.interfaces import ITileDataManager
 from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
+
 # from html import unescape
 from z3c.form import button, form
+
 # from z3c.form.interfaces import IFieldWidget
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
@@ -42,8 +50,8 @@ from zope.site.hooks import getSite
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.blocks import BlocksTraverser, BlockType
-from eea.climateadapt.browser.fixblobs import (check_at_blobs,
-                                               check_dexterity_blobs)
+from eea.climateadapt.browser.fixblobs import check_at_blobs, check_dexterity_blobs
+
 # from eea.climateadapt.browser.fixblobs import (check_at_blobs,
 #                                                check_dexterity_blobs)
 from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
@@ -127,8 +135,7 @@ class IMainNavigationMenu(Interface):
 
 
 class MainNavigationMenuEdit(form.Form):
-    """ A page to edit the main site navigation menu
-    """
+    """A page to edit the main site navigation menu"""
 
     schema = IMainNavigationMenu
     ignoreContext = False
@@ -165,8 +172,7 @@ class MainNavigationMenuEdit(form.Form):
 
 
 class HealthNavigationMenuEdit(form.Form):
-    """ A page to edit the main site navigation menu
-    """
+    """A page to edit the main site navigation menu"""
 
     schema = IMainNavigationMenu
     ignoreContext = False
@@ -351,8 +357,7 @@ class SpecialTagsInterface(Interface):
 
 @implementer(SpecialTagsInterface)
 class SpecialTagsView(BrowserView):
-    """ Custom view for administration of special tags
-    """
+    """Custom view for administration of special tags"""
 
     def __call__(self):
         portal_state = getMultiAdapter(
@@ -389,8 +394,7 @@ class SpecialTagsView(BrowserView):
 
             if obj.special_tags:
                 if isinstance(obj.special_tags, list):
-                    obj.special_tags = [
-                        key for key in obj.special_tags if key != tag]
+                    obj.special_tags = [key for key in obj.special_tags if key != tag]
                 elif isinstance(obj.special_tags, tuple):
                     obj.special_tags = tuple(
                         key for key in obj.special_tags if key != tag
@@ -413,8 +417,7 @@ class SpecialTagsView(BrowserView):
 
             if obj.special_tags:
                 if isinstance(obj.special_tags, list):
-                    obj.special_tags = [
-                        key for key in obj.special_tags if key != tag]
+                    obj.special_tags = [key for key in obj.special_tags if key != tag]
                     obj.special_tags.append(newtag)
                 elif isinstance(obj.special_tags, tuple):
                     obj.special_tags = tuple(
@@ -446,8 +449,7 @@ class IAddKeywordForm(Interface):
         default=[],
         description=("Items related to the keyword:"),
         value_type=RelationChoice(
-            title=("Related"),
-            vocabulary="eea.climateadapt.cca_items"
+            title=("Related"), vocabulary="eea.climateadapt.cca_items"
         ),
         required=False,
     )
@@ -557,11 +559,9 @@ class KeywordsAdminView(BrowserView):
 
             if obj.keywords:
                 if isinstance(obj.keywords, list):
-                    obj.keywords = [
-                        key for key in obj.keywords if key != keyword]
+                    obj.keywords = [key for key in obj.keywords if key != keyword]
                 elif isinstance(obj.keywords, tuple):
-                    obj.keywords = tuple(
-                        key for key in obj.keywords if key != keyword)
+                    obj.keywords = tuple(key for key in obj.keywords if key != keyword)
                 obj.reindexObject()
                 obj._p_changed = True
 
@@ -585,12 +585,10 @@ class KeywordsAdminView(BrowserView):
 
             if obj.keywords:
                 if isinstance(obj.keywords, list):
-                    obj.keywords = [
-                        key for key in obj.keywords if key != keyword]
+                    obj.keywords = [key for key in obj.keywords if key != keyword]
                     obj.keywords.append(newkeyword)
                 elif isinstance(obj.keywords, tuple):
-                    obj.keywords = tuple(
-                        key for key in obj.keywords if key != keyword)
+                    obj.keywords = tuple(key for key in obj.keywords if key != keyword)
                     obj.keywords += (newkeyword,)
                 obj._p_changed = True
                 obj.reindexObject()
@@ -610,8 +608,7 @@ class KeywordObjects(BrowserView):
 
     def __call__(self):
         key = self.request.form["keyword"].decode("utf-8")
-        brains = self.context.portal_catalog.searchResults(
-            keywords=key, path="/cca/en")
+        brains = self.context.portal_catalog.searchResults(keywords=key, path="/cca/en")
 
         key_obj = [b.getURL() + "/edit" for b in brains]
 
@@ -677,8 +674,7 @@ def custom_report(analytics, view_id):
                             }
                         ],
                         "orderBys": [
-                            {"fieldName": "ga:totalEvents",
-                                "sortOrder": "DESCENDING"}
+                            {"fieldName": "ga:totalEvents", "sortOrder": "DESCENDING"}
                         ],
                         "dimensionFilterClauses": [
                             {
@@ -770,14 +766,6 @@ class ViewGoogleAnalyticsReport(BrowserView):
         site = portal.get()
 
         return str(site.__annotations__.get("google-analytics-cache-data", {}))
-
-
-class GoPDB(BrowserView):
-    def __call__(self):
-        import pdb
-
-        pdb.set_trace()
-        x = self.context.Creator()
 
 
 class GetBrokenCreationDates(BrowserView):
@@ -872,8 +860,7 @@ class GetBrokenCreationDates(BrowserView):
                 continue
 
             res.append(
-                (obj, creator, wf_creator, new_creator,
-                 creation_date, wf_creation_date)
+                (obj, creator, wf_creator, new_creator, creation_date, wf_creation_date)
             )
 
         return res
@@ -1097,8 +1084,7 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
     """AdapteCCA current case study fix import ids"""
 
     def __call__(self):
-        fpath = resource_filename(
-            "eea.climateadapt.browser", "data/cases_en_cdata.xml")
+        fpath = resource_filename("eea.climateadapt.browser", "data/cases_en_cdata.xml")
 
         s = open(fpath).read()
         e = fromstring(s)
@@ -1203,27 +1189,27 @@ class ExportDbItems(BrowserView):
                     line.append(_type.replace("eea.climateadapt.", ""))
                     line.append(brain.getURL())
                     # keywords
-                    temp = ''
+                    temp = ""
                     if brain.keywords:
-                        temp = ','.join(brain.keywords).encode('utf-8')
+                        temp = ",".join(brain.keywords).encode("utf-8")
                     line.append(temp)
 
                     obj = brain.getObject()
                     # sectors
-                    temp = ''
+                    temp = ""
                     if hasattr(obj, "sectors"):
-                        temp = ','.join(obj.sectors)
+                        temp = ",".join(obj.sectors)
                     line.append(temp)
                     # elements
-                    temp = ''
+                    temp = ""
                     if hasattr(obj, "elements"):
                         if obj.elements:
-                            temp = ','.join(obj.elements)
+                            temp = ",".join(obj.elements)
                     line.append(temp)
                     # impacts
-                    temp = ''
+                    temp = ""
                     if hasattr(obj, "climate_impacts"):
-                        temp = ','.join(obj.climate_impacts)
+                        temp = ",".join(obj.climate_impacts)
                     line.append(temp)
                     # searchable text
                     indexer = getMultiAdapter(
@@ -1232,10 +1218,10 @@ class ExportDbItems(BrowserView):
                     temp = indexer()
                     line.append(temp)
                     # websites
-                    temp = ''
+                    temp = ""
                     if hasattr(obj, "websites"):
                         if obj.websites is not None:
-                            temp = ','.join(obj.websites)
+                            temp = ",".join(obj.websites)
                     line.append(temp)
 
                     res.append(line)

@@ -6,6 +6,13 @@
   i18n_domain="eea.climateadapt"
 >
 
+  <browser:page
+    name="gopdb"
+    for="*"
+    class=".adminp6.GoPDB"
+    permission="cmf.ManagePortal"
+  />
+
   <!-- <include file="integration.zcml" /> -->
   <!-- <include file="admin.zcml" /> -->
   <!-- <include file="frontpage.zcml" /> -->
