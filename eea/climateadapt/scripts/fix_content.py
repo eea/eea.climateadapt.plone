@@ -316,7 +316,7 @@ def main():
                 pdb.set_trace()
                 print(f"Error: File '{filename}' is not a valid JSON file.")
             except Exception as e:
-                if filename != "errors.json":
+                if not filename.endswith("errors.json"):
                     import pdb
 
                     pdb.set_trace()
