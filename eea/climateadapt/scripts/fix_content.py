@@ -70,15 +70,24 @@ href_url_fields = ["@id", "getURL"]
 
 
 def fix_url(value):
-    return value.replace(cca_url, "")
+    if isinstance(value, list):
+        import pdb
+
+        pdb.set_trace()
+    else:
+        return value.replace(cca_url, "")
 
 
 def _fix_teaser_internal_link(block):
     if block.get("@type") == "teaser":
+        extras = []
         if block.get("preview_image"):
-            block["preview_image"] = fix_url(block["preview_image"])
+            if isinstance(block["preview_image"], str):
+                block["preview_image"] = fix_url(block["preview_image"])
+            else:
+                extras = block["preview_image"]
 
-        for href in block.get("href", []):
+        for href in block.get("href", []) + extras:
             for name in href_url_fields:
                 base_id = href.get(name)
                 if base_id and cca_url in base_id:
@@ -357,69 +366,72 @@ def main():
 
     start_time = time.time()  # Start the timer
 
-    try:
-        # Ensure the folder exists
-        if not os.path.isdir(foldername):
-            raise ValueError(f"'{foldername}' is not a valid folder.")
+    # Ensure the folder exists
+    if not os.path.isdir(foldername):
+        raise ValueError(f"'{foldername}' is not a valid folder.")
 
-        # Get all JSON files in the folder
-        json_files = [
-            os.path.join(foldername, file)
-            for file in os.listdir(foldername)
-            if file.endswith(".json")
-        ]
+    # Get all JSON files in the folder
+    json_files = [
+        os.path.join(foldername, file)
+        for file in os.listdir(foldername)
+        if file.endswith(".json")
+    ]
 
-        total_files = len(json_files)
+    total_files = len(json_files)
 
-        if total_files == 0:
-            print(f"No JSON files found in folder '{foldername}'.")
-            return
+    if total_files == 0:
+        print(f"No JSON files found in folder '{foldername}'.")
+        return
 
-        for index, filename in enumerate(json_files, start=1):
-            print(f"Processing file {index}/{total_files}: {filename}")
+    for index, filename in enumerate(json_files, start=1):
+        print(f"Processing file {index}/{total_files}: {filename}")
 
-            try:
-                # Open and load the JSON file
-                with open(filename, "r") as file:
-                    data = json.load(file)
+        # Open and load the JSON file
+        with open(filename, "r") as file:
+            data = json.load(file)
 
-                # Ensure the file contains an object
-                if not isinstance(data, dict):
-                    print(
-                        f"Skipping file '{filename}': JSON file must contain a single object."
-                    )
-                    continue
+        # Ensure the file contains an object
+        if not isinstance(data, dict):
+            print(
+                f"Skipping file '{filename}': JSON file must contain a single object."
+            )
+            continue
 
-                # Apply each fixer to the object
-                for fixer in fixers:
-                    data = fixer(data)
+        for fixer in fixers:
+            data = fixer(data)
 
-                # Write the fixed data back to the file
-                with open(filename, "w") as file:
-                    json.dump(data, file, indent=4)
+        # Write the fixed data back to the file
+        with open(filename, "w") as file:
+            json.dump(data, file, indent=4)
 
-                print(f"File '{filename}' has been processed successfully.")
+        print(f"File '{filename}' has been processed successfully.")
 
-            except json.JSONDecodeError:
-                import pdb
+        # try:
+        #
+        #     # Apply each fixer to the object
+        #     for fixer in fixers:
+        #         data = fixer(data)
+        # except json.JSONDecodeError:
+        #     import pdb
+        #
+        #     pdb.set_trace()
+        #     print(f"Error: File '{filename}' is not a valid JSON file.")
+        # except Exception as e:
+        #     if not filename.endswith("errors.json"):
+        #         import pdb
+        #
+        #         pdb.set_trace()
+        #         print(
+        #             f"An unexpected error occurred while processing '{filename}': {e}"
+        #         )
 
-                pdb.set_trace()
-                print(f"Error: File '{filename}' is not a valid JSON file.")
-            except Exception as e:
-                if not filename.endswith("errors.json"):
-                    import pdb
+    end_time = time.time()  # End the timer
+    duration = end_time - start_time
+    print(f"All files processed in {duration:.2f} seconds.")
 
-                    pdb.set_trace()
-                    print(
-                        f"An unexpected error occurred while processing '{filename}': {e}"
-                    )
-
-        end_time = time.time()  # End the timer
-        duration = end_time - start_time
-        print(f"All files processed in {duration:.2f} seconds.")
-
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+    # try:
+    # except Exception as e:
+    #     print(f"An unexpected error occurred: {e}")
 
 
 if __name__ == "__main__":
