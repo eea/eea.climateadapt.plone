@@ -201,9 +201,9 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                                "<th>" +
                                translate_text(
                                    self.context, self.request, "Indicator", 'eea.cca')+"</th>"
-                               "<th>" +
-                               translate_text(
-                                   self.context, self.request, "Zip download", 'eea.cca')+"</th>"
+                               #    "<th>" +
+                               #    translate_text(
+                               #        self.context, self.request, "Zip download", 'eea.cca')+"</th>"
                                "</tr>"
                                "</thead>"
                                "<tbody>")
@@ -227,10 +227,10 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                         indicator['cca_url']+unicode("\">") + \
                         indicator['cca_title'].decode(
                             'utf-8')+unicode("</a></td>")
-                    responseHtml += unicode("<td><a href=\"") + \
-                        indicator['zip_url']+unicode("\">") + \
-                        translate_text(self.context, self.request,
-                                       "Download", 'eea.cca')+unicode("</a></td>")
+                    # responseHtml += unicode("<td><a href=\"") + \
+                    #     indicator['zip_url']+unicode("\">") + \
+                    #     translate_text(self.context, self.request,
+                    #                    "Download", 'eea.cca')+unicode("</a></td>")
                     responseHtml += unicode("</tr>")
 
         return responseHtml + unicode("</tbody>")
