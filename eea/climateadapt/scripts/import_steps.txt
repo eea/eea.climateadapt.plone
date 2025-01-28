@@ -1,0 +1,9 @@
+- Export content from prod /@@export_content
+- Run the fix_content.py (15 min)
+- Replace urls
+- Import content types
+- enable addons: eea.climateadapt, eea.volto.policy, multilingual support, plone.restapi
+- enable behavior BLOCKS on LRF
+- Run the import /@@import_content (35-40 min)
+- reindex show_in_top_level
+- folders eu-policy, knowledge-1 retract->publish
