@@ -19,8 +19,8 @@
   <element value="view"/>
  </property>
  <property name="default_view_fallback">False</property>
- <property name="add_permission">collective.easyform.AddContent</property>
- <property name="klass">collective.easyform.content.EasyForm</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
+ <property name="klass">plone.dexterity.content.Container</property>
  <property name="behaviors">
   <element
      value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
@@ -32,7 +32,7 @@
   <element value="plone.shortname"/>
   <element value="volto.blocks"/>
  </property>
- <property name="schema">collective.easyform.interfaces.IEasyForm</property>
+ <property name="schema"></property>
  <property name="model_source"></property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>
