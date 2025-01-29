@@ -133,6 +133,8 @@ def fix_missing_field_values(obj):
         "subsite_css_class",
         "event_url",
         "title",
+        "long_description",
+        "acronym",
     ]
     for field in fields:
         if field in obj and not obj[field]:
