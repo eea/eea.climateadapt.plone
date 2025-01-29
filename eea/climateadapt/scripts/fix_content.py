@@ -135,6 +135,9 @@ def fix_missing_field_values(obj):
         "title",
         "long_description",
         "acronym",
+        "challenges",
+        "lead",
+        "partners",
     ]
     for field in fields:
         if field in obj and not obj[field]:
