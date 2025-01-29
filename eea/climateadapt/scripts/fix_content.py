@@ -1,5 +1,6 @@
 #!/bin/env python3
 from datetime import datetime
+import ast
 import json
 import os
 import sys
@@ -9,6 +10,8 @@ import logging
 
 logger = logging.getLogger("fixer")
 
+REPLACED_URL = 'http://10.50.5.50:8060/cca'
+REPLACE_WITH = 'https://climate-adapt-plone6.devel5cph.eea.europa.eu'
 
 def get_blocks(obj):
     """get_blocks"""
@@ -397,6 +400,10 @@ def main():
             )
             continue
 
+        if REPLACED_URL in str(data):
+            data_str = str(data).replace(REPLACED_URL, REPLACE_WITH)
+            data = ast.literal_eval(data_str)
+    
         for fixer in fixers:
             data = fixer(data)
 
