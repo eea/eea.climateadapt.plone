@@ -323,6 +323,10 @@ def is_volto_context(context):
 
 def sync_translation_state(trans_obj, en_obj):
     state = None
+    transitions = {
+        "published": "publish",
+        "archived": "archive",
+    }
 
     try:
         state = api.content.get_state(en_obj)
@@ -334,10 +338,11 @@ def sync_translation_state(trans_obj, en_obj):
         if api.content.get_state(trans_obj) != state:
             wftool = getToolByName(trans_obj, "portal_workflow")
             logger.info("%s %s", state, trans_obj.absolute_url())
-            if state == "published":
-                wftool.doActionFor(trans_obj, "publish")
-            elif state == "archived":
-                wftool.doActionFor(trans_obj, "archive")
+            if state in transitions:
+                try:
+                    wftool.doActionFor(trans_obj, transitions[state])
+                except WorkflowException:
+                    logger.warn("Could not sync state for object: %s", trans_obj)
 
     if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
         trans_obj.setEffectiveDate(en_obj.effective_date)
