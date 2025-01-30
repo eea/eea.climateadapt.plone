@@ -12,6 +12,7 @@ logger = logging.getLogger("fixer")
 
 REPLACED_URL = 'http://10.50.5.50:8060/cca'
 REPLACE_WITH = 'https://climate-adapt-plone6.devel5cph.eea.europa.eu'
+START_FROM = 23000
 
 def get_blocks(obj):
     """get_blocks"""
@@ -321,6 +322,7 @@ def fix_data_type(obj):
         "SCHRIFTSTÜCK": "DOCUMENT",
         "DOKUMENT": "DOCUMENT",
         "WERKZEUG": "TOOL",
+        "ORIENTACIONES": "GUIDANCE",
     }
     data_type = obj.get("data_type", None)
 
@@ -424,6 +426,9 @@ def main():
         return
 
     for index, filename in enumerate(json_files, start=1):
+        if index < START_FROM:
+            continue
+
         print(f"Processing file {index}/{total_files}: {filename}")
 
         # Open and load the JSON file
