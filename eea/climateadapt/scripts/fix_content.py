@@ -319,6 +319,8 @@ def fix_data_type(obj):
     replaced = {
         "DOCUMENTO": "DOCUMENT",
         "SCHRIFTSTÜCK": "DOCUMENT",
+        "DOKUMENT": "DOCUMENT",
+        "WERKZEUG": "TOOL",
     }
     data_type = obj.get("data_type", None)
 
