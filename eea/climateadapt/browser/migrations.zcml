@@ -21,6 +21,14 @@
     />
 
   <browser:page
+    name="migrate_country_uk"
+    for="*"
+    template="pt/migrate_country_uk.pt"
+    class=".migrate.CountryUK"
+    permission="cmf.ManagePortal"
+    />
+
+  <browser:page
     name="migrate_organisational"
     for="*"
     template="pt/migrate_empty.pt"

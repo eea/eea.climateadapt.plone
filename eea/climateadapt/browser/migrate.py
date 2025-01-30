@@ -165,6 +165,57 @@ class YearToDate:
         return res
 
 
+class CountryUK:
+    """Override to hide files and images in the related content viewlet"""
+
+    def list(self):
+        # overwrite = int(self.request.form.get('overwrite', 0))
+
+        catalog = api.portal.get_tool("portal_catalog")
+        res = []
+
+        i = 0
+        for _type in DB_ITEM_TYPES:
+            i += 1
+            if i % 100 == 0:
+                transaction.savepoint()
+
+            brains = catalog.searchResults(
+                {'portal_type': _type, 'path': '/cca'})
+
+            for brain in brains:
+                obj = brain.getObject()
+
+                # if brain.getURL() == 'http://localhost:8080/cca/en/metadata/projects/climate-water-spatial-planning-together':
+                #     import pdb
+                #     pdb.set_trace()
+                if hasattr(obj, "geochars") and obj.geochars:
+                    geochars_data = json.loads(obj.geochars)
+                    if 'countries' not in geochars_data['geoElements']:
+                        continue
+                    countries = geochars_data['geoElements']['countries']
+                    if 'UK' in countries:
+                        countries.remove('UK')
+                        if 'GB' not in countries:
+                            countries.append(u'GB')
+                        geochars_data['geoElements']['countries'] = countries
+                        obj.geochars = json.dumps(geochars_data).encode()
+                        obj._p_changed = True
+                        logger.info(
+                            "Migrated UK Countries for obj: %s", brain.getURL())
+
+                        res.append(
+                            {
+                                "title": obj.title,
+                                "id": brain.UID,
+                                "url": brain.getURL(),
+                                "countries": ', '.join(countries),
+                            }
+                        )
+
+        return res
+
+
 class HealthImpacts:
     """Migrate the health_impacts attribute from a simple string to a list"""
 
@@ -2317,7 +2368,7 @@ class RetagAO:
             "ecomic_aspects": "ECONOMICASP",
             "cost_benefit": "COSTBENEFIT",
             "r_u_potential": "RUPOTENTIAL",
-       }
+        }
 
         for row in reader:
             # import pdb; pdb.set_trace()
@@ -2341,7 +2392,7 @@ class RetagAO:
 
             obj = None
             brains = catalog.searchResults(
-                {'portal_type': ['eea.climateadapt.casestudy','eea.climateadapt.adaptationoption'], 'path': '/cca/en'})
+                {'portal_type': ['eea.climateadapt.casestudy', 'eea.climateadapt.adaptationoption'], 'path': '/cca/en'})
             for brain in brains:
                 if brain.getObject().title == item['title']:
                     obj = brain.getObject()
@@ -2367,14 +2418,14 @@ class RetagAO:
             logger.info("Retag elements for obj: %s",
                         obj.absolute_url())
 
-            languages = ['de', 'es', 'fr','it','pl']
+            languages = ['de', 'es', 'fr', 'it', 'pl']
             for language in languages:
-                languagePath = obj.absolute_url_path().replace("/en/","/"+language+"/")
+                languagePath = obj.absolute_url_path().replace("/en/", "/"+language+"/")
                 languageBrains = catalog.searchResults(
-                    {'portal_type': ['eea.climateadapt.casestudy','eea.climateadapt.adaptationoption'], 'path': "/cca"+languagePath})
+                    {'portal_type': ['eea.climateadapt.casestudy', 'eea.climateadapt.adaptationoption'], 'path': "/cca"+languagePath})
                 for languageBrain in languageBrains:
-                    languageObj = languageBrain.getObject();
-                    if languageObj.absolute_url_path()==languagePath:
+                    languageObj = languageBrain.getObject()
+                    if languageObj.absolute_url_path() == languagePath:
                         languageObj.elements = data
                         languageObj._p_changed = True
                         logger.info("Retag elements for obj language: %s",
