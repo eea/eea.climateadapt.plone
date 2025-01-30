@@ -302,19 +302,18 @@ def fix_publishing_date(obj):
     return obj
 
 _datatypes = [
-    ("DOCUMENT", _("Publications and reports")),
-    ("INFORMATIONSOURCE", _("Information portals")),
-    ("MAPGRAPHDATASET", _("Maps, graphs and datasets")),
-    ("INDICATOR", _("Indicators")),
-    ("GUIDANCE", _("Guidance")),
-    ("TOOL", _("Tools")),
-    ("RESEARCHPROJECT", _("Research and knowledge projects")),
-    ("MEASURE", _("Adaptation options")),
-    ("ACTION", _("Case studies")),
-    ("ORGANISATION", _("Organisations")),
-    # ("VIDEOS", "Videos"),
+    "DOCUMENT",
+    "INFORMATIONSOURCE",
+    "MAPGRAPHDATASET",
+    "INDICATOR",
+    "GUIDANCE",
+    "TOOL",
+    "RESEARCHPROJECT",
+    "MEASURE",
+    "ACTION",
+    "ORGANISATION",
+    # "VIDEOS",
 ]
-DATA_TYPES = [x[0] for x in _datatypes]
 
 def fix_data_type(obj):
     replaced = {
@@ -323,7 +322,7 @@ def fix_data_type(obj):
     }
     data_type = obj.get("data_type", None)
 
-    if data_type and data_type not in DATA_TYPES:
+    if data_type and data_type not in _datatypes:
         import pdb; pdb.set_trace()
         obj["data_type"] = replaced.get(data_type, data_type)
 
