@@ -336,6 +336,7 @@ def fix_data_type(obj):
         "STRUMENTO": "TOOL",
         "WYTYCZNE": "GUIDANCE",
         "ORGANIZACJA": "ORGANISATION",
+        "INFORMACJE TRYBUNAŁU": "INFORMATIONSOURCE",
     }
     data_type = obj.get("data_type", None)
 
