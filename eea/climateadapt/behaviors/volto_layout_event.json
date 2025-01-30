@@ -74,6 +74,14 @@
             }
           },
           {
+            "@id": "06ee37ec-75c9-46ca-ae83-9f4cdcacb9c4",
+            "field": {
+              "id": "timezone",
+              "title": "Timezone",
+              "widget": "choices"
+            }
+          },
+          {
             "@id": "41f92246-f3a9-44d5-b90d-8e8ac1867618",
             "field": {
               "id": "start",
@@ -87,14 +95,6 @@
               "id": "end",
               "title": "Event Ends",
               "widget": "datetime"
-            }
-          },
-          {
-            "@id": "06ee37ec-75c9-46ca-ae83-9f4cdcacb9c4",
-            "field": {
-              "id": "timezone",
-              "title": "Timezone",
-              "widget": "choices"
             }
           },
           {

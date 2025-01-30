@@ -69,19 +69,19 @@
                     }
                 },
                 {
-                    "@id": "5695d47c-ed32-4dad-83dc-ea6212551323",
-                    "field": {
-                        "id": "end",
-                        "title": "Event Ends",
-                        "widget": "datetime"
-                    }
-                },
-                {
                     "@id": "c56e5491-20e9-4102-8f7b-8396f8047224",
                     "field": {
                         "id": "timezone",
                         "title": "Timezone",
                         "widget": "choices"
+                    }
+                },
+                {
+                    "@id": "5695d47c-ed32-4dad-83dc-ea6212551323",
+                    "field": {
+                        "id": "end",
+                        "title": "Event Ends",
+                        "widget": "datetime"
                     }
                 },
                 {
