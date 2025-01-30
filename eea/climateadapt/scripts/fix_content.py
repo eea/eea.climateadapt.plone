@@ -323,7 +323,8 @@ def fix_data_type(obj):
     data_type = obj.get("data_type", None)
 
     if data_type and data_type not in _datatypes:
-        import pdb; pdb.set_trace()
+        if data_type not in replaced:
+            import pdb; pdb.set_trace()
         obj["data_type"] = replaced.get(data_type, data_type)
 
     return obj
