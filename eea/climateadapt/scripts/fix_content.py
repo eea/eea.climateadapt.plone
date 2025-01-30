@@ -301,7 +301,19 @@ def fix_publishing_date(obj):
 
     return obj
 
-from eea.climateadapt.vocabulary import _datatypes
+_datatypes = [
+    ("DOCUMENT", _("Publications and reports")),
+    ("INFORMATIONSOURCE", _("Information portals")),
+    ("MAPGRAPHDATASET", _("Maps, graphs and datasets")),
+    ("INDICATOR", _("Indicators")),
+    ("GUIDANCE", _("Guidance")),
+    ("TOOL", _("Tools")),
+    ("RESEARCHPROJECT", _("Research and knowledge projects")),
+    ("MEASURE", _("Adaptation options")),
+    ("ACTION", _("Case studies")),
+    ("ORGANISATION", _("Organisations")),
+    # ("VIDEOS", "Videos"),
+]
 DATA_TYPES = [x[0] for x in _datatypes]
 
 def fix_data_type(obj):
