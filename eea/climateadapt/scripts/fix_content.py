@@ -138,6 +138,8 @@ def fix_missing_field_values(obj):
         "challenges",
         "lead",
         "partners",
+        "objectives",
+        "category",
     ]
     for field in fields:
         if field in obj and not obj[field]:
@@ -299,6 +301,17 @@ def fix_publishing_date(obj):
 
     return obj
 
+def fix_data_type(obj):
+    replaced = {
+        "DOCUMENTO": "DOCUMENT",
+    }
+    data_type = obj.get("data_type", None)
+
+    if data_type:
+        import pdb; pdb.set_trace()
+        obj["data_type"] = replaced.get(data_type, data_type)
+
+    return obj
 
 fixers: List[Callable[[dict], dict]] = [
     fix_exclude_from_nav,
@@ -316,6 +329,7 @@ fixers: List[Callable[[dict], dict]] = [
     fix_content_types,
     fix_attendees,
     fix_publishing_date,
+    fix_data_type,
     traverse_blocks,
 ]
 
@@ -408,7 +422,7 @@ def main():
         if REPLACED_URL in str(data):
             data_str = str(data).replace(REPLACED_URL, REPLACE_WITH)
             data = ast.literal_eval(data_str)
-    
+
         for fixer in fixers:
             data = fixer(data)
 
