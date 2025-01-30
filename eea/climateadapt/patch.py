@@ -1,6 +1,7 @@
 from Missing import MV
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
+from plone.app.event.dx.behaviors import IEventBasic
 from plone.app.event.base import RET_MODE_ACCESSORS, get_events
 from plone.app.theming.transform import _Cache
 from plone.restapi.deserializer import json_body
@@ -16,10 +17,20 @@ from zope.site.hooks import getSite
 
 from eea.climateadapt.translation.utils import get_current_language
 
-# import pdb; pdb.set_trace()
+
 ILeadImage['image_caption'].title = unicode("Lead image copyright information")
-
-
+IEventBasic['start'].description = unicode(
+        "Date and Time, when the event begins. (When editing an event, "
+        "the displayed date and time here is adjusted to your local timezone. "
+        "Be careful, as changes may shift the event date and time if it was "
+        "originally set in a different timezone)"
+        )
+IEventBasic['end'].description = unicode(
+        "Date and Time, when the event ends. (When editing an event, "
+        "the displayed date and time here is adjusted to your local timezone. "
+        "Be careful, as changes may shift the event date and time if it was "
+        "originally set in a different timezone)"
+    )
 
 def getCache(settings):
     """The purpose of this is to include the current language in the cache key"""
