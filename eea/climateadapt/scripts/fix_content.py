@@ -12,7 +12,7 @@ logger = logging.getLogger("fixer")
 
 REPLACED_URL = 'http://10.50.5.50:8060/cca'
 REPLACE_WITH = 'https://climate-adapt-plone6.devel5cph.eea.europa.eu'
-START_FROM = 54308
+START_FROM = 54808
 
 def get_blocks(obj):
     """get_blocks"""
@@ -331,6 +331,7 @@ def fix_data_type(obj):
         "UN DOCUMENT": "DOCUMENT",
         "OUTIL": "TOOL",
         "ORIENTAMENTI": "GUIDANCE",
+        "INDICATORE": "INDICATOR",
     }
     data_type = obj.get("data_type", None)
 
