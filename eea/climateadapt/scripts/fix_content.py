@@ -301,13 +301,17 @@ def fix_publishing_date(obj):
 
     return obj
 
+from eea.climateadapt.vocabulary import _datatypes
+DATA_TYPES = [x[0] for x in _datatypes]
+
 def fix_data_type(obj):
     replaced = {
         "DOCUMENTO": "DOCUMENT",
+        "SCHRIFTSTÜCK": "DOCUMENT",
     }
     data_type = obj.get("data_type", None)
 
-    if data_type:
+    if data_type and data_type not in DATA_TYPES:
         import pdb; pdb.set_trace()
         obj["data_type"] = replaced.get(data_type, data_type)
 
