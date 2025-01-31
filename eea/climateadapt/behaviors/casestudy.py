@@ -85,7 +85,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
 
     form.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     relevance = List(
-        title=_("Relevance"),
+        title=_("Policy context of the adaptation measure"),
         required=True,
         missing_value=[],
         default=None,

@@ -30,7 +30,7 @@ IEventBasic['end'].description = unicode(
         "the displayed date and time here is adjusted to your local timezone. "
         "Be careful, as changes may shift the event date and time if it was "
         "originally set in a different timezone)"
-    )
+        )
 
 def getCache(settings):
     """The purpose of this is to include the current language in the cache key"""

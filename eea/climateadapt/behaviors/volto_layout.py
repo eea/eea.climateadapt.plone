@@ -2710,7 +2710,7 @@ case_study_layout_blocks = {
                                     "@id": "c5480561-405a-4634-b925-bb31f1bef472",
                                     "field": {
                                         "id": "relevance",
-                                        "title": "Relevance",
+                                        "title": "Policy context of the adaptation measure",
                                         "widget": "array"
                                     }
                                 },
