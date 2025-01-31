@@ -179,7 +179,7 @@ class CountryUK:
                 transaction.savepoint()
 
             brains = catalog.searchResults(
-                {'portal_type': _type, 'path': '/cca'})
+                {'portal_type': _type, 'path': '/cca', 'review_state': 'published'})
 
             for brain in brains:
                 obj = brain.getObject()
