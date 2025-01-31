@@ -141,6 +141,11 @@ def fix_missing_field_values(obj):
         "partners",
         "objectives",
         "category",
+        "solutions",
+        "file",
+        "image",
+        "embed_url",
+        "start",
     ]
     for field in fields:
         if field in obj and not obj[field]:
@@ -423,7 +428,7 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: python script.py <foldername>")
         sys.exit(1)
-
+    skip_types = ["DepictionTool"]
     foldername = sys.argv[1]
 
     start_time = time.time()  # Start the timer
@@ -460,6 +465,12 @@ def main():
             print(
                 f"Skipping file '{filename}': JSON file must contain a single object."
             )
+            continue
+
+        if data['@type'] in skip_types:
+            import pdb; pdb.set_trace()
+            os.remove(filename)
+            print(f"File '{filename}' has been DELETED.")
             continue
 
         if REPLACED_URL in str(data):
