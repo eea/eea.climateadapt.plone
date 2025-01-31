@@ -166,11 +166,9 @@ class YearToDate:
 
 
 class CountryUK:
-    """Override to hide files and images in the related content viewlet"""
+    """Change country code from UK to GB"""
 
     def list(self):
-        # overwrite = int(self.request.form.get('overwrite', 0))
-
         catalog = api.portal.get_tool("portal_catalog")
         res = []
 
@@ -186,9 +184,9 @@ class CountryUK:
             for brain in brains:
                 obj = brain.getObject()
 
-                # if brain.getURL() == 'http://localhost:8080/cca/en/metadata/projects/climate-water-spatial-planning-together':
-                #     import pdb
-                #     pdb.set_trace()
+                if brain.getURL() == 'http://localhost:8080/cca/en/metadata/projects/optimal-strategies-to-retain-and-re-use-water-and-nutrients-in-small-agricultural-catchments-across-different-soil-climatic-regions-in-europe':
+                    import pdb
+                    pdb.set_trace()
                 if hasattr(obj, "geochars") and obj.geochars:
                     geochars_data = json.loads(obj.geochars)
                     if 'countries' not in geochars_data['geoElements']:
@@ -206,10 +204,10 @@ class CountryUK:
 
                         res.append(
                             {
-                                "title": obj.title,
+                                # "title": obj.title,
                                 "id": brain.UID,
                                 "url": brain.getURL(),
-                                "countries": ', '.join(countries),
+                                # "countries": ', '.join(countries),
                             }
                         )
 
