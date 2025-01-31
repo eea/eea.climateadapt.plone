@@ -184,9 +184,6 @@ class CountryUK:
             for brain in brains:
                 obj = brain.getObject()
 
-                if brain.getURL() == 'http://localhost:8080/cca/en/metadata/projects/optimal-strategies-to-retain-and-re-use-water-and-nutrients-in-small-agricultural-catchments-across-different-soil-climatic-regions-in-europe':
-                    import pdb
-                    pdb.set_trace()
                 if hasattr(obj, "geochars") and obj.geochars:
                     geochars_data = json.loads(obj.geochars)
                     if 'countries' not in geochars_data['geoElements']:
