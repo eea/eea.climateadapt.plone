@@ -431,7 +431,8 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: python script.py <foldername>")
         sys.exit(1)
-    skip_types = ["DepictionTool", "PDFTool", "PDFTheme", "ProgressTool"]
+    skip_types = ["DepictionTool", "PDFTool", "PDFTheme", "ProgressTool"
+                  "VocabularyLibrary"]
     foldername = sys.argv[1]
 
     start_time = time.time()  # Start the timer
