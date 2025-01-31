@@ -111,7 +111,9 @@ def traverse_blocks(obj):
 
 def fix_storage_type(obj):
     """Fixes 'storage_type' field: sets to None if its value is 'NONE'."""
-    if obj.get("storage_type") == "NONE":
+    none_types = ['BRAK', 'NINGUNA', 'KEINE', 'NESSUNA', 'AUCUN', 'NONE']
+
+    if obj.get("storage_type") in none_types:
         obj["storage_type"] = None
     return obj
 
