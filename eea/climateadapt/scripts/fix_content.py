@@ -148,6 +148,7 @@ def fix_missing_field_values(obj):
         "image",
         "embed_url",
         "start",
+        "end",
     ]
     for field in fields:
         if field in obj and not obj[field]:
@@ -430,7 +431,7 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: python script.py <foldername>")
         sys.exit(1)
-    skip_types = ["DepictionTool"]
+    skip_types = ["DepictionTool", "PDFTool"]
     foldername = sys.argv[1]
 
     start_time = time.time()  # Start the timer
