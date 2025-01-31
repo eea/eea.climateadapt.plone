@@ -6,6 +6,5 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
 - enable addons: eea.climateadapt, eea.volto.policy, multilingual support, plone.restapi, eea.coremetadata
     collective.volto.subsites
 - Import content types
+- set in subsite settings->available styles: mkh|MKH, observatory|Observatory
 - Run the import /@@import_content
-- reindex show_in_top_level
-- folders eu-policy, knowledge-1 retract->publish
