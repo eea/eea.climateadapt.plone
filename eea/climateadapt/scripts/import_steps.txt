@@ -1,6 +1,7 @@
 - Export content from prod /@@export_content
 - copy with rsync the exported jsons
 - git pull in eea.climateadapt for latest fix_content script
+- edit the fix_content script REPLACED_URL and REPLACE_WITH
 - Run the fix_content.py
 python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /app/import/cca
 - enable addons: eea.climateadapt, eea.volto.policy, multilingual support, plone.restapi, eea.coremetadata
