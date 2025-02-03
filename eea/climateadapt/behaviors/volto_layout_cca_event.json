@@ -61,19 +61,19 @@
                     }
                 },
                 {
-                    "@id": "a67c2798-6359-4946-8e08-e29644d73781",
-                    "field": {
-                        "id": "start",
-                        "title": "Event Starts",
-                        "widget": "datetime"
-                    }
-                },
-                {
                     "@id": "c56e5491-20e9-4102-8f7b-8396f8047224",
                     "field": {
                         "id": "timezone",
                         "title": "Timezone",
                         "widget": "choices"
+                    }
+                },
+                {
+                    "@id": "a67c2798-6359-4946-8e08-e29644d73781",
+                    "field": {
+                        "id": "start",
+                        "title": "Event Starts",
+                        "widget": "datetime"
                     }
                 },
                 {
