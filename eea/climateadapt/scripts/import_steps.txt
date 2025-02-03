@@ -9,3 +9,4 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
 - Import content types
 - set in subsite settings->available styles: mkh|MKH, observatory|Observatory
 - Run the import /@@import_content
+- import relations, translations, local roles, object positions, redirects
