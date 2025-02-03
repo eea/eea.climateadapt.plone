@@ -278,7 +278,7 @@ class AceTileMixin(object):
             if k == "funding_programme":
                 terms.append(('cca_funding_programme.keyword', [s for s in v]))
 
-            if k == "language":
+            if k in ["language", 'Language']:
                 terms.append(('language', [s for s in v]))
 
             if k == "macro_regions":
