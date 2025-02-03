@@ -58,8 +58,7 @@ class IMissionStory(model.Schema, IBlocks):
     climate_impacts = List(
         title=_("Climate Impacts"),
         description=_(
-            "Select one or more climate change impact topics that "
-            "this item relates to."
+            "Select one or more climate change impact topics that this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -71,7 +70,7 @@ class IMissionStory(model.Schema, IBlocks):
     sectors = List(
         title=_("Adaptation Sectors"),
         description=_(
-            "Select one or more relevant sector policies that " "this item relates to."
+            "Select one or more relevant sector policies that this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -83,7 +82,7 @@ class IMissionStory(model.Schema, IBlocks):
     key_system = List(
         title=_("Key Community Systems"),
         description=_(
-            "Select one or more key community system that " "this item relates to."
+            "Select one or more key community system that this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -150,7 +149,7 @@ alsoProvides(IMissionStory["key_system"], ILanguageIndependentField)
 alsoProvides(IMissionStory["funding_programme"], ILanguageIndependentField)
 alsoProvides(IMissionStory["country"], ILanguageIndependentField)
 alsoProvides(IMissionStory["key_learnings"], ILanguageIndependentField)
-alsoProvides(IMissionStory["about_the_region"], ILanguageIndependentField)
+# alsoProvides(IMissionStory["about_the_region"], ILanguageIndependentField)
 alsoProvides(IMissionStory["solution"], ILanguageIndependentField)
 alsoProvides(IMissionStory["synopsis"], ILanguageIndependentField)
 alsoProvides(IMissionStory["further_information"], ILanguageIndependentField)
