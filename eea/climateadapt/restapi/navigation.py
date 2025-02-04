@@ -117,7 +117,7 @@ def fix_url(url):
 
 
 @implementer(IExpandableElement)
-@adapter(Interface, IPloneVoltoCoreLayer)
+@adapter(Interface, ICCARestapiLayer)
 class Navigation(BaseNavigation):
     def __call__(self, expand=False):
         if self.request.form.get("expand.navigation.depth", False):
