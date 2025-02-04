@@ -42,7 +42,7 @@
     for="Products.CMFCore.interfaces.IContentish"
     permission="zope2.View"
     name="@querystats"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
   />
 
   <plone:service
@@ -51,7 +51,7 @@
     for="Products.CMFCore.interfaces.IContentish"
     permission="zope2.View"
     name="@workflow"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
   />
 
   <adapter
@@ -65,7 +65,7 @@
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@actions"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
   />
 
   <adapter
@@ -79,7 +79,7 @@
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@c3s_indicators_overview_api"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
   />
 
   <adapter
@@ -93,7 +93,7 @@
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@c3s_indicators_glossary_table_api"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
   />
 
   <subscriber
@@ -164,7 +164,7 @@
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@navigation"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
   />
 
 
