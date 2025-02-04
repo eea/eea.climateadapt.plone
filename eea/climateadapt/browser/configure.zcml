@@ -44,6 +44,16 @@
       permission="cmf.ManagePortal"
       layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
+
+    <browser:page
+      name="export_ordering"
+      for="zope.interface.Interface"
+      class="eea.climateadapt.browser.exportimport.FixedExportOrdering"
+      template="templates/export_other.pt"
+      permission="cmf.ManagePortal"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
   </configure>
 
   <browser:resourceDirectory

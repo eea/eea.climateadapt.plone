@@ -83,35 +83,37 @@ class CustomImportContent(ImportContent):
         return obj, item
 
 
-# from operator import itemgetter
-# from collective.exportimport.export_other import ExportOrdering
-# from OFS.interfaces import IOrderedContainer
-# from plone import api
-# from plone.uuid.interfaces import IUUID
+from operator import itemgetter
+from collective.exportimport.export_other import ExportOrdering
+from OFS.interfaces import IOrderedContainer
+from plone import api
+from plone.uuid.interfaces import IUUID
 
-# class FixedExportOrdering(ExportOrdering):
-#     def all_orders(self):
-#         results = []
-#
-#         def get_position_in_parent(obj, path):
-#             uid = IUUID(obj, None)
-#             if not uid:
-#                 return
-#             try:
-#                 parent = obj.__parent__
-#                 ordered = IOrderedContainer(parent, None)
-#                 if ordered is not None:
-#                     order = ordered.getObjectPosition(obj.getId())
-#                     if order is not None:
-#                         results.append({"uuid": uid, "order": order})
-#             except Exception as e:
-#                 logger.debug(
-#                     "Could not get item position in parent: %s for %s, %s", obj, path, e
-#                 )
-#             return
-#
-#         portal = api.portal.get()
-#         portal.ZopeFindAndApply(
-#             portal, search_sub=True, apply_func=get_position_in_parent
-#         )
-#         return sorted(results, key=itemgetter("order"))
+class FixedExportOrdering(ExportOrdering):
+    def all_orders(self):
+        results = []
+
+        def get_position_in_parent(obj, path):
+            uid = IUUID(obj, None)
+            if not uid:
+                return
+            parent = obj.__parent__
+            ordered = IOrderedContainer(parent, None)
+            if ordered is not None:
+                try:
+                    order = ordered.getObjectPosition(obj.getId())
+                except ValueError:
+                    order = None
+                if order is not None:
+                    results.append({"uuid": uid, "order": order})
+                # cat src/collective.exportimport/src/collective/exportimport/export_other.py
+                # order = ordered.getObjectPosition(obj.getId())
+                # if order is not None:
+                #     results.append({"uuid": uid, "order": order})
+            return
+
+        portal = api.portal.get()
+        portal.ZopeFindAndApply(
+            portal, search_sub=True, apply_func=get_position_in_parent
+        )
+        return sorted(results, key=itemgetter("order"))
