@@ -148,7 +148,7 @@ class CustomImportTranslations(ImportTranslations):
 
             if len(tg_with_obj) < 2:
                 less_than_2.append(translationgroup)
-                logger.info(u"Only one item: {}".format(translationgroup))
+                logger.info("Only one item: {}".format(translationgroup))
                 continue
 
             imported += 1
@@ -159,14 +159,16 @@ class CustomImportTranslations(ImportTranslations):
                     translation = obj
                     link_translations(canonical, translation, lang)
 
+            logger.info("Imported translation group nr. {}".format(imported))    
+
             if not imported % 1000:
-                msg = "Committing after creating {}...".format(imported)
+                msg = "Committing after importing {} translations...".format(imported)
                 logger.info(msg)
                 transaction.get().note(msg)
                 transaction.commit()
 
         logger.info(
-            u"Imported {} translation-groups. For {} groups we found only one item. {} groups without content dropped".format(
+            "Imported {} translation-groups. For {} groups we found only one item. {} groups without content dropped".format(
                 imported, len(less_than_2), len(empty)
             )
         )
