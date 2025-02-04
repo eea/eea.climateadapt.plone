@@ -20,7 +20,7 @@ from zope.component import adapter, getMultiAdapter, getUtility
 from zope.i18n import translate
 from zope.interface import Interface, implementer
 
-from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+# from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 
 
 # if '/mission' not in self.context.absolute_url(relative=True):
@@ -117,7 +117,7 @@ def fix_url(url):
 
 
 @implementer(IExpandableElement)
-@adapter(Interface, IEEAClimateAdaptInstalled)
+@adapter(Interface, IPloneVoltoCoreLayer)
 class Navigation(BaseNavigation):
     def __call__(self, expand=False):
         if self.request.form.get("expand.navigation.depth", False):
