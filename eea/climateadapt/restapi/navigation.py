@@ -21,9 +21,11 @@ from zope.i18n import translate
 from zope.interface import Interface, implementer
 
 # from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-
+from eea.volto.policy.interfaces import IEeaVoltoPolicyLayer
 
 # if '/mission' not in self.context.absolute_url(relative=True):
+
+
 def is_outside_mission(context):
     bits = context.getPhysicalPath()
     if len(bits) > 3 and bits[3] == "mission":
@@ -32,7 +34,7 @@ def is_outside_mission(context):
     return True
 
 
-class ICCARestapiLayer(IPloneVoltoCoreLayer):
+class ICCARestapiLayer(IPloneVoltoCoreLayer, IEeaVoltoPolicyLayer):
     """Marker interface that defines a browser layer."""
 
 
