@@ -1,6 +1,10 @@
 import logging
 from collective.exportimport.export_content import ExportContent
 from collective.exportimport.import_content import ImportContent
+from collective.exportimport.import_other import (
+    ImportTranslations,
+    link_translations
+)
 from zope.interface import directlyProvidedBy
 
 from plone.restapi.interfaces import IJsonCompatible
@@ -115,3 +119,54 @@ class CustomImportContent(ImportContent):
 #             portal, search_sub=True, apply_func=get_position_in_parent
 #         )
 #         return sorted(results, key=itemgetter("order"))
+
+from plone import api
+import transaction
+
+class CustomImportTranslations(ImportTranslations):
+    """"""
+    def import_translations(self, data):
+        imported = 0
+        empty = []
+        less_than_2 = []
+        for translationgroup in data:
+            if len(translationgroup) < 2:
+                continue
+
+            # Make sure we have content to translate
+            tg_with_obj = {}
+            for lang, uid in translationgroup.items():
+                obj = api.content.get(UID=uid)
+                if obj:
+                    tg_with_obj[lang] = obj
+                else:
+                    # logger.info(f'{uid} not found')
+                    continue
+            if not tg_with_obj:
+                empty.append(translationgroup)
+                continue
+
+            if len(tg_with_obj) < 2:
+                less_than_2.append(translationgroup)
+                logger.info(u"Only one item: {}".format(translationgroup))
+                continue
+
+            imported += 1
+            for index, (lang, obj) in enumerate(tg_with_obj.items()):
+                if index == 0:
+                    canonical = obj
+                else:
+                    translation = obj
+                    link_translations(canonical, translation, lang)
+
+            if not imported % 1000:
+                msg = u"Committing after creating {}...".format(len(imported))
+                logger.info(msg)
+                transaction.get().note(msg)
+                transaction.commit()
+
+        logger.info(
+            u"Imported {} translation-groups. For {} groups we found only one item. {} groups without content dropped".format(
+                imported, len(less_than_2), len(empty)
+            )
+        )

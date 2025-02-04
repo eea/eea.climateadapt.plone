@@ -51,6 +51,16 @@
       permission="cmf.ManagePortal"
       layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
+
+    <browser:page
+      name="import_translations"
+      for="zope.interface.Interface"
+      class="eea.climateadapt.browser.exportimport.CustomImportTranslations"
+      template="templates/import_translations.pt"
+      permission="cmf.ManagePortal"
+      layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+    />
+
   </configure>
 
   <browser:page
