@@ -160,7 +160,7 @@ class CustomImportTranslations(ImportTranslations):
                     link_translations(canonical, translation, lang)
 
             if not imported % 1000:
-                msg = u"Committing after creating {}...".format(len(imported))
+                msg = "Committing after creating {}...".format(imported)
                 logger.info(msg)
                 transaction.get().note(msg)
                 transaction.commit()
