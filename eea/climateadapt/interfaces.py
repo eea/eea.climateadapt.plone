@@ -2,6 +2,12 @@ from zope import schema
 from zope.interface import Interface
 
 
+class ICover(Interface):
+    """ Marker interface for collective.cover.content types to mark them
+    after the plone 6 migration to Folder content type
+    """
+
+
 class ICCACountry(Interface):
     """ Marker interface for Country Profiles
     """

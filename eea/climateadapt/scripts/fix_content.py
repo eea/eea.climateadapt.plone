@@ -73,6 +73,27 @@ cca_url = "https://climate-adapt.eea.europa.eu"
 href_url_fields = ["@id", "getURL"]
 
 
+def fix_marker_interfaces(obj):
+    """ add marker interfaces for the specified content types """
+    _type = obj.get("@type")
+    marker_interfaces = {
+        "collective.cover.content": "eea.climateadapt.interfaces.ICover"
+    }
+
+    if not _type:
+        import pdb
+        pdb.set_trace()
+
+    if _type in marker_interfaces:
+        interface_to_add = marker_interfaces[_type]
+        if "exportimport.marker_interfaces" in obj:
+            if interface_to_add not in obj["exportimport.marker_interfaces"]:
+                obj["exportimport.marker_interfaces"].append(interface_to_add)
+        else:
+            obj["exportimport.marker_interfaces"] = [interface_to_add]
+
+    return obj
+
 def fix_url(value):
     if isinstance(value, list):
         import pdb
@@ -362,6 +383,7 @@ def fix_data_type(obj):
     return obj
 
 fixers: List[Callable[[dict], dict]] = [
+    fix_marker_interfaces,
     fix_exclude_from_nav,
     fix_storage_type,
     fix_missing_field_values,
