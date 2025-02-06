@@ -77,7 +77,8 @@ def fix_marker_interfaces(obj):
     """ add marker interfaces for the specified content types """
     _type = obj.get("@type")
     marker_interfaces = {
-        "collective.cover.content": "eea.climateadapt.interfaces.ICover"
+        "collective.cover.content": "eea.climateadapt.interfaces.ICover",
+        "Subsite": "plone.base.interfaces.siteroot.INavigationRoot"
     }
 
     if not _type:
