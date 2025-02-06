@@ -11,3 +11,7 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
 - Run the import /@@import_content
 - import relations, translations, local roles, object positions, redirects
 - update/reindex the portal_catalog (check if necessary for ast navigation)
+
+TODO fixes
+- published/modified date
+- /mission pages are Folders instead of subsite

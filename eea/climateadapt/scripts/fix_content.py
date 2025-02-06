@@ -10,7 +10,7 @@ import logging
 
 logger = logging.getLogger("fixer")
 
-REPLACED_URL = 'http://10.50.5.50:8060/cca'
+REPLACED_URL = 'https://climate-adapt.eea.europa.eu/_admin'
 REPLACE_WITH = 'https://climate-adapt-plone6.devel5cph.eea.europa.eu'
 START_FROM = 0
 
@@ -425,6 +425,11 @@ def main_single_file():
         # Define fixers as a list of functions
         # Apply each fixer to every object in the array
         fixed_data = []
+
+        if REPLACED_URL in str(data):
+            data_str = str(data).replace(REPLACED_URL, REPLACE_WITH)
+            data = ast.literal_eval(data_str)
+
         for obj in data:
             if "unexported_paths" in obj:
                 print(f"There are unexported_paths: \n, {obj['unexported_paths']}")

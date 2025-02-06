@@ -3,8 +3,8 @@
 
 from eea.climateadapt.browser import AceViewApi
 from eea.climateadapt.browser.misc import create_contributions_link
-# from eea.climateadapt.translation.core import get_translation_object
-# from eea.climateadapt.translation.utils import get_current_language
+from eea.climateadapt.translation.core import get_translation_object
+from eea.climateadapt.translation.utils import get_current_language
 from plone import api
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
@@ -120,8 +120,8 @@ class OrganisationView(DefaultView, AceViewApi):
 
     def to_observatory_url(self, obj):
         # TODO get current language
-        # current_language = get_current_language(self.context, self.request)
-        current_language = "en"
+        current_language = get_current_language(self.context, self.request)
+        # current_language = "en"
         segments = obj.getPhysicalPath()[2:]
         if segments[0] != "metadata":
             segments = segments[1:]
@@ -129,12 +129,12 @@ class OrganisationView(DefaultView, AceViewApi):
 
     def get_contributions(self):
         # TODO get current language
-        # current_language = get_current_language(self.context, self.request)
-        current_language = "en"
+        current_language = get_current_language(self.context, self.request)
+        # current_language = "en"
         if current_language != "en":
             # TODO get translation object
-            # en_obj = get_translation_object(self.context, "en")
-            en_obj = self.context
+            en_obj = get_translation_object(self.context, "en")
+            # en_obj = self.context
         else:
             en_obj = self.context
 
@@ -151,8 +151,8 @@ class OrganisationView(DefaultView, AceViewApi):
 
             engl_obj = relation.from_object
             # TODO get translation object
-            # obj = get_translation_object(engl_obj, current_language)
-            obj = engl_obj
+            obj = get_translation_object(engl_obj, current_language)
+            # obj = engl_obj
             if obj is not None:
                 if api.content.get_state(obj) == "published":
                     if obj.absolute_url() in urls or (
@@ -272,9 +272,11 @@ class OrganisationFormExtender(FormExtender):
         self.move("logo", before="image")
         self.move("IRelatedItems.relatedItems", before="comments")
         self.move("acronym", before="title")
-        self.move("organisational_contact_information", after="include_in_observatory")
+        self.move("organisational_contact_information",
+                  after="include_in_observatory")
         self.move("organisational_websites", after="include_in_observatory")
-        self.move("organisational_key_activities", after="include_in_observatory")
+        self.move("organisational_key_activities",
+                  after="include_in_observatory")
         self.remove("other_contributor")
         self.remove("IBlocks.blocks")
         self.remove("IBlocks.blocks_layout")

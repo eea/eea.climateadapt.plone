@@ -710,45 +710,45 @@
     template="pt/aceproject_view.pt"
     permission="zope2.View"
   /> -->
-  <!---->
-  <!-- <browser:page -->
-  <!--   name="site_navbar" -->
-  <!--   for="*" -->
-  <!--   class=".site.Navbar" -->
-  <!--   template="pt/navbar.pt" -->
-  <!--   permission="zope.Public" -->
-  <!-- /> -->
-  <!---->
-  <!-- <browser:page -->
-  <!--   name="footer_navbar" -->
-  <!--   for="*" -->
-  <!--   template="pt/navbar_footer.pt" -->
-  <!--   permission="zope.Public" -->
-  <!--   class=".site.Navbar" -->
-  <!-- /> -->
-  <!---->
-  <!-- <browser:page -->
-  <!--   name="health_navbar" -->
-  <!--   for="*" -->
-  <!--   class=".health_menu.Navbar" -->
-  <!--   template="pt/navbar.pt" -->
-  <!--   permission="zope.Public" -->
-  <!-- /> -->
-  <!---->
-  <!-- <browser:page -->
-  <!--   name="help-nav" -->
-  <!--   for="*" -->
-  <!--   class=".site.Navbar" -->
-  <!--   template="pt/help-nav.pt" -->
-  <!--   permission="zope.Public" -->
-  <!-- /> -->
-  <!---->
-  <!-- <browser:page -->
-  <!--   name="footer_logos" -->
-  <!--   for="*" -->
-  <!--   template="pt/footer_logos.pt" -->
-  <!--   permission="zope.Public" -->
-  <!-- /> -->
+  
+  <browser:page
+    name="site_navbar"
+    for="*"
+    class=".site.Navbar"
+    template="pt/navbar.pt"
+    permission="zope.Public"
+  />
+  
+  <browser:page
+    name="footer_navbar"
+    for="*"
+    template="pt/navbar_footer.pt"
+    permission="zope.Public"
+    class=".site.Navbar"
+  />
+  
+  <browser:page
+    name="health_navbar"
+    for="*"
+    class=".health_menu.Navbar"
+    template="pt/navbar.pt"
+    permission="zope.Public"
+  />
+  
+  <browser:page
+    name="help-nav"
+    for="*"
+    class=".site.Navbar"
+    template="pt/help-nav.pt"
+    permission="zope.Public"
+  />
+  
+  <browser:page
+    name="footer_logos"
+    for="*"
+    template="pt/footer_logos.pt"
+    permission="zope.Public"
+  />
 
   <!-- # portal link redirections, compatibility with old site -->
   <!-- <browser:page -->
@@ -1187,13 +1187,13 @@
   <!--   permission="cmf.ManagePortal" -->
   <!-- /> -->
   <!---->
-  <!-- <browser:page -->
-  <!--   name="health_homepage" -->
-  <!--   for="*" -->
-  <!--   class=".health.HealthHomepageItems" -->
-  <!--   template="pt/health_homepage.pt" -->
-  <!--   permission="zope2.View" -->
-  <!-- />  --> Special pages <browser:page
+  <browser:page
+    name="health_homepage"
+    for="*"
+    class=".health.HealthHomepageItems"
+    template="pt/health_homepage.pt"
+    permission="zope2.View"
+  />  Special pages <browser:page
     name="vibriomap-view"
     for="*"
     template="pt/vibriomap.pt"
