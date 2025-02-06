@@ -28,7 +28,7 @@ def serialize(possible_node):
     if isinstance(possible_node, str):
         # This happens for some fields that store non-markup values as richtext
         return possible_node
-    return tostring(possible_node)
+    return tostring(possible_node, encoding=str)
 
 
 @adapter(IRichText, IDexterityContent, ICCARestapiLayer)
