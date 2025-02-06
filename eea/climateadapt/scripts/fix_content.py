@@ -85,6 +85,10 @@ def fix_marker_interfaces(obj):
         import pdb
         pdb.set_trace()
 
+    if _type == "Folder" and obj["@id"].endswith("/observatory"):
+        import pdb; pdb.set_trace()
+        obj["@type"] = _type = "Subsite"
+
     if _type in marker_interfaces:
         interface_to_add = marker_interfaces[_type]
         if "exportimport.marker_interfaces" in obj:
