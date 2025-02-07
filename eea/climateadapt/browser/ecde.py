@@ -226,8 +226,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                         responseHtml += str("<tr>")
                     responseHtml += str("<td><a href=\"") + \
                         indicator['cca_url']+str("\">") + \
-                        indicator['cca_title'].decode(
-                            'utf-8')+str("</a></td>")
+                        indicator['cca_title']+str("</a></td>")
                     responseHtml += str("<td><a href=\"") + \
                         indicator['zip_url']+str("\">") + \
                         translate_text(self.context, self.request,

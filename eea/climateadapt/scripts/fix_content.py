@@ -551,4 +551,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main_single_file()
+    main()
