@@ -4,10 +4,10 @@ import logging
 from eea.climateadapt.restapi.navigation import ICCARestapiLayer
 from zope.component import getMultiAdapter
 
-# from eea.climateadapt.translation.utils import (
-#     TranslationUtilsMixin,
-#     get_current_language,
-# )
+from eea.climateadapt.translation.utils import (
+    TranslationUtilsMixin,
+    get_current_language,
+)
 from plone import api
 from plone.api import portal
 from plone.app.multilingual.manager import TranslationManager
@@ -20,10 +20,9 @@ from zope.interface import Interface, implementer
 logger = logging.getLogger("eea.climateadapt")
 
 
-# TODO TranslationUtilsMixin add to inheritance
 @implementer(IExpandableElement)
 @adapter(Interface, ICCARestapiLayer)
-class C3SIndicatorsOverview(object):
+class C3SIndicatorsOverview(TranslationUtilsMixin):
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -59,9 +58,9 @@ class C3SIndicatorsOverview(object):
             obj = brain.getObject()
             items[obj.title] = {"url": brain.getURL(), "obj": obj}
 
-        # current_lang = get_current_language(self.context, self.request)
+        current_lang = get_current_language(self.context, self.request)
         # TODO plone6 is this correct?
-        current_lang = "en"
+        # current_lang = "en"
 
         site = portal.get()
         base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
@@ -122,8 +121,8 @@ class C3SIndicatorsData(object):
 
     def get_glossary(self):
         site = portal.get()
-        # lg = get_current_language(self.context, self.request)
-        lg = "en"
+        lg = get_current_language(self.context, self.request)
+        # lg = "en"
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
 
