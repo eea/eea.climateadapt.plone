@@ -11,7 +11,7 @@ import pytz
 
 
 # TODO add TranslationUtilsMixin to inheritance
-class HealthHomepageItems(BrowserView):
+class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
     def days_elapsed_mapping(self, p):
         mapping = [(80, "big"), (90, "med")]
         for check, value in mapping:

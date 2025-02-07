@@ -20,8 +20,8 @@
     file="faceted.zcml" /> -->
   <!-- <include file="depiction.zcml" /> -->
   <!-- <include file="migrations.zcml" /> -->
-  <!-- <include
-    file="ecde.zcml" /> -->
+  <include
+    file="ecde.zcml" />
 
   <!-- <browser:page -->
   <!--   name="iterate_control" -->
