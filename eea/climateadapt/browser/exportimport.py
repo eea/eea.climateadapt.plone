@@ -15,7 +15,8 @@ from eea.climateadapt.interfaces import (
 from zope.annotation.interfaces import IAnnotations
 
 ANNOTATIONS_TO_EXPORT = [
-    "",
+    "c3s_json_data",
+    "broken_links_data"
 ]
 ANNOTATIONS_KEY = "exportimport.annotations"
 
