@@ -373,9 +373,6 @@ def compute_broken_links(site):
     for info in links:
         if info["link"].startswith("/"):
             continue
-            # import pdb
-            #
-            # pdb.set_trace()
         res = check_link_status(info["link"])
         if res is not None:
             res["object_url"] = info["object_url"]
@@ -412,7 +409,6 @@ class BrokenLinksService(Service):
 
         broken_links = []
 
-        # __import__("pdb").set_trace()
         for date in latest_dates:
             for info in annot[date]:
                 if "en" not in info["object_url"]:
