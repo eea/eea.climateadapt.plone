@@ -10,7 +10,8 @@ import xlsxwriter
 from BeautifulSoup import BeautifulSoup
 from DateTime import DateTime
 from plone import api
-from plone.api.content import get_state
+
+# from plone.api.content import get_state
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemataForType
 from plone.restapi.behaviors import IBlocks
@@ -333,9 +334,14 @@ def recursively_extract_links(site):
     count = 0
     logger.info("Got %s objects" % len(brains))
 
+    now = DateTime()
+
     for b in brains:
         if b.review_state != "published":
             continue
+        if b.portal_type == "News Item":
+            if (now - b.created) > 365:  # skip news that are older then a year
+                continue
         obj = b.getObject()
         path = obj.getPhysicalPath()
 
@@ -427,15 +433,13 @@ class BrokenLinksService(Service):
                     else:
                         item["state"] = "external"
 
-                    item["date"] = date.Date() if isinstance(
-                        date, DateTime) else date
+                    item["date"] = date.Date() if isinstance(date, DateTime) else date
                     if isinstance(date, str) and date == "pre_nov7_data":
                         continue
 
                     item["url"] = info["url"]
                     item["status"] = info["status"]
-                    item["object_url"] = info["object_url"].replace(
-                        "/cca/", "/")
+                    item["object_url"] = info["object_url"].replace("/cca/", "/")
 
                     broken_links.append(item)
 
@@ -487,10 +491,9 @@ class BrokenLinksService(Service):
 
         sh(
             "Content-Type",
-            "application/vnd.openxmlformats-officedocument." "spreadsheetml.sheet",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         )
-        fname = "-".join(["Broken-Links",
-                         str(datetime.now().replace(microsecond=0))])
+        fname = "-".join(["Broken-Links", str(datetime.now().replace(microsecond=0))])
         sh("Content-Disposition", "attachment; filename=%s.xlsx" % fname)
 
         return xlsio.read()
