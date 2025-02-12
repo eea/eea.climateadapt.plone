@@ -10,7 +10,7 @@ import logging
 
 logger = logging.getLogger("fixer")
 
-REPLACED_URL = 'http://10.50.5.51:32946/cca'
+REPLACED_URL = 'http://10.50.5.50:8060/cca'
 REPLACE_WITH = 'https://climate-adapt-plone6.devel5cph.eea.europa.eu'
 START_FROM = 0
 
@@ -366,6 +366,7 @@ def fix_data_type(obj):
         "OUTIL": "TOOL",
         "ORIENTAMENTI": "GUIDANCE",
         "INDICATORE": "INDICATOR",
+        "INDICATEUR": "INDICATOR",
         "ORGANIZZAZIONE": "ORGANISATION",
         "STRUMENTO": "TOOL",
         "WYTYCZNE": "GUIDANCE",
