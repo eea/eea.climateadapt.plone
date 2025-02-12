@@ -366,6 +366,7 @@ def fix_data_type(obj):
         "ORIENTAMENTI": "GUIDANCE",
         "INDICATORE": "INDICATOR",
         "INDICATEUR": "INDICATOR",
+        "WSKAŹNIK": "INDICATOR",
         "ORGANIZZAZIONE": "ORGANISATION",
         "STRUMENTO": "TOOL",
         "WYTYCZNE": "GUIDANCE",
@@ -504,7 +505,6 @@ def main():
             continue
 
         if data['@type'] in skip_types:
-            import pdb; pdb.set_trace()
             os.remove(filename)
             print(f"File '{filename}' has been DELETED.")
             continue
