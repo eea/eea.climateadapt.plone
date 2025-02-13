@@ -52,11 +52,10 @@ class SearchAceContentBlockSerializer(object):
         ace = AceTileMixin()
         ace.context = self.context
         ace.request = self.request
-        ace.data = block
+        ace.data = deepcopy(block)
         ace.current_lang = "en"
 
         block["_v_results"] = ace.sections()
-        # print('sections', block)
 
         return block
 
