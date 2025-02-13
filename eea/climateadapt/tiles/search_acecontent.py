@@ -268,8 +268,11 @@ class AceTileMixin(object):
                              CLIMATE_IMPACTS[s] for s in v]))
 
             if k == "elements":
-                terms.append(('cca_adaptation_elements.keyword', [
-                             ELEMENTS[s] for s in v]))
+                t = []
+                for s in v:
+                    if s in ELEMENTS:
+                        t.append(ELEMENTS[s])
+                terms.append(('cca_adaptation_elements.keyword', t))
 
             if k == "countries":
                 terms.append(('cca_geographic_countries.keyword', [
