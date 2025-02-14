@@ -50,5 +50,8 @@
    <index name="bio_regions" meta_type="KeywordIndex">
       <indexed_attr value="bio_regions"/>
    </index>
+   <index name="special_tags" meta_type="KeywordIndex">
+      <indexed_attr value="bio_regions"/>
+   </index>
 
 </object>

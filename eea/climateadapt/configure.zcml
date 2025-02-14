@@ -200,14 +200,14 @@
 
   <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
 
-  <!-- <adapter
+  <adapter
     factory=".catalog.bio_regions"
     name="bio_regions"
   />
   <adapter
     factory=".catalog.macro_regions"
     name="macro_regions"
-  /> -->
+  />
   <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> --> ----[
   Vocabularies: ]------ <utility
     name="eea.climateadapt.aceitems_datatypes"
