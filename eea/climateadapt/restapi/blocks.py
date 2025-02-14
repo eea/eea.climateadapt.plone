@@ -13,7 +13,7 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.publisher.interfaces.browser import IBrowserRequest
 
-# from eea.climateadapt.tiles.search_acecontent import AceTileMixin
+from eea.climateadapt.tiles.search_acecontent import AceTileMixin
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -39,27 +39,27 @@ class GenericLinkFixer(object):
         return block
 
 
-# @implementer(IBlockFieldSerializationTransformer)
-# @adapter(IBlocks, IBrowserRequest)
-# class SearchAceContentBlockSerializer(object):
-#     order = 100
-#     block_type = "searchAceContent"
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class SearchAceContentBlockSerializer(object):
+    order = 100
+    block_type = "searchAceContent"
 
-#     def __init__(self, context, request):
-#         self.context = context
-#         self.request = request
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
 
-#     def __call__(self, block):
-#         ace = AceTileMixin()
-#         ace.context = self.context
-#         ace.request = self.request
-#         ace.data = block
-#         ace.current_lang = "en"
+    def __call__(self, block):
+        ace = AceTileMixin()
+        ace.context = self.context
+        ace.request = self.request
+        ace.data = block
+        ace.current_lang = "en"
 
-#         block["_v_results"] = ace.sections()
-#         # print('sections', block)
+        block["_v_results"] = ace.sections()
+        # print('sections', block)
 
-#         return block
+        return block
 
 
 @implementer(IBlockFieldSerializationTransformer)
