@@ -1,18 +1,36 @@
-- Export content from prod /@@export_content
-- copy with rsync the exported jsons
-- git pull in eea.climateadapt for latest fix_content script
-- edit the fix_content script REPLACED_URL and REPLACE_WITH
-- Run the fix_content.py
+1 - Export from prod to json /@@export_content 
+    content - 1.5/2h (database conflict error)
+    relations - 1m
+    translations - 1m
+    local roles - 5m
+    object positions - 5m
+    redirects - 1m
+2 - copy with rsync the exported jsons (30m)
+3 - git pull in eea.climateadapt for latest fix_content script (1m)
+4 - edit the fix_content script REPLACED_URL and REPLACE_WITH (1m)
+vim /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py
+5 - Run the fix_content.py (1h)
 python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /app/import/cca
-- enable addons: eea.climateadapt, eea.volto.policy, multilingual support, plone.restapi, eea.coremetadata
+6 - enable addons: (5m)
     collective.volto.subsites
-- Import content types
-- set in subsite settings->available styles: mkh|MKH, observatory|Observatory
-- Run the import /@@import_content
-- import relations, translations, local roles, object positions, redirects
-- update/reindex the portal_catalog (check if necessary for ast navigation)
-- setup TransRegionSelect view blocks and reindex object_provides
+    eea.climateadapt
+    eea.coremetadata
+    eea.volto.policy
+    multilingual support
+    plone.restapi
+7 - Import content types: portal_setup->types tool (1m)
+8 - set in subsite settings->available styles: mkh|MKH, observatory|Observatory (1m)
+9 - Run the import /@@import_content 
+    content (8-9h)
+    relations (10m)
+    translations (40m)
+    local roles (10m)
+    object positions (5m)
+    redirects (5m)
+10 - update/reindex the portal_catalog (check if necessary for ast navigation) (???)
+11 - setup TransRegionSelect view blocks and reindex object_provides
 
 TODO fixes
 - published/modified date
 - check if /mission pages are Folders instead of subsite
+

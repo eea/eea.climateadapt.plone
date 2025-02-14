@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
-   
+
    <column value="health_impacts"/>
    <column value="include_in_observatory"/>
    <column value="nav_title"/>
@@ -11,6 +11,8 @@
    <column value="special_tags"/>
    <column value="year"/>
    <column value="is_nonstructural_folder"/>
+   <column value="macro_regions"/>
+   <column value="bio_regions"/>
 
    <index name="c3s_identifier" meta_type="FieldIndex">
       <indexed_attr value="c3s_identifier"/>
@@ -41,6 +43,12 @@
    </index>
    <index name="sectors" meta_type="KeywordIndex">
       <indexed_attr value="sectors"/>
+   </index>
+   <index name="macro_regions" meta_type="KeywordIndex">
+      <indexed_attr value="macro_regions"/>
+   </index>
+   <index name="bio_regions" meta_type="KeywordIndex">
+      <indexed_attr value="bio_regions"/>
    </index>
 
 </object>
