@@ -10,7 +10,7 @@ import logging
 
 logger = logging.getLogger("fixer")
 
-REPLACED_URL = 'http://10.50.5.50:8060/cca'
+REPLACED_URL = 'https://climate-adapt.eea.europa.eu/_admin'
 REPLACE_WITH = 'https://climate-adapt-plone6.devel5cph.eea.europa.eu'
 START_FROM = 0
 
@@ -209,10 +209,12 @@ def fix_elements(obj):
     replaced = {
         # "SOCIETALASP": ""
     }
-    removed = ["SOCIETALASP", "COSTBENEFIT", "ECONOMICASP"]
-    if obj.get("elements"):
-        obj["elements"] = [x for x in obj["elements"] if x not in removed]
-        obj["elements"] = [replaced.get(x, x) for x in obj["elements"]]
+    _type = obj.get("@type")
+    if _type != "eea.climateadapt.casestudy":
+        removed = ["SOCIETALASP", "COSTBENEFIT", "ECONOMICASP"]
+        if obj.get("elements"):
+            obj["elements"] = [x for x in obj["elements"] if x not in removed]
+            obj["elements"] = [replaced.get(x, x) for x in obj["elements"]]
 
     return obj
 
