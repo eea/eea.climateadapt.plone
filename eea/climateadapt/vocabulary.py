@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import base64
 from collections import namedtuple
 
 import pycountry
@@ -45,6 +46,19 @@ def generic_vocabulary(_terms, sort=True):
 class KeywordsVocabulary(BKV):
     def __init__(self, index):
         self.keyword_index = index
+
+    def getTerm(self, value):
+        decoded_value = base64.b64decode(value).decode("utf-8")
+        return super().getTerm(decoded_value)
+
+    def __call__(self, context):
+        vocab = super().__call__(context)
+        terms = []
+        for term in vocab:
+            term_value = term.value
+            # decoded_value = base64.b64decode(term.value).decode("utf-8")
+            terms.append(term.__class__(term_value, term_value, term_value))
+        return vocab.__class__(terms)
 
 
 class CatalogVocabulary(BCV):
