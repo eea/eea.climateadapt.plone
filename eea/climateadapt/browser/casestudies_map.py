@@ -152,7 +152,7 @@ class Items(BrowserView):
                     )
 
                 long_description = ""
-                if brain.long_description:
+                if hasattr(brain, "long_description") and brain.long_description:
                     long_description = brain.long_description.raw
                 origin_adaptecca_value = 20
                 # if (isinstance(obj.origin_website, list) and
