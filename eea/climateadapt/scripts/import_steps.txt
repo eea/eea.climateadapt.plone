@@ -1,3 +1,8 @@
+0 - BEFORE EXPORT enable behaviors on PROD:
+    - folder: lead image
+    - folder: subsite logo
+    - news item: preview image
+
 1 - Export from prod to json /@@export_content 
     content - 1.5/2h (database conflict error)
     relations - 1m
@@ -27,10 +32,15 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
     local roles (10m)
     object positions (5m)
     redirects (5m)
-10 - update/reindex the portal_catalog (check if necessary for ast navigation) (???)
-11 - setup TransRegionSelect view blocks and reindex object_provides
+10 - Remove Page from displayed content types in Navigation settings
+    - Make Home not visible in navigation /portal_actions/portal_tabs/index_html/index_html/manage_propertiesForm
+11 - Update the subsite logo for observatory
+
+OPTIONAL
+- update/reindex the portal_catalog (check if necessary for ast navigation) (???)
+- setup TransRegionSelect view blocks and reindex object_provides
 
 TODO fixes
 - published/modified date
-- check if /mission pages are Folders instead of subsite
+- for observatory enable and set lead image and fix logo
 
