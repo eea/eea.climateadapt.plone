@@ -47,10 +47,6 @@ class KeywordsVocabulary(BKV):
     def __init__(self, index):
         self.keyword_index = index
 
-    def getTerm(self, value):
-        decoded_value = base64.b64decode(value).decode("utf-8")
-        return super().getTerm(decoded_value)
-
     def __call__(self, context):
         vocab = super().__call__(context)
         terms = []
