@@ -1,7 +1,7 @@
 0 - BEFORE EXPORT enable behaviors on PROD:
     - folder: lead image
     - folder: subsite logo
-    - news item: preview image
+    - news item: lead image
 
 1 - Export from prod to json /@@export_content 
     content - 1.5/2h (database conflict error)
