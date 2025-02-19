@@ -52,7 +52,6 @@ class KeywordsVocabulary(BKV):
         terms = []
         for term in vocab:
             term_value = term.value
-            # decoded_value = base64.b64decode(term.value).decode("utf-8")
             terms.append(term.__class__(term_value, term_value, term_value))
         return vocab.__class__(terms)
 
