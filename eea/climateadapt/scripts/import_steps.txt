@@ -18,6 +18,7 @@ vim /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py
 python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /app/import/cca
 6 - enable addons: (5m)
     collective.volto.subsites
+    collective.geolocationbehavior
     eea.climateadapt
     eea.coremetadata
     eea.volto.policy
@@ -26,7 +27,7 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
 7 - Import content types: portal_setup->types tool (1m)
 8 - set in subsite settings->available styles: mkh|MKH, observatory|Observatory (1m)
 9 - Run the import /@@import_content 
-    content (8-9h)
+    content (8-9h) !!!!!IMPORTANT !!!! Handle existing content = UPDATE
     relations (10m)
     translations (40m)
     local roles (10m)

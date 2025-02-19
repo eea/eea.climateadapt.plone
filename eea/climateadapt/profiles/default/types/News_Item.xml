@@ -38,6 +38,7 @@
   <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
   <element value="eea.climateadapt.behaviors.news.IMainNews"/>
   <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/>
+  <element value="volto.preview_image"/>
  </property>
  <property name="schema"></property>
  <property name="model_source"></property>
