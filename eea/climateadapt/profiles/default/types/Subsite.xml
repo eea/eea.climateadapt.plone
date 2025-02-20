@@ -36,6 +36,8 @@
   <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
   <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="eea.climateadapt.behaviors.navtitle.INavTitle"/>
+  <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
+  <element value="plone.leadimage"/>
  </property>
  <property
     name="schema">collective.volto.subsites.content.subsite.ISubsite</property>
