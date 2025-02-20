@@ -24,8 +24,9 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
     eea.volto.policy
     multilingual support
     plone.restapi
+    pas.plugins.ldap
 7 - Import content types: portal_setup->types tool (1m)
-8 - set in subsite settings->available styles: mkh|MKH, observatory|Observatory (1m)
+8 - set available styles in subsite settings /@@subsites-settings: mkh|MKH, observatory|Observatory (1m)
 9 - Run the import /@@import_content 
     content (8-9h) !!!!!IMPORTANT !!!! Handle existing content = UPDATE
     relations (10m)
@@ -35,11 +36,10 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
     redirects (5m)
 10 - Remove Page from displayed content types in Navigation settings
     - Make Home not visible in navigation /portal_actions/portal_tabs/index_html/index_html/manage_propertiesForm
-11 - Update the subsite logo for observatory
+11 - Update the subsite logo for observatory (if needed)
+12 - setup LDAP in /@@plone_ldapcontrolpanel
+   - in /@@usergroup-controlpanel enable "many groups" and "many users" 
 
-OPTIONAL
-- update/reindex the portal_catalog (check if necessary for ast navigation) (???)
-- setup TransRegionSelect view blocks and reindex object_provides
 
 TODO fixes
 - published/modified date
