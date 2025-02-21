@@ -24,6 +24,7 @@
   <object name="mission_tool" meta_type="Dexterity FTI" />
   <object name="Subsite" meta_type="Dexterity FTI" />
   <object name="EasyForm" meta_type="Dexterity FTI" />
+  <object name="News_Item" meta_type="Dexterity FTI" />
 
   <!-- <object name="collective.cover.content" meta_type="Dexterity FTI"/> -->
   <!-- <object name="FrontpageSlide" meta_type="Dexterity FTI" /> -->
