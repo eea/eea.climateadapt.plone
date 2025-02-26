@@ -15,8 +15,7 @@ from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.contentrules import \
-    queue_translate_volto_html
+from eea.climateadapt.translation.contentrules import queue_translate_volto_html
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .core import get_blocks_as_html, ingest_html  # , translate_object_async

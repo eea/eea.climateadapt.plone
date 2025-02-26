@@ -1,3 +1,5 @@
+from .valueadapter import ITranslationValue
+from zope.component import queryMultiAdapter
 import json
 import urllib
 import logging
@@ -345,7 +347,12 @@ def get_object_fields_values(obj):
 
 def get_value_representation(obj, name):
     """Returns a value suitable for representation in HTML"""
-    value = getattr(obj, name)
+    adapter = queryMultiAdapter(
+        (obj, obj.REQUEST), ITranslationValue, name=name)
+    if adapter:
+        value = adapter()
+    else:
+        value = getattr(obj, name)
 
     if is_language_independent_value(value):
         return None
