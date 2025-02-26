@@ -184,7 +184,7 @@ class ToHtml(BrowserView):
                     continue
                 self.fields[k] = v
                 value = self.get_value(k)
-                if value:
+                if value and k not in self.order:
                     self.order.append(k)
                     self.values[k] = value
 
