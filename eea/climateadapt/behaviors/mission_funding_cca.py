@@ -176,7 +176,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
 
 alsoProvides(IMissionFundingCCA["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["country"], ILanguageIndependentField)
-alsoProvides(IMissionFundingCCA["type_of_funding"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["funding_type"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["budget_range"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["is_blended"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["is_eu_funded"], ILanguageIndependentField)
