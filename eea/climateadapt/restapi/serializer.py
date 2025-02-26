@@ -82,7 +82,8 @@ class SlateBlockSerializer(SlateBlockSerializerBase):
             if child.get("scale"):
                 url = "%s/@@images/image/%s" % (url, child["scale"])
             else:
-                url = "%s/@@images/image/huge" % url
+                if ("@@images") not in url:
+                    url = "%s/@@images/image/huge" % url
 
             child["url"] = url
 
