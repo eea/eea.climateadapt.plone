@@ -7,7 +7,7 @@ PATH = NAME.split(".") + ["version.txt"]
 VERSION = open(os.path.join(*PATH)).read().strip()
 
 
-long_description = '\n\n'.join(
+long_description = "\n\n".join(
     (
         open("README.rst").read()
         + "\n"
@@ -53,6 +53,7 @@ setup(
         "chardet",
         "zeep==3.4.0",
         "XlsxWriter==1.2.7",
+        "collective.geolocationbehavior",
         # "google-api-python-client",  # google analytics API integration
         # "collective.relationhelpers",
     ],
