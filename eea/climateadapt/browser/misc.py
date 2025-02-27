@@ -2,8 +2,10 @@ import json
 import logging
 import urllib.error
 import urllib.parse
+
 # import re
 import urllib.request
+
 # from datetime import datetime
 # from email.mime.text import MIMEText
 # from io import BytesIO
@@ -15,6 +17,7 @@ from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
+
 # from plone.app.widgets.dx import DatetimeWidgetConverter as BaseConverter
 from plone.memoize import view
 from Products.CMFPlone.utils import getToolByName, isExpired
@@ -27,6 +30,10 @@ from zope.interface import Interface, implementer
 # from eea.climateadapt.config import CONTACT_MAIL_LIST
 # from eea.climateadapt.schema import Email
 
+from eea.climateadapt.translation.utils import (
+    filters_to_query,
+    get_current_language,
+)
 
 
 # from eea.climateadapt.translation.utils import (

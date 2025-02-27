@@ -1,8 +1,6 @@
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from plone.autoform import directives
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from z3c.form.interfaces import IAddForm, IEditForm
 from zope.interface import alsoProvides
 from zope.schema import Date, Text, TextLine
 
@@ -10,6 +8,9 @@ from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
 
 from .volto_layout import indicator_layout_blocks, indicator_layout_items
+
+# from plone.autoform import directives
+# from z3c.form.interfaces import IAddForm, IEditForm
 
 
 class IIndicator(IAceItem, IBlocks):
@@ -21,16 +22,16 @@ class IIndicator(IAceItem, IBlocks):
     # directives.omitted(IAddForm, "featured")
 
     map_graphs = Text(
-        title=_(u"Map/Graphs"),
+        title=_("Map/Graphs"),
         required=False,
-        description=u"Enter an iframe embed code, a Flourish embed code, "
-                    u"or a direct URL (which will be embedded as an iframe) "
-                    u"to display an interactive visualization.",
+        description="Enter an iframe embed code, a Flourish embed code, "
+        "or a direct URL (which will be embedded as an iframe) "
+        "to display an interactive visualization.",
     )
 
     map_graphs_height = TextLine(
-        title=_(u"Map/Graphs Height"),
-        description=u"Height of the iframe (e.g., 750).",
+        title=_("Map/Graphs Height"),
+        description="Height of the iframe (e.g., 750).",
         required=False,
     )
 

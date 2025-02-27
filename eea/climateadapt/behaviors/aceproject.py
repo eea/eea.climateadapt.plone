@@ -1,31 +1,42 @@
 import json
 
-# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
-# from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from plone.supermodel import model
 from z3c.form.browser.textlines import TextLinesWidget
-from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
-# from z3c.form.util import getSpecification
-# from z3c.form.widget import FieldWidget
+from z3c.form.interfaces import IAddForm, IEditForm  # , IFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-# from zope.component import adapter
-from zope.interface import Interface, alsoProvides, implementer
-from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
-                         TextLine, Tuple)
-
-# from collective import dexteritytextindexer
+from zope.interface import Interface, alsoProvides  # , implementer
+from zope.schema import (
+    Bool,
+    Choice,
+    Date,
+    Datetime,
+    List,
+    Text,
+    TextLine,
+    Tuple,
+    URI,
+)
+from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
 from eea.climateadapt import CcaAdminMessageFactory as _
 
-from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
 
+# from eea.climateadapt import CcaAdminMessageFactory as _
+# from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from plone.app.widgets.interfaces import IWidgetsLayer
+# from plone.directives import form
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from zope.component import adapter
+# from collective import dexteritytextindexer
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
+# from plone.supermodel import model
 # from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 
@@ -201,7 +212,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     partners = RichText(
         title=_("Partners"),
         description=_(
-            "Provide information about project partners " "(organisation names)."
+            "Provide information about project partners (organisation names)."
         ),
         required=True,
     )
@@ -252,7 +263,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     sectors = List(
         title=_("Sectors"),
         description=_(
-            "Select one or more relevant sector policies that " "this item relates to."
+            "Select one or more relevant sector policies that this item relates to."
         ),
         required=True,
         missing_value=[],
@@ -267,8 +278,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
-            "Select one or more climate change impact topics that "
-            "this item relates to."
+            "Select one or more climate change impact topics that this item relates to."
         ),
         missing_value=[],
         default=None,
@@ -323,7 +333,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     source = TextLine(
         title=_("Reference"),
         description=_(
-            "Provide source from which project was retrieved (e.g. " "specific DB) "
+            "Provide source from which project was retrieved (e.g. specific DB) "
         ),
         required=False,
     )

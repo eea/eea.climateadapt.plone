@@ -36,7 +36,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
     ipcc_category = List(
         title=_("IPCC adaptation options categories"),
         description=_(
-            "Select one or more categories of adaptation options. " "The options are:"
+            "Select one or more categories of adaptation options. The options are:"
         ),
         required=False,
         value_type=Choice(
@@ -48,7 +48,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         title=_("Case studies implemented in the adaption"),
         default=[],
         description=_(
-            "Select one or more case study that this item " "relates to:"),
+            "Select one or more case study that this item relates to:"),
         value_type=RelationChoice(
             title=_("Related"),
             vocabulary="eea.climateadapt.case_studies",

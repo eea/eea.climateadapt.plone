@@ -1,4 +1,4 @@
-""" A command line ArcGIS client
+"""A command line ArcGIS client
 
 Call it from a script such as:
 
@@ -56,7 +56,7 @@ def update_object(obj, indicator):
     obj.indicator_title = indicator["indicator_title"]
 
     obj.long_description = RichTextValue(indicator["description_general"])
-    obj.description = ''
+    obj.description = ""
     obj.definition_app = RichTextValue(indicator["description_vis_nav"])
 
     if isinstance(indicator["theme"], list):
@@ -73,14 +73,14 @@ def update_object(obj, indicator):
     else:
         obj.overview_app_toolbox_url = indicator["detail"]
         obj.overview_app_parameters = indicator.get("overview", "")
-    print(('overview_app_toolbox_url', obj.overview_app_toolbox_url))
-    print(('overview_app_parameters', obj.overview_app_parameters))
-    print(('overview_app_toolbox_url v2', obj.overview_app_toolbox_url_v2))
+    print(("overview_app_toolbox_url", obj.overview_app_toolbox_url))
+    print(("overview_app_parameters", obj.overview_app_parameters))
+    print(("overview_app_toolbox_url v2", obj.overview_app_toolbox_url_v2))
 
     obj.sectors = []
     obj.climate_impacts = []
-    obj.origin_website = ['C3S']
-    obj.language = 'en'
+    obj.origin_website = ["C3S"]
+    obj.language = "en"
     obj.reindexObject()
 
     state = api.content.get_state(obj=obj, default="Unknown")
@@ -91,7 +91,6 @@ def update_object(obj, indicator):
 
 
 def save_indicator(indicator, site, data):
-
     print("=============================================")
     print((indicator["theme"]))
 
@@ -117,7 +116,7 @@ def save_indicator(indicator, site, data):
         **{
             "portal_type": "eea.climateadapt.c3sindicator",
             "c3s_identifier": indicator["identifier"],
-            "path": "/cca/en"
+            "path": "/cca/en",
         }
     )
     indicatorFound = False

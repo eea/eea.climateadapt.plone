@@ -1,19 +1,22 @@
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-# from z3c.form.interfaces import IFieldWidget
-# from z3c.form.util import getSpecification
+
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
-# from plone.app.widgets.interfaces import IWidgetsLayer
+
 from plone.restapi.behaviors import IBlocks
 from plone.supermodel import model
-from z3c.form.widget import FieldWidget
-# from zope.component import adapter
-from zope.interface import alsoProvides, implementer, provider
+
+from zope.interface import alsoProvides, provider  # , implementer,
 from zope.schema import Choice, List, TextLine, Tuple
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 
+# from z3c.form.widget import FieldWidget
+# from zope.component import adapter
+# from z3c.form.interfaces import IFieldWidget
+# from z3c.form.util import getSpecification
+# from plone.app.widgets.interfaces import IWidgetsLayer
 # from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 
@@ -60,8 +63,7 @@ class IMissionStory(model.Schema, IBlocks):
     climate_impacts = List(
         title=_("Climate Impacts"),
         description=_(
-            "Select one or more climate change impact topics that "
-            "this item relates to."
+            "Select one or more climate change impact topics that this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -73,7 +75,7 @@ class IMissionStory(model.Schema, IBlocks):
     sectors = List(
         title=_("Adaptation Sectors"),
         description=_(
-            "Select one or more relevant sector policies that " "this item relates to."
+            "Select one or more relevant sector policies that this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -86,7 +88,7 @@ class IMissionStory(model.Schema, IBlocks):
     key_system = List(
         title=_("Key Community Systems"),
         description=_(
-            "Select one or more key community system that " "this item relates to."
+            "Select one or more key community system that this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -158,9 +160,9 @@ alsoProvides(IMissionStory["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionStory["key_system"], ILanguageIndependentField)
 alsoProvides(IMissionStory["funding_programme"], ILanguageIndependentField)
 alsoProvides(IMissionStory["country"], ILanguageIndependentField)
-alsoProvides(IMissionStory["key_learnings"], ILanguageIndependentField)
-alsoProvides(IMissionStory["about_the_region"], ILanguageIndependentField)
-alsoProvides(IMissionStory["solution"], ILanguageIndependentField)
-alsoProvides(IMissionStory["synopsis"], ILanguageIndependentField)
-alsoProvides(IMissionStory["further_information"], ILanguageIndependentField)
+# alsoProvides(IMissionStory["key_learnings"], ILanguageIndependentField)
+# alsoProvides(IMissionStory["about_the_region"], ILanguageIndependentField)
+# alsoProvides(IMissionStory["solution"], ILanguageIndependentField)
+# alsoProvides(IMissionStory["synopsis"], ILanguageIndependentField)
+# alsoProvides(IMissionStory["further_information"], ILanguageIndependentField)
 alsoProvides(IMissionStory["contact"], ILanguageIndependentField)

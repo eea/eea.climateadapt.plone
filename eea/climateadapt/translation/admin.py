@@ -108,7 +108,7 @@ class CreateTranslationStructure(BrowserView):
 class ResetAsync(BrowserView):
     def __call__(self):
         queue = self.context._p_jar.root()['zc.async']['']
-        from zc.async.queue import Queue
+        from zc.async .queue import Queue
         Queue.__init__(queue)
         import transaction
         transaction.commit()

@@ -58,7 +58,8 @@ class IMissionTool(model.Schema, IBlocks):
     )
 
     directives.widget(
-        geographical_scale="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+        geographical_scale="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
     geographical_scale = List(
         title=_("Geographical scale"),
         required=False,
@@ -72,8 +73,7 @@ class IMissionTool(model.Schema, IBlocks):
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
-            "Select one or more climate change impact topics that "
-            "this item relates to."
+            "Select one or more climate change impact topics that this item relates to."
         ),
         required=False,
         value_type=Choice(
@@ -95,7 +95,7 @@ class IMissionTool(model.Schema, IBlocks):
     sectors = List(
         title=_("Adaptation sectors"),
         description=_(
-            "Select one or more relevant sector policies that " "this item relates to."
+            "Select one or more relevant sector policies that this item relates to."
         ),
         required=False,
         value_type=Choice(

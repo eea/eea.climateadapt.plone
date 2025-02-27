@@ -4,8 +4,12 @@ from pkg_resources import resource_filename
 from plone.app.dexterity.behaviors.discussion import IAllowDiscussion
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from plone.app.dexterity.behaviors.metadata import IDublinCore
-from plone.app.event.dx.behaviors import (IEventBasic, IEventContact,
-                                          IEventLocation, IEventRecurrence)
+from plone.app.event.dx.behaviors import (
+    IEventBasic,
+    IEventContact,
+    IEventLocation,
+    IEventRecurrence,
+)
 from plone.app.event.dx.interfaces import IDXEvent
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
@@ -25,9 +29,8 @@ from eea.climateadapt import CcaAdminMessageFactory as _
 # from zope import schema
 # URI, Bool, Date, Datetime, Int, List, Text,
 
-fpath = resource_filename(
-    "eea.climateadapt.behaviors", "volto_layout_cca_event.json"
-)
+fpath = resource_filename("eea.climateadapt.behaviors",
+                          "volto_layout_cca_event.json")
 layout = json.load(open(fpath))
 
 

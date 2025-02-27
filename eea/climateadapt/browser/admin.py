@@ -394,7 +394,8 @@ class SpecialTagsView(BrowserView):
 
             if obj.special_tags:
                 if isinstance(obj.special_tags, list):
-                    obj.special_tags = [key for key in obj.special_tags if key != tag]
+                    obj.special_tags = [
+                        key for key in obj.special_tags if key != tag]
                 elif isinstance(obj.special_tags, tuple):
                     obj.special_tags = tuple(
                         key for key in obj.special_tags if key != tag
@@ -417,7 +418,8 @@ class SpecialTagsView(BrowserView):
 
             if obj.special_tags:
                 if isinstance(obj.special_tags, list):
-                    obj.special_tags = [key for key in obj.special_tags if key != tag]
+                    obj.special_tags = [
+                        key for key in obj.special_tags if key != tag]
                     obj.special_tags.append(newtag)
                 elif isinstance(obj.special_tags, tuple):
                     obj.special_tags = tuple(
@@ -559,9 +561,11 @@ class KeywordsAdminView(BrowserView):
 
             if obj.keywords:
                 if isinstance(obj.keywords, list):
-                    obj.keywords = [key for key in obj.keywords if key != keyword]
+                    obj.keywords = [
+                        key for key in obj.keywords if key != keyword]
                 elif isinstance(obj.keywords, tuple):
-                    obj.keywords = tuple(key for key in obj.keywords if key != keyword)
+                    obj.keywords = tuple(
+                        key for key in obj.keywords if key != keyword)
                 obj.reindexObject()
                 obj._p_changed = True
 
@@ -585,10 +589,12 @@ class KeywordsAdminView(BrowserView):
 
             if obj.keywords:
                 if isinstance(obj.keywords, list):
-                    obj.keywords = [key for key in obj.keywords if key != keyword]
+                    obj.keywords = [
+                        key for key in obj.keywords if key != keyword]
                     obj.keywords.append(newkeyword)
                 elif isinstance(obj.keywords, tuple):
-                    obj.keywords = tuple(key for key in obj.keywords if key != keyword)
+                    obj.keywords = tuple(
+                        key for key in obj.keywords if key != keyword)
                     obj.keywords += (newkeyword,)
                 obj._p_changed = True
                 obj.reindexObject()
@@ -608,7 +614,8 @@ class KeywordObjects(BrowserView):
 
     def __call__(self):
         key = self.request.form["keyword"].decode("utf-8")
-        brains = self.context.portal_catalog.searchResults(keywords=key, path="/cca/en")
+        brains = self.context.portal_catalog.searchResults(
+            keywords=key, path="/cca/en")
 
         key_obj = [b.getURL() + "/edit" for b in brains]
 
@@ -674,7 +681,8 @@ def custom_report(analytics, view_id):
                             }
                         ],
                         "orderBys": [
-                            {"fieldName": "ga:totalEvents", "sortOrder": "DESCENDING"}
+                            {"fieldName": "ga:totalEvents",
+                                "sortOrder": "DESCENDING"}
                         ],
                         "dimensionFilterClauses": [
                             {
@@ -860,7 +868,8 @@ class GetBrokenCreationDates(BrowserView):
                 continue
 
             res.append(
-                (obj, creator, wf_creator, new_creator, creation_date, wf_creation_date)
+                (obj, creator, wf_creator, new_creator,
+                 creation_date, wf_creation_date)
             )
 
         return res
@@ -1084,7 +1093,8 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
     """AdapteCCA current case study fix import ids"""
 
     def __call__(self):
-        fpath = resource_filename("eea.climateadapt.browser", "data/cases_en_cdata.xml")
+        fpath = resource_filename(
+            "eea.climateadapt.browser", "data/cases_en_cdata.xml")
 
         s = open(fpath).read()
         e = fromstring(s)

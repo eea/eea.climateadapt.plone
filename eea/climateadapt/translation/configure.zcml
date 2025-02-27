@@ -77,4 +77,10 @@
     permission="cmf.ManagePortal"
   />
 
+  <adapter factory=".valueadapter.MissionFundingDescriptionValue"
+    provides=".valueadapter.ITranslationValue"
+    for="eea.climateadapt.mission_funding_cca.MissionFundingCCA *"
+    name="description"
+  />
+
 </configure>

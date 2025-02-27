@@ -1,0 +1,5 @@
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/url"></td>
+    </tr>
+</table>

@@ -11,7 +11,9 @@ from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.interfaces import (
-    ILanguageIndependentFieldsManager, ITranslationManager)
+    ILanguageIndependentFieldsManager,
+    ITranslationManager,
+)
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.interfaces import IRichText
 from plone.app.textfield.value import RichTextValue
@@ -318,6 +320,10 @@ def is_volto_context(context):
 
 def sync_translation_state(trans_obj, en_obj):
     state = None
+    transitions = {
+        "published": "publish",
+        "archived": "archive",
+    }
 
     try:
         state = api.content.get_state(en_obj)
@@ -329,10 +335,12 @@ def sync_translation_state(trans_obj, en_obj):
         if api.content.get_state(trans_obj) != state:
             wftool = getToolByName(trans_obj, "portal_workflow")
             logger.info("%s %s", state, trans_obj.absolute_url())
-            if state == "published":
-                wftool.doActionFor(trans_obj, "publish")
-            elif state == "archived":
-                wftool.doActionFor(trans_obj, "archive")
+            if state in transitions:
+                try:
+                    wftool.doActionFor(trans_obj, transitions[state])
+                except WorkflowException:
+                    logger.warn(
+                        "Could not sync state for object: %s", trans_obj)
 
     if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
         trans_obj.setEffectiveDate(en_obj.effective_date)
@@ -564,13 +572,25 @@ def sync_language_independent_fields(context, en_obj_path, options):
     for translation in translations:
         trans_obj = transmanager.get_translation(translation)
         if fieldmanager.copy_fields(trans_obj):
-            print((
-                "plone.app.multilingual translation reindex",
-                trans_obj.absolute_url(relative=1),
-            ))
+            print(
+                (
+                    "plone.app.multilingual translation reindex",
+                    trans_obj.absolute_url(relative=1),
+                )
+            )
             trans_obj.reindexObject()
 
     try:
         del site_portal.REQUEST
     except AttributeError:
         pass
+
+
+# def translate_object_async(obj, language):
+#     force_unlock(obj)
+#     html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+#     site = portal.getSite()
+#     http_host = obj.REQUEST.environ.get(
+#         "HTTP_X_FORWARDED_HOST", site.absolute_url())
+#
+#     queue_translate_volto_html(html, obj, http_host, language)

@@ -67,6 +67,13 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # column: Can the received funding be combined with other funding sources (blended)?
     )
 
+    is_eu_funded = Bool(
+        title=_("EU funding"),
+        required=False,
+        default=False,
+        # column: Can the received funding be combined with other funding sources (blended)?
+    )
+
     is_consortium_required = Bool(
         title=_("Is a Consortium required to apply for the funding?"),
         required=False,
@@ -174,7 +181,10 @@ class IMissionFundingCCA(model.Schema, IBlocks):
 
 alsoProvides(IMissionFundingCCA["sectors"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["country"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["funding_type"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["budget_range"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["is_blended"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["is_eu_funded"], ILanguageIndependentField)
 alsoProvides(
     IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
 # alsoProvides(IMissionFundingCCA["publication_page"], ILanguageIndependentField)
