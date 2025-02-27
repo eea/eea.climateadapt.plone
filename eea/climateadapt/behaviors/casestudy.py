@@ -1,12 +1,10 @@
-# from plone.app.contenttypes.interfaces import IImage
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
-# from plone.formwidget.contenttree import ObjPathSourceBinder
+
 from plone.namedfile.field import NamedBlobImage
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from z3c.form.interfaces import IAddForm, IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import alsoProvides
 from zope.schema import Choice, List, TextLine, Tuple
@@ -15,6 +13,10 @@ from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 
 from .volto_layout import case_study_layout_blocks, case_study_layout_items
+
+# from z3c.form.interfaces import IAddForm, IEditForm
+# from plone.app.contenttypes.interfaces import IImage
+# from plone.formwidget.contenttree import ObjPathSourceBinder
 
 
 class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
@@ -115,7 +117,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         title=_("Adaptation measures implemented in the case:"),
         default=[],
         description=_(
-            "Select one or more adaptation options that this item " "relates to:"
+            "Select one or more adaptation options that this item relates to:"
         ),
         value_type=RelationChoice(
             title=_("Related"),
@@ -147,7 +149,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         required=False,
         default=str(""),
         description=_(
-            "Copyright statement or other rights information for  " "the primary photo."
+            "Copyright statement or other rights information for  the primary photo."
         ),
     )
 

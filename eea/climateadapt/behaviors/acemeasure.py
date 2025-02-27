@@ -1,18 +1,18 @@
+from collective.geolocationbehavior.geolocation import IGeolocatable
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.supermodel import model
 from z3c.form.browser.textlines import TextLinesWidget
-from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
+from z3c.form.interfaces import IAddForm, IEditForm  # , IFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-from zope.interface import Interface, alsoProvides, implementer  # , implements
-from zope.schema import (URI, Bool, Choice, Date, Int, List, Text, TextLine,
-                         Tuple)
+from zope.interface import Interface, alsoProvides  # , implementer  # , implements
+from zope.schema import URI, Bool, Choice, Date, Int, List, Text, TextLine, Tuple
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 
+# from plone.supermodel import model
 # from z3c.form import form
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
@@ -144,15 +144,13 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         missing_value="",
     )
 
-    directives.widget(
-        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         missing_value=[],
         default=None,
         description=_(
-            "Select one or more climate change impact topics that "
-            "this item relates to:"
+            "Select one or more climate change impact topics that this item relates to:"
         ),
         required=True,
         value_type=Choice(
@@ -182,7 +180,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     sectors = List(
         title=_("Sectors"),
         description=_(
-            "Select one or more relevant sector policies" " that this item relates to:"
+            "Select one or more relevant sector policies that this item relates to:"
         ),
         required=True,
         missing_value=[],
@@ -333,12 +331,11 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
-    directives.widget(
-        governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     governance_level = List(
         title=_("Governance Level"),
         description=_(
-            "Select the one governance level that relates to this " "adaptation option"
+            "Select the one governance level that relates to this adaptation option"
         ),
         required=False,
         value_type=Choice(
@@ -346,8 +343,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         ),
     )
 
-    directives.widget(
-        geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    directives.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
@@ -479,8 +475,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype",
     )
 
-    spatial_layer = TextLine(title=_("Spatial Layer"),
-                             required=False, default="")
+    spatial_layer = TextLine(title=_("Spatial Layer"), required=False, default="")
 
     spatial_values = List(
         title=_("Countries"),
@@ -621,5 +616,5 @@ alsoProvides(IAceMeasure["measure_type"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["spatial_layer"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["spatial_values"], ILanguageIndependentField)
 
-# from collective.geolocationbehavior.geolocation import IGeolocatable
-# alsoProvides(IGeolocatable['geolocation'], ILanguageIndependentField)
+
+alsoProvides(IGeolocatable["geolocation"], ILanguageIndependentField)

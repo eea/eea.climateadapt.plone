@@ -1,10 +1,13 @@
+from OFS.interfaces import IOrderedContainer
+from collective.exportimport.export_other import ExportOrdering
+from operator import itemgetter
+from plone.uuid.interfaces import IUUID
+import transaction
+from plone import api
 import logging
 from collective.exportimport.export_content import ExportContent
 from collective.exportimport.import_content import ImportContent
-from collective.exportimport.import_other import (
-    ImportTranslations,
-    link_translations
-)
+from collective.exportimport.import_other import ImportTranslations, link_translations
 from zope.interface import directlyProvidedBy
 
 from plone.restapi.interfaces import IJsonCompatible
@@ -18,10 +21,7 @@ from eea.climateadapt.interfaces import (
 )
 from zope.annotation.interfaces import IAnnotations
 
-ANNOTATIONS_TO_EXPORT = [
-    "c3s_json_data",
-    "broken_links_data"
-]
+ANNOTATIONS_TO_EXPORT = ["c3s_json_data", "broken_links_data"]
 ANNOTATIONS_KEY = "exportimport.annotations"
 
 logger = logging.getLogger(__name__)
@@ -43,7 +43,8 @@ class CustomExportContent(ExportContent):
 
     def export_marker_interfaces(self, item, obj):
         interfaces = [i.__identifier__ for i in directlyProvidedBy(obj)]
-        interfaces = [i for i in interfaces if i in MARKER_INTERFACES_TO_EXPORT]
+        interfaces = [
+            i for i in interfaces if i in MARKER_INTERFACES_TO_EXPORT]
         if interfaces:
             item[MARKER_INTERFACES_KEY] = interfaces
         return item
@@ -88,44 +89,39 @@ class CustomImportContent(ImportContent):
         return obj, item
 
 
-# from operator import itemgetter
-# from collective.exportimport.export_other import ExportOrdering
-# from OFS.interfaces import IOrderedContainer
-# from plone import api
-# from plone.uuid.interfaces import IUUID
+class FixedExportOrdering(ExportOrdering):
+    def all_orders(self):
+        results = []
 
-# class FixedExportOrdering(ExportOrdering):
-#     def all_orders(self):
-#         results = []
-#
-#         def get_position_in_parent(obj, path):
-#             uid = IUUID(obj, None)
-#             if not uid:
-#                 return
-#             try:
-#                 parent = obj.__parent__
-#                 ordered = IOrderedContainer(parent, None)
-#                 if ordered is not None:
-#                     order = ordered.getObjectPosition(obj.getId())
-#                     if order is not None:
-#                         results.append({"uuid": uid, "order": order})
-#             except Exception as e:
-#                 logger.debug(
-#                     "Could not get item position in parent: %s for %s, %s", obj, path, e
-#                 )
-#             return
-#
-#         portal = api.portal.get()
-#         portal.ZopeFindAndApply(
-#             portal, search_sub=True, apply_func=get_position_in_parent
-#         )
-#         return sorted(results, key=itemgetter("order"))
+        def get_position_in_parent(obj, path):
+            uid = IUUID(obj, None)
+            if not uid:
+                return
+            parent = obj.__parent__
+            ordered = IOrderedContainer(parent, None)
+            if ordered is not None:
+                try:
+                    order = ordered.getObjectPosition(obj.getId())
+                except ValueError:
+                    order = None
+                if order is not None:
+                    results.append({"uuid": uid, "order": order})
+                # cat src/collective.exportimport/src/collective/exportimport/export_other.py
+                # order = ordered.getObjectPosition(obj.getId())
+                # if order is not None:
+                #     results.append({"uuid": uid, "order": order})
+            return
 
-from plone import api
-import transaction
+        portal = api.portal.get()
+        portal.ZopeFindAndApply(
+            portal, search_sub=True, apply_func=get_position_in_parent
+        )
+        return sorted(results, key=itemgetter("order"))
+
 
 class CustomImportTranslations(ImportTranslations):
     """"""
+
     def import_translations(self, data):
         imported = 0
         empty = []
@@ -160,10 +156,11 @@ class CustomImportTranslations(ImportTranslations):
                     translation = obj
                     link_translations(canonical, translation, lang)
 
-            logger.info("Imported translation group nr. {}".format(imported))    
+            logger.info("Imported translation group nr. {}".format(imported))
 
             if not imported % 1000:
-                msg = "Committing after importing {} translations...".format(imported)
+                msg = "Committing after importing {} translations...".format(
+                    imported)
                 logger.info(msg)
                 transaction.get().note(msg)
                 transaction.commit()

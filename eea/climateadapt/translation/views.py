@@ -7,6 +7,7 @@ import os
 
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.app.multilingual.interfaces import ITranslationManager
 from plone.dexterity.utils import iterSchemata
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
@@ -14,8 +15,7 @@ from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.contentrules import \
-    queue_translate_volto_html
+from eea.climateadapt.translation.contentrules import queue_translate_volto_html
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .core import get_blocks_as_html, ingest_html
@@ -125,7 +125,7 @@ class TranslateFolderAsync(BrowserView):
         return list(untranslated)
 
     def __call__(self):
-        obj = self.context
+        context = self.context
 
         brains = context.portal_catalog.searchResults(
             path="/".join(context.getPhysicalPath()),
@@ -183,7 +183,7 @@ class ToHtml(BrowserView):
                     continue
                 self.fields[k] = v
                 value = self.get_value(k)
-                if value:
+                if value and k not in self.order:
                     self.order.append(k)
                     self.values[k] = value
 

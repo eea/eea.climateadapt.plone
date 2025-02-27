@@ -3,8 +3,18 @@ from plone.app.textfield import RichText
 from plone.autoform import directives
 from z3c.form.interfaces import IAddForm, IEditForm
 from zope.interface import alsoProvides
-from zope.schema import (URI, Bool, Choice, Date, Datetime, Int, List, Text,
-                         TextLine, Tuple)
+from zope.schema import (
+    # URI,
+    # Bool,
+    Choice,
+    Date,
+    # Datetime,
+    # Int,
+    List,
+    Text,
+    TextLine,
+    # Tuple,
+)
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 
@@ -13,7 +23,7 @@ from .indicator import IIndicator
 
 # TODO: simplify this schema
 class IC3sIndicator(IIndicator):
-    """ Indicator Interface"""
+    """Indicator Interface"""
 
     # directives.omitted(IEditForm, "contributor_list")
     # directives.omitted(IAddForm, "contributor_list")
@@ -50,9 +60,7 @@ class IC3sIndicator(IIndicator):
     # directives.omitted(IEditForm, "health_impacts")
     # directives.omitted(IAddForm, "health_impacts")
 
-    indicator_title = TextLine(
-        title=_("Indicator title"), required=False
-    )
+    indicator_title = TextLine(title=_("Indicator title"), required=False)
 
     definition_app = RichText(
         title=("App definition"),
@@ -60,23 +68,33 @@ class IC3sIndicator(IIndicator):
         required=False,
     )
 
-    c3s_identifier = TextLine(
-        title=_("C3S Identifier"), required=True
-    )
+    c3s_identifier = TextLine(title=_("C3S Identifier"), required=True)
 
     overview_app_toolbox_url = TextLine(
-        title=_(u"Overview APP Toolbox URL"), required=False
+        title=_("Overview APP Toolbox URL"), required=False
     )
 
     overview_app_toolbox_url_v2 = TextLine(
-        title=_(u"Overview APP Toolbox URL V2"), description=u"used for items after ecde_identifier option", required=False
+        title=_("Overview APP Toolbox URL V2"),
+        description="used for items after ecde_identifier option",
+        required=False,
+    )
+
+    overview_app_toolbox_url_v2 = TextLine(
+        title=_("Overview APP Toolbox URL V2"),
+        description="used for items after ecde_identifier option",
+        required=False,
     )
 
     overview_app_parameters = Text(
         title=("Overview APP parameters"), required=True)
 
     overview_app_ecde_identifier = TextLine(
-        title=_(u"Overview APP ECDE Identifier"), required=True
+        title=_("Overview APP ECDE Identifier"), required=True
+    )
+
+    overview_app_ecde_identifier = TextLine(
+        title=_("Overview APP ECDE Identifier"), required=True
     )
 
     details_app_toolbox_url = TextLine(
@@ -89,8 +107,7 @@ class IC3sIndicator(IIndicator):
     sectors = List(
         title=_("Sectors"),
         description=_(
-            "Select one or more relevant sector policies"
-            " that this item relates to."
+            "Select one or more relevant sector policies that this item relates to."
         ),
         required=False,
         missing_value=[],
@@ -103,8 +120,7 @@ class IC3sIndicator(IIndicator):
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
-            "Select one or more climate change impact topics that "
-            "this item relates to."
+            "Select one or more climate change impact topics that this item relates to."
         ),
         required=False,
         missing_value=[],
@@ -119,9 +135,9 @@ class IC3sIndicator(IIndicator):
         description="The date refers to the latest date of publication of "
         "the item."
         " Please use the Calendar icon to add day/month/year. If you want to "
-        "add only the year, please select \"day: 1\", \"month: January\" "
+        'add only the year, please select "day: 1", "month: January" '
         "and then the year",
-        required=False
+        required=False,
     )
 
 

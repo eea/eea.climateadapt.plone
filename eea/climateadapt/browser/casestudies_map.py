@@ -30,8 +30,9 @@ class Items(BrowserView):
                              "eea.climateadapt.aceitems_sectors")
         vocabulary_sectors = factory(self.context)
         # 261447 - for case studies we have 6 more elements compared with other types
-        factory = getUtility(IVocabularyFactory,
-                             "eea.climateadapt.aceitems_elements_case_study")
+        factory = getUtility(
+            IVocabularyFactory, "eea.climateadapt.aceitems_elements_case_study"
+        )
         vocabulary_elements = factory(self.context)
 
         results = {
@@ -45,18 +46,21 @@ class Items(BrowserView):
                 "count": 10739,
             },
             "features": [],
-            "filters": {'sectors': [], 'impacts': [], 'elements': [], 'measures': {}},
+            "filters": {"sectors": [], "impacts": [], "elements": [], "measures": {}},
         }
         # Add available filters
         for term in vocabulary_sectors:
-            results["filters"]['sectors'].append(
-                {"key": term.value, "value": term.title})
+            results["filters"]["sectors"].append(
+                {"key": term.value, "value": term.title}
+            )
         for term in vocabulary_elements:
-            results["filters"]['elements'].append(
-                {"key": term.value, "value": term.title})
+            results["filters"]["elements"].append(
+                {"key": term.value, "value": term.title}
+            )
         for term in vocabulary_impacts:
-            results["filters"]['impacts'].append(
-                {"key": term.value, "value": term.title})
+            results["filters"]["impacts"].append(
+                {"key": term.value, "value": term.title}
+            )
 
         factory = getUtility(
             IVocabularyFactory, "eea.climateadapt.aceitems_key_type_measures"
@@ -68,9 +72,9 @@ class Items(BrowserView):
             temp = term.title
             titleSplit = temp.split(":")
             nameCategory = titleSplit[1].strip()
-            if nameCategory not in results["filters"]['measures']:
-                results["filters"]['measures'][nameCategory] = []
-            results["filters"]['measures'][nameCategory].append(
+            if nameCategory not in results["filters"]["measures"]:
+                results["filters"]["measures"][nameCategory] = []
+            results["filters"]["measures"][nameCategory].append(
                 {"key": term.value, "value": titleSplit[2].strip()}
             )
 
@@ -139,7 +143,8 @@ class Items(BrowserView):
                     for element in obj.elements:
                         try:
                             elements_str.append(
-                                vocabulary_elements.getTerm(element).title)
+                                vocabulary_elements.getTerm(element).title
+                            )
                         except:
                             """"""
 
@@ -167,7 +172,9 @@ class Items(BrowserView):
                             ),
                             # "sectors": obj.sectors,
                             "sectors": "," + (",".join(obj.sectors)) + ",",
-                            "elements": "," + (",".join(obj.elements)) if obj.elements else '' + ",",
+                            "elements": "," + (",".join(obj.elements))
+                            if obj.elements
+                            else "" + ",",
                             "impacts": "," + (",".join(obj.climate_impacts)) + ",",
                             "ipccs": "," + (",".join(list_ipcc_categories)) + ",",
                             "ktms": "," + (",".join(list_key_type_measures)) + ",",
@@ -280,8 +287,10 @@ class Page(BrowserView):
             if titleSplit[1] not in response:
                 response[titleSplit[1]] = []
             response[titleSplit[1]].append(
-                {"key": term.value, "value": titleSplit[0].strip(
-                )+': '+titleSplit[2].strip()}
+                {
+                    "key": term.value,
+                    "value": titleSplit[0].strip() + ": " + titleSplit[2].strip(),
+                }
             )
             # response.append({"key": term.value, "value": term.title})
         return response

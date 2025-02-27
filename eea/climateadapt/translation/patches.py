@@ -3,12 +3,17 @@ import logging
 from Acquisition import aq_self
 from BTrees.OIBTree import OIBTree
 from plone.api import portal
-from plone.app.multilingual.dx.interfaces import (IDexterityTranslatable,
-                                                  ILanguageIndependentField)
+from plone.app.multilingual.dx.interfaces import (
+    IDexterityTranslatable,
+    ILanguageIndependentField,
+)
 from plone.app.multilingual.factory import DefaultTranslationLocator as Base
 from plone.app.multilingual.interfaces import (
-    ILanguage, ILanguageIndependentFieldsManager, ITranslationLocator,
-    ITranslationManager)
+    ILanguage,
+    ILanguageIndependentFieldsManager,
+    ITranslationLocator,
+    ITranslationManager,
+)
 from plone.dexterity.utils import iterSchemata
 from z3c.relationfield.interfaces import IRelationList, IRelationValue
 from zope.annotation.interfaces import IAnnotations
@@ -18,8 +23,7 @@ from zope.interface import implementer
 
 from eea.climateadapt.asynctasks.utils import get_async_service
 
-from .core import (DummyPersistent, sync_language_independent_fields,
-                   wrap_in_aquisition)
+from .core import DummyPersistent, sync_language_independent_fields, wrap_in_aquisition
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -190,9 +194,8 @@ def patched_default_order_pos(self, create=False):
                     res[k] = pos[k]
             return res
         except Exception:
-            logger.exception(
-                "Could not properly get order %s", path(self.translation)
-            )
+            logger.exception("Could not properly get order %s",
+                             path(self.translation))
     else:
         if create:
             return annotations.setdefault(self.POS_KEY, OIBTree())
@@ -210,9 +213,8 @@ def patched_default_order_order(self, create=False):
             res = [k for k in pos if k in ids]
             return res
         except Exception:
-            logger.exception(
-                "Could not properly get order %s", path(self.translation)
-            )
+            logger.exception("Could not properly get order %s",
+                             path(self.translation))
     else:
         if create:
             return annotations.setdefault(self.POS_KEY, OIBTree())
@@ -226,9 +228,8 @@ def patched_default_getObjectPosition(self, obj_id):
         return pos[obj_id]
 
     # TODO: lookup the position for the translation of that object
-    logger.warning(
-        "Could not find position of %s in %s", obj_id, path(self.context)
-    )
+    logger.warning("Could not find position of %s in %s",
+                   obj_id, path(self.context))
     return 0
 
     # raise ValueError(

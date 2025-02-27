@@ -107,7 +107,7 @@ def check_link_status(link):
         logger.warning("Now checking: %s", link)
 
         try:
-            resp = requests.head(link, timeout=5, allow_redirects=True)
+            resp = requests.head(link, timeout=30, allow_redirects=True)
             if resp.status_code == 404:
                 return {"status": "NotFound", "url": link}
             # requests.head(link, timeout=5, allow_redirects=True)
@@ -334,7 +334,14 @@ def recursively_extract_links(site):
     count = 0
     logger.info("Got %s objects" % len(brains))
 
+    now = DateTime()
+
     for b in brains:
+        if b.review_state != "published":
+            continue
+        if b.portal_type == "News Item":
+            if (now - b.created) > 365:  # skip news that are older then a year
+                continue
         obj = b.getObject()
         path = obj.getPhysicalPath()
 
@@ -418,6 +425,7 @@ class BrokenLinksService(Service):
                 # except:
                 #     continue
                 # state = get_state(obj)
+                # # TODO: continue here
                 state = None
                 if state not in ["private", "archived"]:
                     if "climate-adapt.eea" in info["url"]:
@@ -485,7 +493,7 @@ class BrokenLinksService(Service):
 
         sh(
             "Content-Type",
-            "application/vnd.openxmlformats-officedocument." "spreadsheetml.sheet",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         )
         fname = "-".join(["Broken-Links",
                          str(datetime.now().replace(microsecond=0))])
