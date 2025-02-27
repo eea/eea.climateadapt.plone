@@ -1,23 +1,18 @@
-# from collective import dexteritytextindexer
 from plone.app.dexterity.behaviors.metadata import IPublication
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 
-# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
-from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
+from z3c.form.interfaces import IAddForm, IEditForm  # , IFieldWidget
 
-# from z3c.form.util import getSpecification
-# from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 
-# from zope.component import adapter
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides  # , implementer
 from zope.schema import (
-    URI,
+    # URI,
     Bool,
     Choice,
     Date,  # DateTime,; ASCIILine,
@@ -30,13 +25,12 @@ from zope.schema import (
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.schema import AbsoluteUrl, Uploader
 
+# from collective import dexteritytextindexer
+# from zope.component import adapter
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
+# from plone.app.widgets.interfaces import IWidgetsLayer
 # from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-
-# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.schema import AbsoluteUrl, Uploader
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 
 class IAceItem(IImageScaleTraversable):
@@ -176,7 +170,8 @@ class IAceItem(IImageScaleTraversable):
 
     long_description = RichText(
         title=_("Description"),
-        description=_("Provide a description of the item.(5,000 character limit)"),
+        description=_(
+            "Provide a description of the item.(5,000 character limit)"),
         required=True,
     )
 
@@ -216,7 +211,8 @@ class IAceItem(IImageScaleTraversable):
         ),
     )
 
-    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
@@ -292,7 +288,8 @@ class IAceItem(IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
-    directives.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    directives.widget(
+        geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
@@ -407,9 +404,11 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    item_link = AbsoluteUrl(title=_("Item link"), required=False, default=str(""))
+    item_link = AbsoluteUrl(title=_("Item link"),
+                            required=False, default=str(""))
 
-    uploader = Uploader(title=_("Uploaded by"), required=False, default=str(""))
+    uploader = Uploader(title=_("Uploaded by"),
+                        required=False, default=str(""))
     # fix???
     data_type = Choice(
         title=_("Data Type"),
@@ -424,7 +423,8 @@ class IAceItem(IImageScaleTraversable):
         vocabulary="eea.climateadapt.aceitems_storagetypes",
     )
 
-    spatial_layer = TextLine(title=_("Spatial Layer"), required=False, default=str(""))
+    spatial_layer = TextLine(title=_("Spatial Layer"),
+                             required=False, default=str(""))
 
     spatial_values = List(
         title=_("Countries"),
