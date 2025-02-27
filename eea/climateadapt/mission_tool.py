@@ -1,7 +1,8 @@
 from eea.climateadapt.behaviors import IMissionTool
-from plone.directives import dexterity
-from zope.interface import implements
+from plone.dexterity.content import Container
+from zope.interface import implementer
 
 
-class MissionTool(dexterity.Container):
-    implements(IMissionTool)
+@implementer(IMissionTool)
+class MissionTool(Container):
+    """"""

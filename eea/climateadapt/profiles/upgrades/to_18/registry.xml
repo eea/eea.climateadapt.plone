@@ -5,9 +5,9 @@
             <element>eea.climateadapt.section_nav</element>
         </value>
     </record>
-    <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
+    <!-- <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
         <value purge="false">
             <element>eea.climateadapt.section_nav</element>
         </value>
-    </record>
+    </record> -->
 </registry>

@@ -5,10 +5,11 @@ from zope.component.hooks import getSite
 from zope.interface import providedBy
 from Products.Five.browser import BrowserView
 from Products.CMFCore.utils import getToolByName
-from eea.climateadapt.translation.utils import TranslationUtilsMixin
+# from eea.climateadapt.translation.utils import TranslationUtilsMixin
 
 
-class TransRegionSelect(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class TransRegionSelect(BrowserView):
     """ A dropdown select with transnational regions
     """
 

@@ -1,27 +1,30 @@
 from .valueadapter import ITranslationValue
 from zope.component import queryMultiAdapter
 import json
-import urllib
+import urllib.request
+import urllib.parse
+import urllib.error
 import logging
 from datetime import date
 
-from collective.cover.tiles.richtext import RichTextTile
 from DateTime import DateTime
 from plone import api
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.value import RichTextValue
 from plone.behavior.interfaces import IBehaviorAssignable
-from plone.formwidget.geolocation.geolocation import Geolocation
+
 from plone.namedfile.file import NamedBlobFile, NamedBlobImage, NamedFile, NamedImage
 from Products.CMFCore.utils import getToolByName
 from z3c.relationfield.relation import RelationValue
 from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
-from eea.climateadapt.tiles.richtext import RichTextWithTitle
-# from eea.climateadapt.translation import translate_one_text_to_translation_storage
-
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
+
+# from collective.cover.tiles.richtext import RichTextTile
+# from plone.formwidget.geolocation.geolocation import Geolocation
+# from eea.climateadapt.tiles.richtext import RichTextWithTitle
+# from eea.climateadapt.translation import translate_one_text_to_translation_storage
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -182,7 +185,7 @@ def translate_text(context, request, text, domain="eea.climateadapt", language=N
 
 def get_site_languages():
     try:
-        languages = (
+        languages = list(
             TranslationManager(api.portal.get().restrictedTraverse("en"))
             .get_translations()
             .keys()
@@ -215,7 +218,7 @@ def filters_to_query(args):
         else:
             res.append(["filters[{0}][values][0]".format(i), val])
 
-    return urllib.urlencode(dict(res))
+    return urllib.parse.urlencode(dict(res))
 
 
 def get_object_fields(obj):
@@ -235,7 +238,6 @@ def is_language_independent_value(value):
     if (
         isinstance(value, bool)
         or isinstance(value, int)
-        or isinstance(value, long)
         or isinstance(value, tuple)
         or isinstance(value, list)
         or isinstance(value, set)
@@ -247,7 +249,7 @@ def is_language_independent_value(value):
         or isinstance(value, DateTime)
         or isinstance(value, date)
         or isinstance(value, RelationValue)
-        or isinstance(value, Geolocation)
+        # or isinstance(value, Geolocation)
     ):
         return True
     return False
@@ -275,32 +277,32 @@ def get_object_fields_values(obj):
     }
 
     # get tile data
-    if obj.portal_type == "collective.cover.content":
-        tiles_id = obj.list_tiles()
-        for tile_id in tiles_id:
-            data["tile"][tile_id] = {"item": {}, "html": {}}
-            tile = obj.get_tile(tile_id)
-            for field in tile_fields:
-                value = None
-                if isinstance(tile, RichTextWithTitle) or isinstance(
-                    tile, RichTextTile
-                ):
-                    if field in tile_fields:
-                        try:
-                            if isinstance(tile.data.get(field), RichTextValue):
-                                value = tile.data.get(field).raw
-                                if value:
-                                    data["tile"][tile_id]["html"][field] = value
-                            else:
-                                value = tile.data.get(field)
-                                if value:
-                                    data["tile"][tile_id]["item"][field] = value
-                        except Exception:
-                            value = None
-                else:
-                    value = tile.data.get(field, None)
-                    if value:
-                        data["tile"][tile_id]["item"][field] = value
+    # if obj.portal_type == "collective.cover.content":
+    #     tiles_id = obj.list_tiles()
+    #     for tile_id in tiles_id:
+    #         data["tile"][tile_id] = {"item": {}, "html": {}}
+    #         tile = obj.get_tile(tile_id)
+    #         for field in tile_fields:
+    #             value = None
+    #             if isinstance(tile, RichTextWithTitle) or isinstance(
+    #                 tile, RichTextTile
+    #             ):
+    #                 if field in tile_fields:
+    #                     try:
+    #                         if isinstance(tile.data.get(field), RichTextValue):
+    #                             value = tile.data.get(field).raw
+    #                             if value:
+    #                                 data["tile"][tile_id]["html"][field] = value
+    #                         else:
+    #                             value = tile.data.get(field)
+    #                             if value:
+    #                                 data["tile"][tile_id]["item"][field] = value
+    #                     except Exception:
+    #                         value = None
+    #             else:
+    #                 value = tile.data.get(field, None)
+    #                 if value:
+    #                     data["tile"][tile_id]["item"][field] = value
 
     skip_fields = [
         "acronym",

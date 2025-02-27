@@ -5,40 +5,39 @@ from Products.CMFCore.interfaces import IContentish
 from plone.api.content import transition
 from plone.api.portal import show_message
 from plone.autoform import directives
-from plone.directives import form
 from plone.stringinterp.adapters import BaseSubstitution
-from z3c.form import button     #, field
+from z3c.form import button, form     #, field
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts
-from zope.component.interfaces import ObjectEvent, IObjectEvent
+# from zope.component.interfaces import ObjectEvent, IObjectEvent
 from zope.event import notify
 from zope.globalrequest import getRequest
-from zope.interface import implements
+from zope.interface import implementer
+from zope.interface import Interface
 
 
 ANNOT_KEY = 'CCA_WORKFLOW_MESSAGE'
 
 
-class IWorkflowMessageEvent(IObjectEvent):
-    """ An event with a message for the workflow transition
-    """
+# class IWorkflowMessageEvent(IObjectEvent):
+#     """ An event with a message for the workflow transition
+#     """
+
+# @implementer(IWorkflowMessageEvent)
+# class WorkflowMessageEvent(ObjectEvent):
 
 
-class WorkflowMessageEvent(ObjectEvent):
-    implements(IWorkflowMessageEvent)
-
-
-class IWorkflowMessageSchema(form.Schema):
+class IWorkflowMessageSchema(Interface):
     """ Schema to set message on transition
     """
 
     directives.mode(workflow_action='hidden')
-    workflow_action = schema.ASCIILine(title=u"Workflow action")
-    message = schema.Text(title=u"Message", required=True)
+    workflow_action = schema.ASCIILine(title="Workflow action")
+    message = schema.Text(title="Message", required=True)
 
 
-class WorkflowTransitionMessage(form.SchemaForm):
+class WorkflowTransitionMessage(form.Form):
     """ A form to trigger a workflow transition, together with workflow message
 
     How to use: set the URL for the workflow transition to something like:
@@ -51,12 +50,12 @@ class WorkflowTransitionMessage(form.SchemaForm):
     schema = IWorkflowMessageSchema
     ignoreContext = True
 
-    label = u"Send comment for this action"
+    label = "Send comment for this action"
 
     @property
     def description(self):
         action = self.request.get('form.widgets.workflow_action')
-        return u"This will trigger the {0} transition".format(action)
+        return "This will trigger the {0} transition".format(action)
 
     def updateWidgets(self, prefix=None):
         super(WorkflowTransitionMessage, self).updateWidgets()
@@ -65,7 +64,7 @@ class WorkflowTransitionMessage(form.SchemaForm):
             self.widgets['workflow_action'].value = v
         return
 
-    @button.buttonAndHandler(u"Save")
+    @button.buttonAndHandler("Save")
     def handleApply(self, action):
         data, errors = self.extractData()
         if errors:
@@ -76,10 +75,10 @@ class WorkflowTransitionMessage(form.SchemaForm):
         msg = data['message'].strip()
 
         IAnnotations(self.request)[ANNOT_KEY] = msg
-        notify(WorkflowMessageEvent(self.context))
+        # notify(WorkflowMessageEvent(self.context))
         transition(obj=self.context, transition=action, comment=msg)
 
-        self.status = msg = u"Message will be further processed."
+        self.status = msg = "Message will be further processed."
         show_message(message=msg, request=self.request, type='info')
         return self.request.response.redirect(self.context.absolute_url())
 
@@ -87,8 +86,8 @@ class WorkflowTransitionMessage(form.SchemaForm):
 class workflow_message(BaseSubstitution):
     adapts(IContentish)
 
-    category = u'CCA Utils'
-    description = u"Content of message set in workflow form."
+    category = 'CCA Utils'
+    description = "Content of message set in workflow form."
 
     def safe_call(self):
         req = getRequest()

@@ -1,4 +1,4 @@
-""" A command line ArcGIS client
+"""A command line ArcGIS client
 
 Call it from a script such as:
 
@@ -15,15 +15,18 @@ This commands accepts various parameter. Look at __main__ to see what it does.
 import datetime
 import json
 import logging
+import urllib.error
+import urllib.parse
+import urllib.request
+from collections import OrderedDict
 
 import transaction
-import urllib2
-from eea.climateadapt.scripts import get_plone_site
-from plone.dexterity.utils import createContentInContainer
 from plone import api
 from plone.app.textfield.value import RichTextValue
+from plone.dexterity.utils import createContentInContainer
 from zope.annotation.interfaces import IAnnotations
-from collections import OrderedDict
+
+from eea.climateadapt.scripts import get_plone_site
 
 logger = logging.getLogger("eea.climateadapt")
 logging.basicConfig()
@@ -40,20 +43,20 @@ SOURCE_URL = (
 
 
 def get_source_data():
-    response = urllib2.urlopen(SOURCE_URL)
+    response = urllib.request.urlopen(SOURCE_URL)
     source_content = response.read()
     return json.loads(source_content, object_pairs_hook=OrderedDict)
 
 
 def update_object(obj, indicator):
-    print(obj.title)
-    print("  ->" + obj.c3s_identifier)
+    print((obj.title))
+    print(("  ->" + obj.c3s_identifier))
 
     obj.title = indicator["page_title"]
     obj.indicator_title = indicator["indicator_title"]
 
     obj.long_description = RichTextValue(indicator["description_general"])
-    obj.description = ''
+    obj.description = ""
     obj.definition_app = RichTextValue(indicator["description_vis_nav"])
 
     if isinstance(indicator["theme"], list):
@@ -63,34 +66,33 @@ def update_object(obj, indicator):
 
     obj.c3s_identifier = indicator.get("identifier", "")
     obj.overview_app_ecde_identifier = indicator.get("ecde_identifier", "")
-    print("ECDE identifier", obj.overview_app_ecde_identifier)
+    print(("ECDE identifier", obj.overview_app_ecde_identifier))
 
     if len(obj.overview_app_ecde_identifier):
         obj.overview_app_toolbox_url_v2 = indicator["detail"]
     else:
         obj.overview_app_toolbox_url = indicator["detail"]
         obj.overview_app_parameters = indicator.get("overview", "")
-    print('overview_app_toolbox_url', obj.overview_app_toolbox_url)
-    print('overview_app_parameters', obj.overview_app_parameters)
-    print('overview_app_toolbox_url v2', obj.overview_app_toolbox_url_v2)
+    print(("overview_app_toolbox_url", obj.overview_app_toolbox_url))
+    print(("overview_app_parameters", obj.overview_app_parameters))
+    print(("overview_app_toolbox_url v2", obj.overview_app_toolbox_url_v2))
 
     obj.sectors = []
     obj.climate_impacts = []
-    obj.origin_website = ['C3S']
-    obj.language = 'en'
+    obj.origin_website = ["C3S"]
+    obj.language = "en"
     obj.reindexObject()
 
     state = api.content.get_state(obj=obj, default="Unknown")
     if state != "published":
-        print("Object not published, publishing", obj)
+        print(("Object not published, publishing", obj))
         api.content.transition(obj, "publish")
     obj._p_changed = True
 
 
 def save_indicator(indicator, site, data):
-
     print("=============================================")
-    print(indicator["theme"])
+    print((indicator["theme"]))
 
     folder_path = "en/knowledge/european-climate-data-explorer/"
     folder = site.restrictedTraverse(folder_path)
@@ -98,7 +100,7 @@ def save_indicator(indicator, site, data):
     for theme_name in indicator["theme"]:
         folder_indicator_id = theme_name.lower().replace(" ", "-")
         if folder_indicator_id not in folder.contentIds():
-            print("Create indicator folder", theme_name)
+            print(("Create indicator folder", theme_name))
             folder_indicator = createContentInContainer(
                 folder, "Folder", title=theme_name
             )
@@ -114,7 +116,7 @@ def save_indicator(indicator, site, data):
         **{
             "portal_type": "eea.climateadapt.c3sindicator",
             "c3s_identifier": indicator["identifier"],
-            "path": "/cca/en"
+            "path": "/cca/en",
         }
     )
     indicatorFound = False
@@ -164,7 +166,7 @@ def main():
     #    print("Updated description for", theme_folder)
 
     transaction.commit()
-    print("Total items:" + str(len(data["indicators"])))
+    print(("Total items:" + str(len(data["indicators"]))))
 
 
 if __name__ == "__main__":

@@ -75,7 +75,9 @@ class Navbar(ExternalTemplateHeader):
 
     def menu(self):
         tool = getToolByName(self.context, "translation_service")
+        # TODO get current language
         current_language = get_current_language(self.context, self.request)
+        # current_language = "en"
 
         ptool = getToolByName(self.context, "portal_properties")["site_properties"]
         value = ptool.getProperty("health_navigation_menu") or DEFAULT_MENU

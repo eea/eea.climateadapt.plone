@@ -45,7 +45,7 @@ class TestExistUrls():
             object = site.restrictedTraverse(local_path)
             if object:
                 return object;
-        except Exception, e:
+        except Exception as e:
             return None
 
         return None

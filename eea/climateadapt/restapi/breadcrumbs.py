@@ -12,7 +12,6 @@ from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.interface import Interface
 from zope.interface import implementer
-from zope.interface import implements
 from plone.restapi.interfaces import IExpandableElement
 
 from plone.app.layout.navigation.root import getNavigationRoot
@@ -55,8 +54,8 @@ def get_view_url(context):
     return name, item_url
 
 
+@implementer(INavigationBreadcrumbs)
 class CatalogNavigationBreadcrumbs(BrowserView):
-    implements(INavigationBreadcrumbs)
 
     def breadcrumbs(self):
         context = aq_inner(self.context)
@@ -100,8 +99,8 @@ class CatalogNavigationBreadcrumbs(BrowserView):
         return result
 
 
+@implementer(INavigationBreadcrumbs)
 class PhysicalNavigationBreadcrumbs(BrowserView):
-    implements(INavigationBreadcrumbs)
 
     def breadcrumbs(self):
         context = aq_inner(self.context)
@@ -148,8 +147,8 @@ class PhysicalNavigationBreadcrumbs(BrowserView):
         return base
 
 
+@implementer(INavigationBreadcrumbs)
 class NavTitleBreadcrumbs(BrowserView):
-    implements(INavigationBreadcrumbs)
 
     def breadcrumbs(self):
         context = aq_inner(self.context)

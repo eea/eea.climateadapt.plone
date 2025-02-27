@@ -1,6 +1,5 @@
 import pkg_resources
 from Acquisition import aq_inner
-from eea.climateadapt.translation.utils import TranslationUtilsMixin
 from plone.api import group
 from plone.api.content import get_state
 from plone.app.layout.viewlets import ViewletBase
@@ -15,12 +14,13 @@ from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.CMFPlone.utils import base_hasattr
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
-from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
+# from tlspu.cookiepolicy.browser.viewlets import CookiePolicyViewlet
 from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.site.hooks import getSite
-from eea.climateadapt.translation.core import get_translation_object
-from eea.climateadapt.translation.utils import get_current_language
+# from eea.climateadapt.translation.utils import TranslationUtilsMixin
+# from eea.climateadapt.translation.core import get_translation_object
+# from eea.climateadapt.translation.utils import get_current_language
 from plone.api import portal
 
 # from Products.LDAPUserFolder.LDAPDelegate import filter_format
@@ -84,7 +84,8 @@ class CustomizedPersonalBarViewlet(BasePersonalBarViewlet):
                     redirect_to_personal_preferences()
 
 
-class SharePageSubMenuViewlet(ViewletBase, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class SharePageSubMenuViewlet(ViewletBase):
     index = ViewPageTemplateFile("pt/viewlet_sharepage_submenu.pt")
 
     def update(self):
@@ -109,9 +110,10 @@ class RelatedItemsViewlet(ViewletBase):
         res = ()
 
         site_url = portal.getSite().absolute_url()
-        current_language = get_current_language(self.context, self.request)
+        # current_language = get_current_language(self.context, self.request)
+        current_language = 'en'
         if current_language != "en":
-            en_obj = get_translation_object(context, "en")
+            en_obj = None # get_translation_object(context, "en")
             if en_obj is None:
                 en_obj = context  # case of not translated items (Newsletter)
         else:
@@ -152,7 +154,7 @@ class RelatedItemsViewlet(ViewletBase):
         for brain in res:
             en_obj = brain.getObject()
             try:
-                trans_obj = get_translation_object(en_obj, current_language)
+                trans_obj = en_obj # get_translation_object(en_obj, current_language)
                 obj_url = trans_obj.absolute_url()
                 obj_path = "/cca" + obj_url.split(site_url)[-1]
 
@@ -237,11 +239,11 @@ class PathBarViewlet(BasePathBarViewlet):
         return url
 
 
-class CookiesViewlet(CookiePolicyViewlet):
-    render = ViewPageTemplateFile("pt/cookiepolicy.pt")
+# class CookiesViewlet(CookiePolicyViewlet):
+#     render = ViewPageTemplateFile("pt/cookiepolicy.pt")
 
-    def update(self):
-        return super(CookiesViewlet, self).render()
+#     def update(self):
+#         return super(CookiesViewlet, self).render()
 
 
 class ArchivedStateViewlet(ViewletBase):

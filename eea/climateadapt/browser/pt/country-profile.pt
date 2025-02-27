@@ -342,7 +342,7 @@ ul li {
       <!-- <div tal:define="values python: data['Observed_Future_Climate_Hazards'].get('HazardsForm', [])">
         <div tal:content="python: values[0]['Hazards']"></div>
       </div> -->
-      <tal  tal:define="items view/hazards_table" tal:condition="python: len(items)">
+      <tal:def  tal:define="items view/hazards_table" tal:condition="python: len(items)">
       <div style="margin-top:25px;"/>
       <table class="listing table-striped" style="padding-top:10px;">
         <thead>
@@ -368,7 +368,7 @@ ul li {
         <tbody tal:content="structure items/futureHtml">
         </tbody>
       </table>
-      </tal>
+      </tal:def>
 
       <tal:block tal:define="fieldset_legend string:Overview of existing pressures;
                     fieldset_data python: data['Observed_Future_Climate_Hazards'].get('DescribeExistingEnvironmental', '')">
@@ -383,7 +383,7 @@ ul li {
       <tal:cond tal:condition="view/get_sorted_affected_sectors_data | nothing">
       <h2 class="country-header pt2" i18n:translate="">Key affected sectors</h2>
 
-      <tal tal:define="items view/get_sorted_affected_sectors_data">
+      <tal:def tal:define="items view/get_sorted_affected_sectors_data">
       <div class="panel panel-default"  tal:repeat="item items">
         <div class="panel-heading" tal:attributes="id string:key_affected_sectors_${repeat/item/index}-heading">
           <h4 class="panel-title">
@@ -409,7 +409,7 @@ ul li {
           </table>
         </div>
       </div>
-      </tal>
+      </tal:def>
 
       </tal:cond>
     </div>

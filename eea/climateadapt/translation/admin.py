@@ -13,6 +13,8 @@ from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.annotation.interfaces import IAnnotations
 
+from eea.climateadapt.blocks import BlocksTraverser, BlockType
+
 from .core import setup_translation_object
 
 logger = logging.getLogger("eea.climateadapt")
@@ -106,7 +108,7 @@ class CreateTranslationStructure(BrowserView):
 class ResetAsync(BrowserView):
     def __call__(self):
         queue = self.context._p_jar.root()['zc.async']['']
-        from zc.async.queue import Queue
+        from zc.async .queue import Queue
         Queue.__init__(queue)
         import transaction
         transaction.commit()
@@ -265,7 +267,7 @@ class FixFolderOrder(BrowserView):
             trans_pos = OIBTree()
             # rebuild the order
             orig_order_set = set(orig_pos.keys())
-            for (id, position) in proper_pos.items():
+            for (id, position) in list(proper_pos.items()):
                 if id in obj_ids:
                     trans_pos[id] = position
                     if id in orig_order_set:

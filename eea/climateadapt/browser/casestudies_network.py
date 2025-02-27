@@ -57,7 +57,7 @@ class Network(BrowserView):
 
             for sector_name in obj.sectors:
                 index = len(nodes)
-                if sector_name not in sectors.keys():
+                if sector_name not in list(sectors.keys()):
                     sectors[sector_name] = index
                     nodes.append({
                         'id': index,
@@ -71,7 +71,7 @@ class Network(BrowserView):
                 #edges.append({'from': case_study_index, 'to': index})
             for impact_name in obj.climate_impacts:
                 index = len(nodes)
-                if impact_name not in impacts.keys():
+                if impact_name not in list(impacts.keys()):
                     nodes.append({
                         'id': index,
                         'title': impact_name.encode("utf-8"),
@@ -178,7 +178,7 @@ class Items(BrowserView):
             #    break
             case_study_index = len(nodes)
             obj = brain.getObject()
-            print(brain.getURL)
+            print((brain.getURL))
             list_ipcc_categories = []
             adaptation_options = obj.adaptationoptions
             for ao_related in adaptation_options:
@@ -208,8 +208,8 @@ class Items(BrowserView):
             for sector_name in obj.sectors:
                 if sector_name == 'NONSPECIFIC':
                     continue
-                print('---S:'+sector_name)
-                if sector_name not in index_sectors.keys():
+                print(('---S:'+sector_name))
+                if sector_name not in list(index_sectors.keys()):
                     index_sectors[sector_name] = len(nodes)
                     nodes.append({
                         'id': sector_name.encode("utf-8")
@@ -217,8 +217,8 @@ class Items(BrowserView):
             for impact_name in obj.climate_impacts:
                 if impact_name == 'NONSPECIFIC':
                     continue
-                print('---I:'+impact_name)
-                if impact_name not in index_impacts.keys():
+                print(('---I:'+impact_name))
+                if impact_name not in list(index_impacts.keys()):
                     index_impacts[impact_name] = len(nodes)
                     nodes.append({
                         'id': impact_name.encode("utf-8")
@@ -342,13 +342,13 @@ class Plotly(BrowserView):
                             name_arr = name.split(': ')
                             name_category = name_arr[0]
                             name_value = name_arr[1]
-                            print(name_category+':'+name_value)
-                            if name_category not in indexes['nodes'].keys():
+                            print((name_category+':'+name_value))
+                            if name_category not in list(indexes['nodes'].keys()):
                                 #indexes['ipcc_categories'][name_category] = len(nodes)
                                 indexes['nodes'][name_category] = len(nodes)
                                 nodes.append(name_category)
                                 filter_choices['ipcc'][name_category] = []
-                            if name_value not in indexes['nodes'].keys():
+                            if name_value not in list(indexes['nodes'].keys()):
                                 #indexes['ipcc_values'][name_value] = len(nodes)
                                 indexes['nodes'][name_value] = len(nodes)
                                 nodes.append(name_value)
@@ -360,11 +360,11 @@ class Plotly(BrowserView):
                                 list_ipcc_categories[name_category].append(name_value)
                                 list_ipcc_values.append(name_value)
                         #import pdb; pdb.set_trace()
-                except Exception, e: # work on python 2.x
+                except Exception as e:
                     ipcc_have_data['err'] = ipcc_have_data['err'] +1
 
                     logger.error('Failed: '+ str(e))
-                    print(brain.getURL())
+                    print((brain.getURL()))
 
             tag = lxml.etree.fromstring('<p>'+obj.long_description.raw.encode('utf-8').decode('utf-8')+'</p>')
             lxml.etree.strip_tags(tag, '*')
@@ -388,7 +388,7 @@ class Plotly(BrowserView):
                 name = vocabulary_sectors.getTerm(sector_name).title
                 if name not in filter_choices['sectors']:
                     filter_choices['sectors'].append(name)
-                if sector_name not in indexes['sectors'].keys():
+                if sector_name not in list(indexes['sectors'].keys()):
                     indexes['sectors'][sector_name] = len(nodes)
                     indexes['nodes'][sector_name] = len(nodes)
                     nodes.append(name)
@@ -401,7 +401,7 @@ class Plotly(BrowserView):
                 #impact_name.encode("utf-8")
                 if name not in filter_choices['impacts']:
                     filter_choices['impacts'].append(name)
-                if impact_name not in indexes['impacts'].keys():
+                if impact_name not in list(indexes['impacts'].keys()):
                     indexes['impacts'][impact_name] = len(nodes)
                     indexes['nodes'][impact_name] = len(nodes)
                     nodes.append(name)

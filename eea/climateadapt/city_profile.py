@@ -5,11 +5,11 @@ from AccessControl.SecurityInfo import ClassSecurityInfo
 from datetime import date, timedelta
 from plone.api import user
 from plone.api.portal import getSite
-from plone.directives import dexterity, form
+from plone.dexterity.content import Container
 from tokenlib.errors import ExpiredTokenError
 from zope.annotation.interfaces import IAnnotations
 from zope.globalrequest import getRequest
-from zope.interface import Interface, implements
+from zope.interface import Interface, implementer
 import binascii
 import os
 import os.path
@@ -27,7 +27,7 @@ EXPIRED = object()
 NOTGOOD = False
 
 
-class ICityProfile(form.Schema):
+class ICityProfile(Interface):
     """
     Defines content-type schema for CityProfile
     """
@@ -68,9 +68,8 @@ def check_public_token(context, request):
 
     return NOTGOOD
 
-
-class CityProfile(dexterity.Container):
-    implements(ICityProfile)
+@implementer(ICityProfile)
+class CityProfile(Container):
 
     search_type = "MAYORSADAPT"
     security = ClassSecurityInfo()
@@ -112,7 +111,7 @@ class CityProfile(dexterity.Container):
                                         publictoken,
                                         self.getId()
                                         )
-        print "Token url: ", url
+        print(("Token url: ", url))
         return url
 
     #security.declareProtected('Modify portal content', 'get_private_edit_link')
@@ -126,7 +125,7 @@ class CityProfile(dexterity.Container):
                                         self._get_public_token(),
                                         self.getId()
                                         )
-        print "Token url: ", url
+        print(("Token url: ", url))
         return url
 
     def can_reset_token(self):

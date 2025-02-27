@@ -18,11 +18,10 @@ from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.translation.contentrules import queue_translate_volto_html
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from .core import get_blocks_as_html, ingest_html  # , translate_object_async
+from .core import get_blocks_as_html, ingest_html
 from .utils import get_value_representation
 
 # import transaction
-
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
 
@@ -55,7 +54,7 @@ class TranslationCallback(BrowserView):
         qs = self.request["QUERY_STRING"]
         parsed = cgi.parse_qs(qs)
         form = {}
-        for name, val in parsed.items():
+        for name, val in list(parsed.items()):
             form[name] = val[0]
 
         _file = self.request._file.read()

@@ -5,9 +5,9 @@
             <element>eea.carousel.tile</element>
         </value>
     </record>
-    <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
+    <!-- <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
         <value purge="false">
             <element>eea.carousel.tile</element>
         </value>
-    </record>
+    </record> -->
 </registry>

@@ -1,16 +1,15 @@
-from zope.schema import Bool
-from plone.supermodel import model
-from zope.interface import provider
-from plone.autoform.interfaces import IFormFieldProvider
-from zope.interface import alsoProvides
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.autoform.interfaces import IFormFieldProvider
+from plone.supermodel import model
+from zope.interface import alsoProvides, provider
+from zope.schema import Bool
 
 
 @provider(IFormFieldProvider)
 class INonstructuralSection(model.Schema):
     is_nonstructural_folder = Bool(
-        title=unicode("Non-clickable in main menu"),
-        description=unicode(
+        title=str("Non-clickable in main menu"),
+        description=str(
             "When enabled, this folder will not be clickable in the main menu"
         ),
         required=False,

@@ -1,12 +1,13 @@
 from Missing import MV
-from plone.app.contentlisting.interfaces import IContentListing
+
+# from eea.climateadapt.translation.utils import get_current_language
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
-from plone.app.event.dx.behaviors import IEventBasic
-from plone.app.event.base import RET_MODE_ACCESSORS, get_events
 from plone.app.theming.transform import _Cache
 from plone.restapi.deserializer import json_body
-from plone.restapi.serializer.summary import (DEFAULT_METADATA_FIELDS,
-                                              NON_METADATA_ATTRIBUTES)
+from plone.restapi.serializer.summary import (
+    DEFAULT_METADATA_FIELDS,
+    NON_METADATA_ATTRIBUTES,
+)
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.PloneBatch import Batch
 from Products.PluginIndexes.common import safe_callable
@@ -15,22 +16,25 @@ from zope.globalrequest import getRequest
 from zope.schema.vocabulary import SimpleTerm
 from zope.site.hooks import getSite
 
-from eea.climateadapt.translation.utils import get_current_language
+# from eea.climateadapt.translation.utils import get_current_language
 
+# import pdb; pdb.set_trace()
+ILeadImage["image_caption"].title = unicode("Lead image copyright information")
 
-ILeadImage['image_caption'].title = unicode("Lead image copyright information")
-IEventBasic['start'].description = unicode(
-        "Date and Time, when the event begins. (When editing an event, "
-        "the displayed date and time here is adjusted to your local timezone. "
-        "Be careful, as changes may shift the event date and time if it was "
-        "originally set in a different timezone)"
-        )
-IEventBasic['end'].description = unicode(
-        "Date and Time, when the event ends. (When editing an event, "
-        "the displayed date and time here is adjusted to your local timezone. "
-        "Be careful, as changes may shift the event date and time if it was "
-        "originally set in a different timezone)"
-        )
+ILeadImage["image_caption"].title = unicode("Lead image copyright information")
+IEventBasic["start"].description = unicode(
+    "Date and Time, when the event begins. (When editing an event, "
+    "the displayed date and time here is adjusted to your local timezone. "
+    "Be careful, as changes may shift the event date and time if it was "
+    "originally set in a different timezone)"
+)
+IEventBasic["end"].description = unicode(
+    "Date and Time, when the event ends. (When editing an event, "
+    "the displayed date and time here is adjusted to your local timezone. "
+    "Be careful, as changes may shift the event date and time if it was "
+    "originally set in a different timezone)"
+)
+
 
 def getCache(settings):
     """The purpose of this is to include the current language in the cache key"""
@@ -43,7 +47,9 @@ def getCache(settings):
 
     plone_site = getSite()
     req = getRequest()
-    current_lang = get_current_language(plone_site, req)
+    # TODO get current_lang
+    # current_lang = get_current_language(plone_site, req)
+    current_lang = "en"
     key = "{}/{}".format(plone_site.absolute_url(), current_lang)
     cache = caches.get(key)
     if cache is None:
@@ -215,7 +221,7 @@ def _get_events(self, ret_mode=RET_MODE_ACCESSORS, expand=True):
         sort_reverse=sort_reverse,
         ret_mode=ret_mode,
         expand=expand,
-        **kw
+        **kw,
     )
 
     events = []

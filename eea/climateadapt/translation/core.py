@@ -31,11 +31,6 @@ from eea.climateadapt.browser.admin import force_unlock
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 
-# from zope.component import getMultiAdapter
-# from eea.climateadapt.translation.contentrules import \
-#     queue_translate_volto_html
-
-
 env = os.environ.get
 
 TRANS_USERNAME = "ipetchesi"  # TODO: get another username?
@@ -72,7 +67,8 @@ def call_etranslation_service(
     site_url = portal.get().absolute_url()  # -> '/cca'
 
     if "localhost" in site_url:
-        logger.warning("Using localhost, won't retrieve translation for: %s", html)
+        logger.warning(
+            "Using localhost, won't retrieve translation for: %s", html)
 
     client = Client(
         "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
@@ -149,7 +145,8 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
             trans_obj.setDefaultPage(default_view_en)
             reindex = True
         except Exception:
-            logger.info("Can't set default page for: %s", trans_obj.absolute_url())
+            logger.info("Can't set default page for: %s",
+                        trans_obj.absolute_url())
 
     if not reindex:
         reindex = True
@@ -342,7 +339,8 @@ def sync_translation_state(trans_obj, en_obj):
                 try:
                     wftool.doActionFor(trans_obj, transitions[state])
                 except WorkflowException:
-                    logger.warn("Could not sync state for object: %s", trans_obj)
+                    logger.warn(
+                        "Could not sync state for object: %s", trans_obj)
 
     if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
         trans_obj.setEffectiveDate(en_obj.effective_date)
@@ -355,7 +353,7 @@ def sync_translation_state(trans_obj, en_obj):
 
 def wrap_in_aquisition(obj_path, portal_obj):
     portal_path = portal_obj.getPhysicalPath()
-    bits = obj_path.split("/")[len(portal_path) :]
+    bits = obj_path.split("/")[len(portal_path):]
 
     base = portal_obj
     obj = base
@@ -378,7 +376,8 @@ def setup_site_portal(options):
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
+            "http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         setSite(site_portal)
         # context.REQUEST['PARENTS'] = [context]
@@ -463,16 +462,18 @@ def save_field_data(canonical, trans_obj, fielddata):
 
 
 def elements_to_text(children):
-    return unicode("").join(tostring(f).decode("utf-8") for f in children)
+    return str("").join(tostring(f).decode("utf-8") for f in children)
 
 
 def get_content_from_html(html, language=None):
     """Given an HTML string, converts it to Plone content data"""
 
     data = {"html": html, "language": language}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER,
+                        data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -502,7 +503,8 @@ def ingest_html(trans_obj, html):
     if "en" not in translations:
         msg = (
             "Could not find canonical for this object %s, aborting. "
-            "Check its translation group" % "/".join(trans_obj.getPhysicalPath())
+            "Check its translation group" % "/".join(
+                trans_obj.getPhysicalPath())
         )
 
         logger.warning(msg)
@@ -529,9 +531,11 @@ def get_blocks_as_html(obj):
     """Uses the external converter service to convert the blocks to HTML representation"""
 
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(
+        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -553,7 +557,8 @@ def sync_language_independent_fields(context, en_obj_path, options):
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
+            "http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         setSite(site_portal)
 
@@ -568,8 +573,10 @@ def sync_language_independent_fields(context, en_obj_path, options):
         trans_obj = transmanager.get_translation(translation)
         if fieldmanager.copy_fields(trans_obj):
             print(
-                "plone.app.multilingual translation reindex",
-                trans_obj.absolute_url(relative=1),
+                (
+                    "plone.app.multilingual translation reindex",
+                    trans_obj.absolute_url(relative=1),
+                )
             )
             trans_obj.reindexObject()
 

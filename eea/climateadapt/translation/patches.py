@@ -1,24 +1,24 @@
-from zope.annotation.interfaces import IAnnotations
-from BTrees.OIBTree import OIBTree
-from plone.app.multilingual.interfaces import ITranslationManager
-from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
-from Acquisition import aq_self
 import logging
 
+from Acquisition import aq_self
+from BTrees.OIBTree import OIBTree
 from plone.api import portal
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.app.multilingual.dx.interfaces import (
+    IDexterityTranslatable,
+    ILanguageIndependentField,
+)
 from plone.app.multilingual.factory import DefaultTranslationLocator as Base
 from plone.app.multilingual.interfaces import (
     ILanguage,
     ILanguageIndependentFieldsManager,
     ITranslationLocator,
+    ITranslationManager,
 )
 from plone.dexterity.utils import iterSchemata
 from z3c.relationfield.interfaces import IRelationList, IRelationValue
-from zope.component import (
-    ComponentLookupError,
-    queryAdapter,  # getUtility,
-)
+from zope.annotation.interfaces import IAnnotations
+from zope.component import queryAdapter  # getUtility,
+from zope.component import ComponentLookupError
 from zope.interface import implementer
 
 from eea.climateadapt.asynctasks.utils import get_async_service
@@ -52,13 +52,14 @@ def copy_fields_patched(self, translation):
     # import pdb
     #
     # pdb.set_trace()
-    print("patched copy fields", translation)
+    print(("patched copy fields", translation))
     # copy and adapted from https://github.com/plone/plone.app.multilingual/blob/9e7491294f01f7bd21a45e00231d54873ad0eed6/src/plone/app/multilingual/dx/cloner.py
     changed = False
 
     adapter = queryAdapter(translation, ILanguage)
     if adapter is None:
-        logger.exception("Didn't find language for translation: %s", translation)
+        logger.exception(
+            "Didn't find language for translation: %s", translation)
         return
     target_language = adapter.get_language()
 
@@ -188,14 +189,13 @@ def patched_default_order_pos(self, create=False):
             ids = list(tree.keys())
             pos = annotations.get(self.POS_KEY, {})
             res = {}
-            for k in pos.keys():
+            for k in list(pos.keys()):
                 if k in ids:
                     res[k] = pos[k]
             return res
         except Exception:
-            logger.exception(
-                "Could not properly get order %s", path(self.translation)
-            )
+            logger.exception("Could not properly get order %s",
+                             path(self.translation))
     else:
         if create:
             return annotations.setdefault(self.POS_KEY, OIBTree())
@@ -213,9 +213,8 @@ def patched_default_order_order(self, create=False):
             res = [k for k in pos if k in ids]
             return res
         except Exception:
-            logger.exception(
-                "Could not properly get order %s", path(self.translation)
-            )
+            logger.exception("Could not properly get order %s",
+                             path(self.translation))
     else:
         if create:
             return annotations.setdefault(self.POS_KEY, OIBTree())
@@ -229,9 +228,8 @@ def patched_default_getObjectPosition(self, obj_id):
         return pos[obj_id]
 
     # TODO: lookup the position for the translation of that object
-    logger.warning(
-        "Could not find position of %s in %s", obj_id, path(self.context)
-    )
+    logger.warning("Could not find position of %s in %s",
+                   obj_id, path(self.context))
     return 0
 
     # raise ValueError(
