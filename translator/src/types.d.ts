@@ -5,7 +5,8 @@ export type TypeJobsMapping = {
 };
 
 export type CallETranslation = {
-  obj_url: string;
   html: string;
+  language: string;
+  obj_url: string;
   serial_id: number;
 };

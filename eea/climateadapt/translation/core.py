@@ -87,6 +87,7 @@ def queue_translate_volto_html(obj, language=None):
         for language in languages:  # temporary
             if language == "en":
                 continue
+            data = dict(data.items(), language=language)
 
             queue_job("etranslation", "call_etranslation", data)
 

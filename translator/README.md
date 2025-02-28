@@ -20,3 +20,11 @@
 
 - manually calling for translation on an object
 - manually calling for recursive translation on a folder
+
+## Steps
+
+content rule
+
+- queues job `call_etranslation`
+  - calls Plone view `@@call_etranslation`
+    - sends call to eTranslation

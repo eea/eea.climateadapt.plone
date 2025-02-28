@@ -19,8 +19,9 @@ from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.translation.contentrules import queue_translate_volto_html
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from .core import call_etranslation_service, get_blocks_as_html, ingest_html
+from .core import call_etranslation_service, get_blocks_as_html, ingest_html, queue_job
 from .utils import get_value_representation
+from urllib.parse import urlparse, parse_qs
 
 # import transaction
 logger = logging.getLogger("eea.climateadapt.translation")
@@ -59,30 +60,21 @@ class TranslationCallback(BrowserView):
             form[name] = val[0]
 
         _file = self.request._file.read()
-        logger.info("Translation Callback Incoming form: %s" % form)
+
+        decoded_bytes = base64.b64decode(_file)
+        html_translated = decoded_bytes.decode("latin-1")
+        html = html_translated.encode("utf-8")
+
+        extref = form.get("external-reference")
+
         logger.info("Translation Callback Incoming file: %s" % _file)
-
-        self.save_html_volto(form, _file)
-        return "ok"
-
-    def save_html_volto(self, form, b64_str):
-        # file.seek(0)
-        # b64_str = file.read()
-        html_translated = base64.decodestring(b64_str).decode("latin-1")
-
         logger.info("Translate volto html form: %s", form)
         logger.info("Translate volto html: %s", html_translated)
 
-        site = portal.getSite()
-        trans_obj_path = form.get("external-reference")
-        if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
+        data = {"obj_path": extref, "html": html}
+        queue_job("etranslation", "save_translated_html", data)
 
-        trans_obj = site.unrestrictedTraverse(trans_obj_path)
-        html = html_translated.encode("latin-1")
-        ingest_html(trans_obj, html)
-
-        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
+        return "ok"
 
 
 class TranslateObjectAsync(BrowserView):
