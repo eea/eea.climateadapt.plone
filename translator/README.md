@@ -6,6 +6,8 @@
     - object is published
 - Plone queues job in Redis with:
   - canonical object path
+  - HTML representation of object
+  - language to be translated to
 - Worker picks up this job and triggers multiple Plone views that set up the translated object for each language
   - `@@setup_translation`, gets executed for one languages
 - This worker then calls a view in Plone which calls eTranslation

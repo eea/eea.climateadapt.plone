@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "bullmq": "^5.41.7",
-    "ioredis": "^5.5.0"
+    "ioredis": "^5.5.0",
+    "node-fetch": "^3.3.2"
   }
 }

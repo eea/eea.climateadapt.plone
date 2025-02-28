@@ -52,12 +52,7 @@ class TranslateAsyncActionExecutor(object):
             logger.warn("TranslateAsyncActionExecutor executed on the wrong server")
             return True
 
-        obj = self.event.object
-        html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
-
-        # this will schedule several async jobs that call etranslation async
-
-        queue_translate_volto_html(html, obj)
+        queue_translate_volto_html(self.event.object)
         return True
 
 

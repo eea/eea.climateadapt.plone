@@ -51,6 +51,7 @@
   <include file="interfaces.zcml" />
   <include file="profiles.zcml" />
   <include file="stringinterp.zcml" />
+  <include file="versions.zcml" />
   <include file="vocabularies.zcml" />
 
 </configure>

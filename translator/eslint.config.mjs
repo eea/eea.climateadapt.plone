@@ -11,5 +11,12 @@ const config = [
 ];
 
 config.plugins = [...(config.plugins || []), "prettier"];
+config.push({
+  name: "typescript-eslint/custom-rules",
+  rules: {
+    "@typescript-eslint/no-explicit-any": "off",
+  },
+});
+config.rules = { ...config.rules, "@typescript-eslint/no-explicit-any": "off" };
 
 export default config;

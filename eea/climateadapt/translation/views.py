@@ -2,6 +2,7 @@
 
 import base64
 import cgi
+import json
 import logging
 import os
 
@@ -18,7 +19,7 @@ from eea.climateadapt.browser.admin import force_unlock
 from eea.climateadapt.translation.contentrules import queue_translate_volto_html
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from .core import get_blocks_as_html, ingest_html
+from .core import call_etranslation_service, get_blocks_as_html, ingest_html
 from .utils import get_value_representation
 
 # import transaction
@@ -75,15 +76,13 @@ class TranslationCallback(BrowserView):
         site = portal.getSite()
         trans_obj_path = form.get("external-reference")
         if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + \
-                trans_obj_path.split(site.absolute_url())[-1]
+            trans_obj_path = "/cca" + trans_obj_path.split(site.absolute_url())[-1]
 
         trans_obj = site.unrestrictedTraverse(trans_obj_path)
         html = html_translated.encode("latin-1")
         ingest_html(trans_obj, html)
 
-        logger.info("Html volto translation saved for %s",
-                    trans_obj.absolute_url())
+        logger.info("Html volto translation saved for %s", trans_obj.absolute_url())
 
 
 class TranslateObjectAsync(BrowserView):
@@ -91,17 +90,11 @@ class TranslateObjectAsync(BrowserView):
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
 
-        obj = self.context
-        force_unlock(obj)
-        html = getMultiAdapter(
-            (self.context, self.context.REQUEST), name="tohtml")()
-        site = portal.getSite()
-        http_host = self.context.REQUEST.environ.get(
-            "HTTP_X_FORWARDED_HOST", site.absolute_url()
-        )
+        obj_url = self.context.absolute_url()
+        html = getMultiAdapter((self.context, self.context.REQUEST), name="tohtml")()
         language = self.request.form.get("language", None)
 
-        queue_translate_volto_html(html, obj, http_host, language)
+        queue_translate_volto_html(obj_url, html, language)
 
         return self.request.response.redirect(obj.absolute_url())
 
@@ -150,8 +143,7 @@ class TranslateFolderAsync(BrowserView):
                 logger.info(
                     "Queuing %s for translation for %s", obj.absolute_url(), language
                 )
-                html = getMultiAdapter(
-                    (obj, self.context.REQUEST), name="tohtml")()
+                html = getMultiAdapter((obj, self.context.REQUEST), name="tohtml")()
                 http_host = self.context.REQUEST.environ.get(
                     "HTTP_X_FORWARDED_HOST", site_url
                 )
@@ -232,8 +224,7 @@ class TranslateMissing(BrowserView):
         site = portal.getSite()
         site_url = site.absolute_url()
         fallback = env("SERVER_NAME", site_url)
-        http_host = self.context.REQUEST.environ.get(
-            "HTTP_X_FORWARDED_HOST", fallback)
+        http_host = self.context.REQUEST.environ.get("HTTP_X_FORWARDED_HOST", fallback)
 
         brains = context.portal_catalog.searchResults(
             path="/".join(context.getPhysicalPath()),
@@ -257,9 +248,21 @@ class TranslateMissing(BrowserView):
                 logger.info(
                     "Queuing %s for translation for %s", obj.absolute_url(), language
                 )
-                html = getMultiAdapter(
-                    (obj, self.context.REQUEST), name="tohtml")()
+                html = getMultiAdapter((obj, self.context.REQUEST), name="tohtml")()
 
                 queue_translate_volto_html(html, obj, http_host, language)
 
         return "ok"
+
+
+class CallETranslation(BrowserView):
+    """Call eTranslation, triggered by job from worker"""
+
+    def __call__(self):
+        form = self.request.form
+        html = form.get("html")
+        source_lang = form.get("source_lang")
+        obj_path = form.get("obj_path")
+
+        data = call_etranslation_service(source_lang, html, obj_path)
+        return json.dumps(data)

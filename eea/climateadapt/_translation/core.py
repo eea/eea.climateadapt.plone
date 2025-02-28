@@ -1,7 +1,4 @@
-import base64
 import json
-import logging
-import os
 
 import requests
 from Acquisition import aq_inner, aq_parent
@@ -21,8 +18,6 @@ from plone.dexterity.utils import iterSchemata
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
 from Testing.ZopeTestCase import utils as zopeUtils
-from zeep import Client
-from zeep.wsse.username import UsernameToken
 from zope.component.hooks import setSite
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
@@ -31,90 +26,10 @@ from eea.climateadapt.browser.admin import force_unlock
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 
-env = os.environ.get
-
-TRANS_USERNAME = "ipetchesi"  # TODO: get another username?
-MARINE_PASS = env("MARINE_PASS", "")
-SERVICE_URL = "https://webgate.ec.europa.eu/etranslation/si/translate"
-
-logger = logging.getLogger("eea.climateadapt")
-
-SLATE_CONVERTER = "http://converter:8000/html"
-BLOCKS_CONVERTER = "http://converter:8000/blocks2html"
-CONTENT_CONVERTER = "http://converter:8000/html2content"
-
 
 class DummyPersistent(object):
     def getPhysicalPath(self):
         return "/"
-
-
-def call_etranslation_service(
-    http_host, source_lang, html, obj_path, target_languages=None
-):
-    """Makes a eTranslation webcall to request a translation for a html
-    (based on volto export)
-    """
-
-    if not html:
-        return
-
-    if not target_languages:
-        target_languages = ["EN"]
-
-    encoded_html = base64.b64encode(html)
-
-    site_url = portal.get().absolute_url()  # -> '/cca'
-
-    if "localhost" in site_url:
-        logger.warning(
-            "Using localhost, won't retrieve translation for: %s", html)
-
-    client = Client(
-        "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
-        wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS),
-    )
-
-    dest = "{}/@@translate-callback?source_lang={}&format=html&is_volto=1".format(
-        http_host, source_lang
-    )
-    if "https://" not in dest:
-        dest = "https://" + dest
-
-    resp = client.service.translate(
-        {
-            "priority": "5",
-            "external-reference": obj_path,
-            "caller-information": {
-                "application": "Marine_EEA_20180706",
-                "username": TRANS_USERNAME,
-            },
-            "document-to-translate-base64": {
-                "content": encoded_html,
-                "format": "html",
-                "fileName": "out",
-            },
-            "source-language": source_lang,
-            "target-languages": {"target-language": target_languages},
-            "domain": "GEN",
-            "output-format": "html",
-            "destinations": {
-                "http-destination": dest,
-            },
-        }
-    )
-
-    logger.info("Data translation request : html content")
-    logger.info("Response from translation request: %r", resp)
-
-    # if str(resp[0]) == '-':
-    #     # If the response is a negative number this means error. Error codes:
-    #     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
-    #     import pdb; pdb.set_trace()
-
-    res = {"transId": resp, "externalRefId": html}
-
-    return res
 
 
 def get_translation_object(obj, language):
@@ -145,8 +60,7 @@ def sync_obj_layout(obj, trans_obj, reindex, async_request):
             trans_obj.setDefaultPage(default_view_en)
             reindex = True
         except Exception:
-            logger.info("Can't set default page for: %s",
-                        trans_obj.absolute_url())
+            logger.info("Can't set default page for: %s", trans_obj.absolute_url())
 
     if not reindex:
         reindex = True
@@ -339,8 +253,7 @@ def sync_translation_state(trans_obj, en_obj):
                 try:
                     wftool.doActionFor(trans_obj, transitions[state])
                 except WorkflowException:
-                    logger.warn(
-                        "Could not sync state for object: %s", trans_obj)
+                    logger.warn("Could not sync state for object: %s", trans_obj)
 
     if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
         trans_obj.setEffectiveDate(en_obj.effective_date)
@@ -353,7 +266,7 @@ def sync_translation_state(trans_obj, en_obj):
 
 def wrap_in_aquisition(obj_path, portal_obj):
     portal_path = portal_obj.getPhysicalPath()
-    bits = obj_path.split("/")[len(portal_path):]
+    bits = obj_path.split("/")[len(portal_path) :]
 
     base = portal_obj
     obj = base
@@ -376,8 +289,7 @@ def setup_site_portal(options):
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         setSite(site_portal)
         # context.REQUEST['PARENTS'] = [context]
@@ -469,11 +381,9 @@ def get_content_from_html(html, language=None):
     """Given an HTML string, converts it to Plone content data"""
 
     data = {"html": html, "language": language}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER,
-                        data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -503,8 +413,7 @@ def ingest_html(trans_obj, html):
     if "en" not in translations:
         msg = (
             "Could not find canonical for this object %s, aborting. "
-            "Check its translation group" % "/".join(
-                trans_obj.getPhysicalPath())
+            "Check its translation group" % "/".join(trans_obj.getPhysicalPath())
         )
 
         logger.warning(msg)
@@ -527,24 +436,6 @@ def ingest_html(trans_obj, html):
     trans_obj.reindexObject()
 
 
-def get_blocks_as_html(obj):
-    """Uses the external converter service to convert the blocks to HTML representation"""
-
-    data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
-
-    req = requests.post(
-        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
-    if req.status_code != 200:
-        logger.debug(req.text)
-        raise ValueError
-
-    html = req.json()["html"]
-    logger.info("Blocks converted to html: %s", html)
-    return html
-
-
 def sync_language_independent_fields(context, en_obj_path, options):
     """Async Job: copies the language independent fields to all translations"""
     site_portal = setup_site_portal(options)
@@ -557,8 +448,7 @@ def sync_language_independent_fields(context, en_obj_path, options):
     if not hasattr(site_portal, "REQUEST"):
         zopeUtils._Z2HOST = options["http_host"]
         site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
+        server_url = site_portal.REQUEST.other["SERVER_URL"].replace("http", "https")
         site_portal.REQUEST.other["SERVER_URL"] = server_url
         setSite(site_portal)
 
