@@ -54,6 +54,7 @@
   <include package=".behaviors" />
   <!-- <include package=".translation" /> -->
   <!-- <include package=".migration" /> -->
+
   <configure
     zcml:condition="not-installed Products.CMFPlone.image_scales">
     <include package=".image_scales" />
