@@ -20,8 +20,8 @@
     file="faceted.zcml" /> -->
   <!-- <include file="depiction.zcml" /> -->
   <!-- <include file="migrations.zcml" /> -->
-  <include
-    file="ecde.zcml" />
+  <!-- <include -->
+  <!--   file="ecde.zcml" /> -->
 
   <!-- <browser:page -->
   <!--   name="iterate_control" -->
@@ -80,17 +80,17 @@
     permission="cmf.ManagePortal"
   />
 
-  <browser:resourceDirectory
-    name="eea.climateadapt"
-    directory="resources"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-  />
-
-  <browser:resource
-    name="plone.app.jquerytools.overlayhelpers.js"
-    file="resources/overlayhelpers.js"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-  />
+  <!-- <browser:resourceDirectory -->
+  <!--   name="eea.climateadapt" -->
+  <!--   directory="resources" -->
+  <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!-- /> -->
+  <!---->
+  <!-- <browser:resource -->
+  <!--   name="plone.app.jquerytools.overlayhelpers.js" -->
+  <!--   file="resources/overlayhelpers.js" -->
+  <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!-- /> -->
 
   <!-- <browser:resource -->
   <!--   name="export_to_excel.js" -->
@@ -737,13 +737,13 @@
     class=".site.Navbar"
   />
 
-  <browser:page
-    name="health_navbar"
-    for="*"
-    class=".health_menu.Navbar"
-    template="pt/navbar.pt"
-    permission="zope.Public"
-  />
+  <!-- <browser:page -->
+  <!--   name="health_navbar" -->
+  <!--   for="*" -->
+  <!--   class=".health_menu.Navbar" -->
+  <!--   template="pt/navbar.pt" -->
+  <!--   permission="zope.Public" -->
+  <!-- /> -->
 
   <browser:page
     name="help-nav"
@@ -1203,7 +1203,7 @@
     class=".health.HealthHomepageItems"
     template="pt/health_homepage.pt"
     permission="zope2.View"
-  />  Special pages <browser:page
+  /> Special pages <browser:page
     name="vibriomap-view"
     for="*"
     template="pt/vibriomap.pt"
