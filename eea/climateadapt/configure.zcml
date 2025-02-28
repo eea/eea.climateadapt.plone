@@ -64,7 +64,7 @@
     file="stringinterp.zcml" />
   <!-- <include file="cache.zcml" /> -->
   <include file="contentrules.zcml" />
-  <include file="theme.zcml" />
+  <!-- <include file="theme.zcml" /> -->
   <!-- <include file="patches.zcml" /> -->
 
   <!-- <browser:jbot -->
@@ -518,26 +518,26 @@
     name="ClimateAdapt: workflow transition with message"
   /> -->
 
-  <adapter
-    factory=".workflow.workflow_message"
-    provides="plone.stringinterp.interfaces.IStringSubstitution"
-    for="*"
-    name="cca_workflow_message"
-  />
+  <!-- <adapter -->
+  <!--   factory=".workflow.workflow_message" -->
+  <!--   provides="plone.stringinterp.interfaces.IStringSubstitution" -->
+  <!--   for="*" -->
+  <!--   name="cca_workflow_message" -->
+  <!-- /> -->
 
-  <browser:page
-    name="set_workflow_message"
-    for="Products.CMFCore.interfaces.IContentish"
-    class=".workflow.WorkflowTransitionMessage"
-    permission="cmf.ReviewPortalContent"
-  />
+  <!-- <browser:page -->
+  <!--   name="set_workflow_message" -->
+  <!--   for="Products.CMFCore.interfaces.IContentish" -->
+  <!--   class=".workflow.WorkflowTransitionMessage" -->
+  <!--   permission="cmf.ReviewPortalContent" -->
+  <!-- /> -->
 
   <!-- ========Workflow transitions: ]========  -->
-  <subscriber
-    for="zope.interface.Interface
-      Products.DCWorkflow.interfaces.IAfterTransitionEvent"
-    handler=".events.handle_workflow_change"
-  />
+  <!-- <subscriber -->
+  <!--   for="zope.interface.Interface -->
+  <!--     Products.DCWorkflow.interfaces.IAfterTransitionEvent" -->
+  <!--   handler=".events.handle_workflow_change" -->
+  <!-- /> -->
 
   <!-- ========Indicator Message Functionality: ]========  -->
 
