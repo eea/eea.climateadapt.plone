@@ -59,13 +59,11 @@
     <include package=".image_scales" />
   </configure>
 
-  <include file="skins.zcml" />
+  <include file="profiles.zcml" />
   <include
-    file="profiles.zcml" />
-  <include file="stringinterp.zcml" />
+    file="stringinterp.zcml" />
   <!-- <include file="cache.zcml" /> -->
-  <include
-    file="contentrules.zcml" />
+  <include file="contentrules.zcml" />
   <include file="theme.zcml" />
   <!-- <include file="patches.zcml" /> -->
 
@@ -208,8 +206,7 @@
     factory=".catalog.macro_regions"
     name="macro_regions"
   />
-  <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> --> ----[
-  Vocabularies: ]------ <utility
+  <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> --> ----[ Vocabularies: ]------ <utility
     name="eea.climateadapt.aceitems_datatypes"
     component=".vocabulary.aceitem_datatypes_vocabulary"
   />
