@@ -14,4 +14,27 @@
 
   <include file="contentrules.zcml" />
 
+  <browser:page
+    for="*"
+    class=".views.TranslationCallback"
+    name="translate-callback"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    for="*"
+    class=".views.HTMLIngestion"
+    name="ingest-html"
+    permission="cmf.ManagePortal"
+    template="pt/ingest.pt"
+  />
+
+  <browser:page
+    for="*"
+    class=".views.ToHtml"
+    name="tohtml"
+    permission="cmf.ManagePortal"
+    template="pt/volto-html.pt"
+  />
+
 </configure>

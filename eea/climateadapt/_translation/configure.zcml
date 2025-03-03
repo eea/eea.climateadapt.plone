@@ -20,21 +20,6 @@
 
   <browser:page
     for="*"
-    class=".views.TranslationCallback"
-    name="translate-callback"
-    permission="zope2.View"
-  />
-
-  <browser:page
-    for="*"
-    class=".views.HTMLIngestion"
-    name="ingest-html"
-    permission="cmf.ManagePortal"
-    template="pt/ingest.pt"
-  />
-
-  <browser:page
-    for="*"
     template="pt/export-menu-pot.pt"
     class=".export.MenuPot"
     name="export-menu-po"
@@ -46,14 +31,6 @@
     class=".volto.ContentToHtml"
     name="volto-html"
     permission="cmf.ManagePortal"
-  />
-
-  <browser:page
-    for="*"
-    class=".views.ToHtml"
-    name="tohtml"
-    permission="cmf.ManagePortal"
-    template="pt/volto-html.pt"
   />
 
   <browser:page
