@@ -15,15 +15,22 @@ from Products.statusmessages.interfaces import IStatusMessage
 from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
-from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.contentrules import queue_translate_volto_html
+from eea.climateadapt.utils import force_unlock
+from eea.climateadapt.translation.core import queue_translate_volto_html
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from .core import call_etranslation_service, get_blocks_as_html, ingest_html, queue_job
+from .core import (
+    call_etranslation_service,
+    get_blocks_as_html,
+    ingest_html,
+    queue_job,
+    setup_translation_object,
+)
 from .utils import get_value_representation
-from urllib.parse import urlparse, parse_qs
 
+# from urllib.parse import urlparse, parse_qs
 # import transaction
+
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
 
@@ -41,6 +48,23 @@ class HTMLIngestion(BrowserView):
 
         site = portal.getSite()
         trans_obj = site.unrestrictedTraverse(path)
+        ingest_html(trans_obj, html)
+        return "ok"
+
+
+class SaveTranslationHtml(BrowserView):
+    """A special view to allow manually submit an HTML translated by
+    eTranslation, but that wasn't properly submitted through the callback"""
+
+    def __call__(self):
+        html = self.request.form.get("html", "").decode("utf-8")
+        path = self.request.form.get("path", "")
+        language = self.request.form.get("language", "")
+
+        site_portal = portal.getSite()
+
+        en_obj = site_portal.unrestrictedTraverse(path)
+        trans_obj = setup_translation_object(en_obj, language, site_portal)
         ingest_html(trans_obj, html)
         return "ok"
 
@@ -251,6 +275,7 @@ class CallETranslation(BrowserView):
     """Call eTranslation, triggered by job from worker"""
 
     def __call__(self):
+        # TODO: add security check
         form = self.request.form
         html = form.get("html")
         source_lang = form.get("source_lang")

@@ -1,18 +1,17 @@
-import copy
 import logging
 import os
 
 import transaction
 from OFS.SimpleItem import SimpleItem
-
-# from plone import api
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.app.multilingual.manager import TranslationManager
 from plone.contentrules.rule.interfaces import IExecutable, IRuleElementData
 from Products.CMFCore.utils import getToolByName
-from zope.component import adapter, adapts, getMultiAdapter
+from zope.component import adapter, adapts  # , getMultiAdapter
 from zope.interface import Interface, implementer
+
 from .core import queue_translate_volto_html
+
 
 logger = logging.getLogger("eea.climateadapt")
 

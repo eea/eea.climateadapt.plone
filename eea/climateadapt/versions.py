@@ -1,5 +1,7 @@
-from zope.interface import Interface, Attribute
+from zope.interface import Interface, Attribute, implementer
 from zope.annotation import factory
+from zope.component import adapter
+from plone.dexterity.interfaces import IDexterityContent
 
 KEY = "SERIAL_ID"
 
@@ -10,6 +12,8 @@ class ISerialId(Interface):
     serial_id = Attribute("serial_id")
 
 
+@adapter(IDexterityContent)
+@implementer(ISerialId)
 def _serial_factory():
     """Simple serial id factory, return number 0"""
 
