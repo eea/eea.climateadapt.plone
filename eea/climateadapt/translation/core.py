@@ -75,7 +75,7 @@ def queue_job(queue_name, job_name, data, opts=None):
     print(f"Job added to queue: {queue_name}")
 
 
-def queue_translate_volto_html(obj, language=None):
+def queue_translate(obj, language=None):
     """The "new" method of triggering the translation of an object.
 
     While this is named "volto", it is a generic system to translate Plone

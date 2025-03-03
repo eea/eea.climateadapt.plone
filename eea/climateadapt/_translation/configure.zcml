@@ -33,31 +33,4 @@
     permission="cmf.ManagePortal"
   />
 
-  <browser:page
-    for="*"
-    class=".views.TranslateObjectAsync"
-    name="translate-this-async"
-    permission="cmf.ManagePortal"
-  />
-
-  <browser:page
-    for="*"
-    class=".views.TranslateFolderAsync"
-    name="translate-folder-async"
-    permission="cmf.ManagePortal"
-  />
-
-  <browser:page
-    for="*"
-    class=".views.TranslateMissing"
-    name="translate-missing"
-    permission="cmf.ManagePortal"
-  />
-
-  <adapter factory=".valueadapter.MissionFundingDescriptionValue"
-    provides=".valueadapter.ITranslationValue"
-    for="eea.climateadapt.mission_funding_cca.MissionFundingCCA *"
-    name="description"
-  />
-
 </configure>

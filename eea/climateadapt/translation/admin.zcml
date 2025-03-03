@@ -12,36 +12,32 @@
   i18n_domain="eea.climateadapt"
 >
 
-  <include file="admin.zcml" />
-  <include file="contentrules.zcml" />
-
   <browser:page
     for="*"
-    class=".views.TranslationCallback"
-    name="translate-callback"
-    permission="zope2.View"
-  />
-
-  <browser:page
-    for="*"
-    class=".views.HTMLIngestion"
-    name="ingest-html"
+    template="pt/see_folder_objects_view.pt"
+    name="see_folder_objects_view"
     permission="cmf.ManagePortal"
-    template="pt/ingest.pt"
   />
 
   <browser:page
     for="*"
-    class=".views.ToHtml"
-    name="tohtml"
+    class=".admin.TranslateObjectAsync"
+    name="translate-this-async"
     permission="cmf.ManagePortal"
-    template="pt/volto-html.pt"
   />
 
-  <adapter factory=".valueadapter.MissionFundingDescriptionValue"
-    provides=".valueadapter.ITranslationValue"
-    for="eea.climateadapt.mission_funding_cca.MissionFundingCCA *"
-    name="description"
+  <browser:page
+    for="*"
+    class=".admin.TranslateFolderAsync"
+    name="translate-folder-async"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
+    class=".admin.TranslateMissing"
+    name="translate-missing"
+    permission="cmf.ManagePortal"
   />
 
 </configure>

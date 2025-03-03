@@ -10,7 +10,7 @@ from Products.CMFCore.utils import getToolByName
 from zope.component import adapter, adapts  # , getMultiAdapter
 from zope.interface import Interface, implementer
 
-from .core import queue_translate_volto_html
+from .core import queue_translate
 
 
 logger = logging.getLogger("eea.climateadapt")
@@ -51,7 +51,7 @@ class TranslateAsyncActionExecutor(object):
             logger.warn("TranslateAsyncActionExecutor executed on the wrong server")
             return True
 
-        queue_translate_volto_html(self.event.object)
+        queue_translate(self.event.object)
         return True
 
 

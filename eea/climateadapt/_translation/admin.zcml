@@ -17,13 +17,6 @@
 
   <browser:page
     for="*"
-    template="pt/see_folder_objects_view.pt"
-    name="see_folder_objects_view"
-    permission="cmf.ManagePortal"
-  />
-
-  <browser:page
-    for="*"
     name="reset_async"
     permission="cmf.ManagePortal"
     class=".admin.ResetAsync"
