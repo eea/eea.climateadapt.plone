@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registry>
+  <records interface="eea.volto.policy.restapi.services.contextnavigation.get.IEEAContextNavigationSchema" prefix="plone">
+    <value key="displayed_types">
+      <element>Folder</element>
+      <element>LRF</element>
+      <element>Link</element>
+      <element>Document</element>
+      <element>Subsite</element>
+    </value>
+    <value key="filter_on_workflow">False</value>
+    <value key="generate_tabs">True</value>
+    <value key="navigation_depth">3</value>
+    <value key="nonfolderish_tabs">True</value>
+    <value key="parent_types_not_to_query">
+      <element>TempFolder</element>
+    </value>
+    <value key="root">/</value>
+    <value key="show_excluded_items">False</value>
+    <value key="side_nav_types">
+      <element>Document</element>
+    </value>
+    <value key="sitemap_depth">3</value>
+    <value key="sort_tabs_on">getObjPositionInParent</value>
+    <value key="sort_tabs_reversed">False</value>
+    <value key="workflow_states_to_show"/>
+  </records>
+</registry>
