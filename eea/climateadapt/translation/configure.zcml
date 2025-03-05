@@ -24,6 +24,20 @@
 
   <browser:page
     for="*"
+    class=".views.CallETranslation"
+    name="call-etranslation"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    for="*"
+    class=".views.SaveTranslationHtml"
+    name="save-etranslation"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    for="*"
     class=".views.HTMLIngestion"
     name="ingest-html"
     permission="cmf.ManagePortal"

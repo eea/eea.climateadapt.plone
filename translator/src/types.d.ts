@@ -10,3 +10,8 @@ export type CallETranslation = {
   obj_url: string;
   serial_id: number;
 };
+
+export type SaveTranslation = {
+  obj_path: string;
+  html: string;
+};

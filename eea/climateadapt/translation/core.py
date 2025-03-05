@@ -71,7 +71,7 @@ def queue_job(queue_name, job_name, data, opts=None):
     }
 
     def callback():
-        logger.info("Adding job %s %s", job_name, data)
+        logger.info("Adding job %s", job_name)
 
         async def inner():
             await queue.add(job_name, data, opts)
@@ -116,6 +116,8 @@ def queue_translate(obj, language=None):
 
         logger.info("Queue translate_volto_html for %s / %s", url, language)
         queue_job("etranslation", "call_etranslation", data)
+        # TODO: temporary
+        break
 
 
 def get_blocks_as_html(obj):
@@ -134,7 +136,7 @@ def get_blocks_as_html(obj):
     return html
 
 
-def call_etranslation_service(source_lang, html, obj_path, target_languages=None):
+def call_etranslation_service(html, obj_path, target_languages):
     """Makes a eTranslation webcall to request a translation for a html
     (based on volto export)
     """
@@ -142,48 +144,45 @@ def call_etranslation_service(source_lang, html, obj_path, target_languages=None
     if not html:
         return
 
-    if not target_languages:
-        target_languages = ["EN"]
-
     encoded_html = base64.b64encode(html)
 
-    site_url = portal.get().absolute_url()  # -> '/cca'
-
-    if "localhost" in site_url:
-        logger.warning("Is localhost, won't retrieve translation for: %s", html)
-        return
+    site_url = portal.get().absolute_url()
 
     client = Client(
         ETRANSLATION_SOAP_SERVICE_URL,
         wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS),
     )
 
-    dest = "{}/@@translate-callback?source_lang={}".format(site_url, source_lang)
+    dest = "{}/@@translate-callback".format(site_url)
     if "https://" not in dest:
         dest = "https://" + dest
 
-    resp = client.service.translate(
-        {
-            "priority": "5",
-            "external-reference": obj_path,
-            "caller-information": {
-                "application": "Marine_EEA_20180706",
-                "username": TRANS_USERNAME,
-            },
-            "document-to-translate-base64": {
-                "content": encoded_html,
-                "format": "html",
-                "fileName": "out",
-            },
-            "source-language": source_lang,
-            "target-languages": {"target-language": target_languages},
-            "domain": "GEN",
-            "output-format": "html",
-            "destinations": {
-                "http-destination": dest,
-            },
-        }
-    )
+    if "localhost" not in site_url:
+        resp = client.service.translate(
+            {
+                "priority": "5",
+                "external-reference": obj_path,
+                "caller-information": {
+                    "application": "Marine_EEA_20180706",
+                    "username": TRANS_USERNAME,
+                },
+                "document-to-translate-base64": {
+                    "content": encoded_html,
+                    "format": "html",
+                    "fileName": "out",
+                },
+                "source-language": "en",
+                "target-languages": {"target-language": target_languages},
+                "domain": "GEN",
+                "output-format": "html",
+                "destinations": {
+                    "http-destination": dest,
+                },
+            }
+        )
+    else:
+        logger.warning("Is localhost, won't retrieve translation for: %s", html)
+        return {"transId": "not-called", "externalRefId": html}
 
     logger.info("Data translation request : html content")
     logger.info("Response from translation request: %r", resp)
@@ -441,6 +440,6 @@ def setup_translation_object(obj, language, site_portal):
 
 
 def check_token_security(request):
-    token = request.headers.get("Authentication")
+    token = request.getHeader("Authentication")
     if token != TRANSLATION_AUTH_TOKEN:
         raise Unauthorized

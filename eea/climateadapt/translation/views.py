@@ -50,11 +50,14 @@ class SaveTranslationHtml(BrowserView):
 
     def __call__(self):
         check_token_security(self.request)
-        html = self.request.form.get("html", "").decode("utf-8")
+        html = self.request.form.get("html", "")  # .decode("utf-8")
         path = self.request.form.get("path", "")
         language = self.request.form.get("language", "")
+        serial_id = self.request.form.get("serial_id", 0)
 
         site_portal = portal.getSite()
+        if path[0] == "/":
+            path = path[1:]
 
         en_obj = site_portal.unrestrictedTraverse(path)
         trans_obj = setup_translation_object(en_obj, language, site_portal)
@@ -70,25 +73,28 @@ class TranslationCallback(BrowserView):
 
     def __call__(self):
         # for some reason this request acts strange
-        qs = self.request["QUERY_STRING"]
-        parsed = parse_qs(qs)
-        form = {}
-        for name, val in list(parsed.items()):
-            form[name] = val[0]
-
-        _file = self.request._file.read()
+        # qs = self.request["QUERY_STRING"]
+        # parsed = parse_qs(qs)
+        # form = {}
+        # for name, val in list(parsed.items()):
+        #     form[name] = val[0]
+        #
+        # _file = self.request._file.read()
+        form = self.request.form
+        _file = form.get("file", "")
 
         decoded_bytes = base64.b64decode(_file)
-        html_translated = decoded_bytes.decode("latin-1")
-        html = html_translated.encode("utf-8")
+        html = decoded_bytes.decode("latin-1")
+        # html = html_translated.encode("utf-8")
 
         extref = form.get("external-reference")
 
-        logger.info("Translation Callback Incoming file: %s" % _file)
-        logger.info("Translate volto html form: %s", form)
-        logger.info("Translate volto html: %s", html_translated)
+        # logger.info("Translation Callback Incoming file: %s" % _file)
+        # logger.info("Translate volto html form: %s", form)
+        # logger.info("Translate volto html: %s", html_translated)
 
         data = {"obj_path": extref, "html": html}
+        # print("data", data)
         queue_job("etranslation", "save_translated_html", data)
 
         return "ok"
@@ -132,8 +138,14 @@ class CallETranslation(BrowserView):
         check_token_security(self.request)
         form = self.request.form
         html = form.get("html")
-        source_lang = form.get("source_lang")
+        target_lang = form.get("target_lang")
         obj_path = form.get("obj_path")
 
-        data = call_etranslation_service(source_lang, html, obj_path)
+        # temporary
+        print("calling etranslation")
+        data = json.dumps({})
+        self.request.response.setHeader("Content-Type", "application/json")
+        return data
+
+        data = call_etranslation_service(html, obj_path, [target_lang])
         return json.dumps(data)
