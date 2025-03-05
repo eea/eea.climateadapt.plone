@@ -3,7 +3,7 @@ import json
 import logging
 import os
 
-import redis
+# import redis
 import requests
 from Acquisition import aq_inner, aq_parent
 from plone import api
@@ -18,6 +18,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
 from zeep import Client
 from zeep.wsse.username import UsernameToken
+from zExceptions import Unauthorized
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
@@ -25,8 +26,12 @@ from zope.schema import getFieldsInOrder
 from eea.climateadapt.callbackdatamanager import queue_callback
 from eea.climateadapt.utils import force_unlock
 from eea.climateadapt.versions import ISerialId
+from bullmq import Queue
+import asyncio
+
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
+from .utils import get_site_languages
 
 env = os.environ.get
 
@@ -36,17 +41,24 @@ SERVICE_URL = "https://webgate.ec.europa.eu/etranslation/si/translate"
 ETRANSLATION_SOAP_SERVICE_URL = (
     "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL"
 )
+REDIS_HOST = env("REDIS_HOST", "localhost")
+REDIS_PORT = int(env("REDIS_PORT", 6379))
+TRANSLATION_AUTH_TOKEN = env("TRANSLATION_AUTH_TOKEN", "")
 
 # See this for schema:
 # https://webgate.ec.europa.eu/etranslation/si/SecuredWSEndpointHandlerService?xsd=1
 
 logger = logging.getLogger("eea.climateadapt")
 
-SLATE_CONVERTER = "http://converter:8000/html"
-BLOCKS_CONVERTER = "http://converter:8000/blocks2html"
-CONTENT_CONVERTER = "http://converter:8000/html2content"
+CONVERTER_URL = env("CONVERTER_URL", "http://converter:8000")
+SLATE_CONVERTER = f"{CONVERTER_URL}/html"
+BLOCKS_CONVERTER = f"{CONVERTER_URL}/blocks2html"
+CONTENT_CONVERTER = f"{CONVERTER_URL}/html2content"
 
 logger = logging.getLogger("eea.climateadapt")
+
+redisOpts = dict(host=REDIS_HOST, port=REDIS_PORT, db=0)
+queue = Queue("etranslation", {"connection": redisOpts})
 
 
 def queue_job(queue_name, job_name, data, opts=None):
@@ -58,17 +70,14 @@ def queue_job(queue_name, job_name, data, opts=None):
         "attempts": 3,
     }
 
-    job_data = {
-        "name": job_name,
-        "data": data,
-        "opts": opts,
-    }
-
-    r = redis.Redis(host="localhost", port=6379, db=0)
-    data = json.dumps(job_data)
-
     def callback():
-        r.lpush(queue_name, data)
+        logger.info("Adding job %s %s", job_name, data)
+
+        async def inner():
+            await queue.add(job_name, data, opts)
+            await queue.close()
+
+        asyncio.run(inner())
 
     queue_callback(callback)
 
@@ -92,20 +101,21 @@ def queue_translate(obj, language=None):
 
     html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
     url = obj.absolute_url()
-    serial_id = ISerialId(obj)
+    serial_id = int(ISerialId(obj))  # by default we get is a location proxy
 
     data = {"obj_url": url, "html_content": html, "serial_id": serial_id}
 
+    languages = language and [language] or get_site_languages()
     logger.info("Called translate_volto_html for %s", url)
-    languages = language and [language] or []  # get_site_languages()
 
-    if "cca/en" in url:
-        for language in languages:  # temporary
-            if language == "en":
-                continue
-            data = dict(data.items(), language=language)
+    for language in languages:
+        if language == "en":
+            continue
 
-            queue_job("etranslation", "call_etranslation", data)
+        data = dict(data.items(), language=language)
+
+        logger.info("Queue translate_volto_html for %s / %s", url, language)
+        queue_job("etranslation", "call_etranslation", data)
 
 
 def get_blocks_as_html(obj):
@@ -428,3 +438,9 @@ def setup_translation_object(obj, language, site_portal):
     translated_object.reindexObject()
 
     return translated_object
+
+
+def check_token_security(request):
+    token = request.headers.get("Authentication")
+    if token != TRANSLATION_AUTH_TOKEN:
+        raise Unauthorized

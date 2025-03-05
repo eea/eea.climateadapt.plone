@@ -1,10 +1,10 @@
 """Translation views"""
 
 import base64
-import cgi
 import json
 import logging
 import os
+from urllib.parse import parse_qs
 
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
@@ -12,19 +12,16 @@ from plone.dexterity.utils import iterSchemata
 from Products.Five.browser import BrowserView
 from zope.schema import getFieldsInOrder
 
-
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .core import (
     call_etranslation_service,
+    check_token_security,
     get_blocks_as_html,
     ingest_html,
     queue_job,
     setup_translation_object,
 )
 from .utils import get_value_representation
-
-# from urllib.parse import urlparse, parse_qs
-# import transaction
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
@@ -52,6 +49,7 @@ class SaveTranslationHtml(BrowserView):
     eTranslation, but that wasn't properly submitted through the callback"""
 
     def __call__(self):
+        check_token_security(self.request)
         html = self.request.form.get("html", "").decode("utf-8")
         path = self.request.form.get("path", "")
         language = self.request.form.get("language", "")
@@ -73,7 +71,7 @@ class TranslationCallback(BrowserView):
     def __call__(self):
         # for some reason this request acts strange
         qs = self.request["QUERY_STRING"]
-        parsed = cgi.parse_qs(qs)
+        parsed = parse_qs(qs)
         form = {}
         for name, val in list(parsed.items()):
             form[name] = val[0]
@@ -123,11 +121,6 @@ class ToHtml(BrowserView):
     def get_value(self, name):
         if name == "blocks":
             return get_blocks_as_html(self.context)
-        # TODO: remove cover_layout related handling
-        if name == "cover_layout":
-            return None
-        #     value = get_cover_as_html(self.context)
-        #     return value
         return get_value_representation(self.context, name)
 
 
@@ -136,6 +129,7 @@ class CallETranslation(BrowserView):
 
     def __call__(self):
         # TODO: add security check
+        check_token_security(self.request)
         form = self.request.form
         html = form.get("html")
         source_lang = form.get("source_lang")

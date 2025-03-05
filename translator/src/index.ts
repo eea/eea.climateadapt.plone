@@ -2,33 +2,41 @@ import { JOBS_MAPPING } from "./jobs";
 import { createBullBoard } from "@bull-board/api";
 import { BullMQAdapter } from "@bull-board/api/bullMQAdapter";
 import { FastifyAdapter } from "@bull-board/fastify";
-import { Queue as QueueMQ, Worker } from "bullmq";
+import { Queue, Worker } from "bullmq";
 import fastify from "fastify";
+import IORedis from "ioredis";
 
 const port = parseInt(process.env.PORT || "3000");
 
-const redisOptions = {
+const connection = new IORedis({
+  maxRetriesPerRequest: null,
   port: parseInt(process.env.REDIS_PORT || "6379"),
-  host: process.env.REDIS_HOST || "localhost",
-  password: process.env.REDIS_PASS || "",
-  // tls: false,
-};
+  host: process.env.REDIS_HOST || "0.0.0.0",
+});
 
-const createQueueMQ = (name: string) =>
-  new QueueMQ(name, { connection: redisOptions });
+const sub = new IORedis({
+  maxRetriesPerRequest: null,
+  port: parseInt(process.env.REDIS_PORT || "6379"),
+  host: process.env.REDIS_HOST || "0.0.0.0",
+});
+
+// console.log("connection", connection);
+
+const createQueueMQ = (name: string) => new Queue(name, { connection });
 
 function setupBullMQProcessor(queueName: string) {
   new Worker(
     queueName,
     async (job) => {
       const handler = JOBS_MAPPING[job.name];
+      console.log(handler);
       if (handler) {
         await handler(job.data);
       }
 
       return { jobId: `This is the return value of job (${job.id})` };
     },
-    { connection: redisOptions },
+    { connection },
   );
 }
 
@@ -42,6 +50,31 @@ function readQueuesFromEnv() {
     return [];
   }
 }
+
+sub.subscribe("etranslation", (err, count) => {
+  if (err) {
+    // Just like other commands, subscribe() can fail for some reasons,
+    // ex network issues.
+    console.error("Failed to subscribe: %s", err.message);
+  } else {
+    // `count` represents the number of channels this client are currently subscribed to.
+    console.log(
+      `Subscribed successfully! This client is currently subscribed to ${count} channels.`,
+    );
+  }
+});
+
+sub.on("message", (channel, message) => {
+  console.log(`Received ${message} from ${channel}`);
+});
+
+// There's also an event called 'messageBuffer', which is the same as 'message' except
+// it returns buffers instead of strings.
+// It's useful when the messages are binary data.
+sub.on("messageBuffer", (channel, message) => {
+  // Both `channel` and `message` are buffers.
+  console.log(channel, message);
+});
 
 const run = async () => {
   const queues = readQueuesFromEnv().map((q) => createQueueMQ(q));
@@ -76,6 +109,11 @@ const run = async () => {
     reply.send({
       ok: true,
     });
+  });
+
+  app.get("/status", (req, reply) => {
+    console.log(connection.status);
+    reply.send({ status: connection.status });
   });
 
   await app.listen({ host: "0.0.0.0", port });
