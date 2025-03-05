@@ -2,7 +2,7 @@
 import csv
 import json
 import logging
-import urlparse
+import urllib.parse
 from datetime import date
 from datetime import datetime
 
@@ -15,16 +15,20 @@ from zope.event import notify
 
 from eea.climateadapt.vocabulary import _health_impacts
 from plone import api
-from plone.api import portal
 from plone.api.portal import get_tool
 from plone.api.content import get_state
 from plone.app.textfield import RichText
 from plone.app.textfield.value import RichTextValue
 from Products.Five.browser import BrowserView
 from z3c.relationfield import RelationValue
-from zc.relation.interfaces import ICatalog
 from plone.app.multilingual.manager import TranslationManager
 
+from plone.restapi.blocks import visit_blocks
+from plone.restapi.deserializer.utils import path2uid
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.statusmessages.interfaces import IStatusMessage
+from zope.lifecycleevent import modified
 
 from eea.climateadapt.vocabulary import BIOREGIONS
 from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
@@ -367,7 +371,7 @@ def search_for(content_types=[], tag="", at_least_one=[],
         })
         for brain in found:
             obj = brain.getObject()
-            if obj.UID() not in res.keys():
+            if obj.UID() not in list(res.keys()):
                 res[obj.UID()] = {
                     'obj': obj,
                     'reason_terms': [],
@@ -383,7 +387,7 @@ def search_for(content_types=[], tag="", at_least_one=[],
             })
             for brain in found:
                 obj = brain.getObject()
-                if obj.UID() not in res.keys():
+                if obj.UID() not in list(res.keys()):
                     res[obj.UID()] = {
                         'obj': obj,
                         'reason_terms': [text_to_search],
@@ -401,7 +405,7 @@ def search_for(content_types=[], tag="", at_least_one=[],
         temp = res
         res = {}
 
-        for item_id in temp.keys():
+        for item_id in list(temp.keys()):
             item = temp[item_id]
             obj = item['obj']
 
@@ -429,7 +433,7 @@ def justify_migration(objs={}, action=""):
     """ Human readable explanation of modified objects
     """
     res = []
-    for item_id in objs.keys():
+    for item_id in list(objs.keys()):
         item = objs[item_id]
         obj = item['obj']
         logger.info("----------------------")
@@ -454,11 +458,11 @@ def migrate_delete_tag(objs=[], tag=""):
         Do the same for their translated items
     """
     regions = {}
-    for k, v in BIOREGIONS.items():
+    for k, v in list(BIOREGIONS.items()):
         if 'TRANS_MACRO' in k:
             regions[v] = k
 
-    for item_id in objs.keys():
+    for item_id in list(objs.keys()):
         item = objs[item_id]
         obj = item['obj']
         try:
@@ -516,7 +520,7 @@ def migrate_delete_tag(objs=[], tag=""):
             translations = None
 
         if translations is not None:
-            for language in translations.keys():
+            for language in list(translations.keys()):
                 trans_obj = translations[language]
                 trans_obj.geochars = prepared_val
                 trans_obj._p_changed = True
@@ -532,11 +536,11 @@ def migrate_add_tag(objs=[], tag=""):
         Do the same for their translated items
     """
     regions = {}
-    for k, v in BIOREGIONS.items():
+    for k, v in list(BIOREGIONS.items()):
         if 'TRANS_MACRO' in k:
             regions[v] = k
 
-    for item_id in objs.keys():
+    for item_id in list(objs.keys()):
         item = objs[item_id]
         obj = item['obj']
         try:
@@ -595,7 +599,7 @@ def migrate_add_tag(objs=[], tag=""):
             translations = None
 
         if translations is not None:
-            for language in translations.keys():
+            for language in list(translations.keys()):
                 trans_obj = translations[language]
                 trans_obj.geochars = prepared_val
                 trans_obj._p_changed = True
@@ -674,7 +678,7 @@ class MigrateAdaptationOptionItems(BrowserView):
                         translations = None
 
                     if translations is not None:
-                        for language in translations.keys():
+                        for language in list(translations.keys()):
                             trans_obj = translations[language]
                             trans_obj.key_type_measures = ktm
                             trans_obj.ipcc_category = ipcc
@@ -1031,7 +1035,7 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
             portal_type="eea.climateadapt.indicator")
 
         regions = {}
-        for k, v in BIOREGIONS.items():
+        for k, v in list(BIOREGIONS.items()):
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
@@ -1111,7 +1115,7 @@ class MigrateTransnationalRegionsIndicators(BrowserView):
                     translations = None
 
                 if translations is not None:
-                    for language in translations.keys():
+                    for language in list(translations.keys()):
                         trans_obj = translations[language]
                         trans_obj.geochars = prepared_val
                         trans_obj._p_changed = True
@@ -1170,14 +1174,14 @@ class CaseStudies:
             }
 
         new_not_found = []
-        for x in items_new.keys():
-            if x not in items.keys():
+        for x in list(items_new.keys()):
+            if x not in list(items.keys()):
                 new_not_found.append(x)
 
         old_not_found = []
         old_not_found_urls = []
-        for x in items.keys():
-            if x not in items_new.keys():
+        for x in list(items.keys()):
+            if x not in list(items_new.keys()):
                 old_not_found.append(x)
                 not_found_obj = items[x]
                 if get_state(not_found_obj) not in ['archived', 'private']:
@@ -1189,19 +1193,19 @@ class CaseStudies:
         logger.info("Case studies not found in database: %s", new_not_found)
 
         regions = {}
-        for k, v in BIOREGIONS.items():
+        for k, v in list(BIOREGIONS.items()):
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
         sub_regions = {}
-        for k, v in SUBNATIONAL_REGIONS.items():
+        for k, v in list(SUBNATIONAL_REGIONS.items()):
             if 'SUBN_' in k:
                 sub_regions[v] = k
 
         list_new_values = []
         list_new_sub_values = []
 
-        for item in items_new.keys():
+        for item in list(items_new.keys()):
             new_values = extract_vals(items_new[item]['trans_macro'])
             new_sub_values = extract_subnational_vals(
                 items_new[item]['subnational'])
@@ -1290,7 +1294,7 @@ class CaseStudies:
                     translations = None
 
                 if translations is not None:
-                    for language in translations.keys():
+                    for language in list(translations.keys()):
                         trans_obj = translations[language]
                         trans_obj.geochars = prepared_val
                         trans_obj._p_changed = True
@@ -1305,12 +1309,12 @@ class CaseStudies:
 
         # Make sure all values are defined in our vocabulary
         missing_definitions = [x for x in set(
-            list_new_values) if x not in BIOREGIONS.values()]
+            list_new_values) if x not in list(BIOREGIONS.values())]
         logger.info("Values to be added in BIOREGIONS definition: %s",
                     missing_definitions)
         missing_sub_definitions = [x for x in set(
             list_new_sub_values) if x.encode(
-                'utf-8') not in SUBNATIONAL_REGIONS.values()]
+                'utf-8') not in list(SUBNATIONAL_REGIONS.values())]
         logger.info("Values to be added in SUBNATIONAL definition: %s",
                     missing_sub_definitions)
 
@@ -1335,7 +1339,7 @@ class ContributingOrganisationPartner():
             object = site.restrictedTraverse(local_path)
             if object:
                 return object
-        except Exception, e:
+        except Exception as e:
             return None
 
         return None
@@ -1367,7 +1371,7 @@ class ContributingOrganisationPartner():
         }
 
         util = getUtility(IIntIds, context=self.context)
-        for title in map_organisations.keys():
+        for title in list(map_organisations.keys()):
             orgs = self.context.portal_catalog.searchResults(
                 portal_type="eea.climateadapt.organisation", getId=map_organisations[title]['url'])
             if not orgs:
@@ -1683,7 +1687,7 @@ class AllObjectsNotify:
             object = site.restrictedTraverse(local_path)
             if object:
                 return object
-        except Exception, e:
+        except Exception as e:
             return None
 
         return None
@@ -1715,7 +1719,7 @@ class AllObjectsNotify:
         }
 
         util = getUtility(IIntIds, context=self.context)
-        for title in map_organisations.keys():
+        for title in list(map_organisations.keys()):
             orgs = self.context.portal_catalog.searchResults(
                 portal_type="eea.climateadapt.organisation", getId=map_organisations[title]['url'])
             if not orgs:
@@ -1843,7 +1847,7 @@ class UpdateHealthItemsFields:
         }
 
         util = getUtility(IIntIds, context=self.context)
-        for title in map_organisations.keys():
+        for title in list(map_organisations.keys()):
             orgs = self.context.portal_catalog.searchResults(
                 portal_type="eea.climateadapt.organisation", getId=title
             )
@@ -1884,10 +1888,10 @@ class UpdateHealthItemsFields:
                 itemsFound.append(item)
                 continue
 
-            currentPath = urlparse.urlparse(item["url"]).path
+            currentPath = urllib.parse.urlparse(item["url"]).path
             try:
                 obj = portal.unrestrictedTraverse(currentPath[1:])
-            except Exception, e:
+            except Exception as e:
                 logger.warning("NOT FOUND: %s", item['url'])
                 continue
 
@@ -1957,7 +1961,7 @@ class TransnationalRegions:
 
         regions = {}
         site = api.portal.get()
-        for k, v in BIOREGIONS.items():
+        for k, v in list(BIOREGIONS.items()):
             if 'TRANS_MACRO' in k:
                 regions[v] = k
 
@@ -1982,7 +1986,7 @@ class TransnationalRegions:
 
             try:
                 obj = site.restrictedTraverse(local_path.strip())
-            except Exception, e:
+            except Exception as e:
                 obj = None
 
             if not obj:
@@ -2635,3 +2639,82 @@ class SyncAttributes:
         transaction.commit()
 
         return 'done'
+
+
+def clean_url(url):
+    """clean_url"""
+    if not url:
+        return url
+
+    hosts = [
+        'http://localhost:8080',
+        'http://backend:8080',
+        'https://climate-adapt.eea.europa.eu',
+    ]
+    for bit in hosts:
+        url = url.replace(bit, '')
+    return url
+
+
+class MigrateAbsoluteURLs(BrowserView):
+    """Migrate absolute URLs to resolveuid"""
+
+    fields = ["url", "href", "provider_url", "link", 'getRemoteUrl',
+                "attachedImage", 'attachedimage', 'getPath', 'getURL',
+                "preview_image", "@id"]
+    count = 0
+
+    def fix_url(self, block):
+        if isinstance(block, dict):  # If the current data is a dictionary
+            for key, value in block.items():
+                if key in self.fields:  # Check for the 'url' key with the target value
+                    if value and isinstance(value, str):
+                        cleaned_url = clean_url(value)
+
+                        if cleaned_url != value:
+                            block[key] = path2uid(
+                                context=self.context,
+                                link=cleaned_url)
+                            self.count += 1
+                else:
+                    self.fix_url(value)  # Recursively check the value
+
+        elif isinstance(block, list):  # If the current data is a list
+            for item in block:
+                self.fix_url(item)
+
+    def migrate(self):
+        """Migrate absolute URLs to resolveuid"""
+        brains = api.content.find(
+            context=self.context,
+            object_provides="plone.restapi.behaviors.IBlocks"
+        )
+
+        total = len(brains)
+        for idx, brain in enumerate(brains):
+            obj = brain.getObject()
+            # if obj.title == "Discover the key services, thematic features and tools of Climate-ADAPT":
+            #     import pdb; pdb.set_trace()
+            blocks = getattr(obj, "blocks", {})
+            # blocks_orig = copy.deepcopy(blocks)
+
+            if 'localhost' in str(blocks) or 'https://climate-adapt.eea.europa.eu' in str(blocks):
+                for block in visit_blocks(obj, blocks):
+                    self.fix_url(block)
+
+                modified(obj)
+
+            if idx % 100 == 0:
+                transaction.commit()
+                logger.info("Progress %s of %s. Migrated %s",
+                            idx, total, self.count)
+
+        return self.count
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        count = self.migrate()
+        IStatusMessage(self.request).addStatusMessage(
+            "Migrated {} absolute URLs!".format(count)
+        )
+        return self.request.response.redirect(self.context.absolute_url())

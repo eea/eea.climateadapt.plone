@@ -33,7 +33,7 @@ class CustomFormTabsFormExtender(FormExtender):
         self.remove('IBlocks.blocks_layout')
         groups = self.form.groups
         self.form.groups = [group for group in groups if len(
-            group.fields.values()) > 0]
+            list(group.fields.values())) > 0]
 
 
 class EventAddForm(add.DefaultAddForm):
@@ -51,7 +51,7 @@ class EventAddExtender(FormExtender):
         self.form.groups = [
             group
             for group in groups
-            if len(group.fields.values()) > 0]
+            if len(list(group.fields.values())) > 0]
 
 
 # class AddForm(add.DefaultAddForm):

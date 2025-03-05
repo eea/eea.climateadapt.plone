@@ -14,8 +14,8 @@ if len(sys.argv) > 1:
 if len(sys.argv) > 2:
     targetDirectory = sys.argv[2]
 
-print "Generating Proj4js catalogues."
+print("Generating Proj4js catalogues.")
 pjjs.pjcat2js_clean(resourcesDirectory,targetDirectory)
 pjjs.pjcat2js_run(resourcesDirectory,targetDirectory)
 
-print "Done."
+print("Done.")

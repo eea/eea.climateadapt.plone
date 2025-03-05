@@ -14,7 +14,7 @@
       permission="plone.app.contentrules.ManageContentRules"
       />
 
-  <plone:ruleAction
+  <!-- <plone:ruleAction
       name="eea.climateadapt.Reindex"
       title="Reindex object"
       description="Unindex and index object in Catalog"
@@ -23,7 +23,7 @@
       schema=".contentrules.IReindexAction"
       factory=".contentrules.ReindexAction"
       addview="eea.climateadapt.Reindex"
-      />
+      /> -->
 
   <adapter factory=".contentrules.ObjectDateExpirationActionExecutor" />
 
@@ -34,7 +34,7 @@
       permission="plone.app.contentrules.ManageContentRules"
       />
 
-  <plone:ruleAction
+  <!-- <plone:ruleAction
       name="eea.climateadapt.ObjectDateExpiration"
       title="Object date expiration set"
       description="Set date expire for archived object"
@@ -43,6 +43,6 @@
       schema=".contentrules.IObjectDateExpirationAction"
       factory=".contentrules.ObjectDateExpirationAction"
       addview="eea.climateadapt.ObjectDateExpiration"
-      />
+      /> -->
 
 </configure>

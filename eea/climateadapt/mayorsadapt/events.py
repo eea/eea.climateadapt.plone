@@ -1,44 +1,47 @@
-from zope.interface import implements
-from zope.component.interfaces import ObjectEvent, IObjectEvent
-from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
+# from zope.interface import implementer
+# from zope.component.interfaces import ObjectEvent, IObjectEvent
+# from eea.climateadapt.city_profile import TOKEN_COOKIE_NAME
 
 
-class IResetTokenEvent(IObjectEvent):
-    """ The access token has been reset
-    """
+# class IResetTokenEvent(IObjectEvent):
+#     """ The access token has been reset
+#     """
 
 
-class ITokenAboutToExpireEvent(IObjectEvent):
-    """ The access token is about to expire (in a certain time)
-    """
+# class ITokenAboutToExpireEvent(IObjectEvent):
+#     """ The access token is about to expire (in a certain time)
+#     """
 
 
-class ITokenExpiredEvent(IObjectEvent):
-    """ The access token has expired
-    """
+# class ITokenExpiredEvent(IObjectEvent):
+#     """ The access token has expired
+#     """
 
 
-class ICityProfileRegisterEvent(IObjectEvent):
-    """ A new city profile registration
-    """
+# class ICityProfileRegisterEvent(IObjectEvent):
+#     """ A new city profile registration
+#     """
 
 
-class ResetTokenEvent(ObjectEvent):
-    implements(IResetTokenEvent)
+# @implementer(IResetTokenEvent)
+# class ResetTokenEvent(ObjectEvent):
+#     """"""
 
 
-class TokenAboutToExpireEvent(ObjectEvent):
-    implements(ITokenAboutToExpireEvent)
+# @implementer(ITokenAboutToExpireEvent)
+# class TokenAboutToExpireEvent(ObjectEvent):
+#     """"""
+
+# @implementer(ITokenExpiredEvent)
+# class TokenExpiredEvent(ObjectEvent):
+#     """"""
 
 
-class TokenExpiredEvent(ObjectEvent):
-    implements(ITokenExpiredEvent)
+# @implementer(ICityProfileRegisterEvent)
+# class CityProfileRegisterEvent(ObjectEvent):
+#     """"""
 
 
-class CityProfileRegisterEvent(ObjectEvent):
-    implements(ICityProfileRegisterEvent)
-
-
-def mayor_logout(event):
-    request = event.object.REQUEST
-    request.response.expireCookie(TOKEN_COOKIE_NAME)
+# def mayor_logout(event):
+#     request = event.object.REQUEST
+#     request.response.expireCookie(TOKEN_COOKIE_NAME)

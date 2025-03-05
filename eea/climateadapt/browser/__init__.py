@@ -4,15 +4,15 @@ from collections import namedtuple
 
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
-from collective.cover.browser.cover import Standard
+# from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import (
     BIOREGIONS,
     SUBNATIONAL_REGIONS,
     ace_countries_dict,
 )
 from eea.climateadapt import MessageFactory as _
-from eea.climateadapt.translation.utils import translate_text
-from eea.geotags.behavior.geotags import ISingleGeoTag
+# from eea.climateadapt.translation.utils import translate_text
+# from eea.geotags.behavior.geotags import ISingleGeoTag
 from plone import api
 from plone.api.user import get
 from plone.app.iterate.browser.control import Control
@@ -74,9 +74,11 @@ def get_files(context):
 
 class AceViewApi(object):
     def geotag(self):
-        tag = queryAdapter(self.context, ISingleGeoTag)
+        # TODO fix geotag
+        return ''
+        # tag = queryAdapter(self.context, ISingleGeoTag)
 
-        return tag
+        # return tag
 
     def get_review_info(self):
         """Return review information.
@@ -123,8 +125,8 @@ class AceViewApi(object):
 
     @view.memoize
     def html2text(self, html):
-        if not isinstance(html, basestring):
-            return u""
+        if not isinstance(html, str):
+            return ""
         portal_transforms = api.portal.get_tool(name="portal_transforms")
         data = portal_transforms.convertTo(
             "text/plain", html, mimetype="text/html")
@@ -166,7 +168,7 @@ class AceViewApi(object):
     def _render_geochar_element(self, value):
         value = BIOREGIONS[value]
 
-        return u"<p>{0}</p>".format(value)
+        return "<p>{0}</p>".format(value)
         # if value == 'Global':
         #     return value + u"<br/>"
         # else:
@@ -174,33 +176,33 @@ class AceViewApi(object):
 
     def _render_geochar_macrotrans(self, value):
         tpl = (
-            u"<div class='sidebar_bold'>"
-            u"<h5>" +
+            "<div class='sidebar_bold'>"
+            "<h5>" +
             self.translate_text(
                 _("Macro-Transnational region"))+":</h5><p>{0}</p></div>"
         )
 
-        return tpl.format(u", ".join([BIOREGIONS[x] for x in value]))
+        return tpl.format(", ".join([BIOREGIONS[x] for x in value]))
 
     def _render_geochar_biotrans(self, value):
         tpl = (
-            u"<div class='sidebar_bold'>"
-            u"<h5>" +
+            "<div class='sidebar_bold'>"
+            "<h5>" +
             self.translate_text(_("Biogeographical regions")
                                 )+":</h5><p>{0}</p></div>"
         )
 
-        return tpl.format(u", ".join([BIOREGIONS.get(x, x) for x in value]))
+        return tpl.format(", ".join([BIOREGIONS.get(x, x) for x in value]))
 
     def _render_geochar_countries(self, value):
-        tpl = u"<div class='sidebar_bold'><h5>" + \
+        tpl = "<div class='sidebar_bold'><h5>" + \
             self.translate_text(_("Countries"))+":</h5><p>{0}</p></div>"
 
-        return tpl.format(u", ".join(self.get_countries(value)))
+        return tpl.format(", ".join(self.get_countries(value)))
 
     def _render_geochar_subnational(self, value):
         label = self.translate_text(_('Sub Nationals'))
-        tpl = u"<div class='sidebar_bold'>" u"<h5>%s:</h5><p>{0}</p></div>" % label
+        tpl = "<div class='sidebar_bold'>" "<h5>%s:</h5><p>{0}</p></div>" % label
         # tpl = u"<div class='sidebar_bold'>" u"<h5>"+_(u"Sub Nationals")+":</h5><p>{0}</p></div>"
 
         # a list like: ['SUBN_Marche__IT_']
@@ -217,7 +219,7 @@ class AceViewApi(object):
             else:
                 logger.error("Subnational region not found: %s", line)
 
-        text = u", ".join([x.decode("utf-8") for x in out])
+        text = ", ".join([x.decode("utf-8") for x in out])
 
         return tpl.format(text)
 
@@ -225,9 +227,9 @@ class AceViewApi(object):
         text = value
 
         if isinstance(value, (list, tuple)):
-            text = u", ".join(value)
+            text = ", ".join(value)
 
-        return u"<div class='sidebar_bold'>" u"<h5>{0}:</h5><p>{1}</p></div>".format(
+        return "<div class='sidebar_bold'>" "<h5>{0}:</h5><p>{1}</p></div>".format(
             self.translate_text(_("City")),
             text
         )
@@ -243,7 +245,7 @@ class AceViewApi(object):
         #                   "city":""}}'
 
         if not value:
-            return u""
+            return ""
 
         value = json.loads(value)
 
@@ -282,7 +284,7 @@ class AceViewApi(object):
                 renderer = getattr(self, "_render_geochar_" + key)
                 out.append(renderer(element))
 
-        return u" ".join(out)
+        return " ".join(out)
 
     def link_to_original(self):
         """Returns link to original object, to allow easy comparison"""
@@ -347,7 +349,10 @@ class AceViewApi(object):
         return False
 
     def translate_text(self, text):
-        return translate_text(self.context, self.request, text)
+        # TODO translate text
+        # return translate_text(self.context, self.request, text)
+
+        return text
 
 
 class ViewAceItem(BrowserView):
@@ -406,11 +411,11 @@ def redirect(site, REQUEST, key, itemid):
     return REQUEST.RESPONSE.redirect(ob.absolute_url(), status=301)
 
 
-class CoverNoTitleView(Standard):
-    """A template for covers that doesn't include the title"""
+# class CoverNoTitleView(Standard):
+#     """A template for covers that doesn't include the title"""
 
-    def __call__(self):
-        return self.index()
+#     def __call__(self):
+#         return self.index()
 
 
 class IterateControl(Control):
@@ -518,6 +523,6 @@ class IterateControl(Control):
         has_wc = wc is not None
         is_wc = self.context.aq_inner.aq_self is wc.aq_inner.aq_self
         res = has_wc and is_wc
-        print("Checkout cancel allowed: ", res)
+        print(("Checkout cancel allowed: ", res))
 
         return res

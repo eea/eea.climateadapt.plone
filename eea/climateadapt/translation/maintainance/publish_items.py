@@ -68,7 +68,7 @@ class AdminPublishItems(BrowserView):
             translations = TranslationManager(obj_en).get_translations()
 
             # first step: publish the item
-            for language in translations.keys():
+            for language in list(translations.keys()):
                 transl_path = "{}/{}".format(language, item)
                 obj_transl = self.get_object_by_path(transl_path)
 
@@ -89,7 +89,7 @@ class AdminPublishItems(BrowserView):
 
                 translations = TranslationManager(content_obj).get_translations()
 
-                for _, _obj_transl in translations.items():
+                for _, _obj_transl in list(translations.items()):
                     result = self.publish_obj(_obj_transl)
 
                     if result:

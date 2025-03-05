@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from eea.climateadapt.restapi.navigation import ICCARestapiLayer
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.services import Service
 from Products.CMFCore.interfaces import IActionCategory
@@ -9,19 +10,16 @@ from zope.i18n import translate
 from zope.interface import implementer
 from zope.interface import Interface
 
-from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
-
 
 @implementer(IExpandableElement)
-@adapter(Interface, IEEAClimateAdaptInstalled)
+@adapter(Interface, ICCARestapiLayer)
 class Actions(object):
     def __init__(self, context, request):
         self.context = context
         self.request = request
 
     def __call__(self, expand=False):
-        result = {"actions": {
-            "@id": "{}/@actions".format(self.context.absolute_url())}}
+        result = {"actions": {"@id": "{}/@actions".format(self.context.absolute_url())}}
         if not expand:
             return result
 

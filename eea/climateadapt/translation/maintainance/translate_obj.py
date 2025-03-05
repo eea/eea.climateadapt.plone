@@ -1,6 +1,6 @@
 import logging
 
-from collective.cover.tiles.richtext import RichTextTile
+# from collective.cover.tiles.richtext import RichTextTile
 from DateTime import DateTime
 from plone.api import portal
 from plone.app.multilingual.manager import TranslationManager
@@ -68,10 +68,10 @@ def handle_cover_one_step(trans_obj, obj_en, language, source_language, trans_ob
 
     tile_html_fields = []
     if "tile" in json_data:
-        for tile_id in json_data["tile"].keys():
+        for tile_id in list(json_data["tile"].keys()):
             tile_data = json_data["tile"][tile_id]
             # LOOP tile text items
-            for key in tile_data["item"].keys():
+            for key in list(tile_data["item"].keys()):
                 # TODO add one step params
                 res = translate_one_field_in_one_step(
                     source_language,
@@ -85,7 +85,7 @@ def handle_cover_one_step(trans_obj, obj_en, language, source_language, trans_ob
                 )
                 logger.info("One step translation tile: %s", res)
             # LOOP tile HTML items
-            for key in tile_data["html"].keys():
+            for key in list(tile_data["html"].keys()):
                 value = tile_data["html"][key]
                 value = value.replace("\r", "")
                 value = value.replace("\n", "")
@@ -98,7 +98,7 @@ def handle_cover_one_step(trans_obj, obj_en, language, source_language, trans_ob
                 )
 
     # Translate simple fields
-    for key in json_data["item"].keys():
+    for key in list(json_data["item"].keys()):
         res = translate_one_field_in_one_step(
             source_language,
             json_data["item"][key],
@@ -156,7 +156,7 @@ def handle_cover(trans_obj, language, source_language, trans_obj_path):
                     encoded_text = translated["transId"].encode("latin-1")
                     tile.data.update({field: encoded_text})
 
-        if isinstance(tile, RichTextWithTitle) or isinstance(tile, RichTextTile):
+        if isinstance(tile, RichTextWithTitle):  # or isinstance(tile, RichTextTile):
             try:
                 value = tile.data.get("text").raw
             except Exception:

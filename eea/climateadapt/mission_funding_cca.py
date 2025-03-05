@@ -1,7 +1,8 @@
 from eea.climateadapt.behaviors import IMissionFundingCCA
-from plone.directives import dexterity
-from zope.interface import implements
+from plone.dexterity.content import Container
+from zope.interface import implementer
 
 
-class MissionFundingCCA(dexterity.Container):
-    implements(IMissionFundingCCA)
+@implementer(IMissionFundingCCA)
+class MissionFundingCCA(Container):
+    """"""

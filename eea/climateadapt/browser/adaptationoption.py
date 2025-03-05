@@ -65,7 +65,7 @@ def find_related_casestudies(item):
 class AdaptationOptionView(DefaultView, AceViewApi):
     """ """
 
-    type_label = u"Adaptation option"
+    type_label = "Adaptation option"
 
     def get_related_casestudies(self):
         return find_related_casestudies(self.context)
@@ -89,7 +89,7 @@ class AdaptationOptionFormExtender(FormExtender):
                   'label_schema_ownership', 'Layout', 'Settings']
         self.form.groups = [
             group for group in self.form.groups if len(
-                group.fields.values()) > 0 and group.label not in labels
+                list(group.fields.values())) > 0 and group.label not in labels
         ]
 
 

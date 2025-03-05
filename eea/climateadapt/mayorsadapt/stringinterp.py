@@ -8,7 +8,7 @@ from zope.interface import Interface
 
 
 class cityprofile_contact_name(BaseSubstitution):
-    description = u"CityProfile contact name"
+    description = "CityProfile contact name"
     category = 'CityProfile'
 
     adapts(ICityProfile)
@@ -18,7 +18,7 @@ class cityprofile_contact_name(BaseSubstitution):
 
 
 class cityprofile_contact_email(BaseSubstitution):
-    description = u"CityProfile contact email"
+    description = "CityProfile contact email"
     category = 'CityProfile'
 
     adapts(ICityProfile)
@@ -28,7 +28,7 @@ class cityprofile_contact_email(BaseSubstitution):
 
 
 class cityprofile_existing_private_edit_link(BaseSubstitution):
-    description = u"CityProfile: Existing private edit link"
+    description = "CityProfile: Existing private edit link"
     category = 'CityProfile'
 
     adapts(ICityProfile)
@@ -38,7 +38,7 @@ class cityprofile_existing_private_edit_link(BaseSubstitution):
 
 
 class cityprofile_new_private_edit_link(BaseSubstitution):
-    description = u"CityProfile: New private edit link"
+    description = "CityProfile: New private edit link"
     category = 'CityProfile'
 
     adapts(ICityProfile)
@@ -48,7 +48,7 @@ class cityprofile_new_private_edit_link(BaseSubstitution):
 
 
 class cityprofile_register_email(BaseSubstitution):
-    description = u"CityProfile registration email"
+    description = "CityProfile registration email"
     category = 'CityProfile'
 
     adapts(Interface)
@@ -58,7 +58,7 @@ class cityprofile_register_email(BaseSubstitution):
 
 
 class cityprofile_register_name(BaseSubstitution):
-    description = u"CityProfile registration name"
+    description = "CityProfile registration name"
     category = 'CityProfile'
 
     adapts(Interface)

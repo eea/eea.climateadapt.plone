@@ -1,64 +1,74 @@
 <?xml version="1.0"?>
 <registry>
-    <record name="plone.app.tiles">
-        <value purge="false">
+  <record name="plone.available_languages"
+    interface="plone.app.multilingual.interfaces.IMultiLanguageExtraOptionsSchema"
+    field="available_languages">
+    <field type="plone.registry.field.List">
+      <default>
+        <element>en</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone"
+        ns0:translate="description_available_languages">The languages in which the site should be
+        translatable.</description>
+      <missing_value />
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone"
+        ns0:translate="heading_available_languages">Available languages</title>
+      <value_type type="plone.registry.field.Choice">
+        <vocabulary>plone.app.vocabularies.AvailableContentLanguages</vocabulary>
+      </value_type>
+    </field>
+    <value>
+      <element>en</element>
+      <element>de</element>
+      <element>fr</element>
+      <element>es</element>
+      <element>it</element>
+      <element>pl</element>
+      <element>ro</element>
+      <element>bg</element>
+      <element>el</element>
+      <element>hr</element>
+      <element>cs</element>
+      <element>da</element>
+      <element>nl</element>
+      <element>et</element>
+      <element>fi</element>
+      <element>hu</element>
+      <element>ga</element>
+      <element>lv</element>
+      <element>lt</element>
+      <element>mt</element>
+      <element>pt</element>
+      <element>sk</element>
+      <element>sl</element>
+      <element>sv</element>
+    </value>
+  </record>
 
-            <element>eea.climateadapt.filter_acecontent</element>
-            <element>eea.climateadapt.search_acecontent</element>
-            <element>eea.climateadapt.relevant_acecontent</element>
-            <element>eea.climateadapt.richtext_with_title</element>
-            <element>eea.climateadapt.shareinfo</element>
-            <element>eea.climateadapt.transregionselect</element>
-            <element>eea.climateadapt.countryselect</element>
-            <element>eea.climateadapt.ast_navigation</element>
-            <element>eea.climateadapt.urbanast_navigation</element>
-            <element>eea.climateadapt.genericview</element>
-            <element>eea.climateadapt.urbanmenu</element>
-            <element>eea.climateadapt.formtile</element>
-            <element>eea.climateadapt.section_nav</element>
-            <element>eea.carousel.tile</element>
-            <element>eea.climateadapt.cards_tile</element>
-        </value>
-    </record>
-    <record name="collective.cover.controlpanel.ICoverSettings.available_tiles">
-        <value purge="false">
-            <element>eea.climateadapt.filter_acecontent</element>
-            <element>eea.climateadapt.search_acecontent</element>
-            <element>eea.climateadapt.relevant_acecontent</element>
-            <element>eea.climateadapt.richtext_with_title</element>
-            <element>eea.climateadapt.shareinfo</element>
-            <element>eea.climateadapt.transregionselect</element>
-            <element>eea.climateadapt.countryselect</element>
-            <element>eea.climateadapt.ast_navigation</element>
-            <element>eea.climateadapt.urbanast_navigation</element>
-            <element>eea.climateadapt.genericview</element>
-            <element>eea.climateadapt.urbanmenu</element>
-            <element>eea.climateadapt.formtile</element>
-            <element>eea.climateadapt.section_nav</element>
-            <element>eea.carousel.tile</element>
-            <element>eea.climateadapt.cards_tile</element>
-        </value>
-    </record>
-    <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.public_key">
-        <value>to-be-changed</value>
-    </record>
-    <record name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.private_key">
-        <value>to-be-changed</value>
-    </record>
-
-    <record interface="Products.ResourceRegistries.interfaces.settings.IResourceRegistriesSettings" field="resourceBundlesForThemes">
-        <value purge="false">
-            <element key="Sunburst Theme" purge="false">
-                <element>jquery</element>
-                <element>default</element>
-                <element>jqueryui</element>
-                <!-- <element>deprecated</element> -->
-            </element>
-        </value>
-    </record>
-
-    <records interface="eea.climateadapt.rabbitmq.IRabbitMQClientSettings" />
-    <records interface="eea.climateadapt.sat.settings.IArcGISClientSettings" />
-    <records interface="eea.climateadapt.interfaces.IGoogleAnalyticsAPI" />
-
+  <records interface="Products.CMFPlone.interfaces.controlpanel.IImagingSchema" prefix="plone">
+    <value key="allowed_sizes">
+      <element>big 80:80</element>
+      <element>fp-slide 1920:420</element>
+      <element>great 1200:65536</element>
+      <element>huge 1600:65536</element>
+      <element>icon 32:32</element>
+      <element>landscape 1370:771</element>
+      <element>large 800:65536</element>
+      <element>larger 1000:65536</element>
+      <element>listing 16:16</element>
+      <element>medium 60:60</element>
+      <element>mini 200:65536</element>
+      <element>panoramic 1920:1080</element>
+      <element>portrait 771:1370</element>
+      <element>preview 400:65536</element>
+      <element>print 2000:2000</element>
+      <element>small 48:48</element>
+      <element>teaser 600:65536</element>
+      <element>thumb 128:128</element>
+      <element>tile 64:64</element>
+      <element>tiny 24:24</element>
+      <element>wide 325:183</element>
+      <element>xlarge 950:950</element>
+    </value>
+  </records>
 </registry>

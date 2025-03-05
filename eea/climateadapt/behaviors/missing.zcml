@@ -10,29 +10,29 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="eea.climateadapt2">
 
-<plone:behavior
+<!-- <plone:behavior
   name="plone.dublincore"
   title="Inplace compatibility"
   description="Not to be used"
   provides=".missing.IMissingPloneDublinCore"
   for="plone.dexterity.interfaces.IDexterityContent"
-  />
+  /> -->
 
-<plone:behavior
+<!-- <plone:behavior
   name="plone.leadimage"
   title="Inplace compatibility"
   description="Not to be used"
   provides=".missing.IMissingVoltoLeadImage"
   for="plone.dexterity.interfaces.IDexterityContent"
-  />
+  /> -->
 
-<plone:behavior
+<!-- <plone:behavior
   name="plone.translatable"
   title="Inplace compatibility"
   description="Not to be used"
   provides=".missing.IMissingPloneTranslatable"
   for="plone.dexterity.interfaces.IDexterityContent"
-  />
+  /> -->
 
 <plone:behavior
   name="kitconcept.seo"
@@ -42,51 +42,51 @@
   for="plone.dexterity.interfaces.IDexterityContent"
   />
 
-<plone:behavior
+<!-- <plone:behavior
   name="plone.nextprevioustoggle"
   title="Inplace compatibility"
   description="Not to be used"
   provides=".missing.IMissingNextPreviousToggle"
   for="plone.dexterity.interfaces.IDexterityContent"
-  />
-
+  /> -->
+<!-- 
 <plone:behavior
   name="plone.relateditems"
   title="Inplace compatibility"
   description="Not to be used"
   provides=".missing.IMissingPloneRelatedItems"
   for="plone.dexterity.interfaces.IDexterityContent"
-  />
+  /> -->
 
-<plone:behavior
+<!-- <plone:behavior
   name="plone.constraintypes"
   title="Inplace compatibility"
   description="Not to be used"
   provides=".missing.IMissingPloneConstrainTypes"
   for="plone.dexterity.interfaces.IDexterityContent"
-  />
+  /> -->
 
-<plone:behavior
+<!-- <plone:behavior
   name="plone.excludefromnavigation"
   title="Inplace compatibility"
   description="Not to be used"
   provides=".missing.IMissingPloneExcludeFromNavigation"
   for="plone.dexterity.interfaces.IDexterityContent"
-  />
+  /> -->
 
-<plone:behavior
+<!-- <plone:behavior
   name="plone.allowdiscussion"
   title="Inplace compatibility"
   description="Not to be used"
   provides=".missing.IMissingPloneAllowDiscussion"
   for="plone.dexterity.interfaces.IDexterityContent"
-  />
-<plone:behavior
+  /> -->
+<!-- <plone:behavior
   name="plone.namefromtitle"
   title="Inplace compatibility"
   description="Not to be used"
   provides=".missing.IMissingPloneNameFromTitle"
   for="plone.dexterity.interfaces.IDexterityContent"
-  />
+  /> -->
 
 </configure>

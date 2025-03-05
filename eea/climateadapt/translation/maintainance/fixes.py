@@ -59,7 +59,7 @@ def translation_repaire_step_3(site, request):
     """Get all jsons objects in english and overwrite targeted language
     object with translations.
     """
-    print(site, request)
+    print((site, request))
     # language = request.get("language", None)
     # file = request.get("file", None)
     # uid = request.get("uid", None)

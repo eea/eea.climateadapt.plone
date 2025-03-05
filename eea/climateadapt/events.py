@@ -2,6 +2,8 @@ import logging
 
 import transaction
 from DateTime import DateTime
+
+# from eea.cache import event
 from plone.api.user import get_current
 from plone.app.contentrules.handlers import execute, execute_rules
 from plone.app.iterate.dexterity.utils import get_baseline
@@ -14,11 +16,9 @@ from zope.event import notify
 from zope.globalrequest import getRequest
 from zope.lifecycleevent.interfaces import IObjectAddedEvent
 
-from eea.cache import event
-
 logger = logging.getLogger("eea.climateadapt")
 
-InvalidateCacheEvent = event.InvalidateCacheEvent
+# InvalidateCacheEvent = event.InvalidateCacheEvent
 
 
 def trigger_contentrules(event):
@@ -55,7 +55,7 @@ def invalidate_cache_faceted_object_row(obj, evt):
         # logger.warning("Could not detect UID for obj, %s", obj)
         uid = ""
     key = "row-" + uid
-    notify(InvalidateCacheEvent(raw=False, key=key))
+    # notify(InvalidateCacheEvent(raw=False, key=key))
 
 
 def deletion_confirmed():

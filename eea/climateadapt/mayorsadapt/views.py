@@ -64,9 +64,9 @@ class CityProfileEditController(BrowserView):
         # We want to redirect to a specific template, else we might
         # end up downloading a file
         control = getMultiAdapter((context, self.request),
-                                  name=u"iterate_control")
+                                  name="iterate_control")
         if not control.checkout_allowed():
-            raise CheckoutException(u"Not allowed")
+            raise CheckoutException("Not allowed")
 
         policy = ICheckinCheckoutPolicy(context)
         wc = policy.checkout(location)

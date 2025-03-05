@@ -42,7 +42,7 @@ class Translation(Persistent):
 
 
 def normalize(text):
-    if not isinstance(text, basestring):
+    if not isinstance(text, str):
         return text
 
     if isinstance(text, str):

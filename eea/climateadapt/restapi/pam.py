@@ -47,7 +47,7 @@ class Translations:
 
         translations = []
         manager = ITranslationManager(self.context)
-        for language, translation in manager.get_restricted_translations().items():
+        for language, translation in list(manager.get_restricted_translations().items()):
             if language != get_language(self.context):
                 translations.append(
                     {"@id": translation.absolute_url(), "language": language}
@@ -67,7 +67,7 @@ class Translations:
         for (
             language,
             translation,
-        ) in nav_root_manager.get_restricted_translations().items():
+        ) in list(nav_root_manager.get_restricted_translations().items()):
             nav_root_translations[language] = translation.absolute_url()
 
         result["translations"]["items"] = translations

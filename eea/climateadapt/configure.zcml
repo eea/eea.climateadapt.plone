@@ -26,7 +26,7 @@
     max_age="3600"
   />
 
-  <includeDependencies package="." />
+  <!-- <includeDependencies package="." /> -->
 
   <i18n:registerTranslations directory="locales" />
 
@@ -39,25 +39,23 @@
     file="meta.zcml"
   />
   <include package="plone.app.theming" />
-  <include package="plone.app.async" />
-  <include
-    package="plone.app.registry" />
+  <!-- <include package="plone.app.async" /> -->
+  <include package="plone.app.registry" />
 
-  <include package=".asynctasks" />
-  <include package=".widgets" />
+  <!-- <include package=".asynctasks" /> -->
+  <!-- <include package=".widgets" /> -->
   <include
     package=".browser" />
-  <include package=".tiles" />
+  <!-- <include package=".tiles" /> -->
   <!-- <include package=".sat" /> -->
   <!-- <include package="._importer" /> -->
-  <include package=".upgrades" />
-  <include
-    package=".restapi" />
+  <!-- <include package=".upgrades" /> -->
+  <include package=".restapi" />
   <include package=".behaviors" />
-  <include package=".translation" />
-  <include
-    package=".migration" />
-  <configure zcml:condition="not-installed Products.CMFPlone.image_scales">
+  <!-- <include package=".translation" /> -->
+  <!-- <include package=".migration" /> -->
+  <configure
+    zcml:condition="not-installed Products.CMFPlone.image_scales">
     <include package=".image_scales" />
   </configure>
 
@@ -65,28 +63,27 @@
   <include
     file="profiles.zcml" />
   <include file="stringinterp.zcml" />
-  <include file="cache.zcml" />
+  <!-- <include file="cache.zcml" /> -->
   <include
     file="contentrules.zcml" />
   <include file="theme.zcml" />
-  <include file="patches.zcml" />
+  <!-- <include file="patches.zcml" /> -->
 
-  <browser:jbot
-    directory="browser/pt-overrides"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-  />
+  <!-- <browser:jbot -->
+  <!--   directory="browser/pt-overrides" -->
+  <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!-- /> -->
 
-  <class
+  <!-- <class
     class=".acemeasure.CaseStudy">
     <implements interface="plone.app.imagecropping.dx.IImageCroppingDX" />
-  </class>
+  </class> -->
 
-  <class
-    class="collective.cover.content.Cover">
+  <!-- <class class="collective.cover.content.Cover">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
-  </class>
+  </class> -->
 
-  <class
+  <!-- <class
     class="plone.app.contenttypes.content.Document">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
   </class>
@@ -104,7 +101,7 @@
   <class
     class="plone.dexterity.content.Container">
     <implements interface="eea.pdf.interfaces.IPDFAware" />
-  </class>
+  </class> -->
 
   <class
     class="plone.namedfile.field.NamedBlobImage">
@@ -130,76 +127,76 @@
 
   <!-- =======[ Catalog indexes adapters ]=======  -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.aceitem_id"
     name="aceitem_id"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.funding"
     name="funding"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.acemeasure_id"
     name="acemeasure_id"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.aceproject_id"
     name="aceproject_id"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.countries"
     name="countries"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.imported_ids"
     name="imported_ids"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.search_type"
     name="search_type"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.search_type_for_newsevents"
     name="search_type"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.featured"
     name="featured"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.get_aceitem_description"
     name="Description"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.get_aceitem_description_indicator"
     name="Description"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.get_aceproject_description"
     name="Description"
-  />
-  <adapter
+  /> -->
+  <!-- <adapter
     factory=".catalog.get_adaptation_option_description"
     name="Description"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.get_casestudy_description"
     name="Description"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.cover_description"
     name="Description"
-  />
+  /> -->
 
-  <adapter
+  <!-- <adapter
     factory=".catalog.image_field_indexer"
     name="image_field"
-  />
+  /> -->
 
   <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
 
@@ -211,7 +208,8 @@
     factory=".catalog.macro_regions"
     name="macro_regions"
   />
-  <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> --> ----[ Vocabularies: ]------ <utility
+  <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> --> ----[
+  Vocabularies: ]------ <utility
     name="eea.climateadapt.aceitems_datatypes"
     component=".vocabulary.aceitem_datatypes_vocabulary"
   />
@@ -419,41 +417,40 @@
 
   <!-- ========Widgets: ]========  -->
 
-  <adapter
-    factory=".browser.admin.CcaItemsFieldWidget" />
+  <!-- <adapter
+    factory=".browser.admin.CcaItemsFieldWidget" /> -->
 
   <!-- ========Subscribers: ]========  -->
 
-  <subscriber
+  <!-- <subscriber
     for="plone.dexterity.interfaces.IDexterityContent
            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
     handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
-  />
+  /> -->
 
-  <subscriber
+  <!-- <subscriber
     for="plone.dexterity.interfaces.IDexterityContent
            Products.CMFCore.interfaces.IActionSucceededEvent"
     handler="eea.facetednavigation.caching.cache.invalidateFacetedCache"
-  />
+  /> -->
 
-  <subscriber
-    for="zope.interface.Interface
-           Products.CMFCore.interfaces.IActionSucceededEvent"
-    handler=".events.invalidate_cache_faceted_object_row"
-  />
+  <!-- <subscriber -->
+  <!--   for="zope.interface.Interface -->
+  <!--          Products.CMFCore.interfaces.IActionSucceededEvent" -->
+  <!--   handler=".events.invalidate_cache_faceted_object_row" -->
+  <!-- /> -->
 
-  <subscriber
-    for="zope.interface.Interface
-           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-    handler=".events.invalidate_cache_faceted_object_row"
-  />
+  <!-- <subscriber -->
+  <!--   for="zope.interface.Interface -->
+  <!--          zope.lifecycleevent.interfaces.IObjectModifiedEvent" -->
+  <!--   handler=".events.invalidate_cache_faceted_object_row" -->
+  <!-- /> -->
 
-  <subscriber
+  <!-- <subscriber
     for="eea.climateadapt.acemeasure.IAceMeasure
            zope.lifecycleevent.interfaces.IObjectAddedEvent"
     handler=".acemeasure.handle_measure_added"
-  />
-
+  /> -->
   <subscriber
     for="plone.dexterity.interfaces.IDexterityContent
      zope.lifecycleevent.interfaces.IObjectAddedEvent"
@@ -480,7 +477,7 @@
       />
 -->
 
-  <subscriber
+  <!-- <subscriber
     factory=".marshaller.GeoCharsFieldModifier"
     provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
   />
@@ -498,8 +495,8 @@
   <subscriber
     factory=".marshaller.IssuedFieldModifier"
     provides="eea.rdfmarshaller.interfaces.ISurfResourceModifier"
-  />
-
+  /> -->
+  <!--
   <adapter
     factory=".marshaller.Geolocation2Surf" />
   <adapter factory=".marshaller.File2Surf" />
@@ -509,20 +506,20 @@
   <adapter
     factory=".marshaller.CountryTitle2Surf"
     name="title"
-  />
+  /> -->
 
   <!-- ========Workflow Message Functionality: ]========  -->
 
-  <subscriber
+  <!-- <subscriber
     for=".workflow.IWorkflowMessageEvent"
     handler=".events.trigger_contentrules"
-  />
+  /> -->
 
-  <interface
+  <!-- <interface
     interface=".workflow.IWorkflowMessageEvent"
     type="plone.contentrules.rule.interfaces.IRuleEventType"
     name="ClimateAdapt: workflow transition with message"
-  />
+  /> -->
 
   <adapter
     factory=".workflow.workflow_message"
@@ -547,16 +544,16 @@
 
   <!-- ========Indicator Message Functionality: ]========  -->
 
-  <subscriber
+  <!-- <subscriber
     for=".indicator.IIndicatorMessageEvent"
     handler=".events.trigger_indicator_contentrule"
-  />
+  /> -->
 
-  <interface
+  <!-- <interface
     interface=".indicator.IIndicatorMessageEvent"
     type="plone.contentrules.rule.interfaces.IRuleEventType"
     name="Indicator modified"
-  />
+  /> -->
 
   <adapter
     factory=".indicator.indicator_message"
@@ -583,5 +580,17 @@
   />
 
   <include file="./broken_links.zcml" />
+
+  <utility
+    name="eea.climateadapt.element_types_vocabulary"
+    component=".extra_vocabulary.ElementsVocabularyFactory" />
+  <utility
+    name="eea.climateadapt.search_types_vocabulary"
+    component=".extra_vocabulary.SearchTypesVocabularyFactory" />
+  <utility
+    name="eea.climateadapt.regions"
+    component=".extra_vocabulary.regions_vocabulary" />
+  <utility name="eea.climateadapt.bioregions"
+    component=".extra_vocabulary.bioregions_vocab_factory" />
 
 </configure>
