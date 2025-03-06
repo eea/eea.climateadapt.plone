@@ -6,6 +6,7 @@ import logging
 import os
 from urllib.parse import parse_qs
 
+from eea.climateadapt.versions import ISerialId
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.dexterity.utils import iterSchemata
@@ -60,6 +61,11 @@ class SaveTranslationHtml(BrowserView):
             path = path[1:]
 
         en_obj = site_portal.unrestrictedTraverse(path)
+        canonical_serial_id = ISerialId(en_obj)
+
+        if int(canonical_serial_id) != int(serial_id):
+            return "mismatched serial id"
+
         trans_obj = setup_translation_object(en_obj, language, site_portal)
         ingest_html(trans_obj, html)
         return "ok"
