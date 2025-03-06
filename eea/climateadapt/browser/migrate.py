@@ -32,7 +32,9 @@ from eea.climateadapt.vocabulary import SUBNATIONAL_REGIONS
 from eea.climateadapt.browser.migration_data.adaptationoption import ADAPTATION_OPTION_MIGRATION_DATA
 from eea.climateadapt.browser.migration_data.adaptationoption import MAP_IPCC
 from eea.climateadapt.vocabulary import _ipcc_category, _key_type_measures
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+# from pkg_resources import resource_filename
 # from zope.schema import Choice
 # from zope.schema.interfaces import IVocabularyFactory
 # import StringIO
@@ -55,6 +57,42 @@ DB_ITEM_TYPES = [
     "eea.climateadapt.video",
 ]
 
+class UpdateMissionFundingLayout(BrowserView):
+    """Update volto layout of existing Mission Funding content types"""
+    template = ViewPageTemplateFile('pt/migrate_mission_funding_layout.pt')
+
+    def __call__(self):
+        catalog = api.portal.get_tool("portal_catalog")
+        brains = catalog.searchResults(portal_type='mission_funding_cca')
+        # fpath = resource_filename(
+        #     "eea.climateadapt.behaviors", "volto_layout_missionfunding.json"
+        # )
+        # layout = json.load(open(fpath))
+        eu_funding_field = {
+            "@id": "9bc8986e-d885-49d4-b56e-a806ebc10ec1",
+            "field": {
+                "id": "is_eu_funded",
+                "title": "EU funding",
+                "widget": "boolean"
+            },
+            "showLabel": True
+        }
+
+        response = []
+        for brain in brains:
+            try:
+                obj = brain.getObject()
+                import pdb; pdb.set_trace()
+                # obj.blocks = layout["blocks"]
+                # obj.blocks_layout = layout["blocks_layout"]
+                # obj.reindexObject()
+                logger.info("Updated layout for %s" % obj.absolute_url())
+                response.append({"title": obj.title, "url": obj.absolute_url()})
+            except Exception as e:
+                logger.error("Failed to update %s: %s", brain.getURL(), e)
+
+        self.results = response
+        return self.template()
 
 class DeleteCityProfileItems(BrowserView):
     """ see #261751 """
