@@ -57,6 +57,7 @@ DB_ITEM_TYPES = [
     "eea.climateadapt.video",
 ]
 
+
 class UpdateMissionFundingLayout(BrowserView):
     """Update volto layout of existing Mission Funding content types"""
     template = ViewPageTemplateFile('pt/migrate_mission_funding_layout.pt')
@@ -82,17 +83,20 @@ class UpdateMissionFundingLayout(BrowserView):
         for brain in brains:
             try:
                 obj = brain.getObject()
-                import pdb; pdb.set_trace()
+                import pdb
+                pdb.set_trace()
                 # obj.blocks = layout["blocks"]
                 # obj.blocks_layout = layout["blocks_layout"]
                 # obj.reindexObject()
                 logger.info("Updated layout for %s" % obj.absolute_url())
-                response.append({"title": obj.title, "url": obj.absolute_url()})
+                response.append(
+                    {"title": obj.title, "url": obj.absolute_url()})
             except Exception as e:
                 logger.error("Failed to update %s: %s", brain.getURL(), e)
 
         self.results = response
         return self.template()
+
 
 class DeleteCityProfileItems(BrowserView):
     """ see #261751 """
