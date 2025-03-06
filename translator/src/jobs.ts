@@ -7,15 +7,17 @@ import mockData from "./mock-data.json";
 
 const base = "http://localhost:8080/cca";
 
-function dataToForm(data) {
+type Mapping = { [key: string]: any };
+
+function dataToForm(data: Mapping) {
   const form = new FormData();
   Object.entries(data).forEach(([name, value]) => {
-    form.append(name, value as any);
+    form.append(name, value);
   });
   return form;
 }
 
-async function mockTranslationCallback(obj_path: string) {
+export async function mockTranslationCallback(obj_path: string) {
   const form = dataToForm({ ...mockData, "external-reference": obj_path });
   const response = await fetch(`${base}/@@translate-callback`, {
     method: "POST",
@@ -49,7 +51,7 @@ async function call_plone_for_etranslation(data: CallETranslation) {
   console.log("result", result);
 
   // mock implementation, we call Plone just like eTranslation would do
-  await mockTranslationCallback(obj_path);
+  // await mockTranslationCallback(obj_path);
 }
 
 async function save_translation_to_plone(data: SaveTranslation) {
