@@ -2,6 +2,7 @@
 import csv
 import json
 import logging
+from eea.climateadapt.blocks import BlocksTraverser
 import urlparse
 from datetime import date
 from datetime import datetime
@@ -69,30 +70,38 @@ class UpdateMissionFundingLayout(BrowserView):
         #     "eea.climateadapt.behaviors", "volto_layout_missionfunding.json"
         # )
         # layout = json.load(open(fpath))
-        eu_funding_field = {
-            "@id": "9bc8986e-d885-49d4-b56e-a806ebc10ec1",
-            "field": {
-                "id": "is_eu_funded",
-                "title": "EU funding",
-                "widget": "boolean"
-            },
-            "showLabel": True
-        }
+
+        def visitor(block):
+            eu_funding_field = {
+                "@id": "9bc8986e-d885-49d4-b56e-a806ebc10ec1",
+                "field": {
+                    "id": "is_eu_funded",
+                    "title": "EU funding",
+                    "widget": "boolean"
+                },
+                "showLabel": True
+            }
+            if block.get('@type') == 'metadataSection':
+                fields = block.get('fields', [])
+                if fields and fields[0]['field']['id'] == 'regions':
+                    block['fields'] = [eu_funding_field] + fields
+                    return True
 
         response = []
         for brain in brains:
-            try:
-                obj = brain.getObject()
-                import pdb
-                pdb.set_trace()
-                # obj.blocks = layout["blocks"]
-                # obj.blocks_layout = layout["blocks_layout"]
-                # obj.reindexObject()
-                logger.info("Updated layout for %s" % obj.absolute_url())
-                response.append(
-                    {"title": obj.title, "url": obj.absolute_url()})
-            except Exception as e:
-                logger.error("Failed to update %s: %s", brain.getURL(), e)
+            obj = brain.getObject()
+            traverser = BlocksTraverser(obj)
+            traverser(visitor)
+
+            # obj.blocks = layout["blocks"]
+            # obj.blocks_layout = layout["blocks_layout"]
+            # obj.reindexObject()
+            logger.info("Updated layout for %s" % obj.absolute_url())
+            response.append(
+                {"title": obj.title, "url": obj.absolute_url()})
+            # try:
+            # except Exception as e:
+            #     logger.error("Failed to update %s: %s", brain.getURL(), e)
 
         self.results = response
         return self.template()
