@@ -64,7 +64,7 @@ async function call_plone_for_etranslation(data: CallETranslation) {
 
 async function save_translation_to_plone(data: SaveTranslation) {
   const { obj_path, html } = data;
-  const url = new URL(obj_path);
+  const url = new URL(`http://example.com${obj_path}`);
   const form = dataToForm({
     path: url.pathname,
     html,
@@ -76,7 +76,7 @@ async function save_translation_to_plone(data: SaveTranslation) {
     method: "POST",
     body: form,
     headers: {
-      Authentication: process.env.TRANSLATION_AUTH_TOKEN || "hello1234",
+      Authentication: process.env.TRANSLATION_AUTH_TOKEN || "",
     },
   });
   const result = await response.json();
