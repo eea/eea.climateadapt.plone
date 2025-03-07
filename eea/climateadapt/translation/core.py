@@ -117,8 +117,6 @@ def queue_translate(obj, language=None):
 
         logger.info("Queue translate_volto_html for %s / %s", url, language)
         queue_job("etranslation", "call_etranslation", data)
-        # TODO: temporary
-        break
 
 
 def get_blocks_as_html(obj):
