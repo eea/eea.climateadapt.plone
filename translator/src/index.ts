@@ -3,6 +3,7 @@ import { createBullBoard } from "@bull-board/api";
 import { BullMQAdapter } from "@bull-board/api/bullMQAdapter";
 import { FastifyAdapter } from "@bull-board/fastify";
 import { Queue, Worker } from "bullmq";
+
 import fastify from "fastify";
 import IORedis from "ioredis";
 
@@ -21,12 +22,12 @@ function setupBullMQProcessor(queueName: string) {
     queueName,
     async (job) => {
       const handler = JOBS_MAPPING[job.name];
-      console.log(handler);
       if (handler) {
-        await handler(job.data);
+        const result = await handler(job.data);
+        return { jobId: job.id, result };
+      } else {
+        return { jobId: job.id };
       }
-
-      return { jobId: `This is the return value of job (${job.id})` };
     },
     { connection },
   );
@@ -61,6 +62,10 @@ const run = async () => {
 
   serverAdapter.setBasePath("/ui");
   app.register(serverAdapter.registerPlugin() as any, { prefix: "/ui" });
+
+  app.get("/add", (req, reply) => {
+    return reply.redirect("/ui", 302);
+  });
 
   app.get("/add", (req, reply) => {
     const opts = (req.query as any).opts || {};
