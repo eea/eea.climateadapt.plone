@@ -22,7 +22,7 @@ from .core import (
     queue_job,
     setup_translation_object,
 )
-from .utils import get_value_representation
+from .utils import get_value_representation, impersonate_admin
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
@@ -66,8 +66,10 @@ class SaveTranslationHtml(BrowserView):
         if int(canonical_serial_id) != int(serial_id):
             return "mismatched serial id"
 
-        trans_obj = setup_translation_object(en_obj, language, site_portal)
-        ingest_html(trans_obj, html)
+        with impersonate_admin(site_portal):
+            trans_obj = setup_translation_object(en_obj, language, site_portal)
+            ingest_html(trans_obj, html)
+
         return "ok"
 
 

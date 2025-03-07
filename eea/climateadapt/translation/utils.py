@@ -1,3 +1,6 @@
+from contextlib import contextmanager
+from AccessControl.SecurityManagement import setSecurityManager
+from AccessControl import getSecurityManager, newSecurityManager
 from .valueadapter import ITranslationValue
 from zope.component import queryMultiAdapter
 import json
@@ -68,7 +71,8 @@ def translated_url(context, url, current_lang):
         return relative_path
 
     if relative_path_split[0] == "en":
-        new_path = "/{}/{}".format(current_lang, "/".join(relative_path_split[1:]))
+        new_path = "/{}/{}".format(current_lang,
+                                   "/".join(relative_path_split[1:]))
 
         return new_path
 
@@ -345,7 +349,8 @@ def get_object_fields_values(obj):
 
 def get_value_representation(obj, name):
     """Returns a value suitable for representation in HTML"""
-    adapter = queryMultiAdapter((obj, obj.REQUEST), ITranslationValue, name=name)
+    adapter = queryMultiAdapter(
+        (obj, obj.REQUEST), ITranslationValue, name=name)
     if adapter:
         value = adapter()
     else:
@@ -371,3 +376,18 @@ def get_value_representation(obj, name):
     #     return None
 
     return value
+
+
+@contextmanager
+def impersonate_admin(app, admin_user_id="admin"):
+    old_security_manager = getSecurityManager()
+
+    try:
+        admin_user = app.acl_users.getUserById(admin_user_id)
+        if admin_user is None:
+            raise ValueError("Admin user not found")
+
+        newSecurityManager(app, admin_user)
+        yield
+    finally:
+        setSecurityManager(old_security_manager)
