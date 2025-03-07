@@ -81,7 +81,7 @@ async function save_translation_to_plone(data: SaveTranslation) {
       Authentication: process.env.TRANSLATION_AUTH_TOKEN || "",
     },
   });
-  console.log("Result", response.status, response.text);
+  console.log("Result", response.status, response.text());
   const result = await response.json();
   console.log("Save translation result", result);
 
