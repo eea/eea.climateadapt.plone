@@ -44,6 +44,7 @@ ETRANSLATION_SOAP_SERVICE_URL = (
 REDIS_HOST = env("REDIS_HOST", "localhost")
 REDIS_PORT = int(env("REDIS_PORT", 6379))
 TRANSLATION_AUTH_TOKEN = env("TRANSLATION_AUTH_TOKEN", "")
+PORTAL_URL = os.environ.get("PORTAL_URL", "")
 
 # See this for schema:
 # https://webgate.ec.europa.eu/etranslation/si/SecuredWSEndpointHandlerService?xsd=1
@@ -124,9 +125,11 @@ def get_blocks_as_html(obj):
     """Uses the external converter service to convert the blocks to HTML representation"""
 
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(
+        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -146,7 +149,7 @@ def call_etranslation_service(html, obj_path, target_languages):
 
     encoded_html = base64.b64encode(html)
 
-    site_url = portal.get().absolute_url()
+    site_url = PORTAL_URL or portal.get().absolute_url()
 
     client = Client(
         ETRANSLATION_SOAP_SERVICE_URL,
@@ -154,8 +157,6 @@ def call_etranslation_service(html, obj_path, target_languages):
     )
 
     dest = "{}/@@translate-callback".format(site_url)
-    if "https://" not in dest:
-        dest = "https://" + dest
 
     if "localhost" not in site_url:
         resp = client.service.translate(
@@ -181,7 +182,8 @@ def call_etranslation_service(html, obj_path, target_languages):
             }
         )
     else:
-        logger.warning("Is localhost, won't retrieve translation for: %s", html)
+        logger.warning(
+            "Is localhost, won't retrieve translation for: %s", html)
         return {"transId": "not-called", "externalRefId": html}
 
     logger.info("Data translation request : html content")
@@ -199,9 +201,11 @@ def get_content_from_html(html, language=None):
     """Given an HTML string, converts it to Plone content data"""
 
     data = {"html": html, "language": language}
-    headers = {"Content-type": "application/json", "Accept": "application/json"}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER,
+                        data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError

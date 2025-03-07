@@ -4,7 +4,7 @@ import base64
 import json
 import logging
 import os
-from urllib.parse import parse_qs
+# from urllib.parse import parse_qs
 
 from eea.climateadapt.versions import ISerialId
 from plone.api import portal
@@ -85,9 +85,9 @@ class TranslationCallback(BrowserView):
         # for name, val in list(parsed.items()):
         #     form[name] = val[0]
         #
-        # _file = self.request._file.read()
+        _file = self.request._file.read()
         form = self.request.form
-        _file = form.get("file", "")
+        # _file = form.get("file", "")
 
         decoded_bytes = base64.b64decode(_file)
         html = decoded_bytes.decode("latin-1")
@@ -147,11 +147,7 @@ class CallETranslation(BrowserView):
         target_lang = form.get("target_lang")
         obj_path = form.get("obj_path")
 
-        # temporary
         print("calling etranslation")
-        data = json.dumps({})
-        self.request.response.setHeader("Content-Type", "application/json")
-        return data
-
         data = call_etranslation_service(html, obj_path, [target_lang])
+        self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(data)
