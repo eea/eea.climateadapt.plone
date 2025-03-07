@@ -51,6 +51,11 @@ async function call_plone_for_etranslation(data: CallETranslation) {
   });
   const result = await response.json();
   console.log("Call ETranslation Result", result);
+
+  if (result.error_type) {
+    throw result.error_type;
+  }
+
   return result;
 
   // mock implementation, we call Plone just like eTranslation would do
@@ -76,6 +81,10 @@ async function save_translation_to_plone(data: SaveTranslation) {
   });
   const result = await response.json();
   console.log("Save translation result", result);
+
+  if (result.error_type) {
+    throw result.error_type;
+  }
   return result;
 }
 
