@@ -90,7 +90,7 @@ class TranslationCallback(BrowserView):
         # _file = form.get("file", "")
 
         decoded_bytes = base64.b64decode(_file)
-        html = decoded_bytes.decode("latin-1")
+        html = decoded_bytes.decode("utf-8")  # latin-1
         # html = html_translated.encode("utf-8")
 
         extref = form.get("external-reference")

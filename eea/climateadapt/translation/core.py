@@ -147,7 +147,7 @@ def call_etranslation_service(html, obj_path, target_languages):
     if not html:
         return
 
-    encoded_html = base64.b64encode(html)
+    encoded_html = base64.b64encode(html.encode("utf-8"))
 
     site_url = PORTAL_URL or portal.get().absolute_url()
 
