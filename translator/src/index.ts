@@ -63,7 +63,7 @@ const run = async () => {
   serverAdapter.setBasePath("/ui");
   app.register(serverAdapter.registerPlugin() as any, { prefix: "/ui" });
 
-  app.get("/add", (req, reply) => {
+  app.get("/", (req, reply) => {
     return reply.redirect("/ui", 302);
   });
 
