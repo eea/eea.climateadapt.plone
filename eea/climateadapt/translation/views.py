@@ -23,7 +23,7 @@ from .core import (
     queue_job,
     setup_translation_object,
 )
-from .utils import get_value_representation, impersonate_admin
+from .utils import get_value_representation
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
