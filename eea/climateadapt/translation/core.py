@@ -101,7 +101,7 @@ def queue_translate(obj, language=None):
     """
 
     html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
-    url = "/".join(obj.absolute_url(relative=True)[1:])
+    url = obj.absolute_url(relative=True)[len("cca"):]
     serial_id = int(ISerialId(obj))  # by default we get is a location proxy
 
     data = {"obj_url": url, "html": html, "serial_id": serial_id}
