@@ -5,7 +5,7 @@ import type {
 } from "./types";
 import mockData from "./mock-data.json";
 
-const base = "http://localhost:8080/cca";
+const PORTAL_URL = process.env.PORTAL_URL || "http://localhost:8080/cca";
 
 type Mapping = { [key: string]: any };
 
@@ -19,7 +19,7 @@ function dataToForm(data: Mapping) {
 
 export async function mockTranslationCallback(obj_path: string) {
   const form = dataToForm({ ...mockData, "external-reference": obj_path });
-  const response = await fetch(`${base}/@@translate-callback`, {
+  const response = await fetch(`${PORTAL_URL}/@@translate-callback`, {
     method: "POST",
     body: form,
   });
@@ -40,7 +40,7 @@ async function call_plone_for_etranslation(data: CallETranslation) {
     obj_path,
   });
 
-  const response = await fetch(`${base}/@@call-etranslation`, {
+  const response = await fetch(`${PORTAL_URL}/@@call-etranslation`, {
     method: "POST",
     body: form,
     headers: {
@@ -64,7 +64,7 @@ async function save_translation_to_plone(data: SaveTranslation) {
     serial_id: url.searchParams.get("serial_id") || "missing",
   });
 
-  const response = await fetch(`${base}/@@save-etranslation`, {
+  const response = await fetch(`${PORTAL_URL}/@@save-etranslation`, {
     method: "POST",
     body: form,
     headers: {
