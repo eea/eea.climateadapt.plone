@@ -153,24 +153,23 @@ class TranslationUtilsMixin(object):
     #
     #     return value
 
-    def get_i18n_for_text(self, text, domain="eea.climateadapt", language=None):
-        if not language:
-            language = self.current_lang
+    def get_i18n_for_text(self, text, domain="eea.climateadapt", lang=None):
+        if not lang:
+            lang = self.current_lang
 
-        language = language.lower()
+        lang = lang.lower()
 
-        if language == "en":
+        if lang == "en":
             return text
 
-        return translate_text(self.context, self.request, text, domain, language)
+        return translate_text(self.context, self.request, text, domain, lang)
 
 
 def get_current_language(context, request):
     try:
         context = context.aq_inner
-        portal_state = getMultiAdapter(
-            (context, request), name="plone_portal_state")
-        return portal_state.language()
+        ps = getMultiAdapter((context, request), name="plone_portal_state")
+        return ps.language()
     except Exception:
         return "en"
 
@@ -185,11 +184,9 @@ def translate_text(context, request, text, domain="eea.climateadapt", language=N
 
 def get_site_languages():
     try:
-        languages = list(
-            TranslationManager(api.portal.get().restrictedTraverse("en"))
-            .get_translations()
-            .keys()
-        )
+        site = api.portal.get()
+        en = site.restrictedTraverse("en")
+        languages = list(TranslationManager(en).get_translations().keys())
         return languages
     except Exception:
         return []
@@ -258,15 +255,15 @@ def is_language_independent_value(value):
 def is_json(input):
     try:
         json.loads(input)
-    except ValueError as e:
+    except ValueError:
         return False
     return True
 
 
 def get_object_fields_values(obj):
     # TODO: perhaps a list by each portal_type
-    tile_fields = ["title", "text", "description",
-                   "tile_title", "footer", "alt_text"]
+    # tile_fields = ["title", "text", "description", "tile_title",
+    # "footer", "alt_text"]
 
     data = {
         "portal_type": obj.portal_type,

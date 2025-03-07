@@ -1,0 +1,52 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
+
+  <class
+    class="plone.namedfile.field.NamedBlobImage">
+    <implements interface="plone.rfc822.interfaces.IPrimaryField" />
+  </class>
+
+  <class
+    class="plone.app.contenttypes.content.Link">
+    <implements interface="eea.climateadapt.interfaces.INewsEventsLinks" />
+  </class>
+
+  <class
+    class="plone.app.contenttypes.content.NewsItem">
+    <implements interface="eea.climateadapt.interfaces.INewsEventsLinks" />
+  </class>
+
+  <class
+    class="plone.app.contenttypes.content.Event">
+    <implements interface="eea.climateadapt.interfaces.INewsEventsLinks" />
+  </class>
+
+  <interface
+    interface="eea.climateadapt.interfaces.ITransnationalRegionMarker" />
+  <interface
+    interface="eea.climateadapt.interfaces.IMainTransnationalRegionMarker" />
+  <interface
+    interface="eea.climateadapt.interfaces.IASTNavigationRoot" />
+  <interface
+    interface="eea.climateadapt.interfaces.ISiteSearchFacetedView" />
+  <interface
+    interface="eea.climateadapt.interfaces.IClimateAdaptSharePage" />
+  <interface
+    interface="eea.climateadapt.interfaces.ICountriesRoot" />
+  <interface
+    interface="eea.climateadapt.interfaces.ICitiesListingsRoot" />
+  <interface
+    interface="eea.climateadapt.interfaces.ICCACountry" />
+
+</configure>

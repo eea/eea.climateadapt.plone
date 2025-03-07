@@ -1,0 +1,99 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
+
+
+  <!-- <adapter
+    factory=".catalog.aceitem_id"
+    name="aceitem_id"
+  /> -->
+
+  <!-- <adapter
+    factory=".catalog.funding"
+    name="funding"
+  /> -->
+
+  <!-- <adapter
+    factory=".catalog.acemeasure_id"
+    name="acemeasure_id"
+  /> -->
+  <!-- <adapter
+    factory=".catalog.aceproject_id"
+    name="aceproject_id"
+  /> -->
+  <!-- <adapter
+    factory=".catalog.countries"
+    name="countries"
+  /> -->
+  <!-- <adapter
+    factory=".catalog.imported_ids"
+    name="imported_ids"
+  /> -->
+  <!-- <adapter
+    factory=".catalog.search_type"
+    name="search_type"
+  /> -->
+  <!-- <adapter
+    factory=".catalog.search_type_for_newsevents"
+    name="search_type"
+  /> -->
+  <!-- <adapter
+    factory=".catalog.featured"
+    name="featured"
+  /> -->
+
+  <!-- <adapter
+    factory=".catalog.get_aceitem_description"
+    name="Description"
+  /> -->
+  <!-- <adapter
+    factory=".catalog.get_aceitem_description_indicator"
+    name="Description"
+  /> -->
+  <!-- <adapter
+    factory=".catalog.get_aceproject_description"
+    name="Description"
+  /> -->
+  <!-- <adapter
+    factory=".catalog.get_adaptation_option_description"
+    name="Description"
+  /> -->
+
+  <!-- <adapter
+    factory=".catalog.get_casestudy_description"
+    name="Description"
+  /> -->
+
+  <!-- <adapter
+    factory=".catalog.cover_description"
+    name="Description"
+  /> -->
+
+  <!-- <adapter
+    factory=".catalog.image_field_indexer"
+    name="image_field"
+  /> -->
+
+  <!-- <adapter name="getObjSize" factory=".catalog.getObjSize_image" /> -->
+
+  <adapter
+    factory=".catalog.bio_regions"
+    name="bio_regions"
+  />
+  <adapter
+    factory=".catalog.macro_regions"
+    name="macro_regions"
+  />
+  <!-- <adapter name="SearchableText" factory=".catalog.climate_adapt_content_searchabletext" /> -->
+
+</configure>

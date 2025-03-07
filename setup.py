@@ -38,24 +38,18 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        # laszlo remove "setuptools",
-        # laszlo remove "plone.app.dexterity",
-        # laszlo remove "plone.namedfile [blobs]",
         # -*- Extra requirements: -*-
         "z3c.jbot",
         "pycountry",
-        # laszlo remove "collective.dexteritytextindexer",
-        # laszlo remove "collective.easyform",
         "tokenlib",
-        # laszlo remove "eea.rabbitmq.client",  # schedule jobs
-        # laszlo remove "eea.rabbitmq.plone",
         "langdetect",
         "chardet",
         "zeep==3.4.0",
         "XlsxWriter==1.2.7",
         "collective.geolocationbehavior",
+        "redis",  # do we need it?
+        "bullmq",
         # "google-api-python-client",  # google analytics API integration
-        # "collective.relationhelpers",
     ],
     extras_require={
         "test": [

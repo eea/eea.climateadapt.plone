@@ -3,55 +3,142 @@ import json
 import logging
 import os
 
+# import redis
 import requests
 from Acquisition import aq_inner, aq_parent
-from lxml.html import tostring
 from plone import api
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
-from plone.app.multilingual.interfaces import (
-    ILanguageIndependentFieldsManager,
-    ITranslationManager,
-)
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.interfaces import IRichText
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemata
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
-from Testing.ZopeTestCase import utils as zopeUtils
 from zeep import Client
 from zeep.wsse.username import UsernameToken
-from zope.component.hooks import setSite
+from zExceptions import Unauthorized
+from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
 
-from eea.climateadapt.browser.admin import force_unlock
+from eea.climateadapt.callbackdatamanager import queue_callback
+from eea.climateadapt.utils import force_unlock
+from eea.climateadapt.versions import ISerialId
+from bullmq import Queue
+import asyncio
+
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
+from .utils import get_site_languages
 
 env = os.environ.get
 
 TRANS_USERNAME = "ipetchesi"  # TODO: get another username?
 MARINE_PASS = env("MARINE_PASS", "")
 SERVICE_URL = "https://webgate.ec.europa.eu/etranslation/si/translate"
+ETRANSLATION_SOAP_SERVICE_URL = (
+    "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL"
+)
+REDIS_HOST = env("REDIS_HOST", "localhost")
+REDIS_PORT = int(env("REDIS_PORT", 6379))
+TRANSLATION_AUTH_TOKEN = env("TRANSLATION_AUTH_TOKEN", "")
+PORTAL_URL = os.environ.get("PORTAL_URL", "")
+
+# See this for schema:
+# https://webgate.ec.europa.eu/etranslation/si/SecuredWSEndpointHandlerService?xsd=1
 
 logger = logging.getLogger("eea.climateadapt")
 
-SLATE_CONVERTER = "http://converter:8000/html"
-BLOCKS_CONVERTER = "http://converter:8000/blocks2html"
-CONTENT_CONVERTER = "http://converter:8000/html2content"
+CONVERTER_URL = env("CONVERTER_URL", "http://converter:8000")
+SLATE_CONVERTER = f"{CONVERTER_URL}/html"
+BLOCKS_CONVERTER = f"{CONVERTER_URL}/blocks2html"
+CONTENT_CONVERTER = f"{CONVERTER_URL}/html2content"
+
+logger = logging.getLogger("eea.climateadapt")
+
+redisOpts = dict(host=REDIS_HOST, port=REDIS_PORT, db=0)
+queue = Queue("etranslation", {"connection": redisOpts})
 
 
-class DummyPersistent(object):
-    def getPhysicalPath(self):
-        return "/"
+def queue_job(queue_name, job_name, data, opts=None):
+    """Schedules job for redis, at the end of the transaction"""
+
+    opts = opts or {
+        "delay": 0,  # Delay in milliseconds
+        "priority": 1,
+        "attempts": 3,
+        "lifo": True,  # we use LIFO queing
+    }
+
+    def callback():
+        logger.info("Adding job %s", job_name)
+
+        async def inner():
+            await queue.add(job_name, data, opts)
+            await queue.close()
+
+        asyncio.run(inner())
+
+    queue_callback(callback)
+
+    print(f"Job added to queue: {queue_name}")
 
 
-def call_etranslation_service(
-    http_host, source_lang, html, obj_path, target_languages=None
-):
+def queue_translate(obj, language=None):
+    """The "new" method of triggering the translation of an object.
+
+    While this is named "volto", it is a generic system to translate Plone
+    content. The actual "ingestion" of translated data is performed in the
+    TranslationCallback view
+
+    Input: html (generated from volto blocks and obj fields, as string)
+           en_obj - the object to be translated
+           http_host - website url
+
+    Makes sure translation objects exists and requests a translation for
+    all languages.
+    """
+
+    html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+    url = obj.absolute_url(relative=True)[len("cca"):]
+    serial_id = int(ISerialId(obj))  # by default we get is a location proxy
+
+    data = {"obj_url": url, "html": html, "serial_id": serial_id}
+
+    languages = language and [language] or get_site_languages()
+    logger.info("Called translate_volto_html for %s", url)
+
+    for language in languages:
+        if language == "en":
+            continue
+
+        data = dict(data.items(), language=language)
+
+        logger.info("Queue translate_volto_html for %s / %s", url, language)
+        queue_job("etranslation", "call_etranslation", data)
+
+
+def get_blocks_as_html(obj):
+    """Uses the external converter service to convert the blocks to HTML representation"""
+
+    data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
+
+    req = requests.post(
+        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    if req.status_code != 200:
+        logger.debug(req.text)
+        raise ValueError
+
+    html = req.json()["html"]
+    logger.info("Blocks converted to html: %s", html)
+    return html
+
+
+def call_etranslation_service(html, obj_path, target_languages):
     """Makes a eTranslation webcall to request a translation for a html
     (based on volto export)
     """
@@ -59,50 +146,44 @@ def call_etranslation_service(
     if not html:
         return
 
-    if not target_languages:
-        target_languages = ["EN"]
+    encoded_html = base64.b64encode(html.encode("utf-8"))
 
-    encoded_html = base64.b64encode(html)
-
-    site_url = portal.get().absolute_url()  # -> '/cca'
-
-    if "localhost" in site_url:
-        logger.warning(
-            "Using localhost, won't retrieve translation for: %s", html)
+    site_url = PORTAL_URL or portal.get().absolute_url()
 
     client = Client(
-        "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL",
+        ETRANSLATION_SOAP_SERVICE_URL,
         wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS),
     )
 
-    dest = "{}/@@translate-callback?source_lang={}&format=html&is_volto=1".format(
-        http_host, source_lang
-    )
-    if "https://" not in dest:
-        dest = "https://" + dest
+    dest = "{}/@@translate-callback".format(site_url)
 
-    resp = client.service.translate(
-        {
-            "priority": "5",
-            "external-reference": obj_path,
-            "caller-information": {
-                "application": "Marine_EEA_20180706",
-                "username": TRANS_USERNAME,
-            },
-            "document-to-translate-base64": {
-                "content": encoded_html,
-                "format": "html",
-                "fileName": "out",
-            },
-            "source-language": source_lang,
-            "target-languages": {"target-language": target_languages},
-            "domain": "GEN",
-            "output-format": "html",
-            "destinations": {
-                "http-destination": dest,
-            },
-        }
-    )
+    if "localhost" not in site_url:
+        resp = client.service.translate(
+            {
+                "priority": "5",
+                "external-reference": obj_path,
+                "caller-information": {
+                    "application": "Marine_EEA_20180706",
+                    "username": TRANS_USERNAME,
+                },
+                "document-to-translate-base64": {
+                    "content": encoded_html,
+                    "format": "html",
+                    "fileName": "out",
+                },
+                "source-language": "en",
+                "target-languages": {"target-language": target_languages},
+                "domain": "GEN",
+                "output-format": "html",
+                "destinations": {
+                    "http-destination": dest,
+                },
+            }
+        )
+    else:
+        logger.warning(
+            "Is localhost, won't retrieve translation for: %s", html)
+        return {"transId": "not-called", "externalRefId": html}
 
     logger.info("Data translation request : html content")
     logger.info("Response from translation request: %r", resp)
@@ -112,84 +193,54 @@ def call_etranslation_service(
     #     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
     #     import pdb; pdb.set_trace()
 
-    res = {"transId": resp, "externalRefId": html}
-
-    return res
+    return {"transId": resp, "externalRefId": html}
 
 
-def get_translation_object(obj, language):
-    """Returns the translation object for a given language"""
-    try:
-        translations = TranslationManager(obj).get_translations()
-    except Exception:
-        if language == "en":  # temporary solution to have EN site working
-            return obj  # TODO: better fix
-        return None
+def get_content_from_html(html, language=None):
+    """Given an HTML string, converts it to Plone content data"""
 
-    if language not in translations:
-        return None
-    trans_obj = translations[language]
-    return trans_obj
+    data = {"html": html, "language": language}
+    headers = {"Content-type": "application/json",
+               "Accept": "application/json"}
 
+    req = requests.post(CONTENT_CONVERTER,
+                        data=json.dumps(data), headers=headers)
+    if req.status_code != 200:
+        logger.debug(req.text)
+        raise ValueError
 
-def sync_obj_layout(obj, trans_obj, reindex, async_request):
-    """Used by save_html_volto"""
-    force_unlock(obj)
+    data = req.json()["data"]
+    logger.info("Data from converter: %s", data)
 
-    layout_en = obj.getLayout()
-    default_view_en = obj.getDefaultPage()
-    layout_default_view_en = None
+    # because the blocks deserializer returns {blocks, blocks_layout} and is saved in "blocks", we need to fix it
+    if data.get("blocks"):
+        blockdata = data["blocks"]
+        data["blocks_layout"] = blockdata["blocks_layout"]
+        data["blocks"] = blockdata["blocks"]
 
-    if default_view_en:
-        try:
-            trans_obj.setDefaultPage(default_view_en)
-            reindex = True
-        except Exception:
-            logger.info("Can't set default page for: %s",
-                        trans_obj.absolute_url())
+    logger.info("Data with tiles decrypted %s", data)
 
-    if not reindex:
-        reindex = True
-        trans_obj.setLayout(layout_en)
-
-    if default_view_en is not None:
-        layout_default_view_en = obj[default_view_en].getLayout()
-
-    # set the layout of the translated object to match the EN object
-
-    # also set the layout of the default view
-    if layout_default_view_en:
-        try:
-            trans_obj[default_view_en].setLayout(layout_default_view_en)
-        except Exception:
-            logger.info("Can't set layout for: %s", trans_obj.absolute_url())
-            raise
-
-    if async_request:
-        if hasattr(trans_obj, "REQUEST"):
-            del trans_obj.REQUEST
-
-        if hasattr(obj, "REQUEST"):
-            del obj.REQUEST
+    return data
 
 
-handle_folder_doc_step_4 = sync_obj_layout  # BBB
+def save_field_data(canonical, trans_obj, fielddata):
+    """Applies the data from fielddata to the translated object trans_obj"""
 
+    for schema in iterSchemata(canonical):
+        for k, v in getFieldsInOrder(schema):
+            if (
+                ILanguageIndependentField.providedBy(v)
+                or k in LANGUAGE_INDEPENDENT_FIELDS
+                or k not in fielddata
+            ):
+                continue
 
-def check_ancestors_path_exists(obj, language, site_portal):
-    """Create full path for a object"""
+            value = fielddata[k]
 
-    parent = aq_parent(aq_inner(obj))
-    path = parent.getPhysicalPath()
+            if IRichText.providedBy(v):
+                value = RichTextValue(value)
 
-    if len(path) <= 2:  # aborting, we've reached bottom
-        return True
-
-    translations = TranslationManager(parent).get_translations()
-    if language not in translations:
-        # TODO, what if the parent path already exist in language
-        # but is not linked in translation manager
-        setup_translation_object(parent, language, site_portal)
+            setattr(trans_obj, k, value)
 
 
 def copy_missing_interfaces(en_obj, trans_obj):
@@ -203,6 +254,104 @@ def copy_missing_interfaces(en_obj, trans_obj):
             alsoProvides(trans_obj, interf[1])
             trans_obj.reindexObject()
             logger.info("Copied interface: %s" % interf[0])
+
+
+def handle_link(en_obj, trans_obj):
+    link = getattr(en_obj, "remoteUrl", None)
+    logger.info("Fixing link %s (%s)", trans_obj.absolute_url(), link)
+    if link:
+        link = link.replace("/en/", "/%s/" % trans_obj.language)
+        logger.info("Fixed with: %s", link)
+        trans_obj.remoteUrl = link
+    trans_obj._p_changed = True
+
+
+def sync_translation_state(trans_obj, en_obj):
+    state = None
+    transitions = {
+        "published": "publish",
+        "archived": "archive",
+    }
+
+    try:
+        state = api.content.get_state(en_obj)
+    except WorkflowException:
+        logger.error("Can't get state for original object: %s", en_obj)
+        pass
+
+    if state in ["published", "archived"]:
+        if api.content.get_state(trans_obj) != state:
+            wftool = getToolByName(trans_obj, "portal_workflow")
+            logger.info("%s %s", state, trans_obj.absolute_url())
+            if state in transitions:
+                try:
+                    wftool.doActionFor(trans_obj, transitions[state])
+                except WorkflowException:
+                    logger.warning("Could not sync state for: %s", trans_obj)
+
+    if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
+        trans_obj.setEffectiveDate(en_obj.effective_date)
+        trans_obj._p_changed = True
+
+    if en_obj.__ac_local_roles__ != trans_obj.__ac_local_roles__:
+        trans_obj._p_changed = True
+        trans_obj.__ac_local_roles__ = en_obj.__ac_local_roles__
+
+
+def ingest_html(trans_obj, html):
+    """Used by the translation callback"""
+
+    force_unlock(trans_obj)
+    fielddata = get_content_from_html(html, language=trans_obj.language)
+
+    translations = TranslationManager(trans_obj).get_translations()
+
+    if "en" not in translations:
+        path = "/".join(trans_obj.getPhysicalPath())
+        msg = (
+            "Could not find canonical for this object %s, aborting. "
+            "Check its translation group" % path
+        )
+
+        logger.warning(msg)
+        raise ValueError(msg)
+
+    en_obj = translations["en"]  # hardcoded, should use canonical
+
+    save_field_data(en_obj, trans_obj, fielddata)
+
+    copy_missing_interfaces(en_obj, trans_obj)
+
+    # if trans_obj.portal_type in ("Folder", "Document"):
+    #     handle_folder_doc_step_4(en_obj, trans_obj, False, False)
+    if trans_obj.portal_type in ["Link"]:
+        handle_link(en_obj, trans_obj)
+
+    # TODO: sync workflow state
+    sync_translation_state(trans_obj, en_obj)
+
+    trans_obj._p_changed = True
+    trans_obj.reindexObject()
+
+
+def check_ancestors_path_exists(obj, language, site_portal):
+    """Create full path for a object"""
+
+    parent = aq_parent(aq_inner(obj))
+
+    if parent is None:
+        return True
+
+    path = parent.getPhysicalPath()
+
+    if len(path) <= 2:  # aborting, we've reached bottom
+        return True
+
+    translations = TranslationManager(parent).get_translations()
+    if language not in translations:
+        # TODO, what if the parent path already exist in language
+        # but is not linked in translation manager
+        setup_translation_object(parent, language, site_portal)
 
 
 def safe_traverse(obj, trans_path):
@@ -293,304 +442,7 @@ def setup_translation_object(obj, language, site_portal):
     return translated_object
 
 
-def get_all_objs(container):
-    """Get the container's objects"""
-    all_objs = []
-
-    def get_objs(context):
-        contents = api.content.find(context=context, depth=1)
-        for item in contents:
-            all_objs.append(item)
-
-        for item in contents:
-            get_objs(item.getObject())
-
-    get_objs(container)
-
-    return all_objs
-
-
-def is_volto_context(context):
-    volto_contexts = ["/en/mission", "/en/observatory"]
-    for value in volto_contexts:
-        if value in context.absolute_url():
-            return True
-    return False
-
-
-def sync_translation_state(trans_obj, en_obj):
-    state = None
-    transitions = {
-        "published": "publish",
-        "archived": "archive",
-    }
-
-    try:
-        state = api.content.get_state(en_obj)
-    except WorkflowException:
-        logger.error("Can't get state for original object: %s", en_obj)
-        pass
-
-    if state in ["published", "archived"]:
-        if api.content.get_state(trans_obj) != state:
-            wftool = getToolByName(trans_obj, "portal_workflow")
-            logger.info("%s %s", state, trans_obj.absolute_url())
-            if state in transitions:
-                try:
-                    wftool.doActionFor(trans_obj, transitions[state])
-                except WorkflowException:
-                    logger.warn(
-                        "Could not sync state for object: %s", trans_obj)
-
-    if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
-        trans_obj.setEffectiveDate(en_obj.effective_date)
-        trans_obj._p_changed = True
-
-    if en_obj.__ac_local_roles__ != trans_obj.__ac_local_roles__:
-        trans_obj._p_changed = True
-        trans_obj.__ac_local_roles__ = en_obj.__ac_local_roles__
-
-
-def wrap_in_aquisition(obj_path, portal_obj):
-    portal_path = portal_obj.getPhysicalPath()
-    bits = obj_path.split("/")[len(portal_path):]
-
-    base = portal_obj
-    obj = base
-
-    for bit in bits:
-        obj = base.restrictedTraverse(bit).__of__(base)
-        base = obj
-
-    return obj
-
-
-def setup_site_portal(options):
-    environ = {
-        "SERVER_NAME": options["http_host"],
-        "SERVER_PORT": 443,
-        "REQUEST_METHOD": "POST",
-    }
-    site_portal = portal.get()
-
-    if not hasattr(site_portal, "REQUEST"):
-        zopeUtils._Z2HOST = options["http_host"]
-        site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
-        site_portal.REQUEST.other["SERVER_URL"] = server_url
-        setSite(site_portal)
-        # context.REQUEST['PARENTS'] = [context]
-
-        # for k, v in request_vars.items():
-        #     site_portal.REQUEST.set(k, v)
-
-    return site_portal
-
-
-def execute_translate_async(context, **kwargs):
-    """Async Job: triggers the call to eTranslation
-
-    Creates the translation object, if it doesn't exist
-    """
-    en_obj_path = kwargs["path"]
-    options = kwargs["options"]
-    language = kwargs["language"]
-
-    # print("Args", en_obj_path, options, language)
-    # en_obj_path = "/".join(en_obj.getPhysicalPath())
-
-    site_portal = setup_site_portal(options)
-
-    # this causes the modified event in plone.app.multilingual to skip some processing which otherwise crashes
-    site_portal.REQUEST.translation_info = {"tg": True}
-
-    en_obj = site_portal.restrictedTraverse(en_obj_path)
-    en_obj = wrap_in_aquisition(en_obj_path, site_portal)
-
-    # trans_obj = site_portal.restrictedTraverse(trans_obj_path)
-    trans_obj = setup_translation_object(en_obj, language, site_portal)
-    trans_obj_path = "/".join(trans_obj.getPhysicalPath())
-
-    call_etranslation_service(
-        options["http_host"],
-        "en",
-        options["html_content"].encode("utf-8"),
-        trans_obj_path,
-        target_languages=language.upper(),
-    )
-
-    try:
-        del site_portal.REQUEST
-        del en_obj.REQUEST
-        del trans_obj.REQUEST
-    except AttributeError:
-        pass
-
-    logger.info("Async translate for object %s", options["obj_url"])
-    return "Finished"
-
-
-def handle_link(en_obj, trans_obj):
-    link = getattr(en_obj, "remoteUrl", None)
-    logger.info("Fixing link %s (%s)", trans_obj.absolute_url(), link)
-    if link:
-        link = link.replace("/en/", "/%s/" % trans_obj.language)
-        logger.info("Fixed with: %s", link)
-        trans_obj.remoteUrl = link
-    trans_obj._p_changed = True
-
-
-def save_field_data(canonical, trans_obj, fielddata):
-    """Applies the data from fielddata to the translated object trans_obj"""
-
-    for schema in iterSchemata(canonical):
-        for k, v in getFieldsInOrder(schema):
-            if (
-                ILanguageIndependentField.providedBy(v)
-                or k in LANGUAGE_INDEPENDENT_FIELDS
-                or k not in fielddata
-            ):
-                continue
-
-            value = fielddata[k]
-
-            if IRichText.providedBy(v):
-                value = RichTextValue(value)
-
-            setattr(trans_obj, k, value)
-
-
-def elements_to_text(children):
-    return str("").join(tostring(f).decode("utf-8") for f in children)
-
-
-def get_content_from_html(html, language=None):
-    """Given an HTML string, converts it to Plone content data"""
-
-    data = {"html": html, "language": language}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
-
-    req = requests.post(CONTENT_CONVERTER,
-                        data=json.dumps(data), headers=headers)
-    if req.status_code != 200:
-        logger.debug(req.text)
-        raise ValueError
-
-    data = req.json()["data"]
-    logger.info("Data from converter: %s", data)
-
-    # because the blocks deserializer returns {blocks, blocks_layout} and is saved in "blocks", we need to fix it
-    if data.get("blocks"):
-        blockdata = data["blocks"]
-        data["blocks_layout"] = blockdata["blocks_layout"]
-        data["blocks"] = blockdata["blocks"]
-
-    logger.info("Data with tiles decrypted %s", data)
-
-    return data
-
-
-def ingest_html(trans_obj, html):
-    """Used by the translation callback"""
-
-    force_unlock(trans_obj)
-    fielddata = get_content_from_html(html, language=trans_obj.language)
-
-    translations = TranslationManager(trans_obj).get_translations()
-
-    if "en" not in translations:
-        msg = (
-            "Could not find canonical for this object %s, aborting. "
-            "Check its translation group" % "/".join(
-                trans_obj.getPhysicalPath())
-        )
-
-        logger.warning(msg)
-        raise ValueError(msg)
-
-    en_obj = translations["en"]  # hardcoded, should use canonical
-
-    save_field_data(en_obj, trans_obj, fielddata)
-
-    copy_missing_interfaces(en_obj, trans_obj)
-
-    if trans_obj.portal_type in ("Folder", "Document"):
-        handle_folder_doc_step_4(en_obj, trans_obj, False, False)
-    if trans_obj.portal_type in ["Link"]:
-        handle_link(en_obj, trans_obj)
-
-    # TODO: sync workflow state
-
-    trans_obj._p_changed = True
-    trans_obj.reindexObject()
-
-
-def get_blocks_as_html(obj):
-    """Uses the external converter service to convert the blocks to HTML representation"""
-
-    data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
-
-    req = requests.post(
-        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
-    if req.status_code != 200:
-        logger.debug(req.text)
-        raise ValueError
-
-    html = req.json()["html"]
-    logger.info("Blocks converted to html: %s", html)
-    return html
-
-
-def sync_language_independent_fields(context, en_obj_path, options):
-    """Async Job: copies the language independent fields to all translations"""
-    site_portal = setup_site_portal(options)
-    environ = {
-        "SERVER_NAME": options["http_host"],
-        "SERVER_PORT": 443,
-        "REQUEST_METHOD": "POST",
-    }
-
-    if not hasattr(site_portal, "REQUEST"):
-        zopeUtils._Z2HOST = options["http_host"]
-        site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
-        site_portal.REQUEST.other["SERVER_URL"] = server_url
-        setSite(site_portal)
-
-    content = wrap_in_aquisition(en_obj_path, site_portal)
-    fieldmanager = ILanguageIndependentFieldsManager(content)
-
-    transmanager = ITranslationManager(content)
-    translations = transmanager.get_translated_languages()
-    translations.remove("en")
-
-    for translation in translations:
-        trans_obj = transmanager.get_translation(translation)
-        if fieldmanager.copy_fields(trans_obj):
-            print(
-                (
-                    "plone.app.multilingual translation reindex",
-                    trans_obj.absolute_url(relative=1),
-                )
-            )
-            trans_obj.reindexObject()
-
-    try:
-        del site_portal.REQUEST
-    except AttributeError:
-        pass
-
-
-# def translate_object_async(obj, language):
-#     force_unlock(obj)
-#     html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
-#     site = portal.getSite()
-#     http_host = obj.REQUEST.environ.get(
-#         "HTTP_X_FORWARDED_HOST", site.absolute_url())
-#
-#     queue_translate_volto_html(html, obj, http_host, language)
+def check_token_security(request):
+    token = request.getHeader("Authentication")
+    if token != TRANSLATION_AUTH_TOKEN:
+        raise Unauthorized
