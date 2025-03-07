@@ -7,6 +7,8 @@ import mockData from "./mock-data.json";
 
 const PORTAL_URL = process.env.PORTAL_URL || "http://localhost:8080/cca";
 
+console.log("Portal URL: ", PORTAL_URL);
+
 type Mapping = { [key: string]: any };
 
 function dataToForm(data: Mapping) {
