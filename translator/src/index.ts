@@ -29,7 +29,12 @@ function setupBullMQProcessor(queueName: string) {
         return { jobId: job.id };
       }
     },
-    { connection },
+    {
+      connection,
+      removeOnComplete: { count: 1000 },
+      removeOnFail: { count: 5000 },
+      concurrency: 1,
+    },
   );
 }
 

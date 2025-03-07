@@ -69,6 +69,7 @@ def queue_job(queue_name, job_name, data, opts=None):
         "delay": 0,  # Delay in milliseconds
         "priority": 1,
         "attempts": 3,
+        "lifo": True,  # we use LIFO queing
     }
 
     def callback():
