@@ -71,7 +71,8 @@ class SaveTranslationHtml(BrowserView):
             trans_obj = setup_translation_object(en_obj, language, site_portal)
             ingest_html(trans_obj, html)
 
-        return "ok"
+        self.request.response.setHeader("Content-Type", "application/json")
+        return json.dumps({"url": trans_obj.absolute_url()})
 
 
 class TranslationCallback(BrowserView):
