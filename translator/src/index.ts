@@ -3,6 +3,7 @@ import { createBullBoard } from "@bull-board/api";
 import { BullMQAdapter } from "@bull-board/api/bullMQAdapter";
 import { FastifyAdapter } from "@bull-board/fastify";
 import { Queue, Worker } from "bullmq";
+import { fastifyQueueDashPlugin } from "@queuedash/api";
 
 import fastify from "fastify";
 import IORedis from "ioredis";
@@ -67,6 +68,17 @@ const run = async () => {
 
   serverAdapter.setBasePath("/ui");
   app.register(serverAdapter.registerPlugin() as any, { prefix: "/ui" });
+
+  app.register(fastifyQueueDashPlugin, {
+    baseUrl: "/dash",
+    ctx: {
+      queues: queues.map((q) => ({
+        queue: q, //
+        displayName: "E-Translation",
+        type: "bullmq" as const,
+      })),
+    },
+  });
 
   app.get("/", (req, reply) => {
     return reply.redirect("/ui", 302);
