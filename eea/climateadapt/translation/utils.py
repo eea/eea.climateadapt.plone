@@ -1,6 +1,3 @@
-from contextlib import contextmanager
-from AccessControl.SecurityManagement import setSecurityManager
-from AccessControl import getSecurityManager, newSecurityManager
 from .valueadapter import ITranslationValue
 from zope.component import queryMultiAdapter
 import json
@@ -376,18 +373,3 @@ def get_value_representation(obj, name):
     #     return None
 
     return value
-
-
-@contextmanager
-def impersonate_admin(app, admin_user_id="admin"):
-    old_security_manager = getSecurityManager()
-
-    try:
-        admin_user = app.acl_users.getUserById(admin_user_id)
-        if admin_user is None:
-            raise ValueError("Admin user not found")
-
-        newSecurityManager(app, admin_user)
-        yield
-    finally:
-        setSecurityManager(old_security_manager)

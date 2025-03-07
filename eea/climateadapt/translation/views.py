@@ -1,5 +1,6 @@
 """Translation views"""
 
+from plone.api.env import adopt_user
 import base64
 import json
 import logging
@@ -66,7 +67,7 @@ class SaveTranslationHtml(BrowserView):
         if int(canonical_serial_id) != int(serial_id):
             return "mismatched serial id"
 
-        with impersonate_admin(site_portal):
+        with adopt_user(username="admin"):
             trans_obj = setup_translation_object(en_obj, language, site_portal)
             ingest_html(trans_obj, html)
 
