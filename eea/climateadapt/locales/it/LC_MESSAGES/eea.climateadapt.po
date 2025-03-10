@@ -2273,7 +2273,7 @@ msgstr "Creato da:"
 
 #: ../../climateadapt/vocabulary.py:603
 msgid "Critical Infrastructure"
-msgstr ""
+msgstr "Infrastrutture critiche"
 
 #,
 #: ../../climateadapt/vocabulary.py:306
@@ -2521,7 +2521,7 @@ msgstr "Aspetti economici"
 
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
-msgstr ""
+msgstr "Ecosistemi e soluzioni basate sulla natura"
 
 # ,
 # ,
@@ -3042,7 +3042,7 @@ msgstr "Salute"
 
 #: ../../climateadapt/vocabulary.py:604
 msgid "Health and Wellbeing"
-msgstr ""
+msgstr "Salute e benessere"
 
 # ,
 # ,
@@ -3476,7 +3476,7 @@ msgstr "Pianificazione dell'uso della terra"
 
 #: ../../climateadapt/vocabulary.py:605
 msgid "Land-use and Food Systems"
-msgstr ""
+msgstr "Uso del territorio e sistemi alimentari"
 
 # ,
 # ,
@@ -3619,7 +3619,7 @@ msgstr "Link a ulteriori informazioni"
 
 #: ../../climateadapt/vocabulary.py:611
 msgid "Local Economic Systems"
-msgstr ""
+msgstr "Sistemi economici locali"
 
 #: ../../climateadapt/vocabulary.py:1221
 msgid "Local authorities and administrative bodies"
@@ -5586,7 +5586,7 @@ msgstr "Valutazione di vulnerabilità"
 
 #: ../../climateadapt/vocabulary.py:606
 msgid "Water Management"
-msgstr ""
+msgstr "Gestione dell'acqua"
 
 # ,
 # ,
