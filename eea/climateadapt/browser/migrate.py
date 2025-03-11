@@ -2873,7 +2873,10 @@ class MigrateAbsoluteURLs(BrowserView):
                 for block in visit_blocks(obj, blocks):
                     self.fix_url(block)
 
-                modified(obj)
+                try:
+                    modified(obj)
+                except Exception as e:
+                    logger.error("Failed to update %s: %s", brain.getURL(), e)
 
             if idx % 100 == 0:
                 transaction.commit()
