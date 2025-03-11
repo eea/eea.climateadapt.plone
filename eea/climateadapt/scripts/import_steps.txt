@@ -39,9 +39,9 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
 11 - Update the subsite logo for observatory (if needed)
 12 - setup LDAP in /@@plone_ldapcontrolpanel
    - in /@@usergroup-controlpanel enable "many groups" and "many users" 
-
+    - add manager users in /acl_users/portal_role_manager/manage_roles
+13 - run MigrateAbsoluteURLs /@@migrate-absolute-urls (on production might not be needed)
 
 TODO fixes
 - published/modified date
 - for observatory enable and set lead image and fix logo
-
