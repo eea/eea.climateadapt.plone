@@ -5,7 +5,7 @@ from zope.interface import Interface
 
 try:
     from plone.app.async.interfaces import IAsyncService
-except ImportError:
+except (ImportError, SyntaxError):
     class IAsyncService(Interface):
         """ No async """
 
