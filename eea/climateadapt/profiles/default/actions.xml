@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+  <object name="footer_actions" meta_type="CMF Action Category">
+    <property name="title"></property>
+    <object name="Sitemap" meta_type="CMF Action">
+      <property name="title">Sitemap</property>
+      <property name="description"></property>
+      <property
+        name="url_expr">python: "observatory" in object.getPhysicalPath() and
+        "/en/observatory/sitemap" or "mission" in object.getPhysicalPath() and "/en/mission/sitemap"
+        or "/en/sitemap"</property>
+      <property name="link_target"></property>
+      <property name="icon_expr"></property>
+      <property name="available_expr"></property>
+      <property name="permissions" />
+      <property name="visible">True</property>
+    </object>
+    <object name="CMS Login" meta_type="CMF Action">
+      <property name="title">CMS Login</property>
+      <property name="description"></property>
+      <property
+        name="url_expr">python: "observatory" in object.getPhysicalPath() and
+        "/en/observatory/login" or "mission" in object.getPhysicalPath() and "/en/mission/login" or
+        "/login"</property>
+      <property name="link_target"></property>
+      <property name="icon_expr"></property>
+      <property name="available_expr"></property>
+      <property name="permissions" />
+      <property name="visible">True</property>
+    </object>
+    <object name="Privacy" meta_type="CMF Action">
+      <property name="title">Privacy</property>
+      <property name="description"></property>
+      <property
+        name="url_expr">python: "mission" in object.getPhysicalPath() and
+        "/en/mission/the-mission/privacy" or "/en/privacy-and-legal-notice"</property>
+      <property name="link_target"></property>
+      <property name="icon_expr"></property>
+      <property name="available_expr"></property>
+      <property name="permissions" />
+      <property name="visible">True</property>
+    </object>
+    <object name="Dashboard" meta_type="CMF Action">
+      <property name="title">Dashboard</property>
+      <property name="description"></property>
+      <property name="url_expr">string:/en/user-dashboard</property>
+      <property name="link_target"></property>
+      <property name="icon_expr"></property>
+      <property name="available_expr">python:member is not None</property>
+      <property name="permissions" />
+      <property name="visible">True</property>
+    </object>
+  </object>
+  <object name="contact_extra_actions" meta_type="CMF Action Category">
+    <property name="title"></property>
+  </object>
+  <object name="contact_actions" meta_type="CMF Action Category">
+    <property name="title"></property>
+    <object name="About" meta_type="CMF Action" i18n:domain="plone">
+      <property name="title" i18n:translate="">About</property>
+      <property name="description" i18n:translate=""></property>
+      <property
+        name="url_expr">python: "observatory" in object.getPhysicalPath() and
+        "/en/observatory/About/about-the-observatory" or "mission" in object.getPhysicalPath() and
+        "/en/mission/the-mission/about-the-mission" or "/en/about"</property>
+      <property name="link_target"></property>
+      <property name="icon_expr"></property>
+      <property name="available_expr"></property>
+      <property name="permissions" />
+      <property name="visible">True</property>
+    </object>
+    <object name="Contact" meta_type="CMF Action" i18n:domain="plone">
+      <property name="title" i18n:translate="">Contact</property>
+      <property name="description" i18n:translate=""></property>
+      <property
+        name="url_expr">python:"mission" in object.getPhysicalPath() and
+        "mailto:mission-on-adaptation@eea.europa.eu" or "mailto:climate.adapt@eea.europa.eu"</property>
+      <property name="link_target"></property>
+      <property name="icon_expr"></property>
+      <property name="available_expr"></property>
+      <property name="permissions" />
+      <property name="visible">True</property>
+    </object>
+  </object>
+</object>

@@ -3,7 +3,7 @@
     - folder: subsite logo
     - news item: lead image
 
-1 - Export from prod to json /@@export_content 
+1 - Export from prod to json /@@export_content
     content - 1.5/2h (database conflict error)
     relations - 1m
     translations - 1m
@@ -27,7 +27,7 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
     pas.plugins.ldap
 7 - Import content types: portal_setup->types tool (1m)
 8 - set available styles in subsite settings /@@subsites-settings: mkh|MKH, observatory|Observatory (1m)
-9 - Run the import /@@import_content 
+9 - Run the import /@@import_content
     content (8-9h) !!!!!IMPORTANT !!!! Handle existing content = UPDATE
     relations (10m)
     translations (40m)
@@ -38,9 +38,10 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
     - Make Home not visible in navigation /portal_actions/portal_tabs/index_html/index_html/manage_propertiesForm
 11 - Update the subsite logo for observatory (if needed)
 12 - setup LDAP in /@@plone_ldapcontrolpanel
-   - in /@@usergroup-controlpanel enable "many groups" and "many users" 
+   - in /@@usergroup-controlpanel enable "many groups" and "many users"
     - add manager users in /acl_users/portal_role_manager/manage_roles
 13 - run MigrateAbsoluteURLs /@@migrate-absolute-urls (on production might not be needed)
+14 - (edit /en/news-archive and add a criterion for review state published) - I've changed production, so this shouldn't be needed
 
 TODO fixes
 - published/modified date
