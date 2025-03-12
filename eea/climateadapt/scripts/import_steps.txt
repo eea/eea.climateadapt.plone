@@ -42,6 +42,7 @@ python /app/sources/eea.climateadapt/eea/climateadapt/scripts/fix_content.py /ap
     - add manager users in /acl_users/portal_role_manager/manage_roles
 13 - run MigrateAbsoluteURLs /@@migrate-absolute-urls (on production might not be needed)
 14 - (edit /en/news-archive and add a criterion for review state published) - I've changed production, so this shouldn't be needed
+15 - recreate /en/user-dashboard page (copy blocks + blocks_layout via admin)
 
 TODO fixes
 - published/modified date

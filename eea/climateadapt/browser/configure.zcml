@@ -13,6 +13,8 @@
     permission="cmf.ManagePortal"
   />
 
+  <include file="ecde.zcml" />
+
   <!-- <include file="integration.zcml" /> -->
   <!-- <include file="admin.zcml" /> -->
   <!-- <include file="frontpage.zcml" /> -->
@@ -20,8 +22,6 @@
     file="faceted.zcml" /> -->
   <!-- <include file="depiction.zcml" /> -->
   <!-- <include file="migrations.zcml" /> -->
-  <!-- <include -->
-  <!--   file="ecde.zcml" /> -->
 
   <!-- <browser:page -->
   <!--   name="iterate_control" -->
