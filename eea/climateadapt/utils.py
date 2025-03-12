@@ -1,5 +1,4 @@
-""" Generic utilities
-"""
+"""Generic utilities"""
 
 import logging
 
@@ -41,3 +40,17 @@ def shorten(t, to=254):
         t = t[: to - 3] + el
 
     return t
+
+
+def force_unlock(context):
+    annot = getattr(context, "__annotations__", {})
+
+    if hasattr(context, "_dav_writelocks"):
+        del context._dav_writelocks
+        context._p_changed = True
+
+    if "plone.locking" in annot:
+        del annot["plone.locking"]
+
+        context._p_changed = True
+        annot._p_changed = True

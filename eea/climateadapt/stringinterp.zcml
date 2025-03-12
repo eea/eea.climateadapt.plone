@@ -1,76 +1,83 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    xmlns:grok="http://namespaces.zope.org/grok"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="eea.climateadapt">
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="eea.climateadapt">
 
-    <!-- TODO: for="*" situation, clarify IContentish vs * -->
+  <!-- TODO: for="*" situation, clarify IContentish vs * -->
 
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_thematicexperts"
         name="cca_thematicexperts_emails"
         /> -->
 
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_ma"
         name="cca_ma_emails"
         /> -->
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_ma_contacts"
         name="cca_ma_contacts_emails"
         /> -->
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_ma_managers"
         name="cca_ma_managers_emails"
         /> -->
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_newsevents"
         name="cca_newsevents_emails"
         /> -->
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_powerusers"
         name="cca_powerusers_emails"
         /> -->
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_checkers"
         name="cca_checkers_emails"
         /> -->
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_editors"
         name="cca_editors_emails"
         /> -->
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_reviewers"
         name="cca_reviewer_emails"
         /> -->
-    <!-- <adapter
+  <!-- <adapter
         for="*"
         provides="plone.stringinterp.interfaces.IStringSubstitution"
         factory=".stringinterp.cca_managers"
         name="cca_managers_emails"
         /> -->
+
+  <adapter
+    factory=".indicator.indicator_message"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    for="*"
+    name="cca_indicator_message"
+  />
 
 </configure>
