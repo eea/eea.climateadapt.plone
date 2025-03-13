@@ -126,8 +126,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                             }
                             brains = catalog.searchResults(query)
                             for brain in brains:
-                                logger.info("C3S %s LNG %s",
-                                            c3s_identifier, lang)
+                                logger.info("C3S %s LNG %s", c3s_identifier, lang)
                                 logger.info(
                                     "C3S %s URL %s",
                                     brain.getObject().c3s_identifier,
@@ -148,8 +147,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                                         "url": brain.getURL(),
                                     }
                                 )
-                                logger.info("LANG %s URL %", lang,
-                                            brain.absolute_url())
+                                logger.info("LANG %s URL %", lang, brain.absolute_url())
 
                         else:
                             print(("Not found: " + item["title"]))
@@ -165,8 +163,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                     hazards = overview_page["hazard_type_order_" + side][cindex]
                     for hazard in hazards:
                         if hazard in overview_page["hazard_list"][category]:
-                            len_hazard = len(
-                                response[side][category_index]["items"])
+                            len_hazard = len(response[side][category_index]["items"])
                             response[side][category_index]["items"].insert(
                                 len_hazard,
                                 {
@@ -191,8 +188,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         response = OrderedDict()
 
         for hazard_category in list(data.keys()):
-            response[hazard_category] = {
-                "types": OrderedDict(), "total_indicators": 0}
+            response[hazard_category] = {"types": OrderedDict(), "total_indicators": 0}
             for hazard_type in list(data[hazard_category].keys()):
                 response[hazard_category]["types"][hazard_type] = []
                 for indicator in data[hazard_category][hazard_type]:
@@ -214,29 +210,25 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                             continue
                         indicator["cca_url"] = brain.getURL()
                         indicator["cca_title"] = brain.getObject().title
-                    response[hazard_category]["types"][hazard_type].append(
-                        indicator)
+                    response[hazard_category]["types"][hazard_type].append(indicator)
                     response[hazard_category]["total_indicators"] += 1
 
         responseHtml = str(
             "<thead>"
             "<tr>"
             "<th>"
-            + translate_text(self.context, self.request,
-                             "Hazard category", "eea.cca")
+            + translate_text(self.context, self.request, "Hazard category", "eea.cca")
             + "</th>"
             "<th>"
-            + translate_text(self.context, self.request,
-                             "Hazard type", "eea.cca")
+            + translate_text(self.context, self.request, "Hazard type", "eea.cca")
             + "</th>"
             "<th>"
-            + translate_text(self.context, self.request,
-                             "Indicator", "eea.cca")
+            + translate_text(self.context, self.request, "Indicator", "eea.cca")
             + "</th>"
-            "<th>"
-            + translate_text(self.context, self.request,
-                             "Zip download", "eea.cca")
-            + "</th>"
+            # "<th>"
+            # + translate_text(self.context, self.request,
+            #                  "Zip download", "eea.cca")
+            # + "</th>"
             "</tr>"
             "</thead>"
             "<tbody>"
@@ -247,8 +239,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                 str('<td rowspan="')
                 + str(response[_category]["total_indicators"])
                 + '">'
-                + translate_text(self.context, self.request,
-                                 _category, "eea.cca")
+                + translate_text(self.context, self.request, _category, "eea.cca")
                 + str("</td>")
             )
             for i, _type in enumerate(response[_category]["types"].keys()):
@@ -258,8 +249,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
                     str('<td rowspan="')
                     + str(len(response[_category]["types"][_type]))
                     + '">'
-                    + translate_text(self.context,
-                                     self.request, _type, "eea.cca")
+                    + translate_text(self.context, self.request, _type, "eea.cca")
                     + str("</td>")
                 )
                 for j, indicator in enumerate(response[_category]["types"][_type]):
@@ -351,8 +341,7 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
                 obj = items[indicator["title"]]["obj"]
                 if self.current_lang != "en":
                     try:
-                        translations = TranslationManager(
-                            obj).get_translations()
+                        translations = TranslationManager(obj).get_translations()
                         if self.current_lang in translations:
                             obj = translations[self.current_lang]
                     except:
