@@ -39,7 +39,9 @@ class IMainNews(IBlocks):
     )
 
     promotional_image = namedfile.NamedBlobImage(
-        title=(u"Promotional image"),
-        description=(u"This image will not be directly exposed, but may be used by EEA staff to promote this news item."),
+        title=("Promotional image"),
+        description=(
+            "This image will not be directly exposed, but may be used by EEA staff to promote this news item."
+        ),
         required=False,
     )

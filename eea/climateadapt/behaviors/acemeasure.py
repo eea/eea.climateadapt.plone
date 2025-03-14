@@ -1,25 +1,25 @@
-from collective import dexteritytextindexer
 from collective.geolocationbehavior.geolocation import IGeolocatable
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
-from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
-from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
-from z3c.form.util import getSpecification
-from z3c.form.widget import FieldWidget
+from z3c.form.interfaces import IAddForm, IEditForm  # , IFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-from zope.component import adapter
-from zope.interface import alsoProvides, implementer  # , implements
-from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple  # Int,
+from zope.interface import Interface, alsoProvides  # , implementer  # , implements
+from zope.schema import URI, Bool, Choice, Date, Int, List, Text, TextLine, Tuple
 
 from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
-# from plone.autoform import directives
+# from plone.supermodel import model
+# from z3c.form import form
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
+# from zope.component import adapter
+# from collective import dexteritytextindexer
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from plone.app.widgets.interfaces import IWidgetsLayer
 
 ADD_ORGANISATION_URL = (
     "<a target='_blank' "
@@ -28,37 +28,37 @@ ADD_ORGANISATION_URL = (
 )
 
 
-class IAceMeasure(form.Schema, IImageScaleTraversable):
+class IAceMeasure(Interface, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Measure
     """
 
-    dexteritytextindexer.searchable("challenges")
-    dexteritytextindexer.searchable("climate_impacts")
-    dexteritytextindexer.searchable("contact")
-    dexteritytextindexer.searchable("cost_benefit")
-    dexteritytextindexer.searchable("geochars")
-    dexteritytextindexer.searchable("implementation_time")
-    dexteritytextindexer.searchable("important")
-    dexteritytextindexer.searchable("keywords")
-    dexteritytextindexer.searchable("legal_aspects")
-    dexteritytextindexer.searchable("lifetime")
-    dexteritytextindexer.searchable("long_description")
-    dexteritytextindexer.searchable("description")
-    dexteritytextindexer.searchable("measure_type")
-    dexteritytextindexer.searchable("objectives")
-    dexteritytextindexer.searchable("sectors")
-    dexteritytextindexer.searchable("solutions")
-    dexteritytextindexer.searchable("source")
-    dexteritytextindexer.searchable("spatial_layer")
-    dexteritytextindexer.searchable("spatial_values")
-    dexteritytextindexer.searchable("special_tags")
-    dexteritytextindexer.searchable("stakeholder_participation")
-    dexteritytextindexer.searchable("success_limitations")
-    dexteritytextindexer.searchable("title")
-    dexteritytextindexer.searchable("websites")
+    # dexteritytextindexer.searchable("challenges")
+    # dexteritytextindexer.searchable("climate_impacts")
+    # dexteritytextindexer.searchable("contact")
+    # dexteritytextindexer.searchable("cost_benefit")
+    # dexteritytextindexer.searchable("geochars")
+    # dexteritytextindexer.searchable("implementation_time")
+    # dexteritytextindexer.searchable("important")
+    # dexteritytextindexer.searchable("keywords")
+    # dexteritytextindexer.searchable("legal_aspects")
+    # dexteritytextindexer.searchable("lifetime")
+    # dexteritytextindexer.searchable("long_description")
+    # dexteritytextindexer.searchable("description")
+    # dexteritytextindexer.searchable("measure_type")
+    # dexteritytextindexer.searchable("objectives")
+    # dexteritytextindexer.searchable("sectors")
+    # dexteritytextindexer.searchable("solutions")
+    # dexteritytextindexer.searchable("source")
+    # dexteritytextindexer.searchable("spatial_layer")
+    # dexteritytextindexer.searchable("spatial_values")
+    # dexteritytextindexer.searchable("special_tags")
+    # dexteritytextindexer.searchable("stakeholder_participation")
+    # dexteritytextindexer.searchable("success_limitations")
+    # dexteritytextindexer.searchable("title")
+    # dexteritytextindexer.searchable("websites")
     # dexteritytextindexer.searchable('year')
-    dexteritytextindexer.searchable("publication_date")
+    # dexteritytextindexer.searchable("publication_date")
 
     # form.fieldset(
     #     "default",
@@ -140,18 +140,17 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     description = Text(
         title=_("Short summary"),
         required=False,
-        description=_("Enter a short summary that will be used in listings."),
-        missing_value=unicode(""),
+        description="Enter a short summary that will be used in listings.",
+        missing_value="",
     )
 
-    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         missing_value=[],
         default=None,
         description=_(
-            "Select one or more climate change impact topics that "
-            "this item relates to:"
+            "Select one or more climate change impact topics that this item relates to:"
         ),
         required=True,
         value_type=Choice(
@@ -172,16 +171,16 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         required=False,
         default=(),
         value_type=TextLine(
-            title=_("Single topic"),
+            title="Single topic",
         ),
         missing_value=(None),
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_("Sectors"),
         description=_(
-            "Select one or more relevant sector policies" " that this item relates to:"
+            "Select one or more relevant sector policies that this item relates to:"
         ),
         required=True,
         missing_value=[],
@@ -198,15 +197,13 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     publication_date = Date(
         title=_("Date of item's creation"),
-        description=_(
-            "The date refers to the moment in which the item "
-            "has been prepared by contributing expeerts to be "
-            "submitted for the publication in Climate "
-            "ADAPTPublication/last update date."
-            " Please use the Calendar icon to add day/month/year. If you want to "
-            'add only the year, please select "day: 1", "month: January" '
-            "and then the year"
-        ),
+        description="The date refers to the moment in which the item "
+        "has been prepared by contributing expeerts to be "
+        "submitted for the publication in Climate "
+        "ADAPTPublication/last update date."
+        " Please use the Calendar icon to add day/month/year. If you want to "
+        'add only the year, please select "day: 1", "month: January" '
+        "and then the year",
         required=True,
     )
 
@@ -219,11 +216,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "additional_details" fields ]------------------
 
-    dexteritytextindexer.searchable("stakeholder_participation")
+    # dexteritytextindexer.searchable("stakeholder_participation")
     stakeholder_participation = RichText(
         title=_("Stakeholder participation"),
         required=False,
-        default=unicode(""),
+        default="",
         description=_(
             "Describe the Information about actors involved, the "
             "form of participation and the participation process. "
@@ -235,11 +232,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         ),
     )
 
-    dexteritytextindexer.searchable("success_limitations")
+    # dexteritytextindexer.searchable("success_limitations")
     success_limitations = RichText(
         title=_("Success and limiting factors"),
         required=False,
-        default=unicode(""),
+        default="",
         description=_(
             "Describe factors that are decisive for a successful "
             "implementation and expected challenges or limiting "
@@ -248,11 +245,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         ),
     )
 
-    dexteritytextindexer.searchable("cost_benefit")
+    # dexteritytextindexer.searchable("cost_benefit")
     cost_benefit = RichText(
         title=_("Costs and benefits"),
         required=False,
-        default=unicode(""),
+        default="",
         description=_(
             "Describe costs (possibly providing quantitative "
             "estimate) and funding sources. Describe benefits "
@@ -266,11 +263,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         ),
     )
 
-    dexteritytextindexer.searchable("legal_aspects")
+    # dexteritytextindexer.searchable("legal_aspects")
     legal_aspects = RichText(
         title=_("Legal aspects"),
         required=False,
-        default=unicode(""),
+        default="",
         description=_(
             "Describe the Legislation "
             "framework from which the case "
@@ -281,7 +278,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         ),
     )
 
-    dexteritytextindexer.searchable("implementation_time")
+    # dexteritytextindexer.searchable("implementation_time")
     implementation_time = RichText(
         title=_("Implementation time"),
         required=False,
@@ -293,16 +290,14 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         ),
     )
 
-    dexteritytextindexer.searchable("lifetime")
+    # dexteritytextindexer.searchable("lifetime")
     lifetime = RichText(
         title=_("Lifetime"),
         required=False,
-        default=unicode(""),
-        description=_(
-            "Describe the lifetime of the measure: "
-            "Time frame, e.g. 5-10 years, Brief explanation "
-            "(250 char limit)"
-        ),
+        default="",
+        description="Describe the lifetime of the measure: "
+        "Time frame, e.g. 5-10 years, Brief explanation "
+        "(250 char limit)",
     )
 
     # -----------[ "reference_information" fields ]------------------
@@ -318,11 +313,12 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
             "NOTE: Add http:// in front of every website link."
         ),
         required=False,
-        value_type=URI(),
+        # TODO: plone6 needs to be a URI
+        value_type=TextLine(),
         # missing_value=(),
     )
 
-    dexteritytextindexer.searchable("source")
+    # dexteritytextindexer.searchable("source")
     source = TextLine(
         title=_("References"),
         required=False,
@@ -335,11 +331,11 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
-    form.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(governance_level="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     governance_level = List(
         title=_("Governance Level"),
         description=_(
-            "Select the one governance level that relates to this " "adaptation option"
+            "Select the one governance level that relates to this adaptation option"
         ),
         required=False,
         value_type=Choice(
@@ -347,21 +343,21 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         ),
     )
 
-    form.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    # directives.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
-        default=unicode("""{
+        default="""{
                     "geoElements":{"element":"GLOBAL",
                     "macrotrans":null,"biotrans":null,"countries":[],
-                    "subnational":[],"city":""}}"""),
-        description=_("Select the characterisation for this item"),
+                    "subnational":[],"city":""}}""",
+        description="Select the characterisation for this item",
     )
 
     comments = Text(
         title=_("Comments"),
         required=False,
-        default=unicode(""),
+        default="",
         description=_(
             "Comments about this database item "
             "[information entered below will not be "
@@ -404,7 +400,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     )
 
     contributor_list = RelationList(
-        title=_("Contributor(s)"),
+        title="Contributor(s)",
         default=[],
         description=_(
             "Select from the Climate ADAPT Organisation items the "
@@ -423,7 +419,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     other_contributor = Text(
         title=_("Other contributor(s)"),
         required=False,
-        default=unicode(""),
+        default="",
         description=_(
             "Please first verify if the contributor is "
             "already part of the Climate ADAPT Database."
@@ -479,9 +475,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
         vocabulary="eea.climateadapt.acemeasure_implementationtype",
     )
 
-    spatial_layer = TextLine(
-        title=_("Spatial Layer"), required=False, default=unicode("")
-    )
+    spatial_layer = TextLine(title=_("Spatial Layer"), required=False, default="")
 
     spatial_values = List(
         title=_("Countries"),
@@ -494,7 +488,7 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # TODO: specialtagging is not used in any view jsp, only in add and edit
     # views
 
-    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
         title=_("Adaptation approaches"),
         description=_("Select one or more approaches."),
@@ -574,26 +568,26 @@ class IAceMeasure(form.Schema, IImageScaleTraversable):
     # summary = Text(title=_(u"Summary"), required=False, default=u"")
 
 
-@adapter(getSpecification(IAceMeasure["keywords"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def KeywordsFieldWidget(field, request):
-    """The vocabulary view is overridden so that
-    the widget will work properly
-    Check browser/overrides.py for more details
-    """
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.keywords"
+# @adapter(getSpecification(IAceMeasure["keywords"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def KeywordsFieldWidget(field, request):
+#     """The vocabulary view is overridden so that
+#     the widget will work properly
+#     Check browser/overrides.py for more details
+#     """
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.keywords"
 
-    return widget
+#     return widget
 
 
-@adapter(getSpecification(IAceMeasure["special_tags"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def SpecialTagsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.special_tags"
+# @adapter(getSpecification(IAceMeasure["special_tags"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def SpecialTagsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.special_tags"
 
-    return widget
+#     return widget
 
 
 alsoProvides(IAceMeasure["climate_impacts"], ILanguageIndependentField)

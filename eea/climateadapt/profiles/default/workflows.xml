@@ -4,105 +4,63 @@
     name="title">Contains workflow definitions for your portal</property>
  <object name="cca_items_workflow" meta_type="Workflow"/>
  <object name="cca_webpages_workflow" meta_type="Workflow"/>
- <object name="comment_review_workflow" meta_type="Workflow"/>
- <object name="folder_workflow" meta_type="Workflow"/>
- <object name="intranet_folder_workflow" meta_type="Workflow"/>
- <object name="intranet_workflow" meta_type="Workflow"/>
  <object name="newsevents_workflow" meta_type="Workflow"/>
- <object name="one_state_workflow" meta_type="Workflow"/>
- <object name="plone_workflow" meta_type="Workflow"/>
- <object name="simple_publication_workflow" meta_type="Workflow"/>
- <object name="cca_translations_workflow" meta_type="Workflow"/>
  <bindings>
   <default>
    <bound-workflow workflow_id="cca_webpages_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </default>
-  <type type_id="ATBooleanCriterion"/>
-  <type type_id="ATCurrentAuthorCriterion"/>
-  <type type_id="ATDateCriteria"/>
-  <type type_id="ATDateRangeCriterion"/>
-  <type type_id="ATListCriterion"/>
-  <type type_id="ATPathCriterion"/>
-  <type type_id="ATPortalTypeCriterion"/>
-  <type type_id="ATReferenceCriterion"/>
-  <type type_id="ATRelativePathCriterion"/>
-  <type type_id="ATSelectionCriterion"/>
-  <type type_id="ATSimpleIntCriterion"/>
-  <type type_id="ATSimpleStringCriterion"/>
-  <type type_id="ATSortCriterion"/>
-  <type type_id="Discussion Item">
-   <bound-workflow workflow_id="one_state_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
-  </type>
   <type type_id="Event">
    <bound-workflow workflow_id="newsevents_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="File"/>
   <type type_id="Image"/>
   <type type_id="News Item">
    <bound-workflow workflow_id="newsevents_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="PDFTheme"/>
   <type type_id="PDFTool"/>
   <type type_id="Plone Site"/>
   <type type_id="eea.climateadapt.acemeasure">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.aceproject">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.adaptationoption">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.casestudy">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.guidancedocument">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.c3sindicator">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.indicator">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.informationportal">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.mapgraphdataset">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.organisation">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.publicationreport">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.researchproject">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.tool">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
   <type type_id="eea.climateadapt.videos">
    <bound-workflow workflow_id="cca_items_workflow"/>
-   <bound-workflow workflow_id="cca_translations_workflow"/>
   </type>
  </bindings>
 </object>

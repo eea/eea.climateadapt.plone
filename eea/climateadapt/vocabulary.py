@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import base64
 from collections import namedtuple
 
 import pycountry
@@ -20,8 +21,8 @@ def generic_vocabulary(_terms, sort=True):
     """Returns a zope vocabulary from a dict or a list"""
 
     if _terms and isinstance(_terms, dict):
-        _terms = _terms.items()
-    elif _terms and isinstance(_terms[0], basestring):
+        _terms = list(_terms.items())
+    elif _terms and isinstance(_terms[0], str):
         _terms = [(x, x) for x in _terms]
 
     if sort:
@@ -31,7 +32,8 @@ def generic_vocabulary(_terms, sort=True):
         terms = []
         for _term in _terms:
             value, title = _term
-            token = value.decode("utf-8").encode("utf-8", "replace")
+            # token = value.decode("utf-8").encode("utf-8", "replace")
+            token = value
             term = SimpleTerm(value=value, token=token, title=title)
             terms.append(term)
 
@@ -45,10 +47,18 @@ class KeywordsVocabulary(BKV):
     def __init__(self, index):
         self.keyword_index = index
 
+    def __call__(self, context):
+        vocab = super().__call__(context)
+        terms = []
+        for term in vocab:
+            term_value = term.value
+            terms.append(term.__class__(term_value, term_value, term_value))
+        return vocab.__class__(terms)
+
 
 class CatalogVocabulary(BCV):
     def getTerm(self, value):
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             # perhaps it's already a uid
             uid = value
         else:
@@ -473,10 +483,12 @@ european_countries = [
     "ME",
 ]
 ace_countries = [
-    (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in european_countries
+    (x.alpha_2, x.name)
+    for x in pycountry.countries
+    if x.alpha_2 in european_countries
 ]
 ace_countries = [x for x in ace_countries if x[0] != "CZ"]
-ace_countries.append((unicode("CZ"), "Czechia"))
+ace_countries.append((str("CZ"), "Czechia"))
 ace_countries = sorted(ace_countries, key=lambda x: x[0])
 # ace_countries.append(('FYROM', 'Former Yugoslav Republic of Macedonia'))
 # ace_countries.append(('MK', 'Republic of Macedonia'))
@@ -529,9 +541,9 @@ eu_countries_selection = [
 
 # Used for dropdowns
 ace_countries_selection = [
-    (x.alpha2, x.name)
+    (x.alpha_2, x.name)
     for x in pycountry.countries
-    if x.alpha2 in eu_countries_selection
+    if x.alpha_2 in eu_countries_selection
 ]
 ace_countries_selection = [x for x in ace_countries_selection if x[0] != "CZ"]
 ace_countries_selection.append(("CZ", "Czechia"))
@@ -578,7 +590,9 @@ faceted_countries = [
     "GB",
 ]
 faceted_countries = [
-    (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in faceted_countries
+    (x.alpha_2, x.name)
+    for x in pycountry.countries
+    if x.alpha_2 in faceted_countries
 ]
 faceted_countries.append(("MK", "Republic of North Macedonia"))
 faceted_countries.append(
@@ -880,7 +894,7 @@ acesearch-geochars-lbl-TRANS_BIO_STEPPIC=Steppic
 
 BIOREGIONS = {}
 
-for line in filter(None, labels.split("\n")):
+for line in [_f for _f in labels.split("\n") if _f]:
     first, label = line.split("=")
     name = first.split("-lbl-")[1]
     BIOREGIONS[name] = label

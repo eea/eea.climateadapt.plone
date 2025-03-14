@@ -5,48 +5,55 @@ import json
 import logging
 from io import BytesIO as StringIO
 
-from apiclient.discovery import build
+# from apiclient.discovery import build
 from DateTime import DateTime
-from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
+
+# from eea.climateadapt.scripts import get_plone_site
+# from eea.rdfmarshaller.actions.pingcr import ping_CRSDS
 from lxml.etree import fromstring
-from oauth2client.service_account import ServiceAccountCredentials
+
+# from oauth2client.service_account import ServiceAccountCredentials
 from pkg_resources import resource_filename
 from plone import api
 from plone.api import portal
 from plone.api.portal import get_tool, getSite
-from plone.app.registry.browser.controlpanel import (ControlPanelFormWrapper,
-                                                     RegistryEditForm)
-from plone.app.widgets.dx import RelatedItemsWidget
-from plone.app.widgets.interfaces import IWidgetsLayer
-from plone.dexterity.utils import datify
-from plone.directives import form
+from plone.app.registry.browser.controlpanel import (
+    ControlPanelFormWrapper,
+    RegistryEditForm,
+)
+
+# from plone.app.widgets.dx import RelatedItemsWidget
+# from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.i18n.normalizer import idnormalizer
 from plone.indexer.interfaces import IIndexer
 from plone.memoize import view
-from plone.registry.interfaces import IRegistry
-from plone.tiles.interfaces import ITileDataManager
+
+# from plone.registry.interfaces import IRegistry
+# from plone.tiles.interfaces import ITileDataManager
 from plone.z3cform import layout
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
-from six.moves.html_parser import HTMLParser
-from z3c.form import button
-from z3c.form import form as z3cform
-from z3c.form.interfaces import IFieldWidget
-from z3c.form.util import getSpecification
-from z3c.form.widget import FieldWidget
+
+# from html import unescape
+from z3c.form import button, form
+
+# from z3c.form.interfaces import IFieldWidget
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
-from zope.component import adapter, getMultiAdapter, getUtility
-from zope.interface import (Interface, Invalid, implementer, implements,
-                            invariant)
+from zope.component import getMultiAdapter, getUtility
+from zope.interface import Interface, Invalid, implementer, invariant
 from zope.site.hooks import getSite
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.blocks import BlocksTraverser, BlockType
-from eea.climateadapt.browser.fixblobs import (check_at_blobs,
-                                               check_dexterity_blobs)
+from eea.climateadapt.browser.fixblobs import check_at_blobs, check_dexterity_blobs
+
+# from eea.climateadapt.browser.fixblobs import (check_at_blobs,
+#                                                check_dexterity_blobs)
 from eea.climateadapt.browser.migrate import DB_ITEM_TYPES
 from eea.climateadapt.browser.site import _extract_menu
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
@@ -54,23 +61,9 @@ from eea.climateadapt.scripts import get_plone_site
 
 # from collections import defaultdict
 
-html_unescape = HTMLParser().unescape
+# html_unescape = unescape
 
 logger = logging.getLogger("eea.climateadapt")
-
-
-def force_unlock(context):
-    annot = getattr(context, "__annotations__", {})
-
-    if hasattr(context, "_dav_writelocks"):
-        del context._dav_writelocks
-        context._p_changed = True
-
-    if "plone.locking" in annot:
-        del annot["plone.locking"]
-
-        context._p_changed = True
-        annot._p_changed = True
 
 
 class CheckCopyPasteLocation(BrowserView):
@@ -116,8 +109,8 @@ class InvalidMenuConfiguration(Invalid):
     __doc__ = "The menu format is invalid"
 
 
-class IMainNavigationMenu(form.Schema):
-    menu = schema.Text(title=unicode("Menu structure text"), required=True)
+class IMainNavigationMenu(Interface):
+    menu = schema.Text(title="Menu structure text", required=True)
 
     @invariant
     def check_menu(data):
@@ -127,7 +120,7 @@ class IMainNavigationMenu(form.Schema):
             raise InvalidMenuConfiguration(e)
 
 
-class MainNavigationMenuEdit(form.SchemaForm):
+class MainNavigationMenuEdit(form.Form):
     """A page to edit the main site navigation menu"""
 
     schema = IMainNavigationMenu
@@ -150,7 +143,7 @@ class MainNavigationMenuEdit(form.SchemaForm):
 
         return content
 
-    @button.buttonAndHandler(unicode("Save"))
+    @button.buttonAndHandler("Save")
     def handleApply(self, action):
         data, errors = self.extractData()
 
@@ -164,7 +157,7 @@ class MainNavigationMenuEdit(form.SchemaForm):
         self.status = "Saved, please check."
 
 
-class HealthNavigationMenuEdit(form.SchemaForm):
+class HealthNavigationMenuEdit(form.Form):
     """A page to edit the main site navigation menu"""
 
     schema = IMainNavigationMenu
@@ -187,7 +180,7 @@ class HealthNavigationMenuEdit(form.SchemaForm):
 
         return content
 
-    @button.buttonAndHandler(unicode("Save"))
+    @button.buttonAndHandler("Save")
     def handleApply(self, action):
         data, errors = self.extractData()
 
@@ -276,82 +269,81 @@ class ListTilesWithTitleView(BrowserView):
                 self.walk(x)
 
 
-class ForcePingObjectCRView(BrowserView):
-    """Force pingcr on objects between a set interval"""
+# class ForcePingObjectCRView(BrowserView):
+#     """ Force pingcr on objects between a set interval """
 
-    def __call__(self):
-        # cat = get_tool('portal_catalog')
-        obj = self.context
+#     def __call__(self):
+#         cat = get_tool('portal_catalog')
+#         obj = self.context
 
-        # query = {
-        #     'review_state': ['published', 'archived']       ## , 'private'
-        # }
-        # results = cat.searchResults(query)
-        # logger.info("Found %s objects " % len(results))
+#         # query = {
+#         #     'review_state': ['published', 'archived']       ## , 'private'
+#         # }
+#         # results = cat.searchResults(query)
+#         # logger.info("Found %s objects " % len(results))
 
-        # count = 0
-        options = {}
-        options["create"] = False
-        options["service_to_ping"] = "http://semantic.eea.europa.eu/ping"
-        # context = res.getObject()
-        url = obj.absolute_url()
+#         count = 0
+#         options = {}
+#         options['create'] = False
+#         options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
+#         # context = res.getObject()
+#         url = obj.absolute_url()
 
-        if "https" in url:
-            url = url.replace("https", "http")
+#         if 'https' in url:
+#             url = url.replace('https', 'http')
 
-        options["obj_url"] = url + "/@@rdf"
-        logger.info("Pinging: %s", url)
-        ping_CRSDS(obj, options)
-        logger.info("Finished pinging: %s", url)
+#         options['obj_url'] = url + '/@@rdf'
+#         logger.info("Pinging: %s", url)
+#         ping_CRSDS(obj, options)
+#         logger.info("Finished pinging: %s", url)
 
-        return "Finished"
+#         return 'Finished'
 
 
-class ForcePingCRView(BrowserView):
-    """Force pingcr on objects between a set interval"""
+# class ForcePingCRView(BrowserView):
+#     """ Force pingcr on objects between a set interval """
 
-    def __call__(self):
-        cat = get_tool("portal_catalog")
+#     def __call__(self):
+#         cat = get_tool('portal_catalog')
 
-        query = {
-            "review_state": ["published", "archived"]  # , 'private'
-        }
-        results = cat.searchResults(query)
+#         query = {
+#             'review_state': ['published', 'archived']  # , 'private'
+#         }
+#         results = cat.searchResults(query)
 
-        logger.info("Found %s objects " % len(results))
+#         logger.info("Found %s objects " % len(results))
 
-        count = 0
-        options = {}
-        options["create"] = False
-        options["service_to_ping"] = "http://semantic.eea.europa.eu/ping"
-        for res in results:
-            context = res.getObject()
-            url = res.getURL()
+#         count = 0
+#         options = {}
+#         options['create'] = False
+#         options['service_to_ping'] = 'http://semantic.eea.europa.eu/ping'
+#         for res in results:
+#             context = res.getObject()
+#             url = res.getURL()
 
-            if "https" in url:
-                url = url.replace("https", "http")
+#             if 'https' in url:
+#                 url = url.replace('https', 'http')
 
-            options["obj_url"] = url + "/@@rdf"
-            logger.info("Pinging: %s", url)
-            ping_CRSDS(context, options)
-            logger.info("Finished pinging: %s", url)
+#             options['obj_url'] = url + '/@@rdf'
+#             logger.info("Pinging: %s", url)
+#             ping_CRSDS(context, options)
+#             logger.info("Finished pinging: %s", url)
 
-            count += 1
-            if count % 100 == 0:
-                logger.info("Went through %s brains" % count)
+#             count += 1
+#             if count % 100 == 0:
+#                 logger.info('Went through %s brains' % count)
 
-        logger.info("Finished pinging all brains")
-        return "Finished"
+#         logger.info('Finished pinging all brains')
+#         return 'Finished'
 
 
 class SpecialTagsInterface(Interface):
     """Marker interface for /tags-admin"""
 
 
+@implementer(SpecialTagsInterface)
 class SpecialTagsView(BrowserView):
     """Custom view for administration of special tags"""
-
-    implements(SpecialTagsInterface)
 
     def __call__(self):
         portal_state = getMultiAdapter(
@@ -388,8 +380,7 @@ class SpecialTagsView(BrowserView):
 
             if obj.special_tags:
                 if isinstance(obj.special_tags, list):
-                    obj.special_tags = [
-                        key for key in obj.special_tags if key != tag]
+                    obj.special_tags = [key for key in obj.special_tags if key != tag]
                 elif isinstance(obj.special_tags, tuple):
                     obj.special_tags = tuple(
                         key for key in obj.special_tags if key != tag
@@ -412,8 +403,7 @@ class SpecialTagsView(BrowserView):
 
             if obj.special_tags:
                 if isinstance(obj.special_tags, list):
-                    obj.special_tags = [
-                        key for key in obj.special_tags if key != tag]
+                    obj.special_tags = [key for key in obj.special_tags if key != tag]
                     obj.special_tags.append(newtag)
                 elif isinstance(obj.special_tags, tuple):
                     obj.special_tags = tuple(
@@ -438,27 +428,27 @@ class SpecialTagsObjects(BrowserView):
         return json.dumps(tag_obj)
 
 
-class IAddKeywordForm(form.Schema):
-    keyword = schema.TextLine(title=unicode("Keyword:"), required=True)
+class IAddKeywordForm(Interface):
+    keyword = schema.TextLine(title="Keyword:", required=True)
     ccaitems = RelationList(
-        title=unicode("Select where to implement the new keyword"),
+        title="Select where to implement the new keyword",
         default=[],
-        description=unicode("Items related to the keyword:"),
+        description=("Items related to the keyword:"),
         value_type=RelationChoice(
-            title=unicode("Related"), vocabulary="eea.climateadapt.cca_items"
+            title=("Related"), vocabulary="eea.climateadapt.cca_items"
         ),
         required=False,
     )
 
 
-class AddKeywordForm(form.SchemaForm):
+class AddKeywordForm(form.Form):
     schema = IAddKeywordForm
     ignoreContext = True
 
     label = "Add keyword"
     description = """ Enter the new keyword you want to add """
 
-    @button.buttonAndHandler(unicode("Submit"))
+    @button.buttonAndHandler("Submit")
     def handleApply(self, action):
         data, errors = self.extractData()
 
@@ -482,18 +472,18 @@ class AddKeywordForm(form.SchemaForm):
             return self.status
 
 
-@adapter(getSpecification(IAddKeywordForm["ccaitems"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def CcaItemsFieldWidget(field, request):
-    """The vocabulary view is overridden so that
-    the widget will show all cca items
-    Check browser/overrides.py for more details
-    """
-    widget = FieldWidget(field, RelatedItemsWidget(request))
-    widget.vocabulary = "eea.climateadapt.cca_items"
-    widget.vocabulary_override = True
+# @adapter(getSpecification(IAddKeywordForm['ccaitems']), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def CcaItemsFieldWidget(field, request):
+#     """ The vocabulary view is overridden so that
+#         the widget will show all cca items
+#         Check browser/overrides.py for more details
+#     """
+#     widget = FieldWidget(field, RelatedItemsWidget(request))
+#     widget.vocabulary = 'eea.climateadapt.cca_items'
+#     widget.vocabulary_override = True
 
-    return widget
+#     return widget
 
 
 class KeywordsAdminView(BrowserView):
@@ -555,11 +545,9 @@ class KeywordsAdminView(BrowserView):
 
             if obj.keywords:
                 if isinstance(obj.keywords, list):
-                    obj.keywords = [
-                        key for key in obj.keywords if key != keyword]
+                    obj.keywords = [key for key in obj.keywords if key != keyword]
                 elif isinstance(obj.keywords, tuple):
-                    obj.keywords = tuple(
-                        key for key in obj.keywords if key != keyword)
+                    obj.keywords = tuple(key for key in obj.keywords if key != keyword)
                 obj.reindexObject()
                 obj._p_changed = True
 
@@ -583,12 +571,10 @@ class KeywordsAdminView(BrowserView):
 
             if obj.keywords:
                 if isinstance(obj.keywords, list):
-                    obj.keywords = [
-                        key for key in obj.keywords if key != keyword]
+                    obj.keywords = [key for key in obj.keywords if key != keyword]
                     obj.keywords.append(newkeyword)
                 elif isinstance(obj.keywords, tuple):
-                    obj.keywords = tuple(
-                        key for key in obj.keywords if key != keyword)
+                    obj.keywords = tuple(key for key in obj.keywords if key != keyword)
                     obj.keywords += (newkeyword,)
                 obj._p_changed = True
                 obj.reindexObject()
@@ -608,8 +594,7 @@ class KeywordObjects(BrowserView):
 
     def __call__(self):
         key = self.request.form["keyword"].decode("utf-8")
-        brains = self.context.portal_catalog.searchResults(
-            keywords=key, path="/cca/en")
+        brains = self.context.portal_catalog.searchResults(keywords=key, path="/cca/en")
 
         key_obj = [b.getURL() + "/edit" for b in brains]
 
@@ -621,7 +606,7 @@ class GoogleAnalyticsAPIEditForm(RegistryEditForm):
     Define form logic
     """
 
-    z3cform.extends(RegistryEditForm)
+    form.extends(RegistryEditForm)
     schema = IGoogleAnalyticsAPI
 
 
@@ -632,23 +617,22 @@ ConfigureGoogleAnalyticsAPI = layout.wrap_form(
 ConfigureGoogleAnalyticsAPI.label = "Setup Google Analytics API Integration"
 
 
-def initialize_analyticsreporting(credentials_data):
-    """Initializes an Analytics Reporting API V4 service object.
+# def initialize_analyticsreporting(credentials_data):
+#     """Initializes an Analytics Reporting API V4 service object.
 
-    Returns:
-    An authorized Analytics Reporting API V4 service object.
-    """
-    SCOPES = ["https://www.googleapis.com/auth/analytics.readonly"]
-    # json_data = json.loads(open(KEY_FILE_LOCATION).read())
-    credentials = ServiceAccountCredentials.from_json_keyfile_dict(
-        credentials_data, SCOPES
-    )
+#     Returns:
+#     An authorized Analytics Reporting API V4 service object.
+#     """
+#     SCOPES = ['https://www.googleapis.com/auth/analytics.readonly']
+#     # json_data = json.loads(open(KEY_FILE_LOCATION).read())
+#     credentials = ServiceAccountCredentials.from_json_keyfile_dict(
+#         credentials_data, SCOPES)
 
-    # Build the service object.
+#     # Build the service object.
 
-    analytics = build("analyticsreporting", "v4", credentials=credentials)
+#     analytics = build('analyticsreporting', 'v4', credentials=credentials)
 
-    return analytics
+#     return analytics
 
 
 def custom_report(analytics, view_id):
@@ -676,8 +660,7 @@ def custom_report(analytics, view_id):
                             }
                         ],
                         "orderBys": [
-                            {"fieldName": "ga:totalEvents",
-                                "sortOrder": "DESCENDING"}
+                            {"fieldName": "ga:totalEvents", "sortOrder": "DESCENDING"}
                         ],
                         "dimensionFilterClauses": [
                             {
@@ -723,41 +706,43 @@ def parse_response(response):
     return result
 
 
-def _refresh_analytics_data(site):
-    registry = getUtility(IRegistry, context=site)
-    s = registry.forInterface(IGoogleAnalyticsAPI)
+# def _refresh_analytics_data(site):
 
-    credentials_data = json.loads(s.credentials_json)
-    view_id = s.analytics_app_id
+#     registry = getUtility(IRegistry, context=site)
+#     s = registry.forInterface(IGoogleAnalyticsAPI)
 
-    analytics = initialize_analyticsreporting(credentials_data)
-    response = custom_report(analytics, view_id)
+#     credentials_data = json.loads(s.credentials_json)
+#     view_id = s.analytics_app_id
 
-    res = parse_response(response)
+#     analytics = initialize_analyticsreporting(credentials_data)
+#     response = custom_report(analytics, view_id)
 
-    site.__annotations__["google-analytics-cache-data"] = res
-    site.__annotations__._p_changed = True
+#     res = parse_response(response)
 
-    import transaction
+#     site.__annotations__['google-analytics-cache-data'] = res
+#     site.__annotations__._p_changed = True
 
-    transaction.commit()
+#     import transaction
+#     transaction.commit()
 
-    return res
-
-
-def refresh_analytics_data(site=None):
-    if site is None:
-        site = get_plone_site()
-    _refresh_analytics_data(site)
+#     return res
 
 
-class RefreshGoogleAnalyticsReport(BrowserView):
-    """A view to manually refresh google analytics report data"""
+# def refresh_analytics_data(site=None):
+#     if site is None:
+#         site = get_plone_site()
+#     _refresh_analytics_data(site)
 
-    def __call__(self):
-        site = portal.get()
 
-        return refresh_analytics_data(site)
+# class RefreshGoogleAnalyticsReport(BrowserView):
+#     """ A view to manually refresh google analytics report data
+#     """
+
+#     def __call__(self):
+
+#         site = portal.get()
+
+#         return refresh_analytics_data(site)
 
 
 class ViewGoogleAnalyticsReport(BrowserView):
@@ -767,14 +752,6 @@ class ViewGoogleAnalyticsReport(BrowserView):
         site = portal.get()
 
         return str(site.__annotations__.get("google-analytics-cache-data", {}))
-
-
-class GoPDB(BrowserView):
-    def __call__(self):
-        import pdb
-
-        pdb.set_trace()
-        x = self.context.Creator()
 
 
 class GetBrokenCreationDates(BrowserView):
@@ -869,8 +846,7 @@ class GetBrokenCreationDates(BrowserView):
                 continue
 
             res.append(
-                (obj, creator, wf_creator, new_creator,
-                 creation_date, wf_creation_date)
+                (obj, creator, wf_creator, new_creator, creation_date, wf_creation_date)
             )
 
         return res
@@ -890,7 +866,7 @@ class GetBrokenCreationDates(BrowserView):
             if not hasattr(obj, "creation_date"):
                 continue
 
-            if not isinstance(obj.creation_date, basestring):
+            if not isinstance(obj.creation_date, str):
                 continue
 
             res.append(obj)
@@ -927,28 +903,30 @@ class GetBrokenCreationDates(BrowserView):
 
         return "Fixed {} results!".format(len(results))
 
-    def fix_broken_dates(self):
-        results = self.results()
+    # def fix_broken_dates(self):
+    #     results = self.results()
 
-        for row in results:
-            obj = row[0]
+    #     for row in results:
+    #         obj = row[0]
 
-            if obj.portal_type in ("File", "Image"):
-                continue
+    #         if obj.portal_type in ('File', 'Image'):
+    #             continue
 
-            if check_at_blobs(obj) or check_dexterity_blobs(obj):
-                continue
+    #         if check_at_blobs(obj) or check_dexterity_blobs(obj):
+    #             continue
 
-            new_creator = row[3]
-            new_creation_date = row[5]
-            creators = [x for x in obj.creators if x != new_creator]
-            creators = tuple([new_creator] + creators)
-            obj.creators = creators
-            obj.creation_date = new_creation_date
-            obj._p_changed = True
-            obj.reindexObject(idxs=["creators", "creation_date"])
+    #         new_creator = row[3]
+    #         new_creation_date = row[5]
+    #         creators = [
+    #             x for x in obj.creators if x != new_creator
+    #         ]
+    #         creators = tuple([new_creator] + creators)
+    #         obj.creators = creators
+    #         obj.creation_date = new_creation_date
+    #         obj._p_changed = True
+    #         obj.reindexObject(idxs=["creators", "creation_date"])
 
-        return "Fixed {} objects!".format(len(results))
+    #     return "Fixed {} objects!".format(len(results))
 
     def __call__(self):
         if "fix-broken-dates" in self.request.form:
@@ -1020,51 +998,49 @@ class GetMissingLanguages(BrowserView):
         return self.index()
 
 
-class MigrateTiles(BrowserView):
-    def process(self, cover):
-        tileids = cover.list_tiles(
-            types=["eea.climateadapt.relevant_acecontent"])
+# class MigrateTiles(BrowserView):
 
-        for tid in tileids:
-            tile = cover.get_tile(tid)
+#     def process(self, cover):
+#         tileids = cover.list_tiles(
+#             types=['eea.climateadapt.relevant_acecontent']
+#         )
 
-            if not tile.assigned():
-                brains = tile.items()
-                uids = [b.UID for b in brains]
+#         for tid in tileids:
+#             tile = cover.get_tile(tid)
 
-                if uids:
-                    tile.populate_with_uuids(uids)
+#             if not tile.assigned():
+#                 brains = list(tile.items())
+#                 uids = [b.UID for b in brains]
 
-                    data_mgr = ITileDataManager(tile)
-                    old_data = data_mgr.get()
-                    old_data["sortBy"] = "NAME"
-                    data_mgr.set(old_data)
+#                 if uids:
+#                     tile.populate_with_uuids(uids)
 
-                    print(
-                        "Fixed cover %s, tile %s with uids %r"
-                        % (
-                            cover.absolute_url(),
-                            tid,
-                            uids,
-                        )
-                    )
+#                     data_mgr = ITileDataManager(tile)
+#                     old_data = data_mgr.get()
+#                     old_data['sortBy'] = 'NAME'
+#                     data_mgr.set(old_data)
 
-                    logger.info(
-                        "Fixed cover %s, tile %s with uids %r",
-                        cover.absolute_url(),
-                        tid,
-                        uids,
-                    )
+#                     print(("Fixed cover %s, tile %s with uids %r" % (
+#                         cover.absolute_url(),
+#                         tid,
+#                         uids,
+#                     )))
 
-    def __call__(self):
-        catalog = get_tool("portal_catalog")
-        brains = catalog(portal_type="collective.cover.content")
+#                     logger.info("Fixed cover %s, tile %s with uids %r",
+#                                 cover.absolute_url(),
+#                                 tid,
+#                                 uids,
+#                                 )
 
-        for brain in brains:
-            obj = brain.getObject()
-            self.process(obj)
+#     def __call__(self):
+#         catalog = get_tool('portal_catalog')
+#         brains = catalog(portal_type='collective.cover.content')
 
-        return "done"
+#         for brain in brains:
+#             obj = brain.getObject()
+#             self.process(obj)
+
+#         return 'done'
 
 
 class Item:
@@ -1094,8 +1070,7 @@ class AdapteCCACurrentCaseStudyFixImportIDs(BrowserView):
     """AdapteCCA current case study fix import ids"""
 
     def __call__(self):
-        fpath = resource_filename(
-            "eea.climateadapt.browser", "data/cases_en_cdata.xml")
+        fpath = resource_filename("eea.climateadapt.browser", "data/cases_en_cdata.xml")
 
         s = open(fpath).read()
         e = fromstring(s)

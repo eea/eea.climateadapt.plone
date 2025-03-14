@@ -1,0 +1,44 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
+
+  <subscriber
+    for="plone.dexterity.interfaces.IDexterityContent
+     zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    handler=".events.increment_version"
+  />
+
+  <!-- <subscriber -->
+  <!--   for="plone.dexterity.interfaces.IDexterityContent -->
+  <!--    zope.lifecycleevent.interfaces.IObjectAddedEvent" -->
+  <!--   handler=".events.fix_creators" -->
+  <!-- /> -->
+  <!---->
+  <!-- <subscriber -->
+  <!--   for="plone.app.iterate.interfaces.IWorkingCopy -->
+  <!--          OFS.interfaces.IObjectWillBeRemovedEvent" -->
+  <!--   handler=".events.handle_iterate_wc_deletion" -->
+  <!-- /> -->
+  <!---->
+  <!-- <subscriber -->
+  <!--   for="plone.dexterity.interfaces.IDexterityContent -->
+  <!--          zope.lifecycleevent.interfaces.IObjectRemovedEvent" -->
+  <!--   handler=".events.remove_broken_relations" -->
+  <!-- /> -->
+  <!-- <subscriber -->
+  <!--   for="eea.climateadapt.acemeasure.IAceMeasure -->
+  <!--          zope.lifecycleevent.interfaces.IObjectAddedEvent" -->
+  <!--   handler=".acemeasure.handle_measure_added" -->
+  <!-- />  -->
+
+</configure>

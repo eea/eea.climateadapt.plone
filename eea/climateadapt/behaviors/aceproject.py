@@ -1,49 +1,45 @@
-from zope.schema import (
-    URI,
-    Bool,
-    Choice,
-    Date,
-    Datetime,
-    Int,
-    List,
-    Text,
-    TextLine,
-    Tuple,
-)
-from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-from eea.climateadapt import CcaAdminMessageFactory as _
-from zope.schema import (
-    URI,
-    Bool,
-    Choice,
-    Date,
-    Datetime,
-    List,
-    Text,
-    TextLine,
-    Tuple,
-)
 import json
 
-from plone.schema import JSONField
-from collective import dexteritytextindexer
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
-from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from z3c.form.browser.textlines import TextLinesWidget
-from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
-from z3c.form.util import getSpecification
-from z3c.form.widget import FieldWidget
+from z3c.form.interfaces import IAddForm, IEditForm  # , IFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-from zope.component import adapter
-from zope.interface import alsoProvides, implementer
+from zope.interface import Interface, alsoProvides  # , implementer
+from zope.schema import (
+    Bool,
+    Choice,
+    Date,
+    Datetime,
+    List,
+    Text,
+    TextLine,
+    Tuple,
+    URI,
+)
+from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
+from eea.climateadapt import CcaAdminMessageFactory as _
+
+
+# from eea.climateadapt import CcaAdminMessageFactory as _
+# from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from plone.app.widgets.interfaces import IWidgetsLayer
+# from plone.directives import form
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+# from zope.component import adapter
+# from collective import dexteritytextindexer
+# from z3c.form.util import getSpecification
+# from z3c.form.widget import FieldWidget
+# from plone.supermodel import model
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
+
+
 # from z3c.relationfield.schema import RelationChoice
 
 GEOCHARS = {
@@ -58,32 +54,32 @@ GEOCHARS = {
 }
 
 
-class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
+class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     """
     Defines content-type schema for Ace Project
     """
 
-    dexteritytextindexer.searchable("acronym")
-    dexteritytextindexer.searchable("title")
-    dexteritytextindexer.searchable("lead")
-    dexteritytextindexer.searchable("partners")
-    dexteritytextindexer.searchable("keywords")
-    dexteritytextindexer.searchable("sectors")
-    dexteritytextindexer.searchable("climate_impacts")
-    dexteritytextindexer.searchable("elements")
-    dexteritytextindexer.searchable("funding")
-    dexteritytextindexer.searchable("duration")
+    # dexteritytextindexer.searchable("acronym")
+    # dexteritytextindexer.searchable("title")
+    # dexteritytextindexer.searchable("lead")
+    # dexteritytextindexer.searchable("partners")
+    # dexteritytextindexer.searchable("keywords")
+    # dexteritytextindexer.searchable("sectors")
+    # dexteritytextindexer.searchable("climate_impacts")
+    # dexteritytextindexer.searchable("elements")
+    # dexteritytextindexer.searchable("funding")
+    # dexteritytextindexer.searchable("duration")
 
-    dexteritytextindexer.searchable("websites")
-    dexteritytextindexer.searchable("source")
+    # dexteritytextindexer.searchable("websites")
+    # dexteritytextindexer.searchable("source")
 
-    dexteritytextindexer.searchable("geochars")
+    # dexteritytextindexer.searchable("geochars")
 
     # dexteritytextindexer.searchable('specialtagging')
-    dexteritytextindexer.searchable("special_tags")
-    dexteritytextindexer.searchable("important")
-    dexteritytextindexer.searchable("spatial_layer")
-    dexteritytextindexer.searchable("spatial_values")
+    # dexteritytextindexer.searchable("special_tags")
+    # dexteritytextindexer.searchable("important")
+    # dexteritytextindexer.searchable("spatial_layer")
+    # dexteritytextindexer.searchable("spatial_values")
 
     # form.fieldset(
     #     "default",
@@ -161,7 +157,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     )
 
     contributor_list = RelationList(
-        title=_("Contributor(s)"),
+        title="Contributor(s)",
         default=[],
         description=_(
             "Select from the Climate ADAPT Organisation items the "
@@ -196,7 +192,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         required=True,
     )
 
-    dexteritytextindexer.searchable("long_description")
+    # dexteritytextindexer.searchable("long_description")
     long_description = RichText(
         title=_("Abstracts"),
         description=_(
@@ -212,17 +208,17 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         required=True,
     )
 
-    dexteritytextindexer.searchable("partners")
+    # dexteritytextindexer.searchable("partners")
     partners = RichText(
         title=_("Partners"),
         description=_(
-            "Provide information about project partners " "(organisation names)."
+            "Provide information about project partners (organisation names)."
         ),
         required=True,
     )
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
-    dexteritytextindexer.searchable("keywords")
+    # dexteritytextindexer.searchable("keywords")
     keywords = Tuple(
         title=_("Keywords"),
         description=_(
@@ -232,7 +228,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         required=False,
         default=(),
         value_type=TextLine(
-            title=_("Single topic"),
+            title="Single topic",
         ),
         missing_value=(None),
     )
@@ -245,15 +241,13 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
 
     publication_date = Date(
         title=_("Date of item's creation"),
-        description=_(
-            "The date refers to the moment in which the item "
-            "has been prepared by contributing expeerts to be "
-            "submitted for the publication in Climate "
-            "ADAPTPublication/last update date."
-            " Please use the Calendar icon to add day/month/year. If you want to "
-            'add only the year, please select "day: 1", "month: January" '
-            "and then the year"
-        ),
+        description="The date refers to the moment in which the item "
+        "has been prepared by contributing expeerts to be "
+        "submitted for the publication in Climate "
+        "ADAPTPublication/last update date."
+        " Please use the Calendar icon to add day/month/year. If you want to "
+        'add only the year, please select "day: 1", "month: January" '
+        "and then the year",
         required=True,
     )
 
@@ -265,11 +259,11 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         title=_("Include in the Mission Portal"), required=False, default=False
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_("Sectors"),
         description=_(
-            "Select one or more relevant sector policies that " "this item relates to."
+            "Select one or more relevant sector policies that this item relates to."
         ),
         required=True,
         missing_value=[],
@@ -279,12 +273,12 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         ),
     )
 
-    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
-            "Select one or more climate change impact topics that "
-            "this item relates to."
+            "Select one or more climate change impact topics that this item relates to."
         ),
         missing_value=[],
         default=None,
@@ -294,10 +288,10 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         ),
     )
 
-    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_("Adaptation approaches"),
-        description=_("Select one or more approaches."),
+        title=_("Adaptation elements"),
+        description=_("Select one or more elements."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
@@ -316,11 +310,11 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         required=False,
     )
 
-    featured = Bool(
-        title=_("Featured"),
-        required=False,
-        default=False,
-    )
+    # featured = Bool(
+    #     title=_("Featured"),
+    #     required=False,
+    #     default=False,
+    # )
 
     # -----------[ "reference_information" fields ]------------------
     directives.widget("websites", TextLinesWidget)
@@ -331,26 +325,27 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
             "described. Please place each website on a new line"
         ),
         required=False,
-        value_type=URI(),
+        value_type=TextLine(title="Website"),  # URI(), #plone6 compatibility
         # missing_value=(),
     )
 
-    dexteritytextindexer.searchable("source")
+    # dexteritytextindexer.searchable("source")
     source = TextLine(
         title=_("Reference"),
         description=_(
-            "Provide source from which project was retrieved (e.g. " "specific DB) "
+            "Provide source from which project was retrieved (e.g. specific DB) "
         ),
         required=False,
     )
 
     # -----------[ "geographic_information" fields ]------------------
-    form.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    # directives.widget(
+    #     geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
-        default=unicode(json.dumps(GEOCHARS)),
-        description=_("Select the characterisation for this item"),
+        default=str(json.dumps(GEOCHARS)),
+        description="Select the characterisation for this item",
     )
 
     comments = Text(
@@ -438,7 +433,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
     spatial_layer = TextLine(
         title=_("Spatial Layer"),
         required=False,
-        default=unicode(""),
+        default="",
     )
 
     spatial_values = List(
@@ -450,7 +445,7 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
 
     partners_source_link = URI(
         title=_("Partners Source Link"),
-        description=_("Provide URL from project partners"),
+        description=("Provide URL from project partners"),
         required=False,
     )
 
@@ -470,37 +465,21 @@ class IAceProject(form.Schema, IImageScaleTraversable, IBlocks):
         required=False,
     )
 
-    blocks = JSONField(
-        title=_("Blocks"),
-        description=_("The JSON representation of the object blocks."),
-        schema=BLOCKS_SCHEMA,
-        default=aceproject_layout_blocks,
-        required=False,
-    )
 
-    blocks_layout = JSONField(
-        title=_("Blocks Layout"),
-        description=_("The JSON representation of the object blocks layout."),
-        schema=LAYOUT_SCHEMA,
-        default={"items": aceproject_layout_items},
-        required=False,
-    )
+# @adapter(getSpecification(IAceProject["keywords"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def KeywordsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.keywords"
+#     return widget
 
 
-@adapter(getSpecification(IAceProject["keywords"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def KeywordsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.keywords"
-    return widget
-
-
-@adapter(getSpecification(IAceProject["special_tags"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def SpecialTagsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.special_tags"
-    return widget
+# @adapter(getSpecification(IAceProject["special_tags"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def SpecialTagsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.special_tags"
+#     return widget
 
 
 alsoProvides(IAceProject["acronym"], ILanguageIndependentField)
@@ -510,7 +489,7 @@ alsoProvides(IAceProject["contributor_list"], ILanguageIndependentField)
 alsoProvides(IAceProject["creation_date"], ILanguageIndependentField)
 alsoProvides(IAceProject["duration"], ILanguageIndependentField)
 alsoProvides(IAceProject["elements"], ILanguageIndependentField)
-alsoProvides(IAceProject["featured"], ILanguageIndependentField)
+# alsoProvides(IAceProject["featured"], ILanguageIndependentField)
 alsoProvides(IAceProject["funding"], ILanguageIndependentField)
 alsoProvides(IAceProject["funding_programme"], ILanguageIndependentField)
 alsoProvides(IAceProject["geochars"], ILanguageIndependentField)

@@ -12,50 +12,50 @@
       file="permissions.zcml"
       />
 
-  <adapter
+  <!-- <adapter
       factory=".pam.Translations"
       name="translations"
-      />
+      /> -->
 
-  <plone:service
+  <!-- <plone:service
       method="GET"
       factory=".pam.TranslationInfo"
       for="Products.CMFCore.interfaces.IContentish"
       permission="zope2.View"
       layer="plone.app.multilingual.interfaces.IPloneAppMultilingualInstalled"
       name="@translations"
-      />
-  <cache:ruleset
+      /> -->
+  <!-- <cache:ruleset
       for=".pam.TranslationInfo"
       ruleset="plone.content.dynamic"
       zcml:condition="have plone-app-caching-3"
-      />
+      /> -->
 
-  <plone:service
+  <!-- <plone:service
       method="POST"
       factory=".pam.LinkTranslations"
       for="Products.CMFCore.interfaces.IContentish"
       permission="plone.app.multilingual.ManageTranslations"
       layer="plone.app.multilingual.interfaces.IPloneAppMultilingualInstalled"
       name="@translations"
-      />
+      /> -->
 
-  <plone:service
+  <!-- <plone:service
       method="DELETE"
       factory=".pam.UnlinkTranslations"
       for="Products.CMFCore.interfaces.IContentish"
       permission="plone.app.multilingual.ManageTranslations"
       layer="plone.app.multilingual.interfaces.IPloneAppMultilingualInstalled"
       name="@translations"
-      />
+      /> -->
 
-  <plone:service
+  <!-- <plone:service
       method="GET"
       factory=".pam.TranslationLocator"
       for="Products.CMFCore.interfaces.IContentish"
       permission="plone.app.multilingual.ManageTranslations"
       layer="plone.app.multilingual.interfaces.IPloneAppMultilingualInstalled"
       name="@translation-locator"
-      />
+      /> -->
 
 </configure>

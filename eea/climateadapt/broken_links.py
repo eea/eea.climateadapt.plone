@@ -7,11 +7,9 @@ from io import BytesIO
 import requests
 import transaction
 import xlsxwriter
-from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
 from DateTime import DateTime
 from plone import api
-
-# from plone.api.content import get_state
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemataForType
 from plone.restapi.behaviors import IBlocks
@@ -23,6 +21,8 @@ from zope.annotation.interfaces import IAnnotations
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from eea.climateadapt.restapi.slate import iterate_children
 
+# from plone.api.content import get_state
+
 logger = logging.getLogger("eea.climateadapt")
 
 
@@ -32,7 +32,7 @@ def convert_to_string(item):
     if not item:
         return ""
 
-    if not isinstance(item, basestring):
+    if not isinstance(item, str):
         new_item = ""
         try:
             iterator = iter(item)
@@ -66,7 +66,7 @@ def discover_links(string_to_search):
     try:
         result = re.findall(REGEX, string_to_search) or []
 
-        if isinstance(result, basestring):
+        if isinstance(result, str):
             result = [result]
     except Exception as err:
         logger.error(err)
@@ -80,7 +80,7 @@ def check_link_status(link):
     status codes
     """
     if link:
-        if isinstance(link, unicode):
+        if isinstance(link, str):
             try:
                 link = link.encode()
             except UnicodeEncodeError:
@@ -160,8 +160,8 @@ def check_link_status(link):
 def extract_websites(obj):
     urls = []
     if hasattr(obj, "websites"):
-        if isinstance(obj.websites, basestring):
-            lines = obj.websites.split(unicode("\n"))
+        if isinstance(obj.websites, str):
+            lines = obj.websites.split(str("\n"))
             for line in lines:
                 if line.strip():
                     urls.append(line.strip())
@@ -181,7 +181,7 @@ def extract_richtext(obj, fieldname):
             bs = BeautifulSoup(text)
             links = bs.findAll("a", attrs={"href": re.compile("^https?://")})
             urls.extend([link.get("href") for link in links])
-    elif isinstance(field, basestring):
+    elif isinstance(field, str):
         urls = discover_links(field)
 
     return urls
@@ -373,6 +373,9 @@ def compute_broken_links(site):
     for info in links:
         if info["link"].startswith("/"):
             continue
+            # import pdb
+            #
+            # pdb.set_trace()
         res = check_link_status(info["link"])
         if res is not None:
             res["object_url"] = info["object_url"]
@@ -409,6 +412,7 @@ class BrokenLinksService(Service):
 
         broken_links = []
 
+        # __import__("pdb").set_trace()
         for date in latest_dates:
             for info in annot[date]:
                 if "en" not in info["object_url"]:
@@ -429,13 +433,15 @@ class BrokenLinksService(Service):
                     else:
                         item["state"] = "external"
 
-                    item["date"] = date.Date() if isinstance(date, DateTime) else date
+                    item["date"] = date.Date() if isinstance(
+                        date, DateTime) else date
                     if isinstance(date, str) and date == "pre_nov7_data":
                         continue
 
                     item["url"] = info["url"]
                     item["status"] = info["status"]
-                    item["object_url"] = info["object_url"].replace("/cca/", "/")
+                    item["object_url"] = info["object_url"].replace(
+                        "/cca/", "/")
 
                     broken_links.append(item)
 
@@ -489,7 +495,8 @@ class BrokenLinksService(Service):
             "Content-Type",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         )
-        fname = "-".join(["Broken-Links", str(datetime.now().replace(microsecond=0))])
+        fname = "-".join(["Broken-Links",
+                         str(datetime.now().replace(microsecond=0))])
         sh("Content-Disposition", "attachment; filename=%s.xlsx" % fname)
 
         return xlsio.read()

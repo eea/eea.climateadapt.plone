@@ -1,147 +1,147 @@
 {
-    "blocks_layout": {
-      "items": [
-        "08519226-1630-4b30-ac7f-d5145267f948",
-        "4275e01c-1224-4fc0-9168-5e04b249ec46",
-        "b22d3721-b968-42e7-8ac5-e2e62f9fac48"
-      ]
+  "blocks_layout": {
+    "items": [
+      "08519226-1630-4b30-ac7f-d5145267f948",
+      "4275e01c-1224-4fc0-9168-5e04b249ec46",
+      "b22d3721-b968-42e7-8ac5-e2e62f9fac48"
+    ]
+  },
+  "blocks": {
+    "08519226-1630-4b30-ac7f-d5145267f948": {
+      "@layout": "6cc87646-cbd3-40ea-8b18-8a737b4ec803",
+      "@type": "title",
+      "block": "5381ec8e-ee0e-4a15-9526-b0da57478d4b",
+      "copyrightIcon": "ri-copyright-line",
+      "styles": {}
     },
-    "blocks": {
-      "08519226-1630-4b30-ac7f-d5145267f948": {
-        "@layout": "6cc87646-cbd3-40ea-8b18-8a737b4ec803",
-        "@type": "title",
-        "block": "5381ec8e-ee0e-4a15-9526-b0da57478d4b",
-        "copyrightIcon": "ri-copyright-line",
-        "styles": {}
-      },
-      "4275e01c-1224-4fc0-9168-5e04b249ec46": {
-        "@type": "metadataSection",
-        "fields": [
-          {
-            "@id": "3559b456-8c3e-429e-b0fa-10152721d941",
-            "field": {
-              "id": "description",
-              "title": "Summary",
-              "widget": "description"
-            }
-          },
-          {
-            "@id": "82c8421b-85ae-42bc-9156-b252a630b88e",
-            "field": {
-              "id": "location",
-              "title": "Location",
-              "widget": "string"
-            }
-          },
-          {
-            "@id": "2d2a0345-6c53-418f-aa02-2e6f29f427e9",
-            "field": {
-              "id": "contact_name",
-              "title": "Contact Name",
-              "widget": "string"
-            }
-          },
-          {
-            "@id": "59939b69-94ea-43fa-9005-4725be046891",
-            "field": {
-              "id": "contact_email",
-              "title": "Contact E-mail",
-              "widget": "string"
-            }
-          },
-          {
-            "@id": "b401794c-bd62-4b52-900e-87f3e235fb3d",
-            "field": {
-              "id": "contact_phone",
-              "title": "Contact Phone",
-              "widget": "string"
-            }
-          },
-          {
-            "@id": "ed5d3e76-edf1-4c62-8687-6975fdde865c",
-            "field": {
-              "id": "event_url",
-              "title": "Event URL",
-              "widget": "string"
-            }
-          },
-          {
-            "@id": "d7e5d58f-94ea-46cf-8fb2-ecf00e534f3a",
-            "field": {
-              "id": "text",
-              "title": "Text",
-              "widget": "richtext"
-            }
-          },
-          {
-            "@id": "06ee37ec-75c9-46ca-ae83-9f4cdcacb9c4",
-            "field": {
-              "id": "timezone",
-              "title": "Timezone",
-              "widget": "choices"
-            }
-          },
-          {
-            "@id": "41f92246-f3a9-44d5-b90d-8e8ac1867618",
-            "field": {
-              "id": "start",
-              "title": "Event Starts",
-              "widget": "datetime"
-            }
-          },
-          {
-            "@id": "aafacd3a-a4fe-43a2-8eae-e446c48cc2b7",
-            "field": {
-              "id": "end",
-              "title": "Event Ends",
-              "widget": "datetime"
-            }
-          },
-          {
-            "@id": "f09210d0-59a3-447d-a965-65688f04d863",
-            "field": {
-              "id": "whole_day",
-              "title": "Whole Day",
-              "widget": "boolean"
-            }
-          },
-          {
-            "@id": "94ddcf40-eb26-4e18-98d7-b3a27a252189",
-            "field": {
-              "id": "open_end",
-              "title": "Open End",
-              "widget": "boolean"
-            }
-          },
-          {
-            "@id": "13e4cf1c-767c-4a92-824e-61bb4ade8643",
-            "field": {
-              "id": "image",
-              "title": "Lead Image",
-              "widget": "image"
-            }
-          },
-          {
-            "@id": "20ef2142-9671-4b57-bd49-20dd6d09b5a1",
-            "field": {
-              "id": "image_caption",
-              "title": "Lead Image Caption",
-              "widget": "string"
-            }
-          },
-          {
-            "@id": "51a35668-8fb7-4d73-9197-33b2d1febe44",
-            "field": {
-              "id": "subjects",
-              "title": "Tags",
-              "widget": "tags"
-            }
+    "4275e01c-1224-4fc0-9168-5e04b249ec46": {
+      "@type": "metadataSection",
+      "fields": [
+        {
+          "@id": "3559b456-8c3e-429e-b0fa-10152721d941",
+          "field": {
+            "id": "description",
+            "title": "Summary",
+            "widget": "description"
           }
-        ],
-        "variation": "default"
-      },
-      "b22d3721-b968-42e7-8ac5-e2e62f9fac48": {
-        "@type": "slate"
-      }
+        },
+        {
+          "@id": "82c8421b-85ae-42bc-9156-b252a630b88e",
+          "field": {
+            "id": "location",
+            "title": "Location",
+            "widget": "string"
+          }
+        },
+        {
+          "@id": "2d2a0345-6c53-418f-aa02-2e6f29f427e9",
+          "field": {
+            "id": "contact_name",
+            "title": "Contact Name",
+            "widget": "string"
+          }
+        },
+        {
+          "@id": "59939b69-94ea-43fa-9005-4725be046891",
+          "field": {
+            "id": "contact_email",
+            "title": "Contact E-mail",
+            "widget": "string"
+          }
+        },
+        {
+          "@id": "b401794c-bd62-4b52-900e-87f3e235fb3d",
+          "field": {
+            "id": "contact_phone",
+            "title": "Contact Phone",
+            "widget": "string"
+          }
+        },
+        {
+          "@id": "ed5d3e76-edf1-4c62-8687-6975fdde865c",
+          "field": {
+            "id": "event_url",
+            "title": "Event URL",
+            "widget": "string"
+          }
+        },
+        {
+          "@id": "d7e5d58f-94ea-46cf-8fb2-ecf00e534f3a",
+          "field": {
+            "id": "text",
+            "title": "Text",
+            "widget": "richtext"
+          }
+        },
+        {
+          "@id": "06ee37ec-75c9-46ca-ae83-9f4cdcacb9c4",
+          "field": {
+            "id": "timezone",
+            "title": "Timezone",
+            "widget": "choices"
+          }
+        },
+        {
+          "@id": "41f92246-f3a9-44d5-b90d-8e8ac1867618",
+          "field": {
+            "id": "start",
+            "title": "Event Starts",
+            "widget": "datetime"
+          }
+        },
+        {
+          "@id": "aafacd3a-a4fe-43a2-8eae-e446c48cc2b7",
+          "field": {
+            "id": "end",
+            "title": "Event Ends",
+            "widget": "datetime"
+          }
+        },
+        {
+          "@id": "f09210d0-59a3-447d-a965-65688f04d863",
+          "field": {
+            "id": "whole_day",
+            "title": "Whole Day",
+            "widget": "boolean"
+          }
+        },
+        {
+          "@id": "94ddcf40-eb26-4e18-98d7-b3a27a252189",
+          "field": {
+            "id": "open_end",
+            "title": "Open End",
+            "widget": "boolean"
+          }
+        },
+        {
+          "@id": "13e4cf1c-767c-4a92-824e-61bb4ade8643",
+          "field": {
+            "id": "image",
+            "title": "Lead Image",
+            "widget": "image"
+          }
+        },
+        {
+          "@id": "20ef2142-9671-4b57-bd49-20dd6d09b5a1",
+          "field": {
+            "id": "image_caption",
+            "title": "Lead Image Caption",
+            "widget": "string"
+          }
+        },
+        {
+          "@id": "51a35668-8fb7-4d73-9197-33b2d1febe44",
+          "field": {
+            "id": "subjects",
+            "title": "Tags",
+            "widget": "tags"
+          }
+        }
+      ],
+      "variation": "default"
+    },
+    "b22d3721-b968-42e7-8ac5-e2e62f9fac48": {
+      "@type": "slate"
     }
   }
+}
