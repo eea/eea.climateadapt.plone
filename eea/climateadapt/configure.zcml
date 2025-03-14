@@ -57,6 +57,8 @@
   <include package=".translation" />
   <include
     package=".migration" />
+  <include
+    package=".mission_signatories" />
   <configure zcml:condition="not-installed Products.CMFPlone.image_scales">
     <include package=".image_scales" />
   </configure>
