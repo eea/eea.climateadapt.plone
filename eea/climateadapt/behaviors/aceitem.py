@@ -288,8 +288,8 @@ class IAceItem(IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
-    directives.widget(
-        geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    # directives.widget(
+    #     geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
