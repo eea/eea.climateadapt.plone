@@ -27,6 +27,7 @@
 
   <configure
     package="collective.exportimport">
+
     <browser:page
       name="export_content"
       for="zope.interface.Interface"
@@ -53,7 +54,6 @@
       permission="cmf.ManagePortal"
       layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
-
   </configure>
 
   <browser:resourceDirectory

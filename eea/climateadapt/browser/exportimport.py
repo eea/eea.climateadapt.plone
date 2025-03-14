@@ -1,23 +1,26 @@
 import logging
-from collective.exportimport.export_content import ExportContent
-from collective.exportimport.import_content import ImportContent
-from zope.interface import directlyProvidedBy
+from operator import itemgetter
 
-from plone.restapi.interfaces import IJsonCompatible
+import DateTime
+from collective.exportimport.export_content import ExportContent
+from collective.exportimport.export_other import ExportOrdering
+from collective.exportimport.import_content import ImportContent
+from OFS.interfaces import IOrderedContainer
+from plone import api
 from plone.dexterity.utils import resolveDottedName
-from zope.interface import alsoProvides
+from plone.restapi.interfaces import IJsonCompatible
+from plone.uuid.interfaces import IUUID
+from zope.annotation.interfaces import IAnnotations
+from zope.interface import alsoProvides, directlyProvidedBy
+
 from eea.climateadapt.interfaces import (
-    ITransnationalRegionMarker,
-    IMainTransnationalRegionMarker,
     IBalticRegionMarker,
     ICCACountry,
+    IMainTransnationalRegionMarker,
+    ITransnationalRegionMarker,
 )
-from zope.annotation.interfaces import IAnnotations
 
-ANNOTATIONS_TO_EXPORT = [
-    "c3s_json_data",
-    "broken_links_data"
-]
+ANNOTATIONS_TO_EXPORT = ["c3s_json_data", "broken_links_data"]
 ANNOTATIONS_KEY = "exportimport.annotations"
 
 logger = logging.getLogger(__name__)
@@ -32,6 +35,15 @@ MARKER_INTERFACES_KEY = "exportimport.marker_interfaces"
 
 
 class CustomExportContent(ExportContent):
+    def update_query(self, query):
+        _from = self.request.form.get("from")
+        if _from:
+            _from = int(_from)
+            date = DateTime.DateTime() - _from
+            query["modified"] = {"query": date, "range": "min"}
+
+        return query
+
     def global_dict_hook(self, item, obj):
         item = self.export_marker_interfaces(item, obj)
         item = self.export_annotations(item, obj)
@@ -83,12 +95,6 @@ class CustomImportContent(ImportContent):
                 logger.info("Unable to import marker interface %s", iface)
         return obj, item
 
-
-from operator import itemgetter
-from collective.exportimport.export_other import ExportOrdering
-from OFS.interfaces import IOrderedContainer
-from plone import api
-from plone.uuid.interfaces import IUUID
 
 class FixedExportOrdering(ExportOrdering):
     def all_orders(self):
