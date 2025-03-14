@@ -467,7 +467,7 @@ def main():
         print("Usage: python script.py <foldername>")
         sys.exit(1)
     skip_types = ["DepictionTool", "PDFTool", "PDFTheme", "ProgressTool",
-                  "VocabularyLibrary"]
+                  "VocabularyLibrary", "FrontpageSlide", "EasyForm"]
     foldername = sys.argv[1]
 
     start_time = time.time()  # Start the timer
