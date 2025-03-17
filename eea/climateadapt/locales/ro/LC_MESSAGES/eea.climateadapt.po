@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2025-03-16 22:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -574,6 +574,10 @@ msgstr ""
 msgid "Basic"
 msgstr ""
 
+#: ../vocabulary.py:426
+msgid "Belgium"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -639,8 +643,20 @@ msgstr ""
 msgid "Case developed and implemented as a Climate Change Adaptation Measure."
 msgstr ""
 
+#: ../vocabulary.py:397
+msgid "Case developed and implemented as a climate change adaptation measure."
+msgstr ""
+
 #: ../../climateadapt/vocabulary.py:390
 msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
+msgstr ""
+
+#: ../vocabulary.py:407
+msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of climate change adaptation aspects."
+msgstr ""
+
+#: ../vocabulary.py:401
+msgid "Case partially developed, implemented and funded as a climate change adaptation measure."
 msgstr ""
 
 # ,
@@ -867,6 +883,10 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:306
 msgid "Cultural heritage"
+msgstr ""
+
+#: ../vocabulary.py:489
+msgid "Czechia"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:772
@@ -1168,6 +1188,10 @@ msgstr "Caracterizare geografică"
 msgid "Geographic characterization:"
 msgstr "Caracterizare geografică:"
 
+#: ../vocabulary.py:427
+msgid "Germany"
+msgstr ""
+
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:50
 msgid "Getting started"
 msgstr ""
@@ -1391,6 +1415,10 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:792
 msgid "Institutional: Law and regulations"
+msgstr ""
+
+#: ../vocabulary.py:429
+msgid "Italy"
 msgstr ""
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:56
@@ -2124,6 +2152,10 @@ msgstr "Sursă:"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:485
 msgid "South West Europe"
+msgstr ""
+
+#: ../vocabulary.py:428
+msgid "Spain"
 msgstr ""
 
 #: ../../climateadapt/image_scales/interfaces.py:43

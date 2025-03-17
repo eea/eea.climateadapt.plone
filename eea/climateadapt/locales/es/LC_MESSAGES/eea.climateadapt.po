@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2025-03-16 22:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1882,6 +1882,10 @@ msgstr "Mar Báltico"
 msgid "Basic"
 msgstr ""
 
+#: ../vocabulary.py:426
+msgid "Belgium"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -2004,9 +2008,21 @@ msgstr "Caso desarrollado, implementado y parcialmente financiado como medida de
 msgid "Case developed and implemented as a Climate Change Adaptation Measure."
 msgstr "Caso desarrollado e implementado como Medida de Adaptación al Cambio Climático."
 
+#: ../vocabulary.py:397
+msgid "Case developed and implemented as a climate change adaptation measure."
+msgstr ""
+
 #: ../../climateadapt/vocabulary.py:390
 msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
 msgstr "Caso desarrollado e implementado principalmente debido a otros objetivos de política, pero con una consideración significativa de los aspectos de adaptación al cambio climático."
+
+#: ../vocabulary.py:407
+msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of climate change adaptation aspects."
+msgstr ""
+
+#: ../vocabulary.py:401
+msgid "Case partially developed, implemented and funded as a climate change adaptation measure."
+msgstr ""
 
 # ,
 # ,
@@ -2561,6 +2577,10 @@ msgstr "Infraestructura crítica"
 #: ../../climateadapt/vocabulary.py:306
 msgid "Cultural heritage"
 msgstr "Patrimonio cultural"
+
+#: ../vocabulary.py:489
+msgid "Czechia"
+msgstr ""
 
 #,
 #: ../../climateadapt/vocabulary.py:772
@@ -3188,6 +3208,10 @@ msgstr "Caracterización geográfica"
 msgid "Geographic characterization:"
 msgstr "Caracterización geográfica:"
 
+#: ../vocabulary.py:427
+msgid "Germany"
+msgstr ""
+
 # ,
 # ,
 # ,
@@ -3759,6 +3783,10 @@ msgstr "Institucional: Políticas públicas y programas gubernamentales"
 #: ../../climateadapt/vocabulary.py:792
 msgid "Institutional: Law and regulations"
 msgstr "Institucional: Legislación y Regulaciones"
+
+#: ../vocabulary.py:429
+msgid "Italy"
+msgstr ""
 
 # ,
 # ,
@@ -5569,6 +5597,10 @@ msgstr "Fuente:"
 #: ../../climateadapt/browser/pt/transnational_regions.pt:485
 msgid "South West Europe"
 msgstr "Suroeste de Europa"
+
+#: ../vocabulary.py:428
+msgid "Spain"
+msgstr ""
 
 #: ../../climateadapt/image_scales/interfaces.py:43
 msgid "Specify all allowed maximum image dimensions, one per line. The required format is &lt;name&gt; &lt;width&gt;:&lt;height&gt;."
