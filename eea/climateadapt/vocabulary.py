@@ -420,6 +420,14 @@ acemeasure_implementationtype_vocabulary = generic_vocabulary(
 alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
 
 # Used for aceitems
+european_countries_names = {
+    "BE": _("Belgium"),
+    "DE": _("Germany"),
+    "ES": _("Spain"),
+    "IT": _("Italy")
+}
+
+# Used for aceitems
 european_countries = [
     "AD",
     "AL",
@@ -473,18 +481,25 @@ european_countries = [
     "ME",
 ]
 ace_countries = [
-    (x.alpha2, x.name) for x in pycountry.countries if x.alpha2 in european_countries
+    [x.alpha2, x.name] for x in pycountry.countries if x.alpha2 in european_countries
 ]
 ace_countries = [x for x in ace_countries if x[0] != "CZ"]
-ace_countries.append((unicode("CZ"), "Czechia"))
+ace_countries.append([unicode("CZ"), _("Czechia")])
 ace_countries = sorted(ace_countries, key=lambda x: x[0])
 # ace_countries.append(('FYROM', 'Former Yugoslav Republic of Macedonia'))
 # ace_countries.append(('MK', 'Republic of Macedonia'))
 
-ace_countries.append(("MK", "Republic of North Macedonia"))
+ace_countries.append(["MK", "Republic of North Macedonia"])
 
 ace_countries.append(
-    ("XK", "Kosovo under UN Security Council Resolution 1244/99"))
+    ["XK", "Kosovo under UN Security Council Resolution 1244/99"])
+
+
+for x in ace_countries:
+    if x[0] in european_countries_names:
+        x[1] = european_countries_names[x[0]]
+
+
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
