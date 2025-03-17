@@ -358,8 +358,7 @@ class RedirectToSearchView(BrowserView):
                 query["query"]["bool"]["filter"] = {
                     "bool": {
                         "should": [
-                            {"term": {
-                                "typeOfData": typeOfDataValues[typeOfDataTo]}}
+                            {"term": {"typeOfData": typeOfDataValues[typeOfDataTo]}}
                         ]
                     }
                 }
@@ -492,8 +491,7 @@ class GetItemsForMacrotransRegions(BrowserView):
 def _archive_news(site):
     """Script that will get called by cron once per day"""
     catalog = getToolByName(site, "portal_catalog")
-    query = {"portal_type": ["News Item", "Link",
-                             "Event"], "review_state": "published"}
+    query = {"portal_type": ["News Item", "Link", "Event"], "review_state": "published"}
     brains = catalog.searchResults(**query)
 
     for b in brains:
@@ -699,8 +697,7 @@ class ViewGoogleAnalyticsReport(BrowserView):
         site = portal.get()
         report = site.__annotations__.get("google-analytics-cache-data", {})
 
-        reports = reversed(
-            sorted(list(report.items()), key=lambda x: int(x[1])))
+        reports = reversed(sorted(list(report.items()), key=lambda x: int(x[1])))
 
         return islice(reports, 0, 10)
 
@@ -795,6 +792,7 @@ class VibrioProxy(BrowserView):
 #         return xlsio.read()
 
 
+# TODO plone6 this is not used anymore
 def create_contributions_link(language="en", organisation_id=None):
     # origin_website vocabulary?
     # https://github.com/eea/eea.climateadapt.plone/blob/master/eea/climateadapt/vocabulary.py#L441

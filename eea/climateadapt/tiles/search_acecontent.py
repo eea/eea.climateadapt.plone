@@ -1,31 +1,11 @@
-""" A view that can be embeded in a tile.
+"""A view that can be embeded in a tile.
 It renders a search "portlet" for Ace content
 """
 
 import logging
 from collections import namedtuple
 
-# from AccessControl import Unauthorized
-# from collective.cover.interfaces import ICoverUIDsProvider
-# from collective.cover.tiles.base import (IPersistentCoverTile,
-#                                          PersistentCoverTile)
-# from collective.cover.tiles.list import IListTile
-from eea.climateadapt import MessageFactory as _
-# from eea.climateadapt.catalog import get_aceitem_description
-from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
-# from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
-#                                                 filters_to_query,
-#                                                 get_current_language)
-from eea.climateadapt.vocabulary import (BIOREGIONS, REMAPED_BIOREGIONS, _climateimpacts,
-                                         _datatypes, _elements,
-                                         _origin_website, _sectors,
-                                         ace_countries_dict)
-# from plone import api
-# from plone.api import portal
-# from plone.app.uuid.utils import uuidToObject
 from plone.memoize import view
-# from plone.tiles.interfaces import ITileDataManager
-# from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.CatalogTool import sortable_title
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -34,9 +14,35 @@ from z3c.form.form import Form
 from z3c.form.widget import StaticWidgetAttribute
 from zope.component.hooks import getSite
 from zope.interface import Interface
-from zope.schema import Bool, Choice, Dict, Int, List, TextLine
+from zope.schema import Choice  # , Bool, Dict, Int, List, TextLine
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
+from eea.climateadapt import MessageFactory as _
+from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
+from eea.climateadapt.translation.utils import filters_to_query
+from eea.climateadapt.vocabulary import (
+    BIOREGIONS,
+    REMAPED_BIOREGIONS,
+    _climateimpacts,
+    _datatypes,
+    _elements,
+    _origin_website,
+    _sectors,
+    ace_countries_dict,
+)
+
+# from plone import api
+# from plone.api import portal
+# from plone.app.uuid.utils import uuidToObject
+# from plone.tiles.interfaces import ITileDataManager
+# from plone.uuid.interfaces import IUUID
+# from AccessControl import Unauthorized
+# from collective.cover.interfaces import ICoverUIDsProvider
+# from collective.cover.tiles.base import (IPersistentCoverTile,
+#                                          PersistentCoverTile)
+# from collective.cover.tiles.list import IListTile
+# from eea.climateadapt.catalog import get_aceitem_description
+# TranslationUtilsMixin, , get_current_language)
 
 ORIGIN_WEBSITES = dict(_origin_website)
 CLIMATE_IMPACTS = dict(_climateimpacts)
@@ -143,10 +149,11 @@ class AceTileMixin(object):
         return catalog
 
     def build_query(self):
-
         # lang = get_current_language(self.context, self.request)
-        lang = 'en'
-        query = {"review_state": "published", }     # "Language": lang
+        lang = "en"
+        query = {
+            "review_state": "published",
+        }  # "Language": lang
 
         # todo: do countries
         # map of {tile field: index name}
@@ -186,18 +193,20 @@ class AceTileMixin(object):
                 if index_name in KEYWORD_INDEXES:  # and len(setting) > 1:
                     query[index_name] = {"query": setting, "operator": "or"}
                 else:
-                    if index_name == 'macro_regions':
+                    if index_name == "macro_regions":
                         regions = []
-                        if 'Other Regions' in setting:
-                            setting.append('Macaronesia')
-                            setting.append('Caribbean Area')
-                            setting.append('Amazonia')
-                            setting.append('Anatolian')
-                            setting.append('Indian Ocean Area')
-                            regions.append('TRANS_MACRO_OUTERMOST')
+                        if "Other Regions" in setting:
+                            setting.append("Macaronesia")
+                            setting.append("Caribbean Area")
+                            setting.append("Amazonia")
+                            setting.append("Anatolian")
+                            setting.append("Indian Ocean Area")
+                            regions.append("TRANS_MACRO_OUTERMOST")
                         for region_name in setting:
-                            for k, v in list(BIOREGIONS.items()) + list(REMAPED_BIOREGIONS.items()):
-                                if 'TRANS_MACRO' in k and v == region_name:
+                            for k, v in list(BIOREGIONS.items()) + list(
+                                REMAPED_BIOREGIONS.items()
+                            ):
+                                if "TRANS_MACRO" in k and v == region_name:
                                     regions.append(k)
                         query[index_name] = regions
                     else:
@@ -215,7 +224,7 @@ class AceTileMixin(object):
             words = query.pop("SearchableText", "").split(" ")
             query["SearchableText"] = " ".join(set(words + st))
 
-        query['Language'] = lang
+        query["Language"] = lang
         # print('query in search_acecontent', query)
 
         return query
@@ -249,79 +258,84 @@ class AceTileMixin(object):
         # now that the "query" is built, map it to EEA Search format
 
         for k, v in list(x.items()):
-
             if k == "search_type":
-                terms.append(('objectProvides',
-                              [ACEID_TO_SEARCHTYPE.get(
-                                  s, DATATYPES.get(s, s)) for s in v]))
+                terms.append(
+                    (
+                        "objectProvides",
+                        [ACEID_TO_SEARCHTYPE.get(s, DATATYPES.get(s, s)) for s in v],
+                    )
+                )
 
             if k == "origin_website":
-                terms.append(('cca_origin_websites.keyword', [
-                             ORIGIN_WEBSITES[s] for s in v]))
+                terms.append(
+                    ("cca_origin_websites.keyword", [ORIGIN_WEBSITES[s] for s in v])
+                )
 
             if k == "sectors":
-                terms.append(('cca_adaptation_sectors.keyword', [
-                             SECTORS[s] for s in v]))
+                terms.append(
+                    ("cca_adaptation_sectors.keyword", [SECTORS[s] for s in v])
+                )
 
             if k == "climate_impacts":
-                terms.append(('cca_climate_impacts.keyword', [
-                             CLIMATE_IMPACTS[s] for s in v]))
+                terms.append(
+                    ("cca_climate_impacts.keyword", [CLIMATE_IMPACTS[s] for s in v])
+                )
 
             if k == "elements":
                 t = []
                 for s in v:
                     if s in ELEMENTS:
                         t.append(ELEMENTS[s])
-                terms.append(('cca_adaptation_elements.keyword', t))
+                terms.append(("cca_adaptation_elements.keyword", t))
 
             if k == "countries":
-                terms.append(('cca_geographic_countries.keyword', [
-                             COUNTRIES[s] for s in v]))
+                terms.append(
+                    ("cca_geographic_countries.keyword", [COUNTRIES[s] for s in v])
+                )
 
             if k == "funding_programme":
-                terms.append(('cca_funding_programme.keyword', [s for s in v]))
+                terms.append(("cca_funding_programme.keyword", [s for s in v]))
 
-            if k in ["language", 'Language']:
-                terms.append(('language', [s for s in v]))
+            if k in ["language", "Language"]:
+                terms.append(("language", [s for s in v]))
 
             if k == "macro_regions":
                 temp_terms = []
                 for s in v:
-                    if 'TRANS_MACRO_' in s:
+                    if "TRANS_MACRO_" in s:
                         for key, val in list(BIOREGIONS.items()):
-                            if 'TRANS_MACRO_' in key and key == s:
+                            if "TRANS_MACRO_" in key and key == s:
                                 if val in self.list_of_other_regions():
-                                    val = 'Other Regions'
+                                    val = "Other Regions"
                                 temp_terms.append(val)
                     else:
                         temp_terms.append(s)
 
                 terms.append(
-                    ('cca_geographic_transnational_region.keyword', temp_terms))
+                    ("cca_geographic_transnational_region.keyword", temp_terms)
+                )
 
             if k == "SearchableText":
-                terms.append(('q', v))
+                terms.append(("q", v))
 
-        # query = filters_to_query(terms)
-        query = ''
+        query = filters_to_query(terms)
 
-        return "{}{}".format(url, query)        # urllib.quote(json.dumps(q))
+        return "{}{}".format(url, query)  # urllib.quote(json.dumps(q))
 
     def list_of_other_regions(self):
         resp = []
-        resp.append('Macaronesia')
-        resp.append('Caribbean Area')
-        resp.append('Amazonia')
-        resp.append('Anatolian')
-        resp.append('Indian Ocean Area')
+        resp.append("Macaronesia")
+        resp.append("Caribbean Area")
+        resp.append("Amazonia")
+        resp.append("Anatolian")
+        resp.append("Indian Ocean Area")
 
         return resp
 
     def sections(self):
         """Returns a list of (section name, section count, section_url)"""
         site = getSite()
-        base_query = "/{0}/data-and-downloads/?language={0}&".format(
-            self.current_lang)
+        base_query = "/{0}/data-and-downloads/?language={0}&".format(self.current_lang)
 
         base = site.absolute_url() + base_query
 
@@ -329,6 +343,9 @@ class AceTileMixin(object):
 
         _ace_types = dict(_datatypes)
 
+        # import pdb
+        #
+        # pdb.set_trace()
         search_type = self.data.get("search_type")
 
         if search_type and len(search_type) == 1:
@@ -351,7 +368,7 @@ class AceTileMixin(object):
 
         for typeid, typelabel in _datatypes:
             if search_type:
-                if not (typeid in search_type):
+                if typeid not in search_type:
                     continue
             q = query.copy()
 
@@ -362,8 +379,8 @@ class AceTileMixin(object):
 
             # 'sort_on': 'rating' causes wrong count - see #261745
             simplified_q = q.copy()
-            if 'sort_on' in simplified_q:
-                del simplified_q['sort_on']
+            if "sort_on" in simplified_q:
+                del simplified_q["sort_on"]
 
             count = len(self.catalog.searchResults(**simplified_q))
 
@@ -400,9 +417,8 @@ class AceTileMixin(object):
             try:
                 # TODO: this needs to be removed as soon as possible. Performance issues
                 obj = item.getObject()
-            except KeyError:        # this is an indexing problem
-                logger.warn(
-                    "Object not found in relevant_all_items: %s", item.getURL())
+            except KeyError:  # this is an indexing problem
+                logger.warn("Object not found in relevant_all_items: %s", item.getURL())
                 continue
             # if '/' + current_language + '/' not in item.getURL():
             #     item = self.translated_object(item)
@@ -415,7 +431,7 @@ class AceTileMixin(object):
             o = Item(
                 item.Title,
                 item.Description,
-                '',
+                "",
                 st,
                 item.getURL(),
             )
@@ -463,8 +479,9 @@ sortby_def = {
     "NAME": "Alphabetical sorting",
 }
 
-sortbyterms = [SimpleTerm(value=k, token=k, title=v)
-               for k, v in list(sortby_def.items())]
+sortbyterms = [
+    SimpleTerm(value=k, token=k, title=v) for k, v in list(sortby_def.items())
+]
 sortby_vocabulary = SimpleVocabulary(sortbyterms)
 
 
@@ -498,8 +515,7 @@ sortby_vocabulary = SimpleVocabulary(sortbyterms)
 #     form.omitted("uuids")
 
 
-Item = namedtuple("Item", ["Title", "Description",
-                           "icons", "sortable_title", "url"])
+Item = namedtuple("Item", ["Title", "Description", "icons", "sortable_title", "url"])
 
 
 # class RelevantAceContentItemsTile(PersistentCoverTile, AceTileMixin, TranslationUtilsMixin):
@@ -875,7 +891,7 @@ class FilteringForm(Form):  # form.SchemaForm):
             request = request["PARENT_REQUEST"]
         super(FilteringForm, self).__init__(context, request, *args, **kwargs)
 
-    @ view.memoize
+    @view.memoize
     def action(self):
         return self.context.absolute_url()
 
@@ -887,7 +903,9 @@ sectors_no_value = StaticWidgetAttribute(
     _("All adaptation sectors"), view=FilteringForm, field=IFilteringSchema["sector"]
 )
 key_type_measures_no_value = StaticWidgetAttribute(
-    _("All key type measures"), view=FilteringForm, field=IFilteringSchema["key_type_measure"]
+    _("All key type measures"),
+    view=FilteringForm,
+    field=IFilteringSchema["key_type_measure"],
 )
 
 

@@ -176,6 +176,7 @@ class OrganisationView(DefaultView, AceViewApi):
         response.sort(key=lambda x: x.get("date"), reverse=True)
         return response
 
+    # TODO plone6 is this used anymore?
     def contributions_link(self):
         return create_contributions_link("en", self.context.id)
 
@@ -272,11 +273,9 @@ class OrganisationFormExtender(FormExtender):
         self.move("logo", before="image")
         self.move("IRelatedItems.relatedItems", before="comments")
         self.move("acronym", before="title")
-        self.move("organisational_contact_information",
-                  after="include_in_observatory")
+        self.move("organisational_contact_information", after="include_in_observatory")
         self.move("organisational_websites", after="include_in_observatory")
-        self.move("organisational_key_activities",
-                  after="include_in_observatory")
+        self.move("organisational_key_activities", after="include_in_observatory")
         self.remove("other_contributor")
         self.remove("IBlocks.blocks")
         self.remove("IBlocks.blocks_layout")
