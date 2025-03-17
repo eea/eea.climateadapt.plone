@@ -55,6 +55,19 @@ regions = {
         ],
         [("northern_periphery_and_arctic.jpg")],
     ],
+    "Northern Periphery": [
+        [
+            ("Finland", "/countries/finland"),
+            ("Ireland", "/countries/ireland"),
+            ("Sweden", "/countries/sweden"),
+            # ('United Kingdom', '/countries/united-kingdom'),
+            ("Iceland", "/countries/iceland"),
+            ("Norway", "/countries/norway"),
+            ("Greenland", ""),
+            ("Faroe Islands", ""),
+        ],
+        [("northern_periphery_and_arctic.jpg")],
+    ],
     "Atlantic": [
         [
             ("France", "/countries/france"),
@@ -65,14 +78,26 @@ regions = {
         ],
         [("atlantic_area.jpg")],
     ],
-    # 'Balkan-Mediterranean': [
-    #    [('Bulgaria', '/countries/bulgaria'),
-    #     ('Cyprus', '/countries/cyprus'),
-    #     ('Greece', '/countries/greece'),
-    #     ('Albania', ''),
-    #     ('Republic of North Macedonia', '')],
-    #    [('balkan_mediterranean.jpg')],
-    # ],
+    "Atlantic Area": [
+        [
+            ("France", "/countries/france"),
+            ("Ireland", "/countries/ireland"),
+            ("Portugal", "/countries/portugal"),
+            ("Spain", "/countries/spain"),
+            # ('United Kingdom', '/countries/united-kingdom')
+        ],
+        [("atlantic_area.jpg")],
+    ],
+    "Balkan-Mediterranean": [
+        [
+            ("Bulgaria", "/countries/bulgaria"),
+            ("Cyprus", "/countries/cyprus"),
+            ("Greece", "/countries/greece"),
+            ("Albania", ""),
+            ("Republic of North Macedonia", ""),
+        ],
+        [("balkan_mediterranean.jpg")],
+    ],
     "Baltic Sea": [
         [
             ("Denmark", "/countries/denmark"),
@@ -201,6 +226,16 @@ regions = {
         [("north_western_europe.jpg")],
     ],
     "South-West Europe": [
+        [
+            ("France", "/countries/france"),
+            ("Portugal", "/countries/portugal"),
+            ("Spain", "/countries/spain"),
+            # ('United Kingdom', '/countries/united-kingdom'),
+            ("Andorra", ""),
+        ],
+        [("south_west_europe.jpg")],
+    ],
+    "South West Europe": [
         [
             ("France", "/countries/france"),
             ("Portugal", "/countries/portugal"),
