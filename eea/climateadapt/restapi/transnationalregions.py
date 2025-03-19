@@ -225,6 +225,19 @@ regions = {
         # ('United Kingdom', '/countries/united-kingdom')],
         [("north_western_europe.jpg")],
     ],
+    "North West Europe": [
+        [
+            ("Belgium", "/countries/belgium"),
+            ("France", "/countries/france"),
+            ("Germany", "/countries/germany"),
+            ("Ireland", "/countries/ireland"),
+            ("Luxembourg", "/countries/luxembourg"),
+            ("Netherlands", "/countries/netherlands"),
+            ("Switzerland", "/countries/switzerland"),
+        ],
+        # ('United Kingdom', '/countries/united-kingdom')],
+        [("north_western_europe.jpg")],
+    ],
     "South-West Europe": [
         [
             ("France", "/countries/france"),
