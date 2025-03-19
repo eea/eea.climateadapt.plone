@@ -1,25 +1,26 @@
-from OFS.interfaces import IOrderedContainer
-from collective.exportimport.export_other import ExportOrdering
-from operator import itemgetter
-from plone.uuid.interfaces import IUUID
-import transaction
-from plone import api
 import logging
+from operator import itemgetter
+
+import DateTime
+import transaction
 from collective.exportimport.export_content import ExportContent
+from collective.exportimport.export_other import ExportOrdering
 from collective.exportimport.import_content import ImportContent
 from collective.exportimport.import_other import ImportTranslations, link_translations
-from zope.interface import directlyProvidedBy
-
-from plone.restapi.interfaces import IJsonCompatible
+from OFS.interfaces import IOrderedContainer
+from plone import api
 from plone.dexterity.utils import resolveDottedName
-from zope.interface import alsoProvides
+from plone.restapi.interfaces import IJsonCompatible
+from plone.uuid.interfaces import IUUID
+from zope.annotation.interfaces import IAnnotations
+from zope.interface import alsoProvides, directlyProvidedBy
+
 from eea.climateadapt.interfaces import (
-    ITransnationalRegionMarker,
-    IMainTransnationalRegionMarker,
     IBalticRegionMarker,
     ICCACountry,
+    IMainTransnationalRegionMarker,
+    ITransnationalRegionMarker,
 )
-from zope.annotation.interfaces import IAnnotations
 
 ANNOTATIONS_TO_EXPORT = ["c3s_json_data", "broken_links_data"]
 ANNOTATIONS_KEY = "exportimport.annotations"
@@ -36,6 +37,15 @@ MARKER_INTERFACES_KEY = "exportimport.marker_interfaces"
 
 
 class CustomExportContent(ExportContent):
+    def update_query(self, query):
+        _from = self.request.form.get("from")
+        if _from:
+            _from = int(_from)
+            date = DateTime.DateTime() - _from
+            query["modified"] = {"query": date, "range": "min"}
+
+        return query
+
     def global_dict_hook(self, item, obj):
         item = self.export_marker_interfaces(item, obj)
         item = self.export_annotations(item, obj)

@@ -43,6 +43,7 @@
   <include package=".restapi" />
   <include package=".behaviors" />
   <include package=".translation" />
+  <include package=".mission_signatories" />
 
   <include file="broken_links.zcml" />
   <include file="catalog.zcml" />
