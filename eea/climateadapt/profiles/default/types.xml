@@ -19,7 +19,6 @@
   <object name="LIF" meta_type="Dexterity FTI" />
   <object name="LRF" meta_type="Dexterity FTI" />
   <object name="mission_story" meta_type="Dexterity FTI" />
-  <object name="mission_story" meta_type="Dexterity FTI" />
   <object name="mission_funding_cca" meta_type="Dexterity FTI" />
   <object name="mission_tool" meta_type="Dexterity FTI" />
   <object name="Subsite" meta_type="Dexterity FTI" />
