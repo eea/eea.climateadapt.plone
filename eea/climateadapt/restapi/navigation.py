@@ -1,14 +1,16 @@
+import logging
 from collections import defaultdict
 from urllib.parse import urlparse
 
 from Acquisition import aq_inner
 from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
-from plone.volto.interfaces import IPloneVoltoCoreLayer
 from plone.restapi.interfaces import IExpandableElement
 from plone.restapi.serializer.converters import json_compatible
+from plone.restapi.serializer.utils import resolve_uid
 from plone.restapi.services.navigation.get import Navigation as BaseNavigation
 from plone.restapi.services.navigation.get import NavigationGet as BaseNavigationGet
+from plone.volto.interfaces import IPloneVoltoCoreLayer
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import utils
 from Products.CMFPlone.browser.navigation import (
@@ -20,8 +22,11 @@ from zope.component import adapter, getMultiAdapter, getUtility
 from zope.i18n import translate
 from zope.interface import Interface, implementer
 
-# from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 from eea.volto.policy.interfaces import IEeaVoltoPolicyLayer
+
+logger = logging.getLogger("eea.climateadapt")
+
+# from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 
 # if '/mission' not in self.context.absolute_url(relative=True):
 
@@ -239,6 +244,15 @@ class Navigation(BaseNavigation):
         if hasattr(brain, "getRemoteUrl") and brain.getRemoteUrl:
             entry["path"] = urlparse(brain.getRemoteUrl).path
             entry["@id"] = fix_url(brain.getRemoteUrl)
+            if "resolveuid" in entry["@id"]:
+                try:
+                    href = resolve_uid(entry["@id"])[0]
+                    entry["path"] = href
+                    entry["@id"] = href
+                    # print((brain.getRemoteUrl, href))
+                except Exception:
+                    logger.warn("Cannot resolve resoluid %s",
+                                brain.getRemoteUrl)
 
         if hasattr(brain, "nav_title") and brain.nav_title:
             entry["title"] = brain.nav_title
