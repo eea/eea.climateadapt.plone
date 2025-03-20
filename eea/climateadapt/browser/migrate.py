@@ -4,8 +4,7 @@ import json
 import logging
 from eea.climateadapt.blocks import BlocksTraverser
 import urllib.parse
-from datetime import date
-from datetime import datetime
+from datetime import date, datetime, timedelta
 
 import transaction
 from zope.component import getUtility
@@ -2855,9 +2854,36 @@ class MigrateAbsoluteURLs(BrowserView):
 
     def migrate(self):
         """Migrate absolute URLs to resolveuid"""
-        brains = api.content.find(
-            context=self.context, object_provides="plone.restapi.behaviors.IBlocks"
-        )
+        query = {
+            'context': self.context,
+            'object_provides': "plone.restapi.behaviors.IBlocks"
+        }
+
+        # Get the request object
+        request = self.request
+
+        # Read the 'days' parameter from the request
+        days = request.get('days', None)
+
+        # Convert 'days' to an integer if it is provided
+        if days is not None:
+            try:
+                days = int(days)
+            except ValueError:
+                # Handle the case where 'days' is not a valid integer
+                days = None
+    
+        if days is not None:
+            # Calculate the date `days` ago from today
+            date = datetime.now() - timedelta(days=days)
+
+            # Add the modified filter to the query
+            query['modified'] = {
+                'query': date,
+                'range': 'min'
+            }
+
+        brains = api.content.find(**query)
 
         total = len(brains)
         for idx, brain in enumerate(brains):
