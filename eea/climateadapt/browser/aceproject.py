@@ -10,7 +10,7 @@ from plone.dexterity.interfaces import IDexterityEditForm
 
 class AceProjectView(DefaultView, AceViewApi):
 
-    type_label = u"Project"
+    type_label = "Project"
 
 
 class AceProjectEditForm(DefaultEditForm):

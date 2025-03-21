@@ -7,7 +7,7 @@ PATH = NAME.split(".") + ["version.txt"]
 VERSION = open(os.path.join(*PATH)).read().strip()
 
 
-long_description = (
+long_description = "\n\n".join(
     (
         open("README.rst").read()
         + "\n"
@@ -38,22 +38,18 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "setuptools",
-        "plone.app.dexterity",
-        "plone.namedfile [blobs]",
         # -*- Extra requirements: -*-
         "z3c.jbot",
         "pycountry",
-        "collective.dexteritytextindexer",
-        "collective.easyform",
         "tokenlib",
-        "eea.rabbitmq.client",  # schedule jobs
-        "eea.rabbitmq.plone",
         "langdetect",
         "chardet",
         "zeep==3.4.0",
+        "XlsxWriter==1.2.7",
+        "collective.geolocationbehavior",
+        "redis",  # do we need it?
+        "bullmq",
         # "google-api-python-client",  # google analytics API integration
-        # "collective.relationhelpers",
     ],
     extras_require={
         "test": [

@@ -144,7 +144,7 @@ def richtext(column):
     def convert(row, data):
         value = row[column].strip()
         # TODO: use inteligent text converter
-        return RichTextValue(unicode("<p>%s</p>") % value.decode("utf-8"))
+        return RichTextValue(str("<p>%s</p>") % value.decode("utf-8"))
 
     return convert
 
@@ -177,13 +177,13 @@ def country_field(column_a):
             "EEA": eea_countries,
         }
         # value = value.replace().replace(".", " ")
-        for k, v in replacements.items():
+        for k, v in list(replacements.items()):
             value = value.replace(k, v)
         out = []
         for cname in value.split(","):
             cname = cname.strip()
             if cname not in ace_countries_mapping:
-                print("Country not found:", cname)
+                print(("Country not found:", cname))
                 continue
             out.append(ace_countries_mapping[cname])
 
@@ -343,11 +343,11 @@ class MissionFundingImporter(BrowserView):
                 record = {}
                 nonmetadata_record = {}
 
-                for name, converter in fields_definition.items():
+                for name, converter in list(fields_definition.items()):
                     value = converter(row, wholedata)
                     record[name] = value
 
-                for name, converter in nonmetadata_fields.items():
+                for name, converter in list(nonmetadata_fields.items()):
                     value = converter(row, wholedata)
                     nonmetadata_record[name] = value
 
@@ -361,7 +361,7 @@ class MissionFundingImporter(BrowserView):
             obj.blocks = blocks
             obj._p_changed = True
             url = obj.absolute_url()
-            print("Imported %s" % url)
+            print(("Imported %s" % url))
             printed.append(url)
 
         return str(printed)

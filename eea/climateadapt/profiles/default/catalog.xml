@@ -1,71 +1,57 @@
 <?xml version="1.0"?>
 <object name="portal_catalog" meta_type="Plone Catalog Tool">
 
-    <column value="search_type"/>
-    <column value="sectors"/>
-    <column value="elements"/>
-    <column value="year" />
-    <column value="long_description" />
-    <column value="acronym" />
-    <column value="special_tags" />
+  <column value="health_impacts" />
+  <column value="include_in_observatory" />
+  <column value="nav_title" />
+  <column value="origin_website" />
+  <column value="search_type" />
+  <column value="sectors" />
+  <column value="elements" />
+  <column value="special_tags" />
+  <column value="year" />
+  <column value="is_nonstructural_folder" />
+  <column value="macro_regions" />
+  <column value="bio_regions" />
 
-    <index name="search_type" meta_type="KeywordIndex">
-        <indexed_attr value="search_type"/>
-    </index>
+  <index name="c3s_identifier" meta_type="FieldIndex">
+    <indexed_attr value="c3s_identifier" />
+  </index>
+  <index name="show_in_top_level" meta_type="FieldIndex">
+    <indexed_attr value="show_in_top_level" />
+  </index>
+  <index name="health_impacts" meta_type="KeywordIndex">
+    <indexed_attr value="health_impacts" />
+  </index>
+  <index name="elements" meta_type="KeywordIndex">
+    <indexed_attr value="elements" />
+  </index>
+  <index name="include_in_mission" meta_type="BooleanIndex">
+    <indexed_attr value="include_in_mission" />
+  </index>
+  <index name="include_in_observatory" meta_type="BooleanIndex">
+    <indexed_attr value="include_in_observatory" />
+  </index>
+  <index name="key_type_measures" meta_type="KeywordIndex">
+    <indexed_attr value="key_type_measures" />
+  </index>
+  <index name="origin_website" meta_type="KeywordIndex">
+    <indexed_attr value="origin_website" />
+  </index>
+  <index name="search_type" meta_type="KeywordIndex">
+    <indexed_attr value="search_type" />
+  </index>
+  <index name="sectors" meta_type="KeywordIndex">
+    <indexed_attr value="sectors" />
+  </index>
+  <index name="macro_regions" meta_type="KeywordIndex">
+    <indexed_attr value="macro_regions" />
+  </index>
+  <index name="bio_regions" meta_type="KeywordIndex">
+    <indexed_attr value="bio_regions" />
+  </index>
+  <index name="special_tags" meta_type="KeywordIndex">
+    <indexed_attr value="special_tags" />
+  </index>
 
-    <index name="sectors" meta_type="KeywordIndex">
-        <indexed_attr value="sectors"/>
-    </index>
-
-    <index name="elements" meta_type="KeywordIndex">
-        <indexed_attr value="elements"/>
-    </index>
-
-    <index name="spatial_values" meta_type="KeywordIndex">
-        <indexed_attr value="spatial_values"/>
-    </index>
-
-    <index name="keywords" meta_type="KeywordIndex">
-        <indexed_attr value="keywords"/>
-    </index>
-
-    <index name="special_tags" meta_type="KeywordIndex">
-        <indexed_attr value="special_tags"/>
-    </index>
-
-    <index name="rating" meta_type="FieldIndex">
-        <indexed_attr value="rating"/>
-    </index>
-
-    <index name="climate_impacts" meta_type="KeywordIndex">
-        <indexed_attr value="climate_impacts"/>
-    </index>
-
-    <index name="year" meta_type="FieldIndex">
-        <indexed_attr value="year"/>
-    </index>
-
-    <index name="countries" meta_type="KeywordIndex">
-        <indexed_attr value="countries"/>
-    </index>
-
-    <index name="featured" meta_type="BooleanIndex">
-        <indexed_attr value="featured"/>
-    </index>
-
-    <index name="imported_ids" meta_type="KeywordIndex">
-        <indexed_attr value="imported_ids"/>
-    </index>
-
-    <index name="aceitem_id" meta_type="FieldIndex">
-        <indexed_attr value="aceitem_id"/>
-    </index>
-
-    <index name="acemeasure_id" meta_type="FieldIndex">
-        <indexed_attr value="acemeasure_id"/>
-    </index>
-
-    <index name="aceproject_id" meta_type="FieldIndex">
-        <indexed_attr value="aceproject_id"/>
-    </index>
 </object>

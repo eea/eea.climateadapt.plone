@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<site>
- <property name="email_from_address"
-    type="string">no-reply@eea.europa.eu</property>
- <property name="email_from_name"
-    type="string">Climate Adapt Website</property>
-</site>

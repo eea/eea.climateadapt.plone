@@ -1,0 +1,213 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
+
+  <utility
+    name="eea.climateadapt.aceitems_datatypes"
+    component=".vocabulary.aceitem_datatypes_vocabulary"
+  />
+
+  <utility
+    name="eea.climateadapt.mission.budget_range"
+    component=".vocabulary.budget_ranges_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.mission.type_of_funding"
+    component=".vocabulary.type_of_funding_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_storagetypes"
+    component=".vocabulary.aceitem_storagetypes_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_sectors"
+    component=".vocabulary.aceitem_sectors_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_elements"
+    component=".vocabulary.aceitem_elements_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_elements_case_study"
+    component=".vocabulary.aceitem_elements_case_study_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_climateimpacts"
+    component=".vocabulary.aceitem_climateimpacts_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_featured"
+    component=".vocabulary.aceitem_featured_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_relevance"
+    component=".vocabulary.aceitem_relevance_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_governancelevel"
+    component=".vocabulary.governance_level"
+  />
+  <utility
+    name="eea.climateadapt.event_language"
+    component=".vocabulary.language"
+  />
+
+  <utility
+    name="eea.climateadapt.aceitems_category"
+    component=".vocabulary.category"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_ipcc_category"
+    component=".vocabulary.ipcc_category"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_key_type_measures"
+    component=".vocabulary.key_type_measures"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_key_type_measures_short"
+    component=".vocabulary.key_type_measures_short"
+  />
+  <utility
+    name="eea.climateadapt.acemeasure_implementationtype"
+    component=".vocabulary.acemeasure_implementationtype_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.ace_countries"
+    component=".vocabulary.ace_countries_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.acemeasure_types"
+    component=".vocabulary.acemeasure_types"
+  />
+  <utility
+    name="eea.climateadapt.origin_website"
+    component=".vocabulary.origin_website"
+  />
+  <utility
+    name="eea.climateadapt.health_impacts"
+    component=".vocabulary.health_impacts"
+  />
+  <utility
+    name="eea.climateadapt.funding_programme"
+    component=".vocabulary.funding_programme"
+  />
+  <utility
+    name="eea.climateadapt.key_community_systems"
+    component=".vocabulary.key_community_systems"
+  />
+  <utility
+    name="eea.climateadapt.climate_threats"
+    component=".vocabulary.climate_threats"
+  />
+  <utility
+    name="eea.climateadapt.cca_types"
+    component=".vocabulary.cca_types"
+  />
+
+  <utility
+    name="eea.climateadapt.special_tags"
+    component=".vocabulary.SpecialTagsVocabularyFactory"
+  />
+  <utility
+    name="eea.climateadapt.keywords"
+    component=".vocabulary.KeywordsVocabularyFactory"
+  />
+  <utility
+    name="eea.climateadapt.object_provides"
+    component=".vocabulary.ObjectProvidesVocabulary"
+  />
+
+  <utility
+    name="updating_notes_vocabulary"
+    component=".vocabulary.UpdatingNotesVocabularyFactory"
+  />
+
+  <utility
+    name="eea.climateadapt.faceted_elements_voc"
+    component=".vocabulary.faceted_elements"
+  />
+  <utility
+    factory=".vocabulary.AdaptationOptionsVocabulary"
+    name="eea.climateadapt.adaptation_options"
+  />
+  <utility
+    factory=".vocabulary.CaseStudiesVocabulary"
+    name="eea.climateadapt.case_studies"
+  />
+  <utility
+    factory=".vocabulary.OrganisationsVocabulary"
+    name="eea.climateadapt.organisations"
+  />
+  <utility
+    name="eea.climateadapt.faceted_countries"
+    component=".vocabulary.faceted_countries_vocabulary"
+  />
+  <utility
+    factory=".vocabulary.CCAItemsVocabulary"
+    name="eea.climateadapt.cca_items"
+  />
+
+  <utility
+    name="eea.climateadapt.rich_header_level"
+    component=".vocabulary.rich_header_level"
+  />
+
+  <utility
+    name="eea.climateadapt.rast_steps"
+    component=".vocabulary.rast_steps_vocabulary"
+  />
+
+  <utility
+    name="eea.climateadapt.eligible_entities"
+    component=".vocabulary.eligible_entities_vocabulary"
+  />
+
+  <utility
+    name="eea.climateadapt.readiness_for_use"
+    component=".vocabulary.readiness_for_use_vocabulary"
+  />
+
+  <utility
+    name="eea.climateadapt.geographical_scale"
+    component=".vocabulary.geographical_scale_vocabulary"
+  />
+
+  <utility
+    name="eea.climateadapt.tool_language"
+    component=".vocabulary.tool_language_vocabulary"
+  />
+
+  <utility
+    name="eea.climateadapt.most_useful_for"
+    component=".vocabulary.most_useful_for_vocabulary"
+  />
+
+  <utility
+    name="eea.climateadapt.user_requirements"
+    component=".vocabulary.user_requirements_vocabulary"
+  />
+
+  <utility
+    name="eea.climateadapt.element_types_vocabulary"
+    component=".extra_vocabulary.ElementsVocabularyFactory" />
+  <utility
+    name="eea.climateadapt.search_types_vocabulary"
+    component=".extra_vocabulary.SearchTypesVocabularyFactory" />
+  <utility
+    name="eea.climateadapt.regions"
+    component=".extra_vocabulary.regions_vocabulary" />
+  <utility name="eea.climateadapt.bioregions"
+    component=".extra_vocabulary.bioregions_vocab_factory" />
+
+</configure>

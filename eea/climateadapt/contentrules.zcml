@@ -1,48 +1,48 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:plone="http://namespaces.plone.org/plone"
-    i18n_domain="plone"
-    >
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="plone"
+>
 
   <adapter factory=".contentrules.ReindexActionExecutor" />
 
   <browser:page
-      name="eea.climateadapt.Reindex"
-      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
-      class=".contentrules.ReindexAddForm"
-      permission="plone.app.contentrules.ManageContentRules"
-      />
+    name="eea.climateadapt.Reindex"
+    for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+    class=".contentrules.ReindexAddForm"
+    permission="plone.app.contentrules.ManageContentRules"
+  />
 
   <plone:ruleAction
-      name="eea.climateadapt.Reindex"
-      title="Reindex object"
-      description="Unindex and index object in Catalog"
-      for="*"
-      event="zope.component.interfaces.IObjectEvent"
-      schema=".contentrules.IReindexAction"
-      factory=".contentrules.ReindexAction"
-      addview="eea.climateadapt.Reindex"
-      />
+    name="eea.climateadapt.Reindex"
+    title="Reindex object"
+    description="Unindex and index object in Catalog"
+    for="*"
+    event="zope.interface.interfaces.IObjectEvent"
+    schema=".contentrules.IReindexAction"
+    factory=".contentrules.ReindexAction"
+    addview="eea.climateadapt.Reindex"
+  />
 
   <adapter factory=".contentrules.ObjectDateExpirationActionExecutor" />
 
   <browser:page
-      name="eea.climateadapt.ObjectDateExpiration"
-      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
-      class=".contentrules.ObjectDateExpirationAddForm"
-      permission="plone.app.contentrules.ManageContentRules"
-      />
+    name="eea.climateadapt.ObjectDateExpiration"
+    for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+    class=".contentrules.ObjectDateExpirationAddForm"
+    permission="plone.app.contentrules.ManageContentRules"
+  />
 
   <plone:ruleAction
-      name="eea.climateadapt.ObjectDateExpiration"
-      title="Object date expiration set"
-      description="Set date expire for archived object"
-      for="*"
-      event="zope.component.interfaces.IObjectEvent"
-      schema=".contentrules.IObjectDateExpirationAction"
-      factory=".contentrules.ObjectDateExpirationAction"
-      addview="eea.climateadapt.ObjectDateExpiration"
-      />
+    name="eea.climateadapt.ObjectDateExpiration"
+    title="Object date expiration set"
+    description="Set date expire for archived object"
+    for="*"
+    event="zope.interface.interfaces.IObjectEvent"
+    schema=".contentrules.IObjectDateExpirationAction"
+    factory=".contentrules.ObjectDateExpirationAction"
+    addview="eea.climateadapt.ObjectDateExpiration"
+  />
 
 </configure>

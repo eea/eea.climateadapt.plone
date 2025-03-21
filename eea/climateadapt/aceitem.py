@@ -1,68 +1,65 @@
-from eea.climateadapt.behaviors import (IAceItem, IAction, IC3sIndicator,
-                                        IGuidanceDocument, IIndicator,
-                                        IInformationPortal, IMapGraphDataset,
-                                        IOrganisation, IPublicationReport,
-                                        IResearchProject, ITool)
+from eea.climateadapt.behaviors import (
+    IAction,
+    IGuidanceDocument,
+    IIndicator,
+    IInformationPortal,
+    IMapGraphDataset,
+    IOrganisation,
+    IPublicationReport,
+    IResearchProject,
+    ITool,
+    IC3sIndicator,
+)
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from plone.directives import dexterity
-from zope.interface import implements
+from plone.dexterity.content import Container
+from zope.interface import implementer
 
 
-class PublicationReport(dexterity.Container):
-    implements(IPublicationReport, IClimateAdaptContent)
-
+@implementer(IPublicationReport, IClimateAdaptContent)
+class PublicationReport(Container):
     search_type = "DOCUMENT"
 
 
-class InformationPortal(dexterity.Container):
-    implements(IInformationPortal, IClimateAdaptContent)
-
+@implementer(IInformationPortal, IClimateAdaptContent)
+class InformationPortal(Container):
     search_type = "INFORMATIONSOURCE"
 
 
-class GuidanceDocument(dexterity.Container):
-    implements(IGuidanceDocument, IClimateAdaptContent)
-
+@implementer(IGuidanceDocument, IClimateAdaptContent)
+class GuidanceDocument(Container):
     search_type = "GUIDANCE"
 
 
-class Tool(dexterity.Container):
-    implements(ITool, IClimateAdaptContent)
-
+@implementer(ITool, IClimateAdaptContent)
+class Tool(Container):
     search_type = "TOOL"
 
 
-class Organisation(dexterity.Container):
-    implements(IOrganisation, IClimateAdaptContent)
-
+@implementer(IOrganisation, IClimateAdaptContent)
+class Organisation(Container):
     search_type = "ORGANISATION"
 
 
-class Indicator(dexterity.Container):
-    implements(IIndicator, IClimateAdaptContent)
-
+@implementer(IIndicator, IClimateAdaptContent)
+class Indicator(Container):
     search_type = "INDICATOR"
 
 
-class C3sIndicator(dexterity.Container):
-    implements(IIndicator, IClimateAdaptContent)
-
+@implementer(IIndicator, IC3sIndicator, IClimateAdaptContent)
+class C3sIndicator(Container):
     search_type = "INDICATOR"
 
 
-class MapGraphDataset(dexterity.Container):
-    implements(IMapGraphDataset, IClimateAdaptContent)
-
+@implementer(IMapGraphDataset, IClimateAdaptContent)
+class MapGraphDataset(Container):
     search_type = "MAPGRAPHDATASET"
 
 
-class ResearchProject(dexterity.Container):
-    implements(IResearchProject, IClimateAdaptContent)
-
+@implementer(IResearchProject, IClimateAdaptContent)
+class ResearchProject(Container):
     search_type = "RESEARCHPROJECT"
 
 
-class Action(dexterity.Container):
-    implements(IAction, IClimateAdaptContent)
-
+@implementer(IAction, IClimateAdaptContent)
+class Action(Container):
     search_type = "ACTION"

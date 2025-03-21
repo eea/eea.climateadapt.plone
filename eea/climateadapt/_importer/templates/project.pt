@@ -1,4 +1,0 @@
-<img class="pull-left" src="" tal:attributes="src options/image" />
-<h2 tal:content="options/title"/>
-<h4 tal:content="options/subtitle" />
-<div tal:replace="structure options/accordion" />

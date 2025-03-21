@@ -1,18 +1,18 @@
 import json
 import logging
+from collections import OrderedDict
 
-from eea.climateadapt.translation.utils import translate_text
+# from eea.climateadapt.translation.utils import translate_text
 from plone.api.portal import get_tool
 from Products.Five import BrowserView
 from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
-from collections import OrderedDict
 
-from eea.climateadapt.vocabulary import (
-    ipcc_category,
-    aceitem_sectors_vocabulary,
-    aceitem_climateimpacts_vocabulary,
-)
+# from eea.climateadapt.vocabulary import (
+#     ipcc_category,
+#     aceitem_sectors_vocabulary,
+#     aceitem_climateimpacts_vocabulary,
+# )
 
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -26,10 +26,13 @@ class Items(BrowserView):
             IVocabularyFactory, "eea.climateadapt.aceitems_climateimpacts"
         )
         vocabulary_impacts = factory(self.context)
-        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_sectors")
+        factory = getUtility(IVocabularyFactory,
+                             "eea.climateadapt.aceitems_sectors")
         vocabulary_sectors = factory(self.context)
         # 261447 - for case studies we have 6 more elements compared with other types
-        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_elements_case_study")
+        factory = getUtility(
+            IVocabularyFactory, "eea.climateadapt.aceitems_elements_case_study"
+        )
         vocabulary_elements = factory(self.context)
 
         results = {
@@ -43,27 +46,35 @@ class Items(BrowserView):
                 "count": 10739,
             },
             "features": [],
-            "filters": {'sectors': [], 'impacts': [], 'elements': [], 'measures': {}},
+            "filters": {"sectors": [], "impacts": [], "elements": [], "measures": {}},
         }
         # Add available filters
         for term in vocabulary_sectors:
-            results["filters"]['sectors'].append({"key": term.value, "value": term.title})
+            results["filters"]["sectors"].append(
+                {"key": term.value, "value": term.title}
+            )
         for term in vocabulary_elements:
-            results["filters"]['elements'].append({"key": term.value, "value": term.title})
+            results["filters"]["elements"].append(
+                {"key": term.value, "value": term.title}
+            )
         for term in vocabulary_impacts:
-            results["filters"]['impacts'].append({"key": term.value, "value": term.title})
+            results["filters"]["impacts"].append(
+                {"key": term.value, "value": term.title}
+            )
 
         factory = getUtility(
             IVocabularyFactory, "eea.climateadapt.aceitems_key_type_measures"
         )
         vocabulary = factory(self.context)
         for term in vocabulary:
-            temp = translate_text(self.context, self.request, term.title)
+            # TODO translate text
+            # temp = translate_text(self.context, self.request, term.title)
+            temp = term.title
             titleSplit = temp.split(":")
             nameCategory = titleSplit[1].strip()
-            if nameCategory not in results["filters"]['measures']:
-                results["filters"]['measures'][nameCategory] = []
-            results["filters"]['measures'][nameCategory].append(
+            if nameCategory not in results["filters"]["measures"]:
+                results["filters"]["measures"][nameCategory] = []
+            results["filters"]["measures"][nameCategory].append(
                 {"key": term.value, "value": titleSplit[2].strip()}
             )
 
@@ -98,7 +109,8 @@ class Items(BrowserView):
                         if hasattr(ao, "key_type_measures"):
                             for key_type_measure in ao.key_type_measures:
                                 if key_type_measure not in list_key_type_measures:
-                                    list_key_type_measures.append(key_type_measure)
+                                    list_key_type_measures.append(
+                                        key_type_measure)
                         list_adaptation_options.append(ao.title)
                         list_adaptation_options_links.append(
                             "<a href='"
@@ -117,18 +129,22 @@ class Items(BrowserView):
                 # pdb.set_trace()
                 for sector in obj.sectors:
                     try:
-                        sectors_str.append(vocabulary_sectors.getTerm(sector).title)
+                        sectors_str.append(
+                            vocabulary_sectors.getTerm(sector).title)
                     except:
                         """"""
                 for impact in obj.climate_impacts:
                     try:
-                        impacts_str.append(vocabulary_impacts.getTerm(impact).title)
+                        impacts_str.append(
+                            vocabulary_impacts.getTerm(impact).title)
                     except:
                         """"""
                 if obj.elements:
                     for element in obj.elements:
                         try:
-                            elements_str.append(vocabulary_elements.getTerm(element).title)
+                            elements_str.append(
+                                vocabulary_elements.getTerm(element).title
+                            )
                         except:
                             """"""
 
@@ -141,13 +157,13 @@ class Items(BrowserView):
                     )
 
                 long_description = ""
-                if brain.long_description:
+                if hasattr(brain, "long_description") and brain.long_description:
                     long_description = brain.long_description.raw
                 origin_adaptecca_value = 20
                 # if (isinstance(obj.origin_website, list) and
                 #         len(obj.origin_website) and
                 #         "AdapteCCA" in obj.origin_website):
-                    # origin_adaptecca_value = 10
+                # origin_adaptecca_value = 10
                 results["features"].append(
                     {
                         "properties": {
@@ -156,7 +172,9 @@ class Items(BrowserView):
                             ),
                             # "sectors": obj.sectors,
                             "sectors": "," + (",".join(obj.sectors)) + ",",
-                            "elements": "," + (",".join(obj.elements)) if obj.elements else '' + ",",
+                            "elements": "," + (",".join(obj.elements))
+                            if obj.elements
+                            else "" + ",",
                             "impacts": "," + (",".join(obj.climate_impacts)) + ",",
                             "ipccs": "," + (",".join(list_ipcc_categories)) + ",",
                             "ktms": "," + (",".join(list_key_type_measures)) + ",",
@@ -212,7 +230,8 @@ class Page(BrowserView):
         return response
 
     def get_sectors(self):
-        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_sectors")
+        factory = getUtility(IVocabularyFactory,
+                             "eea.climateadapt.aceitems_sectors")
         vocabulary = factory(self.context)
         response = []
         # response.append({"key": "", "value": "Filter by SECTOR"})
@@ -240,7 +259,9 @@ class Page(BrowserView):
         # import pdb; pdb.set_trace()
         # response.append({"key": "", "value": "Filter by IPCCS"})
         for term in vocabulary:
-            temp = translate_text(self.context, self.request, term.title)
+            # TODO translate text
+            # temp = translate_text(self.context, self.request, term.title)
+            temp = term.title
             titleSplit = temp.split(":")
             if titleSplit[0] not in response:
                 response[titleSplit[0]] = []
@@ -259,12 +280,17 @@ class Page(BrowserView):
         # import pdb; pdb.set_trace()
         # response.append({"key": "", "value": "Filter by IPCCS"})
         for term in vocabulary:
-            temp = translate_text(self.context, self.request, term.title)
+            # TODO translate text
+            # temp = translate_text(self.context, self.request, term.title)
+            temp = term.title
             titleSplit = temp.split(":")
             if titleSplit[1] not in response:
                 response[titleSplit[1]] = []
             response[titleSplit[1]].append(
-                {"key": term.value, "value": titleSplit[0].strip()+': '+titleSplit[2].strip()}
+                {
+                    "key": term.value,
+                    "value": titleSplit[0].strip() + ": " + titleSplit[2].strip(),
+                }
             )
             # response.append({"key": term.value, "value": term.title})
         return response

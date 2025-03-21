@@ -37,16 +37,16 @@ def backup_data(data, path='out.xml'):
         e_cs = SubElement(root, 'casestudy')
         e_attrs = SubElement(e_cs, 'attributes')
 
-        for k, v in cs['attributes'].items():
+        for k, v in list(cs['attributes'].items()):
             el = Element(k)
-            el.text = unicode(v)
+            el.text = str(v)
             e_attrs.append(el)
 
         e_geo = SubElement(e_cs, 'geometry')
 
-        for k, v in cs.get('geometry', {}).items():
+        for k, v in list(cs.get('geometry', {}).items()):
             el = Element(k)
-            el.text = unicode(v)
+            el.text = str(v)
             e_geo.append(el)
 
     with open(path, 'w') as f:
@@ -211,7 +211,7 @@ def main():
         logger.warning("Summary %s entries.... ", len(res['features']))
 
         for entry in res['features']:
-            geo = '{0} x {1}'.format(*entry['geometry'].values())
+            geo = '{0} x {1}'.format(*list(entry['geometry'].values()))
             attr = entry['attributes']
             logger.warning('%s:%s @ %s', attr['OBJECTID'], attr['itemname'], geo)
 
