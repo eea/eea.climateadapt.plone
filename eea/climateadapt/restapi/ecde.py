@@ -121,8 +121,8 @@ class C3SIndicatorsData(object):
 
     def get_glossary(self):
         site = portal.get()
-        lg = get_current_language(self.context, self.request)
-        # lg = "en"
+        # lg = get_current_language(self.context, self.request)
+        lg = "en"
         base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
 
