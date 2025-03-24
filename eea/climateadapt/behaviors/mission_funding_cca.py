@@ -120,8 +120,8 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         title=_("Countries where the funding opportunity is offered"),
         required=False,
         # TODO: disabled for plone6 migration
-        # value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
-        value_type=TextLine(title="Country"),
+        value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
+        # value_type=TextLine(title="Country"),
         #
         # column: For which country is this funding opportunity offered?
         # TODO: need manual intervention
