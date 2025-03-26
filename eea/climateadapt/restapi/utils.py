@@ -82,13 +82,17 @@ def cca_content_serializer(item, result, request):
         if converted is not None:
             description = converted.getData().strip()
             try:
-                result["description"] = description.decode("utf-8")
+                if isinstance(description, str):
+                    result["description"] = description
+                else:
+                    result["description"] = description.decode("utf-8")
             except Exception:
                 result["description"] = description.encode("utf-8")
         else:
             result["description"] = ""
 
-    result["cca_last_modified"] = json_compatible(dates["cadapt_last_modified"])
+    result["cca_last_modified"] = json_compatible(
+        dates["cadapt_last_modified"])
     result["cca_published"] = json_compatible(dates["cadapt_published"])
     result["is_cca_content"] = True
     result["language"] = getattr(item, "language", "en")
