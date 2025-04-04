@@ -1,3 +1,7 @@
+from zExceptions import Unauthorized
+from plone.api.env import adopt_user
+import os
+from persistent.mapping import PersistentMapping
 import logging
 import re
 from collections import defaultdict
@@ -24,6 +28,9 @@ from eea.climateadapt.restapi.slate import iterate_children
 # from plone.api.content import get_state
 
 logger = logging.getLogger("eea.climateadapt")
+
+env = os.environ.get
+TRANSLATION_AUTH_TOKEN = env("TRANSLATION_AUTH_TOKEN", "")
 
 
 def convert_to_string(item):
@@ -80,13 +87,13 @@ def check_link_status(link):
     status codes
     """
     if link:
-        if isinstance(link, str):
-            try:
-                link = link.encode()
-            except UnicodeEncodeError:
-                logger.info("UnicodeEncodeError on link %s", link)
-
-                return {"status": 504, "url": link}
+        # if isinstance(link, str):
+        #     try:
+        #         link = link.encode()
+        #     except UnicodeEncodeError:
+        #         logger.info("UnicodeEncodeError on link %s", link)
+        #
+        #         return {"status": 504, "url": link}
 
         link = link.strip()
 
@@ -204,7 +211,7 @@ def iterate_blocks(obj):
         raise StopIteration
 
     if layout:
-        items = layout.get("items")
+        items = layout.get("items", {})
         for uid in items:
             block = blocks.get(uid)
             if block:
@@ -241,12 +248,15 @@ BLOCK_EXTRACTORS = {"slate": extract_slate}
 
 def convert_blocks(obj):
     urls = []
-    for block in iterate_blocks(obj):
-        if not block:
-            continue
-        extractor = BLOCK_EXTRACTORS.get(block.get("@type"))
-        if extractor:
-            urls.extend(extractor(block))
+    try:
+        for block in iterate_blocks(obj):
+            if not block:
+                continue
+            extractor = BLOCK_EXTRACTORS.get(block.get("@type"))
+            if extractor:
+                urls.extend(extractor(block))
+    except Exception:
+        logger.warn("Could not read blocks on obj: %s", obj.absolute_url())
     return urls
 
 
@@ -368,7 +378,7 @@ def compute_broken_links(site):
 
     results = []
     links = recursively_extract_links(site)
-    annot = IAnnotations(site)["broken_links_data"]
+    annot = get_annotations()
 
     for info in links:
         if info["link"].startswith("/"):
@@ -399,14 +409,37 @@ class DetectBrokenLinksView(BrowserView):
         return "ok"
 
 
+class DetectBrokenLinksTriggerView(BrowserView):
+    def __call__(self):
+        token = self.request.getHeader("Authentication")
+        if token != TRANSLATION_AUTH_TOKEN:
+            raise Unauthorized
+
+        with adopt_user(username="admin"):
+            compute_broken_links(self.context)
+
+        return "ok"
+
+
+def get_annotations():
+    portal = api.portal.get()
+    annot = IAnnotations(portal).get(
+        "broken_links_data",
+    )
+    if annot is None:
+        annot = IAnnotations(portal)["broken_links_data"] = PersistentMapping()
+
+    return annot
+
+
 class BrokenLinksService(Service):
     """Get workflow information"""
 
     items_to_display = 200
 
     def results(self):
-        portal = api.portal.get()
-        annot = IAnnotations(portal)["broken_links_data"]
+        annot = get_annotations()
+
         latest_dates = sorted(annot.keys())[-5:]
         res = {}
 
