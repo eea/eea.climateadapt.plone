@@ -8,7 +8,7 @@ from zope.component.hooks import getSite
 #from plone.app.multilingual.manager import TranslationManager
 
 from eea.climateadapt.browser.externaltemplates import ExternalTemplateHeader
-from eea.climateadapt.translation.utils import get_current_language
+# from eea.climateadapt.translation.utils import get_current_language
 from Products.CMFCore.utils import getToolByName
 
 # from Products.Five.browser import BrowserView
@@ -337,8 +337,9 @@ class Navbar(ExternalTemplateHeader):
             ptool = getToolByName(self.context,
                                   'portal_properties')['site_properties']
 
-            current_language = get_current_language(self.context, self.request)
-
+            # TODO fix current_language
+            # current_language = get_current_language(self.context, self.request)
+            current_language = 'en'
             sections = _extract_menu(ptool.getProperty('main_navigation_menu'),
                             tool, None, current_language)
             for idx in range(len(sections)):
@@ -346,7 +347,7 @@ class Navbar(ExternalTemplateHeader):
                     sections.pop(idx)
 
             return sections
-        except Exception, e:
+        except Exception as e:
             logger.exception("Error while rendering navigation menu: %s", e)
 
             site_url = self.context.portal_url()
@@ -371,7 +372,9 @@ class Navbar(ExternalTemplateHeader):
             if url.endswith(lang_independent_url):
                 return url
 
-        current_language = get_current_language(self.context, self.request)
+        # TODO fix current_language
+        # current_language = get_current_language(self.context, self.request)
+        current_language = 'en'
         #logger.info("Will translate LANG %s, URL: %s", current_language, url)
         if '/' == url:
             url = "/?set_language="+current_language

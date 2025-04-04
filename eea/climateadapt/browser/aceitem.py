@@ -15,11 +15,10 @@ from plone.z3cform.fieldsets.extensible import FormExtender
 from zc.relation.interfaces import ICatalog
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getUtility
-from zope.interface import classImplements  # , implements
+from zope.interface import classImplements
 from zope.intid.interfaces import IIntIds
 
 # from itertools import chain, islice
-# from zope.interface import implements
 # from eea.depiction.browser.interfaces import IImageView
 # from Products.Five.browser import BrowserView
 
@@ -120,16 +119,22 @@ class OrganisationView(DefaultView, AceViewApi):
         return 0
 
     def to_observatory_url(self, obj):
+        # TODO get current language
         current_language = get_current_language(self.context, self.request)
+        # current_language = "en"
         segments = obj.getPhysicalPath()[2:]
         if segments[0] != "metadata":
             segments = segments[1:]
         return "/" + current_language + "/observatory/++aq++" + "/".join(segments)
 
     def get_contributions(self):
+        # TODO get current language
         current_language = get_current_language(self.context, self.request)
+        # current_language = "en"
         if current_language != "en":
+            # TODO get translation object
             en_obj = get_translation_object(self.context, "en")
+            # en_obj = self.context
         else:
             en_obj = self.context
 
@@ -145,7 +150,9 @@ class OrganisationView(DefaultView, AceViewApi):
                 continue
 
             engl_obj = relation.from_object
+            # TODO get translation object
             obj = get_translation_object(engl_obj, current_language)
+            # obj = engl_obj
             if obj is not None:
                 if api.content.get_state(obj) == "published":
                     if obj.absolute_url() in urls or (
@@ -169,6 +176,7 @@ class OrganisationView(DefaultView, AceViewApi):
         response.sort(key=lambda x: x.get("date"), reverse=True)
         return response
 
+    # TODO plone6 is this used anymore?
     def contributions_link(self):
         return create_contributions_link("en", self.context.id)
 
@@ -275,7 +283,7 @@ class OrganisationFormExtender(FormExtender):
         self.form.groups = [
             group
             for group in self.form.groups
-            if (group.label not in labels and len(group.fields.values()) > 0)
+            if (group.label not in labels and len(list(group.fields.values())) > 0)
         ]
 
 
@@ -298,7 +306,7 @@ class AceItemFormExtender(FormExtender):
         self.form.groups = [
             group
             for group in self.form.groups
-            if (group.label not in labels and len(group.fields.values()) > 0)
+            if (group.label not in labels and len(list(group.fields.values())) > 0)
         ]
 
 

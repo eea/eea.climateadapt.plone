@@ -5,6 +5,9 @@ import logging
 
 import transaction
 from DateTime import DateTime
+
+# from eea.climateadapt.asynctasks.utils import get_async_service
+# from eea.climateadapt.translation.volto import translate_volto_html
 from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.api.portal import get_tool
@@ -15,13 +18,15 @@ from Products.statusmessages.interfaces import IStatusMessage
 from ZODB.POSException import ConflictError
 from zope.component import adapter
 from zope.interface import Interface, implementer
-from .translation.contentrules import (
-    TranslateAction,
-    TranslateAsyncAction,
-    SynchronizeStatesForTranslationsAction,
-)  # BBB, don't remove, they're referenced from the database
 
 from eea.climateadapt import CcaAdminMessageFactory as _
+
+# from .translation.contentrules import (
+#     TranslateAction,
+#     TranslateAsyncAction,
+#     SynchronizeStatesForTranslationsAction,
+# )  # BBB, don't remove, they're referenced from the database
+
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -35,7 +40,7 @@ class ObjectDateExpirationAction(SimpleItem):
     """The actual persistent implementation of the action element."""
 
     element = "eea.climateadapt.ObjectDateExpiration"
-    summary = unicode("Set object expiration date")
+    summary = str("Set object expiration date")
 
 
 @adapter(Interface, IObjectDateExpirationAction, Interface)
@@ -86,7 +91,7 @@ class ReindexAction(SimpleItem):
     """The actual persistent implementation of the action element."""
 
     element = "eea.climateadapt.Reindex"
-    summary = unicode("Reindex object")
+    summary = str("Reindex object")
 
 
 @adapter(Interface, IReindexAction, Interface)
@@ -123,7 +128,7 @@ class ReindexActionExecutor(object):
         if request is not None:
             title = utils.pretty_title_or_id(obj, obj)
             message = _(
-                unicode(
+                str(
                     "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
                 ),
                 mapping={"name": title, "error": error},

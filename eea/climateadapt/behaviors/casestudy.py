@@ -1,20 +1,22 @@
-from plone.app.contenttypes.interfaces import IImage
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
-from plone.directives import form
-from plone.formwidget.contenttree import ObjPathSourceBinder
+
 from plone.namedfile.field import NamedBlobImage
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from z3c.form.interfaces import IAddForm, IEditForm
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import alsoProvides
 from zope.schema import Choice, List, TextLine, Tuple
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
+
 from .volto_layout import case_study_layout_blocks, case_study_layout_items
+
+# from z3c.form.interfaces import IAddForm, IEditForm
+# from plone.app.contenttypes.interfaces import IImage
+# from plone.formwidget.contenttree import ObjPathSourceBinder
 
 
 class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
@@ -22,10 +24,10 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
 
     # directives.omitted(IEditForm, "featured")
     # directives.omitted(IAddForm, "featured")
-    directives.omitted(IEditForm, "primephoto")
-    directives.omitted(IAddForm, "primephoto")
-    directives.omitted(IEditForm, "supphotos")
-    directives.omitted(IAddForm, "supphotos")
+    # directives.omitted(IEditForm, "primephoto")
+    # directives.omitted(IAddForm, "primephoto")
+    # directives.omitted(IEditForm, "supphotos")
+    # directives.omitted(IAddForm, "supphotos")
 
     # directives.omitted(IEditForm, 'year')
     # directives.omitted(IAddForm, 'year')
@@ -83,9 +85,10 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         ),
     )
 
-    form.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     relevance = List(
-        title=_("Policy context of the adaptation measure"),
+        title=_("Relevance"),
         required=True,
         missing_value=[],
         default=None,
@@ -102,7 +105,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     contact = RichText(
         title=_("Contact"),
         required=True,
-        default=unicode(""),
+        default=str(""),
         description=_(
             "Contact of reference (institution and persons) who is "
             "directly involved in the development and "
@@ -114,7 +117,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         title=_("Adaptation measures implemented in the case:"),
         default=[],
         description=_(
-            "Select one or more adaptation options that this item " "relates to:"
+            "Select one or more adaptation options that this item relates to:"
         ),
         value_type=RelationChoice(
             title=_("Related"),
@@ -144,13 +147,13 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     primary_photo_copyright = TextLine(
         title=_("Primary Photo Copyright"),
         required=False,
-        default=unicode(""),
+        default=str(""),
         description=_(
-            "Copyright statement or other rights information for  " "the primary photo."
+            "Copyright statement or other rights information for  the primary photo."
         ),
     )
 
-    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
         title=_("Adaptation approaches"),
         description=_("Select one or more approaches."),
@@ -161,20 +164,20 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
     )
 
     # BBB fields, only used during migration
-    primephoto = RelationChoice(
-        title=_("Prime photo"),
-        source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
-        required=False,
-    )
-    supphotos = RelationList(
-        title=_("Gallery"),
-        default=[],
-        value_type=RelationChoice(
-            title=_("Related"),
-            source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
-        ),
-        required=False,
-    )
+    # primephoto = RelationChoice(
+    #     title=_("Prime photo"),
+    #     source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
+    #     required=False,
+    # )
+    # supphotos = RelationList(
+    #     title=_("Gallery"),
+    #     default=[],
+    #     value_type=RelationChoice(
+    #         title=_("Related"),
+    #         source=ObjPathSourceBinder(object_provides=IImage.__identifier__),
+    #     ),
+    #     required=False,
+    # )
 
     # form.fieldset(
     #     "default",
@@ -223,5 +226,5 @@ alsoProvides(ICaseStudy["contact"], ILanguageIndependentField)
 alsoProvides(ICaseStudy["adaptationoptions"], ILanguageIndependentField)
 alsoProvides(ICaseStudy["primary_photo"], ILanguageIndependentField)
 alsoProvides(ICaseStudy["primary_photo_copyright"], ILanguageIndependentField)
-alsoProvides(ICaseStudy["primephoto"], ILanguageIndependentField)
-alsoProvides(ICaseStudy["supphotos"], ILanguageIndependentField)
+# alsoProvides(ICaseStudy["primephoto"], ILanguageIndependentField)
+# alsoProvides(ICaseStudy["supphotos"], ILanguageIndependentField)

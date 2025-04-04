@@ -2,17 +2,18 @@ import json
 
 from pkg_resources import resource_filename
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.app.textfield import RichText
+from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.directives import form
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from plone.supermodel import model
 from zope.interface import alsoProvides, provider
-from zope.schema import Bool, Choice, List as ListField
-from plone.app.textfield import RichText
+from zope.schema import Bool, Choice
+from zope.schema import List as ListField
+from zope.schema import TextLine
 
 from eea.climateadapt import CcaAdminMessageFactory as _
-
 
 fpath = resource_filename(
     "eea.climateadapt.behaviors", "volto_layout_missionfunding.json"
@@ -42,7 +43,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         title=_("Type of funding"),
         required=False,
         value_type=Choice(
-            title=unicode("Type of funding"),
+            title=str("Type of funding"),
             vocabulary="eea.climateadapt.mission.type_of_funding",
         ),
         # column: Which type of funding is granted?
@@ -80,7 +81,8 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # column: Is a Consortium required to apply for the funding?
     )
 
-    form.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     rast_steps = ListField(
         title=_("RAST step(s) of relevance"),
         required=False,
@@ -90,7 +92,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # metacolumn: For which step of the AST can the funding be used?
     )
 
-    form.widget(
+    directives.widget(
         eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     eligible_entities = ListField(
         title=_("Eligible to receive funding"),
@@ -101,7 +103,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # metacolumn: Who is eligible to receive funding?
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = ListField(
         title=_("Adaptation Sectors"),
         description=_(
@@ -117,7 +119,10 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     country = ListField(
         title=_("Countries where the funding opportunity is offered"),
         required=False,
+        # TODO: disabled for plone6 migration
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
+        # value_type=TextLine(title="Country"),
+        #
         # column: For which country is this funding opportunity offered?
         # TODO: need manual intervention
     )

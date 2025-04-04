@@ -15,7 +15,7 @@ from .volto_layout import organisation_layout_blocks, organisation_layout_items
 
 
 class IOrganisation(IAceItem, IBlocks):
-    """ Organisation Interface"""
+    """Organisation Interface"""
 
     # directives.omitted(IAddForm, 'year')
     # directives.omitted(IEditForm, 'year')
@@ -25,59 +25,61 @@ class IOrganisation(IAceItem, IBlocks):
     directives.omitted(IEditForm, "source")
     directives.omitted(IEditForm, "contributor_list")
     directives.omitted(IAddForm, "contributor_list")
-    directives.omitted(IEditForm, "featured")
-    directives.omitted(IAddForm, "featured")
+    # directives.omitted(IEditForm, "featured")
+    # directives.omitted(IAddForm, "featured")
 
     acronym = TextLine(
-        title=_(u"Acronym"),
-        description=_(u"Acronym of the organisation"),
+        title=_("Acronym"),
+        description=_("Acronym of the organisation"),
         required=False,
     )
 
     contact = TextLine(
-        title=_(u"Contact"),
-        description=_(u"Corporate email or link to contact form"),
-        required=True,
+        title=_("Contact"),
+        description=_("Corporate email or link to contact form"),
+        required=False,  # TODO set to True after plone6 migration
     )
 
     title = TextLine(
-        title=_(u"Name"), description=u"Item Name (250 character limit)", required=True
+        title=_("Name"), description="Item Name (250 character limit)", required=True
     )
 
     organisational_key_activities = RichText(
-        title=_(u"Key activities within climate change and health (relevant for the Observatory)"),
-        description=u"Please describe the key activities"
-        u" undertaken by your organisation that are related"
-        u" to the topic of 'climate change and health'."
-        u" Please concentrate on activities with most"
-        u" direct relevance to the Observatory. You may"
-        u" include any hyperlinks to relevant projects in"
-        u" the text",
+        title=_(
+            "Key activities within climate change and health (relevant for the Observatory)"
+        ),
+        description="Please describe the key activities"
+        " undertaken by your organisation that are related"
+        " to the topic of 'climate change and health'."
+        " Please concentrate on activities with most"
+        " direct relevance to the Observatory. You may"
+        " include any hyperlinks to relevant projects in"
+        " the text",
         required=False,
     )
 
-    directives.widget("organisational_links", TextLinesWidget)
+    # directives.widget("organisational_links", TextLinesWidget)
 
     organisational_websites = RichText(
-        title=_(u"Links to further information (relevant for the Observatory)"),
-        description=u"Please provide a hyperlink to the homepage"
-        u' of your organisation in the "Reference'
-        u' Information section", here you may also'
-        u" provide links to up to two relevant units of"
-        u" the organisation that have directly contributed"
-        u" to the Observatory and/or up to two hyperlinks"
-        u" to relevant networks (e.g. with countries) that"
-        u" are administered by your organisation",
+        title=_("Links to further information (relevant for the Observatory)"),
+        description="Please provide a hyperlink to the homepage"
+        ' of your organisation in the "Reference'
+        ' Information section", here you may also'
+        " provide links to up to two relevant units of"
+        " the organisation that have directly contributed"
+        " to the Observatory and/or up to two hyperlinks"
+        " to relevant networks (e.g. with countries) that"
+        " are administered by your organisation",
         required=False,
     )
 
     organisational_contact_information = RichText(
-        title=_(u"Contact information for the Observatory"),
-        description=u"Please provide a corporate email or contact"
-        u' form link into the "Default section", here you'
-        u" may provide further contact information relevant"
-        u" for the organisation's contribution to the"
-        u" Observatory.",
+        title=_("Contact information for the Observatory"),
+        description="Please provide a corporate email or contact"
+        ' form link into the "Default section", here you'
+        " may provide further contact information relevant"
+        " for the organisation's contribution to the"
+        " Observatory.",
         required=False,
     )
 
@@ -89,10 +91,10 @@ class IOrganisation(IAceItem, IBlocks):
     #         )
 
     logo = NamedBlobImage(
-        title=_(u"Logo"),
+        title=_("Logo"),
         description=_(
-            u"Upload a representative picture or logo for the item."
-            u" Recommended size: at least 360/180 px, aspect ratio 2x"
+            "Upload a representative picture or logo for the item."
+            " Recommended size: at least 360/180 px, aspect ratio 2x"
         ),
         required=False,
     )
@@ -109,14 +111,15 @@ class IOrganisation(IAceItem, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": organisation_layout_items
-        },
+        default={"items": organisation_layout_items},
         required=False,
     )
+
 
 alsoProvides(IOrganisation["acronym"], ILanguageIndependentField)
 alsoProvides(IOrganisation["contact"], ILanguageIndependentField)
 alsoProvides(IOrganisation["organisational_websites"], ILanguageIndependentField)
-alsoProvides(IOrganisation["organisational_contact_information"], ILanguageIndependentField)
+alsoProvides(
+    IOrganisation["organisational_contact_information"], ILanguageIndependentField
+)
 alsoProvides(IOrganisation["logo"], ILanguageIndependentField)

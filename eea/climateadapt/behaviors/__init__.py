@@ -45,5 +45,5 @@ __all__ = [
     IMissionFundingCCA,
     IMissionTool,
     IMainEvent,
-    IMainNews
+    IMainNews,
 ]

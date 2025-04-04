@@ -14,19 +14,19 @@ from .volto_layout import guidance_layout_blocks, guidance_layout_items
 class IGuidanceDocument(IAceItem, IBlocks):
     """Guidance Document Interface"""
 
-    directives.omitted(IEditForm, "featured")
-    directives.omitted(IAddForm, "featured")
+    # directives.omitted(IEditForm, "featured")
+    # directives.omitted(IAddForm, "featured")
     # directives.omitted(IEditForm, 'year')
     # directives.omitted(IAddForm, 'year')
 
     publication_date = Date(
-        title=_(u"Date of item's publication"),
-        description=u"The date refers to the latest date of publication"
-        u" of the item (different from the date of item's"
-        u" publication in Climate ADAPT)."
-        u" Please use the Calendar icon to add day/month/year. If you want to "
-        u"add only the year, please select \"day: 1\", \"month: January\" "
-        u"and then the year",
+        title=_("Date of item's publication"),
+        description="The date refers to the latest date of publication"
+        " of the item (different from the date of item's"
+        " publication in Climate ADAPT)."
+        " Please use the Calendar icon to add day/month/year. If you want to "
+        'add only the year, please select "day: 1", "month: January" '
+        "and then the year",
         required=True,
     )
 
@@ -42,11 +42,9 @@ class IGuidanceDocument(IAceItem, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": guidance_layout_items
-        },
+        default={"items": guidance_layout_items},
         required=False,
     )
 
 
-alsoProvides(IGuidanceDocument['publication_date'], ILanguageIndependentField)
+alsoProvides(IGuidanceDocument["publication_date"], ILanguageIndependentField)

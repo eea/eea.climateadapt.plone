@@ -31,7 +31,7 @@ alsoProvides(regions_vocabulary, IVocabularyFactory)
 
 BIOREGIONS = {}
 
-for line in filter(None, labels.split('\n')):
+for line in [_f for _f in labels.split('\n') if _f]:
     if 'TRANS_BIO' not in line:
         continue
     first, label = line.split('=')

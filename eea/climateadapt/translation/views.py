@@ -1,27 +1,29 @@
 """Translation views"""
 
+from plone.api.env import adopt_user
 import base64
-import cgi
+import json
 import logging
 import os
+# from urllib.parse import parse_qs
 
+from eea.climateadapt.versions import ISerialId
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from plone.app.multilingual.interfaces import ITranslationManager
 from plone.dexterity.utils import iterSchemata
 from Products.Five.browser import BrowserView
-from Products.statusmessages.interfaces import IStatusMessage
-from zope.component import getMultiAdapter
 from zope.schema import getFieldsInOrder
 
-from eea.climateadapt.browser.admin import force_unlock
-from eea.climateadapt.translation.contentrules import queue_translate_volto_html
-
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
-from .core import get_blocks_as_html, ingest_html  # , translate_object_async
+from .core import (
+    call_etranslation_service,
+    check_token_security,
+    get_blocks_as_html,
+    ingest_html,
+    queue_job,
+    setup_translation_object,
+)
 from .utils import get_value_representation
-
-# import transaction
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
@@ -44,6 +46,35 @@ class HTMLIngestion(BrowserView):
         return "ok"
 
 
+class SaveTranslationHtml(BrowserView):
+    """A special view to allow manually submit an HTML translated by
+    eTranslation, but that wasn't properly submitted through the callback"""
+
+    def __call__(self):
+        check_token_security(self.request)
+        html = self.request.form.get("html", "")  # .decode("utf-8")
+        path = self.request.form.get("path", "")
+        language = self.request.form.get("language", "")
+        serial_id = self.request.form.get("serial_id", 0)
+
+        site_portal = portal.getSite()
+        if path[0] == "/":
+            path = path[1:]
+
+        en_obj = site_portal.unrestrictedTraverse(path)
+        canonical_serial_id = ISerialId(en_obj)
+
+        if int(canonical_serial_id) != int(serial_id):
+            return "mismatched serial id"
+
+        with adopt_user(username="admin"):
+            trans_obj = setup_translation_object(en_obj, language, site_portal)
+            ingest_html(trans_obj, html)
+
+        self.request.response.setHeader("Content-Type", "application/json")
+        return json.dumps({"url": trans_obj.absolute_url()})
+
+
 class TranslationCallback(BrowserView):
     """This view is called by the EC translation service.
     Saves the translation in Annotations (or directly in the object in case
@@ -52,119 +83,31 @@ class TranslationCallback(BrowserView):
 
     def __call__(self):
         # for some reason this request acts strange
-        qs = self.request["QUERY_STRING"]
-        parsed = cgi.parse_qs(qs)
-        form = {}
-        for name, val in parsed.items():
-            form[name] = val[0]
-
+        # qs = self.request["QUERY_STRING"]
+        # parsed = parse_qs(qs)
+        # form = {}
+        # for name, val in list(parsed.items()):
+        #     form[name] = val[0]
+        #
         _file = self.request._file.read()
-        logger.info("Translation Callback Incoming form: %s" % form)
-        logger.info("Translation Callback Incoming file: %s" % _file)
+        form = self.request.form
+        # _file = form.get("file", "")
 
-        self.save_html_volto(form, _file)
+        decoded_bytes = base64.b64decode(_file)
+        html = decoded_bytes.decode("utf-8")  # latin-1
+        # html = html_translated.encode("utf-8")
+
+        extref = form.get("external-reference")
+
+        # logger.info("Translation Callback Incoming file: %s" % _file)
+        # logger.info("Translate volto html form: %s", form)
+        # logger.info("Translate volto html: %s", html_translated)
+
+        data = {"obj_path": extref, "html": html}
+        # print("data", data)
+        queue_job("etranslation", "save_translated_html", data)
+
         return "ok"
-
-    def save_html_volto(self, form, b64_str):
-        # file.seek(0)
-        # b64_str = file.read()
-        html_translated = base64.decodestring(b64_str).decode("latin-1")
-
-        logger.info("Translate volto html form: %s", form)
-        logger.info("Translate volto html: %s", html_translated)
-
-        site = portal.getSite()
-        trans_obj_path = form.get("external-reference")
-        if "https://" in trans_obj_path:
-            trans_obj_path = "/cca" + \
-                trans_obj_path.split(site.absolute_url())[-1]
-
-        trans_obj = site.unrestrictedTraverse(trans_obj_path)
-        html = html_translated.encode("latin-1")
-        ingest_html(trans_obj, html)
-
-        logger.info("Html volto translation saved for %s",
-                    trans_obj.absolute_url())
-
-
-class TranslateObjectAsync(BrowserView):
-    def __call__(self):
-        messages = IStatusMessage(self.request)
-        messages.add("Translation process initiated.", type="info")
-
-        obj = self.context
-        force_unlock(obj)
-        html = getMultiAdapter(
-            (self.context, self.context.REQUEST), name="tohtml")()
-        site = portal.getSite()
-        http_host = self.context.REQUEST.environ.get(
-            "HTTP_X_FORWARDED_HOST", site.absolute_url()
-        )
-        language = self.request.form.get("language", None)
-
-        queue_translate_volto_html(html, obj, http_host, language)
-
-        return self.request.response.redirect(obj.absolute_url())
-
-
-class TranslateFolderAsync(BrowserView):
-    """Exposed in /see_folder_objects"""
-
-    good_lang_codes = ["fr", "de", "it", "es", "pl"]
-
-    def find_untranslated(self, obj):
-        tm = ITranslationManager(obj)
-        translations = tm.get_translations()
-        untranslated = set(self.good_lang_codes)
-
-        for langcode, obj in translations.items():
-            if langcode == "en":
-                continue
-            if obj.title and langcode in untranslated:
-                untranslated.remove(langcode)
-
-        return list(untranslated)
-
-    def __call__(self):
-        context = self.context
-
-        brains = context.portal_catalog.searchResults(
-            path="/".join(context.getPhysicalPath()),
-            sort="path",
-        )
-        site = portal.getSite()
-        site_url = site.absolute_url()
-        lang = self.request.form.get("language", None)
-
-        for i, brain in enumerate(brains):
-            obj = brain.getObject()
-            if "sandbox" in obj.absolute_url():
-                continue
-
-            if lang is None:
-                langs = self.find_untranslated(obj)
-            else:
-                langs = [lang]
-
-            force_unlock(obj)
-            for language in langs:
-                logger.info(
-                    "Queuing %s for translation for %s", obj.absolute_url(), language
-                )
-                html = getMultiAdapter(
-                    (obj, self.context.REQUEST), name="tohtml")()
-                http_host = self.context.REQUEST.environ.get(
-                    "HTTP_X_FORWARDED_HOST", site_url
-                )
-
-                queue_translate_volto_html(html, obj, http_host, language)
-
-            # if i % 20 == 0:
-            #     transaction.commit()
-
-        messages = IStatusMessage(self.request)
-        messages.add("Translation process initiated.", type="info")
-        return self.request.response.redirect(self.context.absolute_url())
 
 
 class ToHtml(BrowserView):
@@ -194,73 +137,21 @@ class ToHtml(BrowserView):
     def get_value(self, name):
         if name == "blocks":
             return get_blocks_as_html(self.context)
-        # TODO: remove cover_layout related handling
-        if name == "cover_layout":
-            return None
-        #     value = get_cover_as_html(self.context)
-        #     return value
         return get_value_representation(self.context, name)
 
 
-class TranslateMissing(BrowserView):
-    """A view to trigger the translation for missing translations"""
-
-    good_lang_codes = ["fr", "de", "it", "es", "pl"]
-    blacklist = [
-        "Image",
-        "File",
-        "LRF",
-        "LIF",
-        "Subsite",
-        "FrontpageSlide",
-    ]
-
-    def find_untranslated(self, obj):
-        tm = ITranslationManager(obj)
-        translations = tm.get_translations()
-        untranslated = set(self.good_lang_codes)
-
-        for langcode, obj in translations.items():
-            if langcode == "en":
-                continue
-            if obj.title and langcode in untranslated:
-                untranslated.remove(langcode)
-
-        return list(untranslated)
+class CallETranslation(BrowserView):
+    """Call eTranslation, triggered by job from worker"""
 
     def __call__(self):
-        context = self.context
-        site = portal.getSite()
-        site_url = site.absolute_url()
-        fallback = env("SERVER_NAME", site_url)
-        http_host = self.context.REQUEST.environ.get(
-            "HTTP_X_FORWARDED_HOST", fallback)
+        # TODO: add security check
+        check_token_security(self.request)
+        form = self.request.form
+        html = form.get("html")
+        target_lang = form.get("target_lang")
+        obj_path = form.get("obj_path")
 
-        brains = context.portal_catalog.searchResults(
-            path="/".join(context.getPhysicalPath()),
-            sort="path",
-            review_state="published",
-        )
-
-        result = []
-
-        for i, brain in enumerate(brains):
-            obj = brain.getObject()
-            if brain.portal_type in self.blacklist:
-                continue
-            if "sandbox" in obj.absolute_url():
-                continue
-            langs = self.find_untranslated(obj)
-            result.append((brain, langs))
-
-            force_unlock(obj)
-            for language in langs:
-                logger.info(
-                    "Queuing %s for translation for %s", obj.absolute_url(), language
-                )
-                html = getMultiAdapter(
-                    (obj, self.context.REQUEST), name="tohtml")()
-
-                queue_translate_volto_html(html, obj, http_host, language)
-
-        return "ok"
+        print("calling etranslation")
+        data = call_etranslation_service(html, obj_path, [target_lang])
+        self.request.response.setHeader("Content-Type", "application/json")
+        return json.dumps(data)

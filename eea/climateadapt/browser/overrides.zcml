@@ -13,78 +13,78 @@
   <!--   factory=".misc.DatetimeDataConverter" -->
   <!--   for="zope.schema.interfaces.IDatetime plone.app.widgets.dx.IDatetimeWidget" /> -->
 
-  eea.climateadapt.interfaces.IEEAClimateAdaptInstalled
-  <adapter for="* *"
+  <!-- eea.climateadapt.interfaces.IEEAClimateAdaptInstalled -->
+  <!-- <adapter for="* *"
     name="plone.contentmenu.display"
     factory=".overrides.DisplaySubMenuItem"
-    provides="plone.app.contentmenu.interfaces.IContentMenuItem" />
+    provides="plone.app.contentmenu.interfaces.IContentMenuItem" /> -->
 
-  <adapter factory=".overrides.WidgetsLayerRichTextFieldWidget" />
-  <adapter factory=".overrides.FormLayerRichTextFieldWidget" />
-  <adapter factory=".overrides.RichTextFieldWidget" />
+  <!-- <adapter factory=".overrides.WidgetsLayerRichTextFieldWidget" /> -->
+  <!-- <adapter factory=".overrides.FormLayerRichTextFieldWidget" /> -->
+  <!-- <adapter factory=".overrides.RichTextFieldWidget" /> -->
 
-  <browser:resource
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    name="plone.app.jquerytools.form.nonrequire.js"
-    file="resources/plone.app.jquerytools.form.nonrequire.js"
-    />
+  <!-- <browser:resource -->
+  <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!--   name="plone.app.jquerytools.form.nonrequire.js" -->
+  <!--   file="resources/plone.app.jquerytools.form.nonrequire.js" -->
+  <!--   /> -->
 
-  <browser:page
+  <!-- <browser:page
     name="folder.pdf.body"
     layer="eea.pdf.interfaces.ILayer"
     for="plone.dexterity.interfaces.IDexterityContainer"
     class=".overrides.FolderPdfBody"
     permission="eea.pdf.download"
-    />
+    /> -->
 
-  <class class=".overrides.FolderPdfBody">
+  <!-- <class class=".overrides.FolderPdfBody">
     <implements interface="plone.app.blocks.interfaces.IBlocksTransformEnabled" />
-  </class>
+  </class> -->
 
-  <adapter
+  <!-- <adapter
     provides=".overrides.IEnhancedPersonalPreferencesSchema"
     for="Products.CMFCore.interfaces.ISiteRoot"
     factory=".overrides.EnhancedPersonalPreferencesPanelAdapter"
-    />
+    /> -->
 
-  <browser:page
+  <!-- <browser:page
     for="Products.CMFPlone.Portal.PloneSite"
     name="personal-preferences"
     class=".overrides.CustomizedPersonalPrefPanel"
     permission="cmf.SetOwnProperties"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    /> -->
 
-  <browser:page
+  <!-- <browser:page
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     name="change-password"
     class=".overrides.PasswordAccountPanel"
     permission="cmf.SetOwnPassword"
-    />
+    /> -->
 
-  <browser:page
+  <!-- <browser:page
     for="*"
     name="sitemap_builder_view"
     class=".overrides.CustomizedCatalogSiteMap"
     permission="zope.Public"
     allowed_attributes="siteMap"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    /> -->
 
-  <browser:viewletManager
+  <!-- <browser:viewletManager
     name="plone.resourceregistries.styles"
     provides="Products.ResourceRegistries.interfaces.IHtmlHeadStyles"
     template="pt-overrides/styles_viewlet_override.pt"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     permission="zope2.View"
-    />
+    /> -->
 
-  <browser:viewlet
-    name="plone.resourceregistries"
-    manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-    template="pt-overrides/resourceregistries.pt"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    permission="zope2.View"
-    />
+  <!-- <browser:viewlet -->
+  <!--   name="plone.resourceregistries" -->
+  <!--   manager="plone.app.layout.viewlets.interfaces.IHtmlHead" -->
+  <!--   template="pt-overrides/resourceregistries.pt" -->
+  <!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+  <!--   permission="zope2.View" -->
+  <!--   /> -->
 
 </configure>

@@ -9,13 +9,13 @@
   xmlns:plone="http://namespaces.plone.org/plone"
   i18n_domain="eea.climateadapt">
 
-  <browser:page
+  <!-- <browser:page
     name="getVocabulary"
     for="*"
     class=".integration.VocabularyView"
     permission="zope2.View"
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    /> -->
 
   <adapter
     for="Products.CMFCore.interfaces.IFolderish
@@ -33,12 +33,12 @@
       />
   </class>
 
-  <configure package="plone.app.widgets">
+  <!-- <configure package="plone.app.widgets">
     <browser:resource
       name="plone.app.widgets-tinymce-content.min.css"
       file="static/widgets-tinymce-content.min.css"
       />
-  </configure>
+  </configure> -->
 
   <!-- Fix RichText widget: the plone.app.widgets provided one has proper relatedItems configuration -->
   <!-- <adapter -->
@@ -46,36 +46,36 @@
   <!--        eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
   <!--   factory="eea.climateadapt.browser.overrides.FormLayerRichTextFieldWidget" -->
   <!--   /> -->
-  <adapter factory="eea.climateadapt.browser.overrides.RichTextFieldWidget" />
+  <!-- <adapter factory="eea.climateadapt.browser.overrides.RichTextFieldWidget" /> -->
 
-  <adapter
+  <!-- <adapter
     for="zope.annotation.interfaces.IAnnotatable
     eea.climateadapt.interfaces.IEEAClimateAdaptInstalled
     plone.tiles.interfaces.ITileType"
     provides="collective.cover.tiles.edit.ICoverTileEditView"
     factory=".integration.CustomTileEdit"
-    />
+    /> -->
 
-  <class class=".integration.CustomTileEdit">
+  <!-- <class class=".integration.CustomTileEdit">
     <require
       permission="cmf.ModifyPortalContent"
       interface="zope.publisher.interfaces.browser.IBrowserPage"
       />
-  </class>
+  </class> -->
 
-  <adapter
+  <!-- <adapter
     for=".integration.AcquisitionAwareDict zope.schema.interfaces.IField"
     provides="z3c.form.interfaces.IDataManager"
     factory="z3c.form.datamanager.DictionaryField"
-    />
+    /> -->
 
-  <browser:page
+  <!-- <browser:page
     for=".integration.AcquisitionAwareDict"
     name="plone_layout"
     class=".integration.PloneLayout"
     permission="zope.Public"
     allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy"
-    />
+    /> -->
 
   <!-- <browser:page -->
   <!--   name="images" -->

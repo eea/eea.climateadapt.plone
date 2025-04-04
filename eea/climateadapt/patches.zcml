@@ -15,13 +15,13 @@
   <include
     package="collective.monkeypatcher" />
 
-  <monkey:patch
+  <!-- <monkey:patch
     original="isLinked"
     replacement="eea.climateadapt.isLinked"
     module="Products.CMFPlone.utils"
     description="Patch Plone isLinked"
     preserveOriginal="false"
-  />
+  /> -->
 
   <monkey:patch
     original="getCache"

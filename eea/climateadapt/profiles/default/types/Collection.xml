@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <object name="Collection" meta_type="Dexterity FTI" i18n:domain="plone"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
  <property name="title" i18n:translate="">Collection</property>
@@ -29,14 +29,19 @@
     name="add_permission">plone.app.contenttypes.addCollection</property>
  <property name="klass">plone.app.contenttypes.content.Collection</property>
  <property name="behaviors">
-  <element value="plone.app.content.interfaces.INameFromTitle"/>
-  <element value="plone.app.contenttypes.behaviors.collection.ICollection"/>
-  <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
   <element
      value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
   <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+  <element
+     value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"/>
+  <element value="plone.app.contenttypes.behaviors.collection.ICollection"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
   <element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>
   <element value="plone.app.relationfield.behavior.IRelatedItems"/>
+  <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
+  <element value="plone.shortname"/>
+  <element value="volto.blocks"/>
+  <element value="plone.richtext"/>
  </property>
  <property name="schema"></property>
  <property name="model_source"></property>
@@ -48,13 +53,13 @@
  <alias from="sharing" to="@@sharing"/>
  <alias from="view" to="@@view"/>
  <action title="View" action_id="view" category="object" condition_expr=""
-    description="" icon_expr="" link_target="" url_expr="string:${object_url}"
+    icon_expr="" link_target="" url_expr="string:${object_url}"
     visible="True">
   <permission value="View"/>
  </action>
  <action title="Edit" action_id="edit" category="object" condition_expr=""
-    description="" icon_expr="" link_target=""
-    url_expr="string:${object_url}/edit" visible="True">
+    icon_expr="" link_target="" url_expr="string:${object_url}/edit"
+    visible="True">
   <permission value="Modify portal content"/>
  </action>
 </object>

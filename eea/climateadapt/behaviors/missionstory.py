@@ -1,19 +1,23 @@
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-from zope.component import adapter
-from zope.interface import alsoProvides, implementer, provider
-from zope.schema import Choice, List, Tuple, TextLine
-from plone.directives import form
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-from plone.app.widgets.interfaces import IWidgetsLayer
+
+from plone.autoform import directives
+from plone.autoform.interfaces import IFormFieldProvider
+
 from plone.restapi.behaviors import IBlocks
 from plone.supermodel import model
-from plone.autoform.interfaces import IFormFieldProvider
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
-from z3c.form.widget import FieldWidget
-from z3c.form.interfaces import IFieldWidget
-from z3c.form.util import getSpecification
-from plone.autoform import directives
+
+from zope.interface import alsoProvides, provider  # , implementer,
+from zope.schema import Choice, List, TextLine, Tuple
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+
+# from z3c.form.widget import FieldWidget
+# from zope.component import adapter
+# from z3c.form.interfaces import IFieldWidget
+# from z3c.form.util import getSpecification
+# from plone.app.widgets.interfaces import IWidgetsLayer
+# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 
 
 @provider(IFormFieldProvider)
@@ -54,7 +58,8 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate Impacts"),
         description=_(
@@ -66,7 +71,7 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_("Adaptation Sectors"),
         description=_(
@@ -78,7 +83,8 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    form.widget(key_system="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        key_system="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_system = List(
         title=_("Key Community Systems"),
         description=_(
@@ -133,13 +139,19 @@ class IMissionStory(model.Schema, IBlocks):
     )
 
 
-@adapter(getSpecification(IMissionStory["keywords"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def KeywordsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.keywords"
+# @adapter(getSpecification(IMissionStory["keywords"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def KeywordsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.keywords"
 
-    return widget
+# @adapter(getSpecification(IMissionStory["keywords"]), IWidgetsLayer)
+# @implementer(IFieldWidget)
+# def KeywordsFieldWidget(field, request):
+#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
+#     widget.vocabulary = "eea.climateadapt.keywords"
+
+#     return widget
 
 
 alsoProvides(IMissionStory["climate_impacts"], ILanguageIndependentField)

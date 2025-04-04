@@ -1,9 +1,9 @@
 from collections import namedtuple
 
 from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
-from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
-                                                filters_to_query,
-                                                translate_text)
+# from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
+#                                                 filters_to_query,
+#                                                 translate_text)
 from plone.api.portal import get_tool
 from Products.Five.browser import BrowserView
 
@@ -24,15 +24,17 @@ SEARCH_TYPES_ICONS = [
     ("TOOL", "Tools", "fa-wrench"),
 ]
 
-
-class Urban(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class Urban(BrowserView):
     def main_link(self):
         search_type = "Adaptation option"
         args = [
             ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
             ('cca_adaptation_sectors.keyword', "Urban"),
         ]
-        query = filters_to_query(args)
+        # TODO fix query
+        # query = filters_to_query(args)
+        query = ''
         link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
         return link
 
@@ -43,7 +45,9 @@ class Urban(BrowserView, TranslationUtilsMixin):
             ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
             ('cca_adaptation_sectors.keyword', "Urban"),
         ]
-        query = filters_to_query(args)
+        # TODO fix query
+        # query = filters_to_query(args)
+        query = ''
         link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
 
         return link
@@ -68,7 +72,8 @@ class Urban(BrowserView, TranslationUtilsMixin):
         tmp_types = []
         for data in SEARCH_TYPES_ICONS:
             data = list(data)
-            data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
+            # TODO fix translation
+            # data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
 
         return [
@@ -78,14 +83,17 @@ class Urban(BrowserView, TranslationUtilsMixin):
         ]
 
 
-class Forest(BrowserView, TranslationUtilsMixin):
+# TODO add TranslationUtilsMixin to inheritance
+class Forest(BrowserView):
     def main_link(self):
         search_type = "Adaptation option"
         args = [
             ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
             ('cca_adaptation_sectors.keyword', "Forestry"),
         ]
-        query = filters_to_query(args)
+        # TODO fix query
+        # query = filters_to_query(args)
+        query = ''
         link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
         return link
         # return "/en/data-and-downloads/?lang=en&source=%7B%22query%22%3A%20%7B%22function_score%22%3A%20%7B%22query%22%3A%20%7B%22bool%22%3A%20%7B%22filter%22%3A%20%7B%22bool%22%3A%20%7B%22must%22%3A%20%5B%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22typeOfData%22%3A%20%22Adaptation%20options%22%7D%7D%5D%7D%7D%2C%20%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22sectors%22%3A%20%22Forestry%22%7D%7D%5D%7D%7D%5D%7D%7D%7D%7D%7D%7D%7D"
@@ -97,7 +105,9 @@ class Forest(BrowserView, TranslationUtilsMixin):
             ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
             ('cca_adaptation_sectors.keyword', "Forestry"),
         ]
-        query = filters_to_query(args)
+        # TODO fix query
+        # query = filters_to_query(args)
+        query = ''
         link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
 
         return link
@@ -122,7 +132,8 @@ class Forest(BrowserView, TranslationUtilsMixin):
         tmp_types = []
         for data in SEARCH_TYPES_ICONS:
             data = list(data)
-            data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
+            # TODO fix translation
+            # data[1] = translate_text(self.context, self.request, data[1], 'eea.cca')
             tmp_types.append(data)
 
         return [

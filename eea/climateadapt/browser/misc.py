@@ -1,30 +1,47 @@
 import json
 import logging
-import urllib
+import urllib.error
+import urllib.parse
+
+# import re
+import urllib.request
+
+# from datetime import datetime
+# from email.mime.text import MIMEText
+# from io import BytesIO
 from itertools import islice
 
 import requests
 import transaction
-from dateutil.tz import gettz
 from OFS.ObjectManager import BeforeDeleteException
 from plone import api
 from plone.api import portal
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
-from plone.app.widgets.dx import DatetimeWidgetConverter as BaseConverter
+
+# from plone.app.widgets.dx import DatetimeWidgetConverter as BaseConverter
 from plone.memoize import view
 from Products.CMFPlone.utils import getToolByName, isExpired
 from Products.Five.browser import BrowserView
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
-from zope.interface import Interface, implements
+from zope.interface import Interface, implementer
+
+# from dateutil.tz import gettz
+# from eea.climateadapt.config import CONTACT_MAIL_LIST
+# from eea.climateadapt.schema import Email
 
 from eea.climateadapt.translation.utils import (
     filters_to_query,
     get_current_language,
 )
 
+
+# from eea.climateadapt.translation.utils import (
+#     filters_to_query,
+#     get_current_language,
+# )
+
 # from plone.api.portal import show_message
-# from plone.directives import form
 # from plone.formwidget.captcha.validator import CaptchaValidator, WrongCaptchaCode
 # from plone.formwidget.captcha.widget import CaptchaFieldWidget
 # from plone.z3cform.layout import wrap_form
@@ -172,7 +189,7 @@ class CalculateItemStatistics(BrowserView):
             for key in keys:
                 if annotation[key]["total"] == 0:
                     annotation.pop(key, None)
-            keys = annotation.keys()
+            keys = list(annotation.keys())
 
             if len(keys) == 0:
                 IAnnotations(self.context)["cca-item-statistics"].pop(year)
@@ -201,7 +218,7 @@ class getItemStatistics(BrowserView):
         types = []
 
         for pair in all_types:
-            if pair.keys()[0] in annotations[year].keys():
+            if list(pair.keys())[0] in list(annotations[year].keys()):
                 types.append(pair)
 
         return types
@@ -244,22 +261,19 @@ class ISimplifiedResourceRegistriesView(Interface):
     """A view with simplified resource registries"""
 
 
+@implementer(ISimplifiedResourceRegistriesView)
 class TransRegionView(BrowserView):
     """Custom view for /transnational-regions"""
 
-    implements(ISimplifiedResourceRegistriesView)
 
-
+@implementer(ISimplifiedResourceRegistriesView)
 class CountriesView(BrowserView):
     """Custom view for http://climate-adapt.eea.europa.eu/countries"""
 
-    implements(ISimplifiedResourceRegistriesView)
 
-
+@implementer(ISimplifiedResourceRegistriesView)
 class MapViewerView(BrowserView):
     """Custom view for http://climate-adapt.eea.europa.eu/tools/map-viewer"""
-
-    implements(ISimplifiedResourceRegistriesView)
 
     def __call__(self):
         return self.request.response.redirect(
@@ -344,8 +358,7 @@ class RedirectToSearchView(BrowserView):
                 query["query"]["bool"]["filter"] = {
                     "bool": {
                         "should": [
-                            {"term": {
-                                "typeOfData": typeOfDataValues[typeOfDataTo]}}
+                            {"term": {"typeOfData": typeOfDataValues[typeOfDataTo]}}
                         ]
                     }
                 }
@@ -353,7 +366,7 @@ class RedirectToSearchView(BrowserView):
             link = (
                 link
                 + "?source="
-                + urllib.quote(json.dumps(query))
+                + urllib.parse.quote(json.dumps(query))
                 + "&lang="
                 + current_language
             )
@@ -478,8 +491,7 @@ class GetItemsForMacrotransRegions(BrowserView):
 def _archive_news(site):
     """Script that will get called by cron once per day"""
     catalog = getToolByName(site, "portal_catalog")
-    query = {"portal_type": ["News Item", "Link",
-                             "Event"], "review_state": "published"}
+    query = {"portal_type": ["News Item", "Link", "Event"], "review_state": "published"}
     brains = catalog.searchResults(**query)
 
     for b in brains:
@@ -669,9 +681,13 @@ def preventFolderDeletionEvent(object, event):
     for obj in object.listFolderContents():
         iterate_control = obj.restrictedTraverse("@@iterate_control")
 
-        if iterate_control.is_checkout():
-            # Cancel deletion
-            raise BeforeDeleteException
+        try:
+            if iterate_control.is_checkout():
+                # Cancel deletion
+                raise BeforeDeleteException
+        except AttributeError:
+            logger.info("Needs plone6 migration")
+            continue
 
 
 class ViewGoogleAnalyticsReport(BrowserView):
@@ -681,21 +697,21 @@ class ViewGoogleAnalyticsReport(BrowserView):
         site = portal.get()
         report = site.__annotations__.get("google-analytics-cache-data", {})
 
-        reports = reversed(sorted(report.items(), key=lambda x: int(x[1])))
+        reports = reversed(sorted(list(report.items()), key=lambda x: int(x[1])))
 
         return islice(reports, 0, 10)
 
 
-class DatetimeDataConverter(BaseConverter):
-    """Avoid problem with missing tzinfo from default datetime widgets"""
+# class DatetimeDataConverter(BaseConverter):
+#     """Avoid problem with missing tzinfo from default datetime widgets"""
 
-    def toFieldValue(self, value):
-        logger.warn("dateconvertwidget", value)
-        value = super(DatetimeDataConverter, self).toFieldValue(value)
-        if value is not self.field.missing_value:
-            if not getattr(value, "tzinfo", None):
-                value = value.replace(tzinfo=gettz())
-        return value
+#     def toFieldValue(self, value):
+#         logger.warn("dateconvertwidget", value)
+#         value = super(DatetimeDataConverter, self).toFieldValue(value)
+#         if value is not self.field.missing_value:
+#             if not getattr(value, "tzinfo", None):
+#                 value = value.replace(tzinfo=gettz())
+#         return value
 
 
 class VibrioProxy(BrowserView):
@@ -776,6 +792,7 @@ class VibrioProxy(BrowserView):
 #         return xlsio.read()
 
 
+# TODO plone6 this is not used anymore
 def create_contributions_link(language="en", organisation_id=None):
     # origin_website vocabulary?
     # https://github.com/eea/eea.climateadapt.plone/blob/master/eea/climateadapt/vocabulary.py#L441
@@ -808,6 +825,8 @@ def create_contributions_link(language="en", organisation_id=None):
         terms.append(("language", [language]))
 
         url = "/" + language + "/observatory/catalogue/?"
-        query = filters_to_query(terms)
+        # TODO fix query
+        # query = filters_to_query(terms)
+        query = ""
 
         return "{}{}".format(url, query)

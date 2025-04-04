@@ -1,38 +1,36 @@
-""" CaseStudy and AdaptationOption implementations
-"""
+"""CaseStudy and AdaptationOption implementations"""
 
 import json
 import logging
-from datetime import date
+# from datetime import date
 
-from eea.climateadapt.behaviors import (IAceMeasure, IAdaptationOption,
-                                        ICaseStudy)
+from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy
 from eea.climateadapt.interfaces import IClimateAdaptContent
-from eea.climateadapt.sat.datamanager import queue_callback
-from eea.climateadapt.sat.handlers import HANDLERS
-from eea.climateadapt.sat.settings import get_settings
-from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
-from eea.climateadapt.utils import _unixtime, shorten
+from eea.climateadapt.utils import shorten  # _unixtime,
 from eea.climateadapt.vocabulary import BIOREGIONS
-from eea.rabbitmq.plone.rabbitmq import queue_msg
+
 from plone.api.portal import get_tool
-from plone.directives import dexterity
-from zope.interface import implements
+from plone.dexterity.content import Container
+from zope.interface import implementer
+
+# from eea.climateadapt.sat.datamanager import queue_callback
+# from eea.climateadapt.sat.handlers import HANDLERS
+# from eea.climateadapt.sat.settings import get_settings
+# from eea.climateadapt.sat.utils import _measure_id, to_arcgis_coords
+# from eea.rabbitmq.plone.rabbitmq import queue_msg
 
 logger = logging.getLogger("eea.climateadapt.acemeasure")
 
 
-class AdaptationOption(dexterity.Container):
+@implementer(IAdaptationOption, IClimateAdaptContent)
+class AdaptationOption(Container):
     """The AdaptationObject content type."""
-
-    implements(IAdaptationOption, IClimateAdaptContent)
 
     search_type = "MEASURE"
 
 
-class CaseStudy(dexterity.Container):
-    implements(ICaseStudy, IClimateAdaptContent)
-
+@implementer(ICaseStudy, IClimateAdaptContent)
+class CaseStudy(Container):
     search_type = "ACTION"
 
     def _short_description(self):
@@ -54,7 +52,7 @@ class CaseStudy(dexterity.Container):
             chars = json.loads(self.geochars)
             els = chars["geoElements"]
 
-            if "biotrans" not in els.keys():
+            if "biotrans" not in list(els.keys()):
                 return ""
             bio = els["biotrans"]
 
@@ -70,95 +68,96 @@ class CaseStudy(dexterity.Container):
 
             return ""
 
-    def _repr_for_arcgis(self):
-        is_featured = getattr(self, "featured", False)
-        # is_highlight = getattr(self, 'highlight', False)
-        # classes = {
-        #     (False, False): 'normal',
-        #     (True, False): 'featured',
-        #     (True, True): 'featured-highlight',
-        #     (False, True): 'highlight',
-        # }
-        # client_cls = classes[(is_featured, is_highlight)]
-        client_cls = is_featured and "featured" or "normal"
+    # def _repr_for_arcgis(self):
+    #     is_featured = getattr(self, "featured", False)
+    #     # is_highlight = getattr(self, 'highlight', False)
+    #     # classes = {
+    #     #     (False, False): 'normal',
+    #     #     (True, False): 'featured',
+    #     #     (True, True): 'featured-highlight',
+    #     #     (False, True): 'highlight',
+    #     # }
+    #     # client_cls = classes[(is_featured, is_highlight)]
+    #     client_cls = is_featured and "featured" or "normal"
 
-        if self.geolocation and self.geolocation.latitude:
-            geo = to_arcgis_coords(
-                self.geolocation.longitude, self.geolocation.latitude
-            )
-            geometry = {
-                "x": geo[0],
-                "y": geo[1],
-            }
-        else:
-            geometry = {"x": "", "y": ""}
+    #     if self.geolocation and self.geolocation.latitude:
+    #         geo = to_arcgis_coords(
+    #             self.geolocation.longitude, self.geolocation.latitude
+    #         )
+    #         geometry = {
+    #             "x": geo[0],
+    #             "y": geo[1],
+    #         }
+    #     else:
+    #         geometry = {"x": "", "y": ""}
 
-        if self.effective_date is not None:
-            if hasattr(self.effective_date, "date"):
-                effective = self.effective_date.date()
-            else:
-                effective = self.effective_date.asdatetime().date()
-        else:
-            effective = date.today()  # todo? item not published?
+    #     if self.effective_date is not None:
+    #         if hasattr(self.effective_date, "date"):
+    #             effective = self.effective_date.date()
+    #         else:
+    #             effective = self.effective_date.asdatetime().date()
+    #     else:
+    #         effective = date.today()  # todo? item not published?
 
-        today = date.today()
-        timedelta = today - effective
+    #     today = date.today()
+    #     timedelta = today - effective
 
-        if timedelta.days > 90:
-            newitem = "no"
-        else:
-            newitem = "yes"
+    #     if timedelta.days > 90:
+    #         newitem = "no"
+    #     else:
+    #         newitem = "yes"
 
-        res = {
-            "attributes": {
-                "area": self._get_area(),
-                "itemname": self.Title(),
-                "desc_": self._short_description(),
-                "website": self.websites and self.websites[0] or "",
-                "sectors": ";".join(self.sectors or []),
-                "risks": ";".join(self.climate_impacts or []),
-                "measureid": getattr(self, "_acemeasure_id", "") or self.UID(),
-                "featured": is_featured and "yes" or "no",
-                "newitem": newitem,
-                "casestudyf": "CASESEARCH;",  # TODO: implement this
-                "client_cls": client_cls,
-                "Creator": self.creators[-1],
-                "CreationDate": _unixtime(self.creation_date),
-                "EditDate": _unixtime(self.modification_date),
-                "Editor": self.workflow_history["cca_items_workflow"][-1]["actor"],
-                "EffectiveDate": _unixtime(self.effective_date),
-            },
-            "geometry": geometry,
-        }
+    #     res = {
+    #         "attributes": {
+    #             "area": self._get_area(),
+    #             "itemname": self.Title(),
+    #             "desc_": self._short_description(),
+    #             "website": self.websites and self.websites[0] or "",
+    #             "sectors": ";".join(self.sectors or []),
+    #             "risks": ";".join(self.climate_impacts or []),
+    #             "measureid": getattr(self, "_acemeasure_id", "") or self.UID(),
+    #             "featured": is_featured and "yes" or "no",
+    #             "newitem": newitem,
+    #             "casestudyf": "CASESEARCH;",  # TODO: implement this
+    #             "client_cls": client_cls,
+    #             "Creator": self.creators[-1],
+    #             "CreationDate": _unixtime(self.creation_date),
+    #             "EditDate": _unixtime(self.modification_date),
+    #             "Editor": self.workflow_history["cca_items_workflow"][-1]["actor"],
+    #             "EffectiveDate": _unixtime(self.effective_date),
+    #         },
+    #         "geometry": geometry,
+    #     }
 
-        return res
+    #     return res
 
 
-def handle_for_arcgis_sync(obj, event):
-    """Dispatch event to RabbitMQ to trigger synchronization to ArcGIS"""
-    event_name = event.__class__.__name__
-    uid = _measure_id(obj)
-    msg = "{0}|{1}".format(event_name, uid)
-    logger.info("Queuing RabbitMQ message: %s", msg)
-
-    settings = get_settings()
-
-    if settings.skip_rabbitmq:
-        queue_callback(lambda: HANDLERS[event_name](obj, uid))
-
-        return
-
-    try:
-        queue_msg(msg, queue="eea.climateadapt.casestudies")
-    except Exception:
-        logger.exception("Couldn't queue RabbitMQ message for case study event")
+# def handle_for_arcgis_sync(obj, event):
+#     """Dispatch event to RabbitMQ to trigger synchronization to ArcGIS"""
+#     event_name = event.__class__.__name__
+#     uid = _measure_id(obj)
+#     msg = "{0}|{1}".format(event_name, uid)
+#     logger.info("Queuing RabbitMQ message: %s", msg)
+#
+#     settings = get_settings()
+#
+#     if settings.skip_rabbitmq:
+#         queue_callback(lambda: HANDLERS[event_name](obj, uid))
+#
+#         return
+#
+#     try:
+#         # queue_msg(msg, queue="eea.climateadapt.casestudies")
+#         pass
+#     except Exception:
+#         logger.exception("Couldn't queue RabbitMQ message for case study event")
 
 
 def handle_measure_added(obj, event):
     """Assign a new measureid to this AceMeasure"""
 
     catalog = get_tool(name="portal_catalog")
-    ids = sorted(filter(None, catalog.uniqueValuesFor("acemeasure_id")))
+    ids = sorted(value for value in catalog.uniqueValuesFor("acemeasure_id") if value)
     obj._acemeasure_id = ids[-1] + 1
     obj.reindexObject(idxs=["acemeasure_id"])
 

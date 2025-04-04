@@ -1,0 +1,54 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
+
+  <!-- <include package=".maintainance" /> -->
+
+  <browser:page
+    for="*"
+    class=".admin.CreateTranslationStructure"
+    name="cts"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
+    name="reset_async"
+    permission="cmf.ManagePortal"
+    class=".admin.ResetAsync"
+  />
+
+  <browser:page
+    for="*"
+    name="set_tree_language"
+    permission="cmf.ManagePortal"
+    class=".admin.SetTreeLanguage"
+  />
+
+  <browser:page
+    for="*"
+    name="reindex_tree_view"
+    permission="cmf.ManagePortal"
+    class=".admin.ReindexTree"
+  />
+
+  <browser:page
+    for="*"
+    name="fix_folder_order"
+    permission="cmf.ManagePortal"
+    class=".admin.FixFolderOrder"
+  />
+
+  <browser:page
+    for="*"
+    template="pt/see_translation_status.pt"
+    name="see_translation_status"
+    permission="cmf.ManagePortal"
+    class=".admin.SeeTranslationStatus"
+  />
+
+</configure>

@@ -11,15 +11,15 @@ from zope.interface import alsoProvides
 
 @provider(IFormFieldProvider)
 class IPreview(model.Schema):
-
     preview_image = namedfile.NamedBlobImage(
-        title=(u"Preview image"),
-        description=(u"Insert an image that will be used in listing and teaser blocks."),
+        title=("Preview image"),
+        description=("Insert an image that will be used in listing and teaser blocks."),
         required=False,
     )
 
     preview_caption = TextLine(
-        title=(u"Preview image caption"), description=(u""), required=False
+        title=("Preview image caption"), description=(""), required=False
     )
 
-alsoProvides(IPreview['preview_image'], ILanguageIndependentField)
+
+alsoProvides(IPreview["preview_image"], ILanguageIndependentField)

@@ -15,7 +15,7 @@
   <element value="File"/>
   <element value="Folder"/>
   <element value="Image"/>
-  <element value="collective.cover.content"/>
+  <!-- <element value="collective.cover.content"/> -->
  </property>
  <property name="allow_discussion">False</property>
  <property name="default_view">listing_view</property>

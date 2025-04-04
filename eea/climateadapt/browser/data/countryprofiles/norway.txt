@@ -1,0 +1,273 @@
+<div style="margin:30px;margin-right: 10px;" class="alert alert-warning alert-dismissable alert-redirect" role="alert">
+  <p>
+The information presented in these pages is based on the 2019 voluntary reporting of Norway, in line with the ''Regulation (EU) No 525/2013 on a mechanism for monitoring and reporting greenhouse gas emissions and for reporting other information relevant to climate change'.
+</p>
+
+  
+  
+</div>
+<div class="sweet-tabs">
+<ul class="nav nav-tabs">
+<li class="active"><a href="#1121-0" data-toggle="tab">Summary</a></li>
+<li class=" "><a href="#1121-1" data-toggle="tab">Policy &amp; legal framework</a></li>
+<li class=" "><a href="#1121-2" data-toggle="tab">Sectors &amp; actions</a></li>
+<li class=" "><a href="#1121-3" data-toggle="tab">Assessments</a></li>
+<li class=" "><a href="#1121-4" data-toggle="tab">Engaging stakeholders</a></li>
+<li class=" "><a href="#1121-5" data-toggle="tab">Contact</a></li>
+</ul>
+<div class="tab-content">
+<div class="tab-pane active" id="1121-0">
+<table class="listing" summary="">
+<thead>
+<tr>
+<th style="width: 267px;">Item</th>
+<th style="width: 126px;">Status</th>
+<th style="width: 476.97px;">Links</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="width: 267px;">National Adaptation Strategy</td>
+<td style="width: 126px;">
+<ul>
+<li>Adopted</li>
+</ul>
+</td>
+<td style="width: 476.97px;">
+<ul>
+<li><a href="https://www.regjeringen.no/no/dokumenter/meld.-st.-26-20222023/id2985027/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.regjeringen.no/no/dokumenter/meld.-st.-26-20222023/id2985027/">Climate change adaptation in Norway Meld.St.26 (2022-2023)</a></li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td style="width: 267px;">National Adaptation Plan</td>
+<td style="width: 126px;">
+<p> </p>
+</td>
+<td style="width: 476.97px;"></td>
+</tr>
+<tr class="odd">
+<td style="width: 267px;">Impacts, vulnerability and adaptation assessments</td>
+<td style="width: 126px;">
+<ul>
+<li>Completed</li>
+<li>Completed</li>
+<li>Completed</li>
+<li>Completed</li>
+</ul>
+</td>
+<td style="width: 476.97px;">
+<ul>
+<li><a href="https://www.regjeringen.no/contentassets/01c4638b3f3e4573929f3b375f4731e0/nn-no/pdfs/nou201020100010000dddpdfs.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.regjeringen.no/contentassets/01c4638b3f3e4573929f3b375f4731e0/nn-no/pdfs/nou201020100010000dddpdfs.pdf">Norwegian official report on Climate Change Adaptation</a></li>
+<li><a href="https://www.miljodirektoratet.no/publikasjoner/2019/januar-2019/oppdatering-av-kunnskap-om-konsekvenser-av-klimaendringer-i-norge/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.miljodirektoratet.no/publikasjoner/2019/januar-2019/oppdatering-av-kunnskap-om-konsekvenser-av-klimaendringer-i-norge/">Updated assessment on climate change adaptation in Norway</a></li>
+<li><a href="https://nettsteder.regjeringen.no/klimarisikoutvalget/" rel="noopener" target="_blank" data-linktype="external" data-val="https://nettsteder.regjeringen.no/klimarisikoutvalget/">Norwegian official report on Climate Risk and the Norwegian Economy</a></li>
+<li><a href="https://www.miljodirektoratet.no/publikasjoner/2018/februar-2018/utredning-om-konsekvenser-for-norge-av-klimaendringer-i-andre-land/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.miljodirektoratet.no/publikasjoner/2018/februar-2018/utredning-om-konsekvenser-for-norge-av-klimaendringer-i-andre-land/">Consequences for Norway of Transnational Climate Impacts</a></li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td style="width: 267px;">Research programmes</td>
+<td style="width: 126px;">
+<ul>
+<li>Currently being undertaken</li>
+</ul>
+</td>
+<td style="width: 476.97px;">
+<ul>
+<li><a href="https://www.forskningsradet.no/prognett-klimaforsk/Home_page/1253987906524" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.forskningsradet.no/prognett-klimaforsk/Home_page/1253987906524">Large-scale Programme on Climate Research KLIMAFORSK</a></li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td style="width: 267px;">Meteorological observations</td>
+<td style="width: 126px;">
+<ul>
+<li>Established</li>
+</ul>
+</td>
+<td style="width: 476.97px;">
+<ul>
+<li><a href="https://www.met.no/en" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.met.no/en">The Norwegian Meteorological Institute</a></li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td style="width: 267px;">Climate Projections and Services</td>
+<td style="width: 126px;">
+<ul>
+<li>Established</li>
+<li>Established</li>
+<li>Established</li>
+<li>Being developed</li>
+<li>Established</li>
+</ul>
+</td>
+<td style="width: 476.97px;">
+<ul>
+<li><a href="https://klimaservicesenter.no/kss/rapporter/kin2100" rel="noopener" target="_blank" data-linktype="external" data-val="https://klimaservicesenter.no/kss/rapporter/kin2100">Climate Projections for Norway (2015)</a></li>
+<li><a href="https://www.miljodirektoratet.no/globalassets/publikasjoner/M1242/M1242.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.miljodirektoratet.no/globalassets/publikasjoner/M1242/M1242.pdf">Climate in Svalbard 2100</a></li>
+<li><a href="https://klimaservicesenter.no/kss/klimaprofiler/om" rel="noopener" target="_blank" data-linktype="external" data-val="https://klimaservicesenter.no/kss/klimaprofiler/om">Climate projections for each county in Norway</a></li>
+<li><a href="https://www.miljodirektoratet.no/publikasjoner/2015/september-2015/havnivaendring-i-norge/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.miljodirektoratet.no/publikasjoner/2015/september-2015/havnivaendring-i-norge/">Sea Level Change for Norway: Past and Present Observations and Projections to 2100</a></li>
+<li><a href="https://klimaservicesenter.no/" rel="noopener" target="_blank" data-linktype="external" data-val="https://klimaservicesenter.no/">The Norwegian Centre for Climate Services</a></li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td style="width: 267px;">CC IVA portals and platforms</td>
+<td style="width: 126px;">
+<ul>
+<li>Established</li>
+</ul>
+</td>
+<td style="width: 476.97px;">
+<ul>
+<li><a href="http://Klimatilpasning.no" rel="noopener" target="_blank" data-linktype="external" data-val="http://Klimatilpasning.no"><u>Klimatilpasning.no</u></a> </li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td style="width: 267px;">Monitoring, Indicators, Methodologies</td>
+<td style="width: 126px;">
+<ul>
+<li>Established</li>
+<li>Established</li>
+<li>Being developed</li>
+</ul>
+</td>
+<td style="width: 476.97px;">
+<ul>
+<li><a href="https://www.regjeringen.no/no/dokumenter/prop.-1-s-20182019/id2613447/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.regjeringen.no/no/dokumenter/prop.-1-s-20182019/id2613447/">Reporting according to the Climate Change Act in the budget proposal from the government for 2019 Prop 1 S 2018-2019</a></li>
+<li><a href="https://www.statsbudsjettet.no/Upload/Statsbudsjett_2018/dokumenter/pdf/kld.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.statsbudsjettet.no/Upload/Statsbudsjett_2018/dokumenter/pdf/kld.pdf">Reporting according to the Climate Change Act in the budget proposal from the government for 2018</a></li>
+<li><a href="https://www.miljostatus.no/nasjonale-mal/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.miljostatus.no/nasjonale-mal/">Reporting on national targets (including climate change adaptation)</a></li>
+</ul>
+</td>
+</tr>
+<tr class="odd">
+<td style="width: 267px;">National Communication to UNFCCC</td>
+<td style="width: 126px;">
+<ul>
+<li>Last National Communication Submitted</li>
+</ul>
+</td>
+<td style="width: 476.97px;">
+<ul>
+<li><a href="http://unfccc.int/files/national_reports/annex_i_natcom/submitted_natcom/application/pdf/529371_norway-nc7-br3-1-nc7_-_br3_-_final.pdf" data-linktype="external" data-val="http://unfccc.int/files/national_reports/annex_i_natcom/submitted_natcom/application/pdf/529371_norway-nc7-br3-1-nc7_-_br3_-_final.pdf">UNFCCC NC7</a></li>
+</ul>
+<p> </p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tab-pane  " id="1121-1">
+    <div>
+<h3>Adaptation Strategies</h3>
+<p>The first White Paper on Climate Change Adaptation (CCA) was adopted by Stortinget (The Norwegian Parliament) in 2013, outlining national policies and guidance for adaptation in Norway. The White Paper represents the Norwegian national strategy for CCA and key priorities for adaptation in the years to come. The White Paper upholds that everyone is responsible for climate change adaptation – individuals, business and industry and the authorities. In line with the principle of responsibility, all ministries have responsibility to safeguard consideration for climate change within their sector. The White Paper states that projections on future climate and knowledge are essential for effective climate change adaptation. Adaptation work should always be based on the best available knowledge about climate change and how the changes can be addressed.</p>
+<p>The Government therefore intends to ensure that the knowledge base for climate change adaptation is strengthened through closer monitoring of climate change, continued expansion of climate change research and establishing a national centre for climate services. According to the White Paper, adaptation policies and measures should build on the best available knowledge. Climate projections indicate a trend towards increased and more intense precipitation in Norway, which will result in more storm water runoff in urban areas (urban flooding). This requires an enhanced framework for managing urban flooding, especially in areas with impermeable surfaces such as roads and pavements.</p>
+<p>The Government appointed a committee to evaluate the current legislation and as appropriate make proposals for amendments to provide a better framework for the municipalities responsible for managing storm water, to deal with the increasing challenges associated with urban flooding. The committee launched their <a href="https://www.regjeringen.no/no/aktuelt/utvalg-foreslar-virkemidler-for-a-hindre-skader-fra-overvann/id2465419/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.regjeringen.no/no/aktuelt/utvalg-foreslar-virkemidler-for-a-hindre-skader-fra-overvann/id2465419/">report with proposals for amendments</a> December 2015 (in Norwegian). </p>
+<p>Sea level rise is a challenge associated with climate change addressed in the White Paper. Individuals, private companies, public bodies and local and central government authorities all have a responsibility for taking steps to safeguard their own property. Under the Planning and Building Act, the municipalities are responsible for ensuring that natural hazards are assessed and taken into account in spatial planning and processing of building applications. This includes the responsibility for considering implications from sea level rise and the resulting higher tides. Most directorates have made sectoral adaptation strategies or climate strategies addressing climate change adaptation. Climate change will result in a higher risk of damage caused by natural disasters such as floods and landslides. The Norwegian Water Resources and Energy Directorate (NVE), has developed a climate change adaptation strategy https://www.nve.no/klima/ including monitoring, research and concrete measures to prevent increased damages caused by floods and landslides in a future climate. In particular, changes in flood magnitudes are taken into account in design flood estimates and flood contingency planning. Other examples are the the<a href="http://www.miljodirektoratet.no/Documents/publikasjoner/M1018/M1018.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="http://www.miljodirektoratet.no/Documents/publikasjoner/M1018/M1018.pdf"> Norwegian Environment Agency</a>, <a href="https://www.dsb.no/veiledere-handboker-og-informasjonsmateriell/klimaplattform-dsb/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.dsb.no/veiledere-handboker-og-informasjonsmateriell/klimaplattform-dsb/">Directorate for Civil Protection</a>, <a href="https://www.regjeringen.no/globalassets/upload/fkd/brosjyrer20og20veiledninger/2013/fiskeridep_klimastrategi_korr3.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.regjeringen.no/globalassets/upload/fkd/brosjyrer20og20veiledninger/2013/fiskeridep_klimastrategi_korr3.pdf">Directorate of Fisheries</a> and the <a href="https://www.kystverket.no/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.kystverket.no/">Norwegian coastal administration</a>. </p>
+<p>Norway has good public and private insurance schemes for insurance against disasters. This model is beneficial for society, as it provides a protection from financial risk associated with extreme weather events. The local character of the impacts of climate change puts the municipalities in the front line in dealing with climate change. In the white paper on climate change adaptation, the need to better integrate adaptation to climate change into the municipal responsibilities in order to enable the municipalities to ensure resilient and sustainable communities also in the future, is emphasized. New guidelines describing how the municipalities and counties can incorporate climate change adaptation work into their planning activities was adopted in 2018. Information resources, networks for sharing experience, grants, and cooperation with regional authorities plays an important part in climate change adaptation work at municipal level.</p>
+<h3>Implementation means</h3>
+<p>The white paper upholds that everyone – individuals, business and industry and the authorities – is responsible for assessing and addressing the impacts of climate change on their areas of competence. In line with the principle of responsibility, all ministries have responsibility to safeguard consideration for climate change within their sector. The Norwegian Environment Agency supports the Ministry of Climate and Environment in the work on climate change adaptation, and is the coordinating agency. The Environment Agency assists the Ministry in the follow-up of the White Paper on climate change adaptation (Meld.St 33 (2012-2013)) and in policy-making. In its role as coordinating agency for climate change adaptation, the Environment Agency works to ensure that actors on local, regional and national level are taking account of and adapting to climate change. The Environment Agency works to strengthen climate adaptation efforts in Norway, among others things by increasing the knowledge base for climate adaptation. The Agency has a particular responsibility for disseminating and sharing knowledge and experience, contribute to competence and capacity building, and facilitate cooperation between different public administration levels, sectors and actors in the field.</p>
+<p>A grant scheme to support regional and local authorities in their climate change adaptation work was established in 2015 by the Ministry of Climate and Environment and is administered by the Norwegian Environment Agency. Support is given to projects designed to strengthen the knowledge base on which municipalities build their climate change adaptation measures. There are also several other grant schemes for municipalities and industry that are relevant for climate change adaptation measures. The Norwegian Water Resources and Energy Directorate (NVE) supports planning and/or construction of infrastructure that helps prevent landslides and flooding, measures to improve water quality in rivers. The Agricultural Directorate administers two grant schemes that supports climate adaptation measures, the grant scheme for environmental measures and the grant scheme for drainage of agricultural land.</p>
+<h3>Monitoring, reporting and evaluation</h3>
+<p>In June 2017, the Norwegian Parliament adopted a Climate Change Act (Lov om klimamål) which includes annual reporting requirements related to adaptation to climate change. The reporting is based on the national target for climate adaptation set by the government: "The Norwegian society should be prepared for and adapted to climate change". Indicators to measure this target has not yet been developed, and the target is currently <a href="https://www.miljostatus.no/nasjonale-mal/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.miljostatus.no/nasjonale-mal/">measured by self-reporting</a>. Norway has also adopted the Sendai Framework for Disaster Risk Reduction. The national reporting on the indicators started in 2018.</p>
+<p> </p>
+</div></div>
+<div class="tab-pane  " id="1121-2">
+    <div>
+<p> </p>
+<p>An overview of vulnerabilities, impacts and adaptation measures is provided in Norway`s <a href="http://unfccc.int/files/national_reports/annex_i_natcom/submitted_natcom/application/pdf/529371_norway-nc7-br3-1-nc7_-_br3_-_final.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="http://unfccc.int/files/national_reports/annex_i_natcom/submitted_natcom/application/pdf/529371_norway-nc7-br3-1-nc7_-_br3_-_final.pdf">seventh National Communication</a> under the UNFCCC, chapter 6.  The White Paper upholds that everyone is responsible for climate change adaptation – individuals, business and industry and the authorities. In line with the principle of responsibility, all ministries have responsibility to safeguard consideration for climate change within their sector.</p>
+<h3>Sectors addressed in NAS/NAP</h3>
+<p>The White paper on adaptation (2013) provides key priorities for adaptation in the years to come. Since 2013, important progress have been made in the climate change adaptation work, within and across a range of sectors. Climate change create a need for a service that provides information on the current and future climate and play a part in translating climate science into practical adaptation work. The Norwegian Centre for Climate Services (NCCS) was officially established in 2013. The development of a national centre for climate services involves the Norwegian Meteorological Institute, the Norwegian Water Resources and Energy Directorate and the Bjerknes Centre for Climate Research including Uni Research. The Meteorological Institute has overall responsibility for the centre. One important reason for establishing a centre for climate services was to provide a basis for climate change adaptation to be implemented in the municipalities and by sectoral authorities.</p>
+<p>In 2015, the centre issued a synthesis report “Climate in Norway 2100 – a knowledge base for climate adaptation", based on the 5th Assessment Report of the IPCC. The information for individual counties has later been published as so-called “county climate profiles”. The climate and hydrological projections for Norway are available at the NCCS's web site and can also be downloaded for use in further research on the effects of climate change. The centre also participates in a number of research projects involving various user groups to increase the dialogue with decision makers to develop targeted products for use in climate change adaptation.</p>
+<p>Furthermore, in the wake of the white paper on climate change adaptation, the Government appointed a committee to evaluate the current legislation and as appropriate make proposals for amendments to provide a better framework for the municipalities responsible for managing storm water, to deal with the increasing challenges associated with urban floods as a result of climate change. The committee launched their report with proposals for amendments in December 2015 (NOU 2015 -16) Overvann i byer og tettsteder – som problem og ressurs (Storm water runoff in towns and cities - As problem and a resource, in Norwegian only). The recommendations in the report consist of informative, legal and economic policy instruments that integrates with existing Norwegian legislation and governance. The relevant Ministries have welcomed the report and are looking into ways of implementing some of the recommended policy instruments.</p>
+<p>In the white paper on climate change adaptation, the need to better integrate adaptation to climate change into the municipal responsibilities in order to enable the municipalities to ensure resilient and sustainable communities also in the future, is emphasized. New guidelines describing how the municipalities and counties can incorporate climate change adaptation work into their planning activities was adopted in 2018. In addition, a circular published by The Ministry of Climate and the Environment in 2016 provides guidelines for the use of objections in climate and environment related issues (T-2/16 Nasjonale og vesentlige regionale interesser på miljøområdet – klargjøring av miljøforvaltningens innsigelsespraksis, in Norwegian only). The circular includes requirements regarding climate change adaptation. The White Paper on climate change adaptation emphasised the need to update knowledge on consequences of climate change and needs for adaptation frequently, and several assessments within different sectors have been published since 2013.</p>
+<p>An overview on the progress in national climate adapation work, as well as knowledge on the consequences of climate change has been published in a report written by the research institute CICERO and Western Norway Research Institute in 2018. An evaluation of adaptive capacity was also included in the assessment, which was commissioned by the Norwegian Environmental Agency. The government has funded a research center, NOR ADAPT, that was established in 2019. The aim of the centre is to provide knowledge on how the Norwegian Society can adapt to the consequences of climate change.</p>
+</div></div>
+<div class="tab-pane  " id="1121-3">
+    <div>
+<p> </p>
+<h3>Observations and Projections</h3>
+<p> </p>
+<p>The Norwegian Meteorological Institute (MET Norway) provides expertise on climate conditions on the global and national scale. MET Norway has included 10 existing meteorological surface observing stations and two upper air stations as part of the Global Climate Observing System (GCOS). MET Norway operates six upper air stations, including two stations at the Arctic islands of Jan Mayen and Bjørnøya, and a station at the Ekofisk oil field in the North Sea. The surface-based meteorological network for real time synoptic observations comprises approximately 270 stations, including Jan Mayen, Bjørnøya, Hopen and 12 meteorological stations on Svalbard. Real-time data from the Norwegian meteorological stations are exchanged internationally through the WMO international data exchange and are sent to the World Data Centres. The institute also operates a network of manual precipitation stations consisting of 282 stations. MET Norway has operated meteorological observing stations for more than 100 years at a number of locations.MET Norway's database now freely available on the web at <a href="http://sharki.oslo.dnmi.no/portal/page?_pageid=73,39035,73_39049&amp;_dad=portal&amp;_schema=PORTAL" rel="noopener" target="_blank" data-linktype="external" data-val="http://sharki.oslo.dnmi.no/portal/page?_pageid=73,39035,73_39049&amp;_dad=portal&amp;_schema=PORTAL">www.eklima.no</a>, and includes both real-time and long historical climate series.</p>
+<p>The Institute of Marine Research (IMR) is responsible for monitoring programs for physical and biological oceanographic parameters. Temperature and salinity observations at 9 fixed stations has been monitored since 1936. Physical, chemical and biological parameters have been monitored 2-4 times per year since 1970. Monitoring of ocean acidification started in 2010.</p>
+<p>The Norwegian Polar Institute maintains a monitoring program in Fram Strait, monitoring the oceanic output from the Arctic Ocean to sub polar seas. Ice thickness has been continuously monitored in the Arctic since 1990. The Institute also monitors the marine living environment and sea ice properties in Kongsfjorden, Svalbard, as well as sea ice and snow thickness in Storfjorden and Hopen, Svalbard. There are several programs to map species and habitats along the coast and at sea. Data from observations contributes to the WMO Joint Technical Commission for Oceanography and Marin Meteorology (JCOMM).</p>
+<p>Norway has a great amount of terrestrial monitoring programs that include climate parameters or indicators, which also may be used to evaluate the effects of climate change. Mass balance of glaciers and snow distribution in Svalbard (MOSJ), arctic tundra biodiversity (COAT), changes in ground vegetation communities and epiphytic lichens in mountains, sub alpine birch forests and coniferous forests (TOV), changes in populations of passerine birds and small mammals in sub alpine birch forests (TOV, bird index), palsa mire changes, changes in forest growth and vitality in coniferous forests (Forest monitoring) and changes in water chemistry and biota are some of the parameters or indicators that are useful to monitor with respect to climate responses.</p>
+<p>Climate change effects are integrated in several monitoring programs; Terrestrial Monitoring program, The Bird Index, Monitoring of palsa peatland, National Forest Inventory, Monitoring of cultural landscape, Ecosystem monitoring in freshwater and Environmental monitoring on Svalbard and Jan Mayen.</p>
+<p>Norway is member of the European Space Agency and the EU Galileo program. Norway is also member of Copernicus, which aims at providing accurate, timely and easily accessible information to improve the management of the environment, understand and mitigate the effects of climate change and ensure civil security.</p>
+<p>The CryoClim project led by the Norwegian Computing Centre has developed a new operational and permanent service for long-term systematic climate monitoring of the cryosphere by satellite. Cryoclim has potential to be a Norwegian contribution into both the Copernicus Climate Change service and the WMO Global Cryosphere Watch Initiative Projections.</p>
+<p>The report Climate in Norway 2100 (2009) was prepared on request from the expert committee writing the Official Norwegian report on CAA (2010). The report described past, present and future climate, hydrology and conditions in the ocean. In 2015 the report Climate in Norway 2100 was re-launched with updated climate projections for Norway, downscaling the climate projections from the Intergovernmental Panel for Climate Change`s (IPCC) 5th assessment report. The information for individual counties has later been published as so-called “county climate profiles”. A report presenting new estimates of sea level rise was published in 2015. In 2019 climate projections for the future climate development in Svalbard was released in the report Climate in Svalbard 2100 .These projections are also based on results in the IPCCs 5th assessment report. The climate and hydrological projections for Norway are available at the Norwegian Centre for Climate Services' web site.</p>
+<h3>Impact and Vulnerability Assessment</h3>
+<p>The first comprehensive national assessment, an Official Norwegian report, of vulnerability and adaptation needs in Norway was submitted by an independent expert committee to the Government in November 2010. The committee was mandated by the Government to identify the impacts of and vulnerabilities towards climate change on Norway's natural environment and society and suggest measures to reduce vulnerability and increase resilience. The committee had 17 members representing key government institutions, industries and NGOs, and worked for two years involving a broad range of stakeholders. Although Norway has high adaptive capacity in many areas, the report concludes that lack of maintenance and repair in key infrastructures and fragmentation in the natural environment increases vulnerability towards climate change.</p>
+<p>In 2018 CICERO and Western Norway Research Institute published a report that gave an overview of current status and knowledge on the consequences of climate change in Norway, including a presentation on how the public sectors and others actors have integrated climate adaptation in their work. An evaluation of adaptive capacity was also included in the assessment, which was commissioned by the Norwegian Environmental Agency. Several sector assessments are also available:</p>
+<p>Nature</p>
+<ul>
+<li><a href="https://www.environment.no/topics/biodiversity/the-norwegian-nature-index/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.environment.no/topics/biodiversity/the-norwegian-nature-index/">The report Norwegian Nature index 2015.</a> The state and trends of biological diversity (in Norwegian).</li>
+<li><a href="https://www.miljodirektoratet.no/globalassets/publikasjoner/m443/m443.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.miljodirektoratet.no/globalassets/publikasjoner/m443/m443.pdf">Report from the Norwegian Institute for Nature Research</a> (in Norwegian) (commissioned by the Norwegian Environment Agency) – The effect of climate change on biodiversity in Norway (2015) </li>
+<li><a href="https://data.npolar.no/publication/fc0b4db4-5dd0-43e4-bf2f-634d197667f0" rel="noopener" target="_blank" data-linktype="external" data-val="https://data.npolar.no/publication/fc0b4db4-5dd0-43e4-bf2f-634d197667f0">Report from the Norwegian Polar Institute -Climate change in Svalbard – Effects on biodiversity and consequences for future nature management </a>(2016). </li>
+<li>Report from the Norwegian Environment Agency on <a href="https://www.miljodirektoratet.no/publikasjoner/2018/august-2018/naturbaserte-losninger-for-klimautfordringer-i-nasjonal-forvaltning/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.miljodirektoratet.no/publikasjoner/2018/august-2018/naturbaserte-losninger-for-klimautfordringer-i-nasjonal-forvaltning/">Nature-based solutions for climate challenges in national management </a>(2017). </li>
+</ul>
+<p>Agriculture</p>
+<ul>
+<li><a href="https://www.regjeringen.no/no/dokumenter/landbruk-og-klimaendringer/id2476376/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.regjeringen.no/no/dokumenter/landbruk-og-klimaendringer/id2476376/">A national assessment on climate change mitigation and adaptation in the agriculture sector</a> released February 2016  (in Norwegian)</li>
+<li>Report from the Norwegian Institute of Bioeconomy Research (NIBIO) on <a href="http://arktisklandbruk.no/wp-content/uploads/2019/02/NIBIO_RAPPORT_2018_4_75-Klimaenringenes-p%C3%A5virkning-p%C3%A5-landbruket-i-Norge-innenfor-ulike-klimasoner.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="http://arktisklandbruk.no/wp-content/uploads/2019/02/NIBIO_RAPPORT_2018_4_75-Klimaenringenes-p%C3%A5virkning-p%C3%A5-landbruket-i-Norge-innenfor-ulike-klimasoner.pdf">The effect of climate change on the agriculture sector in Norway.</a> The report was commissioned by the Troms and Buskerud county governors (in Norwegian).</li>
+</ul>
+<p>Storm water runoff</p>
+<ul>
+<li><a href="https://www.regjeringen.no/no/dokumenter/nou-2015-16/id2465332/" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.regjeringen.no/no/dokumenter/nou-2015-16/id2465332/">Official report on Storm water runoff in towns and cities - As problem and resource </a>(NOU 2015 -16). </li>
+<li>Report on <a href="https://www.miljodirektoratet.no/globalassets/publikasjoner/M305/M305.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.miljodirektoratet.no/globalassets/publikasjoner/M305/M305.pdf">The costs and benefits of measures to combat urban flooding</a> was published in 2015. The report is written by Cowi and commissioned by the Norwegian Environment Directorate (in Norwegian).</li>
+</ul>
+<p>Floodings</p>
+<ul>
+<li>The Norwegian Water Resources and Energy Directorate (NVE) published <a href="http://publikasjoner.nve.no/rapport/2016/rapport2016_81.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="http://publikasjoner.nve.no/rapport/2016/rapport2016_81.pdf">an update on hydrological projections for floods in Norway under a future climate</a> in 2016 (in Norwegian).</li>
+<li>The R&amp;D programme “<a href="http://www.naturfare.no/_attachment/1304535/binary/1101879" rel="noopener" target="_blank" data-linktype="external" data-val="http://www.naturfare.no/_attachment/1304535/binary/1101879">Naturals hazards – Infrastructure, floods and landslides</a>” (NIFS) published in 2015 a report that summarizes the findings of the project (in Norwegian).</li>
+<li>Sea level rise Report from The Directorate for Civil Protection on Municipalities use of sea level rise data (2015). </li>
+</ul>
+<p>Infrastructure and buildings</p>
+<ul>
+<li>Report from the Norwegian Water Resources and Energy Directorate on <a href="http://publikasjoner.nve.no/rapport/2015/rapport2015_89.pdf" rel="noopener" target="_blank" data-linktype="external" data-val="http://publikasjoner.nve.no/rapport/2015/rapport2015_89.pdf">climate change and power supply</a>. </li>
+<li>Report from the Western Research Institute in Norway (commissioned by KS FoU and NIFS )- How to evaluate costs of preventing versus taking the cost of reconstruction of weather related natural hazard events on physical infrastructure?</li>
+</ul>
+<p>Cultural Heritage</p>
+<ul>
+<li>Report from the Directorate for Cultural Heritage on <a href="https://www.riksantikvaren.no/Tema/Klimaendringene-og-kulturminner" rel="noopener" target="_blank" data-linktype="external" data-val="https://www.riksantikvaren.no/Tema/Klimaendringene-og-kulturminner">Cultural Heritage and Climate Change – Pilot project Aurland municipality </a>(2015) (in Norwegian).</li>
+<li>Report from the Directorate for Cultural Heritage on <a href="https://brage.bibsys.no/xmlui/handle/11250/175134" rel="noopener" target="_blank" data-linktype="external" data-val="https://brage.bibsys.no/xmlui/handle/11250/175134">Cultural Heritage and sea level rise</a> (2013). </li>
+</ul>
+<h3>Research</h3>
+<p>Global challenges in the areas of the environment, climate change, oceans, food safety and energy are among the strategic objectives in Norwegian research policy.</p>
+<p>The Ministry of Climate and Environment has identified Norway's research needs related to environment and climate, also addressing specific research needs related to climate change adaptation. The Ministry's priorities are presented in the document Priority research needs of the Ministry of Climate and Environment (2016-2021). Furthermore, improving understanding of climate change and good practices for adaptation is also highlighted in the current government’s Long-term plan for research and higher education (2015-2024).</p>
+<p>The Norwegian Research Council supports several research projects related to climate change and adaptation. KLIMAFORSK, a 10-year programme for climate research (2014-2023) is aimed at providing new, future-oriented knowledge of national and international significance, including enhanced knowledge about how society can and should adapt to climate change.</p>
+<p>Another major activity addressing climate change adaptation supported by the by the Research Council of Norway, is Klima 2050. Klima 2050 is a Centre for Research-based Innovation (SFI).The SFI status enables long-term research in close collaboration with trade and industry, as well as other research partners aiming to strengthen Norway's innovation ability and competitiveness within climate adaptation. The center is addressing societal risks associated with climate change and enhanced precipitation, storm water runoff and water induced landslides within the built environment. The program started in 2015 and will last until 2022.</p>
+<h3>Monitoring progress</h3>
+<p>The Norwegian Climate and Environment Ministry is responsible for monitoring and evaluating climate change policy in Norway including adaptation progress. In Norway each sector agency is responsible for integrating CCA in their sector, and may have their own systems for monitoring and evaluating progress. A national system for MRE has not yet been developed or implemented, but a brief assessment regarding possibilities for developing national climate change adaptation indicators and systems for reporting has been carried out. <br /> </p>
+</div></div>
+<div class="tab-pane  " id="1121-4">
+    <div>
+<p> </p>
+<h3>Governance</h3>
+<p>Common Framework</p>
+<p>All government agencies and local and regional authorities carry a responsibility for climate change adaptation within their field. The Norwegian Environment Agency supports the Ministry of Climate and Environment in the work on climate change adaptation, and is the coordinating agency. The Environment Agency assists the Ministry in the follow-up of the White Paper on climate change adaptation (Meld.St 33 (2012-2013)) and in policymaking. Furthermore, it contributes to ensure that the Government's climate change adaptation work is being implemented in the public administration as well as in society in general, and supports the Ministry in its international climate change adaptation work. The Agency has a particular responsibility for disseminating and sharing knowledge and experience, contribute to competence and capacity building, and facilitate cooperation between different public administration levels, sectors and actors in the field.</p>
+<p>Both climate change and measures to counter it affect conditions for and risks associated with economic activity. This recognition has led to increased demand for decision-relevant information on the exposure of financial institutions and other businesses to climate-related risk. The Government therefore appointed an expert commission in 2017 to assess climate-related risk factors and their significance for the Norwegian economy. The commission delivered its report "Climate risk and the Norwegian economy" to the Government in 2018.</p>
+<p>Several authorities are responsible for various regulations regarding urban flooding and the municipal management of such issues. The Environment Agency is responsible for having an overview of the regulations regarding urban flooding. The Norwegian Waters Resources and Energy Directorate (NVE) has from 2019 been given the responsibility for developing the hydrological knowledge on urban flooding in Norway. The Directorate shall also give advice to the municipalities on the integration in spatial planning.</p>
+<p>Climate change has implications for natural hazards, and several actors have responsibilities in this regard. The Directorate for Civil Protection (DSB) supports the Ministry of Justice and Public security in coordinating civil protection and emergency planning efforts in Norway, in order to prevent and limit consequences of natural hazards. The Ministry of Petroleum and Energy has the responsibility for floods, landslides and avalanches at the national level, with the Norwegian Water Resources and Energy Directorate (NVE) as an executive authority.</p>
+<p>Local action</p>
+<p>The municipalities and the county municipalities also play vital roles in the CCA efforts in Norway; The county governor is important in following up the Government's policy on regional and local level. They play an important role in supporting the municipalities in their work on adaptation, in particular related to risk and vulnerability analysis and land use planning. They also coordinate and cooperate the civil protection efforts, both prevention and preparedness, on the regional level. The county governors have to ensure that climate change has been taken into consideration and followed up, both in municipal land-use plans and risk and vulnerability assessments.</p>
+<p>The county municipalities also play an important role regarding guidance and coordination in relation to municipal and regional plans. The municipalities are in the frontline in carrying out CCA measures. The Planning and Building Act and the Civil Protection Act obligate the municipalities to carry out risk and vulnerability assessments. These assessments can be important in clarifying issues and areas of risk relevant to each municipality and in recommending initiatives for various actors to reduce vulnerability. New guidelines describing how the municipalities and counties can incorporate climate change adaptation work into their planning activities has been developed and were adopted in 2018.</p>
+<h3>Knowledge</h3>
+<p>The past years a range of capacity- and competence-building measures have been implemented, especially at municipal level. Many authorities in different sectors and a large number of municipalities have already made a good start on their adaptation efforts. Since 2008, the Norwegian website <a href="http://www.klimatilpasning.no/" rel="noopener" target="_blank" data-linktype="external" data-val="http://www.klimatilpasning.no/">Klimatilpasning.no</a>, has provided tools, case studies and information on climate change adaptation. Municipalities are the main target groups for the webpage. There is linkage between CCA website and the Norwegian climate services Centre web page, in order to make easy access to climate projections and county profiles (see description below).</p>
+<p>Several pilot projects concerning climate change adaptation have been conducted. In 2014, a guide on how to integrate climate change adaptation efforts in social and spatial planning related to disaster risk management for municipalities was prepared by the Troms County Governor, the Directorate for Civil Protection, the Norwegian Water Resources and Energy Directorate, the Norwegian meteorological institute, the Troms county authority and the municipalities Lyngen, Balsfjord, Målselv and Tromsø. As a follow up, three County Governors and The Environment Agency are currently developing guidelines on how to address climate change adaptation related to the nature and environment sector and the agriculture sector in municipal planning activities. The guideline for the nature and environment sector will be published in 2019.</p>
+<p>Furthermore, an introductory course on climate change adaptation for municipalities has been developed. The course has been implemented in several counties. The Cities of the Future (2008-2014) was a collaborative effort between the Government and the 13 largest cities in Norway to reduce greenhouse gas emissions and adapt to a changing climate. The Cities of the Future were an important driving force for the climate change adaptation work in Norway. The cities' work helped to speed up the climate change adaptation planning process in other municipalities. The network Cities of the Future was an important driving force for the climate change adaptation work in Norway. 11 of the participating cities are continuing the collaboration through <em>The front runner network</em>, established in 2015. This network focuses on developing new knowledge on climate change adaptation on local level and sharing competence among the participating cities through joint projects. The Norwegian Environment Agency coordinates the Front Runner Network. Case studies from different municipalities in Norway can be found on <span><a href="http://www.klimatilpasning.no/">www.klimatilpasning.no</a></span>. </p>
+<p>An improved cross-sectoral cooperation has been established related to natural hazards, including climate change. In 2016 the network “Naturfareforum” – Natural Hazards Forum was established. The aim is to improve cooperation between national, regional and local actors in managing natural hazards, including the impact of climate change. The Natural Hazards Forum will identify gaps and the potential for improvement related to the society’s management of risk related to natural hazards, and initiate projects or working groups on cross-sectoral issues. The network is organised with a secretariat consisting of The Norwegian Directorate for Civil protection, The Norwegian Water Resources and Energy Directorate and The Norwegian Public Roads Administration, and a steering committee where a number of directorates and other national level actors, as well as The Norwegian Association of Local and Regional Authorities (KS) and the Environment Agency, are represented. The Natural Hazards Forum acts as the national platform for the global Sendai Framework for Disaster Risk Reduction.</p>
+<p>Starting in 2017, The Western Norway University of Applied Sciences (HVL) offers an interdisciplinary master programme on climate change management, where climate adaptation in general, and particularly related to land use planning, is a core topic. </p>
+</div></div>
+<div class="tab-pane  " id="1121-5">
+<div>
+<p><strong>The Norwegian Environment Directorate</strong></p>
+<p>Mail <a href="mailto:post@miljodir.no">post@miljodir.no</a></p>
+<p>Website <a href="https://www.miljodirektoratet.no/">https://www.miljodirektoratet.no/</a></p>
+<p> </p>
+<p> </p>
+</div>
+</div>
+</div></div>

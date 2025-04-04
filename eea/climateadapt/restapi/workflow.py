@@ -8,15 +8,14 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from zope.component import adapter
 from zope.interface import implementer
-from zope.interface import Interface
 
-from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+from eea.climateadapt.restapi.navigation import ICCARestapiLayer
 
 import six
 
 
 @implementer(IExpandableElement)
-@adapter(IWorkflowAware, IEEAClimateAdaptInstalled)
+@adapter(IWorkflowAware, ICCARestapiLayer)
 class WorkflowInfo(object):
     def __init__(self, context, request):
         self.context = context
@@ -98,3 +97,4 @@ class WorkflowInfoService(Service):
     def reply(self):
         info = WorkflowInfo(self.context, self.request)
         return info(expand=True)["workflow"]
+

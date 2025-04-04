@@ -163,10 +163,9 @@
  </transition>
  <transition transition_id="publish" title="Reviewer publishes content" new_state="published" trigger="USER" before_script="" after_script="">
   <description>Publishing the item makes it visible to other users.</description>
-  <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">PublishMe</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">Publish</action>
   <guard>
    <guard-permission>Review portal content</guard-permission>
-   <guard-expression>python: not object.restrictedTraverse("@@iterate_control").is_checkout()</guard-expression>
   </guard>
  </transition>
  <transition transition_id="reject" title="Reviewer sends content back for re-drafting" new_state="private" trigger="USER" before_script="" after_script="">

@@ -11,7 +11,7 @@
 
   <includeOverrides file="browser/overrides.zcml" />
 
-  <adapter factory=".excelexport.YearFieldRenderer"
+  <!-- <adapter factory=".excelexport.YearFieldRenderer"
     provides="collective.excelexport.interfaces.IExportable" />
 
   <adapter factory=".excelexport.PortalTypeRenderer"
@@ -55,8 +55,8 @@
                 for="*"
                 class=".excelexport.ExcelExport"
                 permission="zope2.View"
-  />
+  /> -->
 
-  <adapter factory=".browser.fixes.DatetimeWidgetConverter" />
+  <!-- <adapter factory=".browser.fixes.DatetimeWidgetConverter" /> -->
 
 </configure>

@@ -1,51 +1,51 @@
 {
-    "blocks_layout": {
-        "items": [
-            "08519226-1630-4b30-ac7f-d5145267f948",
-            "4275e01c-1224-4fc0-9168-5e04b249ec46",
-            "b22d3721-b968-42e7-8ac5-e2e62f9fac48"
-        ]
+  "blocks_layout": {
+    "items": [
+      "08519226-1630-4b30-ac7f-d5145267f948",
+      "4275e01c-1224-4fc0-9168-5e04b249ec46",
+      "b22d3721-b968-42e7-8ac5-e2e62f9fac48"
+    ]
+  },
+  "blocks": {
+    "08519226-1630-4b30-ac7f-d5145267f948": {
+      "@layout": "6cc87646-cbd3-40ea-8b18-8a737b4ec803",
+      "@type": "title",
+      "block": "5381ec8e-ee0e-4a15-9526-b0da57478d4b",
+      "copyrightIcon": "ri-copyright-line",
+      "styles": {}
     },
-    "blocks": {
-        "08519226-1630-4b30-ac7f-d5145267f948": {
-            "@layout": "6cc87646-cbd3-40ea-8b18-8a737b4ec803",
-            "@type": "title",
-            "block": "5381ec8e-ee0e-4a15-9526-b0da57478d4b",
-            "copyrightIcon": "ri-copyright-line",
-            "styles": {}
+    "4275e01c-1224-4fc0-9168-5e04b249ec46": {
+      "@type": "metadataSection",
+      "fields": [
+        {
+          "@id": "3559b456-8c3e-429e-b0fa-10152721d941",
+          "field": {
+            "id": "description",
+            "title": "Summary",
+            "widget": "description"
+          }
         },
-        "4275e01c-1224-4fc0-9168-5e04b249ec46": {
-            "@type": "metadataSection",
-            "fields": [
-                {
-                    "@id": "3559b456-8c3e-429e-b0fa-10152721d941",
-                    "field": {
-                        "id": "description",
-                        "title": "Summary",
-                        "widget": "description"
-                    }
-                },
-                {
-                    "@id": "b2ba2bd4-274d-4f44-91e6-5423ca9e4448",
-                    "field": {
-                      "id": "remoteUrl",
-                      "title": "Weblink for further reading",
-                      "widget": "url"
-                    }
-                },
-                {
-                    "@id": "e726df31-1528-4688-8048-86836f274bc0",
-                    "field": {
-                      "id": "promotional_image",
-                      "title": "Promotional image",
-                      "widget": "image"
-                    }
-                }
-            ],
-            "variation": "default"
+        {
+          "@id": "b2ba2bd4-274d-4f44-91e6-5423ca9e4448",
+          "field": {
+            "id": "remoteUrl",
+            "title": "Weblink for further reading",
+            "widget": "url"
+          }
         },
-        "b22d3721-b968-42e7-8ac5-e2e62f9fac48": {
-            "@type": "slate"
+        {
+          "@id": "e726df31-1528-4688-8048-86836f274bc0",
+          "field": {
+            "id": "promotional_image",
+            "title": "Promotional image",
+            "widget": "image"
+          }
         }
+      ],
+      "variation": "default"
+    },
+    "b22d3721-b968-42e7-8ac5-e2e62f9fac48": {
+      "@type": "slate"
     }
   }
+}

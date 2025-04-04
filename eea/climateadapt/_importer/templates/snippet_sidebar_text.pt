@@ -1,7 +1,0 @@
-<div tal:repeat="line options/lines" tal:define="labels options/labels">
-
-  <tal:def define="name python: line[0]; value python: line[1]">
-    <h4 tal:content="python: labels[name]" />
-    <p tal:replace="structure python: value" />
-  </tal:def>
-</div>

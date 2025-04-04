@@ -1,41 +1,43 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
-    i18n_domain="eea.climateadapt"
-    >
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
+
+  <!-- TODO plone6 enable this -->
 
   <browser:page
-      name="c3s_indicators_overview"
-      for="*"
-      class="eea.climateadapt.browser.ecde.C3sIndicatorsOverview"
-      template="pt/c3s_indicators_overview.pt"
-      permission="zope2.View"
-      />
+    name="c3s_indicators_overview"
+    for="*"
+    class="eea.climateadapt.browser.ecde.C3sIndicatorsOverview"
+    template="pt/c3s_indicators_overview.pt"
+    permission="zope2.View"
+  />
 
   <browser:page
-      name="c3s_indicators_glossary_table"
-      for="*"
-      class="eea.climateadapt.browser.ecde.C3sIndicatorsOverview"
-      template="pt/c3s_indicators_glossary_table.pt"
-      permission="zope2.View"
-      />
+    name="c3s_indicators_glossary_table"
+    for="*"
+    class="eea.climateadapt.browser.ecde.C3sIndicatorsOverview"
+    template="pt/c3s_indicators_glossary_table.pt"
+    permission="zope2.View"
+  />
 
   <browser:page
-      name="c3s_indicators_listing"
-      for="*"
-      class="eea.climateadapt.browser.ecde.C3sIndicatorsListing"
-      template="pt/c3s_indicators_listing.pt"
-      permission="zope2.View"
-      />
+    name="c3s_indicators_listing"
+    for="*"
+    class="eea.climateadapt.browser.ecde.C3sIndicatorsListing"
+    template="pt/c3s_indicators_listing.pt"
+    permission="zope2.View"
+  />
 
   <browser:page
-      name="c3s_disclaimer"
-      for="*"
-      class="eea.climateadapt.browser.ecde.C3sIndicatorsOverview"
-      template="pt/c3s_disclaimer.pt"
-      permission="zope2.View"
-      />
+    name="c3s_disclaimer"
+    for="*"
+    class="eea.climateadapt.browser.ecde.C3sIndicatorsOverview"
+    template="pt/c3s_disclaimer.pt"
+    permission="zope2.View"
+  />
 
 </configure>

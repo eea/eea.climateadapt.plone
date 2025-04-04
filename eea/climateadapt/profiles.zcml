@@ -17,469 +17,467 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
   />
 
-  <genericsetup:registerProfile
-    name="zzz_cca_import"
-    title="eea.climateadapt: import content from Liferay"
-    directory="profiles/import_content"
-    description="Import content from SQL database of Liferay data"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_2"
-    title="Upgrade profile for eea.climateadapt v2"
-    description=""
-    directory="profiles/upgrades/to_2"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_3"
-    title="Upgrade profile for eea.climateadapt v3"
-    description=""
-    directory="profiles/upgrades/to_3"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_4"
-    title="Upgrade profile for eea.climateadapt v4"
-    description=""
-    directory="profiles/upgrades/to_4"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_5"
-    title="Upgrade profile for eea.climateadapt v5"
-    description=""
-    directory="profiles/upgrades/to_5"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_6"
-    title="Upgrade profile for eea.climateadapt v6"
-    description=""
-    directory="profiles/upgrades/to_6"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_7"
-    title="Upgrade profile for eea.climateadapt v7"
-    description=""
-    directory="profiles/upgrades/to_7"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_8"
-    title="Upgrade profile for eea.climateadapt v8"
-    description=""
-    directory="profiles/upgrades/to_8"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_9"
-    title="Upgrade profile for eea.climateadapt v9"
-    description=""
-    directory="profiles/upgrades/to_9"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_10"
-    title="Upgrade profile for eea.climateadapt v10"
-    description=""
-    directory="profiles/upgrades/to_10"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_11"
-    title="Upgrade profile for eea.climateadapt v11"
-    description=""
-    directory="profiles/upgrades/to_11"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_12"
-    title="Upgrade profile for eea.climateadapt v12"
-    description=""
-    directory="profiles/upgrades/to_12"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_13"
-    title="Upgrade profile for eea.climateadapt v13"
-    description=""
-    directory="profiles/upgrades/to_13"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_14"
-    title="Upgrade profile for eea.climateadapt v14"
-    description=""
-    directory="profiles/upgrades/to_14"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_15"
-    title="Upgrade profile for eea.climateadapt v15"
-    description=""
-    directory="profiles/upgrades/to_15"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_16"
-    title="Upgrade profile for eea.climateadapt v16"
-    description=""
-    directory="profiles/upgrades/to_16"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_17"
-    title="Upgrade profile for eea.climateadapt v17"
-    description=""
-    directory="profiles/upgrades/to_17"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_18"
-    title="Upgrade profile for eea.climateadapt v18"
-    description=""
-    directory="profiles/upgrades/to_18"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_19"
-    title="Upgrade profile for eea.climateadapt v19"
-    description=""
-    directory="profiles/upgrades/to_19"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_20"
-    title="Upgrade profile for eea.climateadapt v20"
-    description=""
-    directory="profiles/upgrades/to_20"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <!-- v21 upgrade -->
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_21"
-    title="Upgrade profile for eea.climateadapt v21"
-    description=""
-    directory="profiles/upgrades/to_21"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_31"
-    title="Upgrade profile for eea.climateadapt v31"
-    description=""
-    directory="profiles/upgrades/to_31"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_32"
-    title="Upgrade profile for eea.climateadapt v32"
-    description=""
-    directory="profiles/upgrades/to_32"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_38"
-    title="Upgrade profile for eea.climateadapt v38"
-    description=""
-    directory="profiles/upgrades/to_38"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_40"
-    title="Upgrade profile for eea.climateadapt v40"
-    description=""
-    directory="profiles/upgrades/to_40"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_43"
-    title="Upgrade profile for eea.climateadapt v43"
-    description=""
-    directory="profiles/upgrades/to_43"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_44"
-    title="Upgrade profile for eea.climateadapt v44"
-    description=""
-    directory="profiles/upgrades/to_44"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_45"
-    title="Upgrade profile for eea.climateadapt v45"
-    description=""
-    directory="profiles/upgrades/to_45"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_46"
-    title="Upgrade profile for eea.climateadapt v46"
-    description=""
-    directory="profiles/upgrades/to_46"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_47"
-    title="Upgrade profile for eea.climateadapt v47"
-    description=""
-    directory="profiles/upgrades/to_47"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_48"
-    title="Upgrade profile for eea.climateadapt v48"
-    description=""
-    directory="profiles/upgrades/to_48"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_49"
-    title="Upgrade profile for eea.climateadapt v49"
-    description=""
-    directory="profiles/upgrades/to_49"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_50"
-    title="Upgrade profile for eea.climateadapt v50"
-    description=""
-    directory="profiles/upgrades/to_50"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_51"
-    title="Upgrade profile for eea.climateadapt v51"
-    description=""
-    directory="profiles/upgrades/to_51"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_52"
-    title="Upgrade profile for eea.climateadapt v52"
-    description=""
-    directory="profiles/upgrades/to_52"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_53"
-    title="Upgrade profile for eea.climateadapt v53"
-    description=""
-    directory="profiles/upgrades/to_53"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_54"
-    title="Upgrade profile for eea.climateadapt v54"
-    description=""
-    directory="profiles/upgrades/to_54"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_55"
-    title="Upgrade profile for eea.climateadapt v55"
-    description=""
-    directory="profiles/upgrades/to_55"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_56"
-    title="Upgrade profile for eea.climateadapt v56"
-    description=""
-    directory="profiles/upgrades/to_56"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_57"
-    title="Upgrade profile for eea.climateadapt v57"
-    description=""
-    directory="profiles/upgrades/to_57"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_58"
-    title="Upgrade profile for eea.climateadapt v58"
-    description=""
-    directory="profiles/upgrades/to_58"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_59"
-    title="Upgrade profile for eea.climateadapt v59"
-    description=""
-    directory="profiles/upgrades/to_59"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_60"
-    title="Upgrade profile for eea.climateadapt v60"
-    description=""
-    directory="profiles/upgrades/to_60"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_61"
-    title="Upgrade profile for eea.climateadapt v61"
-    description=""
-    directory="profiles/upgrades/to_61"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_62"
-    title="Upgrade profile for eea.climateadapt v62"
-    description=""
-    directory="profiles/upgrades/to_62"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_63"
-    title="Upgrade profile for eea.climateadapt v63"
-    description=""
-    directory="profiles/upgrades/to_63"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_64"
-    title="Upgrade profile for eea.climateadapt v64"
-    description=""
-    directory="profiles/upgrades/to_64"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_65"
-    title="Upgrade profile for eea.climateadapt v65"
-    description=""
-    directory="profiles/upgrades/to_65"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_volto_migration"
-    title="Volto Migration profile for eea.climateadapt"
-    description=""
-    directory="profiles/upgrades/to_66_volto"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_67"
-    title="Upgrade profile for eea.climateadapt v67"
-    description=""
-    directory="profiles/upgrades/to_67"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_68"
-    title="Upgrade profile for eea.climateadapt v68"
-    description=""
-    directory="profiles/upgrades/to_68"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_69"
-    title="Upgrade profile for eea.climateadapt v69"
-    description=""
-    directory="profiles/upgrades/to_69"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_70"
-    title="Upgrade profile for eea.climateadapt v70"
-    description=""
-    directory="profiles/upgrades/to_70"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_71"
-    title="Upgrade profile for eea.climateadapt v71"
-    description=""
-    directory="profiles/upgrades/to_71"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_72"
-    title="Upgrade profile for eea.climateadapt v72"
-    description=""
-    directory="profiles/upgrades/to_72"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_73"
-    title="Upgrade profile for eea.climateadapt v73"
-    description=""
-    directory="profiles/upgrades/to_73"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_74"
-    title="Upgrade profile for eea.climateadapt v74"
-    description=""
-    directory="profiles/upgrades/to_74"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_75"
-    title="Upgrade profile for eea.climateadapt v75"
-    description=""
-    directory="profiles/upgrades/to_75"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
-
-  <genericsetup:registerProfile
-    name="eeaclimateadapt_to_76"
-    title="Upgrade profile for eea.climateadapt v76"
-    description=""
-    directory="profiles/upgrades/to_76"
-    provides="Products.GenericSetup.interfaces.EXTENSION"
-  />
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="zzz_cca_import" -->
+  <!--   title="eea.climateadapt: import content from Liferay" -->
+  <!--   directory="profiles/import_content" -->
+  <!--   description="Import content from SQL database of Liferay data" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_2" -->
+  <!--   title="Upgrade profile for eea.climateadapt v2" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_2" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_3" -->
+  <!--   title="Upgrade profile for eea.climateadapt v3" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_3" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_4" -->
+  <!--   title="Upgrade profile for eea.climateadapt v4" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_4" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_5" -->
+  <!--   title="Upgrade profile for eea.climateadapt v5" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_5" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_6" -->
+  <!--   title="Upgrade profile for eea.climateadapt v6" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_6" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_7" -->
+  <!--   title="Upgrade profile for eea.climateadapt v7" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_7" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_8" -->
+  <!--   title="Upgrade profile for eea.climateadapt v8" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_8" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_9" -->
+  <!--   title="Upgrade profile for eea.climateadapt v9" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_9" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_10" -->
+  <!--   title="Upgrade profile for eea.climateadapt v10" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_10" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_11" -->
+  <!--   title="Upgrade profile for eea.climateadapt v11" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_11" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_12" -->
+  <!--   title="Upgrade profile for eea.climateadapt v12" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_12" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_13" -->
+  <!--   title="Upgrade profile for eea.climateadapt v13" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_13" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_14" -->
+  <!--   title="Upgrade profile for eea.climateadapt v14" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_14" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_15" -->
+  <!--   title="Upgrade profile for eea.climateadapt v15" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_15" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_16" -->
+  <!--   title="Upgrade profile for eea.climateadapt v16" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_16" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_17" -->
+  <!--   title="Upgrade profile for eea.climateadapt v17" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_17" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_18" -->
+  <!--   title="Upgrade profile for eea.climateadapt v18" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_18" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_19" -->
+  <!--   title="Upgrade profile for eea.climateadapt v19" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_19" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_20" -->
+  <!--   title="Upgrade profile for eea.climateadapt v20" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_20" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!--   name="eeaclimateadapt_to_21" -->
+  <!--   title="Upgrade profile for eea.climateadapt v21" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_21" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_31" -->
+  <!--   title="Upgrade profile for eea.climateadapt v31" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_31" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_32" -->
+  <!--   title="Upgrade profile for eea.climateadapt v32" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_32" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_38" -->
+  <!--   title="Upgrade profile for eea.climateadapt v38" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_38" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_40" -->
+  <!--   title="Upgrade profile for eea.climateadapt v40" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_40" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_43" -->
+  <!--   title="Upgrade profile for eea.climateadapt v43" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_43" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_44" -->
+  <!--   title="Upgrade profile for eea.climateadapt v44" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_44" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_45" -->
+  <!--   title="Upgrade profile for eea.climateadapt v45" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_45" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_46" -->
+  <!--   title="Upgrade profile for eea.climateadapt v46" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_46" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_47" -->
+  <!--   title="Upgrade profile for eea.climateadapt v47" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_47" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_48" -->
+  <!--   title="Upgrade profile for eea.climateadapt v48" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_48" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_49" -->
+  <!--   title="Upgrade profile for eea.climateadapt v49" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_49" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_50" -->
+  <!--   title="Upgrade profile for eea.climateadapt v50" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_50" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_51" -->
+  <!--   title="Upgrade profile for eea.climateadapt v51" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_51" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_52" -->
+  <!--   title="Upgrade profile for eea.climateadapt v52" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_52" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_53" -->
+  <!--   title="Upgrade profile for eea.climateadapt v53" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_53" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_54" -->
+  <!--   title="Upgrade profile for eea.climateadapt v54" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_54" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_55" -->
+  <!--   title="Upgrade profile for eea.climateadapt v55" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_55" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_56" -->
+  <!--   title="Upgrade profile for eea.climateadapt v56" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_56" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_57" -->
+  <!--   title="Upgrade profile for eea.climateadapt v57" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_57" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_58" -->
+  <!--   title="Upgrade profile for eea.climateadapt v58" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_58" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_59" -->
+  <!--   title="Upgrade profile for eea.climateadapt v59" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_59" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_60" -->
+  <!--   title="Upgrade profile for eea.climateadapt v60" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_60" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_61" -->
+  <!--   title="Upgrade profile for eea.climateadapt v61" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_61" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_62" -->
+  <!--   title="Upgrade profile for eea.climateadapt v62" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_62" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_63" -->
+  <!--   title="Upgrade profile for eea.climateadapt v63" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_63" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_64" -->
+  <!--   title="Upgrade profile for eea.climateadapt v64" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_64" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_65" -->
+  <!--   title="Upgrade profile for eea.climateadapt v65" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_65" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_volto_migration" -->
+  <!--   title="Volto Migration profile for eea.climateadapt" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_66_volto" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_67" -->
+  <!--   title="Upgrade profile for eea.climateadapt v67" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_67" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_68" -->
+  <!--   title="Upgrade profile for eea.climateadapt v68" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_68" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_69" -->
+  <!--   title="Upgrade profile for eea.climateadapt v69" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_69" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_70" -->
+  <!--   title="Upgrade profile for eea.climateadapt v70" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_70" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_71" -->
+  <!--   title="Upgrade profile for eea.climateadapt v71" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_71" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_72" -->
+  <!--   title="Upgrade profile for eea.climateadapt v72" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_72" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_73" -->
+  <!--   title="Upgrade profile for eea.climateadapt v73" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_73" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_74" -->
+  <!--   title="Upgrade profile for eea.climateadapt v74" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_74" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_75" -->
+  <!--   title="Upgrade profile for eea.climateadapt v75" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_75" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
+  <!---->
+  <!-- <genericsetup:registerProfile -->
+  <!--   name="eeaclimateadapt_to_76" -->
+  <!--   title="Upgrade profile for eea.climateadapt v76" -->
+  <!--   description="" -->
+  <!--   directory="profiles/upgrades/to_76" -->
+  <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
+  <!-- /> -->
 
 </configure>

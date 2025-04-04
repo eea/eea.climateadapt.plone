@@ -60,14 +60,14 @@ class BlocksTraverser(object):
 
         if "data" in block_value and isinstance(block_value["data"], dict) \
                 and "blocks" in block_value["data"]:
-            for block in block_value["data"]["blocks"].values():
+            for block in list(block_value["data"]["blocks"].values()):
                 if visitor(block):
                     self.context._p_changed = True
 
                 self.handle_subblocks(block, visitor)
 
         if 'blocks' in block_value:
-            for block in block_value['blocks'].values():
+            for block in list(block_value['blocks'].values()):
                 if visitor(block):
                     self.context._p_changed = True
 

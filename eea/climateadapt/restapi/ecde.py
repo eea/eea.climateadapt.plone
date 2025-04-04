@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import logging
 
+from eea.climateadapt.restapi.navigation import ICCARestapiLayer
 from zope.component import getMultiAdapter
-from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+
 from eea.climateadapt.translation.utils import (
     TranslationUtilsMixin,
     get_current_language,
@@ -20,7 +21,7 @@ logger = logging.getLogger("eea.climateadapt")
 
 
 @implementer(IExpandableElement)
-@adapter(Interface, IEEAClimateAdaptInstalled)
+@adapter(Interface, ICCARestapiLayer)
 class C3SIndicatorsOverview(TranslationUtilsMixin):
     def __init__(self, context, request):
         self.context = context
@@ -37,7 +38,7 @@ class C3SIndicatorsOverview(TranslationUtilsMixin):
         return False
 
     def get_indicators_data(self):
-        current_lang = self.current_lang
+        # current_lang = self.current_lang
         res = {"description": "", "items": []}
 
         # # url = self.request["ACTUAL_URL"]
@@ -58,6 +59,8 @@ class C3SIndicatorsOverview(TranslationUtilsMixin):
             items[obj.title] = {"url": brain.getURL(), "obj": obj}
 
         current_lang = get_current_language(self.context, self.request)
+        # TODO plone6 is this correct?
+        # current_lang = "en"
 
         site = portal.get()
         base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
@@ -105,7 +108,7 @@ class C3SIndicatorsOverviewGet(Service):
 
 
 @implementer(IExpandableElement)
-@adapter(Interface, IEEAClimateAdaptInstalled)
+@adapter(Interface, ICCARestapiLayer)
 class C3SIndicatorsData(object):
     def __init__(self, context, request):
         self.context = context

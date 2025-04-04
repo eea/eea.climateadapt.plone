@@ -11,31 +11,27 @@ from plone.restapi.serializer.blocks import SlateBlockSerializerBase, uid_to_url
 from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeToJson
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
-from zope.component import adapter, getMultiAdapter
+from zope.component import adapter
 from zope.interface import Interface, implementer
 
-from eea.climateadapt.behaviors import (
-    IAceProject,
-    IAdaptationOption,
-    ICaseStudy,
-    IOrganisation,
-)
+from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
 from eea.climateadapt.behaviors.mission_tool import IMissionTool
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
-from eea.climateadapt.interfaces import IClimateAdaptContent, IEEAClimateAdaptInstalled
+from eea.climateadapt.interfaces import IClimateAdaptContent
+from eea.climateadapt.restapi.navigation import ICCARestapiLayer
 
 from .utils import cca_content_serializer
 
 
 def serialize(possible_node):
-    if isinstance(possible_node, basestring):
+    if isinstance(possible_node, str):
         # This happens for some fields that store non-markup values as richtext
         return possible_node
-    return tostring(possible_node)
+    return tostring(possible_node, encoding=str)
 
 
-@adapter(IRichText, IDexterityContent, IEEAClimateAdaptInstalled)
+@adapter(IRichText, IDexterityContent, ICCARestapiLayer)
 class RichttextFieldSerializer(DefaultFieldSerializer):
     def externalize(self, text):
         site = portal.get()
@@ -43,7 +39,7 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
         frags = fragments_fromstring(text)
         for frag in frags:
             # el.set("style", None)
-            if isinstance(frag, basestring):
+            if isinstance(frag, str):
                 continue
             # remove all style attributes
             for el in frag.xpath("//*[@style]"):
@@ -52,7 +48,7 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
                 href = link.get("href")
                 if href and not href.startswith(site_url):
                     link.set("target", "_blank")
-        res = unicode("\n").join([serialize(e) for e in frags])
+        res = str("\n").join([str(serialize(e)) for e in frags])
         return res
 
     def __call__(self):
@@ -73,12 +69,12 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
 
 
 @implementer(IBlockFieldSerializationTransformer)
-@adapter(IBlocks, IEEAClimateAdaptInstalled)
+@adapter(IBlocks, ICCARestapiLayer)
 class SlateBlockSerializer(SlateBlockSerializerBase):
     """SlateBlockSerializerBase."""
 
-    # TODO: this needs also a deserializer that takes the scale in url and saves it to
-    # the "scale" field
+    # TODO: this needs also a deserializer that takes the scale in url and
+    # saves it to the "scale" field
 
     def handle_img(self, child):
         if child.get("url"):
@@ -86,12 +82,13 @@ class SlateBlockSerializer(SlateBlockSerializerBase):
             if child.get("scale"):
                 url = "%s/@@images/image/%s" % (url, child["scale"])
             else:
-                url = "%s/@@images/image/huge" % url
+                if ("@@images") not in url:
+                    url = "%s/@@images/image/huge" % url
 
             child["url"] = url
 
 
-@adapter(IDexterityContainer, IEEAClimateAdaptInstalled)
+@adapter(IDexterityContainer, ICCARestapiLayer)
 class GenericFolderSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
         result = super(GenericFolderSerializer, self).__call__(
@@ -103,7 +100,7 @@ class GenericFolderSerializer(SerializeFolderToJson):
         return result
 
 
-@adapter(IDexterityContent, IEEAClimateAdaptInstalled)
+@adapter(IDexterityContent, ICCARestapiLayer)
 class GenericContentSerializer(SerializeToJson):
     """Generic content serializer (everything that's not CCA-specific)"""
 
@@ -140,13 +137,13 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
         return cca_content_serializer(self.context, result, self.request)
 
 
-@adapter(IAceProject, Interface)
-class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
-    def __call__(self, version=None, include_items=True):
-        result = super(AceProjectSerializer, self).__call__(
-            version=None, include_items=True
-        )
-        return cca_content_serializer(self.context, result, self.request)
+# @adapter(IAceProject, Interface)
+# class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
+#     def __call__(self, version=None, include_items=True):
+#         result = super(AceProjectSerializer, self).__call__(
+#             version=None, include_items=True
+#         )
+#         return cca_content_serializer(self.context, result, self.request)
 
 
 @adapter(ICaseStudy, Interface)
@@ -185,7 +182,7 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
         blocks_copy = deepcopy(obj.blocks)
         blocks_layout = obj.blocks_layout["items"]
 
-        columnblock = None
+        columnblock = {}
         for uid in blocks_layout:
             block = blocks_copy[uid]
             if block["@type"] == "columnsBlock":
@@ -224,7 +221,7 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
         blocks_copy = deepcopy(obj.blocks)
         blocks_layout = obj.blocks_layout["items"]
 
-        columnblock = None
+        columnblock = {}
         for uid in blocks_layout:
             block = blocks_copy[uid]
             if block["@type"] == "columnsBlock":
@@ -250,16 +247,16 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
         return result
 
 
-@adapter(IOrganisation, Interface)
-class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
-    def __call__(self, version=None, include_items=True):
-        result = super(OrganisationSerializer, self).__call__(
-            version=None, include_items=True
-        )
-        result = cca_content_serializer(self.context, result, self.request)
-        view = getMultiAdapter((self.context, self.request), name="view")
-        contributions = view.get_contributions()
-        for contribution in contributions:
-            contribution.pop("date", None)
-        result["contributions"] = contributions
-        return result
+# @adapter(IOrganisation, Interface)
+# class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
+#     def __call__(self, version=None, include_items=True):
+#         result = super(OrganisationSerializer, self).__call__(
+#             version=None, include_items=True
+#         )
+#         result = cca_content_serializer(self.context, result, self.request)
+#         view = getMultiAdapter((self.context, self.request), name="view")
+#         contributions = view.get_contributions()
+#         for contribution in contributions:
+#             contribution.pop("date", None)
+#         result["contributions"] = contributions
+#         return result
