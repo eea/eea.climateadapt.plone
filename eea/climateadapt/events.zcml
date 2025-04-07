@@ -18,6 +18,12 @@
     handler=".events.increment_version"
   />
 
+  <subscriber
+    for="plone.dexterity.interfaces.IDexterityContent
+     zope.lifecycleevent.interfaces.IObjectCopiedEvent"
+    handler=".events.handle_object_copied_event"
+  />
+
   <!-- <subscriber -->
   <!--   for="plone.dexterity.interfaces.IDexterityContent -->
   <!--    zope.lifecycleevent.interfaces.IObjectAddedEvent" -->

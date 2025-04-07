@@ -2,6 +2,7 @@ import logging
 
 import transaction
 from DateTime import DateTime
+from plone.api import user
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -28,4 +29,11 @@ def increment_version(object, event):
         return
     version = getattr(object, "_change_version", 0)
     object._change_version = version + 1
+    object._p_changed = True
+
+
+def handle_object_copied_event(object, event):
+    # Set the creator to be the current user
+    user_id = user.get_current().getId()
+    object.creators = (user_id,)
     object._p_changed = True
