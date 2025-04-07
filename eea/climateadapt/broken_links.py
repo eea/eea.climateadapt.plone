@@ -1,8 +1,5 @@
-from zExceptions import Unauthorized
-from plone.api.env import adopt_user
-import os
-from persistent.mapping import PersistentMapping
 import logging
+import os
 import re
 from collections import defaultdict
 from datetime import datetime
@@ -13,13 +10,16 @@ import transaction
 import xlsxwriter
 from bs4 import BeautifulSoup
 from DateTime import DateTime
+from persistent.mapping import PersistentMapping
 from plone import api
+from plone.api.env import adopt_user
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemataForType
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.services import Service
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
+from zExceptions import Unauthorized
 from zope.annotation.interfaces import IAnnotations
 
 from eea.climateadapt.behaviors.aceitem import IAceItem
@@ -391,13 +391,13 @@ def compute_broken_links(site):
             res["object_url"] = info["object_url"]
             results.append(res)
 
-    now = DateTime()
+    now = str(DateTime())
     annot[now] = results
-    dates = annot.keys()
+    # dates = annot.keys()
 
-    if len(dates) >= 5:  # maximum no. of dates stored
-        # delete oldest data except 'pre_nov7_data'
-        del annot[sorted(dates)[0]]
+    # if len(dates) >= 5:  # maximum no. of dates stored
+    #     # delete oldest data except 'pre_nov7_data'
+    #     del annot[sorted(dates)[0]]
 
     IAnnotations(site)._p_changed = True
     transaction.commit()
