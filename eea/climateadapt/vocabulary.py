@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import base64
 from collections import namedtuple
 
 import pycountry
-from eea.climateadapt import MessageFactory as _
 from plone.app.querystring import queryparser
 from plone.app.vocabularies.catalog import CatalogVocabulary as BCV
 from plone.app.vocabularies.catalog import CatalogVocabularyFactory
@@ -15,6 +13,8 @@ from zope.component.hooks import getSite
 from zope.interface import alsoProvides, implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+
+from eea.climateadapt import MessageFactory as _
 
 
 def generic_vocabulary(_terms, sort=True):
@@ -483,9 +483,7 @@ european_countries = [
     "ME",
 ]
 ace_countries = [
-    (x.alpha_2, x.name)
-    for x in pycountry.countries
-    if x.alpha_2 in european_countries
+    (x.alpha_2, x.name) for x in pycountry.countries if x.alpha_2 in european_countries
 ]
 ace_countries = [x for x in ace_countries if x[0] != "CZ"]
 ace_countries.append((str("CZ"), "Czechia"))
@@ -590,9 +588,7 @@ faceted_countries = [
     "GB",
 ]
 faceted_countries = [
-    (x.alpha_2, x.name)
-    for x in pycountry.countries
-    if x.alpha_2 in faceted_countries
+    (x.alpha_2, x.name) for x in pycountry.countries if x.alpha_2 in faceted_countries
 ]
 faceted_countries.append(("MK", "Republic of North Macedonia"))
 faceted_countries.append(
