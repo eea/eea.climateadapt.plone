@@ -1,8 +1,11 @@
 import logging
 
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
-from eea.climateadapt.translation.core import queue_translate, find_untranslated
+from zope.interface import alsoProvides
+
+from eea.climateadapt.translation.core import find_untranslated, queue_translate
 from eea.climateadapt.utils import force_unlock
 
 from .utils import get_site_languages
@@ -12,6 +15,7 @@ logger = logging.getLogger("eea.climateadapt.translation")
 
 class TranslateObjectAsync(BrowserView):
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
 
@@ -36,6 +40,7 @@ class TranslateMissing(BrowserView):
     ]
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         context = self.context
 
         brains = context.portal_catalog.searchResults(
@@ -70,6 +75,7 @@ class TranslateFolderAsync(BrowserView):
     """Exposed in /see_folder_objects"""
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         context = self.context
 
         brains = context.portal_catalog.searchResults(
