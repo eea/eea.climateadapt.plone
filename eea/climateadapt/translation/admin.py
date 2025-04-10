@@ -4,6 +4,7 @@ from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from eea.climateadapt.translation.core import queue_translate, find_untranslated
 from eea.climateadapt.utils import force_unlock
+from .constants import CCA_LANGUAGES
 
 logger = logging.getLogger("eea.climateadapt.translation")
 
@@ -24,7 +25,6 @@ class TranslateObjectAsync(BrowserView):
 class TranslateMissing(BrowserView):
     """A view to trigger the translation for missing translations"""
 
-    good_lang_codes = ["fr", "de", "it", "es", "pl"]
     blacklist = [
         "Image",
         "File",
@@ -52,7 +52,7 @@ class TranslateMissing(BrowserView):
             if "sandbox" in obj.absolute_url():
                 continue
 
-            langs = find_untranslated(obj, self.good_lang_codes)
+            langs = find_untranslated(obj, CCA_LANGUAGES)
             result.append((brain, langs))
 
             force_unlock(obj)
@@ -67,8 +67,6 @@ class TranslateMissing(BrowserView):
 
 class TranslateFolderAsync(BrowserView):
     """Exposed in /see_folder_objects"""
-
-    good_lang_codes = ["fr", "de", "it", "es", "pl"]
 
     def __call__(self):
         context = self.context
@@ -85,7 +83,7 @@ class TranslateFolderAsync(BrowserView):
                 continue
 
             if lang is None:
-                langs = find_untranslated(obj, self.good_lang_codes)
+                langs = find_untranslated(obj, CCA_LANGUAGES)
             else:
                 langs = [lang]
 
