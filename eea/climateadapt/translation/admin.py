@@ -4,7 +4,8 @@ from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from eea.climateadapt.translation.core import queue_translate, find_untranslated
 from eea.climateadapt.utils import force_unlock
-from .constants import CCA_LANGUAGES
+
+from .utils import get_site_languages
 
 logger = logging.getLogger("eea.climateadapt.translation")
 
@@ -52,7 +53,7 @@ class TranslateMissing(BrowserView):
             if "sandbox" in obj.absolute_url():
                 continue
 
-            langs = find_untranslated(obj, CCA_LANGUAGES)
+            langs = find_untranslated(obj, get_site_languages())
             result.append((brain, langs))
 
             force_unlock(obj)
@@ -83,7 +84,7 @@ class TranslateFolderAsync(BrowserView):
                 continue
 
             if lang is None:
-                langs = find_untranslated(obj, CCA_LANGUAGES)
+                langs = find_untranslated(obj, get_site_languages())
             else:
                 langs = [lang]
 

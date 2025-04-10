@@ -54,6 +54,7 @@ LANGUAGE_INDEPENDENT_FIELDS = [
 
 IGNORE_FIELDS = ["acronym", "id", "language", "portal_type", "contentType"]
 
+# unused, kept for reference. Use get_site_languages
 CCA_LANGUAGES = [
     "bg",
     "cs",
@@ -73,6 +74,7 @@ CCA_LANGUAGES = [
     "lv",
     "mt",
     "nl",
+    "nn",  # norwagen, one of them
     "pl",
     "pt",
     "sk",
