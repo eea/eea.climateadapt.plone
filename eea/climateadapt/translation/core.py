@@ -100,7 +100,12 @@ def queue_translate(obj, language=None):
     all languages.
     """
 
-    html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+    try:
+        html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+    except Exception:
+        logger.exception(
+            "Could not convert Volto page to HTML: %s", obj.absolute_url())
+        return
     url = obj.absolute_url(relative=True)[len("cca"):]
     serial_id = int(ISerialId(obj))  # by default we get is a location proxy
 
