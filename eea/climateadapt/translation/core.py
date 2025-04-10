@@ -86,27 +86,15 @@ def queue_job(queue_name, job_name, data, opts=None):
 
 
 def queue_translate(obj, language=None):
-    """The "new" method of triggering the translation of an object.
+    """Triggering the translation of an object."""
 
-    While this is named "volto", it is a generic system to translate Plone
-    content. The actual "ingestion" of translated data is performed in the
-    TranslationCallback view
-
-    Input: html (generated from volto blocks and obj fields, as string)
-           en_obj - the object to be translated
-           http_host - website url
-
-    Makes sure translation objects exists and requests a translation for
-    all languages.
-    """
-
+    url = "/".join(obj.getPhysicalPath()[1:])
     try:
         html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
     except Exception:
-        logger.exception(
-            "Could not convert Volto page to HTML: %s", obj.absolute_url())
+        logger.exception("Could not convert Volto page to HTML: %s", url)
         return
-    url = obj.absolute_url(relative=True)[len("cca"):]
+
     serial_id = int(ISerialId(obj))  # by default we get is a location proxy
 
     data = {"obj_url": url, "html": html, "serial_id": serial_id}
@@ -125,7 +113,7 @@ def queue_translate(obj, language=None):
 
 
 def get_blocks_as_html(obj):
-    """Uses the external converter service to convert the blocks to HTML representation"""
+    """Uses the converter service to convert blocks to HTML representation"""
 
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
     headers = {"Content-type": "application/json",
@@ -216,7 +204,8 @@ def get_content_from_html(html, language=None):
     data = req.json()["data"]
     logger.info("Data from converter: %s", data)
 
-    # because the blocks deserializer returns {blocks, blocks_layout} and is saved in "blocks", we need to fix it
+    # because the blocks deserializer returns {blocks, blocks_layout} and is
+    # saved in "blocks", we need to fix it
     if data.get("blocks"):
         blockdata = data["blocks"]
         data["blocks_layout"] = blockdata["blocks_layout"]
@@ -248,12 +237,14 @@ def save_field_data(canonical, trans_obj, fielddata):
 
 
 def copy_missing_interfaces(en_obj, trans_obj):
-    """Make sure all interfaces are copied from english obj to translated obj"""
+    """Make sure all interfaces are copied from en obj to translated obj"""
     en_i = [(x.getName(), x) for x in en_obj.__provides__.interfaces()]
     trans_i = [(x.getName(), x) for x in trans_obj.__provides__.interfaces()]
     missing_i = [x for x in en_i if x not in trans_i]
+
     if len(missing_i) > 0:
         logger.info("Missing interfaces: %s" % len(missing_i))
+
         for interf in missing_i:
             alsoProvides(trans_obj, interf[1])
             trans_obj.reindexObject()
