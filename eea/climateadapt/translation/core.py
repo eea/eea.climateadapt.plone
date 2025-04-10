@@ -1,15 +1,17 @@
+import asyncio
 import base64
 import json
 import logging
 import os
 
-# import redis
 import requests
 from Acquisition import aq_inner, aq_parent
+from bullmq import Queue
 from plone import api
 from plone.api import portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
+from plone.app.multilingual.interfaces import ITranslationManager
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.interfaces import IRichText
 from plone.app.textfield.value import RichTextValue
@@ -26,9 +28,6 @@ from zope.schema import getFieldsInOrder
 from eea.climateadapt.callbackdatamanager import queue_callback
 from eea.climateadapt.utils import force_unlock
 from eea.climateadapt.versions import ISerialId
-from bullmq import Queue
-import asyncio
-
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .utils import get_site_languages
@@ -101,7 +100,12 @@ def queue_translate(obj, language=None):
     all languages.
     """
 
-    html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+    try:
+        html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+    except Exception:
+        logger.exception(
+            "Could not convert Volto page to HTML: %s", obj.absolute_url())
+        return
     url = obj.absolute_url(relative=True)[len("cca"):]
     serial_id = int(ISerialId(obj))  # by default we get is a location proxy
 
@@ -446,3 +450,24 @@ def check_token_security(request):
     token = request.getHeader("Authentication")
     if token != TRANSLATION_AUTH_TOKEN:
         raise Unauthorized
+
+
+def find_untranslated(obj, good_lang_codes):
+    tm = ITranslationManager(obj)
+    translations = tm.get_translations()
+    untranslated = set(good_lang_codes)
+    base_path = obj.getPhysicalPath()[1:]
+
+    for langcode, trans in translations.items():
+        if langcode == "en":
+            continue
+        if trans.title and langcode in untranslated:
+            untranslated.remove(langcode)
+        if trans.getPhysicalPath()[1:] != base_path:
+            logger.warn(
+                "Unmatched physical paths %s - %s",
+                obj.absolute_url(),
+                trans.absolute_url(),
+            )
+
+    return list(untranslated)
