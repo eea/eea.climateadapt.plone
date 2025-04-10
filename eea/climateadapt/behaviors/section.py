@@ -14,6 +14,7 @@ class INonstructuralSection(model.Schema):
         ),
         required=False,
         missing_value=False,
+        default=False,
     )
 
 
