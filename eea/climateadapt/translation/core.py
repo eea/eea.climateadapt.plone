@@ -69,10 +69,10 @@ def queue_job(queue_name, job_name, data, opts=None):
     """Schedules job for redis, at the end of the transaction"""
 
     opts = opts or {
-        "delay": 0,  # Delay in milliseconds
-        "priority": 1,
-        "attempts": 3,
-        "lifo": True,  # we use LIFO queing
+        "delay": 1000,  # Delay in milliseconds
+        "priority": 10,
+        "attempts": 1,
+        "lifo": False,  # we dont use LIFO queing
     }
 
     def callback():

@@ -105,7 +105,14 @@ class TranslationCallback(BrowserView):
 
         data = {"obj_path": extref, "html": html}
         # print("data", data)
-        queue_job("save_etranslation", "save_translated_html", data)
+        opts = {
+            "delay": 0,  # Delay in milliseconds
+            "priority": 1,
+            "attempts": 1,
+            "lifo": False,  # we use FIFO queing
+        }
+
+        queue_job("save_etranslation", "save_translated_html", data, opts)
 
         return "ok"
 
