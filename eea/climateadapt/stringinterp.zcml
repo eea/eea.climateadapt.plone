@@ -11,67 +11,66 @@
 
   <!-- TODO: for="*" situation, clarify IContentish vs * -->
 
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_thematicexperts"
-        name="cca_thematicexperts_emails"
-        /> -->
-
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_ma"
-        name="cca_ma_emails"
-        /> -->
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_ma_contacts"
-        name="cca_ma_contacts_emails"
-        /> -->
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_ma_managers"
-        name="cca_ma_managers_emails"
-        /> -->
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_newsevents"
-        name="cca_newsevents_emails"
-        /> -->
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_powerusers"
-        name="cca_powerusers_emails"
-        /> -->
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_checkers"
-        name="cca_checkers_emails"
-        /> -->
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_editors"
-        name="cca_editors_emails"
-        /> -->
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_reviewers"
-        name="cca_reviewer_emails"
-        /> -->
-  <!-- <adapter
-        for="*"
-        provides="plone.stringinterp.interfaces.IStringSubstitution"
-        factory=".stringinterp.cca_managers"
-        name="cca_managers_emails"
-        /> -->
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_thematicexperts"
+    name="cca_thematicexperts_emails"
+  />
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_ma"
+    name="cca_ma_emails"
+  />
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_ma_contacts"
+    name="cca_ma_contacts_emails"
+  />
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_ma_managers"
+    name="cca_ma_managers_emails"
+  />
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_newsevents"
+    name="cca_newsevents_emails"
+  />
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_powerusers"
+    name="cca_powerusers_emails"
+  />
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_checkers"
+    name="cca_checkers_emails"
+  />
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_editors"
+    name="cca_editors_emails"
+  />
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_reviewers"
+    name="cca_reviewer_emails"
+  />
+  <adapter
+    for="*"
+    provides="plone.stringinterp.interfaces.IStringSubstitution"
+    factory=".stringinterp.cca_managers"
+    name="cca_managers_emails"
+  />
 
   <adapter
     factory=".indicator.indicator_message"
