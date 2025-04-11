@@ -58,7 +58,11 @@ CONTENT_CONVERTER = f"{CONVERTER_URL}/html2content"
 logger = logging.getLogger("eea.climateadapt")
 
 redisOpts = dict(host=REDIS_HOST, port=REDIS_PORT, db=0)
-queue = Queue("etranslation", {"connection": redisOpts})
+
+queues = {
+    "etranslation": Queue("etranslation", {"connection": redisOpts}),
+    "save_etranslation": Queue("save_etranslation", {"connection": redisOpts}),
+}
 
 
 def queue_job(queue_name, job_name, data, opts=None):
@@ -75,6 +79,7 @@ def queue_job(queue_name, job_name, data, opts=None):
         logger.info("Adding job %s", job_name)
 
         async def inner():
+            queue = queues[queue_name]
             await queue.add(job_name, data, opts)
             await queue.close()
 

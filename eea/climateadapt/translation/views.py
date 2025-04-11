@@ -105,7 +105,7 @@ class TranslationCallback(BrowserView):
 
         data = {"obj_path": extref, "html": html}
         # print("data", data)
-        queue_job("etranslation", "save_translated_html", data)
+        queue_job("save_etranslation", "save_translated_html", data)
 
         return "ok"
 
