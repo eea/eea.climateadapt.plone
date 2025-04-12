@@ -40,4 +40,11 @@
     permission="cmf.ManagePortal"
   />
 
+  <browser:page
+    for="*"
+    name="fix_folder_order"
+    permission="cmf.ManagePortal"
+    class=".admin.FixFolderOrder"
+  />
+
 </configure>

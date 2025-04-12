@@ -1,18 +1,18 @@
 """Translation views"""
 
-from plone.api.env import adopt_user
 import base64
 import json
 import logging
 import os
-# from urllib.parse import parse_qs
 
-from eea.climateadapt.versions import ISerialId
 from plone.api import portal
+from plone.api.env import adopt_user
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.dexterity.utils import iterSchemata
 from Products.Five.browser import BrowserView
 from zope.schema import getFieldsInOrder
+
+from eea.climateadapt.versions import ISerialId
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .core import (
@@ -161,7 +161,6 @@ class CallETranslation(BrowserView):
     """Call eTranslation, triggered by job from worker"""
 
     def __call__(self):
-        # TODO: add security check
         check_token_security(self.request)
         form = self.request.form
         html = form.get("html")
