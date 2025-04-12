@@ -28,6 +28,16 @@ from .utils import get_value_representation
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
 
+IS_JOB_EXECUTOR = env("IS_JOB_EXECUTOR", False)
+
+
+class IsJobExecutor(BrowserView):
+    def __call__(self):
+        if IS_JOB_EXECUTOR:
+            return "true"
+        else:
+            return "false"
+
 
 class HTMLIngestion(BrowserView):
     """A special view to allow manually submit an HTML translated by

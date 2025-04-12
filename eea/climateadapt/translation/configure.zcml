@@ -24,6 +24,13 @@
 
   <browser:page
     for="*"
+    class=".views.IsJobExecutor"
+    name="is_job_executor"
+    permission="zope.Public"
+  />
+
+  <browser:page
+    for="*"
     class=".views.CallETranslation"
     name="call-etranslation"
     permission="zope2.View"
