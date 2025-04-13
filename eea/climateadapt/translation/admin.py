@@ -121,6 +121,7 @@ class FixFolderOrder(BrowserView):
     POS_KEY = "plone.folder.ordered.pos"
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         path = "/".join(self.context.getPhysicalPath())
         brains = self.context.portal_catalog.searchResults(
             sort_on="path", path=path)
