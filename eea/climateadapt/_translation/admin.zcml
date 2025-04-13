@@ -36,12 +36,4 @@
     class=".admin.ReindexTree"
   />
 
-  <browser:page
-    for="*"
-    template="pt/see_translation_status.pt"
-    name="see_translation_status"
-    permission="cmf.ManagePortal"
-    class=".admin.SeeTranslationStatus"
-  />
-
 </configure>

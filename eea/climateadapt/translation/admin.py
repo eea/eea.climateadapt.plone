@@ -288,3 +288,47 @@ class FixFolderOrder(BrowserView):
                     orig_pos,
                     dict(trans_pos),
                 )
+
+
+class SeeTranslationStatus(BrowserView):
+    blacklist = [
+        "Image",
+        "File",
+        "LRF",
+        "LIF",
+        "Subsite",
+        "FrontpageSlide",
+    ]
+
+    def find_untranslated(self, obj):
+        tm = ITranslationManager(obj)
+        translations = tm.get_translations()
+        untranslated = set(get_site_languages())
+
+        for langcode, obj in translations.items():
+            if langcode == "en":
+                continue
+            if obj.title and langcode in untranslated:
+                untranslated.remove(langcode)
+
+        return list(untranslated)
+
+    def brains(self):
+        context = self.context
+
+        brains = context.portal_catalog.searchResults(
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
+            review_state="published",
+        )
+
+        result = []
+
+        for i, brain in enumerate(brains):
+            if brain.portal_type in self.blacklist:
+                continue
+            obj = brain.getObject()
+            langs = self.find_untranslated(obj)
+            result.append((brain, langs))
+
+        return result
