@@ -56,19 +56,18 @@ def get_view_url(context):
 
 @implementer(INavigationBreadcrumbs)
 class CatalogNavigationBreadcrumbs(BrowserView):
-
     def breadcrumbs(self):
         context = aq_inner(self.context)
-        request = self.request
+        # request = self.request
         ct = getToolByName(context, "portal_catalog")
         query = {}
 
         # Check to see if the current page is a folder default view, if so
         # get breadcrumbs from the parent folder
-        if utils.isDefaultPage(context, request):
-            currentPath = "/".join(utils.parent(context).getPhysicalPath())
-        else:
-            currentPath = "/".join(context.getPhysicalPath())
+        # if utils.isDefaultPage(context, request):
+        #     currentPath = "/".join(utils.parent(context).getPhysicalPath())
+        # else:
+        currentPath = "/".join(context.getPhysicalPath())
         query["path"] = {"query": currentPath, "navtree": 1, "depth": 0}
 
         rawresult = ct(**query)
@@ -101,7 +100,6 @@ class CatalogNavigationBreadcrumbs(BrowserView):
 
 @implementer(INavigationBreadcrumbs)
 class PhysicalNavigationBreadcrumbs(BrowserView):
-
     def breadcrumbs(self):
         context = aq_inner(self.context)
         request = self.request
@@ -137,19 +135,18 @@ class PhysicalNavigationBreadcrumbs(BrowserView):
 
         # this has been changed from the original file:
         # https://github.com/plone/Products.CMFPlone/blob/f028b0ce60bd62f2f5be5ccb9ecb911e73a258d1/Products/CMFPlone/browser/navigation.py
-        if not utils.isDefaultPage(context, request):
-            if hasattr(context, "nav_title") and context.nav_title:
-                title = context.nav_title
-            else:
-                title = (utils.pretty_title_or_id(context, context),)
-            base += ({"absolute_url": item_url, "Title": title},)
+        # if not utils.isDefaultPage(context, request):
+        if hasattr(context, "nav_title") and context.nav_title:
+            title = context.nav_title
+        else:
+            title = (utils.pretty_title_or_id(context, context),)
+        base += ({"absolute_url": item_url, "Title": title},)
 
         return base
 
 
 @implementer(INavigationBreadcrumbs)
 class NavTitleBreadcrumbs(BrowserView):
-
     def breadcrumbs(self):
         context = aq_inner(self.context)
         catalog = getToolByName(context, "portal_catalog")
@@ -210,7 +207,8 @@ class PhysicalBreadcrumbs:
         portal_state = getMultiAdapter(
             (self.context, self.request), name="plone_portal_state"
         )
-        breadcrumbs_view = PhysicalNavigationBreadcrumbs(self.context, self.request)
+        breadcrumbs_view = PhysicalNavigationBreadcrumbs(
+            self.context, self.request)
         items = []
         for crumb in breadcrumbs_view.breadcrumbs():
             item = {
