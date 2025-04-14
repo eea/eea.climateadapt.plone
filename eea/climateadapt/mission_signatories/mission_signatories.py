@@ -43,21 +43,31 @@ def get_planning_data(profile_id):
         key = (hazard.get("Id"), hazard.get("Adaptation_GoalId"))
         hazard_map.setdefault(key, []).append(hazard.get("Climate_Hazard"))
 
+    sector_map = {}
+    for sector in climate_sectors_csv:
+        key = (sector.get("Id"), sector.get("Climate_Action_Plan_Id"))
+        sector_map.setdefault(key, []).append(sector.get("Sector"))
+
+    # Filter planning goals and attach hazards
     planning_goals = []
     for row in filter_rows_by_id(planning_goals_csv, profile_id):
         key = (row.get("Id"), row.get("Adaptation_Goal_Id"))
         row["Climate_Hazards"] = hazard_map.get(key, [])
         planning_goals.append(row)
 
+    # Filter and attach sectors to climate actions
+    climate_actions = []
+    for row in filter_rows_by_id(climate_actions_csv, profile_id):
+        key = (row.get("Id"), row.get("Climate_Action_Plan_Id"))
+        row["Sectors"] = sector_map.get(key, [])
+        climate_actions.append(row)
+
     planning_titles = filter_rows_by_id(planning_titles_csv, profile_id)
-    climate_actions = filter_rows_by_id(climate_actions_csv, profile_id)
-    climate_sectors = filter_rows_by_id(climate_sectors_csv, profile_id)
 
     return {
         "planning_goals": planning_goals,
         "planning_titles": planning_titles,
         "planning_climate_action": climate_actions,
-        "planning_climate_sectors": climate_sectors,
     }
 
 
