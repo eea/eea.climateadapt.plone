@@ -55,8 +55,6 @@ class TranslateMissing(BrowserView):
             review_state="published",
         )
 
-        result = []
-
         for i, brain in enumerate(brains):
             obj = brain.getObject()
             if brain.portal_type in self.blacklist:
@@ -64,11 +62,14 @@ class TranslateMissing(BrowserView):
             if "sandbox" in obj.absolute_url():
                 continue
 
-            langs = find_untranslated(obj, get_site_languages())
-            result.append((brain, langs))
+            if "lang" in self.request.form:
+                langs = [self.request.form["lang"]]
+            else:
+                langs = find_untranslated(obj, get_site_languages())
 
             force_unlock(obj)
             url = obj.absolute_url()
+
             for language in langs:
                 logger.info("Queuing %s for translation for %s", url, language)
 
