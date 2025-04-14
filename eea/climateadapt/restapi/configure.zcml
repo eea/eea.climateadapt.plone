@@ -4,7 +4,7 @@
   xmlns:zcml="http://namespaces.zope.org/zcml"
   xmlns:plone="http://namespaces.plone.org/plone">
 
-  <!-- <include file="breadcrumbs.zcml" /> -->
+  <include file="breadcrumbs.zcml" />
 
   <!-- this is protected by have-plone5 condition in the original -->
   <include file="multilingual.zcml" />
