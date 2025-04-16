@@ -1,14 +1,30 @@
 import csv
 
-# import json
-# import urllib2
+import json
+import urllib.request
 import logging
 from pkg_resources import resource_filename
 
 
 logger = logging.getLogger("eea.climateadapt")
 
-DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_Art19_JSON_2023%5D&p=1&nrOfHits=1"
+GOVERNANCE_DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Governance_Template_Text%5D&p=1&nrOfHits=100"
+
+
+def fetch_discodata_json(url):
+    try:
+        with urllib.request.urlopen(url) as response:
+            return json.loads(response.read().decode())
+    except Exception as e:
+        logger.error(f"Failed to fetch or parse JSON from {url}: {e}")
+        return {"results": []}
+
+
+def filter_discodata_by_profile_id(data, profile_id):
+    """Filter results by profile ID."""
+    if not profile_id:
+        return data
+    return [row for row in data if str(row.get("Id")) == str(profile_id)]
 
 
 def parse_csv(path):
@@ -74,17 +90,17 @@ def get_planning_data(profile_id):
 def get_discodata_for_mission_signatories(id=None):
     """Fetches data from the DISCODATA."""
     try:
-        # response = urllib2.urlopen(DISCODATA_URL)
-        # data = json.loads(response.read())
-        # return data['results']
-
         result = {}
 
+        # governance_data = parse_csv("Governance.csv")
+        # result["governance"] = (
+        #     filter_rows_by_id(governance_data, id) if id else governance_data
+        # )
+
         # Governance section
-        governance_data = parse_csv("Governance.csv")
-        result["governance"] = (
-            filter_rows_by_id(governance_data, id) if id else governance_data
-        )
+        governance_json = fetch_discodata_json(GOVERNANCE_DISCODATA_URL)
+        governance_data = governance_json.get("results", [])
+        result["governance"] = filter_discodata_by_profile_id(governance_data, id)
 
         # Planning section
         planning_data = get_planning_data(id)
