@@ -40,7 +40,7 @@ def get_planning_data(profile_id):
 
     hazard_map = {}
     for hazard in climate_hazards_csv:
-        key = (hazard.get("Id"), hazard.get("Adaptation_GoalId"))
+        key = (hazard.get("Id"), hazard.get("Adaptation_Goal_Id"))
         hazard_map.setdefault(key, []).append(hazard.get("Climate_Hazard"))
 
     sector_map = {}
@@ -81,7 +81,7 @@ def get_discodata_for_mission_signatories(id=None):
         result = {}
 
         # Governance section
-        governance_data = parse_csv("governance.csv")
+        governance_data = parse_csv("Governance.csv")
         result["governance"] = (
             filter_rows_by_id(governance_data, id) if id else governance_data
         )
