@@ -44,14 +44,16 @@ def filter_rows_by_id(rows, profile_id):
 
 
 def get_planning_data(profile_id):
-    planning_goals_csv = parse_csv("Planning_Template_Adaptation_Goals_Text.csv")
-    planning_titles_csv = parse_csv("Planning_Template_Adaptation_Text.csv")
+    planning_goals_csv = parse_csv("./data/Planning_Template_Adaptation_Goals_Text.csv")
+    planning_titles_csv = parse_csv("./data/Planning_Template_Adaptation_Text.csv")
     climate_hazards_csv = parse_csv(
-        "Planning_Template_Adaptation_Goals_Climate_Hazards_Text.csv"
+        "./data/Planning_Template_Adaptation_Goals_Climate_Hazards_Text.csv"
     )
-    climate_actions_csv = parse_csv("Planning_Template_Climate_Action_Plan_Text.csv")
+    climate_actions_csv = parse_csv(
+        "./data/Planning_Template_Climate_Action_Plan_Text.csv"
+    )
     climate_sectors_csv = parse_csv(
-        "Planning_Template_Climate_Action_Plan_Sectors_Text.csv"
+        "./data/Planning_Template_Climate_Action_Plan_Sectors_Text.csv"
     )
 
     hazard_map = {}
@@ -81,9 +83,11 @@ def get_planning_data(profile_id):
     planning_titles = filter_rows_by_id(planning_titles_csv, profile_id)
 
     return {
-        "planning_goals": planning_goals,
-        "planning_titles": planning_titles,
-        "planning_climate_action": climate_actions,
+        "planning": {
+            "planning_goals": planning_goals,
+            "planning_titles": planning_titles,
+            "planning_climate_action": climate_actions,
+        }
     }
 
 
@@ -92,7 +96,7 @@ def get_discodata_for_mission_signatories(id=None):
     try:
         result = {}
 
-        # governance_data = parse_csv("Governance.csv")
+        # governance_data = parse_csv("./data/Governance.csv")
         # result["governance"] = (
         #     filter_rows_by_id(governance_data, id) if id else governance_data
         # )
