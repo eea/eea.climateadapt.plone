@@ -91,6 +91,26 @@ def get_planning_data(profile_id):
     }
 
 
+def get_assessment_data(profile_id):
+    assessment_text_csv = parse_csv("./data/Assessment_Template_Text.csv")
+    assessment_factors_csv = parse_csv("./data/Assessment_Template_Factors_Text.csv")
+    assessment_risks_csv = parse_csv(
+        "./data/Assessment_Template_Climate_Risk_Assessments_Text.csv"
+    )
+
+    assessment_text = filter_rows_by_id(assessment_text_csv, profile_id)
+    assessment_factors = filter_rows_by_id(assessment_factors_csv, profile_id)
+    assessment_risks = filter_rows_by_id(assessment_risks_csv, profile_id)
+
+    return {
+        "assessment": {
+            "assessment_text": assessment_text,
+            "assessment_factors": assessment_factors,
+            "assessment_risks": assessment_risks,
+        }
+    }
+
+
 def get_discodata_for_mission_signatories(id=None):
     """Fetches data from the DISCODATA."""
     try:
@@ -110,11 +130,12 @@ def get_discodata_for_mission_signatories(id=None):
         planning_data = get_planning_data(id)
         result.update(planning_data)
 
+        # Assessment section
+        assessment_data = get_assessment_data(id)
+        result.update(assessment_data)
+
         return result
 
-    # except urllib2.URLError as e:
-    #     logger.error("Failed to fetch data: %s", e)
-    #     return None
     except ValueError as e:
         logger.error("Failed to parse JSON: %s", e)
         return None
