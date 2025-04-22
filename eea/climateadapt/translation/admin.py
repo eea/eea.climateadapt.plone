@@ -26,7 +26,9 @@ class TranslateObjectAsync(BrowserView):
         messages.add("Translation process initiated.", type="info")
 
         obj_url = self.context.absolute_url()
-        language = self.request.form.get("language", None)
+        language = self.request.form.get("lang", None) or self.request.form.get(
+            "language", None
+        )
 
         queue_translate(self.context, language)
 
@@ -63,7 +65,7 @@ class TranslateMissing(BrowserView):
                 continue
 
             if "lang" in self.request.form:
-                langs = [self.request.form["lang"]]
+                langs = find_untranslated(obj, [self.request.form["lang"]])
             else:
                 langs = find_untranslated(obj, get_site_languages())
 
