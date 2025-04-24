@@ -1,15 +1,22 @@
+from plone.namedfile.file import NamedBlobImage
+from plone.namedfile.file import NamedBlobFile
+from collective.exportimport.import_content import get_absolute_blob_path
+from collective.exportimport.import_content import ImportContent
 import OFS
 import transaction
+
 # import collective.cover.config
 from zope.i18nmessageid import MessageFactory as BaseMessageFactory
 
 import Products.CMFCore.permissions
 from AccessControl import ClassSecurityInfo
 from AccessControl.class_init import InitializeClass
+
 # from eea.notifications import utils
 from plone.dexterity.content import Container
 from plone.i18n import normalizer
 from App.ZApplication import ZApplicationWrapper
+from .p6patches import install_patches
 
 
 class UnicodeMessageFactory(BaseMessageFactory):
@@ -133,13 +140,10 @@ ZApplicationWrapper.__repr__ = ZApplicationWrapper__repr__
 #     return linked
 
 # TODO remove this after plone 6 migration
-from collective.exportimport.import_content import ImportContent
-from collective.exportimport.import_content import get_absolute_blob_path
-from plone.namedfile.file import NamedBlobFile
-from plone.namedfile.file import NamedBlobImage
 
 # Monkey patching import_blob_paths
 _original_import_blob_paths = ImportContent.import_blob_paths
+
 
 def patched_import_blob_paths(self, new, item):
     for key, value in item.items():
@@ -177,6 +181,9 @@ def patched_import_blob_paths(self, new, item):
         )
         setattr(new, key, field_value)
 
+
 ImportContent.import_blob_paths = patched_import_blob_paths
+
+install_patches()
 
 print("Monkey patch for ImportContent.import_blob_paths applied")
