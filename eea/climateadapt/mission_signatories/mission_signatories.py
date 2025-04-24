@@ -111,28 +111,68 @@ def get_assessment_data(profile_id):
     }
 
 
+def get_action_data(profile_id):
+    action_text_csv = parse_csv("./data/Action_Template_Text.csv")
+    actions_csv = parse_csv("./data/Action_Template_Actions_Text.csv")
+    actions_hazards_csv = parse_csv("./data/Action_Template_Climate_Hazards_Text.csv")
+    actions_sectors_csv = parse_csv("./data/Action_Template_Sectors_Text.csv")
+    actions_benefits_csv = parse_csv("./data/Action_Template_Co_Benefits_Text.csv")
+
+    hazard_map = {}
+    for hazard in actions_hazards_csv:
+        key = (hazard.get("Id"), hazard.get("Action_Id"))
+        hazard_map.setdefault(key, []).append(hazard.get("Climate_Hazard"))
+
+    sectors_map = {}
+    for sector in actions_sectors_csv:
+        key = (sector.get("Id"), sector.get("Action_Id"))
+        sectors_map.setdefault(key, []).append(sector.get("Sector"))
+
+    benefits_map = {}
+    for benefit in actions_benefits_csv:
+        key = (benefit.get("Id"), benefit.get("Action_Id"))
+        benefits_map.setdefault(key, []).append(benefit.get("Co_Benefit"))
+
+    # Filter actions and attach hazards, sectors, and co-benefits
+    actions = []
+    for row in filter_rows_by_id(actions_csv, profile_id):
+        key = (row.get("Id"), row.get("Action_Id"))
+        row["Climate_Hazards"] = hazard_map.get(key, [])
+        row["Sectors"] = sectors_map.get(key, [])
+        row["Co_Benefits"] = benefits_map.get(key, [])
+        actions.append(row)
+
+    action_text = filter_rows_by_id(action_text_csv, profile_id)
+
+    return {
+        "action": {
+            "action_text": action_text,
+            "actions": actions,
+        }
+    }
+
+
+def get_governance_data(profile_id):
+    governance_json = fetch_discodata_json(GOVERNANCE_DISCODATA_URL)
+    governance_data = governance_json.get("results", [])
+    result = filter_discodata_by_profile_id(governance_data, profile_id)
+
+    return {"governance": result}
+
+
 def get_discodata_for_mission_signatories(id=None):
     """Fetches data from the DISCODATA."""
     try:
+        data_sections = [
+            get_governance_data,
+            get_planning_data,
+            get_assessment_data,
+            get_action_data,
+        ]
+
         result = {}
-
-        # governance_data = parse_csv("./data/Governance.csv")
-        # result["governance"] = (
-        #     filter_rows_by_id(governance_data, id) if id else governance_data
-        # )
-
-        # Governance section
-        governance_json = fetch_discodata_json(GOVERNANCE_DISCODATA_URL)
-        governance_data = governance_json.get("results", [])
-        result["governance"] = filter_discodata_by_profile_id(governance_data, id)
-
-        # Planning section
-        planning_data = get_planning_data(id)
-        result.update(planning_data)
-
-        # Assessment section
-        assessment_data = get_assessment_data(id)
-        result.update(assessment_data)
+        for section in data_sections:
+            result.update(section(id))
 
         return result
 
