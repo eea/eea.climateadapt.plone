@@ -66,6 +66,12 @@
   />
 
   <plone:behavior
+    title="Mission Signatory Profile"
+    description="Settings for Mission Signatory Profile"
+    provides=".mission_signatory_profile.IMissionSignatoryProfile"
+  />
+
+  <plone:behavior
     title="Event details"
     description="Settings and layout for Event content type"
     provides=".event.IMainEvent"
