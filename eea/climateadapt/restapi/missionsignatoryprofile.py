@@ -1,10 +1,16 @@
+import logging
 import csv
 
 import json
 import urllib.request
-import logging
 from pkg_resources import resource_filename
+from plone.restapi.interfaces import IExpandableElement
+from zope.component import adapter
+from zope.interface import Interface, implementer
 
+from eea.climateadapt.behaviors.mission_signatory_profile import (
+    IMissionSignatoryProfile,
+)
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -29,7 +35,7 @@ def filter_discodata_by_profile_id(data, profile_id):
 
 def parse_csv(path):
     try:
-        wf = resource_filename("eea.climateadapt.mission_signatories", path)
+        wf = resource_filename("eea.climateadapt", path)
         with open(wf, newline="", encoding="utf-8-sig") as csvfile:
             reader = csv.DictReader(csvfile)
             # print(f"Headers: {reader.fieldnames}")
@@ -160,7 +166,7 @@ def get_governance_data(profile_id):
     return {"governance": result}
 
 
-def get_discodata_for_mission_signatories(id=None):
+def get_data_for_mission_signatory(id=None):
     """Fetches data from the DISCODATA."""
     try:
         data_sections = [
@@ -179,3 +185,36 @@ def get_discodata_for_mission_signatories(id=None):
     except ValueError as e:
         logger.error("Failed to parse JSON: %s", e)
         return None
+
+
+@implementer(IExpandableElement)
+@adapter(IMissionSignatoryProfile, Interface)
+class MissionSignatoryProfile(object):
+    """An expander that inserts the data of a mission signatory profile"""
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, expand=False):
+        absolute_url = self.context.absolute_url()
+        id = absolute_url.rstrip("/").split("/")[-1]
+        data = get_data_for_mission_signatory(id)
+
+        try:
+            data = get_data_for_mission_signatory(id)
+        except Exception as e:
+            logger.warning(
+                "Error in processing mission signatory profile: {}".format(e)
+            )
+
+        result = {
+            "missionsignatoryprofile": {
+                "@id": "{}/@missionsignatoryprofile".format(
+                    self.context.absolute_url()
+                ),
+                "result": data,
+            }
+        }
+
+        return result

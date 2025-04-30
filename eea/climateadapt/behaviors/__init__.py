@@ -17,6 +17,7 @@ from .researchproject import IResearchProject
 from .tool import ITool
 from .mission_funding_cca import IMissionFundingCCA
 from .mission_tool import IMissionTool
+from .mission_signatory_profile import IMissionSignatoryProfile
 from .event import IMainEvent
 from .news import IMainNews
 
@@ -44,6 +45,7 @@ __all__ = [
     ITool,
     IMissionFundingCCA,
     IMissionTool,
+    IMissionSignatoryProfile,
     IMainEvent,
     IMainNews,
 ]

@@ -480,4 +480,12 @@
   <!--   provides="Products.GenericSetup.interfaces.EXTENSION" -->
   <!-- /> -->
 
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_77"
+    title="Upgrade profile for eea.climateadapt v77"
+    description=""
+    directory="profiles/upgrades/to_77"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
 </configure>

@@ -188,6 +188,8 @@
   <!--     /> -->
 
   <adapter factory=".countryprofile.CountryProfile" name="countryprofile" />
+  <adapter factory=".missionsignatoryprofile.MissionSignatoryProfile" name="missionsignatoryprofile" />
+
   <!-- <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions" /> -->
   <subscriber
     factory=".transnationalregions.TransnationRegionSelectSerializationTransformer"
