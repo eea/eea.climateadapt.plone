@@ -1,19 +1,8 @@
-# import json
-
-# from pkg_resources import resource_filename
-
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.restapi.behaviors import IBlocks  # BLOCKS_SCHEMA, LAYOUT_SCHEMA,
+from plone.restapi.behaviors import IBlocks
 from plone.supermodel import model
 from zope.interface import provider
-
-
 # from eea.climateadapt import CcaAdminMessageFactory as _
-
-# fpath = resource_filename(
-#     "eea.climateadapt.behaviors", "volto_layout_missionfunding.json"
-# )
-# layout = json.load(open(fpath))
 
 
 @provider(IFormFieldProvider)
