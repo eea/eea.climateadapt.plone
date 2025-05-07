@@ -3,13 +3,15 @@ import logging
 import os
 import re
 from copy import deepcopy
-from plone.namedfile.file import NamedBlobFile, get_contenttype
-# from pprint import pprint
 
+# from pprint import pprint
 from pkg_resources import resource_filename
 from plone.api.content import create
 from plone.app.textfield.value import RichTextValue
+from plone.namedfile.file import NamedBlobFile, get_contenttype
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
+from zope.interface import alsoProvides
 
 from eea.climateadapt.vocabulary import ace_countries
 
@@ -464,6 +466,7 @@ class MissionSigImporter(BrowserView):
         # raise ValueError
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         fpath = resource_filename("eea.climateadapt.browser", "data/2024")
         self.traverse_and_import(fpath)
         return "ok"
