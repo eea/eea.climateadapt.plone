@@ -1,0 +1,1146 @@
+  <!-- <browser:page
+      name="migrate-tiles"
+      for="*"
+      class=".admin.MigrateTiles"
+      permission="cmf.ManagePortal"
+      /> -->
+
+<!--browser:page
+    name="import-adaptecca"
+    for="*"
+    class=".admin.AdapteCCACaseStudyImporter"
+    permission="cmf.ManagePortal"
+    /-->
+
+
+<!-- <browser:page
+      name="refresh-google-analytics-report"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class=".admin.RefreshGoogleAnalyticsReport"
+      permission="cmf.ManagePortal"
+      /> -->
+<!-- <browser:page
+      name="force-pingcr"
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
+      class=".admin.ForcePingCRView"
+      permission="cmf.ManagePortal"
+      />
+
+  <browser:page
+      name="force-pingcr-obj"
+      for="*"
+      class=".admin.ForcePingObjectCRView"
+      permission="cmf.ManagePortal"
+      /> -->
+
+<!-- <browser:page
+        for="*"
+        name="fix-blobs-only-check"
+        class=".fixblobs.FixBlobsOnlyCheck"
+        template="pt/fixblobs.pt"
+        permission="cmf.ManagePortal"
+        />
+
+   <browser:page
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        name="fix-blobs-imsure-delete"
+        class=".fixblobs.FixBlobs"
+        permission="cmf.ManagePortal"
+        /> -->
+
+
+<!---->
+<!-- <browser:page -->
+<!--   name="lancet-indicator-view" -->
+<!--   for="*" -->
+<!--   template="pt/lancet-indicator.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!-- <include file="integration.zcml" /> -->
+<!-- <include file="admin.zcml" /> -->
+<!-- <include file="frontpage.zcml" /> -->
+<!-- <include
+    file="faceted.zcml" /> -->
+<!-- <include file="depiction.zcml" /> -->
+<!-- <include file="migrations.zcml" /> -->
+
+<!-- <browser:page -->
+<!--   name="iterate_control" -->
+<!--   for="*" -->
+<!--   class=".IterateControl" -->
+<!--   allowed_attributes="checkin_allowed checkout_allowed cancel_allowed is_checkout" -->
+<!--   permission="zope2.View" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+
+<!-- <include file="integration.zcml" /> -->
+<!-- <include file="admin.zcml" /> -->
+<!-- <include file="frontpage.zcml" /> -->
+<!-- <include
+    file="faceted.zcml" /> -->
+<!-- <include file="depiction.zcml" /> -->
+<!-- <include file="migrations.zcml" /> -->
+
+<!-- <browser:page -->
+<!--   name="iterate_control" -->
+<!--   for="*" -->
+<!--   class=".IterateControl" -->
+<!--   allowed_attributes="checkin_allowed checkout_allowed cancel_allowed is_checkout" -->
+<!--   permission="zope2.View" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+
+<!-- <browser:resourceDirectory -->
+<!--   name="eea.climateadapt" -->
+<!--   directory="resources" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+<!---->
+<!-- <browser:resource -->
+<!--   name="plone.app.jquerytools.overlayhelpers.js" -->
+<!--   file="resources/overlayhelpers.js" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+
+<!-- <browser:resource -->
+<!--   name="export_to_excel.js" -->
+<!--   file="resources/export_to_excel.js" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+
+<!-- <z3c:widgetTemplate -->
+<!--   widget="z3c.form.interfaces.IOrderedSelectWidget" -->
+<!--   template="pt/orderedselect_display.pt" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!--   mode="display" -->
+<!-- /> -->
+
+<!-- <browser:menuItems
+      menu="plone_displayviews"
+      for="collective.cover.content.ICover"
+      >
+    <browser:menuItem
+      title="Standard with no title"
+      action="no_title_cover_view"
+    />
+    <browser:menuItem
+      title="Columned View"
+      action="column_view"
+    />
+    <browser:menuItem
+      title="Vertical Tab View"
+      action="vertical_tab_view"
+    />
+  </browser:menuItems> -->
+
+<!-- <browser:menuItems -->
+<!--   menu="plone_displayviews" -->
+<!--   for="*" -->
+<!-- > -->
+<!--   <browser:menuItem -->
+<!--     title="Listing with dates" -->
+<!--     action="listing-with-dates" -->
+<!--   /> -->
+<!-- </browser:menuItems> -->
+
+<!-- <browser:page -->
+<!--   name="dashboard-v2" -->
+<!--   for="*" -->
+<!--   class=".dashboard.DashboardView" -->
+<!--   template="pt/dashboard.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+
+<!-- -->
+<!-- <browser:page -->
+<!--   name="countries-view-map-d3" -->
+<!--   for="*" -->
+<!--   class=".countries.CountriesD3View" -->
+<!--   template="pt/countries-d3.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="external-template-head" -->
+<!--   for="*" -->
+<!--   template="pt/search/external-template-head.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!-- <browser:page -->
+<!--   name="external-template-header" -->
+<!--   for="*" -->
+<!--   class=".externaltemplates.ExternalTemplateHeader" -->
+<!--   template="pt/search/external-template-header.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="external-template-footer" -->
+<!--   for="*" -->
+<!--   template="pt/search/external-template-footer.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!-- <browser:page -->
+<!--     name="external&#45;template&#45;test" -->
+<!--     for="*" -->
+<!--     template="pt/search/external&#45;template&#45;test.pt" -->
+<!--     permission="zope2.View" -->
+<!--     /> -->
+
+<!-- disabled for plone6 -->
+<!-- <subscriber -->
+<!--   for="plone.app.contenttypes.content.Folder -->
+<!--          OFS.interfaces.IObjectWillBeRemovedEvent" -->
+<!--   handler=".misc.preventFolderDeletionEvent" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="fullwidth_content_types" -->
+<!--   for="*" -->
+<!--   class=".main.FullWidthContentTypes" -->
+<!--   permission="zope.Public" -->
+<!-- /> -->
+<!--
+  <browser:page
+    name="ast.pdf"
+    for="eea.pdf.interfaces.IPDFAware"
+    class="eea.pdf.browser.app.download.Download"
+    permission="eea.pdf.download"
+    layer="eea.pdf.interfaces.ILayer"
+  /> -->
+
+<!-- <browser:page -->
+<!--   name="case_study_contacts.csv" -->
+<!--   for="*" -->
+<!--   class=".download.CaseStudiesCSV" -->
+<!--   permission="cmf.ManagePortal" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="keywords_tags.csv" -->
+<!--   for="*" -->
+<!--   class=".download.KeywordsTagsCSV" -->
+<!--   permission="cmf.ManagePortal" -->
+<!-- /> -->
+<!---->
+<!--
+  <browser:page
+      name="case-studies-network"
+      for="*"
+      class=".casestudies_network.Network"
+      template="pt/case_study_network.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="case-studies-sankey-highcharts"
+      for="*"
+      class=".casestudies_network.Sankey"
+      template="pt/case_study_sankey.pt"
+      permission="zope2.View"
+      />
+
+  <browser:page
+      name="case-studies-sankey.json"
+      for="*"
+      class=".casestudies_network.Items"
+      permission="zope2.View"
+      />
+-->
+
+<!-- <browser:page -->
+<!--   name="observatory_indicators_list" -->
+<!--   for="*" -->
+<!--   class=".observatory_indicators.ObservatoryIndicators" -->
+<!--   template="pt/observatory_indicators_search.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="case-studies-plotly" -->
+<!--   for="*" -->
+<!--   template="pt/case_study_plotly.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="case-studies-plotly.json" -->
+<!--   for="*" -->
+<!--   class=".casestudies_network.Plotly" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="c3sindicator-test" -->
+<!--   for="*" -->
+<!--   template="pt/c3sindicator_test.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+
+<!-- <browser:page -->
+<!--   name="urban-landing-page" -->
+<!--   for="*" -->
+<!--   template="pt/landing_page_urban.pt" -->
+<!--   permission="zope2.View" -->
+<!--   class=".landing_page.Urban" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="forest-landing-page" -->
+<!--   for="*" -->
+<!--   template="pt/landing_page_forest.pt" -->
+<!--   permission="zope2.View" -->
+<!--   class=".landing_page.Forest" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--     name="case-study-and-adaptation-options-map-viewer" -->
+<!--     for="*" -->
+<!--     class=".casestudies_map.Page" -->
+<!--     template="pt/case-study-and-adaptation-options-map-viewer.pt" -->
+<!--     permission="zope2.View" -->
+<!--   /> -->
+
+<!-- <browser:page -->
+<!--   name="listing-with-dates" -->
+<!--   for="*" -->
+<!--   template="pt/listing-with-dates.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="ace_macros" -->
+<!--   for="*" -->
+<!--   template="pt/ace_macros.pt" -->
+<!--   permission="zope.Public" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="calculate-item-statistics" -->
+<!--   for="*" -->
+<!--   class=".misc.CalculateItemStatistics" -->
+<!--   permission="cmf.ModifyPortalContent" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="write-macrotrans-regions" -->
+<!--   for="*" -->
+<!--   class=".misc.GetItemsForMacrotransRegions" -->
+<!--   permission="cmf.ModifyPortalContent" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="clear-macrotrans-regions" -->
+<!--   for="*" -->
+<!--   class=".misc.ClearMacrotransnationalRegions" -->
+<!--   permission="cmf.ModifyPortalContent" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="get-item-statistics" -->
+<!--   for="*" -->
+<!--   class=".misc.getItemStatistics" -->
+<!--   template="pt/item_statistics.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="get-coventantofmayors-links" -->
+<!--   for="*" -->
+<!--   class=".misc.GetCoventantOfMayorsLinks" -->
+<!--   permission="cmf.ManagePortal" -->
+<!-- /> -->
+
+<!-- <browser:page
+    name="no_title_cover_view"
+    for="*"
+    class=".CoverNoTitleView"
+    template="pt/no_title_cover_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page
+    name="column_view"
+    for="*"
+    class=".CoverNoTitleView"
+    template="pt/cover_column_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page
+    name="vertical_tab_view"
+    for="*"
+    class=".CoverNoTitleView"
+    template="pt/vertical_tab_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page
+    name="view"
+    for="eea.climateadapt.aceitem.IIndicator"
+    class="eea.climateadapt.browser.aceitem.IndicatorView"
+    template="pt/indicator_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page
+    name="view"
+    for="eea.climateadapt.aceitem.IC3sIndicator"
+    class="eea.climateadapt.browser.aceitem.C3sIndicatorView"
+    template="pt/c3sindicator_view.pt"
+    permission="zope2.View"
+  /> -->
+
+
+<!-- <browser:page
+    name="view"
+    for="eea.climateadapt.aceitem.IPublicationReport"
+    class="eea.climateadapt.browser.aceitem.PublicationReportView"
+    template="pt/publicationreport_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page
+    name="view"
+    for="eea.climateadapt.aceitem.IInformationPortal"
+    class="eea.climateadapt.browser.aceitem.InformationPortalView"
+    template="pt/informationportal_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page
+    name="view"
+    for="eea.climateadapt.aceitem.IGuidanceDocument"
+    class="eea.climateadapt.browser.aceitem.GuidanceDocumentView"
+    template="pt/guidancedocument_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page
+    name="view"
+    for="eea.climateadapt.aceitem.ITool"
+    class="eea.climateadapt.browser.aceitem.ToolView"
+    template="pt/tool_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page
+    name="view"
+    for="eea.climateadapt.aceitem.IMapGraphDataset"
+    class="eea.climateadapt.browser.mapgraphsdataset.MapGraphDatasetView"
+    template="pt/mapgraphdataset_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page
+    name="view"
+    for="eea.climateadapt.aceitem.IOrganisation"
+    class="eea.climateadapt.browser.aceitem.OrganisationView"
+    template="pt/organisation_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page -->
+<!--   name="view" -->
+<!--   for="eea.climateadapt.acemeasure.ICaseStudy" -->
+<!--   class=".casestudy.CaseStudyView" -->
+<!--   template="pt/casestudy_view.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name=".json" -->
+<!--   for="eea.climateadapt.acemeasure.ICaseStudy" -->
+<!--   class=".casestudy.CaseStudyJson" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="view_cca_event" -->
+<!--   for="plone.event.interfaces.IEvent" -->
+<!--   class="eea.climateadapt.browser.cca_event.CcaEvent" -->
+<!--   template="pt/ccaevent_view.pt" -->
+<!--   permission="zope2.View" -->
+<!--   />  -->  <!--
+  <browser:page -->
+<!--   name="edit" -->
+<!--   for="plone.dexterity.interfaces.IDexterityItem" -->
+<!--   class=".custom_form_tabs.CustomFormTabsEditView" -->
+<!--   permission="cmf.ModifyPortalContent" -->
+<!-- /> -->
+
+<!-- <adapter -->
+<!--   factory=".custom_form_tabs.CustomFormTabsFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="plone.dexterity.interfaces.IDexterityItem -->
+<!--          plone.restapi.interfaces.IPloneRestapiLayer -->
+<!--          .custom_form_tabs.CustomFormTabsEditForm" -->
+<!-- /> -->
+
+<!-- <adapter -->
+<!--   factory=".event.EventAddExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="* -->
+<!--            plone.restapi.interfaces.IDefaultBrowserLayer -->
+<!--            .event.EventAddForm" -->
+<!-- /> -->
+
+<!--   <adapter -->
+<!--   factory=".news_item.NewsItemAddExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="* -->
+<!--            plone.restapi.interfaces.IDefaultBrowserLayer -->
+<!--            .news_item.NewsItemAddForm" -->
+<!-- /> -->
+<!-- Case Study Form customizations  -->
+<!-- <browser:page -->
+<!--   name="edit" -->
+<!--   for="eea.climateadapt.acemeasure.ICaseStudy" -->
+<!--   class=".casestudy.CaseStudyEditView" -->
+<!--   permission="cmf.ModifyPortalContent" -->
+<!-- /> -->
+
+<!-- <adapter -->
+<!--   factory=".casestudy.CaseStudyFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="eea.climateadapt.acemeasure.ICaseStudy -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .casestudy.CaseStudyEditForm" -->
+<!-- /> -->
+
+<!-- <adapter -->
+<!--   factory=".casestudy.CaseStudyFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .casestudy.CaseStudyAddForm" -->
+<!-- /> -->
+
+<!-- Adaptation Option Form customizations  -->
+<!-- <browser:page -->
+<!--   name="edit" -->
+<!--   for="eea.climateadapt.acemeasure.IAdaptationOption" -->
+<!--   class=".adaptationoption.AdaptationOptionEditView" -->
+<!--   permission="cmf.ModifyPortalContent" -->
+<!-- /> -->
+
+<!-- <adapter -->
+<!--   factory=".adaptationoption.AdaptationOptionFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="eea.climateadapt.acemeasure.IAdaptationOption -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .adaptationoption.AdaptationOptionEditForm" -->
+<!-- /> -->
+
+<!-- <adapter -->
+<!--   factory=".adaptationoption.AdaptationOptionFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .adaptationoption.AdaptationOptionAddForm" -->
+<!-- /> -->  <!-- <browser:page
+    name="edit"
+    for="eea.climateadapt.aceitem.IMapGraphDataset"
+    class=".mapgraphsdataset.MapsEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".mapgraphsdataset.MapsFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.aceitem.IMapGraphDataset
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .mapgraphsdataset.MapsEditForm"
+  /> -->
+
+<!-- <adapter -->
+<!--   factory=".mapgraphsdataset.MapsFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .mapgraphsdataset.MapsAddForm" -->
+<!-- /> -->  <!-- <browser:page
+    name="edit"
+    for="eea.climateadapt.acevideo.IAceVideo"
+    class=".video.VideoEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".video.VideoFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.acevideo.IAceVideo
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .video.VideoEditForm"
+  /> -->
+
+<!-- <adapter
+    factory=".video.VideoFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.acevideo.IAceVideo
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .video.VideoAddForm"
+  /> -->  <!--
+  <browser:page
+    name="edit"
+    for="eea.climateadapt.aceitem.IPublicationReport"
+    class=".aceitem.PublicationReportEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".aceitem.AceItemFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.aceitem.IPublicationReport
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.PublicationReportEditForm"
+  /> -->
+
+<!-- <adapter -->
+<!--   factory=".aceitem.AceItemFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceitem.PublicationReportAddForm" -->
+<!-- /> -->  <!-- <browser:page
+    name="edit"
+    for="eea.climateadapt.aceitem.IInformationPortal"
+    class=".aceitem.InformationPortalEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".aceitem.AceItemFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.aceitem.IInformationPortal
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.InformationPortalEditForm"
+  /> -->
+
+<!-- <adapter -->
+<!--   factory=".aceitem.AceItemFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceitem.InformationPortalAddForm" -->
+<!-- /> -->  <!-- <browser:page
+    name="edit"
+    for="eea.climateadapt.aceitem.IGuidanceDocument"
+    class=".aceitem.GuidanceDocumentEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".aceitem.AceItemFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.aceitem.IGuidanceDocument
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.GuidanceDocumentEditForm"
+  /> -->
+
+<!-- <adapter -->
+<!--   factory=".aceitem.AceItemFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceitem.GuidanceDocumentAddForm" -->
+<!-- /> -->  <!-- <browser:page
+    name="edit"
+    for="eea.climateadapt.aceitem.ITool"
+    class=".aceitem.ToolEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".aceitem.AceItemFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.aceitem.ITool
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.ToolEditForm"
+  /> -->
+<!---->
+<!-- <adapter -->
+<!--   factory=".aceitem.AceItemFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceitem.ToolAddForm" -->
+<!-- /> -->  <!-- <browser:page
+    name="edit"
+    for="eea.climateadapt.aceitem.IIndicator"
+    class=".aceitem.IndicatorEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".aceitem.AceItemFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.aceitem.IIndicator
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.IndicatorEditForm"
+  /> -->
+<!---->
+<!-- <adapter -->
+<!--   factory=".aceitem.AceItemFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceitem.IndicatorAddForm" -->
+<!-- /> -->
+<!---->
+<!-- <adapter -->
+<!--   factory=".aceitem.IndicatorFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceitem.IndicatorEditForm" -->
+<!-- /> -->  <!-- <browser:page
+    name="edit"
+    for="eea.climateadapt.aceitem.IC3sIndicator"
+    class=".aceitem.C3sIndicatorEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".aceitem.AceItemFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.aceitem.IC3sIndicator
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.C3sIndicatorEditForm"
+  /> -->
+<!---->
+<!-- <adapter -->
+<!--   factory=".aceitem.C3sIndicatorFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceitem.C3sIndicatorAddForm" -->
+<!-- /> -->
+<!---->
+<!-- <adapter -->
+<!--   factory=".aceitem.C3sIndicatorFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceitem.C3sIndicatorEditForm" -->
+<!-- /> -->  <!-- <browser:page
+    name="edit"
+    for="eea.climateadapt.aceitem.IOrganisation"
+    class=".aceitem.OrganisationEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".aceitem.OrganisationFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.aceitem.IOrganisation
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceitem.OrganisationEditForm"
+  /> -->
+<!---->
+<!-- <adapter -->
+<!--   factory=".aceitem.OrganisationFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceitem.OrganisationAddForm" -->
+<!-- /> --> -----[ Ace Project Form customizations ]---- <!-- <browser:page
+    name="edit"
+    for="eea.climateadapt.aceproject.IAceProject"
+    class=".aceproject.AceProjectEditView"
+    permission="cmf.ModifyPortalContent"
+  /> -->
+
+<!-- <adapter
+    factory=".aceproject.AceProjectFormExtender"
+    provides="plone.z3cform.fieldsets.interfaces.IFormExtender"
+    for="eea.climateadapt.aceproject.IAceProject
+           zope.publisher.interfaces.browser.IDefaultBrowserLayer
+           .aceproject.AceProjectEditForm"
+  /> -->
+<!---->
+<!-- <adapter -->
+<!--   factory=".aceproject.AceProjectFormExtender" -->
+<!--   provides="plone.z3cform.fieldsets.interfaces.IFormExtender" -->
+<!--   for="Products.CMFCore.interfaces.IFolderish -->
+<!--          zope.publisher.interfaces.browser.IDefaultBrowserLayer -->
+<!--          .aceproject.AceProjectAddForm" -->
+<!-- /> --> ------ <!-- <browser:page
+    name="view"
+    for="eea.climateadapt.acevideo.IAceVideo"
+    class="eea.climateadapt.browser.video.VideoView"
+    template="pt/video_view.pt"
+    permission="zope2.View"
+  /> -->
+
+<!-- <browser:page -->
+<!--   name="view" -->
+<!--   for="eea.climateadapt.acemeasure.IAdaptationOption" -->
+<!--   class="eea.climateadapt.browser.adaptationoption.AdaptationOptionView" -->
+<!--   template="pt/adaptationoption_view.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+
+<!-- <browser:page
+    name="view"
+    for="eea.climateadapt.aceproject.IAceProject"
+    class="eea.climateadapt.browser.aceproject.AceProjectView"
+    template="pt/aceproject_view.pt"
+    permission="zope2.View"
+  /> -->
+<!---->
+<!-- Tile helpers -->
+
+<!-- <browser:page -->
+<!--   name="acecontent_search_helper" -->
+<!--   for="*" -->
+<!--   class="eea.climateadapt.browser.tilehelpers.AceContentSearch" -->
+<!--   template="pt/helper_acecontentsearch.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="view_last_modified" -->
+<!--   for="*" -->
+<!--   class="eea.climateadapt.browser.tilehelpers.LastUpdateTile" -->
+<!--   template="pt/last_update.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:viewlet -->
+<!--   name="baltic_region_menu" -->
+<!--   for="eea.climateadapt.interfaces.IBalticRegionMarker" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IAboveContentBody" -->
+<!--   template="pt/viewlet_transregion_menu.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+<!-- SharePageSubMenu -->
+<!-- <browser:viewlet -->
+<!--   name="share_page_sub_menu" -->
+<!--   for="eea.climateadapt.interfaces.IClimateAdaptSharePage" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IAboveContentBody" -->
+<!--   class=".viewlets.SharePageSubMenuViewlet" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:viewlet -->
+<!--   name="policy_sector_page_sub_menu" -->
+<!--   for="plone.dexterity.interfaces.IDexterityItem" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IAboveContentBody" -->
+<!--   class=".viewlets.PolicySectorPageSubMenuViewlet" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="urbanast_bottom_nav" -->
+<!--   for="*" -->
+<!--   template="pt/viewlet_urbanast_bottom_nav.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+
+<!-- other viewlet overrides -->
+
+<!-- <browser:viewlet -->
+<!--   name="plone.belowcontentbody.relateditems" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IAboveContentBody" -->
+<!--   class=".viewlets.RelatedItemsViewlet" -->
+<!--   template="pt/viewlet_related_items.pt" -->
+<!--   permission="zope2.View" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+<!---->
+<!-- <browser:viewlet -->
+<!--   name="plone.belowcontentbody.relateditems" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IBelowContentBody" -->
+<!--   class=".viewlets.RelatedItemsViewlet" -->
+<!--   template="pt/viewlet_related_items.pt" -->
+<!--   permission="zope2.View" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+<!---->
+<!-- <browser:viewlet -->
+<!--   name="plone.searchbox" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IPortalHeader" -->
+<!--   class=".viewlets.SearchBoxViewlet" -->
+<!--   permission="zope2.View" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+<!---->
+<!-- <browser:viewlet -->
+<!--   name="plone.resourceregistries" -->
+<!--   view=".misc.ISimplifiedResourceRegistriesView" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IHtmlHead" -->
+<!--   template="pt/resourceregistries.pt" -->
+<!--   permission="zope2.View" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+<!---->
+<!-- <browser:viewlet -->
+<!--   name="plone.path_bar" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IAboveContent" -->
+<!--   class=".viewlets.PathBarViewlet" -->
+<!--   template="pt/breadcrumbs.pt" -->
+<!--   permission="zope2.View" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+<!---->
+<!-- <browser:viewlet -->
+<!--   name="archived-state" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle" -->
+<!--   class=".viewlets.ArchivedStateViewlet" -->
+<!--   permission="zope2.View" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+
+<!-- <browser:viewlet
+    name="tlspu.cookiepolicy"
+    manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+    class=".viewlets.CookiesViewlet"
+    permission="zope2.View"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+  /> -->
+
+<!-- <browser:viewlet -->
+<!--   name="plone.personal_bar" -->
+<!--   manager="plone.app.layout.viewlets.interfaces.IPortalHeader" -->
+<!--   class=".viewlets.CustomizedPersonalBarViewlet" -->
+<!--   permission="zope2.View" -->
+<!--   layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="casestudies.json" -->
+<!--   for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot" -->
+<!--   class=".casestudy.CaseStudiesJson" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="casestudies_xml" -->
+<!--   for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot" -->
+<!--   class=".casestudy.CaseStudiesXML" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="country-metadata-extract" -->
+<!--   for="*" -->
+<!--   class=".countries.CountryMetadataExtract" -->
+<!--   permission="cmf.ManagePortal" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="health_navbar" -->
+<!--   for="*" -->
+<!--   class=".health_menu.Navbar" -->
+<!--   template="pt/navbar.pt" -->
+<!--   permission="zope.Public" -->
+<!-- /> -->
+
+<!-- # portal link redirections, compatibility with old site -->
+<!-- <browser:page -->
+<!--   name="viewaceitem" -->
+<!--   for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot" -->
+<!--   class=".ViewAceItem" -->
+<!--   permission="zope.Public" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="viewmeasure" -->
+<!--   for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot" -->
+<!--   class=".ViewAceMeasure" -->
+<!--   permission="zope.Public" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="projects1" -->
+<!--   for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot" -->
+<!--   class=".ViewAceProject" -->
+<!--   permission="zope.Public" -->
+<!-- /> -->
+<!-- # end link redirections -->
+<!---->
+<!-- Special pages, reimplemented as standalone views, and their AJAX helpers -->
+<!---->
+<!-- <browser:page -->
+<!--   name="guest;jsessionid=607E735A83C3649F5D76F1CEF2441501" -->
+<!--   for="*" -->
+<!--   class=".misc.NewsletterRedirect" -->
+<!--   permission="zope.Public" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="web" -->
+<!--   for="*" -->
+<!--   class=".misc.WebEmptyView" -->
+<!--   permission="cmf.ManagePortal" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="contact-form" -->
+<!--   for="*" -->
+<!--   class=".misc.ContactForm" -->
+<!--   permission="zope.Public" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--     name="contact-footer" -->
+<!--     for="*" -->
+<!--     class=".misc.ContactFooterForm" -->
+<!--     permission="zope.Public" -->
+<!--     /> -->
+
+<!-- Captcha factory -->
+<!-- <adapter -->
+<!--   factory=".misc.Captcha" -->
+<!--   provides=".misc.IContactForm" -->
+<!--   for="*" -->
+<!-- /> -->
+
+<!-- Captcha factory -->
+<!-- <adapter -->
+<!--   factory=".misc.Captcha" -->
+<!--   provides=".misc.IContactFooterForm" -->
+<!--   for="*" -->
+<!-- /> -->
+
+<!-- <browser:page -->
+<!--   name="countries-view-map" -->
+<!--   for="*" -->
+<!--   class=".misc.CountriesView" -->
+<!--   template="pt/countries.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="countries-context-pagelet" -->
+<!--   for="*" -->
+<!--   class=".countries.ContextCountriesView" -->
+<!--   template="pt/countries-context-pagelet.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="countries-heat-index" -->
+<!--   for="*" -->
+<!--   class=".countries.ContextCountriesView" -->
+<!--   template="pt/countries-heat-index.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="countries-selector" -->
+<!--   for="*" -->
+<!--   class=".countries.ContextCountriesView" -->
+<!--   template="pt/countries-selector.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="countries-heat-index-json" -->
+<!--   for="*" -->
+<!--   class=".countries.ContextCountriesViewJson" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="countries-list" -->
+<!--   for="*" -->
+<!--   class=".countries.ContextCountriesView" -->
+<!--   template="pt/countries-list.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="adaptation-strategies" -->
+<!--   for="*" -->
+<!--   class=".misc.AdaptationStrategyView" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="map-viewer" -->
+<!--   for="*" -->
+<!--   class=".misc.MapViewerView" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="redirect_to_search_page" -->
+<!--   for="*" -->
+<!--   class=".misc.RedirectToSearchView" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="transnational-regions-view" -->
+<!--   for="*" -->
+<!--   class=".misc.TransRegionView" -->
+<!--   template="pt/transnational_regions.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="export-excel" -->
+<!--   for="*" -->
+<!--   class=".misc.ExcelCsvExportView" -->
+<!--   template="pt/export_portaltypes.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="fix-checkout" -->
+<!--   for="*" -->
+<!--   class=".misc.FixCheckout" -->
+<!--   permission="cmf.ManagePortal" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="help-categories" -->
+<!--   for="*" -->
+<!--   template="pt/help-categories.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="country-disclaimer" -->
+<!--   for="*" -->
+<!--   template="pt/country_disclaimer.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="eu-sector-policies" -->
+<!--   for="*" -->
+<!--   template="pt/eu-sector-policies.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="video-thumbs" -->
+<!--   for="*" -->
+<!--   template="pt/video_thumbs.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="regions-section-select" -->
+<!--   for="*" -->
+<!--   class=".regions_select.TransRegionSelect" -->
+<!--   template="pt/regions-section-select.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+<!-- <browser:page -->
+<!--   name="regions-section" -->
+<!--   for="*" -->
+<!--   class=".regions_select.TransRegionSelect" -->
+<!--   template="pt/regions-section.pt" -->
+<!--   permission="zope2.View" -->
+<!-- /> -->
+<!---->
+
