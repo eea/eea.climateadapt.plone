@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,384 +19,384 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:596
 msgid "-NONSPECIFIC-"
-msgstr ""
+msgstr "-NESPECIFIČNO-"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:130
 msgid "1. Preparing the ground for adaptation"
-msgstr ""
+msgstr "1. Priprava terena za prilagoditev"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:136
 msgid "1.1 Obtaining high-level political support for adaptation"
-msgstr ""
+msgstr "1.1 Pridobitev visoke politične podpore za prilagajanje"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:83
 msgid "1.1 Obtaining political support for adaptation"
-msgstr ""
+msgstr "1.1 Pridobivanje politične podpore za prilagajanje"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:88
 msgid "1.2 Collecting initial information"
-msgstr ""
+msgstr "1.2 Zbiranje začetnih informacij"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:140
 msgid "1.2 Setting up the process in a structured way"
-msgstr ""
+msgstr "1.2 Nastavitev procesa na strukturiran način"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:144
 msgid "1.3 Estimating human and financial resources needed and identifying potential sources of long-term funding"
-msgstr ""
+msgstr "1.3 Ocenjevanje potrebnih človeških in finančnih virov ter prepoznavanje možnih virov dolgoročnega financiranja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:93
 msgid "1.3 Setting up adaptation processes within and beyond the municipality"
-msgstr ""
+msgstr "1.3 Vzpostavitev procesov prilagajanja v občini in izven nje"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:148
 msgid "1.4 Collecting information"
-msgstr ""
+msgstr "1.4 Zbiranje informacij"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:98
 msgid "1.4 Identifying and obtaining human and technical resources"
-msgstr ""
+msgstr "1.4 Identifikacija in pridobivanje človeških in tehničnih virov"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:152
 msgid "1.5 Communicating adaptation and raising awareness"
-msgstr ""
+msgstr "1.5 Obveščanje o prilagajanju in ozaveščanje"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:103
 msgid "1.5 Identifying and obtaining financing and funding"
-msgstr ""
+msgstr "1.5 Identifikacija in pridobivanje financiranja in financiranja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:108
 msgid "1.6 Identifying and engaging stakeholders"
-msgstr ""
+msgstr "1.6 Prepoznavanje in vključevanje deležnikov"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:156
 msgid "1.6 Preparing the ground for adaptation: Self-check"
-msgstr ""
+msgstr "1.6 Priprava terena za prilagajanje: samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:113
 msgid "1.7 Communicating adaptation to different target audiences"
-msgstr ""
+msgstr "1.7 Komuniciranje prilagajanja različnim ciljnim občinstvom"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:118
 msgid "1.8 Finding additional support"
-msgstr ""
+msgstr "1.8 Iskanje dodatne podpore"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:123
 msgid "1.9 Preparing the ground for adaptation: Self check"
-msgstr ""
+msgstr "1.9 Priprava terena za prilagajanje: samopreverjanje"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:415
 msgid "12 regions"
-msgstr ""
+msgstr "12 regij"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:163
 msgid "2. Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "2. Ocenjevanje tveganj in ranljivosti podnebnih sprememb"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:138
 msgid "2.1 Recognizing past and present climate impacts"
-msgstr ""
+msgstr "2.1 Prepoznavanje preteklih in sedanjih vplivov podnebja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:168
 msgid "2.1 Understanding climate risks"
-msgstr ""
+msgstr "2.1 Razumevanje podnebnih tveganj"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:172
 msgid "2.2 Frameworks for assessing climate impacts, vulnerabilities and risks"
-msgstr ""
+msgstr "2.2 Okviri za ocenjevanje podnebnih vplivov, ranljivosti in tveganj"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:143
 msgid "2.2 Understanding climate projections and future impacts"
-msgstr ""
+msgstr "2.2 Razumevanje podnebnih projekcij in prihodnjih vplivov"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:176
 msgid "2.3 General sequence for climate impacts, vulnerabilities and risk assessments"
-msgstr ""
+msgstr "2.3 Splošno zaporedje za ocene vplivov na podnebje, ranljivosti in tveganja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:148
 msgid "2.3 Identifying vulnerable urban sectors"
-msgstr ""
+msgstr "2.3 Prepoznavanje ranljivih mestnih sektorjev"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:153
 msgid "2.4 Conducting risk and vulnerability assessments"
-msgstr ""
+msgstr "2.4 Izvajanje ocen tveganja in ranljivosti"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:180
 msgid "2.4 Taking trans-boundary issues into account"
-msgstr ""
+msgstr "2.4 Upoštevanje čezmejnih vprašanj"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:184
 msgid "2.5 Addressing knowledge gaps and dealing with uncertainties"
-msgstr ""
+msgstr "2.5 Odpravljanje vrzeli v znanju in obravnavanje negotovosti"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:158
 msgid "2.5 Understanding the role of surrounding areas in adaptation"
-msgstr ""
+msgstr "2.5 Razumevanje vloge okoliških območij pri prilagajanju"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:163
 msgid "2.6 Identifying main adaptation concerns and defining objectives"
-msgstr ""
+msgstr "2.6 Prepoznavanje glavnih težav pri prilagajanju in opredelitev ciljev"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:188
 msgid "2.6 Identifying main adaptation concerns and setting a strategic direction"
-msgstr ""
+msgstr "2.6 Prepoznavanje glavnih skrbi glede prilagajanja in določitev strateške usmeritve"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:168
 msgid "2.7 Assessing climate change risks and vulnerabilities: Self check"
-msgstr ""
+msgstr "2.7 Ocenjevanje tveganj in ranljivosti podnebnih sprememb: samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:192
 msgid "2.7 Assessing climate change risks and vulnerabilities: Self-check"
-msgstr ""
+msgstr "2.7 Ocenjevanje tveganj in ranljivosti podnebnih sprememb: samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:199
 msgid "3. Identifying adaptation options"
-msgstr ""
+msgstr "3. Prepoznavanje možnosti prilagajanja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:204
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:183
 msgid "3.1 Creating a catalogue of relevant adaptation options"
-msgstr ""
+msgstr "3.1 Izdelava kataloga ustreznih možnosti prilagajanja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:208
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:188
 msgid "3.2 Finding examples of good adaptation practices"
-msgstr ""
+msgstr "3.2 Iskanje primerov dobrih praks prilagajanja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:212
 msgid "3.3 Describing adaptation options in detail"
-msgstr ""
+msgstr "3.3 Podroben opis možnosti prilagajanja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:193
 msgid "3.3 Identifying adaptation options: Self check"
-msgstr ""
+msgstr "3.3 Prepoznavanje možnosti prilagajanja: Samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:216
 msgid "3.4 Identifying adaptation options: Self-check"
-msgstr ""
+msgstr "3.4 Prepoznavanje možnosti prilagajanja: samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:223
 msgid "4. Assessing adaptation options"
-msgstr ""
+msgstr "4. Ocenjevanje možnosti prilagajanja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:229
 msgid "4.1 Assessing possible adaptation options in terms of effects, time, costs, benefits and efforts"
-msgstr ""
+msgstr "4.1 Ocenjevanje možnih možnosti prilagajanja glede na učinke, čas, stroške, koristi in prizadevanja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:208
 msgid "4.1 Choosing an assessment framework for adaptation options"
-msgstr ""
+msgstr "4.1 Izbira ocenjevalnega okvira za možnosti prilagajanja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:213
 msgid "4.2 Conducting a cost-benefit analysis of adaptation measures"
-msgstr ""
+msgstr "4.2 Izvedba analize stroškov in koristi prilagoditvenih ukrepov"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:233
 msgid "4.2 Prioritising adaptation options and selecting preferred ones"
-msgstr ""
+msgstr "4.2 Določanje prednosti prilagoditvenih možnosti in izbiranje prednostnih"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:237
 msgid "4.3 Preparing a strategy document and getting political approval"
-msgstr ""
+msgstr "4.3 Priprava strateškega dokumenta in pridobitev politične potrditve"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:218
 msgid "4.3 Prioritising adaptation options"
-msgstr ""
+msgstr "4.3 Določanje prednosti možnosti prilagajanja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:223
 msgid "4.4 Assessing and selecting adaptation options: Self check"
-msgstr ""
+msgstr "4.4 Ocena in izbira možnosti prilagajanja: Samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:241
 msgid "4.4 Assessing and selecting adaptation options: Self-check"
-msgstr ""
+msgstr "4.4 Ocenjevanje in izbira možnosti prilagajanja: Samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:251
 msgid "5. Implementing Adaptation"
-msgstr ""
+msgstr "5. Izvajanje prilagoditve"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:238
 msgid "5.1 Designing an effective adaptation action plan"
-msgstr ""
+msgstr "5.1 Oblikovanje učinkovitega akcijskega načrta prilagajanja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:257
 msgid "5.1 Developing an adaptation action plan"
-msgstr ""
+msgstr "5.1 Razvoj prilagoditvenega akcijskega načrta"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:243
 msgid "5.2 Finding examples of adaptation action plans"
-msgstr ""
+msgstr "5.2 Iskanje primerov akcijskih načrtov prilagajanja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:261
 msgid "5.2 Organising governance of implementation across sectors and levels"
-msgstr ""
+msgstr "5.2 Organiziranje upravljanja izvajanja po sektorjih in ravneh"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:248
 msgid "5.3 Mainstreaming adaptation in urban policies and plans"
-msgstr ""
+msgstr "5.3 Vključevanje prilagajanja v urbanistične politike in načrte"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:265
 msgid "5.3 Mainstreaming: Integrating adaptation into instruments and sector policies"
-msgstr ""
+msgstr "5.3 Integracija: Vključevanje prilagajanja v instrumente in sektorske politike"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:253
 msgid "5.4 Addressing climate change through adaptation and mitigation"
-msgstr ""
+msgstr "5.4 Obravnavanje podnebnih sprememb s prilagajanjem in blažitvijo"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:269
 msgid "5.4 Multilevel coordination and supportive governance framework"
-msgstr ""
+msgstr "5.4 Usklajevanje na več ravneh in podporni okvir upravljanja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:273
 msgid "5.5 Implementing Adaptation: Self-check"
-msgstr ""
+msgstr "5.5 Izvajanje prilagoditve: samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:258
 msgid "5.5 Implementing adaptation: Self check"
-msgstr ""
+msgstr "5.5 Izvedba prilagoditve: Samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:280
 msgid "6. Monitoring and Evaluating Adaptation"
-msgstr ""
+msgstr "6. Spremljanje in vrednotenje prilagajanja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:273
 msgid "6.1 Developing the monitoring and evaluation approach"
-msgstr ""
+msgstr "6.1 Razvoj pristopa spremljanja in vrednotenja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:287
 msgid "6.1 Understanding drivers and purposes"
-msgstr ""
+msgstr "6.1 Razumevanje gonil in namenov"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:291
 msgid "6.2 Deciding who to involve in the process"
-msgstr ""
+msgstr "6.2 Odločanje o tem, koga vključiti v postopek"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:278
 msgid "6.2 Defining monitoring indicators"
-msgstr ""
+msgstr "6.2 Določitev indikatorjev spremljanja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:295
 msgid "6.3 Defining MRE indicators and mixed-methods approach"
-msgstr ""
+msgstr "6.3 Opredelitev indikatorjev UM in pristop mešanih metod"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:283
 msgid "6.3 Finding examples of adaptation monitoring indicators"
-msgstr ""
+msgstr "6.3 Iskanje primerov indikatorjev spremljanja prilagajanja"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:299
 msgid "6.4 Communicating results to inform policy and practice"
-msgstr ""
+msgstr "6.4 Sporočanje rezultatov za informiranje politike in prakse"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:288
 msgid "6.4 Using monitoring results to enhance the process of adaptation"
-msgstr ""
+msgstr "6.4 Uporaba rezultatov spremljanja za izboljšanje procesa prilagajanja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:293
 msgid "6.5 Monitoring and evaluating adaptation: Self check"
-msgstr ""
+msgstr "6.5 Spremljanje in vrednotenje prilagajanja: Samopreverjanje"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:303
 msgid "6.5 Monitoring and evaluating adaptation: Self-check"
-msgstr ""
+msgstr "6.5 Spremljanje in vrednotenje prilagajanja: Samopreverjanje"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:72
 msgid "<!-- <span class=\"map-type\">NAS</span> --> HHWS available (click on country for further information)"
-msgstr ""
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> HHWS na voljo (kliknite državo za več informacij)"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:79
 msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
-msgstr ""
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> Ni informacij"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:429
 msgid "<a href=\"https://oppla.eu/about\">Oppla</a> is the EU Repository of Nature-Based Solutions. It provides a knowledge marketplace, where the latest thinking on natural capital, ecosystem services and nature-based solutions is brought together. Its purpose is to simplify how to share, obtain and create knowledge to better manage our environment"
-msgstr ""
+msgstr "<a href=\"https://oppla.eu/about\">Oppla</a> je EU Repozitorij naravnih rešitev. Zagotavlja trg znanja, kjer so združena najnovejša razmišljanja o naravnem kapitalu, ekosistemskih storitvah in na naravi temelječih rešitvah. Njegov namen je poenostaviti, kako deliti, pridobivati ​​in ustvarjati znanje za boljše upravljanje našega okolja"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:462
 msgid "<a href=\"https://urbact.eu/\">URBACT’s</a> mission is to enable cities to work together and develop integrated solutions to common urban challenges, by networking, learning from one another’s experiences, drawing lessons and identifying good practices to improve urban policies."
-msgstr ""
+msgstr "Poslanstvo <a href=\"https://urbact.eu/\">URBACT-a</a> je omogočiti mestom sodelovanje in razvoj celostnih rešitev za skupne urbane izzive s povezovanjem v mreže, učenjem iz izkušenj drug drugega, pridobivanjem izkušenj in prepoznavanjem dobrih praks za izboljšanje urbanih politik."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:484
 msgid "<a href=\"https://www.climatealliance.org/home.html\">Climate Alliance</a> <br><a href=\"https://www.ccre.org\">Council of European Municipalities and Regions (CEMR)</a> <br><a href=\"https://www.cdp.net/en\">CDP</a> <br><a href=\"https://www.c40.org\">C40</a> <br><a href=\"https://fedarene.org\">European Federation of Agencies and Regions for Energy and Environment (FEDARENE)</a> <br><a href=\"https://iclei-europe.org\">Local Governments for Sustainability (ICLEI) Europe</a>"
-msgstr ""
+msgstr "<a href=\"https://www.climatealliance.org/home.html\">Podnebno zavezništvo</a> <br><a href=\"https://www.ccre.org\">Svet evropskih občin in regij (CEMR)</a> <br><a href=\"https://www.cdp.net/en\">CDP</a> <br><a href=\"https://www.c40.org\">C40</a> <br><a href=\"https://fedarene.org\">Evropska zveza agencij in regij za energijo in okolje (FEDARENE)</a> <br><a href=\"https://iclei-europe.org\">Lokalne vlade za trajnost (ICLEI) Evropa</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:407
 msgid "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> is an Initiative of the European Union that provides urban areas throughout Europe with resources to test new and unproven solutions to address urban challenge"
-msgstr ""
+msgstr "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> je pobuda Evropske unije, ki urbanim območjem po vsej Evropi zagotavlja vire za preizkušanje novih in nepreverjenih rešitev za reševanje urbanih izzivov"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:292
 msgid "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:142
 msgid "<strong>Language:</strong> <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "<strong>Jezik:</strong> <span>${DYNAMIC_CONTENT}</span>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:86
 msgid "A background document for the event is available <a href=\"${DYNAMIC_CONTENT}\">here</a>"
-msgstr ""
+msgstr "Dokument o ozadju dogodka je na voljo <a href=\"${DYNAMIC_CONTENT}\">tukaj</a>"
 
 #: ../../climateadapt/image_scales/interfaces.py:93
 msgid "A value for the quality of 2x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 62."
-msgstr ""
+msgstr "Vrednost za kakovost slik z 2x visoko gostoto slikovnih pik, od 1 (najnižja) do 95 (najvišja). Vrednost 0 bo pomenila, da bo uporabljena privzeta vrednost plone.scaling, ki je trenutno 62."
 
 #: ../../climateadapt/image_scales/interfaces.py:106
 msgid "A value for the quality of 3x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 51."
-msgstr ""
+msgstr "Vrednost za kakovost slik s 3-kratno visoko gostoto slikovnih pik, od 1 (najnižja) do 95 (najvišja). Vrednost 0 bo pomenila, da bo uporabljena privzeta vrednost plone.scaling, ki je trenutno 51."
 
 #: ../../climateadapt/image_scales/interfaces.py:67
 msgid "A value for the quality of scaled images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 88."
-msgstr ""
+msgstr "Vrednost za kakovost pomanjšanih slik, od 1 (najnižja) do 95 (najvišja). Vrednost 0 bo pomenila, da bo uporabljena privzeta vrednost plone.scaling, ki je trenutno 88."
 
 #: ../../climateadapt/vocabulary.py:732
 msgid "A1: Governance and Institutional: Policy Instruments"
-msgstr ""
+msgstr "A1: Upravljanje in institucionalno: politični instrumenti"
 
 #: ../../climateadapt/vocabulary.py:765
 msgid "A1: Policy Instruments"
-msgstr ""
+msgstr "A1: Instrumenti politike"
 
 #: ../../climateadapt/vocabulary.py:733
 msgid "A2: Governance and Institutional: Management and planning"
-msgstr ""
+msgstr "A2: Upravljanje in institucionalno: upravljanje in načrtovanje"
 
 #: ../../climateadapt/vocabulary.py:766
 msgid "A2: Management and planning"
-msgstr ""
+msgstr "A2: Upravljanje in načrtovanje"
 
 #: ../../climateadapt/vocabulary.py:767
 msgid "A3: Coordination cooperation and networks"
-msgstr ""
+msgstr "A3: Usklajevalno sodelovanje in mreže"
 
 #: ../../climateadapt/vocabulary.py:736
 msgid "A3: Governance and Institutional: Coordination cooperation and networks"
-msgstr ""
+msgstr "A3: Upravljanje in institucionalno: koordinacijsko sodelovanje in mreže"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:54
 msgid "About the Urban Adaptation Support Tool"
-msgstr ""
+msgstr "O orodju za podporo urbanemu prilagajanju"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:52
 msgid "Adaptation <br /> Support Tool"
-msgstr ""
+msgstr "Orodje za podporo <br /> prilagajanja"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:60
 msgid "Adaptation Details"
-msgstr "Podrobnosti o prilagajanju"
+msgstr "Podrobnosti prilagoditve"
 
 # ,
 #: ../../climateadapt/vocabulary.py:327
 msgid "Adaptation Measures and Actions"
-msgstr "Ukrepi in dejanja prilagajanja"
+msgstr "Prilagoditveni ukrepi in dejanja"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:59
 msgid "Adaptation Options Implemented In This Case"
-msgstr "Možnosti prilagajanja, izvedene v tem primeru"
+msgstr "Možnosti prilagoditve, izvedene v tem primeru"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:198
 msgid "Adaptation Options and Case Studies"
-msgstr ""
+msgstr "Možnosti prilagajanja in študije primerov"
 
 # ,
 #: ../../climateadapt/vocabulary.py:329
@@ -404,19 +405,19 @@ msgstr "Načrti in strategije prilagajanja"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:253
 msgid "Adaptation Sectors"
-msgstr ""
+msgstr "Prilagoditveni sektorji"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:73
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:54
 #: ../../climateadapt/browser/pt/video_view.pt:113
 msgid "Adaptation elements"
-msgstr ""
+msgstr "Elementi prilagajanja"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:158
 #: ../../climateadapt/browser/pt/casestudy_view.pt:340
 msgid "Adaptation elements:"
-msgstr ""
+msgstr "Elementi prilagajanja:"
 
 # ,
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:283
@@ -427,29 +428,29 @@ msgstr "Možnosti prilagajanja"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:95
 msgid "Adaptation portal or platform reported"
-msgstr ""
+msgstr "Prijavljen portal ali platforma za prilagajanje"
 
 #: ../../climateadapt/browser/BKPcountries.py:182
 #: ../../climateadapt/browser/countries.py:186
 msgid "Adaptation portals and platforms"
-msgstr ""
+msgstr "Prilagoditveni portali in platforme"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:440
 msgid "Adaptation to Climate Change: The goal of the <a href=\"https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal-transformation_en\">EU mission</a> - Adaptation to climate change is to foster the development of innovative solutions to adapt to climate change and encourage regions, cities and communities to lead the societal transformation."
-msgstr ""
+msgstr "Prilagajanje podnebnim spremembam: cilj <a href=\"https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-iclude-societal-transformation_en\">EU poslanstvo</a> – Prilagajanje podnebnim spremembam je spodbujanje razvoja inovativnih rešitev za prilagajanje podnebnim spremembam in spodbujanje regij, mest in skupnosti, da vodijo družbeno preobrazbo."
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:115
 msgid "Adaptation to climate change"
-msgstr ""
+msgstr "Prilagajanje podnebnim spremembam"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:63
 msgid "Adaptation to climate change in urban areas"
-msgstr ""
+msgstr "Prilagajanje na podnebne spremembe v urbanih območjih"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:371
 msgid "AdapteCCA"
-msgstr "Adaptecca"
+msgstr "AdapteCCA"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
@@ -459,24 +460,24 @@ msgstr "Dodatne podrobnosti"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:420
 msgid "Adriatic and Ionian"
-msgstr ""
+msgstr "jadranski in jonski"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:452
 msgid "Adriatic-Ionian"
-msgstr ""
+msgstr "jadransko-jonski"
 
 #: ../../climateadapt/vocabulary.py:1304
 msgid "Advanced"
-msgstr ""
+msgstr "Napredno"
 
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:196
 msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
-msgstr "Napredno iskanje elementov baze podatkov o podnebnem adaptu <a href=\"/redirect_to_search_page\"> tukaj </a>"
+msgstr "Napredno iskanje elementov baze podatkov Climate-Adapt <a href=\"/redirect_to_search_page\">tukaj</a>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Agenda and supporting documents"
-msgstr ""
+msgstr "Dnevni red in dokazila"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:37
@@ -486,83 +487,83 @@ msgstr "Kmetijstvo"
 
 #: ../../climateadapt/vocabulary.py:594
 msgid "Air pollution and aero-allergens"
-msgstr ""
+msgstr "Onesnaženost zraka in aeroalergeni"
 
 #: ../../climateadapt/tiles/search_acecontent.py:882
 msgid "All adaptation sectors"
-msgstr ""
+msgstr "Vsi sektorji prilagajanja"
 
 #: ../../climateadapt/tiles/search_acecontent.py:879
 msgid "All climate impacts"
-msgstr ""
+msgstr "Vsi podnebni vplivi"
 
 #: ../../climateadapt/tiles/search_acecontent.py:885
 msgid "All key type measures"
-msgstr ""
+msgstr "Vse ključne vrste ukrepov"
 
 #: ../../climateadapt/image_scales/interfaces.py:42
 msgid "Allowed image sizes"
-msgstr ""
+msgstr "Dovoljene velikosti slik"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:419
 msgid "Alpine"
-msgstr ""
+msgstr "alpsko"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:455
 msgid "Alpine Space"
-msgstr ""
+msgstr "Alpski prostor"
 
 #: ../../climateadapt/vocabulary.py:624
 msgid "Aridity"
-msgstr ""
+msgstr "suhost"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:82
 msgid "Assessing adaptation options"
-msgstr ""
+msgstr "Ocenjevanje možnosti prilagajanja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:204
 msgid "Assessing and selecting adaptation options"
-msgstr ""
+msgstr "Ocena in izbira možnosti prilagajanja"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:134
 msgid "Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "Ocenjevanje tveganj in ranljivosti podnebnih sprememb"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:66
 msgid "Assessing risks and vulnerability <br /> to climate change"
-msgstr ""
+msgstr "Ocenjevanje tveganj in ranljivosti <br /> za podnebne spremembe"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:458
 msgid "Atlantic Area"
-msgstr ""
+msgstr "Atlantsko območje"
 
 #: ../../climateadapt/vocabulary.py:738
 msgid "B1: Economic and Finance: Financing incentive instruments"
-msgstr ""
+msgstr "B1: Ekonomija in finance: Financiranje spodbujevalnih instrumentov"
 
 #: ../../climateadapt/vocabulary.py:768
 msgid "B1: Financing incentive instruments"
-msgstr ""
+msgstr "B1: Financiranje spodbujevalnih instrumentov"
 
 #: ../../climateadapt/vocabulary.py:739
 msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
-msgstr ""
+msgstr "B2: Ekonomija in finance: instrumenti zavarovanja in delitve tveganja"
 
 #: ../../climateadapt/vocabulary.py:769
 msgid "B2: Insurance and risk sharing instruments"
-msgstr ""
+msgstr "B2: Instrumenti zavarovanja in delitve tveganja"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:461
 msgid "Balkan-Mediterranean"
-msgstr ""
+msgstr "balkansko-mediteranski"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 msgid "Baltic Sea"
-msgstr ""
+msgstr "Baltsko morje"
 
 #: ../../climateadapt/vocabulary.py:1303
 msgid "Basic"
-msgstr ""
+msgstr "Osnovno"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:39
@@ -577,33 +578,33 @@ msgstr "Biogeografske regije"
 
 #: ../../climateadapt/vocabulary.py:1255
 msgid "Building"
-msgstr ""
+msgstr "Stavba"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:49
 #: ../../climateadapt/vocabulary.py:303
 msgid "Buildings"
-msgstr "Stavbe"
+msgstr "Zgradbe"
 
 #: ../../climateadapt/vocabulary.py:304
 msgid "Business and industry"
-msgstr ""
+msgstr "Posel in industrija"
 
 #: ../../climateadapt/vocabulary.py:770
 msgid "C1: Grey options"
-msgstr ""
+msgstr "C1: Sive možnosti"
 
 #: ../../climateadapt/vocabulary.py:740
 msgid "C1: Physical and technological: Grey options"
-msgstr ""
+msgstr "C1: Fizično in tehnološko: Sive možnosti"
 
 #: ../../climateadapt/vocabulary.py:741
 msgid "C2: Physical and technological: Technological options"
-msgstr ""
+msgstr "C2: Fizikalne in tehnološke: Tehnološke možnosti"
 
 #: ../../climateadapt/vocabulary.py:771
 msgid "C2: Technological options"
-msgstr ""
+msgstr "C2: Tehnološke možnosti"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:48
@@ -612,19 +613,19 @@ msgstr "Opis študije primera"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:292
 msgid "Case Study Illustrations"
-msgstr ""
+msgstr "Ilustracije študij primerov"
 
 #: ../../climateadapt/vocabulary.py:384
 msgid "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
-msgstr ""
+msgstr "Primer je bil razvit in izveden ter delno financiran kot ukrep za prilagajanje podnebnim spremembam."
 
 #: ../../climateadapt/vocabulary.py:380
 msgid "Case developed and implemented as a Climate Change Adaptation Measure."
-msgstr ""
+msgstr "Primer razvit in implementiran kot ukrep za prilagajanje podnebnim spremembam."
 
 #: ../../climateadapt/vocabulary.py:390
 msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
-msgstr ""
+msgstr "Primer je bil v glavnem razvit in izveden zaradi drugih političnih ciljev, vendar z velikim upoštevanjem vidikov prilagajanja podnebnim spremembam"
 
 # ,
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:296
@@ -635,20 +636,20 @@ msgstr "Študije primerov"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:177
 msgid "Case studies and Adaptation Options"
-msgstr ""
+msgstr "Študije primerov in možnosti prilagajanja"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:301
 msgid "Case studies collected at national level in Spain, provided by AdapteCCA.es"
-msgstr ""
+msgstr "Študije primerov, zbrane na nacionalni ravni v Španiji, ki jih zagotavlja AdapteCCA.es"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:200
 msgid "Case studies related to this option:"
-msgstr "Študije primerov, povezane s to možnostjo:"
+msgstr "Študije primerov v zvezi s to možnostjo:"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:467
 msgid "Central Europe"
-msgstr ""
+msgstr "Srednja Evropa"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:51
@@ -657,30 +658,30 @@ msgstr "Izzivi"
 
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
-msgstr ""
+msgstr "Odjava je ustvarjena"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:51
 msgid "Choose a country"
-msgstr ""
+msgstr "Izberite državo"
 
 #: ../../climateadapt/tiles/pt/country_select.pt:10
 msgid "Choose a country:"
-msgstr ""
+msgstr "Izberite državo:"
 
 #: ../../climateadapt/browser/pt/regions-section-select.pt:7
 #: ../../climateadapt/browser/pt/transnational_regions.pt:431
 #: ../../climateadapt/tiles/pt/transregional_select.pt:112
 msgid "Choose a region"
-msgstr ""
+msgstr "Izberite regijo"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:69
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:46
 msgid "Choose thematic map:"
-msgstr ""
+msgstr "Izberite tematski zemljevid:"
 
 #: ../../climateadapt/vocabulary.py:1296
 msgid "Citizen"
-msgstr ""
+msgstr "Državljan"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:231
@@ -689,27 +690,27 @@ msgstr "Mesto"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:201
 msgid "City Initiatives"
-msgstr ""
+msgstr "Mestne pobude"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:483
 msgid "City Networks"
-msgstr ""
+msgstr "Mestna omrežja"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:260
 msgid "Climate Impacts"
-msgstr ""
+msgstr "Podnebni vplivi"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:111
 msgid "Climate Impacts in Europe"
-msgstr ""
+msgstr "Podnebni vplivi v Evropi"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:58
 msgid "Climate change impacts on European cities"
-msgstr ""
+msgstr "Vpliv podnebnih sprememb na evropska mesta"
 
 #: ../../climateadapt/tiles/search_acecontent.py:835
 msgid "Climate impact"
-msgstr ""
+msgstr "Vpliv podnebja"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:70
@@ -727,19 +728,19 @@ msgstr "Podnebni vplivi:"
 
 #: ../../climateadapt/vocabulary.py:331
 msgid "Climate services"
-msgstr ""
+msgstr "Klimatske storitve"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:63
 msgid "Climate-ADAPT Event"
-msgstr ""
+msgstr "Dogodek Climate-ADAPT"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:300
 msgid "Climate-ADAPT case studies"
-msgstr ""
+msgstr "Študije primerov Climate-ADAPT"
 
 #: ../../climateadapt/vocabulary.py:593
 msgid "Climate-sensitive diseases"
-msgstr ""
+msgstr "Bolezni, občutljive na podnebje"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:40
@@ -749,11 +750,11 @@ msgstr "Obalna območja"
 
 #: ../../climateadapt/vocabulary.py:628
 msgid "Coastal flooding"
-msgstr ""
+msgstr "Obalne poplave"
 
 #: ../../climateadapt/vocabulary.py:620
 msgid "Cold spells and frost"
-msgstr ""
+msgstr "Hladna obdobja in mraz"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:218
@@ -762,28 +763,28 @@ msgstr "Komentarji:"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:10
 msgid "Common definitions of the terms used frequently in the clearinghouse."
-msgstr ""
+msgstr "Skupne definicije izrazov, ki se pogosto uporabljajo v klirinški hiši."
 
 #: ../../climateadapt/vocabulary.py:1229
 msgid "Companies, SMEs and private associations"
-msgstr ""
+msgstr "Podjetja, MSP in zasebna združenja"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:105
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:95
 #: ../../climateadapt/browser/pt/navbar_footer.pt:15
 msgid "Contact"
-msgstr "Stik"
+msgstr "Kontakt"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:39
 msgid "Contact information for the Observatory"
-msgstr "Kontaktni podatki za observatorij"
+msgstr "Kontaktni podatki za Observatorij"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:30
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:158
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
-msgstr ""
+msgstr "Vsebino na straneh Evropskega raziskovalca podnebnih podatkov zagotavlja <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a>, ki ga izvaja ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Zavrnitev odgovornosti</a>"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:205
@@ -792,7 +793,7 @@ msgstr "Sodelavec:"
 
 #: ../../climateadapt/vocabulary.py:339
 msgid "Cost-benefit analysis and maintenance costs"
-msgstr ""
+msgstr "Analiza stroškov in koristi ter stroški vzdrževanja"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:41
@@ -819,27 +820,27 @@ msgstr "Ustvaril:"
 
 #: ../../climateadapt/vocabulary.py:603
 msgid "Critical Infrastructure"
-msgstr ""
+msgstr "Kritična infrastruktura"
 
 #: ../../climateadapt/vocabulary.py:306
 msgid "Cultural heritage"
-msgstr ""
+msgstr "Kulturna dediščina"
 
 #: ../../climateadapt/vocabulary.py:772
 msgid "D1: Green options"
-msgstr ""
+msgstr "D1: zelene možnosti"
 
 #: ../../climateadapt/vocabulary.py:744
 msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
-msgstr ""
+msgstr "D1: Rešitve, ki temeljijo na naravi, in pristopi, ki temeljijo na ekosistemu: zelene možnosti"
 
 #: ../../climateadapt/vocabulary.py:773
 msgid "D2: Blue options"
-msgstr ""
+msgstr "D2: modre možnosti"
 
 #: ../../climateadapt/vocabulary.py:748
 msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
-msgstr ""
+msgstr "D2: Rešitve, ki temeljijo na naravi, in pristopi, ki temeljijo na ekosistemu: modre možnosti"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
@@ -848,18 +849,18 @@ msgstr "DRMKC"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:418
 msgid "Danube"
-msgstr ""
+msgstr "Donava"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:171
 msgid "Data and Tools"
-msgstr ""
+msgstr "Podatki in orodja"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:136
 #: ../../climateadapt/browser/pt/casestudy_view.pt:265
 msgid "Date of creation:"
-msgstr "Datum ustvarjanja:"
+msgstr "Datum nastanka:"
 
 # ,
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:48
@@ -891,20 +892,20 @@ msgstr "Opis:"
 #: ../../climateadapt/browser/overrides.py:42
 #: ../../climateadapt/vocabulary.py:307
 msgid "Disaster Risk Reduction"
-msgstr "Zmanjšanje tveganja za nesreče"
+msgstr "Zmanjšanje tveganja nesreč"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:82
 msgid "Download the detailed agenda <a href=\"${DYNAMIC_CONTENT}\">here</a>"
-msgstr ""
+msgstr "Prenesite podroben dnevni red <a href=\"${DYNAMIC_CONTENT}\">tukaj</a>"
 
 # ,
 #: ../../climateadapt/vocabulary.py:357
 msgid "Droughts"
-msgstr "Suša"
+msgstr "Suše"
 
 #: ../../climateadapt/vocabulary.py:592
 msgid "Droughts and floods"
-msgstr ""
+msgstr "Suše in poplave"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
@@ -913,82 +914,82 @@ msgstr "Trajanje:"
 
 #: ../../climateadapt/vocabulary.py:774
 msgid "E1: Information and awareness raising"
-msgstr ""
+msgstr "E1: Informiranje in ozaveščanje"
 
 #: ../../climateadapt/vocabulary.py:752
 msgid "E1: Knowledge and behavioural change: Information and awareness raising"
-msgstr ""
+msgstr "E1: Sprememba znanja in vedenja: Informiranje in ozaveščanje"
 
 #: ../../climateadapt/vocabulary.py:775
 msgid "E2: Capacity building empowering and lifestyle practices"
-msgstr ""
+msgstr "E2: Prakse krepitve moči in življenjskega sloga"
 
 #: ../../climateadapt/vocabulary.py:756
 msgid "E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices"
-msgstr ""
+msgstr "E2: Sprememba znanja in vedenja: krepitev zmogljivosti in prakse življenjskega sloga"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:439
 msgid "EU Missions"
-msgstr ""
+msgstr "Misije EU"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:349
 msgid "EU funding of adaptation"
-msgstr ""
+msgstr "EU financiranje prilagajanja"
 
 #: ../../climateadapt/vocabulary.py:338
 msgid "Economic aspects"
-msgstr ""
+msgstr "Ekonomski vidiki"
 
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
-msgstr ""
+msgstr "Ekosistemi in rešitve, ki temeljijo na naravi"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47
 #: ../../climateadapt/vocabulary.py:308
 msgid "Energy"
-msgstr "Energija"
+msgstr "energija"
 
 #: ../../climateadapt/vocabulary.py:335
 msgid "Environmental aspects"
-msgstr ""
+msgstr "Okoljski vidiki"
 
 #: ../../climateadapt/vocabulary.py:1251
 msgid "European"
-msgstr ""
+msgstr "evropski"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:241
 msgid "European Climate Data Explorer"
-msgstr ""
+msgstr "Evropski raziskovalec podnebnih podatkov"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:395
 msgid "European Climate Pact"
-msgstr ""
+msgstr "Evropski podnebni pakt"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:260
 msgid "European Drought Observatory"
-msgstr ""
+msgstr "Evropski observatorij za sušo"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Event"
-msgstr ""
+msgstr "Dogodek"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:25
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:17
 msgid "Events"
-msgstr ""
+msgstr "Dogodki"
 
 #: ../../climateadapt/vocabulary.py:1305
 msgid "Expert"
-msgstr ""
+msgstr "Strokovnjak"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:298
 msgid "Explore Forest adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
-msgstr ""
+msgstr "Raziščite študije primerov prilagajanja gozdov v smislu geografske lokacije, tematske pokritosti in povezave do možnosti prilagajanja prek raziskovalca študij primerov na zemljevidu."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:253
 msgid "Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
-msgstr ""
+msgstr "Raziščite študije primerov urbanega prilagajanja v smislu geografske lokacije, tematske pokritosti in povezave do možnosti prilagajanja prek raziskovalca študij primerov na zemljevidu."
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
@@ -998,7 +999,7 @@ msgstr "Zunanji vir"
 
 #: ../../climateadapt/vocabulary.py:622
 msgid "Extreme Precipitation"
-msgstr ""
+msgstr "Ekstremne padavine"
 
 # ,
 #: ../../climateadapt/vocabulary.py:358
@@ -1007,38 +1008,38 @@ msgstr "Ekstremne temperature"
 
 #: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
-msgstr ""
+msgstr "Ekstremna vročina"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:417
 msgid "FAO Green Cities"
-msgstr ""
+msgstr "Zelena mesta FAO"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:22
 msgid "FAQ for providers"
-msgstr ""
+msgstr "Pogosta vprašanja za ponudnike"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:29
 msgid "FAQ for users"
-msgstr ""
+msgstr "Pogosta vprašanja za uporabnike"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:248
 msgid "FISE web portal will help us to improve the health and resilience of our forests, which play a vital role in protecting our biodiversity and in mitigating climate change."
-msgstr ""
+msgstr "Spletni portal FISE nam bo pomagal izboljšati zdravje in odpornost naših gozdov, ki igrajo ključno vlogo pri zaščiti naše biotske raznovrstnosti in blaženju podnebnih sprememb."
 
 # ,
 #: ../../climateadapt/browser/overrides.py:43
 #: ../../climateadapt/vocabulary.py:309
 msgid "Financial"
-msgstr "Finančno"
+msgstr "Finančna"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:24
 msgid "Find out how to contribute different types of information to Climate-ADAPT."
-msgstr ""
+msgstr "Ugotovite, kako prispevati različne vrste informacij k Climate-ADAPT."
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
 msgid "Flooding"
-msgstr "Poplava"
+msgstr "Poplavljanje"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:38
@@ -1048,11 +1049,11 @@ msgstr "Gozdarstvo"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:251
 msgid "Forestry Information System for Europe"
-msgstr ""
+msgstr "Gozdarski informacijski sistem za Evropo"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:31
 msgid "Frequently asked questions in one place."
-msgstr ""
+msgstr "Pogosta vprašanja na enem mestu."
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
@@ -1062,22 +1063,22 @@ msgstr "Program financiranja:"
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:216
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:195
 msgid "Funding and Financing"
-msgstr ""
+msgstr "Financiranje in financiranje"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:7
 msgid "General"
-msgstr ""
+msgstr "Splošno"
 
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:60
 msgid "Geographic characterisation"
-msgstr ""
+msgstr "Geografska karakterizacija"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:193
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:85
 #: ../../climateadapt/browser/pt/informationportal_view.pt:88
 msgid "Geographic characterisation:"
-msgstr "Geografska karakterizacija:"
+msgstr "Geografska opredelitev:"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:78
@@ -1090,53 +1091,53 @@ msgstr "Geografska karakterizacija"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:364
 #: ../../climateadapt/browser/pt/indicator_view.pt:103
 msgid "Geographic characterization:"
-msgstr "Geografska karakterizacija:"
+msgstr "Geografska opredelitev:"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:50
 msgid "Getting started"
-msgstr ""
+msgstr "Začetek"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:8
 msgid "Glossary"
-msgstr ""
+msgstr "Glosar"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:13
 msgid "Go back"
-msgstr ""
+msgstr "Pojdi nazaj"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:300
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:255
 msgid "Go to Case Study Explorer"
-msgstr ""
+msgstr "Pojdite na Case Study Explorer"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:352
 msgid "Go to EU funding of adaptation"
-msgstr ""
+msgstr "Pojdite na financiranje EU za prilagajanje"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:287
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:269
 msgid "Go to the Adaptation Options"
-msgstr ""
+msgstr "Pojdite na možnosti prilagajanja"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:237
 msgid "Go to the European Climate Data Explorer"
-msgstr ""
+msgstr "Pojdite na Evropski raziskovalec podnebnih podatkov"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:342
 msgid "Go to the Forest Policy Overview"
-msgstr ""
+msgstr "Pojdite na Pregled gozdne politike"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:228
 msgid "Go to the Urban Adaptation Map Viewer"
-msgstr ""
+msgstr "Pojdite na pregledovalnik zemljevidov urbanih prilagoditev"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:218
 msgid "Go to the Urban Adaptation Support Tool"
-msgstr ""
+msgstr "Pojdite na orodje za podporo urbanemu prilagajanju"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:311
 msgid "Go to the Urban Policy Overview"
-msgstr ""
+msgstr "Pojdite na Pregled mestne politike"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:184
@@ -1147,33 +1148,33 @@ msgstr "Raven upravljanja:"
 # ,
 #: ../../climateadapt/vocabulary.py:270
 msgid "Guidance"
-msgstr "Navodila"
+msgstr "Vodenje"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:10
 msgid "Guidance documents"
-msgstr ""
+msgstr "Dokumenti z navodili"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:17
 msgid "Guidance on the Climate-ADAPT Database Search function."
-msgstr ""
+msgstr "Navodila za funkcijo iskanja po bazi podatkov Climate-ADAPT."
 
 #: ../../climateadapt/browser/pt/help-categories.pt:15
 msgid "Guidance to <br /> search function"
-msgstr ""
+msgstr "Navodila za <br /> iskalno funkcijo"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:111
 msgid "HHWS website"
-msgstr ""
+msgstr "Spletna stran HHWS"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:44
 #: ../../climateadapt/vocabulary.py:311
 msgid "Health"
-msgstr "Zdravje"
+msgstr "zdravje"
 
 #: ../../climateadapt/vocabulary.py:604
 msgid "Health and Wellbeing"
-msgstr ""
+msgstr "Zdravje in dobro počutje"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
@@ -1184,37 +1185,37 @@ msgstr "Vpliv na zdravje:"
 
 #: ../../climateadapt/vocabulary.py:591
 msgid "Heat"
-msgstr ""
+msgstr "Toplota"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:105
 msgid "Heat index of HHWS:"
-msgstr ""
+msgstr "Toplotni indeks HHWS:"
 
 #: ../../climateadapt/image_scales/interfaces.py:79
 msgid "High pixel density mode"
-msgstr ""
+msgstr "Način visoke gostote slikovnih pik"
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:12
 msgid "Home"
-msgstr "Doma"
+msgstr "domov"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
 msgid "How to use the map?"
-msgstr ""
+msgstr "Kako uporabljati zemljevid?"
 
 #: ../../climateadapt/vocabulary.py:312
 msgid "ICT"
-msgstr ""
+msgstr "IKT"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:168
 msgid "IPCC adaptation options categories:"
-msgstr ""
+msgstr "Kategorije možnosti prilagajanja IPCC:"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
 msgid "IPCC categories"
-msgstr "IPCC kategorije"
+msgstr "kategorije IPCC"
 
 # ,
 #: ../../climateadapt/vocabulary.py:360
@@ -1224,41 +1225,41 @@ msgstr "Led in sneg"
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:74
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:179
 msgid "Identifying adaptation options"
-msgstr ""
+msgstr "Identifikacija možnosti prilagajanja"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:38
 msgid "If you are new user the video tutorials can help you get started."
-msgstr ""
+msgstr "Če ste novi uporabnik, vam lahko video vadnice pomagajo začeti."
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:96
 msgid "If you have any further questions you can contact <a href=\"${DYNAMIC_CONTENT}\">${DYNAMIC_CONTENT}</a>"
-msgstr ""
+msgstr "Če imate dodatna vprašanja, se lahko obrnete na <a href=\"${DYNAMIC_CONTENT}\">${DYNAMIC_CONTENT}</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:494
 msgid "Image courtesy of <a style=\"color: #999;font-size: 12px;\" href=\"https://www.vecteezy.com/free-vector/technology\">Technology Vectors by Vecteezy</a>"
-msgstr ""
+msgstr "Avtor slike <a style=\"color: #999;font-size: 12px;\" href=\"https://www.vecteezy.com/free-vector/technology\">Tehnološki vektorji avtorja Vecteezy</a>"
 
 #: ../../climateadapt/image_scales/interfaces.py:92
 msgid "Image quality at 2x"
-msgstr ""
+msgstr "Kakovost slike 2x"
 
 #: ../../climateadapt/image_scales/interfaces.py:105
 msgid "Image quality at 3x"
-msgstr ""
+msgstr "Kakovost slike 3x"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:90
 msgid "Implementation"
-msgstr ""
+msgstr "Izvedba"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:47
 #: ../../climateadapt/browser/pt/casestudy_view.pt:92
 msgid "Implementation Time"
-msgstr "Čas izvajanja"
+msgstr "Čas izvedbe"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:234
 msgid "Implementing adaptation"
-msgstr ""
+msgstr "Izvajanje prilagoditve"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:67
@@ -1267,24 +1268,24 @@ msgstr "Pomen in ustreznost prilagajanja"
 
 #: ../../climateadapt/browser/pt/regions-section.pt:75
 msgid "In 2021-2027, the <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> cross-border cooperation (CBC) between EU Member States and Neighbourhood region </a> is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called “Interreg NEXT”."
-msgstr ""
+msgstr "V letih 2021–2027 <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> čezmejno sodelovanje (CBC) med državami članicami EU in sosedsko regijo </a> ureja kohezijska politika EU, programi pa bodo v celoti del Interrega. Da bi poudarili zunanjo razsežnost kohezijske politike in hkrati poudarili, kako blizu so si EU in partnerske države, se novi program imenuje »Interreg NEXT«."
 
 # ,
 #: ../../climateadapt/vocabulary.py:269
 msgid "Indicators"
-msgstr "Kazalniki"
+msgstr "Indikatorji"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:120
 msgid "Info:"
-msgstr ""
+msgstr "Informacije:"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:9
 msgid "Information Portals"
-msgstr ""
+msgstr "Informacijski portali"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:106
 msgid "Information on the protection of personal data is available in the <a href=\"${DYNAMIC_CONTENT}\"><b>privacy statement</b></a>"
-msgstr ""
+msgstr "Informacije o varovanju osebnih podatkov so na voljo v <a href=\"${DYNAMIC_CONTENT}\"><b>izjavi o zasebnosti</b></a>"
 
 # ,
 #: ../../climateadapt/vocabulary.py:267
@@ -1293,19 +1294,19 @@ msgstr "Informacijski portali"
 
 #: ../../climateadapt/vocabulary.py:791
 msgid "Institutional: Economic options"
-msgstr ""
+msgstr "Institucionalne: ekonomske možnosti"
 
 #: ../../climateadapt/vocabulary.py:793
 msgid "Institutional: Government policies and programmes"
-msgstr ""
+msgstr "Institucionalni: vladne politike in programi"
 
 #: ../../climateadapt/vocabulary.py:792
 msgid "Institutional: Law and regulations"
-msgstr ""
+msgstr "Institucionalni: Zakon in predpisi"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:56
 msgid "Item Documents"
-msgstr ""
+msgstr "Dokumenti postavke"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:129
@@ -1314,28 +1315,28 @@ msgstr "Ustvarjanje predmeta:"
 
 #: ../../climateadapt/tiles/search_acecontent.py:847
 msgid "Key Type Measure"
-msgstr ""
+msgstr "Ključna mera"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:267
 msgid "Key Type Measures"
-msgstr ""
+msgstr "Ključne vrste ukrepov"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:163
 msgid "Key Type Measures:"
-msgstr ""
+msgstr "Ključni tipski ukrepi:"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:22
 msgid "Key activities within climate change and health"
-msgstr "Ključne dejavnosti v podnebnih spremembah in zdravju"
+msgstr "Ključne aktivnosti v okviru podnebnih sprememb in zdravja"
 
 #: ../../climateadapt/browser/admin.py:565
 msgid "Keyword succesfully deleted: ${kw_old}."
-msgstr ""
+msgstr "Ključna beseda je bila uspešno izbrisana: ${kw_old}."
 
 #: ../../climateadapt/browser/admin.py:595
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
-msgstr ""
+msgstr "Ključna beseda je bila uspešno preimenovana: ${kw_old} v ${kw_new}."
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:65
@@ -1353,19 +1354,19 @@ msgstr "Ključne besede:"
 
 #: ../../climateadapt/vocabulary.py:313
 msgid "Land use planning"
-msgstr ""
+msgstr "Načrtovanje rabe prostora"
 
 #: ../../climateadapt/vocabulary.py:605
 msgid "Land-use and Food Systems"
-msgstr ""
+msgstr "Raba zemljišč in prehranski sistemi"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:99
 msgid "Language of the conference"
-msgstr ""
+msgstr "Jezik konference"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "Last Modified in Climate-ADAPT"
-msgstr ""
+msgstr "Nazadnje spremenjeno v Climate-ADAPT"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:166
@@ -1374,19 +1375,19 @@ msgstr "Svinec"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:285
 msgid "Learn more about different adaptation options to the various impacts of climate change in forests."
-msgstr ""
+msgstr "Izvedite več o različnih možnostih prilagajanja gozdov na različne vplive podnebnih sprememb."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:267
 msgid "Learn more about different adaptation options to the various impacts of climate change in urban areas."
-msgstr ""
+msgstr "Izvedite več o različnih možnostih prilagajanja na različne vplive podnebnih sprememb v urbanih območjih."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:155
 msgid "Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities"
-msgstr ""
+msgstr "Izvedite več o tem, kako se lahko mesta prilagodijo podnebnim spremembam, da postanejo mesta, ki bodo odporna na podnebne spremembe"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:177
 msgid "Learn more about how forests can adapt to climate change to stay healthy, diverse, resilient and productive"
-msgstr ""
+msgstr "Izvedite več o tem, kako se lahko gozdovi prilagodijo podnebnim spremembam, da ostanejo zdravi, raznoliki, odporni in produktivni"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:44
@@ -1398,11 +1399,11 @@ msgstr "Pravni vidiki"
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:50
 #: ../../climateadapt/browser/pt/casestudy_view.pt:96
 msgid "Life Time"
-msgstr "Življenska doba"
+msgstr "Življenjska doba"
 
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:26
 msgid "Link to Map Viewer:"
-msgstr ""
+msgstr "Povezava do pregledovalnika zemljevidov:"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:44
@@ -1418,15 +1419,15 @@ msgstr "Povezave do dodatnih informacij"
 
 #: ../../climateadapt/vocabulary.py:611
 msgid "Local Economic Systems"
-msgstr ""
+msgstr "Lokalni gospodarski sistemi"
 
 #: ../../climateadapt/vocabulary.py:1221
 msgid "Local authorities and administrative bodies"
-msgstr ""
+msgstr "Lokalne oblasti in upravni organi"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:450
 msgid "MCR 2030"
-msgstr ""
+msgstr "MCR 2030"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:180
@@ -1435,11 +1436,11 @@ msgstr "Makro-transnacionalna regija"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:451
 msgid "Making Cities Resilient: <a href=\"https://mcr2030.undrr.org/\">Making Cities Resilient 2030</a> is a cross-stakeholder initiative for improving local resilience through advocacy, sharing knowledge and experiences, establishing mutually reinforcing city-to-city learning networks, injecting technical expertise, connecting multiple layers of government and building partnerships."
-msgstr ""
+msgstr "Making Cities Resilient: <a href=\"https://mcr2030.undrr.org/\">Making Cities Resilient 2030</a> je pobuda med deležniki za izboljšanje lokalne odpornosti z zagovorništvom, izmenjavo znanja in izkušenj, vzpostavljanjem medsebojno krepitvenih učnih mrež od mesta do mesta, vnašanjem tehničnega strokovnega znanja, povezovanjem več ravni vlade in vzpostavljanjem partnerstev."
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:238
 msgid "Map"
-msgstr ""
+msgstr "Zemljevid"
 
 # ,
 #: ../../climateadapt/vocabulary.py:268
@@ -1450,122 +1451,122 @@ msgstr "Zemljevidi, grafi in nabori podatkov"
 #: ../../climateadapt/browser/overrides.py:46
 #: ../../climateadapt/vocabulary.py:314
 msgid "Marine and Fisheries"
-msgstr "Morsko in ribištvo"
+msgstr "Pomorstvo in ribištvo"
 
 #: ../../climateadapt/vocabulary.py:618
 msgid "Mean air temperature"
-msgstr ""
+msgstr "Srednja temperatura zraka"
 
 #: ../../climateadapt/vocabulary.py:621
 msgid "Mean precipitation"
-msgstr ""
+msgstr "Povprečna količina padavin"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 msgid "Mediterranean"
-msgstr ""
+msgstr "Sredozemlje"
 
 #: ../../climateadapt/vocabulary.py:336
 msgid "Mitigation aspects"
-msgstr ""
+msgstr "Vidiki ublažitve"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:98
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
-msgstr ""
+msgstr "Spremljanje &amp; Vrednotenje (M&amp;E)"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:269
 msgid "Monitoring and evaluating adaptation"
-msgstr ""
+msgstr "Spremljanje in vrednotenje prilagajanja"
 
 #: ../../climateadapt/vocabulary.py:315
 msgid "Mountain areas"
-msgstr ""
+msgstr "Gorska območja"
 
 #: ../../climateadapt/vocabulary.py:1254
 msgid "Municipal/Local"
-msgstr ""
+msgstr "Občinsko/lokalno"
 
 #: ../../climateadapt/vocabulary.py:1231
 msgid "NGOs"
-msgstr ""
+msgstr "nevladne organizacije"
 
 #: ../../climateadapt/vocabulary.py:1252
 msgid "National"
-msgstr ""
+msgstr "Nacionalni"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:53
 msgid "National HHAP"
-msgstr ""
+msgstr "Nacionalni HHAP"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:119
 msgid "National adaptation policy not reported beyond mandatory reporting in 2023"
-msgstr ""
+msgstr "Nacionalna politika prilagajanja ni bila sporočena po obveznem poročanju leta 2023"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:115
 msgid "National adaptation policy reported in 2023"
-msgstr ""
+msgstr "Nacionalna politika prilagajanja, o kateri so poročali leta 2023"
 
 #: ../../climateadapt/browser/BKPcountries.py:179
 #: ../../climateadapt/browser/countries.py:183
 msgid "National adaption policy"
-msgstr ""
+msgstr "Nacionalna politika prilagajanja"
 
 #: ../../climateadapt/vocabulary.py:334
 msgid "Nature-based solutions"
-msgstr ""
+msgstr "Naravne rešitve"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:20
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:16
 msgid "News"
-msgstr ""
+msgstr "Novice"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:61
 msgid "No HHAP"
-msgstr ""
+msgstr "Brez HHAP"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:80
 msgid "No assessments reported"
-msgstr ""
+msgstr "Ocene niso sporočene"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:88
 msgid "No data reported in 2021"
-msgstr ""
+msgstr "V letu 2021 ni bilo sporočenih podatkov"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:104
 msgid "No data reported in 2023"
-msgstr ""
+msgstr "V letu 2023 ni bilo sporočenih podatkov"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:65
 msgid "No information"
-msgstr ""
+msgstr "Ni podatkov"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:99
 msgid "No portal or platform reported"
-msgstr ""
+msgstr "Prijavljen ni noben portal ali platforma"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:65
 msgid "No upcoming events."
-msgstr ""
+msgstr "Ni prihajajočih dogodkov."
 
 # ,
 #: ../../climateadapt/vocabulary.py:320
 msgid "Non specific"
-msgstr "Ne specifično"
+msgstr "Nespecifično"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:476
 msgid "North Sea"
-msgstr ""
+msgstr "Severno morje"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:479
 msgid "North West Europe"
-msgstr ""
+msgstr "Severozahodna Evropa"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:482
 msgid "Northern Periphery and Arctic"
-msgstr ""
+msgstr "Severna periferija in Arktika"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:428
 msgid "OPPLA"
-msgstr ""
+msgstr "OPPLA"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:55
@@ -1575,20 +1576,20 @@ msgstr "Cilji"
 # ,
 #: ../../climateadapt/vocabulary.py:328
 msgid "Observations and Scenarios"
-msgstr "Opazovanja in scenariji"
+msgstr "Opažanja in scenariji"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:50
 msgid "Observatory Contributions:"
-msgstr "Prispevki opazovanja:"
+msgstr "Prispevki observatorija:"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:76
 msgid "One or more assessments reported"
-msgstr ""
+msgstr "Prijavljena je ena ali več ocen"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:125
 msgid "Online registration"
-msgstr ""
+msgstr "Spletna registracija"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:15
@@ -1598,28 +1599,28 @@ msgstr "Organizacije"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:18
 msgid "Original aceitem"
-msgstr ""
+msgstr "Originalni aceitem"
 
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:35
 msgid "Other European Information Systems:<br />&nbsp;"
-msgstr "Drugi evropski informacijski sistemi: <br /> & nbsp;"
+msgstr "Drugi evropski informacijski sistemi:<br />&nbsp;"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:488
 msgid "Other regions"
-msgstr ""
+msgstr "Druge regije"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:140
 msgid "Outside EEA coverage"
-msgstr ""
+msgstr "Zunaj pokritosti EGP"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:15
 msgid "Overview list of all indices"
-msgstr ""
+msgstr "Pregledni seznam vseh indeksov"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:91
 msgid "Participation"
-msgstr ""
+msgstr "Sodelovanje"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:174
@@ -1629,19 +1630,19 @@ msgstr "Partnerji"
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:254
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
-msgstr "Pišite nam za katero koli drugo poizvedbo o tej študiji primera ali za delitev nove študije primera (e -pošto <a href=\"mailto: climate.adapt@eea.europa.eu\"> climate.adapt@eea.europa.eu </a >)"
+msgstr "Prosimo, kontaktirajte nas za kakršno koli drugo poizvedbo o tej študiji primera ali če želite deliti novo študijo primera (e-pošta <a href=\"mailto:limate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:105
 msgid "Please fill in this <a href=\"${DYNAMIC_CONTENT}\">registration form</a>"
-msgstr ""
+msgstr "Izpolnite ta <a href=\"${DYNAMIC_CONTENT}\">obrazec za registracijo</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:189
 msgid "Policy Overview"
-msgstr ""
+msgstr "Pregled pravilnika"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:210
 msgid "Policy overview"
-msgstr ""
+msgstr "Pregled politike"
 
 # ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:23
@@ -1650,21 +1651,21 @@ msgstr "Vrsta portala"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Practical information"
-msgstr ""
+msgstr "Praktične informacije"
 
 #: ../../climateadapt/vocabulary.py:1294
 msgid "Practitioners at the regional level"
-msgstr ""
+msgstr "Praktiki na regionalni ravni"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:58
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:79
 msgid "Preparing the ground for adaptation"
-msgstr ""
+msgstr "Priprava terena za prilagoditev"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:119
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:68
 msgid "Principles and success factors"
-msgstr ""
+msgstr "Načela in dejavniki uspeha"
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:21
@@ -1674,7 +1675,7 @@ msgstr "Zasebnost in pravno obvestilo"
 # ,
 #: ../../climateadapt/browser/overrides.py:59
 msgid "Professional thematic domain"
-msgstr "Profesionalna tematska domena"
+msgstr "Strokovno tematsko področje"
 
 # ,
 #: ../../climateadapt/browser/pt/publicationreport_view.pt:50
@@ -1699,12 +1700,12 @@ msgstr "Objavljeno"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "Published in Climate-ADAPT"
-msgstr ""
+msgstr "Objavljeno v Climate-ADAPT"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:237
 msgid "Reference"
-msgstr "Sklic"
+msgstr "Referenca"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:102
@@ -1720,7 +1721,7 @@ msgstr "Referenčne informacije"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:40
 msgid "Reference:"
-msgstr ""
+msgstr "Referenca:"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:113
@@ -1729,19 +1730,19 @@ msgstr "Reference:"
 
 #: ../../climateadapt/tiles/pt/transregional_select.pt:120
 msgid "Region's countries:"
-msgstr ""
+msgstr "Države regije:"
 
 #: ../../climateadapt/vocabulary.py:1253
 msgid "Regional"
-msgstr ""
+msgstr "Regionalni"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Registration"
-msgstr ""
+msgstr "Registracija"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:124
 msgid "Registration:"
-msgstr ""
+msgstr "Registracija:"
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:45
@@ -1750,7 +1751,7 @@ msgstr "Povezani dokumenti in predstavitve"
 
 #: ../../climateadapt/vocabulary.py:627
 msgid "Relative sea level"
-msgstr ""
+msgstr "Relativna gladina morja"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:187
@@ -1759,37 +1760,37 @@ msgstr "Ustreznost"
 
 #: ../../climateadapt/tiles/pt/filter_acecontent.pt:49
 msgid "Relevant tile"
-msgstr ""
+msgstr "Ustrezna ploščica"
 
 #: ../../climateadapt/vocabulary.py:340
 msgid "Replication/upscaling potential"
-msgstr ""
+msgstr "Možnost podvajanja/višanja"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:12
 #: ../../climateadapt/vocabulary.py:272
 msgid "Research and knowledge projects"
-msgstr "Projekti raziskav in znanja"
+msgstr "Raziskovalni projekti in projekti znanja"
 
 #: ../../climateadapt/vocabulary.py:1292
 msgid "Researcher"
-msgstr ""
+msgstr "Raziskovalec"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:277
 msgid "Reset"
-msgstr ""
+msgstr "Ponastavi"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:472
 msgid "Resilient Cities Network"
-msgstr ""
+msgstr "Omrežje odpornih mest"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:183
 msgid "Resource Catalogue"
-msgstr ""
+msgstr "Katalog virov"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:204
 msgid "Resource catalogue"
-msgstr ""
+msgstr "Katalog virov"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:112
@@ -1798,20 +1799,20 @@ msgstr "Pregledal:"
 
 #: ../../climateadapt/vocabulary.py:623
 msgid "River flooding"
-msgstr ""
+msgstr "Poplavljanje rek"
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:18
 msgid "SITE MAP"
-msgstr "Zemljevid spletnega mesta"
+msgstr "ZEMLJEVID SPLETNEGA MESTA"
 
 #: ../../climateadapt/image_scales/interfaces.py:66
 msgid "Scaled image quality"
-msgstr ""
+msgstr "Prilagojena kakovost slike"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:58
 msgid "Scroll to top"
-msgstr ""
+msgstr "Pomaknite se na vrh"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
@@ -1820,7 +1821,7 @@ msgstr "Dvig morske gladine"
 
 #: ../../climateadapt/browser/pt/observatory_indicators_search.pt:101
 msgid "Search"
-msgstr ""
+msgstr "Iskanje"
 
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:203
@@ -1830,20 +1831,20 @@ msgstr "Rezultati iskanja"
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:212
 msgid "Search results for: ${term}"
-msgstr "Rezultati iskanja za: $ {termin}"
+msgstr "Rezultati iskanja za: ${term}"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:319
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:288
 msgid "Search the Climate Adapt Database:"
-msgstr ""
+msgstr "Preiščite podatkovno zbirko Climate Adapt:"
 
 #: ../../climateadapt/tiles/pt/search_acecontent.pt:66
 msgid "Search tile"
-msgstr ""
+msgstr "Iskalna ploščica"
 
 #: ../../climateadapt/tiles/search_acecontent.py:841
 msgid "Sector"
-msgstr ""
+msgstr "Sektor"
 
 # ,
 #: ../../climateadapt/vocabulary.py:326
@@ -1867,33 +1868,33 @@ msgstr "Sektorji:"
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:63
 msgid "See more"
-msgstr "Poglej več"
+msgstr "Oglejte si več"
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:39
 msgid "See video outside Climate-ADAPT"
-msgstr "Oglejte si video zunaj Climate-Adapt"
+msgstr "Oglejte si video zunaj Climate-ADAPT"
 
 #: ../../climateadapt/browser/pt/countries-list.pt:5
 msgid "Select a country"
-msgstr ""
+msgstr "Izberite državo"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:49
 msgid "Select a country to go directly to the country's page:"
-msgstr ""
+msgstr "Izberite državo, da greste neposredno na stran države:"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:60
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr "Ko je izdelek spremenjen, izberite sektorje, za katere želite prejeti e -poštno sporočilo o obvestilu."
+msgstr "Izberite sektorje, za katere želite prejeti e-poštno obvestilo, ko je element spremenjen."
 
 #: ../../climateadapt/tiles/pt/shareinfo.pt:8
 msgid "Share button tile"
-msgstr ""
+msgstr "Ploščica gumba za skupno rabo"
 
 #: ../../climateadapt/tiles/pt/shareinfo.pt:11
 msgid "Share type:"
-msgstr ""
+msgstr "Vrsta skupne rabe:"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:87
@@ -1904,31 +1905,31 @@ msgstr "Delite svoje podatke"
 
 #: ../../climateadapt/browser/pt/observatory_indicators_search.pt:108
 msgid "Show all sources"
-msgstr ""
+msgstr "Pokaži vse vire"
 
 #: ../../climateadapt/vocabulary.py:626
 msgid "Snow and ice"
-msgstr ""
+msgstr "Sneg in led"
 
 #: ../../climateadapt/vocabulary.py:1225
 msgid "Social, cultural and educational institutions"
-msgstr ""
+msgstr "Socialne, kulturne in izobraževalne ustanove"
 
 #: ../../climateadapt/vocabulary.py:790
 msgid "Social: Behavioural"
-msgstr ""
+msgstr "Družbeni: vedenjski"
 
 #: ../../climateadapt/vocabulary.py:788
 msgid "Social: Educational options"
-msgstr ""
+msgstr "Socialno: Izobraževalne možnosti"
 
 #: ../../climateadapt/vocabulary.py:789
 msgid "Social: Informational"
-msgstr ""
+msgstr "Socialno: Informativno"
 
 #: ../../climateadapt/vocabulary.py:337
 msgid "Societal aspects"
-msgstr ""
+msgstr "Družbeni vidiki"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:63
@@ -1951,57 +1952,57 @@ msgstr "Vir financiranja"
 #: ../../climateadapt/browser/pt/indicator_view.pt:44
 #: ../../climateadapt/browser/pt/informationportal_view.pt:32
 msgid "Source:"
-msgstr "Izvor:"
+msgstr "Vir:"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:485
 msgid "South West Europe"
-msgstr ""
+msgstr "Jugozahodna Evropa"
 
 #: ../../climateadapt/image_scales/interfaces.py:43
 msgid "Specify all allowed maximum image dimensions, one per line. The required format is &lt;name&gt; &lt;width&gt;:&lt;height&gt;."
-msgstr ""
+msgstr "Določite vse največje dovoljene dimenzije slike, eno na vrstico. Zahtevana oblika je &lt;ime&gt; &lt;širina&gt;:&lt;višina&gt;."
 
 #: ../../climateadapt/vocabulary.py:1293
 msgid "Staff of regional authority"
-msgstr ""
+msgstr "Osebje regionalne oblasti"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:76
 msgid "Stakeholder Participation"
-msgstr "Udeležba zainteresiranih strani"
+msgstr "Sodelovanje deležnikov"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:35
 msgid "Stakeholder participation"
-msgstr "Udeležba zainteresiranih strani"
+msgstr "Sodelovanje deležnikov"
 
 #: ../../climateadapt/vocabulary.py:1295
 msgid "Stakeholders"
-msgstr ""
+msgstr "Zainteresirane strani"
 
 #: ../../climateadapt/vocabulary.py:1207
 msgid "Step 1. Preparing the ground for adaptation"
-msgstr ""
+msgstr "Korak 1. Priprava terena za prilagoditev"
 
 #: ../../climateadapt/vocabulary.py:1208
 msgid "Step 2. Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "Korak 2. Ocenjevanje tveganj in ranljivosti podnebnih sprememb"
 
 #: ../../climateadapt/vocabulary.py:1209
 msgid "Step 3. Identifying adaptation options"
-msgstr ""
+msgstr "Korak 3. Identifikacija možnosti prilagajanja"
 
 #: ../../climateadapt/vocabulary.py:1210
 msgid "Step 4. Assessing and selecting adaptation options"
-msgstr ""
+msgstr "Korak 4. Ocena in izbira možnosti prilagajanja"
 
 #: ../../climateadapt/vocabulary.py:1211
 msgid "Step 5. Implementing adaptation"
-msgstr ""
+msgstr "Korak 5. Izvajanje prilagoditve"
 
 #: ../../climateadapt/vocabulary.py:1212
 msgid "Step 6. Monitoring and evaluating adaptation"
-msgstr ""
+msgstr "Korak 6. Spremljanje in vrednotenje prilagajanja"
 
 # ,
 #: ../../climateadapt/vocabulary.py:362
@@ -2010,28 +2011,28 @@ msgstr "Nevihte"
 
 #: ../../climateadapt/vocabulary.py:786
 msgid "Structural and physical: Ecosystem-based adaptation options"
-msgstr ""
+msgstr "Strukturno in fizično: Možnosti prilagajanja na podlagi ekosistema"
 
 #: ../../climateadapt/vocabulary.py:783
 msgid "Structural and physical: Engineering and built environment options"
-msgstr ""
+msgstr "Strukturne in fizične: možnosti inženiringa in grajenega okolja"
 
 #: ../../climateadapt/vocabulary.py:787
 msgid "Structural and physical: Service options"
-msgstr ""
+msgstr "Strukturne in fizične: storitvene možnosti"
 
 #: ../../climateadapt/vocabulary.py:785
 msgid "Structural and physical: Technological options"
-msgstr ""
+msgstr "Strukturne in fizične: Tehnološke možnosti"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:202
 msgid "Sub Nationals"
-msgstr "Sub -državljani"
+msgstr "Subnacionalke"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:57
 msgid "Subnational or local HHAP"
-msgstr ""
+msgstr "Subnacionalni ali lokalni HHAP"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:38
@@ -2041,111 +2042,111 @@ msgstr "Uspeh in omejujoči dejavniki"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:396
 msgid "The <a href=\"https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en\">European Climate Pact</a> is an EU-wide initiative inviting people, communities and organisations to participate in climate action and build a greener Europe."
-msgstr ""
+msgstr "<a href=\"https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en\">Evropski podnebni pakt</a> je vseevropska pobuda, ki vabi ljudi, skupnosti in organizacije k sodelovanju pri podnebnih ukrepih in izgradnji bolj zelene Evrope."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:473
 msgid "The <a href=\"https://resilientcitiesnetwork.org/\">Resilient Cities Network</a> consists of cities that are committed to building and investing in urban resilience, located in five geographical regions: Africa, Asia Pacific, Europe and Middle East, Latin America and the Caribbean, and North America."
-msgstr ""
+msgstr "<a href=\"https://resilientcitiesnetwork.org/\">Resilient Cities Network</a> sestavljajo mesta, ki se zavzemajo za gradnjo in vlaganje v odpornost mest, ki se nahajajo v petih geografskih regijah: Afriki, Aziji in Pacifiku, Evropi in Bližnjem vzhodu, Latinski Ameriki in na Karibih ter v Severni Ameriki."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:385
 msgid "The <a href=\"https://www.covenantofmayors.eu/\">EU Covenant of Mayors</a> brings together over 10,000 local governments voluntarily committed to implementing EU climate and energy objectives. Signatory cities commit to increasing resilience and preparing for the adverse impacts of climate change."
-msgstr ""
+msgstr "<a href=\"https://www.covenantofmayors.eu/\">Konvencija županov EU</a> združuje več kot 10.000 lokalnih vlad, ki so se prostovoljno zavezale izvajanju podnebnih in energetskih ciljev EU. Mesta podpisnice se zavezujejo, da bodo povečala odpornost in se pripravila na škodljive vplive podnebnih sprememb."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:318
 msgid "The <a href=\"https://www.covenantofmayors.eu/support/funding.html\">Covenant of Mayors Interactive Funding Guide</a> provides comprehensive and up-to-date information on various funding initiatives open to cities and managed by the European Commission, Member States and key financial institutions such as the European Investment Bank. In addition, the guide includes information on support services and innovative financing models."
-msgstr ""
+msgstr "<a href=\"https://www.covenantofmayors.eu/support/funding.html\">Interaktivni vodnik po financiranju po Konvenciji županov</a> zagotavlja izčrpne in posodobljene informacije o različnih pobudah za financiranje, ki so na voljo mestom in jih upravljajo Evropska komisija, države članice in ključne finančne institucije, kot je Evropska investicijska banka. Poleg tega vodnik vsebuje informacije o podpornih storitvah in inovativnih modelih financiranja."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:418
 msgid "The <a href=\"https://www.fao.org/green-cities-initiative/en/\">FAO Green Cities Initiative</a> focuses on improving the urban environment, strengthening urban-rural linkages and the resilience of urban systems, services and populations to external shocks."
-msgstr ""
+msgstr "<a href=\"https://www.fao.org/green-cities-initiative/en/\">Pobuda FAO za zelena mesta</a> se osredotoča na izboljšanje urbanega okolja, krepitev povezav med mestom in podeželjem ter odpornosti mestnih sistemov, storitev in prebivalstva na zunanje pretrese."
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:106
 msgid "The Adaptation Support Tool - Getting started"
-msgstr ""
+msgstr "Orodje za podporo prilagajanju - Kako začeti"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:384
 msgid "The EU Covenant of Mayors"
-msgstr ""
+msgstr "Konvencija županov EU"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:350
 msgid "The EU finances adaptation to climate change in Europe through a wide range of instruments. The Multiannual Financial Framework 2021-2027 ensures that at least 25% of the European budget is climate-related expenditure. Therefore, Climate adaptation actions have to be integrated into all the major EU spending programmes, and a tracking system is put in place to guarantee these objectives are met."
-msgstr ""
+msgstr "EU financira prilagajanje podnebnim spremembam v Evropi s številnimi instrumenti. Večletni finančni okvir 2021–2027 zagotavlja, da je vsaj 25 % evropskega proračuna izdatkov, povezanih s podnebjem. Zato je treba ukrepe za prilagajanje podnebnim spremembam vključiti v vse glavne programe porabe EU in vzpostaviti sistem sledenja, ki zagotavlja izpolnjevanje teh ciljev."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:309
 msgid "The EU has several policy frameworks in place to increase the resilience of European cities and their inhabitants, including the EU Adaptation Strategy and the EU Biodiversity Strategy 2030, and has developed several initiatives to improve knowledge and data availability on urban vulnerability and adaptive capacity. It also provides financial and technical support to policy makers and practitioners to make cities more resilient and adaptive."
-msgstr ""
+msgstr "EU ima vzpostavljenih več političnih okvirov za povečanje odpornosti evropskih mest in njihovih prebivalcev, vključno s strategijo EU za prilagajanje in strategijo EU za biotsko raznovrstnost do leta 2030, ter je razvila več pobud za izboljšanje znanja in razpoložljivosti podatkov o ranljivosti mest in sposobnosti prilagajanja. Zagotavlja tudi finančno in tehnično podporo oblikovalcem politik in praktikom, da postanejo mesta bolj odporna in prilagodljiva."
 
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:10
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
-msgstr "Evropska platforma za podnebno prilagajanje Climate-Adapt je partnerstvo med <a href=\"https://ec.europa.eu/\"> evropska komisija </a> in <a href = \"https: //www.eea .europa.eu/\"> Evropska okoljska agencija. </a>"
+msgstr "Evropska platforma za prilagajanje podnebju Climate-ADAPT je partnerstvo med <a href=\"https://ec.europa.eu/\">Evropsko komisijo</a> in <a href=\"https://www.eea.europa.eu/\">Evropsko agencijo za okolje.</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:234
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
-msgstr ""
+msgstr "Evropski raziskovalec podnebnih podatkov omogoča interaktivni dostop do številnih podnebnih indeksov iz storitve Copernicus Climate Change Service v podporo prilagajanju podnebnim spremembam."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:239
 msgid "The European Climate Data Explorer provides interactive access to many climate indices like fire weather indices in support of climate change adaptation in forests."
-msgstr ""
+msgstr "Evropski raziskovalec podnebnih podatkov omogoča interaktivni dostop do številnih podnebnih indeksov, kot so vremenski indeksi požarov, v podporo prilagajanju gozdov podnebnim spremembam."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:257
 msgid "The European Drought Observatory (EDO) contains drought-relevant information. These give an overview of the situation in the EU about imminent droughts."
-msgstr ""
+msgstr "Evropski observatorij za sušo (EDO) vsebuje informacije, pomembne za sušo. Ti dajejo pregled stanja v EU glede neizbežnih suš."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:269
 msgid "The European Forest Fire Information System"
-msgstr ""
+msgstr "Evropski informacijski sistem o gozdnih požarih"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:266
 msgid "The European Forest Fire Information System (EFFIS) supports the protection of forests against fires and provides the EU with harmonized information on forest fires"
-msgstr ""
+msgstr "Evropski informacijski sistem za gozdne požare (EFFIS) podpira varstvo gozdov pred požari in zagotavlja EU usklajene informacije o gozdnih požarih."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:225
 msgid "The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity."
-msgstr ""
+msgstr "Pregledovalnik zemljevidov urbanega prilagajanja ponuja pregled sedanjih in prihodnjih podnebnih nevarnosti, ranljivosti mest na te nevarnosti in njihove sposobnosti prilagajanja."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:216
 msgid "The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans."
-msgstr ""
+msgstr "Orodje za podporo prilagajanju mest pomaga mestom in lokalnim oblastem pri razvoju, izvajanju in spremljanju načrtov prilagajanja podnebnim spremembam."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:340
 msgid "The climate crisis is severely affecting Europe's forests, making them increasingly vulnerable to hazards like storms, wildfires, droughts, insect and disease outbreaks, or sea level rise. The growing risks and impacts are affecting the economic viability of forestry and they reduce the capacity of forests to provide essential ecosystem services. The EU responds to this unprecedented challenge by supporting the adaptation of forests to climate change through a wide range of policies, like the EU Forest Strategy, EU Strategy on Adaptation to Climate Change, and the EU Biodiversity Strategy."
-msgstr ""
+msgstr "Podnebna kriza resno prizadene evropske gozdove, zaradi česar so vse bolj ranljivi za nevarnosti, kot so neurja, požari, suše, izbruhi žuželk in bolezni ali dvig morske gladine. Naraščajoča tveganja in vplivi vplivajo na ekonomsko sposobnost gozdarstva in zmanjšujejo sposobnost gozdov za zagotavljanje bistvenih ekosistemskih storitev. EU se na ta izziv brez primere odziva s podpiranjem prilagajanja gozdov podnebnim spremembam s številnimi politikami, kot so gozdna strategija EU, strategija EU za prilagajanje podnebnim spremembam in strategija EU za biotsko raznovrstnost."
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:95
 msgid "The date refers to the date of release of the video"
-msgstr "Datum se nanaša na datum izdaje videoposnetka"
+msgstr "Datum se nanaša na datum objave videa"
 
 # ,
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:50
 #: ../../climateadapt/browser/pt/indicator_view.pt:68
 #: ../../climateadapt/browser/pt/publicationreport_view.pt:58
 msgid "The date refers to the latest date of publication of the item"
-msgstr "Datum se nanaša na zadnji datum objave predmeta"
+msgstr "Datum se nanaša na zadnji datum objave artikla"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
 #: ../../climateadapt/browser/pt/casestudy_view.pt:267
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr "Datum se nanaša na trenutek, ko je izdelek pripravil ali posodobil, da bodo strokovnjaki za prispevek predložili za objavo v podnebnem prilagajanju"
+msgstr "Datum se nanaša na trenutek, v katerem so sodelujoči strokovnjaki pripravili ali posodobili postavko za predložitev za objavo v Climate ADAPT"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
 msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
-msgstr ""
+msgstr "V Evropi obstaja <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> za transnacionalno sodelovanje. Poleg tega obstajajo posebne dogovorjene strategije EU za štiri makronacionalne regije: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a> in <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regij. Ta razdelek vsebuje informacije o strategijah in ukrepih, ki so bili razviti ali se trenutno razvijajo za nadnacionalne regije EU ter za druge regije in države.<br /> <br /> <b>x</b><br /> Zemljevid prikazuje nadnacionalne regije v Evropi, opredeljene v programih sodelovanja za obdobje 2014–2020. Transnacionalne regije lahko izberete s klikom na zemljevid. Če izberete območje, ki pripada več kot eni regiji, bodo v pojavnem oknu prikazane vse regije, kjer se območje nahaja. V pojavnem oknu so prikazane tudi države, v katerih se nahaja posamezna regija.<br /> <br /> Če želite obiskati stran ene od regij, izberite na spustnem seznamu, kliknite legendo ali uporabite povezavo, prikazano v opisu orodja."
 
 #: ../../climateadapt/browser/pt/regions-section.pt:83
 msgid "To go to one of the regions please click on the maps."
-msgstr ""
+msgstr "Za obisk ene od regij kliknite na zemljevide."
 
 #: ../../climateadapt/vocabulary.py:1244
 msgid "Tool broadly used"
-msgstr ""
+msgstr "Orodje se široko uporablja"
 
 #: ../../climateadapt/vocabulary.py:1243
 msgid "Tool tested in several case studies"
-msgstr ""
+msgstr "Orodje preizkušeno v več študijah primerov"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:11
@@ -2155,7 +2156,7 @@ msgstr "Orodja"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:192
 msgid "Tools and data"
-msgstr ""
+msgstr "Orodja in podatki"
 
 # ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
@@ -2164,43 +2165,43 @@ msgstr "Skupaj"
 
 #: ../../climateadapt/vocabulary.py:316
 msgid "Tourism"
-msgstr ""
+msgstr "Turizem"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:410
 msgid "Transnational regions and other regions and countries"
-msgstr ""
+msgstr "Transnacionalne regije ter druge regije in države"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:48
 #: ../../climateadapt/vocabulary.py:317
 msgid "Transport"
-msgstr "Prevoz"
+msgstr "Transport"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:36
 msgid "Tutorial videos"
-msgstr ""
+msgstr "Vadniški videoposnetki"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:461
 msgid "URBACT"
-msgstr ""
+msgstr "URBACT"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:45
 #: ../../climateadapt/vocabulary.py:318
 msgid "Urban"
-msgstr "Urban"
+msgstr "Urbano"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:406
 msgid "Urban Innovative Actions"
-msgstr ""
+msgstr "Urbane inovativne akcije"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:123
 msgid "Using the Adaptation Support Tool"
-msgstr ""
+msgstr "Uporaba orodja za podporo prilagajanju"
 
 #: ../../climateadapt/tiles/pt/filter_acecontent.pt:61
 msgid "View all"
-msgstr ""
+msgstr "Prikaži vse"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:67
@@ -2209,12 +2210,12 @@ msgstr "Oglejte si vse prispevke v katalogu virov"
 
 #: ../../climateadapt/tiles/pt/relevant_acecontent.pt:119
 msgid "View more"
-msgstr ""
+msgstr "Prikaži več"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
 msgid "View on DRMKC"
-msgstr "Pogled na DRMKC"
+msgstr "Ogled na DRMKC"
 
 # ,
 #: ../../climateadapt/vocabulary.py:330
@@ -2223,7 +2224,7 @@ msgstr "Ocena ranljivosti"
 
 #: ../../climateadapt/vocabulary.py:606
 msgid "Water Management"
-msgstr ""
+msgstr "Vodarstvo"
 
 # ,
 #: ../../climateadapt/vocabulary.py:363
@@ -2240,40 +2241,41 @@ msgstr "Upravljanje z vodami"
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:56
 #: ../../climateadapt/browser/pt/casestudy_view.pt:109
 msgid "Websites"
-msgstr "Spletna mesta"
+msgstr "Spletne strani"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:29
 #: ../../climateadapt/browser/pt/aceproject_view.pt:55
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:108
 msgid "Websites:"
-msgstr "Spletna mesta:"
+msgstr "Spletne strani:"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:112
 msgid "When:"
-msgstr ""
+msgstr "kdaj:"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:116
 msgid "Where:"
-msgstr ""
+msgstr "kje:"
 
 #: ../../climateadapt/vocabulary.py:625
 msgid "Wildfire"
-msgstr ""
+msgstr "gozdni požar"
 
 #: ../../climateadapt/vocabulary.py:595
 msgid "Wildfires"
-msgstr ""
+msgstr "Požari v naravi"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
 msgid "Year:"
-msgstr ""
+msgstr "leto:"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:33
 msgid "back to search"
 msgstr "Nazaj na iskanje"
 
+#. richtexteditor based on the description of images."
 #. Default: "Enable automatic image captioning for images set in the richtexteditor based on the description of images."
 #: ../../climateadapt/image_scales/interfaces.py:211
 msgid "image_captioning_description"

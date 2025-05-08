@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,384 +19,384 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:596
 msgid "-NONSPECIFIC-"
-msgstr ""
+msgstr "-NIET SPECIFIEK-"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:130
 msgid "1. Preparing the ground for adaptation"
-msgstr ""
+msgstr "1. Het voorbereiden van de weg voor aanpassing"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:136
 msgid "1.1 Obtaining high-level political support for adaptation"
-msgstr ""
+msgstr "1.1 Het verkrijgen van politieke steun op hoog niveau voor aanpassing"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:83
 msgid "1.1 Obtaining political support for adaptation"
-msgstr ""
+msgstr "1.1 Het verkrijgen van politieke steun voor aanpassing"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:88
 msgid "1.2 Collecting initial information"
-msgstr ""
+msgstr "1.2 Het verzamelen van initiële informatie"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:140
 msgid "1.2 Setting up the process in a structured way"
-msgstr ""
+msgstr "1.2 Het proces gestructureerd inrichten"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:144
 msgid "1.3 Estimating human and financial resources needed and identifying potential sources of long-term funding"
-msgstr ""
+msgstr "1.3 Het inschatten van de benodigde menselijke en financiële middelen en het identificeren van potentiële bronnen van langetermijnfinanciering"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:93
 msgid "1.3 Setting up adaptation processes within and beyond the municipality"
-msgstr ""
+msgstr "1.3 Het opzetten van adaptatieprocessen binnen en buiten de gemeente"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:148
 msgid "1.4 Collecting information"
-msgstr ""
+msgstr "1.4 Informatie verzamelen"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:98
 msgid "1.4 Identifying and obtaining human and technical resources"
-msgstr ""
+msgstr "1.4 Identificeren en verkrijgen van menselijke en technische middelen"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:152
 msgid "1.5 Communicating adaptation and raising awareness"
-msgstr ""
+msgstr "1.5 Aanpassing communiceren en het bewustzijn vergroten"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:103
 msgid "1.5 Identifying and obtaining financing and funding"
-msgstr ""
+msgstr "1.5 Identificeren en verkrijgen van financiering en financiering"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:108
 msgid "1.6 Identifying and engaging stakeholders"
-msgstr ""
+msgstr "1.6 Stakeholders identificeren en betrekken"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:156
 msgid "1.6 Preparing the ground for adaptation: Self-check"
-msgstr ""
+msgstr "1.6 De basis voorbereiden voor aanpassing: zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:113
 msgid "1.7 Communicating adaptation to different target audiences"
-msgstr ""
+msgstr "1.7 Aanpassing communiceren naar verschillende doelgroepen"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:118
 msgid "1.8 Finding additional support"
-msgstr ""
+msgstr "1.8 Extra ondersteuning vinden"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:123
 msgid "1.9 Preparing the ground for adaptation: Self check"
-msgstr ""
+msgstr "1.9 Het terrein voorbereiden op aanpassing: zelfcontrole"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:415
 msgid "12 regions"
-msgstr ""
+msgstr "12 regio's"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:163
 msgid "2. Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "2. Het beoordelen van de risico's en kwetsbaarheden van de klimaatverandering"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:138
 msgid "2.1 Recognizing past and present climate impacts"
-msgstr ""
+msgstr "2.1 Erkenning van de vroegere en huidige klimaateffecten"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:168
 msgid "2.1 Understanding climate risks"
-msgstr ""
+msgstr "2.1 Klimaatrisico’s begrijpen"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:172
 msgid "2.2 Frameworks for assessing climate impacts, vulnerabilities and risks"
-msgstr ""
+msgstr "2.2 Kaders voor het beoordelen van klimaateffecten, kwetsbaarheden en risico's"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:143
 msgid "2.2 Understanding climate projections and future impacts"
-msgstr ""
+msgstr "2.2 Inzicht in klimaatprojecties en toekomstige gevolgen"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:176
 msgid "2.3 General sequence for climate impacts, vulnerabilities and risk assessments"
-msgstr ""
+msgstr "2.3 Algemene volgorde voor klimaateffecten, kwetsbaarheden en risicobeoordelingen"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:148
 msgid "2.3 Identifying vulnerable urban sectors"
-msgstr ""
+msgstr "2.3 Identificatie van kwetsbare stedelijke sectoren"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:153
 msgid "2.4 Conducting risk and vulnerability assessments"
-msgstr ""
+msgstr "2.4 Het uitvoeren van risico- en kwetsbaarheidsbeoordelingen"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:180
 msgid "2.4 Taking trans-boundary issues into account"
-msgstr ""
+msgstr "2.4 Rekening houden met grensoverschrijdende kwesties"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:184
 msgid "2.5 Addressing knowledge gaps and dealing with uncertainties"
-msgstr ""
+msgstr "2.5 Kennislacunes aanpakken en omgaan met onzekerheden"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:158
 msgid "2.5 Understanding the role of surrounding areas in adaptation"
-msgstr ""
+msgstr "2.5 Inzicht in de rol van omliggende gebieden bij adaptatie"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:163
 msgid "2.6 Identifying main adaptation concerns and defining objectives"
-msgstr ""
+msgstr "2.6 Het identificeren van de belangrijkste aanpassingsproblemen en het definiëren van doelstellingen"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:188
 msgid "2.6 Identifying main adaptation concerns and setting a strategic direction"
-msgstr ""
+msgstr "2.6 Het identificeren van de belangrijkste aanpassingsproblemen en het bepalen van een strategische richting"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:168
 msgid "2.7 Assessing climate change risks and vulnerabilities: Self check"
-msgstr ""
+msgstr "2.7 Risico's en kwetsbaarheden op het gebied van klimaatverandering beoordelen: zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:192
 msgid "2.7 Assessing climate change risks and vulnerabilities: Self-check"
-msgstr ""
+msgstr "2.7 Risico's en kwetsbaarheden op het gebied van klimaatverandering beoordelen: zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:199
 msgid "3. Identifying adaptation options"
-msgstr ""
+msgstr "3. Identificeren van aanpassingsmogelijkheden"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:204
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:183
 msgid "3.1 Creating a catalogue of relevant adaptation options"
-msgstr ""
+msgstr "3.1 Creëren van een catalogus met relevante aanpassingsmogelijkheden"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:208
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:188
 msgid "3.2 Finding examples of good adaptation practices"
-msgstr ""
+msgstr "3.2 Voorbeelden vinden van goede aanpassingspraktijken"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:212
 msgid "3.3 Describing adaptation options in detail"
-msgstr ""
+msgstr "3.3 Aanpassingsmogelijkheden gedetailleerd beschrijven"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:193
 msgid "3.3 Identifying adaptation options: Self check"
-msgstr ""
+msgstr "3.3 Aanpassingsmogelijkheden identificeren: Zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:216
 msgid "3.4 Identifying adaptation options: Self-check"
-msgstr ""
+msgstr "3.4 Aanpassingsopties identificeren: zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:223
 msgid "4. Assessing adaptation options"
-msgstr ""
+msgstr "4. Beoordeling van aanpassingsmogelijkheden"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:229
 msgid "4.1 Assessing possible adaptation options in terms of effects, time, costs, benefits and efforts"
-msgstr ""
+msgstr "4.1 Het beoordelen van mogelijke adaptatieopties in termen van effecten, tijd, kosten, baten en inspanningen"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:208
 msgid "4.1 Choosing an assessment framework for adaptation options"
-msgstr ""
+msgstr "4.1 Kiezen van een afwegingskader voor adaptatiemogelijkheden"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:213
 msgid "4.2 Conducting a cost-benefit analysis of adaptation measures"
-msgstr ""
+msgstr "4.2 Uitvoeren van een kosten-batenanalyse van adaptatiemaatregelen"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:233
 msgid "4.2 Prioritising adaptation options and selecting preferred ones"
-msgstr ""
+msgstr "4.2 Prioriteit geven aan aanpassingsopties en de voorkeursopties selecteren"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:237
 msgid "4.3 Preparing a strategy document and getting political approval"
-msgstr ""
+msgstr "4.3 Een strategiedocument voorbereiden en politieke goedkeuring verkrijgen"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:218
 msgid "4.3 Prioritising adaptation options"
-msgstr ""
+msgstr "4.3 Prioriteit geven aan aanpassingsopties"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:223
 msgid "4.4 Assessing and selecting adaptation options: Self check"
-msgstr ""
+msgstr "4.4 Beoordelen en selecteren van aanpassingsmogelijkheden: Zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:241
 msgid "4.4 Assessing and selecting adaptation options: Self-check"
-msgstr ""
+msgstr "4.4 Beoordelen en selecteren van aanpassingsmogelijkheden: Zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:251
 msgid "5. Implementing Adaptation"
-msgstr ""
+msgstr "5. Aanpassing implementeren"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:238
 msgid "5.1 Designing an effective adaptation action plan"
-msgstr ""
+msgstr "5.1 Ontwerpen van een effectief adaptatieactieplan"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:257
 msgid "5.1 Developing an adaptation action plan"
-msgstr ""
+msgstr "5.1 Het ontwikkelen van een adaptatieactieplan"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:243
 msgid "5.2 Finding examples of adaptation action plans"
-msgstr ""
+msgstr "5.2 Voorbeelden vinden van aanpassingsactieplannen"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:261
 msgid "5.2 Organising governance of implementation across sectors and levels"
-msgstr ""
+msgstr "5.2 Organiseren van het beheer van de implementatie over sectoren en niveaus heen"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:248
 msgid "5.3 Mainstreaming adaptation in urban policies and plans"
-msgstr ""
+msgstr "5.3 Integratie van aanpassing in stedelijk beleid en plannen"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:265
 msgid "5.3 Mainstreaming: Integrating adaptation into instruments and sector policies"
-msgstr ""
+msgstr "5.3 Mainstreaming: Integratie van aanpassing in instrumenten en sectoraal beleid"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:253
 msgid "5.4 Addressing climate change through adaptation and mitigation"
-msgstr ""
+msgstr "5.4 De klimaatverandering aanpakken door aanpassing en mitigatie"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:269
 msgid "5.4 Multilevel coordination and supportive governance framework"
-msgstr ""
+msgstr "5.4 Coördinatie op meerdere niveaus en ondersteunend bestuurskader"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:273
 msgid "5.5 Implementing Adaptation: Self-check"
-msgstr ""
+msgstr "5.5 Implementeren van adaptatie: zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:258
 msgid "5.5 Implementing adaptation: Self check"
-msgstr ""
+msgstr "5.5 Implementeren van aanpassing: Zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:280
 msgid "6. Monitoring and Evaluating Adaptation"
-msgstr ""
+msgstr "6. Aanpassing monitoren en evalueren"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:273
 msgid "6.1 Developing the monitoring and evaluation approach"
-msgstr ""
+msgstr "6.1 Ontwikkeling van de monitoring- en evaluatieaanpak"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:287
 msgid "6.1 Understanding drivers and purposes"
-msgstr ""
+msgstr "6.1 Drijfveren en doeleinden begrijpen"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:291
 msgid "6.2 Deciding who to involve in the process"
-msgstr ""
+msgstr "6.2 Beslissen wie bij het proces wordt betrokken"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:278
 msgid "6.2 Defining monitoring indicators"
-msgstr ""
+msgstr "6.2 Het definiëren van monitoringindicatoren"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:295
 msgid "6.3 Defining MRE indicators and mixed-methods approach"
-msgstr ""
+msgstr "6.3 Het definiëren van MRE-indicatoren en gemengde methodenbenadering"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:283
 msgid "6.3 Finding examples of adaptation monitoring indicators"
-msgstr ""
+msgstr "6.3 Voorbeelden vinden van indicatoren voor adaptatiemonitoring"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:299
 msgid "6.4 Communicating results to inform policy and practice"
-msgstr ""
+msgstr "6.4 Resultaten communiceren om beleid en praktijk te informeren"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:288
 msgid "6.4 Using monitoring results to enhance the process of adaptation"
-msgstr ""
+msgstr "6.4 Gebruik van monitoringresultaten om het aanpassingsproces te verbeteren"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:293
 msgid "6.5 Monitoring and evaluating adaptation: Self check"
-msgstr ""
+msgstr "6.5 Monitoring en evaluatie van adaptatie: Zelfcontrole"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:303
 msgid "6.5 Monitoring and evaluating adaptation: Self-check"
-msgstr ""
+msgstr "6.5 Monitoring en evaluatie van adaptatie: Zelfcontrole"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:72
 msgid "<!-- <span class=\"map-type\">NAS</span> --> HHWS available (click on country for further information)"
-msgstr ""
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> HHWS beschikbaar (klik op land voor meer informatie)"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:79
 msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
-msgstr ""
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> Geen informatie"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:429
 msgid "<a href=\"https://oppla.eu/about\">Oppla</a> is the EU Repository of Nature-Based Solutions. It provides a knowledge marketplace, where the latest thinking on natural capital, ecosystem services and nature-based solutions is brought together. Its purpose is to simplify how to share, obtain and create knowledge to better manage our environment"
-msgstr ""
+msgstr "<a href=\"https://oppla.eu/about\">Oppla</a> is de EU-opslagplaats voor op de natuur gebaseerde oplossingen. Het biedt een kennismarktplaats, waar de nieuwste inzichten op het gebied van natuurlijk kapitaal, ecosysteemdiensten en op de natuur gebaseerde oplossingen worden samengebracht. Het doel is om te vereenvoudigen hoe kennis kan worden gedeeld, verkregen en gecreëerd om ons milieu beter te beheren"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:462
 msgid "<a href=\"https://urbact.eu/\">URBACT’s</a> mission is to enable cities to work together and develop integrated solutions to common urban challenges, by networking, learning from one another’s experiences, drawing lessons and identifying good practices to improve urban policies."
-msgstr ""
+msgstr "<a href=\"https://urbact.eu/\">URBACT's</a> missie is om steden in staat te stellen samen te werken en geïntegreerde oplossingen te ontwikkelen voor gemeenschappelijke stedelijke uitdagingen, door te netwerken, van elkaars ervaringen te leren, lessen te trekken en goede praktijken te identificeren om het stedelijk beleid te verbeteren."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:484
 msgid "<a href=\"https://www.climatealliance.org/home.html\">Climate Alliance</a> <br><a href=\"https://www.ccre.org\">Council of European Municipalities and Regions (CEMR)</a> <br><a href=\"https://www.cdp.net/en\">CDP</a> <br><a href=\"https://www.c40.org\">C40</a> <br><a href=\"https://fedarene.org\">European Federation of Agencies and Regions for Energy and Environment (FEDARENE)</a> <br><a href=\"https://iclei-europe.org\">Local Governments for Sustainability (ICLEI) Europe</a>"
-msgstr ""
+msgstr "<a href=\"https://www.climatealliance.org/home.html\">Klimaatalliantie</a> <br><a href=\"https://www.ccre.org\">Raad van Europese Gemeenten en Regio's (CEMR)</a> <br><a href=\"https://www.cdp.net/en\">CDP</a> <br><a href=\"https://www.c40.org\">C40</a> <br><a href=\"https://fedarene.org\">Europese Federatie van Agentschappen en Regio's voor Energie en Milieu (FEDARENE)</a> <br><a href=\"https://iclei-europe.org\">Lokale overheden voor duurzaamheid (ICLEI) Europa</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:407
 msgid "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> is an Initiative of the European Union that provides urban areas throughout Europe with resources to test new and unproven solutions to address urban challenge"
-msgstr ""
+msgstr "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> is een initiatief van de Europese Unie dat stedelijke gebieden in heel Europa voorziet van middelen om nieuwe en onbewezen oplossingen te testen om stedelijke uitdagingen aan te pakken"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:292
 msgid "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:142
 msgid "<strong>Language:</strong> <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "<strong>Taal:</strong> <span>${DYNAMIC_CONTENT}</span>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:86
 msgid "A background document for the event is available <a href=\"${DYNAMIC_CONTENT}\">here</a>"
-msgstr ""
+msgstr "Een achtergronddocument voor het evenement is <a href=\"${DYNAMIC_CONTENT}\">hier</a> beschikbaar"
 
 #: ../../climateadapt/image_scales/interfaces.py:93
 msgid "A value for the quality of 2x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 62."
-msgstr ""
+msgstr "Een waarde voor de kwaliteit van 2x afbeeldingen met een hoge pixeldichtheid, van 1 (laagste) tot 95 (hoogste). Een waarde van 0 betekent dat de standaardwaarde van plone.scaling wordt gebruikt, die momenteel 62 is."
 
 #: ../../climateadapt/image_scales/interfaces.py:106
 msgid "A value for the quality of 3x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 51."
-msgstr ""
+msgstr "Een waarde voor de kwaliteit van 3x afbeeldingen met een hoge pixeldichtheid, van 1 (laagste) tot 95 (hoogste). Een waarde van 0 betekent dat de standaardwaarde van plone.scaling wordt gebruikt, die momenteel 51 is."
 
 #: ../../climateadapt/image_scales/interfaces.py:67
 msgid "A value for the quality of scaled images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 88."
-msgstr ""
+msgstr "Een waarde voor de kwaliteit van geschaalde afbeeldingen, van 1 (laagste) tot 95 (hoogste). Een waarde van 0 betekent dat de standaardwaarde van plone.scaling wordt gebruikt, die momenteel 88 is."
 
 #: ../../climateadapt/vocabulary.py:732
 msgid "A1: Governance and Institutional: Policy Instruments"
-msgstr ""
+msgstr "A1: Bestuur en institutioneel: beleidsinstrumenten"
 
 #: ../../climateadapt/vocabulary.py:765
 msgid "A1: Policy Instruments"
-msgstr ""
+msgstr "A1: Beleidsinstrumenten"
 
 #: ../../climateadapt/vocabulary.py:733
 msgid "A2: Governance and Institutional: Management and planning"
-msgstr ""
+msgstr "A2: Bestuur en institutioneel: management en planning"
 
 #: ../../climateadapt/vocabulary.py:766
 msgid "A2: Management and planning"
-msgstr ""
+msgstr "A2: Beheer en planning"
 
 #: ../../climateadapt/vocabulary.py:767
 msgid "A3: Coordination cooperation and networks"
-msgstr ""
+msgstr "A3: Coördinatie samenwerking en netwerken"
 
 #: ../../climateadapt/vocabulary.py:736
 msgid "A3: Governance and Institutional: Coordination cooperation and networks"
-msgstr ""
+msgstr "A3: Bestuur en institutioneel: Coördinatie samenwerking en netwerken"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:54
 msgid "About the Urban Adaptation Support Tool"
-msgstr ""
+msgstr "Over de ondersteuningstool voor stedelijke adaptatie"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:52
 msgid "Adaptation <br /> Support Tool"
-msgstr ""
+msgstr "Aanpassing <br /> Ondersteuningstool"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:60
 msgid "Adaptation Details"
-msgstr "Aanpassingsgegevens"
+msgstr "Aanpassingsdetails"
 
 # ,
 #: ../../climateadapt/vocabulary.py:327
 msgid "Adaptation Measures and Actions"
-msgstr "Aanpassingsmaatregelen en acties"
+msgstr "Aanpassingsmaatregelen en -acties"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:59
 msgid "Adaptation Options Implemented In This Case"
-msgstr "Aanpassingsopties die in dit geval zijn geïmplementeerd"
+msgstr "Aanpassingsopties geïmplementeerd in dit geval"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:198
 msgid "Adaptation Options and Case Studies"
-msgstr ""
+msgstr "Aanpassingsopties en casestudies"
 
 # ,
 #: ../../climateadapt/vocabulary.py:329
@@ -404,165 +405,165 @@ msgstr "Aanpassingsplannen en strategieën"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:253
 msgid "Adaptation Sectors"
-msgstr ""
+msgstr "Aanpassingssectoren"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:73
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:54
 #: ../../climateadapt/browser/pt/video_view.pt:113
 msgid "Adaptation elements"
-msgstr ""
+msgstr "Aanpassingselementen"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:158
 #: ../../climateadapt/browser/pt/casestudy_view.pt:340
 msgid "Adaptation elements:"
-msgstr ""
+msgstr "Aanpassingselementen:"
 
 # ,
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:283
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:265
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:13
 msgid "Adaptation options"
-msgstr "Aanpassingsopties"
+msgstr "Aanpassingsmogelijkheden"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:95
 msgid "Adaptation portal or platform reported"
-msgstr ""
+msgstr "Aanpassingsportaal of platform gerapporteerd"
 
 #: ../../climateadapt/browser/BKPcountries.py:182
 #: ../../climateadapt/browser/countries.py:186
 msgid "Adaptation portals and platforms"
-msgstr ""
+msgstr "Aanpassingsportals en platforms"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:440
 msgid "Adaptation to Climate Change: The goal of the <a href=\"https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal-transformation_en\">EU mission</a> - Adaptation to climate change is to foster the development of innovative solutions to adapt to climate change and encourage regions, cities and communities to lead the societal transformation."
-msgstr ""
+msgstr "Aanpassing aan de klimaatverandering: Het doel van de <a href=\"https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change- including-societal-transformation_en\">missie van de EU</a> - Aanpassing aan de klimaatverandering is het bevorderen van de ontwikkeling van innovatieve oplossingen voor zich aanpassen aan de klimaatverandering en regio's, steden en gemeenschappen aanmoedigen om leiding te geven aan de maatschappelijke transformatie."
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:115
 msgid "Adaptation to climate change"
-msgstr ""
+msgstr "Aanpassing aan de klimaatverandering"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:63
 msgid "Adaptation to climate change in urban areas"
-msgstr ""
+msgstr "Aanpassing aan de klimaatverandering in stedelijke gebieden"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:371
 msgid "AdapteCCA"
-msgstr "Adaptecca"
+msgstr "AdapteCCA"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
 #: ../../climateadapt/browser/pt/casestudy_view.pt:73
 msgid "Additional Details"
-msgstr "aanvullende details"
+msgstr "Aanvullende details"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:420
 msgid "Adriatic and Ionian"
-msgstr ""
+msgstr "Adriatisch en Ionisch"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:452
 msgid "Adriatic-Ionian"
-msgstr ""
+msgstr "Adriatisch-Ionisch"
 
 #: ../../climateadapt/vocabulary.py:1304
 msgid "Advanced"
-msgstr ""
+msgstr "Geavanceerd"
 
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:196
 msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
-msgstr "Geavanceerde zoekopdracht naar database-items voor klimaat-adapt <a href=\"/redirect_to_search_page\"> hier </a>"
+msgstr "Geavanceerd zoeken naar database-items van Climate-Adapt <a href=\"/redirect_to_search_page\">hier</a>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Agenda and supporting documents"
-msgstr ""
+msgstr "Agenda en ondersteunende documenten"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:37
 #: ../../climateadapt/vocabulary.py:301
 msgid "Agriculture"
-msgstr "landbouw"
+msgstr "Landbouw"
 
 #: ../../climateadapt/vocabulary.py:594
 msgid "Air pollution and aero-allergens"
-msgstr ""
+msgstr "Luchtvervuiling en luchtvaartallergenen"
 
 #: ../../climateadapt/tiles/search_acecontent.py:882
 msgid "All adaptation sectors"
-msgstr ""
+msgstr "Alle adaptatiesectoren"
 
 #: ../../climateadapt/tiles/search_acecontent.py:879
 msgid "All climate impacts"
-msgstr ""
+msgstr "Alle klimaateffecten"
 
 #: ../../climateadapt/tiles/search_acecontent.py:885
 msgid "All key type measures"
-msgstr ""
+msgstr "Alle belangrijke maatregelen"
 
 #: ../../climateadapt/image_scales/interfaces.py:42
 msgid "Allowed image sizes"
-msgstr ""
+msgstr "Toegestane afbeeldingsformaten"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:419
 msgid "Alpine"
-msgstr ""
+msgstr "Alpen"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:455
 msgid "Alpine Space"
-msgstr ""
+msgstr "Alpenruimte"
 
 #: ../../climateadapt/vocabulary.py:624
 msgid "Aridity"
-msgstr ""
+msgstr "Dorheid"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:82
 msgid "Assessing adaptation options"
-msgstr ""
+msgstr "Het beoordelen van aanpassingsmogelijkheden"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:204
 msgid "Assessing and selecting adaptation options"
-msgstr ""
+msgstr "Het beoordelen en selecteren van aanpassingsmogelijkheden"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:134
 msgid "Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "Het beoordelen van de risico's en kwetsbaarheden van de klimaatverandering"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:66
 msgid "Assessing risks and vulnerability <br /> to climate change"
-msgstr ""
+msgstr "Risico's en kwetsbaarheid beoordelen <br /> voor klimaatverandering"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:458
 msgid "Atlantic Area"
-msgstr ""
+msgstr "Atlantisch gebied"
 
 #: ../../climateadapt/vocabulary.py:738
 msgid "B1: Economic and Finance: Financing incentive instruments"
-msgstr ""
+msgstr "B1: Economisch en financieel: Financieringsstimuleringsinstrumenten"
 
 #: ../../climateadapt/vocabulary.py:768
 msgid "B1: Financing incentive instruments"
-msgstr ""
+msgstr "B1: Stimuleringsinstrumenten voor financiering"
 
 #: ../../climateadapt/vocabulary.py:739
 msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
-msgstr ""
+msgstr "B2: Economisch en financieel: instrumenten voor verzekeringen en risicodeling"
 
 #: ../../climateadapt/vocabulary.py:769
 msgid "B2: Insurance and risk sharing instruments"
-msgstr ""
+msgstr "B2: Verzekerings- en risicodelingsinstrumenten"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:461
 msgid "Balkan-Mediterranean"
-msgstr ""
+msgstr "Balkan-Middellandse Zee"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 msgid "Baltic Sea"
-msgstr ""
+msgstr "Oostzee"
 
 #: ../../climateadapt/vocabulary.py:1303
 msgid "Basic"
-msgstr ""
+msgstr "Basis"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:39
@@ -577,7 +578,7 @@ msgstr "Biogeografische regio's"
 
 #: ../../climateadapt/vocabulary.py:1255
 msgid "Building"
-msgstr ""
+msgstr "Gebouw"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:49
@@ -587,68 +588,68 @@ msgstr "Gebouwen"
 
 #: ../../climateadapt/vocabulary.py:304
 msgid "Business and industry"
-msgstr ""
+msgstr "Zaken en industrie"
 
 #: ../../climateadapt/vocabulary.py:770
 msgid "C1: Grey options"
-msgstr ""
+msgstr "C1: Grijze opties"
 
 #: ../../climateadapt/vocabulary.py:740
 msgid "C1: Physical and technological: Grey options"
-msgstr ""
+msgstr "C1: Fysisch en technologisch: grijze opties"
 
 #: ../../climateadapt/vocabulary.py:741
 msgid "C2: Physical and technological: Technological options"
-msgstr ""
+msgstr "C2: Fysisch en technologisch: Technologische opties"
 
 #: ../../climateadapt/vocabulary.py:771
 msgid "C2: Technological options"
-msgstr ""
+msgstr "C2: Technologische opties"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:48
 msgid "Case Study Description"
-msgstr "Case study Beschrijving"
+msgstr "Casestudy Beschrijving"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:292
 msgid "Case Study Illustrations"
-msgstr ""
+msgstr "Casestudy-illustraties"
 
 #: ../../climateadapt/vocabulary.py:384
 msgid "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
-msgstr ""
+msgstr "Case ontwikkeld en geïmplementeerd en gedeeltelijk gefinancierd als maatregel voor aanpassing aan de klimaatverandering."
 
 #: ../../climateadapt/vocabulary.py:380
 msgid "Case developed and implemented as a Climate Change Adaptation Measure."
-msgstr ""
+msgstr "Case ontwikkeld en geïmplementeerd als een maatregel voor aanpassing aan de klimaatverandering."
 
 #: ../../climateadapt/vocabulary.py:390
 msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
-msgstr ""
+msgstr "Case voornamelijk ontwikkeld en geïmplementeerd vanwege andere beleidsdoelstellingen, maar met aanzienlijke aandacht voor aspecten van aanpassing aan de klimaatverandering"
 
 # ,
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:296
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:251
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:14
 msgid "Case studies"
-msgstr "Casestudy"
+msgstr "Casestudies"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:177
 msgid "Case studies and Adaptation Options"
-msgstr ""
+msgstr "Casestudies en aanpassingsopties"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:301
 msgid "Case studies collected at national level in Spain, provided by AdapteCCA.es"
-msgstr ""
+msgstr "Casestudies verzameld op nationaal niveau in Spanje, geleverd door AdapteCCA.es"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:200
 msgid "Case studies related to this option:"
-msgstr "Case studies met betrekking tot deze optie:"
+msgstr "Casestudies met betrekking tot deze optie:"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:467
 msgid "Central Europe"
-msgstr ""
+msgstr "Midden-Europa"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:51
@@ -657,30 +658,30 @@ msgstr "Uitdagingen"
 
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
-msgstr ""
+msgstr "Uitchecken gemaakt"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:51
 msgid "Choose a country"
-msgstr ""
+msgstr "Kies een land"
 
 #: ../../climateadapt/tiles/pt/country_select.pt:10
 msgid "Choose a country:"
-msgstr ""
+msgstr "Kies een land:"
 
 #: ../../climateadapt/browser/pt/regions-section-select.pt:7
 #: ../../climateadapt/browser/pt/transnational_regions.pt:431
 #: ../../climateadapt/tiles/pt/transregional_select.pt:112
 msgid "Choose a region"
-msgstr ""
+msgstr "Kies een regio"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:69
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:46
 msgid "Choose thematic map:"
-msgstr ""
+msgstr "Kies thematische kaart:"
 
 #: ../../climateadapt/vocabulary.py:1296
 msgid "Citizen"
-msgstr ""
+msgstr "Inwoner"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:231
@@ -689,27 +690,27 @@ msgstr "Stad"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:201
 msgid "City Initiatives"
-msgstr ""
+msgstr "Stadsinitiatieven"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:483
 msgid "City Networks"
-msgstr ""
+msgstr "Stadsnetwerken"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:260
 msgid "Climate Impacts"
-msgstr ""
+msgstr "Klimaateffecten"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:111
 msgid "Climate Impacts in Europe"
-msgstr ""
+msgstr "Klimaateffecten in Europa"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:58
 msgid "Climate change impacts on European cities"
-msgstr ""
+msgstr "De gevolgen van klimaatverandering voor Europese steden"
 
 #: ../../climateadapt/tiles/search_acecontent.py:835
 msgid "Climate impact"
-msgstr ""
+msgstr "Impact op het klimaat"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:70
@@ -727,19 +728,19 @@ msgstr "Klimaateffecten:"
 
 #: ../../climateadapt/vocabulary.py:331
 msgid "Climate services"
-msgstr ""
+msgstr "Klimaatdiensten"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:63
 msgid "Climate-ADAPT Event"
-msgstr ""
+msgstr "Klimaat-ADAPT-evenement"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:300
 msgid "Climate-ADAPT case studies"
-msgstr ""
+msgstr "Casestudy's over klimaat-ADAPT"
 
 #: ../../climateadapt/vocabulary.py:593
 msgid "Climate-sensitive diseases"
-msgstr ""
+msgstr "Klimaatgevoelige ziekten"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:40
@@ -749,11 +750,11 @@ msgstr "Kustgebieden"
 
 #: ../../climateadapt/vocabulary.py:628
 msgid "Coastal flooding"
-msgstr ""
+msgstr "Kustoverstromingen"
 
 #: ../../climateadapt/vocabulary.py:620
 msgid "Cold spells and frost"
-msgstr ""
+msgstr "Koude periodes en vorst"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:218
@@ -762,11 +763,11 @@ msgstr "Opmerkingen:"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:10
 msgid "Common definitions of the terms used frequently in the clearinghouse."
-msgstr ""
+msgstr "Gemeenschappelijke definities van de termen die vaak in het clearinghouse worden gebruikt."
 
 #: ../../climateadapt/vocabulary.py:1229
 msgid "Companies, SMEs and private associations"
-msgstr ""
+msgstr "Bedrijven, KMO's en particuliere verenigingen"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:105
@@ -778,12 +779,12 @@ msgstr "Contact"
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:39
 msgid "Contact information for the Observatory"
-msgstr "Contactgegevens voor het observatorium"
+msgstr "Contactgegevens van het Observatorium"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:30
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:158
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
-msgstr ""
+msgstr "De inhoud op de pagina's van de European Climate Data Explorer wordt geleverd door de <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a>, geïmplementeerd door ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:205
@@ -792,7 +793,7 @@ msgstr "Bijdrager:"
 
 #: ../../climateadapt/vocabulary.py:339
 msgid "Cost-benefit analysis and maintenance costs"
-msgstr ""
+msgstr "Kosten-batenanalyse en onderhoudskosten"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:41
@@ -819,27 +820,27 @@ msgstr "Gemaakt door:"
 
 #: ../../climateadapt/vocabulary.py:603
 msgid "Critical Infrastructure"
-msgstr ""
+msgstr "Kritieke infrastructuur"
 
 #: ../../climateadapt/vocabulary.py:306
 msgid "Cultural heritage"
-msgstr ""
+msgstr "Cultureel erfgoed"
 
 #: ../../climateadapt/vocabulary.py:772
 msgid "D1: Green options"
-msgstr ""
+msgstr "D1: Groene opties"
 
 #: ../../climateadapt/vocabulary.py:744
 msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
-msgstr ""
+msgstr "D1: Op de natuur gebaseerde oplossingen en op ecosystemen gebaseerde benaderingen: groene opties"
 
 #: ../../climateadapt/vocabulary.py:773
 msgid "D2: Blue options"
-msgstr ""
+msgstr "D2: Blauwe opties"
 
 #: ../../climateadapt/vocabulary.py:748
 msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
-msgstr ""
+msgstr "D2: Op de natuur gebaseerde oplossingen en op ecosystemen gebaseerde benaderingen: blauwe opties"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
@@ -848,11 +849,11 @@ msgstr "DRMKC"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:418
 msgid "Danube"
-msgstr ""
+msgstr "Donau"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:171
 msgid "Data and Tools"
-msgstr ""
+msgstr "Gegevens en hulpmiddelen"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
@@ -871,7 +872,7 @@ msgstr "Datum van publicatie:"
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:93
 msgid "Date of release:"
-msgstr "Datum van publicatie:"
+msgstr "Datum van uitgave:"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:25
@@ -891,11 +892,11 @@ msgstr "Beschrijving:"
 #: ../../climateadapt/browser/overrides.py:42
 #: ../../climateadapt/vocabulary.py:307
 msgid "Disaster Risk Reduction"
-msgstr "Rampenrisico -vermindering"
+msgstr "Vermindering van het risico op rampen"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:82
 msgid "Download the detailed agenda <a href=\"${DYNAMIC_CONTENT}\">here</a>"
-msgstr ""
+msgstr "Download de gedetailleerde agenda <a href=\"${DYNAMIC_CONTENT}\">hier</a>"
 
 # ,
 #: ../../climateadapt/vocabulary.py:357
@@ -904,7 +905,7 @@ msgstr "Droogte"
 
 #: ../../climateadapt/vocabulary.py:592
 msgid "Droughts and floods"
-msgstr ""
+msgstr "Droogtes en overstromingen"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
@@ -913,35 +914,35 @@ msgstr "Duur:"
 
 #: ../../climateadapt/vocabulary.py:774
 msgid "E1: Information and awareness raising"
-msgstr ""
+msgstr "E1: Informatie en bewustmaking"
 
 #: ../../climateadapt/vocabulary.py:752
 msgid "E1: Knowledge and behavioural change: Information and awareness raising"
-msgstr ""
+msgstr "E1: Kennis en gedragsverandering: Informatie en bewustmaking"
 
 #: ../../climateadapt/vocabulary.py:775
 msgid "E2: Capacity building empowering and lifestyle practices"
-msgstr ""
+msgstr "E2: Capaciteitsopbouw, empowerment en levensstijlpraktijken"
 
 #: ../../climateadapt/vocabulary.py:756
 msgid "E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices"
-msgstr ""
+msgstr "E2: Kennis en gedragsverandering: capaciteitsopbouw, empowerment en levensstijlpraktijken"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:439
 msgid "EU Missions"
-msgstr ""
+msgstr "EU-missies"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:349
 msgid "EU funding of adaptation"
-msgstr ""
+msgstr "EU-financiering van aanpassing"
 
 #: ../../climateadapt/vocabulary.py:338
 msgid "Economic aspects"
-msgstr ""
+msgstr "Economische aspecten"
 
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
-msgstr ""
+msgstr "Ecosystemen en op de natuur gebaseerde oplossingen"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47
@@ -951,44 +952,44 @@ msgstr "Energie"
 
 #: ../../climateadapt/vocabulary.py:335
 msgid "Environmental aspects"
-msgstr ""
+msgstr "Milieuaspecten"
 
 #: ../../climateadapt/vocabulary.py:1251
 msgid "European"
-msgstr ""
+msgstr "Europese"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:241
 msgid "European Climate Data Explorer"
-msgstr ""
+msgstr "Europese klimaatgegevensverkenner"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:395
 msgid "European Climate Pact"
-msgstr ""
+msgstr "Europees Klimaatpact"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:260
 msgid "European Drought Observatory"
-msgstr ""
+msgstr "Europees Waarnemingscentrum voor Droogte"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Event"
-msgstr ""
+msgstr "Evenement"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:25
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:17
 msgid "Events"
-msgstr ""
+msgstr "Evenementen"
 
 #: ../../climateadapt/vocabulary.py:1305
 msgid "Expert"
-msgstr ""
+msgstr "Deskundige"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:298
 msgid "Explore Forest adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
-msgstr ""
+msgstr "Verken casestudy's over bosaanpassing in termen van geografische locatie, thematische dekking en link naar aanpassingsopties via de op kaarten gebaseerde Case Study Explorer."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:253
 msgid "Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
-msgstr ""
+msgstr "Verken casestudy's over stedelijke aanpassing in termen van geografische locatie, thematische dekking en link naar aanpassingsopties via de op kaarten gebaseerde Case Study Explorer."
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
@@ -998,7 +999,7 @@ msgstr "Externe bron"
 
 #: ../../climateadapt/vocabulary.py:622
 msgid "Extreme Precipitation"
-msgstr ""
+msgstr "Extreme neerslag"
 
 # ,
 #: ../../climateadapt/vocabulary.py:358
@@ -1007,23 +1008,23 @@ msgstr "Extreme temperaturen"
 
 #: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
-msgstr ""
+msgstr "Extreme hitte"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:417
 msgid "FAO Green Cities"
-msgstr ""
+msgstr "FAO Groene Steden"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:22
 msgid "FAQ for providers"
-msgstr ""
+msgstr "Veelgestelde vragen voor aanbieders"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:29
 msgid "FAQ for users"
-msgstr ""
+msgstr "Veelgestelde vragen voor gebruikers"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:248
 msgid "FISE web portal will help us to improve the health and resilience of our forests, which play a vital role in protecting our biodiversity and in mitigating climate change."
-msgstr ""
+msgstr "Het FISE-webportaal zal ons helpen de gezondheid en veerkracht van onze bossen te verbeteren, die een cruciale rol spelen bij het beschermen van onze biodiversiteit en bij het beperken van de klimaatverandering."
 
 # ,
 #: ../../climateadapt/browser/overrides.py:43
@@ -1033,12 +1034,12 @@ msgstr "Financieel"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:24
 msgid "Find out how to contribute different types of information to Climate-ADAPT."
-msgstr ""
+msgstr "Ontdek hoe u verschillende soorten informatie kunt bijdragen aan Climate-ADAPT."
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
 msgid "Flooding"
-msgstr "Overstroming"
+msgstr "Overstromingen"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:38
@@ -1048,11 +1049,11 @@ msgstr "Bosbouw"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:251
 msgid "Forestry Information System for Europe"
-msgstr ""
+msgstr "Bosbouwinformatiesysteem voor Europa"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:31
 msgid "Frequently asked questions in one place."
-msgstr ""
+msgstr "Veelgestelde vragen op één plek."
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
@@ -1062,15 +1063,15 @@ msgstr "Financieringsprogramma:"
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:216
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:195
 msgid "Funding and Financing"
-msgstr ""
+msgstr "Financiering en financiering"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:7
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:60
 msgid "Geographic characterisation"
-msgstr ""
+msgstr "Geografische karakterisering"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:193
@@ -1094,76 +1095,76 @@ msgstr "Geografische karakterisering:"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:50
 msgid "Getting started"
-msgstr ""
+msgstr "Aan de slag"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:8
 msgid "Glossary"
-msgstr ""
+msgstr "Glossarium"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:13
 msgid "Go back"
-msgstr ""
+msgstr "Ga terug"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:300
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:255
 msgid "Go to Case Study Explorer"
-msgstr ""
+msgstr "Ga naar Case Study Explorer"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:352
 msgid "Go to EU funding of adaptation"
-msgstr ""
+msgstr "Ga naar EU-financiering van aanpassing"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:287
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:269
 msgid "Go to the Adaptation Options"
-msgstr ""
+msgstr "Ga naar de Aanpassingsopties"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:237
 msgid "Go to the European Climate Data Explorer"
-msgstr ""
+msgstr "Ga naar de Europese klimaatgegevensverkenner"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:342
 msgid "Go to the Forest Policy Overview"
-msgstr ""
+msgstr "Ga naar het Bosbeleidoverzicht"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:228
 msgid "Go to the Urban Adaptation Map Viewer"
-msgstr ""
+msgstr "Ga naar de Stedelijke Adaptatie Kaartviewer"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:218
 msgid "Go to the Urban Adaptation Support Tool"
-msgstr ""
+msgstr "Ga naar de Ondersteuningstool Stedelijke Adaptatie"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:311
 msgid "Go to the Urban Policy Overview"
-msgstr ""
+msgstr "Ga naar het Overzicht Grootstedelijk Beleid"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:184
 #: ../../climateadapt/browser/pt/casestudy_view.pt:356
 msgid "Governance level:"
-msgstr "Governance Niveau:"
+msgstr "Bestuursniveau:"
 
 # ,
 #: ../../climateadapt/vocabulary.py:270
 msgid "Guidance"
-msgstr "De begeleiding"
+msgstr "Begeleiding"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:10
 msgid "Guidance documents"
-msgstr ""
+msgstr "Begeleidingsdocumenten"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:17
 msgid "Guidance on the Climate-ADAPT Database Search function."
-msgstr ""
+msgstr "Richtlijnen voor de zoekfunctie van de Climate-ADAPT Database."
 
 #: ../../climateadapt/browser/pt/help-categories.pt:15
 msgid "Guidance to <br /> search function"
-msgstr ""
+msgstr "Begeleiding voor <br /> zoekfunctie"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:111
 msgid "HHWS website"
-msgstr ""
+msgstr "HHWS-website"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:44
@@ -1173,26 +1174,26 @@ msgstr "Gezondheid"
 
 #: ../../climateadapt/vocabulary.py:604
 msgid "Health and Wellbeing"
-msgstr ""
+msgstr "Gezondheid en welzijn"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:146
 #: ../../climateadapt/browser/pt/casestudy_view.pt:328
 msgid "Health impact:"
-msgstr "Gezondheidsimpact:"
+msgstr "Impact op de gezondheid:"
 
 #: ../../climateadapt/vocabulary.py:591
 msgid "Heat"
-msgstr ""
+msgstr "Warmte"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:105
 msgid "Heat index of HHWS:"
-msgstr ""
+msgstr "Warmte-index van HHWS:"
 
 #: ../../climateadapt/image_scales/interfaces.py:79
 msgid "High pixel density mode"
-msgstr ""
+msgstr "Modus voor hoge pixeldichtheid"
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:12
@@ -1201,54 +1202,54 @@ msgstr "Thuis"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
 msgid "How to use the map?"
-msgstr ""
+msgstr "Hoe gebruik je de kaart?"
 
 #: ../../climateadapt/vocabulary.py:312
 msgid "ICT"
-msgstr ""
+msgstr "ICT"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:168
 msgid "IPCC adaptation options categories:"
-msgstr ""
+msgstr "Categorieën van IPCC-aanpassingsopties:"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
 msgid "IPCC categories"
-msgstr "IPCC -categorieën"
+msgstr "IPCC-categorieën"
 
 # ,
 #: ../../climateadapt/vocabulary.py:360
 msgid "Ice and Snow"
-msgstr "Ijs en sneeuw"
+msgstr "IJs en sneeuw"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:74
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:179
 msgid "Identifying adaptation options"
-msgstr ""
+msgstr "Het identificeren van aanpassingsmogelijkheden"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:38
 msgid "If you are new user the video tutorials can help you get started."
-msgstr ""
+msgstr "Als u een nieuwe gebruiker bent, kunnen de video-tutorials u op weg helpen."
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:96
 msgid "If you have any further questions you can contact <a href=\"${DYNAMIC_CONTENT}\">${DYNAMIC_CONTENT}</a>"
-msgstr ""
+msgstr "Als u nog vragen heeft, kunt u contact opnemen met <a href=\"${DYNAMIC_CONTENT}\">${DYNAMIC_CONTENT}</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:494
 msgid "Image courtesy of <a style=\"color: #999;font-size: 12px;\" href=\"https://www.vecteezy.com/free-vector/technology\">Technology Vectors by Vecteezy</a>"
-msgstr ""
+msgstr "Afbeelding met dank aan <a style=\"color: #999;font-size: 12px;\" href=\"https://nl.vecteezy.com/gratis-vector/technologie\">Technologie Vectoren door Vecteezy</a>"
 
 #: ../../climateadapt/image_scales/interfaces.py:92
 msgid "Image quality at 2x"
-msgstr ""
+msgstr "Beeldkwaliteit bij 2x"
 
 #: ../../climateadapt/image_scales/interfaces.py:105
 msgid "Image quality at 3x"
-msgstr ""
+msgstr "Beeldkwaliteit bij 3x"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:90
 msgid "Implementation"
-msgstr ""
+msgstr "Uitvoering"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:47
@@ -1258,7 +1259,7 @@ msgstr "Implementatietijd"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:234
 msgid "Implementing adaptation"
-msgstr ""
+msgstr "Aanpassing implementeren"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:67
@@ -1267,7 +1268,7 @@ msgstr "Belang en relevantie van aanpassing"
 
 #: ../../climateadapt/browser/pt/regions-section.pt:75
 msgid "In 2021-2027, the <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> cross-border cooperation (CBC) between EU Member States and Neighbourhood region </a> is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called “Interreg NEXT”."
-msgstr ""
+msgstr "In 2021-2027 wordt de <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> grensoverschrijdende samenwerking (CBC) tussen de EU-lidstaten en de nabuurschapsregio </a> beheerst door het EU-cohesiebeleid en zullen de programma's volledig deel uitmaken van Interreg. Om de externe dimensie van het cohesiebeleid te benadrukken en tegelijkertijd te benadrukken hoe dichtbij de EU en de partnerlanden staan, heet het nieuwe programma “Interreg NEXT”."
 
 # ,
 #: ../../climateadapt/vocabulary.py:269
@@ -1276,15 +1277,15 @@ msgstr "Indicatoren"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:120
 msgid "Info:"
-msgstr ""
+msgstr "Info:"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:9
 msgid "Information Portals"
-msgstr ""
+msgstr "Informatieportals"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:106
 msgid "Information on the protection of personal data is available in the <a href=\"${DYNAMIC_CONTENT}\"><b>privacy statement</b></a>"
-msgstr ""
+msgstr "Informatie over de bescherming van persoonlijke gegevens is beschikbaar in de <a href=\"${DYNAMIC_CONTENT}\"><b>privacyverklaring</b></a>"
 
 # ,
 #: ../../climateadapt/vocabulary.py:267
@@ -1293,49 +1294,49 @@ msgstr "Informatieportals"
 
 #: ../../climateadapt/vocabulary.py:791
 msgid "Institutional: Economic options"
-msgstr ""
+msgstr "Institutioneel: economische opties"
 
 #: ../../climateadapt/vocabulary.py:793
 msgid "Institutional: Government policies and programmes"
-msgstr ""
+msgstr "Institutioneel: overheidsbeleid en -programma's"
 
 #: ../../climateadapt/vocabulary.py:792
 msgid "Institutional: Law and regulations"
-msgstr ""
+msgstr "Institutioneel: Wet- en regelgeving"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:56
 msgid "Item Documents"
-msgstr ""
+msgstr "Artikeldocumenten"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:129
 msgid "Item’s creation:"
-msgstr "Het maken van item:"
+msgstr "Creatie van item:"
 
 #: ../../climateadapt/tiles/search_acecontent.py:847
 msgid "Key Type Measure"
-msgstr ""
+msgstr "Sleuteltype Maatregel"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:267
 msgid "Key Type Measures"
-msgstr ""
+msgstr "Sleuteltype Maatregelen"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:163
 msgid "Key Type Measures:"
-msgstr ""
+msgstr "Belangrijkste type maatregelen:"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:22
 msgid "Key activities within climate change and health"
-msgstr "Belangrijke activiteiten binnen klimaatverandering en gezondheid"
+msgstr "Sleutelactiviteiten binnen klimaatverandering en gezondheid"
 
 #: ../../climateadapt/browser/admin.py:565
 msgid "Keyword succesfully deleted: ${kw_old}."
-msgstr ""
+msgstr "Zoekwoord succesvol verwijderd: ${kw_old}."
 
 #: ../../climateadapt/browser/admin.py:595
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
-msgstr ""
+msgstr "Zoekwoord hernoemd: ${kw_old} naar ${kw_new}."
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:65
@@ -1349,23 +1350,23 @@ msgstr "Trefwoorden"
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:153
 #: ../../climateadapt/browser/pt/casestudy_view.pt:335
 msgid "Keywords:"
-msgstr "Sleutelwoorden:"
+msgstr "Trefwoorden:"
 
 #: ../../climateadapt/vocabulary.py:313
 msgid "Land use planning"
-msgstr ""
+msgstr "Landgebruiksplanning"
 
 #: ../../climateadapt/vocabulary.py:605
 msgid "Land-use and Food Systems"
-msgstr ""
+msgstr "Landgebruik en voedselsystemen"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:99
 msgid "Language of the conference"
-msgstr ""
+msgstr "Taal van de conferentie"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "Last Modified in Climate-ADAPT"
-msgstr ""
+msgstr "Laatst gewijzigd in Climate-ADAPT"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:166
@@ -1374,59 +1375,59 @@ msgstr "Leiding"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:285
 msgid "Learn more about different adaptation options to the various impacts of climate change in forests."
-msgstr ""
+msgstr "Lees meer over verschillende aanpassingsopties aan de verschillende gevolgen van klimaatverandering in bossen."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:267
 msgid "Learn more about different adaptation options to the various impacts of climate change in urban areas."
-msgstr ""
+msgstr "Lees meer over verschillende aanpassingsopties aan de verschillende gevolgen van klimaatverandering in stedelijke gebieden."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:155
 msgid "Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities"
-msgstr ""
+msgstr "Lees meer over hoe steden zich kunnen aanpassen aan de klimaatverandering om toekomstbestendige, klimaatbestendige steden te worden"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:177
 msgid "Learn more about how forests can adapt to climate change to stay healthy, diverse, resilient and productive"
-msgstr ""
+msgstr "Lees meer over hoe bossen zich kunnen aanpassen aan de klimaatverandering om gezond, divers, veerkrachtig en productief te blijven"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:44
 #: ../../climateadapt/browser/pt/casestudy_view.pt:88
 msgid "Legal Aspects"
-msgstr "Legale aspecten"
+msgstr "Juridische aspecten"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:50
 #: ../../climateadapt/browser/pt/casestudy_view.pt:96
 msgid "Life Time"
-msgstr "Levenslang"
+msgstr "Levensduur"
 
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:26
 msgid "Link to Map Viewer:"
-msgstr ""
+msgstr "Link naar kaartviewer:"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:44
 #: ../../climateadapt/browser/pt/indicator_view.pt:49
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:37
 msgid "Link to metadata:"
-msgstr "Link naar metadata:"
+msgstr "Link naar metagegevens:"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:34
 msgid "Links to further information"
-msgstr "Links naar meer informatie"
+msgstr "Links naar verdere informatie"
 
 #: ../../climateadapt/vocabulary.py:611
 msgid "Local Economic Systems"
-msgstr ""
+msgstr "Lokale economische systemen"
 
 #: ../../climateadapt/vocabulary.py:1221
 msgid "Local authorities and administrative bodies"
-msgstr ""
+msgstr "Lokale overheden en bestuursorganen"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:450
 msgid "MCR 2030"
-msgstr ""
+msgstr "MCR 2030"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:180
@@ -1435,11 +1436,11 @@ msgstr "Macro-transnationale regio"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:451
 msgid "Making Cities Resilient: <a href=\"https://mcr2030.undrr.org/\">Making Cities Resilient 2030</a> is a cross-stakeholder initiative for improving local resilience through advocacy, sharing knowledge and experiences, establishing mutually reinforcing city-to-city learning networks, injecting technical expertise, connecting multiple layers of government and building partnerships."
-msgstr ""
+msgstr "Making Cities Resilient: <a href=\"https://mcr2030.undrr.org/\">Making Cities Resilient 2030</a> is een initiatief van alle belanghebbenden om de lokale veerkracht te verbeteren door belangenbehartiging, het delen van kennis en ervaringen, het opzetten van wederzijds versterkende leernetwerken van stad tot stad, het injecteren van technische expertise, het verbinden van meerdere overheidslagen en het opbouwen van partnerschappen."
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:238
 msgid "Map"
-msgstr ""
+msgstr "Kaart"
 
 # ,
 #: ../../climateadapt/vocabulary.py:268
@@ -1450,101 +1451,101 @@ msgstr "Kaarten, grafieken en datasets"
 #: ../../climateadapt/browser/overrides.py:46
 #: ../../climateadapt/vocabulary.py:314
 msgid "Marine and Fisheries"
-msgstr "Mariene en visserij"
+msgstr "Zeevaart en visserij"
 
 #: ../../climateadapt/vocabulary.py:618
 msgid "Mean air temperature"
-msgstr ""
+msgstr "Gemiddelde luchttemperatuur"
 
 #: ../../climateadapt/vocabulary.py:621
 msgid "Mean precipitation"
-msgstr ""
+msgstr "Gemiddelde neerslag"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 msgid "Mediterranean"
-msgstr ""
+msgstr "Middellandse Zee"
 
 #: ../../climateadapt/vocabulary.py:336
 msgid "Mitigation aspects"
-msgstr ""
+msgstr "Mitigerende aspecten"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:98
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
-msgstr ""
+msgstr "Toezicht &amp; Evaluatie (M&E)"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:269
 msgid "Monitoring and evaluating adaptation"
-msgstr ""
+msgstr "Het monitoren en evalueren van adaptatie"
 
 #: ../../climateadapt/vocabulary.py:315
 msgid "Mountain areas"
-msgstr ""
+msgstr "Berggebieden"
 
 #: ../../climateadapt/vocabulary.py:1254
 msgid "Municipal/Local"
-msgstr ""
+msgstr "Gemeentelijk/lokaal"
 
 #: ../../climateadapt/vocabulary.py:1231
 msgid "NGOs"
-msgstr ""
+msgstr "NGO's"
 
 #: ../../climateadapt/vocabulary.py:1252
 msgid "National"
-msgstr ""
+msgstr "Nationaal"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:53
 msgid "National HHAP"
-msgstr ""
+msgstr "Nationale HHAP"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:119
 msgid "National adaptation policy not reported beyond mandatory reporting in 2023"
-msgstr ""
+msgstr "Nationaal adaptatiebeleid niet gerapporteerd buiten de verplichte rapportage in 2023"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:115
 msgid "National adaptation policy reported in 2023"
-msgstr ""
+msgstr "Nationaal adaptatiebeleid gerapporteerd in 2023"
 
 #: ../../climateadapt/browser/BKPcountries.py:179
 #: ../../climateadapt/browser/countries.py:183
 msgid "National adaption policy"
-msgstr ""
+msgstr "Nationaal aanpassingsbeleid"
 
 #: ../../climateadapt/vocabulary.py:334
 msgid "Nature-based solutions"
-msgstr ""
+msgstr "Op de natuur gebaseerde oplossingen"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:20
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:16
 msgid "News"
-msgstr ""
+msgstr "Nieuws"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:61
 msgid "No HHAP"
-msgstr ""
+msgstr "Geen HHAP"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:80
 msgid "No assessments reported"
-msgstr ""
+msgstr "Er zijn geen beoordelingen gerapporteerd"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:88
 msgid "No data reported in 2021"
-msgstr ""
+msgstr "Geen gegevens gerapporteerd in 2021"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:104
 msgid "No data reported in 2023"
-msgstr ""
+msgstr "Geen gegevens gerapporteerd in 2023"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:65
 msgid "No information"
-msgstr ""
+msgstr "Geen informatie"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:99
 msgid "No portal or platform reported"
-msgstr ""
+msgstr "Geen portal of platform gerapporteerd"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:65
 msgid "No upcoming events."
-msgstr ""
+msgstr "Geen aankomende evenementen."
 
 # ,
 #: ../../climateadapt/vocabulary.py:320
@@ -1553,29 +1554,29 @@ msgstr "Niet specifiek"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:476
 msgid "North Sea"
-msgstr ""
+msgstr "Noordzee"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:479
 msgid "North West Europe"
-msgstr ""
+msgstr "Noordwest-Europa"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:482
 msgid "Northern Periphery and Arctic"
-msgstr ""
+msgstr "Noordelijke periferie en noordpoolgebied"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:428
 msgid "OPPLA"
-msgstr ""
+msgstr "OPPLA"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:55
 msgid "Objectives"
-msgstr "Doelen"
+msgstr "Doelstellingen"
 
 # ,
 #: ../../climateadapt/vocabulary.py:328
 msgid "Observations and Scenarios"
-msgstr "Observaties en scenario's"
+msgstr "Waarnemingen en scenario's"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:50
@@ -1584,11 +1585,11 @@ msgstr "Observatoriumbijdragen:"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:76
 msgid "One or more assessments reported"
-msgstr ""
+msgstr "Er zijn één of meer beoordelingen gerapporteerd"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:125
 msgid "Online registration"
-msgstr ""
+msgstr "Online registratie"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:15
@@ -1598,28 +1599,28 @@ msgstr "Organisaties"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:18
 msgid "Original aceitem"
-msgstr ""
+msgstr "Origineel topartikel"
 
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:35
 msgid "Other European Information Systems:<br />&nbsp;"
-msgstr "Andere Europese informatiesystemen: <br /> & nbsp;"
+msgstr "Andere Europese informatiesystemen:<br />&nbsp;"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:488
 msgid "Other regions"
-msgstr ""
+msgstr "Andere regio's"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:140
 msgid "Outside EEA coverage"
-msgstr ""
+msgstr "Buiten EER-dekking"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:15
 msgid "Overview list of all indices"
-msgstr ""
+msgstr "Overzichtslijst van alle indices"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:91
 msgid "Participation"
-msgstr ""
+msgstr "Deelname"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:174
@@ -1629,19 +1630,19 @@ msgstr "Partners"
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:254
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
-msgstr "Neem contact met ons op voor een ander onderzoek naar deze case study of om een ​​nieuwe case study te delen (e -mail <a href=\"mailto: climate.adapt@eea.europa.eu\"> klimaat.adapt@eea.europa.eu </a >)"
+msgstr "Neem contact met ons op voor andere vragen over deze casestudy of om een ​​nieuwe casestudy te delen (e-mail <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:105
 msgid "Please fill in this <a href=\"${DYNAMIC_CONTENT}\">registration form</a>"
-msgstr ""
+msgstr "Vul dit <a href=\"${DYNAMIC_CONTENT}\">registratieformulier</a> in"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:189
 msgid "Policy Overview"
-msgstr ""
+msgstr "Beleidsoverzicht"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:210
 msgid "Policy overview"
-msgstr ""
+msgstr "Beleidsoverzicht"
 
 # ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:23
@@ -1650,21 +1651,21 @@ msgstr "Portaaltype"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Practical information"
-msgstr ""
+msgstr "Praktische informatie"
 
 #: ../../climateadapt/vocabulary.py:1294
 msgid "Practitioners at the regional level"
-msgstr ""
+msgstr "Beoefenaars op regionaal niveau"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:58
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:79
 msgid "Preparing the ground for adaptation"
-msgstr ""
+msgstr "Het terrein voorbereiden op aanpassing"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:119
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:68
 msgid "Principles and success factors"
-msgstr ""
+msgstr "Principes en succesfactoren"
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:21
@@ -1684,7 +1685,7 @@ msgstr "Projectdocumenten"
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:47
 msgid "Project information"
-msgstr "Project informatie"
+msgstr "Projectinformatie"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:8
@@ -1699,28 +1700,28 @@ msgstr "Gepubliceerd"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "Published in Climate-ADAPT"
-msgstr ""
+msgstr "Gepubliceerd in Climate-ADAPT"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:237
 msgid "Reference"
-msgstr "Verwijzing"
+msgstr "Referentie"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:102
 msgid "Reference Information"
-msgstr "Referentie informatie"
+msgstr "Referentie-informatie"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:28
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:54
 msgid "Reference information"
-msgstr "Referentie informatie"
+msgstr "Referentie-informatie"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:40
 msgid "Reference:"
-msgstr ""
+msgstr "Referentie:"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:113
@@ -1729,19 +1730,19 @@ msgstr "Referenties:"
 
 #: ../../climateadapt/tiles/pt/transregional_select.pt:120
 msgid "Region's countries:"
-msgstr ""
+msgstr "Landen van de regio:"
 
 #: ../../climateadapt/vocabulary.py:1253
 msgid "Regional"
-msgstr ""
+msgstr "Regionaal"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Registration"
-msgstr ""
+msgstr "Registratie"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:124
 msgid "Registration:"
-msgstr ""
+msgstr "Registratie:"
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:45
@@ -1750,7 +1751,7 @@ msgstr "Gerelateerde documenten en presentaties"
 
 #: ../../climateadapt/vocabulary.py:627
 msgid "Relative sea level"
-msgstr ""
+msgstr "Relatief zeeniveau"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:187
@@ -1759,11 +1760,11 @@ msgstr "Relevantie"
 
 #: ../../climateadapt/tiles/pt/filter_acecontent.pt:49
 msgid "Relevant tile"
-msgstr ""
+msgstr "Relevante tegel"
 
 #: ../../climateadapt/vocabulary.py:340
 msgid "Replication/upscaling potential"
-msgstr ""
+msgstr "Replicatie/opschalingspotentieel"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:12
@@ -1773,23 +1774,23 @@ msgstr "Onderzoeks- en kennisprojecten"
 
 #: ../../climateadapt/vocabulary.py:1292
 msgid "Researcher"
-msgstr ""
+msgstr "Onderzoeker"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:277
 msgid "Reset"
-msgstr ""
+msgstr "Opnieuw instellen"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:472
 msgid "Resilient Cities Network"
-msgstr ""
+msgstr "Netwerk voor veerkrachtige steden"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:183
 msgid "Resource Catalogue"
-msgstr ""
+msgstr "Bronnencatalogus"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:204
 msgid "Resource catalogue"
-msgstr ""
+msgstr "Bronnencatalogus"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:112
@@ -1798,20 +1799,20 @@ msgstr "Beoordeeld door:"
 
 #: ../../climateadapt/vocabulary.py:623
 msgid "River flooding"
-msgstr ""
+msgstr "Overstromingen van rivieren"
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:18
 msgid "SITE MAP"
-msgstr "Sitekaart"
+msgstr "SITEMAP"
 
 #: ../../climateadapt/image_scales/interfaces.py:66
 msgid "Scaled image quality"
-msgstr ""
+msgstr "Geschaalde beeldkwaliteit"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:58
 msgid "Scroll to top"
-msgstr ""
+msgstr "Scroll naar boven"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
@@ -1820,7 +1821,7 @@ msgstr "Zeespiegelstijging"
 
 #: ../../climateadapt/browser/pt/observatory_indicators_search.pt:101
 msgid "Search"
-msgstr ""
+msgstr "Zoekopdracht"
 
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:203
@@ -1830,25 +1831,25 @@ msgstr "Zoekresultaten"
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:212
 msgid "Search results for: ${term}"
-msgstr "Zoekresultaten voor: $ {term}"
+msgstr "Zoekresultaten voor: ${term}"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:319
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:288
 msgid "Search the Climate Adapt Database:"
-msgstr ""
+msgstr "Zoek in de Climate Adapt-database:"
 
 #: ../../climateadapt/tiles/pt/search_acecontent.pt:66
 msgid "Search tile"
-msgstr ""
+msgstr "Zoek tegel"
 
 #: ../../climateadapt/tiles/search_acecontent.py:841
 msgid "Sector"
-msgstr ""
+msgstr "Sector"
 
 # ,
 #: ../../climateadapt/vocabulary.py:326
 msgid "Sector Policies"
-msgstr "Sectorbeleid"
+msgstr "Sectoraal beleid"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:76
@@ -1867,33 +1868,33 @@ msgstr "Sectoren:"
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:63
 msgid "See more"
-msgstr "Bekijk meer"
+msgstr "Zie meer"
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:39
 msgid "See video outside Climate-ADAPT"
-msgstr "Zie video buiten klimaat-adapt"
+msgstr "Zie video buiten Climate-ADAPT"
 
 #: ../../climateadapt/browser/pt/countries-list.pt:5
 msgid "Select a country"
-msgstr ""
+msgstr "Selecteer een land"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:49
 msgid "Select a country to go directly to the country's page:"
-msgstr ""
+msgstr "Selecteer een land om rechtstreeks naar de landpagina te gaan:"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:60
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr "Selecteer de sectoren waarvoor u een meldings -e -mail wilt ontvangen wanneer een item wordt gewijzigd."
+msgstr "Selecteer de sectoren waarvoor u een e-mailmelding wilt ontvangen wanneer een artikel wordt gewijzigd."
 
 #: ../../climateadapt/tiles/pt/shareinfo.pt:8
 msgid "Share button tile"
-msgstr ""
+msgstr "Knoptegel voor delen"
 
 #: ../../climateadapt/tiles/pt/shareinfo.pt:11
 msgid "Share type:"
-msgstr ""
+msgstr "Type aandeel:"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:87
@@ -1904,31 +1905,31 @@ msgstr "Deel uw informatie"
 
 #: ../../climateadapt/browser/pt/observatory_indicators_search.pt:108
 msgid "Show all sources"
-msgstr ""
+msgstr "Toon alle bronnen"
 
 #: ../../climateadapt/vocabulary.py:626
 msgid "Snow and ice"
-msgstr ""
+msgstr "Sneeuw en ijs"
 
 #: ../../climateadapt/vocabulary.py:1225
 msgid "Social, cultural and educational institutions"
-msgstr ""
+msgstr "Sociale, culturele en onderwijsinstellingen"
 
 #: ../../climateadapt/vocabulary.py:790
 msgid "Social: Behavioural"
-msgstr ""
+msgstr "Sociaal: gedragsmatig"
 
 #: ../../climateadapt/vocabulary.py:788
 msgid "Social: Educational options"
-msgstr ""
+msgstr "Sociaal: Educatieve opties"
 
 #: ../../climateadapt/vocabulary.py:789
 msgid "Social: Informational"
-msgstr ""
+msgstr "Sociaal: informatief"
 
 #: ../../climateadapt/vocabulary.py:337
 msgid "Societal aspects"
-msgstr ""
+msgstr "Maatschappelijke aspecten"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:63
@@ -1944,7 +1945,7 @@ msgstr "Bron"
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:183
 msgid "Source of funding"
-msgstr "Financieringsbron"
+msgstr "Bron van financiering"
 
 # ,
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:32
@@ -1955,15 +1956,15 @@ msgstr "Bron:"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:485
 msgid "South West Europe"
-msgstr ""
+msgstr "Zuidwest-Europa"
 
 #: ../../climateadapt/image_scales/interfaces.py:43
 msgid "Specify all allowed maximum image dimensions, one per line. The required format is &lt;name&gt; &lt;width&gt;:&lt;height&gt;."
-msgstr ""
+msgstr "Geef alle toegestane maximale afbeeldingsafmetingen op, één per regel. Het vereiste formaat is &lt;naam&gt; &lt;breedte&gt;:&lt;hoogte&gt;."
 
 #: ../../climateadapt/vocabulary.py:1293
 msgid "Staff of regional authority"
-msgstr ""
+msgstr "Personeel van de regionale autoriteit"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:76
@@ -1977,31 +1978,31 @@ msgstr "Participatie van belanghebbenden"
 
 #: ../../climateadapt/vocabulary.py:1295
 msgid "Stakeholders"
-msgstr ""
+msgstr "Belanghebbenden"
 
 #: ../../climateadapt/vocabulary.py:1207
 msgid "Step 1. Preparing the ground for adaptation"
-msgstr ""
+msgstr "Stap 1. Het terrein voorbereiden op aanpassing"
 
 #: ../../climateadapt/vocabulary.py:1208
 msgid "Step 2. Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "Stap 2. Risico's en kwetsbaarheden op het gebied van klimaatverandering beoordelen"
 
 #: ../../climateadapt/vocabulary.py:1209
 msgid "Step 3. Identifying adaptation options"
-msgstr ""
+msgstr "Stap 3. Aanpassingsmogelijkheden identificeren"
 
 #: ../../climateadapt/vocabulary.py:1210
 msgid "Step 4. Assessing and selecting adaptation options"
-msgstr ""
+msgstr "Stap 4. Beoordelen en selecteren van aanpassingsmogelijkheden"
 
 #: ../../climateadapt/vocabulary.py:1211
 msgid "Step 5. Implementing adaptation"
-msgstr ""
+msgstr "Stap 5. Implementeren van adaptatie"
 
 #: ../../climateadapt/vocabulary.py:1212
 msgid "Step 6. Monitoring and evaluating adaptation"
-msgstr ""
+msgstr "Stap 6. Adaptatie monitoren en evalueren"
 
 # ,
 #: ../../climateadapt/vocabulary.py:362
@@ -2010,28 +2011,28 @@ msgstr "Stormen"
 
 #: ../../climateadapt/vocabulary.py:786
 msgid "Structural and physical: Ecosystem-based adaptation options"
-msgstr ""
+msgstr "Structureel en fysiek: op ecosystemen gebaseerde aanpassingsopties"
 
 #: ../../climateadapt/vocabulary.py:783
 msgid "Structural and physical: Engineering and built environment options"
-msgstr ""
+msgstr "Structureel en fysiek: opties voor techniek en gebouwde omgeving"
 
 #: ../../climateadapt/vocabulary.py:787
 msgid "Structural and physical: Service options"
-msgstr ""
+msgstr "Structureel en fysiek: Serviceopties"
 
 #: ../../climateadapt/vocabulary.py:785
 msgid "Structural and physical: Technological options"
-msgstr ""
+msgstr "Structureel en fysiek: technologische opties"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:202
 msgid "Sub Nationals"
-msgstr "Sub Nationals"
+msgstr "Sub-onderdanen"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:57
 msgid "Subnational or local HHAP"
-msgstr ""
+msgstr "Subnationale of lokale HHAP"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:38
@@ -2041,121 +2042,121 @@ msgstr "Succes en beperkende factoren"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:396
 msgid "The <a href=\"https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en\">European Climate Pact</a> is an EU-wide initiative inviting people, communities and organisations to participate in climate action and build a greener Europe."
-msgstr ""
+msgstr "Het <a href=\"https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en\">Europese Klimaatpact</a> is een EU-breed initiatief dat mensen, gemeenschappen en organisaties uitnodigt om deel te nemen aan klimaatactie en te bouwen aan een groener Europa."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:473
 msgid "The <a href=\"https://resilientcitiesnetwork.org/\">Resilient Cities Network</a> consists of cities that are committed to building and investing in urban resilience, located in five geographical regions: Africa, Asia Pacific, Europe and Middle East, Latin America and the Caribbean, and North America."
-msgstr ""
+msgstr "Het <a href=\"https://resilientcitiesnetwork.org/\">Resilient Cities Network</a> bestaat uit steden die zich inzetten voor het opbouwen van en investeren in stedelijke veerkracht, gelegen in vijf geografische regio's: Afrika, Azië-Pacific, Europa en het Midden-Oosten, Latijns-Amerika en het Caribisch gebied, en Noord-Amerika."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:385
 msgid "The <a href=\"https://www.covenantofmayors.eu/\">EU Covenant of Mayors</a> brings together over 10,000 local governments voluntarily committed to implementing EU climate and energy objectives. Signatory cities commit to increasing resilience and preparing for the adverse impacts of climate change."
-msgstr ""
+msgstr "Het <a href=\"https://www.covenantofmayors.eu/\">EU Burgemeestersconvenant</a> brengt meer dan 10.000 lokale overheden samen die zich vrijwillig inzetten voor de implementatie van de klimaat- en energiedoelstellingen van de EU. De ondertekenende steden verbinden zich ertoe de veerkracht te vergroten en zich voor te bereiden op de negatieve gevolgen van de klimaatverandering."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:318
 msgid "The <a href=\"https://www.covenantofmayors.eu/support/funding.html\">Covenant of Mayors Interactive Funding Guide</a> provides comprehensive and up-to-date information on various funding initiatives open to cities and managed by the European Commission, Member States and key financial institutions such as the European Investment Bank. In addition, the guide includes information on support services and innovative financing models."
-msgstr ""
+msgstr "De <a href=\"https://www.covenantofmayors.eu/support/funding.html\">Convenant of Mayors Interactive Funding Guide</a> biedt uitgebreide en actuele informatie over verschillende financieringsinitiatieven die openstaan ​​voor steden en worden beheerd door de Europese Commissie, lidstaten en belangrijke financiële instellingen zoals de Europese Investeringsbank. Daarnaast bevat de gids informatie over ondersteunende diensten en innovatieve financieringsmodellen."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:418
 msgid "The <a href=\"https://www.fao.org/green-cities-initiative/en/\">FAO Green Cities Initiative</a> focuses on improving the urban environment, strengthening urban-rural linkages and the resilience of urban systems, services and populations to external shocks."
-msgstr ""
+msgstr "Het <a href=\"https://www.fao.org/green-cities-initiative/en/\">FAO Green Cities Initiative</a> richt zich op het verbeteren van de stedelijke omgeving, het versterken van de verbindingen tussen stad en platteland en de veerkracht van stedelijke systemen, diensten en bevolkingen tegen externe schokken."
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:106
 msgid "The Adaptation Support Tool - Getting started"
-msgstr ""
+msgstr "De aanpassingsondersteuningstool - Aan de slag"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:384
 msgid "The EU Covenant of Mayors"
-msgstr ""
+msgstr "Het EU-burgemeestersconvenant"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:350
 msgid "The EU finances adaptation to climate change in Europe through a wide range of instruments. The Multiannual Financial Framework 2021-2027 ensures that at least 25% of the European budget is climate-related expenditure. Therefore, Climate adaptation actions have to be integrated into all the major EU spending programmes, and a tracking system is put in place to guarantee these objectives are met."
-msgstr ""
+msgstr "De EU financiert de aanpassing aan de klimaatverandering in Europa via een breed scala aan instrumenten. Het Meerjarig Financieel Kader 2021-2027 zorgt ervoor dat minimaal 25% van de Europese begroting klimaatgerelateerde uitgaven zijn. Daarom moeten klimaatadaptatiemaatregelen worden geïntegreerd in alle grote uitgavenprogramma’s van de EU, en moet er een volgsysteem worden ingevoerd om te garanderen dat deze doelstellingen worden bereikt."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:309
 msgid "The EU has several policy frameworks in place to increase the resilience of European cities and their inhabitants, including the EU Adaptation Strategy and the EU Biodiversity Strategy 2030, and has developed several initiatives to improve knowledge and data availability on urban vulnerability and adaptive capacity. It also provides financial and technical support to policy makers and practitioners to make cities more resilient and adaptive."
-msgstr ""
+msgstr "De EU beschikt over verschillende beleidskaders om de veerkracht van Europese steden en hun inwoners te vergroten, waaronder de EU-aanpassingsstrategie en de EU-biodiversiteitsstrategie 2030, en heeft verschillende initiatieven ontwikkeld om de beschikbaarheid van kennis en gegevens over de kwetsbaarheid van steden en het aanpassingsvermogen te verbeteren. Het biedt ook financiële en technische ondersteuning aan beleidsmakers en praktijkmensen om steden veerkrachtiger en adaptiever te maken."
 
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:10
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
-msgstr "Het Europese klimaataanpassingsplatform Climate-adapt is een partnerschap tussen de <a href=\"https://ec.europa.eu/\"> Europese Commissie </a> en de <a href = \"https: //www.ea .europa.eu/\"> Europees Milieuagentschap. </a>"
+msgstr "Het Europese Klimaatadaptatieplatform Climate-ADAPT is een partnerschap tussen de <a href=\"https://ec.europa.eu/\">Europese Commissie</a> en het <a href=\"https://www.eea.europa.eu/\">Europees Milieuagentschap.</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:234
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
-msgstr ""
+msgstr "De European Climate Data Explorer biedt interactieve toegang tot vele klimaatindices van de Copernicus Climate Change Service ter ondersteuning van de aanpassing aan de klimaatverandering."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:239
 msgid "The European Climate Data Explorer provides interactive access to many climate indices like fire weather indices in support of climate change adaptation in forests."
-msgstr ""
+msgstr "De European Climate Data Explorer biedt interactieve toegang tot vele klimaatindices, zoals brandweerindices, ter ondersteuning van de aanpassing aan de klimaatverandering in bossen."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:257
 msgid "The European Drought Observatory (EDO) contains drought-relevant information. These give an overview of the situation in the EU about imminent droughts."
-msgstr ""
+msgstr "Het European Drought Observatory (EDO) bevat informatie die relevant is voor de droogte. Deze geven een overzicht van de situatie in de EU met betrekking tot dreigende droogtes."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:269
 msgid "The European Forest Fire Information System"
-msgstr ""
+msgstr "Het Europese bosbrandinformatiesysteem"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:266
 msgid "The European Forest Fire Information System (EFFIS) supports the protection of forests against fires and provides the EU with harmonized information on forest fires"
-msgstr ""
+msgstr "Het Europees Bosbrandinformatiesysteem (EFFIS) ondersteunt de bescherming van bossen tegen branden en voorziet de EU van geharmoniseerde informatie over bosbranden"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:225
 msgid "The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity."
-msgstr ""
+msgstr "De Urban Adaptation Map Viewer geeft een overzicht van de huidige en toekomstige klimaatgevaren, de kwetsbaarheid van de steden voor deze gevaren en hun aanpassingsvermogen."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:216
 msgid "The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans."
-msgstr ""
+msgstr "De Urban Adaptation Support Tool helpt steden, gemeenten en lokale overheden bij het ontwikkelen, implementeren en monitoren van plannen voor aanpassing aan de klimaatverandering."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:340
 msgid "The climate crisis is severely affecting Europe's forests, making them increasingly vulnerable to hazards like storms, wildfires, droughts, insect and disease outbreaks, or sea level rise. The growing risks and impacts are affecting the economic viability of forestry and they reduce the capacity of forests to provide essential ecosystem services. The EU responds to this unprecedented challenge by supporting the adaptation of forests to climate change through a wide range of policies, like the EU Forest Strategy, EU Strategy on Adaptation to Climate Change, and the EU Biodiversity Strategy."
-msgstr ""
+msgstr "De klimaatcrisis heeft ernstige gevolgen voor de Europese bossen, waardoor ze steeds kwetsbaarder worden voor gevaren zoals stormen, bosbranden, droogtes, uitbraken van insecten en ziekten, of de stijging van de zeespiegel. De toenemende risico's en gevolgen beïnvloeden de economische levensvatbaarheid van de bosbouw en verminderen het vermogen van bossen om essentiële ecosysteemdiensten te leveren. De EU reageert op deze ongekende uitdaging door de aanpassing van bossen aan de klimaatverandering te ondersteunen via een breed scala aan beleidsmaatregelen, zoals de EU-bosstrategie, de EU-strategie voor aanpassing aan de klimaatverandering en de EU-biodiversiteitsstrategie."
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:95
 msgid "The date refers to the date of release of the video"
-msgstr "De datum verwijst naar de datum van release van de video"
+msgstr "De datum verwijst naar de releasedatum van de video"
 
 # ,
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:50
 #: ../../climateadapt/browser/pt/indicator_view.pt:68
 #: ../../climateadapt/browser/pt/publicationreport_view.pt:58
 msgid "The date refers to the latest date of publication of the item"
-msgstr "De datum verwijst naar de laatste publicatiedatum van het artikel"
+msgstr "De datum verwijst naar de laatste publicatiedatum van het item"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
 #: ../../climateadapt/browser/pt/casestudy_view.pt:267
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr "De datum verwijst naar het moment waarop het artikel is opgesteld of bijgewerkt door bijdragende experts die moeten worden ingediend voor de publicatie in het klimaatadapt"
+msgstr "De datum verwijst naar het moment waarop het item door bijdragende deskundigen is voorbereid of bijgewerkt voor publicatie in Climate ADAPT."
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
 msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
-msgstr ""
+msgstr "Er zijn <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europa voor transnationale samenwerking. Daarnaast bestaan ​​er specifieke door de EU overeengekomen strategieën voor vier macronationale regio's: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;lingual=EN\" target=\"_blank\">x</a> en <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regio's. Deze sectie biedt informatie over strategieën en acties die zijn ontwikkeld of momenteel in ontwikkeling zijn voor de transnationale regio's van de EU en voor andere regio's en landen.<br /> <br /> <b>x</b><br /> De kaart toont de transnationale regio's in Europa die zijn gedefinieerd in de samenwerkingsprogramma's voor 2014-2020. U kunt transnationale regio's selecteren door op de kaart te klikken. Als u een gebied selecteert dat tot meer dan één regio behoort, toont het pop-upvenster alle regio's waar het gebied zich bevindt. Het pop-upvenster toont ook de landen waar elke regio zich bevindt.<br /> <br /> Om naar een van de pagina's van de regio's te gaan, kiest u in de vervolgkeuzelijst, klikt u op de legenda of maakt u gebruik van de link in de tooltip."
 
 #: ../../climateadapt/browser/pt/regions-section.pt:83
 msgid "To go to one of the regions please click on the maps."
-msgstr ""
+msgstr "Om naar een van de regio's te gaan, klikt u op de kaarten."
 
 #: ../../climateadapt/vocabulary.py:1244
 msgid "Tool broadly used"
-msgstr ""
+msgstr "Gereedschap dat breed wordt gebruikt"
 
 #: ../../climateadapt/vocabulary.py:1243
 msgid "Tool tested in several case studies"
-msgstr ""
+msgstr "Tool getest in verschillende casestudies"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:11
 #: ../../climateadapt/vocabulary.py:271
 msgid "Tools"
-msgstr "Gereedschap"
+msgstr "Hulpmiddelen"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:192
 msgid "Tools and data"
-msgstr ""
+msgstr "Hulpmiddelen en gegevens"
 
 # ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
@@ -2164,11 +2165,11 @@ msgstr "Totaal"
 
 #: ../../climateadapt/vocabulary.py:316
 msgid "Tourism"
-msgstr ""
+msgstr "Toerisme"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:410
 msgid "Transnational regions and other regions and countries"
-msgstr ""
+msgstr "Transnationale regio's en andere regio's en landen"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:48
@@ -2178,11 +2179,11 @@ msgstr "Vervoer"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:36
 msgid "Tutorial videos"
-msgstr ""
+msgstr "Instructievideo's"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:461
 msgid "URBACT"
-msgstr ""
+msgstr "URBACT"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:45
@@ -2192,24 +2193,24 @@ msgstr "Stedelijk"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:406
 msgid "Urban Innovative Actions"
-msgstr ""
+msgstr "Stedelijke innovatieve acties"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:123
 msgid "Using the Adaptation Support Tool"
-msgstr ""
+msgstr "Met behulp van de aanpassingsondersteuningstool"
 
 #: ../../climateadapt/tiles/pt/filter_acecontent.pt:61
 msgid "View all"
-msgstr ""
+msgstr "Bekijk alles"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:67
 msgid "View all contributions in the resource catalogue"
-msgstr "Bekijk alle bijdragen in de resource catalogus"
+msgstr "Bekijk alle bijdragen in de bronnencatalogus"
 
 #: ../../climateadapt/tiles/pt/relevant_acecontent.pt:119
 msgid "View more"
-msgstr ""
+msgstr "Bekijk meer"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
@@ -2223,7 +2224,7 @@ msgstr "Kwetsbaarheidsbeoordeling"
 
 #: ../../climateadapt/vocabulary.py:606
 msgid "Water Management"
-msgstr ""
+msgstr "Waterbeheer"
 
 # ,
 #: ../../climateadapt/vocabulary.py:363
@@ -2234,7 +2235,7 @@ msgstr "Waterschaarste"
 #: ../../climateadapt/browser/overrides.py:50
 #: ../../climateadapt/vocabulary.py:319
 msgid "Water management"
-msgstr "Water beheersing"
+msgstr "Waterbeheer"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:56
@@ -2251,29 +2252,30 @@ msgstr "Websites:"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:112
 msgid "When:"
-msgstr ""
+msgstr "Wanneer:"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:116
 msgid "Where:"
-msgstr ""
+msgstr "Waar:"
 
 #: ../../climateadapt/vocabulary.py:625
 msgid "Wildfire"
-msgstr ""
+msgstr "Wildvuur"
 
 #: ../../climateadapt/vocabulary.py:595
 msgid "Wildfires"
-msgstr ""
+msgstr "Bosbranden"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
 msgid "Year:"
-msgstr ""
+msgstr "Jaar:"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:33
 msgid "back to search"
 msgstr "Terug om te zoeken"
 
+#. richtexteditor based on the description of images."
 #. Default: "Enable automatic image captioning for images set in the richtexteditor based on the description of images."
 #: ../../climateadapt/image_scales/interfaces.py:211
 msgid "image_captioning_description"

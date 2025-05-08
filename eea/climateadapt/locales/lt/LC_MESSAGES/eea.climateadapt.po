@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,405 +19,405 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:596
 msgid "-NONSPECIFIC-"
-msgstr ""
+msgstr "-NEKONKRETUS-"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:130
 msgid "1. Preparing the ground for adaptation"
-msgstr ""
+msgstr "1. Dirvos paruošimas adaptacijai"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:136
 msgid "1.1 Obtaining high-level political support for adaptation"
-msgstr ""
+msgstr "1.1 Gauti aukšto lygio politinę paramą prisitaikymui"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:83
 msgid "1.1 Obtaining political support for adaptation"
-msgstr ""
+msgstr "1.1. Gauti politinę paramą prisitaikymui"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:88
 msgid "1.2 Collecting initial information"
-msgstr ""
+msgstr "1.2 Pradinės informacijos rinkimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:140
 msgid "1.2 Setting up the process in a structured way"
-msgstr ""
+msgstr "1.2 Struktūrizuotas proceso nustatymas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:144
 msgid "1.3 Estimating human and financial resources needed and identifying potential sources of long-term funding"
-msgstr ""
+msgstr "1.3 Reikalingų žmogiškųjų ir finansinių išteklių įvertinimas ir galimų ilgalaikio finansavimo šaltinių nustatymas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:93
 msgid "1.3 Setting up adaptation processes within and beyond the municipality"
-msgstr ""
+msgstr "1.3 Prisitaikymo procesų savivaldybėje ir už jos ribų nustatymas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:148
 msgid "1.4 Collecting information"
-msgstr ""
+msgstr "1.4 Informacijos rinkimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:98
 msgid "1.4 Identifying and obtaining human and technical resources"
-msgstr ""
+msgstr "1.4 Žmogiškųjų ir techninių išteklių nustatymas ir gavimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:152
 msgid "1.5 Communicating adaptation and raising awareness"
-msgstr ""
+msgstr "1.5 Informavimas apie prisitaikymą ir informuotumo didinimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:103
 msgid "1.5 Identifying and obtaining financing and funding"
-msgstr ""
+msgstr "1.5 Finansavimo ir finansavimo nustatymas ir gavimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:108
 msgid "1.6 Identifying and engaging stakeholders"
-msgstr ""
+msgstr "1.6 Suinteresuotųjų šalių nustatymas ir įtraukimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:156
 msgid "1.6 Preparing the ground for adaptation: Self-check"
-msgstr ""
+msgstr "1.6 Dirvos paruošimas adaptacijai: savikontrolė"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:113
 msgid "1.7 Communicating adaptation to different target audiences"
-msgstr ""
+msgstr "1.7 Pritaikymo įvairioms tikslinėms auditorijoms komunikacija"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:118
 msgid "1.8 Finding additional support"
-msgstr ""
+msgstr "1.8 Papildomos paramos radimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:123
 msgid "1.9 Preparing the ground for adaptation: Self check"
-msgstr ""
+msgstr "1.9 Pagrindo paruošimas prisitaikymui: savęs patikrinimas"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:415
 msgid "12 regions"
-msgstr ""
+msgstr "12 regionų"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:163
 msgid "2. Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "2. Klimato kaitos rizikos ir pažeidžiamumo įvertinimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:138
 msgid "2.1 Recognizing past and present climate impacts"
-msgstr ""
+msgstr "2.1 Praeities ir dabarties klimato poveikio pripažinimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:168
 msgid "2.1 Understanding climate risks"
-msgstr ""
+msgstr "2.1 Klimato rizikos supratimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:172
 msgid "2.2 Frameworks for assessing climate impacts, vulnerabilities and risks"
-msgstr ""
+msgstr "2.2 Klimato poveikio, pažeidžiamumo ir rizikos vertinimo sistemos"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:143
 msgid "2.2 Understanding climate projections and future impacts"
-msgstr ""
+msgstr "2.2 Klimato prognozių ir ateities poveikio supratimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:176
 msgid "2.3 General sequence for climate impacts, vulnerabilities and risk assessments"
-msgstr ""
+msgstr "2.3 Bendra klimato poveikio, pažeidžiamumo ir rizikos vertinimo seka"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:148
 msgid "2.3 Identifying vulnerable urban sectors"
-msgstr ""
+msgstr "2.3 Pažeidžiamų miesto sektorių nustatymas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:153
 msgid "2.4 Conducting risk and vulnerability assessments"
-msgstr ""
+msgstr "2.4 Rizikos ir pažeidžiamumo vertinimų atlikimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:180
 msgid "2.4 Taking trans-boundary issues into account"
-msgstr ""
+msgstr "2.4 Atsižvelgimas į tarpvalstybinius klausimus"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:184
 msgid "2.5 Addressing knowledge gaps and dealing with uncertainties"
-msgstr ""
+msgstr "2.5 Žinių spragų ir netikrumo šalinimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:158
 msgid "2.5 Understanding the role of surrounding areas in adaptation"
-msgstr ""
+msgstr "2.5 Aplinkinių vietovių vaidmens prisitaikymui supratimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:163
 msgid "2.6 Identifying main adaptation concerns and defining objectives"
-msgstr ""
+msgstr "2.6 Pagrindinių prisitaikymo problemų nustatymas ir tikslų apibrėžimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:188
 msgid "2.6 Identifying main adaptation concerns and setting a strategic direction"
-msgstr ""
+msgstr "2.6 Pagrindinių prisitaikymo problemų nustatymas ir strateginės krypties nustatymas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:168
 msgid "2.7 Assessing climate change risks and vulnerabilities: Self check"
-msgstr ""
+msgstr "2.7 Klimato kaitos rizikos ir pažeidžiamumo įvertinimas: savikontrolė"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:192
 msgid "2.7 Assessing climate change risks and vulnerabilities: Self-check"
-msgstr ""
+msgstr "2.7 Klimato kaitos rizikos ir pažeidžiamumo įvertinimas: savikontrolė"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:199
 msgid "3. Identifying adaptation options"
-msgstr ""
+msgstr "3. Adaptacijos variantų nustatymas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:204
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:183
 msgid "3.1 Creating a catalogue of relevant adaptation options"
-msgstr ""
+msgstr "3.1 Atitinkamų pritaikymo galimybių katalogo kūrimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:208
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:188
 msgid "3.2 Finding examples of good adaptation practices"
-msgstr ""
+msgstr "3.2 Geros prisitaikymo praktikos pavyzdžių paieška"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:212
 msgid "3.3 Describing adaptation options in detail"
-msgstr ""
+msgstr "3.3 Išsamus pritaikymo variantų aprašymas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:193
 msgid "3.3 Identifying adaptation options: Self check"
-msgstr ""
+msgstr "3.3 Prisitaikymo variantų nustatymas: savikontrolė"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:216
 msgid "3.4 Identifying adaptation options: Self-check"
-msgstr ""
+msgstr "3.4 Prisitaikymo variantų nustatymas: savikontrolė"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:223
 msgid "4. Assessing adaptation options"
-msgstr ""
+msgstr "4. Adaptacijos galimybių įvertinimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:229
 msgid "4.1 Assessing possible adaptation options in terms of effects, time, costs, benefits and efforts"
-msgstr ""
+msgstr "4.1. Galimų pritaikymo galimybių įvertinimas poveikio, laiko, sąnaudų, naudos ir pastangų požiūriu"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:208
 msgid "4.1 Choosing an assessment framework for adaptation options"
-msgstr ""
+msgstr "4.1 Prisitaikymo variantų vertinimo sistemos pasirinkimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:213
 msgid "4.2 Conducting a cost-benefit analysis of adaptation measures"
-msgstr ""
+msgstr "4.2 Prisitaikymo priemonių kaštų ir naudos analizės atlikimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:233
 msgid "4.2 Prioritising adaptation options and selecting preferred ones"
-msgstr ""
+msgstr "4.2 Prioritetinių pritaikymo variantų nustatymas ir pageidaujamų parinkimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:237
 msgid "4.3 Preparing a strategy document and getting political approval"
-msgstr ""
+msgstr "4.3 Strateginio dokumento rengimas ir politinio pritarimo gavimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:218
 msgid "4.3 Prioritising adaptation options"
-msgstr ""
+msgstr "4.3 Pirmenybės teikimas prisitaikymo galimybėms"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:223
 msgid "4.4 Assessing and selecting adaptation options: Self check"
-msgstr ""
+msgstr "4.4 Adaptacijos parinkčių vertinimas ir pasirinkimas: savęs patikrinimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:241
 msgid "4.4 Assessing and selecting adaptation options: Self-check"
-msgstr ""
+msgstr "4.4 Adaptacijos variantų įvertinimas ir parinkimas: Savikontrolė"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:251
 msgid "5. Implementing Adaptation"
-msgstr ""
+msgstr "5. Adaptacijos įgyvendinimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:238
 msgid "5.1 Designing an effective adaptation action plan"
-msgstr ""
+msgstr "5.1 Veiksmingo prisitaikymo veiksmų plano sudarymas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:257
 msgid "5.1 Developing an adaptation action plan"
-msgstr ""
+msgstr "5.1 Prisitaikymo veiksmų plano rengimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:243
 msgid "5.2 Finding examples of adaptation action plans"
-msgstr ""
+msgstr "5.2 Prisitaikymo veiksmų planų pavyzdžių paieška"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:261
 msgid "5.2 Organising governance of implementation across sectors and levels"
-msgstr ""
+msgstr "5.2 Įgyvendinimo valdymo organizavimas įvairiuose sektoriuose ir lygiuose"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:248
 msgid "5.3 Mainstreaming adaptation in urban policies and plans"
-msgstr ""
+msgstr "5.3 Prisitaikymo integravimas į miestų politiką ir planus"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:265
 msgid "5.3 Mainstreaming: Integrating adaptation into instruments and sector policies"
-msgstr ""
+msgstr "5.3 Integravimas: prisitaikymo integravimas į priemones ir sektorių politiką"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:253
 msgid "5.4 Addressing climate change through adaptation and mitigation"
-msgstr ""
+msgstr "5.4 Klimato kaitos problemos sprendimas prisitaikant prie klimato kaitos ir ją švelninant"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:269
 msgid "5.4 Multilevel coordination and supportive governance framework"
-msgstr ""
+msgstr "5.4 Daugiapakopis koordinavimas ir pagalbinė valdymo sistema"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:273
 msgid "5.5 Implementing Adaptation: Self-check"
-msgstr ""
+msgstr "5.5 Adaptacijos įgyvendinimas: savikontrolė"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:258
 msgid "5.5 Implementing adaptation: Self check"
-msgstr ""
+msgstr "5.5 Adaptacijos įgyvendinimas: savęs patikrinimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:280
 msgid "6. Monitoring and Evaluating Adaptation"
-msgstr ""
+msgstr "6. Prisitaikymo stebėjimas ir vertinimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:273
 msgid "6.1 Developing the monitoring and evaluation approach"
-msgstr ""
+msgstr "6.1 Stebėsenos ir vertinimo metodo kūrimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:287
 msgid "6.1 Understanding drivers and purposes"
-msgstr ""
+msgstr "6.1 Vairuotojų ir tikslų supratimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:291
 msgid "6.2 Deciding who to involve in the process"
-msgstr ""
+msgstr "6.2 Nuspręsti, ką įtraukti į procesą"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:278
 msgid "6.2 Defining monitoring indicators"
-msgstr ""
+msgstr "6.2 Stebėsenos rodiklių nustatymas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:295
 msgid "6.3 Defining MRE indicators and mixed-methods approach"
-msgstr ""
+msgstr "6.3 MRE rodiklių ir mišrių metodų apibrėžimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:283
 msgid "6.3 Finding examples of adaptation monitoring indicators"
-msgstr ""
+msgstr "6.3 Prisitaikymo stebėsenos rodiklių pavyzdžių paieška"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:299
 msgid "6.4 Communicating results to inform policy and practice"
-msgstr ""
+msgstr "6.4 Rezultatų perdavimas, siekiant informuoti apie politiką ir praktiką"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:288
 msgid "6.4 Using monitoring results to enhance the process of adaptation"
-msgstr ""
+msgstr "6.4 Stebėjimo rezultatų panaudojimas adaptacijos procesui sustiprinti"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:293
 msgid "6.5 Monitoring and evaluating adaptation: Self check"
-msgstr ""
+msgstr "6.5 Prisitaikymo stebėjimas ir vertinimas: savikontrolė"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:303
 msgid "6.5 Monitoring and evaluating adaptation: Self-check"
-msgstr ""
+msgstr "6.5 Prisitaikymo stebėjimas ir vertinimas: savikontrolė"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:72
 msgid "<!-- <span class=\"map-type\">NAS</span> --> HHWS available (click on country for further information)"
-msgstr ""
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> HHWS pasiekiamas (jei reikia daugiau informacijos, spustelėkite šalį)"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:79
 msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
-msgstr ""
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> Nėra informacijos"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:429
 msgid "<a href=\"https://oppla.eu/about\">Oppla</a> is the EU Repository of Nature-Based Solutions. It provides a knowledge marketplace, where the latest thinking on natural capital, ecosystem services and nature-based solutions is brought together. Its purpose is to simplify how to share, obtain and create knowledge to better manage our environment"
-msgstr ""
+msgstr "<a href=\"https://oppla.eu/about\">Oppla</a> yra ES gamta pagrįstų sprendimų saugykla. Tai yra žinių rinka, kurioje sujungiami naujausi mąstymai apie gamtos kapitalą, ekosistemų paslaugas ir gamta pagrįstus sprendimus. Jos tikslas – supaprastinti, kaip dalytis, įgyti ir kurti žinias, kad galėtume geriau valdyti savo aplinką"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:462
 msgid "<a href=\"https://urbact.eu/\">URBACT’s</a> mission is to enable cities to work together and develop integrated solutions to common urban challenges, by networking, learning from one another’s experiences, drawing lessons and identifying good practices to improve urban policies."
-msgstr ""
+msgstr "<a href=\"https://urbact.eu/\">URBACT</a> misija – sudaryti sąlygas miestams bendradarbiauti ir kurti integruotus bendrų miesto iššūkių sprendimus, kuriant tinklus, mokantis vieni iš kitų patirties, mokantis pamokų ir identifikuojant gerąją patirtį miestų politikai tobulinti."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:484
 msgid "<a href=\"https://www.climatealliance.org/home.html\">Climate Alliance</a> <br><a href=\"https://www.ccre.org\">Council of European Municipalities and Regions (CEMR)</a> <br><a href=\"https://www.cdp.net/en\">CDP</a> <br><a href=\"https://www.c40.org\">C40</a> <br><a href=\"https://fedarene.org\">European Federation of Agencies and Regions for Energy and Environment (FEDARENE)</a> <br><a href=\"https://iclei-europe.org\">Local Governments for Sustainability (ICLEI) Europe</a>"
-msgstr ""
+msgstr "<a href=\"https://www.climatealliance.org/home.html\">Klimato aljansas</a> <br><a href=\"https://www.ccre.org\">Europos savivaldybių ir regionų taryba (CEMR)</a> <br><a href=\"https://www.cdp.net/en\">CDP</a> <br><a href=\"https://www.c40.org\"> href=\"https://fedarene.org\">Europos energetikos ir aplinkos agentūrų ir regionų federacija (FEDARENE)</a> <br><a href=\"https://iclei-europe.org\">Europos tvarumo vietos valdžios institucijos (ICLEI)</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:407
 msgid "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> is an Initiative of the European Union that provides urban areas throughout Europe with resources to test new and unproven solutions to address urban challenge"
-msgstr ""
+msgstr "<a href=\"https://www.uia-initiative.eu/en\">Inovatyvūs miesto veiksmai</a> yra Europos Sąjungos iniciatyva, kuri suteikia miestų vietovėms visoje Europoje išteklių išbandyti naujus ir nepatvirtintus sprendimus, kaip spręsti miesto problemas."
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:292
 msgid "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:142
 msgid "<strong>Language:</strong> <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "<strong>Kalba:</strong> <span>${DYNAMIC_CONTENT}</span>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:86
 msgid "A background document for the event is available <a href=\"${DYNAMIC_CONTENT}\">here</a>"
-msgstr ""
+msgstr "Įvykio fono dokumentą rasite <a href=\"${DYNAMIC_CONTENT}\">čia</a>"
 
 #: ../../climateadapt/image_scales/interfaces.py:93
 msgid "A value for the quality of 2x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 62."
-msgstr ""
+msgstr "2x didelio pikselių tankio vaizdų kokybės vertė nuo 1 (mažiausias) iki 95 (didžiausias). 0 reikšmė reikš, kad bus naudojama plone.scaling numatytoji vertė, kuri šiuo metu yra 62."
 
 #: ../../climateadapt/image_scales/interfaces.py:106
 msgid "A value for the quality of 3x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 51."
-msgstr ""
+msgstr "3x didelio pikselių tankio vaizdų kokybės vertė nuo 1 (mažiausias) iki 95 (didžiausias). 0 reikšmė reikš, kad bus naudojama plone.scaling numatytoji vertė, kuri šiuo metu yra 51."
 
 #: ../../climateadapt/image_scales/interfaces.py:67
 msgid "A value for the quality of scaled images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 88."
-msgstr ""
+msgstr "Pakeistų vaizdų kokybės vertė nuo 1 (mažiausia) iki 95 (aukščiausia). 0 reikšmė reikš, kad bus naudojama plone.scaling numatytoji vertė, kuri šiuo metu yra 88."
 
 #: ../../climateadapt/vocabulary.py:732
 msgid "A1: Governance and Institutional: Policy Instruments"
-msgstr ""
+msgstr "A1: valdymas ir institucinis: politikos priemonės"
 
 #: ../../climateadapt/vocabulary.py:765
 msgid "A1: Policy Instruments"
-msgstr ""
+msgstr "A1: politikos priemonės"
 
 #: ../../climateadapt/vocabulary.py:733
 msgid "A2: Governance and Institutional: Management and planning"
-msgstr ""
+msgstr "A2: valdymas ir institucinis: valdymas ir planavimas"
 
 #: ../../climateadapt/vocabulary.py:766
 msgid "A2: Management and planning"
-msgstr ""
+msgstr "A2: Valdymas ir planavimas"
 
 #: ../../climateadapt/vocabulary.py:767
 msgid "A3: Coordination cooperation and networks"
-msgstr ""
+msgstr "A3: Koordinavimo bendradarbiavimas ir tinklai"
 
 #: ../../climateadapt/vocabulary.py:736
 msgid "A3: Governance and Institutional: Coordination cooperation and networks"
-msgstr ""
+msgstr "A3: Valdymas ir institucinis: Koordinavimo bendradarbiavimas ir tinklai"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:54
 msgid "About the Urban Adaptation Support Tool"
-msgstr ""
+msgstr "Apie prisitaikymo prie miesto pagalbos įrankį"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:52
 msgid "Adaptation <br /> Support Tool"
-msgstr ""
+msgstr "Pritaikymas <br /> Pagalbos įrankis"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:60
 msgid "Adaptation Details"
-msgstr "Informacija apie adaptaciją"
+msgstr "Adaptacijos detalės"
 
 # ,
 #: ../../climateadapt/vocabulary.py:327
 msgid "Adaptation Measures and Actions"
-msgstr "Adaptacijos priemonės ir veiksmai"
+msgstr "Prisitaikymo priemonės ir veiksmai"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:59
 msgid "Adaptation Options Implemented In This Case"
-msgstr "Tokiu atveju įgyvendintos adaptacijos parinktys"
+msgstr "Šiuo atveju pritaikytos parinktys"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:198
 msgid "Adaptation Options and Case Studies"
-msgstr ""
+msgstr "Prisitaikymo parinktys ir atvejų analizė"
 
 # ,
 #: ../../climateadapt/vocabulary.py:329
 msgid "Adaptation Plans and Strategies"
-msgstr "Adaptacijos planai ir strategijos"
+msgstr "Prisitaikymo planai ir strategijos"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:253
 msgid "Adaptation Sectors"
-msgstr ""
+msgstr "Prisitaikymo sektoriai"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:73
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:54
 #: ../../climateadapt/browser/pt/video_view.pt:113
 msgid "Adaptation elements"
-msgstr ""
+msgstr "Adaptacijos elementai"
 
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:158
 #: ../../climateadapt/browser/pt/casestudy_view.pt:340
 msgid "Adaptation elements:"
-msgstr ""
+msgstr "Adaptacijos elementai:"
 
 # ,
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:283
@@ -427,29 +428,29 @@ msgstr "Adaptacijos parinktys"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:95
 msgid "Adaptation portal or platform reported"
-msgstr ""
+msgstr "Pranešta apie prisitaikymo portalą arba platformą"
 
 #: ../../climateadapt/browser/BKPcountries.py:182
 #: ../../climateadapt/browser/countries.py:186
 msgid "Adaptation portals and platforms"
-msgstr ""
+msgstr "Prisitaikymo portalai ir platformos"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:440
 msgid "Adaptation to Climate Change: The goal of the <a href=\"https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal-transformation_en\">EU mission</a> - Adaptation to climate change is to foster the development of innovative solutions to adapt to climate change and encourage regions, cities and communities to lead the societal transformation."
-msgstr ""
+msgstr "Prisitaikymas prie klimato kaitos: <a href=\"https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-societal-EUtransmission-societal\"> - Prisitaikymas prie klimato kaitos yra skatinti naujoviškų sprendimų, kaip prisitaikyti prie klimato kaitos, kūrimą ir paskatinti regionus, miestus ir bendruomenes vadovauti visuomenės pertvarkai."
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:115
 msgid "Adaptation to climate change"
-msgstr ""
+msgstr "Prisitaikymas prie klimato kaitos"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:63
 msgid "Adaptation to climate change in urban areas"
-msgstr ""
+msgstr "Prisitaikymas prie klimato kaitos miestuose"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:371
 msgid "AdapteCCA"
-msgstr "„Adaptecca“"
+msgstr "AdapteCCA"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
@@ -459,110 +460,110 @@ msgstr "Papildoma informacija"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:420
 msgid "Adriatic and Ionian"
-msgstr ""
+msgstr "Adrijos ir Jonijos jūros"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:452
 msgid "Adriatic-Ionian"
-msgstr ""
+msgstr "Adrijos-Jonijos"
 
 #: ../../climateadapt/vocabulary.py:1304
 msgid "Advanced"
-msgstr ""
+msgstr "Išplėstinė"
 
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:196
 msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
-msgstr "Išplėstinė klimato-adapt duomenų bazės elementų paieška <a href=\"/redirect_to_search_page\"> čia </a>"
+msgstr "Išplėstinė Climate-Adapt duomenų bazės elementų paieška <a href=\"/redirect_to_search_page\">čia</a>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Agenda and supporting documents"
-msgstr ""
+msgstr "Darbotvarkė ir patvirtinamieji dokumentai"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:37
 #: ../../climateadapt/vocabulary.py:301
 msgid "Agriculture"
-msgstr "Žemdirbystė"
+msgstr "Žemės ūkis"
 
 #: ../../climateadapt/vocabulary.py:594
 msgid "Air pollution and aero-allergens"
-msgstr ""
+msgstr "Oro tarša ir aeroalergenai"
 
 #: ../../climateadapt/tiles/search_acecontent.py:882
 msgid "All adaptation sectors"
-msgstr ""
+msgstr "Visi prisitaikymo sektoriai"
 
 #: ../../climateadapt/tiles/search_acecontent.py:879
 msgid "All climate impacts"
-msgstr ""
+msgstr "Visi klimato poveikiai"
 
 #: ../../climateadapt/tiles/search_acecontent.py:885
 msgid "All key type measures"
-msgstr ""
+msgstr "Visos pagrindinės priemonės"
 
 #: ../../climateadapt/image_scales/interfaces.py:42
 msgid "Allowed image sizes"
-msgstr ""
+msgstr "Leidžiami vaizdo dydžiai"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:419
 msgid "Alpine"
-msgstr ""
+msgstr "Alpinis"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:455
 msgid "Alpine Space"
-msgstr ""
+msgstr "Alpių erdvė"
 
 #: ../../climateadapt/vocabulary.py:624
 msgid "Aridity"
-msgstr ""
+msgstr "Sausumas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:82
 msgid "Assessing adaptation options"
-msgstr ""
+msgstr "Adaptacijos galimybių įvertinimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:204
 msgid "Assessing and selecting adaptation options"
-msgstr ""
+msgstr "Adaptacijos variantų įvertinimas ir parinkimas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:134
 msgid "Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "Klimato kaitos rizikos ir pažeidžiamumo įvertinimas"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:66
 msgid "Assessing risks and vulnerability <br /> to climate change"
-msgstr ""
+msgstr "Rizikos ir pažeidžiamumo <br /> įvertinimas klimato kaitai"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:458
 msgid "Atlantic Area"
-msgstr ""
+msgstr "Atlanto sritis"
 
 #: ../../climateadapt/vocabulary.py:738
 msgid "B1: Economic and Finance: Financing incentive instruments"
-msgstr ""
+msgstr "B1: Ekonomika ir finansai: Finansavimo skatinimo priemonės"
 
 #: ../../climateadapt/vocabulary.py:768
 msgid "B1: Financing incentive instruments"
-msgstr ""
+msgstr "B1: Finansavimo skatinimo priemonės"
 
 #: ../../climateadapt/vocabulary.py:739
 msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
-msgstr ""
+msgstr "B2: Ekonomika ir finansai: Draudimas ir rizikos pasidalijimo priemonės"
 
 #: ../../climateadapt/vocabulary.py:769
 msgid "B2: Insurance and risk sharing instruments"
-msgstr ""
+msgstr "B2: Draudimas ir rizikos pasidalijimo priemonės"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:461
 msgid "Balkan-Mediterranean"
-msgstr ""
+msgstr "Balkanų-Viduržemio jūros"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:417
 msgid "Baltic Sea"
-msgstr ""
+msgstr "Baltijos jūra"
 
 #: ../../climateadapt/vocabulary.py:1303
 msgid "Basic"
-msgstr ""
+msgstr "Pagrindinis"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:39
@@ -577,7 +578,7 @@ msgstr "Biogeografiniai regionai"
 
 #: ../../climateadapt/vocabulary.py:1255
 msgid "Building"
-msgstr ""
+msgstr "Pastatas"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:49
@@ -587,23 +588,23 @@ msgstr "Pastatai"
 
 #: ../../climateadapt/vocabulary.py:304
 msgid "Business and industry"
-msgstr ""
+msgstr "Verslas ir pramonė"
 
 #: ../../climateadapt/vocabulary.py:770
 msgid "C1: Grey options"
-msgstr ""
+msgstr "C1: pilkos spalvos parinktys"
 
 #: ../../climateadapt/vocabulary.py:740
 msgid "C1: Physical and technological: Grey options"
-msgstr ""
+msgstr "C1: fizinės ir technologinės: pilkos spalvos parinktys"
 
 #: ../../climateadapt/vocabulary.py:741
 msgid "C2: Physical and technological: Technological options"
-msgstr ""
+msgstr "C2: Fizinis ir technologinis: Technologinės galimybės"
 
 #: ../../climateadapt/vocabulary.py:771
 msgid "C2: Technological options"
-msgstr ""
+msgstr "C2: Technologinės galimybės"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:48
@@ -612,43 +613,43 @@ msgstr "Atvejo analizės aprašymas"
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:292
 msgid "Case Study Illustrations"
-msgstr ""
+msgstr "Atvejo analizės iliustracijos"
 
 #: ../../climateadapt/vocabulary.py:384
 msgid "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
-msgstr ""
+msgstr "Atvejis sukurtas ir įgyvendintas bei iš dalies finansuojamas kaip prisitaikymo prie klimato kaitos priemonė."
 
 #: ../../climateadapt/vocabulary.py:380
 msgid "Case developed and implemented as a Climate Change Adaptation Measure."
-msgstr ""
+msgstr "Atvejis sukurtas ir įgyvendintas kaip prisitaikymo prie klimato kaitos priemonė."
 
 #: ../../climateadapt/vocabulary.py:390
 msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
-msgstr ""
+msgstr "Atvejis daugiausia sukurtas ir įgyvendintas dėl kitų politikos tikslų, tačiau labai atsižvelgus į prisitaikymo prie klimato kaitos aspektus"
 
 # ,
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:296
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:251
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:14
 msgid "Case studies"
-msgstr "Atvejų tyrimai"
+msgstr "Atvejo tyrimai"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:177
 msgid "Case studies and Adaptation Options"
-msgstr ""
+msgstr "Atvejo analizės ir pritaikymo parinktys"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:301
 msgid "Case studies collected at national level in Spain, provided by AdapteCCA.es"
-msgstr ""
+msgstr "Nacionaliniu lygmeniu Ispanijoje surinktų atvejų tyrimai, kuriuos pateikė AdapteCCA.es"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:200
 msgid "Case studies related to this option:"
-msgstr "Atvejų tyrimai, susiję su šia parinktimi:"
+msgstr "Su šia parinktimi susijusių atvejų tyrimai:"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:467
 msgid "Central Europe"
-msgstr ""
+msgstr "Vidurio Europa"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:51
@@ -657,30 +658,30 @@ msgstr "Iššūkiai"
 
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
-msgstr ""
+msgstr "Išsiregistravimas sukurtas"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:51
 msgid "Choose a country"
-msgstr ""
+msgstr "Pasirinkite šalį"
 
 #: ../../climateadapt/tiles/pt/country_select.pt:10
 msgid "Choose a country:"
-msgstr ""
+msgstr "Pasirinkite šalį:"
 
 #: ../../climateadapt/browser/pt/regions-section-select.pt:7
 #: ../../climateadapt/browser/pt/transnational_regions.pt:431
 #: ../../climateadapt/tiles/pt/transregional_select.pt:112
 msgid "Choose a region"
-msgstr ""
+msgstr "Pasirinkite regioną"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:69
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:46
 msgid "Choose thematic map:"
-msgstr ""
+msgstr "Pasirinkite teminį žemėlapį:"
 
 #: ../../climateadapt/vocabulary.py:1296
 msgid "Citizen"
-msgstr ""
+msgstr "Pilietis"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:231
@@ -689,27 +690,27 @@ msgstr "Miestas"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:201
 msgid "City Initiatives"
-msgstr ""
+msgstr "Miesto iniciatyvos"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:483
 msgid "City Networks"
-msgstr ""
+msgstr "Miesto tinklai"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:260
 msgid "Climate Impacts"
-msgstr ""
+msgstr "Klimato poveikis"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:111
 msgid "Climate Impacts in Europe"
-msgstr ""
+msgstr "Klimato poveikis Europoje"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:58
 msgid "Climate change impacts on European cities"
-msgstr ""
+msgstr "Klimato kaitos poveikis Europos miestams"
 
 #: ../../climateadapt/tiles/search_acecontent.py:835
 msgid "Climate impact"
-msgstr ""
+msgstr "Klimato poveikis"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:70
@@ -727,33 +728,33 @@ msgstr "Klimato poveikis:"
 
 #: ../../climateadapt/vocabulary.py:331
 msgid "Climate services"
-msgstr ""
+msgstr "Klimato paslaugos"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:63
 msgid "Climate-ADAPT Event"
-msgstr ""
+msgstr "Climate-ADAPT renginys"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:300
 msgid "Climate-ADAPT case studies"
-msgstr ""
+msgstr "Climate-ADAPT atvejų tyrimai"
 
 #: ../../climateadapt/vocabulary.py:593
 msgid "Climate-sensitive diseases"
-msgstr ""
+msgstr "Klimato poveikiui jautrios ligos"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:40
 #: ../../climateadapt/vocabulary.py:305
 msgid "Coastal areas"
-msgstr "Pakrančių teritorijos"
+msgstr "Pakrantės zonos"
 
 #: ../../climateadapt/vocabulary.py:628
 msgid "Coastal flooding"
-msgstr ""
+msgstr "Pakrantės potvyniai"
 
 #: ../../climateadapt/vocabulary.py:620
 msgid "Cold spells and frost"
-msgstr ""
+msgstr "Šalčiai ir šalnos"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:218
@@ -762,18 +763,18 @@ msgstr "Komentarai:"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:10
 msgid "Common definitions of the terms used frequently in the clearinghouse."
-msgstr ""
+msgstr "Bendri kliringo centre dažnai vartojamų terminų apibrėžimai."
 
 #: ../../climateadapt/vocabulary.py:1229
 msgid "Companies, SMEs and private associations"
-msgstr ""
+msgstr "Įmonės, MVĮ ir privačios asociacijos"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:105
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:95
 #: ../../climateadapt/browser/pt/navbar_footer.pt:15
 msgid "Contact"
-msgstr "kontaktas"
+msgstr "Susisiekite"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:39
@@ -783,22 +784,22 @@ msgstr "Observatorijos kontaktinė informacija"
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:30
 #: ../../climateadapt/browser/pt/c3sindicator_view.pt:158
 msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
-msgstr ""
+msgstr "Turinį Europos klimato duomenų naršyklės puslapiuose pateikia ECMWF įdiegta <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a>. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Atsisakymas</a>"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:205
 msgid "Contributor:"
-msgstr "Pagalbininkas:"
+msgstr "Bendraautoris:"
 
 #: ../../climateadapt/vocabulary.py:339
 msgid "Cost-benefit analysis and maintenance costs"
-msgstr ""
+msgstr "Kaštų ir naudos analizė ir priežiūros išlaidos"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:41
 #: ../../climateadapt/browser/pt/casestudy_view.pt:84
 msgid "Costs and Benefits"
-msgstr "Išlaidos ir išmokos"
+msgstr "Išlaidos ir nauda"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:197
@@ -815,31 +816,31 @@ msgstr "Šalys:"
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:104
 msgid "Created by:"
-msgstr "Sukurta:"
+msgstr "Sukūrė:"
 
 #: ../../climateadapt/vocabulary.py:603
 msgid "Critical Infrastructure"
-msgstr ""
+msgstr "Kritinė infrastruktūra"
 
 #: ../../climateadapt/vocabulary.py:306
 msgid "Cultural heritage"
-msgstr ""
+msgstr "Kultūros paveldas"
 
 #: ../../climateadapt/vocabulary.py:772
 msgid "D1: Green options"
-msgstr ""
+msgstr "D1: žalios parinktys"
 
 #: ../../climateadapt/vocabulary.py:744
 msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
-msgstr ""
+msgstr "D1: Gamta pagrįsti sprendimai ir ekosistemomis pagrįsti metodai: ekologiškos galimybės"
 
 #: ../../climateadapt/vocabulary.py:773
 msgid "D2: Blue options"
-msgstr ""
+msgstr "D2: mėlynos parinktys"
 
 #: ../../climateadapt/vocabulary.py:748
 msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
-msgstr ""
+msgstr "D2: Gamta pagrįsti sprendimai ir ekosistemomis pagrįsti metodai: mėlynos parinktys"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:141
@@ -848,25 +849,25 @@ msgstr "DRMKC"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:418
 msgid "Danube"
-msgstr ""
+msgstr "Dunojus"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:171
 msgid "Data and Tools"
-msgstr ""
+msgstr "Duomenys ir įrankiai"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:70
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:136
 #: ../../climateadapt/browser/pt/casestudy_view.pt:265
 msgid "Date of creation:"
-msgstr "Kūrybos data:"
+msgstr "Sukūrimo data:"
 
 # ,
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:48
 #: ../../climateadapt/browser/pt/indicator_view.pt:66
 #: ../../climateadapt/browser/pt/publicationreport_view.pt:56
 msgid "Date of publication:"
-msgstr "Leidimo data:"
+msgstr "Paskelbimo data:"
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:93
@@ -878,14 +879,14 @@ msgstr "Išleidimo data:"
 #: ../../climateadapt/browser/pt/indicator_view.pt:32
 #: ../../climateadapt/browser/pt/informationportal_view.pt:21
 msgid "Description"
-msgstr "apibūdinimas"
+msgstr "Aprašymas"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:159
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
 #: ../../climateadapt/browser/pt/organisation_view.pt:18
 msgid "Description:"
-msgstr "Apibūdinimas:"
+msgstr "Aprašymas:"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:42
@@ -895,7 +896,7 @@ msgstr "Nelaimių rizikos mažinimas"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:82
 msgid "Download the detailed agenda <a href=\"${DYNAMIC_CONTENT}\">here</a>"
-msgstr ""
+msgstr "Atsisiųskite išsamią darbotvarkę <a href=\"${DYNAMIC_CONTENT}\">čia</a>"
 
 # ,
 #: ../../climateadapt/vocabulary.py:357
@@ -904,7 +905,7 @@ msgstr "Sausros"
 
 #: ../../climateadapt/vocabulary.py:592
 msgid "Droughts and floods"
-msgstr ""
+msgstr "Sausros ir potvyniai"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:97
@@ -913,35 +914,35 @@ msgstr "Trukmė:"
 
 #: ../../climateadapt/vocabulary.py:774
 msgid "E1: Information and awareness raising"
-msgstr ""
+msgstr "E1: Informacija ir informuotumo didinimas"
 
 #: ../../climateadapt/vocabulary.py:752
 msgid "E1: Knowledge and behavioural change: Information and awareness raising"
-msgstr ""
+msgstr "E1: Žinios ir elgsenos pokyčiai: Informacija ir informuotumo didinimas"
 
 #: ../../climateadapt/vocabulary.py:775
 msgid "E2: Capacity building empowering and lifestyle practices"
-msgstr ""
+msgstr "E2: gebėjimų stiprinimas ir gyvenimo būdo praktika"
 
 #: ../../climateadapt/vocabulary.py:756
 msgid "E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices"
-msgstr ""
+msgstr "E2: Žinios ir elgesio pokyčiai: gebėjimų stiprinimas ir gyvenimo būdo praktika"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:439
 msgid "EU Missions"
-msgstr ""
+msgstr "ES misijos"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:349
 msgid "EU funding of adaptation"
-msgstr ""
+msgstr "ES finansavimas prisitaikymui"
 
 #: ../../climateadapt/vocabulary.py:338
 msgid "Economic aspects"
-msgstr ""
+msgstr "Ekonominiai aspektai"
 
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
-msgstr ""
+msgstr "Ekosistemos ir gamta pagrįsti sprendimai"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47
@@ -951,44 +952,44 @@ msgstr "Energija"
 
 #: ../../climateadapt/vocabulary.py:335
 msgid "Environmental aspects"
-msgstr ""
+msgstr "Aplinkosaugos aspektai"
 
 #: ../../climateadapt/vocabulary.py:1251
 msgid "European"
-msgstr ""
+msgstr "Europos"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:241
 msgid "European Climate Data Explorer"
-msgstr ""
+msgstr "Europos klimato duomenų naršyklė"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:395
 msgid "European Climate Pact"
-msgstr ""
+msgstr "Europos klimato paktas"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:260
 msgid "European Drought Observatory"
-msgstr ""
+msgstr "Europos sausros observatorija"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Event"
-msgstr ""
+msgstr "Renginys"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:25
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:17
 msgid "Events"
-msgstr ""
+msgstr "Renginiai"
 
 #: ../../climateadapt/vocabulary.py:1305
 msgid "Expert"
-msgstr ""
+msgstr "Ekspertas"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:298
 msgid "Explore Forest adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
-msgstr ""
+msgstr "Naršykite Miško prisitaikymo atvejų tyrimus pagal geografinę vietą, temą ir susisiekite su prisitaikymo galimybėmis naudodami žemėlapiu pagrįstą atvejo analizės tyrinėtoją."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:253
 msgid "Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
-msgstr ""
+msgstr "Naršykite pritaikymo miestuose atvejų tyrimus pagal geografinę vietovę, teminę aprėptį ir nuorodą į prisitaikymo parinktis naudodami žemėlapiu pagrįstą atvejo analizės tyrinėtoją."
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:139
@@ -998,32 +999,32 @@ msgstr "Išorinis šaltinis"
 
 #: ../../climateadapt/vocabulary.py:622
 msgid "Extreme Precipitation"
-msgstr ""
+msgstr "Ekstremalūs krituliai"
 
 # ,
 #: ../../climateadapt/vocabulary.py:358
 msgid "Extreme Temperatures"
-msgstr "Ekstremali temperatūra"
+msgstr "Ekstremalios temperatūros"
 
 #: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
-msgstr ""
+msgstr "Ekstremalus karštis"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:417
 msgid "FAO Green Cities"
-msgstr ""
+msgstr "FAO žalieji miestai"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:22
 msgid "FAQ for providers"
-msgstr ""
+msgstr "DUK teikėjams"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:29
 msgid "FAQ for users"
-msgstr ""
+msgstr "DUK vartotojams"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:248
 msgid "FISE web portal will help us to improve the health and resilience of our forests, which play a vital role in protecting our biodiversity and in mitigating climate change."
-msgstr ""
+msgstr "FISE interneto portalas padės mums pagerinti mūsų miškų sveikatą ir atsparumą, nes jie atlieka gyvybiškai svarbų vaidmenį saugant mūsų biologinę įvairovę ir švelninant klimato kaitą."
 
 # ,
 #: ../../climateadapt/browser/overrides.py:43
@@ -1033,7 +1034,7 @@ msgstr "Finansinis"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:24
 msgid "Find out how to contribute different types of information to Climate-ADAPT."
-msgstr ""
+msgstr "Sužinokite, kaip „Climate-ADAPT“ pateikti įvairių tipų informaciją."
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
@@ -1048,11 +1049,11 @@ msgstr "Miškininkystė"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:251
 msgid "Forestry Information System for Europe"
-msgstr ""
+msgstr "Europos miškininkystės informacinė sistema"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:31
 msgid "Frequently asked questions in one place."
-msgstr ""
+msgstr "Dažnai užduodami klausimai vienoje vietoje."
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:87
@@ -1062,22 +1063,22 @@ msgstr "Finansavimo programa:"
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:216
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:195
 msgid "Funding and Financing"
-msgstr ""
+msgstr "Finansavimas ir finansavimas"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:7
 msgid "General"
-msgstr ""
+msgstr "Generolas"
 
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:60
 msgid "Geographic characterisation"
-msgstr ""
+msgstr "Geografinis apibūdinimas"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:193
 #: ../../climateadapt/browser/pt/guidancedocument_view.pt:85
 #: ../../climateadapt/browser/pt/informationportal_view.pt:88
 msgid "Geographic characterisation:"
-msgstr "Geografinis apibūdinimas:"
+msgstr "Geografinė charakteristika:"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:78
@@ -1090,53 +1091,53 @@ msgstr "Geografinis apibūdinimas"
 #: ../../climateadapt/browser/pt/casestudy_view.pt:364
 #: ../../climateadapt/browser/pt/indicator_view.pt:103
 msgid "Geographic characterization:"
-msgstr "Geografinis apibūdinimas:"
+msgstr "Geografinė charakteristika:"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:50
 msgid "Getting started"
-msgstr ""
+msgstr "Darbo pradžia"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:8
 msgid "Glossary"
-msgstr ""
+msgstr "Žodynėlis"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:13
 msgid "Go back"
-msgstr ""
+msgstr "Grįžk atgal"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:300
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:255
 msgid "Go to Case Study Explorer"
-msgstr ""
+msgstr "Eikite į Case Study Explorer"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:352
 msgid "Go to EU funding of adaptation"
-msgstr ""
+msgstr "Eiti į ES finansavimą prisitaikymui"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:287
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:269
 msgid "Go to the Adaptation Options"
-msgstr ""
+msgstr "Eikite į adaptacijos parinktis"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:237
 msgid "Go to the European Climate Data Explorer"
-msgstr ""
+msgstr "Eikite į Europos klimato duomenų naršyklę"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:342
 msgid "Go to the Forest Policy Overview"
-msgstr ""
+msgstr "Eikite į Miškų politikos apžvalgą"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:228
 msgid "Go to the Urban Adaptation Map Viewer"
-msgstr ""
+msgstr "Eikite į urbanistinės adaptacijos žemėlapių peržiūros priemonę"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:218
 msgid "Go to the Urban Adaptation Support Tool"
-msgstr ""
+msgstr "Eikite į urbanistinės adaptacijos palaikymo įrankį"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:311
 msgid "Go to the Urban Policy Overview"
-msgstr ""
+msgstr "Eikite į Miesto politikos apžvalgą"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:184
@@ -1147,23 +1148,23 @@ msgstr "Valdymo lygis:"
 # ,
 #: ../../climateadapt/vocabulary.py:270
 msgid "Guidance"
-msgstr "Gairės"
+msgstr "Vadovavimas"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:10
 msgid "Guidance documents"
-msgstr ""
+msgstr "Rekomendacijos dokumentai"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:17
 msgid "Guidance on the Climate-ADAPT Database Search function."
-msgstr ""
+msgstr "Rekomendacijos dėl Climate-ADAPT duomenų bazės paieškos funkcijos."
 
 #: ../../climateadapt/browser/pt/help-categories.pt:15
 msgid "Guidance to <br /> search function"
-msgstr ""
+msgstr "Paieškos funkcijos <br /> gairės"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:111
 msgid "HHWS website"
-msgstr ""
+msgstr "HHWS svetainė"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:44
@@ -1173,7 +1174,7 @@ msgstr "Sveikata"
 
 #: ../../climateadapt/vocabulary.py:604
 msgid "Health and Wellbeing"
-msgstr ""
+msgstr "Sveikata ir gerovė"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:80
@@ -1184,32 +1185,32 @@ msgstr "Poveikis sveikatai:"
 
 #: ../../climateadapt/vocabulary.py:591
 msgid "Heat"
-msgstr ""
+msgstr "Šiluma"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:105
 msgid "Heat index of HHWS:"
-msgstr ""
+msgstr "HHWS šilumos indeksas:"
 
 #: ../../climateadapt/image_scales/interfaces.py:79
 msgid "High pixel density mode"
-msgstr ""
+msgstr "Didelio pikselių tankio režimas"
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:12
 msgid "Home"
-msgstr "Namai"
+msgstr "Pradžia"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
 msgid "How to use the map?"
-msgstr ""
+msgstr "Kaip naudotis žemėlapiu?"
 
 #: ../../climateadapt/vocabulary.py:312
 msgid "ICT"
-msgstr ""
+msgstr "IKT"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:168
 msgid "IPCC adaptation options categories:"
-msgstr ""
+msgstr "IPCC pritaikymo parinkčių kategorijos:"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
@@ -1224,31 +1225,31 @@ msgstr "Ledas ir sniegas"
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:74
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:179
 msgid "Identifying adaptation options"
-msgstr ""
+msgstr "Adaptacijos galimybių nustatymas"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:38
 msgid "If you are new user the video tutorials can help you get started."
-msgstr ""
+msgstr "Jei esate naujas naudotojas, vaizdo įrašų vadovėliai gali padėti pradėti."
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:96
 msgid "If you have any further questions you can contact <a href=\"${DYNAMIC_CONTENT}\">${DYNAMIC_CONTENT}</a>"
-msgstr ""
+msgstr "Jei turite daugiau klausimų, galite susisiekti su <a href=\"${DYNAMIC_CONTENT}\">${DYNAMIC_CONTENT}</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:494
 msgid "Image courtesy of <a style=\"color: #999;font-size: 12px;\" href=\"https://www.vecteezy.com/free-vector/technology\">Technology Vectors by Vecteezy</a>"
-msgstr ""
+msgstr "Vaizdas suteiktas <a style=\"color: #999;font-size: 12px;\" href=\"https://www.vecteezy.com/free-vector/technology\">Vecteezy technologijos vektoriai</a>"
 
 #: ../../climateadapt/image_scales/interfaces.py:92
 msgid "Image quality at 2x"
-msgstr ""
+msgstr "Vaizdo kokybė 2x"
 
 #: ../../climateadapt/image_scales/interfaces.py:105
 msgid "Image quality at 3x"
-msgstr ""
+msgstr "Vaizdo kokybė 3x"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:90
 msgid "Implementation"
-msgstr ""
+msgstr "Įgyvendinimas"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:47
@@ -1258,16 +1259,16 @@ msgstr "Įgyvendinimo laikas"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:234
 msgid "Implementing adaptation"
-msgstr ""
+msgstr "Adaptacijos įgyvendinimas"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:67
 msgid "Importance and Relevance of Adaptation"
-msgstr "Adaptacijos svarba ir aktualumas"
+msgstr "Prisitaikymo svarba ir aktualumas"
 
 #: ../../climateadapt/browser/pt/regions-section.pt:75
 msgid "In 2021-2027, the <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> cross-border cooperation (CBC) between EU Member States and Neighbourhood region </a> is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called “Interreg NEXT”."
-msgstr ""
+msgstr "2021–2027 m. <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> ES valstybių narių ir kaimynystės regiono tarpvalstybinis bendradarbiavimas (CBC) </a> bus reglamentuojamas ES sanglaudos politikos, o programos bus visapusiškai Interreg dalis. Siekiant pabrėžti išorinį sanglaudos politikos aspektą ir tuo pačiu pabrėžti ES ir šalių partnerių artumą, naujosios programos pavadintos „Interreg NEXT“."
 
 # ,
 #: ../../climateadapt/vocabulary.py:269
@@ -1276,73 +1277,73 @@ msgstr "Rodikliai"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:120
 msgid "Info:"
-msgstr ""
+msgstr "Informacija:"
 
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:9
 msgid "Information Portals"
-msgstr ""
+msgstr "Informaciniai portalai"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:106
 msgid "Information on the protection of personal data is available in the <a href=\"${DYNAMIC_CONTENT}\"><b>privacy statement</b></a>"
-msgstr ""
+msgstr "Informacija apie asmens duomenų apsaugą pateikiama <a href=\"${DYNAMIC_CONTENT}\"><b>privatumo pareiškime</b></a>"
 
 # ,
 #: ../../climateadapt/vocabulary.py:267
 msgid "Information portals"
-msgstr "Informacijos portalai"
+msgstr "Informaciniai portalai"
 
 #: ../../climateadapt/vocabulary.py:791
 msgid "Institutional: Economic options"
-msgstr ""
+msgstr "Institucinis: ekonominės galimybės"
 
 #: ../../climateadapt/vocabulary.py:793
 msgid "Institutional: Government policies and programmes"
-msgstr ""
+msgstr "Institucinė: Vyriausybės politika ir programos"
 
 #: ../../climateadapt/vocabulary.py:792
 msgid "Institutional: Law and regulations"
-msgstr ""
+msgstr "Institucinis: Įstatymai ir kiti teisės aktai"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:56
 msgid "Item Documents"
-msgstr ""
+msgstr "Prekė Dokumentai"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:129
 msgid "Item’s creation:"
-msgstr "Prekės sukūrimas:"
+msgstr "Elemento kūrimas:"
 
 #: ../../climateadapt/tiles/search_acecontent.py:847
 msgid "Key Type Measure"
-msgstr ""
+msgstr "Rakto tipo priemonė"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:267
 msgid "Key Type Measures"
-msgstr ""
+msgstr "Rakto tipo priemonės"
 
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:163
 msgid "Key Type Measures:"
-msgstr ""
+msgstr "Pagrindinio tipo priemonės:"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:22
 msgid "Key activities within climate change and health"
-msgstr "Pagrindinė klimato pokyčių ir sveikatos veikla"
+msgstr "Pagrindinė veikla klimato kaitos ir sveikatos srityse"
 
 #: ../../climateadapt/browser/admin.py:565
 msgid "Keyword succesfully deleted: ${kw_old}."
-msgstr ""
+msgstr "Raktinis žodis sėkmingai ištrintas: ${kw_old}."
 
 #: ../../climateadapt/browser/admin.py:595
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
-msgstr ""
+msgstr "Raktinis žodis sėkmingai pervardytas: ${kw_old} į ${kw_new}."
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:65
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:48
 #: ../../climateadapt/browser/pt/video_view.pt:103
 msgid "Keywords"
-msgstr "Raktiniai žodžiai"
+msgstr "Raktažodžiai"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:92
@@ -1353,40 +1354,40 @@ msgstr "Raktiniai žodžiai:"
 
 #: ../../climateadapt/vocabulary.py:313
 msgid "Land use planning"
-msgstr ""
+msgstr "Žemės naudojimo planavimas"
 
 #: ../../climateadapt/vocabulary.py:605
 msgid "Land-use and Food Systems"
-msgstr ""
+msgstr "Žemės naudojimo ir maisto sistemos"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:99
 msgid "Language of the conference"
-msgstr ""
+msgstr "Konferencijos kalba"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:152
 msgid "Last Modified in Climate-ADAPT"
-msgstr ""
+msgstr "Paskutinį kartą pakeista Climate-ADAPT"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:166
 msgid "Lead"
-msgstr "Vadovauti"
+msgstr "Švinas"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:285
 msgid "Learn more about different adaptation options to the various impacts of climate change in forests."
-msgstr ""
+msgstr "Sužinokite daugiau apie įvairias prisitaikymo prie įvairių klimato kaitos padarinių miškams galimybes."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:267
 msgid "Learn more about different adaptation options to the various impacts of climate change in urban areas."
-msgstr ""
+msgstr "Sužinokite daugiau apie įvairias prisitaikymo prie įvairių klimato kaitos padarinių miesto vietovėse galimybes."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:155
 msgid "Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities"
-msgstr ""
+msgstr "Sužinokite daugiau apie tai, kaip miestai gali prisitaikyti prie klimato kaitos, kad taptų ateičiai atspariais, klimatui atspariais miestais"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:177
 msgid "Learn more about how forests can adapt to climate change to stay healthy, diverse, resilient and productive"
-msgstr ""
+msgstr "Sužinokite daugiau apie tai, kaip miškai gali prisitaikyti prie klimato kaitos, kad išliktų sveiki, įvairūs, atsparūs ir produktyvūs"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:44
@@ -1398,11 +1399,11 @@ msgstr "Teisiniai aspektai"
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:50
 #: ../../climateadapt/browser/pt/casestudy_view.pt:96
 msgid "Life Time"
-msgstr "Gyvenimas"
+msgstr "Gyvenimo laikas"
 
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:26
 msgid "Link to Map Viewer:"
-msgstr ""
+msgstr "Nuoroda į žemėlapių peržiūros priemonę:"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:44
@@ -1418,28 +1419,28 @@ msgstr "Nuorodos į papildomą informaciją"
 
 #: ../../climateadapt/vocabulary.py:611
 msgid "Local Economic Systems"
-msgstr ""
+msgstr "Vietinės ekonominės sistemos"
 
 #: ../../climateadapt/vocabulary.py:1221
 msgid "Local authorities and administrative bodies"
-msgstr ""
+msgstr "Vietos valdžios institucijos ir administracinės institucijos"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:450
 msgid "MCR 2030"
-msgstr ""
+msgstr "MCR 2030"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:180
 msgid "Macro-Transnational region"
-msgstr "Makro-transnacionalinis regionas"
+msgstr "Makrotransnacionalinis regionas"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:451
 msgid "Making Cities Resilient: <a href=\"https://mcr2030.undrr.org/\">Making Cities Resilient 2030</a> is a cross-stakeholder initiative for improving local resilience through advocacy, sharing knowledge and experiences, establishing mutually reinforcing city-to-city learning networks, injecting technical expertise, connecting multiple layers of government and building partnerships."
-msgstr ""
+msgstr "Padaryti miestus atsparius: <a href=\"https://mcr2030.undrr.org/\">Making Cities Resilient 2030</a> yra įvairių suinteresuotųjų šalių iniciatyva, skirta vietos atsparumui gerinti pasitelkiant propagavimą, dalijimąsi žiniomis ir patirtimi, kuriant vienas kitą stiprinančius mokymosi tinklus tarp miestų, įvedant technines valdžios žinias ir sujungiant daugybę partnerių patirties."
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:238
 msgid "Map"
-msgstr ""
+msgstr "Žemėlapis"
 
 # ,
 #: ../../climateadapt/vocabulary.py:268
@@ -1450,122 +1451,122 @@ msgstr "Žemėlapiai, grafikai ir duomenų rinkiniai"
 #: ../../climateadapt/browser/overrides.py:46
 #: ../../climateadapt/vocabulary.py:314
 msgid "Marine and Fisheries"
-msgstr "Jūrų ir žuvininkystė"
+msgstr "Jūra ir žuvininkystė"
 
 #: ../../climateadapt/vocabulary.py:618
 msgid "Mean air temperature"
-msgstr ""
+msgstr "Vidutinė oro temperatūra"
 
 #: ../../climateadapt/vocabulary.py:621
 msgid "Mean precipitation"
-msgstr ""
+msgstr "Vidutinis kritulių kiekis"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:473
 msgid "Mediterranean"
-msgstr ""
+msgstr "Viduržemio jūros"
 
 #: ../../climateadapt/vocabulary.py:336
 msgid "Mitigation aspects"
-msgstr ""
+msgstr "Sušvelninimo aspektai"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:98
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
-msgstr ""
+msgstr "Stebėjimas &amp; Įvertinimas (M&E)"
 
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:269
 msgid "Monitoring and evaluating adaptation"
-msgstr ""
+msgstr "Adaptacijos stebėjimas ir vertinimas"
 
 #: ../../climateadapt/vocabulary.py:315
 msgid "Mountain areas"
-msgstr ""
+msgstr "Kalnų vietovės"
 
 #: ../../climateadapt/vocabulary.py:1254
 msgid "Municipal/Local"
-msgstr ""
+msgstr "Savivaldybė / Vietinė"
 
 #: ../../climateadapt/vocabulary.py:1231
 msgid "NGOs"
-msgstr ""
+msgstr "NVO"
 
 #: ../../climateadapt/vocabulary.py:1252
 msgid "National"
-msgstr ""
+msgstr "Nacionalinis"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:53
 msgid "National HHAP"
-msgstr ""
+msgstr "Nacionalinis HHAP"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:119
 msgid "National adaptation policy not reported beyond mandatory reporting in 2023"
-msgstr ""
+msgstr "Apie nacionalinę prisitaikymo politiką nepranešama po privalomo ataskaitų teikimo 2023 m"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:115
 msgid "National adaptation policy reported in 2023"
-msgstr ""
+msgstr "Nacionalinė prisitaikymo politika, apie kurią pranešta 2023 m"
 
 #: ../../climateadapt/browser/BKPcountries.py:179
 #: ../../climateadapt/browser/countries.py:183
 msgid "National adaption policy"
-msgstr ""
+msgstr "Nacionalinė prisitaikymo politika"
 
 #: ../../climateadapt/vocabulary.py:334
 msgid "Nature-based solutions"
-msgstr ""
+msgstr "Gamtiniai sprendimai"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:20
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:16
 msgid "News"
-msgstr ""
+msgstr "Naujienos"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:61
 msgid "No HHAP"
-msgstr ""
+msgstr "Nėra HHAP"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:80
 msgid "No assessments reported"
-msgstr ""
+msgstr "Apie vertinimus nepranešta"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:88
 msgid "No data reported in 2021"
-msgstr ""
+msgstr "2021 m. duomenų nepateikta"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:104
 msgid "No data reported in 2023"
-msgstr ""
+msgstr "2023 m. duomenų nepateikta"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:65
 msgid "No information"
-msgstr ""
+msgstr "Jokios informacijos"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:99
 msgid "No portal or platform reported"
-msgstr ""
+msgstr "Apie jokį portalą ar platformą nepranešama"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:65
 msgid "No upcoming events."
-msgstr ""
+msgstr "Jokių būsimų įvykių."
 
 # ,
 #: ../../climateadapt/vocabulary.py:320
 msgid "Non specific"
-msgstr "Ne specifinis"
+msgstr "Nespecifinis"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:476
 msgid "North Sea"
-msgstr ""
+msgstr "Šiaurės jūra"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:479
 msgid "North West Europe"
-msgstr ""
+msgstr "Šiaurės Vakarų Europa"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:482
 msgid "Northern Periphery and Arctic"
-msgstr ""
+msgstr "Šiaurinė periferija ir Arktis"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:428
 msgid "OPPLA"
-msgstr ""
+msgstr "OPPLA"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:55
@@ -1580,15 +1581,15 @@ msgstr "Stebėjimai ir scenarijai"
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:50
 msgid "Observatory Contributions:"
-msgstr "Observatorijos įmokos:"
+msgstr "Observatorijos indėlis:"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:76
 msgid "One or more assessments reported"
-msgstr ""
+msgstr "Pranešta apie vieną ar daugiau įvertinimų"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:125
 msgid "Online registration"
-msgstr ""
+msgstr "Registracija internetu"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:15
@@ -1598,28 +1599,28 @@ msgstr "Organizacijos"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:18
 msgid "Original aceitem"
-msgstr ""
+msgstr "Originalus aceitem"
 
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:35
 msgid "Other European Information Systems:<br />&nbsp;"
-msgstr "Kitos Europos informacinės sistemos: <br /> & nbsp;"
+msgstr "Kitos Europos informacinės sistemos:<br />&nbsp;"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:488
 msgid "Other regions"
-msgstr ""
+msgstr "Kiti regionai"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:140
 msgid "Outside EEA coverage"
-msgstr ""
+msgstr "Už EEE ribų"
 
 #: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:15
 msgid "Overview list of all indices"
-msgstr ""
+msgstr "Apžvalginis visų indeksų sąrašas"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:91
 msgid "Participation"
-msgstr ""
+msgstr "Dalyvavimas"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:174
@@ -1629,19 +1630,19 @@ msgstr "Partneriai"
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:254
 msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
-msgstr "Susisiekite su mumis dėl bet kokio kito šio atvejo tyrimo tyrimo arba pasidalyti nauju atvejo analize (el. Paštas <a href=\"mailto: climate.adapt@eea.europa.eu\"> climate.adapt@eea.europa.eu </s/a >)"
+msgstr "Susisiekite su mumis dėl bet kokių kitų užklausų dėl šio atvejo tyrimo arba pasidalykite nauju atvejo tyrimu (el. paštas <a href=\"mailto: ilmasto.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:105
 msgid "Please fill in this <a href=\"${DYNAMIC_CONTENT}\">registration form</a>"
-msgstr ""
+msgstr "Užpildykite šią <a href=\"${DYNAMIC_CONTENT}\">registracijos formą</a>"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:189
 msgid "Policy Overview"
-msgstr ""
+msgstr "Politikos apžvalga"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:210
 msgid "Policy overview"
-msgstr ""
+msgstr "Politikos apžvalga"
 
 # ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:23
@@ -1650,31 +1651,31 @@ msgstr "Portalo tipas"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Practical information"
-msgstr ""
+msgstr "Praktinė informacija"
 
 #: ../../climateadapt/vocabulary.py:1294
 msgid "Practitioners at the regional level"
-msgstr ""
+msgstr "Praktikai regioniniu lygiu"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:58
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:79
 msgid "Preparing the ground for adaptation"
-msgstr ""
+msgstr "Dirvos paruošimas adaptacijai"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:119
 #: ../../climateadapt/tiles/pt/urbanast_navigation.pt:68
 msgid "Principles and success factors"
-msgstr ""
+msgstr "Principai ir sėkmės veiksniai"
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:21
 msgid "Privacy and Legal Notice"
-msgstr "Privatumas ir teisinis pranešimas"
+msgstr "Privatumo ir teisinis pranešimas"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:59
 msgid "Professional thematic domain"
-msgstr "Profesionalus teminis domenas"
+msgstr "Profesionali teminė sritis"
 
 # ,
 #: ../../climateadapt/browser/pt/publicationreport_view.pt:50
@@ -1690,7 +1691,7 @@ msgstr "Informacija apie projektą"
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:8
 #: ../../climateadapt/vocabulary.py:266
 msgid "Publications and reports"
-msgstr "Leidiniai ir ataskaitos"
+msgstr "Publikacijos ir ataskaitos"
 
 # ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:24
@@ -1699,7 +1700,7 @@ msgstr "Paskelbta"
 
 #: ../../climateadapt/browser/pt/ace_macros.pt:148
 msgid "Published in Climate-ADAPT"
-msgstr ""
+msgstr "Paskelbta Climate-ADAPT"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:237
@@ -1709,18 +1710,18 @@ msgstr "Nuoroda"
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:102
 msgid "Reference Information"
-msgstr "Informacija apie nuorodą"
+msgstr "Nuoroda informacija"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:28
 #: ../../climateadapt/browser/pt/aceproject_view.pt:54
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:54
 msgid "Reference information"
-msgstr "Informacija apie nuorodą"
+msgstr "Nuorodinė informacija"
 
 #: ../../climateadapt/browser/pt/aceitem_view.pt:40
 msgid "Reference:"
-msgstr ""
+msgstr "Nuoroda:"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:113
@@ -1729,19 +1730,19 @@ msgstr "Nuorodos:"
 
 #: ../../climateadapt/tiles/pt/transregional_select.pt:120
 msgid "Region's countries:"
-msgstr ""
+msgstr "Regiono šalys:"
 
 #: ../../climateadapt/vocabulary.py:1253
 msgid "Regional"
-msgstr ""
+msgstr "Regioninis"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:61
 msgid "Registration"
-msgstr ""
+msgstr "Registracija"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:124
 msgid "Registration:"
-msgstr ""
+msgstr "Registracija:"
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:45
@@ -1750,7 +1751,7 @@ msgstr "Susiję dokumentai ir pristatymai"
 
 #: ../../climateadapt/vocabulary.py:627
 msgid "Relative sea level"
-msgstr ""
+msgstr "Santykinis jūros lygis"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:187
@@ -1759,11 +1760,11 @@ msgstr "Aktualumas"
 
 #: ../../climateadapt/tiles/pt/filter_acecontent.pt:49
 msgid "Relevant tile"
-msgstr ""
+msgstr "Atitinkama plytelė"
 
 #: ../../climateadapt/vocabulary.py:340
 msgid "Replication/upscaling potential"
-msgstr ""
+msgstr "Replikacijos / padidinimo potencialas"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:12
@@ -1773,45 +1774,45 @@ msgstr "Tyrimų ir žinių projektai"
 
 #: ../../climateadapt/vocabulary.py:1292
 msgid "Researcher"
-msgstr ""
+msgstr "Tyrėjas"
 
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:277
 msgid "Reset"
-msgstr ""
+msgstr "Nustatyti iš naujo"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:472
 msgid "Resilient Cities Network"
-msgstr ""
+msgstr "Atsparių miestų tinklas"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:183
 msgid "Resource Catalogue"
-msgstr ""
+msgstr "Išteklių katalogas"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:204
 msgid "Resource catalogue"
-msgstr ""
+msgstr "Išteklių katalogas"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:112
 msgid "Reviewed by:"
-msgstr "Peržiūrėjo:"
+msgstr "Apžvelgė:"
 
 #: ../../climateadapt/vocabulary.py:623
 msgid "River flooding"
-msgstr ""
+msgstr "Upės potvynis"
 
 # ,
 #: ../../climateadapt/browser/pt/navbar_footer.pt:18
 msgid "SITE MAP"
-msgstr "Svetainės žemėlapis"
+msgstr "SVETAINĖS ŽEMĖLAPIS"
 
 #: ../../climateadapt/image_scales/interfaces.py:66
 msgid "Scaled image quality"
-msgstr ""
+msgstr "Padidinta vaizdo kokybė"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:58
 msgid "Scroll to top"
-msgstr ""
+msgstr "Slinkite į viršų"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
@@ -1820,7 +1821,7 @@ msgstr "Jūros lygio kilimas"
 
 #: ../../climateadapt/browser/pt/observatory_indicators_search.pt:101
 msgid "Search"
-msgstr ""
+msgstr "Ieškoti"
 
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:203
@@ -1830,25 +1831,25 @@ msgstr "Paieškos rezultatai"
 # ,
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:212
 msgid "Search results for: ${term}"
-msgstr "Paieškos rezultatai: $ {terminas}"
+msgstr "Paieškos rezultatai: ${term}"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:319
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:288
 msgid "Search the Climate Adapt Database:"
-msgstr ""
+msgstr "Ieškokite Climate Adapt duomenų bazėje:"
 
 #: ../../climateadapt/tiles/pt/search_acecontent.pt:66
 msgid "Search tile"
-msgstr ""
+msgstr "Paieškos plytelė"
 
 #: ../../climateadapt/tiles/search_acecontent.py:841
 msgid "Sector"
-msgstr ""
+msgstr "Sektorius"
 
 # ,
 #: ../../climateadapt/vocabulary.py:326
 msgid "Sector Policies"
-msgstr "Sektoriaus politika"
+msgstr "Sektorių politika"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:76
@@ -1872,63 +1873,63 @@ msgstr "Žiūrėti daugiau"
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:39
 msgid "See video outside Climate-ADAPT"
-msgstr "Žr. Vaizdo įrašą už klimato-adapto ribų"
+msgstr "Žiūrėkite vaizdo įrašą už Climate-ADAPT ribų"
 
 #: ../../climateadapt/browser/pt/countries-list.pt:5
 msgid "Select a country"
-msgstr ""
+msgstr "Pasirinkite šalį"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:49
 msgid "Select a country to go directly to the country's page:"
-msgstr ""
+msgstr "Pasirinkite šalį, kad patektumėte tiesiai į šalies puslapį:"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:60
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr "Pasirinkite sektorius, kuriems norite gauti pranešimo el. Laišką, kai prekė yra modifikuota."
+msgstr "Pasirinkite sektorius, apie kuriuos norite gauti pranešimą el. paštu, kai elementas pakeičiamas."
 
 #: ../../climateadapt/tiles/pt/shareinfo.pt:8
 msgid "Share button tile"
-msgstr ""
+msgstr "Bendrinimo mygtuko plytelė"
 
 #: ../../climateadapt/tiles/pt/shareinfo.pt:11
 msgid "Share type:"
-msgstr ""
+msgstr "Bendrinimo tipas:"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:87
 #: ../../climateadapt/tiles/pt/search_acecontent.pt:103
 #: ../../climateadapt/tiles/pt/shareinfo.pt:18
 msgid "Share your information"
-msgstr "Pasidalykite savo informacija"
+msgstr "Pasidalinkite savo informacija"
 
 #: ../../climateadapt/browser/pt/observatory_indicators_search.pt:108
 msgid "Show all sources"
-msgstr ""
+msgstr "Rodyti visus šaltinius"
 
 #: ../../climateadapt/vocabulary.py:626
 msgid "Snow and ice"
-msgstr ""
+msgstr "Sniegas ir ledas"
 
 #: ../../climateadapt/vocabulary.py:1225
 msgid "Social, cultural and educational institutions"
-msgstr ""
+msgstr "Socialinės, kultūros ir švietimo įstaigos"
 
 #: ../../climateadapt/vocabulary.py:790
 msgid "Social: Behavioural"
-msgstr ""
+msgstr "Socialinis: elgesio"
 
 #: ../../climateadapt/vocabulary.py:788
 msgid "Social: Educational options"
-msgstr ""
+msgstr "Socialiniai: mokymosi galimybės"
 
 #: ../../climateadapt/vocabulary.py:789
 msgid "Social: Informational"
-msgstr ""
+msgstr "Socialiniai: informaciniai"
 
 #: ../../climateadapt/vocabulary.py:337
 msgid "Societal aspects"
-msgstr ""
+msgstr "Visuomeniniai aspektai"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:63
@@ -1955,15 +1956,15 @@ msgstr "Šaltinis:"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:485
 msgid "South West Europe"
-msgstr ""
+msgstr "Pietvakarių Europa"
 
 #: ../../climateadapt/image_scales/interfaces.py:43
 msgid "Specify all allowed maximum image dimensions, one per line. The required format is &lt;name&gt; &lt;width&gt;:&lt;height&gt;."
-msgstr ""
+msgstr "Nurodykite visus leidžiamus maksimalius vaizdo matmenis, po vieną eilutėje. Būtinas formatas yra &lt;name&gt; &lt;width&gt;:&lt;aukštis&gt;."
 
 #: ../../climateadapt/vocabulary.py:1293
 msgid "Staff of regional authority"
-msgstr ""
+msgstr "Regioninės valdžios darbuotojai"
 
 # ,
 #: ../../climateadapt/browser/pt/casestudy_view.pt:76
@@ -1977,31 +1978,31 @@ msgstr "Suinteresuotųjų šalių dalyvavimas"
 
 #: ../../climateadapt/vocabulary.py:1295
 msgid "Stakeholders"
-msgstr ""
+msgstr "Suinteresuotosios šalys"
 
 #: ../../climateadapt/vocabulary.py:1207
 msgid "Step 1. Preparing the ground for adaptation"
-msgstr ""
+msgstr "1 žingsnis. Dirvos paruošimas adaptacijai"
 
 #: ../../climateadapt/vocabulary.py:1208
 msgid "Step 2. Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "2 žingsnis. Klimato kaitos rizikos ir pažeidžiamumo įvertinimas"
 
 #: ../../climateadapt/vocabulary.py:1209
 msgid "Step 3. Identifying adaptation options"
-msgstr ""
+msgstr "3 žingsnis. Adaptacijos variantų nustatymas"
 
 #: ../../climateadapt/vocabulary.py:1210
 msgid "Step 4. Assessing and selecting adaptation options"
-msgstr ""
+msgstr "4 veiksmas. Pritaikymo variantų įvertinimas ir parinkimas"
 
 #: ../../climateadapt/vocabulary.py:1211
 msgid "Step 5. Implementing adaptation"
-msgstr ""
+msgstr "5 žingsnis. Adaptacijos įgyvendinimas"
 
 #: ../../climateadapt/vocabulary.py:1212
 msgid "Step 6. Monitoring and evaluating adaptation"
-msgstr ""
+msgstr "6 žingsnis. Adaptacijos stebėjimas ir vertinimas"
 
 # ,
 #: ../../climateadapt/vocabulary.py:362
@@ -2010,28 +2011,28 @@ msgstr "Audros"
 
 #: ../../climateadapt/vocabulary.py:786
 msgid "Structural and physical: Ecosystem-based adaptation options"
-msgstr ""
+msgstr "Struktūrinė ir fizinė: ekosistemomis pagrįstos prisitaikymo galimybės"
 
 #: ../../climateadapt/vocabulary.py:783
 msgid "Structural and physical: Engineering and built environment options"
-msgstr ""
+msgstr "Struktūrinė ir fizinė: inžinerinės ir pastatytos aplinkos parinktys"
 
 #: ../../climateadapt/vocabulary.py:787
 msgid "Structural and physical: Service options"
-msgstr ""
+msgstr "Struktūrinė ir fizinė: paslaugų galimybės"
 
 #: ../../climateadapt/vocabulary.py:785
 msgid "Structural and physical: Technological options"
-msgstr ""
+msgstr "Struktūrinė ir fizinė: Technologinės galimybės"
 
 # ,
 #: ../../climateadapt/browser/__init__.py:202
 msgid "Sub Nationals"
-msgstr "Sub Nationals"
+msgstr "Subpiliečiai"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:57
 msgid "Subnational or local HHAP"
-msgstr ""
+msgstr "Subnacionalinis arba vietinis HHAP"
 
 # ,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:38
@@ -2041,76 +2042,76 @@ msgstr "Sėkmė ir ribojantys veiksniai"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:396
 msgid "The <a href=\"https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en\">European Climate Pact</a> is an EU-wide initiative inviting people, communities and organisations to participate in climate action and build a greener Europe."
-msgstr ""
+msgstr "<a href=\"https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en\">Europos klimato paktas</a> yra visos ES iniciatyva, kviečianti žmones, bendruomenes ir organizacijas dalyvauti klimato veiksmuose ir kurti ekologiškesnę Europą."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:473
 msgid "The <a href=\"https://resilientcitiesnetwork.org/\">Resilient Cities Network</a> consists of cities that are committed to building and investing in urban resilience, located in five geographical regions: Africa, Asia Pacific, Europe and Middle East, Latin America and the Caribbean, and North America."
-msgstr ""
+msgstr "<a href=\"https://resilientcitiesnetwork.org/\">Atsparių miestų tinklą</a> sudaro miestai, įsipareigoję kurti ir investuoti į miestų atsparumą, esantys penkiuose geografiniuose regionuose: Afrikoje, Azijos Ramiajame vandenyne, Europoje ir Viduriniuose Rytuose, Lotynų Amerikoje ir Karibuose bei Šiaurės Amerikoje."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:385
 msgid "The <a href=\"https://www.covenantofmayors.eu/\">EU Covenant of Mayors</a> brings together over 10,000 local governments voluntarily committed to implementing EU climate and energy objectives. Signatory cities commit to increasing resilience and preparing for the adverse impacts of climate change."
-msgstr ""
+msgstr "<a href=\"https://www.covenantofmayors.eu/\">ES Merų paktas</a> vienija daugiau nei 10 000 vietos vyriausybių, savanoriškai įsipareigojusių įgyvendinti ES klimato ir energetikos tikslus. Susitarimą pasirašę miestai įsipareigoja didinti atsparumą ir pasiruošti neigiamam klimato kaitos poveikiui."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:318
 msgid "The <a href=\"https://www.covenantofmayors.eu/support/funding.html\">Covenant of Mayors Interactive Funding Guide</a> provides comprehensive and up-to-date information on various funding initiatives open to cities and managed by the European Commission, Member States and key financial institutions such as the European Investment Bank. In addition, the guide includes information on support services and innovative financing models."
-msgstr ""
+msgstr "<a href=\"https://www.covenantofmayors.eu/support/funding.html\">Merų pakto interaktyvaus finansavimo vadove</a> pateikiama išsami ir naujausia informacija apie įvairias finansavimo iniciatyvas, atviras miestams ir kurias valdo Europos Komisija, valstybės narės ir pagrindinės finansų institucijos, pvz., Europos investicijų bankas. Be to, vadove pateikiama informacija apie paramos paslaugas ir naujoviškus finansavimo modelius."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:418
 msgid "The <a href=\"https://www.fao.org/green-cities-initiative/en/\">FAO Green Cities Initiative</a> focuses on improving the urban environment, strengthening urban-rural linkages and the resilience of urban systems, services and populations to external shocks."
-msgstr ""
+msgstr "<a href=\"https://www.fao.org/green-cities-initiative/en/\">FAO žaliųjų miestų iniciatyva</a> pagrindinis dėmesys skiriamas miesto aplinkos gerinimui, miesto ir kaimo ryšių stiprinimui ir miesto sistemų, paslaugų ir gyventojų atsparumui išorės sukrėtimams."
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:106
 msgid "The Adaptation Support Tool - Getting started"
-msgstr ""
+msgstr "Prisitaikymo palaikymo įrankis – darbo pradžia"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:384
 msgid "The EU Covenant of Mayors"
-msgstr ""
+msgstr "ES Merų paktas"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:350
 msgid "The EU finances adaptation to climate change in Europe through a wide range of instruments. The Multiannual Financial Framework 2021-2027 ensures that at least 25% of the European budget is climate-related expenditure. Therefore, Climate adaptation actions have to be integrated into all the major EU spending programmes, and a tracking system is put in place to guarantee these objectives are met."
-msgstr ""
+msgstr "ES finansuoja prisitaikymą prie klimato kaitos Europoje naudodama įvairias priemones. 2021–2027 m. daugiametė finansinė programa užtikrina, kad bent 25 % Europos biudžeto sudarytų su klimatu susijusios išlaidos. Todėl prisitaikymo prie klimato kaitos veiksmai turi būti integruoti į visas pagrindines ES išlaidų programas, o siekiant užtikrinti, kad šie tikslai būtų pasiekti, įdiegta stebėjimo sistema."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:309
 msgid "The EU has several policy frameworks in place to increase the resilience of European cities and their inhabitants, including the EU Adaptation Strategy and the EU Biodiversity Strategy 2030, and has developed several initiatives to improve knowledge and data availability on urban vulnerability and adaptive capacity. It also provides financial and technical support to policy makers and practitioners to make cities more resilient and adaptive."
-msgstr ""
+msgstr "ES turi keletą politikos sistemų, skirtų Europos miestų ir jų gyventojų atsparumui didinti, įskaitant ES prisitaikymo strategiją ir ES biologinės įvairovės strategiją iki 2030 m., ir parengė keletą iniciatyvų, skirtų gerinti žinias ir duomenų apie miestų pažeidžiamumą ir prisitaikymo galimybes. Ji taip pat teikia finansinę ir techninę paramą politikos formuotojams ir praktikams, kad miestai taptų atsparesni ir labiau prisitaikantys."
 
 # ,
 #: ../../climateadapt/browser/pt/footer_logos.pt:10
 msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
-msgstr "Europos klimato adaptacijos platforma „Climate-Adapt“ yra partnerystė tarp <a href=\"https://ec.europa.eu/\"> Europos Komisija </a> ir <a href = \"https: //www.eea .europa.eu/\"> Europos aplinkos agentūra. </a>"
+msgstr "Europos prisitaikymo prie klimato kaitos platforma Climate-ADAPT yra <a href=\"https://ec.europa.eu/\">Europos Komisijos</a> ir <a href=\"https://www.eea.europa.eu/\">Europos aplinkos agentūros</a> partnerystė."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:234
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
-msgstr ""
+msgstr "Europos klimato duomenų naršyklė suteikia interaktyvią prieigą prie daugelio klimato indeksų iš Copernicus Climate Change Service, kad būtų lengviau prisitaikyti prie klimato kaitos."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:239
 msgid "The European Climate Data Explorer provides interactive access to many climate indices like fire weather indices in support of climate change adaptation in forests."
-msgstr ""
+msgstr "„European Climate Data Explorer“ suteikia interaktyvią prieigą prie daugelio klimato indeksų, pvz., gaisro oro indeksų, padedančių prisitaikyti prie klimato kaitos miškuose."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:257
 msgid "The European Drought Observatory (EDO) contains drought-relevant information. These give an overview of the situation in the EU about imminent droughts."
-msgstr ""
+msgstr "Europos sausrų observatorijoje (EDO) yra su sausra susijusios informacijos. Juose apžvelgiama padėtis ES dėl gresiančių sausrų."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:269
 msgid "The European Forest Fire Information System"
-msgstr ""
+msgstr "Europos miškų gaisrų informacinė sistema"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:266
 msgid "The European Forest Fire Information System (EFFIS) supports the protection of forests against fires and provides the EU with harmonized information on forest fires"
-msgstr ""
+msgstr "Europos miškų gaisrų informacinė sistema (EFFIS) remia miškų apsaugą nuo gaisrų ir teikia ES suderintą informaciją apie miškų gaisrus."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:225
 msgid "The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity."
-msgstr ""
+msgstr "Miesto prisitaikymo žemėlapių peržiūros priemonė pateikia esamų ir būsimų klimato pavojų apžvalgą, miestų pažeidžiamumą šiems pavojams ir jų prisitaikymo galimybes."
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:216
 msgid "The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans."
-msgstr ""
+msgstr "Prisitaikymo prie miestų paramos priemonė padeda miestams, miesteliams ir vietos valdžios institucijoms rengti, įgyvendinti ir stebėti prisitaikymo prie klimato kaitos planus."
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:340
 msgid "The climate crisis is severely affecting Europe's forests, making them increasingly vulnerable to hazards like storms, wildfires, droughts, insect and disease outbreaks, or sea level rise. The growing risks and impacts are affecting the economic viability of forestry and they reduce the capacity of forests to provide essential ecosystem services. The EU responds to this unprecedented challenge by supporting the adaptation of forests to climate change through a wide range of policies, like the EU Forest Strategy, EU Strategy on Adaptation to Climate Change, and the EU Biodiversity Strategy."
-msgstr ""
+msgstr "Klimato krizė smarkiai paveikia Europos miškus, todėl jie tampa vis labiau pažeidžiami tokių pavojų, kaip audros, gaisrai, sausros, vabzdžių ir ligų protrūkiai arba jūros lygio kilimas. Didėjanti rizika ir poveikis daro įtaką miškininkystės ekonominiam gyvybingumui ir mažina miškų gebėjimą teikti esmines ekosistemų paslaugas. ES reaguoja į šį precedento neturintį iššūkį remdama miškų prisitaikymą prie klimato kaitos taikydama įvairias politikos kryptis, pvz., ES miškų strategiją, ES prisitaikymo prie klimato kaitos strategiją ir ES biologinės įvairovės strategiją."
 
 # ,
 #: ../../climateadapt/browser/pt/video_view.pt:95
@@ -2122,30 +2123,30 @@ msgstr "Data nurodo vaizdo įrašo išleidimo datą"
 #: ../../climateadapt/browser/pt/indicator_view.pt:68
 #: ../../climateadapt/browser/pt/publicationreport_view.pt:58
 msgid "The date refers to the latest date of publication of the item"
-msgstr "Data nurodo naujausią prekės paskelbimo datą"
+msgstr "Data nurodo paskutinę elemento paskelbimo datą"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:72
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
 #: ../../climateadapt/browser/pt/casestudy_view.pt:267
 msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
-msgstr "Data nurodo momentą, kai daiktas buvo parengtas ar atnaujintas, kad ekspertai būtų pateikti leidiniui „Climate Adapt“."
+msgstr "Data nurodo momentą, kai elementą parengė arba atnaujino prisidedantys ekspertai, kurie turi būti pateikti publikuoti Climate ADAPT"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:423
 msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
-msgstr ""
+msgstr "Europoje yra <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> tarptautinio bendradarbiavimo. Be to, keturiems makronacionaliniams regionams taikomos konkrečios ES sutartos strategijos: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/fx\" target=\"_blank>,c\">fx\" target=\"_blank\"> href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a> ir <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regionuose. Šiame skyriuje pateikiama informacija apie strategijas ir veiksmus, kurie buvo parengti arba šiuo metu kuriami ES tarptautiniams regionams ir kitiems regionams bei šalims.<br /> <br /> <b>x</b><br /> Žemėlapyje rodomi tarptautiniai regionai, esantys Europoje, apibrėžti 2014–2020 m. bendradarbiavimo programose. Tarptautinius regionus galite pasirinkti spustelėję žemėlapį. Jei pasirinksite sritį, kuri priklauso daugiau nei vienam regionui, iššokančiajame lange bus rodomi visi regionai, kuriuose yra ta sritis. Iššokančiajame lange taip pat rodomos šalys, kuriose yra kiekvienas regionas.<br /> <br /> Norėdami pereiti į vieną iš regionų puslapių, pasirinkite išskleidžiamajame sąraše, spustelėkite legendą arba pasinaudokite patarime rodoma nuoroda."
 
 #: ../../climateadapt/browser/pt/regions-section.pt:83
 msgid "To go to one of the regions please click on the maps."
-msgstr ""
+msgstr "Norėdami patekti į vieną iš regionų, spustelėkite žemėlapius."
 
 #: ../../climateadapt/vocabulary.py:1244
 msgid "Tool broadly used"
-msgstr ""
+msgstr "Plačiai naudojamas įrankis"
 
 #: ../../climateadapt/vocabulary.py:1243
 msgid "Tool tested in several case studies"
-msgstr ""
+msgstr "Įrankis išbandytas keliose atvejų studijose"
 
 # ,
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:11
@@ -2155,7 +2156,7 @@ msgstr "Įrankiai"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:192
 msgid "Tools and data"
-msgstr ""
+msgstr "Įrankiai ir duomenys"
 
 # ,
 #: ../../climateadapt/browser/pt/item_statistics.pt:25
@@ -2164,11 +2165,11 @@ msgstr "Iš viso"
 
 #: ../../climateadapt/vocabulary.py:316
 msgid "Tourism"
-msgstr ""
+msgstr "Turizmas"
 
 #: ../../climateadapt/browser/pt/transnational_regions.pt:410
 msgid "Transnational regions and other regions and countries"
-msgstr ""
+msgstr "Tarptautiniai regionai ir kiti regionai bei šalys"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:48
@@ -2178,52 +2179,52 @@ msgstr "Transportas"
 
 #: ../../climateadapt/browser/pt/help-categories.pt:36
 msgid "Tutorial videos"
-msgstr ""
+msgstr "Mokomieji vaizdo įrašai"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:461
 msgid "URBACT"
-msgstr ""
+msgstr "URBACT"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:45
 #: ../../climateadapt/vocabulary.py:318
 msgid "Urban"
-msgstr "Miestas"
+msgstr "Miesto"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:406
 msgid "Urban Innovative Actions"
-msgstr ""
+msgstr "Miesto naujoviški veiksmai"
 
 #: ../../climateadapt/tiles/pt/ast_navigation.pt:123
 msgid "Using the Adaptation Support Tool"
-msgstr ""
+msgstr "Naudojant adaptacijos palaikymo įrankį"
 
 #: ../../climateadapt/tiles/pt/filter_acecontent.pt:61
 msgid "View all"
-msgstr ""
+msgstr "Žiūrėti viską"
 
 # ,
 #: ../../climateadapt/browser/pt/organisation_view.pt:67
 msgid "View all contributions in the resource catalogue"
-msgstr "Peržiūrėkite visus indėlius išteklių kataloge"
+msgstr "Peržiūrėkite visus įnašus išteklių kataloge"
 
 #: ../../climateadapt/tiles/pt/relevant_acecontent.pt:119
 msgid "View more"
-msgstr ""
+msgstr "Žiūrėti daugiau"
 
 # ,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:18
 msgid "View on DRMKC"
-msgstr "Vaizdas į DRMKC"
+msgstr "Žiūrėti DRMKC"
 
 # ,
 #: ../../climateadapt/vocabulary.py:330
 msgid "Vulnerability Assessment"
-msgstr "Pažeidžiamumo vertinimas"
+msgstr "Pažeidžiamumo įvertinimas"
 
 #: ../../climateadapt/vocabulary.py:606
 msgid "Water Management"
-msgstr ""
+msgstr "Vandens tvarkymas"
 
 # ,
 #: ../../climateadapt/vocabulary.py:363
@@ -2240,7 +2241,7 @@ msgstr "Vandens tvarkymas"
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:56
 #: ../../climateadapt/browser/pt/casestudy_view.pt:109
 msgid "Websites"
-msgstr "Svetainės"
+msgstr "Tinklalapiai"
 
 # ,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:29
@@ -2251,29 +2252,30 @@ msgstr "Svetainės:"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:112
 msgid "When:"
-msgstr ""
+msgstr "Kada:"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:116
 msgid "Where:"
-msgstr ""
+msgstr "Kur:"
 
 #: ../../climateadapt/vocabulary.py:625
 msgid "Wildfire"
-msgstr ""
+msgstr "Laukiniai gaisrai"
 
 #: ../../climateadapt/vocabulary.py:595
 msgid "Wildfires"
-msgstr ""
+msgstr "Laukiniai gaisrai"
 
 #: ../../climateadapt/browser/pt/item_statistics.pt:19
 msgid "Year:"
-msgstr ""
+msgstr "Metai:"
 
 # ,
 #: ../../climateadapt/browser/pt/ace_macros.pt:33
 msgid "back to search"
 msgstr "Atgal į paiešką"
 
+#. richtexteditor based on the description of images."
 #. Default: "Enable automatic image captioning for images set in the richtexteditor based on the description of images."
 #: ../../climateadapt/image_scales/interfaces.py:211
 msgid "image_captioning_description"
