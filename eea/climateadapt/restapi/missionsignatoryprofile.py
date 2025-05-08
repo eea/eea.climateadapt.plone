@@ -14,7 +14,7 @@ from eea.climateadapt.behaviors.mission_signatory_profile import (
 
 logger = logging.getLogger("eea.climateadapt")
 
-GOVERNANCE_DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Governance_Template_Text%5D&p=1&nrOfHits=100"
+GOVERNANCE_DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Governance_Template_Text%5D&p=1&nrOfHits=1000"
 
 
 def fetch_discodata_json(url):
