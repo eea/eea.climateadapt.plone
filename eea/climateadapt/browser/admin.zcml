@@ -14,20 +14,6 @@
     layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
   />
 
-  <!-- <browser:page
-      name="force-pingcr"
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
-      class=".admin.ForcePingCRView"
-      permission="cmf.ManagePortal"
-      />
-
-  <browser:page
-      name="force-pingcr-obj"
-      for="*"
-      class=".admin.ForcePingObjectCRView"
-      permission="cmf.ManagePortal"
-      /> -->
-
   <browser:page
     name="admin-fix-datetime"
     for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot"
@@ -109,13 +95,6 @@
     permission="cmf.ManagePortal"
   />
 
-  <!-- <browser:page
-      name="refresh-google-analytics-report"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      class=".admin.RefreshGoogleAnalyticsReport"
-      permission="cmf.ManagePortal"
-      /> -->
-
   <browser:page
     name="get-broken-creation-dates"
     for="*"
@@ -131,20 +110,6 @@
     permission="cmf.ManagePortal"
     template="pt/get_missing_languages.pt"
   />
-
-  <!-- <browser:page
-      name="migrate-tiles"
-      for="*"
-      class=".admin.MigrateTiles"
-      permission="cmf.ManagePortal"
-      /> -->
-
-  <!--browser:page
-    name="import-adaptecca"
-    for="*"
-    class=".admin.AdapteCCACaseStudyImporter"
-    permission="cmf.ManagePortal"
-    /-->
 
   <browser:page
     name="fix-current-case-studies"
@@ -182,21 +147,6 @@
     template="pt/relations_inspect.pt"
     permission="cmf.ManagePortal"
   />
-
-  <!-- <browser:page
-        for="*"
-        name="fix-blobs-only-check"
-        class=".fixblobs.FixBlobsOnlyCheck"
-        template="pt/fixblobs.pt"
-        permission="cmf.ManagePortal"
-        />
-
-   <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="fix-blobs-imsure-delete"
-        class=".fixblobs.FixBlobs"
-        permission="cmf.ManagePortal"
-        /> -->
 
   <browser:page
     for="*"

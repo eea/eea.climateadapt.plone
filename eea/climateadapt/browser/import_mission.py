@@ -1,11 +1,21 @@
 import csv
+import logging
+import os
+import re
 from copy import deepcopy
 
-from eea.climateadapt.vocabulary import ace_countries
+# from pprint import pprint
 from pkg_resources import resource_filename
 from plone.api.content import create
 from plone.app.textfield.value import RichTextValue
+from plone.namedfile.file import NamedBlobFile, get_contenttype
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
+from zope.interface import alsoProvides
+
+from eea.climateadapt.vocabulary import ace_countries
+
+logger = logging.getLogger("eea.climateadapt")
 
 _ace_countries = ace_countries + [
     ("MD", "Moldova"),
@@ -114,7 +124,7 @@ def text(column):
 def choices(columns, value_map=None):
     def convert(row, data):
         value = []
-        cells = data[LABEL_INDEX][columns[0] : columns[-1] + 1]
+        cells = data[LABEL_INDEX][columns[0]: columns[-1] + 1]
         labels = [cell.strip() for cell in cells]
 
         for i, col in enumerate(columns):
@@ -239,7 +249,8 @@ class MissionFundingImporter(BrowserView):
                 if block["data"]["id"] == "is_consortium_required":
                     blocks[nextuid] = self.text2slate(fields["yes_consortium"])
                 if block["data"]["id"] == "funding_type":
-                    blocks[nextuid] = self.text2slate(fields["funding_type_other"])
+                    blocks[nextuid] = self.text2slate(
+                        fields["funding_type_other"])
 
         return blocks_copy
 
@@ -278,7 +289,8 @@ class MissionFundingImporter(BrowserView):
                 children.extend([{"text": label}, {"text": "\n"}])
                 continue
 
-            el = {"type": "link", "data": {"url": link}, "children": [{"text": label}]}
+            el = {"type": "link", "data": {"url": link},
+                  "children": [{"text": label}]}
             children.extend([el, {"text": "\n"}])
 
         return {
@@ -356,7 +368,8 @@ class MissionFundingImporter(BrowserView):
         printed = []
 
         for record, nonmetadata_record in toimport:
-            obj = create(type="mission_funding_cca", container=self.context, **record)
+            obj = create(type="mission_funding_cca",
+                         container=self.context, **record)
             blocks = self.set_nonmetadata_fields(obj, nonmetadata_record)
             obj.blocks = blocks
             obj._p_changed = True
@@ -365,3 +378,95 @@ class MissionFundingImporter(BrowserView):
             printed.append(url)
 
         return str(printed)
+
+
+def clean(text):
+    return text.replace("&", "")
+
+
+class MissionSigImporter(BrowserView):
+    """Import signatories from zip"""
+
+    def parse_top_level_folder(self, folder_name):
+        # Extract the last number and the title from the folder name
+        match = re.match(r"(.*) (\d+)$", folder_name)
+
+        if match:
+            title = match.group(1)
+            number = match.group(2)
+            return title, number
+
+        return None, None
+
+    def traverse_and_import(self, base_path):
+        struct = []
+        lift = None
+
+        top_level_folder = None
+        for root, dirs, _files in os.walk(base_path):
+            if root == base_path:
+                continue
+
+            relative_path = os.path.relpath(root, base_path)
+
+            if relative_path.count(os.sep) == 0:
+                top_level_folder = relative_path
+                title, number = self.parse_top_level_folder(top_level_folder)
+                lift = {"id": number, "title": title, "children": []}
+                struct.append(lift)
+
+                for name in dirs:
+                    dirname = os.path.join(root, name)
+                    if os.path.isdir(dirname):
+                        files = []
+                        for f in os.listdir(dirname):
+                            fpath = os.path.join(dirname, f)
+                            if os.path.isfile(fpath):
+                                fd = open(fpath, "rb")
+                                files.append([f, fd])
+                        lift["children"].append({"id": name, "files": files})
+
+        # pprint(struct)
+
+        for bundle in struct:
+            top_level_object = create(
+                container=self.context,
+                type="mission_signatory_profile",
+                id=bundle["id"],
+                title=bundle["title"],
+            )
+            logger.info("Created sig profile: %s",
+                        top_level_object.absolute_url())
+
+            for dir_info in bundle["children"]:
+                folder_object = create(
+                    container=top_level_object,
+                    type="Folder",
+                    id=dir_info["id"],
+                    title=dir_info["id"],
+                )
+                logger.info("Created %s", folder_object.absolute_url())
+
+                for child in dir_info["files"]:
+                    _id, fd = child
+                    ct = get_contenttype(filename=_id)
+                    file = NamedBlobFile(
+                        data=fd.read(), contentType=ct, filename=_id)
+                    fd.close()
+                    file_object = create(
+                        type="File",
+                        id=clean(_id),
+                        title=_id,
+                        container=folder_object,
+                        file=file,
+                    )
+
+                    logger.info("Created %s", file_object.absolute_url())
+
+        # raise ValueError
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        fpath = resource_filename("eea.climateadapt.browser", "data/2024")
+        self.traverse_and_import(fpath)
+        return "ok"
