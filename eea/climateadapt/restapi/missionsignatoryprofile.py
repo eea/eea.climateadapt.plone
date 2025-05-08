@@ -1,9 +1,10 @@
 import logging
-import csv
+# import csv
 
 import json
 import urllib.request
-from pkg_resources import resource_filename
+
+# from pkg_resources import resource_filename
 from plone.restapi.interfaces import IExpandableElement
 from zope.component import adapter
 from zope.interface import Interface, implementer
@@ -22,9 +23,14 @@ DISCODATA_URLS = {
     "assessment_risks": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Assessment_Template_Climate_Risk_Assessments_Text]&p=1&nrOfHits=200",
     "action_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Text]&p=1&nrOfHits=200",
     "actions": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Actions_Text]&p=1&nrOfHits=200",
-    "hazards": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Climate_Hazards_Text]&p=1&nrOfHits=200",
-    "sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Sectors_Text]&p=1&nrOfHits=200",
-    "benefits": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Co_Benefits_Text]&p=1&nrOfHits=200",
+    "action_hazards": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Climate_Hazards_Text]&p=1&nrOfHits=200",
+    "action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Sectors_Text]&p=1&nrOfHits=200",
+    "action_benefits": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Co_Benefits_Text]&p=1&nrOfHits=200",
+    "planning_titles": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Adaptation_Text%5D&p=1&nrOfHits=200",
+    "planning_goals": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Adaptation_Goals_Text%5D&p=1&nrOfHits=200",
+    "planning_goals_hazard": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Adaptation_Goals_Climate_Hazards_Text%5D&p=1&nrOfHits=200",
+    "planning_climate_action": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Climate_Action_Plan_Text%5D&p=1&nrOfHits=200",
+    "planning_climate_action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Climate_Action_Plan_Sectors_Text%5D&p=1&nrOfHits=200",
 }
 
 
@@ -49,45 +55,52 @@ def build_map(data, id_keys, value_key):
     return result
 
 
-def parse_csv(path):
-    try:
-        wf = resource_filename("eea.climateadapt", path)
-        with open(wf, newline="", encoding="utf-8-sig") as csvfile:
-            reader = csv.DictReader(csvfile)
-            # print(f"Headers: {reader.fieldnames}")
-            return [row for row in reader]
-    except Exception as e:
-        logger.error(f"Failed to parse CSV {path}: {e}")
-        return []
+# def parse_csv(path):
+#     try:
+#         wf = resource_filename("eea.climateadapt", path)
+#         with open(wf, newline="", encoding="utf-8-sig") as csvfile:
+#             reader = csv.DictReader(csvfile)
+#             # print(f"Headers: {reader.fieldnames}")
+#             return [row for row in reader]
+#     except Exception as e:
+#         logger.error(f"Failed to parse CSV {path}: {e}")
+#         return []
 
 
 def get_planning_data(profile_id):
-    goals = parse_csv("./data/Planning_Template_Adaptation_Goals_Text.csv")
-    titles = parse_csv("./data/Planning_Template_Adaptation_Text.csv")
-    hazards = parse_csv(
-        "./data/Planning_Template_Adaptation_Goals_Climate_Hazards_Text.csv"
+    planning_goals = filter_by_profile_id(
+        fetch_discodata_json(DISCODATA_URLS["planning_goals"]), profile_id
     )
-    actions = parse_csv("./data/Planning_Template_Climate_Action_Plan_Text.csv")
-    sectors = parse_csv("./data/Planning_Template_Climate_Action_Plan_Sectors_Text.csv")
+    hazards_map = build_map(
+        fetch_discodata_json(DISCODATA_URLS["planning_goals_hazard"]),
+        ["Id", "Adaptation_Goal_Id"],
+        "Climate_Hazard",
+    )
 
-    hazard_map = build_map(hazards, ["Id", "Adaptation_Goal_Id"], "Climate_Hazard")
-    sector_map = build_map(sectors, ["Id", "Climate_Action_Plan_Id"], "Sector")
+    planning_climate_action = filter_by_profile_id(
+        fetch_discodata_json(DISCODATA_URLS["planning_climate_action"]), profile_id
+    )
+    sectors_map = build_map(
+        fetch_discodata_json(DISCODATA_URLS["planning_climate_action_sectors"]),
+        ["Id", "Climate_Action_Plan_Id"],
+        "Sector",
+    )
 
-    filtered_goals = filter_by_profile_id(goals, profile_id)
-    for row in filtered_goals:
+    for row in planning_goals:
         key = (row.get("Id"), row.get("Adaptation_Goal_Id"))
-        row["Climate_Hazards"] = hazard_map.get(key, [])
+        row["Climate_Hazards"] = hazards_map.get(key, [])
 
-    filtered_actions = filter_by_profile_id(actions, profile_id)
-    for row in filtered_actions:
+    for row in planning_climate_action:
         key = (row.get("Id"), row.get("Climate_Action_Plan_Id"))
-        row["Sectors"] = sector_map.get(key, [])
+        row["Sectors"] = sectors_map.get(key, [])
 
     return {
         "planning": {
-            "planning_goals": filtered_goals,
-            "planning_titles": filter_by_profile_id(titles, profile_id),
-            "planning_climate_action": filtered_actions,
+            "planning_titles": filter_by_profile_id(
+                fetch_discodata_json(DISCODATA_URLS["planning_titles"]), profile_id
+            ),
+            "planning_goals": planning_goals,
+            "planning_climate_action": planning_climate_action,
         }
     }
 
@@ -113,15 +126,17 @@ def get_action_data(profile_id):
         fetch_discodata_json(DISCODATA_URLS["actions"]), profile_id
     )
     hazards_map = build_map(
-        fetch_discodata_json(DISCODATA_URLS["hazards"]),
+        fetch_discodata_json(DISCODATA_URLS["action_hazards"]),
         ["Id", "Action_Id"],
         "Climate_Hazard",
     )
     sectors_map = build_map(
-        fetch_discodata_json(DISCODATA_URLS["sectors"]), ["Id", "Action_Id"], "Sector"
+        fetch_discodata_json(DISCODATA_URLS["action_sectors"]),
+        ["Id", "Action_Id"],
+        "Sector",
     )
     benefits_map = build_map(
-        fetch_discodata_json(DISCODATA_URLS["benefits"]),
+        fetch_discodata_json(DISCODATA_URLS["action_benefits"]),
         ["Id", "Action_Id"],
         "Co_Benefit",
     )
