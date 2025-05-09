@@ -1,10 +1,10 @@
 import logging
-# import csv
+import csv
 
 import json
 import urllib.request
 
-# from pkg_resources import resource_filename
+from pkg_resources import resource_filename
 from plone.restapi.interfaces import IExpandableElement
 from zope.component import adapter
 from zope.interface import Interface, implementer
@@ -56,16 +56,42 @@ def build_map(data, id_keys, value_key):
     return result
 
 
-# def parse_csv(path):
-#     try:
-#         wf = resource_filename("eea.climateadapt", path)
-#         with open(wf, newline="", encoding="utf-8-sig") as csvfile:
-#             reader = csv.DictReader(csvfile)
-#             # print(f"Headers: {reader.fieldnames}")
-#             return [row for row in reader]
-#     except Exception as e:
-#         logger.error(f"Failed to parse CSV {path}: {e}")
-#         return []
+def parse_csv(path):
+    try:
+        wf = resource_filename("eea.climateadapt", path)
+        with open(wf, newline="", encoding="utf-8-sig") as csvfile:
+            reader = csv.DictReader(csvfile)
+            # print(f"Headers: {reader.fieldnames}")
+            return [row for row in reader]
+    except Exception as e:
+        logger.error(f"Failed to parse CSV {path}: {e}")
+        return []
+
+
+def get_assessment_sectors():
+    raw_data = parse_csv("data/Assessment_Template_Grouped_Sectors_Text.csv")
+    grouped = {}
+
+    for row in raw_data:
+        category_id = row["CategoryId"]
+        category_name = row["Category_Name"]
+        sector_name = row["Sector_Name"]
+        order = int(row.get("Order", 999))
+
+        key = (category_id, category_name, order)
+        grouped.setdefault(key, []).append(sector_name)
+
+    sorted_categories = sorted(grouped.items(), key=lambda x: x[0][2])
+
+    return [
+        {
+            "CategoryId": key[0],
+            "Category_Name": key[1],
+            "Order": key[2],
+            "Sectors": value,
+        }
+        for key, value in sorted_categories
+    ]
 
 
 def get_planning_data(profile_id):
@@ -118,6 +144,7 @@ def get_assessment_data(profile_id):
             "assessment_risks": filter_by_profile_id(
                 fetch_discodata_json(DISCODATA_URLS["assessment_risks"]), profile_id
             ),
+            "assessment_sectors": get_assessment_sectors(),
         }
     }
 
