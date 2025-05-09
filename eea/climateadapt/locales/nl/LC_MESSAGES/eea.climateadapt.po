@@ -571,6 +571,11 @@ msgstr "Basis"
 msgid "Biodiversity"
 msgstr "Biodiversiteit"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Bescherming van de biodiversiteit"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Economische aspecten"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ecosystemen en op de natuur gebaseerde oplossingen"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Herstel van ecosystemen"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47

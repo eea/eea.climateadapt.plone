@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -21,58 +22,58 @@ msgid "Adaptation options"
 msgstr "Tilpasningsmuligheder"
 
 msgid "Adaptation portals and platforms"
-msgstr ""
+msgstr "Tilpasningsportaler og platforme"
 
 msgid "Aridity"
-msgstr ""
+msgstr "Tørhed"
 
 msgid "Based on your preferences, you can view this page in english"
-msgstr ""
+msgstr "Baseret på dine præferencer kan du se denne side på engelsk"
 
 # ,
 msgid "Case studies"
 msgstr "Casestudier"
 
 msgid "Climate change impact and vulnerability assessments"
-msgstr ""
+msgstr "Vurderinger af klimaforandringer og sårbarhed"
 
 msgid "Coastal"
-msgstr ""
+msgstr "Kystnære"
 
 msgid "Coastal flooding"
-msgstr ""
+msgstr "Kystoversvømmelser"
 
 msgid "Cold spells and frost"
-msgstr ""
+msgstr "Forkølelse og frost"
 
 # ,
 msgid "Countries:"
 msgstr "Lande:"
 
 msgid "Download"
-msgstr ""
+msgstr "Download"
 
 msgid "Extreme heat"
-msgstr ""
+msgstr "Ekstrem varme"
 
 msgid "Extreme precipitation"
-msgstr ""
+msgstr "Ekstrem nedbør"
 
 # ,
 msgid "Guidance"
 msgstr "Vejledning"
 
 msgid "Hazard category"
-msgstr ""
+msgstr "Farekategori"
 
 msgid "Hazard type"
-msgstr ""
+msgstr "Faretype"
 
 msgid "Heat and cold"
-msgstr ""
+msgstr "Varme og kulde"
 
 msgid "Indicator"
-msgstr ""
+msgstr "Indikator"
 
 # ,
 msgid "Indicators"
@@ -83,52 +84,52 @@ msgid "Information portals"
 msgstr "Informationsportaler"
 
 msgid "Latest <br/> News & Events"
-msgstr ""
+msgstr "Seneste <br/> nyheder og begivenheder"
 
 msgid "Mean air temperature"
-msgstr ""
+msgstr "Gennemsnitlig lufttemperatur"
 
 msgid "Mean precipitation"
-msgstr ""
+msgstr "Gennemsnitlig nedbør"
 
 msgid "Most recent <br/> Case Study"
-msgstr ""
+msgstr "Seneste <br/> casestudie"
 
 msgid "Most recent <br/> Publication or Report"
-msgstr ""
+msgstr "Seneste <br/> publikation eller rapport"
 
 msgid "National adaption policy"
-msgstr ""
+msgstr "National tilpasningspolitik"
 
 # ,
 msgid "Organisations"
 msgstr "Organisationer"
 
 msgid "Other"
-msgstr ""
+msgstr "Andre"
 
 # ,
 msgid "Publication and reports"
-msgstr "Publikation og rapporter"
+msgstr "Udgivelse og rapporter"
 
 msgid "Publications and reports"
-msgstr ""
+msgstr "Publikationer og rapporter"
 
 msgid "Relative sea level"
-msgstr ""
+msgstr "Relativt havniveau"
 
 # ,
 msgid "Research and knowledge projects"
-msgstr "Forsknings- og videnprojekter"
+msgstr "Forsknings- og vidensprojekter"
 
 msgid "River flooding"
-msgstr ""
+msgstr "Flod oversvømmelse"
 
 msgid "Snow and ice"
-msgstr ""
+msgstr "Sne og is"
 
 msgid "Snow and land ice"
-msgstr ""
+msgstr "Sne og landis"
 
 # ,
 msgid "Tools"
@@ -139,13 +140,13 @@ msgid "Videos"
 msgstr "Videoer"
 
 msgid "Wet and dry"
-msgstr ""
+msgstr "Vådt og tørt"
 
 msgid "Wildfire"
-msgstr ""
+msgstr "Wildfire"
 
 msgid "Zip download"
-msgstr ""
+msgstr "Zip download"
 
 msgid "here"
-msgstr ""
+msgstr "her"

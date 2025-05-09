@@ -571,6 +571,11 @@ msgstr "Perus"
 msgid "Biodiversity"
 msgstr "Biologinen monimuotoisuus"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Biologisen monimuotoisuuden suojelu"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Taloudelliset näkökohdat"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ekosysteemit ja luontopohjaiset ratkaisut"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Ekosysteemien ennallistaminen"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47

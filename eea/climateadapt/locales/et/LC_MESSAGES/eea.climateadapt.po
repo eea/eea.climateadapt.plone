@@ -571,6 +571,11 @@ msgstr "Põhiline"
 msgid "Biodiversity"
 msgstr "Bioloogiline mitmekesisus"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Bioloogilise mitmekesisuse kaitse"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Majanduslikud aspektid"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ökosüsteemid ja looduspõhised lahendused"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Ökosüsteemide taastamine"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47

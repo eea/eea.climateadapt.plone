@@ -571,6 +571,11 @@ msgstr "Základné"
 msgid "Biodiversity"
 msgstr "Biodiverzita"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Ochrana biodiverzity"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Ekonomické aspekty"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ekosystémy a riešenia založené na prírode"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Obnova ekosystémov"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47

@@ -571,6 +571,11 @@ msgstr "Grunnleggende"
 msgid "Biodiversity"
 msgstr "Biologisk mangfold"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Beskyttelse av biologisk mangfold"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Økonomiske aspekter"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Økosystemer og naturbaserte løsninger"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Restaurering av økosystemer"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47

@@ -571,6 +571,11 @@ msgstr "Pamata"
 msgid "Biodiversity"
 msgstr "Bioloģiskā daudzveidība"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Bioloģiskās daudzveidības aizsardzība"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Ekonomiskie aspekti"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ekosistēmas un dabas risinājumi"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Ekosistēmu atjaunošana"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47

@@ -1680,6 +1680,11 @@ msgstr "Di base"
 msgid "Biodiversity"
 msgstr "Biodiversità"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Tutela della biodiversità"
+
 # ,
 # ,
 # ,
@@ -2496,6 +2501,11 @@ msgstr "Aspetti economici"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ecosistemi e soluzioni basate sulla natura"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Ripristino degli ecosistemi"
 
 # ,
 # ,

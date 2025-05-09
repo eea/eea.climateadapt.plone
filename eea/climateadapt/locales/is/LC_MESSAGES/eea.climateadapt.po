@@ -571,6 +571,11 @@ msgstr "Basic"
 msgid "Biodiversity"
 msgstr "Líffræðilegur fjölbreytileiki"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Vernd líffræðilegrar fjölbreytni"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Efnahagslegir þættir"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Vistkerfi og náttúrulegar lausnir"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Endurheimt vistkerfa"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47

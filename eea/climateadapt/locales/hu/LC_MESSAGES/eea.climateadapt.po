@@ -571,6 +571,11 @@ msgstr "Alapvető"
 msgid "Biodiversity"
 msgstr "Biodiverzitás"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "A biodiverzitás védelme"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Gazdasági szempontok"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ökoszisztémák és természet alapú megoldások"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Ökoszisztémák helyreállítása"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47

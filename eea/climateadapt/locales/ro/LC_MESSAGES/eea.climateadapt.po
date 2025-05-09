@@ -583,6 +583,11 @@ msgstr "De bază"
 msgid "Biodiversity"
 msgstr "Biodiversitatea"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Protecția biodiversității"
+
 # ,
 # ,
 #: ../../climateadapt/browser/__init__.py:189
@@ -1003,6 +1008,11 @@ msgstr "Aspecte economice"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ecosisteme și soluții bazate pe natură"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Restaurarea ecosistemelor"
 
 # ,
 # ,

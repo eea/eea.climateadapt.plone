@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,117 +19,117 @@ msgstr ""
 
 # ,
 msgid "Adaptation options"
-msgstr "Možnosti přizpůsobení"
+msgstr "Možnosti adaptace"
 
 msgid "Adaptation portals and platforms"
-msgstr ""
+msgstr "Adaptační portály a platformy"
 
 msgid "Aridity"
-msgstr ""
+msgstr "Vyprahlost"
 
 msgid "Based on your preferences, you can view this page in english"
-msgstr ""
+msgstr "Na základě vašich preferencí můžete tuto stránku zobrazit v angličtině"
 
 # ,
 msgid "Case studies"
 msgstr "Případové studie"
 
 msgid "Climate change impact and vulnerability assessments"
-msgstr ""
+msgstr "Hodnocení dopadu změny klimatu a zranitelnosti"
 
 msgid "Coastal"
-msgstr ""
+msgstr "Pobřežní"
 
 msgid "Coastal flooding"
-msgstr ""
+msgstr "Pobřežní záplavy"
 
 msgid "Cold spells and frost"
-msgstr ""
+msgstr "Zima a mráz"
 
 # ,
 msgid "Countries:"
-msgstr "Země:"
+msgstr "země:"
 
 msgid "Download"
-msgstr ""
+msgstr "Stáhnout"
 
 msgid "Extreme heat"
-msgstr ""
+msgstr "Extrémní horko"
 
 msgid "Extreme precipitation"
-msgstr ""
+msgstr "Extrémní srážky"
 
 # ,
 msgid "Guidance"
 msgstr "Vedení"
 
 msgid "Hazard category"
-msgstr ""
+msgstr "Kategorie nebezpečí"
 
 msgid "Hazard type"
-msgstr ""
+msgstr "Typ nebezpečí"
 
 msgid "Heat and cold"
-msgstr ""
+msgstr "Teplo a zima"
 
 msgid "Indicator"
-msgstr ""
+msgstr "Indikátor"
 
 # ,
 msgid "Indicators"
-msgstr "Indikátory"
+msgstr "Ukazatele"
 
 # ,
 msgid "Information portals"
 msgstr "Informační portály"
 
 msgid "Latest <br/> News & Events"
-msgstr ""
+msgstr "Nejnovější <br/> Novinky a události"
 
 msgid "Mean air temperature"
-msgstr ""
+msgstr "Střední teplota vzduchu"
 
 msgid "Mean precipitation"
-msgstr ""
+msgstr "Průměrné srážky"
 
 msgid "Most recent <br/> Case Study"
-msgstr ""
+msgstr "Nejnovější <br/> případová studie"
 
 msgid "Most recent <br/> Publication or Report"
-msgstr ""
+msgstr "Nejnovější <br/> publikace nebo zpráva"
 
 msgid "National adaption policy"
-msgstr ""
+msgstr "Národní adaptační politika"
 
 # ,
 msgid "Organisations"
 msgstr "Organizace"
 
 msgid "Other"
-msgstr ""
+msgstr "Ostatní"
 
 # ,
 msgid "Publication and reports"
 msgstr "Publikace a zprávy"
 
 msgid "Publications and reports"
-msgstr ""
+msgstr "Publikace a zprávy"
 
 msgid "Relative sea level"
-msgstr ""
+msgstr "Relativní hladina moře"
 
 # ,
 msgid "Research and knowledge projects"
-msgstr "Projekty výzkumu a znalostí"
+msgstr "Výzkumné a znalostní projekty"
 
 msgid "River flooding"
-msgstr ""
+msgstr "Záplavy řeky"
 
 msgid "Snow and ice"
-msgstr ""
+msgstr "Sníh a led"
 
 msgid "Snow and land ice"
-msgstr ""
+msgstr "Sníh a zemský led"
 
 # ,
 msgid "Tools"
@@ -136,16 +137,16 @@ msgstr "Nástroje"
 
 # ,
 msgid "Videos"
-msgstr "Videa"
+msgstr "videa"
 
 msgid "Wet and dry"
-msgstr ""
+msgstr "Mokré a suché"
 
 msgid "Wildfire"
-msgstr ""
+msgstr "Blesk"
 
 msgid "Zip download"
-msgstr ""
+msgstr "Stažení zipu"
 
 msgid "here"
-msgstr ""
+msgstr "zde"

@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -18,117 +19,117 @@ msgstr ""
 
 # ,
 msgid "Adaptation options"
-msgstr "Опции за адаптиране"
+msgstr "Възможности за адаптация"
 
 msgid "Adaptation portals and platforms"
-msgstr ""
+msgstr "Адаптационни портали и платформи"
 
 msgid "Aridity"
-msgstr ""
+msgstr "сухота"
 
 msgid "Based on your preferences, you can view this page in english"
-msgstr ""
+msgstr "Въз основа на вашите предпочитания можете да видите тази страница на английски език"
 
 # ,
 msgid "Case studies"
 msgstr "Казуси"
 
 msgid "Climate change impact and vulnerability assessments"
-msgstr ""
+msgstr "Оценки на влиянието и уязвимостта на изменението на климата"
 
 msgid "Coastal"
-msgstr ""
+msgstr "Крайбрежен"
 
 msgid "Coastal flooding"
-msgstr ""
+msgstr "Крайбрежно наводнение"
 
 msgid "Cold spells and frost"
-msgstr ""
+msgstr "Студове и слани"
 
 # ,
 msgid "Countries:"
 msgstr "Държави:"
 
 msgid "Download"
-msgstr ""
+msgstr "Изтегляне"
 
 msgid "Extreme heat"
-msgstr ""
+msgstr "Изключителна топлина"
 
 msgid "Extreme precipitation"
-msgstr ""
+msgstr "Екстремни валежи"
 
 # ,
 msgid "Guidance"
-msgstr "Ръководство"
+msgstr "Насоки"
 
 msgid "Hazard category"
-msgstr ""
+msgstr "Категория на опасност"
 
 msgid "Hazard type"
-msgstr ""
+msgstr "Тип опасност"
 
 msgid "Heat and cold"
-msgstr ""
+msgstr "Топлина и студ"
 
 msgid "Indicator"
-msgstr ""
+msgstr "Индикатор"
 
 # ,
 msgid "Indicators"
-msgstr "Показатели"
+msgstr "Индикатори"
 
 # ,
 msgid "Information portals"
 msgstr "Информационни портали"
 
 msgid "Latest <br/> News & Events"
-msgstr ""
+msgstr "Последни <br/> новини и събития"
 
 msgid "Mean air temperature"
-msgstr ""
+msgstr "Средна температура на въздуха"
 
 msgid "Mean precipitation"
-msgstr ""
+msgstr "Средни валежи"
 
 msgid "Most recent <br/> Case Study"
-msgstr ""
+msgstr "Най-новият <br/> казус"
 
 msgid "Most recent <br/> Publication or Report"
-msgstr ""
+msgstr "Най-новата <br/> публикация или отчет"
 
 msgid "National adaption policy"
-msgstr ""
+msgstr "Национална политика за адаптиране"
 
 # ,
 msgid "Organisations"
-msgstr "Организации"
+msgstr "организации"
 
 msgid "Other"
-msgstr ""
+msgstr "други"
 
 # ,
 msgid "Publication and reports"
-msgstr "Публикация и отчети"
+msgstr "Публикации и доклади"
 
 msgid "Publications and reports"
-msgstr ""
+msgstr "Публикации и доклади"
 
 msgid "Relative sea level"
-msgstr ""
+msgstr "Относително морско ниво"
 
 # ,
 msgid "Research and knowledge projects"
-msgstr "Проекти за изследвания и знания"
+msgstr "Изследователски проекти и проекти за знания"
 
 msgid "River flooding"
-msgstr ""
+msgstr "Наводнение на реката"
 
 msgid "Snow and ice"
-msgstr ""
+msgstr "Сняг и лед"
 
 msgid "Snow and land ice"
-msgstr ""
+msgstr "Сняг и земен лед"
 
 # ,
 msgid "Tools"
@@ -139,13 +140,13 @@ msgid "Videos"
 msgstr "Видеоклипове"
 
 msgid "Wet and dry"
-msgstr ""
+msgstr "Мокро и сухо"
 
 msgid "Wildfire"
-msgstr ""
+msgstr "Горски пожар"
 
 msgid "Zip download"
-msgstr ""
+msgstr "Zip изтегляне"
 
 msgid "here"
-msgstr ""
+msgstr "тук"

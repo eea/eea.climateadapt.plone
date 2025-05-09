@@ -571,6 +571,11 @@ msgstr "Bażiku"
 msgid "Biodiversity"
 msgstr "Bijodiversità"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Ħarsien tal-bijodiversità"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Aspetti ekonomiċi"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ekosistemi u Soluzzjonijiet Ibbażati fuq in-Natura"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Restawr tal-ekosistemi"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47

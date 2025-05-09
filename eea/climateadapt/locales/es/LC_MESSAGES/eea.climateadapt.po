@@ -1889,6 +1889,11 @@ msgstr "Básico"
 msgid "Biodiversity"
 msgstr "Biodiversidad"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Protección de la biodiversidad"
+
 # ,
 # ,
 # ,
@@ -2808,6 +2813,11 @@ msgstr "Aspectos económicos"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ecosistemas y soluciones basadas en la naturaleza"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Restauración de ecosistemas"
 
 # ,
 # ,

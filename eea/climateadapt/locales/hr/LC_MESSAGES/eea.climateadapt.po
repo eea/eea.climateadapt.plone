@@ -571,6 +571,11 @@ msgstr "Osnovno"
 msgid "Biodiversity"
 msgstr "Bioraznolikost"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Zaštita biološke raznolikosti"
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr "Ekonomski aspekti"
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
 msgstr "Ekosustavi i rješenja temeljena na prirodi"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Obnova ekosustava"
 
 # ,
 #: ../../climateadapt/browser/overrides.py:47
