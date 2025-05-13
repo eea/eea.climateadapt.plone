@@ -22,7 +22,7 @@ DISCODATA_URLS = {
     "assessment_factors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Assessment_Template_Factors_Text]&p=1&nrOfHits=1000",
     "assessment_risks": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Assessment_Template_Climate_Risk_Assessments_Text]&p=1&nrOfHits=1000",
     "action_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Text]&p=1&nrOfHits=1000",
-    "actions": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Actions_Text]&p=1&nrOfHits=1000",
+    "action_actions": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Actions_Text]&p=1&nrOfHits=1000",
     "action_hazards": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Climate_Hazards_Text]&p=1&nrOfHits=1000",
     "action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Sectors_Text]&p=1&nrOfHits=1000",
     "action_benefits": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Co_Benefits_Text]&p=1&nrOfHits=1000",
@@ -32,6 +32,7 @@ DISCODATA_URLS = {
     "planning_climate_action": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Climate_Action_Plan_Text%5D&p=1&nrOfHits=1000",
     "planning_climate_action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Climate_Action_Plan_Sectors_Text%5D&p=1&nrOfHits=1000",
     "tabs_labels": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Tabs_Text]&p=1&nrOfHits=1000",
+    "footer_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Footer_Text%5D&p=1&nrOfHits=50",
 }
 
 
@@ -151,7 +152,7 @@ def get_assessment_data(profile_id):
 
 def get_action_data(profile_id):
     actions = filter_by_profile_id(
-        fetch_discodata_json(DISCODATA_URLS["actions"]), profile_id
+        fetch_discodata_json(DISCODATA_URLS["action_actions"]), profile_id
     )
     hazards_map = build_map(
         fetch_discodata_json(DISCODATA_URLS["action_hazards"]),
@@ -195,6 +196,11 @@ def get_tab_labels_data(_):
     return {"tab_labels": data[0]} if data else {}
 
 
+def get_footer_text_data(_):
+    data = fetch_discodata_json(DISCODATA_URLS["footer_text"])
+    return {"footer_text": data[0]} if data else {}
+
+
 def get_data_for_mission_signatory(profile_id):
     """Fetches data from the DISCODATA."""
     data_sections = [
@@ -203,6 +209,7 @@ def get_data_for_mission_signatory(profile_id):
         get_assessment_data,
         get_action_data,
         get_tab_labels_data,
+        get_footer_text_data,
     ]
     result = {}
 
