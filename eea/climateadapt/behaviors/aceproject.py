@@ -273,8 +273,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
         ),
     )
 
-    directives.widget(
-        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
@@ -362,34 +361,35 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
 
     directives.omitted(IEditForm, "specialtagging")
     directives.omitted(IAddForm, "specialtagging")
-    # directives.omitted(IEditForm, 'special_tags')
-    # directives.omitted(IAddForm, 'special_tags')
     directives.omitted(IEditForm, "important")
     directives.omitted(IAddForm, "important")
-    # directives.omitted(IEditForm, "rating")
-    # directives.omitted(IAddForm, "rating")
     directives.omitted(IEditForm, "spatial_layer")
     directives.omitted(IAddForm, "spatial_layer")
     directives.omitted(IEditForm, "spatial_values")
     directives.omitted(IAddForm, "spatial_values")
-    directives.omitted(IAddForm, "modification_date")
-    directives.omitted(IEditForm, "modification_date")
-    directives.omitted(IAddForm, "creation_date")
-    directives.omitted(IEditForm, "creation_date")
     directives.omitted(IAddForm, "id")
     directives.omitted(IEditForm, "id")
 
+    # directives.omitted(IEditForm, 'special_tags')
+    # directives.omitted(IAddForm, 'special_tags')
+    # directives.omitted(IEditForm, "rating")
+    # directives.omitted(IAddForm, "rating")
+    # directives.omitted(IAddForm, "modification_date")
+    # directives.omitted(IEditForm, "modification_date")
+    # directives.omitted(IAddForm, "creation_date")
+    # directives.omitted(IEditForm, "creation_date")
+
     # end
 
-    creation_date = Datetime(
-        title=_("Created"),
-        required=False,
-    )
-
-    modification_date = Datetime(
-        title=_("Last Modified"),
-        required=False,
-    )
+    # creation_date = Datetime(
+    #     title=_("Created"),
+    #     required=False,
+    # )
+    #
+    # modification_date = Datetime(
+    #     title=_("Last Modified"),
+    #     required=False,
+    # )
 
     id = TextLine(
         title=_("Object ID"),
