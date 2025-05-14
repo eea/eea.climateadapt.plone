@@ -193,9 +193,13 @@ def get_governance_data(profile_id):
 
 def get_tab_labels_data(_):
     try:
-        raw = fetch_discodata_json(DISCODATA_URLS["tabs_labels"])
-        if raw:
-            tab_labels = [{"key": k, "value": v} for k, v in raw[0].items()]
+        rows = fetch_discodata_json(DISCODATA_URLS["tabs_labels"])
+        if rows:
+            first_row = rows[0]
+
+            # Preserve order as defined by SQL column order
+            tab_labels = [{"key": key, "value": first_row[key]} for key in first_row]
+
             return {"tab_labels": tab_labels}
         return {}
     except Exception as e:
