@@ -33,6 +33,7 @@ DISCODATA_URLS = {
     "planning_climate_action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Climate_Action_Plan_Sectors_Text%5D&p=1&nrOfHits=1000",
     "tabs_labels": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Tabs_Text]&p=1&nrOfHits=1000",
     "footer_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%20100%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Footer_Text%5D&p=1&nrOfHits=50",
+    "general_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_General_Text]&p=1&nrOfHits=1000",
 }
 
 
@@ -191,6 +192,11 @@ def get_governance_data(profile_id):
     return {"governance": filter_by_profile_id(data, profile_id)}
 
 
+def get_general_text_data(profile_id):
+    data = fetch_discodata_json(DISCODATA_URLS["general_text"])
+    return {"general_text": filter_by_profile_id(data, profile_id)}
+
+
 def get_tab_labels_data(_):
     try:
         rows = fetch_discodata_json(DISCODATA_URLS["tabs_labels"])
@@ -219,6 +225,7 @@ def get_data_for_mission_signatory(profile_id):
         get_planning_data,
         get_assessment_data,
         get_action_data,
+        get_general_text_data,
         get_tab_labels_data,
         get_footer_text_data,
     ]
