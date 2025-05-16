@@ -1,10 +1,10 @@
 import logging
-import csv
+# import csv
 
 import json
 import urllib.request
 
-from pkg_resources import resource_filename
+# from pkg_resources import resource_filename
 from plone.restapi.interfaces import IExpandableElement
 from zope.component import adapter
 from zope.interface import Interface, implementer
@@ -21,6 +21,7 @@ DISCODATA_URLS = {
     "assessment_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Assessment_Template_Text]&p=1&nrOfHits=1000",
     "assessment_factors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Assessment_Template_Factors_Text]&p=1&nrOfHits=1000",
     "assessment_risks": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Assessment_Template_Climate_Risk_Assessments_Text]&p=1&nrOfHits=1000",
+    "assessment_hazards_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Assessment_Template_Hazards_Sectors_Text%5D&p=1&nrOfHits=1000",
     "action_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Text]&p=1&nrOfHits=1000",
     "action_actions": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Actions_Text]&p=1&nrOfHits=1000",
     "action_hazards": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%201000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Climate_Hazards_Text]&p=1&nrOfHits=1000",
@@ -58,42 +59,16 @@ def build_map(data, id_keys, value_key):
     return result
 
 
-def parse_csv(path):
-    try:
-        wf = resource_filename("eea.climateadapt", path)
-        with open(wf, newline="", encoding="utf-8-sig") as csvfile:
-            reader = csv.DictReader(csvfile)
-            # print(f"Headers: {reader.fieldnames}")
-            return [row for row in reader]
-    except Exception as e:
-        logger.error(f"Failed to parse CSV {path}: {e}")
-        return []
-
-
-def get_assessment_sectors():
-    raw_data = parse_csv("data/Assessment_Template_Grouped_Sectors_Text.csv")
-    grouped = {}
-
-    for row in raw_data:
-        category_id = row["CategoryId"]
-        category_name = row["Category_Name"]
-        sector_name = row["Sector_Name"]
-        order = int(row.get("Order", 999))
-
-        key = (category_id, category_name, order)
-        grouped.setdefault(key, []).append(sector_name)
-
-    sorted_categories = sorted(grouped.items(), key=lambda x: x[0][2])
-
-    return [
-        {
-            "CategoryId": key[0],
-            "Category_Name": key[1],
-            "Order": key[2],
-            "Sectors": value,
-        }
-        for key, value in sorted_categories
-    ]
+# def parse_csv(path):
+#     try:
+#         wf = resource_filename("eea.climateadapt", path)
+#         with open(wf, newline="", encoding="utf-8-sig") as csvfile:
+#             reader = csv.DictReader(csvfile)
+#             # print(f"Headers: {reader.fieldnames}")
+#             return [row for row in reader]
+#     except Exception as e:
+#         logger.error(f"Failed to parse CSV {path}: {e}")
+#         return []
 
 
 def get_planning_data(profile_id):
@@ -135,6 +110,32 @@ def get_planning_data(profile_id):
 
 
 def get_assessment_data(profile_id):
+    assessment_hazards_sectors_raw = filter_by_profile_id(
+        fetch_discodata_json(DISCODATA_URLS["assessment_hazards_sectors"]), profile_id
+    )
+
+    grouped = {}
+    for row in assessment_hazards_sectors_raw:
+        key = (row.get("Hazard_Id"), row.get("Hazard"))
+        sector = row.get("Sector")
+        order = int(row.get("Order", 999))
+        if key not in grouped:
+            grouped[key] = []
+        grouped[key].append((order, sector))
+
+    assessment_hazards_sectors = []
+    for (hazard_id, hazard), sectors in grouped.items():
+        sorted_sectors = [
+            sector for order, sector in sorted(sectors, key=lambda x: x[0])
+        ]
+        assessment_hazards_sectors.append(
+            {
+                "Hazard_Id": hazard_id,
+                "Hazard": hazard,
+                "Sectors": sorted_sectors,
+            }
+        )
+
     return {
         "assessment": {
             "assessment_text": filter_by_profile_id(
@@ -146,7 +147,7 @@ def get_assessment_data(profile_id):
             "assessment_risks": filter_by_profile_id(
                 fetch_discodata_json(DISCODATA_URLS["assessment_risks"]), profile_id
             ),
-            "assessment_sectors": get_assessment_sectors(),
+            "assessment_hazards_sectors": assessment_hazards_sectors,
         }
     }
 
