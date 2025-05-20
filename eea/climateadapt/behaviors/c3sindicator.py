@@ -87,14 +87,14 @@ class IC3sIndicator(IIndicator):
     )
 
     overview_app_parameters = Text(
-        title=("Overview APP parameters"), required=True)
+        title=("Overview APP parameters"), required=False)
 
     overview_app_ecde_identifier = TextLine(
-        title=_("Overview APP ECDE Identifier"), required=True
+        title=_("Overview APP ECDE Identifier"), required=False
     )
 
     overview_app_ecde_identifier = TextLine(
-        title=_("Overview APP ECDE Identifier"), required=True
+        title=_("Overview APP ECDE Identifier"), required=False
     )
 
     details_app_toolbox_url = TextLine(
