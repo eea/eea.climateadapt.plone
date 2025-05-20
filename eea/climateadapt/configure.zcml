@@ -45,6 +45,7 @@
   <include package=".translation" />
 
   <include file="broken_links.zcml" />
+  <include file="c3s_import.zcml" />
   <include file="catalog.zcml" />
   <include file="contentrules.zcml" />
   <include file="events.zcml" />
