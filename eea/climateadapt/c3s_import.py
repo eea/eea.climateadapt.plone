@@ -4,6 +4,7 @@ import transaction
 from plone import api
 from plone.api.env import adopt_user
 from plone.app.textfield.value import RichTextValue
+from plone.dexterity.utils import createContentInContainer
 from Products.Five.browser import BrowserView
 from zExceptions import Unauthorized
 from zope.annotation.interfaces import IAnnotations
