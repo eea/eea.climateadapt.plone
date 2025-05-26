@@ -4,7 +4,7 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from zope.interface import provider
-from zope.schema import Bool, Choice, List
+from zope.schema import Bool  # Choice, List
 
 
 @provider(IFormFieldProvider)
@@ -24,11 +24,11 @@ class IHealthObservatoryMetadata(model.Schema):
         title=_("Include in the Mission Portal"), required=False, default=False
     )
 
-    health_impacts = List(
-        title=_("Health impacts"),
-        required=False,
-        value_type=Choice(vocabulary="eea.climateadapt.health_impacts"),
-    )
+    # health_impacts = List(
+    #     title=_("Health impacts"),
+    #     required=False,
+    #     value_type=Choice(vocabulary="eea.climateadapt.health_impacts"),
+    # )
 
 
 alsoProvides(
@@ -37,5 +37,4 @@ alsoProvides(
 alsoProvides(
     IHealthObservatoryMetadata["include_in_mission"], ILanguageIndependentField
 )
-alsoProvides(
-    IHealthObservatoryMetadata["health_impacts"], ILanguageIndependentField)
+# alsoProvides(IHealthObservatoryMetadata["health_impacts"], ILanguageIndependentField)
