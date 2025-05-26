@@ -20,8 +20,13 @@ class LdapMailsForThematicExperts(BaseSubstitution):
     adapts(IContentish)
 
     category = "CCA Thematic Experts"
+    # xx._ugm().groups.search(criteria={"id": "extranet-cca-thematicexperts"})
 
     def safe_call(self):
+        # if self.group == "extranet-cca-thematicexperts":
+        #     import pdb
+        #
+        #     pdb.set_trace()
         acl = getToolByName(self.context, "acl_users")
         ldap = acl["ldap-plugin"]["acl_users"]
         resp = ldap._delegate.search(

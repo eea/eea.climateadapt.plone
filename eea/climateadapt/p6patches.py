@@ -24,7 +24,7 @@ def install_patches():
 
     paths.CONTEXT_ENDPOINTS = [
         "?expand=translations,subsite,breadcrumbs,navigation,actions&expand.navigation.depth=3",
-        "/@types",
+        "/?expand=translations,subsite,breadcrumbs,navigation,actions&expand.navigation.depth=3",
     ]
 
     logger.info("plone.restapi cache purging paths were setup for CCA")
