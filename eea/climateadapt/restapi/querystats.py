@@ -1,12 +1,18 @@
+import json
+import logging
 from collections import defaultdict
-from plone.restapi.deserializer import json_body
-from plone.restapi.exceptions import DeserializationError
+
 from plone.restapi.interfaces import IExpandableElement
+from plone.restapi.serializer.converters import json_compatible
 from plone.restapi.services import Service
 from zExceptions import BadRequest
 from zope.component import adapter, getMultiAdapter
 from zope.interface import Interface, implementer
-from plone.restapi.serializer.converters import json_compatible
+
+# from plone.restapi.deserializer import json_body
+# from plone.restapi.exceptions import DeserializationError
+
+logger = logging.getLogger("eea.climateadapt")
 
 
 @implementer(IExpandableElement)
@@ -17,15 +23,20 @@ class QueryStats:
         self.request = request
 
     def __call__(self, expand=False):
-        result = {"querystats": {"@id": "%s/@querystats" % self.context.absolute_url()}}
+        result = {"querystats": {"@id": "%s/@querystats" %
+                                 self.context.absolute_url()}}
         if not expand:
             return result
 
-        # based on https://github.com/plone/plone.restapi/blob/1771c9c43b63dd0a6b29ab1339b6e8d6330876ab/src/plone/restapi/services/querystringsearch/get.py#L28
+        formdata = self.request.form.get("query", "{}")
+
+        data = {}
         try:
-            data = json_body(self.request)
-        except DeserializationError as err:
-            raise BadRequest(str(err))
+            data = json.loads(formdata)
+        except Exception:
+            logger.warning(
+                "Unable to parse input JSON in querystats service %r", formdata
+            )
 
         querydata = data.get("query", {})
         query = querydata.get("query", {})
@@ -64,7 +75,7 @@ class QueryStats:
         return {"querystats": json_compatible(counts)}
 
 
-class QueryStatsPost(Service):
+class QueryStatsGet(Service):
     def reply(self):
         querystats = QueryStats(self.context, self.request)
         res = querystats(expand=True)["querystats"]
