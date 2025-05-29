@@ -1,11 +1,13 @@
 """Translation views"""
 
+from zope.interface import alsoProvides
+from plone.protect.interfaces import IDisableCSRFProtection
 import base64
 import json
 import logging
 import os
 
-from plone.api import portal
+from plone.api import portal, content
 from plone.api.env import adopt_user
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.dexterity.utils import iterSchemata
@@ -23,7 +25,7 @@ from .core import (
     queue_job,
     setup_translation_object,
 )
-from .utils import get_value_representation
+from .utils import get_site_languages, get_value_representation
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
@@ -171,3 +173,41 @@ class CallETranslation(BrowserView):
         data = call_etranslation_service(html, obj_path, [target_lang])
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(data)
+
+
+class SyncTranslatedPaths(BrowserView):
+    """Call eTranslation, triggered by job from worker"""
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        check_token_security(self.request)
+
+        form = self.request.form
+        result = {}
+
+        for lang in get_site_languages():
+            if lang == "en":
+                continue
+            newName = form.get("newName")
+            oldName = form.get("oldName")
+
+            oldParent = form.get("oldParent").replace("/en/", f"/{lang}/")
+            newParent = form.get("newParent").replace("/en/", f"/{lang}/")
+
+            source_path = f"{oldParent}/{oldName}"
+            source = content.get(source_path)
+            target = content.get(newParent)
+
+            if source is None:
+                logger.warning(
+                    "Could not find source to be moved: %s", source_path)
+                continue
+
+            with adopt_user(username="admin"):
+                moved = content.move(source=source, target=target, id=newName)
+
+            result[lang] = moved.absolute_url()
+            logger.info("Moved %s to %s", source_path, newParent)
+
+        self.request.response.setHeader("Content-Type", "application/json")
+        return json.dumps(result)

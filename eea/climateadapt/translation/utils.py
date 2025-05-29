@@ -1,9 +1,7 @@
 from .valueadapter import ITranslationValue
 from zope.component import queryMultiAdapter
 import json
-import urllib.request
 import urllib.parse
-import urllib.error
 import logging
 from datetime import date
 
@@ -21,6 +19,8 @@ from zope.schema import getFieldsInOrder
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 
+# import urllib.request
+# import urllib.error
 # from collective.cover.tiles.richtext import RichTextTile
 # from plone.formwidget.geolocation.geolocation import Geolocation
 # from eea.climateadapt.tiles.richtext import RichTextWithTitle

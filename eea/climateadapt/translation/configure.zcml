@@ -38,6 +38,13 @@
 
   <browser:page
     for="*"
+    class=".views.SyncTranslatedPaths"
+    name="sync-translated-paths"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    for="*"
     class=".views.SaveTranslationHtml"
     name="save-etranslation"
     permission="zope2.View"
