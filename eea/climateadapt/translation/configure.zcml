@@ -65,4 +65,10 @@
     name="description"
   />
 
+  <subscriber
+    for="plone.dexterity.interfaces.IDexterityContent
+     zope.lifecycleevent.interfaces.IObjectMovedEvent"
+    handler=".events.object_modified_handler"
+  />
+
 </configure>

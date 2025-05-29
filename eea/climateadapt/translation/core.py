@@ -8,7 +8,7 @@ import requests
 from Acquisition import aq_inner, aq_parent
 from bullmq import Queue
 from plone import api
-from plone.api import portal
+from plone.api import portal, content
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.interfaces import ITranslationManager
@@ -62,6 +62,7 @@ redisOpts = dict(host=REDIS_HOST, port=REDIS_PORT, db=0)
 queues = {
     "etranslation": Queue("etranslation", {"connection": redisOpts}),
     "save_etranslation": Queue("save_etranslation", {"connection": redisOpts}),
+    "sync_paths": Queue("sync_paths", {"connection": redisOpts}),
 }
 
 
@@ -372,34 +373,46 @@ def safe_traverse(obj, trans_path):
     return current_obj
 
 
-def setup_translation_object(obj, language, site_portal):
-    """Create translation object for an obj"""
-
-    # rc = RequestContainer(REQUEST=obj.REQUEST)
-    tm = TranslationManager(obj)
-    translations = tm.get_translations()
-
-    if language in translations:
-        logger.info("Skip creating translation. Already exists.")
-        translated_object = translations[language]
-
-        copy_missing_interfaces(obj, translated_object)
-        sync_translation_state(translated_object, obj)
-        translated_object.reindexObject()
-
-        return translated_object
-
-    path = obj.getPhysicalPath()
+def get_translated_path(canonical, language):
+    path = canonical.getPhysicalPath()
     trans_path = []
     for bit in path:
         if bit == "en":
             bit = language
         trans_path.append(bit)
     trans_path = "/".join(trans_path)
+    return trans_path
+
+
+def setup_translation_object(canonical, language, site_portal):
+    """Create translation object for an obj"""
+
+    # rc = RequestContainer(REQUEST=obj.REQUEST)
+    tm = TranslationManager(canonical)
+    translations = tm.get_translations()
+
+    if language in translations:
+        logger.info("Skip creating translation. Already exists.")
+        translated_object = translations[language]
+
+        trans_path = "/".join(translated_object.getPhysicalPath())
+        if trans_path == get_translated_path(canonical, language):
+            copy_missing_interfaces(canonical, translated_object)
+            sync_translation_state(translated_object, canonical)
+            translated_object.reindexObject()
+
+            return translated_object
+        else:
+            logger.info(
+                f"Removing translation {trans_path} because it's different path"
+            )
+            content.delete(obj=translated_object, check_linkintegrity=False)
+
+    trans_path = get_translated_path(canonical, language)
 
     trans = None
     try:
-        trans = safe_traverse(obj, trans_path)
+        trans = safe_traverse(canonical, trans_path)
     except Exception:
         pass
 
@@ -408,15 +421,15 @@ def setup_translation_object(obj, language, site_portal):
         logger.warning(
             "Translation object exists, but it's not properly recorded %s %s %s",
             "/".join(trans.getPhysicalPath()),
-            "/".join(obj.getPhysicalPath()),
+            "/".join(canonical.getPhysicalPath()),
             # trans_path,
         )
         trans.reindexObject()
 
         return trans
 
-    check_ancestors_path_exists(obj, language, site_portal)
-    factory = DefaultTranslationFactory(obj)
+    check_ancestors_path_exists(canonical, language, site_portal)
+    factory = DefaultTranslationFactory(canonical)
 
     translated_object = factory(language)
 
@@ -427,15 +440,15 @@ def setup_translation_object(obj, language, site_portal):
 
     # In cases like: /en/page-en -> /fr/page, fix the url: /fr/page-en
     try:
-        if translated_object.id != obj.id:
+        if translated_object.id != canonical.id:
             translated_object.aq_parent.manage_renameObject(
-                translated_object.id, obj.id
+                translated_object.id, canonical.id
             )
     except Exception:
         logger.info("CREATE ITEM: cannot rename the item id - already exists.")
 
-    copy_missing_interfaces(obj, translated_object)
-    sync_translation_state(translated_object, obj)
+    copy_missing_interfaces(canonical, translated_object)
+    sync_translation_state(translated_object, canonical)
 
     translated_object.reindexObject()
 

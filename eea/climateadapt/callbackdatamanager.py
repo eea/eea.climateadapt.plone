@@ -9,7 +9,7 @@ import logging
 
 import transaction
 
-logger = logging.getLogger("eea.climateadat.rabbitmq")
+logger = logging.getLogger("eea.climateadapt.redis")
 
 
 class CallbacksDataManager(object):
