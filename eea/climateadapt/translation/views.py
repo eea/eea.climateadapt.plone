@@ -7,7 +7,7 @@ import json
 import logging
 import os
 
-from plone.api import portal, content
+from plone.api import portal
 from plone.api.env import adopt_user
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.dexterity.utils import iterSchemata
@@ -24,6 +24,7 @@ from .core import (
     ingest_html,
     queue_job,
     setup_translation_object,
+    sync_translation_paths,
 )
 from .utils import get_site_languages, get_value_representation
 
@@ -183,41 +184,10 @@ class SyncTranslatedPaths(BrowserView):
         check_token_security(self.request)
 
         form = self.request.form
-        result = {}
 
-        for lang in get_site_languages():
-            if lang == "en":
-                continue
-
-            newName = form.get("newName")
-            oldName = form.get("oldName")
-
-            oldParent = form.get("oldParent")
-            if "/en/" in oldParent:
-                oldParent = oldParent.replace("/en/", f"/{lang}/")
-            elif oldParent.endswith("/en"):
-                oldParent = oldParent.replace("/en", f"/{lang}")
-
-            newParent = form.get("newParent").replace("/en/", f"/{lang}/")
-            if "/en/" in newParent:
-                newParent = newParent.replace("/en/", f"/{lang}/")
-            elif newParent.endswith("/en"):
-                newParent = newParent.replace("/en", f"/{lang}")
-
-            source_path = f"{oldParent}/{oldName}"
-            source = content.get(source_path)
-            target = content.get(newParent)
-
-            if source is None:
-                logger.warning(
-                    "Could not find source to be moved: %s", source_path)
-                continue
-
-            with adopt_user(username="admin"):
-                moved = content.move(source=source, target=target, id=newName)
-
-            result[lang] = moved.absolute_url()
-            logger.info("Moved %s to %s", source_path, newParent)
+        result = sync_translation_paths(
+            form["oldParent"], form["oldName"], form["newParent"], form["newName"]
+        )
 
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)

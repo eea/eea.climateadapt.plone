@@ -8,7 +8,8 @@ import requests
 from Acquisition import aq_inner, aq_parent
 from bullmq import Queue
 from plone import api
-from plone.api import portal, content
+from plone.api import content, portal
+from plone.api.env import adopt_user
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.interfaces import ITranslationManager
@@ -480,3 +481,46 @@ def find_untranslated(obj, good_lang_codes):
             )
 
     return list(untranslated)
+
+
+def sync_translation_paths(oldParent, oldName, newParent, newName):
+    result = {}
+    en_path = f"{oldParent}/{oldName}"
+    en_obj = content.get(en_path)
+
+    if en_obj is None:
+        logger.warning("Could not find original source for move: %s", en_path)
+
+    tm = ITranslationManager(en_obj)
+    translations = tm.get_translations()
+
+    for lang, trans_obj in translations.items():
+        if lang == "en":
+            continue
+
+        old_path = "/".join(trans_obj.getPhysicalPath())
+
+        if "/en/" in newParent:
+            new_parent = newParent.replace("/en/", f"/{lang}/")
+        elif newParent.endswith("/en"):
+            new_parent = newParent.replace("/en", f"/{lang}")
+        else:
+            logger.warning(
+                "Could not find destination parent to move: %s", newParent)
+            continue
+
+        target = content.get(new_parent)
+
+        if target is None:
+            logger.warning("Could not find target to be moved: %s", new_parent)
+            # TODO: create it with setup_translation_object() ?
+            continue
+
+        with adopt_user(username="admin"):
+            moved = content.move(source=trans_obj, target=target, id=newName)
+
+        new_path = "/".join(moved.getPhysicalPath())
+        result[lang] = new_path
+        logger.info("Moved %s => %s", old_path, new_path)
+
+    return result
