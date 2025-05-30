@@ -188,11 +188,21 @@ class SyncTranslatedPaths(BrowserView):
         for lang in get_site_languages():
             if lang == "en":
                 continue
+
             newName = form.get("newName")
             oldName = form.get("oldName")
 
-            oldParent = form.get("oldParent").replace("/en/", f"/{lang}/")
+            oldParent = form.get("oldParent")
+            if "/en/" in oldParent:
+                oldParent = oldParent.replace("/en/", f"/{lang}/")
+            elif oldParent.endswith("/en"):
+                oldParent = oldParent.replace("/en", f"/{lang}")
+
             newParent = form.get("newParent").replace("/en/", f"/{lang}/")
+            if "/en/" in newParent:
+                newParent = newParent.replace("/en/", f"/{lang}/")
+            elif newParent.endswith("/en"):
+                newParent = newParent.replace("/en", f"/{lang}")
 
             source_path = f"{oldParent}/{oldName}"
             source = content.get(source_path)
