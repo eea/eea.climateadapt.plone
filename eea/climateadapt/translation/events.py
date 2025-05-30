@@ -21,7 +21,7 @@ def object_modified_handler(obj, event):
         event.newName,
     )
 
-    if "/en/" not in op:
+    if not ("/en/" in op or op.endswith("/en")):
         return
 
     np = "/".join(event.newParent.getPhysicalPath())
