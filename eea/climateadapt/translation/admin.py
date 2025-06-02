@@ -342,8 +342,12 @@ class SyncTranslationPaths(BrowserView):
     def check_translation_paths(self, obj):
         tm = ITranslationManager(obj)
         translations = tm.get_translations()
-        path = "/".join(obj.getPhysicalPath())
 
+        bits = obj.getPhysicalPath()
+        if "sandbox" in bits:
+            return []
+
+        path = "/".join(bits)
         out = []
 
         for langcode, trans in translations.items():
