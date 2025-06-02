@@ -10,8 +10,23 @@ def object_modified_handler(obj, event):
     This handler will be called whenever a content object is modified.
     """
 
-    op = "/".join(event.oldParent.getPhysicalPath())
-    np = "/".join(event.newParent.getPhysicalPath())
+    try:
+        op = "/".join(event.oldParent.getPhysicalPath())
+    except Exception:
+        logger.warning(
+            "Could not identify old parent for %s", "/".join(
+                obj.getPhysicalPath())
+        )
+        return
+
+    try:
+        np = "/".join(event.newParent.getPhysicalPath())
+    except Exception:
+        logger.warning(
+            "Could not identify new parent for %s", "/".join(
+                obj.getPhysicalPath())
+        )
+        return
 
     logger.info(
         "Object moved %s -> %s (%s -> %s)",
