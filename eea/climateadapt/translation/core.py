@@ -483,7 +483,7 @@ def find_untranslated(obj, good_lang_codes):
     return list(untranslated)
 
 
-def sync_translation_paths(oldParent, oldName, newParent, newName):
+def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
     result = {}
     en_path = f"{oldParent}/{oldName}"
     en_obj = content.get(en_path)
@@ -496,6 +496,9 @@ def sync_translation_paths(oldParent, oldName, newParent, newName):
 
     for lang, trans_obj in translations.items():
         if lang == "en":
+            continue
+
+        if langs and lang not in langs:
             continue
 
         old_path = "/".join(trans_obj.getPhysicalPath())

@@ -184,9 +184,16 @@ class SyncTranslatedPaths(BrowserView):
         check_token_security(self.request)
 
         form = self.request.form
+        langs = form.get("langs", [])
+        if langs:
+            langs = langs.split(",")
 
         result = sync_translation_paths(
-            form["oldParent"], form["oldName"], form["newParent"], form["newName"]
+            form["oldParent"],
+            form["oldName"],
+            form["newParent"],
+            form["newName"],
+            langs,
         )
 
         self.request.response.setHeader("Content-Type", "application/json")

@@ -42,6 +42,13 @@
 
   <browser:page
     for="*"
+    class=".admin.SyncTranslationPaths"
+    name="admin-sync-translation-paths"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
     name="fix_folder_order"
     permission="cmf.ManagePortal"
     class=".admin.FixFolderOrder"

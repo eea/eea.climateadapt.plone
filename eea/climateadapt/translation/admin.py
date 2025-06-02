@@ -340,7 +340,22 @@ class SeeTranslationStatus(BrowserView):
 
 class SyncTranslationPaths(BrowserView):
     def check_translation_paths(self, obj):
-        pass
+        tm = ITranslationManager(obj)
+        translations = tm.get_translations()
+        path = "/".join(obj.getPhysicalPath())
+
+        out = []
+
+        for langcode, trans in translations.items():
+            if langcode == "en":
+                continue
+
+            if path.replace("/en/", f"/{langcode}/") != "/".join(
+                trans.getPhysicalPath()
+            ):
+                out.append(langcode)
+
+        return out
 
     def __call__(self):
         context = self.context
@@ -349,10 +364,16 @@ class SyncTranslationPaths(BrowserView):
             sort="path",
             review_state="published",
         )
+        # self.languages = set(get_site_languages())
 
         for brain in brains:
+            if brain.portal_type == "LRF":
+                continue
+
             obj = brain.getObject()
-            if self.check_translation_paths(obj):
+            broken_langs = self.check_translation_paths(obj)
+
+            if broken_langs:
                 parent_path = "/".join(obj.aq_parent.getPhysicalPath())
 
                 data = {
@@ -360,6 +381,7 @@ class SyncTranslationPaths(BrowserView):
                     "oldName": obj.getId(),
                     "oldParent": parent_path,
                     "newParent": parent_path,
+                    "langs": broken_langs,
                 }
                 opts = {
                     "delay": 10000,
