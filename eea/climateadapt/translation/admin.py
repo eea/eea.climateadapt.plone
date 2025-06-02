@@ -340,8 +340,11 @@ class SeeTranslationStatus(BrowserView):
 
 class SyncTranslationPaths(BrowserView):
     def check_translation_paths(self, obj):
-        tm = ITranslationManager(obj)
-        translations = tm.get_translations()
+        try:
+            tm = ITranslationManager(obj)
+            translations = tm.get_translations()
+        except Exception:
+            return []
 
         bits = obj.getPhysicalPath()
         if "sandbox" in bits:
