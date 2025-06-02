@@ -14,6 +14,7 @@ from zope.interface import alsoProvides
 from eea.climateadapt.translation.core import find_untranslated, queue_translate
 from eea.climateadapt.utils import force_unlock
 
+from .core import queue_job
 from .utils import get_site_languages
 
 logger = logging.getLogger("eea.climateadapt.translation")
@@ -335,3 +336,35 @@ class SeeTranslationStatus(BrowserView):
             result.append((brain, langs))
 
         return result
+
+
+class SyncTranslationPaths(BrowserView):
+    def check_translation_paths(self, obj):
+        pass
+
+    def __call__(self):
+        context = self.context
+        brains = context.portal_catalog.searchResults(
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
+            review_state="published",
+        )
+
+        for brain in brains:
+            obj = brain.getObject()
+            if self.check_translation_paths(obj):
+                parent_path = "/".join(obj.aq_parent.getPhysicalPath())
+
+                data = {
+                    "newName": obj.getId(),
+                    "oldName": obj.getId(),
+                    "oldParent": parent_path,
+                    "newParent": parent_path,
+                }
+                opts = {
+                    "delay": 10000,
+                    "priority": 1,
+                    "attempts": 3,
+                    "lifo": False,
+                }
+                queue_job("sync_paths", "sync_translated_paths", data, opts)
