@@ -513,14 +513,16 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
         else:
             logger.warning(
                 "Could not find destination parent to move: %s", newParent)
-            continue
+            raise ValueError(
+                "Could not find destination parent to move: %s", newParent)
 
         target = content.get(new_parent)
 
         if target is None:
             logger.warning("Could not find target to be moved: %s", new_parent)
             # TODO: create it with setup_translation_object() ?
-            continue
+            raise ValueError(
+                "Could not find target to be moved: %s", new_parent)
 
         with adopt_user(username="admin"):
             # TODO: setup_translation_object()
