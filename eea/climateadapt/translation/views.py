@@ -26,7 +26,7 @@ from .core import (
     setup_translation_object,
     sync_translation_paths,
 )
-from .utils import get_site_languages, get_value_representation
+from .utils import get_value_representation
 
 logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
@@ -81,7 +81,7 @@ class SaveTranslationHtml(BrowserView):
             return "mismatched serial id"
 
         with adopt_user(username="admin"):
-            trans_obj = setup_translation_object(en_obj, language, site_portal)
+            trans_obj = setup_translation_object(en_obj, language)
             ingest_html(trans_obj, html)
 
         self.request.response.setHeader("Content-Type", "application/json")

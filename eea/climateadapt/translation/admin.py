@@ -371,7 +371,6 @@ class SyncTranslationPaths(BrowserView):
             sort="path",
             review_state="published",
         )
-        # self.languages = set(get_site_languages())
 
         for brain in brains:
             if brain.portal_type == "LRF":
@@ -380,15 +379,15 @@ class SyncTranslationPaths(BrowserView):
             obj = brain.getObject()
             broken_langs = self.check_translation_paths(obj)
 
-            if broken_langs:
-                parent_path = "/".join(obj.aq_parent.getPhysicalPath())
+            parent_path = "/".join(obj.aq_parent.getPhysicalPath())
 
+            for lang in broken_langs:
                 data = {
                     "newName": obj.getId(),
                     "oldName": obj.getId(),
                     "oldParent": parent_path,
                     "newParent": parent_path,
-                    "langs": broken_langs,
+                    "langs": [lang],
                 }
                 opts = {
                     "delay": 10000,

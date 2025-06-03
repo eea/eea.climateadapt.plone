@@ -336,7 +336,7 @@ def ingest_html(trans_obj, html):
     trans_obj.reindexObject()
 
 
-def check_ancestors_path_exists(obj, language, site_portal):
+def check_ancestors_path_exists(obj, language):
     """Create full path for a object"""
 
     parent = aq_parent(aq_inner(obj))
@@ -353,7 +353,7 @@ def check_ancestors_path_exists(obj, language, site_portal):
     if language not in translations:
         # TODO, what if the parent path already exist in language
         # but is not linked in translation manager
-        setup_translation_object(parent, language, site_portal)
+        setup_translation_object(parent, language)
 
 
 def safe_traverse(obj, trans_path):
@@ -385,7 +385,7 @@ def get_translated_path(canonical, language):
     return trans_path
 
 
-def setup_translation_object(canonical, language, site_portal):
+def setup_translation_object(canonical, language):
     """Create translation object for an obj"""
 
     # rc = RequestContainer(REQUEST=obj.REQUEST)
@@ -429,7 +429,7 @@ def setup_translation_object(canonical, language, site_portal):
 
         return trans
 
-    check_ancestors_path_exists(canonical, language, site_portal)
+    check_ancestors_path_exists(canonical, language)
     factory = DefaultTranslationFactory(canonical)
 
     translated_object = factory(language)
@@ -501,6 +501,9 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
         if langs and lang not in langs:
             continue
 
+        if len(en_obj.aq_parent.getPhysicalPath()) > 3:
+            setup_translation_object(en_obj.aq_parent, lang)
+
         old_path = "/".join(trans_obj.getPhysicalPath())
 
         if "/en/" in newParent:
@@ -520,7 +523,15 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
             continue
 
         with adopt_user(username="admin"):
-            moved = content.move(source=trans_obj, target=target, id=newName)
+            # TODO: setup_translation_object()
+            try:
+                moved = content.move(
+                    source=trans_obj, target=target, id=newName)
+            except Exception:
+                logger.exception(
+                    "Could not move %s", "/".join(trans_obj.getPhysicalPath())
+                )
+                continue
 
         new_path = "/".join(moved.getPhysicalPath())
         result[lang] = new_path
