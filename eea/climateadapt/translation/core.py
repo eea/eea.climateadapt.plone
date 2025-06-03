@@ -535,6 +535,7 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
 
         new_path = "/".join(moved.getPhysicalPath())
         result[lang] = new_path
+        result[f"{lang}-old"] = old_path
         logger.info("Moved %s => %s", old_path, new_path)
 
     return result
