@@ -528,10 +528,10 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
                 moved = content.move(
                     source=trans_obj, target=target, id=newName)
             except Exception:
-                logger.exception(
+                logger.warning(
                     "Could not move %s", "/".join(trans_obj.getPhysicalPath())
                 )
-                continue
+                raise
 
         new_path = "/".join(moved.getPhysicalPath())
         result[lang] = new_path
