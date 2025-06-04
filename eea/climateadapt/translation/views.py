@@ -1,5 +1,7 @@
 """Translation views"""
 
+import traceback
+import sys
 from zope.interface import alsoProvides
 from plone.protect.interfaces import IDisableCSRFProtection
 import base64
@@ -179,6 +181,25 @@ class CallETranslation(BrowserView):
 class SyncTranslatedPaths(BrowserView):
     """Call eTranslation, triggered by job from worker"""
 
+    def exception_to_json(self, exception):
+        # Get the exception information
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+
+        # Format the traceback
+        tb_lines = traceback.format_exception(
+            exc_type, exc_value, exc_traceback)
+        tb_text = "".join(tb_lines)
+
+        exception_dict = {
+            "type": exc_type.__name__,
+            "message": str(exc_value),
+            "traceback": tb_text,
+        }
+
+        return exception_dict
+
+        # return json.dumps(exception_dict, indent=4)
+
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
         check_token_security(self.request)
@@ -188,13 +209,16 @@ class SyncTranslatedPaths(BrowserView):
         if langs:
             langs = langs.split(",")
 
-        result = sync_translation_paths(
-            form["oldParent"],
-            form["oldName"],
-            form["newParent"],
-            form["newName"],
-            langs,
-        )
+        try:
+            result = sync_translation_paths(
+                form["oldParent"],
+                form["oldName"],
+                form["newParent"],
+                form["newName"],
+                langs,
+            )
+        except Exception as e:
+            result = {"error_type": self.exception_to_json(e)}
 
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
