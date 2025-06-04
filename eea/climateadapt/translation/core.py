@@ -9,7 +9,6 @@ from Acquisition import aq_inner, aq_parent
 from bullmq import Queue
 from plone import api
 from plone.api import content, portal
-from plone.api.env import adopt_user
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
 from plone.app.multilingual.interfaces import ITranslationManager
@@ -539,19 +538,15 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
             logger.info(
                 "This translation object already exists %s, removing", target_obj_path
             )
-            with adopt_user(username="admin"):
-                content.delete(existing_trans, check_linkintegrity=False)
+            content.delete(existing_trans, check_linkintegrity=False)
 
-        with adopt_user(username="admin"):
-            # TODO: setup_translation_object()
-            try:
-                moved = content.move(
-                    source=trans_obj, target=target, id=newName)
-            except Exception:
-                logger.warning(
-                    "Could not move %s", "/".join(trans_obj.getPhysicalPath())
-                )
-                raise
+        # TODO: setup_translation_object()
+        try:
+            moved = content.move(source=trans_obj, target=target, id=newName)
+        except Exception:
+            logger.warning("Could not move %s",
+                           "/".join(trans_obj.getPhysicalPath()))
+            raise
 
         new_path = "/".join(moved.getPhysicalPath())
         result[lang] = new_path

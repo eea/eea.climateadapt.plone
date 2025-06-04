@@ -1,19 +1,19 @@
 """Translation views"""
 
-import traceback
-import sys
-from zope.interface import alsoProvides
-from plone.protect.interfaces import IDisableCSRFProtection
 import base64
 import json
 import logging
 import os
+import sys
+import traceback
 
 from plone.api import portal
 from plone.api.env import adopt_user
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.dexterity.utils import iterSchemata
+from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
+from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
 
 from eea.climateadapt.versions import ISerialId
@@ -210,13 +210,14 @@ class SyncTranslatedPaths(BrowserView):
             langs = langs.split(",")
 
         try:
-            result = sync_translation_paths(
-                form["oldParent"],
-                form["oldName"],
-                form["newParent"],
-                form["newName"],
-                langs,
-            )
+            with adopt_user(username="admin"):
+                result = sync_translation_paths(
+                    form["oldParent"],
+                    form["oldName"],
+                    form["newParent"],
+                    form["newName"],
+                    langs,
+                )
         except Exception as e:
             result = {"error_type": self.exception_to_json(e)}
 
