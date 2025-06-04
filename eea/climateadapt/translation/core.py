@@ -527,6 +527,15 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
         target_obj_path = "/".join(target.getPhysicalPath()) + "/" + newName
         existing_trans = content.get(target_obj_path)
         if existing_trans is not None:
+            brains = en_obj.portal_catalog.searchResults(
+                path=target_obj_path,
+                sort="path",
+            )
+            if len(brains) > 5:
+                raise ValueError(
+                    "Need to delete this object, but it's too big %s", target_obj_path
+                )
+
             logger.info(
                 "This translation object already exists %s, removing", target_obj_path
             )
