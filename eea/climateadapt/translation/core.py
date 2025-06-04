@@ -539,7 +539,8 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
             logger.info(
                 "This translation object already exists %s, removing", target_obj_path
             )
-            content.delete(existing_trans, check_linkintegrity=False)
+            with adopt_user(username="admin"):
+                content.delete(existing_trans, check_linkintegrity=False)
 
         with adopt_user(username="admin"):
             # TODO: setup_translation_object()
