@@ -524,6 +524,14 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
             raise ValueError(
                 "Could not find target to be moved: %s", new_parent)
 
+        target_obj_path = "/".join(target.getPhysicalPath()) + "/" + newName
+        existing_trans = content.get(target_obj_path)
+        if existing_trans is not None:
+            logger.info(
+                "This translation object already exists %s, removing", target_obj_path
+            )
+            content.delete(existing_trans, check_linkintegrity=False)
+
         with adopt_user(username="admin"):
             # TODO: setup_translation_object()
             try:
