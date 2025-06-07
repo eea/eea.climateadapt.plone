@@ -336,9 +336,9 @@ class ImpactFiltersNew:
             if i_transaction % 100 == 0:
                 transaction.savepoint()
 
-            print(row)
-            import pdb
-            pdb.set_trace()
+            # print(row)
+            # import pdb
+            # pdb.set_trace()
 
             item = {}
             item["uid"] = row['UID']
@@ -361,6 +361,10 @@ class ImpactFiltersNew:
                 logger.info("NOT FOUND obj: %s", item['url'])
                 continue
             count_found += 1
+
+            # if '87d7dc67e16a4bc4b7320daf5ad670c9' == item['uid']:
+            #     import pdb
+            #     pdb.set_trace()
 
             changeMade = False
             if item['extreme_heat'] and 'EXTREMEHEAT' not in obj.climate_impacts:
