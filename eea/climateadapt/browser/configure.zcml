@@ -22,6 +22,7 @@
   />
 
   <include file="ecde.zcml" />
+  <include file="update_migrations.zcml" />
 
   <configure
     package="collective.exportimport">

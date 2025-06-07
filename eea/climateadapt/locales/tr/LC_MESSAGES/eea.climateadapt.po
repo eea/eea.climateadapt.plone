@@ -1017,6 +1017,10 @@ msgid "Extreme Temperatures"
 msgstr "Aşırı Sıcaklıklar"
 
 #: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr "Aşırı soğuk"
+
+#: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
 msgstr "Aşırı sıcaklık"
 

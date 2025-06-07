@@ -380,12 +380,15 @@ alsoProvides(faceted_elements, IVocabularyFactory)
 
 _climateimpacts = [
     ("DROUGHT", _("Droughts")),
-    ("EXTREMETEMP", _("Extreme Temperatures")),
+    # ("EXTREMETEMP", _("Extreme Temperatures")),
+    ("EXTREMEHEAT", _("Extreme heat")),
+    ("EXTREMECOLD", _("Extreme cold")),
     ("FLOODING", _("Flooding")),
     ("ICEANDSNOW", _("Ice and Snow")),
     ("SEALEVELRISE", _("Sea Level Rise")),
     ("STORM", _("Storms")),
     ("WATERSCARCE", _("Water Scarcity")),
+    ("WILDFIRES", _("Wildfires")),
     ("NONSPECIFIC", _("Non specific")),
 ]
 aceitem_climateimpacts_vocabulary = generic_vocabulary(

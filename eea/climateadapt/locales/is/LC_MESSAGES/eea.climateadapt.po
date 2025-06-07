@@ -1017,6 +1017,10 @@ msgid "Extreme Temperatures"
 msgstr "Mikill hiti"
 
 #: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr "Mikill kuldi"
+
+#: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
 msgstr "Mikill hiti"
 

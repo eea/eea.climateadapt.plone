@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="eea.climateadapt">
+
+  <browser:page
+    name="impact_filters_262157"
+    for="*"
+    template="pt/migrate_262157_impact_filter.pt"
+    class=".migrate.ImpactFiltersNew"
+    permission="cmf.ManagePortal"
+    />
+
+</configure>
