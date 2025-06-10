@@ -297,6 +297,7 @@ def get_regions(current_lang):
     q = {
         "object_provides": ITransnationalRegionMarker.__identifier__,
         "sort_on": "getObjPositionInParent",
+        "review_state": "published",
         "path": {"query": "/cca/{}".format(current_lang)},
     }
     brains = catalog.searchResults(**q)
