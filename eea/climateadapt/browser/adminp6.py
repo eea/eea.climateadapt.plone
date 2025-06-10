@@ -27,6 +27,7 @@ class ReindexFolder(BrowserView):
         # This may take a long time.
         catalog = self.context.portal_catalog
         idxs = list(catalog.indexes())
+        base_path = "/".join(self.context.getPhysicalPath())
 
         def indexObject(obj, path):
             if (
@@ -42,6 +43,8 @@ class ReindexFolder(BrowserView):
                     # Catalogs have 'indexObject' as well, but they
                     # take different args, and will fail
                     pass
+                except AttributeError:
+                    logger.warning(f"Could not index {base_path}{path}")
 
         indexObject(self.context, "")
         portal = aq_parent(aq_inner(catalog))
