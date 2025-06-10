@@ -43,6 +43,7 @@ class ReindexFolder(BrowserView):
                     # take different args, and will fail
                     pass
 
+        indexObject(self.context, "")
         portal = aq_parent(aq_inner(catalog))
         portal.ZopeFindAndApply(
             self.context, search_sub=True, apply_func=indexObject)
