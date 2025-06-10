@@ -5,6 +5,9 @@ from plone.base.utils import base_hasattr
 from plone.base.utils import safe_callable
 from Acquisition import aq_inner
 from Acquisition import aq_parent
+import logging
+
+logger = logging.getLogger("eea.climateadapt")
 
 
 class GoPDB(BrowserView):
@@ -33,7 +36,7 @@ class ReindexFolder(BrowserView):
             ):
                 try:
                     catalog.reindexObject(obj, idxs=idxs)
-                    print(f"Reindex {path}")
+                    logger.info(f"Reindex {path}")
                     # index conversions from plone.app.discussion
                 except TypeError:
                     # Catalogs have 'indexObject' as well, but they
