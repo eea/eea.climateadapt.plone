@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import csv
+import io
+
 import json
 import logging
 from eea.climateadapt.blocks import BlocksTraverser
@@ -309,6 +311,97 @@ class HealthImpacts:
                     )
 
         return res
+
+
+class ImpactFiltersNew:
+    """New impact filters"""
+    # migrate_262157_impact_filter
+
+    def list(self):
+        response = []
+        fileUploaded = self.request.form.get("fileToUpload", None)
+
+        if not fileUploaded:
+            return response
+
+        data = fileUploaded.read().decode('utf-8')
+        csv_file = io.StringIO(data)
+        reader = csv.DictReader(csv_file)
+
+        i_transaction = 0
+        count_found = 0
+        count_not_found = 0
+        for row in reader:
+            i_transaction += 1
+            if i_transaction % 100 == 0:
+                transaction.savepoint()
+
+            # print(row)
+            # import pdb
+            # pdb.set_trace()
+
+            item = {}
+            item["uid"] = row['UID']
+            item["url"] = row['URL']
+            item["title"] = row['Title']
+            item["keywords"] = row['Keywords']
+            item["sectors"] = row['Sectors']
+            item["impacts"] = row['Impacts']
+            item["elements"] = row['Elements']
+
+            item["extreme_heat"] = row['EXTREME HEAT']
+            item["extreme_cold"] = row['EXTREME COLD']
+            item["wildfires"] = row['WILDFIRES']
+            item["non_specific"] = row['NON SPECIFIC']
+
+            obj = api.content.get(UID=item["uid"])
+
+            if not obj:
+                count_not_found += 1
+                logger.info("NOT FOUND obj: %s", item['url'])
+                continue
+            count_found += 1
+
+            # if '87d7dc67e16a4bc4b7320daf5ad670c9' == item['uid']:
+            #     import pdb
+            #     pdb.set_trace()
+
+            changeMade = False
+            if item['extreme_heat'] and 'EXTREMEHEAT' not in obj.climate_impacts:
+                obj.climate_impacts.append('EXTREMEHEAT')
+                changeMade = True
+            if item['extreme_cold'] and 'EXTREMECOLD' not in obj.climate_impacts:
+                obj.climate_impacts.append('EXTREMECOLD')
+                changeMade = True
+            if item['wildfires'] and 'WILDFIRES' not in obj.climate_impacts:
+                obj.climate_impacts.append('WILDFIRES')
+                changeMade = True
+            if item['non_specific'] and 'NONSPECIFIC' not in obj.climate_impacts:
+                obj.climate_impacts.append('NONSPECIFIC')
+                changeMade = True
+
+            if obj.climate_impacts and 'EXTREMETEMP' in obj.climate_impacts:
+                obj.climate_impacts.remove('EXTREMETEMP')
+                changeMade = True
+
+            if changeMade:
+                obj._p_changed = True
+
+            response.append(
+                {
+                    "title": obj.title,
+                    "url": item["url"],
+                    "funding_programme": obj.title,
+                }
+            )
+            logger.info("OBJ: %s",
+                        obj.absolute_url())
+
+        transaction.commit()
+
+        logger.info("LINES IN RESPONSE: %s, FOUND %s, NOTFOUND %s",
+                    len(response), count_found, count_not_found)
+        return response
 
 
 class FundingProgramme:
@@ -2872,7 +2965,7 @@ class MigrateAbsoluteURLs(BrowserView):
             except ValueError:
                 # Handle the case where 'days' is not a valid integer
                 days = None
-    
+
         if days is not None:
             # Calculate the date `days` ago from today
             date = datetime.now() - timedelta(days=days)

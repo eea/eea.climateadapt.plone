@@ -982,6 +982,10 @@ msgstr ""
 msgid "Extreme heat"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr ""
+
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:417
 msgid "FAO Green Cities"
 msgstr ""
