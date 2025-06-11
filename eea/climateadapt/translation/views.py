@@ -76,18 +76,22 @@ class SaveTranslationHtml(BrowserView):
         if path[0] == "/":
             path = path[1:]
 
-        en_obj = site_portal.unrestrictedTraverse(path)
-        canonical_serial_id = ISerialId(en_obj)
+        try:
+            en_obj = site_portal.unrestrictedTraverse(path)
+            canonical_serial_id = ISerialId(en_obj)
 
-        if int(canonical_serial_id) != int(serial_id):
-            return "mismatched serial id"
+            if int(canonical_serial_id) != int(serial_id):
+                return {"error_type": "mismatched serial id"}
 
-        with adopt_user(username="admin"):
-            trans_obj = setup_translation_object(en_obj, language)
-            ingest_html(trans_obj, html)
+            with adopt_user(username="admin"):
+                trans_obj = setup_translation_object(en_obj, language)
+                ingest_html(trans_obj, html)
+                result = {"url": trans_obj.absolute_url()}
+        except Exception as e:
+            result = {"error_type": exception_to_json(e)}
 
         self.request.response.setHeader("Content-Type", "application/json")
-        return json.dumps({"url": trans_obj.absolute_url()})
+        return json.dumps(result)
 
 
 class TranslationCallback(BrowserView):
@@ -178,27 +182,27 @@ class CallETranslation(BrowserView):
         return json.dumps(data)
 
 
+def exception_to_json(exception):
+    # Get the exception information
+    exc_type, exc_value, exc_traceback = sys.exc_info()
+
+    # Format the traceback
+    tb_lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+    tb_text = "".join(tb_lines)
+
+    exception_dict = {
+        "type": exc_type.__name__,
+        "message": str(exc_value),
+        "traceback": tb_text,
+    }
+
+    return exception_dict
+
+    # return json.dumps(exception_dict, indent=4)
+
+
 class SyncTranslatedPaths(BrowserView):
     """Call eTranslation, triggered by job from worker"""
-
-    def exception_to_json(self, exception):
-        # Get the exception information
-        exc_type, exc_value, exc_traceback = sys.exc_info()
-
-        # Format the traceback
-        tb_lines = traceback.format_exception(
-            exc_type, exc_value, exc_traceback)
-        tb_text = "".join(tb_lines)
-
-        exception_dict = {
-            "type": exc_type.__name__,
-            "message": str(exc_value),
-            "traceback": tb_text,
-        }
-
-        return exception_dict
-
-        # return json.dumps(exception_dict, indent=4)
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
@@ -219,7 +223,7 @@ class SyncTranslatedPaths(BrowserView):
                     langs,
                 )
         except Exception as e:
-            result = {"error_type": self.exception_to_json(e)}
+            result = {"error_type": exception_to_json(e)}
 
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
