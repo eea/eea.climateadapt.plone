@@ -2,8 +2,10 @@ import logging
 
 from BTrees.OIBTree import OIBTree
 from persistent.list import PersistentList
+from plone.api import portal
 from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
 from plone.app.multilingual.interfaces import ITranslationManager
+from plone.base.utils import base_hasattr
 from plone.dexterity.interfaces import IDexterityContainer
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
@@ -396,3 +398,40 @@ class SyncTranslationPaths(BrowserView):
                     "lifo": False,
                 }
                 queue_job("sync_paths", "sync_translated_paths", data, opts)
+
+
+class CleanupFolderOrder(BrowserView):
+    ORDER_KEY = "plone.folder.ordered.order"
+    POS_KEY = "plone.folder.ordered.pos"
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        context = self.context
+        has = base_hasattr
+
+        def fixObject(obj, path):
+            if has(obj, "_tree") and has(obj, "__annotations__"):
+                folder_keys = tuple(obj._tree.keys())
+                order = obj.__annotations__.get(self.ORDER_KEY)
+
+                if order:
+                    logger.debug(f"Processing {path}")
+                    fixed_order = tuple([k for k in order if k in folder_keys])
+                    if fixed_order != tuple(order):
+                        obj_path = "/".join(obj.getPhysicalPath())
+                        logger.info(f"Fixing position for {obj_path}")
+                        obj.__annotations__[self.ORDER_KEY] = PersistentList(
+                            fixed_order
+                        )
+                        trans_pos = OIBTree()
+                        for i, k in enumerate(fixed_order):
+                            trans_pos[i] = k
+                        obj.__annotations__[self.POS_KEY] = trans_pos
+                        obj.__annotations__._p_changed = True
+
+        fixObject(context, "")
+        site = portal.get()
+        site.ZopeFindAndApply(context, search_sub=True, apply_func=fixObject)
+
+        return "done"
