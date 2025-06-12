@@ -426,7 +426,7 @@ class CleanupFolderOrder(BrowserView):
                         )
                         trans_pos = OIBTree()
                         for i, k in enumerate(fixed_order):
-                            trans_pos[i] = k
+                            trans_pos[k] = i
                         obj.__annotations__[self.POS_KEY] = trans_pos
                         obj.__annotations__._p_changed = True
 
