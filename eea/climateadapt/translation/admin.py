@@ -418,7 +418,16 @@ class CleanupFolderOrder(BrowserView):
 
                 if order:
                     logger.debug(f"Processing {path}")
-                    fixed_order = tuple([k for k in order if k in folder_keys])
+
+                    fixed_order = []
+                    for k in order:
+                        if k in folder_keys:
+                            fixed_order.append(k)
+                    for k in folder_keys:
+                        if k not in fixed_order:
+                            fixed_order.append(k)
+                    fixed_order = tuple(fixed_order)
+
                     if fixed_order != tuple(order):
                         obj_path = "/".join(obj.getPhysicalPath())
                         logger.info(f"Fixing position for {obj_path}")
