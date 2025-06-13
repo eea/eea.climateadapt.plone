@@ -459,11 +459,12 @@ class RemoveUnmatchedTranslations(BrowserView):
             en_path = obj_path_bits[:]
             en_path[2] = "en"
             en_obj = content.get("/".join(en_path))
+            en_obj_path = "/".join(en_path)
 
             try:
                 en_tg = str(ITG(en_obj))
             except TypeError:
-                logger.warning(f"Something strange with this: {en_path}")
+                logger.warning(f"Something strange with this: {en_obj_path}")
                 return
 
             if trans_tg != en_tg:
