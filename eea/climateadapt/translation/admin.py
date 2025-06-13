@@ -463,7 +463,7 @@ class RemoveUnmatchedTranslations(BrowserView):
 
             if en_obj is None:
                 logger.warning(
-                    f"EN obj not found on this path: {''.join(en_path)}")
+                    f"EN obj not found on this path: {'/'.join(en_path)}")
 
                 if force_delete:
                     content.delete(obj=obj, check_linkintegrity=False)
