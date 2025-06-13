@@ -16,6 +16,7 @@ def object_modified_handler(obj, event):
     """
 
     if IS_JOB_EXECUTOR:
+        obj.REQUEST.tg = "notg"
         return
 
     try:
