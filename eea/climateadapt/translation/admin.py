@@ -458,7 +458,17 @@ class RemoveUnmatchedTranslations(BrowserView):
 
             en_path = obj_path_bits[:]
             en_path[2] = "en"
-            en_obj = content.get("/".join(en_path))
+            en_obj_path = "/".join(en_path)
+            en_obj = content.get(en_obj_path)
+
+            if en_obj is None:
+                logger.warning(
+                    f"EN obj not found on this path: {''.join(en_path)}")
+
+                if force_delete:
+                    content.delete(obj=obj, check_linkintegrity=False)
+                return
+
             en_obj_path = "/".join(en_obj.getPhysicalPath())
 
             try:
