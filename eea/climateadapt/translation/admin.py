@@ -450,6 +450,7 @@ class RemoveUnmatchedTranslations(BrowserView):
         context = self.context
 
         def fixObject(obj, path):
+            logger.info(f"Looking at {path}")
             obj_path_bits = list(obj.getPhysicalPath())
             obj_path = "/".join(obj_path_bits)
 
