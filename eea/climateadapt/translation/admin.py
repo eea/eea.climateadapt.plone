@@ -459,7 +459,7 @@ class RemoveUnmatchedTranslations(BrowserView):
             en_path = obj_path_bits[:]
             en_path[2] = "en"
             en_obj = content.get("/".join(en_path))
-            en_obj_path = "/".join(en_path)
+            en_obj_path = "/".join(en_obj.getPhysicalPath())
 
             try:
                 en_tg = str(ITG(en_obj))
