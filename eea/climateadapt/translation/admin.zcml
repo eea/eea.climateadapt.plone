@@ -63,6 +63,13 @@
 
   <browser:page
     for="*"
+    name="remove_unmatched_translations"
+    permission="cmf.ManagePortal"
+    class=".admin.RemoveUnmatchedTranslations"
+  />
+
+  <browser:page
+    for="*"
     template="pt/see_translation_status.pt"
     name="see_translation_status"
     permission="cmf.ManagePortal"

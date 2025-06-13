@@ -2,9 +2,9 @@ import logging
 
 from BTrees.OIBTree import OIBTree
 from persistent.list import PersistentList
-from plone.api import portal
+from plone.api import content, portal
 from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
-from plone.app.multilingual.interfaces import ITranslationManager
+from plone.app.multilingual.interfaces import ITG, ITranslationManager
 from plone.base.utils import base_hasattr
 from plone.dexterity.interfaces import IDexterityContainer
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -429,6 +429,35 @@ class CleanupFolderOrder(BrowserView):
                             trans_pos[k] = i
                         obj.__annotations__[self.POS_KEY] = trans_pos
                         obj.__annotations__._p_changed = True
+
+        fixObject(context, "")
+        site = portal.get()
+        site.ZopeFindAndApply(context, search_sub=True, apply_func=fixObject)
+
+        return "done"
+
+
+class RemoveUnmatchedTranslations(BrowserView):
+    """Find the equivalent path of translations. If they're not in the same translation group, delete them"""
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        force_delete = bool(self.request.form.get("delete"))
+
+        context = self.context
+
+        def fixObject(obj, path):
+            trans_tg = str(ITG(obj))
+            obj_path = list(obj.getPhysicalPath())
+            en_path = obj_path[:]
+            en_path[2] = "en"
+            en_obj = content.get("/".join(en_path))
+            en_tg = str(ITG(en_obj))
+            if trans_tg != en_tg:
+                logger.warning(
+                    f"Unmatched translation path {'/'.join(obj_path)}")
+                if force_delete:
+                    content.delete(obj=obj, check_linkintegrity=False)
 
         fixObject(context, "")
         site = portal.get()
