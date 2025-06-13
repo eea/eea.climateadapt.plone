@@ -5,6 +5,7 @@ from persistent.list import PersistentList
 from plone.api import content, portal
 from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
 from plone.app.multilingual.interfaces import ITG, ITranslationManager
+from plone.app.multilingual.itg import ATTRIBUTE_NAME
 from plone.base.utils import base_hasattr
 from plone.dexterity.interfaces import IDexterityContainer
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -466,6 +467,7 @@ class RemoveUnmatchedTranslations(BrowserView):
                     f"EN obj not found on this path: {'/'.join(en_path)}")
 
                 if force_delete:
+                    delattr(obj, ATTRIBUTE_NAME)
                     content.delete(obj=obj, check_linkintegrity=False)
                 return
 
@@ -480,9 +482,10 @@ class RemoveUnmatchedTranslations(BrowserView):
             if trans_tg != en_tg:
                 logger.warning(f"Unmatched translation path {obj_path}")
                 if force_delete:
+                    delattr(obj, ATTRIBUTE_NAME)
                     content.delete(obj=obj, check_linkintegrity=False)
 
-        fixObject(context, "")
+        # fixObject(context, "")
         site = portal.get()
         site.ZopeFindAndApply(context, search_sub=True, apply_func=fixObject)
 
