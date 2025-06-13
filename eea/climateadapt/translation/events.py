@@ -1,7 +1,12 @@
+import os
 import logging
 from .core import queue_job
 
 logger = logging.getLogger("eea.climateadapt")
+
+env = os.environ.get
+
+IS_JOB_EXECUTOR = env("IS_JOB_EXECUTOR", False)
 
 
 def object_modified_handler(obj, event):
@@ -9,6 +14,9 @@ def object_modified_handler(obj, event):
     Event handler for ObjectModifiedEvent.
     This handler will be called whenever a content object is modified.
     """
+
+    if IS_JOB_EXECUTOR:
+        return
 
     try:
         op = "/".join(event.oldParent.getPhysicalPath())
