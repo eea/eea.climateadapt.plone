@@ -447,15 +447,22 @@ class RemoveUnmatchedTranslations(BrowserView):
         context = self.context
 
         def fixObject(obj, path):
-            trans_tg = str(ITG(obj))
-            obj_path = list(obj.getPhysicalPath())
-            en_path = obj_path[:]
+            obj_path_bits = list(obj.getPhysicalPath())
+            obj_path = "/".join(obj_path_bits)
+
+            try:
+                trans_tg = str(ITG(obj))
+            except TypeError:
+                logger.warning(f"Not in a tg {obj_path}")
+                return
+
+            en_path = obj_path_bits[:]
             en_path[2] = "en"
             en_obj = content.get("/".join(en_path))
             en_tg = str(ITG(en_obj))
+
             if trans_tg != en_tg:
-                logger.warning(
-                    f"Unmatched translation path {'/'.join(obj_path)}")
+                logger.warning(f"Unmatched translation path {obj_path}")
                 if force_delete:
                     content.delete(obj=obj, check_linkintegrity=False)
 
