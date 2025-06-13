@@ -443,6 +443,8 @@ class RemoveUnmatchedTranslations(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+
+        self.request.tg = "notg"
         force_delete = bool(self.request.form.get("delete"))
 
         context = self.context
