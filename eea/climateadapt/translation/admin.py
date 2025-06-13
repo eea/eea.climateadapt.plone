@@ -421,7 +421,7 @@ class CleanupFolderOrder(BrowserView):
 
                     fixed_order = []
                     for k in order:
-                        if k in folder_keys:
+                        if (k in folder_keys) and (k not in fixed_order):
                             fixed_order.append(k)
                     for k in folder_keys:
                         if k not in fixed_order:
