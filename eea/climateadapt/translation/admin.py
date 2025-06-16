@@ -543,7 +543,7 @@ class FixCatalog(BrowserView):
             obj = self.context.unrestrictedTraverse(path)
             pp = "/".join(obj.getPhysicalPath())
             assert pp == path
-            print(pp)
+            # print(pp)
             return obj
         except Exception:
             print(f"Resolving failed for {path}")
