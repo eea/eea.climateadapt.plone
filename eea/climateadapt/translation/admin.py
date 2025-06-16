@@ -511,8 +511,8 @@ class RemoveUnmatchedTranslations(BrowserView):
         )
         for brain in brains:
             try:
-                path = "/".join(obj.getPhysicalPath())
                 obj = brain.getObject()
+                path = "/".join(obj.getPhysicalPath())
                 fixObject(obj, path)
             except Exception:
                 logger.warning(f"Could not process {brain.getURL()}")
