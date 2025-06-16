@@ -88,6 +88,7 @@ class SaveTranslationHtml(BrowserView):
                 ingest_html(trans_obj, html)
                 result = {"url": trans_obj.absolute_url()}
         except Exception as e:
+            logger.exception("Error in saving translation: \n: %s", e)
             result = {"error_type": exception_to_json(e)}
 
         self.request.response.setHeader("Content-Type", "application/json")
