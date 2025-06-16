@@ -63,6 +63,13 @@
 
   <browser:page
     for="*"
+    name="fix_catalog"
+    permission="cmf.ManagePortal"
+    class=".admin.FixCatalog"
+  />
+
+  <browser:page
+    for="*"
     name="remove_unmatched_translations"
     permission="cmf.ManagePortal"
     class=".admin.RemoveUnmatchedTranslations"

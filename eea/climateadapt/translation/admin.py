@@ -534,3 +534,58 @@ class RemoveUnmatchedTranslations(BrowserView):
                 continue
 
         return "done"
+
+
+class FixCatalog(BrowserView):
+    def resolve_url(self, path):
+        path = path.replace("//cca/", "/cca/")
+        try:
+            obj = self.context.unrestrictedTraverse(path)
+            pp = "/".join(obj.getPhysicalPath())
+            assert pp == path
+            print(pp)
+            return obj
+        except Exception:
+            print(f"Resolving failed for {path}")
+            return None
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        catalog = self.context.portal_catalog
+        self._catalog = catalog._catalog
+
+        paths = self._catalog.paths
+        uids = self._catalog.uids
+        unchanged = 0
+        fixed = []
+        removed = []
+
+        for path, rid in uids.items():
+            ob = None
+            # if path[:1] == "/":
+            #     ob = self.resolve_url(path[1:])
+            ob = self.resolve_url(path)
+            if ob is None:
+                removed.append(path)
+                continue
+            ppath = "/".join(ob.getPhysicalPath())
+            if path != ppath:
+                fixed.append((path, ppath))
+            else:
+                unchanged = unchanged + 1
+
+        for path, ppath in fixed:
+            rid = uids[path]
+            del uids[path]
+            paths[rid] = ppath
+            uids[ppath] = rid
+
+        logger.info(f"To be removed: {len(removed)}")
+
+        for path in removed:
+            logger.info(f"Removing path {path}")
+            catalog.uncatalog_object(path)
+            break
+
+        return "Done"
