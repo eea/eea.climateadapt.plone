@@ -617,12 +617,12 @@ class RemoveRid(BrowserView):
         catalog = self.context.portal_catalog
         self._catalog = catalog._catalog
 
-        logger.info("Removing metadata")
+        logger.info(f"Removing metadata for {rid}")
         for uid, value in self._catalog.uids.items():
             if value == rid:
                 del self._catalog.uids[uid]
         if rid in self._catalog.data:
-            del self._catalog[rid]
+            del self._catalog.data[rid]
 
         for iname, index in self._catalog.indexes.items():
             logger.info(f"Removing from {iname}")
