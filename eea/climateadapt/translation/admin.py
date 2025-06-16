@@ -447,6 +447,14 @@ class CleanupFolderOrder(BrowserView):
         return "done"
 
 
+def safe_next(iterator):
+    try:
+        return next(iterator)
+    except Exception as e:
+        print(f"An error occurred while fetching the next item: {e}")
+    return None
+
+
 class RemoveUnmatchedTranslations(BrowserView):
     """Find the equivalent path of translations. If they're not in the same translation group, delete them"""
 
@@ -509,10 +517,13 @@ class RemoveUnmatchedTranslations(BrowserView):
             sort="path",
             review_state="published",
         )
+
         iterator = iter(brains)
         while True:
+            brain = safe_next(iterator)
+            if brain is None:
+                continue
             try:
-                brain = next(iterator)
                 obj = brain.getObject()
                 path = "/".join(obj.getPhysicalPath())
                 fixObject(obj, path)
