@@ -494,11 +494,28 @@ class RemoveUnmatchedTranslations(BrowserView):
             if trans_tg != en_tg:
                 logger.warning(f"Unmatched translation path {obj_path}")
                 if force_delete:
-                    delattr(obj, ATTRIBUTE_NAME)
-                    content.delete(obj=obj, check_linkintegrity=False)
+                    try:
+                        delattr(obj, ATTRIBUTE_NAME)
+                        content.delete(obj=obj, check_linkintegrity=False)
+                    except:
+                        logger.warning("Could not delete")
 
         # fixObject(context, "")
-        site = portal.get()
-        site.ZopeFindAndApply(context, search_sub=True, apply_func=fixObject)
+        # site = portal.get()
+        # site.ZopeFindAndApply(context, search_sub=True, apply_func=fixObject)
+
+        brains = context.portal_catalog.searchResults(
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
+            review_state="published",
+        )
+        for brain in brains:
+            try:
+                path = "/".join(obj.getPhysicalPath())
+                obj = brain.getObject()
+                fixObject(obj, path)
+            except Exception:
+                logger.warning(f"Could not process {brain.getURL()}")
+                continue
 
         return "done"
