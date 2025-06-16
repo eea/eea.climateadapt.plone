@@ -470,7 +470,7 @@ class RemoveUnmatchedTranslations(BrowserView):
     """Find the equivalent path of translations. If they're not in the same translation group, delete them"""
 
     def fixObject(self, obj, path, force_delete=False):
-        logger.info(f"Looking at {path}")
+        # logger.info(f"Looking at {path}")
         obj_path_bits = list(obj.getPhysicalPath())
         obj_path = "/".join(obj_path_bits)
 
