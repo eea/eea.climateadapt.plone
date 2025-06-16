@@ -509,13 +509,17 @@ class RemoveUnmatchedTranslations(BrowserView):
             sort="path",
             review_state="published",
         )
-        for brain in brains:
+        iterator = iter(brains)
+        while True:
             try:
+                brain = next(iterator)
                 obj = brain.getObject()
                 path = "/".join(obj.getPhysicalPath())
                 fixObject(obj, path)
-            except Exception:
-                logger.warning(f"Could not process {brain.getURL()}")
+            except StopIteration:
+                break
+            except Exception as e:
+                logger.warning(f"Could not process {e} ")
                 continue
 
         return "done"
