@@ -70,6 +70,13 @@
 
   <browser:page
     for="*"
+    name="remove_rid"
+    permission="cmf.ManagePortal"
+    class=".admin.RemoveRid"
+  />
+
+  <browser:page
+    for="*"
     name="remove_unmatched_translations"
     permission="cmf.ManagePortal"
     class=".admin.RemoveUnmatchedTranslations"

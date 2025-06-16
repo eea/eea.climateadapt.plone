@@ -1,3 +1,5 @@
+from Products.PluginIndexes.DateIndex.DateIndex import DateIndex
+from Products.ExtendedPathIndex.ExtendedPathIndex import ExtendedPathIndex
 import logging
 
 from BTrees.OIBTree import OIBTree
@@ -588,4 +590,43 @@ class FixCatalog(BrowserView):
             catalog.uncatalog_object(path)
             break
 
+        return "Done"
+
+
+class RemoveRid(BrowserView):
+    # def cleanup_path_index(self, index, rid):
+    #     for k, v in index._index.items():
+    #         if v == rid:
+    #             del index._index[k]
+    #
+    #     if rid in index._unindex:
+    #         del index._unindex[rid]
+    #
+    #     for k, v in index._index_parents.items():
+    #         if v == rid:
+    #             del index._index[k]
+    #
+    #     for k, v in index._index_items.items():
+    #         if v == rid:
+    #             del index._index[k]
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        rid = int(self.request.form.get("rid"))
+        catalog = self.context.portal_catalog
+        self._catalog = catalog._catalog
+
+        logger.info("Removing metadata")
+        for uid, value in self._catalog.uids.items():
+            if value == rid:
+                del self._catalog.uids[uid]
+        if rid in self._catalog.data:
+            del self._catalog[rid]
+
+        for iname, index in self._catalog.indexes.items():
+            logger.info(f"Removing from {iname}")
+            index.unindex_object(rid)
+
+        logger.info("Done")
         return "Done"
