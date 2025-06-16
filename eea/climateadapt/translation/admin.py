@@ -449,16 +449,67 @@ class CleanupFolderOrder(BrowserView):
         return "done"
 
 
-def safe_next(iterator):
-    try:
-        return next(iterator)
-    except Exception as e:
-        print(f"An error occurred while fetching the next item: {e}")
-    return None
+def remove_rid(rid, catalog):
+    """Nukes a rid (-112343454) from catalog"""
+
+    _catalog = catalog._catalog
+
+    logger.info(f"Removing metadata for {rid}")
+    for uid, value in _catalog.uids.items():
+        if value == rid:
+            del _catalog.uids[uid]
+    if rid in _catalog.data:
+        del _catalog.data[rid]
+
+    for iname, index in _catalog.indexes.items():
+        logger.info(f"Removing from {iname}")
+        index.unindex_object(rid)
 
 
 class RemoveUnmatchedTranslations(BrowserView):
     """Find the equivalent path of translations. If they're not in the same translation group, delete them"""
+
+    def fixObject(self, obj, path, force_delete=False):
+        logger.info(f"Looking at {path}")
+        obj_path_bits = list(obj.getPhysicalPath())
+        obj_path = "/".join(obj_path_bits)
+
+        try:
+            trans_tg = str(ITG(obj))
+        except TypeError:
+            logger.warning(f"Not in a tg {obj_path}")
+            return
+
+        en_path = obj_path_bits[:]
+        en_path[2] = "en"
+        en_obj_path = "/".join(en_path)
+        en_obj = content.get(en_obj_path)
+
+        if en_obj is None:
+            logger.warning(
+                f"EN obj not found on this path: {'/'.join(en_path)}")
+
+            if force_delete:
+                delattr(obj, ATTRIBUTE_NAME)
+                content.delete(obj=obj, check_linkintegrity=False)
+            return
+
+        en_obj_path = "/".join(en_obj.getPhysicalPath())
+
+        try:
+            en_tg = str(ITG(en_obj))
+        except TypeError:
+            logger.warning(f"Something strange with this: {en_obj_path}")
+            return
+
+        if trans_tg != en_tg:
+            logger.warning(f"Unmatched translation path {obj_path}")
+            if force_delete:
+                try:
+                    delattr(obj, ATTRIBUTE_NAME)
+                    content.delete(obj=obj, check_linkintegrity=False)
+                except Exception as e:
+                    logger.warning(f"Could not delete: {e}")
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
@@ -467,70 +518,24 @@ class RemoveUnmatchedTranslations(BrowserView):
         force_delete = bool(self.request.form.get("delete"))
 
         context = self.context
+        catalog = context.portal_catalog
 
-        def fixObject(obj, path):
-            logger.info(f"Looking at {path}")
-            obj_path_bits = list(obj.getPhysicalPath())
-            obj_path = "/".join(obj_path_bits)
-
-            try:
-                trans_tg = str(ITG(obj))
-            except TypeError:
-                logger.warning(f"Not in a tg {obj_path}")
-                return
-
-            en_path = obj_path_bits[:]
-            en_path[2] = "en"
-            en_obj_path = "/".join(en_path)
-            en_obj = content.get(en_obj_path)
-
-            if en_obj is None:
-                logger.warning(
-                    f"EN obj not found on this path: {'/'.join(en_path)}")
-
-                if force_delete:
-                    delattr(obj, ATTRIBUTE_NAME)
-                    content.delete(obj=obj, check_linkintegrity=False)
-                return
-
-            en_obj_path = "/".join(en_obj.getPhysicalPath())
-
-            try:
-                en_tg = str(ITG(en_obj))
-            except TypeError:
-                logger.warning(f"Something strange with this: {en_obj_path}")
-                return
-
-            if trans_tg != en_tg:
-                logger.warning(f"Unmatched translation path {obj_path}")
-                if force_delete:
-                    try:
-                        delattr(obj, ATTRIBUTE_NAME)
-                        content.delete(obj=obj, check_linkintegrity=False)
-                    except:
-                        logger.warning("Could not delete")
-
-        # fixObject(context, "")
-        # site = portal.get()
-        # site.ZopeFindAndApply(context, search_sub=True, apply_func=fixObject)
-
-        brains = context.portal_catalog.searchResults(
+        brains = catalog.searchResults(
             path="/".join(context.getPhysicalPath()),
             sort="path",
             review_state="published",
         )
-
-        iterator = iter(brains)
-        while True:
-            brain = safe_next(iterator)
-            if brain is None:
+        for i, rid in enumerate(brains._seq):
+            try:
+                brain = brains._func(rid)
+            except Exception as e:
+                logger.warning(f"Could not retrieve brain {rid}: {e}")
+                remove_rid(rid, catalog)
                 continue
             try:
                 obj = brain.getObject()
                 path = "/".join(obj.getPhysicalPath())
-                fixObject(obj, path)
-            except StopIteration:
-                break
+                self.fixObject(obj, path, force_delete)
             except Exception as e:
                 logger.warning(f"Could not process {e} ")
                 continue
@@ -615,18 +620,7 @@ class RemoveRid(BrowserView):
 
         rid = int(self.request.form.get("rid"))
         catalog = self.context.portal_catalog
-        self._catalog = catalog._catalog
-
-        logger.info(f"Removing metadata for {rid}")
-        for uid, value in self._catalog.uids.items():
-            if value == rid:
-                del self._catalog.uids[uid]
-        if rid in self._catalog.data:
-            del self._catalog.data[rid]
-
-        for iname, index in self._catalog.indexes.items():
-            logger.info(f"Removing from {iname}")
-            index.unindex_object(rid)
+        remove_rid(rid, catalog)
 
         logger.info("Done")
         return "Done"
