@@ -540,6 +540,7 @@ class RemoveUnmatchedTranslations(BrowserView):
                 logger.warning(f"Could not process {e} ")
                 continue
 
+        logger.info("Done")
         return "done"
 
 
