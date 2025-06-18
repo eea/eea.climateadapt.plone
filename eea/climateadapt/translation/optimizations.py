@@ -1,3 +1,9 @@
+"""Optimize the storage of image blobs by delegating to the canonical field"""
+
+from plone.namedfile.browser import ALLOWED_INLINE_MIMETYPES
+from plone.namedfile.browser import USE_DENYLIST
+from plone.namedfile.browser import DISALLOWED_INLINE_MIMETYPES
+from plone.namedfile.scaling import ImageScaling
 import logging
 from Acquisition import aq_base
 from plone.volto.behaviors.preview import IPreview
@@ -10,12 +16,12 @@ from plone.namedfile.interfaces import INamedFileField
 from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 from plone.app.multilingual.interfaces import ITranslationManager
 from plone.base.interfaces import IImageScalesFieldAdapter, ILanguage
-from plone.dexterity.interfaces import IDexterityContent
 from plone.namedfile.adapters import ImageFieldScales as BaseImageFieldScales
 from plone.namedfile.interfaces import INamedImageField
 from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
 from zope.interface.interfaces import ComponentLookupError
+from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
 
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 
@@ -23,7 +29,7 @@ logger = logging.getLogger("eea.climateadapt")
 
 
 @implementer(ILeadImageBehavior)
-@adapter(IDexterityContent)
+@adapter(IDexterityTranslatable)
 class LanguageAwareLeadImage:
     def __init__(self, context):
         self.context = context
@@ -47,7 +53,6 @@ class LanguageAwareLeadImage:
             return
         else:
             self.context.image = value
-            # raise ValueError("Image field should not be set on a translation")
 
     @property
     def image_caption(self):
@@ -59,7 +64,7 @@ class LanguageAwareLeadImage:
 
 
 @implementer(IImageScalesFieldAdapter)
-@adapter(INamedImageField, IDexterityContent, IEEAClimateAdaptInstalled)
+@adapter(INamedImageField, IDexterityTranslatable, IEEAClimateAdaptInstalled)
 class LanguageAwareImageFieldScales(BaseImageFieldScales):
     canonical = None
 
@@ -122,7 +127,7 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
         return url
 
 
-@adapter(INamedImageField, IDexterityContent, IEEAClimateAdaptInstalled)
+@adapter(INamedImageField, IDexterityTranslatable, IEEAClimateAdaptInstalled)
 class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
     def __call__(self):
         lang = ILanguage(self.context).get_language()
@@ -139,7 +144,7 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
         return super().__call__()
 
 
-@adapter(INamedFileField, IDexterityContent, IEEAClimateAdaptInstalled)
+@adapter(INamedFileField, IDexterityTranslatable, IEEAClimateAdaptInstalled)
 class LanguageAwareFileFieldSerializer(FileFieldSerializer):
     def __call__(self):
         lang = ILanguage(self.context).get_language()
@@ -181,7 +186,7 @@ def hasPreviewImage(obj):
     return False
 
 
-@indexer(IDexterityContent)
+@indexer(IDexterityTranslatable)
 def image_field_indexer(obj):
     """Indexer for knowing in a catalog search if a content has any image."""
 
@@ -207,3 +212,16 @@ def image_field_indexer(obj):
     elif getattr(base_obj, "image", False):
         image_field = "image"
     return image_field
+
+
+class LanguageAwareImageScaling(ImageScaling):
+    def __init__(self, context, request, **info):
+        lang = ILanguage(context).get_language()
+        if lang != "en":
+            tm = ITranslationManager(context)
+            canonical = tm.get_translation("en")
+            if canonical is not None:
+                context = canonical
+
+        self.context = context
+        self.request = request

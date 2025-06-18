@@ -82,4 +82,12 @@
   <adapter factory=".optimizations.LanguageAwareImageFieldSerializer" />
   <adapter factory=".optimizations.LanguageAwareFileFieldSerializer" />
 
+  <browser:page
+    name="images"
+    for="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"
+    class=".optimizations.LanguageAwareImageScaling"
+    allowed_attributes="scale tag"
+    permission="zope2.View"
+  />
+
 </configure>
