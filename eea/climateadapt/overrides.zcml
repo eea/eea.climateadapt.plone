@@ -10,53 +10,6 @@
   i18n_domain="eea.climateadapt">
 
   <includeOverrides file="browser/overrides.zcml" />
-
-  <!-- <adapter factory=".excelexport.YearFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.PortalTypeRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.AbsoluteUrlRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.UploaderRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.TextLineFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.TupleFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.GeolocationFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.ListFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.TextFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.RichTextFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.RelationListFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.DateTimeFieldRenderer"
-    provides="collective.excelexport.interfaces.IExportable" />
-
-  <adapter factory=".excelexport.MetadataExportablesFactory"
-           provides="collective.excelexport.interfaces.IExportableFactory"
-           name="cca_metadata"/>
-
-  <browser:page name="collective.excelexport"
-                for="*"
-                class=".excelexport.ExcelExport"
-                permission="zope2.View"
-  /> -->
-
-  <!-- <adapter factory=".browser.fixes.DatetimeWidgetConverter" /> -->
+  <includeOverrides file="behaviors/patches.zcml" />
 
 </configure>

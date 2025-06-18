@@ -63,6 +63,13 @@
 
   <browser:page
     for="*"
+    name="delete_field"
+    permission="cmf.ManagePortal"
+    class=".admin.DeleteTranslationField"
+  />
+
+  <browser:page
+    for="*"
     name="fix_catalog"
     permission="cmf.ManagePortal"
     class=".admin.FixCatalog"

@@ -1,0 +1,26 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  i18n_domain="eea.climateadapt2">
+
+  <!-- This file is included from eea.climateadapt:overrides.zcml -->
+
+  <plone:behavior
+    name="plone.leadimage"
+    title="Lead Image"
+    description="Adds image and image caption fields"
+    factory="eea.climateadapt.behaviors.patches.LanguageAwareLeadImage"
+    provides="plone.app.contenttypes.behaviors.leadimage.ILeadImageBehavior"
+    for="plone.dexterity.interfaces.IDexterityContent"
+    marker="plone.app.contenttypes.behaviors.leadimage.ILeadImage"
+    former_dotted_names="plone.app.contenttypes.behaviors.leadimage.ILeadImage"
+  />
+
+</configure>

@@ -1,5 +1,3 @@
-from Products.PluginIndexes.DateIndex.DateIndex import DateIndex
-from Products.ExtendedPathIndex.ExtendedPathIndex import ExtendedPathIndex
 import logging
 
 from BTrees.OIBTree import OIBTree
@@ -132,8 +130,7 @@ class FixFolderOrder(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
         path = "/".join(self.context.getPhysicalPath())
-        brains = self.context.portal_catalog.searchResults(
-            sort_on="path", path=path)
+        brains = self.context.portal_catalog.searchResults(sort_on="path", path=path)
 
         for brain in brains:
             obj = brain.getObject()
@@ -148,8 +145,7 @@ class FixFolderOrder(BrowserView):
 
             if language is None:
                 logger.warning(
-                    "Language is set to None for %s", "/".join(
-                        obj.getPhysicalPath())
+                    "Language is set to None for %s", "/".join(obj.getPhysicalPath())
                 )
                 continue
 
@@ -192,8 +188,7 @@ class FixFolderOrder(BrowserView):
                     # was the object translated with another id?
                     other = canonical._getOb(id)
                     try:
-                        trans = ITranslationManager(
-                            other).get_translation(language)
+                        trans = ITranslationManager(other).get_translation(language)
                     except TypeError:
                         logger.warning(
                             "Object not translatable: %s",
@@ -256,8 +251,7 @@ class FixFolderOrder(BrowserView):
                     # was the object translated with another id?
                     other = canonical._getOb(id)
                     try:
-                        trans = ITranslationManager(
-                            other).get_translation(language)
+                        trans = ITranslationManager(other).get_translation(language)
                     except TypeError:
                         logger.warning(
                             "Object not translatable: %s",
@@ -486,8 +480,7 @@ class RemoveUnmatchedTranslations(BrowserView):
         en_obj = content.get(en_obj_path)
 
         if en_obj is None:
-            logger.warning(
-                f"EN obj not found on this path: {'/'.join(en_path)}")
+            logger.warning(f"EN obj not found on this path: {'/'.join(en_path)}")
 
             if force_delete:
                 delattr(obj, ATTRIBUTE_NAME)
@@ -520,10 +513,10 @@ class RemoveUnmatchedTranslations(BrowserView):
         context = self.context
         catalog = context.portal_catalog
 
-        brains = catalog.searchResults(
+        brains = catalog.unrestrictedSearchResults(
             path="/".join(context.getPhysicalPath()),
             sort="path",
-            review_state="published",
+            # review_state="published",
         )
         for i, rid in enumerate(brains._seq):
             try:
@@ -625,3 +618,38 @@ class RemoveRid(BrowserView):
 
         logger.info("Done")
         return "Done"
+
+
+class DeleteTranslationField(BrowserView):
+    def fixObject(self, obj, fieldname):
+        path = "/".join(obj.getPhysicalPath())
+        assert obj.language != "en"
+        has = base_hasattr
+        if has(obj, fieldname):
+            logger.info(f"Removing {fieldname} from {path}")
+            delattr(obj, fieldname)
+            self.catalog.reindexObject(obj)
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        field = self.request.form.get("field", "image")
+        catalog = self.catalog = self.context.portal_catalog
+        brains = catalog.unrestrictedSearchResults(
+            path="/".join(self.context.getPhysicalPath()),
+            sort="path",
+            # review_state="published",
+        )
+        for i, rid in enumerate(brains._seq):
+            try:
+                brain = brains._func(rid)
+            except Exception as e:
+                logger.warning(f"Could not retrieve brain {rid}: {e}")
+                remove_rid(rid, catalog)
+                continue
+            try:
+                obj = brain.getObject()
+                self.fixObject(obj, field)
+            except Exception as e:
+                logger.warning(f"Could not process {e} ")
+                continue
