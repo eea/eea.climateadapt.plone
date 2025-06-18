@@ -30,13 +30,11 @@ class LanguageAwareLeadImage:
     def image(self):
         lang = ILanguage(self.context).get_language()
         if lang == "en":
-            print("en, ")
             return self.context.image
         else:
             tm = ITranslationManager(self.context)
             canonical = tm.get_translation("en")
             if canonical is not None:
-                print(f"Returning canonical image for {lang}", canonical.image)
                 return canonical.image
 
     @image.setter
@@ -44,10 +42,8 @@ class LanguageAwareLeadImage:
         lang = ILanguage(self.context).get_language()
 
         if lang != "en":
-            print("Setting none for ", lang)
             return
         else:
-            print("Setting for english")
             self.context.image = value
             # raise ValueError("Image field should not be set on a translation")
 
@@ -63,6 +59,8 @@ class LanguageAwareLeadImage:
 @implementer(IImageScalesFieldAdapter)
 @adapter(INamedImageField, IDexterityContent, IEEAClimateAdaptInstalled)
 class LanguageAwareImageFieldScales(BaseImageFieldScales):
+    canonical = None
+
     def __call__(self):
         lang = ILanguage(self.context).get_language()
 
@@ -95,7 +93,7 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
         # In that case the adapter could return information for all three images,
         # so a list of three dictionaries.  The default case should use the same
         # structure.
-        print("Using canonical", canonical)
+        self.canonical = canonical
         return [
             {
                 "filename": image.filename,
@@ -107,6 +105,17 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
                 "scales": scales,
             }
         ]
+
+    def _scale_view_from_url(self, url):
+        # The "download" information for scales is the path to
+        # "@@images/foo-scale" only.
+        # The full URL to the scale is rendered by the scaling adapter at
+        # runtime to make sure they are correct in virtual hostings.
+        if self.canonical is not None:
+            obj = self.canonical
+        else:
+            obj = self.context
+        return url.replace(obj.absolute_url(), "").lstrip("/")
 
 
 @adapter(INamedImageField, IDexterityContent, IEEAClimateAdaptInstalled)
