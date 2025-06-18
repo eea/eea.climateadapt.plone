@@ -16,7 +16,7 @@
     name="plone.leadimage"
     title="Lead Image"
     description="Adds image and image caption fields"
-    factory="eea.climateadapt.behaviors.patches.LanguageAwareLeadImage"
+    factory="eea.climateadapt.translation.optimizations.LanguageAwareLeadImage"
     provides="plone.app.contenttypes.behaviors.leadimage.ILeadImageBehavior"
     for="plone.dexterity.interfaces.IDexterityContent"
     marker="plone.app.contenttypes.behaviors.leadimage.ILeadImage"

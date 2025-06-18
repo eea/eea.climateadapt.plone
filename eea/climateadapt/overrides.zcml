@@ -10,6 +10,6 @@
   i18n_domain="eea.climateadapt">
 
   <includeOverrides file="browser/overrides.zcml" />
-  <includeOverrides file="behaviors/patches.zcml" />
+  <includeOverrides file="translation/patches.zcml" />
 
 </configure>

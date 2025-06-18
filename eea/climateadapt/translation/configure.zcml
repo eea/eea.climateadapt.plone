@@ -78,4 +78,8 @@
     handler=".events.object_modified_handler"
   />
 
+  <adapter factory=".optimizations.LanguageAwareImageFieldScales" />
+  <adapter factory=".optimizations.LanguageAwareImageFieldSerializer" />
+  <adapter factory=".optimizations.LanguageAwareFileFieldSerializer" />
+
 </configure>
