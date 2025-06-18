@@ -118,7 +118,7 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
         else:
             obj = self.context
         url = url.replace(obj.absolute_url(), "").lstrip("/")
-        logger.info("scale url", url)
+        logger.info(f"scale url {url}")
         return url
 
 
