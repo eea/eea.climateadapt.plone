@@ -1,6 +1,6 @@
+import logging
 from Acquisition import aq_base
 from plone.volto.behaviors.preview import IPreview
-from plone.restapi.blocks import visit_blocks
 from plone.indexer.decorator import indexer
 from plone.restapi.serializer.dxfields import (
     ImageFieldSerializer,
@@ -18,6 +18,8 @@ from zope.interface import implementer
 from zope.interface.interfaces import ComponentLookupError
 
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
+
+logger = logging.getLogger("eea.climateadapt")
 
 
 @implementer(ILeadImageBehavior)
@@ -72,6 +74,7 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
         if canonical is None:
             return
 
+        self.canonical = canonical
         image = self.field.get(canonical)
         if not image:
             return
@@ -93,7 +96,6 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
         # In that case the adapter could return information for all three images,
         # so a list of three dictionaries.  The default case should use the same
         # structure.
-        self.canonical = canonical
         return [
             {
                 "filename": image.filename,
@@ -115,7 +117,9 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
             obj = self.canonical
         else:
             obj = self.context
-        return url.replace(obj.absolute_url(), "").lstrip("/")
+        url = url.replace(obj.absolute_url(), "").lstrip("/")
+        logger.info("scale url", url)
+        return url
 
 
 @adapter(INamedImageField, IDexterityContent, IEEAClimateAdaptInstalled)
