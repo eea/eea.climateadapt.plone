@@ -1,5 +1,8 @@
+from Acquisition import aq_base
+from plone.volto.behaviors.preview import IPreview
+from plone.restapi.blocks import visit_blocks
+from plone.indexer.decorator import indexer
 from plone.restapi.serializer.dxfields import (
-    DefaultFieldSerializer,
     ImageFieldSerializer,
     FileFieldSerializer,
 )
@@ -138,3 +141,56 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
 
         self.context = canonical
         return super().__call__()
+
+
+@indexer(IPreview)
+def hasPreviewImage(obj):
+    """
+    Indexer for knowing in a catalog search if a content with the IPreview behavior has
+    a preview_image
+    """
+
+    lang = ILanguage(obj).get_language()
+
+    if lang == "en":
+        base_obj = aq_base(obj)
+    else:
+        tm = ITranslationManager(obj)
+        canonical = tm.get_translation("en")
+        if canonical is None:
+            return False
+        base_obj = aq_base(canonical)
+
+    if base_obj.preview_image or (
+        base_obj.preview_image_link and not base_obj.preview_image_link.isBroken()
+    ):
+        return True
+    return False
+
+
+@indexer(IDexterityContent)
+def image_field_indexer(obj):
+    """Indexer for knowing in a catalog search if a content has any image."""
+
+    image_field = ""
+    lang = ILanguage(obj).get_language()
+
+    if lang == "en":
+        base_obj = aq_base(obj)
+    else:
+        tm = ITranslationManager(obj)
+        canonical = tm.get_translation("en")
+        if canonical is None:
+            return image_field
+        base_obj = aq_base(canonical)
+
+    if (
+        getattr(base_obj, "preview_image_link", False)
+        and not base_obj.preview_image_link.isBroken()
+    ):
+        image_field = "preview_image_link"
+    elif getattr(base_obj, "preview_image", False):
+        image_field = "preview_image"
+    elif getattr(base_obj, "image", False):
+        image_field = "image"
+    return image_field
