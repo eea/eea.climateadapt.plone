@@ -621,19 +621,35 @@ class RemoveRid(BrowserView):
 
 
 class DeleteTranslationField(BrowserView):
-    def fixObject(self, obj, fieldname):
+    def fixObject(self, obj, fields):
         path = "/".join(obj.getPhysicalPath())
         assert obj.language != "en"
         has = base_hasattr
-        if has(obj, fieldname):
-            logger.info(f"Removing {fieldname} from {path}")
-            delattr(obj, fieldname)
+
+        dirty = False
+        for fieldname in fields:
+            if has(obj, fieldname):
+                logger.info(f"Removing {fieldname} from {path}")
+                delattr(obj, fieldname)
+                dirty = True
+
+        if dirty:
             self.catalog.reindexObject(obj)
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
 
         field = self.request.form.get("field", "image")
+        if field:
+            fields = [field]
+        else:
+            fields = [
+                "image",
+                "logo",
+                "primary_photo",
+                "promotional_image",
+                "preview_image",
+            ]
         catalog = self.catalog = self.context.portal_catalog
         brains = catalog.unrestrictedSearchResults(
             path="/".join(self.context.getPhysicalPath()),
@@ -649,7 +665,7 @@ class DeleteTranslationField(BrowserView):
                 continue
             try:
                 obj = brain.getObject()
-                self.fixObject(obj, field)
+                self.fixObject(obj, fields)
             except Exception as e:
                 logger.warning(f"Could not process {e} ")
                 continue

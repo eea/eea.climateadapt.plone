@@ -1,30 +1,32 @@
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.behaviors.aceitem import IAceItem
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
 from plone.namedfile.field import NamedBlobImage
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm
 from zope.interface import alsoProvides
 from zope.schema import TextLine
 
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.behaviors.aceitem import IAceItem
+
 from .volto_layout import organisation_layout_blocks, organisation_layout_items
+
+# from z3c.form.browser.textlines import TextLinesWidget
 
 
 class IOrganisation(IAceItem, IBlocks):
     """Organisation Interface"""
 
-    # directives.omitted(IAddForm, 'year')
-    # directives.omitted(IEditForm, 'year')
     directives.omitted(IAddForm, "health_impacts")
     directives.omitted(IEditForm, "health_impacts")
     directives.omitted(IAddForm, "source")
     directives.omitted(IEditForm, "source")
     directives.omitted(IEditForm, "contributor_list")
     directives.omitted(IAddForm, "contributor_list")
+    # directives.omitted(IAddForm, 'year')
+    # directives.omitted(IEditForm, 'year')
     # directives.omitted(IEditForm, "featured")
     # directives.omitted(IAddForm, "featured")
 
@@ -122,4 +124,5 @@ alsoProvides(IOrganisation["organisational_websites"], ILanguageIndependentField
 alsoProvides(
     IOrganisation["organisational_contact_information"], ILanguageIndependentField
 )
-alsoProvides(IOrganisation["logo"], ILanguageIndependentField)
+# blobs are handled by field serializer
+# alsoProvides(IOrganisation["logo"], ILanguageIndependentField)

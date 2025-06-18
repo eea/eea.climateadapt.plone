@@ -1,4 +1,3 @@
-from collective.geolocationbehavior.geolocation import IGeolocatable
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
 from plone.autoform import directives
@@ -8,18 +7,9 @@ from z3c.form.browser.textlines import TextLinesWidget
 from z3c.form.interfaces import IAddForm, IEditForm  # , IFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import Interface, alsoProvides  # , implementer  # , implements
-from zope.schema import URI, Bool, Choice, Date, Int, List, Text, TextLine, Tuple
+from zope.schema import Bool, Choice, Date, List, Text, TextLine, Tuple
 
 from eea.climateadapt import CcaAdminMessageFactory as _
-
-# from plone.supermodel import model
-# from z3c.form import form
-# from z3c.form.util import getSpecification
-# from z3c.form.widget import FieldWidget
-# from zope.component import adapter
-# from collective import dexteritytextindexer
-# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-# from plone.app.widgets.interfaces import IWidgetsLayer
 
 ADD_ORGANISATION_URL = (
     "<a target='_blank' "
@@ -32,93 +22,6 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     """
     Defines content-type schema for Ace Measure
     """
-
-    # dexteritytextindexer.searchable("challenges")
-    # dexteritytextindexer.searchable("climate_impacts")
-    # dexteritytextindexer.searchable("contact")
-    # dexteritytextindexer.searchable("cost_benefit")
-    # dexteritytextindexer.searchable("geochars")
-    # dexteritytextindexer.searchable("implementation_time")
-    # dexteritytextindexer.searchable("important")
-    # dexteritytextindexer.searchable("keywords")
-    # dexteritytextindexer.searchable("legal_aspects")
-    # dexteritytextindexer.searchable("lifetime")
-    # dexteritytextindexer.searchable("long_description")
-    # dexteritytextindexer.searchable("description")
-    # dexteritytextindexer.searchable("measure_type")
-    # dexteritytextindexer.searchable("objectives")
-    # dexteritytextindexer.searchable("sectors")
-    # dexteritytextindexer.searchable("solutions")
-    # dexteritytextindexer.searchable("source")
-    # dexteritytextindexer.searchable("spatial_layer")
-    # dexteritytextindexer.searchable("spatial_values")
-    # dexteritytextindexer.searchable("special_tags")
-    # dexteritytextindexer.searchable("stakeholder_participation")
-    # dexteritytextindexer.searchable("success_limitations")
-    # dexteritytextindexer.searchable("title")
-    # dexteritytextindexer.searchable("websites")
-    # dexteritytextindexer.searchable('year')
-    # dexteritytextindexer.searchable("publication_date")
-
-    # form.fieldset(
-    #     "default",
-    #     label="Item Description",
-    #     fields=[
-    #         "publication_date",
-    #         "title",
-    #         "description",
-    #         "long_description",
-    #         "climate_impacts",
-    #         "keywords",
-    #         "sectors",
-    #         "elements",
-    #         # "featured",  # 'year',
-    #     ],
-    # )
-    #
-    # form.fieldset(
-    #     "additional_details",
-    #     label="Additional Details",
-    #     fields=[
-    #         "stakeholder_participation",
-    #         "success_limitations",
-    #         "cost_benefit",
-    #         "legal_aspects",
-    #         "implementation_time",
-    #         "lifetime",
-    #     ],
-    # )
-    #
-    # # form.fieldset('inclusion_health_observatory',
-    # #              label=u'Inclusion in health observatory',
-    # #              fields=['include_in_observatory', 'health_impacts']
-    # #              )
-    #
-    # form.fieldset(
-    #     "reference_information",
-    #     label="Reference information",
-    #     fields=["websites", "source", "special_tags",
-    #             "comments"],  # 'contact',
-    # )
-    #
-    # # richtext fields in database:
-    # # set(['legalaspects', 'implementationtime', 'description', 'source',
-    # # 'objectives', 'stakeholderparticipation', 'admincomment', 'comments',
-    # # 'challenges', 'keywords', 'contact', 'solutions', 'costbenefit',
-    # # 'succeslimitations', 'lifetime'])
-    #
-    # form.fieldset(
-    #     "geographic_information",
-    #     label="Geographic Information",
-    #     fields=["governance_level", "geochars"],
-    # )
-    #
-    # form.fieldset(
-    #     "inclusion",
-    #     label="Inclusion in the Health Observatory",
-    #     fields=["include_in_observatory",
-    #             "include_in_mission", "health_impacts"],
-    # )
 
     # -----------[ "default" fields ]------------------
 
@@ -190,11 +93,6 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         ),
     )
 
-    # year = Year(title=_(u"Year"),
-    # description=u"Date of publication/release/update of the items "
-    # u"related source",
-    # required=False,)
-
     publication_date = Date(
         title=_("Date of item's creation"),
         description="The date refers to the moment in which the item "
@@ -206,13 +104,6 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         "and then the year",
         required=True,
     )
-
-    # featured = Bool(
-    #     title=_("Featured"),
-    #     description="Feature in search and Case Study Search Tool",
-    #     required=False,
-    #     default=False,
-    # )
 
     # -----------[ "additional_details" fields ]------------------
 
@@ -433,21 +324,6 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     # -----------[ "omitted" fields ]------------------
 
-    # for name in [
-    #         'implementation_type',
-    #         'spatial_layer',
-    #         'spatial_values',
-    #         'elements',
-    #         'measure_type',
-    #         'important',
-    #         'rating',
-    #         'modification_date',
-    #         'creation_date',
-    #         'id'
-    # ]:
-    #     directives.omitted(IEditForm, name)
-    #     directives.omitted(IAddForm, name)
-
     directives.omitted(IEditForm, "implementation_type")
     directives.omitted(IAddForm, "implementation_type")
     directives.omitted(IEditForm, "spatial_layer")
@@ -458,14 +334,6 @@ class IAceMeasure(Interface, IImageScaleTraversable):
     directives.omitted(IAddForm, "measure_type")
     directives.omitted(IEditForm, "important")
     directives.omitted(IAddForm, "important")
-    # directives.omitted(IEditForm, "rating")
-    # directives.omitted(IAddForm, "rating")
-    # directives.omitted(IAddForm, "modification_date")
-    # directives.omitted(IEditForm, "modification_date")
-    # directives.omitted(IAddForm, "creation_date")
-    # directives.omitted(IEditForm, "creation_date")
-    # directives.omitted(IAddForm, "id")
-    # directives.omitted(IEditForm, "id")
     # end
 
     implementation_type = Choice(
@@ -535,21 +403,6 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         missing_value=(None),
     )
 
-    # creation_date = Datetime(
-    #     title=_(u"Created"),
-    #     required=False,
-    # )
-    #
-    # modification_date = Datetime(
-    #     title=_(u"Last Modified"),
-    #     required=False,
-    # )
-    #
-    # id = TextLine(
-    #     title=_(u"Object ID"),
-    #     required=False,
-    # )
-
     publication_date = Date(
         title=_("Date of item's creation"),
         description=_(
@@ -564,45 +417,17 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         required=True,
     )
 
-    # dexteritytextindexer.searchable('summary')
-    # summary = Text(title=_(u"Summary"), required=False, default=u"")
-
-
-# @adapter(getSpecification(IAceMeasure["keywords"]), IWidgetsLayer)
-# @implementer(IFieldWidget)
-# def KeywordsFieldWidget(field, request):
-#     """The vocabulary view is overridden so that
-#     the widget will work properly
-#     Check browser/overrides.py for more details
-#     """
-#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-#     widget.vocabulary = "eea.climateadapt.keywords"
-
-#     return widget
-
-
-# @adapter(getSpecification(IAceMeasure["special_tags"]), IWidgetsLayer)
-# @implementer(IFieldWidget)
-# def SpecialTagsFieldWidget(field, request):
-#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-#     widget.vocabulary = "eea.climateadapt.special_tags"
-
-#     return widget
-
 
 alsoProvides(IAceMeasure["climate_impacts"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["comments"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["contributor_list"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["elements"], ILanguageIndependentField)
-# alsoProvides(IAceMeasure["featured"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["geochars"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["governance_level"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["health_impacts"], ILanguageIndependentField)
-alsoProvides(IAceMeasure["image"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["include_in_mission"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["include_in_observatory"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["keywords"], ILanguageIndependentField)
-alsoProvides(IAceMeasure["logo"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["origin_website"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["other_contributor"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["publication_date"], ILanguageIndependentField)
@@ -612,9 +437,12 @@ alsoProvides(IAceMeasure["websites"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["implementation_type"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["important"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["measure_type"], ILanguageIndependentField)
-# alsoProvides(IAceMeasure["rating"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["spatial_layer"], ILanguageIndependentField)
 alsoProvides(IAceMeasure["spatial_values"], ILanguageIndependentField)
 
+# blobs are handled by field serializer
+# alsoProvides(IAceMeasure["image"], ILanguageIndependentField)
+# alsoProvides(IAceMeasure["logo"], ILanguageIndependentField)
 
-alsoProvides(IGeolocatable["geolocation"], ILanguageIndependentField)
+# alsoProvides(IAceMeasure["rating"], ILanguageIndependentField)
+# alsoProvides(IAceMeasure["featured"], ILanguageIndependentField)
