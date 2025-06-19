@@ -399,13 +399,14 @@ def unsafe_register_translation(language, tg, obj):
     obj.reindexObject(idxs=("Language", "TranslationGroup"))
 
 
-def setup_translation_object(canonical, language):
+def setup_translation_object(canonical, language, request):
     """Create translation object for an obj"""
 
     site = portal.get()
 
     # rc = RequestContainer(REQUEST=obj.REQUEST)
     tm = ITranslationManager(canonical)
+    tg = ITG(canonical)
     translations = tm.get_translations()
 
     if language in translations:
@@ -450,6 +451,8 @@ def setup_translation_object(canonical, language):
     check_ancestors_path_exists(canonical, language)
 
     factory = DefaultTranslationFactory(canonical)
+
+    request.translation_info = {"tg": tg, "source_language": "en"}
     translated_object = factory(language)
 
     assert translated_object is not None
