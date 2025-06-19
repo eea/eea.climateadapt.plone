@@ -139,6 +139,9 @@ class TranslationCallback(BrowserView):
 
 class ToHtml(BrowserView):
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+
         obj = self.context
 
         self.fields = {}
