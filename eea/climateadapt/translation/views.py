@@ -10,6 +10,7 @@ import traceback
 from plone.api import portal
 from plone.api.env import adopt_user
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.app.multilingual.interfaces import ITG
 from plone.dexterity.utils import iterSchemata
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
@@ -67,7 +68,6 @@ class SaveTranslationHtml(BrowserView):
 
     def __call__(self):
         check_token_security(self.request)
-        self.request.translation_info = {"tg": "notg"}
         html = self.request.form.get("html", "")  # .decode("utf-8")
         path = self.request.form.get("path", "")
         language = self.request.form.get("language", "")
@@ -79,12 +79,14 @@ class SaveTranslationHtml(BrowserView):
 
         try:
             en_obj = site_portal.unrestrictedTraverse(path)
+            tg = ITG(en_obj)
             canonical_serial_id = ISerialId(en_obj)
 
             if int(canonical_serial_id) != int(serial_id):
                 return {"error_type": "mismatched serial id"}
 
             with adopt_user(username="admin"):
+                self.request.translation_info = {"tg": tg, "source_language": "en"}
                 trans_obj = setup_translation_object(en_obj, language)
                 ingest_html(trans_obj, html)
                 result = {"url": trans_obj.absolute_url()}
