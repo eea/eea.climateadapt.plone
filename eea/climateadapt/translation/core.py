@@ -331,7 +331,7 @@ def ingest_html(trans_obj, html):
     trans_obj.reindexObject()
 
 
-def check_ancestors_path_exists(obj, language):
+def check_ancestors_path_exists(obj, language, request):
     """Create full path for a object"""
 
     parent = aq_parent(aq_inner(obj))
@@ -348,7 +348,7 @@ def check_ancestors_path_exists(obj, language):
     if language not in translations:
         # TODO, what if the parent path already exist in language
         # but is not linked in translation manager
-        setup_translation_object(parent, language)
+        setup_translation_object(parent, language, request)
 
 
 def safe_traverse(obj, trans_path):
@@ -448,7 +448,7 @@ def setup_translation_object(canonical, language, request):
 
         return trans
 
-    check_ancestors_path_exists(canonical, language)
+    check_ancestors_path_exists(canonical, language, request)
 
     factory = DefaultTranslationFactory(canonical)
 
