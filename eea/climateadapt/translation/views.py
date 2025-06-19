@@ -67,6 +67,7 @@ class SaveTranslationHtml(BrowserView):
 
     def __call__(self):
         check_token_security(self.request)
+        self.request.translation_info = {"tg": "notg"}
         html = self.request.form.get("html", "")  # .decode("utf-8")
         path = self.request.form.get("path", "")
         language = self.request.form.get("language", "")
