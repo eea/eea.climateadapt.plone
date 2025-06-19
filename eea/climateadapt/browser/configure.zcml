@@ -125,6 +125,21 @@
   />
 
   <browser:page
+    name="country-profile-2025"
+    for="eea.climateadapt.interfaces.ICCACountry2025"
+    class=".countries2025.CountryProfileData"
+    template="pt/country-profile-2025.pt"
+    permission="zope2.View"
+  />
+  <browser:page
+    name="country-profile-raw-2025"
+    for="eea.climateadapt.interfaces.ICCACountry2025"
+    class=".countries2025.CountryProfileDataRaw"
+    template="pt/country-profile-2025-raw.pt"
+    permission="zope2.View"
+  />
+
+  <browser:page
     name="countries-metadata-extract"
     for="*"
     class=".countries.CountriesMetadataExtract"

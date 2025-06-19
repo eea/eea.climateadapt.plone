@@ -188,6 +188,7 @@
   <!--     /> -->
 
   <adapter factory=".countryprofile.CountryProfile" name="countryprofile" />
+  <adapter factory=".countryprofile2025.CountryProfile2025" name="countryprofile" />
   <adapter factory=".missionsignatoryprofile.MissionSignatoryProfile" name="missionsignatoryprofile" />
 
   <!-- <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions" /> -->

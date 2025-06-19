@@ -1,0 +1,984 @@
+<div style="margin:30px;margin-right: 10px;" class="alert alert-warning alert-dismissable alert-redirect" role="alert">
+  <p>
+The information presented in these pages is based on the 2021 voluntary reporting of Türkiye, in line with the 'Regulation (EU) 2018/1999 on the Governance of the Energy Union and Climate Action'.</p>
+
+  
+  
+</div>
+<div class="sweet-tabs sweet-tabs2" id="country-tab">
+  <div style="background-color: white; padding: 30px;">
+
+    <div class="toc-container" style="">
+  <ul class="toc-list"></ul>
+
+
+
+<style>
+ul.toc-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  list-style: none;
+  align-items: stretch;
+  width: 100%;
+  background: white;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
+ul.toc-list li:after {
+  content: "|";
+  margin-left: 5px;
+  margin-right: 5px;
+  display: inline-block;
+}
+</style>
+</div><h1 class="documentFirstHeading">National circumstances relevant to adaptation actions</h1>
+
+    
+      
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Biogeophysical_characteristics-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Biogeophysical_characteristics-body">
+                <span>Biogeophysical characteristics</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Biogeophysical_characteristics-body">
+            <div class="panel-body"><div>The surface area of Turkey is 783562 km 2 and approximately 11.4% of this area is occupied by lakes and marshlands. 28.8% is forest land, 35.8% is cropland, 19% is grassland, 5% is settlements and other land. Turkey is situated between the subtropical zone and temperate zone.<br><br>Turkey is surrounded by sea on three sides, extension of the mountains and diverse nature of the landscape result in significant differences in climatic conditions from one region to the other. In the coastal regions of Turkey, milder climate is experienced due to the influence of the sea, and continental climate characteristics are seen in the inner parts of Turkey.</div></div>
+          </div>
+        </div>
+      
+    
+
+    
+      
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Demographic_situation-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Demographic_situation-body">
+                <span>Demographic situation</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Demographic_situation-body">
+            <div class="panel-body"><div>Turkey’s population was 56.47 million in 1990, it reached 79.81 million in 2016. The population is estimated to reach about 104.8 million in 2050. The population density for 2016 is 104 person/km 2 . The urban population increases while a decline is observed in the rural population since 1990. In 2016, 87.9% of the population lived in urban areas, and 12.1% of the population inhabited in rural areas.</div></div>
+          </div>
+        </div>
+      
+    
+
+    
+      
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Economic_and_infrastructural_situation-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Economic_and_infrastructural_situation-body">
+                <span>Economic and infrastructural situation</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Economic_and_infrastructural_situation-body">
+            <div class="panel-body"><div>The Turkish economy generally demonstrated growth in 1990-2016 period excepting economic crisis years of 1994, 2001, and 2008. Turkey’s Gross Domestic Product (GDP) was 862.74 billion US Dollars in 2016.<br><br>The per capita GDP in 2016 was USD 10,883. Manufacturing industry had the highest contribution in GDP with 16.6% in 2016. It is followed by wholesale and retail trade with 11.4%, construction with 8.6%, real estate activities and 7.7%, transport and storage and 7.6% agriculture, forestry and fishing with 6.2%.</div></div>
+          </div>
+        </div>
+      
+  
+
+  </div>
+  <ul class="nav nav-tabs">
+    <li class="active"><span class="link-https"><a href="#4489-0" data-toggle="tab">Summary</a></span></li>
+    <li class=" "><span class="link-https"><a href="#4489-1" data-toggle="tab">Assessment</a></span></li>
+    <li class=" "><span class="link-https"><a href="#4489-2" data-toggle="tab">Legal &amp; policy frameworks</a></span></li>
+    <li class=" "><span class="link-https"><a href="#4489-3" data-toggle="tab">Strategies, plans &amp; goals</a></span>
+    </li>
+    <li class=" "><span class="link-https"><a href="#4489-4" data-toggle="tab">Monitoring &amp; evaluation</a></span>
+    </li>
+    <li class=" "><span class="link-https"><a href="#4489-5" data-toggle="tab">Good practices, cooperation &amp; synergies</a></span></li>
+    <li class=" "><span class="link-https"><a href="#4489-6" data-toggle="tab">Contact</a></span></li>
+  </ul>
+  <div class="tab-content"><div class="tab-pane active" id="4489-0">
+      <div class="table-responsive"><table class="listing table-striped" summary="">
+        <thead>
+          <tr>
+            <th style="width: 18em; cursor: pointer;">Item<span class="sortdirection"> </span></th>
+            <th style="width: 22em; cursor: pointer;">Status<span class="sortdirection"> </span></th>
+            <th style="width: 22em; cursor: pointer;">Links<span class="sortdirection"> </span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="odd">
+            <td>National adaptation strategy (NAS)</td>
+            <td>
+              <ul>
+                <li>actual NAS - adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li style="clear: both;">
+                  <span class="link-external">
+                    <span class="link-external"><a rel="noopener" target="_blank" data-linktype="external" data-val="https://webdosya.csb.gov.tr/db/iklim/editordosya/file/eylem%20planlari/uyum_stratejisi_eylem_plani_EN_Final.pdf" href="https://webdosya.csb.gov.tr/db/iklim/editordosya/file/eylem%20planlari/uyum_stratejisi_eylem_plani_EN_Final.pdf">Turkey’s National Climate Change Adaptation Strategy and Action Plan</a></span>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>National adaptation plan (NAP)</td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>Sectoral adaptation plan (SAP)</td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>Climate change impact and vulnerability assessment</td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>Meteorological observations</td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>Climate projections and services</td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>Adaptation portals and platforms</td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>Monitoring, reporting and evaluation (MRE) indicators and methodologies</td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>Key reports and publications</td>
+            <td></td>
+            <td>
+              <ul>
+              </ul>
+            </td>
+          </tr>
+          <tr class="even">
+            <td>National communication to the UNFCCC</td>
+            <td></td>
+            <td>
+              <ul>
+                <li style="clear: both;">
+                  <span class="link-external">
+                    <span class="link-external"><a href="https://unfccc.int/NC7" data-val="https://unfccc.int/NC7" rel="noopener" target="_blank" data-linktype="external">https://unfccc.int/NC7</a></span>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>Governance regulation adaptation reporting</td>
+            <td></td>
+            <td>
+              <ul>
+                <li style="clear: both;">
+                  <span class="link-external">
+                    <span class="link-external"><a href="https://reportnet.europa.eu/public/dataflow/110" data-val="https://reportnet.europa.eu/public/dataflow/110" rel="noopener" target="_blank" data-linktype="external">https://reportnet.europa.eu/public/dataflow/110</a></span>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+
+        </tbody>
+      </table></div>
+    </div><div class="tab-pane  " id="4489-1">
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Climate_monitoring__modelling__projections_and_scenarios-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Climate_monitoring__modelling__projections_and_scenarios-body">
+                <span>Climate monitoring, modelling, projections and scenarios</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Climate_monitoring__modelling__projections_and_scenarios-body">
+            <div class="panel-body"><div>The project entitled “The Impact of Climate Change on Water Resources” was launched by the Ministry of Agriculture and Forestry (former Ministry of Food, Agriculture and Livestock and Ministry of Forestry and Water Affairs) General Directorate of Water Management (GDWM) in 2013, and the project was completed in June 2016 (General Directorate of Water Management, 2016).<br><br>Within the scope of the climate projections, the first stage of projection studies, RegCM4.3 regional climate model was run with the outcomes of three global models selected from the CMIP5 archive, which forms the basis of the 5th Assessment Report of the Intergovernmental Panel on Climate Change (IPCC), and RCP4.5 and RCP8.5 release scenarios to include the whole of Turkey. A total of 8 parameters and projections of 17 climate indices representing extreme conditions were selected in river basin scales in the whole country through model simulation, and the differences of the studied parameters until 2010 were calculated as seasonal and annual averages for 10 and 30-year periods based on the reference period accepted as the simulations of 1971-2000. 3 global climate model results with 10x10 km resolution were obtained for Turkey for the first time in this project.<br><br>Within the scope of the hydrologic projections, the second stage of the projection studies, the water potentials of all river basins in Turkey were calculated for the first time using the hydrologic model. The precipitation values were converted to river flow values by running hydrologic models with the outcomes of the climate models, and water potential modelling/ calculation study was conducted by taking into account the current situation of surface water and groundwater sources in all river basins and the estimated situation for projected periods.</div></div>
+          </div>
+        </div>
+      
+      
+
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Methodologies_and_tools__including_uncertainties_and_challenges_-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Methodologies_and_tools__including_uncertainties_and_challenges_-body">
+                <span>Methodologies and tools (including uncertainties and challenges)</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Methodologies_and_tools__including_uncertainties_and_challenges_-body">
+            <div class="panel-body"><div>The Turkish State Meteorological Service (TSMS) produced regional climate projections for Turkey until 2100 using the dynamic downscaling method, in accordance with the scenarios used in the IPCC 5th Assessment Report, Working Group 1 report. In regional climate projections produced by the TSMS using the downscaling method, it is based on the global models prepared by 20 climate modeling groups, members of the World Climate Research Program (WCRP), within the scope of the Coupled Model Intercomparing.<br><br>Project Phase 5, CMIP5, and new generation concentration scenarios used in the IPCC 5th Assessment Report (Representative Concentration Pathways, RCP). Moderate radiative forcing (4.5W/m2) RCP4.5 scenarios and high radiative forcing (8.5W/m2) RCP8.5 scenarios were used for the years 2016-2099in the projection, and the climate projection model HadGEM2-ES developed by the Hadley Research Center of the UK Meteorological Office was produced by downscaling the global model results with the regional climate model system (The Regional Climate Model system, RegCM4).<br><br>The climate projections produced by the TSMS for a domain covering Turkey and its vicinity will be discussed in this section. Projections were produced based on RCP4.5 and RCP8.5 scenarios. The scenarios used are also the most preferred scenarios in the IPCC 5th Assessment Report. The 1971-2000 period was selected as the reference period for the projections produced in 20 km resolution, and the years 2016-2099 were selected for the projections. The 2016-2099 projection range was studied in periods of 2016-2040, 2041-2070, 2071-2099.<br><br>The temperature averages of global models that were used within the scope of the CMIP5 on Turkey were compared to produce high-resolution regional projections for Turkey and its vicinity and to see the general characteristics of models’ climate change projections.<br><br>According to the average temperature comparison results of the global climate models for Turkey and its vicinity, it is observed that HadGEM, GFDL, and MPI global models are among the models that ideally represent the average temperature values in Turkey. According to the results of HadGEM, Geophysical Fluid Dynamics Laboratory (GFDL) and Max Planck Institute for Meteorology (MPI) global model data used by the TSMS, the average temperatures achieved as a result of regional climate projections are consistent with global models (Turkish State Meteorological Service, 2015). Therefore, HadGEM, GFDL, and MPI global models were preferred in the TSMS’s studies to produce regional climate projections. In the evaluation, it is observed that the coldest model is INMCM4 and the warmest model is MIROC for RCP4.5 and RCP8.5.<br><br>As a result of the comparisons and investigations performed, the outcomes of 3 of the global models that produced appropriate results for Turkey and its vicinityunder CMIP5 (HadGEM2-ES, MPIESM-MR, and GFDL-ESM2M) were selected. Regional climate projections were obtained by using the downscaling method through these 3 models RegCM4 regional climate model. The TSMS produces results with 20 km resolution using the results of the global model HadGEM with 112.5 km resolution in the RegCM model.<br><br>Testing (parametrization) of the model is extremely important in terms of reflecting the observed climatic values closest in each grid. For example, humidity and temperature values in each grid affect the cloud formation, and the amounts of aerosol affect the amount of precipitation. Therefore, the result of a well-parameterized model will help decision-makers to take decisions on adaptation activities for climate change. For this purpose, parametrization tests were first performed by the TSMS, and then the model was run by selecting 4 different periods. The regional model takes the initial and boundary conditions from the global model and provides a transition from the low-resolution topography of the global model to a more detailed topography of the regional model. The region located between 27.00°-51.00° North latitudes and 5.00°-55.00° east longitudes was selected as the domain where the models would be run, in order to encompass the movement paths of air masses that affect Turkey. The first 3 grids in all directions (east, west, north, south) of the domain area were not taken into consideration to ignorethe regional climate model boundary conditions errors.</div></div>
+          </div>
+        </div>
+      
+      
+
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_General_aspects_of_climate_change_impact_and_vulnerability_assessment-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_General_aspects_of_climate_change_impact_and_vulnerability_assessment-body">
+                <span>General aspects of climate change impact and vulnerability assessment</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_General_aspects_of_climate_change_impact_and_vulnerability_assessment-body">
+            <div class="panel-body"><div>A large part of Turkey is located in the dry summer subtropical Mediterranean climate zone. Therefore, Turkey is among medium-high risk countries in terms of both present climate, climate change and variability, and future climate, considering that Mediterranean Basin has been indicated as one of the most vulnerable regions in the world to the impacts of climate change (IPCC, 2007).<br><br>According to the observations and data of the Turkish State Meteorological Service (TSMS), temperatures increase while precipitation decreases during the summer months in Turkey. The TSMS determined the annual mean temperature value across Turkey as 13.2°C for the period between 1971 and 2000 and 13.5°C for the period between 1981 and 2010.<br><br>It was observed that the annual total precipitation increased in the North of Turkey while it showed a decreasing trend in the Aegean, Mediterranean and Southeastern Anatolia regions.</div></div>
+          </div>
+        </div>
+      
+      
+
+      <div class="table-responsive"><table class="listing table-striped">
+        <thead>
+          <tr>
+            <th style="width: 18em; cursor: pointer;">Observed climate hazards<span class="sortdirection"> </span></th>
+            <th style="width: 22em; cursor: pointer;">Acute<span class="sortdirection"> </span></th>
+            <th style="width: 22em; cursor: pointer;">Chronic<span class="sortdirection"> </span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="odd">
+            <td>Temperature</td>
+            <td>
+              
+                
+              
+            </td>
+            <td>
+              
+                
+              
+            </td>
+          </tr>
+          <tr class="even">
+            <td>Wind</td>
+            <td>
+              
+                
+              
+            </td>
+            <td>
+              
+                
+              
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>Water</td>
+            <td>
+              
+                
+              
+            </td>
+            <td>
+              
+                
+              
+            </td>
+          </tr>
+          <tr class="even">
+            <td>Solid mass</td>
+            <td>
+              
+                
+              
+            </td>
+            <td>
+              
+                
+              
+            </td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      <div class="table-responsive"><table class="listing table-striped">
+        <thead>
+          <tr>
+            <th style="width: 18em; cursor: pointer;">Key future climate hazards<span class="sortdirection"> </span></th>
+            <th style="width: 22em; cursor: pointer;">Acute<span class="sortdirection"> </span></th>
+            <th style="width: 22em; cursor: pointer;">Chronic<span class="sortdirection"> </span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="odd">
+            <td>Temperature</td>
+            <td>
+              
+                
+              
+            </td>
+            <td>
+              
+                
+              
+            </td>
+          </tr>
+          <tr class="even">
+            <td>Wind</td>
+            <td>
+              
+                
+              
+            </td>
+            <td>
+              
+                
+              
+            </td>
+          </tr>
+          <tr class="odd">
+            <td>Water</td>
+            <td>
+              
+                
+              
+            </td>
+            <td>
+              
+                
+              
+            </td>
+          </tr>
+          <tr class="even">
+            <td>Solid mass</td>
+            <td>
+              
+                
+              
+            </td>
+            <td>
+              
+                
+              
+            </td>
+          </tr>
+        </tbody>
+      </table></div>
+
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Overview_of_existing_pressures-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Overview_of_existing_pressures-body">
+                <span>Overview of existing pressures</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Overview_of_existing_pressures-body">
+            <div class="panel-body"><div>Climate change impacts are already being felt in Turkey. The most noticeable consequences are warmer winters, drier and hotter summers, changes in biodiversity, and retreat of glaciers in the mountains. Climate change has impact on terrestrial, marine and freshwater ecosystems and increases the overall strain on the environment. Social and economic losses caused by weather and climate-related extreme events and disasters have been increasing along with a significant spatial and inter-annual variability in Turkey. The nature, intensity and impact power of extreme weather and climate events and disasters closely depend on economic, social, geographical, demographic, cultural, institutional and governance, environmental and ecological factors, as well as exposure (aspect) and vulnerability levels varying at spatial and temporal scales. The climate of Turkey is expected to undergo significant changes over the coming decades.</div></div>
+          </div>
+        </div>
+      
+      
+
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Secondary_effects-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Secondary_effects-body">
+                <span>Secondary effects</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Secondary_effects-body">
+            <div class="panel-body">-</div>
+          </div>
+        </div>
+      
+      
+
+      <h2 class="country-header">Key affected sectors</h2>
+    </div><div class="tab-pane  " id="4489-2">
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Legal_and_policy_frameworks_and_regulations-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Legal_and_policy_frameworks_and_regulations-body">
+                <span>Legal and policy frameworks and regulations</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Legal_and_policy_frameworks_and_regulations-body">
+            <div class="panel-body"><div>Turkey’s main climate change policy documents are 10th Development Plan, National Climate Change Strategy (2010-2023), National Climate Change Action Plan (2011-2023) and National Climate Change Adaptation Strategy and Action Plan (2011-2023).<br><br>The Ministry of Environment and Urbanization (MoEU) is responsible for the formation and implementation of environmental policy in Turkey, and is also the focal point for the UNFCCC. In this context, climate change policies are determined and executed by Climate Change and Air Management Coordination Board (CCAMCB) under the coordination of the MoEU with the participation of relevant ministries and institutions.</div></div>
+          </div>
+        </div>
+      
+      
+
+      <h2 class="country-header">Overview of institutional arrangements and governance at the national level</h2>
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Climate_vulnerability_and_risk_assessment-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Climate_vulnerability_and_risk_assessment-body">
+                <span>Climate vulnerability and risk assessment</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Climate_vulnerability_and_risk_assessment-body">
+            <div class="panel-body"><div>Vulnerability assessments will be conducted in priority areas of ecosystems, infrastructure, economic, social and cross-cutting issues at national and local levels in scope of Enhancing Adaptation Action in Turkey Project which is funded under IPA-II and conducted by the Ministry of Environment and Urbanisation.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Planning__implemention__monitoring__evaluation_and_revision_of_adaptation_policy-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Planning__implemention__monitoring__evaluation_and_revision_of_adaptation_policy-body">
+                <span>Planning, implemention, monitoring, evaluation and revision of adaptation policy</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Planning__implemention__monitoring__evaluation_and_revision_of_adaptation_policy-body">
+            <div class="panel-body"><div>Turkey’s National Climate Change Adaptation Strategy and Action Plan (2011-2023) is adopted in 2011 and it is planning to update in scope of Enhancing Adaptation Action in Turkey Project.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Integration_of_climate_change_impacts_and_resilience_into_environmental_assessment_procedures-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Integration_of_climate_change_impacts_and_resilience_into_environmental_assessment_procedures-body">
+                <span>Integration of climate change impacts and resilience into environmental assessment procedures</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Integration_of_climate_change_impacts_and_resilience_into_environmental_assessment_procedures-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Integration_of_climate_change_adaptation_into_disaster_risk_management-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Integration_of_climate_change_adaptation_into_disaster_risk_management-body">
+                <span>Integration of climate change adaptation into disaster risk management</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Integration_of_climate_change_adaptation_into_disaster_risk_management-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Collection_and_ownership_of_data-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Collection_and_ownership_of_data-body">
+                <span>Collection and ownership of data</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Collection_and_ownership_of_data-body">
+            <div class="panel-body"><div>In scope of Enhancing Adaptation Action in Turkey Project, a comprehensive platform will be prepared to ensure the flow of data related climate change between all stakeholders.</div></div>
+          </div>
+        </div>
+      
+      
+
+      <h2 class="country-header">Overview of institutional arrangements and governance at the sub-national level
+(where “sub-national” refers to local and regional)</h2>
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Legal_requirements-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Legal_requirements-body">
+                <span>Legal requirements</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Legal_requirements-body">
+            <div class="panel-body"><div>It has become mandatory to establish climate change units in municipalities with an amendment made in April 2020 in the legislation on staffing.<br><br>There are Local Climate Change Action Plans of some municipalities in Turkey. But, the climate change adaptation sections of the current plans are generally not strong. In order to develop the climate change adaptation parts of the Local Climate Change Action Plans and to spread them to all municipalities, the Ministry of Environment and Urbanization supports municipalities in their studies and conducts various capacity building and support activities on climate change adaptation.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Networks_and_collaborations-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Networks_and_collaborations-body">
+                <span>Networks and collaborations</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Networks_and_collaborations-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Good_practices-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Good_practices-body">
+                <span>Good practices</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Good_practices-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+
+    </div><div class="tab-pane  " id="4489-3">
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Adaptation_priorities-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Adaptation_priorities-body">
+                <span>Adaptation priorities</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Adaptation_priorities-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Challenges__gaps_and_barriers-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Challenges__gaps_and_barriers-body">
+                <span>Challenges, gaps and barriers</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Challenges__gaps_and_barriers-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Summaries_of_national_strategies-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Summaries_of_national_strategies-body">
+                <span>Summaries of national strategies</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Summaries_of_national_strategies-body">
+            <div class="panel-body"><div>Turkey is planning to update National Climate Change Adaptation Strategy and Action Plan in scope of Enhancing Adaptation Action in Turkey Project which is a four-year project initiated at the end of 2019.<br><br>In scope of this project, also, vulnerability assessments will be conducted in priority areas of ecosystems, infrastructure, economic, social and cross-cutting issues at national and local levels.<br><br>In addition, a comprehensive platform will be prepared to ensure the flow of data related climate change between all stakeholders.</div></div>
+          </div>
+        </div>
+      
+      
+
+      <h2 class="country-header">Selection of actions and (programmes of) measures</h2>
+      
+        <div>Not reported</div>
+      
+
+
+      <br><br>
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Overview_of_sub_national_strategies-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Overview_of_sub_national_strategies-body">
+                <span>Overview of sub-national strategies</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Overview_of_sub_national_strategies-body">
+            <div class="panel-body"><div>Mainly as a result of extreme floods happened in the Black Sea Region in recent years, the Ministry of Environment and Urbanization has intensified efforts on regional studies regarding climate change adaptation. In order to increase the urbanization resistance against climate change, the Ministry of Environment and Urbanization prepared regional action plans for all 7 geographical regions to identify the action needs and solutions at the regional level.<br><br>There are Local Climate Change Action Plans of some municipalities in Turkey. But, the climate change adaptation sections of the current plans are generally not strong. In order to develop the climate change adaptation parts of the Local Climate Change Action Plans and to spread them to all municipalities, the Ministry of Environment and Urbanization supports municipalities in their studies and conducts various capacity building and support activities on climate change adaptation.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Integrate_climate_change_adaptation_into_sectoral_policies__plans_and_programs-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Integrate_climate_change_adaptation_into_sectoral_policies__plans_and_programs-body">
+                <span>Integrate climate change adaptation into sectoral policies, plans and programs</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Integrate_climate_change_adaptation_into_sectoral_policies__plans_and_programs-body">
+            <div class="panel-body"><div>The following sectoral policies and plans are related to climate change adaptation:<br><br>Water Resources:<br><br>Basin Protection Action Plans<br><br>River Basin Management Plans<br><br>Drinking, Domestic, and Industrial Water Supply Action Plan<br><br>Flood Risk Management Plans<br><br>Flood Action Plan<br><br>Sectoral Water Allocation Plans<br><br>Nitrate Action Plans<br><br>Agriculture and Food Security:<br><br>The Strategy of Fighting Agricultural Drought and Action Plan<br><br>Use of Water Effective in Agriculture Program Action Plan<br><br>Agricultural Insurance Law<br><br>The Combat Desertification National Strategy and Action Plan<br><br>Extreme Weather Events and Disasters<br><br>Turkey’s Disaster Management Strategy Paper and Action Plan<br><br>Turkey Disaster Risk Mitigation Plan<br>81 Provincial Disaster Response Plans and 26 Service Group Operation Plans<br><br>Flood Action Plan<br><br>Ecosystems and Biodiversity<br><br>National Biological Diversity Strategy and Action Plan<br><br>Nature and Biological Diversity Protection Law<br><br>Protected Areas and Climate Change National Strategy of Turkey<br><br>General Directorate of Forestry Strategic Plan<br><br>National Forestry Program<br><br>Wetland Management Plans<br><br>Species Protection Action Plans<br><br>Lakes and Wetlands Action Plan<br><br>Coastal Areas<br><br>Integrated Coastal Zone Plans<br><br>Health<br><br>National Program and Action Plan for Mitigating the Negative Impacts of Climate Change on Health<br><br>Settlement Areas and Tourism<br><br>Energy Efficiency Law<br><br>Building Energy Performance By-Law<br><br>By-Law for Preparation of Spatial Plans<br><br>Regional Development Strategies<br><br>Integrated Urban Development Strategy and Action Plan (KENTGES)<br><br>Turkey’s Tourism Strategy and Turkey’s Tourism Strategy and Action Plan</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Stakeholder_engagement___public-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Stakeholder_engagement___public-body">
+                <span>Stakeholder engagement - public</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Stakeholder_engagement___public-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Stakeholder_engagement___private-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Stakeholder_engagement___private-body">
+                <span>Stakeholder engagement - private</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Stakeholder_engagement___private-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+    </div><div class="tab-pane  " id="4489-4">
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Monitoring__reporting_and_evaluation__MRE__methodology-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Monitoring__reporting_and_evaluation__MRE__methodology-body">
+                <span>Monitoring, reporting and evaluation (MRE) methodology</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Monitoring__reporting_and_evaluation__MRE__methodology-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_MRE_implementation-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_MRE_implementation-body">
+                <span>MRE implementation</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_MRE_implementation-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_State_of_play___implementation-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_State_of_play___implementation-body">
+                <span>State of play - implementation</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_State_of_play___implementation-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_State_of_play___spending_for_climate_adaptation__including_disaster_risk_management_-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_State_of_play___spending_for_climate_adaptation__including_disaster_risk_management_-body">
+                <span>State of play - spending for climate adaptation (including disaster risk management)</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_State_of_play___spending_for_climate_adaptation__including_disaster_risk_management_-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_State_of_play___spending_by_sector-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_State_of_play___spending_by_sector-body">
+                <span>State of play - spending by sector</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_State_of_play___spending_by_sector-body">
+            <div class="panel-body">-</div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Progress_towards_reducing_climate_impacts__vulnerabilities_and_risks-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Progress_towards_reducing_climate_impacts__vulnerabilities_and_risks-body">
+                <span>Progress towards reducing climate impacts, vulnerabilities and risks</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Progress_towards_reducing_climate_impacts__vulnerabilities_and_risks-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Progress_increasing_adaptive_capacity-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Progress_increasing_adaptive_capacity-body">
+                <span>Progress increasing adaptive capacity</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Progress_increasing_adaptive_capacity-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Progress_meeting_adaptation_priorities-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Progress_meeting_adaptation_priorities-body">
+                <span>Progress meeting adaptation priorities</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Progress_meeting_adaptation_priorities-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Progress_addressing_barriers_to_adaptation-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Progress_addressing_barriers_to_adaptation-body">
+                <span>Progress addressing barriers to adaptation</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Progress_addressing_barriers_to_adaptation-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Steps_to_review_climate_change_impact_and_vulnerability_assessments-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Steps_to_review_climate_change_impact_and_vulnerability_assessments-body">
+                <span>Steps to review climate change impact and vulnerability assessments</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Steps_to_review_climate_change_impact_and_vulnerability_assessments-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Steps_to_review_national_adaptation_policies-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Steps_to_review_national_adaptation_policies-body">
+                <span>Steps to review national adaptation policies</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Steps_to_review_national_adaptation_policies-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Overview_of_good_practices_to_review_subnational_adaptation_policies-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Overview_of_good_practices_to_review_subnational_adaptation_policies-body">
+                <span>Overview of good practices to review subnational adaptation policies</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Overview_of_good_practices_to_review_subnational_adaptation_policies-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+
+    </div><div class="tab-pane  " id="4489-5">
+      <h2 class="country-header">Good practices and lessons learnt</h2>
+      
+        <div>Not reported</div>
+      
+
+
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Synergies_of_adaptation_actions_with_other_international_frameworks-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Synergies_of_adaptation_actions_with_other_international_frameworks-body">
+                <span>Synergies of adaptation actions with other international frameworks</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Synergies_of_adaptation_actions_with_other_international_frameworks-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Cooperation___science-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Cooperation___science-body">
+                <span>Cooperation - science</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Cooperation___science-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+      
+        
+        <div class="panel panel-default">
+          <div class="panel-heading" id="accordion_Cooperation___policy-heading">
+            <h4 class="panel-title">
+              <span class="link-https"><a class="accordion-toggle tiny-acchead arrow-down" data-toggle="collapse" href="#accordion_Cooperation___policy-body">
+                <span>Cooperation - policy</span>
+              </a></span>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" id="accordion_Cooperation___policy-body">
+            <div class="panel-body"><div>At the moment of reporting, no information is available about this subject.</div></div>
+          </div>
+        </div>
+      
+      
+
+    </div><div class="tab-pane  " id="4489-6">
+      <div style="display: flex; margin-bottom: 3em;">
+      </div>
+
+      
+ </div>

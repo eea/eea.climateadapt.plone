@@ -38,6 +38,8 @@ def parse_csv(path):
 
 def get_country_code(country_name):
     # import pdb; pdb.set_trace()
+    if 'Moldavia' == country_name:
+        country_name = 'Moldova, Republic of'
     country_code = next(
         (k for k, v in ace_countries if v == country_name), "Not found")
     if country_code == "GR":
@@ -48,35 +50,48 @@ def get_country_code(country_name):
     return country_code
 
 
-def setup_discodata(annotations):
-    response = urllib.request.urlopen(DISCODATA_URL)
+def setup_discodata(annotations, is_energy_comunity=False):
+    call_discodata_url = DISCODATA_ENERGY_COMUNITY_URL if is_energy_comunity else DISCODATA_URL
+    response = urllib.request.urlopen(call_discodata_url)
     data = json.loads(response.read())
-    annotations["discodata"] = {"timestamp": datetime.now(), "data": data}
+    annotations_discodata_key = "discodata_country_2025"
+    if is_energy_comunity:
+        annotations_discodata_key += "_energy_comunity"
+    annotations[annotations_discodata_key] = {
+        "timestamp": datetime.now(), "data": data}
     annotations._p_changed = True
-    logger.info("RELOAD URL %s", DISCODATA_URL)
+    logger.info("RELOAD URL %s", call_discodata_url)
 
     return data
 
 
-def get_discodata():
+def get_discodata(is_energy_comunity=False):
     annotations = portal.getSite().__annotations__
 
-    if "discodata" not in annotations:
+    # import pdb
+    # pdb.set_trace()
+
+    annotations_discodata_key = "discodata_country_2025"
+    if is_energy_comunity:
+        annotations_discodata_key += "_energy_comunity"
+
+    if annotations_discodata_key not in annotations:
         annotations._p_changed = True
-        return setup_discodata(annotations)
+        return setup_discodata(annotations, is_energy_comunity)
 
-    last_import_date = annotations["discodata"]["timestamp"]
+    last_import_date = annotations[annotations_discodata_key]["timestamp"]
 
-    if (datetime.now() - last_import_date).total_seconds() > 60**2:
-        # if (datetime.now() - last_import_date).total_seconds() > 0:
+    # if (datetime.now() - last_import_date).total_seconds() > 60**2:
+    if (datetime.now() - last_import_date).total_seconds() > 0:
+        # if (datetime.now() - last_import_date).total_seconds() > 60:
         annotations._p_changed = True
-        return setup_discodata(annotations)
+        return setup_discodata(annotations, is_energy_comunity)
 
-    return annotations["discodata"]["data"]
+    return annotations[annotations_discodata_key]["data"]
 
 
 def get_discodata_for_country(country_code):
-    data = get_discodata()
+    data = get_discodata(country_code.upper() in ['GE', 'MD', 'RS'])
     # import pdb; pdb.set_trace()
 
     orig_data = next(
@@ -116,8 +131,9 @@ def get_discodata_for_country(country_code):
 
 
 # DISCODATA_URL = 'https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_JSON%5D&p=1&nrOfHits=100'
-DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_Art19_JSON_2023%5D&p=1&nrOfHits=100"
-
+# DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_Art19_JSON_2023%5D&p=1&nrOfHits=100"
+DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=Select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_Art19_JSON_2025%5D&p=1&nrOfHits=50&mail=null&schema=null"
+DISCODATA_ENERGY_COMUNITY_URL = "https://discodata.eea.europa.eu/sql?query=Select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BEC_Adaptation_Art19_JSON_2025%5D&p=1&nrOfHits=50&mail=null&schema=null"
 logger = logging.getLogger("eea.climateadapt")
 
 _COUNTRIES_WITH_NAS = [
@@ -714,7 +730,7 @@ class ContextCountriesViewJson(BrowserView):
 
 
 class CountryProfileData(BrowserView):
-    template = ViewPageTemplateFile("pt/country-profile.pt")
+    template = ViewPageTemplateFile("pt/country-profile-2025.pt")
 
     def verify_country_name(self, country_name):
         if country_name.lower in ["turkiye"]:
@@ -810,7 +826,10 @@ class CountryProfileData(BrowserView):
             "AvailableGoodPractices", []
         )
 
-        sorted_items = sorted(items, key=lambda i: i["Title"])
+        return []
+        # TODO in 2025 for the moment we do not have title
+        sorted_items = sorted(items, key=lambda i: i["Id"])
+        # sorted_items = sorted(items, key=lambda i: i["Title"])
 
         return sorted_items
 
@@ -839,17 +858,27 @@ class CountryProfileData(BrowserView):
 
         items = processed_data.get("Legal_Policies", []).get(
             "AdaptationPolicies", [])
-        items = sorted(items, key=lambda x: x["Type"])
+        # TODO CHECK if this sorting is OK
+        # items = sorted(items, key=lambda x: x["Type"])
+        items = sorted(items, key=lambda x: x["TypeId"])
 
         for item in items:
-            typeName = item["Type"]
-            temp = typeName.split(":", 1)
-            if len(temp) == 2:
-                typeName = temp[1]
-            typeName = typeName.strip()
+            # TODO CHECK perhaps we have to use Available as YES
+            if 'StatusId' not in item:
+                continue
+            typeName = item["TypeId"]
+            # TODO CHECK if you want to use StatusId
+            item["Status"] = str(item["StatusId"])
+
+            # TODO CHECK
+            # typeName = item["Type"]
+            # temp = typeName.split(":", 1)
+            # if len(temp) == 2:
+            #     typeName = temp[1]
+            # typeName = typeName.strip()
             if typeName not in list(response.keys()):
                 response[typeName] = []
-            if item["Status"][1] == "-":
+            if len(item["Status"]) > 1 and item["Status"][1] == "-":
                 item["Status"] = item["Status"][2:]
             response[typeName].append(
                 {
@@ -1129,6 +1158,8 @@ class CountryProfileData(BrowserView):
         country_name = self.verify_country_name(
             self.context.id.title().replace("-", " ")
         )
+        # import pdb
+        # pdb.set_trace()
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -1137,7 +1168,8 @@ class CountryProfileData(BrowserView):
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
 
         self.processed_data = processed_data
-        # import pdb; pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
         return self.template(
             country_data=processed_data,
             country_code=country_code,
@@ -1146,4 +1178,4 @@ class CountryProfileData(BrowserView):
 
 
 class CountryProfileDataRaw(CountryProfileData):
-    template = ViewPageTemplateFile("pt/country-profile-raw.pt")
+    template = ViewPageTemplateFile("pt/country-profile-2025-raw.pt")
