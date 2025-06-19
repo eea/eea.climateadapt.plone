@@ -349,6 +349,7 @@ def check_ancestors_path_exists(obj, language, request):
         # TODO, what if the parent path already exist in language
         # but is not linked in translation manager
         setup_translation_object(parent, language, request)
+        queue_translate(parent, language)
 
 
 def safe_traverse(obj, trans_path):
