@@ -1,6 +1,6 @@
 import logging
 
-import transaction
+# import transaction
 from DateTime import DateTime
 from plone.api import user
 
@@ -12,7 +12,7 @@ def handle_workflow_change(object, event):
     def updateEffective(object, value):
         object.setEffectiveDate(value)
         object.reindexObject()
-        transaction.commit()
+        # transaction.commit()
 
     if event.new_state.title == "Published":
         updateEffective(object, DateTime())
