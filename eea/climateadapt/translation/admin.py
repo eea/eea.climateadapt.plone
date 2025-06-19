@@ -464,7 +464,7 @@ class RemoveUnmatchedTranslations(BrowserView):
     """Find the equivalent path of translations. If they're not in the same translation group, delete them"""
 
     def fixObject(self, obj, path, force_delete=False):
-        # logger.info(f"Looking at {path}")
+        # logger.debug(f"Looking at {path}")
         obj_path_bits = list(obj.getPhysicalPath())
         obj_path = "/".join(obj_path_bits)
 
@@ -532,6 +532,46 @@ class RemoveUnmatchedTranslations(BrowserView):
             except Exception as e:
                 logger.warning(f"Could not process {e} ")
                 continue
+
+        logger.info("Done")
+        return "done"
+
+
+class SiteRemoveUnmatchedTranslations(RemoveUnmatchedTranslations):
+    def fix_language(self, context, force_delete):
+        catalog = context.portal_catalog
+        brains = catalog.unrestrictedSearchResults(
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
+            # review_state="published",
+        )
+        for i, rid in enumerate(brains._seq):
+            try:
+                brain = brains._func(rid)
+            except Exception as e:
+                logger.warning(f"Could not retrieve brain {rid}: {e}")
+                remove_rid(rid, catalog)
+                continue
+            try:
+                obj = brain.getObject()
+                path = "/".join(obj.getPhysicalPath())
+                self.fixObject(obj, path, force_delete)
+            except Exception as e:
+                logger.warning(f"Could not process {e} ")
+                continue
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        self.request.translation_info = {"tg": "notg"}
+        force_delete = bool(self.request.form.get("delete"))
+
+        site = portal.get()
+        for lang in get_site_languages():
+            if lang == "en":
+                continue
+            context = site[lang]
+            self.fix_language(context, force_delete)
 
         logger.info("Done")
         return "done"

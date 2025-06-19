@@ -91,6 +91,13 @@
 
   <browser:page
     for="*"
+    name="site_remove_unmatched_translations"
+    permission="cmf.ManagePortal"
+    class=".admin.SiteRemoveUnmatchedTranslations"
+  />
+
+  <browser:page
+    for="*"
     template="pt/see_translation_status.pt"
     name="see_translation_status"
     permission="cmf.ManagePortal"
