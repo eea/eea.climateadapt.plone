@@ -1,9 +1,0 @@
-<form method="GET">
-  <input name="search" value="" placeholder="search a key">
-  <input type="submit" value="search">
-</form>
-<table tal:define="items view/list">
-    <tr tal:repeat="item items">
-        <td><a href="" tal:attributes="href python:'/@@translate-key?key='+item" tal:content="item"></a></td>
-    </tr>
-</table>
