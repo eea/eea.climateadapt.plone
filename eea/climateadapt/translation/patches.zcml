@@ -33,4 +33,20 @@
     name="image_field"
   />
 
+  <adapter
+    factory="eea.climateadapt.translation.optimizations.OverrideDefaultTranslationLocator"
+    provides="plone.app.multilingual.interfaces.ITranslationLocator"
+    for="plone.app.multilingual.interfaces.ITranslatable"
+  />
+  <adapter
+    factory="eea.climateadapt.translation.optimizations.OverrideDefaultTranslationIdChooser"
+    provides="plone.app.multilingual.interfaces.ITranslationIdChooser"
+    for="plone.app.multilingual.interfaces.ITranslatable"
+  />
+  <adapter
+    factory="eea.climateadapt.translation.optimizations.OverrideDefaultTranslationFactory"
+    provides="plone.app.multilingual.interfaces.ITranslationFactory"
+    for="plone.app.multilingual.interfaces.ITranslatable"
+  />
+
 </configure>

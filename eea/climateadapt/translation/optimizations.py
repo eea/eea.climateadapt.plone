@@ -1,27 +1,31 @@
 """Optimize the storage of image blobs by delegating to the canonical field"""
 
-from plone.namedfile.browser import ALLOWED_INLINE_MIMETYPES
-from plone.namedfile.browser import USE_DENYLIST
-from plone.namedfile.browser import DISALLOWED_INLINE_MIMETYPES
-from plone.namedfile.scaling import ImageScaling
 import logging
-from Acquisition import aq_base
-from plone.volto.behaviors.preview import IPreview
-from plone.indexer.decorator import indexer
-from plone.restapi.serializer.dxfields import (
-    ImageFieldSerializer,
-    FileFieldSerializer,
-)
-from plone.namedfile.interfaces import INamedFileField
+
+from Acquisition import aq_base, aq_parent
 from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
-from plone.app.multilingual.interfaces import ITranslationManager
-from plone.base.interfaces import IImageScalesFieldAdapter, ILanguage
+from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
+from plone.app.multilingual.interfaces import (
+    ILanguageRootFolder,
+    ITranslationCloner,
+    ITranslationFactory,
+    ITranslationIdChooser,
+    ITranslationLocator,
+    ITranslationManager,
+)
+from plone.base.interfaces import IImageScalesFieldAdapter, ILanguage, IPloneSiteRoot
+from plone.indexer.decorator import indexer
 from plone.namedfile.adapters import ImageFieldScales as BaseImageFieldScales
-from plone.namedfile.interfaces import INamedImageField
+from plone.namedfile.interfaces import INamedFileField, INamedImageField
+from plone.namedfile.scaling import ImageScaling
+from plone.restapi.serializer.dxfields import (
+    FileFieldSerializer,
+    ImageFieldSerializer,
+)
+from plone.volto.behaviors.preview import IPreview
 from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
 from zope.interface.interfaces import ComponentLookupError
-from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
 
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 
@@ -225,3 +229,77 @@ class LanguageAwareImageScaling(ImageScaling):
 
         self.context = context
         self.request = request
+
+
+@implementer(ITranslationLocator)
+class OverrideDefaultTranslationLocator:
+    def __init__(self, context):
+        self.context = context
+
+    def __call__(self, language):
+        """
+        Look for the closest translated folder or siteroot
+        """
+        parent = aq_parent(self.context)
+        translated_parent = parent
+        found = False
+        while (
+            not (
+                IPloneSiteRoot.providedBy(parent)
+                and not ILanguageRootFolder.providedBy(parent)
+            )
+            and not found
+        ):
+            parent_translation = ITranslationManager(parent)
+            if parent_translation.has_translation(language):
+                translated_parent = parent_translation.get_translation(language)
+                found = True
+            else:
+                raise ValueError("Could not find translated parent")
+        return translated_parent
+
+
+@implementer(ITranslationIdChooser)
+class OverrideDefaultTranslationIdChooser:
+    def __init__(self, context):
+        self.context = context
+
+    def __call__(self, parent, language):
+        content_id = self.context.getId()
+        if language != "en":
+            if content_id in parent.objectIds():
+                raise ValueError(
+                    f"Translation object already exists, can't be reused {content_id}"
+                )
+            return content_id
+        parts = content_id.split("-")
+        # ugly heuristic (searching for something like 'de', 'en' etc.)
+        if len(parts) > 1 and len(parts[-1]) == 2:
+            content_id = "-".join(parts[:-1])
+        while content_id in parent.objectIds():
+            content_id = f"{content_id}-{language}"
+        return content_id
+
+
+@implementer(ITranslationFactory)
+class OverrideDefaultTranslationFactory:
+    def __init__(self, context):
+        self.context = context
+
+    def __call__(self, language):
+        content_type = self.context.portal_type
+        # parent for translation
+        locator = ITranslationLocator(self.context)
+        parent = locator(language)
+        # id for translation
+        name_chooser = ITranslationIdChooser(self.context)
+        content_id = name_chooser(parent, language)
+        # creating the translation
+        new_id = parent.invokeFactory(
+            type_name=content_type, id=content_id, language=language
+        )
+        new_content = getattr(parent, new_id)
+        # clone language-independent content
+        cloner = ITranslationCloner(self.context)
+        cloner(new_content)
+        return new_content
