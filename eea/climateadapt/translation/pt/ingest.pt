@@ -1,15 +1,14 @@
 <form method="POST" action="./@@ingest-html">
   <div>
-    <label>
-  HTML:
-    </label>
-  <textarea name="html"></textarea>
+    <label>HTML: </label>
+    <textarea name="html"></textarea>
   </div>
   <div>
-  <label >Path:</label>
+    <label>Path:</label>
     <input type="text" name="path" />
   </div>
-  <label >Language:</label>
+  <div>
+    <label>Language:</label>
     <input type="text" name="language" />
   </div>
   <input type="submit" value="Submit" />
