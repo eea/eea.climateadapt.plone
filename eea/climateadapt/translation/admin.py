@@ -1,46 +1,109 @@
+import json
 import logging
+from urllib.parse import parse_qs, urlparse
 
 from BTrees.OIBTree import OIBTree
 from persistent.list import PersistentList
+from plone import schema
 from plone.api import content, portal
 from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
 from plone.app.multilingual.interfaces import ITG, ITranslationManager
 from plone.app.multilingual.itg import ATTRIBUTE_NAME
+from plone.autoform.form import AutoExtensibleForm
 from plone.base.utils import base_hasattr
 from plone.dexterity.interfaces import IDexterityContainer
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
+from z3c.form import button, form
 from zope.annotation.interfaces import IAnnotations
-from zope.interface import alsoProvides
+from zope.interface import Interface, alsoProvides
 
 from eea.climateadapt.translation.core import find_untranslated, queue_translate
 from eea.climateadapt.utils import force_unlock
 
-from .core import queue_job, ingest_html
+from .core import ingest_html, queue_job, setup_translation_object
 from .utils import get_site_languages
 
 logger = logging.getLogger("eea.climateadapt.translation")
 
 
-class HTMLIngestion(BrowserView):
-    """A special view to allow manually submit an HTML translated by
-    eTranslation, but that wasn't properly submitted through the callback"""
+class IIngestForm(Interface):
+    text = schema.Text(
+        title="HTML",
+    )
 
-    def __call__(self):
-        alsoProvides(self.request, IDisableCSRFProtection)
-        # self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
 
-        html = self.request.form.get("html", "")
-        path = self.request.form.get("path", "")
+class HTMLIngestion(AutoExtensibleForm, form.Form):
+    schema = IIngestForm
+    ignoreContext = True
+
+    label = "Ingest JSON"
+    description = "Object with keys jobData, copied from bull dashboard"
+
+    def extractData(self, setErrors=True):
+        data, errors = super().extractData(setErrors)
+        jobData = json.loads(data["text"])["jobData"]
+        return jobData, errors
+
+    def applyChanges(self, data):
+        html = data["html"]
+        path = data["obj_path"]
+
+        url = f"https://climateadapt.com/{path}"
+        parsed_url = urlparse(url)
+        path = parsed_url.path
+        query_params = parse_qs(parsed_url.query)
+        language = query_params["language"][0]
 
         if not (html and path):
             return self.index()
 
-        site = portal.getSite()
-        trans_obj = site.unrestrictedTraverse(path)
+        site_portal = portal.getSite()
+
+        en_obj = site_portal.unrestrictedTraverse(path)
+
+        trans_obj = setup_translation_object(en_obj, language, self.request)
+
         ingest_html(trans_obj, html)
-        return "ok"
+        return {"ok": True}
+
+    @button.buttonAndHandler("Ok")
+    def handleApply(self, action):
+        data, errors = self.extractData()
+        # import pdb
+        #
+        # pdb.set_trace()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+
+        self.applyChanges(data)
+        self.status = "Saved"
+
+    @button.buttonAndHandler("Cancel")
+    def handleCancel(self, action):
+        """User cancelled. Redirect back to the front page."""
+
+
+# class HTMLIngestion(BrowserView):
+#     """A special view to allow manually submit an HTML translated by
+#     eTranslation, but that wasn't properly submitted through the callback"""
+#
+#     def __call__(self):
+#         alsoProvides(self.request, IDisableCSRFProtection)
+#         # self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+#
+#         html = self.request.form.get("html", "")
+#         path = self.request.form.get("path", "")
+#
+#         if not (html and path):
+#             return self.index()
+#
+#         site = portal.getSite()
+#         trans_obj = site.unrestrictedTraverse(path)
+#         ingest_html(trans_obj, html)
+#         return "ok"
 
 
 class TranslateObjectAsync(BrowserView):
