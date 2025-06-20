@@ -52,14 +52,6 @@
 
   <browser:page
     for="*"
-    class=".views.HTMLIngestion"
-    name="ingest-html"
-    permission="cmf.ManagePortal"
-    template="pt/ingest.pt"
-  />
-
-  <browser:page
-    for="*"
     class=".views.ToHtml"
     name="tohtml"
     permission="cmf.ManagePortal"

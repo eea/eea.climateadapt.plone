@@ -14,6 +14,14 @@
 
   <browser:page
     for="*"
+    class=".admin.HTMLIngestion"
+    name="ingest-html"
+    permission="cmf.ManagePortal"
+    template="pt/ingest.pt"
+  />
+
+  <browser:page
+    for="*"
     template="pt/see_folder_objects_view.pt"
     name="see_folder_objects_view"
     permission="cmf.ManagePortal"

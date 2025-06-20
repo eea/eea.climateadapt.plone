@@ -17,10 +17,30 @@ from zope.interface import alsoProvides
 from eea.climateadapt.translation.core import find_untranslated, queue_translate
 from eea.climateadapt.utils import force_unlock
 
-from .core import queue_job
+from .core import queue_job, ingest_html
 from .utils import get_site_languages
 
 logger = logging.getLogger("eea.climateadapt.translation")
+
+
+class HTMLIngestion(BrowserView):
+    """A special view to allow manually submit an HTML translated by
+    eTranslation, but that wasn't properly submitted through the callback"""
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+
+        html = self.request.form.get("html", "")
+        path = self.request.form.get("path", "")
+
+        if not (html and path):
+            return self.index()
+
+        site = portal.getSite()
+        trans_obj = site.unrestrictedTraverse(path)
+        ingest_html(trans_obj, html)
+        return "ok"
 
 
 class TranslateObjectAsync(BrowserView):

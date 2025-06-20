@@ -44,23 +44,6 @@ class IsJobExecutor(BrowserView):
             return "false"
 
 
-class HTMLIngestion(BrowserView):
-    """A special view to allow manually submit an HTML translated by
-    eTranslation, but that wasn't properly submitted through the callback"""
-
-    def __call__(self):
-        html = self.request.form.get("html", "").decode("utf-8")
-        path = self.request.form.get("path", "")
-
-        if not (html and path):
-            return self.index()
-
-        site = portal.getSite()
-        trans_obj = site.unrestrictedTraverse(path)
-        ingest_html(trans_obj, html)
-        return "ok"
-
-
 class SaveTranslationHtml(BrowserView):
     """A special view to allow manually submit an HTML translated by
     eTranslation, but that wasn't properly submitted through the callback"""
@@ -68,7 +51,7 @@ class SaveTranslationHtml(BrowserView):
     def __call__(self):
         request = self.request
         check_token_security(request)
-        html = request.form.get("html", "")  # .decode("utf-8")
+        html = request.form.get("html", "")
         path = request.form.get("path", "")
         language = request.form.get("language", "")
         serial_id = request.form.get("serial_id", 0)
