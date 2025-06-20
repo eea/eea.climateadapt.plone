@@ -65,7 +65,7 @@ class SaveTranslationHtml(BrowserView):
             canonical_serial_id = ISerialId(en_obj)
 
             if int(canonical_serial_id) != int(serial_id):
-                return {"error_type": "mismatched serial id"}
+                return json.dumps({"error_type": "mismatched serial id"})
 
             with adopt_user(username="admin"):
                 trans_obj = setup_translation_object(en_obj, language, request)
