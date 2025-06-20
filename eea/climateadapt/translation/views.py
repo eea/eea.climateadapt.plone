@@ -51,6 +51,7 @@ class SaveTranslationHtml(BrowserView):
     def __call__(self):
         request = self.request
         check_token_security(request)
+        self.request.response.setHeader("Content-Type", "application/json")
         html = request.form.get("html", "")
         path = request.form.get("path", "")
         language = request.form.get("language", "")
@@ -75,7 +76,6 @@ class SaveTranslationHtml(BrowserView):
             logger.exception("Error in saving translation: \n: %s", e)
             result = {"error_type": exception_to_json(e)}
 
-        self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
 
 
