@@ -29,7 +29,7 @@ class HTMLIngestion(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
-        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        # self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
 
         html = self.request.form.get("html", "")
         path = self.request.form.get("path", "")
