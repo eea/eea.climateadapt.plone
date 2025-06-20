@@ -81,8 +81,8 @@ def get_discodata(is_energy_comunity=False):
 
     last_import_date = annotations[annotations_discodata_key]["timestamp"]
 
-    # if (datetime.now() - last_import_date).total_seconds() > 60**2:
-    if (datetime.now() - last_import_date).total_seconds() > 0:
+    if (datetime.now() - last_import_date).total_seconds() > 60**2:
+        # if (datetime.now() - last_import_date).total_seconds() > 0:
         # if (datetime.now() - last_import_date).total_seconds() > 60:
         annotations._p_changed = True
         return setup_discodata(annotations, is_energy_comunity)
@@ -826,7 +826,7 @@ class CountryProfileData(BrowserView):
             "AvailableGoodPractices", []
         )
 
-        return []
+        return items
         # TODO in 2025 for the moment we do not have title
         sorted_items = sorted(items, key=lambda i: i["Id"])
         # sorted_items = sorted(items, key=lambda i: i["Title"])
@@ -858,24 +858,20 @@ class CountryProfileData(BrowserView):
 
         items = processed_data.get("Legal_Policies", []).get(
             "AdaptationPolicies", [])
-        # TODO CHECK if this sorting is OK
-        # items = sorted(items, key=lambda x: x["Type"])
-        items = sorted(items, key=lambda x: x["TypeId"])
+        items = sorted(items, key=lambda x: x["Type"])
 
         for item in items:
             # TODO CHECK perhaps we have to use Available as YES
             if 'StatusId' not in item:
                 continue
-            typeName = item["TypeId"]
-            # TODO CHECK if you want to use StatusId
-            item["Status"] = str(item["StatusId"])
+            typeName = item["Type"]
+            item["Status"] = str(item["Status"])
 
-            # TODO CHECK
-            # typeName = item["Type"]
-            # temp = typeName.split(":", 1)
-            # if len(temp) == 2:
-            #     typeName = temp[1]
-            # typeName = typeName.strip()
+            typeName = item["Type"]
+            temp = typeName.split(":", 1)
+            if len(temp) == 2:
+                typeName = temp[1]
+            typeName = typeName.strip()
             if typeName not in list(response.keys()):
                 response[typeName] = []
             if len(item["Status"]) > 1 and item["Status"][1] == "-":

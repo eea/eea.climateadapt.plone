@@ -611,7 +611,7 @@ ul li {
       </tal:cond>
 
       <tal:rep tal:repeat="item view/get_sorted_available_practices_data">
-        <tal:block tal:define="fieldset_legend item/Title;
+        <tal:block tal:define="fieldset_legend item/Id;
                       fieldset_data item/DescribeGoodPractice;
                       id repeat/item/index;
                       ">
