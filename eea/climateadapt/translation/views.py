@@ -51,22 +51,28 @@ class SaveTranslationHtml(BrowserView):
     def __call__(self):
         request = self.request
         check_token_security(request)
-        self.request.response.setHeader("Content-Type", "application/json")
-        html = request.form.get("html", "")
-        path = request.form.get("path", "")
-        language = request.form.get("language", "")
-        serial_id = request.form.get("serial_id", 0)
 
-        site_portal = portal.getSite()
-        if path[0] == "/":
-            path = path[1:]
+        try:
+            html = request.form.get("html", "")
+            path = request.form.get("path", "")
+            language = request.form.get("language", "")
+            serial_id = request.form.get("serial_id", 0)
+
+            site_portal = portal.getSite()
+            if path[0] == "/":
+                path = path[1:]
+        except Exception as e:
+            result = {"error_type": exception_to_json(e)}
+            return json.dumps(result)
 
         try:
             en_obj = site_portal.unrestrictedTraverse(path)
             canonical_serial_id = ISerialId(en_obj)
 
             if int(canonical_serial_id) != int(serial_id):
-                return json.dumps({"error_type": "mismatched serial id"})
+                self.request.response.setHeader("Content-Type", "application/json")
+                result = {"error_type": "mismatched serial id"}
+                return json.dumps(result)
 
             with adopt_user(username="admin"):
                 trans_obj = setup_translation_object(en_obj, language, request)
@@ -76,6 +82,7 @@ class SaveTranslationHtml(BrowserView):
             logger.exception("Error in saving translation: \n: %s", e)
             result = {"error_type": exception_to_json(e)}
 
+        self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
 
 
