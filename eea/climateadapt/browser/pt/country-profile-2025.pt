@@ -268,8 +268,8 @@ ul li {
                 </li>
                 <li style="clear: both;">
                   <span class="link-external">
-                    <a href="https://reportnet.europa.eu/public/dataflow/1455" data-val="https://reportnet.europa.eu/public/dataflow/1455" rel="noopener"
-                       target="_blank" data-linktype="external">2025 Art.17 (2)(d) reporting</a>
+                    <a href="https://reportnet.europa.eu/public/dataflow/1444" data-val="https://reportnet.europa.eu/public/dataflow/1444" rel="noopener"
+                       target="_blank" data-linktype="external">2025 Art. 17 (2)(d) reporting</a>
                   </span>
                 </li>
               </ul>
@@ -741,35 +741,18 @@ ul li {
 
     <div class="tab-pane  " id="4489-6">
       <!-- TODO CHECK the condition below on contact list -->
-      <tal  tal:condition="python: 0">
+      <tal  tal:condition="python: 1">
         <div style="display: flex; margin-bottom: 3em;" tal:condition="data/Contact"
-            tal:define="items python: data['Contact'].get('Contact_General', []) if data['Contact'] else []">
-          <div style="width: 50%;"
-              tal:repeat="item items">
-            <h3 tal:content="item/Organisation" tal:condition="python: 'Organisation' in item">Organisation</h3>
+            tal:define="items python: data.get('Contact', [])">
+          <div tal:repeat="item items">
+            <h3 class="mt-4" tal:content="item/Organisation" tal:condition="python: 'Organisation' in item">Organisation</h3>
             <div tal:content="item/Department" tal:condition="python: 'Department' in item">Department within the organisation</div>
             <div style="font-style: italic;" tal:condition="python: 'Role' in item" tal:content="item/Role">Role of the organisation</div>
-            <div tal:content="item/NameContact" tal:condition="python: 'NameContact' in item">Contact person</div>
-            <div style="font-style: italic;" tal:content="item/RoleContact" tal:condition="python: 'RoleContact' in item">Role of the contact person</div>
-            <div tal:condition="python: 'GeneralEmail' in item">
-              <a tal:attributes="href python:'mailto:' + item['GeneralEmail']"
-                  tal:content="item/GeneralEmail">Email</a>
-            </div>
-            <div tal:condition="python: 'Website' in item">
-              <a tal:attributes="href python: item['Website'].startswith('http') and item['Website'] or 'http://' + item['Website']"
-                  tal:content="item/Website">Website</a>
+            <div tal:define="websites python: item.get('Website', [])" tal:repeat="website websites" style="padding-bottom:20px;">
+                <a tal:condition="python: website['Level']=='National level'" tal:attributes="href python:'https://'+website['Url']" tal:content="website/Url">Website</a>
             </div>
           </div>
         </div>
-
-        <tal:def tal:define="items python: data['Contact'].get('Website', []) if data['Contact'] else []"
-            tal:condition="items">
-          <h2 class="country-header" i18n:translate="">Relevant websites and social media source</h2>
-          <div tal:repeat="item items">
-            <a tal:attributes="href python: item['Url'].startswith('http') and item['Url'] or 'http://' + item['Url']"
-              tal:content="item/Title">Website</a>
-          </div>
-        </tal:def>
       </tal>
     </div>
   </div>
