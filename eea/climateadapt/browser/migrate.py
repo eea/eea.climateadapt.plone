@@ -118,6 +118,7 @@ class MigrateAbsoluteURLs(BrowserView):
 
 class FixMipSigLangs(BrowserView):
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
         catalog = self.context.portal_catalog
         brains = catalog.unrestrictedSearchResults(
             path="/cca/en", portal_type="mission_signatory_profile"
@@ -125,7 +126,7 @@ class FixMipSigLangs(BrowserView):
         for brain in brains:
             obj = brain.getObject()
             ILanguage(obj).set_language("en")
-            catalog.reindexObject(idxs=["Language"])
+            catalog.reindexObject(obj, idxs=["Language"])
             logger.info("Fixed {brain.getURL()}")
 
         if not self.request.form.get("write"):
