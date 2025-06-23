@@ -127,7 +127,7 @@ class FixMipSigLangs(BrowserView):
             obj = brain.getObject()
             ILanguage(obj).set_language("en")
             catalog.reindexObject(obj, idxs=["Language"])
-            logger.info("Fixed {brain.getURL()}")
+            logger.info(f"Fixed %s", brain.getURL())
 
         if not self.request.form.get("write"):
             raise ValueError
