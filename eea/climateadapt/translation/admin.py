@@ -386,6 +386,9 @@ class SeeTranslationStatus(BrowserView):
         "FrontpageSlide",
     ]
 
+    def good_lang_codes(self):
+        return get_site_languages()
+
     def find_untranslated(self, obj):
         tm = ITranslationManager(obj)
         translations = tm.get_translations()
