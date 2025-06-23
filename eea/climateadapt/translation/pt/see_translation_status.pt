@@ -12,9 +12,6 @@ td {
   <body tal:define="brains view/brains">
     <h2 tal:content="python: str(len(brains)) +  ' objects'" />
 
-      <tal:rep repeat="lang view/good_lang_codes">
-      </tal:rep>
-
       <table>
         <tr tal:repeat="info brains">
         <tal:def define="brain python: info[0]; untranslated_langs python: info[1]">
