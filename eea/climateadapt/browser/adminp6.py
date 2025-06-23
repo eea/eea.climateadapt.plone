@@ -1,11 +1,11 @@
-from Products.Five.browser import BrowserView
-from plone.protect.interfaces import IDisableCSRFProtection
-from zope.interface import alsoProvides
-from plone.base.utils import base_hasattr
-from plone.base.utils import safe_callable
-from Acquisition import aq_inner
-from Acquisition import aq_parent
 import logging
+
+from Acquisition import aq_inner, aq_parent
+from plone.api.portal import get_tool
+from plone.base.utils import base_hasattr, safe_callable
+from plone.protect.interfaces import IDisableCSRFProtection
+from Products.Five.browser import BrowserView
+from zope.interface import alsoProvides
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -48,5 +48,18 @@ class ReindexFolder(BrowserView):
 
         indexObject(self.context, "")
         portal = aq_parent(aq_inner(catalog))
-        portal.ZopeFindAndApply(
-            self.context, search_sub=True, apply_func=indexObject)
+        portal.ZopeFindAndApply(self.context, search_sub=True, apply_func=indexObject)
+
+
+class InspectCatalog(BrowserView):
+    def __call__(self):
+        catalog = get_tool("portal_catalog")
+        path = "/".join(self.context.getPhysicalPath())
+
+        try:
+            rid = catalog._catalog.uids[path]
+        except Exception:
+            return f"{path} not found in catalog"
+
+        url = f"{catalog.absolute_url()}/manage_objectInformation?rid={rid}"
+        return self.request.response.redirect(url)

@@ -14,6 +14,13 @@
   />
 
   <browser:page
+    name="inspect_catalog"
+    for="*"
+    class=".adminp6.GoPDB"
+    permission="cmf.InspectCatalog"
+  />
+
+  <browser:page
     name="reindex_folder"
     for="*"
     class=".adminp6.ReindexFolder"
