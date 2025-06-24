@@ -67,12 +67,12 @@ ul li {
     <li class="active"><a href="#4489-0" data-toggle="tab" i18n:translate="">Summary</a></li>
     <li class=""><a href="#4489-01" data-toggle="tab" i18n:translate="">National circumstances </a></li>
     <li class=" "><a href="#4489-1" data-toggle="tab" i18n:translate="">Assessment</a></li>
-    <li class=" "><a href="#4489-2" data-toggle="tab" i18n:translate="">Legal &amp; policy frameworks</a></li>
-    <li class=" "><a href="#4489-3" data-toggle="tab" i18n:translate="">Strategies, plans &amp; goals</a>
+    <li class=" "><a href="#4489-2" data-toggle="tab" i18n:translate="">Legal AND policy frameworks</a></li>
+    <li class=" "><a href="#4489-3" data-toggle="tab" i18n:translate="">Strategies, plans and goals</a>
     </li>
-    <li class=" "><a href="#4489-4" data-toggle="tab" i18n:translate="">Monitoring &amp; evaluation</a>
+    <li class=" "><a href="#4489-4" data-toggle="tab" i18n:translate="">Monitoring and evaluation</a>
     </li>
-    <li class=" "><a href="#4489-5" data-toggle="tab" i18n:translate="">Good practices, cooperation &amp; synergies</a></li>
+    <li class=" "><a href="#4489-5" data-toggle="tab" i18n:translate="">Good practices, cooperation and synergies</a></li>
     <li class=" "><a href="#4489-51" data-toggle="tab" i18n:translate="">Sub-national adaptation </a></li>
     <li class=" "><a href="#4489-6" data-toggle="tab" i18n:translate="">Contact</a></li>
   </ul>

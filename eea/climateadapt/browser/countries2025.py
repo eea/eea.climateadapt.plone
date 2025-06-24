@@ -37,7 +37,8 @@ def parse_csv(path):
 
 
 def get_country_code(country_name):
-    # import pdb; pdb.set_trace()
+    if 'Moldova' == country_name:
+        country_name = 'Moldova, Republic of'
     if 'Moldavia' == country_name:
         country_name = 'Moldova, Republic of'
     country_code = next(
