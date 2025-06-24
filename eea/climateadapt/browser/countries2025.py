@@ -912,7 +912,10 @@ class CountryProfileData(BrowserView):
             .get("HazardsForm", [])[0]
             .get("Hazards", [])
         )
-        # import pdb; pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
+# (Pdb) pp processed_data['Contact']['Website']
+
         if len(items) == 0:
             return items
 
@@ -937,8 +940,8 @@ class CountryProfileData(BrowserView):
             # if event not in response[occurence][group][accuteChronic]['hazards']:
             response[occurence][group][accuteChronic]["hazards"].append(
                 item["Event"])
-            response[occurence][group][accuteChronic]["occurrences"].append(
-                item["Occurrence"])
+            # response[occurence][group][accuteChronic]["occurrences"].append(
+            #     item["Occurrence"])
             # countItems[ group] += 1
             if occurence == "Future":
                 response[occurence][group][accuteChronic]["trend"].append(
@@ -970,17 +973,17 @@ class CountryProfileData(BrowserView):
                     if countAC
                     else "" + "</td>"
                 )
-                observedHtml += (
-                    "<td"
-                    + className
-                    + ">"
-                    + response["Observed"][hazardType]["AC"]["occurrences"][0]
-                    if countAC
-                    else "" + "</td>"
-                )
+                # observedHtml += (
+                #     "<td"
+                #     + className
+                #     + ">"
+                #     + response["Observed"][hazardType]["AC"]["occurrences"][0]
+                #     if countAC
+                #     else "" + "</td>"
+                # )
                 observedHtml += "</tr>"
                 hazards = response["Observed"][hazardType]["AC"]["hazards"][1:]
-                occurrences = response["Observed"][hazardType]["AC"]["occurrences"][1:]
+                # occurrences = response["Observed"][hazardType]["AC"]["occurrences"][1:]
                 for idx in range(len(hazards)):
                     # import pdb; pdb.set_trace()
                     className = ' class="bb1"' if idx + \
@@ -990,9 +993,9 @@ class CountryProfileData(BrowserView):
                         "<td" + className + ">" +
                         hazards[idx] + "</td>"
                     )
-                    observedHtml += (
-                        "<td" + className + ">"+occurrences[idx]+"</td>"
-                    )
+                    # observedHtml += (
+                    #     "<td" + className + ">"+occurrences[idx]+"</td>"
+                    # )
                     observedHtml += "</tr>"
             else:
                 observedHtml += "<td class='bb1'/><td class='bb1'/></tr>"
@@ -1012,16 +1015,16 @@ class CountryProfileData(BrowserView):
                     + response["Observed"][hazardType]["CH"]["hazards"][0]
                     + "</td>"
                 )
-                observedHtml += (
-                    "<td"
-                    + className
-                    + ">"
-                    + response["Observed"][hazardType]["CH"]["occurrences"][0]
-                    + "</td>"
-                )
+                # observedHtml += (
+                #     "<td"
+                #     + className
+                #     + ">"
+                #     + response["Observed"][hazardType]["CH"]["occurrences"][0]
+                #     + "</td>"
+                # )
                 observedHtml += "</tr>"
                 hazards = response["Observed"][hazardType]["CH"]["hazards"][1:]
-                occurrences = response["Observed"][hazardType]["CH"]["occurrences"][1:]
+                # occurrences = response["Observed"][hazardType]["CH"]["occurrences"][1:]
                 for idx in range(len(hazards)):
                     className = ' class="bb1"' if idx + \
                         1 == len(hazards) else ""
@@ -1030,9 +1033,9 @@ class CountryProfileData(BrowserView):
                         "<td" + className + ">" +
                         hazards[idx] + "</td>"
                     )
-                    observedHtml += (
-                        "<td" + className + ">" + occurrences[idx] + "</td>"
-                    )
+                    # observedHtml += (
+                    #     "<td" + className + ">" + occurrences[idx] + "</td>"
+                    # )
                     observedHtml += "</tr>"
             else:
                 observedHtml += "<td class='bb1'/><td class='bb1'/></tr>"
@@ -1207,6 +1210,47 @@ class CountryProfileData(BrowserView):
             country_code=country_code,
             country_name=country_name,
         )
+
+    def contact_websites(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+
+        response = []
+        items = (
+            processed_data.get("Contact", [])
+        )
+        # import pdb
+        # pdb.set_trace()
+        if 'Website' in processed_data['Contact']:
+            line = {'Organisation': items.get(
+                'Organisation', ''), 'Department': '', 'Website': ''}
+            for website in items.get('Website', []):
+                if 'National level' == website.get('Level', ''):
+                    webUrl = website.get('Url', '')
+                    if len(webUrl) > 1 and not webUrl.startswith("http"):
+                        webUrl = 'http://'+webUrl
+                    line['Website'] = webUrl
+            response.append(line)
+        else:
+            for item in items:
+                line = {'Organisation': item.get('Organisation', ''), 'Department': item.get(
+                    'Department', ''), 'Website': ''}
+                for website in item.get('Website', []):
+                    if 'National level' == website.get('Level', ''):
+                        webUrl = website.get('Url', '')
+                        if len(webUrl) > 1 and not webUrl.startswith("http"):
+                            webUrl = 'http://'+webUrl
+                        line['Website'] = webUrl
+                response.append(line)
+        # pdb.set_trace()
+        return response
 
 
 class CountryProfileDataRaw(CountryProfileData):

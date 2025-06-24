@@ -362,7 +362,6 @@ ul li {
             <th style="width: 10em;" i18n:translate="">Hazard type</th>
             <th style="width: 10em;" i18n:translate="">Acute/Chronic</th>
             <th i18n:translate="">Observed climate hazards</th>
-            <th style="width: 10em;" i18n:translate="">Occurrence</th>
           </tr>
         </thead>
         <tbody tal:content="structure items/observedHtml">
@@ -741,24 +740,19 @@ ul li {
       </tal:block> -->
     </div>
 
-
-
-    <div class="tab-pane  " id="4489-6">
+    <div class="tab-pane  " id="4489-6"  tal:define="items view/contact_websites">
       <!-- TODO CHECK the condition below on contact list -->
-      <tal  tal:condition="python: 1">
-        <div style="display: flex; margin-bottom: 3em;" tal:condition="data/Contact"
-            tal:define="items python: data.get('Contact', [])">
+      <tal  tal:condition="python: len(items)">
           <div tal:repeat="item items">
-            <h3 class="mt-4" tal:content="item/Organisation" tal:condition="python: 'Organisation' in item">Organisation</h3>
-            <div tal:content="item/Department" tal:condition="python: 'Department' in item">Department within the organisation</div>
-            <div style="font-style: italic;" tal:condition="python: 'Role' in item" tal:content="item/Role">Role of the organisation</div>
-            <div tal:define="websites python: item.get('Website', [])" tal:repeat="website websites" style="padding-bottom:20px;">
-                <a tal:condition="python: website['Level']=='National level'" tal:attributes="href python:'https://'+website['Url']" tal:content="website/Url">Website</a>
-            </div>
+          <div style="margin-bottom:20px;">
+            <h3 style="margin-bottom:3px;" tal:content="item/Organisation">Organisation</h3>
+            <p style="margin-bottom:0px;" tal:content="item/Department" tal:condition="python: 'Department' in item">Department within the organisation</p>
+            <a tal:attributes="href python:item['Website']" tal:content="item/Website">Website</a>
           </div>
-        </div>
+          </div>
       </tal>
     </div>
+
   </div>
 </div>
 </div>
