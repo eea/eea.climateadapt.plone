@@ -408,7 +408,7 @@ class SeeTranslationStatus(BrowserView):
         brains = context.portal_catalog.searchResults(
             path="/".join(context.getPhysicalPath()),
             sort="path",
-            review_state="published",
+            # review_state="published",
         )
 
         result = []

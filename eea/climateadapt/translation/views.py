@@ -6,6 +6,7 @@ import logging
 import os
 import sys
 import traceback
+from urllib.parse import unquote
 
 from plone.api import portal
 from plone.api.env import adopt_user
@@ -54,7 +55,7 @@ class SaveTranslationHtml(BrowserView):
 
         try:
             html = request.form.get("html", "")
-            path = request.form.get("path", "")
+            path = unquote(request.form.get("path", ""))
             language = request.form.get("language", "")
             serial_id = request.form.get("serial_id", 0)
 
