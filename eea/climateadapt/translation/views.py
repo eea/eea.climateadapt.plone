@@ -52,6 +52,7 @@ class SaveTranslationHtml(BrowserView):
     def __call__(self):
         request = self.request
         check_token_security(request)
+        alsoProvides(self.request, IDisableCSRFProtection)
 
         with adopt_user(username="admin"):
             try:
