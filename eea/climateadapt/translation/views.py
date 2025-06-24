@@ -53,35 +53,35 @@ class SaveTranslationHtml(BrowserView):
         request = self.request
         check_token_security(request)
 
-        try:
-            html = request.form.get("html", "")
-            path = unquote(request.form.get("path", ""))
-            language = request.form.get("language", "")
-            serial_id = request.form.get("serial_id", 0)
+        with adopt_user(username="admin"):
+            try:
+                html = request.form.get("html", "")
+                path = unquote(request.form.get("path", ""))
+                language = request.form.get("language", "")
+                serial_id = request.form.get("serial_id", 0)
 
-            site_portal = portal.getSite()
-            if path[0] == "/":
-                path = path[1:]
-        except Exception as e:
-            result = {"error_type": exception_to_json(e)}
-            return json.dumps(result)
-
-        try:
-            en_obj = site_portal.unrestrictedTraverse(path)
-            canonical_serial_id = ISerialId(en_obj)
-
-            if int(canonical_serial_id) != int(serial_id):
-                self.request.response.setHeader("Content-Type", "application/json")
-                result = {"error_type": "mismatched serial id"}
+                site_portal = portal.getSite()
+                if path[0] == "/":
+                    path = path[1:]
+            except Exception as e:
+                result = {"error_type": exception_to_json(e)}
                 return json.dumps(result)
 
-            with adopt_user(username="admin"):
+            try:
+                en_obj = site_portal.unrestrictedTraverse(path)
+                canonical_serial_id = ISerialId(en_obj)
+
+                if int(canonical_serial_id) != int(serial_id):
+                    self.request.response.setHeader("Content-Type", "application/json")
+                    result = {"error_type": "mismatched serial id"}
+                    return json.dumps(result)
+
                 trans_obj = setup_translation_object(en_obj, language, request)
                 ingest_html(trans_obj, html)
                 result = {"url": trans_obj.absolute_url()}
-        except Exception as e:
-            logger.exception("Error in saving translation: \n: %s", e)
-            result = {"error_type": exception_to_json(e)}
+            except Exception as e:
+                logger.exception("Error in saving translation: \n: %s", e)
+                result = {"error_type": exception_to_json(e)}
 
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
