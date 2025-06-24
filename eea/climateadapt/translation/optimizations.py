@@ -145,7 +145,10 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
             return super().__call__()
 
         tm = ITranslationManager(self.context)
-        canonical = tm.get_translation("en")
+
+        canonical = None
+        with adopt_user(username="admin"):
+            canonical = tm.get_translation("en")
         if canonical is None:
             return
 
@@ -162,7 +165,10 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
             return super().__call__()
 
         tm = ITranslationManager(self.context)
-        canonical = tm.get_translation("en")
+
+        canonical = None
+        with adopt_user(username="admin"):
+            canonical = tm.get_translation("en")
         if canonical is None:
             return
 
@@ -183,9 +189,12 @@ def hasPreviewImage(obj):
         base_obj = aq_base(obj)
     else:
         tm = ITranslationManager(obj)
-        canonical = tm.get_translation("en")
-        if canonical is None:
-            return False
+
+        canonical = None
+        with adopt_user(username="admin"):
+            canonical = tm.get_translation("en")
+            if canonical is None:
+                return False
         base_obj = aq_base(canonical)
 
     if base_obj.preview_image or (
@@ -209,7 +218,10 @@ def image_field_indexer(obj):
             base_obj = aq_base(obj)
         else:
             tm = ITranslationManager(obj)
-            canonical = tm.get_translation("en")
+
+            canonical = None
+            with adopt_user(username="admin"):
+                canonical = tm.get_translation("en")
             if canonical is None:
                 return image_field
             base_obj = aq_base(canonical)
@@ -231,7 +243,10 @@ class LanguageAwareImageScaling(ImageScaling):
         lang = ILanguage(context).get_language()
         if lang != "en":
             tm = ITranslationManager(context)
-            canonical = tm.get_translation("en")
+
+            canonical = None
+            with adopt_user(username="admin"):
+                canonical = tm.get_translation("en")
             if canonical is not None:
                 context = canonical
 
