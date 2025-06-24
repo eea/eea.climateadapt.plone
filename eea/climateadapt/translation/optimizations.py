@@ -1,5 +1,6 @@
 """Optimize the storage of image blobs by delegating to the canonical field"""
 
+from plone.api.env import adopt_user
 import logging
 
 from Acquisition import aq_base, aq_parent
@@ -195,26 +196,29 @@ def image_field_indexer(obj):
     """Indexer for knowing in a catalog search if a content has any image."""
 
     image_field = ""
-    lang = ILanguage(obj).get_language()
 
-    if lang == "en":
-        base_obj = aq_base(obj)
-    else:
-        tm = ITranslationManager(obj)
-        canonical = tm.get_translation("en")
-        if canonical is None:
-            return image_field
-        base_obj = aq_base(canonical)
+    # we need adopt_user because indexer is executed at end of the transaction
+    # and we use a fake authentication in the @@save-translation page
+    with adopt_user(username="admin"):
+        lang = ILanguage(obj).get_language()
+        if lang == "en":
+            base_obj = aq_base(obj)
+        else:
+            tm = ITranslationManager(obj)
+            canonical = tm.get_translation("en")
+            if canonical is None:
+                return image_field
+            base_obj = aq_base(canonical)
 
-    if (
-        getattr(base_obj, "preview_image_link", False)
-        and not base_obj.preview_image_link.isBroken()
-    ):
-        image_field = "preview_image_link"
-    elif getattr(base_obj, "preview_image", False):
-        image_field = "preview_image"
-    elif getattr(base_obj, "image", False):
-        image_field = "image"
+        if (
+            getattr(base_obj, "preview_image_link", False)
+            and not base_obj.preview_image_link.isBroken()
+        ):
+            image_field = "preview_image_link"
+        elif getattr(base_obj, "preview_image", False):
+            image_field = "preview_image"
+        elif getattr(base_obj, "image", False):
+            image_field = "image"
     return image_field
 
 
