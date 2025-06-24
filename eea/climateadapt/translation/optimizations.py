@@ -82,9 +82,11 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
             return super().__call__()
 
         tm = ITranslationManager(self.context)
-        canonical = tm.get_translation("en")
-        if canonical is None:
-            return
+        canonical = None
+        with adopt_user(username="admin"):
+            canonical = tm.get_translation("en")
+            if canonical is None:
+                return
 
         self.canonical = canonical
         image = self.field.get(canonical)
