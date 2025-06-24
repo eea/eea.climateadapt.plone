@@ -362,6 +362,7 @@ ul li {
             <th style="width: 10em;" i18n:translate="">Hazard type</th>
             <th style="width: 10em;" i18n:translate="">Acute/Chronic</th>
             <th i18n:translate="">Observed climate hazards</th>
+            <th style="width: 10em;" i18n:translate="">Occurrence</th>
           </tr>
         </thead>
         <tbody tal:content="structure items/observedHtml">
@@ -611,7 +612,7 @@ ul li {
       </tal:cond>
 
       <tal:rep tal:repeat="item view/get_sorted_available_practices_data">
-        <tal:block tal:define="fieldset_legend item/Id;
+        <tal:block tal:define="fieldset_legend item/Title;
                       fieldset_data item/DescribeGoodPractice;
                       id repeat/item/index;
                       ">
@@ -706,24 +707,27 @@ ul li {
       </tal:block>
       </tal:cond>
 
+
+
+
     <div tal:define="id string:Sub_National_AvailableGoodPractices" tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing">
       <h2 class="country-header">Good practices and lessons learnt</h2>
       <div class="panel panel-default" tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices">
+      <div tal:define="line python:item['DescribeGoodPractice'].split('\n')">
         <!-- TODO CHECK IF THE BELLOW CONDITION REMAIN -->
-        <div tal:condition="python: 'Title' in item" class="panel-heading" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-heading">
+        <div class="panel-heading" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-heading">
           <h4 class="panel-title">
             <a class="accordion-toggle tiny-acchead" tal:attributes="href string:#accordion_sn_agp_${repeat/item/index}-body" data-toggle="collapse">
-            <span tal:content="item/Title">Available Good Practices</span></a>
+            <span tal:content="python: line[0]">Available Good Practices</span></a>
           </h4>
         </div>
         <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-body">
           <div class="panel-body">
             <!-- TODO CHECK IF THE BELLOW CONDITION REMAIN -->
-            <p tal:condition="python: 'Area' in item"><strong tal:content="item/Area"></strong></p>
-            <p tal:content="structure python:item['DescribeGoodPractice'].replace('\n', '<br>')"></p>
+            <p tal:content="structure python:'<br>'.join(line[1:])"></p>
           </div>
         </div>
-
+      </div>
       </div>
       </div>
 

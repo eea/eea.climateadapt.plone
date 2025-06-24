@@ -826,6 +826,13 @@ class CountryProfileData(BrowserView):
             "AvailableGoodPractices", []
         )
 
+        # import pdb
+        # pdb.set_trace()
+        for index, item in enumerate(items):
+            if 'Title' not in item:
+                data = item['DescribeGoodPractice'].split('\n')
+                items[index]['Title'] = data[0]
+                items[index]['DescribeGoodPractice'] = '\n'.join(data[1:])
         return items
         # TODO in 2025 for the moment we do not have title
         sorted_items = sorted(items, key=lambda i: i["Id"])
@@ -918,8 +925,8 @@ class CountryProfileData(BrowserView):
                 group = "Solid mass"
             if group not in list(response[occurence].keys()):
                 response[occurence][group] = {
-                    "AC": {"hazards": [], "trend": []},
-                    "CH": {"hazards": [], "trend": []},
+                    "AC": {"hazards": [], "trend": [], "occurrences": []},
+                    "CH": {"hazards": [], "trend": [], "occurrences": []},
                 }
             accuteChronic = item["Type"]
             event = item["Event"]
@@ -930,6 +937,8 @@ class CountryProfileData(BrowserView):
             # if event not in response[occurence][group][accuteChronic]['hazards']:
             response[occurence][group][accuteChronic]["hazards"].append(
                 item["Event"])
+            response[occurence][group][accuteChronic]["occurrences"].append(
+                item["Occurrence"])
             # countItems[ group] += 1
             if occurence == "Future":
                 response[occurence][group][accuteChronic]["trend"].append(
@@ -961,18 +970,32 @@ class CountryProfileData(BrowserView):
                     if countAC
                     else "" + "</td>"
                 )
+                observedHtml += (
+                    "<td"
+                    + className
+                    + ">"
+                    + response["Observed"][hazardType]["AC"]["occurrences"][0]
+                    if countAC
+                    else "" + "</td>"
+                )
                 observedHtml += "</tr>"
                 hazards = response["Observed"][hazardType]["AC"]["hazards"][1:]
+                occurrences = response["Observed"][hazardType]["AC"]["occurrences"][1:]
                 for idx in range(len(hazards)):
                     # import pdb; pdb.set_trace()
                     className = ' class="bb1"' if idx + \
                         1 == len(hazards) else ""
+                    observedHtml += "<tr>"
                     observedHtml += (
-                        "<tr><td" + className + ">" +
-                        hazards[idx] + "</td></tr>"
+                        "<td" + className + ">" +
+                        hazards[idx] + "</td>"
                     )
+                    observedHtml += (
+                        "<td" + className + ">"+occurrences[idx]+"</td>"
+                    )
+                    observedHtml += "</tr>"
             else:
-                observedHtml += "<td class='bb1'/></tr>"
+                observedHtml += "<td class='bb1'/><td class='bb1'/></tr>"
 
             observedHtml += "<tr>"
             observedHtml += (
@@ -989,17 +1012,30 @@ class CountryProfileData(BrowserView):
                     + response["Observed"][hazardType]["CH"]["hazards"][0]
                     + "</td>"
                 )
+                observedHtml += (
+                    "<td"
+                    + className
+                    + ">"
+                    + response["Observed"][hazardType]["CH"]["occurrences"][0]
+                    + "</td>"
+                )
                 observedHtml += "</tr>"
                 hazards = response["Observed"][hazardType]["CH"]["hazards"][1:]
+                occurrences = response["Observed"][hazardType]["CH"]["occurrences"][1:]
                 for idx in range(len(hazards)):
                     className = ' class="bb1"' if idx + \
                         1 == len(hazards) else ""
+                    observedHtml += "<tr>"
                     observedHtml += (
-                        "<tr><td" + className + ">" +
-                        hazards[idx] + "</td></tr>"
+                        "<td" + className + ">" +
+                        hazards[idx] + "</td>"
                     )
+                    observedHtml += (
+                        "<td" + className + ">" + occurrences[idx] + "</td>"
+                    )
+                    observedHtml += "</tr>"
             else:
-                observedHtml += "<td class='bb1'/></tr>"
+                observedHtml += "<td class='bb1'/><td class='bb1'/></tr>"
 
         futureHtml = ""
         for hazardType in response["Future"]:
