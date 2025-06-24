@@ -804,7 +804,13 @@ class CountryProfileData(BrowserView):
         if "Id" in items:
             items = [items]
 
-        return items
+        sorted_items = sorted(
+            items,
+            key=lambda i: (i['SectorDescribe'], i['SectorDescribe']
+                           if 'SectorDescribe' in i else '')
+        )
+
+        return sorted_items
 
     def get_sorted_action_measures_data(self):
         if not self.processed_data["Strategies_Plans"]:
