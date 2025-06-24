@@ -46,9 +46,11 @@ class LanguageAwareLeadImage:
             return self.context.image
         else:
             tm = ITranslationManager(self.context)
-            canonical = tm.get_translation("en")
-            if canonical is not None:
-                return canonical.image
+
+            with adopt_user(username="admin"):
+                canonical = tm.get_translation("en")
+                if canonical is not None:
+                    return canonical.image
 
     @image.setter
     def image(self, value):
