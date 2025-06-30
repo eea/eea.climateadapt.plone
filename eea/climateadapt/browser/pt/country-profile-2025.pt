@@ -516,7 +516,9 @@ ul li {
                         <tr>
                           <td style="width: 14em;" i18n:translate="">Description</td>
                           <td>
-                            <div style="padding: 5px;"
+                            <div style="padding: 5px;" tal:condition="item/shortDescriptionMeasureAction | nothing"
+                                 tal:content="structure python: view.convert_web_int(item['shortDescriptionMeasureAction'])">long text</div>
+                            <div style="padding: 5px;" tal:condition="item/ShortDescriptionMeasureAction | nothing"
                                  tal:content="structure python: view.convert_web_int(item['ShortDescriptionMeasureAction'])">long text</div>
                           </td>
                         </tr>
