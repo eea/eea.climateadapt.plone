@@ -709,26 +709,24 @@ ul li {
 
 
 
-    <div tal:define="id string:Sub_National_AvailableGoodPractices" tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing">
       <h2 class="country-header">Good practices and lessons learnt</h2>
-      <div class="panel panel-default" tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices">
-      <div tal:define="line python:item['DescribeGoodPractice'].split('\n')">
-        <!-- TODO CHECK IF THE BELLOW CONDITION REMAIN -->
-        <div class="panel-heading" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-heading">
-          <h4 class="panel-title">
-            <a class="accordion-toggle tiny-acchead" tal:attributes="href string:#accordion_sn_agp_${repeat/item/index}-body" data-toggle="collapse">
-            <span tal:content="python: line[0]">Available Good Practices</span></a>
-          </h4>
-        </div>
-        <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-body">
-          <div class="panel-body">
-            <!-- TODO CHECK IF THE BELLOW CONDITION REMAIN -->
-            <p tal:content="structure python:'<br>'.join(line[1:])"></p>
+
+
+        <div class="panel panel-default" tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices"  tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing">
+          <div class="panel-heading" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-heading">
+            <h4 class="panel-title">
+              <a class="accordion-toggle tiny-acchead" tal:attributes="href string:#accordion_sn_agp_${repeat/item/index}-body" data-toggle="collapse">
+                <span tal:content="item/Title" i18n:translate="">Biogeophysical characteristics</span>
+              </a>
+            </h4>
+          </div>
+          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-body">
+            <div class="panel-body">
+              <div tal:content="item/DescribeGoodPractice">Data here</div>
+            </div>
           </div>
         </div>
-      </div>
-      </div>
-      </div>
+
 
       <!-- <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
                     fieldset_data data/Sub_National_Adaptation/OverviewMeasures;fieldset_key string:1">
