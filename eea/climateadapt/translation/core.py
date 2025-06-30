@@ -272,7 +272,7 @@ def sync_translation_state(trans_obj, en_obj):
     try:
         state = api.content.get_state(en_obj)
     except WorkflowException:
-        logger.error("Can't get state for original object: %s", en_obj)
+        logger.debug("Can't get state for original object: %s", en_obj)
         pass
 
     if state in ["published", "archived"]:
