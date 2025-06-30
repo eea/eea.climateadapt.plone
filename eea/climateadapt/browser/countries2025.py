@@ -1237,24 +1237,31 @@ class CountryProfileData(BrowserView):
         # pdb.set_trace()
         if 'Website' in processed_data['Contact']:
             line = {'Organisation': items.get(
-                'Organisation', ''), 'Department': '', 'Website': ''}
+                'Organisation', ''), 'Department': '', 'Website': '', 'Publications': []}
             for website in items.get('Website', []):
                 if 'National level' == website.get('Level', ''):
                     webUrl = website.get('Url', '')
                     if len(webUrl) > 1 and not webUrl.startswith("http"):
                         webUrl = 'http://'+webUrl
                     line['Website'] = webUrl
+            for publication in items.get('Publications', []):
+                line['Publications'].append(
+                    {'Publisher': publication.get('Publisher', ''), 'Title': publication.get('TitleEnglish', ''), 'Website': publication.get('WebLink', '')})
             response.append(line)
         else:
             for item in items:
                 line = {'Organisation': item.get('Organisation', ''), 'Department': item.get(
-                    'Department', ''), 'Website': ''}
+                    'Department', ''), 'Website': '', 'Publications': []}
                 for website in item.get('Website', []):
                     if 'National level' == website.get('Level', ''):
                         webUrl = website.get('Url', '')
                         if len(webUrl) > 1 and not webUrl.startswith("http"):
                             webUrl = 'http://'+webUrl
                         line['Website'] = webUrl
+                # pdb.set_trace()
+                for publication in item.get('Publications', []):
+                    line['Publications'].append(
+                        {'Publisher': publication.get('Publisher', ''), 'Title': publication.get('TitleEnglish', ''), 'Website': publication.get('WebLink', '')})
                 response.append(line)
         # pdb.set_trace()
         return response

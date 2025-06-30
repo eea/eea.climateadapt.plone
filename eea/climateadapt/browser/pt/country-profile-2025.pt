@@ -748,6 +748,10 @@ ul li {
             <h3 style="margin-bottom:3px;" tal:content="item/Organisation">Organisation</h3>
             <p style="margin-bottom:0px;" tal:content="item/Department" tal:condition="python: 'Department' in item">Department within the organisation</p>
             <a tal:attributes="href python:item['Website']" tal:content="item/Website">Website</a>
+            <div tal:repeat="publication item/Publications" style="margin-left:20px;margin-top:10px;">
+              <p tal:content="publication/Publisher"></p>
+              <a tal:content="publication/Title" tal:attributes="href publication/Website" href=""></a>
+            </div>
           </div>
           </div>
       </tal>
