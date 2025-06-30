@@ -715,14 +715,14 @@ ul li {
 
 
         <div class="panel panel-default" tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices"  tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing">
-          <div class="panel-heading" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-heading" tal:condition="item/Title | nothing" >
-            <h4 class="panel-title">
+          <div class="panel-heading" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-heading" >
+            <h4 class="panel-title" tal:define="Title item/Title | nothing" >
               <a class="accordion-toggle tiny-acchead" tal:attributes="href string:#accordion_sn_agp_${repeat/item/index}-body" data-toggle="collapse">
-                <span tal:content="item/Title" i18n:translate="">Biogeophysical characteristics</span>
+                <span tal:content="Title" i18n:translate="">Biogeophysical characteristics</span>
               </a>
             </h4>
           </div>
-          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-body" tal:condition="item/Title | nothing">
+          <div class="panel-collapse tiny-accbody collapse" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-body" >
             <div class="panel-body">
               <div tal:content="structure python: view.convert_web_int(item['DescribeGoodPractice'])">Data here</div>
             </div>
