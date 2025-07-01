@@ -12,35 +12,19 @@ from z3c.form.interfaces import IAddForm, IEditForm  # , IFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import Interface, alsoProvides  # , implementer
 from zope.schema import (
+    URI,
     Bool,
     Choice,
     Date,
-    Datetime,
     List,
     Text,
     TextLine,
     Tuple,
-    URI,
 )
-from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
+
 from eea.climateadapt import CcaAdminMessageFactory as _
 
-
-# from eea.climateadapt import CcaAdminMessageFactory as _
-# from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
-# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-# from plone.app.widgets.interfaces import IWidgetsLayer
-# from plone.directives import form
-# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-# from zope.component import adapter
-# from collective import dexteritytextindexer
-# from z3c.form.util import getSpecification
-# from z3c.form.widget import FieldWidget
-# from plone.supermodel import model
-# from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
-
-
-# from z3c.relationfield.schema import RelationChoice
+from .volto_layout import aceproject_layout_blocks, aceproject_layout_items
 
 GEOCHARS = {
     "geoElements": {
@@ -58,67 +42,6 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     """
     Defines content-type schema for Ace Project
     """
-
-    # dexteritytextindexer.searchable("acronym")
-    # dexteritytextindexer.searchable("title")
-    # dexteritytextindexer.searchable("lead")
-    # dexteritytextindexer.searchable("partners")
-    # dexteritytextindexer.searchable("keywords")
-    # dexteritytextindexer.searchable("sectors")
-    # dexteritytextindexer.searchable("climate_impacts")
-    # dexteritytextindexer.searchable("elements")
-    # dexteritytextindexer.searchable("funding")
-    # dexteritytextindexer.searchable("duration")
-
-    # dexteritytextindexer.searchable("websites")
-    # dexteritytextindexer.searchable("source")
-
-    # dexteritytextindexer.searchable("geochars")
-
-    # dexteritytextindexer.searchable('specialtagging')
-    # dexteritytextindexer.searchable("special_tags")
-    # dexteritytextindexer.searchable("important")
-    # dexteritytextindexer.searchable("spatial_layer")
-    # dexteritytextindexer.searchable("spatial_values")
-
-    # form.fieldset(
-    #     "default",
-    #     label="Item Description",
-    #     fields=[
-    #         "acronym",
-    #         "title",
-    #         "lead",
-    #         "long_description",
-    #         "partners",
-    #         "keywords",
-    #         "sectors",
-    #         "climate_impacts",
-    #         "elements",
-    #         "funding",
-    #         "funding_programme",
-    #         "duration",
-    #         "featured",
-    #     ],
-    # )
-    #
-    # form.fieldset(
-    #     "reference_information",
-    #     label="Reference information",
-    #     fields=["websites", "source", "special_tags", "partners_source_link"],
-    # )
-    #
-    # form.fieldset(
-    #     "geographic_information",
-    #     label="Geographic Information",
-    #     fields=["geochars", "comments"],
-    # )
-    #
-    # form.fieldset(
-    #     "inclusion",
-    #     label="Inclusion in the subsites",
-    #     fields=["include_in_observatory",
-    #             "include_in_mission", "health_impacts"],
-    # )
 
     # -----------[ "default" fields ]------------------
 
@@ -309,12 +232,6 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
         required=False,
     )
 
-    # featured = Bool(
-    #     title=_("Featured"),
-    #     required=False,
-    #     default=False,
-    # )
-
     # -----------[ "reference_information" fields ]------------------
     directives.widget("websites", TextLinesWidget)
     websites = Tuple(
@@ -370,26 +287,7 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     directives.omitted(IAddForm, "id")
     directives.omitted(IEditForm, "id")
 
-    # directives.omitted(IEditForm, 'special_tags')
-    # directives.omitted(IAddForm, 'special_tags')
-    # directives.omitted(IEditForm, "rating")
-    # directives.omitted(IAddForm, "rating")
-    # directives.omitted(IAddForm, "modification_date")
-    # directives.omitted(IEditForm, "modification_date")
-    # directives.omitted(IAddForm, "creation_date")
-    # directives.omitted(IEditForm, "creation_date")
-
     # end
-
-    # creation_date = Datetime(
-    #     title=_("Created"),
-    #     required=False,
-    # )
-    #
-    # modification_date = Datetime(
-    #     title=_("Last Modified"),
-    #     required=False,
-    # )
 
     id = TextLine(
         title=_("Object ID"),
@@ -403,12 +301,6 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
         ),
         required=False,
     )
-
-    # special_tags = TextLine(
-    #     title=_(u"Special Tagging"),
-    #     description=_(u"Special tags that allow for linking the item"),
-    #     required=False,
-    #     )
 
     special_tags = Tuple(
         title=_("Special tagging"),
@@ -466,22 +358,6 @@ class IAceProject(Interface, IImageScaleTraversable, IBlocks):
     )
 
 
-# @adapter(getSpecification(IAceProject["keywords"]), IWidgetsLayer)
-# @implementer(IFieldWidget)
-# def KeywordsFieldWidget(field, request):
-#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-#     widget.vocabulary = "eea.climateadapt.keywords"
-#     return widget
-
-
-# @adapter(getSpecification(IAceProject["special_tags"]), IWidgetsLayer)
-# @implementer(IFieldWidget)
-# def SpecialTagsFieldWidget(field, request):
-#     widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-#     widget.vocabulary = "eea.climateadapt.special_tags"
-#     return widget
-
-
 alsoProvides(IAceProject["acronym"], ILanguageIndependentField)
 alsoProvides(IAceProject["climate_impacts"], ILanguageIndependentField)
 alsoProvides(IAceProject["comments"], ILanguageIndependentField)
@@ -493,13 +369,11 @@ alsoProvides(IAceProject["funding_programme"], ILanguageIndependentField)
 alsoProvides(IAceProject["geochars"], ILanguageIndependentField)
 alsoProvides(IAceProject["health_impacts"], ILanguageIndependentField)
 alsoProvides(IAceProject["id"], ILanguageIndependentField)
-alsoProvides(IAceProject["image"], ILanguageIndependentField)
 alsoProvides(IAceProject["important"], ILanguageIndependentField)
 alsoProvides(IAceProject["include_in_mission"], ILanguageIndependentField)
 alsoProvides(IAceProject["include_in_observatory"], ILanguageIndependentField)
 alsoProvides(IAceProject["keywords"], ILanguageIndependentField)
 alsoProvides(IAceProject["lead"], ILanguageIndependentField)
-alsoProvides(IAceProject["logo"], ILanguageIndependentField)
 alsoProvides(IAceProject["origin_website"], ILanguageIndependentField)
 alsoProvides(IAceProject["partners"], ILanguageIndependentField)
 alsoProvides(IAceProject["partners_source_link"], ILanguageIndependentField)
@@ -510,6 +384,11 @@ alsoProvides(IAceProject["spatial_values"], ILanguageIndependentField)
 alsoProvides(IAceProject["special_tags"], ILanguageIndependentField)
 alsoProvides(IAceProject["specialtagging"], ILanguageIndependentField)
 alsoProvides(IAceProject["websites"], ILanguageIndependentField)
+
+# blobs are handled by field serializer
+# alsoProvides(IAceProject["image"], ILanguageIndependentField)
+# alsoProvides(IAceProject["logo"], ILanguageIndependentField)
+#
 # alsoProvides(IAceProject["modification_date"], ILanguageIndependentField)
 # alsoProvides(IAceProject["rating"], ILanguageIndependentField)
 # alsoProvides(IAceProject["creation_date"], ILanguageIndependentField)

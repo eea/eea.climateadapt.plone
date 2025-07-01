@@ -1017,6 +1017,10 @@ msgid "Extreme Temperatures"
 msgstr "Temperaturi estremi"
 
 #: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr "Kesħa estrema"
+
+#: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
 msgstr "Sħana estrema"
 

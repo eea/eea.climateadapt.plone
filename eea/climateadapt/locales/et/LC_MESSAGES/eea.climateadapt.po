@@ -1017,6 +1017,10 @@ msgid "Extreme Temperatures"
 msgstr "Äärmuslikud temperatuurid"
 
 #: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr "Äärmiselt külm"
+
+#: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
 msgstr "Äärmuslik kuumus"
 

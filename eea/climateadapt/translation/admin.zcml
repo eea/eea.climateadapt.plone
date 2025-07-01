@@ -14,6 +14,14 @@
 
   <browser:page
     for="*"
+    class=".admin.HTMLIngestion"
+    name="ingest-html"
+    permission="cmf.ManagePortal"
+    template="pt/ingest.pt"
+  />
+
+  <browser:page
+    for="*"
     template="pt/see_folder_objects_view.pt"
     name="see_folder_objects_view"
     permission="cmf.ManagePortal"
@@ -52,6 +60,48 @@
     name="fix_folder_order"
     permission="cmf.ManagePortal"
     class=".admin.FixFolderOrder"
+  />
+
+  <browser:page
+    for="*"
+    name="cleanup_folder_order"
+    permission="cmf.ManagePortal"
+    class=".admin.CleanupFolderOrder"
+  />
+
+  <browser:page
+    for="*"
+    name="delete_field"
+    permission="cmf.ManagePortal"
+    class=".admin.DeleteTranslationField"
+  />
+
+  <browser:page
+    for="*"
+    name="fix_catalog"
+    permission="cmf.ManagePortal"
+    class=".admin.FixCatalog"
+  />
+
+  <browser:page
+    for="*"
+    name="remove_rid"
+    permission="cmf.ManagePortal"
+    class=".admin.RemoveRid"
+  />
+
+  <browser:page
+    for="*"
+    name="remove_unmatched_translations"
+    permission="cmf.ManagePortal"
+    class=".admin.RemoveUnmatchedTranslations"
+  />
+
+  <browser:page
+    for="*"
+    name="site_remove_unmatched_translations"
+    permission="cmf.ManagePortal"
+    class=".admin.SiteRemoveUnmatchedTranslations"
   />
 
   <browser:page

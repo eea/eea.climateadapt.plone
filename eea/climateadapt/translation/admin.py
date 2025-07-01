@@ -1,23 +1,109 @@
+import json
 import logging
+from urllib.parse import parse_qs, urlparse
 
 from BTrees.OIBTree import OIBTree
 from persistent.list import PersistentList
+from plone import schema
+from plone.api import content, portal
 from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
-from plone.app.multilingual.interfaces import ITranslationManager
+from plone.app.multilingual.interfaces import ITG, ITranslationManager
+from plone.app.multilingual.itg import ATTRIBUTE_NAME
+from plone.autoform.form import AutoExtensibleForm
+from plone.base.utils import base_hasattr
 from plone.dexterity.interfaces import IDexterityContainer
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
+from z3c.form import button, form
 from zope.annotation.interfaces import IAnnotations
-from zope.interface import alsoProvides
+from zope.interface import Interface, alsoProvides
 
 from eea.climateadapt.translation.core import find_untranslated, queue_translate
 from eea.climateadapt.utils import force_unlock
 
-from .core import queue_job
+from .core import ingest_html, queue_job, setup_translation_object
 from .utils import get_site_languages
 
 logger = logging.getLogger("eea.climateadapt.translation")
+
+
+class IIngestForm(Interface):
+    text = schema.Text(
+        title="HTML",
+    )
+
+
+class HTMLIngestion(AutoExtensibleForm, form.Form):
+    schema = IIngestForm
+    ignoreContext = True
+
+    label = "Ingest JSON"
+    description = "Object with keys jobData, copied from bull dashboard"
+
+    def extractData(self, setErrors=True):
+        data, errors = super().extractData(setErrors)
+        jobData = json.loads(data["text"])["jobData"]
+        return jobData, errors
+
+    def applyChanges(self, data):
+        html = data["html"]
+        path = data["obj_path"]
+
+        url = f"https://climateadapt.com/{path}"
+        parsed_url = urlparse(url)
+        path = parsed_url.path
+        query_params = parse_qs(parsed_url.query)
+        language = query_params["language"][0]
+
+        if not (html and path):
+            return self.index()
+
+        site_portal = portal.getSite()
+
+        en_obj = site_portal.unrestrictedTraverse(path)
+
+        trans_obj = setup_translation_object(en_obj, language, self.request)
+
+        ingest_html(trans_obj, html)
+        return {"ok": True}
+
+    @button.buttonAndHandler("Ok")
+    def handleApply(self, action):
+        data, errors = self.extractData()
+        # import pdb
+        #
+        # pdb.set_trace()
+        if errors:
+            self.status = self.formErrorsMessage
+            return
+
+        self.applyChanges(data)
+        self.status = "Saved"
+
+    @button.buttonAndHandler("Cancel")
+    def handleCancel(self, action):
+        """User cancelled. Redirect back to the front page."""
+
+
+# class HTMLIngestion(BrowserView):
+#     """A special view to allow manually submit an HTML translated by
+#     eTranslation, but that wasn't properly submitted through the callback"""
+#
+#     def __call__(self):
+#         alsoProvides(self.request, IDisableCSRFProtection)
+#         # self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+#
+#         html = self.request.form.get("html", "")
+#         path = self.request.form.get("path", "")
+#
+#         if not (html and path):
+#             return self.index()
+#
+#         site = portal.getSite()
+#         trans_obj = site.unrestrictedTraverse(path)
+#         ingest_html(trans_obj, html)
+#         return "ok"
 
 
 class TranslateObjectAsync(BrowserView):
@@ -127,8 +213,7 @@ class FixFolderOrder(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
         path = "/".join(self.context.getPhysicalPath())
-        brains = self.context.portal_catalog.searchResults(
-            sort_on="path", path=path)
+        brains = self.context.portal_catalog.searchResults(sort_on="path", path=path)
 
         for brain in brains:
             obj = brain.getObject()
@@ -143,8 +228,7 @@ class FixFolderOrder(BrowserView):
 
             if language is None:
                 logger.warning(
-                    "Language is set to None for %s", "/".join(
-                        obj.getPhysicalPath())
+                    "Language is set to None for %s", "/".join(obj.getPhysicalPath())
                 )
                 continue
 
@@ -187,8 +271,7 @@ class FixFolderOrder(BrowserView):
                     # was the object translated with another id?
                     other = canonical._getOb(id)
                     try:
-                        trans = ITranslationManager(
-                            other).get_translation(language)
+                        trans = ITranslationManager(other).get_translation(language)
                     except TypeError:
                         logger.warning(
                             "Object not translatable: %s",
@@ -251,8 +334,7 @@ class FixFolderOrder(BrowserView):
                     # was the object translated with another id?
                     other = canonical._getOb(id)
                     try:
-                        trans = ITranslationManager(
-                            other).get_translation(language)
+                        trans = ITranslationManager(other).get_translation(language)
                     except TypeError:
                         logger.warning(
                             "Object not translatable: %s",
@@ -304,6 +386,9 @@ class SeeTranslationStatus(BrowserView):
         "FrontpageSlide",
     ]
 
+    def good_lang_codes(self):
+        return get_site_languages()
+
     def find_untranslated(self, obj):
         tm = ITranslationManager(obj)
         translations = tm.get_translations()
@@ -323,7 +408,7 @@ class SeeTranslationStatus(BrowserView):
         brains = context.portal_catalog.searchResults(
             path="/".join(context.getPhysicalPath()),
             sort="path",
-            review_state="published",
+            # review_state="published",
         )
 
         result = []
@@ -396,3 +481,317 @@ class SyncTranslationPaths(BrowserView):
                     "lifo": False,
                 }
                 queue_job("sync_paths", "sync_translated_paths", data, opts)
+
+
+class CleanupFolderOrder(BrowserView):
+    ORDER_KEY = "plone.folder.ordered.order"
+    POS_KEY = "plone.folder.ordered.pos"
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        context = self.context
+        has = base_hasattr
+
+        def fixObject(obj, path):
+            if has(obj, "_tree") and has(obj, "__annotations__"):
+                folder_keys = tuple(obj._tree.keys())
+                order = obj.__annotations__.get(self.ORDER_KEY)
+
+                if order:
+                    logger.debug(f"Processing {path}")
+
+                    fixed_order = []
+                    for k in order:
+                        if (k in folder_keys) and (k not in fixed_order):
+                            fixed_order.append(k)
+                    for k in folder_keys:
+                        if k not in fixed_order:
+                            fixed_order.append(k)
+                    fixed_order = tuple(fixed_order)
+
+                    if fixed_order != tuple(order):
+                        obj_path = "/".join(obj.getPhysicalPath())
+                        logger.info(f"Fixing position for {obj_path}")
+                        obj.__annotations__[self.ORDER_KEY] = PersistentList(
+                            fixed_order
+                        )
+                        trans_pos = OIBTree()
+                        for i, k in enumerate(fixed_order):
+                            trans_pos[k] = i
+                        obj.__annotations__[self.POS_KEY] = trans_pos
+                        obj.__annotations__._p_changed = True
+
+        fixObject(context, "")
+        site = portal.get()
+        site.ZopeFindAndApply(context, search_sub=True, apply_func=fixObject)
+
+        return "done"
+
+
+def remove_rid(rid, catalog):
+    """Nukes a rid (-112343454) from catalog"""
+
+    _catalog = catalog._catalog
+
+    logger.info(f"Removing metadata for {rid}")
+    for uid, value in _catalog.uids.items():
+        if value == rid:
+            del _catalog.uids[uid]
+    if rid in _catalog.data:
+        del _catalog.data[rid]
+
+    for iname, index in _catalog.indexes.items():
+        logger.info(f"Removing from {iname}")
+        index.unindex_object(rid)
+
+
+class RemoveUnmatchedTranslations(BrowserView):
+    """Find the equivalent path of translations. If they're not in the same translation group, delete them"""
+
+    def fixObject(self, obj, path, force_delete=False):
+        # logger.debug(f"Looking at {path}")
+        obj_path_bits = list(obj.getPhysicalPath())
+        obj_path = "/".join(obj_path_bits)
+
+        try:
+            trans_tg = str(ITG(obj))
+        except TypeError:
+            logger.warning(f"Not in a tg {obj_path}")
+            return
+
+        en_path = obj_path_bits[:]
+        en_path[2] = "en"
+        en_obj_path = "/".join(en_path)
+        en_obj = content.get(en_obj_path)
+
+        if en_obj is None:
+            logger.warning(f"EN obj not found on this path: {'/'.join(en_path)}")
+
+            if force_delete:
+                delattr(obj, ATTRIBUTE_NAME)
+                content.delete(obj=obj, check_linkintegrity=False)
+            return
+
+        en_obj_path = "/".join(en_obj.getPhysicalPath())
+
+        try:
+            en_tg = str(ITG(en_obj))
+        except TypeError:
+            logger.warning(f"Something strange with this: {en_obj_path}")
+            return
+
+        if trans_tg != en_tg:
+            logger.warning(f"Unmatched translation path {obj_path}")
+            if force_delete:
+                try:
+                    delattr(obj, ATTRIBUTE_NAME)
+                    content.delete(obj=obj, check_linkintegrity=False)
+                except Exception as e:
+                    logger.warning(f"Could not delete: {e}")
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        self.request.translation_info = {"tg": "notg"}
+        force_delete = bool(self.request.form.get("delete"))
+
+        context = self.context
+        catalog = context.portal_catalog
+
+        brains = catalog.unrestrictedSearchResults(
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
+            # review_state="published",
+        )
+        for i, rid in enumerate(brains._seq):
+            try:
+                brain = brains._func(rid)
+            except Exception as e:
+                logger.warning(f"Could not retrieve brain {rid}: {e}")
+                remove_rid(rid, catalog)
+                continue
+            try:
+                obj = brain.getObject()
+                path = "/".join(obj.getPhysicalPath())
+                self.fixObject(obj, path, force_delete)
+            except Exception as e:
+                logger.warning(f"Could not process {e} ")
+                continue
+
+        logger.info("Done")
+        return "done"
+
+
+class SiteRemoveUnmatchedTranslations(RemoveUnmatchedTranslations):
+    def fix_language(self, context, force_delete):
+        catalog = context.portal_catalog
+        brains = catalog.unrestrictedSearchResults(
+            path="/".join(context.getPhysicalPath()),
+            sort="path",
+            # review_state="published",
+        )
+        for i, rid in enumerate(brains._seq):
+            try:
+                brain = brains._func(rid)
+            except Exception as e:
+                logger.warning(f"Could not retrieve brain {rid}: {e}")
+                remove_rid(rid, catalog)
+                continue
+            try:
+                obj = brain.getObject()
+                path = "/".join(obj.getPhysicalPath())
+                self.fixObject(obj, path, force_delete)
+            except Exception as e:
+                logger.warning(f"Could not process {e} ")
+                continue
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        self.request.translation_info = {"tg": "notg"}
+        force_delete = bool(self.request.form.get("delete"))
+
+        site = portal.get()
+        for lang in get_site_languages():
+            if lang == "en":
+                continue
+            context = site[lang]
+            self.fix_language(context, force_delete)
+
+        logger.info("Done")
+        return "done"
+
+
+class FixCatalog(BrowserView):
+    def resolve_url(self, path):
+        path = path.replace("//cca/", "/cca/")
+        try:
+            obj = self.context.unrestrictedTraverse(path)
+            pp = "/".join(obj.getPhysicalPath())
+            assert pp == path
+            # print(pp)
+            return obj
+        except Exception:
+            print(f"Resolving failed for {path}")
+            return None
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        catalog = self.context.portal_catalog
+        self._catalog = catalog._catalog
+
+        paths = self._catalog.paths
+        uids = self._catalog.uids
+        unchanged = 0
+        fixed = []
+        removed = []
+
+        for path, rid in uids.items():
+            ob = None
+            # if path[:1] == "/":
+            #     ob = self.resolve_url(path[1:])
+            ob = self.resolve_url(path)
+            if ob is None:
+                removed.append(path)
+                continue
+            ppath = "/".join(ob.getPhysicalPath())
+            if path != ppath:
+                fixed.append((path, ppath))
+            else:
+                unchanged = unchanged + 1
+
+        for path, ppath in fixed:
+            rid = uids[path]
+            del uids[path]
+            paths[rid] = ppath
+            uids[ppath] = rid
+
+        logger.info(f"To be removed: {len(removed)}")
+
+        for path in removed:
+            logger.info(f"Removing path {path}")
+            catalog.uncatalog_object(path)
+            break
+
+        return "Done"
+
+
+class RemoveRid(BrowserView):
+    # def cleanup_path_index(self, index, rid):
+    #     for k, v in index._index.items():
+    #         if v == rid:
+    #             del index._index[k]
+    #
+    #     if rid in index._unindex:
+    #         del index._unindex[rid]
+    #
+    #     for k, v in index._index_parents.items():
+    #         if v == rid:
+    #             del index._index[k]
+    #
+    #     for k, v in index._index_items.items():
+    #         if v == rid:
+    #             del index._index[k]
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        rid = int(self.request.form.get("rid"))
+        catalog = self.context.portal_catalog
+        remove_rid(rid, catalog)
+
+        logger.info("Done")
+        return "Done"
+
+
+class DeleteTranslationField(BrowserView):
+    def fixObject(self, obj, fields):
+        path = "/".join(obj.getPhysicalPath())
+        assert obj.language != "en"
+        has = base_hasattr
+
+        dirty = False
+        for fieldname in fields:
+            if has(obj, fieldname):
+                logger.info(f"Removing {fieldname} from {path}")
+                delattr(obj, fieldname)
+                dirty = True
+
+        if dirty:
+            self.catalog.reindexObject(obj)
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        field = self.request.form.get("field", "image")
+        if field:
+            fields = [field]
+        else:
+            fields = [
+                "image",
+                "logo",
+                "primary_photo",
+                "promotional_image",
+                "preview_image",
+            ]
+        catalog = self.catalog = self.context.portal_catalog
+        brains = catalog.unrestrictedSearchResults(
+            path="/".join(self.context.getPhysicalPath()),
+            sort="path",
+            # review_state="published",
+        )
+        for i, rid in enumerate(brains._seq):
+            try:
+                brain = brains._func(rid)
+            except Exception as e:
+                logger.warning(f"Could not retrieve brain {rid}: {e}")
+                remove_rid(rid, catalog)
+                continue
+            try:
+                obj = brain.getObject()
+                self.fixObject(obj, fields)
+            except Exception as e:
+                logger.warning(f"Could not process {e} ")
+                continue

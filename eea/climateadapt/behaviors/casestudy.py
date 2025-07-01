@@ -85,8 +85,7 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
         ),
     )
 
-    directives.widget(
-        relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(relevance="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     relevance = List(
         title=_("Relevance"),
         required=True,
@@ -224,7 +223,9 @@ class ICaseStudy(IAceMeasure, IBlocks):  # , IGeolocatable):
 alsoProvides(ICaseStudy["relevance"], ILanguageIndependentField)
 alsoProvides(ICaseStudy["contact"], ILanguageIndependentField)
 alsoProvides(ICaseStudy["adaptationoptions"], ILanguageIndependentField)
-alsoProvides(ICaseStudy["primary_photo"], ILanguageIndependentField)
 alsoProvides(ICaseStudy["primary_photo_copyright"], ILanguageIndependentField)
+
+# blobs are handled by field serializer
+# alsoProvides(ICaseStudy["primary_photo"], ILanguageIndependentField)
 # alsoProvides(ICaseStudy["primephoto"], ILanguageIndependentField)
 # alsoProvides(ICaseStudy["supphotos"], ILanguageIndependentField)

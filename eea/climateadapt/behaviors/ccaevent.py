@@ -1,19 +1,9 @@
 import json
 
 from pkg_resources import resource_filename
-from plone.app.dexterity.behaviors.discussion import IAllowDiscussion
-from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
-from plone.app.dexterity.behaviors.metadata import IDublinCore
-from plone.app.event.dx.behaviors import (
-    IEventBasic,
-    IEventContact,
-    IEventLocation,
-    IEventRecurrence,
-)
 from plone.app.event.dx.interfaces import IDXEvent
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-from plone.app.versioningbehavior.behaviors import IVersionable
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.namedfile.field import NamedBlobImage, NamedFile
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
@@ -24,13 +14,7 @@ from zope.schema import Choice, TextLine
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 
-# from plone.autoform import directives
-# from z3c.form.interfaces import IAddForm, IEditForm
-# from zope import schema
-# URI, Bool, Date, Datetime, Int, List, Text,
-
-fpath = resource_filename("eea.climateadapt.behaviors",
-                          "volto_layout_cca_event.json")
+fpath = resource_filename("eea.climateadapt.behaviors", "volto_layout_cca_event.json")
 layout = json.load(open(fpath))
 
 
@@ -38,25 +22,6 @@ layout = json.load(open(fpath))
 @provider(IFormFieldProvider)
 class ICcaEvent(model.Schema, IDXEvent, IBlocks):
     """CcaEvent Interface"""
-
-    # model.fieldset(
-    #     "cca_event_info",
-    #     label=u"CCA Event details",
-    #     fields=[
-    #         "image",
-    #         "subtitle",
-    #         "online_event_url",
-    #         "agenda_file",
-    #         "agenda",
-    #         "background_documents",
-    #         "participation",
-    #         #"technical_guidance",
-    #         "event_language",
-    #         "online_registration",
-    #         "online_registration_message",
-    #         "online_registration_documents",
-    #     ],
-    # )
 
     image = NamedBlobImage(
         title=_("Thumbnail"),
@@ -77,11 +42,13 @@ class ICcaEvent(model.Schema, IDXEvent, IBlocks):
 
     agenda = RichText(title=_("Agenda"), required=False, default=None)
 
+    # TODO: why is this field not a NamedBlobFile?
     agenda_file = NamedFile(
         title=_("Agenda document"),
         required=False,
     )
 
+    # TODO: why is this field not a NamedBlobFile?
     background_documents = NamedFile(
         title=_("Background documents"),
         required=False,
@@ -94,16 +61,15 @@ class ICcaEvent(model.Schema, IDXEvent, IBlocks):
         vocabulary="eea.climateadapt.event_language",
     )
 
-    participation = RichText(title=_("Participation"),
-                             required=False, default=None)
+    participation = RichText(title=_("Participation"), required=False, default=None)
 
-    online_registration = TextLine(
-        title=_("Online registration (URL)"), required=False)
+    online_registration = TextLine(title=_("Online registration (URL)"), required=False)
 
     online_registration_message = RichText(
         title=_("Online registration message"), required=False, default=None
     )
 
+    # TODO: why is this field not a NamedBlobFile?
     online_registration_documents = NamedFile(
         title=_("Online registration documents"),
         required=False,
@@ -126,49 +92,15 @@ class ICcaEvent(model.Schema, IDXEvent, IBlocks):
     )
 
 
-alsoProvides(ICcaEvent["image"], ILanguageIndependentField)
 alsoProvides(ICcaEvent["online_event_url"], ILanguageIndependentField)
-alsoProvides(ICcaEvent["agenda_file"], ILanguageIndependentField)
-alsoProvides(ICcaEvent["background_documents"], ILanguageIndependentField)
 alsoProvides(ICcaEvent["event_language"], ILanguageIndependentField)
 alsoProvides(ICcaEvent["online_registration"], ILanguageIndependentField)
-alsoProvides(ICcaEvent["online_registration_documents"],
-             ILanguageIndependentField)
 
 
-alsoProvides(IEventContact["contact_name"], ILanguageIndependentField)
-alsoProvides(IEventContact["contact_email"], ILanguageIndependentField)
-alsoProvides(IEventContact["contact_phone"], ILanguageIndependentField)
-alsoProvides(IEventContact["event_url"], ILanguageIndependentField)
+# blobs are handled by field serializer
+# alsoProvides(ICcaEvent["image"], ILanguageIndependentField)
 
-
-alsoProvides(IDublinCore["subjects"], ILanguageIndependentField)
-alsoProvides(IDublinCore["creators"], ILanguageIndependentField)
-alsoProvides(IDublinCore["contributors"], ILanguageIndependentField)
-alsoProvides(IDublinCore["rights"], ILanguageIndependentField)
-
-
-alsoProvides(IEventLocation["location"], ILanguageIndependentField)
-
-
-alsoProvides(IEventBasic["start"], ILanguageIndependentField)
-alsoProvides(IEventBasic["end"], ILanguageIndependentField)
-alsoProvides(IEventBasic["whole_day"], ILanguageIndependentField)
-alsoProvides(IEventBasic["open_end"], ILanguageIndependentField)
-# alsoProvides(IEventBasic["timezone"], ILanguageIndependentField)
-alsoProvides(IEventBasic["sync_uid"], ILanguageIndependentField)
-
-
-alsoProvides(IVersionable["changeNote"], ILanguageIndependentField)
-
-
-alsoProvides(IEventRecurrence["recurrence"], ILanguageIndependentField)
-
-
-alsoProvides(IAllowDiscussion["allow_discussion"], ILanguageIndependentField)
-
-
-alsoProvides(
-    IExcludeFromNavigation["exclude_from_nav"], ILanguageIndependentField)
-
-IExcludeFromNavigation["exclude_from_nav"].required = False
+# TODO: this should be made to work with the serialzer
+alsoProvides(ICcaEvent["agenda_file"], ILanguageIndependentField)
+alsoProvides(ICcaEvent["background_documents"], ILanguageIndependentField)
+alsoProvides(ICcaEvent["online_registration_documents"], ILanguageIndependentField)

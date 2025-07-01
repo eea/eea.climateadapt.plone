@@ -6,6 +6,7 @@ import logging
 import os
 import sys
 import traceback
+from urllib.parse import unquote
 
 from plone.api import portal
 from plone.api.env import adopt_user
@@ -44,50 +45,47 @@ class IsJobExecutor(BrowserView):
             return "false"
 
 
-class HTMLIngestion(BrowserView):
-    """A special view to allow manually submit an HTML translated by
-    eTranslation, but that wasn't properly submitted through the callback"""
-
-    def __call__(self):
-        html = self.request.form.get("html", "").decode("utf-8")
-        path = self.request.form.get("path", "")
-
-        if not (html and path):
-            return self.index()
-
-        site = portal.getSite()
-        trans_obj = site.unrestrictedTraverse(path)
-        ingest_html(trans_obj, html)
-        return "ok"
-
-
 class SaveTranslationHtml(BrowserView):
     """A special view to allow manually submit an HTML translated by
     eTranslation, but that wasn't properly submitted through the callback"""
 
     def __call__(self):
-        check_token_security(self.request)
-        html = self.request.form.get("html", "")  # .decode("utf-8")
-        path = self.request.form.get("path", "")
-        language = self.request.form.get("language", "")
-        serial_id = self.request.form.get("serial_id", 0)
-
-        site_portal = portal.getSite()
-        if path[0] == "/":
-            path = path[1:]
-
-        en_obj = site_portal.unrestrictedTraverse(path)
-        canonical_serial_id = ISerialId(en_obj)
-
-        if int(canonical_serial_id) != int(serial_id):
-            return "mismatched serial id"
+        request = self.request
+        check_token_security(request)
+        alsoProvides(self.request, IDisableCSRFProtection)
 
         with adopt_user(username="admin"):
-            trans_obj = setup_translation_object(en_obj, language)
-            ingest_html(trans_obj, html)
+            try:
+                html = request.form.get("html", "")
+                path = unquote(request.form.get("path", ""))
+                language = request.form.get("language", "")
+                serial_id = request.form.get("serial_id", 0)
+
+                site_portal = portal.getSite()
+                if path[0] == "/":
+                    path = path[1:]
+            except Exception as e:
+                result = {"error_type": exception_to_json(e)}
+                return json.dumps(result)
+
+            try:
+                en_obj = site_portal.unrestrictedTraverse(path)
+                canonical_serial_id = ISerialId(en_obj)
+
+                if int(canonical_serial_id) != int(serial_id):
+                    self.request.response.setHeader("Content-Type", "application/json")
+                    result = {"error_type": "mismatched serial id"}
+                    return json.dumps(result)
+
+                trans_obj = setup_translation_object(en_obj, language, request)
+                ingest_html(trans_obj, html)
+                result = {"url": trans_obj.absolute_url()}
+            except Exception as e:
+                logger.exception("Error in saving translation: \n: %s", e)
+                result = {"error_type": exception_to_json(e)}
 
         self.request.response.setHeader("Content-Type", "application/json")
-        return json.dumps({"url": trans_obj.absolute_url()})
+        return json.dumps(result)
 
 
 class TranslationCallback(BrowserView):
@@ -134,6 +132,9 @@ class TranslationCallback(BrowserView):
 
 class ToHtml(BrowserView):
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+
         obj = self.context
 
         self.fields = {}
@@ -178,27 +179,27 @@ class CallETranslation(BrowserView):
         return json.dumps(data)
 
 
+def exception_to_json(exception):
+    # Get the exception information
+    exc_type, exc_value, exc_traceback = sys.exc_info()
+
+    # Format the traceback
+    tb_lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+    tb_text = "".join(tb_lines)
+
+    exception_dict = {
+        "type": exc_type.__name__,
+        "message": str(exc_value),
+        "traceback": tb_text,
+    }
+
+    return exception_dict
+
+    # return json.dumps(exception_dict, indent=4)
+
+
 class SyncTranslatedPaths(BrowserView):
     """Call eTranslation, triggered by job from worker"""
-
-    def exception_to_json(self, exception):
-        # Get the exception information
-        exc_type, exc_value, exc_traceback = sys.exc_info()
-
-        # Format the traceback
-        tb_lines = traceback.format_exception(
-            exc_type, exc_value, exc_traceback)
-        tb_text = "".join(tb_lines)
-
-        exception_dict = {
-            "type": exc_type.__name__,
-            "message": str(exc_value),
-            "traceback": tb_text,
-        }
-
-        return exception_dict
-
-        # return json.dumps(exception_dict, indent=4)
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
@@ -219,7 +220,7 @@ class SyncTranslatedPaths(BrowserView):
                     langs,
                 )
         except Exception as e:
-            result = {"error_type": self.exception_to_json(e)}
+            result = {"error_type": exception_to_json(e)}
 
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)

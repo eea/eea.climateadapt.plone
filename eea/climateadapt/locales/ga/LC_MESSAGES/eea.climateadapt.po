@@ -975,6 +975,10 @@ msgid "Extreme Temperatures"
 msgstr "Teochtaí Foircní"
 
 #: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr "Fuar mhór"
+
+#: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
 msgstr "Teas an-mhór"
 

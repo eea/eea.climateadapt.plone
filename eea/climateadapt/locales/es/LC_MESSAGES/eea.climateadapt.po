@@ -2948,6 +2948,10 @@ msgid "Extreme Temperatures"
 msgstr "Temperaturas extremas"
 
 #: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr "Frío extremo"
+
+#: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
 msgstr "Calor extremo"
 

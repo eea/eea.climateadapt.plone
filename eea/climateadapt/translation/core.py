@@ -11,7 +11,7 @@ from plone import api
 from plone.api import content, portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
-from plone.app.multilingual.interfaces import ITranslationManager
+from plone.app.multilingual.interfaces import ITranslationManager, ITG, IMutableTG
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.interfaces import IRichText
 from plone.app.textfield.value import RichTextValue
@@ -122,11 +122,9 @@ def get_blocks_as_html(obj):
     """Uses the converter service to convert blocks to HTML representation"""
 
     data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(
-        BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -179,8 +177,7 @@ def call_etranslation_service(html, obj_path, target_languages):
             }
         )
     else:
-        logger.warning(
-            "Is localhost, won't retrieve translation for: %s", html)
+        logger.warning("Is localhost, won't retrieve translation for: %s", html)
         return {"transId": "not-called", "externalRefId": html}
 
     logger.info("Data translation request : html content")
@@ -198,11 +195,9 @@ def get_content_from_html(html, language=None):
     """Given an HTML string, converts it to Plone content data"""
 
     data = {"html": html, "language": language}
-    headers = {"Content-type": "application/json",
-               "Accept": "application/json"}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
 
-    req = requests.post(CONTENT_CONVERTER,
-                        data=json.dumps(data), headers=headers)
+    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
     if req.status_code != 200:
         logger.debug(req.text)
         raise ValueError
@@ -277,7 +272,7 @@ def sync_translation_state(trans_obj, en_obj):
     try:
         state = api.content.get_state(en_obj)
     except WorkflowException:
-        logger.error("Can't get state for original object: %s", en_obj)
+        logger.debug("Can't get state for original object: %s", en_obj)
         pass
 
     if state in ["published", "archived"]:
@@ -305,7 +300,8 @@ def ingest_html(trans_obj, html):
     force_unlock(trans_obj)
     fielddata = get_content_from_html(html, language=trans_obj.language)
 
-    translations = TranslationManager(trans_obj).get_translations()
+    trans_tm = ITranslationManager(trans_obj)
+    translations = trans_tm.get_translations()
 
     if "en" not in translations:
         path = "/".join(trans_obj.getPhysicalPath())
@@ -335,7 +331,7 @@ def ingest_html(trans_obj, html):
     trans_obj.reindexObject()
 
 
-def check_ancestors_path_exists(obj, language):
+def check_ancestors_path_exists(obj, language, request):
     """Create full path for a object"""
 
     parent = aq_parent(aq_inner(obj))
@@ -352,7 +348,8 @@ def check_ancestors_path_exists(obj, language):
     if language not in translations:
         # TODO, what if the parent path already exist in language
         # but is not linked in translation manager
-        setup_translation_object(parent, language)
+        setup_translation_object(parent, language, request)
+        queue_translate(parent, language)
 
 
 def safe_traverse(obj, trans_path):
@@ -384,11 +381,33 @@ def get_translated_path(canonical, language):
     return trans_path
 
 
-def setup_translation_object(canonical, language):
+def unsafe_register_translation(language, tg, obj):
+    """register a translation for an existing content"""
+
+    if not language and language != "":
+        raise KeyError("There is no target language")
+
+    catalog = portal.get_tool("portal_catalog")
+
+    brains = catalog.unrestrictedSearchResults(TranslationGroup=tg, Language=language)
+    for brain in brains:
+        o = brain.getObject()
+        logger.warning(f"Deleting trans at wrong path: {o.absolute_url()}")
+        content.delete(obj=o, check_linkintegrity=False)
+
+    # register the new translation in the canonical
+    IMutableTG(obj).set(tg)
+    obj.reindexObject(idxs=("Language", "TranslationGroup"))
+
+
+def setup_translation_object(canonical, language, request):
     """Create translation object for an obj"""
 
+    site = portal.get()
+
     # rc = RequestContainer(REQUEST=obj.REQUEST)
-    tm = TranslationManager(canonical)
+    tm = ITranslationManager(canonical)
+    tg = ITG(canonical)
     translations = tm.get_translations()
 
     if language in translations:
@@ -412,31 +431,34 @@ def setup_translation_object(canonical, language):
 
     trans = None
     try:
-        trans = safe_traverse(canonical, trans_path)
+        trans = safe_traverse(site, trans_path)
     except Exception:
         pass
 
     if trans is not None:
         # todo: fix the trans
         logger.warning(
-            "Translation object exists, but it's not properly recorded %s %s %s",
+            "Translation object exists, but it's not properly recorded %s %s %s. It will be re-registed with the proper translation group",
             "/".join(trans.getPhysicalPath()),
             "/".join(canonical.getPhysicalPath()),
             # trans_path,
         )
-        trans.reindexObject()
+        # TODO: make sure objects are compatible
+        tg_id = ITG(canonical)
+        unsafe_register_translation(language, tg_id, trans)
 
         return trans
 
-    check_ancestors_path_exists(canonical, language)
+    check_ancestors_path_exists(canonical, language, request)
+
     factory = DefaultTranslationFactory(canonical)
 
+    request.translation_info = {"tg": tg, "source_language": "en"}
     translated_object = factory(language)
 
-    tm.register_translation(language, translated_object)
+    assert translated_object is not None
 
-    # https://github.com/plone/plone.app.multilingual/blob/2.x/src/plone/app/multilingual/manager.py#L85
-    # translated_object.reindexObject()   ^ already reindexed.
+    tm.register_translation(language, translated_object)
 
     # In cases like: /en/page-en -> /fr/page, fix the url: /fr/page-en
     try:
@@ -446,6 +468,7 @@ def setup_translation_object(canonical, language):
             )
     except Exception:
         logger.info("CREATE ITEM: cannot rename the item id - already exists.")
+        raise
 
     copy_missing_interfaces(canonical, translated_object)
     sync_translation_state(translated_object, canonical)
@@ -510,30 +533,29 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
         elif newParent.endswith("/en"):
             new_parent = newParent.replace("/en", f"/{lang}")
         else:
-            logger.warning(
-                "Could not find destination parent to move: %s", newParent)
-            raise ValueError(
-                "Could not find destination parent to move: %s", newParent)
+            logger.warning("Could not find destination parent to move: %s", newParent)
+            raise ValueError("Could not find destination parent to move: %s", newParent)
 
         target = content.get(new_parent)
 
         if target is None:
             logger.warning("Could not find target to be moved: %s", new_parent)
             # TODO: create it with setup_translation_object() ?
-            raise ValueError(
-                "Could not find target to be moved: %s", new_parent)
+            raise ValueError("Could not find target to be moved: %s", new_parent)
 
         target_obj_path = "/".join(target.getPhysicalPath()) + "/" + newName
         existing_trans = content.get(target_obj_path)
+        test_path = ["", "cca", "en", "mission"]
         if existing_trans is not None:
-            brains = en_obj.portal_catalog.searchResults(
-                path=target_obj_path,
-                sort="path",
-            )
-            if len(brains) > 5:
+            if len(target.getPhysicalPath()) < len(test_path):
                 raise ValueError(
                     "Need to delete this object, but it's too big %s", target_obj_path
                 )
+
+            # brains = en_obj.portal_catalog.searchResults(
+            #     path=target_obj_path,
+            #     sort="path",
+            # )
 
             logger.info(
                 "This translation object already exists %s, removing", target_obj_path
@@ -544,8 +566,7 @@ def sync_translation_paths(oldParent, oldName, newParent, newName, langs=None):
         try:
             moved = content.move(source=trans_obj, target=target, id=newName)
         except Exception:
-            logger.warning("Could not move %s",
-                           "/".join(trans_obj.getPhysicalPath()))
+            logger.warning("Could not move %s", "/".join(trans_obj.getPhysicalPath()))
             raise
 
         new_path = "/".join(moved.getPhysicalPath())

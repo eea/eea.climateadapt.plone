@@ -52,14 +52,6 @@
 
   <browser:page
     for="*"
-    class=".views.HTMLIngestion"
-    name="ingest-html"
-    permission="cmf.ManagePortal"
-    template="pt/ingest.pt"
-  />
-
-  <browser:page
-    for="*"
     class=".views.ToHtml"
     name="tohtml"
     permission="cmf.ManagePortal"
@@ -76,6 +68,18 @@
     for="plone.dexterity.interfaces.IDexterityContent
      zope.lifecycleevent.interfaces.IObjectMovedEvent"
     handler=".events.object_modified_handler"
+  />
+
+  <adapter factory=".optimizations.LanguageAwareImageFieldScales" />
+  <adapter factory=".optimizations.LanguageAwareImageFieldSerializer" />
+  <adapter factory=".optimizations.LanguageAwareFileFieldSerializer" />
+
+  <browser:page
+    name="images"
+    for="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"
+    class=".optimizations.LanguageAwareImageScaling"
+    allowed_attributes="scale tag"
+    permission="zope2.View"
   />
 
 </configure>

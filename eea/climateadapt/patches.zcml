@@ -23,61 +23,63 @@
     preserveOriginal="false"
   /> -->
 
-  <monkey:patch
-    original="getCache"
-    replacement="eea.climateadapt.patch.getCache"
-    module="plone.app.theming.transform"
-    description="Patch getCache"
-    preserveOriginal="false"
-  />
+  <!-- <monkey:patch -->
+  <!--   original="getCache" -->
+  <!--   replacement="eea.climateadapt.patch.getCache" -->
+  <!--   module="plone.app.theming.transform" -->
+  <!--   description="Patch getCache" -->
+  <!--   preserveOriginal="false" -->
+  <!-- /> -->
 
-  <monkey:patch
-    description="Refs #159767 - Fix plone.app.search to include language filter"
-    class="plone.app.search.browser.Search"
-    original="results"
-    preserveOriginal="false"
-    replacement="eea.climateadapt.patch.results" />
+  <!-- <monkey:patch -->
+  <!--   description="Refs #159767 - Fix plone.app.search to include language filter" -->
+  <!--   class="plone.app.search.browser.Search" -->
+  <!--   original="results" -->
+  <!--   preserveOriginal="false" -->
+  <!--   replacement="eea.climateadapt.patch.results" /> -->
 
-  <monkey:patch
-    description="Refs #162035 - Make internal ZCatalog compatible with Plone 6"
-    class="plone.restapi.serializer.summary.DefaultJSONSummarySerializer"
-    original="metadata_fields"
-    preserveOriginal="false"
-    replacement="eea.climateadapt.patch.metadata_fields" />
+  <!-- <monkey:patch -->
+  <!--   description="Refs #162035 - Make internal ZCatalog compatible with Plone 6" -->
+  <!--   class="plone.restapi.serializer.summary.DefaultJSONSummarySerializer" -->
+  <!--   original="metadata_fields" -->
+  <!--   preserveOriginal="false" -->
+  <!--   replacement="eea.climateadapt.patch.metadata_fields" /> -->
 
-  <monkey:patch
-    description="Don't call persistent objects"
-    class="Products.ZCatalog.Catalog.Catalog"
-    original="recordify"
-    preserveOriginal="true"
-    replacement="eea.climateadapt.patch.patched_recordify" />
+  <!-- <monkey:patch -->
+  <!--   description="Don't call persistent objects" -->
+  <!--   class="Products.ZCatalog.Catalog.Catalog" -->
+  <!--   original="recordify" -->
+  <!--   preserveOriginal="true" -->
+  <!--   replacement="eea.climateadapt.patch.patched_recordify" /> -->
 
-  <monkey:patch
-    description="Patch getTerm to fix UnicodeEncodeError: 'ascii' codec can't encode character..."
-    class="plone.app.vocabularies.users.UsersVocabulary"
-    original="getTerm"
-    preserveOriginal="false"
-    replacement="eea.climateadapt.patch.getTerm" />
+  <!-- <monkey:patch -->
+  <!--   description="Patch getTerm to fix UnicodeEncodeError: 'ascii' codec can't encode
+  character..." -->
+  <!--   class="plone.app.vocabularies.users.UsersVocabulary" -->
+  <!--   original="getTerm" -->
+  <!--   preserveOriginal="false" -->
+  <!--   replacement="eea.climateadapt.patch.getTerm" /> -->
 
-  <monkey:patch
-    description="Refs #252993 - Patch _get_events to exclude events from Mission subsite."
-    class="plone.app.event.browser.event_listing.EventListing"
-    original="_get_events"
-    preserveOriginal="false"
-    replacement="eea.climateadapt.patch._get_events" />
+  <!-- <monkey:patch -->
+  <!--   description="Refs #252993 - Patch _get_events to exclude events from Mission subsite." -->
+  <!--   class="plone.app.event.browser.event_listing.EventListing" -->
+  <!--   original="_get_events" -->
+  <!--   preserveOriginal="false" -->
+  <!--   replacement="eea.climateadapt.patch._get_events" /> -->
 
-  <monkey:patch
-    description="Patch _modified_since in scales AnnotationStorage to avoid invalidation of scales in the same transaction"
-    class="plone.scale.storage.AnnotationStorage"
-    original="_modified_since"
-    preserveOriginal="true"
-    replacement="eea.climateadapt.patch.patched_modified_since" />
+  <!-- <monkey:patch -->
+  <!--   description="Patch _modified_since in scales AnnotationStorage to avoid invalidation of
+  scales in the same transaction" -->
+  <!--   class="plone.scale.storage.AnnotationStorage" -->
+  <!--   original="_modified_since" -->
+  <!--   preserveOriginal="true" -->
+  <!--   replacement="eea.climateadapt.patch.patched_modified_since" /> -->
 
-  <monkey:patch
-    description="Patch addCreator to only add one creator"
-    class="plone.dexterity.content.DexterityContent"
-    original="addCreator"
-    preserveOriginal="true"
-    replacement="eea.climateadapt.patch.patched_addCreator" />
+  <!-- <monkey:patch -->
+  <!--   description="Patch addCreator to only add one creator" -->
+  <!--   class="plone.dexterity.content.DexterityContent" -->
+  <!--   original="addCreator" -->
+  <!--   preserveOriginal="true" -->
+  <!--   replacement="eea.climateadapt.patch.patched_addCreator" /> -->
 
 </configure>

@@ -206,4 +206,27 @@
     factory=".blocks.ResolveUIDSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
   />
+
+  <plone:service
+    method="GET"
+    factory=".querystring.CCAQuerystringGet"
+    for="Products.CMFCore.interfaces.IContentish"
+    permission="zope2.View"
+    name="@querystring"
+    layer="plone.restapi.interfaces.IPloneRestapiLayer"
+  />
+
+  <plone:service
+    method="GET"
+    factory=".querystring.CCAQuerystringGet"
+    for="plone.base.interfaces.siteroot.IPloneSiteRoot"
+    permission="zope2.View"
+    name="@querystring"
+    layer="plone.restapi.interfaces.IPloneRestapiLayer"
+  />
+
+  <!-- Products.CMFCore.interfaces.ISiteRoot -->
+  <!-- layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer" -->
+
+
 </configure>

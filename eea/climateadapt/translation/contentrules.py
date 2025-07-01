@@ -1,7 +1,6 @@
 import logging
 import os
 
-import transaction
 from OFS.SimpleItem import SimpleItem
 from plone.app.contentrules.browser.formhelper import NullAddForm
 from plone.app.multilingual.manager import TranslationManager
@@ -82,7 +81,6 @@ class SynchronizeStatesForTranslationsActionExecutor(object):
         try:
             wftool = getToolByName(trans_obj, "portal_workflow")
             wftool.doActionFor(trans_obj, action)
-            transaction.commit()
         except Exception:
             logger.info("Synchronize states: not saved for trans object.")
 

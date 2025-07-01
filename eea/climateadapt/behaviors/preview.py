@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from zope.interface import provider
 from zope.schema import TextLine
-from zope.interface import alsoProvides
 
 
 @provider(IFormFieldProvider)
@@ -22,4 +20,7 @@ class IPreview(model.Schema):
     )
 
 
-alsoProvides(IPreview["preview_image"], ILanguageIndependentField)
+# blobs are handled by field serializer
+# from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+# from zope.interface import alsoProvides
+# alsoProvides(IPreview["preview_image"], ILanguageIndependentField)
