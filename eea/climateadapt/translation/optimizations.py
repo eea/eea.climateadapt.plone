@@ -1,5 +1,6 @@
 """Optimize the storage of image blobs by delegating to the canonical field"""
 
+from plone.api.exc import UserNotFoundError
 from plone.api.env import adopt_user
 import logging
 
@@ -147,8 +148,12 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
         tm = ITranslationManager(self.context)
 
         canonical = None
-        with adopt_user(username="admin"):
+        try:
+            with adopt_user(username="admin"):
+                canonical = tm.get_translation("en")
+        except UserNotFoundError:
             canonical = tm.get_translation("en")
+
         if canonical is None:
             return
 
@@ -167,8 +172,12 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
         tm = ITranslationManager(self.context)
 
         canonical = None
-        with adopt_user(username="admin"):
+        try:
+            with adopt_user(username="admin"):
+                canonical = tm.get_translation("en")
+        except UserNotFoundError:
             canonical = tm.get_translation("en")
+
         if canonical is None:
             return
 
