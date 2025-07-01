@@ -74,6 +74,7 @@ ul li {
     </li>
     <li class=" "><a href="#4489-5" data-toggle="tab" i18n:translate="">Good practices, cooperation and synergies</a></li>
     <li class=" "><a href="#4489-51" data-toggle="tab" i18n:translate="">Sub-national adaptation </a></li>
+    <li class=" "><a href="#4489-60" data-toggle="tab" i18n:translate="">Portals, platforms and key publications </a></li>
     <li class=" "><a href="#4489-6" data-toggle="tab" i18n:translate="">Contact</a></li>
   </ul>
   </div>
@@ -740,6 +741,19 @@ ul li {
       </tal:block> -->
     </div>
 
+    <div class="tab-pane  " id="4489-60"  tal:define="items view/publications_websites">
+      <!-- TODO CHECK the condition below on contact list -->
+      <tal  tal:condition="python: len(items)">
+          <div tal:repeat="publication items">
+          <div style="margin-bottom:20px;">
+              <h3 style="margin-bottom:3px;" tal:content="publication/Publisher"></h3>
+              <a tal:content="publication/Title" tal:attributes="href publication/Website" href=""></a>
+              </div>
+          </div>
+      </tal>
+    </div>
+
+
     <div class="tab-pane  " id="4489-6"  tal:define="items view/contact_websites">
       <!-- TODO CHECK the condition below on contact list -->
       <tal  tal:condition="python: len(items)">
@@ -748,10 +762,6 @@ ul li {
             <h3 style="margin-bottom:3px;" tal:content="item/Organisation">Organisation</h3>
             <p style="margin-bottom:0px;" tal:content="item/Department" tal:condition="python: 'Department' in item">Department within the organisation</p>
             <a tal:attributes="href python:item['Website']" tal:content="item/Website">Website</a>
-            <div tal:repeat="publication item/Publications" style="margin-left:20px;margin-top:10px;">
-              <p tal:content="publication/Publisher"></p>
-              <a tal:content="publication/Title" tal:attributes="href publication/Website" href=""></a>
-            </div>
           </div>
           </div>
       </tal>

@@ -804,8 +804,14 @@ class CountryProfileData(BrowserView):
         if "Id" in items:
             items = [items]
 
+        sections = []
+        unqiue_items = []
+        for item in items:
+            if item['SectorDescribe'] not in sections:
+                sections.append(item['SectorDescribe'])
+                unqiue_items.append(item)
         sorted_items = sorted(
-            items,
+            unqiue_items,
             key=lambda i: (i['SectorDescribe'], i['SectorDescribe']
                            if 'SectorDescribe' in i else '')
         )
@@ -823,6 +829,8 @@ class CountryProfileData(BrowserView):
             items, key=lambda i: (i["KeyTypeMeasure"], i["subKTM"], i["Title"])
         )
 
+        # import pdb
+        # pdb.set_trace()
         return sorted_items
 
     def get_sorted_available_practices_data(self):
@@ -875,9 +883,9 @@ class CountryProfileData(BrowserView):
         items = sorted(items, key=lambda x: x["Type"])
 
         for item in items:
-            # TODO CHECK perhaps we have to use Available as YES
-            if 'StatusId' not in item:
-                continue
+            # # TODO CHECK perhaps we have to use Available as YES
+            # if 'StatusId' not in item:
+            #     continue
             typeName = item["Type"]
             item["Status"] = str(item["Status"])
 
@@ -1218,6 +1226,38 @@ class CountryProfileData(BrowserView):
             country_name=country_name,
         )
 
+    def publications_websites(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+
+        items = []
+        response = []
+        weblinks = []
+        contact_data = processed_data.get("Contact", [])
+
+        if "Publications" in contact_data:
+            items = contact_data.get("Publications")
+        else:
+            for contact in contact_data:
+                for publication in contact.get('Publications', []):
+                    if publication.get('WebLink', None) and publication.get('WebLink', None) not in weblinks:
+                        weblinks.append(publication.get('WebLink'))
+                        items.append(publication)
+
+        for item in items:
+            line = {'Publisher': item.get('Publisher', ''), 'Title': item.get(
+                'TitleEnglish', ''), 'Website': item.get('WebLink', '')}
+            response.append(line)
+
+        return response
+
     def contact_websites(self):
         country_name = self.verify_country_name(
             self.context.id.title().replace("-", " ")
@@ -1229,40 +1269,24 @@ class CountryProfileData(BrowserView):
         # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
 
+        items = []
         response = []
-        items = (
-            processed_data.get("Contact", [])
-        )
-        # import pdb
-        # pdb.set_trace()
-        if 'Website' in processed_data['Contact']:
-            line = {'Organisation': items.get(
-                'Organisation', ''), 'Department': '', 'Website': '', 'Publications': []}
-            for website in items.get('Website', []):
-                if 'National level' == website.get('Level', ''):
-                    webUrl = website.get('Url', '')
-                    if len(webUrl) > 1 and not webUrl.startswith("http"):
-                        webUrl = 'http://'+webUrl
-                    line['Website'] = webUrl
-            for publication in items.get('Publications', []):
-                line['Publications'].append(
-                    {'Publisher': publication.get('Publisher', ''), 'Title': publication.get('TitleEnglish', ''), 'Website': publication.get('WebLink', '')})
-            response.append(line)
+        weblinks = []
+        contact_data = processed_data.get("Contact", [])
+
+        if "Contact_General" in contact_data:
+            items = contact_data.get("Contact_General")
         else:
-            for item in items:
-                line = {'Organisation': item.get('Organisation', ''), 'Department': item.get(
-                    'Department', ''), 'Website': '', 'Publications': []}
-                for website in item.get('Website', []):
-                    if 'National level' == website.get('Level', ''):
-                        webUrl = website.get('Url', '')
-                        if len(webUrl) > 1 and not webUrl.startswith("http"):
-                            webUrl = 'http://'+webUrl
-                        line['Website'] = webUrl
-                # pdb.set_trace()
-                for publication in item.get('Publications', []):
-                    line['Publications'].append(
-                        {'Publisher': publication.get('Publisher', ''), 'Title': publication.get('TitleEnglish', ''), 'Website': publication.get('WebLink', '')})
-                response.append(line)
+            for contact in contact_data:
+                for contact_general in contact.get('Contact_General', []):
+                    if contact_general.get('Website', None) and contact_general.get('Website', None) not in weblinks:
+                        weblinks.append(contact_general.get('Website'))
+                        items.append(contact_general)
+
+        for item in items:
+            line = {'Organisation': item.get('Organisation', ''), 'Department': item.get(
+                'Department', ''), 'Website': item.get('Website', '')}
+            response.append(line)
         # pdb.set_trace()
         return response
 
