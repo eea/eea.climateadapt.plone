@@ -92,7 +92,7 @@ def get_discodata(is_energy_comunity=False):
 
 
 def get_discodata_for_country(country_code):
-    data = get_discodata(country_code.upper() in ['GE', 'MD', 'RS'])
+    data = get_discodata(country_code.upper() in ['GE', 'MD', 'RS', 'UA'])
     # import pdb; pdb.set_trace()
 
     orig_data = next(
@@ -873,6 +873,8 @@ class CountryProfileData(BrowserView):
         # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
 
+        # import pdb
+        # pdb.set_trace()
         response = OrderedDict()
 
         if not processed_data["Legal_Policies"]:
