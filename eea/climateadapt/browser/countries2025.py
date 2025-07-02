@@ -891,6 +891,9 @@ class CountryProfileData(BrowserView):
             typeName = item["Type"]
             item["Status"] = str(item["Status"])
 
+            if 'adopted' not in item['Status'] and 'completed' not in item['Status']:
+                continue
+
             typeName = item["Type"]
             temp = typeName.split(":", 1)
             if len(temp) == 2:
