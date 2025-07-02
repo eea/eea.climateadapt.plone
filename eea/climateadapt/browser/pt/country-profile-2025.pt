@@ -401,7 +401,7 @@ ul li {
         <div class="panel-heading" tal:attributes="id string:key_affected_sectors_${repeat/item/index}-heading">
           <h4 class="panel-title">
             <a class="accordion-toggle tiny-acchead" tal:attributes="href string:#key_affected_sectors_${repeat/item/index}-body" data-toggle="collapse">
-              <span tal:content="item/SectorDescribe" i18n:translate="">item/SectorDescribe</span>
+              <span tal:content="item/PrimarySector" i18n:translate="">item/PrimarySector</span>
             </a>
           </h4>
         </div>

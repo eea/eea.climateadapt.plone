@@ -807,13 +807,13 @@ class CountryProfileData(BrowserView):
         sections = []
         unqiue_items = []
         for item in items:
-            if item['SectorDescribe'] not in sections:
-                sections.append(item['SectorDescribe'])
+            if item['PrimarySector'] not in sections:
+                sections.append(item['PrimarySector'])
                 unqiue_items.append(item)
         sorted_items = sorted(
             unqiue_items,
-            key=lambda i: (i['SectorDescribe'], i['SectorDescribe']
-                           if 'SectorDescribe' in i else '')
+            key=lambda i: (i['PrimarySector'], i['PrimarySector']
+                           if 'PrimarySector' in i else '')
         )
 
         return sorted_items
