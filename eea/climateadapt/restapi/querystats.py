@@ -23,8 +23,7 @@ class QueryStats:
         self.request = request
 
     def __call__(self, expand=False):
-        result = {"querystats": {"@id": "%s/@querystats" %
-                                 self.context.absolute_url()}}
+        result = {"querystats": {"@id": "%s/@querystats" % self.context.absolute_url()}}
         if not expand:
             return result
 
@@ -43,7 +42,8 @@ class QueryStats:
         aggregatefield = data.get("aggregateField", {}).get("value", None)
 
         if not (query or aggregatefield):
-            raise BadRequest("Invalid parameters")
+            return {"querystats": {}}
+            # raise BadRequest("Invalid parameters")
 
         querybuilder = getMultiAdapter(
             (self.context, self.request), name="querybuilderresults"

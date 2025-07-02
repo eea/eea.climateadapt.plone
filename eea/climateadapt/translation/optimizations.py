@@ -1,7 +1,7 @@
 """Optimize the storage of image blobs by delegating to the canonical field"""
 
 from plone.api.exc import UserNotFoundError
-from plone.api.env import adopt_user
+from plone.api.env import adopt_roles
 import logging
 
 from Acquisition import aq_base, aq_parent
@@ -48,7 +48,7 @@ class LanguageAwareLeadImage:
         else:
             tm = ITranslationManager(self.context)
 
-            with adopt_user(username="admin"):
+            with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
                 if canonical is not None:
                     return canonical.image
@@ -84,7 +84,7 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
 
         tm = ITranslationManager(self.context)
         canonical = None
-        with adopt_user(username="admin"):
+        with adopt_roles(roles=["Owner"]):
             canonical = tm.get_translation("en")
             if canonical is None:
                 return
@@ -149,7 +149,7 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
 
         canonical = None
         try:
-            with adopt_user(username="admin"):
+            with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
         except UserNotFoundError:
             canonical = tm.get_translation("en")
@@ -173,7 +173,7 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
 
         canonical = None
         try:
-            with adopt_user(username="admin"):
+            with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
         except UserNotFoundError:
             canonical = tm.get_translation("en")
@@ -200,7 +200,7 @@ def hasPreviewImage(obj):
         tm = ITranslationManager(obj)
 
         canonical = None
-        with adopt_user(username="admin"):
+        with adopt_roles(roles=["Owner"]):
             canonical = tm.get_translation("en")
             if canonical is None:
                 return False
@@ -221,7 +221,7 @@ def image_field_indexer(obj):
 
     # we need adopt_user because indexer is executed at end of the transaction
     # and we use a fake authentication in the @@save-translation page
-    with adopt_user(username="admin"):
+    with adopt_roles(roles=["Owner"]):
         lang = ILanguage(obj).get_language()
         if lang == "en":
             base_obj = aq_base(obj)
@@ -229,7 +229,7 @@ def image_field_indexer(obj):
             tm = ITranslationManager(obj)
 
             canonical = None
-            with adopt_user(username="admin"):
+            with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
             if canonical is None:
                 return image_field
@@ -254,7 +254,7 @@ class LanguageAwareImageScaling(ImageScaling):
             tm = ITranslationManager(context)
 
             canonical = None
-            with adopt_user(username="admin"):
+            with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
             if canonical is not None:
                 context = canonical
