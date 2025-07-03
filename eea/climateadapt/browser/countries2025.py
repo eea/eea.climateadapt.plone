@@ -886,8 +886,8 @@ class CountryProfileData(BrowserView):
 
         for item in items:
             # # TODO CHECK perhaps we have to use Available as YES
-            # if 'StatusId' not in item:
-            #     continue
+            if 'Status' not in item:
+                continue
             typeName = item["Type"]
             item["Status"] = str(item["Status"])
 
