@@ -741,12 +741,23 @@ ul li {
       </tal:block> -->
     </div>
 
-    <div class="tab-pane  " id="4489-60"  tal:define="items view/publications_websites">
+    <div class="tab-pane  " id="4489-60"  tal:define="publication_items view/contact_publications;website_items view/contact_websites">
+
       <!-- TODO CHECK the condition below on contact list -->
-      <tal  tal:condition="python: len(items)">
-          <div tal:repeat="publication items">
+      <tal tal:condition="python: len(website_items)">
+        <h2>Adaptation knowledge portals and platforms</h2>
+      <p tal:content="website_items"></p>
+          <div tal:repeat="website website_items">
+            <div style="margin-bottom:20px;">
+              <a tal:content="website/Title" tal:attributes="href website/Website" href=""></a>
+              </div>
+          </div>
+      </tal>
+      <tal  tal:condition="python: len(publication_items)">
+          <h2>Key publications</h2>
+          <div tal:repeat="publication publication_items">
           <div style="margin-bottom:20px;">
-              <h3 style="margin-bottom:3px;" tal:content="publication/Publisher"></h3>
+              <p style="padding:0;margin-bottom:0px;margin-top:10px;"><strong style="margin-bottom:3px;" tal:content="publication/Publisher"></strong></p>
               <a tal:content="publication/Title" tal:attributes="href publication/Website" href=""></a>
               </div>
           </div>
@@ -754,7 +765,7 @@ ul li {
     </div>
 
 
-    <div class="tab-pane  " id="4489-6"  tal:define="items view/contact_websites">
+    <div class="tab-pane  " id="4489-6"  tal:define="items view/contact_general">
       <!-- TODO CHECK the condition below on contact list -->
       <tal  tal:condition="python: len(items)">
           <div tal:repeat="item items">

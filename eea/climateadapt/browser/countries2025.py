@@ -1221,7 +1221,7 @@ class CountryProfileData(BrowserView):
             country_name=country_name,
         )
 
-    def publications_websites(self):
+    def contact_publications(self):
         country_name = self.verify_country_name(
             self.context.id.title().replace("-", " ")
         )
@@ -1254,6 +1254,36 @@ class CountryProfileData(BrowserView):
         return response
 
     def contact_websites(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+
+        items = []
+        response = []
+        items_data = processed_data.get("Contact", [])
+        if 'Website' in items_data:
+            items = items_data.get('Website', [])
+
+        for item in items:
+            if 'Social media' in item.get('Type', ''):
+                continue
+            item_website = item.get('Url', '')
+            if len(item_website) and not (item_website.startswith('http://') or item_website.startswith('https://')):
+                item_website = 'https://' + item_website
+            if len(item_website):
+                line = {'Title': item.get('Title', ''),
+                        'Website': item_website}
+                response.append(line)
+
+        return response
+
+    def contact_general(self):
         country_name = self.verify_country_name(
             self.context.id.title().replace("-", " ")
         )
