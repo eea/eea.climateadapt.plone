@@ -14,9 +14,9 @@ logger = logging.getLogger("eea.climateadapt")
 
 def load_fixed_countries():
     paths = [
-        resource_filename(
-            "eea.climateadapt.browser", "data/countryprofiles2025/turkey.txt"
-        ),
+        # resource_filename(
+        #     "eea.climateadapt.browser", "data/countryprofiles2025/turkey.txt"
+        # ),
         resource_filename(
             "eea.climateadapt.browser", "data/countryprofiles2025/liechtenstein.txt"
         ),
@@ -64,7 +64,7 @@ class CountryProfile2025(object):
             "top_accordeon": None,
         }
         country_id = self.context.getId().lower()
-        if country_id in ["turkiye", "turkey"]:
+        if country_id in ["turkiye2", "turkey2"]:
             html = fixed_data["turkey"]
         elif country_id in fixed_data:
             html = fixed_data[country_id]
@@ -111,8 +111,8 @@ class CountryProfile2025(object):
             # return html
 
         elif country_id in [
-            "turkiye",
-            "turkey",
+            # "turkiye",
+            # "turkey",
             "norway",
             "liechtenstein",
         ]:

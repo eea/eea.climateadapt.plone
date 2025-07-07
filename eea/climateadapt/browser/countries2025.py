@@ -69,9 +69,6 @@ def setup_discodata(annotations, is_energy_comunity=False):
 def get_discodata(is_energy_comunity=False):
     annotations = portal.getSite().__annotations__
 
-    # import pdb
-    # pdb.set_trace()
-
     annotations_discodata_key = "discodata_country_2025"
     if is_energy_comunity:
         annotations_discodata_key += "_energy_comunity"
@@ -93,7 +90,6 @@ def get_discodata(is_energy_comunity=False):
 
 def get_discodata_for_country(country_code):
     data = get_discodata(country_code.upper() in ['GE', 'MD', 'RS', 'UA'])
-    # import pdb; pdb.set_trace()
 
     orig_data = next(
         (x for x in data["results"] if x["countryCode"] == country_code), {}
@@ -756,8 +752,6 @@ class CountryProfileData(BrowserView):
 
         _text = CCAWebIntelligentToHtmlConverter(text.strip())()
 
-        # import pdb; pdb.set_trace()
-
         return _text
 
     def get_sub_national_websites(self):
@@ -829,8 +823,6 @@ class CountryProfileData(BrowserView):
             items, key=lambda i: (i["KeyTypeMeasure"], i["subKTM"], i["Title"])
         )
 
-        # import pdb
-        # pdb.set_trace()
         return sorted_items
 
     def get_sorted_available_practices_data(self):
@@ -841,8 +833,6 @@ class CountryProfileData(BrowserView):
             "AvailableGoodPractices", []
         )
 
-        # import pdb
-        # pdb.set_trace()
         for index, item in enumerate(items):
             if 'Title' not in item:
                 data = item['DescribeGoodPractice'].split('\n')
