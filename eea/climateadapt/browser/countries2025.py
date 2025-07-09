@@ -1251,11 +1251,16 @@ class CountryProfileData(BrowserView):
         else:
             for contact in contact_data:
                 for publication in contact.get('Publications', []):
-                    if publication.get('WebLink', None) and publication.get('WebLink', None) not in weblinks:
-                        weblinks.append(publication.get('WebLink'))
-                        items.append(publication)
+                    # if publication.get('WebLink', None) and publication.get('WebLink', None) not in weblinks:
+                    #     weblinks.append(publication.get('WebLink'))
+                    items.append(publication)
 
         for item in items:
+            if item.get('WebLink', None) in weblinks:
+                continue
+
+            weblinks.append(item.get('WebLink', ''))
+
             line = {'Publisher': item.get('Publisher', ''), 'Title': item.get(
                 'TitleEnglish', ''), 'Website': item.get('WebLink', '')}
             response.append(line)
@@ -1275,13 +1280,29 @@ class CountryProfileData(BrowserView):
 
         items = []
         response = []
-        items_data = processed_data.get("Contact", [])
-        if 'Website' in items_data:
-            items = items_data.get('Website', [])
+        weblinks = []
+        contact_data = processed_data.get("Contact", [])
+        if "Website" in contact_data:
+            items = contact_data.get("Website")
+        else:
+            for contact in contact_data:
+                for publication in contact.get('Website', []):
+                    # if publication.get('Url', None) and publication.get('Url', None) not in weblinks:
+                    #     weblinks.append(publication.get('Url'))
+                    items.append(publication)
 
+        # import pdb
+        # pdb.set_trace()
         for item in items:
+
             if 'Social media' in item.get('Type', ''):
                 continue
+
+            if item.get('Url', None) in weblinks:
+                continue
+
+            weblinks.append(item.get('Url', ''))
+
             item_website = item.get('Url', '')
             if len(item_website) and not (item_website.startswith('http://') or item_website.startswith('https://')):
                 item_website = 'https://' + item_website
@@ -1290,6 +1311,8 @@ class CountryProfileData(BrowserView):
                         'Website': item_website}
                 response.append(line)
 
+        # import pdb
+        # pdb.set_trace()
         return response
 
     def contact_general(self):
