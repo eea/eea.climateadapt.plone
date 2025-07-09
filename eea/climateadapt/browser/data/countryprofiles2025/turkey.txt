@@ -217,7 +217,7 @@ ul.toc-list li:after {
               <ul>
                 <li style="clear: both;">
                   <span class="link-external">
-                    <span class="link-external"><a href="https://unfccc.int/NC7" data-val="https://unfccc.int/NC7" rel="noopener" target="_blank" data-linktype="external">https://unfccc.int/NC7</a></span>
+                    <span class="link-external"><a href="https://unfccc.int/sites/default/files/resource/TUR_8NCResubmission.pdf" data-val="https://unfccc.int/sites/default/files/resource/TUR_8NCResubmission.pdf" rel="noopener" target="_blank" data-linktype="external">https://unfccc.int/NC8</a></span>
                   </span>
                 </li>
               </ul>

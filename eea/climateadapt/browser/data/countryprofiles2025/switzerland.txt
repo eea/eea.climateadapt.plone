@@ -191,7 +191,7 @@
               <ul>
                 <li style="clear: both;">
                   <span class="link-external">
-                    <a href="https://unfccc.int/NC7" data-val="https://unfccc.int/NC8" rel="noopener" target="_blank" data-linktype="external">https://unfccc.int/NC8</a>
+                    <a href="https://unfccc.int/documents/614139" data-val="https://unfccc.int/documents/614139" rel="noopener" target="_blank" data-linktype="external">https://unfccc.int/NC8</a>
                   </span>
                 </li>
               </ul>
@@ -202,16 +202,6 @@
             <td>
             </td><td>
               <ul>
-                <li style="clear: both;">
-                  <span class="link-external">
-                    <a href="https://reportnet.europa.eu/public/dataflow/110" data-val="https://reportnet.europa.eu/public/dataflow/110" rel="noopener" target="_blank" data-linktype="external">2021 Art. 19 (1) reporting</a>
-                  </span>
-                </li>
-                <li style="clear: both;">
-                  <span class="link-external">
-                    <a href="https://reportnet.europa.eu/public/dataflow/897" data-val="https://reportnet.europa.eu/public/dataflow/897" rel="noopener" target="_blank" data-linktype="external">2023 Art. 17 (2)(d) reporting</a>
-                  </span>
-                </li>
                 <li style="clear: both;">
                   <span class="link-external">
                     <a href="https://reportnet.europa.eu/public/dataflow/895" data-val="https://reportnet.europa.eu/public/dataflow/895" rel="noopener" target="_blank" data-linktype="external">2023 Art. 19 (1) reporting</a>

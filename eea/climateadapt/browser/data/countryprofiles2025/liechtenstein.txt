@@ -10,10 +10,10 @@ The information presented in these pages is based on the 2019 voluntary reportin
 <div class="sweet-tabs">
 <ul class="nav nav-tabs">
 <li class="active"><a href="#1576-0" data-toggle="tab">Summary</a></li>
-<li class=" "><a href="#1576-1" data-toggle="tab">Policy &amp; legal framework</a></li>
+<!-- <li class=" "><a href="#1576-1" data-toggle="tab">Policy &amp; legal framework</a></li>
 <li class=" "><a href="#1576-2" data-toggle="tab">Sectors &amp; actions</a></li>
 <li class=" "><a href="#1576-3" data-toggle="tab">Assessments</a></li>
-<li class=" "><a href="#1576-4" data-toggle="tab">Engaging stakeholders</a></li>
+<li class=" "><a href="#1576-4" data-toggle="tab">Engaging stakeholders</a></li> -->
 <li class=" "><a href="#1576-5" data-toggle="tab">Contact</a></li>
 </ul>
 <div class="tab-content">
@@ -76,7 +76,7 @@ The information presented in these pages is based on the 2019 voluntary reportin
 </td>
 <td style="width: 130px;">
 <ul>
-<li><a href="http://unfccc.int/files/national_reports/annex_i_natcom_/application/pdf/8509731_liechtenstein-nc7-br3-1-nc7_br3_lie_2018.pdf" data-linktype="external" data-val="http://unfccc.int/files/national_reports/annex_i_natcom_/application/pdf/8509731_liechtenstein-nc7-br3-1-nc7_br3_lie_2018.pdf">UNFCCC NC7</a></li>
+<li><a href="https://unfccc.int/sites/default/files/resource/NC8_BR5_LIE_2022.pdf">UNFCCC NC7</a></li>
 </ul>
 </td>
 </tr>

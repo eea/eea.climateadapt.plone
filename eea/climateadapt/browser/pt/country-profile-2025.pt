@@ -78,7 +78,7 @@ ul li {
     <li class=" "><a href="#4489-6" data-toggle="tab" i18n:translate="">Contact</a></li>
   </ul>
   </div>
-  <div class="col-lg-9">
+  <div class="col-lg-9" tal:define="country_code view/get_country_code">
   <div class="tab-content">
     <!-- <div tal:content="view/summary_table"></div> -->
     <div class="tab-pane active" id="4489-0" tal:define="summary_data view/summary_table">
@@ -229,9 +229,15 @@ ul li {
             <td></td>
             <td>
               <ul>
-                <li style="clear: both;">
+                <li style="clear: both;" tal:condition="python: country_code not in ['TR']">
                   <span class="link-external">
-                    <a href="https://unfccc.int/NC7" data-val="https://unfccc.int/NC8" rel="noopener"
+                    <a href="https://unfccc.int/NC8" data-val="https://unfccc.int/NC8" rel="noopener"
+                       target="_blank" data-linktype="external">https://unfccc.int/NC8</a>
+                  </span>
+                </li>
+                <li style="clear: both;" tal:condition="python: country_code in ['TR']">
+                  <span class="link-external">
+                    <a href="https://unfccc.int/sites/default/files/resource/TUR_8NCResubmission.pdf" data-val="https://unfccc.int/sites/default/files/resource/TUR_8NCResubmission.pdf" rel="noopener"
                        target="_blank" data-linktype="external">https://unfccc.int/NC8</a>
                   </span>
                 </li>
@@ -243,19 +249,19 @@ ul li {
             <td></td>
             <td>
               <ul>
-                <li style="clear: both;">
+                <li style="clear: both;" tal:condition="python: 'IS' not in country_code">
                   <span class="link-external">
                     <a href="https://reportnet.europa.eu/public/dataflow/110" data-val="https://reportnet.europa.eu/public/dataflow/110" rel="noopener"
                        target="_blank" data-linktype="external">2021 Art. 19 (1) reporting</a>
                   </span>
                 </li>
-                <li style="clear: both;">
+                <li style="clear: both;" tal:condition="python: country_code not in ['IS','TR']">
                   <span class="link-external">
                     <a href="https://reportnet.europa.eu/public/dataflow/897" data-val="https://reportnet.europa.eu/public/dataflow/897" rel="noopener"
                        target="_blank" data-linktype="external">2023 Art. 17 (2)(d) reporting</a>
                   </span>
                 </li>
-                <li style="clear: both;">
+                <li style="clear: both;" tal:condition="python: country_code not in ['TR']">
                   <span class="link-external">
                     <a href="https://reportnet.europa.eu/public/dataflow/895" data-val="https://reportnet.europa.eu/public/dataflow/895" rel="noopener"
                        target="_blank" data-linktype="external">2023 Art. 19 (1) reporting</a>
@@ -267,7 +273,7 @@ ul li {
                        target="_blank" data-linktype="external">2025 Art. 19 (1) reporting</a>
                   </span>
                 </li>
-                <li style="clear: both;">
+                <li style="clear: both;" tal:condition="python: country_code not in ['IS','TR']">
                   <span class="link-external">
                     <a href="https://reportnet.europa.eu/public/dataflow/1444" data-val="https://reportnet.europa.eu/public/dataflow/1444" rel="noopener"
                        target="_blank" data-linktype="external">2025 Art. 17 (2)(d) reporting</a>

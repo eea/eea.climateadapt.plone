@@ -754,6 +754,12 @@ class CountryProfileData(BrowserView):
 
         return _text
 
+    def get_country_code(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        return get_country_code(country_name)
+
     def get_sub_national_websites(self):
         data = self.get_processed_data()
 
@@ -875,7 +881,8 @@ class CountryProfileData(BrowserView):
         items = sorted(items, key=lambda x: x["Type"])
 
         for item in items:
-            # # TODO CHECK perhaps we have to use Available as YES
+            # import pdb
+            # pdb.set_trace()
             if 'Status' not in item:
                 continue
             typeName = item["Type"]
@@ -889,6 +896,8 @@ class CountryProfileData(BrowserView):
             if len(temp) == 2:
                 typeName = temp[1]
             typeName = typeName.strip()
+            if typeName == 'Climate Law (including adaptation)':
+                typeName = 'Legislative acts'
             if typeName not in list(response.keys()):
                 response[typeName] = []
             if len(item["Status"]) > 1 and item["Status"][1] == "-":

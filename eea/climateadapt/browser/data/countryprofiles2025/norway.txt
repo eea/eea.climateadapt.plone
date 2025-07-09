@@ -151,7 +151,7 @@ The information presented in these pages is based on the 2019 voluntary reportin
 </td>
 <td style="width: 476.97px;">
 <ul>
-<li><a href="http://unfccc.int/files/national_reports/annex_i_natcom/submitted_natcom/application/pdf/529371_norway-nc7-br3-1-nc7_-_br3_-_final.pdf" data-linktype="external" data-val="http://unfccc.int/files/national_reports/annex_i_natcom/submitted_natcom/application/pdf/529371_norway-nc7-br3-1-nc7_-_br3_-_final.pdf">UNFCCC NC7</a></li>
+<li><a href="https://unfccc.int/sites/default/files/resource/T-1582%20E%20Norways%20eighth%20national%20communication.pdf" data-linktype="external" data-val="https://unfccc.int/sites/default/files/resource/T-1582%20E%20Norways%20eighth%20national%20communication.pdf">UNFCCC NC7</a></li>
 </ul>
 <p> </p>
 </td>
