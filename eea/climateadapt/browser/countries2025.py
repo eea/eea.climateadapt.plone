@@ -1341,8 +1341,12 @@ class CountryProfileData(BrowserView):
                         items.append(contact_general)
 
         for item in items:
+            item_website = item.get('Website', '')
+            if len(item_website) and not (item_website.startswith('http://') or item_website.startswith('https://')):
+                item_website = 'https://' + item_website
+
             line = {'Organisation': item.get('Organisation', ''), 'Department': item.get(
-                'Department', ''), 'Website': item.get('Website', '')}
+                'Department', ''), 'Website': item_website}
             response.append(line)
         # pdb.set_trace()
         return response
