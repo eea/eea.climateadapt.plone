@@ -196,12 +196,13 @@ ul li {
               <ul>
                 <li tal:repeat="item items"
                     style="clear: both;">
-                  <span class="link-external">
+                  <span class="link-external" tal:condition="python: len(item.get('Link', ''))">
                     <a tal:attributes="href python: view.fix_link(item.get('Link', '#'));
                                        data-val python: view.fix_link(item.get('Link', '#'))"
                        tal:content="item/Description"
-                       rel="noopener" target="_blank" data-linktype="external"></a>
+                       rel="noopener" target="_blank" data-linktype="external" tal:condition="python: len(item.get('Link', ''))"></a>
                   </span>
+                  <span tal:content="item/Description" tal:condition="python: 0 == len(item.get('Link', ''))"></span>
                 </li>
               </ul>
             </td>
@@ -418,7 +419,8 @@ ul li {
             <tr tal:condition="python: 'ImpactVariation' in item"><td>Different rating of the observed impacts of key hazards</td><td tal:content="item/ImpactVariation" /></tr>
             <tr tal:condition="python: 'DescribeImpactsKeyHazards' in item"><td>Assessment</td><td tal:content="item/DescribeImpactsKeyHazards" /></tr>
             <tr tal:condition="python: 'KeyHazardsLikelihood' in item"><td>Rating of the key hazards' likelihood of occurrence and exposure to them under future climate</td><td tal:content="item/KeyHazardsLikelihood" /></tr>
-            <tr tal:condition="python: 'DescribeLikelihood' in item"><td>Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td tal:content="item/DescribeLikelihood" /></tr>
+            <tr tal:condition="python: 'ImpactVariation' in item"><td>Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td tal:content="item/ImpactVariation" /></tr>
+            <tr tal:condition="python: 'DescribeLikelihood' in item"><td>Assessment</td><td tal:content="item/DescribeLikelihood" /></tr>
             <tr tal:condition="python: 'Vulnerability' in item"><td>Rating of the vulnerability, including adaptive capacity</td><td tal:content="item/Vulnerability" /></tr>
             <tr tal:condition="python: 'VulnerabilityVariability' in item"><td>Different rating of the vulnerability and/or adaptive capacity</td><td tal:content="item/VulnerabilityVariability" /></tr>
             <tr tal:condition="python: 'DescribeVulnerability' in item"><td>Assessment</td><td tal:content="item/DescribeVulnerability" /></tr>
@@ -755,7 +757,7 @@ ul li {
       <p tal:content="website_items"></p>
           <div tal:repeat="website website_items">
             <div style="margin-bottom:20px;">
-              <a tal:content="website/Title" tal:attributes="href website/Website" href=""></a>
+              <a tal:content="website/Title" tal:attributes="href website/Website" href="" target="_blank"></a>
               </div>
           </div>
       </tal>
@@ -764,7 +766,7 @@ ul li {
           <div tal:repeat="publication publication_items">
           <div style="margin-bottom:20px;">
               <p style="padding:0;margin-bottom:0px;margin-top:10px;"><strong style="margin-bottom:3px;" tal:content="publication/Publisher"></strong></p>
-              <a tal:content="publication/Title" tal:attributes="href publication/Website" href=""></a>
+              <a tal:content="publication/Title" tal:attributes="href publication/Website" href="" target="_blank"></a>
               </div>
           </div>
       </tal>
@@ -778,7 +780,7 @@ ul li {
           <div style="margin-bottom:20px;">
             <h3 style="margin-bottom:3px;" tal:content="item/Organisation">Organisation</h3>
             <p style="margin-bottom:0px;" tal:content="item/Department" tal:condition="python: 'Department' in item">Department within the organisation</p>
-            <a tal:attributes="href python:item['Website']" tal:content="item/Website">Website</a>
+            <a tal:attributes="href python:item['Website']" tal:content="item/Website" target="_blank">Website</a>
           </div>
           </div>
       </tal>
