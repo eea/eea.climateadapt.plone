@@ -819,11 +819,17 @@ class CountryProfileData(BrowserView):
         return sorted_items
 
     def get_sorted_action_measures_data(self):
+        # import pdb
+        # pdb.set_trace()
+
         if not self.processed_data["Strategies_Plans"]:
-            return None
+            return []
 
         items = self.processed_data["Strategies_Plans"].get(
             "Action_Measures", [])
+
+        if 0 == len(items):
+            return []
 
         sorted_items = sorted(
             items, key=lambda i: (i["KeyTypeMeasure"], i["subKTM"], i["Title"])
@@ -881,8 +887,6 @@ class CountryProfileData(BrowserView):
         items = sorted(items, key=lambda x: x["Type"])
 
         for item in items:
-            # import pdb
-            # pdb.set_trace()
             if 'Status' not in item:
                 continue
             typeName = item["Type"]
@@ -890,6 +894,9 @@ class CountryProfileData(BrowserView):
 
             if 'adopted' not in item['Status'] and 'completed' not in item['Status']:
                 continue
+
+            # import pdb
+            # pdb.set_trace()
 
             typeName = item["Type"]
             temp = typeName.split(":", 1)
@@ -902,6 +909,16 @@ class CountryProfileData(BrowserView):
                 response[typeName] = []
             if len(item["Status"]) > 1 and item["Status"][1] == "-":
                 item["Status"] = item["Status"][2:]
+
+            if 'completed and submitted for adoptio' in item['Status'].lower():
+                item['Status'] = "Completed and submitted for adoption"
+            elif '(adopted)' in item['Status']:
+                item['Status'] = "Adopted"
+            elif '(completed)' in item['Status']:
+                item['Status'] = "Completed"
+            elif 'completed' == item['Status'].lower():
+                item['Status'] = "Completed"
+
             response[typeName].append(
                 {
                     "status": item["Status"],
@@ -1165,6 +1182,31 @@ class CountryProfileData(BrowserView):
             "futureHtml": futureHtml,
             "data": response,
         }
+
+    def hazards_table_national_communication_website(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        # import pdb
+        # pdb.set_trace()
+
+        if country_code in ['XK']:
+            return None
+        elif country_code in ['TR']:
+            link = "https://unfccc.int/sites/default/files/resource/TUR_8NCResubmission.pdf"
+            return {"name": link, "link": link}
+        elif country_code in ['UA']:
+            link = "https://unfccc.int/documents/198421"
+            return {"name": link, "link": link}
+        elif country_code in ['MD', 'RS', 'GE']:
+            link = "https://unfccc.int/non-annex-I-NCs"
+            return {"name": link, "link": link}
+        else:
+            link = "https://unfccc.int/NC8"
+            return {"name": link, "link": link}
+        return None
 
     def hazards_table_prev_version(self):
         country_name = self.verify_country_name(

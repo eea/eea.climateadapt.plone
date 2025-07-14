@@ -76,7 +76,7 @@ The information presented in these pages is based on the 2019 voluntary reportin
 </td>
 <td style="width: 130px;">
 <ul>
-<li><a href="https://unfccc.int/sites/default/files/resource/NC8_BR5_LIE_2022.pdf">UNFCCC NC7</a></li>
+<li><a href="https://unfccc.int/sites/default/files/resource/NC8_BR5_LIE_2022.pdf">UNFCCC NC8</a></li>
 </ul>
 </td>
 </tr>
