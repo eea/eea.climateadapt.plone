@@ -412,7 +412,7 @@ ul li {
             <tr><td>Different rating of the observed impacts of key hazards</td><td tal:content="item/ImpactVariation | nothing" /></tr>
             <tr tal:condition="python: 'DescribeImpactsKeyHazards' in item"><td>Assessment</td><td tal:content="item/DescribeImpactsKeyHazards" /></tr>
             <tr tal:condition="python: 'KeyHazardsLikelihood' in item"><td>Rating of the key hazards' likelihood of occurrence and exposure to them under future climate</td><td tal:content="item/KeyHazardsLikelihood" /></tr>
-            <tr><td>Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td tal:content="item/ImpactVariation | nothing" /></tr>
+            <tr><td>Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td tal:content="item/LikehoodVariability | nothing" /></tr>
             <tr tal:condition="python: 'DescribeLikelihood' in item"><td>Assessment</td><td tal:content="item/DescribeLikelihood" /></tr>
             <tr tal:condition="python: 'Vulnerability' in item"><td>Rating of the vulnerability, including adaptive capacity</td><td tal:content="item/Vulnerability" /></tr>
             <tr tal:condition="python: 'VulnerabilityVariability' in item"><td>Different rating of the vulnerability and/or adaptive capacity</td><td tal:content="item/VulnerabilityVariability" /></tr>
