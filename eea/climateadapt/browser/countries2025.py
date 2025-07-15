@@ -79,9 +79,9 @@ def get_discodata(is_energy_comunity=False):
 
     last_import_date = annotations[annotations_discodata_key]["timestamp"]
 
-    # if (datetime.now() - last_import_date).total_seconds() > 60**2:
-    # if (datetime.now() - last_import_date).total_seconds() > 0:
-    if (datetime.now() - last_import_date).total_seconds() > 60:
+    if (datetime.now() - last_import_date).total_seconds() > 60**2:
+        # if (datetime.now() - last_import_date).total_seconds() > 0:
+        # if (datetime.now() - last_import_date).total_seconds() > 60:
         annotations._p_changed = True
         return setup_discodata(annotations, is_energy_comunity)
 
