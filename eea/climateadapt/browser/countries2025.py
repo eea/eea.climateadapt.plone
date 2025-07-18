@@ -827,7 +827,7 @@ class CountryProfileData(BrowserView):
                 unqiue_items.append(item)
         sorted_items = sorted(
             unqiue_items,
-            key=lambda i: (i['PrimarySector'], i['PrimarySector']
+            key=lambda i: (i['PrimarySector'].lower(), i['PrimarySector'].lower()
                            if 'PrimarySector' in i else '')
         )
 
