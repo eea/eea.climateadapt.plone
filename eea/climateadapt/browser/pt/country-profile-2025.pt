@@ -485,10 +485,11 @@ ul li {
 
       <h3 class="country-header pt2" i18n:translate="">Selection of actions and (programmes of) measures</h3>
       <tal tal:define="sections python: view.get_sorted_action_measures_data()">
-        <tal:cond tal:condition="python: 0==len(sections)">
-          <div i18n:translate="">Information was not reported in 2025.</div>
+        <div tal:content="sections"></div>
+        <tal:cond tal:condition="python: not sections">
+          <table><tr><td>Information was not reported in 2025.</td></tr></table>
         </tal:cond>
-        <tal:cond tal:condition="python: len(sections)">
+        <tal:cond tal:condition="python: sections">
           <tal:rep tal:repeat="item sections">
             <div class="panel panel-default"
               tal:define="id repeat/item/index;

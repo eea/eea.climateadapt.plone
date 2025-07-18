@@ -823,13 +823,13 @@ class CountryProfileData(BrowserView):
         # pdb.set_trace()
 
         if not self.processed_data["Strategies_Plans"]:
-            return []
+            return None
 
         items = self.processed_data["Strategies_Plans"].get(
             "Action_Measures", [])
 
         if 0 == len(items):
-            return []
+            return None
 
         sorted_items = sorted(
             items, key=lambda i: (i["KeyTypeMeasure"], i["subKTM"], i["Title"])
