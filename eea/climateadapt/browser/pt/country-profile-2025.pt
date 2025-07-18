@@ -242,7 +242,15 @@ ul li {
             <td i18n:translate="">Governance regulation adaptation reporting</td>
             <td></td>
             <td>
-              <ul>
+              <ul tal:condition="python: country_code in ['MD','UA','RS','GE']">
+                <li style="clear: both;" tal:condition="python: 'IS' not in country_code">
+                  <span class="link-external">
+                    <a href="https://reportnet.europa.eu/public/dataflow/1392" data-val="https://reportnet.europa.eu/public/dataflow/1392" rel="noopener"
+                       target="_blank" data-linktype="external">Energy Community Art. 19 (1) reporting</a>
+                  </span>
+                </li>
+              </ul>
+              <ul tal:condition="python: country_code not in ['MD','UA','RS','GE']">
                 <li style="clear: both;" tal:condition="python: 'IS' not in country_code">
                   <span class="link-external">
                     <a href="https://reportnet.europa.eu/public/dataflow/110" data-val="https://reportnet.europa.eu/public/dataflow/110" rel="noopener"

@@ -1226,7 +1226,7 @@ class CountryProfileData(BrowserView):
             return None
         elif country_code in ['TR']:
             link = "https://unfccc.int/sites/default/files/resource/TUR_8NCResubmission.pdf"
-            return {"name": link, "link": link}
+            return {"name": 'UNFCCC NC8', "link": link}
         elif country_code in ['UA']:
             link = "https://unfccc.int/documents/198421"
             return {"name": link, "link": link}
