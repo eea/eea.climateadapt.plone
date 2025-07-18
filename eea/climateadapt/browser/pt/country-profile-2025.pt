@@ -718,7 +718,6 @@ ul li {
 
       <h3 class="country-header">Good practices and lessons learnt</h3>
 
-
         <div class="panel panel-default" tal:repeat="item data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices"  tal:condition="data/Sub_National_Adaptation/Sub_National_AvailableGoodPractices | nothing">
           <div class="panel-heading" tal:attributes="id string:accordion_sn_agp_${repeat/item/index}-heading" >
             <h4 class="panel-title" tal:define="Title item/Title | nothing" >
@@ -733,7 +732,9 @@ ul li {
             </div>
           </div>
         </div>
-
+        <div tal:condition="python: not view.have_sub_national_availableGoodPractices()">
+          <table><tr><td>Information was not reported in 2025.</td></tr></table>
+        </div>
 
       <!-- <tal:block tal:define="fieldset_legend string:Stakeholder engagement - public;
                     fieldset_data data/Sub_National_Adaptation/OverviewMeasures;fieldset_key string:1">

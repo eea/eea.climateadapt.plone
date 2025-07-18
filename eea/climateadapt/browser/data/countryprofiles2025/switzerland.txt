@@ -27,8 +27,8 @@
             <td>Climate Law (including adaptation)</td>
             <td>
               <ul>
-                <li>actual adaptation policy (adopted)</li>
-                <li>being developed</li>
+                <li>Adopted</li>
+                <li>Being developed</li>
               </ul>
             </td>
             <td>
@@ -52,7 +52,7 @@
             <td>National Adaptation Strategy (NAS)</td>
             <td>
               <ul>
-                <li>actual adaptation policy (adopted)</li>
+                <li>Adopted</li>
               </ul>
             </td>
             <td>
@@ -70,8 +70,8 @@
             <td>National Adaptation Plan (NAP)</td>
             <td>
               <ul>
-                <li>actual adaptation policy (adopted)</li>
-                <li>previous adaptation policy (superseded)</li>
+                <li>Adopted</li>
+                <li>Superseded</li>
               </ul>
             </td>
             <td>
@@ -95,7 +95,7 @@
             <td>Climate Risk Assessment (CRA)</td>
             <td>
               <ul>
-                <li>completed</li>
+                <li>Completed</li>
               </ul>
             </td>
             <td>

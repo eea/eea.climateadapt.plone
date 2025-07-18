@@ -864,6 +864,21 @@ class CountryProfileData(BrowserView):
 
         return link
 
+    def have_sub_national_availableGoodPractices(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # import pdb
+        # pdb.set_trace()
+        if 'Sub_National_Adaptation' not in processed_data:
+            return None
+        if 'Sub_National_AvailableGoodPractices' in processed_data['Sub_National_Adaptation']:
+            return True
+        return None
+
     def summary_table(self):
         country_name = self.verify_country_name(
             self.context.id.title().replace("-", " ")
