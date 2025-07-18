@@ -162,6 +162,13 @@
   />
 
   <browser:page
+    name="countries-metadata-extract-2025"
+    for="*"
+    class=".countries2025.CountriesMetadataExtract"
+    permission="zope2.View"
+  />
+
+  <browser:page
     name="health_homepage"
     for="*"
     class=".health.HealthHomepageItems"

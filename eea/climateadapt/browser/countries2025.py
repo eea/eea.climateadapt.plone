@@ -345,7 +345,8 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
             return res
 
         # setup National adaptation policy - NAS, NAP and SAP
-        for name in ("NAS", "NAP", "SAP"):
+        # for name in ("NAS", "NAP", "SAP"):
+        for name in ("NAS", "NAP"):
             value = ""
             values = processed_data["Legal_Policies"].get(name, [])
 
@@ -388,19 +389,32 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
         values = processed_data["Legal_Policies"].get("AdaptationPolicies", [])
         sorted_items = sorted(values, key=lambda i: i["Type"])
         _response = {}
-        sorted_items = [
-            x for x in sorted_items if x["Status"].endswith(("completed", "(adopted)"))
-        ]
+        # sorted_items = [
+        #     x for x in sorted_items if x["Status"].endswith(("completed", "(adopted)"))
+        # ]
+        sorted_items = values
         for item in sorted_items:
             _type = item["Type"]
             _type = _type[3: _type.find("(")]
             if _type not in _response:
                 _response[_type] = []
+            # import pdb
+            # pdb.set_trace()
+            if 'adopted' not in item.get('Status', ''):
+                continue
+            if 'adopted' in item.get('Status', ''):
+                item['Status'] = 'Adopted'
             _response[_type].append(item)
 
         value = ""
         for key in _response:
+            # import pdb
+            # pdb.set_trace()
+            if key.strip() not in ['National Adaptation Plan', 'National Adaptation Strategy']:
+                continue
             data = _response[key]
+            # import pdb
+            # pdb.set_trace()
             _value = [
                 "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
                     v.get("Link"),
@@ -422,7 +436,8 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
         if values:
             # setup National adaptation policy - NAS, NAP and SAP
             # import pdb; pdb.set_trace()
-            for name in ("NAS", "NAP", "SAP"):
+            # for name in ("NAS", "NAP", "SAP"):
+            for name in ("NAS", "NAP"):
                 value = ""
                 data = [c for c in values if "(" + name + ")" in c["Type"]]
 
