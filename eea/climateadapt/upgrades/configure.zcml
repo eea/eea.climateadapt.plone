@@ -1,0 +1,17 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           i18n_domain="eea.climateadapt">
+
+    <genericsetup:upgradeSteps
+        source="1"
+        destination="2.0"
+        profile="eea.climateadapt:default">
+
+        <genericsetup:upgradeStep
+            title="Migrate teaserGrid to gridBlock"
+            handler="eea.climateadapt.upgrades.evolve20.migrate_teaser"
+        />
+
+    </genericsetup:upgradeSteps>
+
+</configure>
