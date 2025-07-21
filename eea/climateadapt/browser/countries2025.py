@@ -386,6 +386,9 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
 
             res[prop] = value
 
+        # import pdb
+        # pdb.set_trace()
+
         values = processed_data["Legal_Policies"].get("AdaptationPolicies", [])
         sorted_items = sorted(values, key=lambda i: i["Type"])
         _response = {}
@@ -407,29 +410,33 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
             _response[_type].append(item)
 
         value = ""
-        for key in _response:
-            # import pdb
-            # pdb.set_trace()
-            if key.strip() not in ['National Adaptation Plan', 'National Adaptation Strategy']:
-                continue
-            data = _response[key]
-            # import pdb
-            # pdb.set_trace()
-            _value = [
-                "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
-                    v.get("Link"),
-                    v["Title"].encode("ascii", "ignore").decode("ascii"),
-                    "style='font-style:oblique;'",
-                    v.get("Status"),
-                )
-                for v in data
-            ]
-            if len(_value):
-                value += str("<span>") + key + str("</span>")
-                value += str("<ul>") + str("").join(_value) + str("</ul>")
+        for keySearch in ['National Adaptation Strategy', 'National Adaptation Plan']:
+            for key in _response:
+                if key.strip() not in keySearch:
+                    continue
+                data = _response[key]
+                _value = [
+                    "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                        v.get("Link"),
+                        v["Title"].encode("ascii", "ignore").decode("ascii"),
+                        "style='font-style:oblique;'",
+                        v.get("Status"),
+                    )
+                    for v in data
+                ]
+                if len(_value):
+                    value += str("<span>") + key + str("</span>")
+                    value += str("<ul>") + str("").join(_value) + str("</ul>")
+
         res["mixed"] = value
 
-        # import pdb; pdb.set_trace()
+        values = sorted(
+            values,
+            key=lambda i: (i['Type'].lower(), i['Type'].lower())
+            # reverse=True
+        )
+        values = [p for p in values if 'NAS' in p['Type']
+                  or 'NAP' in p['Type']]
         res["nas_mixed"] = ""
         res["nap_mixed"] = ""
         res["sap_mixed"] = ""
@@ -905,8 +912,6 @@ class CountryProfileData(BrowserView):
         # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
 
-        # import pdb
-        # pdb.set_trace()
         response = OrderedDict()
 
         if not processed_data["Legal_Policies"]:
@@ -924,9 +929,6 @@ class CountryProfileData(BrowserView):
 
             if 'adopted' not in item['Status'] and 'completed' not in item['Status']:
                 continue
-
-            # import pdb
-            # pdb.set_trace()
 
             typeName = item["Type"]
             temp = typeName.split(":", 1)
