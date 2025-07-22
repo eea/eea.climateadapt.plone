@@ -70,6 +70,15 @@ class SaveTranslationHtml(BrowserView):
 
             try:
                 en_obj = site_portal.unrestrictedTraverse(path)
+            except KeyError:
+                # canonical object was removed
+                logger.warning(
+                    "Canonical object was removed for save translation: %s", path
+                )
+                self.request.response.setHeader("Content-Type", "application/json")
+                return json.dumps({"status": "canonical object removed"})
+
+            try:
                 canonical_serial_id = ISerialId(en_obj)
 
                 if int(canonical_serial_id) != int(serial_id):
