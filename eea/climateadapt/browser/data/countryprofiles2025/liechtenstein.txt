@@ -122,7 +122,6 @@ The information presented in these pages is based on the 2019 voluntary reportin
 <div class="tab-pane  " id="1576-5">
 <div>
 <p><strong>AMT FÜR UMWELT</strong><strong>/ OFFICE OF ENVIRONMENT </strong>  <br />Stabsstelle Internationales und Klima / Staff Unit International Affairs and Climate</p>
-<p>National Focal Point</p>
 <p>Gerberweg 5 / Postfach 684 / P. O. Box 684, 9490 Vaduz</p>
 <p>Website <a href="http://www.au.llv.li">www.au.llv.li</a> </p>
 <p> </p>
