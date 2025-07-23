@@ -227,6 +227,7 @@ class SyncTranslatedPaths(BrowserView):
                     form["newParent"],
                     form["newName"],
                     langs,
+                    self.request,
                 )
         except Exception as e:
             result = {"error_type": exception_to_json(e)}
