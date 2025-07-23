@@ -517,7 +517,9 @@ def sync_translation_paths(
     en_obj = content.get(en_path)
 
     if en_obj is None:
-        logger.warning("Could not find original source for move: %s", en_path)
+        msg = f"Could not find original source for move: {en_path}"
+        logger.warning(msg)
+        return {"status": msg}
 
     try:
         tm = ITranslationManager(en_obj)
