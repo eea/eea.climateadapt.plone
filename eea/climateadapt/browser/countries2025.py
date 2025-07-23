@@ -37,7 +37,10 @@ def parse_csv(path):
 
 
 def get_country_code(country_name):
-    # import pdb; pdb.set_trace()
+    if 'Moldova' == country_name:
+        country_name = 'Moldova, Republic of'
+    if 'Moldavia' == country_name:
+        country_name = 'Moldova, Republic of'
     country_code = next(
         (k for k, v in ace_countries if v == country_name), "Not found")
     if country_code == "GR":
@@ -48,36 +51,45 @@ def get_country_code(country_name):
     return country_code
 
 
-def setup_discodata(annotations):
-    response = urllib.request.urlopen(DISCODATA_URL)
+def setup_discodata(annotations, is_energy_comunity=False):
+    call_discodata_url = DISCODATA_ENERGY_COMUNITY_URL if is_energy_comunity else DISCODATA_URL
+    response = urllib.request.urlopen(call_discodata_url)
     data = json.loads(response.read())
-    annotations["discodata"] = {"timestamp": datetime.now(), "data": data}
+    annotations_discodata_key = "discodata_country_2025"
+    if is_energy_comunity:
+        annotations_discodata_key += "_energy_comunity"
+    annotations[annotations_discodata_key] = {
+        "timestamp": datetime.now(), "data": data}
     annotations._p_changed = True
-    logger.info("RELOAD URL %s", DISCODATA_URL)
+    logger.info("RELOAD URL %s", call_discodata_url)
 
     return data
 
 
-def get_discodata():
+def get_discodata(is_energy_comunity=False):
     annotations = portal.getSite().__annotations__
 
-    if "discodata" not in annotations:
-        annotations._p_changed = True
-        return setup_discodata(annotations)
+    annotations_discodata_key = "discodata_country_2025"
+    if is_energy_comunity:
+        annotations_discodata_key += "_energy_comunity"
 
-    last_import_date = annotations["discodata"]["timestamp"]
+    if annotations_discodata_key not in annotations:
+        annotations._p_changed = True
+        return setup_discodata(annotations, is_energy_comunity)
+
+    last_import_date = annotations[annotations_discodata_key]["timestamp"]
 
     if (datetime.now() - last_import_date).total_seconds() > 60**2:
         # if (datetime.now() - last_import_date).total_seconds() > 0:
+        # if (datetime.now() - last_import_date).total_seconds() > 60:
         annotations._p_changed = True
-        return setup_discodata(annotations)
+        return setup_discodata(annotations, is_energy_comunity)
 
-    return annotations["discodata"]["data"]
+    return annotations[annotations_discodata_key]["data"]
 
 
 def get_discodata_for_country(country_code):
-    data = get_discodata()
-    # import pdb; pdb.set_trace()
+    data = get_discodata(country_code.upper() in ['GE', 'MD', 'RS', 'UA'])
 
     orig_data = next(
         (x for x in data["results"] if x["countryCode"] == country_code), {}
@@ -116,8 +128,9 @@ def get_discodata_for_country(country_code):
 
 
 # DISCODATA_URL = 'https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_JSON%5D&p=1&nrOfHits=100'
-DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_Art19_JSON_2023%5D&p=1&nrOfHits=100"
-
+# DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_Art19_JSON_2023%5D&p=1&nrOfHits=100"
+DISCODATA_URL = "https://discodata.eea.europa.eu/sql?query=Select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BAdaptation_Art19_JSON_2025%5D&p=1&nrOfHits=50&mail=null&schema=null"
+DISCODATA_ENERGY_COMUNITY_URL = "https://discodata.eea.europa.eu/sql?query=Select%20*%20from%20%5BNCCAPS%5D.%5Blatest%5D.%5BEC_Adaptation_Art19_JSON_2025%5D&p=1&nrOfHits=50&mail=null&schema=null"
 logger = logging.getLogger("eea.climateadapt")
 
 _COUNTRIES_WITH_NAS = [
@@ -332,7 +345,8 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
             return res
 
         # setup National adaptation policy - NAS, NAP and SAP
-        for name in ("NAS", "NAP", "SAP"):
+        # for name in ("NAS", "NAP", "SAP"):
+        for name in ("NAS", "NAP"):
             value = ""
             values = processed_data["Legal_Policies"].get(name, [])
 
@@ -372,44 +386,65 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
 
             res[prop] = value
 
+        # import pdb
+        # pdb.set_trace()
+
         values = processed_data["Legal_Policies"].get("AdaptationPolicies", [])
         sorted_items = sorted(values, key=lambda i: i["Type"])
         _response = {}
-        sorted_items = [
-            x for x in sorted_items if x["Status"].endswith(("completed", "(adopted)"))
-        ]
+        # sorted_items = [
+        #     x for x in sorted_items if x["Status"].endswith(("completed", "(adopted)"))
+        # ]
+        sorted_items = values
         for item in sorted_items:
             _type = item["Type"]
             _type = _type[3: _type.find("(")]
             if _type not in _response:
                 _response[_type] = []
+            # import pdb
+            # pdb.set_trace()
+            if 'adopted' not in item.get('Status', ''):
+                continue
+            if 'adopted' in item.get('Status', ''):
+                item['Status'] = 'Adopted'
             _response[_type].append(item)
 
         value = ""
-        for key in _response:
-            data = _response[key]
-            _value = [
-                "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
-                    v.get("Link"),
-                    v["Title"].encode("ascii", "ignore").decode("ascii"),
-                    "style='font-style:oblique;'",
-                    v.get("Status"),
-                )
-                for v in data
-            ]
-            if len(_value):
-                value += str("<span>") + key + str("</span>")
-                value += str("<ul>") + str("").join(_value) + str("</ul>")
+        for keySearch in ['National Adaptation Strategy', 'National Adaptation Plan']:
+            for key in _response:
+                if key.strip() not in keySearch:
+                    continue
+                data = _response[key]
+                _value = [
+                    "<li><a href='{}'>{}</a><p {}>{}</p></li>".format(
+                        v.get("Link"),
+                        v["Title"].encode("ascii", "ignore").decode("ascii"),
+                        "style='font-style:oblique;'",
+                        v.get("Status"),
+                    )
+                    for v in data
+                ]
+                if len(_value):
+                    value += str("<span>") + key + str("</span>")
+                    value += str("<ul>") + str("").join(_value) + str("</ul>")
+
         res["mixed"] = value
 
-        # import pdb; pdb.set_trace()
+        values = sorted(
+            values,
+            key=lambda i: (i['Type'].lower(), i['Type'].lower())
+            # reverse=True
+        )
+        values = [p for p in values if 'NAS' in p['Type']
+                  or 'NAP' in p['Type']]
         res["nas_mixed"] = ""
         res["nap_mixed"] = ""
         res["sap_mixed"] = ""
         if values:
             # setup National adaptation policy - NAS, NAP and SAP
             # import pdb; pdb.set_trace()
-            for name in ("NAS", "NAP", "SAP"):
+            # for name in ("NAS", "NAP", "SAP"):
+            for name in ("NAS", "NAP"):
                 value = ""
                 data = [c for c in values if "(" + name + ")" in c["Type"]]
 
@@ -714,7 +749,7 @@ class ContextCountriesViewJson(BrowserView):
 
 
 class CountryProfileData(BrowserView):
-    template = ViewPageTemplateFile("pt/country-profile.pt")
+    template = ViewPageTemplateFile("pt/country-profile-2025.pt")
 
     def verify_country_name(self, country_name):
         if country_name.lower in ["turkiye"]:
@@ -739,9 +774,13 @@ class CountryProfileData(BrowserView):
 
         _text = CCAWebIntelligentToHtmlConverter(text.strip())()
 
-        # import pdb; pdb.set_trace()
-
         return _text
+
+    def get_country_code(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        return get_country_code(country_name)
 
     def get_sub_national_websites(self):
         data = self.get_processed_data()
@@ -787,14 +826,32 @@ class CountryProfileData(BrowserView):
         if "Id" in items:
             items = [items]
 
-        return items
+        sections = []
+        unqiue_items = []
+        for item in items:
+            if item['PrimarySector'] not in sections:
+                sections.append(item['PrimarySector'])
+                unqiue_items.append(item)
+        sorted_items = sorted(
+            unqiue_items,
+            key=lambda i: (i['PrimarySector'].lower(), i['PrimarySector'].lower()
+                           if 'PrimarySector' in i else '')
+        )
+
+        return sorted_items
 
     def get_sorted_action_measures_data(self):
+        # import pdb
+        # pdb.set_trace()
+
         if not self.processed_data["Strategies_Plans"]:
             return None
 
         items = self.processed_data["Strategies_Plans"].get(
             "Action_Measures", [])
+
+        if 0 == len(items):
+            return None
 
         sorted_items = sorted(
             items, key=lambda i: (i["KeyTypeMeasure"], i["subKTM"], i["Title"])
@@ -810,7 +867,15 @@ class CountryProfileData(BrowserView):
             "AvailableGoodPractices", []
         )
 
-        sorted_items = sorted(items, key=lambda i: i["Title"])
+        for index, item in enumerate(items):
+            if 'Title' not in item:
+                data = item['DescribeGoodPractice'].split('\n')
+                items[index]['Title'] = data[0]
+                items[index]['DescribeGoodPractice'] = '\n'.join(data[1:])
+        return items
+        # TODO in 2025 for the moment we do not have title
+        sorted_items = sorted(items, key=lambda i: i["Id"])
+        # sorted_items = sorted(items, key=lambda i: i["Title"])
 
         return sorted_items
 
@@ -820,6 +885,21 @@ class CountryProfileData(BrowserView):
             return "http://" + link
 
         return link
+
+    def have_sub_national_availableGoodPractices(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # import pdb
+        # pdb.set_trace()
+        if 'Sub_National_Adaptation' not in processed_data:
+            return None
+        if 'Sub_National_AvailableGoodPractices' in processed_data['Sub_National_Adaptation']:
+            return True
+        return None
 
     def summary_table(self):
         country_name = self.verify_country_name(
@@ -842,15 +922,35 @@ class CountryProfileData(BrowserView):
         items = sorted(items, key=lambda x: x["Type"])
 
         for item in items:
+            if 'Status' not in item:
+                continue
+            typeName = item["Type"]
+            item["Status"] = str(item["Status"])
+
+            if 'adopted' not in item['Status'] and 'completed' not in item['Status']:
+                continue
+
             typeName = item["Type"]
             temp = typeName.split(":", 1)
             if len(temp) == 2:
                 typeName = temp[1]
             typeName = typeName.strip()
+            if typeName == 'Climate Law (including adaptation)':
+                typeName = 'Legislative acts'
             if typeName not in list(response.keys()):
                 response[typeName] = []
-            if item["Status"][1] == "-":
+            if len(item["Status"]) > 1 and item["Status"][1] == "-":
                 item["Status"] = item["Status"][2:]
+
+            if 'completed and submitted for adoptio' in item['Status'].lower():
+                item['Status'] = "Completed and submitted for adoption"
+            elif '(adopted)' in item['Status']:
+                item['Status'] = "Adopted"
+            elif '(completed)' in item['Status']:
+                item['Status'] = "Completed"
+            elif 'completed' == item['Status'].lower():
+                item['Status'] = "Completed"
+
             response[typeName].append(
                 {
                     "status": item["Status"],
@@ -880,7 +980,10 @@ class CountryProfileData(BrowserView):
             .get("HazardsForm", [])[0]
             .get("Hazards", [])
         )
-        # import pdb; pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
+# (Pdb) pp processed_data['Contact']['Website']
+
         if len(items) == 0:
             return items
 
@@ -893,8 +996,8 @@ class CountryProfileData(BrowserView):
                 group = "Solid mass"
             if group not in list(response[occurence].keys()):
                 response[occurence][group] = {
-                    "AC": {"hazards": [], "trend": []},
-                    "CH": {"hazards": [], "trend": []},
+                    "AC": {"hazards": [], "trend": [], "occurrences": []},
+                    "CH": {"hazards": [], "trend": [], "occurrences": []},
                 }
             accuteChronic = item["Type"]
             event = item["Event"]
@@ -905,6 +1008,8 @@ class CountryProfileData(BrowserView):
             # if event not in response[occurence][group][accuteChronic]['hazards']:
             response[occurence][group][accuteChronic]["hazards"].append(
                 item["Event"])
+            # response[occurence][group][accuteChronic]["occurrences"].append(
+            #     item["Occurrence"])
             # countItems[ group] += 1
             if occurence == "Future":
                 response[occurence][group][accuteChronic]["trend"].append(
@@ -936,18 +1041,32 @@ class CountryProfileData(BrowserView):
                     if countAC
                     else "" + "</td>"
                 )
+                # observedHtml += (
+                #     "<td"
+                #     + className
+                #     + ">"
+                #     + response["Observed"][hazardType]["AC"]["occurrences"][0]
+                #     if countAC
+                #     else "" + "</td>"
+                # )
                 observedHtml += "</tr>"
                 hazards = response["Observed"][hazardType]["AC"]["hazards"][1:]
+                # occurrences = response["Observed"][hazardType]["AC"]["occurrences"][1:]
                 for idx in range(len(hazards)):
                     # import pdb; pdb.set_trace()
                     className = ' class="bb1"' if idx + \
                         1 == len(hazards) else ""
+                    observedHtml += "<tr>"
                     observedHtml += (
-                        "<tr><td" + className + ">" +
-                        hazards[idx] + "</td></tr>"
+                        "<td" + className + ">" +
+                        hazards[idx] + "</td>"
                     )
+                    # observedHtml += (
+                    #     "<td" + className + ">"+occurrences[idx]+"</td>"
+                    # )
+                    observedHtml += "</tr>"
             else:
-                observedHtml += "<td class='bb1'/></tr>"
+                observedHtml += "<td class='bb1'/><td class='bb1'/></tr>"
 
             observedHtml += "<tr>"
             observedHtml += (
@@ -964,17 +1083,30 @@ class CountryProfileData(BrowserView):
                     + response["Observed"][hazardType]["CH"]["hazards"][0]
                     + "</td>"
                 )
+                # observedHtml += (
+                #     "<td"
+                #     + className
+                #     + ">"
+                #     + response["Observed"][hazardType]["CH"]["occurrences"][0]
+                #     + "</td>"
+                # )
                 observedHtml += "</tr>"
                 hazards = response["Observed"][hazardType]["CH"]["hazards"][1:]
+                # occurrences = response["Observed"][hazardType]["CH"]["occurrences"][1:]
                 for idx in range(len(hazards)):
                     className = ' class="bb1"' if idx + \
                         1 == len(hazards) else ""
+                    observedHtml += "<tr>"
                     observedHtml += (
-                        "<tr><td" + className + ">" +
-                        hazards[idx] + "</td></tr>"
+                        "<td" + className + ">" +
+                        hazards[idx] + "</td>"
                     )
+                    # observedHtml += (
+                    #     "<td" + className + ">" + occurrences[idx] + "</td>"
+                    # )
+                    observedHtml += "</tr>"
             else:
-                observedHtml += "<td class='bb1'/></tr>"
+                observedHtml += "<td class='bb1'/><td class='bb1'/></tr>"
 
         futureHtml = ""
         for hazardType in response["Future"]:
@@ -1083,6 +1215,31 @@ class CountryProfileData(BrowserView):
             "data": response,
         }
 
+    def hazards_table_national_communication_website(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        # import pdb
+        # pdb.set_trace()
+
+        if country_code in ['XK']:
+            return None
+        elif country_code in ['TR']:
+            link = "https://unfccc.int/sites/default/files/resource/TUR_8NCResubmission.pdf"
+            return {"name": 'UNFCCC NC8', "link": link}
+        elif country_code in ['UA']:
+            link = "https://unfccc.int/documents/198421"
+            return {"name": link, "link": link}
+        elif country_code in ['MD', 'RS', 'GE']:
+            link = "https://unfccc.int/non-annex-I-NCs"
+            return {"name": link, "link": link}
+        else:
+            link = "https://unfccc.int/NC8"
+            return {"name": link, "link": link}
+        return None
+
     def hazards_table_prev_version(self):
         country_name = self.verify_country_name(
             self.context.id.title().replace("-", " ")
@@ -1129,6 +1286,8 @@ class CountryProfileData(BrowserView):
         country_name = self.verify_country_name(
             self.context.id.title().replace("-", " ")
         )
+        # import pdb
+        # pdb.set_trace()
         country_code = get_country_code(country_name)
 
         processed_data = get_discodata_for_country(country_code)
@@ -1137,13 +1296,135 @@ class CountryProfileData(BrowserView):
         # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
 
         self.processed_data = processed_data
-        # import pdb; pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
         return self.template(
             country_data=processed_data,
             country_code=country_code,
             country_name=country_name,
         )
 
+    def contact_publications(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+
+        items = []
+        response = []
+        weblinks = []
+        contact_data = processed_data.get("Contact", [])
+
+        if "Publications" in contact_data:
+            items = contact_data.get("Publications")
+        else:
+            for contact in contact_data:
+                for publication in contact.get('Publications', []):
+                    # if publication.get('WebLink', None) and publication.get('WebLink', None) not in weblinks:
+                    #     weblinks.append(publication.get('WebLink'))
+                    items.append(publication)
+
+        for item in items:
+            if item.get('WebLink', None) in weblinks:
+                continue
+
+            weblinks.append(item.get('WebLink', ''))
+
+            line = {'Publisher': item.get('Publisher', ''), 'Title': item.get(
+                'TitleEnglish', ''), 'Website': item.get('WebLink', '')}
+            response.append(line)
+
+        return response
+
+    def contact_websites(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+
+        items = []
+        response = []
+        weblinks = []
+        contact_data = processed_data.get("Contact", [])
+        if "Website" in contact_data:
+            items = contact_data.get("Website")
+        else:
+            for contact in contact_data:
+                for publication in contact.get('Website', []):
+                    # if publication.get('Url', None) and publication.get('Url', None) not in weblinks:
+                    #     weblinks.append(publication.get('Url'))
+                    items.append(publication)
+
+        # import pdb
+        # pdb.set_trace()
+        for item in items:
+
+            if 'Social media' in item.get('Type', ''):
+                continue
+
+            if item.get('Url', None) in weblinks:
+                continue
+
+            weblinks.append(item.get('Url', ''))
+
+            item_website = item.get('Url', '')
+            if len(item_website) and not (item_website.startswith('http://') or item_website.startswith('https://')):
+                item_website = 'https://' + item_website
+            if len(item_website):
+                line = {'Title': item.get('Title', ''),
+                        'Website': item_website}
+                response.append(line)
+
+        # import pdb
+        # pdb.set_trace()
+        return response
+
+    def contact_general(self):
+        country_name = self.verify_country_name(
+            self.context.id.title().replace("-", " ")
+        )
+        country_code = get_country_code(country_name)
+
+        processed_data = get_discodata_for_country(country_code)
+        # [u'AT', u'BE', u'BG', u'CZ', u'DE', u'DK', u'EE', u'ES', u'FI',
+        # u'GR', u'HR', u'HU', u'IE', u'IT', u'LT', u'LU', u'LV', u'MT',
+        # u'NL', u'PL', u'PT', u'RO', u'SE', u'SI', u'SK', u'TR']
+
+        items = []
+        response = []
+        weblinks = []
+        contact_data = processed_data.get("Contact", [])
+
+        if "Contact_General" in contact_data:
+            items = contact_data.get("Contact_General")
+        else:
+            for contact in contact_data:
+                for contact_general in contact.get('Contact_General', []):
+                    if contact_general.get('Website', None) and contact_general.get('Website', None) not in weblinks:
+                        weblinks.append(contact_general.get('Website'))
+                        items.append(contact_general)
+
+        for item in items:
+            item_website = item.get('Website', '')
+            if len(item_website) and not (item_website.startswith('http://') or item_website.startswith('https://')):
+                item_website = 'https://' + item_website
+
+            line = {'Organisation': item.get('Organisation', ''), 'Department': item.get(
+                'Department', ''), 'Website': item_website}
+            response.append(line)
+        # pdb.set_trace()
+        return response
+
 
 class CountryProfileDataRaw(CountryProfileData):
-    template = ViewPageTemplateFile("pt/country-profile-raw.pt")
+    template = ViewPageTemplateFile("pt/country-profile-2025-raw.pt")

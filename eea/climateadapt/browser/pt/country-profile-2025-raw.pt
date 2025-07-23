@@ -1,0 +1,37 @@
+<div tal:define="data options/country_data">
+  <div tal:repeat="section_title python: data.keys()">
+    <h2 tal:content="section_title"></h2>
+    <tal:cond tal:condition="python: type(data[section_title]) is list">
+        <div style="border: 1px solid black; padding: 10px;">
+          <ul>
+            <li tal:repeat="section_data python: data[section_title]"
+                tal:content="section_data"></li>
+          </ul>
+        </div>
+    </tal:cond>
+
+    <tal:cond tal:condition="python: data[section_title] and type(data[section_title]) is not list">
+        <div style="border: 1px solid black; padding: 10px;"
+            tal:define="section_data python: data[section_title]">
+          <p tal:content="python: len(section_data)"></p>
+          <div style="border-bottom: 1px solid black;"
+              tal:repeat="key section_data">
+            <h3 tal:content="key"></h3>
+            <tal:cond tal:condition="python: isinstance(section_data[key], list)">
+              <ul>
+                <li tal:repeat="item python: section_data[key]"
+                    tal:content="item"></li>
+              </ul>
+            </tal:cond>
+            <tal:cond tal:condition="python: not isinstance(section_data[key], list)">
+              <p tal:content="python: section_data[key]"></p>
+            </tal:cond>
+          </div>
+        </div>
+    </tal:cond>
+
+  </div>
+
+<!--  <div tal:content="options/country_data"/>-->
+
+</div>

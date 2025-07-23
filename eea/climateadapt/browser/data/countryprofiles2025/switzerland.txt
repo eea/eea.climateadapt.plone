@@ -1,0 +1,356 @@
+<div class="ui grid"><div class="four wide column">
+    <div tabindex="0" class="ui fluid pointing vertical tabular secondary menu">
+        <a href="4489-0" class="active item">Summary</a>
+        <a href="4489-01" class="item">National Circumstances</a>
+        <a href="4489-1" class="item">Assessment</a>
+        <a href="4489-2" class="item">Legal Policy Frameworks</a>
+        <a href="4489-3" class="item">Strategies Plans Goals</a>
+        <a href="4489-4" class="item">Monitoring Evaluation</a>
+        <a href="4489-5" class="item">Good Practices Cooperation Synergies</a>
+        <a href="4489-51" class="item">Sub National Adaptation</a>
+        <a href="4489-6" class="item">Contact</a>
+    </div>
+</div>
+<div class="stretched eight wide column">
+    <div id="4489-0">
+<table class="listing table-striped" summary="">
+        <thead>
+          <tr>
+            <th style="width: 18em;">Item</th>
+            <th style="width: 22em;">Status</th>
+            <th style="width: 22em;">Links</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>Climate Law (including adaptation)</td>
+            <td>
+              <ul>
+                <li>Adopted</li>
+                <li>Being developed</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  <span class="link-external">
+                    <a rel="noopener" target="_blank" data-linktype="external" href="https://www.fedlex.admin.ch/eli/cc/2012/855/en" data-val="https://www.fedlex.admin.ch/eli/cc/2012/855/en">Federal Act on the Reduction of CO2 Emissions</a>
+                  </span>
+                  
+                </li>
+                <li>
+                  <span class="link-external">
+                    <a rel="noopener" target="_blank" data-linktype="external" href="https://www.fedlex.admin.ch/eli/fga/2022/2403/de" data-val="https://www.fedlex.admin.ch/eli/fga/2022/2403/de">Bundesgesetz über die Ziele im Klimaschutz, die Innovation und die Stärkung der Energiesicherheit</a>
+                  </span>
+                  
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>National Adaptation Strategy (NAS)</td>
+            <td>
+              <ul>
+                <li>Adopted</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  <span class="link-external">
+                    <a rel="noopener" target="_blank" data-linktype="external" href="https://www.bafu.admin.ch/bafu/en/home/topics/climate/publications-studies/publications/adaptation-climate-change-switzerland-2012.html" data-val="https://www.bafu.admin.ch/bafu/en/home/topics/climate/publications-studies/publications/adaptation-climate-change-switzerland-2012.html">Adaptation to climate change in Switzerland - First part of the Federal Council’s strategy</a>
+                  </span>
+                  
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>National Adaptation Plan (NAP)</td>
+            <td>
+              <ul>
+                <li>Adopted</li>
+                <li>Superseded</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  <span class="link-external">
+                    <a rel="noopener" target="_blank" data-linktype="external" href="https://www.bafu.admin.ch/bafu/de/home/themen/klima/publikationen-studien/publikationen/anpassung-klimawandel-schweiz-aktionsplan-2020-2025.html" data-val="https://www.bafu.admin.ch/bafu/de/home/themen/klima/publikationen-studien/publikationen/anpassung-klimawandel-schweiz-aktionsplan-2020-2025.html">Adaptation to climate change in Switzerland: Action Plan 2020-2025</a>
+                  </span>
+                  
+                </li>
+                <li>
+                  <span class="link-external">
+                    <a rel="noopener" target="_blank" data-linktype="external" href="https://www.bafu.admin.ch/bafu/de/home/themen/klima/publikationen-studien/publikationen/anpassung-klimawandel-schweiz-2014.html" data-val="https://www.bafu.admin.ch/bafu/de/home/themen/klima/publikationen-studien/publikationen/anpassung-klimawandel-schweiz-2014.html">Anpassung an den Klimawandel in der Schweiz - Aktionsplan 2014–2019</a>
+                  </span>
+                  
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Climate Risk Assessment (CRA)</td>
+            <td>
+              <ul>
+                <li>Completed</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  <span class="link-external">
+                    <a rel="noopener" target="_blank" data-linktype="external" href="https://www.bafu.admin.ch/bafu/en/home/topics/climate/publications-studies/publications/klimabedingte-risiken-und-chancen.html" data-val="https://www.bafu.admin.ch/bafu/en/home/topics/climate/publications-studies/publications/klimabedingte-risiken-und-chancen.html">Climate-related risks and opportunities</a>
+                  </span>
+                  
+                </li>
+              </ul>
+            </td>
+          </tr>
+          
+
+          <tr>
+            <td>Meteorological observations</td>
+            <td>
+              <ul>
+                <li>Established</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li style="clear: both;">
+                  <span class="link-external">
+                    <a rel="noopener" target="_blank" data-linktype="external" href="https://www.meteoswiss.admin.ch/#tab=forecast-map" data-val="https://www.meteoswiss.admin.ch/#tab=forecast-map">Federal Office of Meteorology and Climatology, MeteoSwiss</a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Climate projections and services</td>
+            <td>
+              <ul>
+                <li>Established</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li style="clear: both;">
+                  <span class="link-external">
+                    <a rel="noopener" target="_blank" data-linktype="external" href="https://www.nccs.admin.ch/nccs/en/home.html" data-val="https://www.nccs.admin.ch/nccs/en/home.html">National Centre for Climate Services NCCS</a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Adaptation portals and platforms</td>
+            <td>
+              <ul>
+                <li>Established</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li style="clear: both;">
+                  <span class="link-external">
+                    <a rel="noopener" target="_blank" data-linktype="external" href="https://www.nccs.admin.ch/nccs/de/home.html" data-val="https://www.nccs.admin.ch/nccs/de/home.html">National Centre for Climate Services NCCS</a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Monitoring, reporting and evaluation (MRE) indicators and methodologies</td>
+            <td>
+              <ul>
+                
+              </ul>
+            </td>
+            <td>
+              <ul>
+                
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Key reports and publications</td>
+            <td>
+            </td><td>
+              <ul>
+                
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>National communication to the UNFCCC</td>
+            <td>
+            </td><td>
+              <ul>
+                <li style="clear: both;">
+                  <span class="link-external">
+                    <a href="https://unfccc.int/documents/614139" data-val="https://unfccc.int/documents/614139" rel="noopener" target="_blank" data-linktype="external">https://unfccc.int/NC8</a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Governance regulation adaptation reporting</td>
+            <td>
+            </td><td>
+              <ul>
+                <li style="clear: both;">
+                  <span class="link-external">
+                    <a href="https://reportnet.europa.eu/public/dataflow/895" data-val="https://reportnet.europa.eu/public/dataflow/895" rel="noopener" target="_blank" data-linktype="external">2023 Art. 19</a>
+                  </span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div id="4489-01">
+            <div class="accordion ui secondary">
+                <div role="button" tabindex="0" class="title"><span class="item-title">Biogeophysical characteristics</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Switzerland, located in the centre of Europe, covers an area of 41,285 square kilometres, comprising 25.1 per cent unproductive surface, 31.8 per cent forests and grove, 35.2 per cent utilised agricultural area, and 7.9 per cent built-up area. The topography is determined by the Central Plateau, the Jura mountains and the Alps. About half of Switzerland’s surface area is located above 1,000 metres above sea level.<br><br>With the Alps acting as climatic divide, meteorological conditions such as average temperature and precipitation vary significantly across Switzerland. Variable winter temperatures are an important factor influencing energy consumption for heating and leave a strong imprint on annual CO2 emissions. Long-term measurements indicate a marked shift towards a warmer climate (increase of the mean temperature by more than two degrees Celsius between 1864 and 2020, i.e. about twice the increase of the global mean temperature). Changes in mean precipitation are less clear, although there are robust indications for an increase in the frequency and intensity of heavy precipitation. Various climate indices document the ongoing climate change in Switzerland. For instance, over the Central Plateau, the average number of summer days has more than doubled over the last 60 years, the number of heating degree days has decreased by about 15 to 20 per cent in the same time period, the number of snow days has decreased and the number of sunny days has increased.</div>
+            </div></div>
+            <div class="accordion ui secondary">
+                <div role="button" tabindex="0" class="title"><span class="item-title">Demographic situation</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>At the end of 2020, Switzerland had a population of 8.670 million permanent residents with an average a density of 210 persons per square kilometre. Population is concentrated on the Central Plateau, the major alpine valleys and the Ticino, while the density is substantially lower in the hilly and alpine regions of the country. Population growth has been stable at around 0.75 per cent per year during the last years and mainly results from immigration and increasing life expectancy. It is expected that population growth will continue in the future, leading to 10.44 million permanent residents by 2050. Approximately 25.5 per cent of the permanent residential population are foreign nationals.</div>
+            </div></div>
+            <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Economic and infrastructural situation</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Switzerland’s nominal gross domestic product was about 706 billion Swiss francs in 2020, corresponding to about 81 thousand Swiss francs per capita. With just a few exceptions in the early 1990s, in 2009 and in 2020, Switzerland’s real gross domestic product increased annually by up to four per cent compared to the previous year over the period 1990 to 2020. Switzerland’s economy largely depends on the services sector, which in 2020 not only employed 76.4 per cent of the total workforce, but also contributed 73.3 per cent to the gross value added. The economy strongly depends on trade with other countries, as Switzerland imports bulk raw materials and exports processed high-quality goods. Switzerland’s trade balance (exports minus imports) was about balanced between 1992 and the early 2000s. Since 2002, exports growth has been accelerating as compared to imports growth. During the last years, Switzerland’s trade balance has remained between about four and five per cent of the gross domestic product. Among the most important traded goods in terms of monetary value are chemical and pharmaceutical products, noble metals, jewels and gemstones, machines, instruments and electronics, watches and precision instruments.</div>
+        </div></div>
+    </div>
+    <div id="4489-1">
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Climate monitoring, modelling, projections and scenarios</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Switzerland is not immune to global climate change. The Federal Office of Meteorology and Climatology, MeteoSwiss, is tasked by the federal government with producing climate scenarios on a regular basis in order to highlight the possible effects of climate change. These scenarios provide a basis for planning adaptation measures, as well as indicating the effect of global climate protection measures. In November 2018, the Swiss Climate Change Scenarios CH2018 were published, seven years after the previous Climate Change Scenarios CH2011. The scenarios were developed as one of the priority topics of the National Centre for Climate Services in close collaboration with ETH Zurich. The Climate Change Scenarios CH2018 reflect the current scientific findings on climate change in Switzerland and allow the most accurate view of the climate future of our country to date.<br><br>The next generation of climate scenarios (CH2025) is planned for 2025.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Methodologies and tools (including uncertainties and challenges)</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The Climate Change Scenarios are produced with the help of computer simulations of climate models. These models are based on the laws of physics and depict the real climate processes in simplified form. Over 20 different climate models for Europe were refined using statistical methods to come up with the Swiss Climate Change Scenarios CH2018.<br><br>The primary cause of global climate change is the increase in greenhouse gas emission concentrations caused by human activity since industrialisation. In order to be able to calculate future changes in temperature, precipitation and other parameters, assumptions must be made about future global greenhouse gas emissions. To this end, so-called emission scenarios are defined on the basis of a number of assumptions about population growth, possible technological advancements and global political decisions. Climate change scenarios can therefore not be considered as predictions. Rather, they indicate the possible consequences for the climate if the greenhouse gas emissions rise unchecked or are, on the other hand, reduced.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Climate monitoring, modelling, projections and scenarios</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Switzerland is not immune to global climate change. The Federal Office of Meteorology and Climatology, MeteoSwiss, is tasked by the federal government with producing climate scenarios on a regular basis in order to highlight the possible effects of climate change. These scenarios provide a basis for planning adaptation measures, as well as indicating the effect of global climate protection measures. In November 2018, the Swiss Climate Change Scenarios CH2018 were published, seven years after the previous Climate Change Scenarios CH2011. The scenarios were developed as one of the priority topics of the National Centre for Climate Services in close collaboration with ETH Zurich. The Climate Change Scenarios CH2018 reflect the current scientific findings on climate change in Switzerland and allow the most accurate view of the climate future of our country to date.<br><br>The next generation of climate scenarios (CH2025) is planned for 2025.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">General aspects of climate change impact and vulnerability assessment</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>As a basis for adaptation to climate change, the Federal Office for the Environment has assessed climate-related risks and opportunities throughout Switzerland. The associated synthesis report (FOEN 2017) provides guidance on the further development of the Federal Council's adaptation strategy and enables it to focus efforts more specifically on those areas where the greatest benefit is to be expected.<br><br>In eight case studies in the cantons of Aargau, Basel-Stadt, Fribourg, Geneva, Graubünden, Jura, Ticino and Uri, what consequences can be expected if the global rise in greenhouse gas emissions over the next few decades continues to the same extent as before were examined. The results were transposed to the six major regions of the Jura, Swiss Plateau, Foothills of the Alps, Alps, South of the Alps as well as the large urban zones.<br><br>The case studies were supplemented with further findings from scientific literature as well as additional expert knowledge. On this basis, the priority climate-related risks and opportunities for our country could be determined. This will allow the Confederation, cantons and municipalities to set priorities for their adaptation activities and make adaptation to climate change in Switzerland targeted and effective.<br><br>Currently, the climate risk analysis for Switzerland is in the process of being reevaluated and updated.</div>
+            </div></div>            
+        <table class="listing table-striped" style="padding-top:10px;">
+        <thead>
+          <tr>
+            <th style="width: 10em;">Hazard type</th>
+            <th style="width: 10em;">Acute/Chronic</th>
+            <th>Observed climate hazards</th>
+          </tr>
+        </thead>
+        <tbody><tr><td rowspan="3" class="bb1">Solid mass</td><td rowspan="2" class="bb1">Acute</td><td>Avalanche</td></tr><tr><td class="bb1">Landslide</td></tr><tr><td class="bb1" rowspan="1">Chronic</td><td class="bb1">Soil erosion</td></tr><tr><td rowspan="5" class="bb1">Temperature</td><td rowspan="3" class="bb1">Acute</td><td>Cold wave frost</td></tr><tr><td>Heat wave</td></tr><tr><td class="bb1">Wildfire</td></tr><tr><td class="bb1" rowspan="2">Chronic</td><td>Changing temperature</td></tr><tr><td class="bb1">Permafrost thawing</td></tr><tr><td rowspan="7" class="bb1">Water</td><td rowspan="5" class="bb1">Acute</td><td>Drought</td></tr><tr><td>Flood</td></tr><tr><td>Glacial lake outburst</td></tr><tr><td>Heavy precipitation</td></tr><tr><td class="bb1">Snow and ice load</td></tr><tr><td class="bb1" rowspan="2">Chronic</td><td>Precipitation hydrological variability</td></tr><tr><td class="bb1">Water scarcity</td></tr><tr><td rowspan="2" class="bb1">Wind</td><td rowspan="1" class="bb1">Acute</td><td class="bb1">Storm</td></tr><tr><td class="bb1" rowspan="1">Chronic</td><td class="bb1"></td></tr></tbody>
+      </table>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Overview of existing pressures</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Climate-related risks and opportunities<br><br>A synthesis for Switzerland – short version <br><br>The brochure is the short version of the synthesis which identifies and prioritises climate-related risks and opportunities for Switzerland until 2060. The results from eight regional case studies conducted with the participation of numerous experts from science, industry and administration have been merged into a Switzerland-wide synthesis and supplemented. On the one hand, they serve the review and further development of the Confederation’s adaptation strategy. On the other hand, the cantons and regions can use the results, along with the methodology used, to develop their own strategy and adaptation planning.</div>
+            </div></div>      
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Secondary effects</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Climate-related risks and opportunities<br><br>A synthesis for Switzerland – short version <br><br>The brochure is the short version of the synthesis which identifies and prioritises climate-related risks and opportunities for Switzerland until 2060. The results from eight regional case studies conducted with the participation of numerous experts from science, industry and administration have been merged into a Switzerland-wide synthesis and supplemented. On the one hand, they serve the review and further development of the Confederation’s adaptation strategy. On the other hand, the cantons and regions can use the results, along with the methodology used, to develop their own strategy and adaptation planning.</div>
+            </div></div>
+        <h2>Key affected sectors</h2>            
+<div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Cross sectoral challenges</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><table class="listing table-striped">
+            <tbody><tr><td>Key affected sector(s)</td><td>agriculture and food; biodiversity (including ecosystembased approaches); buildings; civil protection and emergency management; energy; forestry; health; land use planning; rural development; tourism; urban; water management</td></tr>
+            <tr><td>Rating of the observed impacts of key hazards, including changes in frequency and magnitude</td><td>high</td></tr>
+            <tr><td>Different rating of the observed impacts of key hazards</td><td>different geographical regions within the country</td></tr>
+            <tr><td>Assessment</td><td>More information can be found at https://www.nccs.admin.ch/nccs/de/home/sektoren.html</td></tr>
+            <tr><td>Rating of the key hazards' likelihood of occurrence and exposure to them under future climate</td><td>high</td></tr>
+            <tr><td>Different rating of the likelihood of the occurrence of key hazards and exposure to them under future climate</td><td>different geographical regions within the country; different key hazards</td></tr>
+            <tr><td>Rating of the vulnerability, including adaptive capacity</td><td>high</td></tr>
+            <tr><td>Different rating of the vulnerability and/or adaptive capacity</td><td>different geographical regions within the country; different key hazards</td></tr>
+            <tr><td>Assessment</td><td>More information can be found at https://www.nccs.admin.ch/nccs/de/home/sektoren.html</td></tr>
+            <tr><td>Rating for the risk of potential future impacts</td><td>high</td></tr>
+            <tr><td>Different rating of the risk of potential future impacts</td><td>different climate change scenarios; different geographical regions within the country; different key hazards</td></tr>
+            <tr><td>Assessment</td><td>More information can be found at https://www.nccs.admin.ch/nccs/de/home/sektoren.html</td></tr>
+          </tbody></table>
+        </div></div>
+    </div>
+    <div id="4489-2">
+        <h2>Overview of institutional arrangements and governance at the national level</h2>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Legal and policy frameworks and regulations</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The revised CO2 Act, which entered into force in 2013, provides the legal basis for adaptation. According to Article 8, the Swiss federation shall coordinate and provide the basis for adaptation measures. Coordinating body is the Federal Office for the Environment (FOEN). For the implementation of the legal mandate, the FOEN developed an adaptation strategy together with federal offices from other ministries.<br><br>With the 2012 Strategy for Adaptation to Climate Change in Switzerland, the Federal Council created a framework for a coordinated approach to adaptation to the impacts of climate change. The strategy contains the goals for adaptation, describes the greatest challenges and prioritises the fields of action for adaptation at federal level. A first action plan was adopted for the periode 2014-2019 by federal council. It included 63 adaptation measures. Currently, the second action plan regulates the implementation in the years 2020-2025. The Action Plan 2020-2025 comprises 75 measures at federal level. 63 of these measures are activities in the sectors of water management, dealing with natural hazards, soil protection, agriculture, forestry, energy, housing, tourism, biodiversity management, health (human and animal) and spatial development. 12 measures are cross-sectoral in nature. They aim to improve the knowledge base, transfer knowledge, coordinate and promote the implementation of the adaptation strategy.<br><br>In a referendum vote on 18 June 2023, the Swiss voting polulation approved a new climate law (Bundesgesetz über die Ziele im Klimaschutz, die Innovation und die Stärkung der Energiesicherheit). With the entry into force of the new law on 01.01.2025, the legal mandate for adaptation in Switzerland will be strengthened: the Confederation and the cantons will receive the mandate to take measures to protect against and adapt to the adverse effects of climate change within the scope of their competences.</div>
+            </div></div>        
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Climate vulnerability and risk assessment</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>As a basis for adaptation to climate change, the Federal Office for the Environment has assessed climate-related risks and opportunities throughout Switzerland. The associated synthesis report (FOEN 2017) provides guidance on the further development of the Federal Council's adaptation strategy and enables it to focus efforts more specifically on those areas where the greatest benefit is to be expected.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">PLANNING, IMPLEMENTATION, MONITORING AND EVALUATION OF ADAPTATION POLICY</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The national adaptation strategy and national adaptation plans are regularly evaluated and updated in extensive review and evaluation processes. <br><a href="https://www.bafu.admin.ch/bafu/en/home/topics/climate/info-specialists/adaptation/strategy/analysis-implementation-impact.html" rel="nofollow">https://www.bafu.admin.ch/[…]/analysis-implementation-impact.html</a></div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">INTEGRATION INTO ENVIRONMENTAL ASSESSMENT PROCEDURES</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>One aim of the national adaptation strategy is to better integrate adaptation to climate change into sectoral policies at all levels.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">INTEGRATION INTO DISASTER RISK MANAGEMENT</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Protection against natural hazards is already comprehensively implemented in Switzerland. Depending on the situation, spatial planning, organisational, structural and biological measures are combined in the best possible way. Against the background of climate change, existing concepts and measures must be reviewed with regard to the changing hazard situation and adapted accordingly. Together with the cantons, the Confederation shall develop guidelines that further specify how to deal with climate change in hazard and risk assessment and in the planning of measures in order to jointly enable a transparent, systematic and process-specific approach.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Collection and ownership of data</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The CH2018 Climate Change Scenarios show where and how climate change affects Switzerland and what global climate change mitigation efforts can do about it. The expected consequences of unchecked climate change for Switzerland include more hot days, dry summers, heavy precipitation and winters with little snow. However, global efforts to mitigate climate change could curb future climate change.<br><br>A number of datasets of the CH2018 scenarios are available for use in impact research and practical applications. The CH2018 szenario data are provided under the CC BY 4.0 license.<br><a href="https://www.nccs.admin.ch/nccs/en/home/climate-change-and-impacts/swiss-climate-change-scenarios/ch2018---climate-scenarios-for-switzerland.html" rel="nofollow">https://www.nccs.admin.ch/n[…]narios-for-switzerland.html</a></div>
+            </div></div>
+    </div>
+    <div id="4489-3">
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Adaptation priorities</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Switzerland takes advantage of the opportunities arising from climate change. It minimises the risks of climate change, protects the population, material assets and livelihoods. It increases the adaptive capacity of society, the economy and the environment. Adaptation to climate change (Adaptation) has been included since 2013 as a second, complementary pillar to the reduction of greenhouse gas emissions (mitigation) anchored in the CO2 Act.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Challenges, gaps and barriers</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The process of adaptation to climate change has to be prepared, implemented  and revised continously at all levels. The federal government, the cantons, the municipalities and the private sector have different responsibilites and coordination is important. Strategies have to be put in place to avoid maladaptation. <br><br>The more global climate change progresses, the stronger its regional impacts will become and the greater the need for local adaptation.  In the medium term, it is therefore necessary to examine how the increasing demand for resources can be financed with an appropriate application of the available funds.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Summaries of national strategies</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The Action Plan 2020-2025 comprises 75 measures at the federal level. 63 of these measures are activities in the sectors of water management, dealing with agriculture, forestry, energy, housing, tourism, biodiversity management, health (human and animal) and spatial development. 12 measures are cross-sectoral in nature. They aim to improve the knowledge base, transfer knowledge, coordinate and promote the implementation of the adaptation strategy.<br><br>In the future, additions at the legislative or ordinance level should be considered with the aim of better integrating adaptation to climate change into sector policies at all level. Furtheremore, in order to support the implementation of the adaptation strategy at all levels, it should be examined how the exchange and cooperation of all actors concerned (Confederation, cantons, communes, science, economy) can be improved and how appropriate funding mechanisms can be developed in the coming years.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">INTEGRATION INTO SECTORAL POLICIES, PLANS AND PROGRAMS</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>More information can be found at <a href="https://www.bafu.admin.ch/bafu/de/home/themen/naturgefahren/fachinformationen/naturgefahrensituation-und-raumnutzung/klimawandel.html" rel="nofollow">https://www.bafu.admin.ch/[…]/klimawandel.html</a></div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="active title"><span class="item-title">Stakeholder engagement - public</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content active"><div>The pilot programme 'Adaptation to climate change' is part of the federal government's adaptation strategy. It is a national funding initiative to support cantons, regions and municipalities in tackling climate change related challenges. It supports exemplary, innovative projects in the cantons, regions, cities and communes and shows practical ways that Switzerland can adapt to the changing climate. The projects aim to minimise climate risks, increase adaptability and exploit opportunities at a local level.<br><br>The pilot programme 'Adaptation to climate change' has been running since 2013. An initial phase involving 31 projects was successfully completed in 2017. The second phase, comprising a total of 50 projects, was successfully completed in 2023. <br><br>More information can be found at <br><a href="https://www.bafu.admin.ch/bafu/de/home/themen/klima/fachinformationen/anpassung-klimawandel/pilotprogramm.html" rel="nofollow">https://www.bafu.admin.ch/[…]/pilotprogramm.html</a><br><a href="https://www.nccs.admin.ch/nccs/en/home/measures/pak.html" rel="nofollow">https://www.nccs.admin.ch/nccs/en/home/measures/pak.html</a><br><br>In the NCCS programme «Decision Support for Dealing with Climate Change in Switzerland: a cross-sectoral approach» («NCCS-Impacts»), actionable climate services for the environment, economy and society will be developed from 2022 to 2025.<br><br>See <a href="https://www.nccs.admin.ch/nccs/de/home/klimawandel-und-auswirkungen/nccs-impacts.html" rel="nofollow">https://www.nccs.admin.ch/[…]/nccs-impacts.html</a> for more information.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Stakeholder engagement - private</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>More information can be found at <a href="https://www.nccs.admin.ch/nccs/de/home/sektoren.html" rel="nofollow">https://www.nccs.admin.ch/nccs/de/home/sektoren.html</a></div>
+            </div></div>
+    </div>
+    <div id="4489-4">
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Monitoring, reporting and evaluation (MRE) methodology</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The climate risk analysis is periodically re-evaluated. A broad range of climate- and impact-indicators exist. Response-indicators are in the process of being developed.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">MRE implementation</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>With the adoption of the national action plan, the FOEN was mandated to periodically report the progress made and the effectiveness achieved in adaptation to the Federal Council. <br><br>The cantons are by law (revised CO2 act, Article 8) obliged to report to government on adaptation activities. The first reporting based on a survey took place in 2015. The second reporting took place in 2022. <br><br>The main objective of these evaluations is learning from experiences in order to further develop adaptation in Switzerland.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">State of play - implementation</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>More information can be found at <a href="https://www.bafu.admin.ch/bafu/de/home/themen/klima/fachinformationen/anpassung-klimawandel/strategie/umsetzung.html" rel="nofollow">https://www.bafu.admin.ch/[…]/umsetzung.html</a></div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">STATE OF PLAY - SPENDING FOR CLIMATE CHANGE ADAPTATION</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>More information can be found at <a href="https://www.bafu.admin.ch/bafu/de/home/themen/naturgefahren/fachinformationen/naturgefahrensituation-und-raumnutzung/klimawandel.html" rel="nofollow">https://www.bafu.admin.ch/[…]/klimawandel.html</a></div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">State of play - spending by sector</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>
+            </div></div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Progress towards reducing climate impacts, vulnerabilities and risks</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>A broad range of climate- and impact-indicators exist. Response-indicators are in the process of being developed.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Progress increasing adaptive capacity</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>A broad range of climate- and impact-indicators exist. Response-indicators are in the process of being developed.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Progress meeting adaptation priorities</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>A broad range of climate- and impact-indicators exist. Response-indicators are in the process of being developed.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Progress addressing barriers to adaptation</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>A broad range of climate- and impact-indicators exist. Response-indicators are in the process of being developed.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Steps to review climate change impact and vulnerability assessments</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The climate risk analysis isperiodically re-evaluated. An updated climate risk analysis is scheduled for 2024.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Steps to review national adaptation policies</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>National adaptation policies, strategies, plans and measures are periodically reviewed and updated.</div>
+            </div></div>
+    </div>
+    <div id="4489-5">
+        <h2>Good practices and lessons learnt</h2>
+        <h2>Cooperation and experience</h2>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Synergies of adaptation actions with other international frameworks</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Other United Nations processes are relevant for adaptation to climate change, namely the 2030 Agenda for Sustainable Development, the Sendai Framework Convention on Disaster Risk Reduction and the Convention on Biological Diversity. These three agreements have been ratified by Switzerland and form the framework for activities at national level.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Cooperation - science</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Switzerland participates in exchanges on adaptation to climate change at the international level. For example, it is a member of the European Network of Environmental Agencies and the European Network for Environmental Observation and Information. In addition, it cultivates exchange with neighbouring countries within the framework of joint projects, such as GoApply - Multidimensional governance of climate change adaptation in policy making and practice.</div>
+            </div></div>
+        <div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Cooperation - policy</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Switzerland participates in exchanges on adaptation to climate change at the international level. For example, it is a member of the European Network of Environmental Agencies and the European Network for Environmental Observation and Information. In addition, it cultivates exchange with neighbouring countries within the framework of joint projects, such as GoApply - Multidimensional governance of climate change adaptation in policy making and practice.</div>
+            </div></div>
+    </div>
+    <div id="4489-51">
+        <h2>Overview of institutional arrangements and governance at the sub-national level (where “sub-national” refers to local and regional)</h2><div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Legal requirements</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The national adaptation strategy deals with adapting to climate change at federal level. Various options for action, however, also affect existing joint tasks carried out by the Confederation, cantons and municipalities as well as cantonal or communal tasks. In order to adapt to climate change in a coordinated and efficient manner, activities have to be coordinated at all institutional levels. Thus, in the coming years, the Confederation and the cantons are going to intensify their cooperation in adapting issues.<br><br>Overview cantonal adaptation strategies and reports:<br><a href="https://www.nccs.admin.ch/nccs/de/home/regionen/kantone.html" rel="nofollow">https://www.nccs.admin.ch/[…]/kantone.html</a><br><a href="https://www.bafu.admin.ch/bafu/de/home/themen/klima/fachinformationen/anpassung-klimawandel/kantone.html" rel="nofollow">https://www.bafu.admin.ch/[…]/kantone.html</a></div>
+            </div></div><div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Networks and collaborations</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>The drafting and implementation process of the adaptation strategy is coordinated by the Interdepartmental Committee on Climate.  The FOEN has the overall responsibility for developing the strategy. It moderates the procedure, ensures that a uniform approach is adopted and coordinates work between sectors. The individual federal offices are responsible for adaptation in their sectors. MeteoSwiss provides the climatological data on observed changes in the climate and future climate scenarios. <br><br>In the NCCS programme «Decision Support for Dealing with Climate Change in Switzerland: a cross-sectoral approach» («NCCS-Impacts»), actionable climate services for the environment, economy and society will be developed from 2022 to 2025.</div>
+            </div></div><div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Good practice examples of networks or other collaborations</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>See <a href="https://www.nccs.admin.ch/nccs/de/home/massnahmen/pak.html" rel="nofollow">https://www.nccs.admin.ch/nccs/de/home/massnahmen/pak.html</a> for more information</div>
+            </div></div><div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Overview of the content of sub-national policies</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Information on adaptation in the Cantons can be found here <br><a href="https://www.nccs.admin.ch/nccs/de/home/regionen/kantone.html" rel="nofollow">https://www.nccs.admin.ch/[…]/kantone.html</a><br><a href="https://www.bafu.admin.ch/bafu/de/home/themen/klima/fachinformationen/anpassung-klimawandel/kantone.html" rel="nofollow">https://www.bafu.admin.ch/[…]/kantone.html</a></div>
+            </div></div><div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Stakeholder engagement - public</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>More information can be found at <a href="https://www.nccs.admin.ch/nccs/de/home/massnahmen/pak.html" rel="nofollow">https://www.nccs.admin.ch/nccs/de/home/massnahmen/pak.html</a></div>
+            </div></div><div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">Stakeholder engagement - private</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Information on adaptation in the Cantons can be found here <br><a href="https://www.nccs.admin.ch/nccs/de/home/regionen/kantone.html" rel="nofollow">https://www.nccs.admin.ch/[…]/kantone.html</a><br><a href="https://www.bafu.admin.ch/bafu/de/home/themen/klima/fachinformationen/anpassung-klimawandel/kantone.html" rel="nofollow">https://www.bafu.admin.ch/[…]/kantone.html</a></div>
+            </div></div><div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">State of play of the implementation of measures planned</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>More information can be found at <br><a href="https://www.nccs.admin.ch/nccs/de/home/regionen/kantone.html" rel="nofollow">https://www.nccs.admin.ch/[…]/kantone.html</a><br><a href="https://www.bafu.admin.ch/bafu/de/home/themen/klima/fachinformationen/anpassung-klimawandel/kantone.html" rel="nofollow">https://www.bafu.admin.ch/[…]/kantone.html</a></div>
+            </div></div><div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">OVERVIEW OF GOOD PRACTICES TO REVIEW SUBNATIONAL ADAPTATION POLICIES</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>More information can be found at <br><a href="https://www.nccs.admin.ch/nccs/de/home/regionen/kantone.html" rel="nofollow">https://www.nccs.admin.ch/[…]/kantone.html</a><br><a href="https://www.bafu.admin.ch/bafu/de/home/themen/klima/fachinformationen/anpassung-klimawandel/kantone.html" rel="nofollow">https://www.bafu.admin.ch/[…]/kantone.html</a></div>
+            </div></div><div class="accordion ui secondary"><div role="button" tabindex="0" class="title"><span class="item-title">COOPERATION - ADAPTATION ACTION</span><i aria-hidden="true" class="icon ri-arrow-down-s-line"></i></div><div class="content"><div>Switzerland participates in exchanges on adaptation to climate change at the international level. For example, it is a member of the European Network of Environmental Agencies and the European Network for Environmental Observation and Information. In addition, it cultivates exchange with neighbouring countries within the framework of joint projects, such as GoApply - Multidimensional governance of climate change adaptation in policy making and practice.</div>
+            </div></div>
+    </div>
+    <div id="4489-6">
+          <h3>Federal Office for the Environment FOEN</h3>
+          <div>Climate</div>
+          <div style="font-style: italic;">Coordination of adaptation in Switzerland</div>
+          <div>
+          <div style="font-style: italic;">
+          <div>
+            <a href="mailto:Climate-Adaptation@bafu.admin.ch">Climate-Adaptation@bafu.admin.ch</a>
+          </div>
+          <div>
+            <a href="https://www.bafu.admin.ch/bafu/en/home/topics/climate/info-specialists/adaptation.html">https://www.bafu.admin.ch/bafu/en/home/topics/climate/info-specialists/adaptation.html</a>
+          </div>
+      </div></div>
+    </div>
+</div>

@@ -48,5 +48,7 @@
     interface="eea.climateadapt.interfaces.ICitiesListingsRoot" />
   <interface
     interface="eea.climateadapt.interfaces.ICCACountry" />
+  <interface
+    interface="eea.climateadapt.interfaces.ICCACountry2025" />
 
 </configure>

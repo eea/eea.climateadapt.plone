@@ -87,6 +87,13 @@
   />
 
   <browser:page
+    name="country-map-interface2025"
+    for="*"
+    class=".migrate.CountryMapInterface2025"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
     name="case-studies-map.arcgis.json"
     for="*"
     class=".casestudies_map.Items"
@@ -140,9 +147,31 @@
   />
 
   <browser:page
+    name="country-profile-2025"
+    for="eea.climateadapt.interfaces.ICCACountry2025"
+    class=".countries2025.CountryProfileData"
+    template="pt/country-profile-2025.pt"
+    permission="zope2.View"
+  />
+  <browser:page
+    name="country-profile-raw-2025"
+    for="eea.climateadapt.interfaces.ICCACountry2025"
+    class=".countries2025.CountryProfileDataRaw"
+    template="pt/country-profile-2025-raw.pt"
+    permission="zope2.View"
+  />
+
+  <browser:page
     name="countries-metadata-extract"
     for="*"
     class=".countries.CountriesMetadataExtract"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    name="countries-metadata-extract-2025"
+    for="*"
+    class=".countries2025.CountriesMetadataExtract"
     permission="zope2.View"
   />
 
