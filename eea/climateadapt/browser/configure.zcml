@@ -87,6 +87,13 @@
   />
 
   <browser:page
+    name="country-map-interface2025"
+    for="*"
+    class=".migrate.CountryMapInterface2025"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
     name="case-studies-map.arcgis.json"
     for="*"
     class=".casestudies_map.Items"

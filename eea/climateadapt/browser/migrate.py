@@ -1,3 +1,8 @@
+from eea.climateadapt.interfaces import ICCACountry
+from eea.climateadapt.interfaces import ICCACountry2025
+from zope.interface import noLongerProvides
+from zope.interface import alsoProvides
+
 import logging
 from datetime import datetime, timedelta
 
@@ -11,6 +16,7 @@ from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 from zope.interface import alsoProvides
 from zope.lifecycleevent import modified
+from eea.climateadapt.translation.utils import get_site_languages
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -103,7 +109,8 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s",
+                            idx, total, self.count)
 
         return self.count
 
@@ -114,6 +121,40 @@ class MigrateAbsoluteURLs(BrowserView):
             "Migrated {} absolute URLs!".format(count)
         )
         return self.request.response.redirect(self.context.absolute_url())
+
+
+class CountryMapInterface2025(BrowserView):
+    """Migrate absolute URLs to resolveuid"""
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        portal_catalog = api.portal.get_tool("portal_catalog")
+        languages = get_site_languages()
+        for language in languages:
+            logger.info(f"LANGUAGE %s", language)
+            brains = portal_catalog.queryCatalog(
+                {
+                    "portal_type": "Folder",
+                    "path": "/cca/{}/countries-regions/countries".format(language)
+                }
+            )
+            for brain in brains:
+                obj = brain.getObject()
+
+                if ICCACountry.providedBy(obj):
+                    noLongerProvides(obj, ICCACountry)
+                    obj._p_changed = True
+
+                if not ICCACountry2025.providedBy(obj):
+                    alsoProvides(obj, ICCACountry2025)
+                    obj._p_changed = True
+
+                if obj._p_changed:
+                    obj.reindexObject()
+                    # transaction.commit()
+                    logger.info(f"Interface update %s", brain.getURL())
+        logger.info(f"Country profile interface check done")
+        return 'done'
 
 
 class FixMipSigLangs(BrowserView):

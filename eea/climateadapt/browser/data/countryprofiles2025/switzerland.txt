@@ -204,7 +204,7 @@
               <ul>
                 <li style="clear: both;">
                   <span class="link-external">
-                    <a href="https://reportnet.europa.eu/public/dataflow/895" data-val="https://reportnet.europa.eu/public/dataflow/895" rel="noopener" target="_blank" data-linktype="external">2023 Art. 19 (1) reporting</a>
+                    <a href="https://reportnet.europa.eu/public/dataflow/895" data-val="https://reportnet.europa.eu/public/dataflow/895" rel="noopener" target="_blank" data-linktype="external">2023 Art. 19</a>
                   </span>
                 </li>
               </ul>
