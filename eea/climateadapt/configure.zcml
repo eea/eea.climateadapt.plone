@@ -43,6 +43,7 @@
   <include package=".restapi" />
   <include package=".behaviors" />
   <include package=".translation" />
+  <include package=".upgrades" />
 
   <include file="broken_links.zcml" />
   <include file="c3s_import.zcml" />
