@@ -493,13 +493,17 @@ def find_untranslated(obj, good_lang_codes):
     for langcode, trans in translations.items():
         if langcode == "en":
             continue
+
         if trans.title and langcode in untranslated:
             untranslated.remove(langcode)
+
         if trans.getPhysicalPath()[1:] != base_path:
             logger.warn(
-                "Unmatched physical paths %s - %s",
+                "Unmatched physical paths %s - %s / %s - %s",
                 obj.absolute_url(),
                 trans.absolute_url(),
+                trans.getPhysicalPath()[1:],
+                base_path,
             )
 
     return list(untranslated)
