@@ -519,7 +519,12 @@ def sync_translation_paths(
     if en_obj is None:
         logger.warning("Could not find original source for move: %s", en_path)
 
-    tm = ITranslationManager(en_obj)
+    try:
+        tm = ITranslationManager(en_obj)
+    except TypeError:
+        logger.error("Could not find ITranslationManager for %s", en_obj.absolute_url())
+        raise
+
     translations = tm.get_translations()
 
     for lang, trans_obj in translations.items():
