@@ -23,6 +23,7 @@ from zExceptions import Unauthorized
 from zope.annotation.interfaces import IAnnotations
 
 from eea.climateadapt.behaviors.aceitem import IAceItem
+from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 from eea.climateadapt.restapi.slate import iterate_children
 
 # from plone.api.content import get_state
@@ -261,6 +262,7 @@ def convert_blocks(obj):
 
 
 CONVERTORS = {
+    IAceMeasure: convert_aceitem,
     IAceItem: convert_aceitem,
     IBlocks: convert_blocks,
 }
@@ -332,6 +334,7 @@ def recursively_extract_links(site):
         portal_type = _type.getId()
         if portal_type in PORTAL_TYPES_BLACKLIST:
             continue
+
         for schemata in iterSchemataForType(portal_type):
             for iface in [schemata] + list(schemata.getBases()):
                 convertor = CONVERTORS.get(iface)
@@ -346,16 +349,18 @@ def recursively_extract_links(site):
 
     now = DateTime()
 
-    for b in brains:
-        if b.review_state != "published":
+    for brain in brains:
+        if brain.review_state != "published":
             continue
-        if b.portal_type == "News Item":
-            if (now - b.created) > 365:  # skip news that are older then a year
+        if brain.portal_type == "News Item":
+            if (now - brain.created) > 365:  # skip news that are older then a year
                 continue
-        obj = b.getObject()
+        obj = brain.getObject()
         path = obj.getPhysicalPath()
 
-        for convertor in convertors[b.portal_type]:
+        for convertor in convertors[brain.portal_type]:
+            for link in convertor(obj):
+                logger.info("Link %s" % link)
             urls.extend(
                 [
                     {"link": link, "object_url": "/".join(path)}
@@ -383,9 +388,6 @@ def compute_broken_links(site):
     for info in links:
         if info["link"].startswith("/"):
             continue
-            # import pdb
-            #
-            # pdb.set_trace()
         res = check_link_status(info["link"])
         if res is not None:
             res["object_url"] = info["object_url"]
