@@ -228,5 +228,18 @@
   <!-- Products.CMFCore.interfaces.ISiteRoot -->
   <!-- layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer" -->
 
+  <plone:service
+    method="GET"
+    factory=".navroot.NavrootGet"
+    for="zope.interface.Interface"
+    permission="zope2.View"
+    name="@navroot"
+    layer="eea.volto.policy.interfaces.IEeaVoltoPolicyLayer"
+  />
+
+  <adapter
+    factory=".navroot.Navroot"
+    name="navroot"
+  />
 
 </configure>
