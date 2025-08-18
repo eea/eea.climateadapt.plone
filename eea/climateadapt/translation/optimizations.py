@@ -242,6 +242,8 @@ def image_field_indexer(obj):
             image_field = "preview_image_link"
         elif getattr(base_obj, "preview_image", False):
             image_field = "preview_image"
+        elif getattr(base_obj, "primary_photo", False):
+            image_field = "primary_photo"
         elif getattr(base_obj, "image", False):
             image_field = "image"
     return image_field
