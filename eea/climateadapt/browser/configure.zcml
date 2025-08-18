@@ -27,6 +27,12 @@
     permission="cmf.ManagePortal"
   />
 
+  <browser:page
+    name="reindex_ct"
+    for="*"
+    class=".adminp6.ReindexContentType"
+    permission="cmf.ManagePortal"
+  />
 
   <browser:page
     for="*"
