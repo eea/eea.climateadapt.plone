@@ -1,0 +1,15 @@
+<registry>
+  <records interface="plone.app.querystring.interfaces.IQueryField"
+    prefix="plone.app.querystring.field.include_in_observatory">
+    <value key="title">Include in observatory</value>
+    <value key="description">True if item is included in observatory</value>
+    <value key="enabled">True</value>
+    <value key="sortable">False</value>
+    <value key="operations">
+      <element>plone.app.querystring.operation.boolean.isTrue</element>
+      <element>plone.app.querystring.operation.boolean.isFalse</element>
+    </value>
+    <value key="group">Metadata</value>
+  </records>
+</registry>
+

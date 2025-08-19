@@ -1,17 +1,37 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-           i18n_domain="eea.climateadapt">
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  i18n_domain="eea.climateadapt">
 
-    <genericsetup:upgradeSteps
-        source="1"
-        destination="2.0"
-        profile="eea.climateadapt:default">
+  <genericsetup:upgradeSteps
+    source="1"
+    destination="2.0"
+    profile="eea.climateadapt:default">
 
-        <genericsetup:upgradeStep
-            title="Migrate teaserGrid to gridBlock"
-            handler="eea.climateadapt.upgrades.evolve20.migrate_teaser"
-        />
+    <genericsetup:upgradeStep
+      title="Migrate teaserGrid to gridBlock"
+      handler="eea.climateadapt.upgrades.evolve20.migrate_teaser"
+    />
 
-    </genericsetup:upgradeSteps>
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_3"
+    title="Upgrade profile for eea.climateadapt v3"
+    description=""
+    directory="to_3"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
+  <genericsetup:upgradeSteps
+    source="2.0"
+    destination="3.0"
+    profile="eea.climateadapt:default">
+
+    <genericsetup:upgradeDepends
+      title="Add include_in_observatory to querystring definitions"
+      import_profile="eea.climateadapt.upgrades:eeaclimateadapt_to_3"
+    />
+
+  </genericsetup:upgradeSteps>
 
 </configure>

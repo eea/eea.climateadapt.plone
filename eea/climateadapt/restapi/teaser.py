@@ -87,9 +87,7 @@ class TeaserBlockSerializerBase:
                 data["href"] = value
                 if "?" in url:
                     qs = urlparse(url).query
-                    data["href"][0]["@id"] = urlunparse(
-                        ("", "", data["href"][0]["@id"], qs, "", "")
-                    )
+                    data["href"][0]["@id"] = f"{data['href'][0]['@id']}?{qs}"
             elif not url.startswith("http"):
                 # Source not found; clear out derived fields
                 data["href"] = []
