@@ -79,8 +79,7 @@ class ColumnBlockSerializationTransformer(object):
         blocks = data.get("blocks", {})
         for uid in list(blocks.keys()):
             if uid not in blocks_layout:
-                logger.warn(
-                    "Removing unreferenced block in columnsBlock: %s", uid)
+                logger.warn("Removing unreferenced block in columnsBlock: %s", uid)
                 del blocks[uid]
 
         return block

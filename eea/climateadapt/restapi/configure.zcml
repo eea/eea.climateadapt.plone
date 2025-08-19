@@ -242,4 +242,13 @@
     name="navroot"
   />
 
+  <subscriber
+    factory=".teaser.TeaserBlockSerializerRoot"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
+  <subscriber
+    factory=".teaser.TeaserBlockSerializer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
+
 </configure>
