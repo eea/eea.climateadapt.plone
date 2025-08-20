@@ -1,5 +1,8 @@
 # override the defaults in https://github.com/plone/plone.restapi/blob/cdd2f72370f7f1f89d2a266ab80121d5da184880/src/plone/restapi/serializer/blocks.py#L273
 # because they don't deal properly with urls with querystrings
+import re
+from urllib.parse import urlparse
+
 from plone import api
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.bbb import IPloneSiteRoot
@@ -10,8 +13,6 @@ from plone.restapi.interfaces import (
 from eea.volto.policy.interfaces import IEeaVoltoPolicyLayer
 from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
-import re
-from urllib.parse import urlparse, urlunparse
 
 
 RESOLVE_UID_REGEXP = re.compile("resolveuid/([^/]+)")
