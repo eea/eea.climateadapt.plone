@@ -98,7 +98,7 @@ class TeaserBlockSerializerBase:
                     data["href"][0]["@id"] = f"{data['href'][0]['@id']}?{qs}"
             elif not url.startswith("http"):
                 # Source not found; emit a warning
-                logger.warning(
+                logger.info(
                     "Teaser url path could not be translated to brain {value} / {self.context.absolute_url()"
                 )
                 data["href"] = [{"@id": url}]
