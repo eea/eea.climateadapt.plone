@@ -2,6 +2,7 @@
   xmlns="http://namespaces.zope.org/zope"
   xmlns:browser="http://namespaces.zope.org/browser"
   xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
   xmlns:plone="http://namespaces.plone.org/plone">
 
   <include file="breadcrumbs.zcml" />
@@ -147,12 +148,6 @@
     layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
   />
 
-  <!-- layer="plone.volto.interfaces.IPloneVoltoCoreLayer" -->
-  <!-- layer="plone.restapi.interfaces.IPloneRestapiLayer" -->
-  <!-- layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled" -->
-  <!-- layer="plone.restapi.interfaces.IPloneRestapiLayer" -->
-  <!-- for="plone.dexterity.interfaces.IDexterityContent" -->
-
   <adapter
     factory=".navigation.Navigation"
     name="navigation"
@@ -182,16 +177,11 @@
     factory=".slate.SlateTableBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
   />
-  <!-- <subscriber -->
-  <!--     factory=".slate.SlateTableBlockDeserializerRoot" -->
-  <!--     provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer" -->
-  <!--     /> -->
 
   <adapter factory=".countryprofile.CountryProfile" name="countryprofile" />
   <adapter factory=".countryprofile2025.CountryProfile2025" name="countryprofile" />
   <adapter factory=".missionsignatoryprofile.MissionSignatoryProfile" name="missionsignatoryprofile" />
 
-  <!-- <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions" /> -->
   <subscriber
     factory=".transnationalregions.TransnationRegionSelectSerializationTransformer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
@@ -225,9 +215,6 @@
     layer="plone.restapi.interfaces.IPloneRestapiLayer"
   />
 
-  <!-- Products.CMFCore.interfaces.ISiteRoot -->
-  <!-- layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer" -->
-
   <plone:service
     method="GET"
     factory=".navroot.NavrootGet"
@@ -242,13 +229,19 @@
     name="navroot"
   />
 
-  <subscriber
-    factory=".teaser.TeaserBlockSerializerRoot"
-    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-  />
-  <subscriber
-    factory=".teaser.TeaserBlockSerializer"
-    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  <monkey:patch
+    module="plone.restapi.serializer.blocks.TeaserBlockSerializer"
+    original="_process_data"
+    replacement="eea.climateadapt.restapi.teaser.process_data"
+    description="Patch plone.restapi.serializer.blocks.TeaserBlockSerializer._process_data"
+    preserveOriginal="true"
   />
 
+  <monkey:patch
+    module="plone.restapi.serializer.blocks.TeaserBlockSerializerRoot"
+    original="_process_data"
+    replacement="eea.climateadapt.restapi.teaser.process_data"
+    description="Patch plone.restapi.serializer.blocks.TeaserBlockSerializerRoot._process_data"
+    preserveOriginal="true"
+  />
 </configure>
