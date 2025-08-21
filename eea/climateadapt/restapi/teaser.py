@@ -13,6 +13,9 @@ from plone.restapi.interfaces import (
 from eea.volto.policy.interfaces import IEeaVoltoPolicyLayer
 from zope.component import adapter, getMultiAdapter
 from zope.interface import implementer
+import logging
+
+logger = logging.getLogger("eea.climateadapt")
 
 
 RESOLVE_UID_REGEXP = re.compile("resolveuid/([^/]+)")
@@ -71,6 +74,10 @@ class TeaserBlockSerializerBase:
             else:
                 url = value[0].get("@id", "")
 
+            if "?" in url:
+                logger.info(
+                    f"Teaser url with querystring {self.context.absolute_url} / {url}"
+                )
             brain = url_to_brain(url)
             if brain is not None:
                 serialized_brain = getMultiAdapter(
@@ -90,8 +97,11 @@ class TeaserBlockSerializerBase:
                     qs = urlparse(url).query
                     data["href"][0]["@id"] = f"{data['href'][0]['@id']}?{qs}"
             elif not url.startswith("http"):
-                # Source not found; clear out derived fields
-                data["href"] = []
+                # Source not found; emit a warning
+                logger.warning(
+                    "Teaser url path could not be translated to brain {value} / {self.context.absolute_url()"
+                )
+                data["href"] = [{"@id": url}]
         return data
 
 
