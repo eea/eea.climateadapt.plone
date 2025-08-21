@@ -76,7 +76,7 @@ class TeaserBlockSerializerBase:
 
             if "?" in url:
                 logger.info(
-                    f"Teaser url with querystring {self.context.absolute_url} / {url}"
+                    f"Teaser url with querystring {self.context.absolute_url()} / {url}"
                 )
             brain = url_to_brain(url)
             if brain is not None:
