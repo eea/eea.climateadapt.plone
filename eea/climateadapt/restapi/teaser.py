@@ -50,9 +50,6 @@ def url_to_brain(url):
 
 
 def process_data(self, data, field=None):
-    import pdb
-
-    pdb.set_trace()
     value = data.get("href", "")
     if value:
         if "overwrite" not in data:
