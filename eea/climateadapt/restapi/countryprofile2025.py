@@ -23,9 +23,9 @@ def load_fixed_countries():
         resource_filename(
             "eea.climateadapt.browser", "data/countryprofiles2025/norway.txt"
         ),
-        resource_filename(
-            "eea.climateadapt.browser", "data/countryprofiles2025/switzerland.txt"
-        ),
+        # resource_filename(
+        #     "eea.climateadapt.browser", "data/countryprofiles2025/switzerland.txt"
+        # ),
     ]
 
     res = {}
@@ -78,7 +78,7 @@ class CountryProfile2025(object):
         # import pdb
         # pdb.set_trace()
         if country_id in [
-            "switzerland",
+            "switzerland-notAnyMore",
         ]:
             data['html'] = html
             # return data
