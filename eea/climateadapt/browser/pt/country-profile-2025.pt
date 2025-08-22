@@ -251,13 +251,13 @@ ul li {
                 </li>
               </ul>
               <ul tal:condition="python: country_code not in ['MD','UA','RS','GE']">
-                <li style="clear: both;" tal:condition="python: 'IS' not in country_code">
+                <li style="clear: both;" tal:condition="python: country_code not in ['IS','CH']">
                   <span class="link-external">
                     <a href="https://reportnet.europa.eu/public/dataflow/110" data-val="https://reportnet.europa.eu/public/dataflow/110" rel="noopener"
                        target="_blank" data-linktype="external">2021 Art. 19</a>
                   </span>
                 </li>
-                <li style="clear: both;" tal:condition="python: country_code not in ['IS','TR']">
+                <li style="clear: both;" tal:condition="python: country_code not in ['CH','IS','TR']">
                   <span class="link-external">
                     <a href="https://reportnet.europa.eu/public/dataflow/897" data-val="https://reportnet.europa.eu/public/dataflow/897" rel="noopener"
                        target="_blank" data-linktype="external">2023 Art. 17</a>
@@ -269,7 +269,7 @@ ul li {
                        target="_blank" data-linktype="external">2023 Art. 19</a>
                   </span>
                 </li>
-                <li style="clear: both;" tal:condition="python: country_code not in ['IS','TR']">
+                <li style="clear: both;" tal:condition="python: country_code not in ['CH','IS','TR']">
                   <span class="link-external">
                     <a href="https://reportnet.europa.eu/public/dataflow/1444" data-val="https://reportnet.europa.eu/public/dataflow/1444" rel="noopener"
                        target="_blank" data-linktype="external">2025 Art. 17</a>
