@@ -1,17 +1,17 @@
 import logging
-# import csv
 
 import json
 import urllib.request
 
-# from pkg_resources import resource_filename
-from plone.restapi.interfaces import IExpandableElement
-from zope.component import adapter
+from plone.restapi.interfaces import IExpandableElement, ISerializeToJson
+from zope.component import adapter, queryMultiAdapter
 from zope.interface import Interface, implementer
 
 from eea.climateadapt.behaviors.mission_signatory_profile import (
     IMissionSignatoryProfile,
 )
+# from pkg_resources import resource_filename
+# import csv
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -36,6 +36,8 @@ DISCODATA_URLS = {
     "footer_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Footer_Text%5D&p=1&nrOfHits=5000",
     "general_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_General_Text]&p=1&nrOfHits=5000",
 }
+
+SIGN_PROFILE_HEADER_IMAGE_PATH = "/cca/en/mission/sig-profile-header.jpeg"
 
 
 def fetch_discodata_json(url):
@@ -252,6 +254,17 @@ class MissionSignatoryProfile(object):
     def __call__(self, expand=False):
         profile_id = self.context.absolute_url().rstrip("/").split("/")[-1]
         data = get_data_for_mission_signatory(profile_id)
+
+        banner = None
+        try:
+            banner = self.context.restrictedTraverse(SIGN_PROFILE_HEADER_IMAGE_PATH)
+        except Exception:
+            logger.warning("Could not find signatory profile banner image")
+            pass
+
+        if banner is not None:
+            serializer = queryMultiAdapter((banner, self.request), ISerializeToJson)
+            data["image"] = serializer()["image"]
 
         result = {
             "missionsignatoryprofile": {
