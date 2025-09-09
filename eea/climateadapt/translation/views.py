@@ -1,5 +1,6 @@
 """Translation views"""
 
+from plone.transformchain.interfaces import DISABLE_TRANSFORM_REQUEST_KEY
 import base64
 import json
 import logging
@@ -28,6 +29,8 @@ from .core import (
     queue_job,
     setup_translation_object,
     sync_translation_paths,
+    get_content_from_html,
+    save_field_data,
 )
 from .utils import get_value_representation
 
@@ -143,6 +146,7 @@ class ToHtml(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
         self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
 
         obj = self.context
 
@@ -164,6 +168,19 @@ class ToHtml(BrowserView):
                     self.values[k] = value
 
         html = self.index()
+
+        if self.request.form.get("roundtrip", ""):
+            # wrap in a div for roundtripping
+            html = f'<div class="ca-translation-roundtrip">{html}</div>'
+
+            fielddata = get_content_from_html(html, language=self.context.language)
+
+            if self.request.form.get("save", "") and fielddata:
+                save_field_data(self.context, self.context, fielddata)
+
+            self.request.response.setHeader("Content-Type", "application/json")
+            return json.dumps(fielddata)
+
         return html
 
     def get_value(self, name):
