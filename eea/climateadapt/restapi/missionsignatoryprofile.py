@@ -73,21 +73,21 @@ def build_map(data, id_keys, value_key):
 #         return []
 
 
-def get_planning_data(profile_id):
+def get_planning_data(profile_id, data):
     planning_goals = filter_by_profile_id(
-        fetch_discodata_json(DISCODATA_URLS["planning_goals"]), profile_id
+        fetch_discodata_json(data["planning_goals"]), profile_id
     )
     hazards_map = build_map(
-        fetch_discodata_json(DISCODATA_URLS["planning_goals_hazard"]),
+        fetch_discodata_json(data["planning_goals_hazard"]),
         ["Id", "Adaptation_Goal_Id"],
         "Climate_Hazard",
     )
 
     planning_climate_action = filter_by_profile_id(
-        fetch_discodata_json(DISCODATA_URLS["planning_climate_action"]), profile_id
+        fetch_discodata_json(data["planning_climate_action"]), profile_id
     )
     sectors_map = build_map(
-        fetch_discodata_json(DISCODATA_URLS["planning_climate_action_sectors"]),
+        fetch_discodata_json(data["planning_climate_action_sectors"]),
         ["Id", "Climate_Action_Plan_Id"],
         "Sector",
     )
@@ -103,7 +103,7 @@ def get_planning_data(profile_id):
     return {
         "planning": {
             "planning_titles": filter_by_profile_id(
-                fetch_discodata_json(DISCODATA_URLS["planning_titles"]), profile_id
+                fetch_discodata_json(data["planning_titles"]), profile_id
             ),
             "planning_goals": planning_goals,
             "planning_climate_action": planning_climate_action,
@@ -111,9 +111,9 @@ def get_planning_data(profile_id):
     }
 
 
-def get_assessment_data(profile_id):
+def get_assessment_data(profile_id, data):
     assessment_hazards_sectors_raw = filter_by_profile_id(
-        fetch_discodata_json(DISCODATA_URLS["assessment_hazards_sectors"]), profile_id
+        fetch_discodata_json(data["assessment_hazards_sectors"]), profile_id
     )
 
     grouped = {}
@@ -141,35 +141,35 @@ def get_assessment_data(profile_id):
     return {
         "assessment": {
             "assessment_text": filter_by_profile_id(
-                fetch_discodata_json(DISCODATA_URLS["assessment_text"]), profile_id
+                fetch_discodata_json(data["assessment_text"]), profile_id
             ),
             "assessment_factors": filter_by_profile_id(
-                fetch_discodata_json(DISCODATA_URLS["assessment_factors"]), profile_id
+                fetch_discodata_json(data["assessment_factors"]), profile_id
             ),
             "assessment_risks": filter_by_profile_id(
-                fetch_discodata_json(DISCODATA_URLS["assessment_risks"]), profile_id
+                fetch_discodata_json(data["assessment_risks"]), profile_id
             ),
             "assessment_hazards_sectors": assessment_hazards_sectors,
         }
     }
 
 
-def get_action_data(profile_id):
+def get_action_data(profile_id, data):
     actions = filter_by_profile_id(
-        fetch_discodata_json(DISCODATA_URLS["action_actions"]), profile_id
+        fetch_discodata_json(data["action_actions"]), profile_id
     )
     hazards_map = build_map(
-        fetch_discodata_json(DISCODATA_URLS["action_hazards"]),
+        fetch_discodata_json(data["action_hazards"]),
         ["Id", "Action_Id"],
         "Climate_Hazard",
     )
     sectors_map = build_map(
-        fetch_discodata_json(DISCODATA_URLS["action_sectors"]),
+        fetch_discodata_json(data["action_sectors"]),
         ["Id", "Action_Id"],
         "Sector",
     )
     benefits_map = build_map(
-        fetch_discodata_json(DISCODATA_URLS["action_benefits"]),
+        fetch_discodata_json(data["action_benefits"]),
         ["Id", "Action_Id"],
         "Co_Benefit",
     )
@@ -183,26 +183,26 @@ def get_action_data(profile_id):
     return {
         "action": {
             "action_text": filter_by_profile_id(
-                fetch_discodata_json(DISCODATA_URLS["action_text"]), profile_id
+                fetch_discodata_json(data["action_text"]), profile_id
             ),
             "actions": actions,
         }
     }
 
 
-def get_governance_data(profile_id):
-    data = fetch_discodata_json(DISCODATA_URLS["governance"])
+def get_governance_data(profile_id, data):
+    data = fetch_discodata_json(data["governance"])
     return {"governance": filter_by_profile_id(data, profile_id)}
 
 
-def get_general_text_data(profile_id):
-    data = fetch_discodata_json(DISCODATA_URLS["general_text"])
+def get_general_text_data(profile_id, data):
+    data = fetch_discodata_json(data["general_text"])
     return {"general_text": filter_by_profile_id(data, profile_id)}
 
 
-def get_tab_labels_data(_):
+def get_tab_labels_data(_, data):
     try:
-        rows = fetch_discodata_json(DISCODATA_URLS["tabs_labels"])
+        rows = fetch_discodata_json(data["tabs_labels"])
         if rows:
             first_row = rows[0]
 
@@ -216,13 +216,13 @@ def get_tab_labels_data(_):
         return {}
 
 
-def get_footer_text_data(_):
-    data = fetch_discodata_json(DISCODATA_URLS["footer_text"])
+def get_footer_text_data(_, data):
+    data = fetch_discodata_json(data["footer_text"])
     return {"footer_text": data[0]} if data else {}
 
 
-def get_data_for_mission_signatory(profile_id):
-    """Fetches data from the DISCODATA."""
+def get_data_for_mission_signatory(profile_id, data=DISCODATA_URLS):
+    """Fetches data from DISCODATA."""
     data_sections = [
         get_governance_data,
         get_planning_data,
@@ -236,7 +236,7 @@ def get_data_for_mission_signatory(profile_id):
 
     for section in data_sections:
         try:
-            result.update(section(profile_id))
+            result.update(section(profile_id, data))
         except Exception as e:
             logger.warning(f"[Data Fetch] Failed: {e}")
     return result
@@ -253,7 +253,7 @@ class MissionSignatoryProfile(object):
 
     def __call__(self, expand=False):
         profile_id = self.context.absolute_url().rstrip("/").split("/")[-1]
-        data = get_data_for_mission_signatory(profile_id)
+        data = get_data_for_mission_signatory(profile_id, DISCODATA_URLS)
 
         banner = None
         try:
