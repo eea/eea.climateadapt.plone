@@ -17,24 +17,29 @@ logger = logging.getLogger("eea.climateadapt")
 
 
 DISCODATA_URLS = {
-    "governance": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Governance_Template_Text]&p=1&nrOfHits=5000",
-    "assessment_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Assessment_Template_Text]&p=1&nrOfHits=5000",
-    "assessment_factors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Assessment_Template_Factors_Text]&p=1&nrOfHits=5000",
-    "assessment_risks": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Assessment_Template_Climate_Risk_Assessments_Text]&p=1&nrOfHits=5000",
+    "governance": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Governance_Template_Text%5D&p=1&nrOfHits=5000",
+    "assessment_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Assessment_Template_Text%5D&p=1&nrOfHits=5000",
+    "assessment_factors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Assessment_Template_Factors_Text%5D&p=1&nrOfHits=5000",
+    "assessment_risks": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Assessment_Template_Climate_Risk_Assessments_Text%5D&p=1&nrOfHits=5000",
     "assessment_hazards_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Assessment_Template_Hazards_Sectors_Text%5D&p=1&nrOfHits=5000",
-    "action_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Text]&p=1&nrOfHits=5000",
-    "action_actions": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Actions_Text]&p=1&nrOfHits=5000",
-    "action_hazards": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Climate_Hazards_Text]&p=1&nrOfHits=5000",
-    "action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Sectors_Text]&p=1&nrOfHits=5000",
-    "action_benefits": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Action_Template_Co_Benefits_Text]&p=1&nrOfHits=5000",
+    "action_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Action_Template_Text%5D&p=1&nrOfHits=5000",
+    "action_actions": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Action_Template_Actions_Text%5D&p=1&nrOfHits=5000",
+    "action_hazards": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Action_Template_Climate_Hazards_Text%5D&p=1&nrOfHits=5000",
+    "action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Action_Template_Sectors_Text%5D&p=1&nrOfHits=5000",
+    "action_benefits": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Action_Template_Co_Benefits_Text%5D&p=1&nrOfHits=5000",
     "planning_titles": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Adaptation_Text%5D&p=1&nrOfHits=5000",
     "planning_goals": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Adaptation_Goals_Text%5D&p=1&nrOfHits=5000",
     "planning_goals_hazard": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Adaptation_Goals_Climate_Hazards_Text%5D&p=1&nrOfHits=5000",
     "planning_climate_action": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Climate_Action_Plan_Text%5D&p=1&nrOfHits=5000",
     "planning_climate_action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Planning_Template_Climate_Action_Plan_Sectors_Text%5D&p=1&nrOfHits=5000",
-    "tabs_labels": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_Tabs_Text]&p=1&nrOfHits=5000",
+    "tabs_labels": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Tabs_Text%5D&p=1&nrOfHits=5000",
     "footer_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_Footer_Text%5D&p=1&nrOfHits=5000",
-    "general_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20[MissionOnAdaptation].[latest].[v_General_Text]&p=1&nrOfHits=5000",
+    "general_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%205000%20*%20FROM%20%5BMissionOnAdaptation%5D.%5Blatest%5D.%5Bv_General_Text%5D&p=1&nrOfHits=5000",
+}
+
+DISCODATA_BETA_URLS = {
+    key: url.replace("latest", "v2").replace("MissionOnAdaptation", "MissionOnAdaptation_SignatoryReporting")
+    for key, url in DISCODATA_URLS.items()
 }
 
 SIGN_PROFILE_HEADER_IMAGE_PATH = "/cca/en/mission/sig-profile-header.jpeg"
@@ -60,6 +65,13 @@ def build_map(data, id_keys, value_key):
         result.setdefault(key, []).append(row.get(value_key))
     return result
 
+def build_map_objects(data, id_keys, fields):
+    result = {}
+    for row in data:
+        key = tuple(row.get(k) for k in id_keys)
+        value = {field: row.get(field) for field in fields}
+        result.setdefault(key, []).append(value)
+    return result
 
 # def parse_csv(path):
 #     try:
@@ -86,10 +98,10 @@ def get_planning_data(profile_id, data):
     planning_climate_action = filter_by_profile_id(
         fetch_discodata_json(data["planning_climate_action"]), profile_id
     )
-    sectors_map = build_map(
+    sectors_map = build_map_objects(
         fetch_discodata_json(data["planning_climate_action_sectors"]),
         ["Id", "Climate_Action_Plan_Id"],
-        "Sector",
+        ["Sector", "Icon"]
     )
 
     for row in planning_goals:
@@ -163,10 +175,10 @@ def get_action_data(profile_id, data):
         ["Id", "Action_Id"],
         "Climate_Hazard",
     )
-    sectors_map = build_map(
+    sectors_map = build_map_objects(
         fetch_discodata_json(data["action_sectors"]),
         ["Id", "Action_Id"],
-        "Sector",
+        ["Sector", "Icon"]
     )
     benefits_map = build_map(
         fetch_discodata_json(data["action_benefits"]),
@@ -254,6 +266,7 @@ class MissionSignatoryProfile(object):
     def __call__(self, expand=False):
         profile_id = self.context.absolute_url().rstrip("/").split("/")[-1]
         data = get_data_for_mission_signatory(profile_id, DISCODATA_URLS)
+        data_beta = get_data_for_mission_signatory(profile_id, DISCODATA_BETA_URLS)
 
         banner = None
         try:
@@ -265,6 +278,8 @@ class MissionSignatoryProfile(object):
         if banner is not None:
             serializer = queryMultiAdapter((banner, self.request), ISerializeToJson)
             data["image"] = serializer()["image"]
+            data_beta["image"] = serializer()["image"]
+
 
         result = {
             "missionsignatoryprofile": {
@@ -272,6 +287,7 @@ class MissionSignatoryProfile(object):
                     self.context.absolute_url()
                 ),
                 "result": data,
+                 "result_beta": data_beta,
             }
         }
 
