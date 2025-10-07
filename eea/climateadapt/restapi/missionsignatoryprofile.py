@@ -287,7 +287,7 @@ class MissionSignatoryProfile(object):
                     self.context.absolute_url()
                 ),
                 "result": data,
-                 "result_beta": data_beta,
+                "result_beta": data_beta,
             }
         }
 
