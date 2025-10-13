@@ -112,6 +112,11 @@ def get_planning_data(profile_id, data):
         key = (row.get("Id"), row.get("Climate_Action_Plan_Id"))
         row["Sectors"] = sectors_map.get(key, [])
 
+    planning_climate_action.sort(
+        key=lambda r: (r.get("Approval_Year") or 0),
+        reverse=True,
+    )
+
     return {
         "planning": {
             "planning_titles": filter_by_profile_id(
