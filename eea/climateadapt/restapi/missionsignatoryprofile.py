@@ -2,7 +2,7 @@ import logging
 
 import json
 import urllib.request
-
+from collections import defaultdict
 from plone.restapi.interfaces import IExpandableElement, ISerializeToJson
 from zope.component import adapter, queryMultiAdapter
 from zope.interface import Interface, implementer
@@ -59,19 +59,19 @@ def filter_by_profile_id(data, profile_id):
 
 
 def build_map(data, id_keys, value_key):
-    result = {}
+    result = defaultdict(list)
     for row in data:
         key = tuple(row.get(k) for k in id_keys)
-        result.setdefault(key, []).append(row.get(value_key))
-    return result
+        result[key].append(row.get(value_key))
+    return dict(result)
 
 def build_map_objects(data, id_keys, fields):
-    result = {}
+    result = defaultdict(list)
     for row in data:
         key = tuple(row.get(k) for k in id_keys)
         value = {field: row.get(field) for field in fields}
-        result.setdefault(key, []).append(value)
-    return result
+        result[key].append(value)
+    return dict(result)
 
 # def parse_csv(path):
 #     try:
@@ -124,12 +124,21 @@ def get_planning_data(profile_id, data):
 
 
 def get_assessment_data(profile_id, data):
-    assessment_hazards_sectors_raw = filter_by_profile_id(
+    assessment_hazards = filter_by_profile_id(
         fetch_discodata_json(data["assessment_hazards_sectors"]), profile_id
+    )
+    assessment_risks = filter_by_profile_id(
+        fetch_discodata_json(data["assessment_risks"]), profile_id
+    )
+    assessment_text = filter_by_profile_id(
+        fetch_discodata_json(data["assessment_text"]), profile_id
+    )
+    assessment_factors = filter_by_profile_id(
+        fetch_discodata_json(data["assessment_factors"]), profile_id
     )
 
     grouped = {}
-    for row in assessment_hazards_sectors_raw:
+    for row in assessment_hazards:
         key = (row.get("Hazard_Id"), row.get("Hazard"))
         sector = row.get("Sector")
         order = int(row.get("Order", 999))
@@ -150,17 +159,16 @@ def get_assessment_data(profile_id, data):
             }
         )
 
+    assessment_risks.sort(
+        key=lambda r: (r.get("Year_Of_Publication") or 0),
+        reverse=True,
+    )
+
     return {
         "assessment": {
-            "assessment_text": filter_by_profile_id(
-                fetch_discodata_json(data["assessment_text"]), profile_id
-            ),
-            "assessment_factors": filter_by_profile_id(
-                fetch_discodata_json(data["assessment_factors"]), profile_id
-            ),
-            "assessment_risks": filter_by_profile_id(
-                fetch_discodata_json(data["assessment_risks"]), profile_id
-            ),
+            "assessment_text": assessment_text,
+            "assessment_factors": assessment_factors,
+            "assessment_risks": assessment_risks,
             "assessment_hazards_sectors": assessment_hazards_sectors,
         }
     }
