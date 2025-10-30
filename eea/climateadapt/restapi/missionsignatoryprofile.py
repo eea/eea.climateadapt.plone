@@ -142,27 +142,24 @@ def get_assessment_data(profile_id, data):
         fetch_discodata_json(data["assessment_factors"]), profile_id
     )
 
-    grouped = {}
+    grouped = defaultdict(lambda: defaultdict(list))
     for row in assessment_hazards:
-        key = (row.get("Hazard_Id"), row.get("Hazard"))
+        category = row.get("Category")
+        hazard = row.get("Hazard")
         sector = row.get("Sector")
         order = int(row.get("Order", 999))
-        if key not in grouped:
-            grouped[key] = []
-        grouped[key].append((order, sector))
+        grouped[category][hazard].append((order, sector))
 
     assessment_hazards_sectors = []
-    for (hazard_id, hazard), sectors in grouped.items():
-        sorted_sectors = [
-            sector for order, sector in sorted(sectors, key=lambda x: x[0])
-        ]
-        assessment_hazards_sectors.append(
-            {
-                "Hazard_Id": hazard_id,
-                "Hazard": hazard,
-                "Sectors": sorted_sectors,
-            }
-        )
+    for category, hazards in sorted(grouped.items()):
+        hazard_list = []
+        for hazard, sectors in hazards.items():
+            sorted_sectors = [s for _, s in sorted(sectors, key=lambda x: x[0])]
+            hazard_list.append({"Hazard": hazard, "Sectors": sorted_sectors})
+        assessment_hazards_sectors.append({
+            "Category": category,
+            "Hazards": hazard_list,
+        })
 
     assessment_risks.sort(
         key=lambda r: (r.get("Year_Of_Publication") or 0),
