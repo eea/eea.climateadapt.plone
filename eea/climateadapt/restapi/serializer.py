@@ -21,8 +21,7 @@ from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.restapi.navigation import ICCARestapiLayer
 
-from .utils import cca_content_serializer
-
+from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text
 
 def serialize(possible_node):
     if isinstance(possible_node, str):
@@ -180,31 +179,51 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
         obj = self.context
 
         blocks_copy = deepcopy(obj.blocks)
-        blocks_layout = obj.blocks_layout["items"]
+        blocks_layout = obj.blocks_layout.get("items", [])
 
-        columnblock = {}
-        for uid in blocks_layout:
-            block = blocks_copy[uid]
-            if block["@type"] == "columnsBlock":
-                columnblock = block
+        columnblock = next(
+            (b for uid in blocks_layout
+             for b in [blocks_copy.get(uid)]
+             if b and b.get("@type") == "columnsBlock"),
+            None
+        )
+        if not columnblock:
+            return result
 
         firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
         firstcol = columnblock["data"]["blocks"][firstcol_id]
+        items = firstcol["blocks_layout"]["items"]
+        blocks = firstcol["blocks"]
 
-        description = ""
-        for i, block_id in enumerate(firstcol["blocks_layout"]["items"]):
-            nextuid = None
-            if i < len(firstcol["blocks_layout"]["items"]) - 1:
-                nextuid = firstcol["blocks_layout"]["items"][i + 1]
-            blocks = firstcol["blocks"]
-            block = blocks[block_id]
-            text = block.get("plaintext", "")
+        sections = [
+            ("Objective of the funding programme",
+             "Type of funding",
+             "objective_funding_programme"),
+            ("Funding rate (percentage of covered costs)",
+             "Expected budget range of proposals",
+             "funding_rate"),
+            ("Administering authority",
+             "Publication page",
+             "administering_authority"),
+            ("Publication page",
+             "General information",
+             "publication_page"),
+            ("General information",
+             "Further information",
+             "general_information"),
+            ("Further information",
+             None,
+             "further_information"),
+        ]
 
-            if "Objective of the funding programme" in text:
-                description = blocks[nextuid].get("plaintext")
+        for start_title, end_title, field_name in sections:
+            result[field_name] = extract_section_text(blocks, items, start_title, end_title) or ""
 
-        if not result.get("description"):
-            result["description"] = description
+        if not result.get("description") and result.get("objective_funding_programme"):
+            result["description"] = result["objective_funding_programme"]
+
+        if "regions" in result:
+            result["funding_region"] = richtext_to_plain_text(result["regions"])
 
         return result
 

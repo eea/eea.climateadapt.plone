@@ -108,9 +108,7 @@
               }
             },
             "blocks_layout": {
-              "items": [
-                "5227a7c6-c586-4edb-8fce-fa6562edbc60"
-              ]
+              "items": ["5227a7c6-c586-4edb-8fce-fa6562edbc60"]
             }
           },
           "8843bdcf-6690-4ed4-8f83-bfb8c548ecf6": {
@@ -431,10 +429,7 @@
           ]
         }
       },
-      "gridCols": [
-        "twoThirds",
-        "oneThird"
-      ],
+      "gridCols": ["twoThirds", "oneThird"],
       "gridSize": 12,
       "styles": {}
     },
@@ -480,9 +475,7 @@
           }
         },
         "blocks_layout": {
-          "items": [
-            "fdeeb663-f794-48c1-a5c8-898180f470a8"
-          ]
+          "items": ["fdeeb663-f794-48c1-a5c8-898180f470a8"]
         }
       },
       "styles": {
