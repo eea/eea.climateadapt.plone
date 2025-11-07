@@ -120,60 +120,115 @@ def html_to_plain_text(html, inline_links=True):
     return " ".join(plain_text.split())
 
 
-def slate_to_html(block):
-    def render_child(node):
-        if "text" in node:
-            return node["text"]
-
-        node_type = node.get("type", "")
-        if node_type in ("b", "strong"):
-            inner = "".join(render_child(c) for c in node.get("children", []))
-            return f"<b>{inner}</b>"
-
-        if node_type == "link":
-            href = node.get("data", {}).get("url", "#")
-            if href and "resolveuid" in href:
-                href = uid_to_url(href)
-            inner = "".join(render_child(c) for c in node.get("children", []))
-            return f'<a href="{href}" rel="noopener">{inner}</a>'
-
-        if "children" in node:
-            return "".join(render_child(c) for c in node["children"])
-        return ""
-
-    def render_node(node):
-        node_type = node.get("type", "")
-        inner = "".join(render_child(c) for c in node.get("children", []))
-
-        if node_type in ("p", "paragraph"):
-            return f"<p>{inner}</p>"
-        if node_type in ("ul", "ol"):
-            items = [render_child(c) for c in node.get("children", [])]
-            return " ".join(items)
-        if "li" in node_type:
-            return f"{inner} "
-        return inner
-
-    html = ""
-    for node in block.get("value", []):
-        html += render_node(node)
-    return html
+def is_h3_block(block):
+    if block.get("@type") != "slate":
+        return False
+    for v in block.get("value", []):
+        if v.get("type", "").lower().startswith("h3"):
+            return True
+    return False
 
 
-def extract_section_text(blocks, items, start_title, end_title=None):
+def extract_text_recursive(children):
+    parts = []
+    for c in children:
+        if isinstance(c, str):
+            parts.append(c)
+        elif isinstance(c, dict):
+            if c.get("text"):
+                parts.append(c["text"])
+            elif "children" in c:
+                parts.append(extract_text_recursive(c["children"]))
+    return "".join(parts)
+
+
+def render_slate_value(value):
+    parts = []
+
+    def render_children(children):
+        segs = []
+        for c in children:
+            if isinstance(c, dict):
+                if c.get("type") == "link":
+                    url = c.get("data", {}).get("url", "")
+                    if url and "resolveuid" in url:
+                        url = uid_to_url(url)
+                    label = extract_text_recursive(c.get("children", [])).strip()
+                    if label and url:
+                        segs.append(f"{label} ({url})")
+                    elif url:
+                        segs.append(url)
+                elif c.get("type") in ("ul", "ol"):
+                    segs.append(render_list(c))
+                elif c.get("type") == "li":
+                    text = extract_text_recursive(c.get("children", [])).strip()
+                    if text:
+                        segs.append(f"- {text}")
+                else:
+                    text = extract_text_recursive([c]).strip()
+                    if text:
+                        segs.append(text)
+            elif isinstance(c, str):
+                segs.append(c)
+        return segs
+
+    def render_list(node):
+        items = []
+        for li in node.get("children", []):
+            if li.get("type") == "li":
+                txt = extract_text_recursive(li.get("children", [])).strip()
+                if txt:
+                    items.append(f"- {txt}")
+        return "\n".join(items)
+
+    for v in value:
+        if v.get("type") in ("ul", "ol"):
+            parts.append(render_list(v))
+        else:
+            children_texts = render_children(v.get("children", []))
+            if children_texts:
+                parts.append(" ".join(children_texts).strip())
+
+    return "\n".join(p for p in parts if p)
+
+
+def find_section_range(blocks, items, start_title, end_title=None):
     start_idx = next(
-        (i for i, bid in enumerate(items)
-         if start_title in blocks[bid].get("plaintext", "")),
+        (
+            i
+            for i, bid in enumerate(items)
+            if start_title.strip().lower()
+            in (blocks.get(bid, {}).get("plaintext") or "").strip().lower()
+        ),
         None,
     )
+    if start_idx is None or not is_h3_block(blocks.get(items[start_idx], {})):
+        return None, None
+
     end_idx = None
     if end_title:
         end_idx = next(
-            (i for i, bid in enumerate(items)
-             if end_title in blocks[bid].get("plaintext", "")),
+            (
+                i
+                for i, bid in enumerate(items)
+                if end_title.strip().lower()
+                in (blocks.get(bid, {}).get("plaintext") or "").strip().lower()
+            ),
             None,
         )
 
+    if end_idx is None:
+        for i in range(start_idx + 1, len(items)):
+            if is_h3_block(blocks.get(items[i], {})):
+                end_idx = i
+                break
+
+    return start_idx, end_idx
+
+
+def extract_section_text(blocks, items, start_title, end_title=None):
+    """Extract text between two h3 headings from Slate blocks."""
+    start_idx, end_idx = find_section_range(blocks, items, start_title, end_title)
     if start_idx is None:
         return ""
 
@@ -181,33 +236,18 @@ def extract_section_text(blocks, items, start_title, end_title=None):
     parts = []
 
     for bid in content_slice:
-        block = blocks[bid]
+        block = blocks.get(bid, {})
         if block.get("@type") != "slate":
             continue
+        if is_h3_block(block):
+            break
 
-        text = block.get("plaintext", "").strip()
-        has_links = any(
-            c.get("type") == "link"
-            for v in block.get("value", [])
-            for c in v.get("children", [])
-            if isinstance(c, dict)
-        )
+        text = render_slate_value(block.get("value", [])) or block.get("plaintext", "")
+        text = text.strip()
+        if text:
+            parts.append(text.rstrip("."))
 
-        if text and not has_links:
-            parts.append(text)
-            continue
-
-        html = slate_to_html(block).strip()
-        if html and html not in ("<p></p>", "<p><br></p>", "<p>&nbsp;</p>"):
-            plain_text = html_to_plain_text(html, inline_links=True)
-            if plain_text:
-                parts.append(plain_text)
-
-    if not parts:
-        return ""
-
-    text = ". ".join(p.strip().rstrip(".") for p in parts if p.strip())
-    return text.strip()
+    return "\n".join(p.strip().rstrip('.') for p in parts if p.strip())
 
 
 def richtext_to_plain_text(value):
