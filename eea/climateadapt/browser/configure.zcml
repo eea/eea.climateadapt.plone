@@ -6,6 +6,11 @@
   i18n_domain="eea.climateadapt"
 >
 
+  <browser:resourceDirectory
+    name="eea.climateadapt.static"
+    directory="static"
+  />
+
   <browser:page
     name="gopdb"
     for="*"
