@@ -69,7 +69,7 @@ $(function () {
       map.resize();
       $("#showhide").attr(
         "src",
-        "/++resource++eea.climateadapt.static/vibrio/arrow_left.png"
+        "/++api++/++resource++eea.climateadapt.static/vibrio/arrow_left.png"
       );
     } else {
       $("#capaLeft").hide();
@@ -78,7 +78,7 @@ $(function () {
       map.resize();
       $("#showhide").attr(
         "src",
-        "/++resource++eea.climateadapt.static/vibrio/arrow_right.png"
+        "/++api++/++resource++eea.climateadapt.static/vibrio/arrow_right.png"
       );
     }
   });

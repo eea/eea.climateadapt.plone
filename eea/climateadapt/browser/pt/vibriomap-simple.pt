@@ -2,8 +2,8 @@
         <link rel="stylesheet" href="https://js.arcgis.com/3.12/dijit/themes/claro/claro.css" />
         <link rel="stylesheet" href="https://js.arcgis.com/3.12/esri/css/esri.css" />
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css" />
-        <link rel="stylesheet" href="/++resource++eea.climateadapt.static/vibrio/map-viewer.css" />
-        <link rel="stylesheet" href="/++resource++eea.climateadapt.static/vibrio/site.css" />
+        <link rel="stylesheet" href="/++api++/++resource++eea.climateadapt.static/vibrio/map-viewer.css" />
+        <link rel="stylesheet" href="/++api++/++resource++eea.climateadapt.static/vibrio/site.css" />
 
 <style>
 #fullScreenImg,
@@ -35,7 +35,7 @@ select.form-control {
             <div class="claro" id="mapBody">
                 <div style="margin:0 auto;position:relative" id="mapContainer">
                     <div id="capaLinks">
-                        <a id="link1"><img src="/++resource++eea.climateadapt.static/vibrio/iconUp.png" id="imgArrow" /></a> |
+                        <a id="link1"><img src="/++api++/++resource++eea.climateadapt.static/vibrio/iconUp.png" id="imgArrow" /></a> |
                         <a id="link2" style="color:White;font-weight:normal" i18n:translate="">View options</a>
                     </div>
                     <div class="slide">
@@ -61,7 +61,7 @@ select.form-control {
                                 <div class="optionsDivTop">&#160;</div>
                                 <div class="optionsDivCenter">
                                     <a id="Overview" onclick="overviewShow()">
-                                        <img src="/++resource++eea.climateadapt.static/vibrio/Overview.png" id="OverviewImg" alt="Overview"  i18n:attributes="alt"/>
+                                        <img src="/++api++/++resource++eea.climateadapt.static/vibrio/Overview.png" id="OverviewImg" alt="Overview"  i18n:attributes="alt"/>
                                     </a>
                                 </div>
                                 <div class="optionsDivBottomFS" i18n:translate="">Overview</div>
@@ -69,39 +69,39 @@ select.form-control {
                             <div id="fullDIV">
                                 <div class="optionsDivTop">&#160;</div>
                                 <div class="optionsDivCenter">
-                                    <a href="#" id="fullscreen"><img src="/++resource++eea.climateadapt.static/vibrio/Full_Screen.png" id="fullScreenImg"></a>
+                                    <a href="#" id="fullscreen"><img src="/++api++/++resource++eea.climateadapt.static/vibrio/Full_Screen.png" id="fullScreenImg"></a>
                                 </div>
                                 <div class="optionsDivBottomFS" i18n:translate="">Full Screen</div>
                             </div>
                             <div id="indentifyDiv">
                                 <div class="optionsDivTop">&#160;</div>
                                 <div class="optionsDivCenter">
-                                    <a id="print"><img src="/++resource++eea.climateadapt.static/vibrio/i_info.png" id="imgidentifybutton" alt="Get Value" onclick="identifyVibrio()" i18n:attributes="alt"/></a>
+                                    <a id="print"><img src="/++api++/++resource++eea.climateadapt.static/vibrio/i_info.png" id="imgidentifybutton" alt="Get Value" onclick="identifyVibrio()" i18n:attributes="alt"/></a>
                                 </div>
                                 <div class="optionsDivBottomGV" i18n:translate="">Get Value</div>
                             </div>
                             <div id="panDIV">
-                                <div id="panDivTop"><a href="#" onclick="panTop()"><img src="/++resource++eea.climateadapt.static/vibrio/expand.png" id="imgUp" alt="up" i18n:attributes="alt"/></a></div>
+                                <div id="panDivTop"><a href="#" onclick="panTop()"><img src="/++api++/++resource++eea.climateadapt.static/vibrio/expand.png" id="imgUp" alt="up" i18n:attributes="alt"/></a></div>
                                 <div id="panCenter">
-                                    <div id="panLeft"><a href="#" onclick="panleft()"><img src="/++resource++eea.climateadapt.static/vibrio/expand.png" id="imgLeft" alt="left" i18n:attributes="alt"/></a></div>
-                                    <div id="panRight"><a href="#" onclick="panright()"><img src="/++resource++eea.climateadapt.static/vibrio/expand.png" id="imgRight" alt="right" i18n:attributes="alt"/></a></div>
+                                    <div id="panLeft"><a href="#" onclick="panleft()"><img src="/++api++/++resource++eea.climateadapt.static/vibrio/expand.png" id="imgLeft" alt="left" i18n:attributes="alt"/></a></div>
+                                    <div id="panRight"><a href="#" onclick="panright()"><img src="/++api++/++resource++eea.climateadapt.static/vibrio/expand.png" id="imgRight" alt="right" i18n:attributes="alt"/></a></div>
                                 </div>
                                 <div id="panDivBottom">
-                                    <a href="#" onclick="pandown()"><img src="/++resource++eea.climateadapt.static/vibrio/expand.png" id="imgDown" alt="down" i18n:attributes="alt"/></a>
+                                    <a href="#" onclick="pandown()"><img src="/++api++/++resource++eea.climateadapt.static/vibrio/expand.png" id="imgDown" alt="down" i18n:attributes="alt"/></a>
                                     <div class="optionsDivBottomPan" i18n:translate="">Pan</div>
                                 </div>
                             </div>
                             <div id="fullExtentDIV">
                                 <div class="optionsDivTop">&#160;</div>
                                 <div class="optionsDivCenter">
-                                    <a href="#" onclick="fullExtent()" id="fullExtent"><img src="/++resource++eea.climateadapt.static/vibrio/blue_globe.png" id="fullExtentImg" width="40" height="40" alt="Full Extent" i18n:attributes="alt"/></a>
+                                    <a href="#" onclick="fullExtent()" id="fullExtent"><img src="/++api++/++resource++eea.climateadapt.static/vibrio/blue_globe.png" id="fullExtentImg" width="40" height="40" alt="Full Extent" i18n:attributes="alt"/></a>
                                 </div>
                                 <div class="optionsDivBottomFS" i18n:translate="">Full Extent</div>
                             </div>
                             <div id="aboutMapDiv">
                                 <div class="optionsDivTop">&#160;</div>
                                 <div class="optionsDivCenter">
-                                    <a><img src="/++resource++eea.climateadapt.static/vibrio/i_info.png" id="imgAboutMapButton" alt="About the map" onclick="showAboutMapInfo()" i18n:attributes="alt"/></a>
+                                    <a><img src="/++api++/++resource++eea.climateadapt.static/vibrio/i_info.png" id="imgAboutMapButton" alt="About the map" onclick="showAboutMapInfo()" i18n:attributes="alt"/></a>
                                 </div>
                                 <div class="optionsDivBottomGV" i18n:translate="">About the map</div>
                                 <div id="aboutMapDialog" title="About the map" i18n:translate="" i18n:attributes="title">
@@ -191,7 +191,7 @@ select.form-control {
                                 </div>
                             </div>
                             <div class="typeDivRight" id="hidePanel">
-                                <img src="/++resource++eea.climateadapt.static/vibrio/arrow_left.png" alt="show / hide" id="showhide" i18n:attributes="alt"/>
+                                <img src="/++api++/++resource++eea.climateadapt.static/vibrio/arrow_left.png" alt="show / hide" id="showhide" i18n:attributes="alt"/>
                             </div>
                         </div>
                         <div id="map" data-dojo-type="dijit.layout.ContentPane">
@@ -218,7 +218,7 @@ select.form-control {
                                     </div>
                                 </div>
                             </div>
-                            <img id="loadingImg" src="/++resource++eea.climateadapt.static/vibrio/loading.gif" style="display:none;position:absolute; right:50%; top:50%; z-index:100;" />
+                            <img id="loadingImg" src="/++api++/++resource++eea.climateadapt.static/vibrio/loading.gif" style="display:none;position:absolute; right:50%; top:50%; z-index:100;" />
                         </div>
                     </div>
                 </div>
@@ -229,8 +229,8 @@ select.form-control {
         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <script src="https://js.arcgis.com/3.12/"></script>
-        <script src="/++resource++eea.climateadapt.static/vibrio/map-viewer.js"></script>
-        <script src="/++resource++eea.climateadapt.static/vibrio/map-viewer-menu.js"></script>
-        <script src="/++resource++eea.climateadapt.static/vibrio/map-viewer-init.js"></script>
+        <script src="/++api++/++resource++eea.climateadapt.static/vibrio/map-viewer.js"></script>
+        <script src="/++api++/++resource++eea.climateadapt.static/vibrio/map-viewer-menu.js"></script>
+        <script src="/++api++/++resource++eea.climateadapt.static/vibrio/map-viewer-init.js"></script>
 
 </div>
