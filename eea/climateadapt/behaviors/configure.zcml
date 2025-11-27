@@ -122,4 +122,12 @@
     provides=".navtitle.INavTitle"
   />
 
+  <plone:behavior
+    name="eea.climateadapt.redirection_type"
+    title="Redirection Type"
+    description="Adds redirection type selection (301/302) to Link content type"
+    provides=".redirection.IRedirectionType"
+    for="plone.dexterity.interfaces.IDexterityContent"
+  />
+
 </configure>

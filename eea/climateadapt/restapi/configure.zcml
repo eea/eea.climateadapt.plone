@@ -22,7 +22,12 @@
 
   <adapter factory=".serializer.MissionToolSerializer" />
   <adapter factory=".serializer.MissionFundingSerializer" />
-
+  <adapter
+    factory=".serializer.LinkRedirectSerializer"
+    provides="plone.restapi.interfaces.ISerializeToJson"
+    for="plone.app.contenttypes.interfaces.ILink
+        plone.restapi.interfaces.IPloneRestapiLayer"
+  />
   <zcml:configure zcml:condition="not-installed collective.exportimport">
     <adapter factory=".long_converter" />
   </zcml:configure>

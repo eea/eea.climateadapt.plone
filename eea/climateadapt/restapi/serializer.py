@@ -13,6 +13,7 @@ from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeT
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
 from zope.component import adapter
 from zope.interface import Interface, implementer
+from plone.app.contenttypes.interfaces import ILink
 
 from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
@@ -20,6 +21,10 @@ from eea.climateadapt.behaviors.mission_tool import IMissionTool
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.restapi.navigation import ICCARestapiLayer
+from plone.restapi.interfaces import IPloneRestapiLayer
+
+import logging
+logger = logging.getLogger("eea.climateadapt")
 
 from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text
 
@@ -264,6 +269,61 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
         if not result.get("description"):
             result["description"] = description
         return result
+    
+@adapter(ILink, IPloneRestapiLayer)
+class LinkRedirectSerializer(SerializeToJson):
+    def __call__(self, version=None, include_items=True):
+        request = self.request
+        context = self.context
+
+        if not api.user.is_anonymous():
+            return super().__call__(version=version, include_items=include_items)
+
+        target = getattr(context, "remoteUrl", None)
+        logger.info("Initial remoteUrl: %r", target)
+
+        if not target:
+            logger.info("No target set on Link, falling back to default JSON serializer")
+            return super().__call__(version=version, include_items=include_items)
+
+        if "${portal_url}/resolveuid/" in target:
+            uid = target.split("/resolveuid/")[-1]
+            obj = api.content.get(UID=uid)
+            if obj is not None:
+                target = obj.absolute_url()
+                logger.info("Resolved UID to object at %s", target)
+            else:
+                logger.warning("Could not resolve UID %s to an object", uid)
+
+        elif "${portal_url}" in target:
+            portal_url = api.portal.get().absolute_url()
+            logger.info("Portal URL resolved to %s", portal_url)
+            target = target.replace("${portal_url}", portal_url)
+            logger.info("Target after ${portal_url} replacement: %s", target)
+        else:
+            logger.info("External or plain target URL: %s", target)
+
+        raw = getattr(context, "redirection_type", None)
+        logger.info("redirection_type on context is: %r", raw)
+
+        status = 302
+        try:
+            if raw:
+                candidate = int(str(raw))
+                if candidate in (301, 302):
+                    status = candidate
+        except Exception as e:
+            logger.warning("Error parsing redirection_type %r: %s", raw, e)
+
+        logger.info(
+            "Redirect from %s to %s with status %d",
+            context.absolute_url(),
+            target,
+            status,
+        )
+
+        request.response.redirect(target, status=status)
+        return {}
 
 
 # @adapter(IOrganisation, Interface)
