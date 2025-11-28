@@ -287,7 +287,7 @@ class LinkRedirectSerializer(SerializeToJson):
         if "${portal_url}/resolveuid/" in target:
             uid = target.split("/resolveuid/")[-1]
             obj = api.content.get(UID=uid)
-            if obj is not None:
+            if obj:
                 target = obj.absolute_url()
             else:
                 logger.warning("Could not resolve UID %s to an object", uid)
@@ -295,17 +295,17 @@ class LinkRedirectSerializer(SerializeToJson):
         elif "${portal_url}" in target:
             portal_url = api.portal.get().absolute_url()
             target = target.replace("${portal_url}", portal_url)
-        else:
-            logger.info("External or plain target URL: %s", target)
 
         raw = getattr(context, "redirection_type", None)
 
+        if raw in (None, ""):
+            return super().__call__(version=version, include_items=include_items)
+
         status = 302
         try:
-            if raw:
-                candidate = int(str(raw))
-                if candidate in (301, 302):
-                    status = candidate
+            candidate = int(str(raw))
+            if candidate in (301, 302):
+                status = candidate
         except Exception as e:
             logger.warning("Error parsing redirection_type %r: %s", raw, e)
 
