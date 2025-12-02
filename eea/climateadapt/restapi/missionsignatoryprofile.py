@@ -275,8 +275,8 @@ class MissionSignatoryProfile(object):
 
     def __call__(self, expand=False):
         profile_id = self.context.absolute_url().rstrip("/").split("/")[-1]
-        data = get_data_for_mission_signatory(profile_id, DISCODATA_URLS)
-        data_beta = get_data_for_mission_signatory(profile_id, DISCODATA_BETA_URLS)
+        # data = get_data_for_mission_signatory(profile_id, DISCODATA_URLS)
+        data = get_data_for_mission_signatory(profile_id, DISCODATA_BETA_URLS)
 
         banner = None
         try:
@@ -288,7 +288,7 @@ class MissionSignatoryProfile(object):
         if banner is not None:
             serializer = queryMultiAdapter((banner, self.request), ISerializeToJson)
             data["image"] = serializer()["image"]
-            data_beta["image"] = serializer()["image"]
+            # data_beta["image"] = serializer()["image"]
 
 
         result = {
@@ -297,7 +297,7 @@ class MissionSignatoryProfile(object):
                     self.context.absolute_url()
                 ),
                 "result": data,
-                "result_beta": data_beta,
+                "result_beta": data,
             }
         }
 
