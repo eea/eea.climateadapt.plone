@@ -56,10 +56,10 @@ class CustomCatalogNavigationTabs(BaseCatalogNavigationTabs):
         mtool = getToolByName(context, "portal_membership")
         member = mtool.getAuthenticatedMember().id
 
-        portal_properties = getToolByName(context, "portal_properties")
-        self.navtree_properties = getattr(
-            portal_properties, "navtree_properties")
-        self.site_properties = getattr(portal_properties, "site_properties")
+        # portal_properties = getToolByName(context, "portal_properties")
+        # self.navtree_properties = getattr(
+        #     portal_properties, "navtree_properties")
+        # self.site_properties = getattr(portal_properties, "site_properties")
         self.portal_catalog = getToolByName(context, "portal_catalog")
 
         if actions is None:
@@ -78,8 +78,8 @@ class CustomCatalogNavigationTabs(BaseCatalogNavigationTabs):
                 result.append(data)
 
         # check whether we only want actions
-        if self.site_properties.getProperty("disable_folder_sections", False):
-            return result
+        # if self.site_properties.getProperty("disable_folder_sections", False):
+        #     return result
 
         query = self._getNavQuery()
 
@@ -93,7 +93,7 @@ class CustomCatalogNavigationTabs(BaseCatalogNavigationTabs):
                 return False
 
         # now add the content to results
-        idsNotToList = self.navtree_properties.getProperty("idsNotToList", ())
+        idsNotToList = []  # self.navtree_properties.getProperty("idsNotToList", ())
         # __import__("pdb").set_trace()
         for item in rawresult:
             if not (item.getId in idsNotToList or item.exclude_from_nav):
@@ -138,8 +138,7 @@ class Navigation(BaseNavigation):
         else:
             self.depth = 1
 
-        result = {"navigation": {
-            "@id": self.context.absolute_url() + "/@navigation"}}
+        result = {"navigation": {"@id": self.context.absolute_url() + "/@navigation"}}
         if not expand:
             return result
 
@@ -166,8 +165,7 @@ class Navigation(BaseNavigation):
                 entry["review_state"] = None
 
             if "title" not in entry:
-                entry["title"] = tab.get("name") or tab.get(
-                    "description") or tab["id"]
+                entry["title"] = tab.get("name") or tab.get("description") or tab["id"]
             else:
                 # translate Home tab
                 entry["title"] = translate(
@@ -192,8 +190,7 @@ class Navigation(BaseNavigation):
             query["is_folderish"] = True
 
         if self.settings["filter_on_workflow"]:
-            query["review_state"] = list(
-                self.settings["workflow_states_to_show"] or ())
+            query["review_state"] = list(self.settings["workflow_states_to_show"] or ())
 
         if not self.settings["show_excluded_items"]:
             query["exclude_from_nav"] = False
@@ -203,8 +200,7 @@ class Navigation(BaseNavigation):
         brains = portal_catalog.searchResults(**query)
 
         registry = getUtility(IRegistry)
-        types_using_view = registry.get(
-            "plone.types_use_view_action_in_listings", [])
+        types_using_view = registry.get("plone.types_use_view_action_in_listings", [])
 
         for brain in brains:
             brain_path = brain.getPath()
@@ -251,8 +247,7 @@ class Navigation(BaseNavigation):
                     entry["@id"] = href
                     # print((brain.getRemoteUrl, href))
                 except Exception:
-                    logger.warn("Cannot resolve resoluid %s",
-                                brain.getRemoteUrl)
+                    logger.warn("Cannot resolve resoluid %s", brain.getRemoteUrl)
 
         if hasattr(brain, "nav_title") and brain.nav_title:
             entry["title"] = brain.nav_title

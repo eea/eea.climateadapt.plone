@@ -1,7 +1,8 @@
 from collective.volto.subsites.content.subsite import ISubsite
 from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 from plone.app.contenttypes.behaviors.tableofcontents import ITableOfContents
-from plone.app.dexterity.behaviors.discussion import IAllowDiscussion
+
+# from plone.app.dexterity.behaviors.discussion import IAllowDiscussion
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from plone.app.dexterity.behaviors.metadata import IDublinCore
 from plone.app.dexterity.behaviors.nextprevious import INextPreviousToggle
@@ -47,7 +48,7 @@ alsoProvides(IEventContact["contact_email"], ILanguageIndependentField)
 alsoProvides(IEventContact["contact_phone"], ILanguageIndependentField)
 alsoProvides(IEventContact["event_url"], ILanguageIndependentField)
 
-alsoProvides(IAllowDiscussion["allow_discussion"], ILanguageIndependentField)
+# alsoProvides(IAllowDiscussion["allow_discussion"], ILanguageIndependentField)
 
 alsoProvides(IExcludeFromNavigation["exclude_from_nav"], ILanguageIndependentField)
 IExcludeFromNavigation["exclude_from_nav"].required = False
