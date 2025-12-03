@@ -40,9 +40,9 @@ def get_id(item):
 
 
 def get_view_url(context):
-    props = getToolByName(context, "portal_properties")
-    stp = props.site_properties
-    view_action_types = stp.getProperty("typesUseViewActionInListings", ())
+    # props = getToolByName(context, "portal_properties")
+    # stp = props.site_properties
+    view_action_types = []  # stp.getProperty("typesUseViewActionInListings", ())
 
     item_url = get_url(context)
     name = get_id(context)
@@ -207,8 +207,7 @@ class PhysicalBreadcrumbs:
         portal_state = getMultiAdapter(
             (self.context, self.request), name="plone_portal_state"
         )
-        breadcrumbs_view = PhysicalNavigationBreadcrumbs(
-            self.context, self.request)
+        breadcrumbs_view = PhysicalNavigationBreadcrumbs(self.context, self.request)
         items = []
         for crumb in breadcrumbs_view.breadcrumbs():
             item = {

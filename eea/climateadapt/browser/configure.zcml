@@ -120,30 +120,6 @@
   />
 
   <browser:page
-    name="site_navbar"
-    for="*"
-    class=".site.Navbar"
-    template="pt/navbar.pt"
-    permission="zope.Public"
-  />
-
-  <browser:page
-    name="footer_navbar"
-    for="*"
-    template="pt/navbar_footer.pt"
-    permission="zope.Public"
-    class=".site.Navbar"
-  />
-
-  <browser:page
-    name="help-nav"
-    for="*"
-    class=".site.Navbar"
-    template="pt/help-nav.pt"
-    permission="zope.Public"
-  />
-
-  <browser:page
     name="footer_logos"
     for="*"
     template="pt/footer_logos.pt"
