@@ -296,6 +296,17 @@ class LinkRedirectSerializer(SerializeToJson):
             portal_url = api.portal.get().absolute_url()
             target = target.replace("${portal_url}", portal_url)
 
+        # Handle relative paths and resolveuid without ${portal_url}
+        if target.startswith('../') or target.startswith('./'):
+            from urllib.parse import urljoin
+            target = urljoin(context.absolute_url(), target)
+        elif '/resolveuid/' in target and not target.startswith('http'):
+            uid = target.split('/resolveuid/')[-1].split('/')[0]
+            obj = api.content.get(UID=uid)
+            if obj:
+                target = obj.absolute_url()
+            else:
+                logger.warning("Could not resolve UID %s to an object", uid)
         raw = getattr(context, "redirection_type", None)
 
         if raw in (None, ""):
@@ -309,8 +320,17 @@ class LinkRedirectSerializer(SerializeToJson):
         except Exception as e:
             logger.warning("Error parsing redirection_type %r: %s", raw, e)
 
-        request.response.redirect(target, status=status)
-        return {}
+        result = super().__call__(version=version, include_items=include_items)
+
+        if '@components' not in result:
+            result['@components'] = {}
+        
+        result['@components']['redirect'] = {
+            'url': target,
+            'status': status,
+        }
+        
+        return result
 
 # @adapter(IOrganisation, Interface)
 # class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
