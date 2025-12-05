@@ -12,7 +12,7 @@ class IRedirectionType(model.Schema):
     """Behavior to add redirection type selection to Link content type"""
 
     redirection_type = Choice(
-        title=_("Redirection type"),
+        title=_("Type"),
         description=_("Select the HTTP redirection type for this link"),
         vocabulary="eea.climateadapt.redirection_types",
         required=False,
