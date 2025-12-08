@@ -16,7 +16,8 @@ class IRedirectionType(model.Schema):
         description=_("Select the HTTP redirection type for this link"),
         vocabulary="eea.climateadapt.redirection_types",
         required=False,
-        missing_value=None,
+        missing_value="",
+        default="302",
     )
 
 

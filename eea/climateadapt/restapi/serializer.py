@@ -272,8 +272,11 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
     
 @adapter(ILink, IPloneRestapiLayer)
 class LinkRedirectSerializer(SerializeToJson):
+    """Serializer that adds @components.redirect for anonymous users 
+    when redirection_type is set.
+    """
+
     def __call__(self, version=None, include_items=True):
-        request = self.request
         context = self.context
 
         if not api.user.is_anonymous():
@@ -287,50 +290,45 @@ class LinkRedirectSerializer(SerializeToJson):
         if "${portal_url}/resolveuid/" in target:
             uid = target.split("/resolveuid/")[-1]
             obj = api.content.get(UID=uid)
-            if obj:
-                target = obj.absolute_url()
-            else:
-                logger.warning("Could not resolve UID %s to an object", uid)
+            target = obj.absolute_url() if obj else target
 
         elif "${portal_url}" in target:
             portal_url = api.portal.get().absolute_url()
             target = target.replace("${portal_url}", portal_url)
 
-        # Handle relative paths and resolveuid without ${portal_url}
-        if target.startswith('../') or target.startswith('./'):
+        if target.startswith(("../", "./")):
             from urllib.parse import urljoin
             target = urljoin(context.absolute_url(), target)
-        elif '/resolveuid/' in target and not target.startswith('http'):
-            uid = target.split('/resolveuid/')[-1].split('/')[0]
-            obj = api.content.get(UID=uid)
-            if obj:
-                target = obj.absolute_url()
-            else:
-                logger.warning("Could not resolve UID %s to an object", uid)
-        raw = getattr(context, "redirection_type", None)
 
-        if raw in (None, ""):
+        elif "/resolveuid/" in target and not target.startswith("http"):
+            uid = target.split("/resolveuid/")[-1].split("/")[0]
+            obj = api.content.get(UID=uid)
+            target = obj.absolute_url() if obj else target
+
+        raw = getattr(context, "redirection_type", "")
+
+        if not raw:
             return super().__call__(version=version, include_items=include_items)
 
-        status = 302
         try:
-            candidate = int(str(raw))
-            if candidate in (301, 302):
-                status = candidate
-        except Exception as e:
-            logger.warning("Error parsing redirection_type %r: %s", raw, e)
+            status = int(raw)
+            if status not in (301, 302):
+                status = 302
+        except Exception:
+            status = 302
 
         result = super().__call__(version=version, include_items=include_items)
 
-        if '@components' not in result:
-            result['@components'] = {}
-        
-        result['@components']['redirect'] = {
-            'url': target,
-            'status': status,
+        if "@components" not in result:
+            result["@components"] = {}
+
+        result["@components"]["redirect"] = {
+            "url": target,
+            "status": status,
         }
-        
+
         return result
+
 
 # @adapter(IOrganisation, Interface)
 # class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
