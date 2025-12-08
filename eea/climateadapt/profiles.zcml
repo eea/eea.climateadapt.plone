@@ -488,4 +488,12 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
   />
 
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_78"
+    title="Upgrade profile for eea.climateadapt v78"
+    description="Rename title of Link to Redirection"
+    directory="profiles/upgrades/to_78"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
 </configure>

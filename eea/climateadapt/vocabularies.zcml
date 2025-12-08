@@ -209,5 +209,8 @@
     component=".extra_vocabulary.regions_vocabulary" />
   <utility name="eea.climateadapt.bioregions"
     component=".extra_vocabulary.bioregions_vocab_factory" />
+  <utility
+    name="eea.climateadapt.redirection_types"
+    component=".vocabulary.redirection_types_vocabulary" />
 
 </configure>

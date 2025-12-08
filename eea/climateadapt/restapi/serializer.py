@@ -13,6 +13,7 @@ from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeT
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
 from zope.component import adapter
 from zope.interface import Interface, implementer
+from plone.app.contenttypes.interfaces import ILink
 
 from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
@@ -20,6 +21,10 @@ from eea.climateadapt.behaviors.mission_tool import IMissionTool
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.restapi.navigation import ICCARestapiLayer
+from plone.restapi.interfaces import IPloneRestapiLayer
+
+import logging
+logger = logging.getLogger("eea.climateadapt")
 
 from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text
 
@@ -263,6 +268,65 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
 
         if not result.get("description"):
             result["description"] = description
+        return result
+    
+@adapter(ILink, IPloneRestapiLayer)
+class LinkRedirectSerializer(SerializeToJson):
+    """Serializer that adds @components.redirect for anonymous users 
+    when redirection_type is set.
+    """
+
+    def __call__(self, version=None, include_items=True):
+        context = self.context
+
+        if not api.user.is_anonymous():
+            return super().__call__(version=version, include_items=include_items)
+
+        target = getattr(context, "remoteUrl", None)
+
+        if not target:
+            return super().__call__(version=version, include_items=include_items)
+
+        if "${portal_url}/resolveuid/" in target:
+            uid = target.split("/resolveuid/")[-1]
+            obj = api.content.get(UID=uid)
+            target = obj.absolute_url() if obj else target
+
+        elif "${portal_url}" in target:
+            portal_url = api.portal.get().absolute_url()
+            target = target.replace("${portal_url}", portal_url)
+
+        if target.startswith(("../", "./")):
+            from urllib.parse import urljoin
+            target = urljoin(context.absolute_url(), target)
+
+        elif "/resolveuid/" in target and not target.startswith("http"):
+            uid = target.split("/resolveuid/")[-1].split("/")[0]
+            obj = api.content.get(UID=uid)
+            target = obj.absolute_url() if obj else target
+
+        raw = getattr(context, "redirection_type", "")
+
+        if not raw:
+            return super().__call__(version=version, include_items=include_items)
+
+        try:
+            status = int(raw)
+            if status not in (301, 302):
+                status = 302
+        except Exception:
+            status = 302
+
+        result = super().__call__(version=version, include_items=include_items)
+
+        if "@components" not in result:
+            result["@components"] = {}
+
+        result["@components"]["redirect"] = {
+            "url": target,
+            "status": status,
+        }
+
         return result
 
 

@@ -1394,3 +1394,11 @@ type_of_funding = [
 ]
 type_of_funding_vocabulary = generic_vocabulary(type_of_funding)
 alsoProvides(type_of_funding_vocabulary, IVocabularyFactory)
+
+
+_redirection_types = [
+    ("301", _("Permanent (301)")),
+    ("302", _("Temporary (302)")),
+]
+redirection_types_vocabulary = generic_vocabulary(_redirection_types)
+alsoProvides(redirection_types_vocabulary, IVocabularyFactory)
