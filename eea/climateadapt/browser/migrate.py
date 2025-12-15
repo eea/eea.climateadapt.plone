@@ -159,6 +159,64 @@ class CountryMapInterface2025(BrowserView):
         return 'done'
 
 
+class ArchiveItems294148(BrowserView):
+    """#294148 Research and Knowledge Projects and Reports and Publications"""
+
+    def list(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        portal_catalog = api.portal.get_tool("portal_catalog")
+        languages = get_site_languages()
+
+        # import pdb
+        # pdb.set_trace()
+        response = []
+
+        for language in languages:
+            if language not in ['en']:
+                continue
+            logger.info(f"ArchiveItems294148 LANGUAGE %s", language)
+            brains = portal_catalog.queryCatalog(
+                {
+                    "portal_type": ["eea.climateadapt.publicationreport", "eea.climateadapt.aceproject"],
+                    "review_state": "published",
+                    "path": "/cca/{}/".format(language)
+                }
+            )
+            itemNr = 1
+            nrToArchive = 0
+            for brain in brains:
+                obj = brain.getObject()
+                # import pdb
+                # pdb.set_trace()
+                yearCreated = brain.created.year() if getattr(brain, "created", None) else None
+                yearPublication = obj.publication_date.year if obj.publication_date else None
+
+                toArchive = 'N'
+                if yearPublication and yearPublication <= 2016:
+                    nrToArchive += 1
+                    toArchive = 'Y'
+                elif yearCreated and yearCreated <= 2016:
+                    nrToArchive += 1
+                    toArchive = 'Y'
+
+                # logger.info(f"#294148 update %s", brain.getURL())
+                # logger.info(f"\t%s - %s", yearCreated, obj.publication_date)
+                response.append(
+                    {
+                        "itemNr": itemNr,
+                        "nrToArchive": nrToArchive,
+                        "toArchive": toArchive,
+                        "title": obj.title,
+                        "url": brain.getURL(),
+                        "created": yearCreated,
+                        "publication_date": yearPublication,
+                    }
+                )
+                itemNr += 1
+        logger.info(f"ArchiveItems294148 check done")
+        return response
+
+
 class ImpactFiltersNew:
     """New impact filters"""
     # migrate_262157_impact_filter
