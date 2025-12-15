@@ -175,13 +175,13 @@ class ArchiveItems294148(BrowserView):
             if language not in ['en']:
                 continue
             logger.info(f"ArchiveItems294148 LANGUAGE %s", language)
-            brains = portal_catalog.queryCatalog(
-                {
-                    "portal_type": ["eea.climateadapt.publicationreport", "eea.climateadapt.aceproject"],
-                    "review_state": "published",
-                    "path": "/cca/{}/".format(language)
-                }
-            )
+            brains = portal_catalog(**
+                                    {
+                                        "portal_type": ["eea.climateadapt.publicationreport", "eea.climateadapt.aceproject"],
+                                        "review_state": "published",
+                                        "path": "/cca/{}/".format(language)
+                                    }
+                                    )
             itemNr = 1
             nrToArchive = 0
             for brain in brains:
