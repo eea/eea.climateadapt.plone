@@ -1,8 +1,7 @@
-<h1 i18n:translate="">Update funding programme</h1>
 <form action="./@@archive-items-2025-294148" method="post" enctype="multipart/form-data">
-  <br i18n:translate="">Select CSV file to upload:
-  <input type="file" name="fileToUpload" id="fileToUpload" />
-  <input type="submit" value="Process CSV" name="submit" />
+  <input type="checkbox" name="publicationreport" value="1" /> publicationreport
+  <input type="checkbox" name="aceproject" value="1" /> aceproject
+  <input type="submit" value="FILTER" name="submit" />
 </form>
 <table tal:define="items view/list">
     <tr tal:repeat="item items">

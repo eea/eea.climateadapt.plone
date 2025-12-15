@@ -170,6 +170,14 @@ class ArchiveItems294148(BrowserView):
         # import pdb
         # pdb.set_trace()
         response = []
+        filterPortalTypes = []
+        if self.request.form.get("publicationreport", None):
+            filterPortalTypes.append('eea.climateadapt.publicationreport')
+        if self.request.form.get("aceproject", None):
+            filterPortalTypes.append('eea.climateadapt.aceproject')
+
+        if len(filterPortalTypes) == 0:
+            filterPortalTypes.append('eea.climateadapt.notypeselected')
 
         for language in languages:
             if language not in ['en']:
@@ -177,7 +185,7 @@ class ArchiveItems294148(BrowserView):
             logger.info(f"ArchiveItems294148 LANGUAGE %s", language)
             brains = portal_catalog(**
                                     {
-                                        "portal_type": ["eea.climateadapt.publicationreport", "eea.climateadapt.aceproject"],
+                                        "portal_type": filterPortalTypes,
                                         "review_state": "published",
                                         "path": "/cca/{}/".format(language)
                                     }
@@ -204,7 +212,7 @@ class ArchiveItems294148(BrowserView):
                 response.append(
                     {
                         "itemNr": itemNr,
-                        "nrToArchive": nrToArchive,
+                        "nrToArchive": nrToArchive if toArchive == 'Y' else '',
                         "toArchive": toArchive,
                         "title": obj.title,
                         "url": brain.getURL(),
