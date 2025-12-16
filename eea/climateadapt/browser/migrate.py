@@ -209,7 +209,7 @@ class ArchiveItems294148(BrowserView):
                 # if toArchive and self.request.form.get("doarchive", None):
                 #     import pdb
                 #     pdb.set_trace()
-                if toArchive and self.request.form.get("publicationreport", None) and self.request.form.get("doarchive", None):
+                if toArchive == 'Y' and self.request.form.get("publicationreport", None) and self.request.form.get("doarchive", None):
                     api.content.transition(obj, "archive")
                     if nrToArchive % 100 == 0:
                         transaction.commit()
