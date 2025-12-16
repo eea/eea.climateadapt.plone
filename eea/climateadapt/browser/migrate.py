@@ -180,13 +180,14 @@ class ArchiveItems294148(BrowserView):
             filterPortalTypes.append('eea.climateadapt.notypeselected')
 
         for language in languages:
-            if language not in ['en']:
-                continue
+            # if language not in ['en']:
+            #     continue
             logger.info(f"ArchiveItems294148 LANGUAGE %s", language)
             brains = portal_catalog(**
                                     {
                                         "portal_type": filterPortalTypes,
                                         "review_state": "published",
+                                        # "review_state": "archived",
                                         "path": "/cca/{}/".format(language)
                                     }
                                     )
@@ -194,21 +195,24 @@ class ArchiveItems294148(BrowserView):
             nrToArchive = 0
             for brain in brains:
                 obj = brain.getObject()
-                # import pdb
-                # pdb.set_trace()
                 yearCreated = brain.created.year() if getattr(brain, "created", None) else None
                 yearPublication = obj.publication_date.year if obj.publication_date else None
 
                 toArchive = 'N'
-                if yearPublication and yearPublication <= 2016:
+                if yearPublication and yearPublication < 2016:
                     nrToArchive += 1
                     toArchive = 'Y'
-                elif yearCreated and yearCreated <= 2016:
-                    nrToArchive += 1
-                    toArchive = 'Y'
+                # elif yearCreated and yearCreated < 2016:
+                #     nrToArchive += 1
+                #     toArchive = 'Y'
 
-                # logger.info(f"#294148 update %s", brain.getURL())
-                # logger.info(f"\t%s - %s", yearCreated, obj.publication_date)
+                # if toArchive and self.request.form.get("doarchive", None):
+                #     import pdb
+                #     pdb.set_trace()
+                if toArchive and self.request.form.get("publicationreport", None) and self.request.form.get("doarchive", None):
+                    api.content.transition(obj, "archive")
+                    if nrToArchive % 100 == 0:
+                        transaction.commit()
                 response.append(
                     {
                         "itemNr": itemNr,
@@ -221,6 +225,7 @@ class ArchiveItems294148(BrowserView):
                     }
                 )
                 itemNr += 1
+        transaction.commit()
         logger.info(f"ArchiveItems294148 check done")
         return response
 

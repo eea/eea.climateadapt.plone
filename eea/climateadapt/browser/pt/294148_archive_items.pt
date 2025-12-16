@@ -1,7 +1,9 @@
 <form action="./@@archive-items-2025-294148" method="post" enctype="multipart/form-data">
+  <input type="checkbox" name="doarchive" value="1" /> doarchive
+  <hr>
   <input type="checkbox" name="publicationreport" value="1" /> publicationreport
-  <input type="checkbox" name="aceproject" value="1" /> aceproject
-  <input type="submit" value="FILTER" name="submit" />
+  <br><input type="checkbox" name="aceproject" value="1" /> aceproject
+  <br><input type="submit" value="FILTER" name="submit" />
 </form>
 <table tal:define="items view/list">
     <tr tal:repeat="item items">
