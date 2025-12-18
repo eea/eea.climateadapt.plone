@@ -60,9 +60,9 @@ logger = logging.getLogger("eea.climateadapt")
 redisOpts = dict(host=REDIS_HOST, port=REDIS_PORT, db=0)
 
 queues = {
-    "etranslation": Queue("etranslation", {"connection": redisOpts}),
-    "save_etranslation": Queue("save_etranslation", {"connection": redisOpts}),
-    "sync_paths": Queue("sync_paths", {"connection": redisOpts}),
+    "etranslation": lambda: Queue("etranslation", {"connection": redisOpts}),
+    "save_etranslation": lambda: Queue("save_etranslation", {"connection": redisOpts}),
+    "sync_paths": lambda: Queue("sync_paths", {"connection": redisOpts}),
 }
 
 
@@ -80,7 +80,7 @@ def queue_job(queue_name, job_name, data, opts=None):
         logger.info("Adding job %s", job_name)
 
         async def inner():
-            queue = queues[queue_name]
+            queue = queues[queue_name]()
             await queue.add(job_name, data, opts)
             await queue.close()
 
