@@ -2,7 +2,7 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from zope.interface import alsoProvides
-from zope.schema import Date, Text, TextLine
+from zope.schema import Date, Text, TextLine, Bool
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
@@ -33,6 +33,16 @@ class IIndicator(IAceItem, IBlocks):
         title=_("Map/Graphs Height"),
         description="Height of the iframe (e.g., 750).",
         required=False,
+    )
+
+    map_graphs_full_width = Bool(
+        title=_("Full-width map/graph"),
+        description=_(
+        "If enabled, the map/graph visualization will use the full container width. "
+        "If disabled, it will remain in the left column."
+        ),
+        required=False,
+        default=False,
     )
 
     publication_date = Date(
