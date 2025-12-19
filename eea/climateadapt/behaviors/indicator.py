@@ -38,7 +38,7 @@ class IIndicator(IAceItem, IBlocks):
     map_graphs_full_width = Bool(
         title=_("Full-width map/graphs"),
         description=_(
-        "If enabled, the map/graph visualization will use the full container width. "
+        "If enabled, the visualization will use the full container width. "
         "If disabled, it will remain in the left column."
         ),
         required=False,
