@@ -57,6 +57,8 @@ class SaveTranslationHtml(BrowserView):
         check_token_security(request)
         alsoProvides(self.request, IDisableCSRFProtection)
 
+        self.request.response.setHeader("Content-Type", "application/json")
+
         with adopt_user(username="admin"):
             try:
                 html = request.form.get("html", "")
@@ -78,7 +80,7 @@ class SaveTranslationHtml(BrowserView):
                 logger.warning(
                     "Canonical object was removed for save translation: %s", path
                 )
-                self.request.response.setHeader("Content-Type", "application/json")
+                # self.request.response.setHeader("Content-Type", "application/json")
                 return json.dumps({"status": "canonical object removed"})
 
             try:
@@ -96,7 +98,7 @@ class SaveTranslationHtml(BrowserView):
                 logger.exception("Error in saving translation: \n: %s", e)
                 result = {"error_type": exception_to_json(e)}
 
-        self.request.response.setHeader("Content-Type", "application/json")
+        # self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
 
 
