@@ -96,7 +96,7 @@ class SlateBlockSerializer(SlateBlockSerializerBase):
 class GenericFolderSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
         result = super(GenericFolderSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
         item = self.context
         result["language"] = getattr(item, "language", "")
@@ -110,7 +110,7 @@ class GenericContentSerializer(SerializeToJson):
 
     def __call__(self, version=None, include_items=True):
         result = super(GenericContentSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
         item = self.context
         result["language"] = getattr(item, "language", "")
@@ -124,7 +124,7 @@ class ClimateAdaptContentSerializer(SerializeToJson):
 
     def __call__(self, version=None, include_items=True):
         result = super(ClimateAdaptContentSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
 
         return cca_content_serializer(self.context, result, self.request)
@@ -135,7 +135,7 @@ class ClimateAdaptContentSerializer(SerializeToJson):
 class AdaptationOptionSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
         result = super(AdaptationOptionSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
         result["related_case_studies"] = find_related_casestudies(self.context)
         return cca_content_serializer(self.context, result, self.request)
@@ -154,7 +154,7 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
 class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(CaseStudySerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
         result = cca_content_serializer(self.context, result, self.request)
 
@@ -178,7 +178,7 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
 class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(MissionFundingSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
 
         obj = self.context
@@ -237,7 +237,7 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
 class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(MissionToolSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
 
         obj = self.context
