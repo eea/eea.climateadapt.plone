@@ -154,17 +154,17 @@ def check_link_status(link):
                 try:
                     resp2 = try_head(link_https)
                     if resp2.status_code == 404:
-                        return {"status": "NotFound", "url": link}
+                        return {"status": "ConnectTimeout", "url": link}
                     return None
                 except Exception:
-                    return {"status": "NotFound", "url": link}
+                    return {"status": "ConnectTimeout", "url": link}
 
             logger.info("Timed out.")
             logger.info("Trying again with link: %s", link)
             try:
                 try_head(link)
             except Exception:
-                return {"status": "NotFound", "url": link}
+                return {"status": "ConnectTimeout", "url": link}
 
         except requests.exceptions.TooManyRedirects:
             logger.info("Redirected.")
