@@ -108,40 +108,90 @@ def check_link_status(link):
         if not link.startswith("http"):
             link = "https://" + link
 
-        link = link.replace("http://", "https://")
-
-        # return {"status": "404", "url": link}
-
         logger.warning("Now checking: %s", link)
 
+        def try_head(url):
+            return requests.head(url, timeout=30, allow_redirects=True)
+
         try:
-            resp = requests.head(link, timeout=30, allow_redirects=True)
+            resp = try_head(link)
             if resp.status_code == 404:
+                # If old http link, try https before reporting broken
+                if link.startswith("http://"):
+                    link_https = "https://" + link[len("http://"):]
+                    logger.warning("HTTP 404, trying HTTPS: %s", link_https)
+                    try:
+                        resp2 = try_head(link_https)
+                        if resp2.status_code == 404:
+                            return {"status": "NotFound", "url": link}
+                        return None
+                    except Exception:
+                        return {"status": "NotFound", "url": link}
                 return {"status": "NotFound", "url": link}
-            # requests.head(link, timeout=5, allow_redirects=True)
+
         except requests.exceptions.ReadTimeout:
+            # If http link hangs, try https once
+            if link.startswith("http://"):
+                link_https = "https://" + link[len("http://"):]
+                logger.warning("HTTP ReadTimeout, trying HTTPS: %s", link_https)
+                try:
+                    resp2 = try_head(link_https)
+                    if resp2.status_code == 404:
+                        return {"status": "ReadTimeout", "url": link}
+                    return None
+                except Exception:
+                    return {"status": "ReadTimeout", "url": link}
+
             return {"status": "ReadTimeout", "url": link}
+
         except requests.exceptions.ConnectTimeout:
+            # If http times out, try https once
+            if link.startswith("http://"):
+                link_https = "https://" + link[len("http://"):]
+                logger.warning("HTTP ConnectTimeout, trying HTTPS: %s", link_https)
+                try:
+                    resp2 = try_head(link_https)
+                    if resp2.status_code == 404:
+                        return {"status": "NotFound", "url": link}
+                    return None
+                except Exception:
+                    return {"status": "NotFound", "url": link}
+
             logger.info("Timed out.")
             logger.info("Trying again with link: %s", link)
             try:
-                requests.head(link, timeout=30, allow_redirects=True)
+                try_head(link)
             except Exception:
                 return {"status": "NotFound", "url": link}
+
         except requests.exceptions.TooManyRedirects:
             logger.info("Redirected.")
             logger.info("Trying again with link: %s", link)
             try:
-                requests.head(link, timeout=30, allow_redirects=True)
+                try_head(link)
             except Exception:
                 return {"status": "Redirected", "url": link}
+
         except requests.exceptions.URLRequired:
             return {"status": "BrokenUrl", "url": link}
         except requests.exceptions.ProxyError:
             return {"status": "ProxyError", "url": link}
         except requests.exceptions.HTTPError:
             return {"status": "UnknownError", "url": link}
+
         except Exception:
+            # If http throws any other error, try https once
+            if link.startswith("http://"):
+                link_https = "https://" + link[len("http://"):]
+                logger.warning("HTTP error, trying HTTPS: %s", link_https)
+                try:
+                    resp2 = try_head(link_https)
+                    if resp2.status_code == 404:
+                        return {"status": "NotFound", "url": link}
+                    return None
+                except Exception:
+                    return {"status": "NotFound", "url": link}
+
             return {"status": "NotFound", "url": link}
 
     return
