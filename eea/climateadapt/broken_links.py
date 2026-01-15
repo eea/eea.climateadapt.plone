@@ -4,6 +4,7 @@ import re
 from collections import defaultdict
 from datetime import datetime
 from io import BytesIO
+from urllib.parse import urldefrag
 
 import requests
 import transaction
@@ -97,6 +98,7 @@ def check_link_status(link):
         #         return {"status": 504, "url": link}
 
         link = link.strip()
+        link, _ = urldefrag(link)
 
         if (
             link.startswith(".")
