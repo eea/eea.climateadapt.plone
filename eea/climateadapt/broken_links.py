@@ -33,7 +33,9 @@ logger = logging.getLogger("eea.climateadapt")
 
 env = os.environ.get
 TRANSLATION_AUTH_TOKEN = env("TRANSLATION_AUTH_TOKEN", "")
-
+DEFAULT_HEADERS = {
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+}
 
 def convert_to_string(item):
     """Convert to string other types"""
@@ -113,7 +115,7 @@ def check_link_status(link):
         logger.warning("Now checking: %s", link)
 
         def try_head(url):
-            return requests.head(url, timeout=30, allow_redirects=True)
+            return requests.head(url, timeout=30, allow_redirects=True, headers=DEFAULT_HEADERS)
 
         try:
             resp = try_head(link)
@@ -154,17 +156,17 @@ def check_link_status(link):
                 try:
                     resp2 = try_head(link_https)
                     if resp2.status_code == 404:
-                        return {"status": "ConnectTimeout", "url": link}
+                        return {"status": "NotFound", "url": link}
                     return None
                 except Exception:
-                    return {"status": "ConnectTimeout", "url": link}
+                    return {"status": "NotFound", "url": link}
 
             logger.info("Timed out.")
             logger.info("Trying again with link: %s", link)
             try:
                 try_head(link)
             except Exception:
-                return {"status": "ConnectTimeout", "url": link}
+                return {"status": "NotFound", "url": link}
 
         except requests.exceptions.TooManyRedirects:
             logger.info("Redirected.")
