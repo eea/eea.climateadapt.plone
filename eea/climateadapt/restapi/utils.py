@@ -150,14 +150,28 @@ def render_slate_value(value):
         for c in children:
             if isinstance(c, dict):
                 if c.get("type") == "link":
-                    url = c.get("data", {}).get("url", "")
+                    url = (c.get("data", {}) or {}).get("url", "") or ""
+                    if url.startswith("mailto:"):
+                        email = url.replace("mailto:", "").strip()
+                        if email:
+                            segs.append(email)
+                        continue
                     if url and "resolveuid" in url:
                         url = uid_to_url(url)
+
                     label = extract_text_recursive(c.get("children", [])).strip()
+                    
+                    # avoid duplicates when the label already is the URL
                     if label and url:
-                        segs.append(f"{label} ({url})")
+                        if label.rstrip("/") == url.rstrip("/"):
+                            segs.append(url)
+                        else:
+                            segs.append(f"{label} ({url})")
                     elif url:
                         segs.append(url)
+                    elif label:
+                        segs.append(label)
+
                 elif c.get("type") in ("ul", "ol"):
                     segs.append(render_list(c))
                 elif c.get("type") == "li":
@@ -249,6 +263,31 @@ def extract_section_text(blocks, items, start_title, end_title=None):
 
     return "\n".join(p.strip().rstrip('.') for p in parts if p.strip())
 
+def serialize_slate_blocks(blocks, items, result):
+    parts = []
+
+    for bid in items:
+        block = blocks.get(bid)
+        if not block:
+            continue
+
+        if block.get("@type") == "slate":
+            text = render_slate_value(block.get("value", []))
+            if not text:
+                text = block.get("plaintext", "")
+            text = text.strip()
+            if text:
+                parts.append(text)
+
+        elif block.get("@type") == "metadata":
+            meta_id = block.get("data", {}).get("id")
+            if meta_id == "readiness_for_use":
+                values = result.get("readiness_for_use", [])
+                titles = [v.get("title") for v in values if v.get("title")]
+                if titles:
+                    parts.append(", ".join(titles))
+
+    return "\n\n".join(parts)
 
 def richtext_to_plain_text(value):
     if isinstance(value, dict) and "data" in value:

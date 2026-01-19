@@ -26,7 +26,7 @@ from plone.restapi.interfaces import IPloneRestapiLayer
 import logging
 logger = logging.getLogger("eea.climateadapt")
 
-from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text
+from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_slate_blocks
 
 def serialize(possible_node):
     if isinstance(possible_node, str):
@@ -237,7 +237,7 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
 class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(MissionToolSerializer, self).__call__(
-            version=version, include_items=True
+            version=version, include_items=include_items
         )
 
         obj = self.context
@@ -245,12 +245,17 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
         blocks_copy = deepcopy(obj.blocks)
         blocks_layout = obj.blocks_layout["items"]
 
-        columnblock = {}
+        columnblock = None
         for uid in blocks_layout:
-            block = blocks_copy[uid]
-            if block["@type"] == "columnsBlock":
+            block = blocks_copy.get(uid)
+            if block and block.get("@type") == "columnsBlock":
                 columnblock = block
+                break
 
+        if not columnblock:
+            return result
+
+        # Left column
         firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
         firstcol = columnblock["data"]["blocks"][firstcol_id]
 
@@ -259,17 +264,25 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
             nextuid = None
             if i < len(firstcol["blocks_layout"]["items"]) - 1:
                 nextuid = firstcol["blocks_layout"]["items"][i + 1]
-            blocks = firstcol["blocks"]
-            block = blocks[block_id]
+
+            block = firstcol["blocks"][block_id]
             text = block.get("plaintext", "")
 
-            if "Objective(s)" in text:
-                description = blocks[nextuid].get("plaintext")
+            if "Objective(s)" in text and nextuid:
+                description = firstcol["blocks"][nextuid].get("plaintext", "")
 
         if not result.get("description"):
             result["description"] = description
+
+        # Left column content
+        result["main_content"] = serialize_slate_blocks(
+            firstcol["blocks"],
+            firstcol["blocks_layout"]["items"],
+            result,
+        )
         return result
-    
+
+
 @adapter(ILink, IPloneRestapiLayer)
 class LinkRedirectSerializer(SerializeToJson):
     """Serializer that adds @components.redirect for anonymous users 
