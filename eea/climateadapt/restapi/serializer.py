@@ -15,7 +15,7 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 from plone.app.contenttypes.interfaces import ILink
 
-from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy
+from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy, IAceProject
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
 from eea.climateadapt.behaviors.mission_tool import IMissionTool
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
@@ -26,7 +26,7 @@ from plone.restapi.interfaces import IPloneRestapiLayer
 import logging
 logger = logging.getLogger("eea.climateadapt")
 
-from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_slate_blocks
+from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_slate_blocks, html_to_plain_text
 
 def serialize(possible_node):
     if isinstance(possible_node, str):
@@ -141,13 +141,42 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
         return cca_content_serializer(self.context, result, self.request)
 
 
-# @adapter(IAceProject, Interface)
-# class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
-#     def __call__(self, version=None, include_items=True):
-#         result = super(AceProjectSerializer, self).__call__(
-#             version=None, include_items=True
-#         )
-#         return cca_content_serializer(self.context, result, self.request)
+@adapter(IAceProject, Interface)
+class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
+    def __call__(self, version=None, include_items=True):
+        result = super(AceProjectSerializer, self).__call__(
+            version=version, include_items=include_items
+        )
+        parts = []
+
+        desc_html = (result.get("long_description") or {}).get("data", "")
+        desc_txt = html_to_plain_text(desc_html, inline_links=True).strip()
+        if desc_txt:
+            parts.append("Description")
+            parts.append(desc_txt)
+
+        lead = (result.get("lead") or "").strip()
+        partners_html = (result.get("partners") or {}).get("data", "")
+        partners_txt = html_to_plain_text(partners_html, inline_links=True).strip()
+
+        if lead or partners_txt:
+            parts.append("Project information")
+            if lead:
+                parts.append("Lead")
+                parts.append(lead)
+            if partners_txt:
+                parts.append("Partners")
+                parts.append(partners_txt)
+
+        websites = result.get("websites") or []
+        if websites:
+            parts.append("Reference information")
+            parts.append("Websites")
+            parts.extend([f"- {u}" for u in websites if u])
+
+        result["main_content"] = "\n\n".join([p for p in parts if p])
+
+        return result
 
 
 @adapter(ICaseStudy, Interface)
