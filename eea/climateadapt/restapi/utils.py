@@ -263,29 +263,59 @@ def extract_section_text(blocks, items, start_title, end_title=None):
 
     return "\n".join(p.strip().rstrip('.') for p in parts if p.strip())
 
-def serialize_slate_blocks(blocks, items, result):
+def serialize_blocks(blocks, items, result, metadata_ids=None):
     parts = []
+    metadata_ids = set(metadata_ids or [])
 
     for bid in items:
         block = blocks.get(bid)
         if not block:
             continue
 
-        if block.get("@type") == "slate":
+        btype = block.get("@type")
+
+        if btype == "slate":
             text = render_slate_value(block.get("value", []))
             if not text:
                 text = block.get("plaintext", "")
-            text = text.strip()
+            text = (text or "").strip()
             if text:
                 parts.append(text)
 
-        elif block.get("@type") == "metadata":
-            meta_id = block.get("data", {}).get("id")
-            if meta_id == "readiness_for_use":
-                values = result.get("readiness_for_use", [])
-                titles = [v.get("title") for v in values if v.get("title")]
-                if titles:
-                    parts.append(", ".join(titles))
+        elif btype == "quote":
+            text = render_slate_value(block.get("value", [])) or block.get("plaintext", "")
+            text = (text or "").strip()
+            if text:
+                safe = text.replace('"', '""')
+                parts.append(f'"{safe}"')
+
+        elif btype == "metadata":
+            field_id = (block.get("data") or {}).get("id")
+            if not field_id or field_id not in metadata_ids:
+                continue
+
+            value = result.get(field_id)
+            text = ""
+
+            if isinstance(value, list):
+                titles = [
+                    t.strip()
+                    for v in value
+                    if isinstance(v, dict)
+                    for t in [v.get("title")]
+                    if isinstance(t, str) and t.strip()
+                ]
+                text = ", ".join(titles)
+
+            elif isinstance(value, dict) and "data" in value:
+                text = html_to_plain_text(value.get("data", ""), inline_links=True)
+
+            elif value:
+                text = str(value)
+
+            text = (text or "").strip()
+            if text:
+                parts.append(text)
 
     return "\n\n".join(parts)
 

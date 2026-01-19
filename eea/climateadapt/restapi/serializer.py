@@ -18,6 +18,7 @@ from plone.app.contenttypes.interfaces import ILink
 from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy, IAceProject
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
 from eea.climateadapt.behaviors.mission_tool import IMissionTool
+from eea.climateadapt.behaviors.missionstory import IMissionStory
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.restapi.navigation import ICCARestapiLayer
@@ -26,7 +27,7 @@ from plone.restapi.interfaces import IPloneRestapiLayer
 import logging
 logger = logging.getLogger("eea.climateadapt")
 
-from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_slate_blocks, html_to_plain_text
+from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_blocks, html_to_plain_text
 
 def serialize(possible_node):
     if isinstance(possible_node, str):
@@ -304,14 +305,60 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
             result["description"] = description
 
         # Left column content
-        result["main_content"] = serialize_slate_blocks(
+        result["main_content"] = serialize_blocks(
             firstcol["blocks"],
             firstcol["blocks_layout"]["items"],
             result,
+            metadata_ids={"readiness_for_use"},
         )
         return result
 
 
+@adapter(IMissionStory, Interface)
+class MissionStorySerializer(SerializeFolderToJson):
+    def __call__(self, version=None, include_items=True):
+        result = super().__call__(version=version, include_items=include_items)
+
+        obj = self.context
+        blocks_copy = deepcopy(obj.blocks)
+        blocks_layout = obj.blocks_layout.get("items", [])
+
+        columnblock = next(
+            (blocks_copy.get(uid) for uid in blocks_layout
+             if (blocks_copy.get(uid) or {}).get("@type") == "columnsBlock"),
+            None
+        )
+        if not columnblock:
+            return result
+
+        firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
+        firstcol = columnblock["data"]["blocks"][firstcol_id]
+
+        # only include the metadata fields that appear in the left-column flow
+        include_meta = {
+            "contact",
+            "synopsis",
+            "about_the_region",
+            "key_learnings",
+            "further_information",
+            # add more if they exist in this type
+            # "solution",
+        }
+
+        result["main_content"] = serialize_blocks(
+            firstcol["blocks"],
+            firstcol["blocks_layout"]["items"],
+            result,
+            metadata_ids={
+                "contact",
+                "synopsis",
+                "about_the_region",
+                "key_learnings",
+                "further_information",
+            },
+        )
+
+        return result
 @adapter(ILink, IPloneRestapiLayer)
 class LinkRedirectSerializer(SerializeToJson):
     """Serializer that adds @components.redirect for anonymous users 

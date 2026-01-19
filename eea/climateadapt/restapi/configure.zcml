@@ -22,6 +22,7 @@
 
   <adapter factory=".serializer.MissionToolSerializer" />
   <adapter factory=".serializer.MissionFundingSerializer" />
+  <adapter factory=".serializer.MissionStorySerializer" />
   <adapter
     factory=".serializer.LinkRedirectSerializer"
     provides="plone.restapi.interfaces.ISerializeToJson"
