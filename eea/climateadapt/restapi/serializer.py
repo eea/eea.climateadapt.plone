@@ -334,17 +334,6 @@ class MissionStorySerializer(SerializeFolderToJson):
         firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
         firstcol = columnblock["data"]["blocks"][firstcol_id]
 
-        # only include the metadata fields that appear in the left-column flow
-        include_meta = {
-            "contact",
-            "synopsis",
-            "about_the_region",
-            "key_learnings",
-            "further_information",
-            # add more if they exist in this type
-            # "solution",
-        }
-
         result["main_content"] = serialize_blocks(
             firstcol["blocks"],
             firstcol["blocks_layout"]["items"],
