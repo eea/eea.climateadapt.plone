@@ -15,9 +15,10 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 from plone.app.contenttypes.interfaces import ILink
 
-from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy
+from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy, IAceProject
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
 from eea.climateadapt.behaviors.mission_tool import IMissionTool
+from eea.climateadapt.behaviors.missionstory import IMissionStory
 from eea.climateadapt.browser.adaptationoption import find_related_casestudies
 from eea.climateadapt.interfaces import IClimateAdaptContent
 from eea.climateadapt.restapi.navigation import ICCARestapiLayer
@@ -26,7 +27,7 @@ from plone.restapi.interfaces import IPloneRestapiLayer
 import logging
 logger = logging.getLogger("eea.climateadapt")
 
-from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text
+from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_blocks, html_to_plain_text
 
 def serialize(possible_node):
     if isinstance(possible_node, str):
@@ -141,13 +142,42 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
         return cca_content_serializer(self.context, result, self.request)
 
 
-# @adapter(IAceProject, Interface)
-# class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
-#     def __call__(self, version=None, include_items=True):
-#         result = super(AceProjectSerializer, self).__call__(
-#             version=None, include_items=True
-#         )
-#         return cca_content_serializer(self.context, result, self.request)
+@adapter(IAceProject, Interface)
+class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
+    def __call__(self, version=None, include_items=True):
+        result = super(AceProjectSerializer, self).__call__(
+            version=version, include_items=include_items
+        )
+        parts = []
+
+        desc_html = (result.get("long_description") or {}).get("data", "")
+        desc_txt = html_to_plain_text(desc_html, inline_links=True).strip()
+        if desc_txt:
+            parts.append("Description")
+            parts.append(desc_txt)
+
+        lead = (result.get("lead") or "").strip()
+        partners_html = (result.get("partners") or {}).get("data", "")
+        partners_txt = html_to_plain_text(partners_html, inline_links=True).strip()
+
+        if lead or partners_txt:
+            parts.append("Project information")
+            if lead:
+                parts.append("Lead")
+                parts.append(lead)
+            if partners_txt:
+                parts.append("Partners")
+                parts.append(partners_txt)
+
+        websites = result.get("websites") or []
+        if websites:
+            parts.append("Reference information")
+            parts.append("Websites")
+            parts.extend([f"- {u}" for u in websites if u])
+
+        result["main_content"] = "\n\n".join([p for p in parts if p])
+
+        return result
 
 
 @adapter(ICaseStudy, Interface)
@@ -237,7 +267,7 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
 class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(MissionToolSerializer, self).__call__(
-            version=version, include_items=True
+            version=version, include_items=include_items
         )
 
         obj = self.context
@@ -245,12 +275,17 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
         blocks_copy = deepcopy(obj.blocks)
         blocks_layout = obj.blocks_layout["items"]
 
-        columnblock = {}
+        columnblock = None
         for uid in blocks_layout:
-            block = blocks_copy[uid]
-            if block["@type"] == "columnsBlock":
+            block = blocks_copy.get(uid)
+            if block and block.get("@type") == "columnsBlock":
                 columnblock = block
+                break
 
+        if not columnblock:
+            return result
+
+        # Left column
         firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
         firstcol = columnblock["data"]["blocks"][firstcol_id]
 
@@ -259,17 +294,60 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
             nextuid = None
             if i < len(firstcol["blocks_layout"]["items"]) - 1:
                 nextuid = firstcol["blocks_layout"]["items"][i + 1]
-            blocks = firstcol["blocks"]
-            block = blocks[block_id]
+
+            block = firstcol["blocks"][block_id]
             text = block.get("plaintext", "")
 
-            if "Objective(s)" in text:
-                description = blocks[nextuid].get("plaintext")
+            if "Objective(s)" in text and nextuid:
+                description = firstcol["blocks"][nextuid].get("plaintext", "")
 
         if not result.get("description"):
             result["description"] = description
+
+        # Left column content
+        result["main_content"] = serialize_blocks(
+            firstcol["blocks"],
+            firstcol["blocks_layout"]["items"],
+            result,
+            metadata_ids={"readiness_for_use"},
+        )
         return result
-    
+
+
+@adapter(IMissionStory, Interface)
+class MissionStorySerializer(SerializeFolderToJson):
+    def __call__(self, version=None, include_items=True):
+        result = super().__call__(version=version, include_items=include_items)
+
+        obj = self.context
+        blocks_copy = deepcopy(obj.blocks)
+        blocks_layout = obj.blocks_layout.get("items", [])
+
+        columnblock = next(
+            (blocks_copy.get(uid) for uid in blocks_layout
+             if (blocks_copy.get(uid) or {}).get("@type") == "columnsBlock"),
+            None
+        )
+        if not columnblock:
+            return result
+
+        firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
+        firstcol = columnblock["data"]["blocks"][firstcol_id]
+
+        result["main_content"] = serialize_blocks(
+            firstcol["blocks"],
+            firstcol["blocks_layout"]["items"],
+            result,
+            metadata_ids={
+                "contact",
+                "synopsis",
+                "about_the_region",
+                "key_learnings",
+                "further_information",
+            },
+        )
+
+        return result
 @adapter(ILink, IPloneRestapiLayer)
 class LinkRedirectSerializer(SerializeToJson):
     """Serializer that adds @components.redirect for anonymous users 

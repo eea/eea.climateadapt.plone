@@ -150,14 +150,28 @@ def render_slate_value(value):
         for c in children:
             if isinstance(c, dict):
                 if c.get("type") == "link":
-                    url = c.get("data", {}).get("url", "")
+                    url = (c.get("data", {}) or {}).get("url", "") or ""
+                    if url.startswith("mailto:"):
+                        email = url.replace("mailto:", "").strip()
+                        if email:
+                            segs.append(email)
+                        continue
                     if url and "resolveuid" in url:
                         url = uid_to_url(url)
+
                     label = extract_text_recursive(c.get("children", [])).strip()
+                    
+                    # avoid duplicates when the label already is the URL
                     if label and url:
-                        segs.append(f"{label} ({url})")
+                        if label.rstrip("/") == url.rstrip("/"):
+                            segs.append(url)
+                        else:
+                            segs.append(f"{label} ({url})")
                     elif url:
                         segs.append(url)
+                    elif label:
+                        segs.append(label)
+
                 elif c.get("type") in ("ul", "ol"):
                     segs.append(render_list(c))
                 elif c.get("type") == "li":
@@ -249,6 +263,61 @@ def extract_section_text(blocks, items, start_title, end_title=None):
 
     return "\n".join(p.strip().rstrip('.') for p in parts if p.strip())
 
+def serialize_blocks(blocks, items, result, metadata_ids=None):
+    parts = []
+    metadata_ids = set(metadata_ids or [])
+
+    for bid in items:
+        block = blocks.get(bid)
+        if not block:
+            continue
+
+        btype = block.get("@type")
+
+        if btype == "slate":
+            text = render_slate_value(block.get("value", []))
+            if not text:
+                text = block.get("plaintext", "")
+            text = (text or "").strip()
+            if text:
+                parts.append(text)
+
+        elif btype == "quote":
+            text = render_slate_value(block.get("value", [])) or block.get("plaintext", "")
+            text = (text or "").strip()
+            if text:
+                safe = text.replace('"', '""')
+                parts.append(f'"{safe}"')
+
+        elif btype == "metadata":
+            field_id = (block.get("data") or {}).get("id")
+            if not field_id or field_id not in metadata_ids:
+                continue
+
+            value = result.get(field_id)
+            text = ""
+
+            if isinstance(value, list):
+                titles = [
+                    t.strip()
+                    for v in value
+                    if isinstance(v, dict)
+                    for t in [v.get("title")]
+                    if isinstance(t, str) and t.strip()
+                ]
+                text = ", ".join(titles)
+
+            elif isinstance(value, dict) and "data" in value:
+                text = html_to_plain_text(value.get("data", ""), inline_links=True)
+
+            elif value:
+                text = str(value)
+
+            text = (text or "").strip()
+            if text:
+                parts.append(text)
+
+    return "\n\n".join(parts)
 
 def richtext_to_plain_text(value):
     if isinstance(value, dict) and "data" in value:

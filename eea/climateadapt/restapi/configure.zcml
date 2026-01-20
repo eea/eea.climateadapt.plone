@@ -15,13 +15,14 @@
 
   <adapter factory=".serializer.ClimateAdaptContentSerializer" />
   <adapter factory=".serializer.AdaptationOptionSerializer" />
-  <!-- <adapter factory=".serializer.AceProjectSerializer" /> -->
+  <adapter factory=".serializer.AceProjectSerializer" />
   <adapter factory=".serializer.CaseStudySerializer" />
   <!-- <adapter factory=".serializer.OrganisationSerializer" /> -->
   <adapter factory=".serializer.RichttextFieldSerializer" />
 
   <adapter factory=".serializer.MissionToolSerializer" />
   <adapter factory=".serializer.MissionFundingSerializer" />
+  <adapter factory=".serializer.MissionStorySerializer" />
   <adapter
     factory=".serializer.LinkRedirectSerializer"
     provides="plone.restapi.interfaces.ISerializeToJson"
