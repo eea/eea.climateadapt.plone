@@ -56,6 +56,8 @@ class SaveTranslationHtml(BrowserView):
         request = self.request
         check_token_security(request)
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
 
         self.request.response.setHeader("Content-Type", "application/json")
 
