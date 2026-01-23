@@ -34,8 +34,11 @@ logger = logging.getLogger("eea.climateadapt")
 env = os.environ.get
 TRANSLATION_AUTH_TOKEN = env("TRANSLATION_AUTH_TOKEN", "")
 DEFAULT_HEADERS = {
-    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf,*/*;q=0.8",
 }
+HEAD_FALLBACK_STATUSES = {403, 404, 405, 406, 429}
+
 
 def convert_to_string(item):
     """Convert to string other types"""
@@ -86,137 +89,121 @@ def discover_links(string_to_search):
     return result
 
 
+def _normalize_link(link: str) -> str:
+    link = (link or "").strip()
+    link, _frag = urldefrag(link)
+    return link
+
+
+def _candidate_urls(link: str) -> list:
+    if link.startswith("https://"):
+        return [link]
+
+    if link.startswith("http://"):
+        https_variant = "https://" + link[len("http://") :]
+        return [https_variant, link]
+
+    return [f"https://{link}", f"http://{link}"]
+
+
+def _check_response(url: str) -> requests.Response:
+    """
+    If HEAD is blocked or misleading, fall back to GET.
+    """
+    r = requests.head(
+        url,
+        timeout=30,
+        allow_redirects=True,
+        headers=DEFAULT_HEADERS,
+    )
+
+    if r.status_code in HEAD_FALLBACK_STATUSES:
+        r = requests.get(
+            url,
+            timeout=30,
+            allow_redirects=True,
+            headers={**DEFAULT_HEADERS, "Range": "bytes=0-0"},
+            stream=True,
+        )
+
+    return r
+
 def check_link_status(link):
     """Check the links and return only the broken ones with the respective
     status codes
     """
-    if link:
-        # if isinstance(link, str):
-        #     try:
-        #         link = link.encode()
-        #     except UnicodeEncodeError:
-        #         logger.info("UnicodeEncodeError on link %s", link)
-        #
-        #         return {"status": 504, "url": link}
+    if not link:
+        return None
 
-        link = link.strip()
-        link, _ = urldefrag(link)
+    link = _normalize_link(link)
 
-        if (
-            link.startswith(".")
-            or ("resolveuid" in link)
-            or ("climate-adapt.eea" in link)
-        ):
-            return None
+    if (
+        link.startswith(".")
+        or ("resolveuid" in link)
+        or ("climate-adapt.eea" in link)
+    ):
+        return None
 
-        if not link.startswith("http"):
-            link = "https://" + link
+    candidates = _candidate_urls(link)
 
-        logger.warning("Now checking: %s", link)
+    is_not_found = False
 
-        def try_head(url):
-            return requests.head(url, timeout=30, allow_redirects=True, headers=DEFAULT_HEADERS)
+    for url in candidates:
+        logger.warning("Now checking: %s", url)
 
         try:
-            resp = try_head(link)
-            if resp.status_code == 404:
-                # If old http link, try https before reporting broken
-                if link.startswith("http://"):
-                    link_https = "https://" + link[len("http://"):]
-                    logger.warning("HTTP 404, trying HTTPS: %s", link_https)
-                    try:
-                        resp2 = try_head(link_https)
-                        if resp2.status_code == 404:
-                            return {"status": "NotFound", "url": link}
-                        return None
-                    except Exception:
-                        return {"status": "NotFound", "url": link}
-                return {"status": "NotFound", "url": link}
+            resp = _check_response(url)
+            code = resp.status_code
+
+            if 200 <= code < 400:
+                return None
+
+            if code in (403, 429) or (500 <= code < 600):
+                return None
+
+            if code in (404, 410):
+                is_not_found = True
+                continue
+
+            return {"status": "UnknownError", "url": url}
 
         except requests.exceptions.ReadTimeout:
-            # If http link hangs, try https once
-            if link.startswith("http://"):
-                link_https = "https://" + link[len("http://"):]
-                logger.warning("HTTP ReadTimeout, trying HTTPS: %s", link_https)
-                try:
-                    resp2 = try_head(link_https)
-                    if resp2.status_code == 404:
-                        return {"status": "ReadTimeout", "url": link}
-                    return None
-                except Exception:
-                    return {"status": "ReadTimeout", "url": link}
-
-            return {"status": "ReadTimeout", "url": link}
+            return {"status": "ReadTimeout", "url": url}
 
         except requests.exceptions.ConnectTimeout:
-            # If http times out, try https once
-            if link.startswith("http://"):
-                link_https = "https://" + link[len("http://"):]
-                logger.warning("HTTP ConnectTimeout, trying HTTPS: %s", link_https)
-                try:
-                    resp2 = try_head(link_https)
-                    if resp2.status_code == 404:
-                        return {"status": "NotFound", "url": link}
-                    return None
-                except Exception:
-                    return {"status": "NotFound", "url": link}
-
             logger.info("Timed out.")
-            logger.info("Trying again with link: %s", link)
-            try:
-                try_head(link)
-            except Exception:
-                return {"status": "NotFound", "url": link}
+            logger.info("Trying again with link: %s", url)
+            return {"status": "ConnectTimeout", "url": url}
 
         except requests.exceptions.TooManyRedirects:
             logger.info("Redirected.")
-            logger.info("Trying again with link: %s", link)
-            try:
-                try_head(link)
-            except Exception:
-                return {"status": "Redirected", "url": link}
+            logger.info("Trying again with link: %s", url)
+            return {"status": "Redirected", "url": url}
 
         except requests.exceptions.URLRequired:
-            return {"status": "BrokenUrl", "url": link}
+            return {"status": "BrokenUrl", "url": url}
+
         except requests.exceptions.ProxyError:
-            return {"status": "ProxyError", "url": link}
+            return {"status": "ProxyError", "url": url}
+
+        except requests.exceptions.SSLError:
+            # often HTTPS-only problem; try next candidate (HTTP)
+            continue
+
+        except requests.exceptions.ConnectionError:
+            # network hiccup; try next candidate if any
+            continue
+
         except requests.exceptions.HTTPError:
-            return {"status": "UnknownError", "url": link}
+            return {"status": "UnknownError", "url": url}
 
         except Exception:
-            # If http throws any other error, try https once
-            if link.startswith("http://"):
-                link_https = "https://" + link[len("http://"):]
-                logger.warning("HTTP error, trying HTTPS: %s", link_https)
-                try:
-                    resp2 = try_head(link_https)
-                    if resp2.status_code == 404:
-                        return {"status": "NotFound", "url": link}
-                    return None
-                except Exception:
-                    return {"status": "NotFound", "url": link}
+            continue
 
-            return {"status": "NotFound", "url": link}
+    if is_not_found:
+        return {"status": "NotFound", "url": link}
 
-    return
-
-
-# PORTAL_TYPES = [
-#     "eea.climateadapt.aceproject",
-#     "eea.climateadapt.adaptationoption",
-#     "eea.climateadapt.casestudy",
-#     "eea.climateadapt.guidancedocument",
-#     "eea.climateadapt.indicator",
-#     "eea.climateadapt.informationportal",
-#     "eea.climateadapt.mapgraphdataset",
-#     "eea.climateadapt.organisation",
-#     "eea.climateadapt.publicationreport",
-#     "eea.climateadapt.researchproject",
-#     "eea.climateadapt.tool",
-#     "collective.cover.content",
-#     "Document",
-#     "Folder",
-# ]
+    return None
 
 
 def extract_websites(obj):
@@ -501,7 +488,6 @@ class BrokenLinksService(Service):
 
         broken_links = []
 
-        # __import__("pdb").set_trace()
         for date in latest_dates:
             for info in annot[date]:
                 if "en" not in info["object_url"]:
@@ -529,8 +515,7 @@ class BrokenLinksService(Service):
 
                     item["url"] = info["url"]
                     item["status"] = info["status"]
-                    item["object_url"] = info["object_url"].replace(
-                        "/cca/", "/")
+                    item["object_url"] = info["object_url"].replace("/cca/", "/")
 
                     broken_links.append(item)
 
@@ -574,6 +559,7 @@ class BrokenLinksService(Service):
         out.seek(0)
 
         return out
+
 
     def download_as_excel(self):
         xlsdata = self.results()
