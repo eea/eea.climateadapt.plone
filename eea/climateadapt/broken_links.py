@@ -37,7 +37,6 @@ DEFAULT_HEADERS = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf,*/*;q=0.8",
 }
-HEAD_FALLBACK_STATUSES = {403, 404, 405, 406, 429}
 
 
 def convert_to_string(item):
@@ -106,27 +105,28 @@ def _candidate_urls(link: str) -> list:
     return [f"https://{link}", f"http://{link}"]
 
 
-def _check_response(url: str) -> requests.Response:
+def _check_response(url: str) -> int:
     """
     If HEAD is blocked or misleading, fall back to GET.
     """
-    r = requests.head(
+    with requests.head(
         url,
         timeout=30,
         allow_redirects=True,
         headers=DEFAULT_HEADERS,
-    )
+    ) as r:
+        code = r.status_code
+        if code not in (404, 410):
+            return code
 
-    if r.status_code in HEAD_FALLBACK_STATUSES:
-        r = requests.get(
-            url,
-            timeout=30,
-            allow_redirects=True,
-            headers={**DEFAULT_HEADERS, "Range": "bytes=0-0"},
-            stream=True,
-        )
-
-    return r
+    with requests.get(
+        url,
+        timeout=30,
+        allow_redirects=True,
+        headers={**DEFAULT_HEADERS, "Range": "bytes=0-0"},
+        stream=True,
+    ) as r:
+        return r.status_code
 
 def check_link_status(link):
     """Check the links and return only the broken ones with the respective
@@ -152,8 +152,7 @@ def check_link_status(link):
         logger.warning("Now checking: %s", url)
 
         try:
-            resp = _check_response(url)
-            code = resp.status_code
+            code = _check_response(url)
 
             if 200 <= code < 400:
                 return None
@@ -250,7 +249,7 @@ def iterate_blocks(obj):
     layout = getattr(obj, "blocks_layout", {})
 
     if not blocks:
-        raise StopIteration
+        return
 
     if layout:
         items = layout.get("items", {})
@@ -298,7 +297,7 @@ def convert_blocks(obj):
             if extractor:
                 urls.extend(extractor(block))
     except Exception:
-        logger.warn("Could not read blocks on obj: %s", obj.absolute_url())
+        logger.warning("Could not read blocks on obj: %s", obj.absolute_url())
     return urls
 
 
@@ -538,22 +537,17 @@ class BrokenLinksService(Service):
         # Create a workbook and add a worksheet.
         out = BytesIO()
         workbook = xlsxwriter.Workbook(out, {"in_memory": True})
-
         wtitle = "Broken-Links"
         worksheet = workbook.add_worksheet(wtitle[:30])
 
-        for i, (key, title) in enumerate(headers):
-            worksheet.write(0, i, title or "")
+        for col, (_key, title) in enumerate(headers):
+            worksheet.write(0, col, title or "")
 
         row_index = 1
-
-        for chunk in data:
-            for url, row in chunk.items():
-                for i, (key, title) in enumerate(headers):
-                    value = row[key]
-                    worksheet.write(row_index, i, value or "")
-
-                row_index += 1
+        for _url, row in data.items():
+            for col, (key, _title) in enumerate(headers):
+                worksheet.write(row_index, col, row.get(key, "") or "")
+            row_index += 1
 
         workbook.close()
         out.seek(0)
