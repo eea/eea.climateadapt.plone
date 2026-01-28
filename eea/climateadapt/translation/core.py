@@ -373,14 +373,15 @@ def safe_traverse(obj, trans_path):
     parts = trans_path.strip("/").split("/")
     current_obj = obj
 
+    if parts and parts[0] == current_obj.getId():
+        parts = parts[1:]
+
     for part in parts:
         if hasattr(current_obj, "objectIds") and callable(current_obj.objectIds):
             if part in current_obj.objectIds():
                 current_obj = current_obj[part]
             else:
                 return None
-        # elif hasattr(current_obj, part):
-        #     current_obj = getattr(current_obj, part)
         else:
             return None
 
@@ -453,14 +454,11 @@ def setup_translation_object(canonical, language, request):
         pass
 
     if trans is not None:
-        # todo: fix the trans
-        logger.warning(
-            "Translation object exists, but it's not properly recorded %s %s %s. It will be re-registed with the proper translation group",
+        logger.info(
+            "Translation object found at %s. Repairing translation group registration linked to %s.",
             "/".join(trans.getPhysicalPath()),
             "/".join(canonical.getPhysicalPath()),
-            # trans_path,
         )
-        # TODO: make sure objects are compatible
         tg_id = ITG(canonical)
         unsafe_register_translation(language, tg_id, trans)
 
