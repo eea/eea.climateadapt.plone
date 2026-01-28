@@ -14,12 +14,12 @@ The translation system is asynchronous and relies on:
 graph TD
     A[Plone Event/Manual] -->|queue_translate| B(etranslation queue)
     B --> C[Async Translate Service]
-    C -- "&#64;&#64;call-etranslation" --> D[Plone eTranslation Call]
+    C -->|"@@call-etranslation"| D[Plone eTranslation Call]
     D -->|SOAP Request| E[eTranslation Service]
-    E -->|Callback| F["&#64;&#64;translate-callback"]
+    E -->|Callback| F["@@translate-callback"]
     F -->|queue_job| G(save_etranslation queue)
     G --> H[Async Translate Service]
-    H -- "&#64;&#64;save-etranslation" --> I[Plone Ingestion]
+    H -->|"@@save-etranslation"| I[Plone Ingestion]
     I -->|save_field_data| J[Translated Content]
 ```
 
