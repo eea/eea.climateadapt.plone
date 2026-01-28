@@ -68,3 +68,22 @@ These views provide the interface for the Async Translate Service and eTranslati
 ## Security
 
 Communication between the micro-services and Plone is protected by `TRANSLATION_AUTH_TOKEN`, checked via `check_token_security(request)`.
+
+## Serial ID Mechanism (Conflict Resolution)
+
+To prevent database conflicts and redundant translations when an object is modified multiple times in a short period, a "Serial ID" mechanism is used.
+
+### Purpose
+The Serial ID acts as a version counter for the object's content. It ensures that a translation job processed by the worker matches the *current* state of the object. If the object has been modified since the job was queued, the job is considered "stale" and is invalid.
+
+### Components
+1.  **`ISerialId` Interface** (`versions.py`): An integer annotation stored on the object.
+2.  **Increment Subscriber** (`versions.zcml`): Listens for `IObjectModifiedEvent` and increments the object's `ISerialId` by 1.
+3.  **Job Payload**: When `queue_translate` is called, the *current* `serial_id` is embedded in the job data (specifically in the `obj_path` query parameter).
+
+### Validation Process
+When the async worker picks up a `call_etranslation` job and calls back the Plone view `@@call-etranslation`:
+1.  The view extracts the `serial_id` from the request.
+2.  It retrieves the current `ISerialId` from the target object.
+3.  **Check**: If `current_serial_id > job_serial_id`, the object has changed since the job was scheduled.
+4.  **Action**: The job is skipped (returns a "skipped" status), preventing the eTranslation call and avoiding potential Write conflicts on the outdated content.
