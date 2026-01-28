@@ -108,14 +108,31 @@ def queue_translate(obj, language=None):
     languages = language and [language] or get_site_languages()
     logger.info("Called translate_volto_html for %s", url)
 
+    # Schedule the job to be executed between 7 PM and 7 AM
+    import datetime
+    now = datetime.datetime.now()
+    # 19:00 = 7 PM, 07:00 = 7 AM
+    start_time_limit = now.replace(hour=19, minute=0, second=0, microsecond=0)
+    end_time_limit = now.replace(hour=7, minute=0, second=0, microsecond=0)
+    
+    delay = 1000 # default delay
+
+    if 7 <= now.hour < 19:
+        # We are during the day (forbidden window). Schedule for 7 PM tonight.
+        wait_time = start_time_limit - now
+        delay = int(wait_time.total_seconds() * 1000)
+        logger.info("Delaying translation job for %s seconds", wait_time.total_seconds())
+
     for language in languages:
         if language == "en":
             continue
 
         data = dict(data.items(), language=language)
+        
+        opts = {"delay": delay}
 
         logger.info("Queue translate_volto_html for %s / %s", url, language)
-        queue_job("etranslation", "call_etranslation", data)
+        queue_job("etranslation", "call_etranslation", data, opts)
 
 
 def get_blocks_as_html(obj):

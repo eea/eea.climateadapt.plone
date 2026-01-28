@@ -16,4 +16,10 @@
     factory=".versions.change_version_annotation"
     provides=".versions.ISerialId" />
 
+  <subscriber
+    for="plone.dexterity.interfaces.IDexterityContent
+         zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+    handler=".versions.increment_serial_id"
+    />
+
 </configure>

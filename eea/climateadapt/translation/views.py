@@ -203,6 +203,40 @@ class CallETranslation(BrowserView):
         target_lang = form.get("target_lang")
         obj_path = form.get("obj_path")
 
+        # Check if the job is stale
+        if "?" in obj_path:
+            path, qs = obj_path.split("?", 1)
+            from urllib.parse import parse_qs
+            params = parse_qs(qs)
+            serial_id = params.get("serial_id", [0])[0]
+        else:
+            path = obj_path
+            serial_id = 0
+
+        site = portal.get()
+        if path.startswith("/"):
+            path = path[1:]
+        
+        try:
+            obj = site.unrestrictedTraverse(path)
+            current_serial = ISerialId(obj)
+            if int(current_serial) > int(serial_id):
+                logger.info(
+                    "Skipping translation for %s because serial_id mismatch %s != %s",
+                    path, current_serial, serial_id
+                )
+                self.request.response.setHeader("Content-Type", "application/json")
+                return json.dumps({
+                    "transId": "skipped", 
+                    "status": "skipped", 
+                    "reason": "stale serial_id"
+                })
+        except Exception:
+            # If we can't find the object or serial ID, we might as well proceed 
+            # or log usage. Proceeding is safer to avoid blocking if traverse fails 
+            # for some reason but path is valid for eTranslation (unlikely).
+            pass
+
         print("calling etranslation")
         data = call_etranslation_service(html, obj_path, [target_lang])
         self.request.response.setHeader("Content-Type", "application/json")
