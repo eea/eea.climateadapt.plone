@@ -11,16 +11,23 @@ The translation system is asynchronous and relies on:
 4.  **Converter Service**: Handles Volto blocks to HTML and HTML to Plone content conversions.
 
 ```mermaid
-graph TD
-    A[Plone Event/Manual] -->|queue_translate| B(etranslation queue)
-    B --> C[Async Translate Service]
-    C -->|"@@call-etranslation"| D[Plone eTranslation Call]
-    D -->|SOAP Request| E[eTranslation Service]
-    E -->|Callback| F["@@translate-callback"]
-    F -->|queue_job| G(save_etranslation queue)
-    G --> H[Async Translate Service]
-    H -->|"@@save-etranslation"| I[Plone Ingestion]
-    I -->|save_field_data| J[Translated Content]
+sequenceDiagram
+    participant P as Plone (Backend)
+    participant Q as Redis (BullMQ)
+    participant W as Async Service (Worker)
+    participant ET as eTranslation (EC)
+
+    Note over P: Object created/modified
+    P->>Q: queue_translate (call_etranslation)
+    Q->>W: Fetch job
+    W->>P: POST @@call-etranslation
+    P->>ET: SOAP Request (translate)
+    Note over ET: Machine Translation
+    ET-->>P: POST @@translate-callback (translated HTML)
+    P->>Q: queue_job (save_translated_html)
+    Q->>W: Fetch job
+    W->>P: POST @@save-etranslation (ingest HTML)
+    Note over P: Object Updated
 ```
 
 ## Core Components (`core.py`)
