@@ -35,9 +35,9 @@ from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 logger = logging.getLogger("eea.climateadapt")
 
 
-def _log_erroneous_canonical(context, canonical, caller_name="unknown"):
+def _log_invalid_canonical(context, canonical, caller_name="unknown"):
     """
-    Log detailed information when an invalid canonical object (e.g. RequestContainer)
+    Log when an invalid canonical object (e.g. RequestContainer)
     is returned by the translation manager.
     """
     try:
@@ -55,6 +55,26 @@ def _log_erroneous_canonical(context, canonical, caller_name="unknown"):
     logger.warning(
         f"[{caller_name}] Translation Manager returned invalid canonical object for {context_url}."
         f" Expected object providing IDexterityTranslatable, got {canonical_type}: {canonical_repr}"
+    )
+
+
+def _log_attribute_error_canonical(context, canonical, caller_name="unknown", exc=None):
+    """
+    Log when a valid canonical object is missing an expected attribute.
+    """
+    try:
+        context_url = context.absolute_url()
+    except Exception:
+        context_url = f"ERROR getting URL for {repr(context)}"
+
+    try:
+        canonical_url = canonical.absolute_url()
+    except Exception:
+        canonical_url = f"ERROR getting URL for canonical {repr(canonical)}"
+
+    logger.warning(
+        f"[{caller_name}] Canonical object missing attribute for {context_url}."
+        f" Canonical: {canonical_url} ({type(canonical)}). Error: {exc}"
     )
 
 
@@ -76,15 +96,15 @@ class LanguageAwareLeadImage:
                 canonical = tm.get_translation("en")
                 if canonical is not None:
                     if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
-                        _log_erroneous_canonical(
+                        _log_invalid_canonical(
                             self.context, canonical, "LanguageAwareLeadImage.image"
                         )
                         return None
                     try:
                         return canonical.image
-                    except AttributeError:
-                        _log_erroneous_canonical(
-                            self.context, canonical, "LanguageAwareLeadImage.image attribute error"
+                    except AttributeError as e:
+                        _log_attribute_error_canonical(
+                            self.context, canonical, "LanguageAwareLeadImage.image attribute error", e
                         )
                         return None
 
@@ -124,7 +144,7 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
             if canonical is None:
                 return
             if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
-                _log_erroneous_canonical(
+                _log_invalid_canonical(
                     self.context, canonical, "LanguageAwareImageFieldScales.__call__"
                 )
                 return
@@ -132,9 +152,9 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
         self.canonical = canonical
         try:
             image = self.field.get(canonical)
-        except AttributeError:
-            _log_erroneous_canonical(
-                self.context, canonical, "LanguageAwareImageFieldScales.__call__ attribute error"
+        except AttributeError as e:
+            _log_attribute_error_canonical(
+                self.context, canonical, "LanguageAwareImageFieldScales.__call__ attribute error", e
             )
             return
 
@@ -205,7 +225,7 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
             return
 
         if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
-            _log_erroneous_canonical(
+            _log_invalid_canonical(
                 self.context, canonical, "LanguageAwareImageFieldSerializer.__call__"
             )
             return
@@ -213,9 +233,9 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
         self.context = canonical
         try:
             return super().__call__()
-        except AttributeError:
-            _log_erroneous_canonical(
-                self.context, canonical, "LanguageAwareImageFieldSerializer.__call__ attribute error"
+        except AttributeError as e:
+            _log_attribute_error_canonical(
+                self.context, canonical, "LanguageAwareImageFieldSerializer.__call__ attribute error", e
             )
             return
 
@@ -241,7 +261,7 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
             return
 
         if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
-            _log_erroneous_canonical(
+            _log_invalid_canonical(
                 self.context, canonical, "LanguageAwareFileFieldSerializer.__call__"
             )
             return
@@ -249,9 +269,9 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
         self.context = canonical
         try:
             return super().__call__()
-        except AttributeError:
-            _log_erroneous_canonical(
-                self.context, canonical, "LanguageAwareFileFieldSerializer.__call__ attribute error"
+        except AttributeError as e:
+            _log_attribute_error_canonical(
+                self.context, canonical, "LanguageAwareFileFieldSerializer.__call__ attribute error", e
             )
             return
 
@@ -276,7 +296,7 @@ def hasPreviewImage(obj):
             if canonical is None:
                 return False
             if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
-                _log_erroneous_canonical(obj, canonical, "hasPreviewImage (indexer)")
+                _log_invalid_canonical(obj, canonical, "hasPreviewImage (indexer)")
                 return False
         base_obj = aq_base(canonical)
 
@@ -308,7 +328,7 @@ def image_field_indexer(obj):
             if canonical is None:
                 return image_field
             if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
-                _log_erroneous_canonical(obj, canonical, "image_field_indexer")
+                _log_invalid_canonical(obj, canonical, "image_field_indexer")
                 return image_field
             base_obj = aq_base(canonical)
 
@@ -339,7 +359,7 @@ class LanguageAwareImageScaling(ImageScaling):
                 if IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical):
                     context = canonical
                 else:
-                    _log_erroneous_canonical(
+                    _log_invalid_canonical(
                         context, canonical, "LanguageAwareImageScaling.__init__"
                     )
 
