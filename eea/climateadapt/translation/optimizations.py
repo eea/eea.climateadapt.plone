@@ -34,6 +34,29 @@ from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 logger = logging.getLogger("eea.climateadapt")
 
 
+def _log_erroneous_canonical(context, canonical, caller_name="unknown"):
+    """
+    Log detailed information when an invalid canonical object (e.g. RequestContainer)
+    is returned by the translation manager.
+    """
+    try:
+        context_url = context.absolute_url()
+    except Exception:
+        context_url = f"ERROR getting URL for {repr(context)}"
+
+    try:
+        canonical_type = str(type(canonical))
+        canonical_repr = repr(canonical)
+    except Exception:
+        canonical_type = "ERROR getting type"
+        canonical_repr = "ERROR getting repr"
+
+    logger.warning(
+        f"[{caller_name}] Translation Manager returned invalid canonical object for {context_url}."
+        f" Expected object providing IDexterityTranslatable, got {canonical_type}: {canonical_repr}"
+    )
+
+
 @implementer(ILeadImageBehavior)
 @adapter(IDexterityTranslatable)
 class LanguageAwareLeadImage:
@@ -51,6 +74,11 @@ class LanguageAwareLeadImage:
             with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
                 if canonical is not None:
+                    if not IDexterityTranslatable.providedBy(canonical):
+                        _log_erroneous_canonical(
+                            self.context, canonical, "LanguageAwareLeadImage.image"
+                        )
+                        return None
                     return canonical.image
 
     @image.setter
@@ -87,6 +115,11 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
         with adopt_roles(roles=["Owner"]):
             canonical = tm.get_translation("en")
             if canonical is None:
+                return
+            if not IDexterityTranslatable.providedBy(canonical):
+                _log_erroneous_canonical(
+                    self.context, canonical, "LanguageAwareImageFieldScales.__call__"
+                )
                 return
 
         self.canonical = canonical
@@ -157,6 +190,12 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
         if canonical is None:
             return
 
+        if not IDexterityTranslatable.providedBy(canonical):
+            _log_erroneous_canonical(
+                self.context, canonical, "LanguageAwareImageFieldSerializer.__call__"
+            )
+            return
+
         self.context = canonical
         return super().__call__()
 
@@ -181,6 +220,12 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
         if canonical is None:
             return
 
+        if not IDexterityTranslatable.providedBy(canonical):
+            _log_erroneous_canonical(
+                self.context, canonical, "LanguageAwareFileFieldSerializer.__call__"
+            )
+            return
+
         self.context = canonical
         return super().__call__()
 
@@ -203,6 +248,9 @@ def hasPreviewImage(obj):
         with adopt_roles(roles=["Owner"]):
             canonical = tm.get_translation("en")
             if canonical is None:
+                return False
+            if not IDexterityTranslatable.providedBy(canonical):
+                _log_erroneous_canonical(obj, canonical, "hasPreviewImage (indexer)")
                 return False
         base_obj = aq_base(canonical)
 
@@ -233,6 +281,9 @@ def image_field_indexer(obj):
                 canonical = tm.get_translation("en")
             if canonical is None:
                 return image_field
+            if not IDexterityTranslatable.providedBy(canonical):
+                _log_erroneous_canonical(obj, canonical, "image_field_indexer")
+                return image_field
             base_obj = aq_base(canonical)
 
         if (
@@ -259,7 +310,12 @@ class LanguageAwareImageScaling(ImageScaling):
             with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
             if canonical is not None:
-                context = canonical
+                if IDexterityTranslatable.providedBy(canonical):
+                    context = canonical
+                else:
+                    _log_erroneous_canonical(
+                        context, canonical, "LanguageAwareImageScaling.__init__"
+                    )
 
         self.context = context
         self.request = request
