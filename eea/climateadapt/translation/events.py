@@ -48,13 +48,37 @@ def object_modified_handler(obj, event):
     if not ("/en/" in op or op.endswith("/en")):
         return
 
+    # Deduplication check
+    if hasattr(obj.REQUEST, "cca_sync_paths_triggered"):
+        return
+    
+    obj.REQUEST.cca_sync_paths_triggered = True
+
     np = "/".join(event.newParent.getPhysicalPath())
+
+    try:
+        import traceback
+        tb = traceback.format_stack()
+    except Exception:
+        tb = "Could not get traceback"
+
+    try:
+        from plone import api
+        user = api.user.get_current()
+        user_id = user.getId() if user else "system/unknown"
+    except Exception:
+        user_id = "error_getting_user"
 
     data = {
         "newName": event.newName,
         "oldName": event.oldName,
         "oldParent": op,
         "newParent": np,
+        "debug_info": {
+            "traceback": tb,
+            "user": user_id,
+            "event_trigger": "object_modified_handler"
+        }
     }
     opts = {
         "delay": 100,  # Delay in milliseconds
