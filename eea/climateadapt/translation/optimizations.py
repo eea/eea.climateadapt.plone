@@ -7,6 +7,7 @@ import logging
 from Acquisition import aq_base, aq_parent
 from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
+from plone.dexterity.interfaces import IDexterityContent
 from plone.app.multilingual.interfaces import (
     ILanguageRootFolder,
     ITranslationCloner,
@@ -74,7 +75,7 @@ class LanguageAwareLeadImage:
             with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
                 if canonical is not None:
-                    if not IDexterityTranslatable.providedBy(canonical):
+                    if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
                         _log_erroneous_canonical(
                             self.context, canonical, "LanguageAwareLeadImage.image"
                         )
@@ -116,14 +117,21 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
             canonical = tm.get_translation("en")
             if canonical is None:
                 return
-            if not IDexterityTranslatable.providedBy(canonical):
+            if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
                 _log_erroneous_canonical(
                     self.context, canonical, "LanguageAwareImageFieldScales.__call__"
                 )
                 return
 
         self.canonical = canonical
-        image = self.field.get(canonical)
+        try:
+            image = self.field.get(canonical)
+        except AttributeError:
+            _log_erroneous_canonical(
+                self.context, canonical, "LanguageAwareImageFieldScales.__call__ attribute error"
+            )
+            return
+
         if not image:
             return
 
@@ -190,7 +198,7 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
         if canonical is None:
             return
 
-        if not IDexterityTranslatable.providedBy(canonical):
+        if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
             _log_erroneous_canonical(
                 self.context, canonical, "LanguageAwareImageFieldSerializer.__call__"
             )
@@ -220,7 +228,7 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
         if canonical is None:
             return
 
-        if not IDexterityTranslatable.providedBy(canonical):
+        if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
             _log_erroneous_canonical(
                 self.context, canonical, "LanguageAwareFileFieldSerializer.__call__"
             )
@@ -249,7 +257,7 @@ def hasPreviewImage(obj):
             canonical = tm.get_translation("en")
             if canonical is None:
                 return False
-            if not IDexterityTranslatable.providedBy(canonical):
+            if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
                 _log_erroneous_canonical(obj, canonical, "hasPreviewImage (indexer)")
                 return False
         base_obj = aq_base(canonical)
@@ -281,7 +289,7 @@ def image_field_indexer(obj):
                 canonical = tm.get_translation("en")
             if canonical is None:
                 return image_field
-            if not IDexterityTranslatable.providedBy(canonical):
+            if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
                 _log_erroneous_canonical(obj, canonical, "image_field_indexer")
                 return image_field
             base_obj = aq_base(canonical)
@@ -310,7 +318,7 @@ class LanguageAwareImageScaling(ImageScaling):
             with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
             if canonical is not None:
-                if IDexterityTranslatable.providedBy(canonical):
+                if IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical):
                     context = canonical
                 else:
                     _log_erroneous_canonical(
