@@ -80,7 +80,13 @@ class LanguageAwareLeadImage:
                             self.context, canonical, "LanguageAwareLeadImage.image"
                         )
                         return None
-                    return canonical.image
+                    try:
+                        return canonical.image
+                    except AttributeError:
+                        _log_erroneous_canonical(
+                            self.context, canonical, "LanguageAwareLeadImage.image attribute error"
+                        )
+                        return None
 
     @image.setter
     def image(self, value):
@@ -205,7 +211,13 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
             return
 
         self.context = canonical
-        return super().__call__()
+        try:
+            return super().__call__()
+        except AttributeError:
+            _log_erroneous_canonical(
+                self.context, canonical, "LanguageAwareImageFieldSerializer.__call__ attribute error"
+            )
+            return
 
 
 @adapter(INamedFileField, IDexterityTranslatable, IEEAClimateAdaptInstalled)
@@ -235,7 +247,13 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
             return
 
         self.context = canonical
-        return super().__call__()
+        try:
+            return super().__call__()
+        except AttributeError:
+            _log_erroneous_canonical(
+                self.context, canonical, "LanguageAwareFileFieldSerializer.__call__ attribute error"
+            )
+            return
 
 
 @indexer(IPreview)
