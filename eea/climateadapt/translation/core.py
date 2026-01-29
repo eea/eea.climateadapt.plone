@@ -77,7 +77,15 @@ def queue_job(queue_name, job_name, data, opts=None):
     }
 
     def callback():
-        logger.info("Adding job %s", job_name)
+        log_data = data
+        if isinstance(data, dict):
+            log_data = data.copy()
+            if "html" in log_data:
+                log_data["html"] = "<HTML CONTENT>"
+
+        logger.info(
+            "Adding job: %s to queue: %s with data: %s", job_name, queue_name, log_data
+        )
 
         async def inner():
             queue = queues[queue_name]()
