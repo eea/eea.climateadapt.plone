@@ -21,6 +21,7 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from zeep import Client
 from zeep.wsse.username import UsernameToken
 from zExceptions import Unauthorized
+from plone.uuid.interfaces import IUUID
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
@@ -110,8 +111,14 @@ def queue_translate(obj, language=None):
         return
 
     serial_id = int(ISerialId(obj))  # by default we get is a location proxy
+    obj_uid = IUUID(obj, None)
 
-    data = {"obj_url": url, "html": html, "serial_id": serial_id}
+    data = {
+        "obj_url": url,
+        "obj_uid": obj_uid,
+        "html": html,
+        "serial_id": serial_id,
+    }
 
     languages = language and [language] or get_site_languages()
     logger.info("Called translate_volto_html for %s", url)
@@ -462,6 +469,27 @@ def setup_translation_object(canonical, language, request):
         pass
 
     if trans is not None:
+        try:
+            trans_tg = str(ITG(trans))
+            canonical_tg = str(ITG(canonical))
+            if trans_tg != canonical_tg:
+                logger.warning(
+                    "Object at %s belongs to different TG (%s vs %s). Deleting.",
+                    "/".join(trans.getPhysicalPath()),
+                    trans_tg,
+                    canonical_tg,
+                )
+                content.delete(obj=trans, check_linkintegrity=False)
+                trans = None
+        except TypeError:
+            logger.warning(
+                "Object at %s is not translatable. Deleting.",
+                "/".join(trans.getPhysicalPath()),
+            )
+            content.delete(obj=trans, check_linkintegrity=False)
+            trans = None
+
+    if trans is not None:
         logger.info(
             "Translation object found at %s. Repairing translation group registration linked to %s.",
             "/".join(trans.getPhysicalPath()),
@@ -533,7 +561,7 @@ def find_untranslated(obj, good_lang_codes):
 
 
 def sync_translation_paths(
-    oldParent, oldName, newParent, newName, langs=None, request=None
+    oldParent, oldName, newParent, newName, langs=None, request=None, expected_uid=None
 ):
     result = {}
     en_path = f"{oldParent}/{oldName}"
@@ -543,6 +571,13 @@ def sync_translation_paths(
         msg = f"Could not find original source for move: {en_path}"
         logger.warning(msg)
         return {"status": msg}
+
+    if expected_uid:
+        current_uid = IUUID(en_obj, None)
+        if current_uid != expected_uid:
+            msg = f"UID mismatch for sync: expected {expected_uid}, got {current_uid}"
+            logger.warning(msg)
+            return {"status": "skipped", "reason": "uid_mismatch"}
 
     try:
         tm = ITranslationManager(en_obj)

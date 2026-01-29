@@ -1,6 +1,7 @@
 import os
 import logging
 from .core import queue_job
+from plone.uuid.interfaces import IUUID
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -74,6 +75,7 @@ def object_modified_handler(obj, event):
         "oldName": event.oldName,
         "oldParent": op,
         "newParent": np,
+        "expected_uid": IUUID(obj, None),
         "debug_info": {
             "traceback": tb,
             "user": user_id,

@@ -18,6 +18,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 from z3c.form import button, form
 from zope.annotation.interfaces import IAnnotations
 from zope.interface import Interface, alsoProvides
+from plone.uuid.interfaces import IUUID
 
 from eea.climateadapt.translation.core import find_untranslated, queue_translate
 from eea.climateadapt.utils import force_unlock
@@ -485,6 +486,7 @@ class SyncTranslationPaths(BrowserView):
                     "oldName": obj.getId(),
                     "oldParent": parent_path,
                     "newParent": parent_path,
+                    "expected_uid": IUUID(obj, None),
                     "langs": [lang],
                     "debug_info": {
                         "traceback": tb,
