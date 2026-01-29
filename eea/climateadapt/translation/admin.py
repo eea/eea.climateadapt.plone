@@ -467,12 +467,30 @@ class SyncTranslationPaths(BrowserView):
             parent_path = "/".join(obj.aq_parent.getPhysicalPath())
 
             for lang in broken_langs:
+                try:
+                    import traceback
+                    tb = traceback.format_stack()
+                except Exception:
+                    tb = "Could not get traceback"
+
+                try:
+                    from plone import api
+                    user = api.user.get_current()
+                    user_id = user.getId() if user else "system/unknown"
+                except Exception:
+                    user_id = "error_getting_user"
+
                 data = {
                     "newName": obj.getId(),
                     "oldName": obj.getId(),
                     "oldParent": parent_path,
                     "newParent": parent_path,
                     "langs": [lang],
+                    "debug_info": {
+                        "traceback": tb,
+                        "user": user_id,
+                        "event_trigger": "SyncTranslationPaths_manual_view"
+                    }
                 }
                 opts = {
                     "delay": 10000,
