@@ -90,3 +90,53 @@ def object_modified_handler(obj, event):
     }
 
     queue_job("sync_paths", "sync_translated_paths", data, opts)
+
+
+def object_removed_handler(obj, event):
+    """
+    Event handler for ObjectRemovedEvent.
+    When a canonical object is removed, delete all its translations.
+    """
+    if IS_JOB_EXECUTOR:
+        return
+
+    # Check if object is canonical (English)
+    try:
+        if "/en/" not in "/".join(obj.getPhysicalPath()):
+            return
+    except Exception:
+        return
+
+    # Use TranslationManager to find and delete translations
+    try:
+        from plone.app.multilingual.interfaces import ITranslationManager
+
+        tm = ITranslationManager(obj)
+        translations = tm.get_translations()
+
+        for lang, trans_obj in translations.items():
+            if lang == "en":
+                continue
+
+            logger.info(
+                "Deleting translation %s because canonical %s was removed",
+                trans_obj.absolute_url(),
+                obj.absolute_url(),
+            )
+            # Delete the translation object
+            try:
+                from plone import api
+
+                api.content.delete(obj=trans_obj, check_linkintegrity=False)
+            except Exception as e:
+                logger.error(
+                    "Failed to delete translation %s: %s", trans_obj.absolute_url(), e
+                )
+
+    except TypeError:
+        # Not translatable
+        pass
+    except Exception as e:
+        logger.error(
+            "Error in object_removed_handler for %s: %s", obj.absolute_url(), e
+        )

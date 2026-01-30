@@ -70,6 +70,12 @@
     handler=".events.object_modified_handler"
   />
 
+  <subscriber
+    for="plone.dexterity.interfaces.IDexterityContent
+     zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+    handler=".events.object_removed_handler"
+  />
+
   <adapter factory=".optimizations.LanguageAwareImageFieldScales" />
   <adapter factory=".optimizations.LanguageAwareImageFieldSerializer" />
   <adapter factory=".optimizations.LanguageAwareFileFieldSerializer" />
