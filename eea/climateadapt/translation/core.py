@@ -111,7 +111,17 @@ def queue_translate(obj, language=None):
         logger.exception("Could not convert Volto page to HTML: %s", url)
         return
 
-    serial_id = int(ISerialId(obj))  # by default we get is a location proxy
+    try:
+        serial_id = int(ISerialId(obj))  # by default we get is a location proxy
+    except TypeError as e:
+        logger.error("Error getting serial_id for object: %s", obj)
+        logger.error("Object type: %s", type(obj))
+        logger.error("Object repr: %r", obj)
+        if hasattr(obj, "getPhysicalPath"):
+            logger.error("Object path: %s", obj.getPhysicalPath())
+        logger.exception(e)
+        serial_id = 0
+
     obj_uid = IUUID(obj, None)
 
     data = {
