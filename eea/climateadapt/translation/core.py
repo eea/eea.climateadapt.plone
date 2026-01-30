@@ -64,6 +64,7 @@ queues = {
     "etranslation": lambda: Queue("etranslation", {"connection": redisOpts}),
     "save_etranslation": lambda: Queue("save_etranslation", {"connection": redisOpts}),
     "sync_paths": lambda: Queue("sync_paths", {"connection": redisOpts}),
+    "delete_translation": lambda: Queue("delete_translation", {"connection": redisOpts}),
 }
 
 

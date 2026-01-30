@@ -133,7 +133,7 @@ def object_removed_handler(obj, event):
         return
 
     if uids_to_delete:
-        queue_job("sync_paths", "delete_translation", {"uids": uids_to_delete})
+        queue_job("delete_translation", "delete_translation", {"uids": uids_to_delete})
         logger.info(
             "Queued async deletion for %d translations of %s",
             len(uids_to_delete),
