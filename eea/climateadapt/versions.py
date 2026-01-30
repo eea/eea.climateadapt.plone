@@ -36,7 +36,7 @@ class SerialIdAdapter(Persistent):
         """Setter: Store the value in annotations"""
         annotations = IAnnotations(self.context)
         annotations[KEY] = value
-        annotations[KEY]._p_changed = 1
+        annotations._p_changed = 1
 
 
 def increment_serial_id(obj, event):
