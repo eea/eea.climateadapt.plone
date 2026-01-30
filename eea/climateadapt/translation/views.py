@@ -93,7 +93,7 @@ class SaveTranslationHtml(BrowserView):
                 return json.dumps({"status": "canonical object removed"})
 
             try:
-                canonical_serial_id = ISerialId(en_obj).serial_id
+                canonical_serial_id = int(ISerialId(en_obj).serial_id)
 
                 if obj_uid:
                     current_uid = IUUID(en_obj, None)
@@ -267,7 +267,7 @@ class CallETranslation(BrowserView):
                         }
                     )
 
-            current_serial = ISerialId(obj).serial_id
+            current_serial = int(ISerialId(obj).serial_id)
             if int(current_serial) > int(serial_id):
                 logger.info(
                     "Skipping translation for %s because serial_id mismatch %s != %s",

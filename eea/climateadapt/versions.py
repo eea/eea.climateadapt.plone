@@ -29,7 +29,7 @@ class SerialIdAdapter(Persistent):
         """Getter: Retrieve the value from annotations"""
         annotations = IAnnotations(self.context)
         # Return None if the key doesn't exist yet
-        return annotations.get(KEY, None)
+        return annotations.get(KEY, 0)
 
     @serial_id.setter
     def serial_id(self, value):
