@@ -1,9 +1,11 @@
+from persistent import Persistent
 from zope.interface import Interface, Attribute, implementer
-from zope.annotation import factory
 from zope.component import adapter
 from plone.dexterity.interfaces import IDexterityContent
 from zope.annotation.interfaces import IAnnotations
-from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+import logging
+
+logger = logging.getLogger("eea.climateadapt")
 
 KEY = "SERIAL_ID"
 
@@ -16,17 +18,28 @@ class ISerialId(Interface):
 
 @adapter(IDexterityContent)
 @implementer(ISerialId)
-def _serial_factory(context):
+class SerialIdAdapter(Persistent):
     """Simple serial id factory, return number 0"""
-    return IAnnotations(context).get(KEY, 0)
 
+    def __init__(self, context):
+        self.context = context
 
-change_version_annotation = factory(_serial_factory, key=KEY)
+    @property
+    def serial_id(self):
+        """Getter: Retrieve the value from annotations"""
+        annotations = IAnnotations(self.context)
+        # Return None if the key doesn't exist yet
+        return annotations.get(KEY, None)
+
+    @serial_id.setter
+    def serial_id(self, value):
+        """Setter: Store the value in annotations"""
+        annotations = IAnnotations(self.context)
+        annotations[KEY] = value
+        annotations[KEY]._p_changed = 1
 
 
 def increment_serial_id(obj, event):
-    annotations = IAnnotations(obj)
-    val = annotations.get(KEY, 0)
-    annotations[KEY] = val + 1
-    annotations[KEY]._p_changed = 1
-    # logger.info("Incremented serial_id for %s to %s", obj.absolute_url(), val + 1)
+    sd = ISerialId(obj)
+    sd.serial_id += 1
+    logger.info("Incremented serial_id for %s to %s", obj.absolute_url(), sd.serial_id)

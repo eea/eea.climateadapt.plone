@@ -12,9 +12,14 @@
   i18n_domain="eea.climateadapt"
 >
 
+  <!-- <adapter -->
+  <!--   factory=".versions.change_version_annotation" -->
+  <!--   provides=".versions.ISerialId" /> -->
+
   <adapter
-    factory=".versions.change_version_annotation"
-    provides=".versions.ISerialId" />
+    factory=".versions.SerialIdAdapter"
+    provides=".versions.ISerialId"
+    />
 
   <subscriber
     for="plone.dexterity.interfaces.IDexterityContent
