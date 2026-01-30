@@ -9,6 +9,7 @@ import sys
 import traceback
 from urllib.parse import unquote
 
+from plone import api
 from plone.api import portal
 from plone.api.env import adopt_user
 from plone.uuid.interfaces import IUUID
@@ -317,3 +318,31 @@ class SyncTranslatedPaths(BrowserView):
 
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
+
+
+class DeleteTranslation(BrowserView):
+    def __call__(self):
+        check_token_security(self.request)
+
+        uids_json = self.request.form.get("uids", "[]")
+        try:
+            uids = json.loads(uids_json)
+        except Exception:
+            return json.dumps({"error": "Invalid JSON"})
+
+        deleted = []
+        errors = []
+
+        for uid in uids:
+            try:
+                obj = api.content.get(UID=uid)
+                if obj:
+                    path = obj.absolute_url()
+                    api.content.delete(obj=obj, check_linkintegrity=False)
+                    deleted.append(path)
+                    logger.info("Async deleted translation: %s", path)
+            except Exception as e:
+                errors.append(f"{uid}: {str(e)}")
+                logger.error("Failed to async delete %s: %s", uid, e)
+
+        return json.dumps({"deleted": deleted, "errors": errors})

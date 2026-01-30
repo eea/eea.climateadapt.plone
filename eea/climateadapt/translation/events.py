@@ -107,7 +107,9 @@ def object_removed_handler(obj, event):
     except Exception:
         return
 
-    # Use TranslationManager to find and delete translations
+    uids_to_delete = []
+
+    # Use TranslationManager to find translations
     try:
         from plone.app.multilingual.interfaces import ITranslationManager
 
@@ -118,20 +120,8 @@ def object_removed_handler(obj, event):
             if lang == "en":
                 continue
 
-            logger.info(
-                "Deleting translation %s because canonical %s was removed",
-                trans_obj.absolute_url(),
-                obj.absolute_url(),
-            )
-            # Delete the translation object
-            try:
-                from plone import api
-
-                api.content.delete(obj=trans_obj, check_linkintegrity=False)
-            except Exception as e:
-                logger.error(
-                    "Failed to delete translation %s: %s", trans_obj.absolute_url(), e
-                )
+            # Collect UID
+            uids_to_delete.append(IUUID(trans_obj))
 
     except TypeError:
         # Not translatable
@@ -139,4 +129,13 @@ def object_removed_handler(obj, event):
     except Exception as e:
         logger.error(
             "Error in object_removed_handler for %s: %s", obj.absolute_url(), e
+        )
+        return
+
+    if uids_to_delete:
+        queue_job("sync_paths", "delete_translation", {"uids": uids_to_delete})
+        logger.info(
+            "Queued async deletion for %d translations of %s",
+            len(uids_to_delete),
+            obj.absolute_url(),
         )

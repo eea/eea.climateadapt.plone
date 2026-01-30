@@ -52,6 +52,13 @@
 
   <browser:page
     for="*"
+    class=".views.DeleteTranslation"
+    name="delete-translation"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    for="*"
     class=".views.ToHtml"
     name="tohtml"
     permission="cmf.ManagePortal"
