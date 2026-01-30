@@ -93,7 +93,7 @@ class SaveTranslationHtml(BrowserView):
                 return json.dumps({"status": "canonical object removed"})
 
             try:
-                canonical_serial_id = ISerialId(en_obj)
+                canonical_serial_id = ISerialId(en_obj).serial_id
 
                 if obj_uid:
                     current_uid = IUUID(en_obj, None)
@@ -104,7 +104,9 @@ class SaveTranslationHtml(BrowserView):
                             obj_uid,
                             current_uid,
                         )
-                        return json.dumps({"status": "skipped", "reason": "object_replaced"})
+                        return json.dumps(
+                            {"status": "skipped", "reason": "object_replaced"}
+                        )
 
                 if int(canonical_serial_id) != int(serial_id):
                     self.request.response.setHeader("Content-Type", "application/json")
@@ -223,7 +225,7 @@ class CallETranslation(BrowserView):
         self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
         self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
         self.request.response.setHeader("Content-Type", "application/json")
-        
+
         check_token_security(self.request)
         form = self.request.form
         html = form.get("html")
@@ -235,6 +237,7 @@ class CallETranslation(BrowserView):
         if "?" in obj_path:
             path, qs = obj_path.split("?", 1)
             from urllib.parse import parse_qs
+
             params = parse_qs(qs)
             serial_id = params.get("serial_id", [0])[0]
         else:
@@ -244,7 +247,7 @@ class CallETranslation(BrowserView):
         site = portal.get()
         if path.startswith("/"):
             path = path[1:]
-        
+
         try:
             obj = site.unrestrictedTraverse(path)
 
@@ -257,24 +260,32 @@ class CallETranslation(BrowserView):
                     )
                     self.request.response.setHeader("Content-Type", "application/json")
                     return json.dumps(
-                        {"transId": "skipped", "status": "skipped", "reason": "object_replaced"}
+                        {
+                            "transId": "skipped",
+                            "status": "skipped",
+                            "reason": "object_replaced",
+                        }
                     )
 
-            current_serial = ISerialId(obj)
+            current_serial = ISerialId(obj).serial_id
             if int(current_serial) > int(serial_id):
                 logger.info(
                     "Skipping translation for %s because serial_id mismatch %s != %s",
-                    path, current_serial, serial_id
+                    path,
+                    current_serial,
+                    serial_id,
                 )
                 self.request.response.setHeader("Content-Type", "application/json")
-                return json.dumps({
-                    "transId": "skipped", 
-                    "status": "skipped", 
-                    "reason": "stale serial_id"
-                })
+                return json.dumps(
+                    {
+                        "transId": "skipped",
+                        "status": "skipped",
+                        "reason": "stale serial_id",
+                    }
+                )
         except Exception:
-            # If we can't find the object or serial ID, we might as well proceed 
-            # or log usage. Proceeding is safer to avoid blocking if traverse fails 
+            # If we can't find the object or serial ID, we might as well proceed
+            # or log usage. Proceeding is safer to avoid blocking if traverse fails
             # for some reason but path is valid for eTranslation (unlikely).
             pass
 
