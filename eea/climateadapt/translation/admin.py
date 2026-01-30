@@ -2,6 +2,8 @@ import json
 import logging
 from urllib.parse import parse_qs, urlparse
 
+from plone.transformchain.interfaces import DISABLE_TRANSFORM_REQUEST_KEY
+
 from BTrees.OIBTree import OIBTree
 from persistent.list import PersistentList
 from plone import schema
@@ -110,6 +112,9 @@ class HTMLIngestion(AutoExtensibleForm, form.Form):
 class TranslateObjectAsync(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
         messages = IStatusMessage(self.request)
         messages.add("Translation process initiated.", type="info")
 
@@ -137,6 +142,9 @@ class TranslateMissing(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
         context = self.context
 
         brains = context.portal_catalog.searchResults(
@@ -173,6 +181,9 @@ class TranslateFolderAsync(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
         context = self.context
 
         brains = context.portal_catalog.searchResults(
@@ -213,6 +224,9 @@ class FixFolderOrder(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
         path = "/".join(self.context.getPhysicalPath())
         brains = self.context.portal_catalog.searchResults(sort_on="path", path=path)
 
@@ -451,6 +465,10 @@ class SyncTranslationPaths(BrowserView):
         return out
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
         context = self.context
         brains = context.portal_catalog.searchResults(
             path="/".join(context.getPhysicalPath()),
@@ -509,6 +527,8 @@ class CleanupFolderOrder(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
 
         context = self.context
         has = base_hasattr
@@ -612,6 +632,8 @@ class RemoveUnmatchedTranslations(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
 
         self.request.translation_info = {"tg": "notg"}
         force_delete = bool(self.request.form.get("delete"))
@@ -668,6 +690,8 @@ class SiteRemoveUnmatchedTranslations(RemoveUnmatchedTranslations):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
 
         self.request.translation_info = {"tg": "notg"}
         force_delete = bool(self.request.form.get("delete"))
@@ -698,6 +722,8 @@ class FixCatalog(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
 
         catalog = self.context.portal_catalog
         self._catalog = catalog._catalog
@@ -757,6 +783,8 @@ class RemoveRid(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
 
         rid = int(self.request.form.get("rid"))
         catalog = self.context.portal_catalog
@@ -784,6 +812,8 @@ class DeleteTranslationField(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
 
         field = self.request.form.get("field", "image")
         if field:

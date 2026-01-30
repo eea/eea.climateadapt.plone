@@ -44,6 +44,10 @@ IS_JOB_EXECUTOR = env("IS_JOB_EXECUTOR", False)
 
 class IsJobExecutor(BrowserView):
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
         if IS_JOB_EXECUTOR:
             return "true"
         else:
@@ -55,13 +59,13 @@ class SaveTranslationHtml(BrowserView):
     eTranslation, but that wasn't properly submitted through the callback"""
 
     def __call__(self):
-        request = self.request
-        check_token_security(request)
         alsoProvides(self.request, IDisableCSRFProtection)
         self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
         self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
-
         self.request.response.setHeader("Content-Type", "application/json")
+
+        request = self.request
+        check_token_security(request)
 
         with adopt_user(username="admin"):
             try:
@@ -125,6 +129,10 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
         # for some reason this request acts strange
         # qs = self.request["QUERY_STRING"]
         # parsed = parse_qs(qs)
@@ -211,6 +219,11 @@ class CallETranslation(BrowserView):
     """Call eTranslation, triggered by job from worker"""
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+        self.request.response.setHeader("Content-Type", "application/json")
+        
         check_token_security(self.request)
         form = self.request.form
         html = form.get("html")
@@ -265,8 +278,14 @@ class CallETranslation(BrowserView):
             # for some reason but path is valid for eTranslation (unlikely).
             pass
 
-        print("calling etranslation")
-        data = call_etranslation_service(html, obj_path, [target_lang])
+        try:
+            data = call_etranslation_service(html, obj_path, [target_lang])
+        except Exception as e:
+            logger.exception("Error in calling eTranslation service: %s", e)
+            result = {"error_type": exception_to_json(e)}
+            self.request.response.setHeader("Content-Type", "application/json")
+            return json.dumps(result)
+
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(data)
 
@@ -295,6 +314,10 @@ class SyncTranslatedPaths(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+        self.request.response.setHeader("Content-Type", "application/json")
+
         check_token_security(self.request)
 
         form = self.request.form
@@ -322,6 +345,11 @@ class SyncTranslatedPaths(BrowserView):
 
 class DeleteTranslation(BrowserView):
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+        self.request.response.setHeader("Content-Type", "application/json")
+
         check_token_security(self.request)
 
         uids_json = self.request.form.get("uids", "[]")

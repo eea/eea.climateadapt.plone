@@ -173,7 +173,7 @@ def call_etranslation_service(html, obj_path, target_languages):
     """
 
     if not html:
-        return
+        return {"transId": "not-called", "reason": "Empty HTML content"}
 
     encoded_html = base64.b64encode(html.encode("utf-8"))
 
