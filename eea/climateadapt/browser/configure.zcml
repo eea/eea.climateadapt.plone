@@ -163,6 +163,12 @@
     template="pt/country-profile-2025-raw.pt"
     permission="zope2.View"
   />
+  <browser:page
+    name="country-profile-2026"
+    for="eea.climateadapt.interfaces.ICCACountry2026"
+    class=".countries2026.CountryProfileJson"
+    permission="zope2.View"
+  />
 
   <browser:page
     name="countries-metadata-extract"

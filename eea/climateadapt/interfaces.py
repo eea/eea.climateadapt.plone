@@ -16,6 +16,10 @@ class ICCACountry2025(Interface):
     """Marker interface for Country Profiles 2025"""
 
 
+class ICCACountry2026(Interface):
+    """Marker interface for Country Profiles 2026"""
+
+
 class IClimateAdaptContent(Interface):
     """Marker interface for climate adapt content"""
 
