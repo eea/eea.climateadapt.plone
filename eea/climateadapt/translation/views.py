@@ -9,8 +9,10 @@ import sys
 import traceback
 from urllib.parse import unquote
 
+from plone import api
 from plone.api import portal
 from plone.api.env import adopt_user
+from plone.uuid.interfaces import IUUID
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.dexterity.utils import iterSchemata
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -42,6 +44,10 @@ IS_JOB_EXECUTOR = env("IS_JOB_EXECUTOR", False)
 
 class IsJobExecutor(BrowserView):
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
         if IS_JOB_EXECUTOR:
             return "true"
         else:
@@ -53,13 +59,13 @@ class SaveTranslationHtml(BrowserView):
     eTranslation, but that wasn't properly submitted through the callback"""
 
     def __call__(self):
-        request = self.request
-        check_token_security(request)
         alsoProvides(self.request, IDisableCSRFProtection)
         self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
         self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
-
         self.request.response.setHeader("Content-Type", "application/json")
+
+        request = self.request
+        check_token_security(request)
 
         with adopt_user(username="admin"):
             try:
@@ -67,6 +73,7 @@ class SaveTranslationHtml(BrowserView):
                 path = unquote(request.form.get("path", ""))
                 language = request.form.get("language", "")
                 serial_id = request.form.get("serial_id", 0)
+                obj_uid = request.form.get("obj_uid", "")
 
                 site_portal = portal.getSite()
                 if path[0] == "/":
@@ -86,7 +93,20 @@ class SaveTranslationHtml(BrowserView):
                 return json.dumps({"status": "canonical object removed"})
 
             try:
-                canonical_serial_id = ISerialId(en_obj)
+                canonical_serial_id = int(ISerialId(en_obj).serial_id)
+
+                if obj_uid:
+                    current_uid = IUUID(en_obj, None)
+                    if current_uid != obj_uid:
+                        logger.warning(
+                            "UID mismatch for %s: expected %s, got %s. Object was replaced.",
+                            path,
+                            obj_uid,
+                            current_uid,
+                        )
+                        return json.dumps(
+                            {"status": "skipped", "reason": "object_replaced"}
+                        )
 
                 if int(canonical_serial_id) != int(serial_id):
                     self.request.response.setHeader("Content-Type", "application/json")
@@ -111,6 +131,10 @@ class TranslationCallback(BrowserView):
     """
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
         # for some reason this request acts strange
         # qs = self.request["QUERY_STRING"]
         # parsed = parse_qs(qs)
@@ -197,16 +221,23 @@ class CallETranslation(BrowserView):
     """Call eTranslation, triggered by job from worker"""
 
     def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+        self.request.response.setHeader("Content-Type", "application/json")
+
         check_token_security(self.request)
         form = self.request.form
         html = form.get("html")
         target_lang = form.get("target_lang")
         obj_path = form.get("obj_path")
+        obj_uid = form.get("obj_uid")
 
         # Check if the job is stale
         if "?" in obj_path:
             path, qs = obj_path.split("?", 1)
             from urllib.parse import parse_qs
+
             params = parse_qs(qs)
             serial_id = params.get("serial_id", [0])[0]
         else:
@@ -216,29 +247,56 @@ class CallETranslation(BrowserView):
         site = portal.get()
         if path.startswith("/"):
             path = path[1:]
-        
+
         try:
             obj = site.unrestrictedTraverse(path)
-            current_serial = ISerialId(obj)
+
+            if obj_uid:
+                current_uid = IUUID(obj, None)
+                if current_uid != obj_uid:
+                    logger.info(
+                        "Skipping translation for %s: UID mismatch (object replaced)",
+                        path,
+                    )
+                    self.request.response.setHeader("Content-Type", "application/json")
+                    return json.dumps(
+                        {
+                            "transId": "skipped",
+                            "status": "skipped",
+                            "reason": "object_replaced",
+                        }
+                    )
+
+            current_serial = int(ISerialId(obj).serial_id)
             if int(current_serial) > int(serial_id):
                 logger.info(
                     "Skipping translation for %s because serial_id mismatch %s != %s",
-                    path, current_serial, serial_id
+                    path,
+                    current_serial,
+                    serial_id,
                 )
                 self.request.response.setHeader("Content-Type", "application/json")
-                return json.dumps({
-                    "transId": "skipped", 
-                    "status": "skipped", 
-                    "reason": "stale serial_id"
-                })
+                return json.dumps(
+                    {
+                        "transId": "skipped",
+                        "status": "skipped",
+                        "reason": "stale serial_id",
+                    }
+                )
         except Exception:
-            # If we can't find the object or serial ID, we might as well proceed 
-            # or log usage. Proceeding is safer to avoid blocking if traverse fails 
+            # If we can't find the object or serial ID, we might as well proceed
+            # or log usage. Proceeding is safer to avoid blocking if traverse fails
             # for some reason but path is valid for eTranslation (unlikely).
             pass
 
-        print("calling etranslation")
-        data = call_etranslation_service(html, obj_path, [target_lang])
+        try:
+            data = call_etranslation_service(html, obj_path, [target_lang])
+        except Exception as e:
+            logger.exception("Error in calling eTranslation service: %s", e)
+            result = {"error_type": exception_to_json(e)}
+            self.request.response.setHeader("Content-Type", "application/json")
+            return json.dumps(result)
+
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(data)
 
@@ -267,6 +325,10 @@ class SyncTranslatedPaths(BrowserView):
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+        self.request.response.setHeader("Content-Type", "application/json")
+
         check_token_security(self.request)
 
         form = self.request.form
@@ -283,9 +345,43 @@ class SyncTranslatedPaths(BrowserView):
                     form["newName"],
                     langs,
                     self.request,
+                    form.get("expected_uid"),
                 )
         except Exception as e:
             result = {"error_type": exception_to_json(e)}
 
         self.request.response.setHeader("Content-Type", "application/json")
         return json.dumps(result)
+
+
+class DeleteTranslation(BrowserView):
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+        self.request.response.setHeader("Content-Type", "application/json")
+
+        check_token_security(self.request)
+
+        uids_json = self.request.form.get("uids", "[]")
+        try:
+            uids = json.loads(uids_json)
+        except Exception:
+            return json.dumps({"error": "Invalid JSON"})
+
+        deleted = []
+        errors = []
+
+        for uid in uids:
+            try:
+                obj = api.content.get(UID=uid)
+                if obj:
+                    path = obj.absolute_url()
+                    api.content.delete(obj=obj, check_linkintegrity=False)
+                    deleted.append(path)
+                    logger.info("Async deleted translation: %s", path)
+            except Exception as e:
+                errors.append(f"{uid}: {str(e)}")
+                logger.error("Failed to async delete %s: %s", uid, e)
+
+        return json.dumps({"deleted": deleted, "errors": errors})

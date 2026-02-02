@@ -1,15 +1,20 @@
 """Optimize the storage of image blobs by delegating to the canonical field"""
 
-from plone.api.exc import UserNotFoundError
+from plone import api
 from plone.api.env import adopt_roles
+from plone.api.exc import UserNotFoundError
 import logging
+import time
 
 from Acquisition import aq_base, aq_parent
+from plone.uuid.interfaces import IUUID
 from plone.app.contenttypes.behaviors.leadimage import ILeadImageBehavior
 from plone.app.multilingual.dx.interfaces import IDexterityTranslatable
-from plone.dexterity.interfaces import IDexterityContent
+from plone.dexterity.interfaces import IDexterityContent, IDexterityContainer
 from plone.app.multilingual.interfaces import (
     ILanguageRootFolder,
+    IMutableTG,
+    ITG,
     ITranslationCloner,
     ITranslationFactory,
     ITranslationIdChooser,
@@ -402,11 +407,51 @@ class OverrideDefaultTranslationIdChooser:
 
     def __call__(self, parent, language):
         content_id = self.context.getId()
+        canonical_type = self.context.portal_type
+
         if language != "en":
             if content_id in parent.objectIds():
-                raise ValueError(
-                    f"Translation object already exists, can't be reused {content_id}"
-                )
+                existing = parent[content_id]
+
+                try:
+                    existing_tg = str(ITG(existing))
+                    canonical_tg = str(ITG(self.context))
+                except TypeError:
+                    # Not translatable - delete orphan
+                    logger.warning("Deleting non-translatable object at %s", content_id)
+                    api.content.delete(obj=existing, check_linkintegrity=False)
+                    return content_id
+
+                # Same portal_type
+                if existing.portal_type == canonical_type:
+                    if existing_tg != canonical_tg:
+                        # Fix the TG registration
+                        logger.info(
+                            "Fixing TG for %s: %s -> %s",
+                            content_id,
+                            existing_tg,
+                            canonical_tg,
+                        )
+                        IMutableTG(existing).set(canonical_tg)
+                        existing.reindexObject(idxs=("TranslationGroup",))
+                    # Object already exists with correct (or now fixed) TG
+                    raise ValueError(f"Translation already exists: {content_id}")
+
+                # Different portal_type - need to remove/replace
+                else:
+                    if IDexterityContainer.providedBy(existing) and existing.objectIds():
+                        # Folder with children - rename and migrate
+                        _migrate_folder_children(parent, existing, content_id, language)
+                    else:
+                        # Simple object or empty folder - delete
+                        logger.warning(
+                            "Deleting blocking object %s (type %s, expected %s)",
+                            content_id,
+                            existing.portal_type,
+                            canonical_type,
+                        )
+                        api.content.delete(obj=existing, check_linkintegrity=False)
+
             return content_id
         parts = content_id.split("-")
         # ugly heuristic (searching for something like 'de', 'en' etc.)
@@ -439,3 +484,45 @@ class OverrideDefaultTranslationFactory:
         cloner = ITranslationCloner(self.context)
         cloner(new_content)
         return new_content
+
+
+def _migrate_folder_children(parent, old_folder, target_id, language):
+    """
+    Handle the case where a folder at the translation target path has children.
+
+    Strategy:
+    1. Rename the old folder to a temporary ID (e.g., "events-orphaned-12345")
+    2. Create the new translation object (caller will do this)
+    3. Queue translation sync for all children to move them to the new folder
+    """
+    from eea.climateadapt.translation.core import queue_job
+
+    temp_id = f"{target_id}-orphaned-{int(time.time())}"
+    logger.warning(
+        "Folder %s has children. Renaming to %s and will migrate children.",
+        target_id,
+        temp_id,
+    )
+
+    # Rename old folder
+    parent.manage_renameObject(target_id, temp_id)
+    old_folder = parent[temp_id]  # Re-fetch after rename
+
+    # Queue path sync jobs for each child in the old folder
+    old_folder_path = "/".join(old_folder.getPhysicalPath())
+    new_folder_path = "/".join(parent.getPhysicalPath()) + "/" + target_id
+
+    for child_id in old_folder.objectIds():
+        data = {
+            "newName": child_id,
+            "oldName": child_id,
+            "oldParent": old_folder_path,
+            "newParent": new_folder_path.replace(f"/{language}/", "/en/"),  # Map to EN path
+            "expected_uid": IUUID(old_folder[child_id], None),
+            "langs": [language],
+            "debug_info": {
+                "event_trigger": "folder_child_migration",
+                "orphaned_folder": temp_id,
+            },
+        }
+        queue_job("sync_paths", "sync_translated_paths", data)

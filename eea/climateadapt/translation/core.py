@@ -21,6 +21,7 @@ from Products.CMFCore.WorkflowCore import WorkflowException
 from zeep import Client
 from zeep.wsse.username import UsernameToken
 from zExceptions import Unauthorized
+from plone.uuid.interfaces import IUUID
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
@@ -63,6 +64,9 @@ queues = {
     "etranslation": lambda: Queue("etranslation", {"connection": redisOpts}),
     "save_etranslation": lambda: Queue("save_etranslation", {"connection": redisOpts}),
     "sync_paths": lambda: Queue("sync_paths", {"connection": redisOpts}),
+    "delete_translation": lambda: Queue(
+        "delete_translation", {"connection": redisOpts}
+    ),
 }
 
 
@@ -109,34 +113,55 @@ def queue_translate(obj, language=None):
         logger.exception("Could not convert Volto page to HTML: %s", url)
         return
 
-    serial_id = int(ISerialId(obj))  # by default we get is a location proxy
+    try:
+        serial_id = int(
+            ISerialId(obj).serial_id
+        )  # by default we get is a location proxy
+    except TypeError as e:
+        logger.error("Error getting serial_id for object: %s", obj)
+        logger.error("Object type: %s", type(obj))
+        logger.error("Object repr: %r", obj)
+        if hasattr(obj, "getPhysicalPath"):
+            logger.error("Object path: %s", obj.getPhysicalPath())
+        logger.exception(e)
+        serial_id = 0
 
-    data = {"obj_url": url, "html": html, "serial_id": serial_id}
+    obj_uid = IUUID(obj, None)
+
+    data = {
+        "obj_url": url,
+        "obj_uid": obj_uid,
+        "html": html,
+        "serial_id": serial_id,
+    }
 
     languages = language and [language] or get_site_languages()
     logger.info("Called translate_volto_html for %s", url)
 
     # Schedule the job to be executed between 7 PM and 7 AM
     import datetime
+
     now = datetime.datetime.now()
     # 19:00 = 7 PM, 07:00 = 7 AM
     start_time_limit = now.replace(hour=19, minute=0, second=0, microsecond=0)
     end_time_limit = now.replace(hour=7, minute=0, second=0, microsecond=0)
-    
-    delay = 1000 # default delay
+
+    delay = 1000  # default delay
 
     if 7 <= now.hour < 19:
         # We are during the day (forbidden window). Schedule for 7 PM tonight.
         wait_time = start_time_limit - now
         delay = int(wait_time.total_seconds() * 1000)
-        logger.info("Delaying translation job for %s seconds", wait_time.total_seconds())
+        logger.info(
+            "Delaying translation job for %s seconds", wait_time.total_seconds()
+        )
 
     for language in languages:
         if language == "en":
             continue
 
         data = dict(data.items(), language=language)
-        
+
         opts = {"delay": delay}
 
         logger.info("Queue translate_volto_html for %s / %s", url, language)
@@ -165,7 +190,7 @@ def call_etranslation_service(html, obj_path, target_languages):
     """
 
     if not html:
-        return
+        return {"transId": "not-called", "reason": "Empty HTML content"}
 
     encoded_html = base64.b64encode(html.encode("utf-8"))
 
@@ -462,6 +487,27 @@ def setup_translation_object(canonical, language, request):
         pass
 
     if trans is not None:
+        try:
+            trans_tg = str(ITG(trans))
+            canonical_tg = str(ITG(canonical))
+            if trans_tg != canonical_tg:
+                logger.warning(
+                    "Object at %s belongs to different TG (%s vs %s). Deleting.",
+                    "/".join(trans.getPhysicalPath()),
+                    trans_tg,
+                    canonical_tg,
+                )
+                content.delete(obj=trans, check_linkintegrity=False)
+                trans = None
+        except TypeError:
+            logger.warning(
+                "Object at %s is not translatable. Deleting.",
+                "/".join(trans.getPhysicalPath()),
+            )
+            content.delete(obj=trans, check_linkintegrity=False)
+            trans = None
+
+    if trans is not None:
         logger.info(
             "Translation object found at %s. Repairing translation group registration linked to %s.",
             "/".join(trans.getPhysicalPath()),
@@ -533,7 +579,7 @@ def find_untranslated(obj, good_lang_codes):
 
 
 def sync_translation_paths(
-    oldParent, oldName, newParent, newName, langs=None, request=None
+    oldParent, oldName, newParent, newName, langs=None, request=None, expected_uid=None
 ):
     result = {}
     en_path = f"{oldParent}/{oldName}"
@@ -543,6 +589,13 @@ def sync_translation_paths(
         msg = f"Could not find original source for move: {en_path}"
         logger.warning(msg)
         return {"status": msg}
+
+    if expected_uid:
+        current_uid = IUUID(en_obj, None)
+        if current_uid != expected_uid:
+            msg = f"UID mismatch for sync: expected {expected_uid}, got {current_uid}"
+            logger.warning(msg)
+            return {"status": "skipped", "reason": "uid_mismatch"}
 
     try:
         tm = ITranslationManager(en_obj)
