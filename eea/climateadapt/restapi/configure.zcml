@@ -186,6 +186,7 @@
 
   <adapter factory=".countryprofile.CountryProfile" name="countryprofile" />
   <adapter factory=".countryprofile2025.CountryProfile2025" name="countryprofile" />
+  <adapter factory=".countryprofile2026.CountryProfile2026" name="countryprofile2026" />
   <adapter factory=".missionsignatoryprofile.MissionSignatoryProfile" name="missionsignatoryprofile" />
 
   <subscriber
