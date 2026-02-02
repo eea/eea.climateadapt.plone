@@ -88,6 +88,35 @@ When the async worker picks up a `call_etranslation` job and calls back the Plon
 3.  **Check**: If `current_serial_id > job_serial_id`, the object has changed since the job was scheduled.
 4.  **Action**: The job is skipped (returns a "skipped" status), preventing the eTranslation call and avoiding potential Write conflicts on the outdated content.
 
+## State Synchronization and Automatic Initiation
+
+### 1. Automatic Translation Initiation
+
+The translation process is automatically triggered based on content events (creation and modification) using Plone's content rules system.
+
+- **Content Rule Action**: `eea.climateadapt.TranslateAsync`.
+- **Logic**: When triggered, it calls `queue_translate(obj)`, which prepares the HTML and schedules the async job.
+- **Environment Gateway**: The executor checks for the `TRANSLATE_ON_CHANGE` environment variable. If not set, the automatic translation is skipped (used to prevent loops or unwanted translations on secondary instances).
+- **Scope**: Typically applied to content within the `/en/` (English) Language Root Folder.
+
+### 2. Review State (Workflow) Synchronization
+
+To ensure that translated content is published or archived alongside its English source, the system employs several synchronization points:
+
+#### A. Policy-driven Sync (Content Rules)
+- **Action**: `eea.climateadapt.SynchronizeStatesForTranslations`.
+- **Behavior**: Listens for workflow transitions on the English object and attempts to perform the exact same transition (e.g., `publish`, `archive`) on all its existing translations.
+
+#### B. Data-driven Sync (Ingestion & Setup)
+The `sync_translation_state(trans_obj, en_obj)` utility is used to force consistency during the translation lifecycle:
+- **During Ingestion**: Called in `ingest_html` after eTranslation returns the translated content.
+- **During Setup**: Called in `setup_translation_object` when creating or verifying the translation object's existence.
+
+#### C. Beyond Workflow States
+The synchronization utility also ensures consistency for:
+- **Effective Date**: The `effective_date` (publishing date) is copied from the English object to translations so they appear correctly in date-based listings and searches.
+- **Local Roles**: Local permissions (`__ac_local_roles__`) are synchronized to ensure that viewing/editing rights remain consistent across all language versions.
+
 ## Manual QA / Verification
 
 This section details the steps to manually verify the robustness and correctness of the translation system, including recent safety fixes and async operations.
