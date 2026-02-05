@@ -1,5 +1,6 @@
 import csv
 import io
+import html
 from Products.Five.browser import BrowserView
 from plone import api
 from eea.climateadapt.local_roles import get_local_roles_report
@@ -45,29 +46,30 @@ class LocalRolesReportView(BrowserView):
         return output.getvalue()
 
     def render_html(self, data, include_owner):
-        html = []
-        html.append("<html><body>")
-        html.append("<h1>Local Roles Report</h1>")
-        html.append(f"<p>Full report (including Owners): {include_owner}</p>")
-        html.append('<p><a href="?format=csv' + ("&full=1" if include_owner else "") + '">Download CSV</a> | ')
+        self.request.response.setHeader("Content-Type", "text/html;charset=utf-8")
+        report_html = []
+        report_html.append("<html><body>")
+        report_html.append("<h1>Local Roles Report</h1>")
+        report_html.append(f"<p>Full report (including Owners): {include_owner}</p>")
+        report_html.append('<p><a href="?format=csv' + ("&full=1" if include_owner else "") + '">Download CSV</a> | ')
         if include_owner:
-            html.append('<a href="?full=0">Hide Owners</a></p>')
+            report_html.append('<a href="?full=0">Hide Owners</a></p>')
         else:
-            html.append('<a href="?full=1">Show Owners</a></p>')
+            report_html.append('<a href="?full=1">Show Owners</a></p>')
 
         for entry in data:
-            html.append(f"<h3>{entry['path']}</h3>")
+            report_html.append(f"<h3>{html.escape(entry['path'])}</h3>")
             if entry["blocked"]:
-                html.append("<p style='color: red; font-weight: bold;'>[Inheritance BLOCKED]</p>")
+                report_html.append("<p style='color: red; font-weight: bold;'>[Inheritance BLOCKED]</p>")
 
             if not entry["roles"]:
-                html.append("<ul><li>(no local roles)</li></ul>")
+                report_html.append("<ul><li>(no local roles)</li></ul>")
                 continue
 
-            html.append("<ul>")
+            report_html.append("<ul>")
             for principal, role_list in entry["roles"]:
-                html.append(f"<li><b>{principal}</b>: {', '.join(role_list)}</li>")
-            html.append("</ul>")
+                report_html.append(f"<li><b>{html.escape(principal)}</b>: {html.escape(', '.join(role_list))}</li>")
+            report_html.append("</ul>")
 
-        html.append("</body></html>")
-        return "\n".join(html)
+        report_html.append("</body></html>")
+        return "\n".join(report_html)
