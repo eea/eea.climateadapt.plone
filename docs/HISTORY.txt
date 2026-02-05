@@ -3,6 +3,11 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Feature: Add `report_roles` console script and documentation for local roles
+  auditing.
+  [tiberiuichim]
+* Cleanup: Remove obsolete and unused console scripts from `setup.py`.
+  [tiberiuichim]
 * Fix: relations list to oraganisations
   upload logo option for organisation
   clear html for only article view
