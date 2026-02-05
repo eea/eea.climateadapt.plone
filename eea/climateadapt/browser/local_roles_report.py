@@ -70,5 +70,4 @@ class LocalRolesReportView(BrowserView):
             html.append("</ul>")
 
         html.append("</body></html>")
-        return "
-".join(html)
+        return "\n".join(html)
