@@ -3,6 +3,9 @@ Changelog
 
 1.4.dev0 - (unreleased)
 -----------------------
+* Feature: Add `report_roles` console script and documentation for local roles
+  auditing.
+  [tiberiuichim]
 * Fix: relations list to oraganisations
   upload logo option for organisation
   clear html for only article view
