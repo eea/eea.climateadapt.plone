@@ -18,7 +18,19 @@ from zope.globalrequest import setRequest
 
 logger = logging.getLogger(__name__)
 
-IGNORED_USER_IDS = ["tibi", "tibiadmin", "tiberich", "admin", "zopeadmin"]
+IGNORED_USER_IDS = [
+    "tibi",
+    "tibiadmin",
+    "tiberich",
+    "admin",
+    "zopeadmineugentripon",
+    "ghicaale",
+    "ghitab",
+    "krisztina",
+    "tripodor",
+    "eugentripon",
+]
+
 
 parser = argparse.ArgumentParser(
     prog="ReportRoles",
@@ -98,7 +110,9 @@ def run(app):
     seen_paths = set()
 
     def traverse(obj, current_rel_path):
-        full_path = "/" + args.portal_id + (f"/{current_rel_path}" if current_rel_path else "")
+        full_path = (
+            "/" + args.portal_id + (f"/{current_rel_path}" if current_rel_path else "")
+        )
         if full_path in seen_paths:
             return
         seen_paths.add(full_path)
@@ -120,13 +134,33 @@ def run(app):
                 # if they are at the root level (e.g., /cca/ro, /cca/de)
                 # except for 'en' which is our starting point anyway.
                 if not current_rel_path and id in [
-                    "bg", "cs", "da", "de", "el", "es", "et", "fi", "fr", "ga",
-                    "hr", "hu", "it", "lt", "lv", "mt", "nl", "pl", "pt", "ro",
-                    "sk", "sl", "sv"
+                    "bg",
+                    "cs",
+                    "da",
+                    "de",
+                    "el",
+                    "es",
+                    "et",
+                    "fi",
+                    "fr",
+                    "ga",
+                    "hr",
+                    "hu",
+                    "it",
+                    "lt",
+                    "lv",
+                    "mt",
+                    "nl",
+                    "pl",
+                    "pt",
+                    "ro",
+                    "sk",
+                    "sl",
+                    "sv",
                 ]:
                     continue
 
-                child_rel_path = (f"{current_rel_path}/{id}" if current_rel_path else id)
+                child_rel_path = f"{current_rel_path}/{id}" if current_rel_path else id
                 traverse(child, child_rel_path)
 
     for rel_path in start_paths:
