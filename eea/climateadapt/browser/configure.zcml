@@ -40,6 +40,13 @@
   />
 
   <browser:page
+    name="local_roles_report"
+    for="*"
+    class=".local_roles_report.LocalRolesReportView"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
     for="*"
     name="import_mission_sigs"
     class=".import_mission.MissionSigImporter"
