@@ -18,6 +18,8 @@ from zope.globalrequest import setRequest
 
 logger = logging.getLogger(__name__)
 
+IGNORED_USER_IDS = ["tibi", "tibiadmin", "tiberich", "admin", "zopeadmin"]
+
 parser = argparse.ArgumentParser(
     prog="ReportRoles",
     description="Report local roles in the portal and subsites",
@@ -46,10 +48,15 @@ parser.add_argument(
 
 def get_roles_data(obj, path):
     roles = obj.get_local_roles()
+    filtered_roles = [
+        (principal, role_list)
+        for principal, role_list in roles
+        if principal not in IGNORED_USER_IDS
+    ]
     blocked = getattr(obj, "__ac_local_roles_block__", False)
     return {
         "path": path,
-        "roles": roles,
+        "roles": filtered_roles,
         "blocked": bool(blocked),
     }
 
@@ -66,7 +73,8 @@ def run(app):
 
     setSite(portal)
 
-    subsites = [
+    # Initial paths to start recursion from
+    start_paths = [
         "",  # portal root
         "en",
         "en/mission",
@@ -74,17 +82,45 @@ def run(app):
     ]
 
     all_data = []
+    seen_paths = set()
 
-    for rel_path in subsites:
+    def traverse(obj, current_rel_path):
+        full_path = "/" + args.portal_id + (f"/{current_rel_path}" if current_rel_path else "")
+        if full_path in seen_paths:
+            return
+        seen_paths.add(full_path)
+
+        portal_type = getattr(obj, "portal_type", None)
+        is_interesting_type = portal_type in ["Folder", "Canvas"]
+
+        data = get_roles_data(obj, full_path)
+        # Only include if it's an interesting type AND (has roles OR inheritance is blocked)
+        if is_interesting_type and (data["roles"] or data["blocked"]):
+            all_data.append(data)
+
+        # Recurse into children if it's a folder-like object
+        if hasattr(obj, "objectItems"):
+            for id, child in obj.objectItems():
+                child_portal_type = getattr(child, "portal_type", None)
+                # We always recurse into folders to find nested roles
+                # We might also want to recurse into Canvas if it can have children (it can't usually)
+                if child_portal_type == "Folder":
+                    child_rel_path = (f"{current_rel_path}/{id}" if current_rel_path else id)
+                    traverse(child, child_rel_path)
+                elif child_portal_type == "Canvas":
+                    # Report it, but no need to recurse usually
+                    child_rel_path = (f"{current_rel_path}/{id}" if current_rel_path else id)
+                    child_data = get_roles_data(child, "/" + args.portal_id + "/" + child_rel_path)
+                    if child_data["roles"] or child_data["blocked"]:
+                        all_data.append(child_data)
+
+    for rel_path in start_paths:
         try:
             if not rel_path:
                 obj = portal
-                full_path = "/" + args.portal_id
             else:
                 obj = portal.unrestrictedTraverse(rel_path)
-                full_path = "/" + args.portal_id + "/" + rel_path
-
-            all_data.append(get_roles_data(obj, full_path))
+            traverse(obj, rel_path)
         except Exception as e:
             print(f"\nCould not access path '{rel_path}': {e}")
 
