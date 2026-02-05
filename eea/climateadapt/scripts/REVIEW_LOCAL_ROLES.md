@@ -8,17 +8,33 @@ Climate-ADAPT is a multilingual site. However, only the canonical English (`/en`
 
 ## Features
 
-- Reports local roles for the **Portal Root**.
-- Reports local roles for the **Main Site** (`/en`).
-- Reports local roles for the **Mission Subsite** (`/en/mission`).
-- Reports local roles for the **Observatory Subsite** (`/en/observatory`).
-- Detects and flags **Inheritance Blocking** (where `__ac_local_roles_block__` is set).
+- **Recursive Reporting**: Automatically traverses the portal root and key subsites (`/en`, `/en/mission`, `/en/observatory`) to find nested local roles.
+- **Noise Reduction**: 
+    - Filters out "uninteresting" users (e.g., developers like `tibi`, `tiberich`, and system admins).
+    - By default, hides entries that only have the `Owner` role assigned (unless inheritance is blocked at that level).
+- **Inheritance Detection**: Flags objects where inheritance is explicitly blocked (`__ac_local_roles_block__`).
+- **Multiple Output Formats**: Supports both human-readable console output and machine-readable CSV export.
 
 ## How to Run
 
-The script is registered as a console script within the `eea.climateadapt` package and is available in the backend container's `bin/` directory.
+The script is available via Makefile shortcuts or directly via `docker compose exec`.
 
-To run the report, use the following command from the `backend` folder (where `docker-compose.yml` is located):
+### Using Makefile (Recommended)
+
+From the project root (where `Makefile` is located):
+
+```bash
+# Standard console report
+make report-roles
+
+# Generate CSV report (saved as roles_report.csv in the container)
+make report-roles-csv
+
+# Include 'Owner' roles in the report
+make report-roles ARGS="--full"
+```
+
+### Manual Execution
 
 ```bash
 docker compose exec backend /app/docker-entrypoint.sh bin/report_roles --portal cca --zope-conf etc/relstorage.conf
@@ -30,24 +46,28 @@ To generate a CSV report:
 docker compose exec backend /app/docker-entrypoint.sh bin/report_roles --portal cca --zope-conf etc/relstorage.conf --csv roles_report.csv
 ```
 
-### Arguments
+## Arguments
 
 - `--portal`: The ID of the Plone portal (usually `cca`).
-- `--zope-conf`: Path to the Zope configuration file (usually `etc/relstorage.conf` in this environment).
+- `--zope-conf`: Path to the Zope configuration file (usually `etc/relstorage.conf`).
 - `--csv`: (Optional) Path to a CSV file to dump the report.
 - `--full`: (Optional) Include 'Owner' roles in the report. By default, entries that only have 'Owner' roles (and no blocked inheritance) are hidden to reduce noise.
 
+## Implementation Details
+
+- **Traversal**: The script uses `objectValues()` to recursively explore all folderish content.
+- **Excluded Paths**: Root-level translation folders (e.g., `/cca/ro`, `/cca/bg`) are automatically skipped during recursion.
+- **Ignored Users**: The `IGNORED_USER_IDS` constant in `report_roles.py` defines which principals are excluded from the report.
+
 ## Output Format
 
-The script prints the path being inspected, followed by a list of principals and their assigned roles. If inheritance is blocked at that level, it is explicitly indicated.
+The script prints the path being inspected, followed by a list of principals and their assigned roles.
 
 Example output:
 ```text
-Local roles for: /cca
+Local roles for: /cca/en/mission
   [Inheritance BLOCKED]
-  admin: Manager
-  EditorGroup: Editor, Reviewer
-
-Local roles for: /cca/en
-  principal_id: Role1, Role2
+  AuthenticatedUsers: Reader
+  extranet-cca-mission: Contributor, Reviewer, Editor, Reader
+  yilmabek: Manager
 ```
