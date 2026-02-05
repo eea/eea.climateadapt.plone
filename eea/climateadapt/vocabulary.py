@@ -1402,3 +1402,8 @@ _redirection_types = [
 ]
 redirection_types_vocabulary = generic_vocabulary(_redirection_types)
 alsoProvides(redirection_types_vocabulary, IVocabularyFactory)
+
+
+relevant_synergies = ["Yes", "No"]
+relevant_synergies_vocabulary = generic_vocabulary(relevant_synergies)
+alsoProvides(relevant_synergies_vocabulary, IVocabularyFactory)

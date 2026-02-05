@@ -212,5 +212,9 @@
   <utility
     name="eea.climateadapt.redirection_types"
     component=".vocabulary.redirection_types_vocabulary" />
+  <utility
+    name="eea.climateadapt.relevant_synergies"
+    component=".vocabulary.relevant_synergies_vocabulary"
+  />
 
 </configure>
