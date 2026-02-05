@@ -35,6 +35,7 @@ docker compose exec backend /app/docker-entrypoint.sh bin/report_roles --portal 
 - `--portal`: The ID of the Plone portal (usually `cca`).
 - `--zope-conf`: Path to the Zope configuration file (usually `etc/relstorage.conf` in this environment).
 - `--csv`: (Optional) Path to a CSV file to dump the report.
+- `--full`: (Optional) Include 'Owner' roles in the report. By default, entries that only have 'Owner' roles (and no blocked inheritance) are hidden to reduce noise.
 
 ## Output Format
 
