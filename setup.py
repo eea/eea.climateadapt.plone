@@ -65,6 +65,18 @@ setup(
       [z3c.autoinclude.plugin]
       target = plone
       [console_scripts]
+      climateadapt_importer = eea.climateadapt._importer:main
+      sync_to_arcgis = eea.climateadapt.scripts.sync_to_arcgis:main
+      arcgis_cli = eea.climateadapt.scripts.cli_arcgis_client:main
+      c3s = eea.climateadapt.scripts.c3s:main
+      get_broken_links = eea.climateadapt.browser.scripts:get_broken_links
+      sync_adaptecca_casestudies = eea.climateadapt.browser.scripts:sync_adaptecca_casestudies
+      import_drmkc = eea.climateadapt.browser.scripts:import_drmkc
+      archive_news = eea.climateadapt.browser.scripts:archive_news
+      harvest_eea_indicators = eea.climateadapt.scripts.harvest_eea_indicators:main
+      refresh_analytics_data = eea.climateadapt.browser.admin:refresh_analytics_data
+      run_translation_step_2 = eea.climateadapt.translation.scripts.translation:translation_step_2
+      migrate_to_volto = eea.climateadapt.migration.scripts:migrate_to_volto
       report_roles = eea.climateadapt.scripts.report_roles:main
       """,
 )
