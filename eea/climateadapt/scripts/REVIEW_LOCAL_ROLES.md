@@ -8,12 +8,13 @@ Climate-ADAPT is a multilingual site. However, only the canonical English (`/en`
 
 ## Features
 
-- **Recursive Reporting**: Automatically traverses the portal root and key subsites (`/en`, `/en/mission`, `/en/observatory`) to find nested local roles.
+- **Iterative Reporting**: Automatically traverses the portal root and key subsites (`/en`, `/en/mission`, `/en/observatory`) using a stack-based approach for maximum robustness.
 - **Noise Reduction**: 
     - Filters out "uninteresting" users (e.g., developers like `tibi`, `tiberich`, and system admins).
     - By default, hides entries that only have the `Owner` role assigned (unless inheritance is blocked at that level).
 - **Inheritance Detection**: Flags objects where inheritance is explicitly blocked (`__ac_local_roles_block__`).
 - **Multiple Output Formats**: Supports both human-readable console output and machine-readable CSV export.
+- **Fault Tolerance**: Designed to continue the report even if specific objects or folders encounter errors during traversal.
 
 ## How to Run
 
@@ -55,9 +56,16 @@ docker compose exec backend /app/docker-entrypoint.sh bin/report_roles --portal 
 
 ## Implementation Details
 
-- **Traversal**: The script uses `objectValues()` to recursively explore all folderish content.
-- **Excluded Paths**: Root-level translation folders (e.g., `/cca/ro`, `/cca/bg`) are automatically skipped during recursion.
-- **Ignored Users**: The `IGNORED_USER_IDS` constant in `report_roles.py` defines which principals are excluded from the report.
+- **Traversal**: The script uses a stack-based **iterative traversal** (instead of recursion) to explore content. This avoids `RecursionError` on deep structures and allows the script to recover from errors within specific branches.
+- **Content Filtering**: Instead of brittle hardcoded "skip lists" for system tools, it uses Zope interfaces (`IDexterityContent`, `IPloneSiteRoot`) to identify valid content.
+- **Dynamic Exclusion**: Root-level translation folders (e.g., `/cca/ro`, `/cca/bg`) are dynamically identified using the `ILanguageRootFolder` interface and skipped.
+- **Error Resilience**: Each object and its children are processed within `try...except` blocks. If an object is corrupted or a path is inaccessible, the script logs the error and continues with the rest of the database.
+
+### Lessons Learnt
+
+1. **Avoid Recursion for DB Crawls**: In large Zope databases, recursion can be dangerous. An unhandled exception or a `RecursionError` in one branch (like a deep translation folder) can abort the entire reporting process, masking data in other branches.
+2. **Interface over IDs**: Checking for `IDexterityContent` is more maintainable than maintaining a list of system IDs (`portal_catalog`, `portal_workflow`, etc.) to skip.
+3. **Partial Failures are Better than Total Failures**: When crawling a complex CMS, always wrap the "work" per object in a try-except. This ensures that a single problematic object doesn't prevent the user from seeing the rest of the report.
 
 ## Output Format
 
