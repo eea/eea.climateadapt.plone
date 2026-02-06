@@ -42,11 +42,23 @@ def get_workflow_data(portal):
 
                 # We only support DCWorkflow for deep documentation
                 if hasattr(wf, "states") and hasattr(wf, "transitions"):
+                    managed_permissions = getattr(wf, "permissions", [])
                     states = {}
                     for state_id, state in wf.states.items():
+                        # Extract permission roles for this state
+                        permissions = {}
+                        if hasattr(state, "permission_roles"):
+                            for perm in managed_permissions:
+                                roles = state.getPermissionRoles(perm)
+                                if isinstance(roles, str):
+                                    # It might be a string if it's a single role
+                                    roles = [roles]
+                                permissions[perm] = roles
+
                         states[state_id] = {
                             "title": state.title or state_id,
                             "description": state.description,
+                            "permissions": permissions,
                         }
 
                     transitions = {}
@@ -62,6 +74,7 @@ def get_workflow_data(portal):
                         "initial_state": wf.initial_state,
                         "states": states,
                         "transitions": transitions,
+                        "managed_permissions": managed_permissions,
                         "note": "",
                     }
                 else:
@@ -70,6 +83,7 @@ def get_workflow_data(portal):
                         "initial_state": "unknown",
                         "states": {},
                         "transitions": {},
+                        "managed_permissions": [],
                         "note": "Non-DCWorkflow type",
                     }
 
@@ -138,6 +152,11 @@ def run(app):
             print("  States:")
             for s_id, s_info in sorted(info["states"].items()):
                 print(f"    - {s_id} ({s_info['title']})")
+                if s_info.get("permissions"):
+                    print("      Permissions:")
+                    for perm, roles in sorted(s_info["permissions"].items()):
+                        roles_str = ", ".join(roles) if roles else "(no roles)"
+                        print(f"        {perm}: {roles_str}")
 
             print("  Transitions:")
             for t_id, t_info in sorted(info["transitions"].items()):

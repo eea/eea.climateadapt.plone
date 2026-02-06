@@ -40,9 +40,31 @@
                 <div tal:condition="info/states">
                     <h4>States</h4>
                     <ul>
-                        <li tal:repeat="s_id python:sorted(info['states'].keys())">
+                        <li tal:repeat="s_id python:sorted(info['states'].keys())" style="margin-bottom: 1em;">
                             <tal:block tal:define="s_info python:info['states'][s_id]">
                                 <strong tal:content="s_id">private</strong> (<span tal:content="s_info/title">Private</span>)
+                                
+                                <div tal:condition="s_info/permissions" style="margin-left: 2em; margin-top: 0.5em;">
+                                    <table class="listing" style="font-size: 0.9em; width: auto;">
+                                        <thead>
+                                            <tr>
+                                                <th>Permission</th>
+                                                <th>Roles</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr tal:repeat="perm python:sorted(s_info['permissions'].keys())">
+                                                <td tal:content="perm">View</td>
+                                                <td>
+                                                    <span tal:define="roles python:s_info['permissions'][perm]"
+                                                          tal:content="python:', '.join(roles) if roles else '(no roles)'">
+                                                        Owner, Manager
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </tal:block>
                         </li>
                     </ul>
