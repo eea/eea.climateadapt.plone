@@ -108,6 +108,7 @@ def get_local_roles_report(portal, include_owner=False):
                     "sk",
                     "sl",
                     "sv",
+                    "tr",
                 ]:
                     continue
 
