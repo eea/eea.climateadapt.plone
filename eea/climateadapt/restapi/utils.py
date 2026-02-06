@@ -43,19 +43,23 @@ def get_geographic(item, result={}):
 
 
 def use_blocks_from_fti(context, result):
+    # Only use FTI defaults if the object has no blocks stored
+    if result.get("blocks") or result.get("blocks_layout"):
+        # Object already has blocks, don't override
+        return result
+    
     blocks = None
     blocks_layout = None
-
     for schema in iterSchemata(context):
         for name, field in getFields(schema).items():
             if name == "blocks" and field.default and not blocks:
                 blocks = field.default
             if name == "blocks_layout" and field.default and not blocks_layout:
                 blocks_layout = field.default
+    
     if blocks:
         result["blocks"] = blocks
         result["blocks_layout"] = blocks_layout
-
     return result
 
 
