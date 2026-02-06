@@ -15,6 +15,7 @@ IGNORED_USER_IDS = [
     "krisztina",
     "tripodor",
     "eugentripon",
+    "iuliantest",
 ]
 
 
