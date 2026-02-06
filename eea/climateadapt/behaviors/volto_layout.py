@@ -2919,11 +2919,25 @@ case_study_layout_blocks = {
 adaptation_option_layout_items = [
     "ec2dd403-0964-413c-ac37-67c2bbc0a4c9",
     "a9dd800e-d56f-439a-9277-b82e7e0afd0f",
-    "1ec6dc0f-e15a-4c1f-827e-0152ab2cad6e",
+    "51cf893d-fa12-47b8-98b2-670b19bc6d81",
+    "c68bcb7e-b899-4d2f-a87b-161c38b98a35",
 ]
 
 adaptation_option_layout_blocks = {
-    "1ec6dc0f-e15a-4c1f-827e-0152ab2cad6e": {"@type": "slate"},
+    "51cf893d-fa12-47b8-98b2-670b19bc6d81": {
+        "@type": "slate",
+        "plaintext": "Related resources",
+        "value": [
+            {
+                "children": [
+                    {
+                        "text": "Related resources"
+                    }
+                ],
+                "type": "h3"
+            }
+        ]
+    },
     "a9dd800e-d56f-439a-9277-b82e7e0afd0f": {
         "@type": "tabs_block",
         "data": {
@@ -3335,6 +3349,469 @@ adaptation_option_layout_blocks = {
         },
         "template": "default",
         "verticalAlign": "flex-start",
+    },
+    "c68bcb7e-b899-4d2f-a87b-161c38b98a35": {
+        "@type": "tabs_block",
+        "data": {
+            "assetPosition": "top",
+            "blocks": {
+                "0b037ab3-4eb5-44e7-be80-d41cde2ef842": {
+                    "@type": "tab",
+                    "assetPosition": "top",
+                    "blocks": {
+                        "4ec61167-9f41-437b-bad5-3196b48c71af": {
+                            "@type": "gridBlock",
+                            "blocks": {
+                                "38d950cb-1182-41f2-9f2b-c52e5e92837a": {
+                                    "@type": "teaser",
+                                    "description": "summary text here",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "73aa1701-c78a-4452-8a7f-006e8f9bf98b": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "a9aa7eed-ecd6-484c-a4e2-29badce6dd08": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "c28ad344-f933-444d-b8c8-4eee36f85675": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "cbb5b136-2e16-4e43-84d0-dc85910f685c": {
+                                    "@type": "teaser",
+                                    "description": "fdsfsfs ",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "fe8abe08-15e2-47fd-ba7d-182aa243b008": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                }
+                            },
+                            "blocks_layout": {
+                                "items": [
+                                    "fe8abe08-15e2-47fd-ba7d-182aa243b008",
+                                    "cbb5b136-2e16-4e43-84d0-dc85910f685c",
+                                    "38d950cb-1182-41f2-9f2b-c52e5e92837a",
+                                    "c28ad344-f933-444d-b8c8-4eee36f85675",
+                                    "a9aa7eed-ecd6-484c-a4e2-29badce6dd08",
+                                    "73aa1701-c78a-4452-8a7f-006e8f9bf98b"
+                                ]
+                            }
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "4ec61167-9f41-437b-bad5-3196b48c71af"
+                        ]
+                    },
+                    "iconSize": "small",
+                    "imageSize": "icon",
+                    "title": "Specific adaptation options"
+                },
+                "36755c43-8554-4aa7-a4e1-5925caeee0fe": {
+                    "@type": "tab",
+                    "assetPosition": "top",
+                    "blocks": {
+                        "eeb7a670-e1a9-4480-a699-efcde127de73": {
+                            "@type": "columnsBlock",
+                            "data": {
+                                "blocks": {
+                                    "0bdb2f01-1e90-49d7-8d5e-1fcbca81d325": {
+                                        "blocks": {
+                                            "aedea9f2-ba01-447f-beef-4339af2c833f": {
+                                                "@type": "callToActionBlock",
+                                                "download": False,
+                                                "styles": {
+                                                    "theme": "primary"
+                                                },
+                                                "text": "Click here for more information"
+                                            }
+                                        },
+                                        "blocks_layout": {
+                                            "items": [
+                                                "aedea9f2-ba01-447f-beef-4339af2c833f"
+                                            ]
+                                        }
+                                    },
+                                    "123c6477-1351-4452-945a-6301bb299ea1": {
+                                        "blocks": {
+                                            "54779ea5-10ae-455a-8d2b-4d0852d347e7": {
+                                                "@type": "slate"
+                                            }
+                                        },
+                                        "blocks_layout": {
+                                            "items": [
+                                                "54779ea5-10ae-455a-8d2b-4d0852d347e7"
+                                            ]
+                                        }
+                                    },
+                                    "9ccad2eb-017c-471c-b69c-66f14134a9b5": {
+                                        "blocks": {
+                                            "26bba3bb-e577-41db-9dfe-1bf7b1a3557f": {
+                                                "@type": "slate"
+                                            }
+                                        },
+                                        "blocks_layout": {
+                                            "items": [
+                                                "26bba3bb-e577-41db-9dfe-1bf7b1a3557f"
+                                            ]
+                                        }
+                                    },
+                                    "ca1c651f-dee2-4867-aa65-9a739dae54df": {
+                                        "blocks": {
+                                            "1fb9f1a4-3b0b-4a03-b4e7-e831f1241e53": {
+                                                "@type": "callToActionBlock",
+                                                "download": False,
+                                                "styles": {
+                                                    "theme": "primary"
+                                                },
+                                                "text": "Natural water retention measures"
+                                            }
+                                        },
+                                        "blocks_layout": {
+                                            "items": [
+                                                "1fb9f1a4-3b0b-4a03-b4e7-e831f1241e53"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "blocks_layout": {
+                                    "items": [
+                                        "ca1c651f-dee2-4867-aa65-9a739dae54df",
+                                        "0bdb2f01-1e90-49d7-8d5e-1fcbca81d325",
+                                        "123c6477-1351-4452-945a-6301bb299ea1",
+                                        "9ccad2eb-017c-471c-b69c-66f14134a9b5"
+                                    ]
+                                }
+                            },
+                            "gridCols": [
+                                "oneQuarter",
+                                "oneQuarter",
+                                "oneQuarter",
+                                "oneQuarter"
+                            ],
+                            "gridSize": 12,
+                            "styles": {}
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "eeb7a670-e1a9-4480-a699-efcde127de73"
+                        ]
+                    },
+                    "iconSize": "small",
+                    "imageSize": "icon",
+                    "title": "Implementation measures and techniques"
+                },
+                "d67e1cd3-c7d1-41ed-96de-4b825e99448a": {
+                    "@type": "tab",
+                    "assetPosition": "top",
+                    "blocks": {
+                        "37e57ff7-c784-48e0-bb5a-8cf79df1ec7f": {
+                            "@type": "gridBlock",
+                            "blocks": {
+                                "38d950cb-1182-41f2-9f2b-c52e5e92837a": {
+                                    "@type": "teaser",
+                                    "description": "summary text here",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "73aa1701-c78a-4452-8a7f-006e8f9bf98b": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "a9aa7eed-ecd6-484c-a4e2-29badce6dd08": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "c28ad344-f933-444d-b8c8-4eee36f85675": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "cbb5b136-2e16-4e43-84d0-dc85910f685c": {
+                                    "@type": "teaser",
+                                    "description": "fdsfsfs ",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "fe8abe08-15e2-47fd-ba7d-182aa243b008": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                }
+                            },
+                            "blocks_layout": {
+                                "items": [
+                                    "fe8abe08-15e2-47fd-ba7d-182aa243b008",
+                                    "cbb5b136-2e16-4e43-84d0-dc85910f685c",
+                                    "38d950cb-1182-41f2-9f2b-c52e5e92837a",
+                                    "c28ad344-f933-444d-b8c8-4eee36f85675",
+                                    "a9aa7eed-ecd6-484c-a4e2-29badce6dd08",
+                                    "73aa1701-c78a-4452-8a7f-006e8f9bf98b"
+                                ]
+                            }
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "37e57ff7-c784-48e0-bb5a-8cf79df1ec7f"
+                        ]
+                    },
+                    "iconSize": "small",
+                    "imageSize": "icon",
+                    "title": "Strategic adaptation options"
+                }
+            },
+            "blocks_layout": {
+                "items": [
+                    "d67e1cd3-c7d1-41ed-96de-4b825e99448a",
+                    "0b037ab3-4eb5-44e7-be80-d41cde2ef842",
+                    "36755c43-8554-4aa7-a4e1-5925caeee0fe"
+                ]
+            },
+            "iconSize": "small",
+            "imageSize": "icon"
+        },
+        "menuFluid": True,
+        "menuPointing": True,
+        "menuSecondary": True,
+        "variation": "default",
+        "verticalAlign": "flex-start"
     },
     "ec2dd403-0964-413c-ac37-67c2bbc0a4c9": {
         "@type": "title",
