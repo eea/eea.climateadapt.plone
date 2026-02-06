@@ -32,34 +32,37 @@
 
         <h2>Workflow Definitions</h2>
         <div tal:repeat="wf_id python:sorted(view.data['workflow_definitions'].keys())"
-             tal:define="info python:view.data['workflow_definitions'][wf_id]"
              style="margin-bottom: 2em; border-bottom: 1px solid #ccc; padding-bottom: 1em;">
-            <h3 tal:content="python:'Workflow: ' + wf_id + ' (' + info['title'] + ')'">Workflow ID</h3>
-            <p><strong>Initial State:</strong> <span tal:content="info/initial_state">private</span></p>
+            <tal:block tal:define="info python:view.data['workflow_definitions'][wf_id]">
+                <h3 tal:content="python:'Workflow: ' + wf_id + ' (' + info['title'] + ')'">Workflow ID</h3>
+                <p><strong>Initial State:</strong> <span tal:content="info/initial_state">private</span></p>
 
-            <div tal:condition="info/states">
-                <h4>States</h4>
-                <ul>
-                    <li tal:repeat="s_id python:sorted(info['states'].keys())"
-                        tal:define="s_info python:info['states'][s_id]">
-                        <strong tal:content="s_id">private</strong> (<span tal:content="s_info/title">Private</span>)
-                    </li>
-                </ul>
-            </div>
+                <div tal:condition="info/states">
+                    <h4>States</h4>
+                    <ul>
+                        <li tal:repeat="s_id python:sorted(info['states'].keys())">
+                            <tal:block tal:define="s_info python:info['states'][s_id]">
+                                <strong tal:content="s_id">private</strong> (<span tal:content="s_info/title">Private</span>)
+                            </tal:block>
+                        </li>
+                    </ul>
+                </div>
 
-            <div tal:condition="info/transitions">
-                <h4>Transitions</h4>
-                <ul>
-                    <li tal:repeat="t_id python:sorted(info['transitions'].keys())"
-                        tal:define="t_info python:info['transitions'][t_id]">
-                        <strong tal:content="t_id">submit</strong> (<span tal:content="t_info/title">Submit</span>) 
-                        &rarr; 
-                        <span tal:content="python:t_info['new_state_id'] or '(remains in same state)'">pending</span>
-                    </li>
-                </ul>
-            </div>
-            
-            <p tal:condition="info/note" tal:content="info/note" style="color: #666; font-style: italic;"></p>
+                <div tal:condition="info/transitions">
+                    <h4>Transitions</h4>
+                    <ul>
+                        <li tal:repeat="t_id python:sorted(info['transitions'].keys())">
+                            <tal:block tal:define="t_info python:info['transitions'][t_id]">
+                                <strong tal:content="t_id">submit</strong> (<span tal:content="t_info/title">Submit</span>) 
+                                &rarr; 
+                                <span tal:content="python:t_info['new_state_id'] or '(remains in same state)'">pending</span>
+                            </tal:block>
+                        </li>
+                    </ul>
+                </div>
+                
+                <p tal:condition="info/note" tal:content="info/note" style="color: #666; font-style: italic;"></p>
+            </tal:block>
         </div>
     </div>
 </metal:main>
