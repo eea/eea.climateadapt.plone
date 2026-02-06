@@ -66,5 +66,6 @@ setup(
       target = plone
       [console_scripts]
       report_roles = eea.climateadapt.scripts.report_roles:main
+      document_workflows = eea.climateadapt.scripts.document_workflows:main
       """,
 )
