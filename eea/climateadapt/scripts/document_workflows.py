@@ -44,10 +44,11 @@ def get_workflow_data(portal):
                 if hasattr(wf, "states") and hasattr(wf, "transitions"):
                     managed_permissions = getattr(wf, "permissions", [])
                     states = {}
-                    for state_id, state in wf.states.items():
+                    for state_id in wf.states.keys():
+                        state = wf.states.get(state_id)
                         # Extract permission roles for this state
                         permissions = {}
-                        if hasattr(state, "permission_roles"):
+                        if hasattr(state, "getPermissionRoles"):
                             for perm in managed_permissions:
                                 roles = state.getPermissionRoles(perm)
                                 if isinstance(roles, str):
