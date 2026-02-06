@@ -4,6 +4,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+from plone.app.multilingual.interfaces import ILanguageRootFolder
+from plone.base.interfaces import IPloneSiteRoot
+from plone.dexterity.interfaces import IDexterityContent
+
 IGNORED_USER_IDS = [
     "admin",
     "eugentripon",
@@ -58,62 +62,9 @@ def get_local_roles_report(portal, include_owner=False):
     seen_paths = set()
     portal_id = portal.getId()
 
-    def traverse(obj, current_rel_path):
-        full_path = (
-            "/" + portal_id + (f"/{current_rel_path}" if current_rel_path else "")
-        )
-        if full_path in seen_paths:
-            return
-        seen_paths.add(full_path)
-
-        data = get_roles_data(obj, full_path, include_owner=include_owner)
-        # Include any object that has local roles or blocked inheritance
-        if data["roles"] or data["blocked"]:
-            all_data.append(data)
-
-        # Recurse into children if it's folder-like
-        if hasattr(obj, "objectValues"):
-            for child in obj.objectValues():
-                id = child.getId()
-                # Skip some obviously uninteresting system folders/objects if they appear
-                if id in ["portal_catalog", "portal_workflow", "portal_types"]:
-                    continue
-
-                # For Climate-ADAPT, we want to skip the translation folders during recursion
-                # if they are at the root level (e.g., /cca/ro, /cca/de)
-                # except for 'en' which is our starting point anyway.
-                if not current_rel_path and id in [
-                    "bg",
-                    "cs",
-                    "da",
-                    "de",
-                    "el",
-                    "es",
-                    "et",
-                    "fi",
-                    "fr",
-                    "ga",
-                    "hr",
-                    "hu",
-                    "it",
-                    "is",
-                    "lt",
-                    "lv",
-                    "mt",
-                    "nn",
-                    "nl",
-                    "pl",
-                    "pt",
-                    "ro",
-                    "sk",
-                    "sl",
-                    "sv",
-                    "tr",
-                ]:
-                    continue
-
-                child_rel_path = f"{current_rel_path}/{id}" if current_rel_path else id
-                traverse(child, child_rel_path)
+    # Use a stack for iterative traversal to be robust against RecursionError
+    # and to allow better error handling per object.
+    stack = []
 
     for rel_path in start_paths:
         try:
@@ -121,8 +72,64 @@ def get_local_roles_report(portal, include_owner=False):
                 obj = portal
             else:
                 obj = portal.unrestrictedTraverse(rel_path)
-            traverse(obj, rel_path)
+            stack.append((obj, rel_path))
         except Exception as e:
-            logger.warning(f"Could not access path '{rel_path}': {e}")
+            logger.warning(f"Could not access start path '{rel_path}': {e}")
+
+    while stack:
+        obj, current_rel_path = stack.pop()
+
+        full_path = (
+            "/" + portal_id + (f"/{current_rel_path}" if current_rel_path else "")
+        )
+
+        if full_path in seen_paths:
+            continue
+        seen_paths.add(full_path)
+
+        try:
+            data = get_roles_data(obj, full_path, include_owner=include_owner)
+            # Include any object that has local roles or blocked inheritance
+            if data["roles"] or data["blocked"]:
+                all_data.append(data)
+        except Exception as e:
+            logger.error(f"Error getting roles data for {full_path}: {e}")
+            continue
+
+        # Recurse into children if it's folder-like
+        if hasattr(obj, "objectValues"):
+            try:
+                children = obj.objectValues()
+            except Exception as e:
+                logger.error(f"Error getting children for {full_path}: {e}")
+                continue
+
+            for child in children:
+                try:
+                    child_id = child.getId()
+                except Exception as e:
+                    logger.error(f"Error getting ID for child of {full_path}: {e}")
+                    continue
+
+                # Filter for content objects: must be Dexterity content or the portal root
+                if not (
+                    IDexterityContent.providedBy(child)
+                    or IPloneSiteRoot.providedBy(child)
+                ):
+                    continue
+
+                # For Climate-ADAPT, we want to skip the translation folders
+                # if they are at the root level (except for 'en').
+                if not current_rel_path and child_id != "en":
+                    try:
+                        if ILanguageRootFolder.providedBy(child):
+                            continue
+                    except Exception:
+                        # Fallback if interface check fails
+                        if len(child_id) == 2:
+                            continue
+
+                child_rel_path = f"{current_rel_path}/{child_id}" if current_rel_path else child_id
+                stack.append((child, child_rel_path))
 
     return all_data
