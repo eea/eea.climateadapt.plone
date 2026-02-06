@@ -18,24 +18,26 @@ Understanding the lifecycle of different content types is crucial for both devel
 
 ## How to Run
 
-The script will be available via Makefile shortcuts or directly via `docker compose exec`.
+The script is registered as a console script and should be run within the Docker environment.
 
 ### Setup
 
-Before running the script for the first time, ensure the environment is prepared:
+For the console script to be available, you must first install the package dependencies within the container (this registers the entry points):
 
 ```bash
-docker compose exec backend ./docker-entrypoint.sh bin/pip install -r requirements-mxdev.txt
+docker compose exec backend bin/pip install -r requirements-mxdev.txt
 ```
 
 ### Execution
 
+Run the script using `docker compose exec`. Note that you must provide the `--zope-conf` argument pointing to the configuration file.
+
 ```bash
 # Standard console report
-docker compose exec backend /app/docker-entrypoint.sh bin/instance run src/eea.climateadapt/eea/climateadapt/scripts/document_workflows.py --portal cca
+docker compose exec backend /app/docker-entrypoint.sh bin/document_workflows --portal cca --zope-conf etc/relstorage.conf
 
 # Generate JSON report
-docker compose exec backend /app/docker-entrypoint.sh bin/instance run src/eea.climateadapt/eea/climateadapt/scripts/document_workflows.py --portal cca --json workflows.json
+docker compose exec backend /app/docker-entrypoint.sh bin/document_workflows --portal cca --zope-conf etc/relstorage.conf --json workflows.json
 ```
 
 ## Implementation Details
