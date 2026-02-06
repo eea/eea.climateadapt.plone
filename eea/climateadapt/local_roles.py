@@ -96,6 +96,7 @@ def get_local_roles_report(portal, include_owner=False):
                     "hr",
                     "hu",
                     "it",
+                    "is",
                     "lt",
                     "lv",
                     "mt",
