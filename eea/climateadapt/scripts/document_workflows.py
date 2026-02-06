@@ -48,13 +48,20 @@ def get_workflow_data(portal):
                         state = wf.states.get(state_id)
                         # Extract permission roles for this state
                         permissions = {}
-                        if hasattr(state, "getPermissionRoles"):
-                            for perm in managed_permissions:
-                                roles = state.getPermissionRoles(perm)
-                                if isinstance(roles, str):
-                                    # It might be a string if it's a single role
-                                    roles = [roles]
-                                permissions[perm] = roles
+                        
+                        # In DCWorkflow, permission_roles is a dict-like object
+                        # mapping permission name to a tuple of roles.
+                        raw_permissions = getattr(state, "permission_roles", {})
+                        
+                        for perm in managed_permissions:
+                            # Use the same logic DCWorkflow uses internally
+                            roles = raw_permissions.get(perm, [])
+                            if isinstance(roles, tuple):
+                                roles = list(roles)
+                            elif isinstance(roles, str):
+                                roles = [roles]
+                            
+                            permissions[perm] = roles
 
                         states[state_id] = {
                             "title": state.title or state_id,
