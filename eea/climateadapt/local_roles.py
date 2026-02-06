@@ -5,17 +5,19 @@ import logging
 logger = logging.getLogger(__name__)
 
 IGNORED_USER_IDS = [
-    "tibi",
-    "tibiadmin",
-    "tiberich",
     "admin",
-    "zopeadmineugentripon",
+    "eugentripon",
+    "eugentripon",
     "ghicaale",
     "ghitab",
-    "krisztina",
-    "tripodor",
-    "eugentripon",
     "iuliantest",
+    "krisztina",
+    "tiberich",
+    "tibi",
+    "tibiadmin",
+    "tibitest",
+    "tripodor",
+    "zopeadmin",
 ]
 
 
