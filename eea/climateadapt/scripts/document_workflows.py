@@ -67,6 +67,7 @@ def get_workflow_data(portal):
                             "title": state.title or state_id,
                             "description": state.description,
                             "permissions": permissions,
+                            "transitions": getattr(state, "transitions", []),
                         }
 
                     transitions = {}
