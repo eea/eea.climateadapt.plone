@@ -61,7 +61,9 @@
                     </ul>
                 </div>
                 
-                <p tal:condition="info/note" tal:content="info/note" style="color: #666; font-style: italic;"></p>
+                <p tal:condition="python:info.get('note')" 
+                   tal:content="python:info.get('note')" 
+                   style="color: #666; font-style: italic;"></p>
             </tal:block>
         </div>
     </div>

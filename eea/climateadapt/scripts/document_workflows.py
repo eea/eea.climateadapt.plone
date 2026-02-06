@@ -62,6 +62,7 @@ def get_workflow_data(portal):
                         "initial_state": wf.initial_state,
                         "states": states,
                         "transitions": transitions,
+                        "note": "",
                     }
                 else:
                     workflow_info[wf_id] = {
