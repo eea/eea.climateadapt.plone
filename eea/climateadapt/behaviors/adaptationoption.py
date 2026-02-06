@@ -5,7 +5,7 @@ from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from z3c.relationfield.schema import RelationChoice, RelationList
 from zope.interface import alsoProvides
-from zope.schema import Choice, Date, List
+from zope.schema import Choice, Date, List, Bool
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
@@ -99,6 +99,16 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         vocabulary="eea.climateadapt.relevant_synergies",
     )
 
+    show_related_resources = Bool(
+        title=_("Show Related Resources"),
+        description=_(
+            "If selected, the tabs with 'Related resources' will be shown in the "
+            "view of the item."
+        ),
+        required=False, 
+        default=False
+    )
+
     blocks = JSONField(
         title=_("Blocks"),
         description=_("The JSON representation of the object blocks."),
@@ -125,4 +135,6 @@ alsoProvides(IAdaptationOption["intro_paragraph"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["advantages"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["disadvantages"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["relevant_synergies"], ILanguageIndependentField)
+alsoProvides(IAdaptationOption["source"], ILanguageIndependentField)
+alsoProvides(IAdaptationOption["show_related_resources"], ILanguageIndependentField)
 
