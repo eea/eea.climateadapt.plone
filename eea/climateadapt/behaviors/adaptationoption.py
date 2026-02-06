@@ -15,12 +15,6 @@ from .volto_layout import adaptation_option_layout_blocks, adaptation_option_lay
 class IAdaptationOption(IAceMeasure, IBlocks):
     """Adaptation Option"""
 
-    # directives.omitted(IEditForm, 'featured')
-    # directives.omitted(IAddForm, 'featured')
-
-    # directives.omitted(IEditForm, 'year')
-    # directives.omitted(IAddForm, 'year')
-
     directives.widget(
         key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_type_measures = List(
