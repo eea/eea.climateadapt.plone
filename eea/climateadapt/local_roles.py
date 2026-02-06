@@ -56,7 +56,9 @@ def get_local_roles_report(portal, include_owner=False):
     portal_id = portal.getId()
 
     def traverse(obj, current_rel_path):
-        full_path = "/" + portal_id + (f"/{current_rel_path}" if current_rel_path else "")
+        full_path = (
+            "/" + portal_id + (f"/{current_rel_path}" if current_rel_path else "")
+        )
         if full_path in seen_paths:
             return
         seen_paths.add(full_path)
@@ -94,6 +96,7 @@ def get_local_roles_report(portal, include_owner=False):
                     "lt",
                     "lv",
                     "mt",
+                    "nn",
                     "nl",
                     "pl",
                     "pt",
