@@ -2926,12 +2926,12 @@ adaptation_option_layout_items = [
 adaptation_option_layout_blocks = {
     "51cf893d-fa12-47b8-98b2-670b19bc6d81": {
         "@type": "slate",
-        "plaintext": "Related resources",
+        "plaintext": "Related Resources",
         "value": [
             {
                 "children": [
                     {
-                        "text": "Related resources"
+                        "text": "Related Resources"
                     }
                 ],
                 "type": "h3"

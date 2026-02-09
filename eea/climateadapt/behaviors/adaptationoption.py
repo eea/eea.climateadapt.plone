@@ -106,7 +106,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
             "view of the item."
         ),
         required=False, 
-        default=False
+        default=True
     )
 
     blocks = JSONField(
