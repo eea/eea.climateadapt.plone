@@ -5,9 +5,12 @@ from plone.dexterity.utils import iterSchemata
 from plone.restapi.serializer.converters import json_compatible
 from zope.schema import getFields
 from plone.restapi.serializer.blocks import uid_to_url
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
 
 from eea.climateadapt.browser import get_date_updated, get_files
 from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
+from eea.climateadapt.vocabulary import RELEVANT_EU_POLICY_URLS
 
 
 def get_geographic(item, result={}):
@@ -328,3 +331,28 @@ def richtext_to_plain_text(value):
         html = value.get("data", "")
         return html_to_plain_text(html, inline_links=False)
     return value
+
+def serialize_relevant_eu_policies(context):
+    values = getattr(context, "relevant_eu_policies", None) or []
+    if not values:
+        return []
+
+    vocab_factory = getUtility(IVocabularyFactory, "eea.climateadapt.relevant_eu_policies")
+    vocab = vocab_factory(context)
+
+    out = []
+    for v in values:
+        try:
+            term = vocab.getTerm(v)
+            title = term.title
+        except LookupError:
+            title = v
+
+        out.append(
+            {
+                "id": v,
+                "title": title,
+                "url": RELEVANT_EU_POLICY_URLS.get(v),
+            }
+        )
+    return out

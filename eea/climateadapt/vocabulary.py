@@ -1407,3 +1407,15 @@ alsoProvides(redirection_types_vocabulary, IVocabularyFactory)
 relevant_synergies = ["Yes", "No"]
 relevant_synergies_vocabulary = generic_vocabulary(relevant_synergies)
 alsoProvides(relevant_synergies_vocabulary, IVocabularyFactory)
+
+relevant_eu_policies = [
+    ("EU_FLOODS", _("EU Flood Directive")),
+    ("EU_WFD", _("EU Water Framework Directive")),
+]
+relevant_eu_policies_vocabulary = generic_vocabulary(relevant_eu_policies, sort=False)
+alsoProvides(relevant_eu_policies_vocabulary, IVocabularyFactory)
+
+RELEVANT_EU_POLICY_URLS = {
+    "EU_FLOODS": "https://environment.ec.europa.eu/topics/water/floods_en",
+    "EU_WFD": "https://environment.ec.europa.eu/topics/water/water-framework-directive_en",
+}

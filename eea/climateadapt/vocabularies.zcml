@@ -216,5 +216,9 @@
     name="eea.climateadapt.relevant_synergies"
     component=".vocabulary.relevant_synergies_vocabulary"
   />
+  <utility
+    name="eea.climateadapt.relevant_eu_policies"
+    component=".vocabulary.relevant_eu_policies_vocabulary"
+  />
 
 </configure>

@@ -3276,6 +3276,15 @@ adaptation_option_layout_blocks = {
                                     },
                                 },
                                 {
+                                    "@id": "1ed89d52-1475-4590-bcfb-645442f01acc",
+                                    "field": {
+                                        "id": "relevant_eu_policies",
+                                        "title": "Relevant EU policies",
+                                        "widget": "array"
+                                    },
+                                    "showLabel": True
+                                },
+                                {
                                     "@id": "d4f5e6a7-b8c9-4d0e-9f1a-2b3c4d5e6f7g",
                                     "field": {
                                         "id": "relevant_synergies",

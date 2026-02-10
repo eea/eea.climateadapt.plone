@@ -83,6 +83,15 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         required=False,
     )
 
+    directives.widget(
+        relevant_eu_policies="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    relevant_eu_policies = List(
+        title=_("Relevant EU policies"),
+        required=False,
+        value_type=Choice(vocabulary="eea.climateadapt.relevant_eu_policies"),
+    )
+
     advantages = RichText(
         title=_("Advantages"),
         required=False,
