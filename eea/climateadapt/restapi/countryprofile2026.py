@@ -58,11 +58,13 @@ class CountryProfile2026(object):
         data = {
             "json": None,
             "html": None,
+            "content": [],
             "updated": None,
             "message_top": None,
             "top_accordeon": None,
             "menu": [],
         }
+
         country_id = self.context.getId().lower()
         if country_id in fixed_data:
             html = fixed_data[country_id]
@@ -74,8 +76,6 @@ class CountryProfile2026(object):
 
         e = lxml.html.fromstring(html)
 
-        # import pdb
-        # pdb.set_trace()
         if country_id in [
             # "turkiye",
             # "turkey",
@@ -245,7 +245,8 @@ class CountryProfile2026(object):
         result = {
             "countryprofile2026": {
                 "@id": "{}/@countryprofile2026".format(self.context.absolute_url()),
-                "html": data['html'],
+                "menu": data['menu'],
+                "content": data['content'],
                 "json": data['json'],
             }
         }

@@ -1,0 +1,141 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="eea.climateadapt">
+<head>
+    <metal:block fill-slot="style_slot">
+        <style type="text/css">
+            .wf-container { margin-bottom: 4em; border: 1px solid #ddd; padding: 20px; border-radius: 5px; background: #f9f9f9; }
+            .wf-title { border-bottom: 2px solid #007bb1; padding-bottom: 5px; margin-top: 0; color: #007bb1; }
+            .wf-section-title { margin-top: 2em; border-left: 5px solid #ccc; padding-left: 10px; color: #555; }
+            table.wf-table { width: 100%; border-collapse: collapse; margin-bottom: 1em; background: white; }
+            table.wf-table th, table.wf-table td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+            table.wf-table th { background-color: #eee; font-weight: bold; }
+            .perm-table { font-size: 0.85em; width: 100%; margin-top: 5px; }
+            .perm-table td { padding: 4px !important; }
+            .state-id { font-family: monospace; font-weight: bold; color: #c00; }
+            .trans-arrow { color: #888; font-weight: bold; }
+        </style>
+    </metal:block>
+</head>
+<body>
+
+<metal:main fill-slot="main">
+    <h1>Workflow and Content Type Documentation</h1>
+
+    <div id="content-core">
+        <p class="discreet">This page provides an overview of the content types and their associated workflows in the Climate-ADAPT portal.</p>
+
+        <h2>Content Type to Workflow Mapping</h2>
+        <table class="listing wf-table">
+            <thead>
+                <tr>
+                    <th>Content Type</th>
+                    <th>Assigned Workflow(s)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="type_id python:sorted(view.data['type_to_workflow'].keys())">
+                    <td tal:content="type_id" style="font-weight: bold;">News Item</td>
+                    <td>
+                        <ul tal:define="workflows python:view.data['type_to_workflow'][type_id]"
+                            tal:condition="workflows" style="margin: 0; padding-left: 20px;">
+                            <li tal:repeat="wf_id workflows">
+                                <a tal:attributes="href string:#wf-${wf_id}" tal:content="wf_id">news_workflow</a>
+                            </li>
+                        </ul>
+                        <span tal:condition="not:python:view.data['type_to_workflow'][type_id]" class="discreet">(no workflow)</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Workflow Definitions</h2>
+        
+        <div tal:repeat="wf_id python:sorted(view.data['workflow_definitions'].keys())"
+             class="wf-container"
+             tal:attributes="id string:wf-${wf_id}">
+            
+            <tal:block tal:define="info python:view.data['workflow_definitions'][wf_id]">
+                <h3 class="wf-title" tal:content="python:info['title'] + ' (' + wf_id + ')'">Workflow Title (ID)</h3>
+                
+                <p><strong>Initial State:</strong> <span class="state-id" tal:content="info/initial_state">private</span></p>
+                <p tal:condition="python:info.get('note')" 
+                   tal:content="python:info.get('note')" 
+                   style="color: #d9534f; font-weight: bold;"></p>
+
+                <div tal:condition="info/states">
+                    <h4 class="wf-section-title">States and Permissions</h4>
+                    <table class="wf-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">State</th>
+                                <th style="width: 25%;">Available Transitions</th>
+                                <th>Permission Mappings (Role-based)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr tal:repeat="s_id python:sorted(info['states'].keys())">
+                                <tal:block tal:define="s_info python:info['states'][s_id]">
+                                    <td>
+                                        <div class="state-id" tal:content="s_id">private</div>
+                                        <div tal:content="s_info/title" style="font-size: 0.9em; color: #666;">Private</div>
+                                    </td>
+                                    <td>
+                                        <ul style="margin: 0; padding-left: 15px; font-size: 0.9em;">
+                                            <li tal:repeat="t_id python:sorted(s_info.get('transitions', []))">
+                                                <a tal:attributes="href string:#wf-${wf_id}-trans-${t_id}" tal:content="t_id">submit</a>
+                                            </li>
+                                        </ul>
+                                        <span tal:condition="not:python:s_info.get('transitions')" class="discreet" style="font-size: 0.8em;">(none)</span>
+                                    </td>
+                                    <td>
+                                        <table class="perm-table" tal:condition="s_info/permissions">
+                                            <tr tal:repeat="perm python:sorted(s_info['permissions'].keys())">
+                                                <td style="font-weight: bold; width: 40%;" tal:content="perm">View</td>
+                                                <td tal:define="roles python:s_info['permissions'][perm]"
+                                                    tal:content="python:', '.join(roles) if roles else '(no roles)'">
+                                                    Owner, Manager
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <span tal:condition="not:s_info/permissions" class="discreet">No managed permissions</span>
+                                    </td>
+                                </tal:block>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div tal:condition="info/transitions">
+                    <h4 class="wf-section-title">Transitions Details</h4>
+                    <table class="wf-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Target State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr tal:repeat="t_id python:sorted(info['transitions'].keys())"
+                                tal:attributes="id string:wf-${wf_id}-trans-${t_id}">
+                                <tal:block tal:define="t_info python:info['transitions'][t_id]">
+                                    <td class="state-id" tal:content="t_id">submit</td>
+                                    <td tal:content="t_info/title">Submit for publication</td>
+                                    <td>
+                                        <span class="trans-arrow">&rarr;</span>
+                                        <span class="state-id" tal:content="python:t_info['new_state_id'] or '(remains in same state)'">pending</span>
+                                    </td>
+                                </tal:block>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </tal:block>
+        </div>
+    </div>
+</metal:main>
+
+</body>
+</html>
