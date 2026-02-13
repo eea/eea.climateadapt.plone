@@ -9,8 +9,7 @@ from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
 from eea.climateadapt.browser import get_date_updated, get_files
-from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
-from eea.climateadapt.vocabulary import RELEVANT_EU_POLICY_URLS
+from eea.climateadapt.vocabulary import BIOREGIONS, SUBNATIONAL_REGIONS, RELEVANT_EU_POLICY_URLS, ace_countries_dict
 
 
 def get_geographic(item, result={}):
@@ -38,6 +37,28 @@ def get_geographic(item, result={}):
         response["transnational_region"] = [
             BIOREGIONS.get(x, x) for x in data["geoElements"]["macrotrans"]
         ]
+    if "element" in data["geoElements"]:
+        response["geographic_characterisation"] = [
+            BIOREGIONS.get(
+                data["geoElements"]["element"], data["geoElements"]["element"]
+            )
+        ]
+    if (
+        "biotrans" in data["geoElements"]
+        and data["geoElements"]["biotrans"]
+        and len(data["geoElements"]["biotrans"])
+    ):
+        response["biogeographical_regions"] = [
+            BIOREGIONS.get(x, x) for x in data["geoElements"]["biotrans"]
+        ]
+    if (
+        "subnational" in data["geoElements"]
+        and data["geoElements"]["subnational"]
+        and len(data["geoElements"]["subnational"])
+    ):
+        response["sub_nationals"] = [
+            SUBNATIONAL_REGIONS.get(x, x) for x in data["geoElements"]["subnational"]
+        ]
 
     if len(response):
         result["geographic"] = response
@@ -50,7 +71,7 @@ def use_blocks_from_fti(context, result):
     if result.get("blocks") or result.get("blocks_layout"):
         # Object already has blocks, don't override
         return result
-    
+
     blocks = None
     blocks_layout = None
     for schema in iterSchemata(context):
@@ -59,7 +80,7 @@ def use_blocks_from_fti(context, result):
                 blocks = field.default
             if name == "blocks_layout" and field.default and not blocks_layout:
                 blocks_layout = field.default
-    
+
     if blocks:
         result["blocks"] = blocks
         result["blocks_layout"] = blocks_layout
@@ -167,7 +188,7 @@ def render_slate_value(value):
                         url = uid_to_url(url)
 
                     label = extract_text_recursive(c.get("children", [])).strip()
-                    
+
                     # avoid duplicates when the label already is the URL
                     if label and url:
                         if label.rstrip("/") == url.rstrip("/"):
