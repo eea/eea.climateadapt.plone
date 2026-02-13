@@ -7,7 +7,7 @@ from zope.schema import getFields
 from plone.restapi.serializer.blocks import uid_to_url
 
 from eea.climateadapt.browser import get_date_updated, get_files
-from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
+from eea.climateadapt.vocabulary import BIOREGIONS, SUBNATIONAL_REGIONS, ace_countries_dict
 
 
 def get_geographic(item, result={}):
@@ -34,6 +34,28 @@ def get_geographic(item, result={}):
     ):
         response["transnational_region"] = [
             BIOREGIONS.get(x, x) for x in data["geoElements"]["macrotrans"]
+        ]
+    if "element" in data["geoElements"]:
+        response["geographic_characterisation"] = [
+            BIOREGIONS.get(
+                data["geoElements"]["element"], data["geoElements"]["element"]
+            )
+        ]
+    if (
+        "biotrans" in data["geoElements"]
+        and data["geoElements"]["biotrans"]
+        and len(data["geoElements"]["biotrans"])
+    ):
+        response["biogeographical_regions"] = [
+            BIOREGIONS.get(x, x) for x in data["geoElements"]["biotrans"]
+        ]
+    if (
+        "subnational" in data["geoElements"]
+        and data["geoElements"]["subnational"]
+        and len(data["geoElements"]["subnational"])
+    ):
+        response["sub_nationals"] = [
+            SUBNATIONAL_REGIONS.get(x, x) for x in data["geoElements"]["subnational"]
         ]
 
     if len(response):
