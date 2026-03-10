@@ -4,8 +4,9 @@ from plone.autoform import directives
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.form.interfaces import IAddForm, IEditForm
 from zope.interface import alsoProvides
-from zope.schema import Choice, Date, List, Bool
+from zope.schema import Choice, Date, List, Bool, TextLine
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
@@ -14,6 +15,19 @@ from .volto_layout import adaptation_option_layout_blocks, adaptation_option_lay
 
 class IAdaptationOption(IAceMeasure, IBlocks):
     """Adaptation Option"""
+
+    directives.omitted(IEditForm, "logo")
+    directives.omitted(IAddForm, "logo")
+
+    title = TextLine(
+        title=_(u"Title"),
+        description=_(
+            u"Name of the adaptation option"
+            u"its scope (250 character limit)"
+        ),
+        max_length=250,
+        required=True,
+    )
 
     directives.widget(
         key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -80,7 +94,9 @@ class IAdaptationOption(IAceMeasure, IBlocks):
 
     intro_paragraph = RichText(
         title=_("Introduction"),
+        description=_("Provide an introductory paragraph for this adaptation option (1000 character limit)."),
         required=False,
+        max_length=1000,
     )
 
     directives.widget(
@@ -94,12 +110,16 @@ class IAdaptationOption(IAceMeasure, IBlocks):
 
     advantages = RichText(
         title=_("Advantages"),
+        description=_("Describe the advantages of this adaptation option (500 character limit)."),
         required=False,
+        max_length=500,
     )
 
     disadvantages = RichText(
         title=_("Disadvantages"),
+        description=_("Describe the disadvantages of this adaptation option (500 character limit)."),
         required=False,
+        max_length=500,
     )
 
     relevant_synergies = Choice(
