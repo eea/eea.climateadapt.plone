@@ -6,7 +6,7 @@ from plone.schema import JSONField
 from z3c.relationfield.schema import RelationChoice, RelationList
 from z3c.form.interfaces import IAddForm, IEditForm
 from zope.interface import alsoProvides
-from zope.schema import Choice, Date, List, Bool, TextLine
+from zope.schema import Choice, Date, List, Bool, TextLine, Text
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
@@ -19,6 +19,9 @@ class IAdaptationOption(IAceMeasure, IBlocks):
     directives.omitted(IEditForm, "logo")
     directives.omitted(IAddForm, "logo")
 
+    directives.omitted(IEditForm, "geochars")
+    directives.omitted(IAddForm, "geochars")
+
     title = TextLine(
         title=_(u"Title"),
         description=_(
@@ -27,6 +30,18 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         ),
         max_length=250,
         required=True,
+    )
+
+    description = Text(
+        title=_("Short summary"),
+        required=False,
+        description=_(
+            "Summarize in one or two sentences the main purpose of the option or its main mechanism. "
+            "This summary will be highlighted on the top of the page and used in listings "
+            "(250 character limit)"
+        ),
+        missing_value="",
+        max_length=250,
     )
 
     directives.widget(
