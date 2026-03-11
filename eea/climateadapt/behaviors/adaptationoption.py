@@ -25,8 +25,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
     title = TextLine(
         title=_(u"Title"),
         description=_(
-            u"Name of the adaptation option"
-            u"its scope (250 character limit)"
+            u"Name of the adaptation option."
         ),
         max_length=250,
         required=True,
@@ -38,7 +37,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         description=_(
             "Summarize in one or two sentences the main purpose of the option or its main mechanism. "
             "This summary will be highlighted on the top of the page and used in listings "
-            "(250 character limit)"
+            "(250 character limit)."
         ),
         missing_value="",
         max_length=250,
@@ -91,7 +90,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
             "Climate ADAPT."
             " Please use the Calendar icon to add day/month/year. If you want to "
             'add only the year, please select "day: 1", "month: January" '
-            "and then the year"
+            "and then the year."
         ),
         required=True,
     )
