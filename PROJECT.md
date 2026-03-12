@@ -52,3 +52,29 @@ Processed by the `climateadapt-async-translate` service:
 
 - **Authentication**: The communication between the Node.js services and Plone is protected by a shared `TRANSLATION_AUTH_TOKEN`.
 - **Queues**: BullMQ queues are used to decouple the long-running translation tasks from the main CMS operations.
+
+## Automated GitHub Interactions
+
+When using the `gh` (GitHub CLI) utility for automated workflows (e.g., creating PRs from scripts or agents), follow these best practices:
+
+### 1. Initial PR Creation
+Always provide both the title and body during creation to minimize subsequent API calls:
+```bash
+gh pr create --title "Your Title" --body "Your detailed PR description"
+```
+
+### 2. Handling GraphQL Errors
+Some repositories (like `eea.climateadapt.plone`) may have legacy "Projects (classic)" settings that cause `gh pr edit` to fail with GraphQL errors. If this happens, fallback to the GitHub REST API using `gh api`:
+
+**To update a PR title and body:**
+```bash
+gh api -X PATCH /repos/{owner}/{repo}/pulls/{pr_number} \
+  -f title="New Title" \
+  -f body="New Body Content"
+```
+
+### 3. Verification
+To verify the content of a PR programmatically (e.g., ensuring the body was written):
+```bash
+gh pr view {pr_number} --json title,body
+```
