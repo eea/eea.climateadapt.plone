@@ -68,5 +68,6 @@ setup(
       report_roles = eea.climateadapt.scripts.report_roles:main
       migrate_eionet_groups = eea.climateadapt.scripts.migrate_eionet_groups:main
       document_workflows = eea.climateadapt.scripts.document_workflows:main
+      analyze_relstorage = eea.climateadapt.scripts.analyze_relstorage:main
       """,
 )

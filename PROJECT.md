@@ -50,8 +50,17 @@ Processed by the `climateadapt-async-translate` service:
 
 ## Technical Notes
 
+- **Environment & Execution**: The AI agent operates **outside** the Docker container. All commands intended to run within the backend environment (e.g., running scripts, migrations, or tests) MUST be wrapped in `docker compose exec backend`.
+- **Python Executable**: Inside the backend container, the correct Python to use is `/app/bin/python3`, which has the full environment with all dependencies.
 - **Authentication**: The communication between the Node.js services and Plone is protected by a shared `TRANSLATION_AUTH_TOKEN`.
 - **Queues**: BullMQ queues are used to decouple the long-running translation tasks from the main CMS operations.
+
+## Development Lessons Learnt
+
+### Zope Configuration Parsing
+- **Schema Sensitivity**: Standard `ZConfig.loadSchema` or `ZODB.config.storageFromFile` might fail in Zope/Plone environments because they don't handle Zope-specific schema keys (like `instancehome`) or conditional imports (like `tempstorage` in `wsgischema.xml`).
+- **Correct Configuration Loader**: For Zope 5+ (WSGI), use `Zope2.Startup.options.ZopeWSGIOptions` to correctly parse a Zope configuration file (`zope.conf` or `relstorage.conf`) without needing to fully initialize the Zope application.
+- **Efficient Metadata Extraction**: Use `ZODB.utils.get_pickle_metadata` to extract class names from ZODB records without unpickling the entire object. This is significantly faster and avoids dependency issues during database scanning.
 
 ## Automated GitHub Interactions
 
