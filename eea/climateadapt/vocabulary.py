@@ -1404,8 +1404,13 @@ redirection_types_vocabulary = generic_vocabulary(_redirection_types)
 alsoProvides(redirection_types_vocabulary, IVocabularyFactory)
 
 
-relevant_synergies = ["Yes", "No"]
-relevant_synergies_vocabulary = generic_vocabulary(relevant_synergies)
+_relevant_synergies = [
+    ("reducing_energy_demand", _(u"Reducing energy demand")),
+    ("transition_to_renewable_energy", _(u"Transition to renewable energy")),
+    ("carbon_capture_and_storage", _(u"Carbon capture and storage")),
+    ("no_relevant_synergies", _(u"No relevant synergies with mitigation")),
+]
+relevant_synergies_vocabulary = generic_vocabulary(_relevant_synergies, sort=False)
 alsoProvides(relevant_synergies_vocabulary, IVocabularyFactory)
 
 relevant_eu_policies = [

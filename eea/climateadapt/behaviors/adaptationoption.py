@@ -136,10 +136,14 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         max_length=500,
     )
 
-    relevant_synergies = Choice(
+    directives.widget(
+        relevant_synergies="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    relevant_synergies = List(
         title=_("Relevant synergies with mitigation"),
         required=False,
-        vocabulary="eea.climateadapt.relevant_synergies",
+        value_type=Choice(
+            vocabulary="eea.climateadapt.relevant_synergies",
+        ),
     )
 
     show_related_resources = Bool(
