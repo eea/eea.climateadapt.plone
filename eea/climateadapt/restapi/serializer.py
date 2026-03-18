@@ -176,6 +176,7 @@ class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
             parts.extend([f"- {u}" for u in websites if u])
 
         result["main_content"] = "\n\n".join([p for p in parts if p])
+        result["language"] = getattr(self.context, "language", "en")
 
         return result
 
@@ -354,7 +355,7 @@ class MissionStorySerializer(SerializeFolderToJson):
         return result
 @adapter(ILink, IPloneRestapiLayer)
 class LinkRedirectSerializer(SerializeToJson):
-    """Serializer that adds @components.redirect for anonymous users 
+    """Serializer that adds @components.redirect for anonymous users
     when redirection_type is set.
     """
 
