@@ -4,8 +4,9 @@ from plone.autoform import directives
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from z3c.relationfield.schema import RelationChoice, RelationList
+from z3c.form.interfaces import IAddForm, IEditForm
 from zope.interface import alsoProvides
-from zope.schema import Choice, Date, List, Bool
+from zope.schema import Choice, Date, List, Bool, TextLine, Text
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
@@ -14,6 +15,33 @@ from .volto_layout import adaptation_option_layout_blocks, adaptation_option_lay
 
 class IAdaptationOption(IAceMeasure, IBlocks):
     """Adaptation Option"""
+
+    directives.omitted(IEditForm, "logo")
+    directives.omitted(IAddForm, "logo")
+
+    directives.omitted(IEditForm, "geochars")
+    directives.omitted(IAddForm, "geochars")
+
+    title = TextLine(
+        title=_(u"Title"),
+        description=_(
+            u"Name of the adaptation option."
+        ),
+        max_length=250,
+        required=True,
+    )
+
+    description = Text(
+        title=_("Short summary"),
+        required=False,
+        description=_(
+            "Summarize in one or two sentences the main purpose of the option or its main mechanism. "
+            "This summary will be highlighted on the top of the page and used in listings "
+            "(250 character limit)."
+        ),
+        missing_value="",
+        max_length=250,
+    )
 
     directives.widget(
         key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -62,7 +90,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
             "Climate ADAPT."
             " Please use the Calendar icon to add day/month/year. If you want to "
             'add only the year, please select "day: 1", "month: January" '
-            "and then the year"
+            "and then the year."
         ),
         required=True,
     )
@@ -80,7 +108,9 @@ class IAdaptationOption(IAceMeasure, IBlocks):
 
     intro_paragraph = RichText(
         title=_("Introduction"),
+        description=_("Provide an introductory paragraph for this adaptation option (1000 character limit)."),
         required=False,
+        max_length=1000,
     )
 
     directives.widget(
@@ -94,18 +124,26 @@ class IAdaptationOption(IAceMeasure, IBlocks):
 
     advantages = RichText(
         title=_("Advantages"),
+        description=_("Describe the advantages of this adaptation option (500 character limit)."),
         required=False,
+        max_length=500,
     )
 
     disadvantages = RichText(
         title=_("Disadvantages"),
+        description=_("Describe the disadvantages of this adaptation option (500 character limit)."),
         required=False,
+        max_length=500,
     )
 
-    relevant_synergies = Choice(
+    directives.widget(
+        relevant_synergies="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    relevant_synergies = List(
         title=_("Relevant synergies with mitigation"),
         required=False,
-        vocabulary="eea.climateadapt.relevant_synergies",
+        value_type=Choice(
+            vocabulary="eea.climateadapt.relevant_synergies",
+        ),
     )
 
     show_related_resources = Bool(
