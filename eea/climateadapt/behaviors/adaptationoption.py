@@ -7,6 +7,8 @@ from z3c.relationfield.schema import RelationChoice, RelationList
 from z3c.form.interfaces import IAddForm, IEditForm
 from zope.interface import alsoProvides
 from zope.schema import Choice, Date, List, Bool, TextLine, Text
+from plone.namedfile.field import NamedBlobImage
+
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
@@ -27,7 +29,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         description=_(
             u"Name of the adaptation option."
         ),
-        max_length=250,
+        # max_length=250,
         required=True,
     )
 
@@ -40,7 +42,17 @@ class IAdaptationOption(IAceMeasure, IBlocks):
             "(250 character limit)."
         ),
         missing_value="",
-        max_length=250,
+        # max_length=250,
+    )
+
+    image = NamedBlobImage(
+        title=_("Thumbnail"),
+        description=_(
+            "Upload a representative picture for the item. "
+            "Recommended size: at least 360/180 px, aspect ratio 2x. "
+            "This image will be used in the search result page - cards view. "
+        ),
+        required=False,
     )
 
     directives.widget(
@@ -110,7 +122,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         title=_("Introduction"),
         description=_("Provide an introductory paragraph for this adaptation option (1000 character limit)."),
         required=False,
-        max_length=1000,
+        # max_length=1000,
     )
 
     directives.widget(
@@ -126,14 +138,14 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         title=_("Advantages"),
         description=_("Describe the advantages of this adaptation option (500 character limit)."),
         required=False,
-        max_length=500,
+        # max_length=500,
     )
 
     disadvantages = RichText(
         title=_("Disadvantages"),
         description=_("Describe the disadvantages of this adaptation option (500 character limit)."),
         required=False,
-        max_length=500,
+        # max_length=500,
     )
 
     directives.widget(
