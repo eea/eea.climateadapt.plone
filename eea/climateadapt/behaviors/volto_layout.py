@@ -3499,7 +3499,13 @@ adaptation_option_layout_blocks = {
                                     "0bdb2f01-1e90-49d7-8d5e-1fcbca81d325": {
                                         "blocks": {
                                             "aedea9f2-ba01-447f-beef-4339af2c833f": {
-                                                "@type": "slate",
+                                                "@type": "callToActionBlock",
+                                                    "download": False,
+                                                    "styles": {
+                                                        "align": "full",
+                                                        "theme": "primary"
+                                                 },
+                                                "text": "Click here"
                                             }
                                         },
                                         "blocks_layout": {
@@ -3535,7 +3541,13 @@ adaptation_option_layout_blocks = {
                                     "ca1c651f-dee2-4867-aa65-9a739dae54df": {
                                         "blocks": {
                                             "1fb9f1a4-3b0b-4a03-b4e7-e831f1241e53": {
-                                                "@type": "slate",
+                                                "@type": "callToActionBlock",
+                                                "download": False,
+                                                "styles": {
+                                                    "align": "full",
+                                                    "theme": "primary"
+                                                },
+                                                "text": "Click here"
                                             }
                                         },
                                         "blocks_layout": {
