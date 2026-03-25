@@ -37,6 +37,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
 
     long_description = RichText(
         title=_("Description"),
+        description="1000 character limit",
         required=True,
     )
 
@@ -119,7 +120,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
             "and/or adopted already (from information, to full "
             "commitment in the deliberation/implementation "
             "process), with useful notes e.g. regarding "
-            "motivations. (5,000 character limit)"
+            "motivations. (3000 character limit)"
         ),
     )
 
@@ -132,7 +133,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
             "Describe factors that are decisive for a successful "
             "implementation and expected challenges or limiting "
             "factors which may hinder the process and need to be "
-            "considered (5,000 character limit)"
+            "considered (3000 character limit)"
         ),
     )
 
@@ -150,7 +151,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
             "of benefits and related methodologies (e.g. "
             "monetization of benefits for cost benefit analysis, "
             "indicators of effectiveness of actions implemented, "
-            "etc.) (5,000 characters limit)"
+            "etc.) (1000 characters limit)"
         ),
     )
 
@@ -165,7 +166,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
             "originated, relevant institutional"
             " opportunities and constrains, "
             "which determined the case as it "
-            "is (5000 character limit):"
+            "is (1000 character limit):"
         ),
     )
 
@@ -177,7 +178,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         description=_(
             "Describe the time needed to implement the measure. "
             "Include: Time frame, e.g. 5-10 years, Brief "
-            "explanation(250 char limit)"
+            "explanation(1000 character limit)"
         ),
     )
 
@@ -188,7 +189,7 @@ class IAceMeasure(Interface, IImageScaleTraversable):
         default="",
         description="Describe the lifetime of the measure: "
         "Time frame, e.g. 5-10 years, Brief explanation "
-        "(250 char limit)",
+        "(1000 character limit)",
     )
 
     # -----------[ "reference_information" fields ]------------------

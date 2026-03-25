@@ -27,7 +27,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         description=_(
             u"Name of the adaptation option."
         ),
-        max_length=250,
+        # max_length=250,
         required=True,
     )
 
@@ -40,7 +40,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
             "(250 character limit)."
         ),
         missing_value="",
-        max_length=250,
+        # max_length=250,
     )
 
     directives.widget(
@@ -110,7 +110,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         title=_("Introduction"),
         description=_("Provide an introductory paragraph for this adaptation option (1000 character limit)."),
         required=False,
-        max_length=1000,
+        # max_length=1000,
     )
 
     directives.widget(
@@ -126,14 +126,14 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         title=_("Advantages"),
         description=_("Describe the advantages of this adaptation option (500 character limit)."),
         required=False,
-        max_length=500,
+        # max_length=500,
     )
 
     disadvantages = RichText(
         title=_("Disadvantages"),
         description=_("Describe the disadvantages of this adaptation option (500 character limit)."),
         required=False,
-        max_length=500,
+        # max_length=500,
     )
 
     directives.widget(
