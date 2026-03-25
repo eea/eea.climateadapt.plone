@@ -3070,6 +3070,14 @@ adaptation_option_layout_blocks = {
                             "@type": "metadataSection",
                             "fields": [
                                 {
+                                    "@id": "abeb092c-8e96-40e2-85f4-dbb89edfa266",
+                                    "field": {
+                                        "id": "publication_date",
+                                        "title": "Date of item's creation",
+                                        "widget": "date",
+                                    },
+                                },
+                                {
                                     "@id": "70bd7425-9803-4e70-9234-cb2976e0dbb9",
                                     "field": {
                                         "id": "keywords",
@@ -3150,14 +3158,6 @@ adaptation_option_layout_blocks = {
                         "db21ff44-33a0-498d-a91c-a686cd388fcf": {
                             "@type": "metadataSection",
                             "fields": [
-                                {
-                                    "@id": "abeb092c-8e96-40e2-85f4-dbb89edfa266",
-                                    "field": {
-                                        "id": "publication_date",
-                                        "title": "Date of item's creation",
-                                        "widget": "date",
-                                    },
-                                },
                                 {
                                     "@id": "75b2b533-1191-4667-b688-5e05faa878a7",
                                     "field": {
