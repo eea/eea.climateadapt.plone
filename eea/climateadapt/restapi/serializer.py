@@ -27,7 +27,7 @@ from plone.restapi.interfaces import IPloneRestapiLayer
 import logging
 logger = logging.getLogger("eea.climateadapt")
 
-from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_blocks, html_to_plain_text
+from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_blocks, html_to_plain_text, serialize_relevant_eu_policies
 
 def serialize(possible_node):
     if isinstance(possible_node, str):
@@ -139,6 +139,7 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
             version=version, include_items=True
         )
         result["related_case_studies"] = find_related_casestudies(self.context)
+        result["relevant_eu_policies_items"] = serialize_relevant_eu_policies(self.context)
         return cca_content_serializer(self.context, result, self.request)
 
 

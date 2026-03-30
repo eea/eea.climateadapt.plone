@@ -1402,3 +1402,25 @@ _redirection_types = [
 ]
 redirection_types_vocabulary = generic_vocabulary(_redirection_types)
 alsoProvides(redirection_types_vocabulary, IVocabularyFactory)
+
+
+_relevant_synergies = [
+    ("reducing_energy_demand", _(u"Reducing energy demand")),
+    ("transition_to_renewable_energy", _(u"Transition to renewable energy")),
+    ("carbon_capture_and_storage", _(u"Carbon capture and storage")),
+    ("no_relevant_synergies", _(u"No relevant synergies with mitigation")),
+]
+relevant_synergies_vocabulary = generic_vocabulary(_relevant_synergies, sort=False)
+alsoProvides(relevant_synergies_vocabulary, IVocabularyFactory)
+
+relevant_eu_policies = [
+    ("EU_FLOODS", _("EU Flood Directive")),
+    ("EU_WFD", _("EU Water Framework Directive")),
+]
+relevant_eu_policies_vocabulary = generic_vocabulary(relevant_eu_policies, sort=False)
+alsoProvides(relevant_eu_policies_vocabulary, IVocabularyFactory)
+
+RELEVANT_EU_POLICY_URLS = {
+    "EU_FLOODS": "https://environment.ec.europa.eu/topics/water/floods_en",
+    "EU_WFD": "https://environment.ec.europa.eu/topics/water/water-framework-directive_en",
+}

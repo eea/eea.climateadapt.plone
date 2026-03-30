@@ -5,9 +5,11 @@ from plone.dexterity.utils import iterSchemata
 from plone.restapi.serializer.converters import json_compatible
 from zope.schema import getFields
 from plone.restapi.serializer.blocks import uid_to_url
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
 
 from eea.climateadapt.browser import get_date_updated, get_files
-from eea.climateadapt.vocabulary import BIOREGIONS, SUBNATIONAL_REGIONS, ace_countries_dict
+from eea.climateadapt.vocabulary import BIOREGIONS, SUBNATIONAL_REGIONS, RELEVANT_EU_POLICY_URLS, ace_countries_dict
 
 
 def get_geographic(item, result={}):
@@ -65,19 +67,23 @@ def get_geographic(item, result={}):
 
 
 def use_blocks_from_fti(context, result):
+    # Only use FTI defaults if the object has no blocks stored
+    if result.get("blocks") or result.get("blocks_layout"):
+        # Object already has blocks, don't override
+        return result
+
     blocks = None
     blocks_layout = None
-
     for schema in iterSchemata(context):
         for name, field in getFields(schema).items():
             if name == "blocks" and field.default and not blocks:
                 blocks = field.default
             if name == "blocks_layout" and field.default and not blocks_layout:
                 blocks_layout = field.default
+
     if blocks:
         result["blocks"] = blocks
         result["blocks_layout"] = blocks_layout
-
     return result
 
 
@@ -182,7 +188,7 @@ def render_slate_value(value):
                         url = uid_to_url(url)
 
                     label = extract_text_recursive(c.get("children", [])).strip()
-                    
+
                     # avoid duplicates when the label already is the URL
                     if label and url:
                         if label.rstrip("/") == url.rstrip("/"):
@@ -346,3 +352,28 @@ def richtext_to_plain_text(value):
         html = value.get("data", "")
         return html_to_plain_text(html, inline_links=False)
     return value
+
+def serialize_relevant_eu_policies(context):
+    values = getattr(context, "relevant_eu_policies", None) or []
+    if not values:
+        return []
+
+    vocab_factory = getUtility(IVocabularyFactory, "eea.climateadapt.relevant_eu_policies")
+    vocab = vocab_factory(context)
+
+    out = []
+    for v in values:
+        try:
+            term = vocab.getTerm(v)
+            title = term.title
+        except LookupError:
+            title = v
+
+        out.append(
+            {
+                "id": v,
+                "title": title,
+                "url": RELEVANT_EU_POLICY_URLS.get(v),
+            }
+        )
+    return out

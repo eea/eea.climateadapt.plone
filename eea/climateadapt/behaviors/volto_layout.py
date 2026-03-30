@@ -2844,7 +2844,6 @@ case_study_layout_blocks = {
                 "def26b70-983a-4d51-8563-c0f3a54267de": {
                     "@type": "tab",
                     "blocks": {
-                        "3a2c0011-323a-4a95-9948-76ad7d7c61be": {"@type": "slate"},
                         "8045304a-9f8b-4946-bda4-b45bfd150aba": {
                             "@type": "metadataSection",
                             "fields": [
@@ -2895,7 +2894,6 @@ case_study_layout_blocks = {
                     "blocks_layout": {
                         "items": [
                             "8045304a-9f8b-4946-bda4-b45bfd150aba",
-                            "3a2c0011-323a-4a95-9948-76ad7d7c61be",
                         ]
                     },
                     "title": "Reference info",
@@ -2913,5 +2911,872 @@ case_study_layout_blocks = {
         },
         "template": "default",
         "verticalAlign": "flex-start",
+    },
+}
+
+adaptation_option_layout_items = [
+    "ec2dd403-0964-413c-ac37-67c2bbc0a4c9",
+    "a9dd800e-d56f-439a-9277-b82e7e0afd0f",
+    "1e411caf-2644-46db-b6ae-abe156a36cba",
+    "51cf893d-fa12-47b8-98b2-670b19bc6d81",
+    "c68bcb7e-b899-4d2f-a87b-161c38b98a35",
+]
+
+adaptation_option_layout_blocks = {
+    "51cf893d-fa12-47b8-98b2-670b19bc6d81": {
+        "@type": "slate",
+        "plaintext": "Related Resources",
+        "value": [
+            {
+                "children": [
+                    {
+                        "text": "Related Resources"
+                    }
+                ],
+                "type": "h3"
+            }
+        ]
+    },
+    "a9dd800e-d56f-439a-9277-b82e7e0afd0f": {
+        "@type": "tabs_block",
+        "data": {
+            "blocks": {
+                "09a33128-3001-4ecb-a914-c91a800d9188": {
+                    "@type": "tab",
+                    "blocks": {
+                        "9221b870-ab5b-4b22-a89d-014931abc8a3": {
+                            "@type": "metadataSection",
+                            "fields": [
+                                {
+                                    "@id": "c0f27da8-b182-4568-803a-7b7e442138f7",
+                                    "field": {
+                                        "id": "websites",
+                                        "title": "Websites",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "372c5d3a-e969-4b5b-a52d-135c151c9ba9",
+                                    "field": {
+                                        "id": "source",
+                                        "title": "References",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "7d5e0c8f-ef66-4b5c-8213-006b1ef207db",
+                                    "field": {
+                                        "id": "special_tags",
+                                        "title": "Special tagging",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "150b2367-b4db-4b3c-943c-d25346715a3e",
+                                    "field": {
+                                        "id": "comments",
+                                        "title": "Comments",
+                                        "widget": "textarea",
+                                    },
+                                },
+                                {
+                                    "@id": "3d59e3e1-0b8b-4791-8432-fdcef7523ee1",
+                                    "field": {
+                                        "id": "relatedItems",
+                                        "title": "Related Items",
+                                        "widget": "relations",
+                                    },
+                                },
+                                {
+                                    "@id": "153dc9d3-f1dd-495e-b51a-a3a88c984f21",
+                                    "field": {
+                                        "id": "origin_website",
+                                        "title": "Item from third parties",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "944ebfac-7f35-4e66-8f3e-456f6d33cf7c",
+                                    "field": {
+                                        "id": "contributor_list",
+                                        "title": "Contributor(s)",
+                                        "widget": "relations",
+                                    },
+                                },
+                                {
+                                    "@id": "3cf77fde-27e3-495a-a6cc-a00e485bbac3",
+                                    "field": {
+                                        "id": "other_contributor",
+                                        "title": "Other contributor(s)",
+                                        "widget": "textarea",
+                                    },
+                                },
+                            ],
+                            "variation": "default",
+                        },
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "9221b870-ab5b-4b22-a89d-014931abc8a3",
+                        ]
+                    },
+                    "title": "Reference info",
+                },
+                "119d1efb-3753-4e1c-b6e8-122e6e514623": {
+                    "@type": "tab",
+                    "blocks": {
+                        "ea3e3896-f8e2-4bbf-b138-b6a512b1dc41": {
+                            "@type": "metadataSection",
+                            "fields": [
+                                {
+                                    "@id": "7273a08b-ab74-4da2-94d6-5076a5419044",
+                                    "field": {
+                                        "id": "include_in_observatory",
+                                        "title": "Include in observatory",
+                                        "widget": "boolean",
+                                    },
+                                },
+                                {
+                                    "@id": "b0d7ad31-854b-492f-a9a3-3be356a21a7d",
+                                    "field": {
+                                        "id": "include_in_mission",
+                                        "title": "Include in the Mission Portal",
+                                        "widget": "boolean",
+                                    },
+                                },
+                                {
+                                    "@id": "0c08812e-0aaf-4f30-8687-3766e4526f5d",
+                                    "field": {
+                                        "id": "health_impacts",
+                                        "title": "Health impacts",
+                                        "widget": "array",
+                                    },
+                                },
+                            ],
+                            "variation": "default",
+                        },
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "ea3e3896-f8e2-4bbf-b138-b6a512b1dc41",
+                        ]
+                    },
+                    "title": "Include in subsites",
+                },
+                "b2fecfe1-3cea-4959-a127-416128ba10ad": {
+                    "@type": "tab",
+                    "blocks": {
+                        "7b9f67b6-13a5-4708-8b0c-fbd49cd30ce8": {
+                            "@type": "metadataSection",
+                            "fields": [
+                                {
+                                    "@id": "abeb092c-8e96-40e2-85f4-dbb89edfa266",
+                                    "field": {
+                                        "id": "publication_date",
+                                        "title": "Date of item's creation",
+                                        "widget": "date",
+                                    },
+                                },
+                                {
+                                    "@id": "70bd7425-9803-4e70-9234-cb2976e0dbb9",
+                                    "field": {
+                                        "id": "keywords",
+                                        "title": "Keywords",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "f93bbfbd-731b-4db9-8909-07d21d23c583",
+                                    "field": {
+                                        "id": "casestudies",
+                                        "title": "Case studies implemented in the adaption",
+                                        "widget": "relations",
+                                    },
+                                },
+                                {
+                                    "@id": "9838df27-ec45-41a9-aff4-be005ac8d3f4",
+                                    "field": {
+                                        "id": "key_type_measures",
+                                        "title": "Key Type Measures",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "ff0d0ad2-7d2e-4830-9840-9119fe934a8e",
+                                    "field": {
+                                        "id": "ipcc_category",
+                                        "title": "IPCC adaptation options categories",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "ac2653f1-007b-44f6-90e7-b01bb5a1be6e",
+                                    "field": {
+                                        "id": "climate_impacts",
+                                        "title": "Climate impacts",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "9ca3ab6b-6429-40fc-98ed-27b8292647a5",
+                                    "field": {
+                                        "id": "elements",
+                                        "title": "Adaptation elements",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "120d3476-7753-40c6-a921-d5c7afed7b58",
+                                    "field": {
+                                        "id": "sectors",
+                                        "title": "Sectors",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "e8005f85-b5f9-4fc3-a706-b1eb65799b22",
+                                    "field": {
+                                        "id": "governance_level",
+                                        "title": "Governance Level",
+                                        "widget": "array",
+                                    },
+                                },
+                            ],
+                            "variation": "default",
+                        },
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "7b9f67b6-13a5-4708-8b0c-fbd49cd30ce8",
+                        ]
+                    },
+                    "title": "Additional details",
+                },
+                "c8ddbedf-77f7-413d-8cf5-c9c93424b8b2": {
+                    "@type": "tab",
+                    "blocks": {
+                        "db21ff44-33a0-498d-a91c-a686cd388fcf": {
+                            "@type": "metadataSection",
+                            "fields": [
+                                {
+                                    "@id": "75b2b533-1191-4667-b688-5e05faa878a7",
+                                    "field": {
+                                        "id": "title",
+                                        "title": "Title",
+                                        "widget": "title",
+                                    },
+                                },
+                                {
+                                    "@id": "034e0740-1b69-4a79-987c-e7dcd7924617",
+                                    "field": {
+                                        "id": "description",
+                                        "title": "Short summary",
+                                        "widget": "description",
+                                    },
+                                },
+                                {
+                                    "@id": "452cd5ea-7cea-9f50-0f1f-1c1631df54cb",
+                                    "field": {
+                                        "id": "intro_paragraph",
+                                        "title": "Introduction",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "1ed89d52-1475-4590-bcfb-645442f01acc",
+                                    "field": {
+                                        "id": "relevant_eu_policies",
+                                        "title": "Relevant EU policies",
+                                        "widget": "array"
+                                    },
+                                    "showLabel": True
+                                },
+                                {
+                                    "@id": "6f5e2f1e-1dcb-4f3c-8f13-1f3e3e5e2b6a",
+                                    "field": {
+                                        "id": "advantages",
+                                        "title": "Advantages",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "2c3f3f1e-5f4a-4d3b-9f2c-4e2b7c6d8e9f",
+                                    "field": {
+                                        "id": "disadvantages",
+                                        "title": "Disadvantages",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "d4f5e6a7-b8c9-4d0e-9f1a-2b3c4d5e6f7g",
+                                    "field": {
+                                        "id": "relevant_synergies",
+                                        "title": "Relevant synergies with mitigation",
+                                        "widget": "boolean",
+                                    },
+                                },
+                                {
+                                    "@id": "05481433-be21-4aab-a91b-294786f66b8e",
+                                    "field": {
+                                        "id": "long_description",
+                                        "title": "Description",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "debcb266-3968-4814-8f1b-2b6462c65985",
+                                    "field": {
+                                        "id": "stakeholder_participation",
+                                        "title": "Stakeholder participation",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "8b66f602-4098-4083-ae4e-0d45a6061c41",
+                                    "field": {
+                                        "id": "success_limitations",
+                                        "title": "Success and limiting factors",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "07bf6b42-bdef-4505-8a80-369d4f096d34",
+                                    "field": {
+                                        "id": "cost_benefit",
+                                        "title": "Costs and benefits",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "81ad38c7-b2db-432f-a598-ea34971fe8e3",
+                                    "field": {
+                                        "id": "legal_aspects",
+                                        "title": "Legal aspects",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "6f100215-d407-4049-be3e-8c15c45f48b9",
+                                    "field": {
+                                        "id": "implementation_time",
+                                        "title": "Implementation time",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "bbb2a138-3cbd-41c2-9894-07cb865ced37",
+                                    "field": {
+                                        "id": "lifetime",
+                                        "title": "Lifetime",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "5365f9ad-115f-4966-8c6e-8b033a0f735d",
+                                    "field": {
+                                        "id": "image",
+                                        "title": "Thumbnail",
+                                        "widget": "image",
+                                    },
+                                },
+                            ],
+                            "variation": "default",
+                        },
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "db21ff44-33a0-498d-a91c-a686cd388fcf",
+                        ]
+                    },
+                    "title": "Item description",
+                },
+            },
+            "blocks_layout": {
+                "items": [
+                    "c8ddbedf-77f7-413d-8cf5-c9c93424b8b2",
+                    "b2fecfe1-3cea-4959-a127-416128ba10ad",
+                    "09a33128-3001-4ecb-a914-c91a800d9188",
+                    "119d1efb-3753-4e1c-b6e8-122e6e514623",
+                ]
+            },
+        },
+        "template": "default",
+        "verticalAlign": "flex-start",
+    },
+    "1e411caf-2644-46db-b6ae-abe156a36cba": {
+        "@type": "metadata",
+        "data": {
+            "id": "show_related_resources",
+            "widget": "boolean"
+        }
+    },
+    "c68bcb7e-b899-4d2f-a87b-161c38b98a35": {
+        "@type": "tabs_block",
+        "data": {
+            "assetPosition": "top",
+            "blocks": {
+                "0b037ab3-4eb5-44e7-be80-d41cde2ef842": {
+                    "@type": "tab",
+                    "assetPosition": "top",
+                    "blocks": {
+                        "4ec61167-9f41-437b-bad5-3196b48c71af": {
+                            "@type": "gridBlock",
+                            "blocks": {
+                                "38d950cb-1182-41f2-9f2b-c52e5e92837a": {
+                                    "@type": "teaser",
+                                    "description": "summary text here",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "73aa1701-c78a-4452-8a7f-006e8f9bf98b": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "a9aa7eed-ecd6-484c-a4e2-29badce6dd08": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "c28ad344-f933-444d-b8c8-4eee36f85675": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "cbb5b136-2e16-4e43-84d0-dc85910f685c": {
+                                    "@type": "teaser",
+                                    "description": "fdsfsfs ",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "fe8abe08-15e2-47fd-ba7d-182aa243b008": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                }
+                            },
+                            "blocks_layout": {
+                                "items": [
+                                    "fe8abe08-15e2-47fd-ba7d-182aa243b008",
+                                    "cbb5b136-2e16-4e43-84d0-dc85910f685c",
+                                    "38d950cb-1182-41f2-9f2b-c52e5e92837a",
+                                    "c28ad344-f933-444d-b8c8-4eee36f85675",
+                                    "a9aa7eed-ecd6-484c-a4e2-29badce6dd08",
+                                    "73aa1701-c78a-4452-8a7f-006e8f9bf98b"
+                                ]
+                            }
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "4ec61167-9f41-437b-bad5-3196b48c71af"
+                        ]
+                    },
+                    "iconSize": "small",
+                    "imageSize": "icon",
+                    "title": "Specific adaptation options"
+                },
+                "36755c43-8554-4aa7-a4e1-5925caeee0fe": {
+                    "@type": "tab",
+                    "assetPosition": "top",
+                    "blocks": {
+                        "eeb7a670-e1a9-4480-a699-efcde127de73": {
+                            "@type": "columnsBlock",
+                            "data": {
+                                "blocks": {
+                                    "0bdb2f01-1e90-49d7-8d5e-1fcbca81d325": {
+                                        "blocks": {
+                                            "aedea9f2-ba01-447f-beef-4339af2c833f": {
+                                                "@type": "callToActionBlock",
+                                                    "download": False,
+                                                    "styles": {
+                                                        "align": "full",
+                                                        "theme": "primary"
+                                                 },
+                                                "text": "Click here"
+                                            }
+                                        },
+                                        "blocks_layout": {
+                                            "items": [
+                                                "aedea9f2-ba01-447f-beef-4339af2c833f"
+                                            ]
+                                        }
+                                    },
+                                    "123c6477-1351-4452-945a-6301bb299ea1": {
+                                        "blocks": {
+                                            "54779ea5-10ae-455a-8d2b-4d0852d347e7": {
+                                                "@type": "slate"
+                                            }
+                                        },
+                                        "blocks_layout": {
+                                            "items": [
+                                                "54779ea5-10ae-455a-8d2b-4d0852d347e7"
+                                            ]
+                                        }
+                                    },
+                                    "9ccad2eb-017c-471c-b69c-66f14134a9b5": {
+                                        "blocks": {
+                                            "26bba3bb-e577-41db-9dfe-1bf7b1a3557f": {
+                                                "@type": "slate"
+                                            }
+                                        },
+                                        "blocks_layout": {
+                                            "items": [
+                                                "26bba3bb-e577-41db-9dfe-1bf7b1a3557f"
+                                            ]
+                                        }
+                                    },
+                                    "ca1c651f-dee2-4867-aa65-9a739dae54df": {
+                                        "blocks": {
+                                            "1fb9f1a4-3b0b-4a03-b4e7-e831f1241e53": {
+                                                "@type": "callToActionBlock",
+                                                "download": False,
+                                                "styles": {
+                                                    "align": "full",
+                                                    "theme": "primary"
+                                                },
+                                                "text": "Click here"
+                                            }
+                                        },
+                                        "blocks_layout": {
+                                            "items": [
+                                                "1fb9f1a4-3b0b-4a03-b4e7-e831f1241e53"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "blocks_layout": {
+                                    "items": [
+                                        "ca1c651f-dee2-4867-aa65-9a739dae54df",
+                                        "0bdb2f01-1e90-49d7-8d5e-1fcbca81d325",
+                                        "123c6477-1351-4452-945a-6301bb299ea1",
+                                        "9ccad2eb-017c-471c-b69c-66f14134a9b5"
+                                    ]
+                                }
+                            },
+                            "gridCols": [
+                                "oneQuarter",
+                                "oneQuarter",
+                                "oneQuarter",
+                                "oneQuarter"
+                            ],
+                            "gridSize": 12,
+                            "styles": {}
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "eeb7a670-e1a9-4480-a699-efcde127de73"
+                        ]
+                    },
+                    "iconSize": "small",
+                    "imageSize": "icon",
+                    "title": "Implementation measures and techniques"
+                },
+                "d67e1cd3-c7d1-41ed-96de-4b825e99448a": {
+                    "@type": "tab",
+                    "assetPosition": "top",
+                    "blocks": {
+                        "37e57ff7-c784-48e0-bb5a-8cf79df1ec7f": {
+                            "@type": "gridBlock",
+                            "blocks": {
+                                "38d950cb-1182-41f2-9f2b-c52e5e92837a": {
+                                    "@type": "teaser",
+                                    "description": "summary text here",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "73aa1701-c78a-4452-8a7f-006e8f9bf98b": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "a9aa7eed-ecd6-484c-a4e2-29badce6dd08": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "c28ad344-f933-444d-b8c8-4eee36f85675": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "cbb5b136-2e16-4e43-84d0-dc85910f685c": {
+                                    "@type": "teaser",
+                                    "description": "fdsfsfs ",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                },
+                                "fe8abe08-15e2-47fd-ba7d-182aa243b008": {
+                                    "@type": "teaser",
+                                    "description": "",
+                                    "head_title": None,
+                                    "href": [],
+                                    "itemModel": {
+                                        "@type": "card",
+                                        "callToAction": {
+                                            "label": "Read more"
+                                        },
+                                        "hasDate": False,
+                                        "hasEventDate": False,
+                                        "hasLink": True,
+                                        "maxDescription": 2,
+                                        "maxTitle": 2,
+                                        "styles": {},
+                                        "titleOnImage": False
+                                    },
+                                    "overwrite": True,
+                                    "styles": {
+                                        "align": "left"
+                                    },
+                                    "title": ""
+                                }
+                            },
+                            "blocks_layout": {
+                                "items": [
+                                    "fe8abe08-15e2-47fd-ba7d-182aa243b008",
+                                    "cbb5b136-2e16-4e43-84d0-dc85910f685c",
+                                    "38d950cb-1182-41f2-9f2b-c52e5e92837a",
+                                    "c28ad344-f933-444d-b8c8-4eee36f85675",
+                                    "a9aa7eed-ecd6-484c-a4e2-29badce6dd08",
+                                    "73aa1701-c78a-4452-8a7f-006e8f9bf98b"
+                                ]
+                            }
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "37e57ff7-c784-48e0-bb5a-8cf79df1ec7f"
+                        ]
+                    },
+                    "iconSize": "small",
+                    "imageSize": "icon",
+                    "title": "Strategic adaptation options"
+                }
+            },
+            "blocks_layout": {
+                "items": [
+                    "d67e1cd3-c7d1-41ed-96de-4b825e99448a",
+                    "0b037ab3-4eb5-44e7-be80-d41cde2ef842",
+                    "36755c43-8554-4aa7-a4e1-5925caeee0fe"
+                ]
+            },
+            "iconSize": "small",
+            "imageSize": "icon"
+        },
+        "menuFluid": True,
+        "menuPointing": True,
+        "menuSecondary": True,
+        "variation": "default",
+        "verticalAlign": "flex-start"
+    },
+    "ec2dd403-0964-413c-ac37-67c2bbc0a4c9": {
+        "@type": "title",
+        "copyrightIcon": "ri-copyright-line",
     },
 }

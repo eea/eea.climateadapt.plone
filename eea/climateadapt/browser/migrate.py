@@ -338,3 +338,37 @@ class FixMipSigLangs(BrowserView):
             raise ValueError
 
         return "done"
+
+
+class MigrateAdaptationOption(BrowserView):
+    """ Migrate show_related_resources field (refs #296805) """
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        catalog = api.portal.get_tool("portal_catalog")
+
+        brains = catalog.unrestrictedSearchResults(
+            portal_type="eea.climateadapt.adaptationoption"
+        )
+
+        count = 0
+        total = len(brains)
+        logger.info("Found %s AdaptationOption items", total)
+
+        for idx, brain in enumerate(brains, start=1):
+            obj = brain.getObject()
+
+            if getattr(obj, "show_related_resources", None) is not False:
+                obj.show_related_resources = False
+                obj._p_changed = True
+                count += 1
+                logger.info("Updated %s", brain.getURL())
+
+            if idx % 100 == 0:
+                transaction.savepoint()
+
+        transaction.commit()
+
+        msg = f"Updated {count} out of {total} AdaptationOption items show_related_resources field"
+        logger.info(msg)
+        return msg
