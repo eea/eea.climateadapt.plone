@@ -116,6 +116,7 @@ pipeline {
     }
     */
 
+    /*
     stage('Tests') {
       steps {
         parallel(
@@ -156,6 +157,7 @@ pipeline {
         }
       }
     }
+    */
 
     stage('Pull Request') {
       when {

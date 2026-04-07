@@ -47,7 +47,6 @@ setup(
         "zeep==3.4.0",
         "XlsxWriter==1.2.7",
         "collective.geolocationbehavior",
-        "collective.exportimport",
         "redis",  # do we need it?
         "bullmq",
         # "google-api-python-client",  # google analytics API integration
