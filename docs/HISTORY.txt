@@ -5,7 +5,7 @@ Changelog
 ---------------------------
 * Change: (feat): Add Jenkinsfile to align with other add-ons and release to eggrepo [valentinab25]
 
-1.4.dev0 - (unreleased)
+1.4 - (2026-04-07)
 -----------------------
 * Feature: Add `report_roles` console script and documentation for local roles
   auditing.
