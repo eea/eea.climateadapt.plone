@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    GIT_NAME = "eea.climateadapt"
+    GIT_NAME = "eea.climateadapt.plone"
     GIT_ORG = "eea"
     SONARQUBE_TAGS = "climate-adapt.eea.europa.eu,next-climate-adapt.eea.europa.eu,climate-adapt.europa.eu"
   }
