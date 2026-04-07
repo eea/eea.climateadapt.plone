@@ -3,4 +3,8 @@
     name="eea.climateadapt"
     interface="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
     />
+  <layer
+    name="eea.climateadapt.ccarestapi"
+    interface="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+    />
 </layers>

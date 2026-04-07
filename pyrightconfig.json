@@ -1,5 +1,6 @@
 {
+  "extraPaths": ["../../.venv/lib/python3.11/site-packages"],
   "reportMissingImports": false,
   "reportGeneralTypeIssues": false,
-  "pythonVersion": "2"
+  "typeCheckingMode": "standard"
 }

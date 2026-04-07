@@ -570,6 +570,11 @@ msgstr ""
 msgid "Biodiversity"
 msgstr "Биоразнообразие"
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/__init__.py:189
 msgid "Biogeographical regions"
@@ -943,6 +948,11 @@ msgstr ""
 msgid "Ecosystems and Nature Based Solutions"
 msgstr ""
 
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr ""
+
 # ,
 #: ../../climateadapt/browser/overrides.py:47
 #: ../../climateadapt/vocabulary.py:308
@@ -1004,6 +1014,10 @@ msgstr ""
 #: ../../climateadapt/vocabulary.py:358
 msgid "Extreme Temperatures"
 msgstr "Экстремальные температуры"
+
+#: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr "Сильный холод"
 
 #: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"

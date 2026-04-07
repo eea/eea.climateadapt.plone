@@ -20,24 +20,33 @@
   <element value="view"/>
   <element value="standard"/>
   <element value="no_title_cover_view"/>
+  <element value="column_view"/>
  </property>
  <property name="default_view_fallback">False</property>
  <property name="add_permission">cmf.AddPortalContent</property>
  <property name="klass">collective.cover.content.Cover</property>
  <property name="behaviors">
-  <element value="plone.app.content.interfaces.INameFromTitle"/>
-  <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
   <element
      value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
-  <element value="plone.app.lockingbehavior.behaviors.ILocking"/>
+  <element
+     value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"/>
+  <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
   <element
      value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
+  <element value="plone.app.lockingbehavior.behaviors.ILocking"/>
+  <element value="plone.locking"/>
   <element value="plone.app.relationfield.behavior.IRelatedItems"/>
+  <element value="plone.shortname"/>
+  <element value="volto.blocks"/>
+  <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImage"/>
+  <element value="eea.climateadapt.behaviors.navtitle.INavTitle"/>
+  <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
  </property>
  <property name="schema">collective.cover.content.ICover</property>
  <property
     name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
-      &lt;schema /&gt;
+  &lt;schema /&gt;
   &lt;/model&gt;</property>
  <property name="model_file"></property>
  <property name="schema_policy">dexterity</property>

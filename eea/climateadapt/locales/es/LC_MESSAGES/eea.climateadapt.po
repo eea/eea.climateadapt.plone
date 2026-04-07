@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -1199,11 +1200,11 @@ msgstr "6.5 Monitoreo y evaluación de la adaptación: autoanálisis"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:72
 msgid "<!-- <span class=\"map-type\">NAS</span> --> HHWS available (click on country for further information)"
-msgstr ""
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> HHWS disponible (haga clic en el país para obtener más información)"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:79
 msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
-msgstr ""
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> Sin información"
 
 # ,
 # ,
@@ -1239,54 +1240,48 @@ msgstr "<a href=\"https://www.uia-initiative.eu/en\">Acciones innovadoras urbana
 
 #: ../../climateadapt/browser/pt/casestudy_view.pt:292
 msgid "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
-msgstr ""
+msgstr "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:142
 msgid "<strong>Language:</strong> <span>${DYNAMIC_CONTENT}</span>"
-msgstr ""
+msgstr "<strong>Idioma:</strong> <span>${DYNAMIC_CONTENT}</span>"
 
 #: ../../climateadapt/browser/pt/ccaevent_view.pt:86
 msgid "A background document for the event is available <a href=\"${DYNAMIC_CONTENT}\">here</a>"
-msgstr ""
+msgstr "Un documento de antecedentes para el evento está disponible <a href=\"${DYNAMIC_CONTENT}\">aquí</a>"
 
 #: ../../climateadapt/image_scales/interfaces.py:93
 msgid "A value for the quality of 2x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 62."
-msgstr ""
+msgstr "Un valor para la calidad de imágenes de alta densidad de píxeles 2x, de 1 (más bajo) a 95 (más alto). Un valor de 0 significará que se utilizará el valor predeterminado de plone.scaling, que actualmente es 62."
 
 #: ../../climateadapt/image_scales/interfaces.py:106
 msgid "A value for the quality of 3x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 51."
-msgstr ""
+msgstr "Un valor para la calidad de imágenes de alta densidad de píxeles 3x, de 1 (más bajo) a 95 (más alto). Un valor de 0 significará que se utilizará el valor predeterminado de plone.scaling, que actualmente es 51."
 
 #: ../../climateadapt/image_scales/interfaces.py:67
 msgid "A value for the quality of scaled images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 88."
-msgstr ""
+msgstr "Un valor para la calidad de las imágenes escaladas, de 1 (más bajo) a 95 (más alto). Un valor de 0 significará que se utilizará el valor predeterminado de plone.scaling, que actualmente es 88."
 
-#,
 #: ../../climateadapt/vocabulary.py:732
 msgid "A1: Governance and Institutional: Policy Instruments"
 msgstr "A1: Gobierno e institucional: instrumentos de política"
 
-#,
 #: ../../climateadapt/vocabulary.py:765
 msgid "A1: Policy Instruments"
 msgstr "A1: instrumentos de política"
 
-#,
 #: ../../climateadapt/vocabulary.py:733
 msgid "A2: Governance and Institutional: Management and planning"
 msgstr "A2: Gobierno e institucional: gestión y planificación"
 
-#,
 #: ../../climateadapt/vocabulary.py:766
 msgid "A2: Management and planning"
 msgstr "A2: gestión y planificación"
 
-#,
 #: ../../climateadapt/vocabulary.py:767
 msgid "A3: Coordination cooperation and networks"
 msgstr "A3: Cooperación y redes de coordinación"
 
-#,
 #: ../../climateadapt/vocabulary.py:736
 msgid "A3: Governance and Institutional: Coordination cooperation and networks"
 msgstr "A3: Gobierno e institucional: cooperación y redes de coordinación"
@@ -1417,14 +1412,12 @@ msgstr "Planes y estrategias de adaptación"
 msgid "Adaptation Sectors"
 msgstr "Sectores de adaptación"
 
-#,
 #: ../../climateadapt/browser/pt/aceitem_view.pt:73
 #: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:54
 #: ../../climateadapt/browser/pt/video_view.pt:113
 msgid "Adaptation elements"
 msgstr "Elementos de adaptación"
 
-#,
 #: ../../climateadapt/browser/pt/aceproject_view.pt:107
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:158
 #: ../../climateadapt/browser/pt/casestudy_view.pt:340
@@ -1601,7 +1594,7 @@ msgstr "Adriático-Jónico"
 
 #: ../../climateadapt/vocabulary.py:1304
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzado"
 
 # ,
 # ,
@@ -1687,14 +1680,13 @@ msgstr "Todos los sectores de adaptación"
 msgid "All climate impacts"
 msgstr "Todos los impactos climáticos"
 
-#,
 #: ../../climateadapt/tiles/search_acecontent.py:885
 msgid "All key type measures"
 msgstr "Todas las medidas de tipo clave"
 
 #: ../../climateadapt/image_scales/interfaces.py:42
 msgid "Allowed image sizes"
-msgstr ""
+msgstr "Tamaños de imagen permitidos"
 
 # ,
 # ,
@@ -1734,7 +1726,7 @@ msgstr "Espacio alpino"
 
 #: ../../climateadapt/vocabulary.py:624
 msgid "Aridity"
-msgstr ""
+msgstr "Aridez"
 
 # ,
 # ,
@@ -1822,22 +1814,18 @@ msgstr "Evaluación de riesgos y vulnerabilidad <br /> al cambio climático"
 msgid "Atlantic Area"
 msgstr "Región atlántica"
 
-#,
 #: ../../climateadapt/vocabulary.py:738
 msgid "B1: Economic and Finance: Financing incentive instruments"
 msgstr "B1: Económica y finanzas: financiamiento de instrumentos de incentivos"
 
-#,
 #: ../../climateadapt/vocabulary.py:768
 msgid "B1: Financing incentive instruments"
 msgstr "B1: Financiamiento de instrumentos de incentivos"
 
-#,
 #: ../../climateadapt/vocabulary.py:739
 msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
 msgstr "B2: Económico y finanzas: instrumentos de seguros y riesgos para compartir"
 
-#,
 #: ../../climateadapt/vocabulary.py:769
 msgid "B2: Insurance and risk sharing instruments"
 msgstr "B2: Instrumentos para compartir riesgos y seguros"
@@ -1880,7 +1868,7 @@ msgstr "Mar Báltico"
 
 #: ../../climateadapt/vocabulary.py:1303
 msgid "Basic"
-msgstr ""
+msgstr "Básico"
 
 # ,
 # ,
@@ -1900,6 +1888,11 @@ msgstr ""
 #: ../../climateadapt/vocabulary.py:302
 msgid "Biodiversity"
 msgstr "Biodiversidad"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Protección de la biodiversidad"
 
 # ,
 # ,
@@ -1921,7 +1914,7 @@ msgstr "Regiones biogeográficas"
 
 #: ../../climateadapt/vocabulary.py:1255
 msgid "Building"
-msgstr ""
+msgstr "Edificio"
 
 # ,
 # ,
@@ -1942,27 +1935,22 @@ msgstr ""
 msgid "Buildings"
 msgstr "Edificios"
 
-#,
 #: ../../climateadapt/vocabulary.py:304
 msgid "Business and industry"
 msgstr "Negocio e industria"
 
-#,
 #: ../../climateadapt/vocabulary.py:770
 msgid "C1: Grey options"
 msgstr "C1: Opciones grises"
 
-#,
 #: ../../climateadapt/vocabulary.py:740
 msgid "C1: Physical and technological: Grey options"
 msgstr "C1: Física y tecnológica: Opciones grises"
 
-#,
 #: ../../climateadapt/vocabulary.py:741
 msgid "C2: Physical and technological: Technological options"
 msgstr "C2: Física y tecnológica: opciones tecnológicas"
 
-#,
 #: ../../climateadapt/vocabulary.py:771
 msgid "C2: Technological options"
 msgstr "C2: Opciones tecnológicas"
@@ -2106,7 +2094,7 @@ msgstr "Desafíos"
 
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
-msgstr ""
+msgstr "Caja creada"
 
 # ,
 # ,
@@ -2182,7 +2170,7 @@ msgstr "Elija el mapa temático:"
 
 #: ../../climateadapt/vocabulary.py:1296
 msgid "Citizen"
-msgstr ""
+msgstr "Ciudadano"
 
 # ,
 # ,
@@ -2367,11 +2355,11 @@ msgstr "Areas costeras"
 
 #: ../../climateadapt/vocabulary.py:628
 msgid "Coastal flooding"
-msgstr ""
+msgstr "inundaciones costeras"
 
 #: ../../climateadapt/vocabulary.py:620
 msgid "Cold spells and frost"
-msgstr ""
+msgstr "Olas de frío y heladas"
 
 # ,
 # ,
@@ -2404,7 +2392,7 @@ msgstr "Definiciones comunes de los términos utilizados con frecuencia en la c�
 
 #: ../../climateadapt/vocabulary.py:1229
 msgid "Companies, SMEs and private associations"
-msgstr ""
+msgstr "Empresas, Pymes y asociaciones privadas"
 
 # ,
 # ,
@@ -2555,29 +2543,24 @@ msgstr "Creado por:"
 
 #: ../../climateadapt/vocabulary.py:603
 msgid "Critical Infrastructure"
-msgstr ""
+msgstr "Infraestructura crítica"
 
-#,
 #: ../../climateadapt/vocabulary.py:306
 msgid "Cultural heritage"
 msgstr "Patrimonio cultural"
 
-#,
 #: ../../climateadapt/vocabulary.py:772
 msgid "D1: Green options"
 msgstr "D1: Opciones verdes"
 
-#,
 #: ../../climateadapt/vocabulary.py:744
 msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
 msgstr "D1: Soluciones basadas en la naturaleza y enfoques basados ​​en ecosistemas: opciones verdes"
 
-#,
 #: ../../climateadapt/vocabulary.py:773
 msgid "D2: Blue options"
 msgstr "D2: opciones azules"
 
-#,
 #: ../../climateadapt/vocabulary.py:748
 msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
 msgstr "D2: Soluciones basadas en la naturaleza y enfoques basados ​​en ecosistemas: opciones azules"
@@ -2794,22 +2777,18 @@ msgstr "Sequías e inundaciones"
 msgid "Duration:"
 msgstr "Duración:"
 
-#,
 #: ../../climateadapt/vocabulary.py:774
 msgid "E1: Information and awareness raising"
 msgstr "E1: Información y sensibilización"
 
-#,
 #: ../../climateadapt/vocabulary.py:752
 msgid "E1: Knowledge and behavioural change: Information and awareness raising"
 msgstr "E1: Conocimiento y cambio de comportamiento: información y conciencia de conciencia"
 
-#,
 #: ../../climateadapt/vocabulary.py:775
 msgid "E2: Capacity building empowering and lifestyle practices"
 msgstr "E2: Prácticas de empoderamiento y estilo de vida de desarrollo de capacidades"
 
-#,
 #: ../../climateadapt/vocabulary.py:756
 msgid "E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices"
 msgstr "E2: Conocimiento y cambio de comportamiento: prácticas de empoderamiento y estilo de vida de desarrollo de capacidades"
@@ -2833,7 +2812,12 @@ msgstr "Aspectos económicos"
 
 #: ../../climateadapt/vocabulary.py:609
 msgid "Ecosystems and Nature Based Solutions"
-msgstr ""
+msgstr "Ecosistemas y soluciones basadas en la naturaleza"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Restauración de ecosistemas"
 
 # ,
 # ,
@@ -2860,7 +2844,7 @@ msgstr "Aspectos ambientales"
 
 #: ../../climateadapt/vocabulary.py:1251
 msgid "European"
-msgstr ""
+msgstr "europeo"
 
 # ,
 # ,
@@ -2906,7 +2890,7 @@ msgstr "Eventos"
 
 #: ../../climateadapt/vocabulary.py:1305
 msgid "Expert"
-msgstr ""
+msgstr "Experto"
 
 # ,
 # ,
@@ -2943,7 +2927,7 @@ msgstr "Fuente externa"
 
 #: ../../climateadapt/vocabulary.py:622
 msgid "Extreme Precipitation"
-msgstr ""
+msgstr "Precipitación extrema"
 
 # ,
 # ,
@@ -2964,8 +2948,12 @@ msgid "Extreme Temperatures"
 msgstr "Temperaturas extremas"
 
 #: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr "Frío extremo"
+
+#: ../../climateadapt/vocabulary.py:619
 msgid "Extreme heat"
-msgstr ""
+msgstr "Calor extremo"
 
 # ,
 # ,
@@ -3398,7 +3386,7 @@ msgstr "Salud"
 
 #: ../../climateadapt/vocabulary.py:604
 msgid "Health and Wellbeing"
-msgstr ""
+msgstr "Salud y Bienestar"
 
 # ,
 # ,
@@ -3438,7 +3426,7 @@ msgstr "Índice de calor de HHWS:"
 
 #: ../../climateadapt/image_scales/interfaces.py:79
 msgid "High pixel density mode"
-msgstr ""
+msgstr "Modo de alta densidad de píxeles"
 
 # ,
 # ,
@@ -3478,9 +3466,8 @@ msgstr "¿Cómo usar el mapa?"
 
 #: ../../climateadapt/vocabulary.py:312
 msgid "ICT"
-msgstr ""
+msgstr "TIC"
 
-#,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:168
 msgid "IPCC adaptation options categories:"
 msgstr "Categorías de opciones de adaptación de IPCC:"
@@ -3570,11 +3557,11 @@ msgstr "Imagen cortesía de <a style = \"Color: #999; Font-Size: 12px;\" href = 
 
 #: ../../climateadapt/image_scales/interfaces.py:92
 msgid "Image quality at 2x"
-msgstr ""
+msgstr "Calidad de imagen a 2x"
 
 #: ../../climateadapt/image_scales/interfaces.py:105
 msgid "Image quality at 3x"
-msgstr ""
+msgstr "Calidad de imagen a 3x"
 
 # ,
 # ,
@@ -3649,7 +3636,7 @@ msgstr "Importancia y relevancia de la adaptación"
 
 #: ../../climateadapt/browser/pt/regions-section.pt:75
 msgid "In 2021-2027, the <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> cross-border cooperation (CBC) between EU Member States and Neighbourhood region </a> is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called “Interreg NEXT”."
-msgstr ""
+msgstr "En 2021-2027, la <a href=\"https://ec.europa.eu/regional_policy/policy/cooperación/european-territorial/next_en\"> cooperación transfronteriza (CBC) entre los Estados miembros de la UE y la región vecina </a> se rige por la política de cohesión de la UE y los programas formarán parte integral de Interreg. Para resaltar la dimensión exterior de la política de cohesión y al mismo tiempo resaltar la cercanía entre la UE y los países socios, el nuevo programa se denomina \"Interreg NEXT\"."
 
 # ,
 # ,
@@ -3789,17 +3776,14 @@ msgstr "Documentos del artículo"
 msgid "Item’s creation:"
 msgstr "Creación del artículo:"
 
-#,
 #: ../../climateadapt/tiles/search_acecontent.py:847
 msgid "Key Type Measure"
 msgstr "Medida de tipo clave"
 
-#,
 #: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:267
 msgid "Key Type Measures"
 msgstr "Medidas de tipo clave"
 
-#,
 #: ../../climateadapt/browser/pt/adaptationoption_view.pt:163
 msgid "Key Type Measures:"
 msgstr "Medidas de tipo clave:"
@@ -3824,11 +3808,11 @@ msgstr "Actividades principales en cambio climático y salud"
 
 #: ../../climateadapt/browser/admin.py:565
 msgid "Keyword succesfully deleted: ${kw_old}."
-msgstr ""
+msgstr "Palabra clave eliminada correctamente: ${kw_old}."
 
 #: ../../climateadapt/browser/admin.py:595
 msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
-msgstr ""
+msgstr "Palabra clave renombrada con éxito: ${kw_old} a ${kw_new}."
 
 # ,
 # ,
@@ -3870,14 +3854,13 @@ msgstr "Palabras clave"
 msgid "Keywords:"
 msgstr "Palabras clave:"
 
-#,
 #: ../../climateadapt/vocabulary.py:313
 msgid "Land use planning"
 msgstr "La planificación del uso del suelo"
 
 #: ../../climateadapt/vocabulary.py:605
 msgid "Land-use and Food Systems"
-msgstr ""
+msgstr "Uso de la tierra y sistemas alimentarios"
 
 # ,
 # ,
@@ -4035,15 +4018,15 @@ msgstr "Enlaces a más información"
 
 #: ../../climateadapt/vocabulary.py:611
 msgid "Local Economic Systems"
-msgstr ""
+msgstr "Sistemas económicos locales"
 
 #: ../../climateadapt/vocabulary.py:1221
 msgid "Local authorities and administrative bodies"
-msgstr ""
+msgstr "Autoridades locales y órganos administrativos"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:450
 msgid "MCR 2030"
-msgstr ""
+msgstr "RCM 2030"
 
 # ,
 # ,
@@ -4127,11 +4110,11 @@ msgstr "Marítimo-Pesquero"
 
 #: ../../climateadapt/vocabulary.py:618
 msgid "Mean air temperature"
-msgstr ""
+msgstr "Temperatura media del aire"
 
 #: ../../climateadapt/vocabulary.py:621
 msgid "Mean precipitation"
-msgstr ""
+msgstr "Precipitación media"
 
 # ,
 # ,
@@ -4189,22 +4172,21 @@ msgstr "Monitoreo &amp; Evaluación (M &amp; E)"
 msgid "Monitoring and evaluating adaptation"
 msgstr "Monitoreo y evaluación de la adaptación"
 
-#,
 #: ../../climateadapt/vocabulary.py:315
 msgid "Mountain areas"
 msgstr "Áreas de montaña"
 
 #: ../../climateadapt/vocabulary.py:1254
 msgid "Municipal/Local"
-msgstr ""
+msgstr "Municipal/Local"
 
 #: ../../climateadapt/vocabulary.py:1231
 msgid "NGOs"
-msgstr ""
+msgstr "ONG"
 
 #: ../../climateadapt/vocabulary.py:1252
 msgid "National"
-msgstr ""
+msgstr "Nacional"
 
 # ,
 # ,
@@ -4219,11 +4201,11 @@ msgstr "HHAP Nacional"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:119
 msgid "National adaptation policy not reported beyond mandatory reporting in 2023"
-msgstr ""
+msgstr "La política nacional de adaptación no se informa más allá de los informes obligatorios en 2023"
 
 #: ../../climateadapt/browser/pt/countries-d3.pt:115
 msgid "National adaptation policy reported in 2023"
-msgstr ""
+msgstr "Política nacional de adaptación reportada en 2023"
 
 # ,
 # ,
@@ -4300,7 +4282,6 @@ msgstr "Evaluaciones no disponibles"
 msgid "No data reported in 2021"
 msgstr "Información no reportada en 2021"
 
-#,
 #: ../../climateadapt/browser/pt/countries-d3.pt:104
 msgid "No data reported in 2023"
 msgstr "No se informan datos en 2023"
@@ -4412,7 +4393,7 @@ msgstr "Regiones septentrionales y Ártico"
 
 #: ../../climateadapt/browser/pt/landing_page_urban.pt:428
 msgid "OPPLA"
-msgstr ""
+msgstr "OPPLA"
 
 # ,
 # ,
@@ -4698,7 +4679,7 @@ msgstr "Información práctica"
 
 #: ../../climateadapt/vocabulary.py:1294
 msgid "Practitioners at the regional level"
-msgstr ""
+msgstr "Profesionales a nivel regional"
 
 # ,
 # ,
@@ -4967,7 +4948,7 @@ msgstr "Países de la región:"
 
 #: ../../climateadapt/vocabulary.py:1253
 msgid "Regional"
-msgstr ""
+msgstr "Regional"
 
 # ,
 # ,
@@ -5009,7 +4990,7 @@ msgstr "Documentos y presentaciones relacionados"
 
 #: ../../climateadapt/vocabulary.py:627
 msgid "Relative sea level"
-msgstr ""
+msgstr "nivel relativo del mar"
 
 # ,
 # ,
@@ -5071,7 +5052,7 @@ msgstr "Proyectos de investigación y conocimiento"
 
 #: ../../climateadapt/vocabulary.py:1292
 msgid "Researcher"
-msgstr ""
+msgstr "Investigador"
 
 # ,
 # ,
@@ -5132,7 +5113,7 @@ msgstr "Revisado por:"
 
 #: ../../climateadapt/vocabulary.py:623
 msgid "River flooding"
-msgstr ""
+msgstr "Inundación del río"
 
 # ,
 # ,
@@ -5154,7 +5135,7 @@ msgstr "Mapa del sitio web"
 
 #: ../../climateadapt/image_scales/interfaces.py:66
 msgid "Scaled image quality"
-msgstr ""
+msgstr "Calidad de imagen escalada"
 
 # ,
 # ,
@@ -5391,9 +5372,8 @@ msgstr "Seleccione los sectores para los que desea recibir un correo electrónic
 
 #: ../../climateadapt/tiles/pt/shareinfo.pt:8
 msgid "Share button tile"
-msgstr ""
+msgstr "Mosaico del botón Compartir"
 
-#,
 #: ../../climateadapt/tiles/pt/shareinfo.pt:11
 msgid "Share type:"
 msgstr "Tipo de compartir:"
@@ -5425,11 +5405,11 @@ msgstr "Mostrar todas las fuentes"
 
 #: ../../climateadapt/vocabulary.py:626
 msgid "Snow and ice"
-msgstr ""
+msgstr "Nieve y hielo"
 
 #: ../../climateadapt/vocabulary.py:1225
 msgid "Social, cultural and educational institutions"
-msgstr ""
+msgstr "Instituciones sociales, culturales y educativas."
 
 # ,
 # ,
@@ -5572,11 +5552,11 @@ msgstr "Suroeste de Europa"
 
 #: ../../climateadapt/image_scales/interfaces.py:43
 msgid "Specify all allowed maximum image dimensions, one per line. The required format is &lt;name&gt; &lt;width&gt;:&lt;height&gt;."
-msgstr ""
+msgstr "Especifique todas las dimensiones máximas permitidas de la imagen, una por línea. El formato requerido es &lt;nombre&gt; &lt;ancho&gt;:&lt;alto&gt;."
 
 #: ../../climateadapt/vocabulary.py:1293
 msgid "Staff of regional authority"
-msgstr ""
+msgstr "Personal de la autoridad regional"
 
 # ,
 # ,
@@ -5616,31 +5596,31 @@ msgstr "Participación de partes interesadas"
 
 #: ../../climateadapt/vocabulary.py:1295
 msgid "Stakeholders"
-msgstr ""
+msgstr "Partes interesadas"
 
 #: ../../climateadapt/vocabulary.py:1207
 msgid "Step 1. Preparing the ground for adaptation"
-msgstr ""
+msgstr "Paso 1. Preparar el terreno para la adaptación"
 
 #: ../../climateadapt/vocabulary.py:1208
 msgid "Step 2. Assessing climate change risks and vulnerabilities"
-msgstr ""
+msgstr "Paso 2. Evaluar los riesgos y vulnerabilidades del cambio climático"
 
 #: ../../climateadapt/vocabulary.py:1209
 msgid "Step 3. Identifying adaptation options"
-msgstr ""
+msgstr "Paso 3. Identificar opciones de adaptación"
 
 #: ../../climateadapt/vocabulary.py:1210
 msgid "Step 4. Assessing and selecting adaptation options"
-msgstr ""
+msgstr "Paso 4. Evaluar y seleccionar opciones de adaptación"
 
 #: ../../climateadapt/vocabulary.py:1211
 msgid "Step 5. Implementing adaptation"
-msgstr ""
+msgstr "Paso 5. Implementar la adaptación"
 
 #: ../../climateadapt/vocabulary.py:1212
 msgid "Step 6. Monitoring and evaluating adaptation"
-msgstr ""
+msgstr "Paso 6. Monitorear y evaluar la adaptación"
 
 # ,
 # ,
@@ -5982,18 +5962,17 @@ msgstr "La fecha se refiere al momento en que el artículo ha sido preparado o a
 msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
 msgstr "Existe <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\"> x </a> en Europa cooperación transnacional. Además, existen estrategias específicas acordadas por la UE para cuatro macrorregiones: <a href=\"http://ec.europa.eu/regional_policy/cooperere/baltic/index_en.cfm\" target=\"_blank\"> x </a>, <a href=\"http://ec.europa.eu/regional_policy/cooperer/danube/index_en.cfm\" target=\"_blank\"> x </a>, <a href =  \"http://www.europarl.europa.eu/sides/getdoc.do?pubref=-/ep//text+ta+p7-ta-2013-0229+0 +doc+xml+v0// En & amp; lenguage=en\" target=\"_ blank\"> x </a>, y <a href=\" http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional- estrategias/adriatic-ionian/\" target=\"_blank\"> x </a> regiones. Esta sección proporciona información sobre estrategias y acciones que se han desarrollado o se están desarrollando actualmente para las regiones transnacionales de la UE y para otras regiones y países. <br /> <br /> <b> x </b> <br /> El mapa muestra las regiones transnacionales situadas en Europa definidas en los programas de cooperación para el 2014-2020. Puede seleccionar regiones transnacionales haciendo clic en el mapa. Si selecciona un área que pertenece a más de una región, la ventana emergente mostrará todas las regiones donde se encuentra el área. La ventana emergente también muestra los países donde se encuentra cada región. <br /> <br /> Para ir a una de las páginas de las regiones, elíjala en la lista desplegable y haga clic en la leyenda o utilice el enlace que aparece en la información sobre las herramientas."
 
-#,
 #: ../../climateadapt/browser/pt/regions-section.pt:83
 msgid "To go to one of the regions please click on the maps."
 msgstr "Para ir a una de las regiones, haga clic en los mapas."
 
 #: ../../climateadapt/vocabulary.py:1244
 msgid "Tool broadly used"
-msgstr ""
+msgstr "Herramienta ampliamente utilizada"
 
 #: ../../climateadapt/vocabulary.py:1243
 msgid "Tool tested in several case studies"
-msgstr ""
+msgstr "Herramienta probada en varios estudios de caso"
 
 # ,
 # ,
@@ -6038,7 +6017,6 @@ msgstr "Herramientas y datos"
 msgid "Total"
 msgstr "Total"
 
-#,
 #: ../../climateadapt/vocabulary.py:316
 msgid "Tourism"
 msgstr "Turismo"
@@ -6233,7 +6211,7 @@ msgstr "Evaluación de vulnerabilidad"
 
 #: ../../climateadapt/vocabulary.py:606
 msgid "Water Management"
-msgstr ""
+msgstr "Gestión del agua"
 
 # ,
 # ,
@@ -6333,7 +6311,7 @@ msgstr "Dónde:"
 
 #: ../../climateadapt/vocabulary.py:625
 msgid "Wildfire"
-msgstr ""
+msgstr "Incendio forestal"
 
 # ,
 #: ../../climateadapt/vocabulary.py:595
@@ -6369,6 +6347,7 @@ msgstr "Año:"
 msgid "back to search"
 msgstr "Volver a la búsqueda"
 
+#. richtexteditor based on the description of images."
 #. Default: "Enable automatic image captioning for images set in the richtexteditor based on the description of images."
 #: ../../climateadapt/image_scales/interfaces.py:211
 msgid "image_captioning_description"

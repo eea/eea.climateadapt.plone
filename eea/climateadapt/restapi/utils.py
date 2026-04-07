@@ -1,8 +1,15 @@
 import json
 
-from eea.climateadapt.browser import get_date_updated, get_files
-from eea.climateadapt.vocabulary import BIOREGIONS, ace_countries_dict
+from bs4 import BeautifulSoup
+from plone.dexterity.utils import iterSchemata
 from plone.restapi.serializer.converters import json_compatible
+from zope.schema import getFields
+from plone.restapi.serializer.blocks import uid_to_url
+from zope.component import getUtility
+from zope.schema.interfaces import IVocabularyFactory
+
+from eea.climateadapt.browser import get_date_updated, get_files
+from eea.climateadapt.vocabulary import BIOREGIONS, SUBNATIONAL_REGIONS, RELEVANT_EU_POLICY_URLS, ace_countries_dict
 
 
 def get_geographic(item, result={}):
@@ -30,10 +37,53 @@ def get_geographic(item, result={}):
         response["transnational_region"] = [
             BIOREGIONS.get(x, x) for x in data["geoElements"]["macrotrans"]
         ]
+    if "element" in data["geoElements"]:
+        response["geographic_characterisation"] = [
+            BIOREGIONS.get(
+                data["geoElements"]["element"], data["geoElements"]["element"]
+            )
+        ]
+    if (
+        "biotrans" in data["geoElements"]
+        and data["geoElements"]["biotrans"]
+        and len(data["geoElements"]["biotrans"])
+    ):
+        response["biogeographical_regions"] = [
+            BIOREGIONS.get(x, x) for x in data["geoElements"]["biotrans"]
+        ]
+    if (
+        "subnational" in data["geoElements"]
+        and data["geoElements"]["subnational"]
+        and len(data["geoElements"]["subnational"])
+    ):
+        response["sub_nationals"] = [
+            SUBNATIONAL_REGIONS.get(x, x) for x in data["geoElements"]["subnational"]
+        ]
 
     if len(response):
         result["geographic"] = response
 
+    return result
+
+
+def use_blocks_from_fti(context, result):
+    # Only use FTI defaults if the object has no blocks stored
+    if result.get("blocks") or result.get("blocks_layout"):
+        # Object already has blocks, don't override
+        return result
+
+    blocks = None
+    blocks_layout = None
+    for schema in iterSchemata(context):
+        for name, field in getFields(schema).items():
+            if name == "blocks" and field.default and not blocks:
+                blocks = field.default
+            if name == "blocks_layout" and field.default and not blocks_layout:
+                blocks_layout = field.default
+
+    if blocks:
+        result["blocks"] = blocks
+        result["blocks_layout"] = blocks_layout
     return result
 
 
@@ -57,15 +107,19 @@ def cca_content_serializer(item, result, request):
         and "eea_index" in request.form
     ):
         converted = item.portal_transforms.convertTo(
-            "text/plain", item.long_description.output)
+            "text/plain", item.long_description.output
+        )
         if converted is not None:
-            description = converted.getData() .strip()
+            description = converted.getData().strip()
             try:
-                result["description"] = description.decode("utf-8")
+                if isinstance(description, str):
+                    result["description"] = description
+                else:
+                    result["description"] = description.decode("utf-8")
             except Exception:
                 result["description"] = description.encode("utf-8")
         else:
-            result['description'] = ''
+            result["description"] = ""
 
     result["cca_last_modified"] = json_compatible(
         dates["cadapt_last_modified"])
@@ -73,4 +127,253 @@ def cca_content_serializer(item, result, request):
     result["is_cca_content"] = True
     result["language"] = getattr(item, "language", "en")
 
+    result = use_blocks_from_fti(item, result)
+
     return result
+
+
+def html_to_plain_text(html, inline_links=True):
+    if not html:
+        return ""
+    soup = BeautifulSoup(html, "html.parser")
+    if inline_links:
+        for a in soup.find_all("a"):
+            href = a.get("href")
+            text = a.get_text().strip()
+            if href:
+                a.replace_with(f"{text} ({href})")
+            else:
+                a.replace_with(text)
+    plain_text = soup.get_text(separator=" ").strip()
+    return " ".join(plain_text.split())
+
+
+def is_h3_block(block):
+    if block.get("@type") != "slate":
+        return False
+    for v in block.get("value", []):
+        if v.get("type", "").lower().startswith("h3"):
+            return True
+    return False
+
+
+def extract_text_recursive(children):
+    parts = []
+    for c in children:
+        if isinstance(c, str):
+            parts.append(c)
+        elif isinstance(c, dict):
+            if c.get("text"):
+                parts.append(c["text"])
+            elif "children" in c:
+                parts.append(extract_text_recursive(c["children"]))
+    return "".join(parts)
+
+
+def render_slate_value(value):
+    parts = []
+
+    def render_children(children):
+        segs = []
+        for c in children:
+            if isinstance(c, dict):
+                if c.get("type") == "link":
+                    url = (c.get("data", {}) or {}).get("url", "") or ""
+                    if url.startswith("mailto:"):
+                        email = url.replace("mailto:", "").strip()
+                        if email:
+                            segs.append(email)
+                        continue
+                    if url and "resolveuid" in url:
+                        url = uid_to_url(url)
+
+                    label = extract_text_recursive(c.get("children", [])).strip()
+
+                    # avoid duplicates when the label already is the URL
+                    if label and url:
+                        if label.rstrip("/") == url.rstrip("/"):
+                            segs.append(url)
+                        else:
+                            segs.append(f"{label} ({url})")
+                    elif url:
+                        segs.append(url)
+                    elif label:
+                        segs.append(label)
+
+                elif c.get("type") in ("ul", "ol"):
+                    segs.append(render_list(c))
+                elif c.get("type") == "li":
+                    text = extract_text_recursive(c.get("children", [])).strip()
+                    if text:
+                        segs.append(f"- {text}")
+                else:
+                    text = extract_text_recursive([c]).strip()
+                    if text:
+                        segs.append(text)
+            elif isinstance(c, str):
+                segs.append(c)
+        return segs
+
+    def render_list(node):
+        items = []
+        for li in node.get("children", []):
+            if li.get("type") == "li":
+                txt = extract_text_recursive(li.get("children", [])).strip()
+                if txt:
+                    items.append(f"- {txt}")
+        return "\n".join(items)
+
+    for v in value:
+        if v.get("type") in ("ul", "ol"):
+            parts.append(render_list(v))
+        else:
+            children_texts = render_children(v.get("children", []))
+            if children_texts:
+                parts.append(" ".join(children_texts).strip())
+
+    return "\n".join(p for p in parts if p)
+
+
+def find_section_range(blocks, items, start_title, end_title=None):
+    start_idx = next(
+        (
+            i
+            for i, bid in enumerate(items)
+            if start_title.strip().lower()
+            in (blocks.get(bid, {}).get("plaintext") or "").strip().lower()
+        ),
+        None,
+    )
+    if start_idx is None or not is_h3_block(blocks.get(items[start_idx], {})):
+        return None, None
+
+    end_idx = None
+    if end_title:
+        end_idx = next(
+            (
+                i
+                for i, bid in enumerate(items)
+                if end_title.strip().lower()
+                in (blocks.get(bid, {}).get("plaintext") or "").strip().lower()
+            ),
+            None,
+        )
+
+    if end_idx is None:
+        for i in range(start_idx + 1, len(items)):
+            if is_h3_block(blocks.get(items[i], {})):
+                end_idx = i
+                break
+
+    return start_idx, end_idx
+
+
+def extract_section_text(blocks, items, start_title, end_title=None):
+    """Extract text between two h3 headings from Slate blocks."""
+    start_idx, end_idx = find_section_range(blocks, items, start_title, end_title)
+    if start_idx is None:
+        return ""
+
+    content_slice = items[start_idx + 1:end_idx] if end_idx else items[start_idx + 1:]
+    parts = []
+
+    for bid in content_slice:
+        block = blocks.get(bid, {})
+        if block.get("@type") != "slate":
+            continue
+        if is_h3_block(block):
+            break
+
+        text = render_slate_value(block.get("value", [])) or block.get("plaintext", "")
+        text = text.strip()
+        if text:
+            parts.append(text.rstrip("."))
+
+    return "\n".join(p.strip().rstrip('.') for p in parts if p.strip())
+
+def serialize_blocks(blocks, items, result, metadata_ids=None):
+    parts = []
+    metadata_ids = set(metadata_ids or [])
+
+    for bid in items:
+        block = blocks.get(bid)
+        if not block:
+            continue
+
+        btype = block.get("@type")
+
+        if btype == "slate":
+            text = render_slate_value(block.get("value", []))
+            if not text:
+                text = block.get("plaintext", "")
+            text = (text or "").strip()
+            if text:
+                parts.append(text)
+
+        elif btype == "quote":
+            text = render_slate_value(block.get("value", [])) or block.get("plaintext", "")
+            text = (text or "").strip()
+            if text:
+                safe = text.replace('"', '""')
+                parts.append(f'"{safe}"')
+
+        elif btype == "metadata":
+            field_id = (block.get("data") or {}).get("id")
+            if not field_id or field_id not in metadata_ids:
+                continue
+
+            value = result.get(field_id)
+            text = ""
+
+            if isinstance(value, list):
+                titles = [
+                    t.strip()
+                    for v in value
+                    if isinstance(v, dict)
+                    for t in [v.get("title")]
+                    if isinstance(t, str) and t.strip()
+                ]
+                text = ", ".join(titles)
+
+            elif isinstance(value, dict) and "data" in value:
+                text = html_to_plain_text(value.get("data", ""), inline_links=True)
+
+            elif value:
+                text = str(value)
+
+            text = (text or "").strip()
+            if text:
+                parts.append(text)
+
+    return "\n\n".join(parts)
+
+def richtext_to_plain_text(value):
+    if isinstance(value, dict) and "data" in value:
+        html = value.get("data", "")
+        return html_to_plain_text(html, inline_links=False)
+    return value
+
+def serialize_relevant_eu_policies(context):
+    values = getattr(context, "relevant_eu_policies", None) or []
+    if not values:
+        return []
+
+    vocab_factory = getUtility(IVocabularyFactory, "eea.climateadapt.relevant_eu_policies")
+    vocab = vocab_factory(context)
+
+    out = []
+    for v in values:
+        try:
+            term = vocab.getTerm(v)
+            title = term.title
+        except LookupError:
+            title = v
+
+        out.append(
+            {
+                "id": v,
+                "title": title,
+                "url": RELEVANT_EU_POLICY_URLS.get(v),
+            }
+        )
+    return out

@@ -7,7 +7,7 @@ PATH = NAME.split(".") + ["version.txt"]
 VERSION = open(os.path.join(*PATH)).read().strip()
 
 
-long_description = (
+long_description = "\n\n".join(
     (
         open("README.rst").read()
         + "\n"
@@ -38,22 +38,18 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        "setuptools",
-        "plone.app.dexterity",
-        "plone.namedfile [blobs]",
         # -*- Extra requirements: -*-
         "z3c.jbot",
         "pycountry",
-        "collective.dexteritytextindexer",
-        "collective.easyform",
         "tokenlib",
-        "eea.rabbitmq.client",  # schedule jobs
-        "eea.rabbitmq.plone",
         "langdetect",
         "chardet",
         "zeep==3.4.0",
+        "XlsxWriter==1.2.7",
+        "collective.geolocationbehavior",
+        "redis",  # do we need it?
+        "bullmq",
         # "google-api-python-client",  # google analytics API integration
-        # "collective.relationhelpers",
     ],
     extras_require={
         "test": [
@@ -69,23 +65,9 @@ setup(
       [z3c.autoinclude.plugin]
       target = plone
       [console_scripts]
-      climateadapt_importer = eea.climateadapt._importer:main
-      sync_to_arcgis = eea.climateadapt.scripts.sync_to_arcgis:main
-      arcgis_cli = eea.climateadapt.scripts.cli_arcgis_client:main
-      c3s = eea.climateadapt.scripts.c3s:main
-      get_broken_links = eea.climateadapt.browser.scripts:get_broken_links
-      sync_adaptecca_casestudies = eea.climateadapt.browser.scripts:sync_adaptecca_casestudies
-      import_drmkc = eea.climateadapt.browser.scripts:import_drmkc
-      archive_news = eea.climateadapt.browser.scripts:archive_news
-      harvest_eea_indicators = eea.climateadapt.scripts.harvest_eea_indicators:main
-      refresh_analytics_data = eea.climateadapt.browser.admin:refresh_analytics_data
-      run_translation_step_2 = eea.climateadapt.translation.scripts.translation:translation_step_2
-      migrate_to_volto = eea.climateadapt.migration.scripts:migrate_to_volto
+      report_roles = eea.climateadapt.scripts.report_roles:main
+      migrate_eionet_groups = eea.climateadapt.scripts.migrate_eionet_groups:main
+      document_workflows = eea.climateadapt.scripts.document_workflows:main
+      analyze_relstorage = eea.climateadapt.scripts.analyze_relstorage:main
       """,
-    # The next two lines may be deleted after you no longer need
-    # addcontent support from paster and before you distribute
-    # your package.
-    # setup_requires=["PasteScript"],
-    # paster_plugins=["templer.localcommands"],
-    # refresh_analytics_data = eea.climateadapt.browser.admin:refresh_analytics_data
 )

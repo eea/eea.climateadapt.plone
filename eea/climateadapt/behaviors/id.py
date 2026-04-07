@@ -1,8 +1,8 @@
 # A copy of plone.shortname from
 # https://github.com/plone/plone.app.dexterity/blob/fe92c804c545e4c218d60906e8ce5f5ec6cdfd95/plone/app/dexterity/behaviors/id.py
 
+import transaction
 from Acquisition import aq_base, aq_inner, aq_parent
-from eea.climateadapt import CcaAdminMessageFactory as _
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.locking.interfaces import ILockable
@@ -12,19 +12,19 @@ from zope.container.interfaces import INameChooser
 
 # from zope.interface import alsoProvides
 from zope.interface import provider
-import transaction
 
+from eea.climateadapt import CcaAdminMessageFactory as _
 
 # from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 
 
 @provider(IFormFieldProvider)
 class IShortName(model.Schema):
-    model.fieldset(
-        "settings",
-        label=_("Settings"),
-        fields=["id"],
-    )
+    # model.fieldset(
+    #     "settings",
+    #     label=_("Settings"),
+    #     fields=["id"],
+    # )
 
     id = schema.ASCIILine(
         title=_("Short name"),
@@ -42,7 +42,10 @@ class ShortName(object):
         self.context = context
 
     def _get_id(self):
-        return self.context.getId()
+        try:
+            return self.context.getId()
+        except AttributeError:
+            return ""
 
     def _set_id(self, value):
         if not value:

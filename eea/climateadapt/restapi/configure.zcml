@@ -2,6 +2,7 @@
   xmlns="http://namespaces.zope.org/zope"
   xmlns:browser="http://namespaces.zope.org/browser"
   xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
   xmlns:plone="http://namespaces.plone.org/plone">
 
   <include file="breadcrumbs.zcml" />
@@ -9,41 +10,47 @@
   <!-- this is protected by have-plone5 condition in the original -->
   <include file="multilingual.zcml" />
 
-  <adapter factory=".serializer.GenericContentSerializer"/>
-  <adapter factory=".serializer.GenericFolderSerializer"/>
+  <adapter factory=".serializer.GenericContentSerializer" />
+  <adapter factory=".serializer.GenericFolderSerializer" />
 
   <adapter factory=".serializer.ClimateAdaptContentSerializer" />
   <adapter factory=".serializer.AdaptationOptionSerializer" />
   <adapter factory=".serializer.AceProjectSerializer" />
   <adapter factory=".serializer.CaseStudySerializer" />
-  <adapter factory=".serializer.OrganisationSerializer" />
+  <!-- <adapter factory=".serializer.OrganisationSerializer" /> -->
   <adapter factory=".serializer.RichttextFieldSerializer" />
 
   <adapter factory=".serializer.MissionToolSerializer" />
   <adapter factory=".serializer.MissionFundingSerializer" />
-
+  <adapter factory=".serializer.MissionStorySerializer" />
+  <adapter
+    factory=".serializer.LinkRedirectSerializer"
+    provides="plone.restapi.interfaces.ISerializeToJson"
+    for="plone.app.contenttypes.interfaces.ILink
+        plone.restapi.interfaces.IPloneRestapiLayer"
+  />
   <zcml:configure zcml:condition="not-installed collective.exportimport">
     <adapter factory=".long_converter" />
   </zcml:configure>
 
   <!-- <adapter factory=".long_converter" /> -->
-  <adapter factory=".geolocation_converter" />
+  <!-- <adapter factory=".geolocation_converter" /> -->
   <adapter factory=".richtext_value_converter" />
-  <adapter factory=".deserializer.GeolocationFieldDeserializer" />
+  <!-- <adapter factory=".deserializer.GeolocationFieldDeserializer" /> -->
 
   <adapter
     factory=".workflow.WorkflowInfo"
     name="workflow"
-    />
+  />
 
   <plone:service
-    method="POST"
-    factory=".querystats.QueryStatsPost"
+    method="GET"
+    factory=".querystats.QueryStatsGet"
     for="Products.CMFCore.interfaces.IContentish"
     permission="zope2.View"
     name="@querystats"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+  />
 
   <plone:service
     method="GET"
@@ -51,13 +58,13 @@
     for="Products.CMFCore.interfaces.IContentish"
     permission="zope2.View"
     name="@workflow"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+  />
 
   <adapter
     factory=".actions.Actions"
     name="actions"
-    />
+  />
 
   <plone:service
     method="GET"
@@ -65,13 +72,13 @@
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@actions"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+  />
 
   <adapter
     factory=".ecde.C3SIndicatorsOverview"
     name="c3s_indicators_overview_api"
-    />
+  />
 
   <plone:service
     method="GET"
@@ -79,13 +86,13 @@
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@c3s_indicators_overview_api"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+  />
 
   <adapter
     factory=".ecde.C3SIndicatorsData"
     name="c3s_indicators_data"
-    />
+  />
 
   <plone:service
     method="GET"
@@ -93,52 +100,64 @@
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@c3s_indicators_glossary_table_api"
-    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
-    />
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+  />
 
   <subscriber
     factory=".serializer.SlateBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  />
 
   <subscriber
     factory=".blocks.GenericLinkFixer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  />
 
   <subscriber
     factory=".blocks.ColumnBlockSerializationTransformer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  />
+  <subscriber
+    factory=".blocks.RastBlockSerializationTransformer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
+  <subscriber
+    factory=".blocks.SearchlibBlockSerializationTransformer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
+  <subscriber
+    factory=".blocks.ListingBlockSerializationTransformer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
 
   <subscriber
     factory=".deserializer.VolatileSmartField"
     provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
-    />
+  />
 
   <subscriber
     factory=".blocks.SearchAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  />
 
-  <subscriber
+  <!-- <subscriber
     factory=".blocks.RelevantAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-    />
+  /> -->
 
   <browser:page
     for="*"
     name="portal_tabs_view"
-    layer="plone.restapi.interfaces.IPloneRestapiLayer"
     class=".navigation.CustomCatalogNavigationTabs"
     permission="zope.Public"
     allowed_attributes="topLevelTabs"
-    />
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+  />
 
   <adapter
     factory=".navigation.Navigation"
     name="navigation"
-    />
+  />
 
   <plone:service
     method="GET"
@@ -146,11 +165,11 @@
     for="zope.interface.Interface"
     permission="zope2.View"
     name="@navigation"
-    layer="plone.restapi.interfaces.IPloneRestapiLayer"
-    />
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+  />
 
 
-  <adapter factory=".siblings.Siblings" name="siblings"/>
+  <adapter factory=".siblings.Siblings" name="siblings" />
 
   <plone:service
     method="GET"
@@ -158,27 +177,78 @@
     factory=".siblings.SiblingsGet"
     name="@siblings"
     permission="zope2.View"
-    />
+  />
 
   <subscriber
-      factory=".slate.SlateTableBlockSerializer"
-      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-      />
-  <!-- <subscriber -->
-  <!--     factory=".slate.SlateTableBlockDeserializerRoot" -->
-  <!--     provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer" -->
-  <!--     /> -->
+    factory=".slate.SlateTableBlockSerializer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
 
-  <adapter factory=".countryprofile.CountryProfile" name="countryprofile"/>
-  <adapter factory=".transnationalregions.TransnationalRegion" name="transnationalregions"/>
+  <adapter factory=".countryprofile.CountryProfile" name="countryprofile" />
+  <adapter factory=".countryprofile2025.CountryProfile2025" name="countryprofile" />
+  <adapter factory=".countryprofile2026.CountryProfile2026" name="countryprofile2026" />
+  <adapter factory=".missionsignatoryprofile.MissionSignatoryProfile" name="missionsignatoryprofile" />
 
   <subscriber
-      factory=".blocks.ResolveUIDDeserializer"
-      provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
-      />
+    factory=".transnationalregions.TransnationRegionSelectSerializationTransformer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
 
   <subscriber
-      factory=".blocks.ResolveUIDSerializer"
-      provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
-      />
+    factory=".blocks.ResolveUIDDeserializer"
+    provides="plone.restapi.interfaces.IBlockFieldDeserializationTransformer"
+  />
+
+  <subscriber
+    factory=".blocks.ResolveUIDSerializer"
+    provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
+  />
+
+  <plone:service
+    method="GET"
+    factory=".querystring.CCAQuerystringGet"
+    for="Products.CMFCore.interfaces.IContentish"
+    permission="zope2.View"
+    name="@querystring"
+    layer="plone.restapi.interfaces.IPloneRestapiLayer"
+  />
+
+  <plone:service
+    method="GET"
+    factory=".querystring.CCAQuerystringGet"
+    for="plone.base.interfaces.siteroot.IPloneSiteRoot"
+    permission="zope2.View"
+    name="@querystring"
+    layer="plone.restapi.interfaces.IPloneRestapiLayer"
+  />
+
+  <plone:service
+    method="GET"
+    factory=".navroot.NavrootGet"
+    for="zope.interface.Interface"
+    permission="zope2.View"
+    name="@navroot"
+    layer="eea.volto.policy.interfaces.IEeaVoltoPolicyLayer"
+  />
+
+  <adapter
+    factory=".navroot.Navroot"
+    name="navroot"
+  />
+
+  <monkey:patch
+    module="plone.restapi.serializer.blocks.TeaserBlockSerializer"
+    original="_process_data"
+    replacement="eea.climateadapt.restapi.teaser.process_data"
+    description="Patch plone.restapi.serializer.blocks.TeaserBlockSerializer._process_data"
+    preserveOriginal="true"
+  />
+
+  <monkey:patch
+    module="plone.restapi.serializer.blocks.TeaserBlockSerializerRoot"
+    original="_process_data"
+    replacement="eea.climateadapt.restapi.teaser.process_data"
+    description="Patch plone.restapi.serializer.blocks.TeaserBlockSerializerRoot._process_data"
+    preserveOriginal="true"
+  />
 </configure>

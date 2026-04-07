@@ -1,0 +1,18 @@
+<form action="./@@archive-items-2025-294148" method="post" enctype="multipart/form-data">
+  <input type="checkbox" name="doarchive" value="1" /> doarchive
+  <hr>
+  <input type="checkbox" name="publicationreport" value="1" /> publicationreport
+  <br><input type="checkbox" name="aceproject" value="1" /> aceproject
+  <br><input type="submit" value="FILTER" name="submit" />
+</form>
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/itemNr"></td>
+        <td tal:content="item/nrToArchive"></td>
+        <td tal:content="item/toArchive"></td>
+        <td width="80px" tal:content="item/created|nothing"></td>
+        <td width="120px" tal:content="item/publication_date|nothing"></td>
+        <td tal:content="item/title"></td>
+        <td tal:content="item/url"></td>
+    </tr>
+</table>

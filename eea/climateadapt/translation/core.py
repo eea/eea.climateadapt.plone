@@ -1,407 +1,305 @@
+import asyncio
+import base64
+import json
 import logging
-from copy import deepcopy
+import os
 
+import requests
 from Acquisition import aq_inner, aq_parent
-from eea.climateadapt.browser.admin import force_unlock
+from bullmq import Queue
 from plone import api
-from plone.api import portal
+from plone.api import content, portal
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.multilingual.factory import DefaultTranslationFactory
+from plone.app.multilingual.interfaces import ITranslationManager, ITG, IMutableTG
 from plone.app.multilingual.manager import TranslationManager
 from plone.app.textfield.interfaces import IRichText
 from plone.app.textfield.value import RichTextValue
-from plone.app.uuid.utils import uuidToObject
 from plone.dexterity.utils import iterSchemata
-from plone.tiles.interfaces import ITileDataManager
-from plone.uuid.interfaces import IUUID
 from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.WorkflowCore import WorkflowException
-from Testing.ZopeTestCase import utils as zopeUtils
-from zope.component.hooks import setSite
+from zeep import Client
+from zeep.wsse.username import UsernameToken
+from zExceptions import Unauthorized
+from plone.uuid.interfaces import IUUID
+from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 from zope.schema import getFieldsInOrder
 
-from . import retrieve_volto_html_translation
+from eea.climateadapt.callbackdatamanager import queue_callback
+from eea.climateadapt.utils import force_unlock
+from eea.climateadapt.versions import ISerialId
+
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
+from .utils import get_site_languages
+
+env = os.environ.get
+
+TRANS_USERNAME = "ipetchesi"  # TODO: get another username?
+MARINE_PASS = env("MARINE_PASS", "")
+SERVICE_URL = "https://webgate.ec.europa.eu/etranslation/si/translate"
+ETRANSLATION_SOAP_SERVICE_URL = (
+    "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL"
+)
+REDIS_HOST = env("REDIS_HOST", "localhost")
+REDIS_PORT = int(env("REDIS_PORT", 6379))
+TRANSLATION_AUTH_TOKEN = env("TRANSLATION_AUTH_TOKEN", "")
+PORTAL_URL = os.environ.get("PORTAL_URL", "")
+
+# See this for schema:
+# https://webgate.ec.europa.eu/etranslation/si/SecuredWSEndpointHandlerService?xsd=1
 
 logger = logging.getLogger("eea.climateadapt")
 
+CONVERTER_URL = env("CONVERTER_URL", "http://converter:8000")
+SLATE_CONVERTER = f"{CONVERTER_URL}/html"
+BLOCKS_CONVERTER = f"{CONVERTER_URL}/blocks2html"
+CONTENT_CONVERTER = f"{CONVERTER_URL}/html2content"
 
-def get_translation_object(obj, language):
-    """Returns the translation object for a given language"""
-    try:
-        translations = TranslationManager(obj).get_translations()
-    except Exception:
-        if language == "en":  # temporary solution to have EN site working
-            return obj  # TODO: better fix
-        return None
+logger = logging.getLogger("eea.climateadapt")
 
-    if language not in translations:
-        return None
-    trans_obj = translations[language]
-    return trans_obj
+redisOpts = dict(host=REDIS_HOST, port=REDIS_PORT, db=0)
 
-
-def fix_cards_tile(obj, trans_obj, data_tile, data_trans_tile, language):
-    # We link the collection tile to the translated version
-    tile = obj.get_tile(data_tile["id"])
-    try:
-        trans_tile = trans_obj.get_tile(data_trans_tile["id"])
-    except ValueError:
-        logger.info("Tile not found.")
-        trans_tile = None
-
-    if trans_tile is not None:
-        collection_obj = uuidToObject(tile.data["uuid"])
-        collection_trans_obj = get_translation_object(collection_obj, language)
-
-        dataManager = ITileDataManager(trans_tile)
-
-        temp = dataManager.get()
-        try:
-            temp["uuid"] = IUUID(collection_trans_obj)
-        except TypeError:
-            logger.info("Collection not found.")
-
-        dataManager.set(temp)
+queues = {
+    "etranslation": lambda: Queue("etranslation", {"connection": redisOpts}),
+    "save_etranslation": lambda: Queue("save_etranslation", {"connection": redisOpts}),
+    "sync_paths": lambda: Queue("sync_paths", {"connection": redisOpts}),
+    "delete_translation": lambda: Queue(
+        "delete_translation", {"connection": redisOpts}
+    ),
+}
 
 
-cover_fixes = {"eea.climateadapt.cards_tile": fix_cards_tile}
+def queue_job(queue_name, job_name, data, opts=None):
+    """Schedules job for redis, at the end of the transaction"""
 
-
-def handle_cover_step_4(obj, trans_obj, language, reindex):
-    """Used by save_html_volto. Adapts the cover data from one cover to another"""
-
-    data_tiles = obj.get_tiles()
-
-    for data_tile in data_tiles:
-        if data_tile["type"] == "eea.climateadapt.cards_tile":
-            data_trans_tiles = obj.get_tiles()
-            for data_trans_tile in data_trans_tiles:
-                fixer = cover_fixes.get(data_trans_tile["type"], None)
-                if fixer:
-                    fixer(obj, trans_obj, data_tile, data_trans_tile, language)
-
-        if data_tile["type"] == "eea.climateadapt.relevant_acecontent":
-            tile_id = data_tile["id"]
-            plone_tile_id = "plone.tiles.data" + tile_id
-            trans_tile = trans_obj.__annotations__.get(plone_tile_id) or {}
-            saved_title = trans_tile.get("title")
-
-            from_data = obj.__annotations__.get(plone_tile_id, None)
-            if from_data:
-                data = deepcopy(from_data)
-                if saved_title:
-                    data["title"] = saved_title
-
-                trans_obj.__annotations__[plone_tile_id] = data
-
-    force_unlock(obj)
-    layout_en = obj.getLayout()
-    if layout_en:
-        reindex = True
-        trans_obj.setLayout(layout_en)
-
-    return reindex
-
-
-def sync_obj_layout(obj, trans_obj, reindex, async_request):
-    """Used by save_html_volto"""
-    force_unlock(obj)
-
-    layout_en = obj.getLayout()
-    default_view_en = obj.getDefaultPage()
-    layout_default_view_en = None
-    if default_view_en:
-        try:
-            trans_obj.setDefaultPage(default_view_en)
-            reindex = True
-        except Exception:
-            logger.info("Can't set default page for: %s",
-                        trans_obj.absolute_url())
-    if not reindex:
-        reindex = True
-        trans_obj.setLayout(layout_en)
-
-    if default_view_en is not None:
-        layout_default_view_en = obj[default_view_en].getLayout()
-
-    # set the layout of the translated object to match the EN object
-
-    # also set the layout of the default view
-    if layout_default_view_en:
-        try:
-            trans_obj[default_view_en].setLayout(layout_default_view_en)
-        except Exception:
-            logger.info("Can't set layout for: %s", trans_obj.absolute_url())
-            raise
-
-    if async_request:
-        if hasattr(trans_obj, "REQUEST"):
-            del trans_obj.REQUEST
-
-        if hasattr(obj, "REQUEST"):
-            del obj.REQUEST
-
-
-handle_folder_doc_step_4 = sync_obj_layout  # BBB
-
-
-def get_tile_type(tile, from_cover, to_cover):
-    """Return tile type"""
-    tiles_types = {
-        "RichTextWithTitle": "eea.climateadapt.richtext_with_title",
-        "EmbedTile": "collective.cover.embed",
-        "RichTextTile": "collective.cover.richtext",
-        "SearchAceContentTile": "eea.climateadapt.search_acecontent",
-        "GenericViewTile": "eea.climateadapt.genericview",
-        "RelevantAceContentItemsTile": "eea.climateadapt.relevant_acecontent",
-        "ASTNavigationTile": "eea.climateadapt.ast_navigation",
-        "ASTHeaderTile": "eea.climateadapt.ast_header",
-        "FilterAceContentItemsTile": "eea.climateadapt.filter_acecontent",
-        "TransRegionalSelectTile": "eea.climateadapt.transregionselect",
-        "SectionNavTile": "eea.climateadapt.section_nav",
-        "CountrySelectTile": "eea.climateadapt.countryselect",
-        "BannerTile": "collective.cover.banner",
-        "ShareInfoTile": "eea.climateadapt.shareinfo",
-        "FormTile": "eea.climateadapt.formtile",
-        "UrbanMenuTile": "eea.climateadapt.urbanmenu",
-        "CardsTile": "eea.climateadapt.cards_tile",
+    opts = opts or {
+        "delay": 1000,  # Delay in milliseconds
+        "priority": 10,
+        "attempts": 1,
+        "lifo": False,  # we dont use LIFO queing
     }
-    for a_type in tiles_types.keys():
-        if a_type in str(type(tile)):
-            return tiles_types[a_type]
 
-    return None
+    def callback():
+        log_data = data
+        if isinstance(data, dict):
+            log_data = data.copy()
+            if "html" in log_data:
+                log_data["html"] = "<HTML CONTENT>"
 
+        logger.info(
+            "Adding job: %s to queue: %s with data: %s", job_name, queue_name, log_data
+        )
 
-def copy_tiles(tiles, from_cover, to_cover):
-    """Copy the tiles from cover to translated cover"""
-    logger.info("Copy tiles from cover: %s", from_cover.absolute_url())
-    logger.info("Copy tiles to cover: %s", to_cover.absolute_url())
+        async def inner():
+            queue = queues[queue_name]()
+            await queue.add(job_name, data, opts)
+            await queue.close()
 
-    for tile in tiles:
-        tile_type = get_tile_type(tile, from_cover, to_cover)
+        asyncio.run(inner())
 
-        if tile_type is not None:
-            from_tile = from_cover.restrictedTraverse(
-                "@@{0}/{1}".format(tile_type, tile.id)
-            )
+    queue_callback(callback)
 
-            to_tile = to_cover.restrictedTraverse(
-                "@@{0}/{1}".format(tile_type, tile.id)
-            )
-
-            from_data_mgr = ITileDataManager(from_tile)
-            to_data_mgr = ITileDataManager(to_tile)
-            to_data_mgr.set(from_data_mgr.get())
-
-        else:
-            logger.info("Missing tile type")
-            # import pdb
-            #
-            # pdb.set_trace()
+    print(f"Job added to queue: {queue_name}")
 
 
-def check_full_path_exists(obj, language, site_portal):
-    """Create full path for a object"""
+def queue_translate(obj, language=None):
+    """Triggering the translation of an object."""
 
-    parent = aq_parent(aq_inner(obj))
-    path = parent.getPhysicalPath()
+    url = "/".join(obj.getPhysicalPath()[1:])
+    try:
+        html = getMultiAdapter((obj, obj.REQUEST), name="tohtml")()
+    except Exception:
+        logger.exception("Could not convert Volto page to HTML: %s", url)
+        return
 
-    if len(path) <= 2:  # aborting, we've reached bottom
-        return True
+    try:
+        serial_id = int(
+            ISerialId(obj).serial_id
+        )  # by default we get is a location proxy
+    except TypeError as e:
+        logger.error("Error getting serial_id for object: %s", obj)
+        logger.error("Object type: %s", type(obj))
+        logger.error("Object repr: %r", obj)
+        if hasattr(obj, "getPhysicalPath"):
+            logger.error("Object path: %s", obj.getPhysicalPath())
+        logger.exception(e)
+        serial_id = 0
 
-    translations = TranslationManager(parent).get_translations()
-    if language not in translations:
-        # TODO, what if the parent path already exist in language
-        # but is not linked in translation manager
-        create_translation_object(parent, language, site_portal)
+    obj_uid = IUUID(obj, None)
+
+    data = {
+        "obj_url": url,
+        "obj_uid": obj_uid,
+        "html": html,
+        "serial_id": serial_id,
+    }
+
+    languages = language and [language] or get_site_languages()
+    logger.info("Called translate_volto_html for %s", url)
+
+    # Schedule the job to be executed between 7 PM and 7 AM
+    import datetime
+
+    now = datetime.datetime.now()
+    # 19:00 = 7 PM, 07:00 = 7 AM
+    start_time_limit = now.replace(hour=19, minute=0, second=0, microsecond=0)
+    end_time_limit = now.replace(hour=7, minute=0, second=0, microsecond=0)
+
+    delay = 1000  # default delay
+
+    if 7 <= now.hour < 19:
+        # We are during the day (forbidden window). Schedule for 7 PM tonight.
+        wait_time = start_time_limit - now
+        delay = int(wait_time.total_seconds() * 1000)
+        logger.info(
+            "Delaying translation job for %s seconds", wait_time.total_seconds()
+        )
+
+    for language in languages:
+        if language == "en":
+            continue
+
+        data = dict(data.items(), language=language)
+
+        opts = {"delay": delay}
+
+        logger.info("Queue translate_volto_html for %s / %s", url, language)
+        queue_job("etranslation", "call_etranslation", data, opts)
+
+
+def get_blocks_as_html(obj):
+    """Uses the converter service to convert blocks to HTML representation"""
+
+    data = {"blocks_layout": obj.blocks_layout, "blocks": obj.blocks}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
+
+    req = requests.post(BLOCKS_CONVERTER, data=json.dumps(data), headers=headers)
+    if req.status_code != 200:
+        logger.debug(req.text)
+        raise ValueError
+
+    html = req.json()["html"]
+    logger.info("Blocks converted to html: %s", html)
+    return html
+
+
+def call_etranslation_service(html, obj_path, target_languages):
+    """Makes a eTranslation webcall to request a translation for a html
+    (based on volto export)
+    """
+
+    if not html:
+        return {"transId": "not-called", "reason": "Empty HTML content"}
+
+    encoded_html = base64.b64encode(html.encode("utf-8"))
+
+    site_url = PORTAL_URL or portal.get().absolute_url()
+
+    client = Client(
+        ETRANSLATION_SOAP_SERVICE_URL,
+        wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS),
+    )
+
+    dest = "{}/@@translate-callback".format(site_url)
+
+    if "localhost" not in site_url:
+        resp = client.service.translate(
+            {
+                "priority": "5",
+                "external-reference": obj_path,
+                "caller-information": {
+                    "application": "Marine_EEA_20180706",
+                    "username": TRANS_USERNAME,
+                },
+                "document-to-translate-base64": {
+                    "content": encoded_html,
+                    "format": "html",
+                    "fileName": "out",
+                },
+                "source-language": "en",
+                "target-languages": {"target-language": target_languages},
+                "domain": "GEN",
+                "output-format": "html",
+                "destinations": {
+                    "http-destination": dest,
+                },
+            }
+        )
+    else:
+        logger.warning("Is localhost, won't retrieve translation for: %s", html)
+        return {"transId": "not-called", "externalRefId": html}
+
+    logger.info("Data translation request : html content")
+    logger.info("Response from translation request: %r", resp)
+
+    # if str(resp[0]) == '-':
+    #     # If the response is a negative number this means error. Error codes:
+    #     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
+    #     import pdb; pdb.set_trace()
+
+    return {"transId": resp, "externalRefId": html}
+
+
+def get_content_from_html(html, language=None):
+    """Given an HTML string, converts it to Plone content data"""
+
+    data = {"html": html, "language": language}
+    headers = {"Content-type": "application/json", "Accept": "application/json"}
+
+    req = requests.post(CONTENT_CONVERTER, data=json.dumps(data), headers=headers)
+    if req.status_code != 200:
+        logger.debug(req.text)
+        raise ValueError
+
+    data = req.json()["data"]
+    logger.info("Data from converter: %s", data)
+
+    # because the blocks deserializer returns {blocks, blocks_layout} and is
+    # saved in "blocks", we need to fix it
+    if data.get("blocks"):
+        blockdata = data["blocks"]
+        data["blocks_layout"] = blockdata["blocks_layout"]
+        data["blocks"] = blockdata["blocks"]
+
+    logger.info("Data with tiles decrypted %s", data)
+
+    return data
+
+
+def save_field_data(canonical, trans_obj, fielddata):
+    """Applies the data from fielddata to the translated object trans_obj"""
+
+    for schema in iterSchemata(canonical):
+        for k, v in getFieldsInOrder(schema):
+            if (
+                ILanguageIndependentField.providedBy(v)
+                or k in LANGUAGE_INDEPENDENT_FIELDS
+                or k not in fielddata
+            ):
+                continue
+
+            value = fielddata[k]
+
+            if IRichText.providedBy(v):
+                value = RichTextValue(value)
+
+            setattr(trans_obj, k, value)
 
 
 def copy_missing_interfaces(en_obj, trans_obj):
-    """Make sure all interfaces are copied from english obj to translated obj"""
+    """Make sure all interfaces are copied from en obj to translated obj"""
     en_i = [(x.getName(), x) for x in en_obj.__provides__.interfaces()]
     trans_i = [(x.getName(), x) for x in trans_obj.__provides__.interfaces()]
     missing_i = [x for x in en_i if x not in trans_i]
+
     if len(missing_i) > 0:
         logger.info("Missing interfaces: %s" % len(missing_i))
+
         for interf in missing_i:
             alsoProvides(trans_obj, interf[1])
             trans_obj.reindexObject()
             logger.info("Copied interface: %s" % interf[0])
-
-
-def copy_tiles_to_translation(en_obj, trans_obj, site_portal):
-    trans_obj_path = "/".join(trans_obj.getPhysicalPath())
-    trans_obj = wrap_in_aquisition(trans_obj_path, site_portal)
-    tiles = [en_obj.get_tile(x) for x in en_obj.list_tiles()]
-    trans_obj.cover_layout = en_obj.cover_layout
-    copy_tiles(tiles, en_obj, trans_obj)
-
-
-def create_translation_object(obj, language, site_portal):
-    """Create translation object for an obj"""
-    # rc = RequestContainer(REQUEST=obj.REQUEST)
-    tm = TranslationManager(obj)
-    translations = tm.get_translations()
-
-    if language in translations:
-        logger.info("Skip creating translation. Already exists.")
-        trans_obj = translations[language]
-
-        if obj.portal_type == "collective.cover.content":
-            copy_tiles_to_translation(obj, trans_obj, site_portal)
-
-        sync_translation_state(trans_obj, obj)
-        trans_obj.reindexObject()
-
-        return translations[language]
-
-    check_full_path_exists(obj, language, site_portal)
-    factory = DefaultTranslationFactory(obj)
-
-    translated_object = factory(language)
-
-    tm.register_translation(language, translated_object)
-
-    # https://github.com/plone/plone.app.multilingual/blob/2.x/src/plone/app/multilingual/manager.py#L85
-    # translated_object.reindexObject()   ^ already reindexed.
-
-    # In cases like: /en/page-en -> /fr/page, fix the url: /fr/page-en
-    try:
-        if translated_object.id != obj.id:
-            translated_object.aq_parent.manage_renameObject(
-                translated_object.id, obj.id
-            )
-    except Exception:
-        logger.info("CREATE ITEM: cannot rename the item id - already exists.")
-
-    if obj.portal_type == "collective.cover.content":
-        copy_tiles_to_translation(obj, translated_object, site_portal)
-
-    copy_missing_interfaces(obj, translated_object)
-    sync_translation_state(translated_object, obj)
-
-    translated_object.reindexObject()
-
-    return translated_object
-
-
-def get_all_objs(container):
-    """Get the container's objects"""
-    all_objs = []
-
-    def get_objs(context):
-        contents = api.content.find(context=context, depth=1)
-        for item in contents:
-            all_objs.append(item)
-
-        for item in contents:
-            get_objs(item.getObject())
-
-    get_objs(container)
-
-    return all_objs
-
-
-def is_volto_context(context):
-    volto_contexts = ["/en/mission", "/en/observatory"]
-    for value in volto_contexts:
-        if value in context.absolute_url():
-            return True
-    return False
-
-
-def sync_translation_state(trans_obj, en_obj):
-    state = None
-
-    try:
-        state = api.content.get_state(en_obj)
-    except WorkflowException:
-        logger.error("Can't get state for original object: %s", en_obj)
-        pass
-
-    if state in ["published", "archived"]:
-        if api.content.get_state(trans_obj) != state:
-            wftool = getToolByName(trans_obj, "portal_workflow")
-            logger.info("%s %s", state, trans_obj.absolute_url())
-            if state == "published":
-                wftool.doActionFor(trans_obj, "publish")
-            elif state == "archived":
-                wftool.doActionFor(trans_obj, "archive")
-
-    if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
-        trans_obj.setEffectiveDate(en_obj.effective_date)
-        trans_obj._p_changed = True
-        # trans_obj.reindexObject()
-
-
-def wrap_in_aquisition(obj_path, portal_obj):
-    portal_path = portal_obj.getPhysicalPath()
-    bits = obj_path.split("/")[len(portal_path):]
-
-    base = portal_obj
-    obj = base
-
-    for bit in bits:
-        obj = base.restrictedTraverse(bit).__of__(base)
-        base = obj
-
-    return obj
-
-
-def execute_translate_async(en_obj, options, language):
-    """Executed via zc.async, triggers the call to eTranslation"""
-
-    en_obj_path = "/".join(en_obj.getPhysicalPath())
-
-    environ = {
-        "SERVER_NAME": options["http_host"],
-        "SERVER_PORT": 443,
-        "REQUEST_METHOD": "POST",
-    }
-    site_portal = portal.get()
-
-    if not hasattr(site_portal, "REQUEST"):
-        zopeUtils._Z2HOST = options["http_host"]
-        site_portal = zopeUtils.makerequest(site_portal, environ)
-        server_url = site_portal.REQUEST.other["SERVER_URL"].replace(
-            "http", "https")
-        site_portal.REQUEST.other["SERVER_URL"] = server_url
-        setSite(site_portal)
-        # context.REQUEST['PARENTS'] = [context]
-
-        # for k, v in request_vars.items():
-        #     site_portal.REQUEST.set(k, v)
-
-    # this causes the modified event in plone.app.multilingual to skip some processing which otherwise crashes
-    site_portal.REQUEST.translation_info = {"tg": True}
-
-    en_obj = site_portal.restrictedTraverse(en_obj_path)
-    en_obj = wrap_in_aquisition(en_obj_path, site_portal)
-
-    # trans_obj = site_portal.restrictedTraverse(trans_obj_path)
-    trans_obj = create_translation_object(en_obj, language, site_portal)
-    trans_obj_path = "/".join(trans_obj.getPhysicalPath())
-
-    retrieve_volto_html_translation(
-        options["http_host"],
-        "en",
-        options["html_content"].encode("utf-8"),
-        trans_obj_path,
-        target_languages=language.upper(),
-    )
-
-    try:
-        del site_portal.REQUEST
-        del en_obj.REQUEST
-        del trans_obj.REQUEST
-    except AttributeError:
-        pass
-
-    logger.info("Async translate for object %s", options["obj_url"])
-    return "Finished"
 
 
 def handle_link(en_obj, trans_obj):
@@ -414,48 +312,355 @@ def handle_link(en_obj, trans_obj):
     trans_obj._p_changed = True
 
 
-def save_field_data(canonical, trans_obj, fielddata):
-    """Applies the data from fielddata to the translated object trans_obj"""
+def sync_translation_state(trans_obj, en_obj):
+    state = None
+    transitions = {
+        "published": "publish",
+        "archived": "archive",
+    }
 
-    for schema in iterSchemata(canonical):
-        for k, v in getFieldsInOrder(schema):
-            if (
-                ILanguageIndependentField.providedBy(v)
-                or k in LANGUAGE_INDEPENDENT_FIELDS + ["cover_layout"]
-                or k not in fielddata
-            ):
-                continue
+    try:
+        state = api.content.get_state(en_obj)
+    except WorkflowException:
+        logger.debug("Can't get state for original object: %s", en_obj)
+        pass
 
-            value = fielddata[k]
-            if IRichText.providedBy(v):
-                value = RichTextValue(value)
-            setattr(trans_obj, k, value)
+    if state in ["published", "archived"]:
+        if api.content.get_state(trans_obj) != state:
+            wftool = getToolByName(trans_obj, "portal_workflow")
+            logger.info("%s %s", state, trans_obj.absolute_url())
+            if state in transitions:
+                try:
+                    wftool.doActionFor(trans_obj, transitions[state])
+                except WorkflowException:
+                    logger.warning("Could not sync state for: %s", trans_obj)
 
-    if "cover_layout" in fielddata:
-        coverdata = fielddata["cover_layout"]
+    if en_obj.EffectiveDate() != trans_obj.EffectiveDate():
+        trans_obj.setEffectiveDate(en_obj.effective_date)
+        trans_obj._p_changed = True
 
-        for tileid in coverdata.keys():
-            full_tile_id = "plone.tiles.data.%s" % tileid
+    if en_obj.__ac_local_roles__ != trans_obj.__ac_local_roles__:
+        trans_obj._p_changed = True
+        trans_obj.__ac_local_roles__ = en_obj.__ac_local_roles__
 
-            # tile is missing in the translation, so we may copy it from the original
-            tile = trans_obj.__annotations__.get(full_tile_id)
-            if tile is None:
-                tile = canonical.__annotations__.get(full_tile_id, None)
-                if tile is None:
-                    logger.warning(
-                        "Tile is missing from both the original and the translation: %s / %s",
-                        full_tile_id,
-                        trans_obj.absolute_url(),
-                    )
-                    continue
-                tile = deepcopy(tile)
 
-            for fieldname, fieldvalue in coverdata[tileid].items():
-                orig = tile[fieldname]
-                if isinstance(orig, RichTextValue):
-                    tile[fieldname] = RichTextValue(fieldvalue)
-                else:
-                    tile[fieldname] = fieldvalue
-            trans_obj.__annotations__["plone.tiles.data.%s" % tileid] = tile
+def ingest_html(trans_obj, html):
+    """Used by the translation callback"""
 
-        trans_obj.__annotations__._p_changed = True
+    force_unlock(trans_obj)
+    fielddata = get_content_from_html(html, language=trans_obj.language)
+
+    trans_tm = ITranslationManager(trans_obj)
+    translations = trans_tm.get_translations()
+
+    if "en" not in translations:
+        path = "/".join(trans_obj.getPhysicalPath())
+        msg = (
+            "Could not find canonical for this object %s, aborting. "
+            "Check its translation group" % path
+        )
+
+        logger.warning(msg)
+        raise ValueError(msg)
+
+    en_obj = translations["en"]  # hardcoded, should use canonical
+
+    save_field_data(en_obj, trans_obj, fielddata)
+
+    copy_missing_interfaces(en_obj, trans_obj)
+
+    # if trans_obj.portal_type in ("Folder", "Document"):
+    #     handle_folder_doc_step_4(en_obj, trans_obj, False, False)
+    if trans_obj.portal_type in ["Link"]:
+        handle_link(en_obj, trans_obj)
+
+    # TODO: sync workflow state
+    sync_translation_state(trans_obj, en_obj)
+
+    trans_obj._p_changed = True
+    trans_obj.reindexObject()
+
+
+def check_ancestors_path_exists(obj, language, request):
+    """Create full path for a object"""
+
+    parent = aq_parent(aq_inner(obj))
+
+    if parent is None:
+        return True
+
+    path = parent.getPhysicalPath()
+
+    if len(path) <= 2:  # aborting, we've reached bottom
+        return True
+
+    translations = TranslationManager(parent).get_translations()
+    if language not in translations:
+        # TODO, what if the parent path already exist in language
+        # but is not linked in translation manager
+        setup_translation_object(parent, language, request)
+        queue_translate(parent, language)
+
+
+def safe_traverse(obj, trans_path):
+    parts = trans_path.strip("/").split("/")
+    current_obj = obj
+
+    if parts and parts[0] == current_obj.getId():
+        parts = parts[1:]
+
+    for part in parts:
+        if hasattr(current_obj, "objectIds") and callable(current_obj.objectIds):
+            if part in current_obj.objectIds():
+                current_obj = current_obj[part]
+            else:
+                return None
+        else:
+            return None
+
+    return current_obj
+
+
+def get_translated_path(canonical, language):
+    path = canonical.getPhysicalPath()
+    trans_path = []
+    for bit in path:
+        if bit == "en":
+            bit = language
+        trans_path.append(bit)
+    trans_path = "/".join(trans_path)
+    return trans_path
+
+
+def unsafe_register_translation(language, tg, obj):
+    """register a translation for an existing content"""
+
+    if not language and language != "":
+        raise KeyError("There is no target language")
+
+    catalog = portal.get_tool("portal_catalog")
+
+    brains = catalog.unrestrictedSearchResults(TranslationGroup=tg, Language=language)
+    for brain in brains:
+        o = brain.getObject()
+        logger.warning(f"Deleting trans at wrong path: {o.absolute_url()}")
+        content.delete(obj=o, check_linkintegrity=False)
+
+    # register the new translation in the canonical
+    IMutableTG(obj).set(tg)
+    obj.reindexObject(idxs=("Language", "TranslationGroup"))
+
+
+def setup_translation_object(canonical, language, request):
+    """Create translation object for an obj"""
+
+    site = portal.get()
+
+    # rc = RequestContainer(REQUEST=obj.REQUEST)
+    tm = ITranslationManager(canonical)
+    tg = ITG(canonical)
+    translations = tm.get_translations()
+
+    if language in translations:
+        logger.info("Skip creating translation. Already exists.")
+        translated_object = translations[language]
+
+        trans_path = "/".join(translated_object.getPhysicalPath())
+        if trans_path == get_translated_path(canonical, language):
+            copy_missing_interfaces(canonical, translated_object)
+            sync_translation_state(translated_object, canonical)
+            translated_object.reindexObject()
+
+            return translated_object
+        else:
+            logger.info(
+                f"Removing translation {trans_path} because it's different path"
+            )
+            content.delete(obj=translated_object, check_linkintegrity=False)
+
+    trans_path = get_translated_path(canonical, language)
+
+    trans = None
+    try:
+        trans = safe_traverse(site, trans_path)
+    except Exception:
+        pass
+
+    if trans is not None:
+        try:
+            trans_tg = str(ITG(trans))
+            canonical_tg = str(ITG(canonical))
+            if trans_tg != canonical_tg:
+                logger.warning(
+                    "Object at %s belongs to different TG (%s vs %s). Deleting.",
+                    "/".join(trans.getPhysicalPath()),
+                    trans_tg,
+                    canonical_tg,
+                )
+                content.delete(obj=trans, check_linkintegrity=False)
+                trans = None
+        except TypeError:
+            logger.warning(
+                "Object at %s is not translatable. Deleting.",
+                "/".join(trans.getPhysicalPath()),
+            )
+            content.delete(obj=trans, check_linkintegrity=False)
+            trans = None
+
+    if trans is not None:
+        logger.info(
+            "Translation object found at %s. Repairing translation group registration linked to %s.",
+            "/".join(trans.getPhysicalPath()),
+            "/".join(canonical.getPhysicalPath()),
+        )
+        tg_id = ITG(canonical)
+        unsafe_register_translation(language, tg_id, trans)
+
+        return trans
+
+    check_ancestors_path_exists(canonical, language, request)
+
+    factory = DefaultTranslationFactory(canonical)
+
+    request.translation_info = {"tg": tg, "source_language": "en"}
+    translated_object = factory(language)
+
+    assert translated_object is not None
+
+    tm.register_translation(language, translated_object)
+
+    # In cases like: /en/page-en -> /fr/page, fix the url: /fr/page-en
+    try:
+        if translated_object.id != canonical.id:
+            translated_object.aq_parent.manage_renameObject(
+                translated_object.id, canonical.id
+            )
+    except Exception:
+        logger.info("CREATE ITEM: cannot rename the item id - already exists.")
+        raise
+
+    copy_missing_interfaces(canonical, translated_object)
+    sync_translation_state(translated_object, canonical)
+
+    translated_object.reindexObject()
+
+    return translated_object
+
+
+def check_token_security(request):
+    token = request.getHeader("Authentication")
+    if token != TRANSLATION_AUTH_TOKEN:
+        raise Unauthorized
+
+
+def find_untranslated(obj, good_lang_codes):
+    tm = ITranslationManager(obj)
+    translations = tm.get_translations()
+    untranslated = set(good_lang_codes)
+    base_path = obj.getPhysicalPath()[1:]
+
+    for langcode, trans in translations.items():
+        if langcode == "en":
+            continue
+
+        if trans.title and langcode in untranslated:
+            untranslated.remove(langcode)
+
+        if trans.getPhysicalPath()[1:] != base_path:
+            logger.warn(
+                "Unmatched physical paths %s - %s / %s - %s",
+                obj.absolute_url(),
+                trans.absolute_url(),
+                trans.getPhysicalPath()[1:],
+                base_path,
+            )
+
+    return list(untranslated)
+
+
+def sync_translation_paths(
+    oldParent, oldName, newParent, newName, langs=None, request=None, expected_uid=None
+):
+    result = {}
+    en_path = f"{oldParent}/{oldName}"
+    en_obj = content.get(en_path)
+
+    if en_obj is None:
+        msg = f"Could not find original source for move: {en_path}"
+        logger.warning(msg)
+        return {"status": msg}
+
+    if expected_uid:
+        current_uid = IUUID(en_obj, None)
+        if current_uid != expected_uid:
+            msg = f"UID mismatch for sync: expected {expected_uid}, got {current_uid}"
+            logger.warning(msg)
+            return {"status": "skipped", "reason": "uid_mismatch"}
+
+    try:
+        tm = ITranslationManager(en_obj)
+    except TypeError:
+        logger.error("Could not find ITranslationManager for %s", en_obj.absolute_url())
+        raise
+
+    translations = tm.get_translations()
+
+    for lang, trans_obj in translations.items():
+        if lang == "en":
+            continue
+
+        if langs and lang not in langs:
+            continue
+
+        if len(en_obj.aq_parent.getPhysicalPath()) > 3:
+            setup_translation_object(en_obj.aq_parent, lang, request)
+
+        old_path = "/".join(trans_obj.getPhysicalPath())
+
+        if "/en/" in newParent:
+            new_parent = newParent.replace("/en/", f"/{lang}/")
+        elif newParent.endswith("/en"):
+            new_parent = newParent.replace("/en", f"/{lang}")
+        else:
+            logger.warning("Could not find destination parent to move: %s", newParent)
+            raise ValueError("Could not find destination parent to move: %s", newParent)
+
+        target = content.get(new_parent)
+
+        if target is None:
+            logger.warning("Could not find target to be moved: %s", new_parent)
+            # TODO: create it with setup_translation_object() ?
+            raise ValueError("Could not find target to be moved: %s", new_parent)
+
+        target_obj_path = "/".join(target.getPhysicalPath()) + "/" + newName
+        existing_trans = content.get(target_obj_path)
+        test_path = ["", "cca", "en", "mission"]
+        if existing_trans is not None:
+            if len(target.getPhysicalPath()) < len(test_path):
+                raise ValueError(
+                    "Need to delete this object, but it's too big %s", target_obj_path
+                )
+
+            # brains = en_obj.portal_catalog.searchResults(
+            #     path=target_obj_path,
+            #     sort="path",
+            # )
+
+            logger.info(
+                "This translation object already exists %s, removing", target_obj_path
+            )
+            content.delete(existing_trans, check_linkintegrity=False)
+
+        # TODO: setup_translation_object()
+        try:
+            moved = content.move(source=trans_obj, target=target, id=newName)
+        except Exception:
+            logger.warning("Could not move %s", "/".join(trans_obj.getPhysicalPath()))
+            raise
+
+        new_path = "/".join(moved.getPhysicalPath())
+        result[lang] = new_path
+        result[f"{lang}-old"] = old_path
+        logger.info("Moved %s => %s", old_path, new_path)
+
+    return result

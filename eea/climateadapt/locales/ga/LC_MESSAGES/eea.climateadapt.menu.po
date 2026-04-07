@@ -1,0 +1,602 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-05-19 18:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#:
+msgid "2021 Lancet Countdown-EEA Briefing"
+msgstr ""
+
+#:
+msgid "2022 EEA Report on Climate & Health"
+msgstr ""
+
+#: site_menu:28
+msgid "ADAPTATION IN EU POLICY SECTORS"
+msgstr ""
+
+#:
+msgid "ADAPTATION IN THE FORESTRY SECTOR"
+msgstr ""
+
+#: health_menu:9
+#: site_menu:10
+msgid "About"
+msgstr ""
+
+#: site_menu:11
+msgid "About Climate-ADAPT"
+msgstr ""
+
+#: health_menu:10
+msgid "About the Observatory"
+msgstr ""
+
+#:
+msgid "Accessibility of hospitals in Europe"
+msgstr ""
+
+#: site_menu:74
+msgid "Adaptation Support Tool"
+msgstr ""
+
+#: site_menu:64
+msgid "Adaptation options"
+msgstr ""
+
+#: site_menu:48
+msgid "Adriatic-Ionian"
+msgstr ""
+
+#:
+msgid "Aero-allergens"
+msgstr ""
+
+#: site_menu:29
+msgid "Agriculture"
+msgstr ""
+
+#: health_menu:27
+msgid "Air pollution"
+msgstr ""
+
+#: site_menu:49
+msgid "Alpine Space"
+msgstr ""
+
+#: health_menu:44
+msgid "Annual reports"
+msgstr ""
+
+#: site_menu:50
+msgid "Atlantic Area"
+msgstr ""
+
+#:
+msgid "Availability of urban green spaces to vulnerable groups"
+msgstr ""
+
+#: site_menu:51
+msgid "Balkan-Mediterranean"
+msgstr ""
+
+#: site_menu:52
+msgid "Baltic Sea"
+msgstr ""
+
+#: site_menu:30
+msgid "Biodiversity"
+msgstr ""
+
+#: site_menu:31
+msgid "Buildings"
+msgstr ""
+
+#: health_menu:34
+msgid "C3S European health service (under development)"
+msgstr ""
+
+#: health_menu:45
+msgid "Capacity building"
+msgstr ""
+
+#: site_menu:80
+msgid "Case studies"
+msgstr ""
+
+#: site_menu:79
+msgid "Case study explorer"
+msgstr ""
+
+#: site_menu:53
+msgid "Central Europe"
+msgstr ""
+
+#: site_menu:46
+msgid "Cities and towns"
+msgstr ""
+
+#: health_menu:2201
+msgid "Climate  Services"
+msgstr ""
+
+#: health_menu:220
+msgid "Climate Services"
+msgstr ""
+
+#: site_menu:17
+msgid "Climate-ADAPT events and webinars"
+msgstr ""
+
+#: site_menu:16
+msgid "Climate-ADAPT performance reporting"
+msgstr ""
+
+#: site_menu:83
+msgid "Climate-ADAPT use cases"
+msgstr ""
+
+#: site_menu:32
+msgid "Coastal areas"
+msgstr ""
+
+#: site_menu:44
+msgid "Countries, Transnational regions"
+msgstr ""
+
+#: site_menu:44
+msgid "Countries, Transnational regions, Cities"
+msgstr ""
+
+#: health_menu:18
+#: site_menu:45
+msgid "Country Profiles"
+msgstr ""
+
+#: site_menu:18
+msgid "Country specific promotions"
+msgstr ""
+
+#: site_menu:68
+msgid "DATA AND INDICATORS"
+msgstr ""
+
+#: site_menu:54
+msgid "Danube"
+msgstr ""
+
+#: site_menu:33
+msgid "Disaster risk reduction"
+msgstr ""
+
+#: site_menu:13
+msgid "Dissemination materials"
+msgstr ""
+
+#: health_menu:33
+msgid "ECDC Vibrio map viewer"
+msgstr ""
+
+#: site_menu:21
+msgid "EU ADAPTATION POLICY"
+msgstr ""
+
+#: site_menu:22
+msgid "EU Adaptation Strategy"
+msgstr ""
+
+#: site_menu:25
+msgid "EU Covenant of Mayors"
+msgstr ""
+
+#: site_menu:23
+msgid "EU Mission on Adaptation"
+msgstr ""
+
+#: site_menu:43
+msgid "EU REGIONAL POLICY"
+msgstr ""
+
+#: site_menu:24
+msgid "EU Reporting on Adaptation"
+msgstr ""
+
+#: site_menu:26
+msgid "EU Sustainable Finance Strategy"
+msgstr ""
+
+#: site_menu:27
+msgid "EU funding of adaptation"
+msgstr ""
+
+#: site_menu:20
+msgid "EU policy"
+msgstr ""
+
+#: site_menu:72
+msgid "EUROPEAN CLIMATE DATA EXPLORER"
+msgstr ""
+
+#: site_menu:85
+msgid "EUROPEAN Climate and Health Observatory"
+msgstr ""
+
+#:
+msgid "Economic losses and fatalities"
+msgstr ""
+
+#: site_menu:77
+msgid "Economic tools"
+msgstr ""
+
+#: site_menu:34
+msgid "Ecosystem-based approaches"
+msgstr ""
+
+#: site_menu:35
+msgid "Energy"
+msgstr ""
+
+#: site_menu:67
+msgid "Europe's vulnerability to climate change impacts occurring outside Europe"
+msgstr ""
+
+#: health_menu:32
+msgid "European Climate Data Explorer"
+msgstr ""
+
+#: health_menu:13
+msgid "European Policy Framework"
+msgstr ""
+
+#: health_menu:37
+msgid "European early warning systems"
+msgstr ""
+
+#:
+msgid "European environment and health atlas"
+msgstr ""
+
+#: health_menu:14
+msgid "European policies on climate adaptation and health"
+msgstr ""
+
+#: health_menu:19
+msgid "Evidence on climate and health"
+msgstr ""
+
+#: health_menu:222
+msgid "Exposure of vulnerable groups to climate risks"
+msgstr ""
+
+#: site_menu:90
+msgid "FAQ for providers"
+msgstr ""
+
+#: site_menu:89
+msgid "FAQ for users"
+msgstr ""
+
+#: site_menu:36
+msgid "Financial"
+msgstr ""
+
+#: health_menu:23
+msgid "Flooding"
+msgstr ""
+
+#: site_menu:37
+msgid "Forestry"
+msgstr ""
+
+#: site_menu:88
+msgid "Glossary"
+msgstr ""
+
+#:
+msgid "Ground-level NO2 forecast (CAMS)"
+msgstr ""
+
+#:
+msgid "Ground-level PM10 forecast (CAMS)"
+msgstr ""
+
+#:
+msgid "Ground-level PM2.5 forecast (CAMS)"
+msgstr ""
+
+#:
+msgid "Ground-level ozone"
+msgstr ""
+
+#:
+msgid "Ground-level ozone forecast (CAMS)"
+msgstr ""
+
+#: site_menu:91
+msgid "Guidance to search function"
+msgstr ""
+
+#: site_menu:38
+msgid "Health"
+msgstr ""
+
+#: health_menu:20
+msgid "Health effects"
+msgstr ""
+
+#: health_menu:36
+msgid "Health warning systems"
+msgstr ""
+
+#:
+msgid "Heat"
+msgstr ""
+
+#: health_menu:21
+msgid "Heat and health"
+msgstr ""
+
+#: site_menu:87
+msgid "Help"
+msgstr ""
+
+#: site_menu:82
+msgid "INTERREG projects"
+msgstr ""
+
+#: site_menu:63
+msgid "Impacts, risks and vulnerabilities"
+msgstr ""
+
+#: health_menu:29
+msgid "Indicators"
+msgstr ""
+
+#: site_menu:70
+msgid "Indicators in Climate-ADAPT"
+msgstr ""
+
+#: site_menu:15
+msgid "Inspiring Climate-ADAPT use cases"
+msgstr ""
+
+#:
+msgid "Just resilience"
+msgstr ""
+
+#:
+msgid "KEY EU ACTIONS"
+msgstr ""
+
+#: site_menu:61
+msgid "Knowledge"
+msgstr ""
+
+#: site_menu:81
+msgid "LIFE projects"
+msgstr ""
+
+#: site_menu:39
+msgid "Marine and fisheries"
+msgstr ""
+
+#: site_menu:55
+msgid "Mediterranean"
+msgstr ""
+
+#: health_menu:28
+msgid "Mental health effects"
+msgstr ""
+
+#: site_menu:23
+msgid "Mission Portal"
+msgstr ""
+
+#: site_menu:66
+msgid "Monitoring, Reporting and Evaluation"
+msgstr ""
+
+#: health_menu:16
+msgid "National Policies"
+msgstr ""
+
+#: health_menu:38
+msgid "National heat-health warning systems and action plans"
+msgstr ""
+
+#: health_menu:17
+msgid "National policy analysis 2022"
+msgstr ""
+
+#:
+msgid "Nature-based solutions"
+msgstr ""
+
+#: site_menu:86
+msgid "Networks"
+msgstr ""
+
+#: site_menu:56
+msgid "North Sea"
+msgstr ""
+
+#: site_menu:57
+msgid "North West Europe"
+msgstr ""
+
+#: site_menu:58
+msgid "Northern Periphery and Arctic"
+msgstr ""
+
+#: health_menu:42
+msgid "Observatory publications"
+msgstr ""
+
+#: health_menu:11
+msgid "Observatory workplan for 2021-22"
+msgstr ""
+
+#:
+msgid "Observatory workplan for 2023-24"
+msgstr ""
+
+#:
+msgid "Occupational safety and health effects"
+msgstr ""
+
+#: site_menu:60
+msgid "Other regions"
+msgstr ""
+
+#: health_menu:222
+msgid "Outreach"
+msgstr ""
+
+#: site_menu:12
+msgid "Outreach & dissemination"
+msgstr ""
+
+#: health_menu:221
+msgid "PRACTICE"
+msgstr ""
+
+#: health_menu:12
+msgid "Policy context"
+msgstr ""
+
+#:
+msgid "Pollution"
+msgstr ""
+
+#: health_menu:30
+msgid "Projections and tools"
+msgstr ""
+
+#: health_menu:41
+msgid "Publications and outreach"
+msgstr ""
+
+#: site_menu:71
+msgid "RESEARCH AND INNOVATION PROJECTS"
+msgstr ""
+
+#: health_menu:39
+msgid "Resource catalogue"
+msgstr ""
+
+#: health_menu:40
+msgid "Search for Resources"
+msgstr ""
+
+#: site_menu:84
+msgid "Search the database"
+msgstr ""
+
+#: site_menu:94
+msgid "Share your information"
+msgstr ""
+
+#: site_menu:19
+msgid "Site map"
+msgstr ""
+
+#: site_menu:59
+msgid "South West Europe"
+msgstr ""
+
+#:
+msgid "Strategic objectives 2030"
+msgstr ""
+
+#: site_menu:73
+msgid "TOOLS"
+msgstr ""
+
+#: site_menu:62
+msgid "TOPICS"
+msgstr ""
+
+#: site_menu:47
+msgid "Transnational regions"
+msgstr ""
+
+#:
+msgid "Transnational, National, local"
+msgstr ""
+
+#: site_menu:40
+msgid "Transport"
+msgstr ""
+
+#: site_menu:92
+msgid "Tutorial Videos"
+msgstr ""
+
+#: site_menu:14
+msgid "Tutorial videos"
+msgstr ""
+
+#: health_menu:35
+msgid "UV Index forecast (CAMS)"
+msgstr ""
+
+#: health_menu:26
+msgid "UV radiation"
+msgstr ""
+
+#: site_menu:65
+msgid "Uncertainty guidance"
+msgstr ""
+
+#: site_menu:41
+msgid "Urban"
+msgstr ""
+
+#: site_menu:76
+msgid "Urban Adaptation Map Viewer"
+msgstr ""
+
+#: health_menu:31
+msgid "Urban Adaptation Map Viewer (health focus)"
+msgstr ""
+
+#: site_menu:75
+msgid "Urban Adaptation Support Tool"
+msgstr ""
+
+#: health_menu:24
+msgid "Vector-borne diseases"
+msgstr ""
+
+#: health_menu:15
+msgid "WHO Europe activities on climate change and health"
+msgstr ""
+
+#: health_menu:25
+msgid "Water and food-borne diseases"
+msgstr ""
+
+#: site_menu:42
+msgid "Water management"
+msgstr ""
+
+#: health_menu:46
+#: site_menu:93
+msgid "Webinars"
+msgstr ""
+
+#: health_menu:22
+msgid "Wildfires"
+msgstr ""

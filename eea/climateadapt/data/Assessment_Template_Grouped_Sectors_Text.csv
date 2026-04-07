@@ -1,0 +1,25 @@
+﻿CategoryId,Category_Name,SectorId,Sector_Name,Order
+6,Biodiversity loss,21,Biodiversity loss,6
+1,Coastal flooding (incl. sea level rise),7,Other coastal events,1
+1,Coastal flooding (incl. sea level rise),18,Coastal flooding (incl. sea level rise),1
+1,Coastal flooding (incl. sea level rise),22,Oceanic events,1
+2,Drought,16,Increased water demand,2
+2,Drought,19,Drought,2
+7,Extreme heat,12,Extreme heat,7
+7,Extreme heat,15,Heat stress,7
+9,Fire weather (risk of wildfires),5,Fire weather (risk of wildfires),9
+5,Infectious disease,4,Infectious disease,5
+10,"Other, please specify",1,Heavy precipitation,10
+10,"Other, please specify",3,Mass movement,10
+10,"Other, please specify",6,Storm,10
+10,"Other, please specify",8,Extreme cold,10
+10,"Other, please specify",9,"Hurricanes, cyclones, and/or typhoons",10
+10,"Other, please specify",10,"Other, please specify",10
+10,"Other, please specify",20,Extreme wind,10
+10,"Other, please specify",23,Snow and ice,10
+8,River flooding,11,River flooding,8
+8,River flooding,24,Urban flooding,8
+4,Soil degradation/erosion,2,Soil degradation/erosion,4
+4,Soil degradation/erosion,13,Loss of green space/green cover,4
+4,Soil degradation/erosion,14,Other forms of climate-induced landscape shift/degradation,4
+3,Water stress,17,Water stress,3

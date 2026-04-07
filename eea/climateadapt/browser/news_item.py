@@ -17,4 +17,4 @@ class NewsItemAddExtender(FormExtender):
         self.form.groups = [
             group
             for group in groups
-            if len(group.fields.values()) > 0]
+            if len(list(group.fields.values())) > 0]

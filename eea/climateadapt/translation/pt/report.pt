@@ -1,9 +1,0 @@
-<a href="/@@translate-list">back to translations</a>
-<div tal:define="data view/report">
-  <p>Total keys:<span tal:content="data/nr_keys"></span></p>
-  <table tal:define="litems data/items">
-      <tr tal:repeat="language litems">
-          <td tal:content="language"></td>
-      </tr>
-  </table>
-</div>

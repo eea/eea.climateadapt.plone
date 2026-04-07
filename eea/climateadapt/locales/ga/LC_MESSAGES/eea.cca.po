@@ -1,0 +1,139 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-05-17 15:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+msgid "Adaptation options"
+msgstr "Roghanna oiriúnaithe"
+
+msgid "Adaptation portals and platforms"
+msgstr "Tairseacha agus ardáin oiriúnaithe"
+
+msgid "Aridity"
+msgstr "Aridity"
+
+msgid "Based on your preferences, you can view this page in english"
+msgstr "Bunaithe ar do chuid sainroghanna, is féidir leat féachaint ar an leathanach seo i mBéarla"
+
+msgid "Case studies"
+msgstr "Cás-staidéir"
+
+msgid "Climate change impact and vulnerability assessments"
+msgstr "Tionchar athrú aeráide agus measúnuithe leochaileachta"
+
+msgid "Coastal"
+msgstr "Cósta"
+
+msgid "Coastal flooding"
+msgstr "Tuile cósta"
+
+msgid "Cold spells and frost"
+msgstr "Geasa fuar agus sioc"
+
+msgid "Countries:"
+msgstr "Tíortha:"
+
+msgid "Download"
+msgstr "Íosluchtaigh"
+
+msgid "Extreme heat"
+msgstr "Teas an-mhór"
+
+msgid "Extreme precipitation"
+msgstr "Frasaíocht mhór"
+
+msgid "Guidance"
+msgstr "Treoir"
+
+msgid "Hazard category"
+msgstr "Catagóir ghuaise"
+
+msgid "Hazard type"
+msgstr "Cineál guaise"
+
+msgid "Heat and cold"
+msgstr "Teas agus fuar"
+
+msgid "Indicator"
+msgstr "Táscaire"
+
+msgid "Indicators"
+msgstr "Táscairí"
+
+msgid "Information portals"
+msgstr "Tairseacha faisnéise"
+
+msgid "Latest <br/> News & Events"
+msgstr "<br/> Nuacht & Imeachtaí is déanaí"
+
+msgid "Mean air temperature"
+msgstr "Meánteocht an aeir"
+
+msgid "Mean precipitation"
+msgstr "Meán deascadh"
+
+msgid "Most recent <br/> Case Study"
+msgstr "<br/> Cás-Staidéar is déanaí"
+
+msgid "Most recent <br/> Publication or Report"
+msgstr "<br/> Foilseachán nó Tuairisc is déanaí"
+
+msgid "National adaption policy"
+msgstr "Beartas náisiúnta um oiriúnú"
+
+msgid "Organisations"
+msgstr "Eagraíochtaí"
+
+msgid "Other"
+msgstr "Eile"
+
+msgid "Publication and reports"
+msgstr "Foilsiú agus tuarascálacha"
+
+msgid "Publications and reports"
+msgstr "Foilseacháin agus tuarascálacha"
+
+msgid "Relative sea level"
+msgstr "Leibhéal na farraige coibhneasta"
+
+msgid "Research and knowledge projects"
+msgstr "Tionscadail taighde agus eolais"
+
+msgid "River flooding"
+msgstr "Tuile abhann"
+
+msgid "Snow and ice"
+msgstr "Sneachta agus oighear"
+
+msgid "Snow and land ice"
+msgstr "Sneachta agus oighear talún"
+
+msgid "Tools"
+msgstr "Uirlisí"
+
+msgid "Videos"
+msgstr "Físeáin"
+
+msgid "Wet and dry"
+msgstr "Fliuch agus tirim"
+
+msgid "Wildfire"
+msgstr "Tinte fiáin"
+
+msgid "Zip download"
+msgstr "Zip íoslódáil"
+
+msgid "here"
+msgstr "anseo"

@@ -27,5 +27,5 @@ table.invisible th,table.plain td,table.plain th{padding:.5em 1em}
   <table class="plain" tal:content="structure view/get_overview_table">
   </table>
   <br>
-  <p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
+  <p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/en/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
 </div>

@@ -46,6 +46,15 @@
                       "@type": "metadataSection",
                       "fields": [
                         {
+                          "@id": "9bc8986e-d885-49d4-b56e-a806ebc10ec1",
+                          "field": {
+                            "id": "is_eu_funded",
+                            "title": "EU funding",
+                            "widget": "boolean"
+                          },
+                          "showLabel": true
+                        },
+                        {
                           "@id": "258884ed-22f6-4a04-bf7f-62c8d9ed5599",
                           "field": {
                             "id": "regions",
@@ -99,9 +108,7 @@
               }
             },
             "blocks_layout": {
-              "items": [
-                "5227a7c6-c586-4edb-8fce-fa6562edbc60"
-              ]
+              "items": ["5227a7c6-c586-4edb-8fce-fa6562edbc60"]
             }
           },
           "8843bdcf-6690-4ed4-8f83-bfb8c548ecf6": {
@@ -422,10 +429,7 @@
           ]
         }
       },
-      "gridCols": [
-        "twoThirds",
-        "oneThird"
-      ],
+      "gridCols": ["twoThirds", "oneThird"],
       "gridSize": 12,
       "styles": {}
     },
@@ -471,9 +475,7 @@
           }
         },
         "blocks_layout": {
-          "items": [
-            "fdeeb663-f794-48c1-a5c8-898180f470a8"
-          ]
+          "items": ["fdeeb663-f794-48c1-a5c8-898180f470a8"]
         }
       },
       "styles": {

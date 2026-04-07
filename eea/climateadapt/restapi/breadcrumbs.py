@@ -12,7 +12,6 @@ from zope.component import adapter
 from zope.component import getMultiAdapter
 from zope.interface import Interface
 from zope.interface import implementer
-from zope.interface import implements
 from plone.restapi.interfaces import IExpandableElement
 
 from plone.app.layout.navigation.root import getNavigationRoot
@@ -41,9 +40,9 @@ def get_id(item):
 
 
 def get_view_url(context):
-    props = getToolByName(context, "portal_properties")
-    stp = props.site_properties
-    view_action_types = stp.getProperty("typesUseViewActionInListings", ())
+    # props = getToolByName(context, "portal_properties")
+    # stp = props.site_properties
+    view_action_types = []  # stp.getProperty("typesUseViewActionInListings", ())
 
     item_url = get_url(context)
     name = get_id(context)
@@ -55,21 +54,20 @@ def get_view_url(context):
     return name, item_url
 
 
+@implementer(INavigationBreadcrumbs)
 class CatalogNavigationBreadcrumbs(BrowserView):
-    implements(INavigationBreadcrumbs)
-
     def breadcrumbs(self):
         context = aq_inner(self.context)
-        request = self.request
+        # request = self.request
         ct = getToolByName(context, "portal_catalog")
         query = {}
 
         # Check to see if the current page is a folder default view, if so
         # get breadcrumbs from the parent folder
-        if utils.isDefaultPage(context, request):
-            currentPath = "/".join(utils.parent(context).getPhysicalPath())
-        else:
-            currentPath = "/".join(context.getPhysicalPath())
+        # if utils.isDefaultPage(context, request):
+        #     currentPath = "/".join(utils.parent(context).getPhysicalPath())
+        # else:
+        currentPath = "/".join(context.getPhysicalPath())
         query["path"] = {"query": currentPath, "navtree": 1, "depth": 0}
 
         rawresult = ct(**query)
@@ -100,9 +98,8 @@ class CatalogNavigationBreadcrumbs(BrowserView):
         return result
 
 
+@implementer(INavigationBreadcrumbs)
 class PhysicalNavigationBreadcrumbs(BrowserView):
-    implements(INavigationBreadcrumbs)
-
     def breadcrumbs(self):
         context = aq_inner(self.context)
         request = self.request
@@ -138,19 +135,18 @@ class PhysicalNavigationBreadcrumbs(BrowserView):
 
         # this has been changed from the original file:
         # https://github.com/plone/Products.CMFPlone/blob/f028b0ce60bd62f2f5be5ccb9ecb911e73a258d1/Products/CMFPlone/browser/navigation.py
-        if not utils.isDefaultPage(context, request):
-            if hasattr(context, "nav_title") and context.nav_title:
-                title = context.nav_title
-            else:
-                title = (utils.pretty_title_or_id(context, context),)
-            base += ({"absolute_url": item_url, "Title": title},)
+        # if not utils.isDefaultPage(context, request):
+        if hasattr(context, "nav_title") and context.nav_title:
+            title = context.nav_title
+        else:
+            title = (utils.pretty_title_or_id(context, context),)
+        base += ({"absolute_url": item_url, "Title": title},)
 
         return base
 
 
+@implementer(INavigationBreadcrumbs)
 class NavTitleBreadcrumbs(BrowserView):
-    implements(INavigationBreadcrumbs)
-
     def breadcrumbs(self):
         context = aq_inner(self.context)
         catalog = getToolByName(context, "portal_catalog")

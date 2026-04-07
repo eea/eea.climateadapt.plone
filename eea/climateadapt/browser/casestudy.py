@@ -70,7 +70,7 @@ class CaseStudyFormExtender(FormExtender):
                   'label_schema_ownership', 'Layout', 'Settings']
         self.form.groups = [
             group for group in self.form.groups if len(
-                group.fields.values()) > 0 and group.label not in labels
+                list(group.fields.values())) > 0 and group.label not in labels
         ]
 
 
@@ -145,19 +145,19 @@ class CaseStudiesXML(BrowserView):
             e_cs = SubElement(root, 'casestudy')
             e_attrs = SubElement(e_cs, 'attributes')
 
-            for k, v in cs['attributes'].items():
+            for k, v in list(cs['attributes'].items()):
                 el = Element(k)
 
                 if isinstance(v, str):
                     el.text = v.decode('utf-8').strip()
                 else:
-                    el.text = unicode(v).strip()
+                    el.text = str(v).strip()
                 e_attrs.append(el)
             e_geo = SubElement(e_cs, 'geometry')
 
-            for k, v in cs['geometry'].items():
+            for k, v in list(cs['geometry'].items()):
                 el = Element(k)
-                el.text = unicode(v)
+                el.text = str(v)
                 e_geo.append(el)
 
         res = tostring(root, pretty_print=True)

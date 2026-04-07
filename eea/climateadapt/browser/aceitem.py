@@ -1,10 +1,5 @@
-# import json
-# import urllib
+# TODO: this file seems to have been scraped
 
-from eea.climateadapt.browser import AceViewApi
-from eea.climateadapt.browser.misc import create_contributions_link
-from eea.climateadapt.translation.core import get_translation_object
-from eea.climateadapt.translation.utils import get_current_language
 from plone import api
 from plone.dexterity.browser.add import DefaultAddForm
 from plone.dexterity.browser.edit import DefaultEditForm
@@ -12,14 +7,21 @@ from plone.dexterity.browser.view import DefaultView
 from plone.dexterity.interfaces import IDexterityEditForm
 from plone.z3cform import layout
 from plone.z3cform.fieldsets.extensible import FormExtender
-from zc.relation.interfaces import ICatalog
 from zope.annotation.interfaces import IAnnotations
-from zope.component import getUtility
-from zope.interface import classImplements  # , implements
-from zope.intid.interfaces import IIntIds
+from zope.interface import classImplements
 
+from eea.climateadapt.browser import AceViewApi
+from eea.climateadapt.browser.misc import create_contributions_link
+from eea.climateadapt.translation.utils import get_current_language
+
+# from zope.intid.interfaces import IIntIds
+# from zope.component import getUtility
+# from zc.relation.interfaces import ICatalog
+# from eea.climateadapt.translation.core import get_translation_object
+
+# import json
+# import urllib
 # from itertools import chain, islice
-# from zope.interface import implements
 # from eea.depiction.browser.interfaces import IImageView
 # from Products.Five.browser import BrowserView
 
@@ -120,55 +122,63 @@ class OrganisationView(DefaultView, AceViewApi):
         return 0
 
     def to_observatory_url(self, obj):
+        # TODO get current language
         current_language = get_current_language(self.context, self.request)
+        # current_language = "en"
         segments = obj.getPhysicalPath()[2:]
         if segments[0] != "metadata":
             segments = segments[1:]
         return "/" + current_language + "/observatory/++aq++" + "/".join(segments)
 
-    def get_contributions(self):
-        current_language = get_current_language(self.context, self.request)
-        if current_language != "en":
-            en_obj = get_translation_object(self.context, "en")
-        else:
-            en_obj = self.context
+    # def get_contributions(self):
+    #     # TODO get current language
+    #     current_language = get_current_language(self.context, self.request)
+    #     # current_language = "en"
+    #     if current_language != "en":
+    #         en_obj = get_translation_object(self.context, "en")
+    #         # en_obj = self.context
+    #     else:
+    #         en_obj = self.context
+    #
+    #     relation_catalog = getUtility(ICatalog)
+    #     intids = getUtility(IIntIds)
+    #     uid = intids.getId(en_obj.aq_inner.aq_self)
+    #     response = []
+    #     urls = []
+    #
+    #     contributors = list(relation_catalog.findRelations({"to_id": uid}))
+    #     for relation in contributors:
+    #         if relation.from_attribute == "relatedItems":
+    #             continue
+    #
+    #         engl_obj = relation.from_object
+    #         # TODO get translation object
+    #         obj = get_translation_object(engl_obj, current_language)
+    #         # obj = engl_obj
+    #         if obj is not None:
+    #             if api.content.get_state(obj) == "published":
+    #                 if obj.absolute_url() in urls or (
+    #                     not getattr(obj, "include_in_observatory")
+    #                 ):
+    #                     continue
+    #
+    #                 urls.append(obj.absolute_url())
+    #                 response.append(
+    #                     {
+    #                         "title": obj.title,
+    #                         "url": self.to_observatory_url(obj),
+    #                         "date": (
+    #                             getattr(obj, "publication_date", None)
+    #                             or obj.creation_date.asdatetime().date()
+    #                         ),
+    #                     }
+    #                 )
+    #
+    #     # print(response)
+    #     response.sort(key=lambda x: x.get("date"), reverse=True)
+    #     return response
 
-        relation_catalog = getUtility(ICatalog)
-        intids = getUtility(IIntIds)
-        uid = intids.getId(en_obj.aq_inner.aq_self)
-        response = []
-        urls = []
-
-        contributors = list(relation_catalog.findRelations({"to_id": uid}))
-        for relation in contributors:
-            if relation.from_attribute == "relatedItems":
-                continue
-
-            engl_obj = relation.from_object
-            obj = get_translation_object(engl_obj, current_language)
-            if obj is not None:
-                if api.content.get_state(obj) == "published":
-                    if obj.absolute_url() in urls or (
-                        not getattr(obj, "include_in_observatory")
-                    ):
-                        continue
-
-                    urls.append(obj.absolute_url())
-                    response.append(
-                        {
-                            "title": obj.title,
-                            "url": self.to_observatory_url(obj),
-                            "date": (
-                                getattr(obj, "publication_date", None)
-                                or obj.creation_date.asdatetime().date()
-                            ),
-                        }
-                    )
-
-        # print(response)
-        response.sort(key=lambda x: x.get("date"), reverse=True)
-        return response
-
+    # TODO plone6 is this used anymore?
     def contributions_link(self):
         return create_contributions_link("en", self.context.id)
 
@@ -275,7 +285,7 @@ class OrganisationFormExtender(FormExtender):
         self.form.groups = [
             group
             for group in self.form.groups
-            if (group.label not in labels and len(group.fields.values()) > 0)
+            if (group.label not in labels and len(list(group.fields.values())) > 0)
         ]
 
 
@@ -298,7 +308,7 @@ class AceItemFormExtender(FormExtender):
         self.form.groups = [
             group
             for group in self.form.groups
-            if (group.label not in labels and len(group.fields.values()) > 0)
+            if (group.label not in labels and len(list(group.fields.values())) > 0)
         ]
 
 

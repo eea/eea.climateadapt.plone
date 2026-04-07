@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Update Mission Funding Volto Layout</title>
+</head>
+<body>
+    <h1>Update Mission Funding Volto Layout</h1>
+    <ul>
+        <tal:block repeat="item view/results">
+            <li>
+                <a tal:attributes="href item/url" tal:content="item/title"></a>
+            </li>
+        </tal:block>
+    </ul>
+</body>
+</html>

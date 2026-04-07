@@ -1,12 +1,5 @@
 from copy import deepcopy
 
-from eea.climateadapt.behaviors import (IAceProject, IAdaptationOption,
-                                        ICaseStudy, IOrganisation)
-from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
-from eea.climateadapt.behaviors.mission_tool import IMissionTool
-from eea.climateadapt.browser.adaptationoption import find_related_casestudies
-from eea.climateadapt.interfaces import (IClimateAdaptContent,
-                                         IEEAClimateAdaptInstalled)
 from lxml.html import fragments_fromstring, tostring
 from plone import api
 from plone.api import portal
@@ -14,44 +7,53 @@ from plone.app.textfield.interfaces import IRichText
 from plone.dexterity.interfaces import IDexterityContainer, IDexterityContent
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.interfaces import IBlockFieldSerializationTransformer
-from plone.restapi.serializer.blocks import (SlateBlockSerializerBase,
-                                             uid_to_url)
+from plone.restapi.serializer.blocks import SlateBlockSerializerBase, uid_to_url
 from plone.restapi.serializer.converters import json_compatible
-from plone.restapi.serializer.dxcontent import (SerializeFolderToJson,
-                                                SerializeToJson)
+from plone.restapi.serializer.dxcontent import SerializeFolderToJson, SerializeToJson
 from plone.restapi.serializer.dxfields import DefaultFieldSerializer
-from zope.component import adapter, getMultiAdapter
+from zope.component import adapter
 from zope.interface import Interface, implementer
+from plone.app.contenttypes.interfaces import ILink
 
-from .utils import cca_content_serializer
+from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy, IAceProject
+from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
+from eea.climateadapt.behaviors.mission_tool import IMissionTool
+from eea.climateadapt.behaviors.missionstory import IMissionStory
+from eea.climateadapt.browser.adaptationoption import find_related_casestudies
+from eea.climateadapt.interfaces import IClimateAdaptContent
+from eea.climateadapt.restapi.navigation import ICCARestapiLayer
+from plone.restapi.interfaces import IPloneRestapiLayer
 
+import logging
+logger = logging.getLogger("eea.climateadapt")
+
+from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_blocks, html_to_plain_text, serialize_relevant_eu_policies
 
 def serialize(possible_node):
-    if isinstance(possible_node, basestring):
+    if isinstance(possible_node, str):
         # This happens for some fields that store non-markup values as richtext
         return possible_node
-    return tostring(possible_node)
+    return tostring(possible_node, encoding=str)
 
 
-@adapter(IRichText, IDexterityContent, IEEAClimateAdaptInstalled)
+@adapter(IRichText, IDexterityContent, ICCARestapiLayer)
 class RichttextFieldSerializer(DefaultFieldSerializer):
     def externalize(self, text):
         site = portal.get()
         site_url = site.absolute_url()
         frags = fragments_fromstring(text)
-        # __import__("pdb").set_trace()
         for frag in frags:
             # el.set("style", None)
-            if isinstance(frag, basestring):
+            if isinstance(frag, str):
                 continue
             # remove all style attributes
             for el in frag.xpath("//*[@style]"):
                 el.attrib.pop("style", None)
             for link in frag.xpath("a"):
                 href = link.get("href")
-                if not href.startswith(site_url):
+                if href and not href.startswith(site_url):
                     link.set("target", "_blank")
-        res = unicode("\n").join([serialize(e) for e in frags])
+        res = str("\n").join([str(serialize(e)) for e in frags])
         return res
 
     def __call__(self):
@@ -72,30 +74,30 @@ class RichttextFieldSerializer(DefaultFieldSerializer):
 
 
 @implementer(IBlockFieldSerializationTransformer)
-@adapter(IBlocks, IEEAClimateAdaptInstalled)
+@adapter(IBlocks, ICCARestapiLayer)
 class SlateBlockSerializer(SlateBlockSerializerBase):
     """SlateBlockSerializerBase."""
 
-    # TODO: this needs also a deserializer that takes the scale in url and saves it to
-    # the "scale" field
+    # TODO: this needs also a deserializer that takes the scale in url and
+    # saves it to the "scale" field
 
     def handle_img(self, child):
         if child.get("url"):
-            # __import__("pdb").set_trace()
             url = uid_to_url(child["url"])
             if child.get("scale"):
                 url = "%s/@@images/image/%s" % (url, child["scale"])
             else:
-                url = "%s/@@images/image/huge" % url
+                if ("@@images") not in url:
+                    url = "%s/@@images/image/huge" % url
 
             child["url"] = url
 
 
-@adapter(IDexterityContainer, IEEAClimateAdaptInstalled)
+@adapter(IDexterityContainer, ICCARestapiLayer)
 class GenericFolderSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
         result = super(GenericFolderSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
         item = self.context
         result["language"] = getattr(item, "language", "")
@@ -103,11 +105,13 @@ class GenericFolderSerializer(SerializeFolderToJson):
         return result
 
 
-@adapter(IDexterityContent, IEEAClimateAdaptInstalled)
+@adapter(IDexterityContent, ICCARestapiLayer)
 class GenericContentSerializer(SerializeToJson):
+    """Generic content serializer (everything that's not CCA-specific)"""
+
     def __call__(self, version=None, include_items=True):
         result = super(GenericContentSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
         item = self.context
         result["language"] = getattr(item, "language", "")
@@ -117,10 +121,13 @@ class GenericContentSerializer(SerializeToJson):
 
 @adapter(IClimateAdaptContent, Interface)
 class ClimateAdaptContentSerializer(SerializeToJson):
+    """Simple CCA content serializer (database items such as Video)"""
+
     def __call__(self, version=None, include_items=True):
         result = super(ClimateAdaptContentSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
+
         return cca_content_serializer(self.context, result, self.request)
 
 
@@ -129,9 +136,10 @@ class ClimateAdaptContentSerializer(SerializeToJson):
 class AdaptationOptionSerializer(SerializeFolderToJson):
     def __call__(self, version=None, include_items=True):
         result = super(AdaptationOptionSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
         result["related_case_studies"] = find_related_casestudies(self.context)
+        result["relevant_eu_policies_items"] = serialize_relevant_eu_policies(self.context)
         return cca_content_serializer(self.context, result, self.request)
 
 
@@ -139,27 +147,62 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
 class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(AceProjectSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=include_items
         )
-        return cca_content_serializer(self.context, result, self.request)
+        parts = []
+
+        desc_html = (result.get("long_description") or {}).get("data", "")
+        desc_txt = html_to_plain_text(desc_html, inline_links=True).strip()
+        if desc_txt:
+            parts.append("Description")
+            parts.append(desc_txt)
+
+        lead = (result.get("lead") or "").strip()
+        partners_html = (result.get("partners") or {}).get("data", "")
+        partners_txt = html_to_plain_text(partners_html, inline_links=True).strip()
+
+        if lead or partners_txt:
+            parts.append("Project information")
+            if lead:
+                parts.append("Lead")
+                parts.append(lead)
+            if partners_txt:
+                parts.append("Partners")
+                parts.append(partners_txt)
+
+        websites = result.get("websites") or []
+        if websites:
+            parts.append("Reference information")
+            parts.append("Websites")
+            parts.extend([f"- {u}" for u in websites if u])
+
+        result["main_content"] = "\n\n".join([p for p in parts if p])
+        result["language"] = getattr(self.context, "language", "en")
+
+        return result
 
 
 @adapter(ICaseStudy, Interface)
 class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(CaseStudySerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
         result = cca_content_serializer(self.context, result, self.request)
 
         item = self.context
         images = item.contentValues({"portal_type": "Image"})
         suffix = "/@@images/image/large"
+        result["cca_gallery_urls"] = [
+            image.absolute_url() + suffix
+            for image in images
+        ]
         result["cca_gallery"] = [
             {
                 "title": image.Title(),
                 "url": image.absolute_url() + suffix,
                 "description": image.Description(),
+                "rights": getattr(image.aq_inner.aq_self, "rights"),
             }
             for image in images
         ]
@@ -171,37 +214,57 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
 class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(MissionFundingSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=True
         )
 
         obj = self.context
 
         blocks_copy = deepcopy(obj.blocks)
-        blocks_layout = obj.blocks_layout["items"]
+        blocks_layout = obj.blocks_layout.get("items", [])
 
-        columnblock = None
-        for uid in blocks_layout:
-            block = blocks_copy[uid]
-            if block["@type"] == "columnsBlock":
-                columnblock = block
+        columnblock = next(
+            (b for uid in blocks_layout
+             for b in [blocks_copy.get(uid)]
+             if b and b.get("@type") == "columnsBlock"),
+            None
+        )
+        if not columnblock:
+            return result
 
         firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
         firstcol = columnblock["data"]["blocks"][firstcol_id]
+        items = firstcol["blocks_layout"]["items"]
+        blocks = firstcol["blocks"]
 
-        description = ''
-        for i, block_id in enumerate(firstcol["blocks_layout"]["items"]):
-            nextuid = None
-            if i < len(firstcol["blocks_layout"]["items"]) - 1:
-                nextuid = firstcol["blocks_layout"]["items"][i + 1]
-            blocks = firstcol["blocks"]
-            block = blocks[block_id]
-            text = block.get("plaintext", "")
+        sections = [
+            ("Objective of the funding programme",
+             "Type of funding",
+             "objective_funding_programme"),
+            ("Funding rate (percentage of covered costs)",
+             "Expected budget range of proposals",
+             "funding_rate"),
+            ("Administering authority",
+             "Publication page",
+             "administering_authority"),
+            ("Publication page",
+             "General information",
+             "publication_page"),
+            ("General information",
+             "Further information",
+             "general_information"),
+            ("Further information",
+             None,
+             "further_information"),
+        ]
 
-            if "Objective of the funding programme" in text:
-                description = blocks[nextuid].get('plaintext')
+        for start_title, end_title, field_name in sections:
+            result[field_name] = extract_section_text(blocks, items, start_title, end_title) or ""
 
-        if not result.get('description'):
-            result['description'] = description
+        if not result.get("description") and result.get("objective_funding_programme"):
+            result["description"] = result["objective_funding_programme"]
+
+        if "regions" in result:
+            result["funding_region"] = richtext_to_plain_text(result["regions"])
 
         return result
 
@@ -210,7 +273,7 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
 class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
     def __call__(self, version=None, include_items=True):
         result = super(MissionToolSerializer, self).__call__(
-            version=None, include_items=True
+            version=version, include_items=include_items
         )
 
         obj = self.context
@@ -220,40 +283,147 @@ class MissionToolSerializer(SerializeFolderToJson):  # SerializeToJson
 
         columnblock = None
         for uid in blocks_layout:
-            block = blocks_copy[uid]
-            if block["@type"] == "columnsBlock":
+            block = blocks_copy.get(uid)
+            if block and block.get("@type") == "columnsBlock":
                 columnblock = block
+                break
 
+        if not columnblock:
+            return result
+
+        # Left column
         firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
         firstcol = columnblock["data"]["blocks"][firstcol_id]
 
-        description = ''
+        description = ""
         for i, block_id in enumerate(firstcol["blocks_layout"]["items"]):
             nextuid = None
             if i < len(firstcol["blocks_layout"]["items"]) - 1:
                 nextuid = firstcol["blocks_layout"]["items"][i + 1]
-            blocks = firstcol["blocks"]
-            block = blocks[block_id]
+
+            block = firstcol["blocks"][block_id]
             text = block.get("plaintext", "")
 
-            if "Objective(s)" in text:
-                description = blocks[nextuid].get('plaintext')
+            if "Objective(s)" in text and nextuid:
+                description = firstcol["blocks"][nextuid].get("plaintext", "")
 
-        if not result.get('description'):
-            result['description'] = description
-        return result
+        if not result.get("description"):
+            result["description"] = description
 
-
-@adapter(IOrganisation, Interface)
-class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
-    def __call__(self, version=None, include_items=True):
-        result = super(OrganisationSerializer, self).__call__(
-            version=None, include_items=True
+        # Left column content
+        result["main_content"] = serialize_blocks(
+            firstcol["blocks"],
+            firstcol["blocks_layout"]["items"],
+            result,
+            metadata_ids={"readiness_for_use"},
         )
-        result = cca_content_serializer(self.context, result, self.request)
-        view = getMultiAdapter((self.context, self.request), name="view")
-        contributions = view.get_contributions()
-        for contribution in contributions:
-            contribution.pop("date", None)
-        result["contributions"] = contributions
         return result
+
+
+@adapter(IMissionStory, Interface)
+class MissionStorySerializer(SerializeFolderToJson):
+    def __call__(self, version=None, include_items=True):
+        result = super().__call__(version=version, include_items=include_items)
+
+        obj = self.context
+        blocks_copy = deepcopy(obj.blocks)
+        blocks_layout = obj.blocks_layout.get("items", [])
+
+        columnblock = next(
+            (blocks_copy.get(uid) for uid in blocks_layout
+             if (blocks_copy.get(uid) or {}).get("@type") == "columnsBlock"),
+            None
+        )
+        if not columnblock:
+            return result
+
+        firstcol_id = columnblock["data"]["blocks_layout"]["items"][0]
+        firstcol = columnblock["data"]["blocks"][firstcol_id]
+
+        result["main_content"] = serialize_blocks(
+            firstcol["blocks"],
+            firstcol["blocks_layout"]["items"],
+            result,
+            metadata_ids={
+                "contact",
+                "synopsis",
+                "about_the_region",
+                "key_learnings",
+                "further_information",
+            },
+        )
+
+        return result
+@adapter(ILink, IPloneRestapiLayer)
+class LinkRedirectSerializer(SerializeToJson):
+    """Serializer that adds @components.redirect for anonymous users
+    when redirection_type is set.
+    """
+
+    def __call__(self, version=None, include_items=True):
+        context = self.context
+
+        if not api.user.is_anonymous():
+            return super().__call__(version=version, include_items=include_items)
+
+        target = getattr(context, "remoteUrl", None)
+
+        if not target:
+            return super().__call__(version=version, include_items=include_items)
+
+        if "${portal_url}/resolveuid/" in target:
+            uid = target.split("/resolveuid/")[-1]
+            obj = api.content.get(UID=uid)
+            target = obj.absolute_url() if obj else target
+
+        elif "${portal_url}" in target:
+            portal_url = api.portal.get().absolute_url()
+            target = target.replace("${portal_url}", portal_url)
+
+        if target.startswith(("../", "./")):
+            from urllib.parse import urljoin
+            target = urljoin(context.absolute_url(), target)
+
+        elif "/resolveuid/" in target and not target.startswith("http"):
+            uid = target.split("/resolveuid/")[-1].split("/")[0]
+            obj = api.content.get(UID=uid)
+            target = obj.absolute_url() if obj else target
+
+        raw = getattr(context, "redirection_type", "")
+
+        if not raw:
+            return super().__call__(version=version, include_items=include_items)
+
+        try:
+            status = int(raw)
+            if status not in (301, 302):
+                status = 302
+        except Exception:
+            status = 302
+
+        result = super().__call__(version=version, include_items=include_items)
+
+        if "@components" not in result:
+            result["@components"] = {}
+
+        result["@components"]["redirect"] = {
+            "url": target,
+            "status": status,
+        }
+
+        return result
+
+
+# @adapter(IOrganisation, Interface)
+# class OrganisationSerializer(SerializeFolderToJson):  # SerializeToJson
+#     def __call__(self, version=None, include_items=True):
+#         result = super(OrganisationSerializer, self).__call__(
+#             version=None, include_items=True
+#         )
+#         result = cca_content_serializer(self.context, result, self.request)
+#         view = getMultiAdapter((self.context, self.request), name="view")
+#         contributions = view.get_contributions()
+#         for contribution in contributions:
+#             contribution.pop("date", None)
+#         result["contributions"] = contributions
+#         return result

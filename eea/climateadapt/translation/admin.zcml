@@ -1,25 +1,115 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:browser="http://namespaces.zope.org/browser"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:z3c="http://namespaces.zope.org/z3c"
-    i18n_domain="eea.climateadapt"
-    >
-
-  <include package=".maintainance" />
-
-  <browser:page
-      name="admin-translation-status"
-      for="*"
-      class=".admin.TranslationStatus"
-      permission="cmf.ManagePortal"
-      />
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  xmlns:browser="http://namespaces.zope.org/browser"
+  xmlns:five="http://namespaces.zope.org/five"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  xmlns:grok="http://namespaces.zope.org/grok"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:monkey="http://namespaces.plone.org/monkey"
+  xmlns:plone="http://namespaces.plone.org/plone"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="eea.climateadapt"
+>
 
   <browser:page
-      name="find-block"
-      for="*"
-      class=".admin.FindContentWithBlock"
-      permission="cmf.ManagePortal"
-      />
+    for="*"
+    class=".admin.HTMLIngestion"
+    name="ingest-html"
+    permission="cmf.ManagePortal"
+    template="pt/ingest.pt"
+  />
+
+  <browser:page
+    for="*"
+    template="pt/see_folder_objects_view.pt"
+    name="see_folder_objects_view"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
+    class=".admin.TranslateObjectAsync"
+    name="translate-this-async"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
+    class=".admin.TranslateFolderAsync"
+    name="translate-folder-async"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
+    class=".admin.TranslateMissing"
+    name="translate-missing"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
+    class=".admin.SyncTranslationPaths"
+    name="admin-sync-translation-paths"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    for="*"
+    name="fix_folder_order"
+    permission="cmf.ManagePortal"
+    class=".admin.FixFolderOrder"
+  />
+
+  <browser:page
+    for="*"
+    name="cleanup_folder_order"
+    permission="cmf.ManagePortal"
+    class=".admin.CleanupFolderOrder"
+  />
+
+  <browser:page
+    for="*"
+    name="delete_field"
+    permission="cmf.ManagePortal"
+    class=".admin.DeleteTranslationField"
+  />
+
+  <browser:page
+    for="*"
+    name="fix_catalog"
+    permission="cmf.ManagePortal"
+    class=".admin.FixCatalog"
+  />
+
+  <browser:page
+    for="*"
+    name="remove_rid"
+    permission="cmf.ManagePortal"
+    class=".admin.RemoveRid"
+  />
+
+  <browser:page
+    for="*"
+    name="remove_unmatched_translations"
+    permission="cmf.ManagePortal"
+    class=".admin.RemoveUnmatchedTranslations"
+  />
+
+  <browser:page
+    for="*"
+    name="site_remove_unmatched_translations"
+    permission="cmf.ManagePortal"
+    class=".admin.SiteRemoveUnmatchedTranslations"
+  />
+
+  <browser:page
+    for="*"
+    template="pt/see_translation_status.pt"
+    name="see_translation_status"
+    permission="cmf.ManagePortal"
+    class=".admin.SeeTranslationStatus"
+  />
 
 </configure>

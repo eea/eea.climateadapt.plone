@@ -1,4 +1,0 @@
-pip install chardet
-pip install requests
-pip install transaction
-pip install BTrees

@@ -1,7 +1,0 @@
-<a href="/@@translate-list">back to translations</a>
-<table tal:define="items view/keys">
-    <tr tal:repeat="item items">
-        <td tal:content="item/language"></td>
-        <td tal:content="item/translation"></td>
-    </tr>
-</table>

@@ -1,7 +1,0 @@
-<div tal:define="items view/report">
-  <table tal:define="item items">
-      <tr>
-          <td tal:content="item"></td>
-      </tr>
-  </table>
-</div>

@@ -1,23 +1,25 @@
 from plone.app.dexterity.behaviors.metadata import IPublication
-from collective import dexteritytextindexer
-from eea.climateadapt import CcaAdminMessageFactory as _
-from eea.climateadapt.schema import AbsoluteUrl, Uploader
-from eea.climateadapt.widgets.ajaxselect import BetterAjaxSelectWidget
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.app.textfield import RichText
-from plone.app.widgets.interfaces import IWidgetsLayer
 from plone.autoform import directives
-from plone.directives import form
 from plone.namedfile.field import NamedBlobImage
 from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.form.browser.textlines import TextLinesWidget
-from z3c.form.interfaces import IAddForm, IEditForm, IFieldWidget
-from z3c.form.util import getSpecification
-from z3c.form.widget import FieldWidget
+from z3c.form.interfaces import IAddForm, IEditForm  # , IFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
-from zope.component import adapter
-from zope.interface import alsoProvides, implementer
-from zope.schema import URI, Bool, Choice, Date, List, Text, TextLine, Tuple
+from zope.interface import alsoProvides  # , implementer
+from zope.schema import (
+    Bool,
+    Choice,
+    Date,
+    List,
+    Text,
+    TextLine,
+    Tuple,
+)
+
+from eea.climateadapt import CcaAdminMessageFactory as _
+from eea.climateadapt.schema import AbsoluteUrl, Uploader
 
 
 class IAceItem(IImageScaleTraversable):
@@ -25,73 +27,22 @@ class IAceItem(IImageScaleTraversable):
     Defines content-type schema for Ace Item
     """
 
-    dexteritytextindexer.searchable("title")
-    dexteritytextindexer.searchable("long_description")
-    dexteritytextindexer.searchable("description")
-    dexteritytextindexer.searchable("keywords")
-    dexteritytextindexer.searchable("sectors")
-    dexteritytextindexer.searchable("climate_impacts")
-    dexteritytextindexer.searchable("elements")
-
-    dexteritytextindexer.searchable("websites")
-    dexteritytextindexer.searchable("source")
-
-    dexteritytextindexer.searchable("geochars")
-
-    dexteritytextindexer.searchable("data_type")
-    dexteritytextindexer.searchable("storage_type")
-    dexteritytextindexer.searchable("spatial_layer")
-    dexteritytextindexer.searchable("spatial_values")
-    dexteritytextindexer.searchable("important")
-    dexteritytextindexer.searchable("metadata")
-    dexteritytextindexer.searchable("special_tags")
-
-    # dexteritytextindexer.searchable('year')
-    # directives.omitted(IAddForm, 'relatedItems')
-    # directives.omitted(IEditForm, 'relatedItems')
-
-    form.fieldset(
-        "default",
-        label="Item Description",
-        fields=[
-            "title",
-            "description",
-            "long_description",
-            "keywords",
-            "sectors",
-            "climate_impacts",
-            "elements",
-            "featured",
-        ],
-    )
-
-    form.fieldset(
-        "reference_information",
-        label="Reference information",
-        fields=["websites", "source", "special_tags", "comments"],
-    )
-
-    form.fieldset(
-        "geographic_information", label="Geographic Information", fields=["geochars"]
-    )
-
-    form.fieldset(
-        "categorization",
-        label="Inclusion in the subsites",
-        fields=["include_in_observatory", "include_in_mission", "health_impacts"],
-    )
-
-    # form.fieldset('inclusion_health_observatory',
-    #              label=u'Inclusion in the Health Observatory',
-    #              fields=['health_impacts', 'include_in_observatory']
-    #              )
-
-    form.fieldset("backend", label="Backend fields", fields=[])
+    directives.omitted(IAddForm, "relatedItems")
+    directives.omitted(IEditForm, "relatedItems")
 
     # -----------[ "default" fields ]------------------
     # these are the richtext fields from the db:
-    # set(['description', 'storedat', 'admincomment', 'comments', 'source',
-    #      'keyword', 'textsearch'])
+    set(
+        [
+            "description",
+            "storedat",
+            "admincomment",
+            "comments",
+            "source",
+            "keyword",
+            "textsearch",
+        ]
+    )
 
     origin_website = List(
         title=_("Item from third parties"),
@@ -155,7 +106,7 @@ class IAceItem(IImageScaleTraversable):
         title=_("Short summary"),
         required=False,
         description=_("Enter a short summary that will be used in listings."),
-        missing_value=unicode(""),
+        missing_value=str(""),
     )
 
     directives.widget("keywords", vocabulary="eea.climateadapt.keywords")
@@ -173,13 +124,13 @@ class IAceItem(IImageScaleTraversable):
         ),
     )
 
-    form.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     sectors = List(
         title=_("Sectors"),
         description=_(
-            "Select one or more relevant sector policies" " that this item relates to."
+            "Select one or more relevant sector policies that this item relates to."
         ),
-        required=True,
+        required=True,  # TODO: set to False for the migration to plone6
         missing_value=[],
         default=None,
         value_type=Choice(
@@ -187,14 +138,13 @@ class IAceItem(IImageScaleTraversable):
         ),
     )
 
-    form.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
-            "Select one or more climate change impact topics that "
-            "this item relates to."
+            "Select one or more climate change impact topics that this item relates to."
         ),
-        required=True,
+        required=True,  # TODO: set to False for the migration to plone6
         missing_value=[],
         default=None,
         value_type=Choice(
@@ -202,20 +152,15 @@ class IAceItem(IImageScaleTraversable):
         ),
     )
 
-    form.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     elements = List(
-        title=_("Adaptation elements"),
-        description=_("Select one or more elements."),
+        title=_("Adaptation approaches"),
+        description=_("Select one or more approaches."),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.aceitems_elements",
         ),
     )
-
-    # year = Year(title=_(u"Year"),
-    #             description=u"Date of publication/release/update of the item",
-    #             required=False
-    #             )
 
     publication_date = Date(
         title=_("Date of item's creation"),
@@ -228,13 +173,7 @@ class IAceItem(IImageScaleTraversable):
             'add only the year, please select "day: 1", "month: January" '
             "and then the year"
         ),
-        required=True,
-    )
-
-    featured = Bool(
-        title=_("Featured"),
-        required=False,
-        default=False,
+        required=True,  # TODO: set to False for the migration to plone6
     )
 
     # -----------[ "reference_information" fields ]------------------
@@ -247,7 +186,8 @@ class IAceItem(IImageScaleTraversable):
             "described. Please place each website on a new line"
         ),
         required=False,
-        value_type=URI(),
+        # URI # TODO: plone6 needs to be fixed, some URLs are not valid URI
+        value_type=TextLine(),
         # missing_value=None,
     )
 
@@ -263,11 +203,12 @@ class IAceItem(IImageScaleTraversable):
 
     # -----------[ "geographic_information" fields ]------------------
 
-    form.widget(geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
+    # directives.widget(
+    #     geochars="eea.climateadapt.widgets.geochar.GeoCharFieldWidget")
     geochars = Text(
         title=_("Geographic characterisation"),
         required=True,
-        default=unicode(
+        default=str(
             '{"geoElements":{"element":"GLOBAL", "macrotrans"'
             ':null,"biotrans":null,"countries":[],'
             '"subnational":[],"city":""}}'
@@ -278,7 +219,7 @@ class IAceItem(IImageScaleTraversable):
     comments = Text(
         title=_("Comments"),
         required=False,
-        default=unicode(""),
+        default=str(""),
         description=_(
             "Comments about this database item "
             "[information entered below will not be "
@@ -307,7 +248,7 @@ class IAceItem(IImageScaleTraversable):
     other_contributor = Text(
         title=_("Other contributor(s)"),
         required=False,
-        default=unicode(""),
+        default=str(""),
         description=_(
             "Please first verify if the contributor is "
             "already part of the Climate ADAPT Database."
@@ -322,8 +263,6 @@ class IAceItem(IImageScaleTraversable):
     )
 
     # -----------[ "omitted" fields ]------------------
-    # directives.omitted(IAddForm, "portal_type")
-    # directives.omitted(IEditForm, "portal_type")
 
     directives.omitted(IAddForm, "item_link")
     directives.omitted(IEditForm, "item_link")
@@ -343,26 +282,11 @@ class IAceItem(IImageScaleTraversable):
     directives.omitted(IAddForm, "spatial_values")
     directives.omitted(IEditForm, "spatial_values")
 
-    directives.omitted(IAddForm, "important")
-    directives.omitted(IEditForm, "important")
+    # directives.omitted(IAddForm, "important")
+    # directives.omitted(IEditForm, "important")
 
     directives.omitted(IAddForm, "metadata")
     directives.omitted(IEditForm, "metadata")
-
-    directives.omitted(IAddForm, "rating")
-    directives.omitted(IEditForm, "rating")
-
-    # directives.omitted(IAddForm, 'special_tags')
-    # directives.omitted(IEditForm, 'special_tags')
-
-    # directives.omitted(IAddForm, "modification_date")
-    # directives.omitted(IEditForm, "modification_date")
-    #
-    # directives.omitted(IAddForm, "creation_date")
-    # directives.omitted(IEditForm, "creation_date")
-    #
-    # directives.omitted(IAddForm, "id")
-    # directives.omitted(IEditForm, "id")
 
     # -----------[ "backend" fields ]------------------
 
@@ -378,9 +302,9 @@ class IAceItem(IImageScaleTraversable):
         missing_value=None,
     )
 
-    item_link = AbsoluteUrl(title=_("Item link"), required=False, default=unicode(""))
+    item_link = AbsoluteUrl(title=_("Item link"), required=False, default=str(""))
 
-    uploader = Uploader(title=_("Uploaded by"), required=False, default=unicode(""))
+    uploader = Uploader(title=_("Uploaded by"), required=False, default=str(""))
     # fix???
     data_type = Choice(
         title=_("Data Type"),
@@ -395,9 +319,7 @@ class IAceItem(IImageScaleTraversable):
         vocabulary="eea.climateadapt.aceitems_storagetypes",
     )
 
-    spatial_layer = TextLine(
-        title=_("Spatial Layer"), required=False, default=unicode("")
-    )
+    spatial_layer = TextLine(title=_("Spatial Layer"), required=False, default=str(""))
 
     spatial_values = List(
         title=_("Countries"),
@@ -406,72 +328,10 @@ class IAceItem(IImageScaleTraversable):
         value_type=Choice(vocabulary="eea.climateadapt.ace_countries"),
     )
 
-    important = Bool(title=_("High importance"), required=False, default=False)
-
     metadata = TextLine(
         title=_("Metadata"),
         required=False,
     )
-
-    # creation_date = Datetime(
-    #     title=_(u"Created"),
-    #     required=False,
-    # )
-    #
-    # modification_date = Datetime(
-    #     title=_(u"Last Modified"),
-    #     required=False,
-    # )
-    #
-    # id = ASCIILine(
-    #     title=_(u"Object ID"),
-    #     required=False,
-    # )
-
-    # TODO: see if possible to use eea.promotions for this
-    # featured = List(title=_(u"Featured in location"),
-    #                 description=_(u"TODO: Featured description here"),
-    #                 required=False,
-    #                 value_type=Choice(
-    #                     vocabulary="eea.climateadapt.aceitems_featured",),
-    #                 )
-
-    # rating = Int(title=_(u"Rating"), required=True, default=0)
-
-    # TODO: rating??? seems to be manually assigned, not computed
-
-    # TODO: storedat: can contain a related measure or project, or a URL
-    # if contains inner contents, starts with ace_project_id=<id>
-    # or ace_measure_id=<id>
-
-    # supdocs - this is a related field. It seems to point to dlfileentry
-
-    # replacesid - tot un related??
-
-    # scenario: only 3 items have a value: "SCENES SUE", "SCENES ECF", "IPCCS",
-    # IPCCSRES A1B
-    # the options are stored in a AceItemScenario constant in Java code
-
-    # TODO: special search behaviour, should aggregate most fields
-
-
-@adapter(getSpecification(IAceItem["special_tags"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def SpecialTagsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.special_tags"
-
-    return widget
-
-
-@adapter(getSpecification(IAceItem["keywords"]), IWidgetsLayer)
-@implementer(IFieldWidget)
-def KeywordsFieldWidget(field, request):
-    widget = FieldWidget(field, BetterAjaxSelectWidget(request))
-    widget.vocabulary = "eea.climateadapt.keywords"
-    # widget.vocabulary = 'plone.app.vocabularies.Catalog'
-
-    return widget
 
 
 alsoProvides(IAceItem["climate_impacts"], ILanguageIndependentField)
@@ -479,16 +339,13 @@ alsoProvides(IAceItem["comments"], ILanguageIndependentField)
 alsoProvides(IAceItem["contributor_list"], ILanguageIndependentField)
 alsoProvides(IAceItem["data_type"], ILanguageIndependentField)
 alsoProvides(IAceItem["elements"], ILanguageIndependentField)
-alsoProvides(IAceItem["featured"], ILanguageIndependentField)
 alsoProvides(IAceItem["geochars"], ILanguageIndependentField)
 alsoProvides(IAceItem["health_impacts"], ILanguageIndependentField)
-alsoProvides(IAceItem["image"], ILanguageIndependentField)
-alsoProvides(IAceItem["important"], ILanguageIndependentField)
+# alsoProvides(IAceItem["important"], ILanguageIndependentField)
 alsoProvides(IAceItem["include_in_mission"], ILanguageIndependentField)
 alsoProvides(IAceItem["include_in_observatory"], ILanguageIndependentField)
 alsoProvides(IAceItem["item_link"], ILanguageIndependentField)
 alsoProvides(IAceItem["keywords"], ILanguageIndependentField)
-alsoProvides(IAceItem["logo"], ILanguageIndependentField)
 alsoProvides(IAceItem["metadata"], ILanguageIndependentField)
 alsoProvides(IAceItem["origin_website"], ILanguageIndependentField)
 alsoProvides(IAceItem["other_contributor"], ILanguageIndependentField)
@@ -503,3 +360,8 @@ alsoProvides(IAceItem["spatial_layer"], ILanguageIndependentField)
 
 alsoProvides(IPublication["effective"], ILanguageIndependentField)
 alsoProvides(IPublication["expires"], ILanguageIndependentField)
+
+# alsoProvides(IAceItem["featured"], ILanguageIndependentField)
+# blobs are no longer ilanguage independent because we treat them in serializer
+# alsoProvides(IAceItem["image"], ILanguageIndependentField)
+# alsoProvides(IAceItem["logo"], ILanguageIndependentField)
