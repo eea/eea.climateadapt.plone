@@ -53,8 +53,7 @@ class CustomExportContent(ExportContent):
 
     def export_marker_interfaces(self, item, obj):
         interfaces = [i.__identifier__ for i in directlyProvidedBy(obj)]
-        interfaces = [
-            i for i in interfaces if i in MARKER_INTERFACES_TO_EXPORT]
+        interfaces = [i for i in interfaces if i in MARKER_INTERFACES_TO_EXPORT]
         if interfaces:
             item[MARKER_INTERFACES_KEY] = interfaces
         return item
@@ -169,8 +168,7 @@ class CustomImportTranslations(ImportTranslations):
             logger.info("Imported translation group nr. {}".format(imported))
 
             if not imported % 1000:
-                msg = "Committing after importing {} translations...".format(
-                    imported)
+                msg = "Committing after importing {} translations...".format(imported)
                 logger.info(msg)
                 transaction.get().note(msg)
                 transaction.commit()

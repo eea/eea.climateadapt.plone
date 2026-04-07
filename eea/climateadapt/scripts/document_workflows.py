@@ -74,7 +74,7 @@ def run(app):
         for wf_id, info in sorted(data["workflow_definitions"].items()):
             print(f"\nWorkflow: {wf_id} ({info['title']})")
             print(f"  Initial State: {info['initial_state']}")
-            
+
             print("  States:")
             for s_id, s_info in sorted(info["states"].items()):
                 print(f"    - {s_id} ({s_info['title']})")
@@ -86,7 +86,7 @@ def run(app):
 
             print("  Transitions:")
             for t_id, t_info in sorted(info["transitions"].items()):
-                target = t_info['new_state_id'] or "(remains in same state)"
+                target = t_info["new_state_id"] or "(remains in same state)"
                 print(f"    - {t_id} ({t_info['title']}) -> {target}")
 
 

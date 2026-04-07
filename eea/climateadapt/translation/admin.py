@@ -488,12 +488,14 @@ class SyncTranslationPaths(BrowserView):
             for lang in broken_langs:
                 try:
                     import traceback
+
                     tb = traceback.format_stack()
                 except Exception:
                     tb = "Could not get traceback"
 
                 try:
                     from plone import api
+
                     user = api.user.get_current()
                     user_id = user.getId() if user else "system/unknown"
                 except Exception:
@@ -509,8 +511,8 @@ class SyncTranslationPaths(BrowserView):
                     "debug_info": {
                         "traceback": tb,
                         "user": user_id,
-                        "event_trigger": "SyncTranslationPaths_manual_view"
-                    }
+                        "event_trigger": "SyncTranslationPaths_manual_view",
+                    },
                 }
                 opts = {
                     "delay": 10000,

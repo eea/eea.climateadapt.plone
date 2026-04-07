@@ -27,5 +27,4 @@ class ITopLevelVisibility(model.Schema):
     directives.write_permission(show_in_top_level="cmf.ManagePortal")
 
 
-alsoProvides(
-    ITopLevelVisibility["show_in_top_level"], ILanguageIndependentField)
+alsoProvides(ITopLevelVisibility["show_in_top_level"], ILanguageIndependentField)

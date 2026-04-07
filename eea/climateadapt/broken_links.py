@@ -128,6 +128,7 @@ def _check_response(url: str) -> int:
     ) as r:
         return r.status_code
 
+
 def check_link_status(link):
     """Check the links and return only the broken ones with the respective
     status codes
@@ -137,11 +138,7 @@ def check_link_status(link):
 
     link = _normalize_link(link)
 
-    if (
-        link.startswith(".")
-        or ("resolveuid" in link)
-        or ("climate-adapt.eea" in link)
-    ):
+    if link.startswith(".") or ("resolveuid" in link) or ("climate-adapt.eea" in link):
         return None
 
     candidates = _candidate_urls(link)
@@ -507,8 +504,7 @@ class BrokenLinksService(Service):
                     else:
                         item["state"] = "external"
 
-                    item["date"] = date.Date() if isinstance(
-                        date, DateTime) else date
+                    item["date"] = date.Date() if isinstance(date, DateTime) else date
                     if isinstance(date, str) and date == "pre_nov7_data":
                         continue
 
@@ -554,7 +550,6 @@ class BrokenLinksService(Service):
 
         return out
 
-
     def download_as_excel(self):
         xlsdata = self.results()
         xlsio = self.data_to_xls(xlsdata)
@@ -564,8 +559,7 @@ class BrokenLinksService(Service):
             "Content-Type",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         )
-        fname = "-".join(["Broken-Links",
-                         str(datetime.now().replace(microsecond=0))])
+        fname = "-".join(["Broken-Links", str(datetime.now().replace(microsecond=0))])
         sh("Content-Disposition", "attachment; filename=%s.xlsx" % fname)
 
         return xlsio.read()

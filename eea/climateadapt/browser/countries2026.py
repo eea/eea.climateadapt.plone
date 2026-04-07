@@ -16,12 +16,11 @@ from eea.climateadapt.vocabulary import ace_countries
 
 
 def get_country_code(country_name):
-    if 'Moldova' == country_name:
-        country_name = 'Moldova, Republic of'
-    if 'Moldavia' == country_name:
-        country_name = 'Moldova, Republic of'
-    country_code = next(
-        (k for k, v in ace_countries if v == country_name), "Not found")
+    if "Moldova" == country_name:
+        country_name = "Moldova, Republic of"
+    if "Moldavia" == country_name:
+        country_name = "Moldova, Republic of"
+    country_code = next((k for k, v in ace_countries if v == country_name), "Not found")
     if country_code == "GR":
         country_code = "EL"
     if country_code == "Not found" and country_name.lower() == "turkiye":
@@ -31,14 +30,15 @@ def get_country_code(country_name):
 
 
 def setup_discodata(annotations, is_energy_comunity=False):
-    call_discodata_url = DISCODATA_ENERGY_COMUNITY_URL if is_energy_comunity else DISCODATA_URL
+    call_discodata_url = (
+        DISCODATA_ENERGY_COMUNITY_URL if is_energy_comunity else DISCODATA_URL
+    )
     response = urllib.request.urlopen(call_discodata_url)
     data = json.loads(response.read())
     annotations_discodata_key = "discodata_country_2025"
     if is_energy_comunity:
         annotations_discodata_key += "_energy_comunity"
-    annotations[annotations_discodata_key] = {
-        "timestamp": datetime.now(), "data": data}
+    annotations[annotations_discodata_key] = {"timestamp": datetime.now(), "data": data}
     annotations._p_changed = True
     logger.info("RELOAD URL %s", call_discodata_url)
 
@@ -68,7 +68,7 @@ def get_discodata(is_energy_comunity=False):
 
 
 def get_discodata_for_country(country_code):
-    data = get_discodata(country_code.upper() in ['GE', 'MD', 'RS', 'UA'])
+    data = get_discodata(country_code.upper() in ["GE", "MD", "RS", "UA"])
 
     orig_data = next(
         (x for x in data["results"] if x["countryCode"] == country_code), {}
@@ -94,8 +94,7 @@ def get_discodata_for_country(country_code):
             new_value = None
 
             if isinstance(json_val, dict):
-                new_value = json_val[k][0] if 1 == len(
-                    json_val[k]) else json_val[k]
+                new_value = json_val[k][0] if 1 == len(json_val[k]) else json_val[k]
 
                 processed_data[k] = new_value
             # else:

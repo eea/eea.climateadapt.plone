@@ -1,12 +1,11 @@
-""" zope.schema extensions
-"""
+"""zope.schema extensions"""
 
 from Products.CMFPlone.PloneTool import EMAIL_RE
 from zope.schema import TextLine, ValidationError
 
 
 class Year(TextLine):
-    """ This is actually an Int field, we just don't want what's coming with it
+    """This is actually an Int field, we just don't want what's coming with it
 
     We do this field to avoid IDataConverter, we want to display simple digits
     with no formatting
@@ -34,29 +33,32 @@ class Year(TextLine):
 
 
 class InvalidEmail(ValidationError):
-    """ Invalid Email Address """
+    """Invalid Email Address"""
 
 
 class Email(TextLine):
     def validate(self, value):
         if value:
-            check_value = EMAIL_RE.sub('', value)
-            if check_value != '':
+            check_value = EMAIL_RE.sub("", value)
+            if check_value != "":
                 raise InvalidEmail
         return True
 
 
 class PortalType(TextLine):
-    """ plain text line used just to override the getter to return portal type"""
+    """plain text line used just to override the getter to return portal type"""
+
     pass
 
 
 class AbsoluteUrl(TextLine):
-    """ plain text line used just to override the getter to return
-        the link to the object"""
+    """plain text line used just to override the getter to return
+    the link to the object"""
+
     pass
 
 
 class Uploader(TextLine):
-    """ plain text line used just to override the getter to return the uploader uid"""
+    """plain text line used just to override the getter to return the uploader uid"""
+
     pass

@@ -47,7 +47,9 @@ class Translations:
 
         translations = []
         manager = ITranslationManager(self.context)
-        for language, translation in list(manager.get_restricted_translations().items()):
+        for language, translation in list(
+            manager.get_restricted_translations().items()
+        ):
             if language != get_language(self.context):
                 translations.append(
                     {"@id": translation.absolute_url(), "language": language}
@@ -97,16 +99,14 @@ class LinkTranslations(Service):
     def reply(self):
         # Disable CSRF protection
         if "IDisableCSRFProtection" in dir(plone.protect.interfaces):
-            alsoProvides(
-                self.request, plone.protect.interfaces.IDisableCSRFProtection)
+            alsoProvides(self.request, plone.protect.interfaces.IDisableCSRFProtection)
 
         data = json_body(self.request)
         id_ = data.get("id", None)
         if id_ is None:
             self.request.response.setStatus(400)
             return dict(
-                error=dict(type="BadRequest",
-                           message="Missing content id to link to")
+                error=dict(type="BadRequest", message="Missing content id to link to")
             )
 
         target = self.get_object(id_)
@@ -127,8 +127,7 @@ class LinkTranslations(Service):
         manager = ITranslationManager(self.context)
         current_translation = manager.get_translation(target_language)
         target_manager = ITranslationManager(target)
-        target_translation = target_manager.get_translation(
-            self.context.language)
+        target_translation = target_manager.get_translation(self.context.language)
         if current_translation is not None:
             self.request.response.setStatus(400)
             return dict(
@@ -164,14 +163,13 @@ class LinkTranslations(Service):
         )
 
         self.request.response.setStatus(201)
-        self.request.response.setHeader(
-            "Location", self.context.absolute_url())
+        self.request.response.setHeader("Location", self.context.absolute_url())
         return {}
 
     def get_object(self, key):
         if key.startswith(self.portal_url):
             # Resolve by URL
-            key = key[len(self.portal_url) + 1:]
+            key = key[len(self.portal_url) + 1 :]
             return self.portal.restrictedTraverse(key, None)
         elif key.startswith("/"):
             # Resolve by path
@@ -189,8 +187,7 @@ class UnlinkTranslations(Service):
     def reply(self):
         # Disable CSRF protection
         if "IDisableCSRFProtection" in dir(plone.protect.interfaces):
-            alsoProvides(
-                self.request, plone.protect.interfaces.IDisableCSRFProtection)
+            alsoProvides(self.request, plone.protect.interfaces.IDisableCSRFProtection)
 
         data = json_body(self.request)
         manager = ITranslationManager(self.context)

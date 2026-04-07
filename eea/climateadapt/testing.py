@@ -10,34 +10,30 @@ from zope.configuration import xmlconfig
 
 
 class EeaclimateadaptLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
         # Load ZCML
         import eea.climateadapt
-        xmlconfig.file(
-            'configure.zcml',
-            eea.climateadapt,
-            context=configurationContext
-        )
+
+        xmlconfig.file("configure.zcml", eea.climateadapt, context=configurationContext)
 
         # Install products that use an old-style initialize() function
-        #z2.installProduct(app, 'Products.PloneFormGen')
+        # z2.installProduct(app, 'Products.PloneFormGen')
 
-#    def tearDownZope(self, app):
-#        # Uninstall products installed above
-#        z2.uninstallProduct(app, 'Products.PloneFormGen')
+    #    def tearDownZope(self, app):
+    #        # Uninstall products installed above
+    #        z2.uninstallProduct(app, 'Products.PloneFormGen')
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'eea.climateadapt:default')
+        applyProfile(portal, "eea.climateadapt:default")
+
 
 EEA_CLIMATEADAPT_FIXTURE = EeaclimateadaptLayer()
 EEA_CLIMATEADAPT_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(EEA_CLIMATEADAPT_FIXTURE,),
-    name="EeaclimateadaptLayer:Integration"
+    bases=(EEA_CLIMATEADAPT_FIXTURE,), name="EeaclimateadaptLayer:Integration"
 )
 EEA_CLIMATEADAPT_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(EEA_CLIMATEADAPT_FIXTURE, z2.ZSERVER_FIXTURE),
-    name="EeaclimateadaptLayer:Functional"
+    name="EeaclimateadaptLayer:Functional",
 )

@@ -1,7 +1,7 @@
-""" plone.restapi customizations
-"""
+"""plone.restapi customizations"""
 
 from plone.app.textfield.interfaces import IRichTextValue
+
 # from plone.formwidget.geolocation.geolocation import Geolocation
 from plone.restapi.interfaces import IJsonCompatible
 from plone.restapi.serializer.converters import json_compatible

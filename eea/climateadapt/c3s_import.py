@@ -52,7 +52,6 @@ def get_source_data():
 
 
 def update_object(obj, indicator):
-
     print((obj.title))
     print(("  ->" + obj.c3s_identifier))
 
@@ -165,12 +164,12 @@ def c3s_import(site):
     for indicator_identifier in data["indicators"]:
         save_indicator(data["indicators"][indicator_identifier], site, data)
 
-# for theme_id in data["themes"]:
-#    theme_folder = base_folder[theme_id]
-#    theme_folder.text = RichTextValue(
-#        data["themes"][theme_id]["description"]
-#    )
-#    print("Updated description for", theme_folder)
+    # for theme_id in data["themes"]:
+    #    theme_folder = base_folder[theme_id]
+    #    theme_folder.text = RichTextValue(
+    #        data["themes"][theme_id]["description"]
+    #    )
+    #    print("Updated description for", theme_folder)
 
     transaction.commit()
     print(("Total items:" + str(len(data["indicators"]))))

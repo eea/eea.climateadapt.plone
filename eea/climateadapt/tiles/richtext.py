@@ -1,6 +1,8 @@
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
 # from collective.cover.tiles.richtext import IRichTextTile
 from plone.supermodel import model
+
 # from collective.cover.tiles.richtext import RichTextTile
 from plone.tiles.tile import PersistentTile
 from eea.climateadapt import CcaAdminMessageFactory
@@ -9,11 +11,10 @@ from zope.interface import implementer
 
 
 class IRichTextWithTitle(model.Schema):
-    """
-    """
+    """ """
 
     title = schema.TextLine(
-        title=CcaAdminMessageFactory('Title'),
+        title=CcaAdminMessageFactory("Title"),
         required=False,
     )
 
@@ -32,7 +33,6 @@ class IRichTextWithTitle(model.Schema):
 
 @implementer(IRichTextWithTitle)
 class RichTextWithTitle(PersistentTile):
-    """
-    """
+    """ """
 
-    index = ViewPageTemplateFile('pt/richtext_with_title.pt')
+    index = ViewPageTemplateFile("pt/richtext_with_title.pt")

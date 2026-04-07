@@ -27,15 +27,13 @@ class IAceVideo(IAceItem, IBlocks):
         title=_("Date of video's release"),
         description="The date refers to the moment in which the video has "
         "been released. Please use the Calendar icon to add day/month/year. "
-        "If you want to add only the year, please select \"day: 1\", "
-        "\"month: January\" and then the year",
+        'If you want to add only the year, please select "day: 1", '
+        '"month: January" and then the year',
         required=True,
     )
 
     related_documents_presentations = RichText(
-        title=_("Related documents and presentations"),
-        required=False,
-        default=None
+        title=_("Related documents and presentations"), required=False, default=None
     )
 
     blocks = JSONField(
@@ -50,11 +48,10 @@ class IAceVideo(IAceItem, IBlocks):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": video_layout_items
-        },
+        default={"items": video_layout_items},
         required=False,
     )
+
 
 alsoProvides(IAceVideo["embed_url"], ILanguageIndependentField)
 alsoProvides(IAceVideo["video_height"], ILanguageIndependentField)

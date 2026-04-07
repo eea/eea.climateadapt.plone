@@ -41,7 +41,6 @@ from z3c.form.datamanager import AttributeField
 
 
 class CustomAttributeFieldDataManager(AttributeField):
-
     def get(self):
         """See z3c.form.interfaces.IDataManager"""
         value = super(CustomAttributeFieldDataManager, self).get()

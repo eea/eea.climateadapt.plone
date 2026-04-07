@@ -12,7 +12,10 @@ from plone.namedfile.field import NamedBlobImage
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
-from .volto_layout import adaptation_option_layout_blocks, adaptation_option_layout_items
+from .volto_layout import (
+    adaptation_option_layout_blocks,
+    adaptation_option_layout_items,
+)
 
 
 class IAdaptationOption(IAceMeasure, IBlocks):
@@ -25,10 +28,8 @@ class IAdaptationOption(IAceMeasure, IBlocks):
     directives.omitted(IAddForm, "geochars")
 
     title = TextLine(
-        title=_(u"Title"),
-        description=_(
-            u"Name of the adaptation option."
-        ),
+        title=_("Title"),
+        description=_("Name of the adaptation option."),
         # max_length=250,
         required=True,
     )
@@ -55,8 +56,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         required=False,
     )
 
-    directives.widget(
-        key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(key_type_measures="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_type_measures = List(
         title=_("Key Type Measures"),
         description=_("Select Key Type Measures. The options are:"),
@@ -66,8 +66,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         ),
     )
 
-    directives.widget(
-        ipcc_category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(ipcc_category="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     ipcc_category = List(
         title=_("IPCC adaptation options categories"),
         description=_(
@@ -82,8 +81,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
     casestudies = RelationList(
         title=_("Case studies implemented in the adaption"),
         default=[],
-        description=_(
-            "Select one or more case study that this item relates to:"),
+        description=_("Select one or more case study that this item relates to:"),
         value_type=RelationChoice(
             title=_("Related"),
             vocabulary="eea.climateadapt.case_studies",
@@ -120,7 +118,9 @@ class IAdaptationOption(IAceMeasure, IBlocks):
 
     intro_paragraph = RichText(
         title=_("Introduction"),
-        description=_("Provide an introductory paragraph for this adaptation option (1000 character limit)."),
+        description=_(
+            "Provide an introductory paragraph for this adaptation option (1000 character limit)."
+        ),
         required=False,
         # max_length=1000,
     )
@@ -136,20 +136,25 @@ class IAdaptationOption(IAceMeasure, IBlocks):
 
     advantages = RichText(
         title=_("Advantages"),
-        description=_("Describe the advantages of this adaptation option (500 character limit)."),
+        description=_(
+            "Describe the advantages of this adaptation option (500 character limit)."
+        ),
         required=False,
         # max_length=500,
     )
 
     disadvantages = RichText(
         title=_("Disadvantages"),
-        description=_("Describe the disadvantages of this adaptation option (500 character limit)."),
+        description=_(
+            "Describe the disadvantages of this adaptation option (500 character limit)."
+        ),
         required=False,
         # max_length=500,
     )
 
     directives.widget(
-        relevant_synergies="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+        relevant_synergies="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
     relevant_synergies = List(
         title=_("Relevant synergies with mitigation"),
         required=False,
@@ -164,8 +169,8 @@ class IAdaptationOption(IAceMeasure, IBlocks):
             "If selected, the tabs with 'Related resources' will be shown in the "
             "view of the item."
         ),
-        required=False, 
-        default=True
+        required=False,
+        default=True,
     )
 
     blocks = JSONField(
@@ -186,6 +191,7 @@ class IAdaptationOption(IAceMeasure, IBlocks):
         required=False,
     )
 
+
 alsoProvides(IAdaptationOption["publication_date"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["casestudies"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["ipcc_category"], ILanguageIndependentField)
@@ -196,4 +202,3 @@ alsoProvides(IAdaptationOption["disadvantages"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["relevant_synergies"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["source"], ILanguageIndependentField)
 alsoProvides(IAdaptationOption["show_related_resources"], ILanguageIndependentField)
-

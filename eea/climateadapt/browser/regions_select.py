@@ -1,5 +1,4 @@
-""" Transregional select dropdown
-"""
+"""Transregional select dropdown"""
 
 from zope.component.hooks import getSite
 from zope.interface import providedBy
@@ -10,18 +9,16 @@ from Products.CMFCore.utils import getToolByName
 
 # TODO add TranslationUtilsMixin to inheritance
 class TransRegionSelect(BrowserView):
-    """ A dropdown select with transnational regions
-    """
+    """A dropdown select with transnational regions"""
 
     def regions(self):
         site = getSite()
 
-        catalog = getToolByName(site, 'portal_catalog')
+        catalog = getToolByName(site, "portal_catalog")
         q = {
-            "object_provides":
-                "eea.climateadapt.interfaces.ITransnationalRegionMarker",
-            'sort_on': 'getObjPositionInParent',
-            'path': '/cca/'+self.current_lang
+            "object_provides": "eea.climateadapt.interfaces.ITransnationalRegionMarker",
+            "sort_on": "getObjPositionInParent",
+            "path": "/cca/" + self.current_lang,
         }
         brains = catalog.searchResults(**q)
 
@@ -29,12 +26,13 @@ class TransRegionSelect(BrowserView):
 
         for b in brains:
             obj = b.getObject()
-            if obj.title == 'Balkan-Mediterranean Area':
+            if obj.title == "Balkan-Mediterranean Area":
                 continue
-            provides = ["%s.%s" % (iface.__module__ or '', iface.__name__)
-                        for iface in providedBy(obj)]
+            provides = [
+                "%s.%s" % (iface.__module__ or "", iface.__name__)
+                for iface in providedBy(obj)
+            ]
 
-            if "eea.climateadapt.interfaces.ITransnationalRegionMarker" \
-                    in provides:
+            if "eea.climateadapt.interfaces.ITransnationalRegionMarker" in provides:
                 results.append(b)
-        return [{'url': b.getURL(), 'title': b.Title} for b in results]
+        return [{"url": b.getURL(), "title": b.Title} for b in results]
