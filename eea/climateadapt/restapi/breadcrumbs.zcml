@@ -18,11 +18,6 @@
       name="physical-breadcrumbs"
       />
 
-  <adapter
-      factory=".breadcrumbs.Breadcrumbs"
-      name="breadcrumbs"
-      />
-
   <!-- <cache:ruleset -->
   <!--     for=".breadcrumbs.BreadcrumbsGet" -->
   <!--     ruleset="plone.content.dynamic" -->
