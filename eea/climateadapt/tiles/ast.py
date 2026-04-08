@@ -1,5 +1,4 @@
-""" A tile to implement the AST navigation
-"""
+"""A tile to implement the AST navigation"""
 
 # from collective.cover.tiles.base import (IPersistentCoverTile,
 #                                          PersistentCoverTile)
@@ -133,17 +132,17 @@
 
 
 # class ASTHeaderTile(PersistentCoverTile):
-    # """ AST Header tile
-    # """
+# """ AST Header tile
+# """
 
-    # implements(IASTHeaderTile)
+# implements(IASTHeaderTile)
 
-    # index = ViewPageTemplateFile('pt/ast_header.pt')
+# index = ViewPageTemplateFile('pt/ast_header.pt')
 
-    # is_configurable = False
-    # is_editable = True
-    # is_droppable = False
-    # short_name = 'AST Header'
+# is_configurable = False
+# is_editable = True
+# is_droppable = False
+# short_name = 'AST Header'
 
-    # def is_empty(self):
-    #     return False
+# def is_empty(self):
+#     return False

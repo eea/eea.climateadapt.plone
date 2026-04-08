@@ -81,8 +81,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # column: Is a Consortium required to apply for the funding?
     )
 
-    directives.widget(
-        rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     rast_steps = ListField(
         title=_("RAST step(s) of relevance"),
         required=False,
@@ -92,8 +91,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
         # metacolumn: For which step of the AST can the funding be used?
     )
 
-    directives.widget(
-        eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(eligible_entities="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     eligible_entities = ListField(
         title=_("Eligible to receive funding"),
         required=False,
@@ -128,8 +126,7 @@ class IMissionFundingCCA(model.Schema, IBlocks):
     )
 
     # column: For which regions is the funding opportunity offered?
-    regions = RichText(
-        title=_("Region where the funding is offered"), required=False)
+    regions = RichText(title=_("Region where the funding is offered"), required=False)
 
     blocks = JSONField(
         title=_("Blocks"),
@@ -185,13 +182,10 @@ alsoProvides(IMissionFundingCCA["funding_type"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["budget_range"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["is_blended"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["is_eu_funded"], ILanguageIndependentField)
-alsoProvides(
-    IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
 # alsoProvides(IMissionFundingCCA["publication_page"], ILanguageIndependentField)
 # alsoProvides(IMissionFundingCCA["general_info"], ILanguageIndependentField)
 # alsoProvides(IMissionFundingCCA["regions"], ILanguageIndependentField)
 alsoProvides(IMissionFundingCCA["rast_steps"], ILanguageIndependentField)
-alsoProvides(
-    IMissionFundingCCA["eligible_entities"], ILanguageIndependentField)
-alsoProvides(
-    IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["eligible_entities"], ILanguageIndependentField)
+alsoProvides(IMissionFundingCCA["is_consortium_required"], ILanguageIndependentField)

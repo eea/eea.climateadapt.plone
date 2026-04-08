@@ -38,8 +38,7 @@ def parse_csv(path):
 
 def get_country_code(country_name):
     # import pdb; pdb.set_trace()
-    country_code = next(
-        (k for k, v in ace_countries if v == country_name), "Not found")
+    country_code = next((k for k, v in ace_countries if v == country_name), "Not found")
     if country_code == "GR":
         country_code = "EL"
     if country_code == "Not found" and country_name.lower() == "turkiye":
@@ -103,8 +102,7 @@ def get_discodata_for_country(country_code):
             new_value = None
 
             if isinstance(json_val, dict):
-                new_value = json_val[k][0] if 1 == len(
-                    json_val[k]) else json_val[k]
+                new_value = json_val[k][0] if 1 == len(json_val[k]) else json_val[k]
 
                 processed_data[k] = new_value
             # else:
@@ -221,8 +219,7 @@ def get_nap_nas(obj, text, country):
             cells = row.xpath("td")
             # key = cells[0].text_content().strip()
             # key = ''.join(cells[0].itertext()).strip()
-            key = " ".join(
-                [c for c in cells[0].itertext() if type(c) is not str])
+            key = " ".join([c for c in cells[0].itertext() if type(c) is not str])
 
             if key in [None, ""]:
                 key = cells[0].text_content().strip()
@@ -261,8 +258,7 @@ def get_nap_nas(obj, text, country):
             res[prop] = value
 
         except Exception:
-            logger.exception(
-                "Error in extracting information from country %s", country)
+            logger.exception("Error in extracting information from country %s", country)
 
     return res
 
@@ -380,7 +376,7 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
         ]
         for item in sorted_items:
             _type = item["Type"]
-            _type = _type[3: _type.find("(")]
+            _type = _type[3 : _type.find("(")]
             if _type not in _response:
                 _response[_type] = []
             _response[_type].append(item)
@@ -793,8 +789,7 @@ class CountryProfileData(BrowserView):
         if not self.processed_data["Strategies_Plans"]:
             return None
 
-        items = self.processed_data["Strategies_Plans"].get(
-            "Action_Measures", [])
+        items = self.processed_data["Strategies_Plans"].get("Action_Measures", [])
 
         sorted_items = sorted(
             items, key=lambda i: (i["KeyTypeMeasure"], i["subKTM"], i["Title"])
@@ -837,8 +832,7 @@ class CountryProfileData(BrowserView):
         if not processed_data["Legal_Policies"]:
             return {"keys": [], "items": []}
 
-        items = processed_data.get("Legal_Policies", []).get(
-            "AdaptationPolicies", [])
+        items = processed_data.get("Legal_Policies", []).get("AdaptationPolicies", [])
         items = sorted(items, key=lambda x: x["Type"])
 
         for item in items:
@@ -903,8 +897,7 @@ class CountryProfileData(BrowserView):
             if occurence == "Observed" and item["YesNo_Value"] == "NO":
                 continue
             # if event not in response[occurence][group][accuteChronic]['hazards']:
-            response[occurence][group][accuteChronic]["hazards"].append(
-                item["Event"])
+            response[occurence][group][accuteChronic]["hazards"].append(item["Event"])
             # countItems[ group] += 1
             if occurence == "Future":
                 response[occurence][group][accuteChronic]["trend"].append(
@@ -923,8 +916,7 @@ class CountryProfileData(BrowserView):
                 + "</td>"
             )
             observedHtml += (
-                "<td rowspan='" + str(max(1, countAC)) +
-                "' class='bb1'>Acute</td>"
+                "<td rowspan='" + str(max(1, countAC)) + "' class='bb1'>Acute</td>"
             )
             if len(response["Observed"][hazardType]["AC"]["hazards"]):
                 className = ' class="bb1"' if countAC == 1 else ""
@@ -940,19 +932,16 @@ class CountryProfileData(BrowserView):
                 hazards = response["Observed"][hazardType]["AC"]["hazards"][1:]
                 for idx in range(len(hazards)):
                     # import pdb; pdb.set_trace()
-                    className = ' class="bb1"' if idx + \
-                        1 == len(hazards) else ""
+                    className = ' class="bb1"' if idx + 1 == len(hazards) else ""
                     observedHtml += (
-                        "<tr><td" + className + ">" +
-                        hazards[idx] + "</td></tr>"
+                        "<tr><td" + className + ">" + hazards[idx] + "</td></tr>"
                     )
             else:
                 observedHtml += "<td class='bb1'/></tr>"
 
             observedHtml += "<tr>"
             observedHtml += (
-                "<td class='bb1' rowspan='" +
-                str(max(1, countCH)) + "'>Chronic</td>"
+                "<td class='bb1' rowspan='" + str(max(1, countCH)) + "'>Chronic</td>"
             )
             if len(response["Observed"][hazardType]["CH"]["hazards"]):
                 # import pdb; pdb.set_trace()
@@ -967,11 +956,9 @@ class CountryProfileData(BrowserView):
                 observedHtml += "</tr>"
                 hazards = response["Observed"][hazardType]["CH"]["hazards"][1:]
                 for idx in range(len(hazards)):
-                    className = ' class="bb1"' if idx + \
-                        1 == len(hazards) else ""
+                    className = ' class="bb1"' if idx + 1 == len(hazards) else ""
                     observedHtml += (
-                        "<tr><td" + className + ">" +
-                        hazards[idx] + "</td></tr>"
+                        "<tr><td" + className + ">" + hazards[idx] + "</td></tr>"
                     )
             else:
                 observedHtml += "<td class='bb1'/></tr>"
@@ -988,8 +975,7 @@ class CountryProfileData(BrowserView):
                 + "</td>"
             )
             futureHtml += (
-                "<td rowspan=" + str(max(1, countAC)) +
-                " class='bb1'>Acute</td>"
+                "<td rowspan=" + str(max(1, countAC)) + " class='bb1'>Acute</td>"
             )
             className = ' class="bb1"' if countAC <= 1 else ""
             futureHtml += (
@@ -1013,8 +999,7 @@ class CountryProfileData(BrowserView):
             if countAC:
                 hazards = response["Future"][hazardType]["AC"]["hazards"][1:]
                 for idx in range(len(hazards)):
-                    className = ' class="bb1"' if idx + \
-                        1 == len(hazards) else ""
+                    className = ' class="bb1"' if idx + 1 == len(hazards) else ""
                     futureHtml += (
                         "<tr><td"
                         + className
@@ -1034,8 +1019,7 @@ class CountryProfileData(BrowserView):
 
             futureHtml += "<tr>"
             futureHtml += (
-                "<td rowspan=" + str(max(1, countCH)) +
-                "  class='bb1'>Chronic</td>"
+                "<td rowspan=" + str(max(1, countCH)) + "  class='bb1'>Chronic</td>"
             )
             if countCH:
                 className = ' class="bb1"' if countCH == 1 else ""
@@ -1058,8 +1042,7 @@ class CountryProfileData(BrowserView):
                 futureHtml += "</tr>"
                 hazards = response["Future"][hazardType]["CH"]["hazards"][1:]
                 for idx in range(len(hazards)):
-                    className = ' class="bb1"' if idx + \
-                        1 == len(hazards) else ""
+                    className = ' class="bb1"' if idx + 1 == len(hazards) else ""
                     futureHtml += (
                         "<tr><td"
                         + className

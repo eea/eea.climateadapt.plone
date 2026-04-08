@@ -10,9 +10,10 @@ import logging
 
 logger = logging.getLogger("fixer")
 
-REPLACED_URL = 'http://10.50.5.50:8060/cca'
-REPLACE_WITH = 'https://climate-adapt.eea.europa.eu'
+REPLACED_URL = "http://10.50.5.50:8060/cca"
+REPLACE_WITH = "https://climate-adapt.eea.europa.eu"
 START_FROM = 0
+
 
 def get_blocks(obj):
     """get_blocks"""
@@ -74,15 +75,16 @@ href_url_fields = ["@id", "getURL"]
 
 
 def fix_marker_interfaces(obj):
-    """ add marker interfaces for the specified content types """
+    """add marker interfaces for the specified content types"""
     _type = obj.get("@type")
     marker_interfaces = {
         "collective.cover.content": "eea.climateadapt.interfaces.ICover",
-        "Subsite": "plone.base.interfaces.siteroot.INavigationRoot"
+        "Subsite": "plone.base.interfaces.siteroot.INavigationRoot",
     }
 
     if not _type:
         import pdb
+
         pdb.set_trace()
 
     if _type == "Folder" and obj["@id"].endswith("/observatory"):
@@ -97,6 +99,7 @@ def fix_marker_interfaces(obj):
             obj["exportimport.marker_interfaces"] = [interface_to_add]
 
     return obj
+
 
 def fix_url(value):
     if isinstance(value, list):
@@ -136,7 +139,7 @@ def traverse_blocks(obj):
 
 def fix_storage_type(obj):
     """Fixes 'storage_type' field: sets to None if its value is 'NONE'."""
-    none_types = ['BRAK', 'NINGUNA', 'KEINE', 'NESSUNA', 'AUCUN', 'NONE']
+    none_types = ["BRAK", "NINGUNA", "KEINE", "NESSUNA", "AUCUN", "NONE"]
 
     if obj.get("storage_type") in none_types:
         obj["storage_type"] = None
@@ -337,6 +340,7 @@ def fix_publishing_date(obj):
 
     return obj
 
+
 _datatypes = [
     "DOCUMENT",
     "INFORMATIONSOURCE",
@@ -350,6 +354,7 @@ _datatypes = [
     "ORGANISATION",
     # "VIDEOS",
 ]
+
 
 def fix_data_type(obj):
     replaced = {
@@ -385,10 +390,13 @@ def fix_data_type(obj):
 
     if data_type and data_type not in _datatypes:
         if data_type not in replaced:
-            import pdb; pdb.set_trace()
+            import pdb
+
+            pdb.set_trace()
         obj["data_type"] = replaced.get(data_type, data_type)
 
     return obj
+
 
 fixers: List[Callable[[dict], dict]] = [
     fix_marker_interfaces,
@@ -466,8 +474,15 @@ def main():
     if len(sys.argv) != 2:
         print("Usage: python script.py <foldername>")
         sys.exit(1)
-    skip_types = ["DepictionTool", "PDFTool", "PDFTheme", "ProgressTool",
-                  "VocabularyLibrary", "FrontpageSlide", "EasyForm"]
+    skip_types = [
+        "DepictionTool",
+        "PDFTool",
+        "PDFTheme",
+        "ProgressTool",
+        "VocabularyLibrary",
+        "FrontpageSlide",
+        "EasyForm",
+    ]
     foldername = sys.argv[1]
 
     start_time = time.time()  # Start the timer
@@ -506,7 +521,7 @@ def main():
             )
             continue
 
-        if data['@type'] in skip_types:
+        if data["@type"] in skip_types:
             os.remove(filename)
             print(f"File '{filename}' has been DELETED.")
             continue

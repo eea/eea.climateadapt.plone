@@ -1,8 +1,7 @@
-""" Subsection navigation
-"""
+"""Subsection navigation"""
 
 # from collective.cover.tiles.base import (IPersistentCoverTile,
-                                        #  PersistentCoverTile)
+#  PersistentCoverTile)
 # from zope import schema
 # from zope.interface import implements
 

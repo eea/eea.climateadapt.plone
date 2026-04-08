@@ -86,8 +86,7 @@ class IC3sIndicator(IIndicator):
         required=False,
     )
 
-    overview_app_parameters = Text(
-        title=("Overview APP parameters"), required=False)
+    overview_app_parameters = Text(title=("Overview APP parameters"), required=False)
 
     overview_app_ecde_identifier = TextLine(
         title=_("Overview APP ECDE Identifier"), required=False
@@ -101,8 +100,7 @@ class IC3sIndicator(IIndicator):
         title=_("Details APP Toolbox URL"), required=False
     )
 
-    details_app_parameters = Text(
-        title=("Details APP parameters"), required=False)
+    details_app_parameters = Text(title=("Details APP parameters"), required=False)
 
     sectors = List(
         title=_("Sectors"),
@@ -142,16 +140,11 @@ class IC3sIndicator(IIndicator):
 
 
 alsoProvides(IC3sIndicator["c3s_identifier"], ILanguageIndependentField)
-alsoProvides(IC3sIndicator["overview_app_toolbox_url"],
-             ILanguageIndependentField)
-alsoProvides(
-    IC3sIndicator["overview_app_toolbox_url_v2"], ILanguageIndependentField)
-alsoProvides(IC3sIndicator["overview_app_parameters"],
-             ILanguageIndependentField)
-alsoProvides(IC3sIndicator["details_app_toolbox_url"],
-             ILanguageIndependentField)
-alsoProvides(IC3sIndicator["details_app_parameters"],
-             ILanguageIndependentField)
+alsoProvides(IC3sIndicator["overview_app_toolbox_url"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["overview_app_toolbox_url_v2"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["overview_app_parameters"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["details_app_toolbox_url"], ILanguageIndependentField)
+alsoProvides(IC3sIndicator["details_app_parameters"], ILanguageIndependentField)
 alsoProvides(IC3sIndicator["sectors"], ILanguageIndependentField)
 alsoProvides(IC3sIndicator["climate_impacts"], ILanguageIndependentField)
 alsoProvides(IC3sIndicator["publication_date"], ILanguageIndependentField)

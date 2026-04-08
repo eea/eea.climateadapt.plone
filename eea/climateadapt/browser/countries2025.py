@@ -37,12 +37,11 @@ def parse_csv(path):
 
 
 def get_country_code(country_name):
-    if 'Moldova' == country_name:
-        country_name = 'Moldova, Republic of'
-    if 'Moldavia' == country_name:
-        country_name = 'Moldova, Republic of'
-    country_code = next(
-        (k for k, v in ace_countries if v == country_name), "Not found")
+    if "Moldova" == country_name:
+        country_name = "Moldova, Republic of"
+    if "Moldavia" == country_name:
+        country_name = "Moldova, Republic of"
+    country_code = next((k for k, v in ace_countries if v == country_name), "Not found")
     if country_code == "GR":
         country_code = "EL"
     if country_code == "Not found" and country_name.lower() == "turkiye":
@@ -52,14 +51,15 @@ def get_country_code(country_name):
 
 
 def setup_discodata(annotations, is_energy_comunity=False):
-    call_discodata_url = DISCODATA_ENERGY_COMUNITY_URL if is_energy_comunity else DISCODATA_URL
+    call_discodata_url = (
+        DISCODATA_ENERGY_COMUNITY_URL if is_energy_comunity else DISCODATA_URL
+    )
     response = urllib.request.urlopen(call_discodata_url)
     data = json.loads(response.read())
     annotations_discodata_key = "discodata_country_2025"
     if is_energy_comunity:
         annotations_discodata_key += "_energy_comunity"
-    annotations[annotations_discodata_key] = {
-        "timestamp": datetime.now(), "data": data}
+    annotations[annotations_discodata_key] = {"timestamp": datetime.now(), "data": data}
     annotations._p_changed = True
     logger.info("RELOAD URL %s", call_discodata_url)
 
@@ -89,7 +89,7 @@ def get_discodata(is_energy_comunity=False):
 
 
 def get_discodata_for_country(country_code):
-    data = get_discodata(country_code.upper() in ['GE', 'MD', 'RS', 'UA'])
+    data = get_discodata(country_code.upper() in ["GE", "MD", "RS", "UA"])
 
     orig_data = next(
         (x for x in data["results"] if x["countryCode"] == country_code), {}
@@ -115,8 +115,7 @@ def get_discodata_for_country(country_code):
             new_value = None
 
             if isinstance(json_val, dict):
-                new_value = json_val[k][0] if 1 == len(
-                    json_val[k]) else json_val[k]
+                new_value = json_val[k][0] if 1 == len(json_val[k]) else json_val[k]
 
                 processed_data[k] = new_value
             # else:
@@ -234,8 +233,7 @@ def get_nap_nas(obj, text, country):
             cells = row.xpath("td")
             # key = cells[0].text_content().strip()
             # key = ''.join(cells[0].itertext()).strip()
-            key = " ".join(
-                [c for c in cells[0].itertext() if type(c) is not str])
+            key = " ".join([c for c in cells[0].itertext() if type(c) is not str])
 
             if key in [None, ""]:
                 key = cells[0].text_content().strip()
@@ -274,8 +272,7 @@ def get_nap_nas(obj, text, country):
             res[prop] = value
 
         except Exception:
-            logger.exception(
-                "Error in extracting information from country %s", country)
+            logger.exception("Error in extracting information from country %s", country)
 
     return res
 
@@ -398,19 +395,19 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
         sorted_items = values
         for item in sorted_items:
             _type = item["Type"]
-            _type = _type[3: _type.find("(")]
+            _type = _type[3 : _type.find("(")]
             if _type not in _response:
                 _response[_type] = []
             # import pdb
             # pdb.set_trace()
-            if 'adopted' not in item.get('Status', ''):
+            if "adopted" not in item.get("Status", ""):
                 continue
-            if 'adopted' in item.get('Status', ''):
-                item['Status'] = 'Adopted'
+            if "adopted" in item.get("Status", ""):
+                item["Status"] = "Adopted"
             _response[_type].append(item)
 
         value = ""
-        for keySearch in ['National Adaptation Strategy', 'National Adaptation Plan']:
+        for keySearch in ["National Adaptation Strategy", "National Adaptation Plan"]:
             for key in _response:
                 if key.strip() not in keySearch:
                     continue
@@ -432,11 +429,10 @@ class CountriesMetadataExtract(TranslationUtilsMixin):
 
         values = sorted(
             values,
-            key=lambda i: (i['Type'].lower(), i['Type'].lower())
+            key=lambda i: (i["Type"].lower(), i["Type"].lower()),
             # reverse=True
         )
-        values = [p for p in values if 'NAS' in p['Type']
-                  or 'NAP' in p['Type']]
+        values = [p for p in values if "NAS" in p["Type"] or "NAP" in p["Type"]]
         res["nas_mixed"] = ""
         res["nap_mixed"] = ""
         res["sap_mixed"] = ""
@@ -829,13 +825,15 @@ class CountryProfileData(BrowserView):
         sections = []
         unqiue_items = []
         for item in items:
-            if item['PrimarySector'] not in sections:
-                sections.append(item['PrimarySector'])
+            if item["PrimarySector"] not in sections:
+                sections.append(item["PrimarySector"])
                 unqiue_items.append(item)
         sorted_items = sorted(
             unqiue_items,
-            key=lambda i: (i['PrimarySector'].lower(), i['PrimarySector'].lower()
-                           if 'PrimarySector' in i else '')
+            key=lambda i: (
+                i["PrimarySector"].lower(),
+                i["PrimarySector"].lower() if "PrimarySector" in i else "",
+            ),
         )
 
         return sorted_items
@@ -847,8 +845,7 @@ class CountryProfileData(BrowserView):
         if not self.processed_data["Strategies_Plans"]:
             return None
 
-        items = self.processed_data["Strategies_Plans"].get(
-            "Action_Measures", [])
+        items = self.processed_data["Strategies_Plans"].get("Action_Measures", [])
 
         if 0 == len(items):
             return None
@@ -868,10 +865,10 @@ class CountryProfileData(BrowserView):
         )
 
         for index, item in enumerate(items):
-            if 'Title' not in item:
-                data = item['DescribeGoodPractice'].split('\n')
-                items[index]['Title'] = data[0]
-                items[index]['DescribeGoodPractice'] = '\n'.join(data[1:])
+            if "Title" not in item:
+                data = item["DescribeGoodPractice"].split("\n")
+                items[index]["Title"] = data[0]
+                items[index]["DescribeGoodPractice"] = "\n".join(data[1:])
         return items
         # TODO in 2025 for the moment we do not have title
         sorted_items = sorted(items, key=lambda i: i["Id"])
@@ -895,9 +892,12 @@ class CountryProfileData(BrowserView):
         processed_data = get_discodata_for_country(country_code)
         # import pdb
         # pdb.set_trace()
-        if 'Sub_National_Adaptation' not in processed_data:
+        if "Sub_National_Adaptation" not in processed_data:
             return None
-        if 'Sub_National_AvailableGoodPractices' in processed_data['Sub_National_Adaptation']:
+        if (
+            "Sub_National_AvailableGoodPractices"
+            in processed_data["Sub_National_Adaptation"]
+        ):
             return True
         return None
 
@@ -917,17 +917,16 @@ class CountryProfileData(BrowserView):
         if not processed_data["Legal_Policies"]:
             return {"keys": [], "items": []}
 
-        items = processed_data.get("Legal_Policies", []).get(
-            "AdaptationPolicies", [])
+        items = processed_data.get("Legal_Policies", []).get("AdaptationPolicies", [])
         items = sorted(items, key=lambda x: x["Type"])
 
         for item in items:
-            if 'Status' not in item:
+            if "Status" not in item:
                 continue
             typeName = item["Type"]
             item["Status"] = str(item["Status"])
 
-            if 'adopted' not in item['Status'] and 'completed' not in item['Status']:
+            if "adopted" not in item["Status"] and "completed" not in item["Status"]:
                 continue
 
             typeName = item["Type"]
@@ -935,21 +934,21 @@ class CountryProfileData(BrowserView):
             if len(temp) == 2:
                 typeName = temp[1]
             typeName = typeName.strip()
-            if typeName == 'Climate Law (including adaptation)':
-                typeName = 'Legislative acts'
+            if typeName == "Climate Law (including adaptation)":
+                typeName = "Legislative acts"
             if typeName not in list(response.keys()):
                 response[typeName] = []
             if len(item["Status"]) > 1 and item["Status"][1] == "-":
                 item["Status"] = item["Status"][2:]
 
-            if 'completed and submitted for adoptio' in item['Status'].lower():
-                item['Status'] = "Completed and submitted for adoption"
-            elif '(adopted)' in item['Status']:
-                item['Status'] = "Adopted"
-            elif '(completed)' in item['Status']:
-                item['Status'] = "Completed"
-            elif 'completed' == item['Status'].lower():
-                item['Status'] = "Completed"
+            if "completed and submitted for adoptio" in item["Status"].lower():
+                item["Status"] = "Completed and submitted for adoption"
+            elif "(adopted)" in item["Status"]:
+                item["Status"] = "Adopted"
+            elif "(completed)" in item["Status"]:
+                item["Status"] = "Completed"
+            elif "completed" == item["Status"].lower():
+                item["Status"] = "Completed"
 
             response[typeName].append(
                 {
@@ -982,7 +981,7 @@ class CountryProfileData(BrowserView):
         )
         # import pdb
         # pdb.set_trace()
-# (Pdb) pp processed_data['Contact']['Website']
+        # (Pdb) pp processed_data['Contact']['Website']
 
         if len(items) == 0:
             return items
@@ -1006,8 +1005,7 @@ class CountryProfileData(BrowserView):
             if occurence == "Observed" and item["YesNo_Value"] == "NO":
                 continue
             # if event not in response[occurence][group][accuteChronic]['hazards']:
-            response[occurence][group][accuteChronic]["hazards"].append(
-                item["Event"])
+            response[occurence][group][accuteChronic]["hazards"].append(item["Event"])
             # response[occurence][group][accuteChronic]["occurrences"].append(
             #     item["Occurrence"])
             # countItems[ group] += 1
@@ -1028,8 +1026,7 @@ class CountryProfileData(BrowserView):
                 + "</td>"
             )
             observedHtml += (
-                "<td rowspan='" + str(max(1, countAC)) +
-                "' class='bb1'>Acute</td>"
+                "<td rowspan='" + str(max(1, countAC)) + "' class='bb1'>Acute</td>"
             )
             if len(response["Observed"][hazardType]["AC"]["hazards"]):
                 className = ' class="bb1"' if countAC == 1 else ""
@@ -1054,13 +1051,9 @@ class CountryProfileData(BrowserView):
                 # occurrences = response["Observed"][hazardType]["AC"]["occurrences"][1:]
                 for idx in range(len(hazards)):
                     # import pdb; pdb.set_trace()
-                    className = ' class="bb1"' if idx + \
-                        1 == len(hazards) else ""
+                    className = ' class="bb1"' if idx + 1 == len(hazards) else ""
                     observedHtml += "<tr>"
-                    observedHtml += (
-                        "<td" + className + ">" +
-                        hazards[idx] + "</td>"
-                    )
+                    observedHtml += "<td" + className + ">" + hazards[idx] + "</td>"
                     # observedHtml += (
                     #     "<td" + className + ">"+occurrences[idx]+"</td>"
                     # )
@@ -1070,8 +1063,7 @@ class CountryProfileData(BrowserView):
 
             observedHtml += "<tr>"
             observedHtml += (
-                "<td class='bb1' rowspan='" +
-                str(max(1, countCH)) + "'>Chronic</td>"
+                "<td class='bb1' rowspan='" + str(max(1, countCH)) + "'>Chronic</td>"
             )
             if len(response["Observed"][hazardType]["CH"]["hazards"]):
                 # import pdb; pdb.set_trace()
@@ -1094,13 +1086,9 @@ class CountryProfileData(BrowserView):
                 hazards = response["Observed"][hazardType]["CH"]["hazards"][1:]
                 # occurrences = response["Observed"][hazardType]["CH"]["occurrences"][1:]
                 for idx in range(len(hazards)):
-                    className = ' class="bb1"' if idx + \
-                        1 == len(hazards) else ""
+                    className = ' class="bb1"' if idx + 1 == len(hazards) else ""
                     observedHtml += "<tr>"
-                    observedHtml += (
-                        "<td" + className + ">" +
-                        hazards[idx] + "</td>"
-                    )
+                    observedHtml += "<td" + className + ">" + hazards[idx] + "</td>"
                     # observedHtml += (
                     #     "<td" + className + ">" + occurrences[idx] + "</td>"
                     # )
@@ -1120,8 +1108,7 @@ class CountryProfileData(BrowserView):
                 + "</td>"
             )
             futureHtml += (
-                "<td rowspan=" + str(max(1, countAC)) +
-                " class='bb1'>Acute</td>"
+                "<td rowspan=" + str(max(1, countAC)) + " class='bb1'>Acute</td>"
             )
             className = ' class="bb1"' if countAC <= 1 else ""
             futureHtml += (
@@ -1145,8 +1132,7 @@ class CountryProfileData(BrowserView):
             if countAC:
                 hazards = response["Future"][hazardType]["AC"]["hazards"][1:]
                 for idx in range(len(hazards)):
-                    className = ' class="bb1"' if idx + \
-                        1 == len(hazards) else ""
+                    className = ' class="bb1"' if idx + 1 == len(hazards) else ""
                     futureHtml += (
                         "<tr><td"
                         + className
@@ -1166,8 +1152,7 @@ class CountryProfileData(BrowserView):
 
             futureHtml += "<tr>"
             futureHtml += (
-                "<td rowspan=" + str(max(1, countCH)) +
-                "  class='bb1'>Chronic</td>"
+                "<td rowspan=" + str(max(1, countCH)) + "  class='bb1'>Chronic</td>"
             )
             if countCH:
                 className = ' class="bb1"' if countCH == 1 else ""
@@ -1190,8 +1175,7 @@ class CountryProfileData(BrowserView):
                 futureHtml += "</tr>"
                 hazards = response["Future"][hazardType]["CH"]["hazards"][1:]
                 for idx in range(len(hazards)):
-                    className = ' class="bb1"' if idx + \
-                        1 == len(hazards) else ""
+                    className = ' class="bb1"' if idx + 1 == len(hazards) else ""
                     futureHtml += (
                         "<tr><td"
                         + className
@@ -1224,15 +1208,15 @@ class CountryProfileData(BrowserView):
         # import pdb
         # pdb.set_trace()
 
-        if country_code in ['XK']:
+        if country_code in ["XK"]:
             return None
-        elif country_code in ['TR']:
+        elif country_code in ["TR"]:
             link = "https://unfccc.int/sites/default/files/resource/TUR_8NCResubmission.pdf"
-            return {"name": 'UNFCCC NC8', "link": link}
-        elif country_code in ['UA']:
+            return {"name": "UNFCCC NC8", "link": link}
+        elif country_code in ["UA"]:
             link = "https://unfccc.int/documents/198421"
             return {"name": link, "link": link}
-        elif country_code in ['MD', 'RS', 'GE']:
+        elif country_code in ["MD", "RS", "GE"]:
             link = "https://unfccc.int/non-annex-I-NCs"
             return {"name": link, "link": link}
         else:
@@ -1324,19 +1308,22 @@ class CountryProfileData(BrowserView):
             items = contact_data.get("Publications")
         else:
             for contact in contact_data:
-                for publication in contact.get('Publications', []):
+                for publication in contact.get("Publications", []):
                     # if publication.get('WebLink', None) and publication.get('WebLink', None) not in weblinks:
                     #     weblinks.append(publication.get('WebLink'))
                     items.append(publication)
 
         for item in items:
-            if item.get('WebLink', None) in weblinks:
+            if item.get("WebLink", None) in weblinks:
                 continue
 
-            weblinks.append(item.get('WebLink', ''))
+            weblinks.append(item.get("WebLink", ""))
 
-            line = {'Publisher': item.get('Publisher', ''), 'Title': item.get(
-                'TitleEnglish', ''), 'Website': item.get('WebLink', '')}
+            line = {
+                "Publisher": item.get("Publisher", ""),
+                "Title": item.get("TitleEnglish", ""),
+                "Website": item.get("WebLink", ""),
+            }
             response.append(line)
 
         return response
@@ -1360,7 +1347,7 @@ class CountryProfileData(BrowserView):
             items = contact_data.get("Website")
         else:
             for contact in contact_data:
-                for publication in contact.get('Website', []):
+                for publication in contact.get("Website", []):
                     # if publication.get('Url', None) and publication.get('Url', None) not in weblinks:
                     #     weblinks.append(publication.get('Url'))
                     items.append(publication)
@@ -1368,21 +1355,22 @@ class CountryProfileData(BrowserView):
         # import pdb
         # pdb.set_trace()
         for item in items:
-
-            if 'Social media' in item.get('Type', ''):
+            if "Social media" in item.get("Type", ""):
                 continue
 
-            if item.get('Url', None) in weblinks:
+            if item.get("Url", None) in weblinks:
                 continue
 
-            weblinks.append(item.get('Url', ''))
+            weblinks.append(item.get("Url", ""))
 
-            item_website = item.get('Url', '')
-            if len(item_website) and not (item_website.startswith('http://') or item_website.startswith('https://')):
-                item_website = 'https://' + item_website
+            item_website = item.get("Url", "")
+            if len(item_website) and not (
+                item_website.startswith("http://")
+                or item_website.startswith("https://")
+            ):
+                item_website = "https://" + item_website
             if len(item_website):
-                line = {'Title': item.get('Title', ''),
-                        'Website': item_website}
+                line = {"Title": item.get("Title", ""), "Website": item_website}
                 response.append(line)
 
         # import pdb
@@ -1409,18 +1397,27 @@ class CountryProfileData(BrowserView):
             items = contact_data.get("Contact_General")
         else:
             for contact in contact_data:
-                for contact_general in contact.get('Contact_General', []):
-                    if contact_general.get('Website', None) and contact_general.get('Website', None) not in weblinks:
-                        weblinks.append(contact_general.get('Website'))
+                for contact_general in contact.get("Contact_General", []):
+                    if (
+                        contact_general.get("Website", None)
+                        and contact_general.get("Website", None) not in weblinks
+                    ):
+                        weblinks.append(contact_general.get("Website"))
                         items.append(contact_general)
 
         for item in items:
-            item_website = item.get('Website', '')
-            if len(item_website) and not (item_website.startswith('http://') or item_website.startswith('https://')):
-                item_website = 'https://' + item_website
+            item_website = item.get("Website", "")
+            if len(item_website) and not (
+                item_website.startswith("http://")
+                or item_website.startswith("https://")
+            ):
+                item_website = "https://" + item_website
 
-            line = {'Organisation': item.get('Organisation', ''), 'Department': item.get(
-                'Department', ''), 'Website': item_website}
+            line = {
+                "Organisation": item.get("Organisation", ""),
+                "Department": item.get("Department", ""),
+                "Website": item_website,
+            }
             response.append(line)
         # pdb.set_trace()
         return response

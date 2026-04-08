@@ -1,5 +1,4 @@
-""" Cards listing
-"""
+"""Cards listing"""
 
 # from collective.cover.tiles.base import (IPersistentCoverTile,
 #                                          PersistentCoverTile)

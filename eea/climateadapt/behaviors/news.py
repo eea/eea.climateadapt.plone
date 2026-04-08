@@ -10,8 +10,7 @@ from zope.schema import URI
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 
-fpath = resource_filename("eea.climateadapt.behaviors",
-                          "volto_layout_news.json")
+fpath = resource_filename("eea.climateadapt.behaviors", "volto_layout_news.json")
 layout = json.load(open(fpath))
 
 

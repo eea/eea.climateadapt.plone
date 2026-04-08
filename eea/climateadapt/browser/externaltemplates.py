@@ -8,21 +8,21 @@ from zope.component import getUtility
 from Products.CMFCore.utils import getToolByName
 from eea.climateadapt.interfaces import IGoogleAnalyticsAPI
 
-class ExternalTemplateHeader(BrowserView):
 
+class ExternalTemplateHeader(BrowserView):
     def theme_base_url(self):
         reg = getUtility(IRegistry)
         settings = reg.forInterface(IThemeSettings, False)
         portal = api.portal.get()
         base_url = portal.absolute_url()
 
-        return base_url + '/++theme++' + settings.currentTheme + '/'
+        return base_url + "/++theme++" + settings.currentTheme + "/"
 
     def theme_base(self):
         reg = getUtility(IRegistry)
         settings = reg.forInterface(IThemeSettings, False)
 
-        return '/++theme++' + settings.currentTheme + '/'
+        return "/++theme++" + settings.currentTheme + "/"
 
     def pp(self, v):
         import pprint
@@ -31,10 +31,9 @@ class ExternalTemplateHeader(BrowserView):
 
     def menu(self):
         try:
-            ptool = getToolByName(self.context,
-                                  'portal_properties')['site_properties']
+            ptool = getToolByName(self.context, "portal_properties")["site_properties"]
 
-            return _extract_menu(ptool.getProperty('main_navigation_menu'))
+            return _extract_menu(ptool.getProperty("main_navigation_menu"))
         except Exception as e:
             logger.exception("Error while rendering navigation menu: %s", e)
 

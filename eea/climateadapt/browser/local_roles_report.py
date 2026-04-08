@@ -51,7 +51,11 @@ class LocalRolesReportView(BrowserView):
         report_html.append("<html><body>")
         report_html.append("<h1>Local Roles Report</h1>")
         report_html.append(f"<p>Full report (including Owners): {include_owner}</p>")
-        report_html.append('<p><a href="?format=csv' + ("&full=1" if include_owner else "") + '">Download CSV</a> | ')
+        report_html.append(
+            '<p><a href="?format=csv'
+            + ("&full=1" if include_owner else "")
+            + '">Download CSV</a> | '
+        )
         if include_owner:
             report_html.append('<a href="?full=0">Hide Owners</a></p>')
         else:
@@ -60,7 +64,9 @@ class LocalRolesReportView(BrowserView):
         for entry in data:
             report_html.append(f"<h3>{html.escape(entry['path'])}</h3>")
             if entry["blocked"]:
-                report_html.append("<p style='color: red; font-weight: bold;'>[Inheritance BLOCKED]</p>")
+                report_html.append(
+                    "<p style='color: red; font-weight: bold;'>[Inheritance BLOCKED]</p>"
+                )
 
             if not entry["roles"]:
                 report_html.append("<ul><li>(no local roles)</li></ul>")
@@ -68,7 +74,9 @@ class LocalRolesReportView(BrowserView):
 
             report_html.append("<ul>")
             for principal, role_list in entry["roles"]:
-                report_html.append(f"<li><b>{html.escape(principal)}</b>: {html.escape(', '.join(role_list))}</li>")
+                report_html.append(
+                    f"<li><b>{html.escape(principal)}</b>: {html.escape(', '.join(role_list))}</li>"
+                )
             report_html.append("</ul>")
 
         report_html.append("</body></html>")

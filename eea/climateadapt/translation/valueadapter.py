@@ -13,7 +13,6 @@ class MissionFundingDescriptionValue(object):
         self.request = request
 
     def __call__(self):
-        serializer = getMultiAdapter(
-            (self.context, self.request), ISerializeToJson)
+        serializer = getMultiAdapter((self.context, self.request), ISerializeToJson)
         serialized = serializer(version=None, include_items=False)
         return serialized["description"]

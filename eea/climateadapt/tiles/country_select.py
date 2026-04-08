@@ -1,5 +1,4 @@
-""" A tile to implement the countries select dropdown
-"""
+"""A tile to implement the countries select dropdown"""
 
 import json
 
@@ -52,14 +51,13 @@ from Products.Five.browser import BrowserView
 
 
 class SettingsPage(BrowserView):
-    """ JSON for settings for country headers
-    """
+    """JSON for settings for country headers"""
 
     def __call__(self):
-        self.request.response.setHeader('Content-Type', 'application/json')
+        self.request.response.setHeader("Content-Type", "application/json")
         id = self.context.id.replace("-", " ").title()
-        if id == 'Turkiye':
-            id = 'Turkey'
-        res = {'focusCountry': id}
+        if id == "Turkiye":
+            id = "Turkey"
+        res = {"focusCountry": id}
 
         return json.dumps(res)

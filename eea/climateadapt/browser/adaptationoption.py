@@ -15,8 +15,7 @@ from zope.security import checkPermission
 
 
 def find_related_casestudies(item):
-    """ Find related case studies
-    """
+    """Find related case studies"""
     catalog = getUtility(ICatalog)
     intids = getUtility(IIntIds, context=item)
 
@@ -25,22 +24,22 @@ def find_related_casestudies(item):
 
     try:
         relations = catalog.findRelations(
-            dict(to_id=intids.getId(aq_inner(item).aq_self),
-                 from_attribute='adaptationoptions'))
+            dict(
+                to_id=intids.getId(aq_inner(item).aq_self),
+                from_attribute="adaptationoptions",
+            )
+        )
     except Exception:
         relations = []
 
     for rel in relations:
         obj = intids.queryObject(rel.from_id)
 
-        if obj is not None and checkPermission('zope2.View', obj):
+        if obj is not None and checkPermission("zope2.View", obj):
             obj_state = api.content.get_state(obj)
 
-            if obj_state == 'published' and obj.language == item.language:
-                res.append({
-                    'title': obj.title,
-                    'url': obj.absolute_url()
-                })
+            if obj_state == "published" and obj.language == item.language:
+                res.append({"title": obj.title, "url": obj.absolute_url()})
                 urls.append(obj.absolute_url())
 
     cstudies = []
@@ -52,11 +51,8 @@ def find_related_casestudies(item):
             continue
 
         obj_state = api.content.get_state(obj)
-        if obj_state == 'published' and obj.language == item.language:
-            res.append({
-                'title': obj.title,
-                'url': obj.absolute_url()
-            })
+        if obj_state == "published" and obj.language == item.language:
+            res.append({"title": obj.title, "url": obj.absolute_url()})
             urls.append(obj.absolute_url())
 
     return res
@@ -73,29 +69,28 @@ class AdaptationOptionView(DefaultView, AceViewApi):
 
 class AdaptationOptionFormExtender(FormExtender):
     def update(self):
-        self.move('description', before='long_description')
-        self.move('key_type_measures', before='stakeholder_participation')
-        self.move('ipcc_category', after='key_type_measures')
-        self.move('IRelatedItems.relatedItems', after='comments')
-        self.move('casestudies', after='sectors')
-        self.remove('ICategorization.subjects')
-        self.remove('ICategorization.language')
-        self.remove('IPublication.effective')
-        self.remove('IPublication.expires')
-        self.remove('IOwnership.creators')
-        self.remove('IOwnership.contributors')
-        self.remove('IOwnership.rights')
-        labels = ['label_schema_dates',
-                  'label_schema_ownership', 'Layout', 'Settings']
+        self.move("description", before="long_description")
+        self.move("key_type_measures", before="stakeholder_participation")
+        self.move("ipcc_category", after="key_type_measures")
+        self.move("IRelatedItems.relatedItems", after="comments")
+        self.move("casestudies", after="sectors")
+        self.remove("ICategorization.subjects")
+        self.remove("ICategorization.language")
+        self.remove("IPublication.effective")
+        self.remove("IPublication.expires")
+        self.remove("IOwnership.creators")
+        self.remove("IOwnership.contributors")
+        self.remove("IOwnership.rights")
+        labels = ["label_schema_dates", "label_schema_ownership", "Layout", "Settings"]
         self.form.groups = [
-            group for group in self.form.groups if len(
-                list(group.fields.values())) > 0 and group.label not in labels
+            group
+            for group in self.form.groups
+            if len(list(group.fields.values())) > 0 and group.label not in labels
         ]
 
 
 class AdaptationOptionEditForm(DefaultEditForm):
-    """ Edit form for case studies
-    """
+    """Edit form for case studies"""
 
 
 AdaptationOptionEditView = layout.wrap_form(AdaptationOptionEditForm)
@@ -103,5 +98,4 @@ classImplements(AdaptationOptionEditView, IDexterityEditForm)
 
 
 class AdaptationOptionAddForm(DefaultAddForm):
-    """ Add Form for case studies
-    """
+    """Add Form for case studies"""

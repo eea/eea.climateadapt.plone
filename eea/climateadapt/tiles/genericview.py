@@ -1,5 +1,4 @@
-""" Generic view tile, uses a view name to render content
-"""
+"""Generic view tile, uses a view name to render content"""
 
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 # from collective.cover.tiles.base import IPersistentCoverTile

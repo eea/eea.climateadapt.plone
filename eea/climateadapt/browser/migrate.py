@@ -111,8 +111,7 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s",
-                            idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
 
         return self.count
 
@@ -137,7 +136,7 @@ class CountryMapInterface2025(BrowserView):
             brains = portal_catalog.queryCatalog(
                 {
                     "portal_type": "Folder",
-                    "path": "/cca/{}/countries-regions/countries".format(language)
+                    "path": "/cca/{}/countries-regions/countries".format(language),
                 }
             )
             for brain in brains:
@@ -156,7 +155,7 @@ class CountryMapInterface2025(BrowserView):
                     # transaction.commit()
                     logger.info(f"Interface update %s", brain.getURL())
         logger.info(f"Country profile interface check done")
-        return 'done'
+        return "done"
 
 
 class ArchiveItems294148(BrowserView):
@@ -172,36 +171,40 @@ class ArchiveItems294148(BrowserView):
         response = []
         filterPortalTypes = []
         if self.request.form.get("publicationreport", None):
-            filterPortalTypes.append('eea.climateadapt.publicationreport')
+            filterPortalTypes.append("eea.climateadapt.publicationreport")
         if self.request.form.get("aceproject", None):
-            filterPortalTypes.append('eea.climateadapt.aceproject')
+            filterPortalTypes.append("eea.climateadapt.aceproject")
 
         if len(filterPortalTypes) == 0:
-            filterPortalTypes.append('eea.climateadapt.notypeselected')
+            filterPortalTypes.append("eea.climateadapt.notypeselected")
 
         for language in languages:
             # if language not in ['en']:
             #     continue
             logger.info(f"ArchiveItems294148 LANGUAGE %s", language)
-            brains = portal_catalog(**
-                                    {
-                                        "portal_type": filterPortalTypes,
-                                        "review_state": "published",
-                                        # "review_state": "archived",
-                                        "path": "/cca/{}/".format(language)
-                                    }
-                                    )
+            brains = portal_catalog(
+                **{
+                    "portal_type": filterPortalTypes,
+                    "review_state": "published",
+                    # "review_state": "archived",
+                    "path": "/cca/{}/".format(language),
+                }
+            )
             itemNr = 1
             nrToArchive = 0
             for brain in brains:
                 obj = brain.getObject()
-                yearCreated = brain.created.year() if getattr(brain, "created", None) else None
-                yearPublication = obj.publication_date.year if obj.publication_date else None
+                yearCreated = (
+                    brain.created.year() if getattr(brain, "created", None) else None
+                )
+                yearPublication = (
+                    obj.publication_date.year if obj.publication_date else None
+                )
 
-                toArchive = 'N'
+                toArchive = "N"
                 if yearPublication and yearPublication < 2016:
                     nrToArchive += 1
-                    toArchive = 'Y'
+                    toArchive = "Y"
                 # elif yearCreated and yearCreated < 2016:
                 #     nrToArchive += 1
                 #     toArchive = 'Y'
@@ -209,14 +212,18 @@ class ArchiveItems294148(BrowserView):
                 # if toArchive and self.request.form.get("doarchive", None):
                 #     import pdb
                 #     pdb.set_trace()
-                if toArchive == 'Y' and self.request.form.get("publicationreport", None) and self.request.form.get("doarchive", None):
+                if (
+                    toArchive == "Y"
+                    and self.request.form.get("publicationreport", None)
+                    and self.request.form.get("doarchive", None)
+                ):
                     api.content.transition(obj, "archive")
                     if nrToArchive % 100 == 0:
                         transaction.commit()
                 response.append(
                     {
                         "itemNr": itemNr,
-                        "nrToArchive": nrToArchive if toArchive == 'Y' else '',
+                        "nrToArchive": nrToArchive if toArchive == "Y" else "",
                         "toArchive": toArchive,
                         "title": obj.title,
                         "url": brain.getURL(),
@@ -232,6 +239,7 @@ class ArchiveItems294148(BrowserView):
 
 class ImpactFiltersNew:
     """New impact filters"""
+
     # migrate_262157_impact_filter
 
     def list(self):
@@ -241,7 +249,7 @@ class ImpactFiltersNew:
         if not fileUploaded:
             return response
 
-        data = fileUploaded.read().decode('utf-8')
+        data = fileUploaded.read().decode("utf-8")
         csv_file = io.StringIO(data)
         reader = csv.DictReader(csv_file)
 
@@ -258,24 +266,24 @@ class ImpactFiltersNew:
             # pdb.set_trace()
 
             item = {}
-            item["uid"] = row['UID']
-            item["url"] = row['URL']
-            item["title"] = row['Title']
-            item["keywords"] = row['Keywords']
-            item["sectors"] = row['Sectors']
-            item["impacts"] = row['Impacts']
-            item["elements"] = row['Elements']
+            item["uid"] = row["UID"]
+            item["url"] = row["URL"]
+            item["title"] = row["Title"]
+            item["keywords"] = row["Keywords"]
+            item["sectors"] = row["Sectors"]
+            item["impacts"] = row["Impacts"]
+            item["elements"] = row["Elements"]
 
-            item["extreme_heat"] = row['EXTREME HEAT']
-            item["extreme_cold"] = row['EXTREME COLD']
-            item["wildfires"] = row['WILDFIRES']
-            item["non_specific"] = row['NON SPECIFIC']
+            item["extreme_heat"] = row["EXTREME HEAT"]
+            item["extreme_cold"] = row["EXTREME COLD"]
+            item["wildfires"] = row["WILDFIRES"]
+            item["non_specific"] = row["NON SPECIFIC"]
 
             obj = api.content.get(UID=item["uid"])
 
             if not obj:
                 count_not_found += 1
-                logger.info("NOT FOUND obj: %s", item['url'])
+                logger.info("NOT FOUND obj: %s", item["url"])
                 continue
             count_found += 1
 
@@ -284,21 +292,21 @@ class ImpactFiltersNew:
             #     pdb.set_trace()
 
             changeMade = False
-            if item['extreme_heat'] and 'EXTREMEHEAT' not in obj.climate_impacts:
-                obj.climate_impacts.append('EXTREMEHEAT')
+            if item["extreme_heat"] and "EXTREMEHEAT" not in obj.climate_impacts:
+                obj.climate_impacts.append("EXTREMEHEAT")
                 changeMade = True
-            if item['extreme_cold'] and 'EXTREMECOLD' not in obj.climate_impacts:
-                obj.climate_impacts.append('EXTREMECOLD')
+            if item["extreme_cold"] and "EXTREMECOLD" not in obj.climate_impacts:
+                obj.climate_impacts.append("EXTREMECOLD")
                 changeMade = True
-            if item['wildfires'] and 'WILDFIRES' not in obj.climate_impacts:
-                obj.climate_impacts.append('WILDFIRES')
+            if item["wildfires"] and "WILDFIRES" not in obj.climate_impacts:
+                obj.climate_impacts.append("WILDFIRES")
                 changeMade = True
-            if item['non_specific'] and 'NONSPECIFIC' not in obj.climate_impacts:
-                obj.climate_impacts.append('NONSPECIFIC')
+            if item["non_specific"] and "NONSPECIFIC" not in obj.climate_impacts:
+                obj.climate_impacts.append("NONSPECIFIC")
                 changeMade = True
 
-            if obj.climate_impacts and 'EXTREMETEMP' in obj.climate_impacts:
-                obj.climate_impacts.remove('EXTREMETEMP')
+            if obj.climate_impacts and "EXTREMETEMP" in obj.climate_impacts:
+                obj.climate_impacts.remove("EXTREMETEMP")
                 changeMade = True
 
             if changeMade:
@@ -311,13 +319,16 @@ class ImpactFiltersNew:
                     "funding_programme": obj.title,
                 }
             )
-            logger.info("OBJ: %s",
-                        obj.absolute_url())
+            logger.info("OBJ: %s", obj.absolute_url())
 
         transaction.commit()
 
-        logger.info("LINES IN RESPONSE: %s, FOUND %s, NOTFOUND %s",
-                    len(response), count_found, count_not_found)
+        logger.info(
+            "LINES IN RESPONSE: %s, FOUND %s, NOTFOUND %s",
+            len(response),
+            count_found,
+            count_not_found,
+        )
         return response
 
 
@@ -341,7 +352,7 @@ class FixMipSigLangs(BrowserView):
 
 
 class MigrateAdaptationOption(BrowserView):
-    """ Migrate show_related_resources field (refs #296805) """
+    """Migrate show_related_resources field (refs #296805)"""
 
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)

@@ -1,4 +1,4 @@
-""" A view that can be embeded in a tile.
+"""A view that can be embeded in a tile.
 
 It renders a search "portlet" for Ace content
 """

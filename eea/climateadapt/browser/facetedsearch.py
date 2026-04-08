@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-""" Utilities for faceted search
-"""
+"""Utilities for faceted search"""
 
 from collections import defaultdict
 from datetime import datetime
@@ -12,6 +11,7 @@ from eea.facetednavigation.browser.app.view import FacetedContainerView
 from eea.facetednavigation.caching.cache import cacheKeyFacetedNavigation
 from plone import api
 from plone.api import portal
+
 # from zope.annotation.interfaces import IAnnotations
 from Products.CMFPlone.utils import isExpired
 from Products.Five.browser import BrowserView
@@ -53,32 +53,30 @@ FACETED_SEARCH_TYPES = [
 ]
 
 CCA_TYPES = [
-    'eea.climateadapt.adaptationoption',
-    'eea.climateadapt.aceproject',
-    'eea.climateadapt.casestudy',
-    'eea.climateadapt.guidancedocument',
-    'eea.climateadapt.indicator',
-    'eea.climateadapt.informationportal',
-    'eea.climateadapt.mapgraphdataset',
-    'eea.climateadapt.organisation',
-    'eea.climateadapt.publicationreport',
-    'eea.climateadapt.researchproject',
-    'eea.climateadapt.tool',
+    "eea.climateadapt.adaptationoption",
+    "eea.climateadapt.aceproject",
+    "eea.climateadapt.casestudy",
+    "eea.climateadapt.guidancedocument",
+    "eea.climateadapt.indicator",
+    "eea.climateadapt.informationportal",
+    "eea.climateadapt.mapgraphdataset",
+    "eea.climateadapt.organisation",
+    "eea.climateadapt.publicationreport",
+    "eea.climateadapt.researchproject",
+    "eea.climateadapt.tool",
 ]
 
 
 def faceted_search_types_vocabulary(context):
-
-    return SimpleVocabulary([
-        SimpleTerm(x[0], x[0], x[1]) for x in FACETED_SEARCH_TYPES
-    ])
+    return SimpleVocabulary(
+        [SimpleTerm(x[0], x[0], x[1]) for x in FACETED_SEARCH_TYPES]
+    )
 
 
 alsoProvides(faceted_search_types_vocabulary, IVocabularyFactory)
 
 
 class DoSearch(BrowserView, FacetedQueryHandler):
-
     @property
     def labels(self):
         return dict(SEARCH_TYPES)
@@ -86,27 +84,29 @@ class DoSearch(BrowserView, FacetedQueryHandler):
     def render(self, name, brains):
         print(("rendering ", name))
 
-        view = queryMultiAdapter((self.context, self.request),
-                                 name='faceted_listing_' + name)
+        view = queryMultiAdapter(
+            (self.context, self.request), name="faceted_listing_" + name
+        )
 
         if view is None:
-            view = getMultiAdapter((self.context, self.request),
-                                   name='faceted_listing_GENERIC')
+            view = getMultiAdapter(
+                (self.context, self.request), name="faceted_listing_GENERIC"
+            )
 
         view.brains = brains
 
         return view()
 
     def __call__(self, *args, **kwargs):
-        kwargs['batch'] = False
+        kwargs["batch"] = False
         brains = self.query(**kwargs)
 
         try:
             search_type = [
-                x for x in list(self.labels.keys())
-
-                if x in self.request.QUERY_STRING.split(
-                    "search_type=")[-1]][0]
+                x
+                for x in list(self.labels.keys())
+                if x in self.request.QUERY_STRING.split("search_type=")[-1]
+            ][0]
         except Exception:
             search_type = ""
 
@@ -125,8 +125,7 @@ class DoSearch(BrowserView, FacetedQueryHandler):
 
 
 class ListingView(BrowserView):
-    """ Faceted listing view for ClimateAdapt
-    """
+    """Faceted listing view for ClimateAdapt"""
 
     @property
     def sections(self):
@@ -160,37 +159,36 @@ class ListingView(BrowserView):
     def search_url(self, search_type):
         if len(self.request.QUERY_STRING) > 1:
             return """{}/do_search?{}&search_type={}""".format(
-                self.context.absolute_url(),
-                self.request.QUERY_STRING,
-                search_type
+                self.context.absolute_url(), self.request.QUERY_STRING, search_type
             )
 
         return """{}/do_search?search_type={}""".format(
-            self.context.absolute_url(),
-            search_type
+            self.context.absolute_url(), search_type
         )
 
     def key(method, self, name, brains):
         print(("caching ", name))
 
         cache_key = cacheKeyFacetedNavigation(method, self, name, brains)
-        cache_key += (name, )
+        cache_key += (name,)
 
         return cache_key
 
-    @cache(key, dependencies=['eea.facetednavigation'])  # , lifetime=36000
+    @cache(key, dependencies=["eea.facetednavigation"])  # , lifetime=36000
     def render(self, name, brains):
         print(("rendering ", name))
 
         # if name != 'DOCUMENT':
         #     return ''
 
-        view = queryMultiAdapter((self.context, self.request),
-                                 name='faceted_listing_' + name)
+        view = queryMultiAdapter(
+            (self.context, self.request), name="faceted_listing_" + name
+        )
 
         if view is None:
-            view = getMultiAdapter((self.context, self.request),
-                                   name='faceted_listing_GENERIC')
+            view = getMultiAdapter(
+                (self.context, self.request), name="faceted_listing_GENERIC"
+            )
 
         view.brains = brains
 
@@ -206,13 +204,11 @@ class FacetedSearchTextPortlet(BrowserView):
 
 
 class FacetedViewNoTitle(FacetedContainerView):
-    """
-    """
+    """ """
 
 
 class ListingGeneric(BrowserView):
-    """ This view is (re)used to render each faceted section in search results
-    """
+    """This view is (re)used to render each faceted section in search results"""
 
     # def key(method, self):
     #     site = api.portal.getSite()
@@ -243,9 +239,8 @@ class ListingGeneric(BrowserView):
     def html2text(self, html):
         if not isinstance(html, str):
             return ""
-        portal_transforms = api.portal.get_tool(name='portal_transforms')
-        data = portal_transforms.convertTo('text/plain',
-                                           html, mimetype='text/html')
+        portal_transforms = api.portal.get_tool(name="portal_transforms")
+        data = portal_transforms.convertTo("text/plain", html, mimetype="text/html")
         text = data.getData()
 
         return text
@@ -253,13 +248,13 @@ class ListingGeneric(BrowserView):
     def cover_url(self, brain):
         url = brain.getURL()
 
-        if url.endswith('index_html'):
-            return url[:-len('index_html')]
+        if url.endswith("index_html"):
+            return url[: -len("index_html")]
 
         return url
 
     def new_item(self, brain):
-        if brain.portal_type in ['News Item', 'Link', 'Event']:
+        if brain.portal_type in ["News Item", "Link", "Event"]:
             return False
 
         date = brain.effective
@@ -276,13 +271,13 @@ class ListingGeneric(BrowserView):
         date = brain.effective
 
         if date.year() == 1969:
-            return ''
+            return ""
         # date = obj.effective_date
 
-        return portal.get_localized_time(datetime=date).encode('utf-8')
+        return portal.get_localized_time(datetime=date).encode("utf-8")
 
     def expired(self, brain):
-        if brain.portal_type not in ['News Item', 'Link', 'Event']:
+        if brain.portal_type not in ["News Item", "Link", "Event"]:
             return False
 
         if isExpired(brain) == 1:
@@ -297,36 +292,35 @@ _IMG_NEW = """<img src="++theme++climateadapt/static/cca/img/new-en.gif" />"""
 
 
 class BaseSectionRenderer(ListingGeneric):
-    """ Base class for rendering sections in faceted search
-    """
+    """Base class for rendering sections in faceted search"""
 
     def key(method, self, brain):
-        return 'row-' + brain.UID
+        return "row-" + brain.UID
 
     @cache(key)
     def render_row(self, brain):
-        ld = getattr(brain.long_description, 'raw', brain.long_description)
+        ld = getattr(brain.long_description, "raw", brain.long_description)
 
         if isinstance(ld, str):
-            ld = ld.decode('utf-8')
+            ld = ld.decode("utf-8")
 
         text = self.html2text(ld)
-        title = brain.Title.decode('utf-8')
+        title = brain.Title.decode("utf-8")
         try:
-            img_featured = brain.featured == 1 and _IMG_FEATURED or ''
+            img_featured = brain.featured == 1 and _IMG_FEATURED or ""
         except AttributeError:
-            img_featured = ''
+            img_featured = ""
 
-        img_new = self.new_item(brain) and _IMG_NEW or ''
+        img_new = self.new_item(brain) and _IMG_NEW or ""
 
         values = {
-            'title': title,
-            'img_featured': img_featured,
-            'img_new': img_new,
-            'url': brain.getURL(),
-            'text': text[:208-len(title)],
-            'year': brain.year or ' ',
-            'pub_date': self.get_publication_date(brain)
+            "title": title,
+            "img_featured": img_featured,
+            "img_new": img_new,
+            "url": brain.getURL(),
+            "text": text[: 208 - len(title)],
+            "year": brain.year or " ",
+            "pub_date": self.get_publication_date(brain),
         }
 
         return self._TEMPLATE_ROW.format(**values)
@@ -347,8 +341,7 @@ class BaseSectionRenderer(ListingGeneric):
 
 
 class FacetedListingGeneric(BaseSectionRenderer):
-    """ Rendering the Publication and Reports section
-    """
+    """Rendering the Publication and Reports section"""
 
     _TEMPLATE_ROW = """
 <tr>
@@ -382,8 +375,7 @@ class FacetedListingGeneric(BaseSectionRenderer):
 
 
 class FacetedListingNoYear(BaseSectionRenderer):
-    """ Same as generic, but misses the Year column
-    """
+    """Same as generic, but misses the Year column"""
 
     _TEMPLATE_ROW = """
 <tr>

@@ -4,21 +4,25 @@ Various page overrides
 
 from zope.component import adapter, getMultiAdapter, queryUtility
 from z3c.form import form
+
 # from zope.interface import implementer
 from zope.schema import Choice, List
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 
 from Acquisition import aq_inner
 from eea.climateadapt import MessageFactory as _
+
 # from eea.pdf.interfaces import IPDFTool
 # from OFS.interfaces import ITraversable
 # from plone.app.content.browser.interfaces import IContentsPage
 from plone.app.contentmenu.menu import DisplaySubMenuItem as DSMI
+
 # from plone.app.contenttypes.behaviors.richtext import \
 #     IRichText as IRichTextBehavior
 # from plone.app.controlpanel.widgets import MultiCheckBoxVocabularyWidget
 from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import buildFolderTree
+
 # from plone.app.textfield.interfaces import IRichText
 # from plone.app.users.browser import personalpreferences as prefs
 # from plone.app.widgets.dx import RichTextWidget
@@ -33,22 +37,23 @@ from Products.CMFPlone.browser.navtree import SitemapQueryBuilder
 # from z3c.form.util import getSpecification
 # from z3c.form.widget import FieldWidget
 
-thematic_sectors = SimpleVocabulary([
-    SimpleTerm(value='AGRICULTURE', title=_('Agriculture')),
-    SimpleTerm(value='FORESTRY', title=_('Forestry')),
-    SimpleTerm(value='BIODIVERSITY', title=_('Biodiversity')),
-    SimpleTerm(value='COASTAL', title=_('Coastal areas')),
-    SimpleTerm(value='DISASTERRISKREDUCTION',
-               title=_('Disaster Risk Reduction')),
-    SimpleTerm(value='FINANCIAL', title=_('Financial')),
-    SimpleTerm(value='HEALTH', title=_('Health')),
-    SimpleTerm(value='URBAN', title=_('Urban')),
-    SimpleTerm(value='MARINE', title=_('Marine and Fisheries')),
-    SimpleTerm(value='ENERGY', title=_('Energy')),
-    SimpleTerm(value='TRANSPORT', title=_('Transport')),
-    SimpleTerm(value='BUILDINGS', title=_('Buildings')),
-    SimpleTerm(value='WATERMANAGEMENT', title=_('Water management')),
-])
+thematic_sectors = SimpleVocabulary(
+    [
+        SimpleTerm(value="AGRICULTURE", title=_("Agriculture")),
+        SimpleTerm(value="FORESTRY", title=_("Forestry")),
+        SimpleTerm(value="BIODIVERSITY", title=_("Biodiversity")),
+        SimpleTerm(value="COASTAL", title=_("Coastal areas")),
+        SimpleTerm(value="DISASTERRISKREDUCTION", title=_("Disaster Risk Reduction")),
+        SimpleTerm(value="FINANCIAL", title=_("Financial")),
+        SimpleTerm(value="HEALTH", title=_("Health")),
+        SimpleTerm(value="URBAN", title=_("Urban")),
+        SimpleTerm(value="MARINE", title=_("Marine and Fisheries")),
+        SimpleTerm(value="ENERGY", title=_("Energy")),
+        SimpleTerm(value="TRANSPORT", title=_("Transport")),
+        SimpleTerm(value="BUILDINGS", title=_("Buildings")),
+        SimpleTerm(value="WATERMANAGEMENT", title=_("Water management")),
+    ]
+)
 
 
 # class IEnhancedPersonalPreferencesSchema(prefs.IPersonalPreferences):
@@ -103,7 +108,7 @@ thematic_sectors = SimpleVocabulary([
 
 
 class DisplaySubMenuItem(DSMI):
-    """ Override because we have covers with id 'index_html' and we want to
+    """Override because we have covers with id 'index_html' and we want to
     be able to choose the display template for them
     """
 
@@ -117,11 +122,11 @@ class DisplaySubMenuItem(DSMI):
         if self.context_state.is_default_page():
             context = utils.parent(context)
 
-        if not getattr(context, 'isPrincipiaFolderish', False):
+        if not getattr(context, "isPrincipiaFolderish", False):
             return False
         # By default an index_html signals disabled Display Menu, we don't want
         # that, so we return False, not disabled, by default
-        elif 'index_html' in context:
+        elif "index_html" in context:
             return False
         else:
             return False
@@ -390,7 +395,7 @@ class DisplaySubMenuItem(DSMI):
 #         # on the first render throws POSKeyError: 'No blob file'
 #         # try to re-render if error happens
 #         nr_of_tries = 0
-        
+
 #         while nr_of_tries < 3:
 #             try:
 #                 return super(OverrideRichText, self).render()
@@ -433,9 +438,6 @@ class CustomizedCatalogSiteMap(CatalogSiteMap):
 
         # set correct query path based on context
         if context.id == "observatory":
-            query['path']['query'] = "/".join(context.getPhysicalPath())
+            query["path"]["query"] = "/".join(context.getPhysicalPath())
 
-        return buildFolderTree(
-            context, obj=context,
-            query=query, strategy=strategy
-        )
+        return buildFolderTree(context, obj=context, query=query, strategy=strategy)

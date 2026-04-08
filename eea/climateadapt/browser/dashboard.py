@@ -8,59 +8,63 @@ from functools import reduce
 # from plone.app.layout.viewlets.content import ContentHistoryViewlet
 
 
-FMT_DATE = '%d-%m-%Y'
+FMT_DATE = "%d-%m-%Y"
 
 
 TYPE_INFO = [
-    ('eea.climateadapt.indicator',
-     'metadata/indicators',
-     'Indicator'
-     ),
-    ('eea.climateadapt.publicationreport',
-     'metadata/publications',
-     'Publication and Report',
-     ),
-    ('eea.climateadapt.informationportal',
-     'metadata/portals',
-     'Information Portal',),
-    ('eea.climateadapt.guidancedocument',
-     'metadata/guidances',
-     'Guidance Document'
-     ),
-    ('eea.climateadapt.tool',
-     'metadata/tools',
-     'Tool',),
-    ('eea.climateadapt.aceproject',
-     'metadata/projects',
-     'Research and Knowledge Project'),
-    ('eea.climateadapt.adaptationoption',
-     'metadata/adaptation-options',
-     'Adaptation Option'),
-    ('eea.climateadapt.casestudy',
-     'metadata/case-studies',
-     'Case Study'),
-    ('eea.climateadapt.organisation',
-     'metadata/organisations',
-     'Organization'),
-    ('eea.climateadapt.mapgraphdataset',
-     'metadata/map-graphs',
-     'Map, Graph or Dataset'),
+    ("eea.climateadapt.indicator", "metadata/indicators", "Indicator"),
+    (
+        "eea.climateadapt.publicationreport",
+        "metadata/publications",
+        "Publication and Report",
+    ),
+    (
+        "eea.climateadapt.informationportal",
+        "metadata/portals",
+        "Information Portal",
+    ),
+    ("eea.climateadapt.guidancedocument", "metadata/guidances", "Guidance Document"),
+    (
+        "eea.climateadapt.tool",
+        "metadata/tools",
+        "Tool",
+    ),
+    (
+        "eea.climateadapt.aceproject",
+        "metadata/projects",
+        "Research and Knowledge Project",
+    ),
+    (
+        "eea.climateadapt.adaptationoption",
+        "metadata/adaptation-options",
+        "Adaptation Option",
+    ),
+    ("eea.climateadapt.casestudy", "metadata/case-studies", "Case Study"),
+    ("eea.climateadapt.organisation", "metadata/organisations", "Organization"),
+    (
+        "eea.climateadapt.mapgraphdataset",
+        "metadata/map-graphs",
+        "Map, Graph or Dataset",
+    ),
 ]
 
 TYPES = [x[0] for x in TYPE_INFO]
 
-Entry = namedtuple('Entry', (
-    'brain',
-    'portal_type',
-    'url',
-    'title',
-    'user_name',
-    'user_id',
-    'created',
-    'modified',
-    'history',
-    'review_state',
-))
+Entry = namedtuple(
+    "Entry",
+    (
+        "brain",
+        "portal_type",
+        "url",
+        "title",
+        "user_name",
+        "user_id",
+        "created",
+        "modified",
+        "history",
+        "review_state",
+    ),
+)
 
 
 def extract_metadata(brain):
@@ -69,7 +73,7 @@ def extract_metadata(brain):
 
     user_id = brain.Creator
     member = api.user.get(user_id)
-    user_name = member.getProperty('fullname') if member else user_id
+    user_name = member.getProperty("fullname") if member else user_id
 
     # obj = brain.getObject()
     # history_view = ContentHistoryViewlet(obj, obj.REQUEST, 'historyview')
@@ -100,15 +104,15 @@ def classify_brains(acc, brain):
 
 class DashboardView(BrowserView):
     def plural(self, name):
-        if name[-1] == 'y':
-            name = name[:-1] + 'ies'
+        if name[-1] == "y":
+            name = name[:-1] + "ies"
         else:
-            name = name + 's'
+            name = name + "s"
 
         return name
 
     def items(self):
-        catalog = api.portal.get_tool('portal_catalog')
+        catalog = api.portal.get_tool("portal_catalog")
         brains = catalog(portal_type=TYPES)
 
         classified = reduce(classify_brains, brains, defaultdict(list))

@@ -37,8 +37,7 @@ class IMissionTool(model.Schema, IBlocks):
     #     ]
     # )
 
-    directives.widget(
-        readiness_for_use="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(readiness_for_use="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     readiness_for_use = List(
         title=_("Readiness for use"),
         required=False,
@@ -47,8 +46,7 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(
-        rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(rast_steps="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     rast_steps = List(
         title=_("RAST step(s) of relevance"),
         required=False,
@@ -68,8 +66,7 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(
-        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate impacts"),
         description=_(
@@ -81,8 +78,7 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(
-        tool_language="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(tool_language="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     tool_language = List(
         title=_("Language(s) of the tool"),
         required=False,
@@ -103,8 +99,7 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(
-        most_useful_for="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(most_useful_for="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     most_useful_for = List(
         title=_("Most useful for"),
         required=False,
@@ -113,8 +108,7 @@ class IMissionTool(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(
-        user_requirements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(user_requirements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     user_requirements = List(
         title=_("User requirements"),
         required=False,

@@ -18,8 +18,7 @@ from Products.Five.browser import BrowserView
 
 
 class CaseStudyView(DefaultView, AceViewApi):
-    """ Default view for case studies
-    """
+    """Default view for case studies"""
 
     @view.memoize
     def get_adaptation_options(self):
@@ -33,8 +32,7 @@ class CaseStudyView(DefaultView, AceViewApi):
 
 
 class CaseStudyEditForm(DefaultEditForm):
-    """ Edit form for case studies
-    """
+    """Edit form for case studies"""
 
 
 CaseStudyEditView = layout.wrap_form(CaseStudyEditForm)
@@ -42,48 +40,46 @@ classImplements(CaseStudyEditView, IDexterityEditForm)
 
 
 class CaseStudyAddForm(DefaultAddForm):
-    """ Add Form for case studies
-    """
+    """Add Form for case studies"""
 
 
 class CaseStudyFormExtender(FormExtender):
     def update(self):
         # import pdb; pdb.set_trace()
-        self.move('IGeolocatable.geolocation', after='geochars')
-        self.move('description', before='long_description')
-        self.move('primary_photo', after='long_description')
-        self.move('primary_photo_copyright', after='primary_photo')
-        self.move('relevance', after='climate_impacts')
-        self.move('solutions', after='climate_impacts')
-        self.move('adaptationoptions', after='climate_impacts')
-        self.move('objectives', after='climate_impacts')
-        self.move('challenges', after='climate_impacts')
-        self.move('contact', before='websites')
-        self.remove('ICategorization.subjects')
-        self.remove('ICategorization.language')
-        self.remove('IPublication.effective')
-        self.remove('IPublication.expires')
-        self.remove('IOwnership.creators')
-        self.remove('IOwnership.contributors')
-        self.remove('IOwnership.rights')
-        labels = ['label_schema_dates',
-                  'label_schema_ownership', 'Layout', 'Settings']
+        self.move("IGeolocatable.geolocation", after="geochars")
+        self.move("description", before="long_description")
+        self.move("primary_photo", after="long_description")
+        self.move("primary_photo_copyright", after="primary_photo")
+        self.move("relevance", after="climate_impacts")
+        self.move("solutions", after="climate_impacts")
+        self.move("adaptationoptions", after="climate_impacts")
+        self.move("objectives", after="climate_impacts")
+        self.move("challenges", after="climate_impacts")
+        self.move("contact", before="websites")
+        self.remove("ICategorization.subjects")
+        self.remove("ICategorization.language")
+        self.remove("IPublication.effective")
+        self.remove("IPublication.expires")
+        self.remove("IOwnership.creators")
+        self.remove("IOwnership.contributors")
+        self.remove("IOwnership.rights")
+        labels = ["label_schema_dates", "label_schema_ownership", "Layout", "Settings"]
         self.form.groups = [
-            group for group in self.form.groups if len(
-                list(group.fields.values())) > 0 and group.label not in labels
+            group
+            for group in self.form.groups
+            if len(list(group.fields.values())) > 0 and group.label not in labels
         ]
 
 
 class CaseStudyJson(BrowserView):
-    """ @@json view
-    """
+    """@@json view"""
 
     def __call__(self):
         return json.dumps(self.context._repr_for_arcgis())
 
 
 class CaseStudiesJson(BrowserView):
-    """ A view to return all case studies as JSON.
+    """A view to return all case studies as JSON.
 
     Useful in debugging in developing the SAT mapping tool
 
@@ -109,12 +105,11 @@ class CaseStudiesJson(BrowserView):
     """
 
     def __call__(self):
-        cat = getToolByName(self.context, 'portal_catalog')
+        cat = getToolByName(self.context, "portal_catalog")
         res = []
 
         for brain in cat.searchResults(
-            portal_type='eea.climateadapt.casestudy',
-            review_state='published'
+            portal_type="eea.climateadapt.casestudy", review_state="published"
         ):
             cs = brain.getObject()
             res.append(cs._repr_for_arcgis())
@@ -123,7 +118,7 @@ class CaseStudiesJson(BrowserView):
 
 
 class CaseStudiesXML(BrowserView):
-    """ A view to return all case studies as XML.
+    """A view to return all case studies as XML.
 
     Useful in debugging in developing the SAT mapping tool. See CaseStudiesJson
 
@@ -133,29 +128,28 @@ class CaseStudiesXML(BrowserView):
     def __call__(self):
         self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
 
-        cat = getToolByName(self.context, 'portal_catalog')
+        cat = getToolByName(self.context, "portal_catalog")
         root = Element("casestudies")
 
         for brain in cat.searchResults(
-            portal_type='eea.climateadapt.casestudy',
-            review_state='published'
+            portal_type="eea.climateadapt.casestudy", review_state="published"
         ):
             cs = brain.getObject()
             cs = cs._repr_for_arcgis()
-            e_cs = SubElement(root, 'casestudy')
-            e_attrs = SubElement(e_cs, 'attributes')
+            e_cs = SubElement(root, "casestudy")
+            e_attrs = SubElement(e_cs, "attributes")
 
-            for k, v in list(cs['attributes'].items()):
+            for k, v in list(cs["attributes"].items()):
                 el = Element(k)
 
                 if isinstance(v, str):
-                    el.text = v.decode('utf-8').strip()
+                    el.text = v.decode("utf-8").strip()
                 else:
                     el.text = str(v).strip()
                 e_attrs.append(el)
-            e_geo = SubElement(e_cs, 'geometry')
+            e_geo = SubElement(e_cs, "geometry")
 
-            for k, v in list(cs['geometry'].items()):
+            for k, v in list(cs["geometry"].items()):
                 el = Element(k)
                 el.text = str(v)
                 e_geo.append(el)
