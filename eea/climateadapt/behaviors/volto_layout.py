@@ -1113,7 +1113,6 @@ guidance_layout_blocks = {
                                         "title": "Title",
                                         "widget": "title",
                                     },
-                                    "showLabel": False,
                                 },
                                 {
                                     "@id": "9bbc91c5-8fa3-4ad9-add4-245f51b41674",
@@ -3189,7 +3188,6 @@ adaptation_option_layout_blocks = {
                                         "title": "Relevant EU policies",
                                         "widget": "array"
                                     },
-                                    "showLabel": True
                                 },
                                 {
                                     "@id": "6f5e2f1e-1dcb-4f3c-8f13-1f3e3e5e2b6a",
