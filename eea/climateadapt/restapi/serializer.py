@@ -147,6 +147,18 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
         result = super(AdaptationOptionSerializer, self).__call__(
             version=version, include_items=True
         )
+        item = self.context
+        images = item.contentValues({"portal_type": "Image"})
+        suffix = "/@@images/image/large"
+        result["cca_adaptation_gallery"] = [
+            {
+                "title": image.Title(),
+                "url": image.absolute_url() + suffix,
+                "description": image.Description(),
+                "rights": getattr(image.aq_inner.aq_self, "rights"),
+            }
+            for image in images
+        ]
         result["related_case_studies"] = find_related_casestudies(self.context)
         result["relevant_eu_policies_items"] = serialize_relevant_eu_policies(
             self.context

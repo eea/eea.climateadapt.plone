@@ -1113,7 +1113,6 @@ guidance_layout_blocks = {
                                         "title": "Title",
                                         "widget": "title",
                                     },
-                                    "showLabel": False,
                                 },
                                 {
                                     "@id": "9bbc91c5-8fa3-4ad9-add4-245f51b41674",
@@ -3203,7 +3202,7 @@ adaptation_option_layout_blocks = {
                                     "field": {
                                         "id": "relevant_synergies",
                                         "title": "Relevant synergies with mitigation",
-                                        "widget": "boolean",
+                                        "widget": "array",
                                     },
                                 },
                                 {
@@ -3312,7 +3311,7 @@ adaptation_option_layout_blocks = {
                             "blocks": {
                                 "38d950cb-1182-41f2-9f2b-c52e5e92837a": {
                                     "@type": "teaser",
-                                    "description": "summary text here",
+                                    "description": "",
                                     "head_title": None,
                                     "href": [],
                                     "itemModel": {
@@ -3392,7 +3391,7 @@ adaptation_option_layout_blocks = {
                                 },
                                 "cbb5b136-2e16-4e43-84d0-dc85910f685c": {
                                     "@type": "teaser",
-                                    "description": "fdsfsfs ",
+                                    "description": "",
                                     "head_title": None,
                                     "href": [],
                                     "itemModel": {
@@ -3554,7 +3553,7 @@ adaptation_option_layout_blocks = {
                             "blocks": {
                                 "38d950cb-1182-41f2-9f2b-c52e5e92837a": {
                                     "@type": "teaser",
-                                    "description": "summary text here",
+                                    "description": "",
                                     "head_title": None,
                                     "href": [],
                                     "itemModel": {
@@ -3634,7 +3633,7 @@ adaptation_option_layout_blocks = {
                                 },
                                 "cbb5b136-2e16-4e43-84d0-dc85910f685c": {
                                     "@type": "teaser",
-                                    "description": "fdsfsfs ",
+                                    "description": "",
                                     "head_title": None,
                                     "href": [],
                                     "itemModel": {
@@ -3710,7 +3709,9 @@ adaptation_option_layout_blocks = {
         "verticalAlign": "flex-start",
     },
     "ec2dd403-0964-413c-ac37-67c2bbc0a4c9": {
-        "@type": "title",
         "copyrightIcon": "ri-copyright-line",
+        "styles": {},
+        "variation": "default",
+        "@type": "title",
     },
 }
