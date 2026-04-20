@@ -24,8 +24,7 @@ def object_modified_handler(obj, event):
         op = "/".join(event.oldParent.getPhysicalPath())
     except Exception:
         logger.warning(
-            "Could not identify old parent for %s", "/".join(
-                obj.getPhysicalPath())
+            "Could not identify old parent for %s", "/".join(obj.getPhysicalPath())
         )
         return
 
@@ -33,8 +32,7 @@ def object_modified_handler(obj, event):
         np = "/".join(event.newParent.getPhysicalPath())
     except Exception:
         logger.warning(
-            "Could not identify new parent for %s", "/".join(
-                obj.getPhysicalPath())
+            "Could not identify new parent for %s", "/".join(obj.getPhysicalPath())
         )
         return
 
@@ -52,19 +50,21 @@ def object_modified_handler(obj, event):
     # Deduplication check
     if hasattr(obj.REQUEST, "cca_sync_paths_triggered"):
         return
-    
+
     obj.REQUEST.cca_sync_paths_triggered = True
 
     np = "/".join(event.newParent.getPhysicalPath())
 
     try:
         import traceback
+
         tb = traceback.format_stack()
     except Exception:
         tb = "Could not get traceback"
 
     try:
         from plone import api
+
         user = api.user.get_current()
         user_id = user.getId() if user else "system/unknown"
     except Exception:
@@ -79,8 +79,8 @@ def object_modified_handler(obj, event):
         "debug_info": {
             "traceback": tb,
             "user": user_id,
-            "event_trigger": "object_modified_handler"
-        }
+            "event_trigger": "object_modified_handler",
+        },
     }
     opts = {
         "delay": 100,  # Delay in milliseconds

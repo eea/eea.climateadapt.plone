@@ -7,6 +7,14 @@
 
   <include file="breadcrumbs.zcml" />
 
+  <monkey:patch
+    zcml:condition="installed eea.volto.policy"
+    module="eea.volto.policy.restapi.services.breadcrumbs.get"
+    original="EEABreadcrumbs"
+    replacement="eea.climateadapt.restapi.breadcrumbs.Breadcrumbs"
+    description="Use the ClimateADAPT breadcrumbs expandable element"
+  />
+
   <!-- this is protected by have-plone5 condition in the original -->
   <include file="multilingual.zcml" />
 

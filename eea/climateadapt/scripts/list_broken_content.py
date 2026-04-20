@@ -31,6 +31,7 @@ _storagetypes = [
     "MEASURE",
 ]
 
+
 def main():
     # Read the folder name from command line arguments
     if len(sys.argv) != 2:
@@ -61,7 +62,6 @@ def main():
     data_types = set()
 
     for index, filename in enumerate(json_files, start=1):
-
         print(f"Processing file {index}/{total_files}: {filename}")
 
         # Open and load the JSON file
@@ -84,7 +84,6 @@ def main():
 
         if file_data_type and file_data_type not in _datatypes:
             data_types.add(file_data_type)
-
 
         print(f"File '{filename}' has been processed successfully.")
 

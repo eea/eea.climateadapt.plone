@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" A script to sync to arcgis
+"""A script to sync to arcgis
 
 It has multiple entry points that all do different things:
 * Call it with its exported console script main():
@@ -17,18 +17,17 @@ from eea.climateadapt.sat.handlers import HANDLERS
 
 
 def _consume_msg(*args, **kw):
-    """ Consume RabbitMQ messages. Dispatches messages to proper handler
-    """
+    """Consume RabbitMQ messages. Dispatches messages to proper handler"""
 
     resp, props, msg = args[0]
-    context = kw['context']
+    context = kw["context"]
 
-    eventname, uid = msg.split('|', 1)
+    eventname, uid = msg.split("|", 1)
     HANDLERS[eventname](context, uid)
 
 
 def main():
-    """ Run the sync import process
+    """Run the sync import process
 
     This should be run through the zope client script running machinery, like:
 
@@ -42,6 +41,5 @@ def main():
 
     site = get_plone_site()
     consume_messages(
-        partial(_consume_msg, context=site),
-        queue='eea.climateadapt.casestudies'
+        partial(_consume_msg, context=site), queue="eea.climateadapt.casestudies"
     )

@@ -26,8 +26,7 @@ class Items(BrowserView):
             IVocabularyFactory, "eea.climateadapt.aceitems_climateimpacts"
         )
         vocabulary_impacts = factory(self.context)
-        factory = getUtility(IVocabularyFactory,
-                             "eea.climateadapt.aceitems_sectors")
+        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_sectors")
         vocabulary_sectors = factory(self.context)
         # 261447 - for case studies we have 6 more elements compared with other types
         factory = getUtility(
@@ -109,8 +108,7 @@ class Items(BrowserView):
                         if hasattr(ao, "key_type_measures"):
                             for key_type_measure in ao.key_type_measures:
                                 if key_type_measure not in list_key_type_measures:
-                                    list_key_type_measures.append(
-                                        key_type_measure)
+                                    list_key_type_measures.append(key_type_measure)
                         list_adaptation_options.append(ao.title)
                         list_adaptation_options_links.append(
                             "<a href='"
@@ -129,14 +127,12 @@ class Items(BrowserView):
                 # pdb.set_trace()
                 for sector in obj.sectors:
                     try:
-                        sectors_str.append(
-                            vocabulary_sectors.getTerm(sector).title)
+                        sectors_str.append(vocabulary_sectors.getTerm(sector).title)
                     except:
                         """"""
                 for impact in obj.climate_impacts:
                     try:
-                        impacts_str.append(
-                            vocabulary_impacts.getTerm(impact).title)
+                        impacts_str.append(vocabulary_impacts.getTerm(impact).title)
                     except:
                         """"""
                 if obj.elements:
@@ -230,8 +226,7 @@ class Page(BrowserView):
         return response
 
     def get_sectors(self):
-        factory = getUtility(IVocabularyFactory,
-                             "eea.climateadapt.aceitems_sectors")
+        factory = getUtility(IVocabularyFactory, "eea.climateadapt.aceitems_sectors")
         vocabulary = factory(self.context)
         response = []
         # response.append({"key": "", "value": "Filter by SECTOR"})

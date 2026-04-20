@@ -50,11 +50,11 @@ def migrate_local_roles(obj, dry_run=True):
     """Detect extranet- groups and assign roles to corresponding local- groups."""
     changed = False
     local_roles = obj.get_local_roles()
-    portal_groups = getToolByName(obj, 'portal_groups')
+    portal_groups = getToolByName(obj, "portal_groups")
 
     for principal, roles in local_roles:
-        if principal.startswith('extranet-'):
-            new_principal = principal.replace('extranet-', 'local-')
+        if principal.startswith("extranet-"):
+            new_principal = principal.replace("extranet-", "local-")
 
             # Check if new_principal already has these roles
             existing_roles = dict(local_roles).get(new_principal, [])
@@ -64,7 +64,9 @@ def migrate_local_roles(obj, dry_run=True):
             # Combine roles if new_principal already exists in local roles
             final_roles = list(set(roles) | set(existing_roles))
 
-            print(f"  Migrating {principal} -> {new_principal} on {obj.absolute_url(1)}")
+            print(
+                f"  Migrating {principal} -> {new_principal} on {obj.absolute_url(1)}"
+            )
             print(f"    Roles: {', '.join(final_roles)}")
 
             if not dry_run:
@@ -143,7 +145,9 @@ def run(app):
                 ):
                     continue
 
-                child_rel_path = f"{current_rel_path}/{child_id}" if current_rel_path else child_id
+                child_rel_path = (
+                    f"{current_rel_path}/{child_id}" if current_rel_path else child_id
+                )
                 stack.append((child, child_rel_path))
 
     print(f"\nMigration finished.")

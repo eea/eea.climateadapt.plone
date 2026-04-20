@@ -97,4 +97,3 @@ class WorkflowInfoService(Service):
     def reply(self):
         info = WorkflowInfo(self.context, self.request)
         return info(expand=True)["workflow"]
-

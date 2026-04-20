@@ -38,7 +38,9 @@ DISCODATA_URLS = {
 }
 
 DISCODATA_BETA_URLS = {
-    key: url.replace("latest", "v2").replace("MissionOnAdaptation", "MissionOnAdaptation_SignatoryReporting")
+    key: url.replace("latest", "v2").replace(
+        "MissionOnAdaptation", "MissionOnAdaptation_SignatoryReporting"
+    )
     for key, url in DISCODATA_URLS.items()
 }
 
@@ -65,6 +67,7 @@ def build_map(data, id_keys, value_key):
         result[key].append(row.get(value_key))
     return dict(result)
 
+
 def build_map_objects(data, id_keys, fields):
     result = defaultdict(list)
     for row in data:
@@ -72,6 +75,7 @@ def build_map_objects(data, id_keys, fields):
         value = {field: row.get(field) for field in fields}
         result[key].append(value)
     return dict(result)
+
 
 # def parse_csv(path):
 #     try:
@@ -101,7 +105,7 @@ def get_planning_data(profile_id, data):
     sectors_map = build_map_objects(
         fetch_discodata_json(data["planning_climate_action_sectors"]),
         ["Id", "Climate_Action_Plan_Id"],
-        ["Sector", "Icon"]
+        ["Sector", "Icon"],
     )
 
     for row in planning_goals:
@@ -156,10 +160,12 @@ def get_assessment_data(profile_id, data):
         for hazard, sectors in hazards.items():
             sorted_sectors = [s for _, s in sorted(sectors, key=lambda x: x[0])]
             hazard_list.append({"Hazard": hazard, "Sectors": sorted_sectors})
-        assessment_hazards_sectors.append({
-            "Category": category,
-            "Hazards": hazard_list,
-        })
+        assessment_hazards_sectors.append(
+            {
+                "Category": category,
+                "Hazards": hazard_list,
+            }
+        )
 
     assessment_risks.sort(
         key=lambda r: (r.get("Year_Of_Publication") or 0),
@@ -188,7 +194,7 @@ def get_action_data(profile_id, data):
     sectors_map = build_map_objects(
         fetch_discodata_json(data["action_sectors"]),
         ["Id", "Action_Id"],
-        ["Sector", "Icon"]
+        ["Sector", "Icon"],
     )
     benefits_map = build_map(
         fetch_discodata_json(data["action_benefits"]),
@@ -289,7 +295,6 @@ class MissionSignatoryProfile(object):
             serializer = queryMultiAdapter((banner, self.request), ISerializeToJson)
             data["image"] = serializer()["image"]
             # data_beta["image"] = serializer()["image"]
-
 
         result = {
             "missionsignatoryprofile": {

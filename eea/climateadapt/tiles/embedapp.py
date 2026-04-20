@@ -1,5 +1,4 @@
-""" A generic tile that can take applications
-"""
+"""A generic tile that can take applications"""
 
 # from collective.cover import _
 # from collective.cover.tiles.base import IPersistentCoverTile

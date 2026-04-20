@@ -19,6 +19,7 @@ setup(
     name="eea.climateadapt",
     version=VERSION,
     description="EEA ClimateAdapt for Plone",
+    long_description_content_type="text/x-rst",
     long_description=long_description,
     # Get more strings from
     # http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -47,6 +48,7 @@ setup(
         "zeep==3.4.0",
         "XlsxWriter==1.2.7",
         "collective.geolocationbehavior",
+        "collective.exportimport",
         "redis",  # do we need it?
         "bullmq",
         # "google-api-python-client",  # google analytics API integration

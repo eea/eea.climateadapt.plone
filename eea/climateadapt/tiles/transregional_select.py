@@ -2,6 +2,7 @@
 """A tile to implement the transregional select dropdown"""
 
 from eea.climateadapt.interfaces import ITransnationalRegionMarker
+
 # from collective.cover.tiles.base import IPersistentCoverTile, PersistentCoverTile
 from plone.tiles.interfaces import IPersistentTile
 from plone.tiles.tile import PersistentTile

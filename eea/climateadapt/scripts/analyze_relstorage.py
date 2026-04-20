@@ -20,7 +20,7 @@ def main():
     # Use ZopeWSGIOptions to parse the config file correctly
     # This handles the Zope schema, environment variables, conditional imports, etc.
     options = ZopeWSGIOptions(args.zope_conf)()
-    
+
     # Get the first database from the configuration
     storage = options.configroot.databases[0].config.storage.open()
 

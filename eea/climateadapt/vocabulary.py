@@ -1405,17 +1405,20 @@ alsoProvides(redirection_types_vocabulary, IVocabularyFactory)
 
 
 _relevant_synergies = [
-    ("reducing_energy_demand", _(u"Reducing energy demand")),
-    ("transition_to_renewable_energy", _(u"Transition to renewable energy")),
-    ("carbon_capture_and_storage", _(u"Carbon capture and storage")),
-    ("no_relevant_synergies", _(u"No relevant synergies with mitigation")),
+    ("reducing_energy_demand", _("Reducing energy demand")),
+    ("transition_to_renewable_energy", _("Transition to renewable energy")),
+    ("carbon_capture_and_storage", _("Carbon capture and storage")),
+    ("no_relevant_synergies", _("No relevant synergies with mitigation")),
 ]
 relevant_synergies_vocabulary = generic_vocabulary(_relevant_synergies, sort=False)
 alsoProvides(relevant_synergies_vocabulary, IVocabularyFactory)
 
 relevant_eu_policies = [
     ("EU_ANIMAL_HEALTH", _("Animal Health Law")),
-    ("EU_ANIMAL_HEALTH_STRATEGY", _("Animal Health Strategy 2007-2013 \"Prevention is better than cure\"")),
+    (
+        "EU_ANIMAL_HEALTH_STRATEGY",
+        _('Animal Health Strategy 2007-2013 "Prevention is better than cure"'),
+    ),
     ("EU_BATHING_WATER", _("Bathing Water Directive")),
     ("EU_BIODIVERSITY_2030", _("Biodiversity Strategy for 2030")),
     ("EU_BIRDS", _("Birds Directive")),
@@ -1423,7 +1426,12 @@ relevant_eu_policies = [
     ("EU_CIVIL_PROTECTION", _("Civil Protection Mechanism")),
     ("EU_CAP", _("Common Agriculture Policy")),
     ("EU_CFP", _("Common Fisheries Policy")),
-    ("EU_HEALTH_UNION", _("Communication on the European Health Union: acting together for people's health")),
+    (
+        "EU_HEALTH_UNION",
+        _(
+            "Communication on the European Health Union: acting together for people's health"
+        ),
+    ),
     ("EU_CONCESSIONS", _("Concessions Contracts Directive")),
     ("EU_CRITICAL_ENTITIES", _("Directive on the Resilience of Critical Entities")),
     ("EU_ENERGY_EFFICIENCY", _("Energy efficiency Directive")),
@@ -1432,7 +1440,10 @@ relevant_eu_policies = [
     ("EU_TOURISM_2030", _("European tourism agenda 2030")),
     ("EU_FARM_TO_FORK", _("Farm to Fork Strategy")),
     ("EU_FLOODS", _("Floods Directive")),
-    ("EU_GLOBAL_HEALTH", _("Global Health Strategy: Better Health for All in a Changing World")),
+    (
+        "EU_GLOBAL_HEALTH",
+        _("Global Health Strategy: Better Health for All in a Changing World"),
+    ),
     ("EU_GREEN_INFRA", _("Green Infrastructure Strategy")),
     ("EU_GROUNDWATER", _("Groundwater Directive")),
     ("EU_HABITATS", _("Habitats Directive")),
@@ -1447,10 +1458,18 @@ relevant_eu_policies = [
     ("EU_OCEAN_PACT", _("Ocean Pact")),
     ("EU_ORGANIC", _("Organic production regulation")),
     ("EU_PUBLIC_PROCUREMENT", _("Public Procurement Directive")),
-    ("EU_ICZM", _("Recommendation on the Integrated Coastal Zone Management in Europe")),
+    (
+        "EU_ICZM",
+        _("Recommendation on the Integrated Coastal Zone Management in Europe"),
+    ),
     ("EU_HEALTH_THREATS", _("Regulation on serious cross-border threats to health")),
     ("EU_SOLVENCY_II", _("Solvency II Directive")),
-    ("EU_AQUACULTURE_2030", _("Strategic guidelines for a more sustainable and competitive EU aquaculture for the period 2021 to 2030")),
+    (
+        "EU_AQUACULTURE_2030",
+        _(
+            "Strategic guidelines for a more sustainable and competitive EU aquaculture for the period 2021 to 2030"
+        ),
+    ),
     ("EU_HEALTH_PLAN_2020_24", _("Strategic plan 2020-2024 - Health and Food Safety")),
     ("EU_MOBILITY", _("Sustainable and smart mobility strategy")),
     ("EU_TEN_T", _("Ten-T Policy")),

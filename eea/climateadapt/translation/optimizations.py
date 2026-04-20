@@ -100,7 +100,10 @@ class LanguageAwareLeadImage:
             with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
                 if canonical is not None:
-                    if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
+                    if not (
+                        IDexterityTranslatable.providedBy(canonical)
+                        and IDexterityContent.providedBy(canonical)
+                    ):
                         _log_invalid_canonical(
                             self.context, canonical, "LanguageAwareLeadImage.image"
                         )
@@ -109,7 +112,10 @@ class LanguageAwareLeadImage:
                         return canonical.image
                     except AttributeError as e:
                         _log_attribute_error_canonical(
-                            self.context, canonical, "LanguageAwareLeadImage.image attribute error", e
+                            self.context,
+                            canonical,
+                            "LanguageAwareLeadImage.image attribute error",
+                            e,
                         )
                         return None
 
@@ -148,7 +154,10 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
             canonical = tm.get_translation("en")
             if canonical is None:
                 return
-            if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
+            if not (
+                IDexterityTranslatable.providedBy(canonical)
+                and IDexterityContent.providedBy(canonical)
+            ):
                 _log_invalid_canonical(
                     self.context, canonical, "LanguageAwareImageFieldScales.__call__"
                 )
@@ -159,7 +168,10 @@ class LanguageAwareImageFieldScales(BaseImageFieldScales):
             image = self.field.get(canonical)
         except AttributeError as e:
             _log_attribute_error_canonical(
-                self.context, canonical, "LanguageAwareImageFieldScales.__call__ attribute error", e
+                self.context,
+                canonical,
+                "LanguageAwareImageFieldScales.__call__ attribute error",
+                e,
             )
             return
 
@@ -229,7 +241,10 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
         if canonical is None:
             return
 
-        if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
+        if not (
+            IDexterityTranslatable.providedBy(canonical)
+            and IDexterityContent.providedBy(canonical)
+        ):
             _log_invalid_canonical(
                 self.context, canonical, "LanguageAwareImageFieldSerializer.__call__"
             )
@@ -240,7 +255,10 @@ class LanguageAwareImageFieldSerializer(ImageFieldSerializer):
             return super().__call__()
         except AttributeError as e:
             _log_attribute_error_canonical(
-                self.context, canonical, "LanguageAwareImageFieldSerializer.__call__ attribute error", e
+                self.context,
+                canonical,
+                "LanguageAwareImageFieldSerializer.__call__ attribute error",
+                e,
             )
             return
 
@@ -265,7 +283,10 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
         if canonical is None:
             return
 
-        if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
+        if not (
+            IDexterityTranslatable.providedBy(canonical)
+            and IDexterityContent.providedBy(canonical)
+        ):
             _log_invalid_canonical(
                 self.context, canonical, "LanguageAwareFileFieldSerializer.__call__"
             )
@@ -276,7 +297,10 @@ class LanguageAwareFileFieldSerializer(FileFieldSerializer):
             return super().__call__()
         except AttributeError as e:
             _log_attribute_error_canonical(
-                self.context, canonical, "LanguageAwareFileFieldSerializer.__call__ attribute error", e
+                self.context,
+                canonical,
+                "LanguageAwareFileFieldSerializer.__call__ attribute error",
+                e,
             )
             return
 
@@ -300,7 +324,10 @@ def hasPreviewImage(obj):
             canonical = tm.get_translation("en")
             if canonical is None:
                 return False
-            if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
+            if not (
+                IDexterityTranslatable.providedBy(canonical)
+                and IDexterityContent.providedBy(canonical)
+            ):
                 _log_invalid_canonical(obj, canonical, "hasPreviewImage (indexer)")
                 return False
         base_obj = aq_base(canonical)
@@ -332,7 +359,10 @@ def image_field_indexer(obj):
                 canonical = tm.get_translation("en")
             if canonical is None:
                 return image_field
-            if not (IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical)):
+            if not (
+                IDexterityTranslatable.providedBy(canonical)
+                and IDexterityContent.providedBy(canonical)
+            ):
                 _log_invalid_canonical(obj, canonical, "image_field_indexer")
                 return image_field
             base_obj = aq_base(canonical)
@@ -361,7 +391,9 @@ class LanguageAwareImageScaling(ImageScaling):
             with adopt_roles(roles=["Owner"]):
                 canonical = tm.get_translation("en")
             if canonical is not None:
-                if IDexterityTranslatable.providedBy(canonical) and IDexterityContent.providedBy(canonical):
+                if IDexterityTranslatable.providedBy(
+                    canonical
+                ) and IDexterityContent.providedBy(canonical):
                     context = canonical
                 else:
                     _log_invalid_canonical(
@@ -439,7 +471,10 @@ class OverrideDefaultTranslationIdChooser:
 
                 # Different portal_type - need to remove/replace
                 else:
-                    if IDexterityContainer.providedBy(existing) and existing.objectIds():
+                    if (
+                        IDexterityContainer.providedBy(existing)
+                        and existing.objectIds()
+                    ):
                         # Folder with children - rename and migrate
                         _migrate_folder_children(parent, existing, content_id, language)
                     else:
@@ -517,7 +552,9 @@ def _migrate_folder_children(parent, old_folder, target_id, language):
             "newName": child_id,
             "oldName": child_id,
             "oldParent": old_folder_path,
-            "newParent": new_folder_path.replace(f"/{language}/", "/en/"),  # Map to EN path
+            "newParent": new_folder_path.replace(
+                f"/{language}/", "/en/"
+            ),  # Map to EN path
             "expected_uid": IUUID(old_folder[child_id], None),
             "langs": [language],
             "debug_info": {

@@ -129,7 +129,9 @@ def get_local_roles_report(portal, include_owner=False):
                         if len(child_id) == 2:
                             continue
 
-                child_rel_path = f"{current_rel_path}/{child_id}" if current_rel_path else child_id
+                child_rel_path = (
+                    f"{current_rel_path}/{child_id}" if current_rel_path else child_id
+                )
                 stack.append((child, child_rel_path))
 
     return all_data

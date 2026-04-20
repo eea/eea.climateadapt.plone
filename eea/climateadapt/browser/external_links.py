@@ -17,7 +17,7 @@ from zope.annotation.interfaces import IAnnotations
 from .admin import Item
 
 # html_unescape = HTMLParser().unescape
-logger = logging.getLogger('eea.climateadapt')
+logger = logging.getLogger("eea.climateadapt")
 
 
 class DRMKCItem:
@@ -26,10 +26,10 @@ class DRMKCItem:
             setattr(self, attr, result[attr])
 
 
-class DRMKCImporter():
+class DRMKCImporter:
     def __init__(self, site):
-        self.container = site['metadata']['projects']
-        self.url = 'https://drmkc.jrc.ec.europa.eu/API/ProjectsExplorer/Query/Filter'
+        self.container = site["metadata"]["projects"]
+        self.url = "https://drmkc.jrc.ec.europa.eu/API/ProjectsExplorer/Query/Filter"
         self.payload = """{"Operator": "AND",
             "Rules": [ {
             "Property": "terms.fundingPrograms",
@@ -49,7 +49,7 @@ class DRMKCImporter():
             "Types": [
             "project"
             ]}"""
-        self.headers = {'Content-type': 'application/json'}
+        self.headers = {"Content-type": "application/json"}
 
     def get_response(self):
         response = requests.post(self.url, data=self.payload, headers=self.headers)
@@ -58,20 +58,20 @@ class DRMKCImporter():
     def create_obj(self, f, shortname, import_id):
         item = u.createAndPublishContentInContainer(
             self.container,
-            'eea.climateadapt.aceproject',
+            "eea.climateadapt.aceproject",
             _publish=True,
             title=f.Title,
             long_description=u.t2r(f.Description),
             creation_date=DateTime(f.CreatedOnDate),
             acronym=f.Acronym,
-            source='DRMKC',
-            lead=f.CreatedByUser['DisplayName'],
-            partners=u.t2r(''),
+            source="DRMKC",
+            lead=f.CreatedByUser["DisplayName"],
+            partners=u.t2r(""),
             sectors=[],
             climate_impacts=[],
-            geochars='',
+            geochars="",
             rating=0,
-            websites=()
+            websites=(),
             # f.Country,
             # f.EndDate,
             # f.ExternalIds,
@@ -101,27 +101,27 @@ class DRMKCImporter():
         )
 
         annot = IAnnotations(item)
-        annot['import_id'] = import_id
-        logger.warning('CREATING: %s', f.Title)
+        annot["import_id"] = import_id
+        logger.warning("CREATING: %s", f.Title)
         return item
 
     def update_obj(self, f):
         item = self.update_content_in_container(
             self.container,
-            'eea.climateadapt.aceproject',
+            "eea.climateadapt.aceproject",
             _publish=True,
             title=f.Title,
             long_description=u.t2r(f.Description),
             creation_date=DateTime(f.CreatedOnDate),
             acronym=f.Acronym,
-            source='DRMKC',
-            lead=f.CreatedByUser['DisplayName'],
-            partners=u.t2r(''),
+            source="DRMKC",
+            lead=f.CreatedByUser["DisplayName"],
+            partners=u.t2r(""),
             sectors=[],
             climate_impacts=[],
-            geochars='',
+            geochars="",
             rating=0,
-            websites=()
+            websites=(),
             # rating= f.Score,
             # f.Country,
             # f.CreatedByUser,
@@ -151,7 +151,7 @@ class DRMKCImporter():
             # f.getGeoProperties
         )
 
-        logger.warning('UPDATING: %s. Last modified %s', obj.title, obj.modified())
+        logger.warning("UPDATING: %s. Last modified %s", obj.title, obj.modified())
         return item
 
     def update_content_in_container(self, shortname, *args, **kwargs):
@@ -168,8 +168,8 @@ class DRMKCImporter():
         return item
 
     def response_import(self, result):
-        if not result['CreatedByUser']:  # edgecase when result['CreatedByUser'] is None
-            result['CreatedByUser'] = {'DisplayName': ''}
+        if not result["CreatedByUser"]:  # edgecase when result['CreatedByUser'] is None
+            result["CreatedByUser"] = {"DisplayName": ""}
 
         f = DRMKCItem(result)
         import_id = f.Id
@@ -182,21 +182,21 @@ class DRMKCImporter():
         except KeyError:
             return self.create_obj(f, shortname, import_id)
 
-        annot = getattr(original.aq_inner.aq_self, '__annotations__', {})
-        test_id = annot.get('original_import_id')
+        annot = getattr(original.aq_inner.aq_self, "__annotations__", {})
+        test_id = annot.get("original_import_id")
 
         if (test_id == import_id) and (last_modified > original.modified()):
             return self.update_obj(f, shortname)
         else:
-            if not hasattr(original.aq_inner.aq_self, '__annotations__'):
+            if not hasattr(original.aq_inner.aq_self, "__annotations__"):
                 original.__annotations__ = PersistentMapping()
 
-            original.__annotations__['original_import_id'] = import_id
+            original.__annotations__["original_import_id"] = import_id
             raise NoUpdates
 
     def __call__(self):
         response = self.get_response()
-        for result in response['Result']:
+        for result in response["Result"]:
             try:
                 obj = self.response_import(result)
             except NoUpdates:
@@ -206,17 +206,16 @@ class DRMKCImporter():
 
 
 class NoUpdates(Exception):
-    """ Already in database without modifications
-    """
+    """Already in database without modifications"""
+
     pass
 
 
-class AdapteCCACaseStudyImporter():
-    """ Demo adaptecca importer
-    """
+class AdapteCCACaseStudyImporter:
+    """Demo adaptecca importer"""
 
     def __init__(self, site):
-        self.case_studies_folder = site['metadata']['case-studies']
+        self.case_studies_folder = site["metadata"]["case-studies"]
 
     def t_sectors(self, l):
         # Translate values to their CCA equivalent
@@ -266,14 +265,12 @@ class AdapteCCACaseStudyImporter():
             "Transport": "TRANSPORT",
             "Health": "HEALTH",
             "Water resources": "WATERMANAGEMENT",
-
             "Rural areas": "Rural areas",
             "Transnational region (stretching across country borders)PORT": "Transnational region",
-
             "Transporte": "TRANSPORT",
         }
 
-        return list(set([map.get(x, 'NONSPECIFIC') for x in l]))
+        return list(set([map.get(x, "NONSPECIFIC") for x in l]))
 
     def t_impacts(self, l):
         # Translate values to their CCA equivalent
@@ -304,14 +301,13 @@ class AdapteCCACaseStudyImporter():
             "Desertification / Forest and land degradation": "DROUGHT",
         }
 
-        return list(set([map.get(x, 'NONSPECIFIC') for x in l]))
+        return list(set([map.get(x, "NONSPECIFIC") for x in l]))
 
     def html2text(self, html):
         if not isinstance(html, str):
             return ""
-        portal_transforms = api.portal.get_tool(name='portal_transforms')
-        data = portal_transforms.convertTo('text/plain',
-                                           html, mimetype='text/html')
+        portal_transforms = api.portal.get_tool(name="portal_transforms")
+        data = portal_transforms.convertTo("text/plain", html, mimetype="text/html")
         text = data.getData()
 
         return text.strip()
@@ -325,10 +321,10 @@ class AdapteCCACaseStudyImporter():
         #     u"Internacional": "TRANS",
         # }
         if level is None:
-            return ''
+            return ""
 
         level = self.html2text(level)
-        level = [x.strip() for x in level.split('\n')]
+        level = [x.strip() for x in level.split("\n")]
 
         map = {
             "Local": "LC",
@@ -339,7 +335,7 @@ class AdapteCCACaseStudyImporter():
         }
 
         # 'governance_level': ['LC', 'NAT', 'SNA'],
-        return [map.get(x, '') for x in level]
+        return [map.get(x, "") for x in level]
 
     def t_geochars(self, v):
         # TODO: need to convert to geochar format
@@ -364,13 +360,17 @@ class AdapteCCACaseStudyImporter():
         if type(v) is dict:
             return json.dumps(v)
 
-        v = [x.strip() for x in v.split(',')]
-        v = {"geoElements":
-             {"element": "EUROPE", "macrotrans": None,
-                 "biotrans": [map.get(x, '') for x in v], "countries": [],
-                 "subnational": [], "city": "",
-              }
-             }
+        v = [x.strip() for x in v.split(",")]
+        v = {
+            "geoElements": {
+                "element": "EUROPE",
+                "macrotrans": None,
+                "biotrans": [map.get(x, "") for x in v],
+                "countries": [],
+                "subnational": [],
+                "city": "",
+            }
+        }
         return json.dumps(v)
 
     def update_content_in_container(self, shortname, *args, **kwargs):
@@ -398,43 +398,40 @@ class AdapteCCACaseStudyImporter():
         except KeyError:
             return self.create_obj(location, f, import_id)
 
-        annot = getattr(original.aq_inner.aq_self, '__annotations__', {})
-        test_id = annot.get('original_import_id')
+        annot = getattr(original.aq_inner.aq_self, "__annotations__", {})
+        test_id = annot.get("original_import_id")
 
         if (test_id == import_id) and (last_modified > original.modified()):
             return self.update_obj(original, f, shortname)
         else:
-            if not hasattr(original.aq_inner.aq_self, '__annotations__'):
+            if not hasattr(original.aq_inner.aq_self, "__annotations__"):
                 original.__annotations__ = PersistentMapping()
 
-            original.__annotations__['original_import_id'] = import_id
+            original.__annotations__["original_import_id"] = import_id
             raise NoUpdates
 
     def create_obj(self, location, f, import_id):
         item = u.createAndPublishContentInContainer(
             location,
-            'eea.climateadapt.casestudy',
+            "eea.climateadapt.casestudy",
             _publish=True,
             title=f.title,
             long_description=u.t2r(f.information),
-            keywords=f.keywords.split(', '),
-            sectors=self.t_sectors(f.sectors.split(', ')),
-            climate_impacts=self.t_impacts(f.impact.split(', ')),
+            keywords=f.keywords.split(", "),
+            sectors=self.t_sectors(f.sectors.split(", ")),
+            climate_impacts=self.t_impacts(f.impact.split(", ")),
             governance_level=self.t_governance(f.governance),
             # regions
             geochars=self.t_geochars(f.regions),
             challenges=u.t2r(f.challenges),
             objectives=u.t2r(f.objectives),
-
             # in CCA this is a related items field
             # in AdapteCCA, these measures are linked concepts to other content
             # we'll ignore them for the time being?
             #
             # measures=self.to_terms(node.find('field_measures')),
             # adaptationoptions=measures,
-
-            measure_type='A',       # it's a case study
-
+            measure_type="A",  # it's a case study
             solutions=u.t2r(f.solutions),
             # f.adaptation
             # f.interest
@@ -443,23 +440,18 @@ class AdapteCCACaseStudyImporter():
             cost_benefit=u.t2r(f.budget),
             legal_aspects=u.t2r(f.legal),
             implementation_time=u.t2r(f.implementation),
-
             # TODO: there is no lifetime in AdapteCCA?
-
             contact=u.t2r(f.contact),
             websites=u.s2l(u.r2t(html_unescape(f.websites))) or [],
-
             # TODO: make sure we don't have paragraphs?
             source=u.r2t(f.sources),
             year=f.year,
             # images
-
             # TODO: in AdapteCCA, this is free text, we have 3 options
             # Select only one category below that best describes how relevant
             # this case study is to climate change adaptation
             # relevance=s2l(data.relevance),
             relevance=[],
-
             # comments=data.comments,
             # creation_date=creationdate,
             # effective_date=approvaldate,
@@ -473,30 +465,29 @@ class AdapteCCACaseStudyImporter():
             # spatial_layer=data.spatiallayer,
             # spatial_values=s2l(data.spatialvalues),
             # supphotos=supphotos,
-
-            origin_website='AdapteCCA',
+            origin_website="AdapteCCA",
         )
 
         annot = IAnnotations(item)
-        annot['import_id'] = import_id
-        logger.warning('CREATING: %s', f.title)
+        annot["import_id"] = import_id
+        logger.warning("CREATING: %s", f.title)
         return item
 
     def update_obj(self, obj, f, shortname):
         item = self.update_content_in_container(
             shortname,
-            'eea.climateadapt.casestudy',
+            "eea.climateadapt.casestudy",
             _publish=True,
             title=f.title,
             long_description=u.t2r(f.information),
-            keywords=f.keywords.split(', '),
-            sectors=self.t_sectors(f.sectors.split(', ')),
-            climate_impacts=self.t_impacts(f.impact.split(', ')),
+            keywords=f.keywords.split(", "),
+            sectors=self.t_sectors(f.sectors.split(", ")),
+            climate_impacts=self.t_impacts(f.impact.split(", ")),
             governance_level=self.t_governance(f.governance),
             geochars=self.t_geochars(f.regions),
             challenges=u.t2r(f.challenges),
             objectives=u.t2r(f.objectives),
-            measure_type='A',       # it's a case study
+            measure_type="A",  # it's a case study
             solutions=u.t2r(f.solutions),
             stakeholder_participation=u.t2r(f.stakeholder),
             success_limitations=u.t2r(f.factors),
@@ -508,17 +499,19 @@ class AdapteCCACaseStudyImporter():
             source=u.r2t(f.sources),
             year=f.year,
             relevance=[],
-            origin_website='AdapteCCA',
+            origin_website="AdapteCCA",
         )
 
-        logger.warning('UPDATING: %s. Last modified %s', obj.title, obj.modified())
+        logger.warning("UPDATING: %s. Last modified %s", obj.title, obj.modified())
         return item
 
     def __call__(self):
-        response = urllib.request.urlopen('http://bio.devplx.com/adaptecca/cases_en.xml')
+        response = urllib.request.urlopen(
+            "http://bio.devplx.com/adaptecca/cases_en.xml"
+        )
         AdapteCCA_data = response.read()
         e = fromstring(AdapteCCA_data)
-        for node in e.xpath('//item'):
+        for node in e.xpath("//item"):
             try:
                 item = self.node_import(self.case_studies_folder, node)
                 transaction.commit()
@@ -527,4 +520,4 @@ class AdapteCCACaseStudyImporter():
 
             logger.warning(item.absolute_url())
 
-        return 'AdapteCCA case study importer'
+        return "AdapteCCA case study importer"

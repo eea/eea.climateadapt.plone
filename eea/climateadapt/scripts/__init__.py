@@ -1,36 +1,40 @@
-""" Script utilities
-"""
+"""Script utilities"""
 
 from zope.interface import alsoProvides
 from eea.climateadapt.interfaces import IEEAClimateAdaptInstalled
 
-HOST = 'climate-adapt.eea.europa.eu'
+HOST = "climate-adapt.eea.europa.eu"
 PLONE = "/cca"
 
 
 def get_plone_site():
     import Zope2
+
     app = Zope2.app()
     from Testing.ZopeTestCase import utils
+
     utils._Z2HOST = HOST
 
-    path = PLONE.split('/')
+    path = PLONE.split("/")
 
     app = utils.makerequest(app)
-    app.REQUEST['PARENTS'] = [app]
-    app.REQUEST.other['VirtualRootPhysicalPath'] = path
+    app.REQUEST["PARENTS"] = [app]
+    app.REQUEST.other["VirtualRootPhysicalPath"] = path
     from zope.globalrequest import setRequest
+
     alsoProvides(app.REQUEST, IEEAClimateAdaptInstalled)
     setRequest(app.REQUEST)
 
     from AccessControl.SpecialUsers import system as user
     from AccessControl.SecurityManagement import newSecurityManager
+
     newSecurityManager(None, user)
 
     _site = app[path[-1]]
     site = _site.__of__(app)
 
     from zope.site.hooks import setSite
+
     setSite(site)
 
     return site

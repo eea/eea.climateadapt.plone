@@ -5,7 +5,7 @@
 ##bind script=script
 ##bind subpath=traverse_subpath
 ##parameters=change
-##title=Set the expiration date 
+##title=Set the expiration date
 ##
 obj = change.object
 obj.setExpirationDate(obj.modified())

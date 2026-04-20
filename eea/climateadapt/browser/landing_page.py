@@ -1,6 +1,7 @@
 from collections import namedtuple
 
 from eea.climateadapt.config import ACEID_TO_SEARCHTYPE
+
 # from eea.climateadapt.translation.utils import (TranslationUtilsMixin,
 #                                                 filters_to_query,
 #                                                 translate_text)
@@ -24,17 +25,18 @@ SEARCH_TYPES_ICONS = [
     ("TOOL", "Tools", "fa-wrench"),
 ]
 
+
 # TODO add TranslationUtilsMixin to inheritance
 class Urban(BrowserView):
     def main_link(self):
         search_type = "Adaptation option"
         args = [
-            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
-            ('cca_adaptation_sectors.keyword', "Urban"),
+            ("objectProvides", ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ("cca_adaptation_sectors.keyword", "Urban"),
         ]
         # TODO fix query
         # query = filters_to_query(args)
-        query = ''
+        query = ""
         link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
         return link
 
@@ -42,12 +44,12 @@ class Urban(BrowserView):
     # @cache
     def _make_link(self, search_type):
         args = [
-            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
-            ('cca_adaptation_sectors.keyword', "Urban"),
+            ("objectProvides", ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ("cca_adaptation_sectors.keyword", "Urban"),
         ]
         # TODO fix query
         # query = filters_to_query(args)
-        query = ''
+        query = ""
         link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
 
         return link
@@ -88,12 +90,12 @@ class Forest(BrowserView):
     def main_link(self):
         search_type = "Adaptation option"
         args = [
-            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
-            ('cca_adaptation_sectors.keyword', "Forestry"),
+            ("objectProvides", ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ("cca_adaptation_sectors.keyword", "Forestry"),
         ]
         # TODO fix query
         # query = filters_to_query(args)
-        query = ''
+        query = ""
         link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
         return link
         # return "/en/data-and-downloads/?lang=en&source=%7B%22query%22%3A%20%7B%22function_score%22%3A%20%7B%22query%22%3A%20%7B%22bool%22%3A%20%7B%22filter%22%3A%20%7B%22bool%22%3A%20%7B%22must%22%3A%20%5B%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22typeOfData%22%3A%20%22Adaptation%20options%22%7D%7D%5D%7D%7D%2C%20%7B%22bool%22%3A%20%7B%22should%22%3A%20%5B%7B%22term%22%3A%20%7B%22sectors%22%3A%20%22Forestry%22%7D%7D%5D%7D%7D%5D%7D%7D%7D%7D%7D%7D%7D"
@@ -102,12 +104,12 @@ class Forest(BrowserView):
     # @cache
     def _make_link(self, search_type):
         args = [
-            ('objectProvides', ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
-            ('cca_adaptation_sectors.keyword', "Forestry"),
+            ("objectProvides", ACEID_TO_SEARCHTYPE.get(search_type) or search_type),
+            ("cca_adaptation_sectors.keyword", "Forestry"),
         ]
         # TODO fix query
         # query = filters_to_query(args)
-        query = ''
+        query = ""
         link = "/{0}/data-and-downloads/?{1}".format(self.current_lang, query)
 
         return link

@@ -4,6 +4,7 @@ from collections import namedtuple
 
 from AccessControl import getSecurityManager
 from Acquisition import aq_inner
+
 # from collective.cover.browser.cover import Standard
 from eea.climateadapt.vocabulary import (
     BIOREGIONS,
@@ -11,6 +12,7 @@ from eea.climateadapt.vocabulary import (
     ace_countries_dict,
 )
 from eea.climateadapt import MessageFactory as _
+
 # from eea.climateadapt.translation.utils import translate_text
 # from eea.geotags.behavior.geotags import ISingleGeoTag
 from plone import api
@@ -75,7 +77,7 @@ def get_files(context):
 class AceViewApi(object):
     def geotag(self):
         # TODO fix geotag
-        return ''
+        return ""
         # tag = queryAdapter(self.context, ISingleGeoTag)
 
         # return tag
@@ -128,8 +130,7 @@ class AceViewApi(object):
         if not isinstance(html, str):
             return ""
         portal_transforms = api.portal.get_tool(name="portal_transforms")
-        data = portal_transforms.convertTo(
-            "text/plain", html, mimetype="text/html")
+        data = portal_transforms.convertTo("text/plain", html, mimetype="text/html")
         text = data.getData()
 
         return text.strip()
@@ -177,9 +178,9 @@ class AceViewApi(object):
     def _render_geochar_macrotrans(self, value):
         tpl = (
             "<div class='sidebar_bold'>"
-            "<h5>" +
-            self.translate_text(
-                _("Macro-Transnational region"))+":</h5><p>{0}</p></div>"
+            "<h5>"
+            + self.translate_text(_("Macro-Transnational region"))
+            + ":</h5><p>{0}</p></div>"
         )
 
         return tpl.format(", ".join([BIOREGIONS[x] for x in value]))
@@ -187,22 +188,25 @@ class AceViewApi(object):
     def _render_geochar_biotrans(self, value):
         tpl = (
             "<div class='sidebar_bold'>"
-            "<h5>" +
-            self.translate_text(_("Biogeographical regions")
-                                )+":</h5><p>{0}</p></div>"
+            "<h5>"
+            + self.translate_text(_("Biogeographical regions"))
+            + ":</h5><p>{0}</p></div>"
         )
 
         return tpl.format(", ".join([BIOREGIONS.get(x, x) for x in value]))
 
     def _render_geochar_countries(self, value):
-        tpl = "<div class='sidebar_bold'><h5>" + \
-            self.translate_text(_("Countries"))+":</h5><p>{0}</p></div>"
+        tpl = (
+            "<div class='sidebar_bold'><h5>"
+            + self.translate_text(_("Countries"))
+            + ":</h5><p>{0}</p></div>"
+        )
 
         return tpl.format(", ".join(self.get_countries(value)))
 
     def _render_geochar_subnational(self, value):
-        label = self.translate_text(_('Sub Nationals'))
-        tpl = "<div class='sidebar_bold'>" "<h5>%s:</h5><p>{0}</p></div>" % label
+        label = self.translate_text(_("Sub Nationals"))
+        tpl = "<div class='sidebar_bold'><h5>%s:</h5><p>{0}</p></div>" % label
         # tpl = u"<div class='sidebar_bold'>" u"<h5>"+_(u"Sub Nationals")+":</h5><p>{0}</p></div>"
 
         # a list like: ['SUBN_Marche__IT_']
@@ -229,9 +233,8 @@ class AceViewApi(object):
         if isinstance(value, (list, tuple)):
             text = ", ".join(value)
 
-        return "<div class='sidebar_bold'>" "<h5>{0}:</h5><p>{1}</p></div>".format(
-            self.translate_text(_("City")),
-            text
+        return "<div class='sidebar_bold'><h5>{0}:</h5><p>{1}</p></div>".format(
+            self.translate_text(_("City")), text
         )
 
     @view.memoize
@@ -333,8 +336,7 @@ class AceViewApi(object):
         groups_tool = getToolByName(self.context, "portal_groups")
         user = mt.getAuthenticatedMember()
 
-        user_groups = [
-            group.id for group in groups_tool.getGroupsByUserId(user.id)]
+        user_groups = [group.id for group in groups_tool.getGroupsByUserId(user.id)]
         to_check = [
             "extranet-cca-reviewers",
             "Administrators",

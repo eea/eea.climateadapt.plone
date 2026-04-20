@@ -8,6 +8,7 @@ from five.intid.intid import addIntIdSubscriber
 from plone import api
 from plone.app.iterate.dexterity import ITERATE_RELATION_NAME
 from plone.app.iterate.dexterity.relation import StagingRelationValue
+
 # from plone.app.linkintegrity.handlers import modifiedContent
 # from plone.app.linkintegrity.utils import referencedRelationship
 from plone.app.relationfield.event import update_behavior_relations
@@ -618,7 +619,9 @@ def cleanup_intids(context=None):
     logger.info(Counter(all_refs))
 
     count = 0
-    refs = [i for i in list(intids.refs.values()) if isinstance(i.object, RelationValue)]
+    refs = [
+        i for i in list(intids.refs.values()) if isinstance(i.object, RelationValue)
+    ]
     for ref in refs:
         intids.unregister(ref)
         count += 1

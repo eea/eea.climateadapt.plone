@@ -600,7 +600,7 @@ indicator_layout_blocks = {
                                     "field": {
                                         "id": "map_graphs_full_width",
                                         "title": "Full-width map/graph",
-                                        "widget": "boolean"
+                                        "widget": "boolean",
                                     },
                                 },
                                 {
@@ -2925,16 +2925,7 @@ adaptation_option_layout_blocks = {
     "51cf893d-fa12-47b8-98b2-670b19bc6d81": {
         "@type": "slate",
         "plaintext": "Related Resources",
-        "value": [
-            {
-                "children": [
-                    {
-                        "text": "Related Resources"
-                    }
-                ],
-                "type": "h3"
-            }
-        ]
+        "value": [{"children": [{"text": "Related Resources"}], "type": "h3"}],
     },
     "a9dd800e-d56f-439a-9277-b82e7e0afd0f": {
         "@type": "tabs_block",
@@ -3186,8 +3177,9 @@ adaptation_option_layout_blocks = {
                                     "field": {
                                         "id": "relevant_eu_policies",
                                         "title": "Relevant EU policies",
-                                        "widget": "array"
+                                        "widget": "array",
                                     },
+                                    "showLabel": True,
                                 },
                                 {
                                     "@id": "6f5e2f1e-1dcb-4f3c-8f13-1f3e3e5e2b6a",
@@ -3303,10 +3295,7 @@ adaptation_option_layout_blocks = {
     },
     "1e411caf-2644-46db-b6ae-abe156a36cba": {
         "@type": "metadata",
-        "data": {
-            "id": "show_related_resources",
-            "widget": "boolean"
-        }
+        "data": {"id": "show_related_resources", "widget": "boolean"},
     },
     "c68bcb7e-b899-4d2f-a87b-161c38b98a35": {
         "@type": "tabs_block",
@@ -3327,22 +3316,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "73aa1701-c78a-4452-8a7f-006e8f9bf98b": {
                                     "@type": "teaser",
@@ -3351,22 +3336,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "a9aa7eed-ecd6-484c-a4e2-29badce6dd08": {
                                     "@type": "teaser",
@@ -3375,22 +3356,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "c28ad344-f933-444d-b8c8-4eee36f85675": {
                                     "@type": "teaser",
@@ -3399,22 +3376,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "cbb5b136-2e16-4e43-84d0-dc85910f685c": {
                                     "@type": "teaser",
@@ -3423,22 +3396,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "fe8abe08-15e2-47fd-ba7d-182aa243b008": {
                                     "@type": "teaser",
@@ -3447,23 +3416,19 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
-                                }
+                                    "styles": {"align": "left"},
+                                    "title": "",
+                                },
                             },
                             "blocks_layout": {
                                 "items": [
@@ -3472,19 +3437,17 @@ adaptation_option_layout_blocks = {
                                     "38d950cb-1182-41f2-9f2b-c52e5e92837a",
                                     "c28ad344-f933-444d-b8c8-4eee36f85675",
                                     "a9aa7eed-ecd6-484c-a4e2-29badce6dd08",
-                                    "73aa1701-c78a-4452-8a7f-006e8f9bf98b"
+                                    "73aa1701-c78a-4452-8a7f-006e8f9bf98b",
                                 ]
-                            }
+                            },
                         }
                     },
                     "blocks_layout": {
-                        "items": [
-                            "4ec61167-9f41-437b-bad5-3196b48c71af"
-                        ]
+                        "items": ["4ec61167-9f41-437b-bad5-3196b48c71af"]
                     },
                     "iconSize": "small",
                     "imageSize": "icon",
-                    "title": "Specific adaptation options"
+                    "title": "Specific adaptation options",
                 },
                 "36755c43-8554-4aa7-a4e1-5925caeee0fe": {
                     "@type": "tab",
@@ -3498,19 +3461,19 @@ adaptation_option_layout_blocks = {
                                         "blocks": {
                                             "aedea9f2-ba01-447f-beef-4339af2c833f": {
                                                 "@type": "callToActionBlock",
-                                                    "download": False,
-                                                    "styles": {
-                                                        "align": "full",
-                                                        "theme": "primary"
-                                                 },
-                                                "text": "Click here"
+                                                "download": False,
+                                                "styles": {
+                                                    "align": "full",
+                                                    "theme": "primary",
+                                                },
+                                                "text": "Click here",
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
                                                 "aedea9f2-ba01-447f-beef-4339af2c833f"
                                             ]
-                                        }
+                                        },
                                     },
                                     "123c6477-1351-4452-945a-6301bb299ea1": {
                                         "blocks": {
@@ -3522,7 +3485,7 @@ adaptation_option_layout_blocks = {
                                             "items": [
                                                 "54779ea5-10ae-455a-8d2b-4d0852d347e7"
                                             ]
-                                        }
+                                        },
                                     },
                                     "9ccad2eb-017c-471c-b69c-66f14134a9b5": {
                                         "blocks": {
@@ -3534,7 +3497,7 @@ adaptation_option_layout_blocks = {
                                             "items": [
                                                 "26bba3bb-e577-41db-9dfe-1bf7b1a3557f"
                                             ]
-                                        }
+                                        },
                                     },
                                     "ca1c651f-dee2-4867-aa65-9a739dae54df": {
                                         "blocks": {
@@ -3543,45 +3506,43 @@ adaptation_option_layout_blocks = {
                                                 "download": False,
                                                 "styles": {
                                                     "align": "full",
-                                                    "theme": "primary"
+                                                    "theme": "primary",
                                                 },
-                                                "text": "Click here"
+                                                "text": "Click here",
                                             }
                                         },
                                         "blocks_layout": {
                                             "items": [
                                                 "1fb9f1a4-3b0b-4a03-b4e7-e831f1241e53"
                                             ]
-                                        }
-                                    }
+                                        },
+                                    },
                                 },
                                 "blocks_layout": {
                                     "items": [
                                         "ca1c651f-dee2-4867-aa65-9a739dae54df",
                                         "0bdb2f01-1e90-49d7-8d5e-1fcbca81d325",
                                         "123c6477-1351-4452-945a-6301bb299ea1",
-                                        "9ccad2eb-017c-471c-b69c-66f14134a9b5"
+                                        "9ccad2eb-017c-471c-b69c-66f14134a9b5",
                                     ]
-                                }
+                                },
                             },
                             "gridCols": [
                                 "oneQuarter",
                                 "oneQuarter",
                                 "oneQuarter",
-                                "oneQuarter"
+                                "oneQuarter",
                             ],
                             "gridSize": 12,
-                            "styles": {}
+                            "styles": {},
                         }
                     },
                     "blocks_layout": {
-                        "items": [
-                            "eeb7a670-e1a9-4480-a699-efcde127de73"
-                        ]
+                        "items": ["eeb7a670-e1a9-4480-a699-efcde127de73"]
                     },
                     "iconSize": "small",
                     "imageSize": "icon",
-                    "title": "Implementation measures and techniques"
+                    "title": "Implementation measures and techniques",
                 },
                 "d67e1cd3-c7d1-41ed-96de-4b825e99448a": {
                     "@type": "tab",
@@ -3597,22 +3558,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "73aa1701-c78a-4452-8a7f-006e8f9bf98b": {
                                     "@type": "teaser",
@@ -3621,22 +3578,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "a9aa7eed-ecd6-484c-a4e2-29badce6dd08": {
                                     "@type": "teaser",
@@ -3645,22 +3598,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "c28ad344-f933-444d-b8c8-4eee36f85675": {
                                     "@type": "teaser",
@@ -3669,22 +3618,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "cbb5b136-2e16-4e43-84d0-dc85910f685c": {
                                     "@type": "teaser",
@@ -3693,22 +3638,18 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
+                                    "styles": {"align": "left"},
+                                    "title": "",
                                 },
                                 "fe8abe08-15e2-47fd-ba7d-182aa243b008": {
                                     "@type": "teaser",
@@ -3717,23 +3658,19 @@ adaptation_option_layout_blocks = {
                                     "href": [],
                                     "itemModel": {
                                         "@type": "card",
-                                        "callToAction": {
-                                            "label": "Read more"
-                                        },
+                                        "callToAction": {"label": "Read more"},
                                         "hasDate": False,
                                         "hasEventDate": False,
                                         "hasLink": True,
                                         "maxDescription": 2,
                                         "maxTitle": 2,
                                         "styles": {},
-                                        "titleOnImage": False
+                                        "titleOnImage": False,
                                     },
                                     "overwrite": True,
-                                    "styles": {
-                                        "align": "left"
-                                    },
-                                    "title": ""
-                                }
+                                    "styles": {"align": "left"},
+                                    "title": "",
+                                },
                             },
                             "blocks_layout": {
                                 "items": [
@@ -3742,41 +3679,39 @@ adaptation_option_layout_blocks = {
                                     "38d950cb-1182-41f2-9f2b-c52e5e92837a",
                                     "c28ad344-f933-444d-b8c8-4eee36f85675",
                                     "a9aa7eed-ecd6-484c-a4e2-29badce6dd08",
-                                    "73aa1701-c78a-4452-8a7f-006e8f9bf98b"
+                                    "73aa1701-c78a-4452-8a7f-006e8f9bf98b",
                                 ]
-                            }
+                            },
                         }
                     },
                     "blocks_layout": {
-                        "items": [
-                            "37e57ff7-c784-48e0-bb5a-8cf79df1ec7f"
-                        ]
+                        "items": ["37e57ff7-c784-48e0-bb5a-8cf79df1ec7f"]
                     },
                     "iconSize": "small",
                     "imageSize": "icon",
-                    "title": "Strategic adaptation options"
-                }
+                    "title": "Strategic adaptation options",
+                },
             },
             "blocks_layout": {
                 "items": [
                     "d67e1cd3-c7d1-41ed-96de-4b825e99448a",
                     "0b037ab3-4eb5-44e7-be80-d41cde2ef842",
-                    "36755c43-8554-4aa7-a4e1-5925caeee0fe"
+                    "36755c43-8554-4aa7-a4e1-5925caeee0fe",
                 ]
             },
             "iconSize": "small",
-            "imageSize": "icon"
+            "imageSize": "icon",
         },
         "menuFluid": True,
         "menuPointing": True,
         "menuSecondary": True,
         "variation": "default",
-        "verticalAlign": "flex-start"
+        "verticalAlign": "flex-start",
     },
     "ec2dd403-0964-413c-ac37-67c2bbc0a4c9": {
         "copyrightIcon": "ri-copyright-line",
         "styles": {},
         "variation": "default",
-        "@type": "title"
+        "@type": "title",
     },
 }

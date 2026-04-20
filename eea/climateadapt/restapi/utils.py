@@ -9,7 +9,12 @@ from zope.component import getUtility
 from zope.schema.interfaces import IVocabularyFactory
 
 from eea.climateadapt.browser import get_date_updated, get_files
-from eea.climateadapt.vocabulary import BIOREGIONS, SUBNATIONAL_REGIONS, RELEVANT_EU_POLICY_URLS, ace_countries_dict
+from eea.climateadapt.vocabulary import (
+    BIOREGIONS,
+    SUBNATIONAL_REGIONS,
+    RELEVANT_EU_POLICY_URLS,
+    ace_countries_dict,
+)
 
 
 def get_geographic(item, result={}):
@@ -121,8 +126,7 @@ def cca_content_serializer(item, result, request):
         else:
             result["description"] = ""
 
-    result["cca_last_modified"] = json_compatible(
-        dates["cadapt_last_modified"])
+    result["cca_last_modified"] = json_compatible(dates["cadapt_last_modified"])
     result["cca_published"] = json_compatible(dates["cadapt_published"])
     result["is_cca_content"] = True
     result["language"] = getattr(item, "language", "en")
@@ -274,7 +278,9 @@ def extract_section_text(blocks, items, start_title, end_title=None):
     if start_idx is None:
         return ""
 
-    content_slice = items[start_idx + 1:end_idx] if end_idx else items[start_idx + 1:]
+    content_slice = (
+        items[start_idx + 1 : end_idx] if end_idx else items[start_idx + 1 :]
+    )
     parts = []
 
     for bid in content_slice:
@@ -289,7 +295,8 @@ def extract_section_text(blocks, items, start_title, end_title=None):
         if text:
             parts.append(text.rstrip("."))
 
-    return "\n".join(p.strip().rstrip('.') for p in parts if p.strip())
+    return "\n".join(p.strip().rstrip(".") for p in parts if p.strip())
+
 
 def serialize_blocks(blocks, items, result, metadata_ids=None):
     parts = []
@@ -311,7 +318,9 @@ def serialize_blocks(blocks, items, result, metadata_ids=None):
                 parts.append(text)
 
         elif btype == "quote":
-            text = render_slate_value(block.get("value", [])) or block.get("plaintext", "")
+            text = render_slate_value(block.get("value", [])) or block.get(
+                "plaintext", ""
+            )
             text = (text or "").strip()
             if text:
                 safe = text.replace('"', '""')
@@ -347,18 +356,22 @@ def serialize_blocks(blocks, items, result, metadata_ids=None):
 
     return "\n\n".join(parts)
 
+
 def richtext_to_plain_text(value):
     if isinstance(value, dict) and "data" in value:
         html = value.get("data", "")
         return html_to_plain_text(html, inline_links=False)
     return value
 
+
 def serialize_relevant_eu_policies(context):
     values = getattr(context, "relevant_eu_policies", None) or []
     if not values:
         return []
 
-    vocab_factory = getUtility(IVocabularyFactory, "eea.climateadapt.relevant_eu_policies")
+    vocab_factory = getUtility(
+        IVocabularyFactory, "eea.climateadapt.relevant_eu_policies"
+    )
     vocab = vocab_factory(context)
 
     out = []
