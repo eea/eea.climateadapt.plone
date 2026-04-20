@@ -9,7 +9,7 @@ VERSION = open(os.path.join(*PATH)).read().strip()
 
 long_description = "\n\n".join(
     (
-        open("README.rst").read()
+        open("README.md").read()
         + "\n"
         + open(os.path.join("docs", "HISTORY.txt")).read()
     ),
@@ -19,7 +19,7 @@ setup(
     name="eea.climateadapt",
     version=VERSION,
     description="EEA ClimateAdapt for Plone",
-    long_description_content_type="text/x-rst",
+    long_description_content_type="text/markdown",
     long_description=long_description,
     # Get more strings from
     # http://pypi.python.org/pypi?%3Aaction=list_classifiers
