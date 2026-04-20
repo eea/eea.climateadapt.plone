@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.7-dev0 - (unreleased)
+---------------------------
+
 1.6 - (2026-04-07)
 ---------------------------
 * Change: (feat): Add Jenkinsfile to align with other add-ons and release to eggrepo [valentinab25]
