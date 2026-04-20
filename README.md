@@ -38,31 +38,27 @@ The translation process is handled asynchronously via the following steps:
 
 ## Development & Usage
 
-### Installation
-The project uses `buildout` for dependency management and instance creation.
+### Installation & Orchestration
+This project is intended to be run as part of the [eea.docker.plone-climateadapt](https://github.com/eea/eea.docker.plone-climateadapt) orchestration.
 
-1.  **Dependencies**: Ensure system dependencies for Plone are installed (libxml2, libxslt, etc.).
-2.  **Buildout**:
-    ```bash
-    ./bin/buildout
-    ```
+Please refer to that repository for detailed instructions on how to set up the full stack (Backend, Frontend, Redis, and Translation micro-services) using Docker and `docker-compose`.
 
-### Running the Instance
+In a typical development environment:
+1.  Clone the orchestration repository.
+2.  The source code of this package is usually mapped into the `backend/sources/eea.climateadapt` directory.
+3.  Use `docker compose` to start the services.
+
+### Running Tests
+To run tests within the Docker environment:
 ```bash
-./bin/instance fg
-```
-
-### Testing
-Tests are run using `zope.testrunner`.
-```bash
-./bin/test -s eea.climateadapt
+docker compose exec backend ./bin/test -s eea.climateadapt
 ```
 
 ### Code Style
 The project uses `ruff` for code style.
 ```bash
-ruff check .
-ruff format .
+docker compose exec backend ruff check .
+docker compose exec backend ruff format .
 ```
 
 ## Source code
