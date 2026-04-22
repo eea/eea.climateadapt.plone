@@ -2,67 +2,67 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2024-05-15 06:11+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2024-05-23 12:00+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: nn\n"
+"Language-Name: Norwegian Nynorsk\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: eea.climateadapt.frontpage\n"
 "Report-Msgid-Bugs-To: \n"
-"Language: \n"
+"Language: nn\n"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:92
 #: ../theme/climateadaptv2/page.html:98
 msgid "<i class=\"fa fa-calendar\"></i> Events"
-msgstr "<i class = \"fa fa-calendar\"> </i> hendelser"
+msgstr "<i class=\"fa fa-calendar\"></i> Arrangement"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:98
 #: ../theme/climateadaptv2/page.html:104
 msgid "<i class=\"fa fa-envelope\"></i> Newsletter"
-msgstr "<i class = \"fa fa-konvolutt\"> </i> nyhetsbrev"
+msgstr "<i class=\"fa fa-envelope\"></i> Nyheitsbrev"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:86
 #: ../theme/climateadaptv2/page.html:92
 msgid "<i class=\"fa fa-newspaper-o\"></i> News"
-msgstr "<i class = \"fa fa-newspaper-o\"> </i> news"
+msgstr "<i class=\"fa fa-newspaper-o\"></i> Nyheiter"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:75
 #: ../theme/climateadaptv2/page.html:81
 msgid "<i class=\"fa fa-question-circle\"></i> Help"
-msgstr "<i class = \"fa fa-squestion-circle\"> </i> hjelp"
+msgstr "<i class=\"fa fa-question-circle\"></i> Hjelp"
 
 # ,
 #: ../theme/climateadaptv2/index.html:66
 #: ../theme/climateadaptv2/page.html:72
 msgid "<i class=\"fa fa-search\"></i>"
-msgstr "<i class = \"fa fa-search\"> </i>"
+msgstr "<i class=\"fa fa-search\"></i>"
 
 #: ../theme/climateadaptv2/index.html:450
 msgid "Adaptation <br /> Support Tool"
-msgstr ""
+msgstr "Verktøy for <br /> tilpassingsstøtte"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:810
 msgid "Adaptation options"
-msgstr "Tilpasningsalternativer"
+msgstr "Tilpassingsalternativ"
 
 #: ../theme/climateadaptv2/index.html:1547
 msgid "Adaptation support tool"
-msgstr ""
+msgstr "Verktøy for tilpassingsstøtte"
 
 # ,
 # ,
@@ -73,154 +73,154 @@ msgstr "Jordbruk"
 
 #: ../theme/climateadaptv2/index.html:1470
 msgid "Assessing adaptation options"
-msgstr ""
+msgstr "Vurdering av tilpassingsalternativ"
 
 #: ../theme/climateadaptv2/index.html:1452
 msgid "Assessing risks and vulnerability <br /> to climate change"
-msgstr ""
+msgstr "Vurdering av risiko og sårbarheit <br /> for klimaendringar"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:935
 #: ../theme/climateadaptv2/tab-policies-rule.html:23
 msgid "Biodiversity"
-msgstr "Biodiversitet"
+msgstr "Biomangfald"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1102
 #: ../theme/climateadaptv2/tab-policies-rule.html:190
 msgid "Biodiversity plays an important role in regulating the climate, thus making a key contribution to climate change mitigation and adaptation. At the same time, meeting mitigation targets coupled with ecosystem-based approaches is essential to avert biodiversity loss. Therefore it is impossible to address biodiversity loss without addressing climate change, but it is equally impossible to tackle climate change without addressing biodiversity loss."
-msgstr "Biodiversitet spiller en viktig rolle i å regulere klimaet, og gir dermed et sentralt bidrag til avbøtning og tilpasning av klimaendringer. Samtidig er det avgjørende for å avverge mål kombinert med økosystembaserte tilnærminger for å avverge tap av biologisk mangfold. Derfor er det umulig å adressere tap av biologisk mangfold uten å adressere klimaendringer, men det er like umulig å takle klimaendringer uten å ta opp tap av biologisk mangfold."
+msgstr "Biomangfald spelar ei viktig rolle i å regulere klimaet og gir dermed eit sentralt bidrag til avgrensing av og tilpassing til klimaendringar. Samtidig er det avgjerande å nå måla for utsleppsreduksjonar i kombinasjon med økosystembaserte tilnærmingar for å avverje tap av biomangfald. Derfor er det umogleg å handtere tap av biomangfald utan å handtere klimaendringar, men det er like umogleg å takle klimaendringar utan å handtere tap av biomangfald."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:943
 #: ../theme/climateadaptv2/tab-policies-rule.html:31
 msgid "Buildings"
-msgstr "Bygninger"
+msgstr "Bygningar"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1117
 #: ../theme/climateadaptv2/tab-policies-rule.html:205
 msgid "Buildings can be vulnerable to climate change. In the future there may be an increase in the risk of collapse, declining state and significant loss of value as a result of more storms, snow or subsidence damage, water encroachment, deteriorating indoor climate and reduced building lifetime. The European Commission aims to increase the climate resilience of infrastructure, including buildings. New and existing buildings need to be assessed for resilience to current risks and future climate changes, and planned or upgraded accordingly. A key policy used to support the resilience of buildings is the Cohesion Policy (also referred to as Regional Policy)."
-msgstr "Bygninger kan være sårbare for klimaendringer. I fremtiden kan det være en økning i risikoen for kollaps, synkende tilstand og betydelig verdi av verdi som et resultat av mer stormer, snø eller innsynkningsskader, vanninngrep, forverret innendørs klima og redusert bygningsliv. EU -kommisjonen tar sikte på å øke klimaspillere ved infrastruktur, inkludert bygninger. Nye og eksisterende bygninger må vurderes for motstandskraft mot dagens risikoer og fremtidige klimaendringer, og planlagt eller oppgradert deretter. En nøkkelpolitikk som brukes for å støtte bygningens motstandskraft er samholdspolitikken (også referert til som regional politikk)."
+msgstr "Bygningar kan vere sårbare for klimaendringar. I framtida kan det bli auka risiko for kollaps, dårlegare tilstand og betydeleg verditap som følgje av fleire stormar, snø- eller setningsskadar, vassinntrenging, dårlegare inneklima og redusert levetid for bygningar. EU-kommisjonen har som mål å auke klimamotstandskrafta for infrastruktur, inkludert bygningar. Nye og eksisterande bygningar må vurderast for motstandskraft mot noverande risiko og framtidige klimaendringar, og planleggast eller oppgraderast deretter. Ein sentral politikk som blir brukt for å støtte motstandskrafta i bygningar, er samhaldspolitikken (også kalla regionalpolitikk)."
 
 #: ../theme/climateadaptv2/index.html:951
 #: ../theme/climateadaptv2/tab-policies-rule.html:39
 msgid "Business and Industry"
-msgstr ""
+msgstr "Næringsliv og industri"
 
 #: ../theme/climateadaptv2/index.html:1332
 #: ../theme/climateadaptv2/tab-policies-rule.html:420
 msgid "By the end of the century, it is projected that European mountains will have changed physically. Glaciers will have experienced significant mass loss, but changes also impact the lower, mid-hills, and floodplain environments, thereby affecting water availability, agricultural production, tourism, and health sectors. Seasonal snow lines will be found at higher elevations, and snow seasons will become shorter. Tree lines will move up and forest patterns will change in lower elevations."
-msgstr ""
+msgstr "Innan slutten av hundreåret er det venta at europeiske fjellområde vil ha endra seg fysisk. Isbrear vil ha hatt eit betydeleg masstap, men endringane påverkar også lågare strøk, åsar og flomsletter, noko som påverkar vasstilgang, landbruksproduksjon, turisme og helsesektor. Sesongbaserte snøgrenser vil flytte seg høgare opp, og snøsesongane vil bli kortare. Tregrensene vil flytte seg oppover, og skogmønstra i lågare strøk vil endre seg."
 
 #: ../theme/climateadaptv2/index.html:444
 msgid "Case <br /> Studies"
-msgstr ""
+msgstr "Casestudiar"
 
 #: ../theme/climateadaptv2/index.html:1408
 msgid "Case Studies Page"
-msgstr ""
+msgstr "Side for casestudiar"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:819
 msgid "Case studies"
-msgstr "Casestudier"
+msgstr "Casestudiar"
 
 #: ../theme/climateadaptv2/index.html:1422
 msgid "Case studies booklet"
-msgstr ""
+msgstr "Hefte med casestudiar"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1723
 msgid "Check the <a href=\"../newsletter\">European Climate Adaptation Newsletter</a> and register to receive it in your e-mail:"
-msgstr "Sjekk <a href=\"../Newsletter\"> European Climate Adaptation Newsletter </a> og registrer deg for å motta den i e-posten din:"
+msgstr "Sjekk <a href=\"../newsletter\">Det europeiske nyheitsbrevet om klimatilpassing</a> og registrer deg for å få det på e-post:"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1162
 #: ../theme/climateadaptv2/tab-policies-rule.html:250
 msgid "Climate change affects the energy sector in multiple ways, ranging from changes in heating and cooling demand; to impacts on energy supply conditions – for example decreased water availability for hydropower during prolonged droughts and reduced availability of cooling water affecting the efficiency of power plants. Furthermore, energy infrastructure can be more exposed to damages by changing climate conditions. The European Commission in general aims to increase the climate resilience of infrastructure including energy by providing strategical frameworks."
-msgstr "Klimaendringer påvirker energisektoren på flere måter, alt fra endringer i oppvarming og kjøle etterspørsel; For å påvirke energiforsyningsforholdene - for eksempel redusert vanntilgjengelighet for vannkraft under langvarige tørke og redusert tilgjengeligheten av kjølevann som påvirker effektiviteten til kraftverk. Videre kan energiinfrastruktur bli mer utsatt for skader ved å endre klimaforhold. EU -kommisjonen generelt har som mål å øke klimaspillere ved infrastruktur inkludert energi ved å gi strategiske rammer."
+msgstr "Klimaendringar påverkar energisektoren på fleire måtar, frå endringar i behovet for oppvarming og kjøling til påverknad på energiforsyninga – til dømes redusert vasstilgang for vasskraft under langvarig tørke og redusert tilgang på kjølevatn som påverkar effektiviteten i kraftverk. Vidare kan energiinfrastruktur bli meir utsett for skadar ved endra klimaforhold. EU-kommisjonen har som overordna mål å auke klimamotstandskrafta for infrastruktur, inkludert energi, ved å tilby strategiske rammeverk."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1087
 #: ../theme/climateadaptv2/tab-policies-rule.html:175
 msgid "Climate change has complex effects on the bio-physical processes that underpin agricultural systems, with both negative and positive consequences in different EU regions. Rising atmospheric CO2 concentration, higher temperatures, changes in precipitation patterns and in frequency of extreme events both affect the natural environment as well as the quantity, quality and stability of food production. Climatic variations impact on water resources, soils, pests and diseases, leading to significant changes in agriculture and livestock production."
-msgstr "Klimaendringer har komplekse effekter på de biofysiske prosessene som understøtter landbrukssystemer, med både negative og positive konsekvenser i forskjellige EU-regioner. Stigende atmosfærisk CO2 -konsentrasjon, høyere temperaturer, endringer i nedbørmønstre og i hyppighet av ekstreme hendelser påvirker begge det naturlige miljøet så vel som mengde, kvalitet og stabilitet i matproduksjonen. Klimatiske variasjoner påvirker vannressurser, jordsmonn, skadedyr og sykdommer, noe som fører til betydelige endringer i landbruket og husdyrproduksjon."
+msgstr "Klimaendringar har komplekse effektar på dei biofysiske prosessane som ligg til grunn for landbrukssystem, med både negative og positive konsekvensar i ulike EU-regionar. Aukande CO2-konsentrasjon i atmosfæren, høgare temperaturar, endringar i nedbørsmønster og i hyppigheita av ekstreme hendingar påverkar både naturmiljøet og mengda, kvaliteten og stabiliteten i matprodujonen. Klimatiske variasjonar påverkar vassressursar, jordsmonn, skadedyr og sjukdommar, noko som fører til betydelege endringar i landbruk og husdyrproduksjon."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1220
 #: ../theme/climateadaptv2/tab-policies-rule.html:308
 msgid "Climate change is expected to have severe impacts on the marine environment. Increase in water temperatures will contribute to a restructuring of marine ecosystems with implications for ocean circulation, biogeochemical cycling and marine biodiversity. Ocean acidification will affect the ability of some calcium carbonate-secreting species (as molluscs, planktons and corals) to produce their shells or skeletons. Warmer and more acidic seawater will therefore negatively affect fishery and aquaculture."
-msgstr "Klimaendringer forventes å ha alvorlige innvirkninger på det marine miljøet. Økning i vanntemperaturer vil bidra til en omstilling av marine økosystemer med implikasjoner for havsirkulasjon, biogeokjemisk sykling og biologisk mangfold av marint. Havforsuring vil påvirke evnen til noen kalsiumkarbonatsekrettende arter (som bløtdyr, planktoner og koraller) til å produsere skjellene eller skjelettene. Varmere og surere sjøvann vil derfor påvirke fiskeriet og havbruk."
+msgstr "Klimaendringar er venta å få alvorlege konsekvensar for det marine miljøet. Auka vasstemperaturar vil bidra til ei omstrukturering av marine økosystem med følgjer for havsirkulasjon, biogeokjemiske syklusar og marint biomangfald. Havforsuring vil påverke evna enkelte artar som skil ut kalsiumkarbonat (som blautdyr, plankton og korallar) har til å produsere skal eller skjelett. Varmare og surare sjøvatn vil derfor påverke fiskeri og havbruk negativt."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1206
 #: ../theme/climateadaptv2/tab-policies-rule.html:294
 msgid "Climate change will generate new health risks and amplify current health problems. Both direct and indirect effects on human, plant and animal health are expected from climate change. Direct effects result from changes in the intensity and frequency of extreme weather events like heatwaves and floods. Indirect effects can be felt through changes in the incidence of diseases transmitted by insects (i.e. vector borne diseases caused by mosquitoes and ticks), rodents, or changes in water, food and air quality. The European Commission's EU strategy on adaptation to climate change is accompanied by a Staff Working Document."
-msgstr "Klimaendringer vil generere nye helserisikoer og forsterke nåværende helseproblemer. Både direkte og indirekte effekter på mennesker, plante- og dyrehelse forventes av klimaendringer. Direkte effekter er resultatet av endringer i intensiteten og hyppigheten av ekstreme værhendelser som hetebølger og flom. Indirekte effekter kan merkes gjennom endringer i forekomsten av sykdommer overført av insekter (dvs. vektorbårne sykdommer forårsaket av mygg og flått), gnagere eller endringer i vann, mat og luftkvalitet. EU -kommisjonens EU -strategi for tilpasning til klimaendringer er ledsaget av et arbeidsdokument."
+msgstr "Klimaendringar vil skape ny helserisiko og forsterke eksisterande helseproblem. Det er venta både direkte og indirekte effektar på helsa til menneske, plantar og dyr som følgje av klimaendringar. Direkte effektar kjem av endringar i intensitet og hyppigheit for ekstreme vêrhendingar som hetebølgjer og flaum. Indirekte effektar kan merkast gjennom endringar i førekomsten av sjukdommar som blir overførte av insekt (t.d. vektorborne sjukdommar årsaka av mygg og flått), gnagarar, eller endringar i vass-, mat- og luftkvalitet. EU-kommisjonen sin strategi for tilpassing til klimaendringar er følgd av eit arbeidsdokument frå tenestemannsgruppa."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1396
 msgid "Climate-ADAPT case studies showcase initiatives that are already being carried out in Europe to adapt to climate change and increase resilience to extreme weather and slow-onset events."
-msgstr "Klima-tilpasning av casestudier viser initiativer som allerede blir utført i Europa for å tilpasse seg klimaendringer og øke motstandskraften til ekstrem vær og sakte-begynnende hendelser."
+msgstr "Climate-ADAPT-casestudiar viser initiativ som allereie blir gjennomførte i Europa for å tilpasse seg klimaendringar og auke motstandskrafta mot ekstremvêr og hendingar som utviklar seg sakte."
 
 #: ../theme/climateadaptv2/index.html:140
 #: ../theme/climateadaptv2/page.html:146
 msgid "Climate-ADAPT is undergoing reconstruction until June 2024 to improve its performance. We apologise for any possible disturbance to the content and functionality of the platform."
-msgstr ""
+msgstr "Climate-ADAPT går gjennom ein rekonstruksjon fram til juni 2024 for å betre ytinga. Vi beklagar eventuelle forstyrringar i innhald og funksjonalitet på plattforma."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:959
 #: ../theme/climateadaptv2/tab-policies-rule.html:47
 msgid "Coastal areas"
-msgstr "Kystområder"
+msgstr "Kystområde"
 
 #: ../theme/climateadaptv2/index.html:438
 msgid "Country <br /> Profiles"
-msgstr ""
+msgstr "Landsproflar"
 
 #: ../theme/climateadaptv2/index.html:967
 #: ../theme/climateadaptv2/tab-policies-rule.html:55
 msgid "Cultural Heritage"
-msgstr ""
+msgstr "Kulturarv"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:975
 #: ../theme/climateadaptv2/tab-policies-rule.html:63
 msgid "Disaster risk <br /> reduction"
-msgstr "Katastrofisiko <br /> Reduksjon"
+msgstr "Reduksjon av <br /> katastroferisiko"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1146
 #: ../theme/climateadaptv2/tab-policies-rule.html:234
 msgid "Disaster risk reduction"
-msgstr "Reduksjon av katastrofeisiko"
+msgstr "Reduksjon av katastroferisiko"
 
 #: ../theme/climateadaptv2/index.html:536
 msgid "EU Mission on Adaptation"
-msgstr ""
+msgstr "EU-oppdrag om tilpassing"
 
 #: ../theme/climateadaptv2/index.html:432
 msgid "EU Sector <br /> Policies"
-msgstr ""
+msgstr "Sektorpolitikk i EU"
 
 #: ../theme/climateadaptv2/index.html:1358
 msgid "EU Sector Policies"
-msgstr ""
+msgstr "Sektorpolitikk i EU"
 
 # ,
 # ,
@@ -231,36 +231,36 @@ msgstr "Energi"
 
 #: ../theme/climateadaptv2/index.html:567
 msgid "Europe is the fastest warming continent in the world, and climate risks are threatening its energy and food security, ecosystems, infrastructure, water resources, financial stability, and people’s health. According to the first ever European Climate Risk Assessment (EUCRA) published by the EEA, many of these risks have already reached critical levels and can become catastrophic without urgent and decisive action."
-msgstr ""
+msgstr "Europa er det kontinentet i verda som blir raskast oppvarma, og klimarisiko truar energi- og matforsyninga, økosystem, infrastruktur, vassressursar, finansiell stabilitet og helsa til folk. Ifølgje den aller første europeiske klimarisikovurderinga (EUCRA) publisert av EEA, har mange av desse risikoane allereie nådd kritiske nivå og kan bli katastrofale utan raske og avgjerande tiltak."
 
 #: ../theme/climateadaptv2/index.html:550
 msgid "European Climate Data Explorer"
-msgstr ""
+msgstr "Europeisk klimadata-utforskar"
 
 #: ../theme/climateadaptv2/index.html:566
 msgid "European Climate Risk Assessment"
-msgstr ""
+msgstr "Europeisk klimarisikovurdering"
 
 #: ../theme/climateadaptv2/index.html:529
 msgid "European Climate Risk Assessment<br />(EUCRA)"
-msgstr ""
+msgstr "Europeisk klimarisikovurdering<br />(EUCRA)"
 
 #: ../theme/climateadaptv2/index.html:543
 msgid "European Climate and Health Observatory"
-msgstr ""
+msgstr "Europeisk klima- og helseobservatorium"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1636
 msgid "Events"
-msgstr "arrangementer"
+msgstr "Arrangement"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1177
 #: ../theme/climateadaptv2/tab-policies-rule.html:265
 msgid "Extreme weather events in recent years have increased the urgency to mainstream climate change adaptation into the different EU policy fields. There are few specific EU activities to mainstream climate change adaptation into policies for financial and insurance sectors. However many European policies related to natural disasters (see Disaster risk reduction) are very relevant to the financial and insurance sector, as they may help to prevent significant losses and financial disasters. The European Commission has also committed itself to increasing financing of climate-related activities by ensuring that at least 20% of the European budget is climate-related expenditure."
-msgstr "Ekstreme værhendelser de siste årene har økt hastigheten til mainstream klimaendringstilpasning til de forskjellige EU -politikkfeltene. Det er få spesifikke EU -aktiviteter for å tilpasning av klimaendringene til retningslinjer for finans- og forsikringssektorer. Imidlertid er mange europeiske politikker relatert til naturkatastrofer (se reduksjon av katastrofeisiko) veldig relevante for finans- og forsikringssektoren, da de kan bidra til å forhindre betydelige tap og økonomiske katastrofer. EU-kommisjonen har også forpliktet seg til å øke finansieringen av klimarelaterte aktiviteter ved å sikre at minst 20% av det europeiske budsjettet er klimarelaterte utgifter."
+msgstr "Ekstreme vêrhendingar dei siste åra har gjort det viktigare å integrere tilpassing til klimaendringar i dei ulike politikkområda i EU. Det er få spesifikke EU-aktivitetar for å integrere klimatilpassing i politikken for finans- og forsikringssektorane. Likevel er mange europeiske strategiar knytte til naturkatastrofar (sjå Reduksjon av katastroferisiko) svært relevante for finans- og forsikringssektoren, då dei kan bidra til å førebyggje betydelege tap og økonomiske katastrofar. EU-kommisjonen har også forplikta seg til å auke finansieringa av klimarelaterte aktivitetar ved å sørgje for at minst 20 % av EU-budsjettet er klimarelaterte utgifter."
 
 # ,
 # ,
@@ -273,24 +273,24 @@ msgstr "Finansiell"
 # ,
 #: ../theme/climateadaptv2/index.html:1596
 msgid "Find out how to contribute different types of information to Climate-ADAPT"
-msgstr "Finn ut hvordan du kan bidra med forskjellige typer informasjon til klimapapt"
+msgstr "Finn ut korleis du kan bidra med ulike typar informasjon til Climate-ADAPT"
 
 #: ../theme/climateadaptv2/index.html:1276
 #: ../theme/climateadaptv2/tab-policies-rule.html:364
 msgid "Firms face two main types of climate-related risks: direct physical risks and transition risks that arise from society’s response to climate change, mainly mitigation actions. Climate change can have significant impacts on supply chains, distribution, and sales in a number of ways. Heat negatively affects human health and can lead to poorer work performance (reduced productivity) or lower numbers of hours committed to work (labour supply)."
-msgstr ""
+msgstr "Bedrifter står overfor to hovudtypar klimarisiko: direkte fysisk risiko og overgangsrisiko som følgje av samfunnet si handtering av klimaendringar, hovudsakleg utsleppsreduserande tiltak. Klimaendringar kan ha betydeleg påverknad på forsyningskjeder, distribusjon og sal på fleire måtar. Varme påverkar menneskehelsa negativt og kan føre til dårlegare arbeidsprestasjonar (redusert produktivitet) eller færre arbeidstimar (arbeidstilbod)."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1354
 msgid "For more informations visit:"
-msgstr "For mer informasjon besøk:"
+msgstr "For meir informasjon, besøk:"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1557
 msgid "For urban areas guidance visit:"
-msgstr "For urbane områder Veiledningsbesøk:"
+msgstr "For rettleiing om urbane område, besøk:"
 
 # ,
 # ,
@@ -301,33 +301,33 @@ msgstr "Skogbruk"
 
 #: ../theme/climateadaptv2/index.html:568
 msgid "Go to the EUCRA"
-msgstr ""
+msgstr "Gå til EUCRA"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:586
 msgid "Go to the European Climate Data Explorer"
-msgstr "Gå til den europeiske klimadatautforskeren"
+msgstr "Gå til Europeisk klimadata-utforskar"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:605
 msgid "Go to the European Climate and Health Observatory"
-msgstr "Gå til det europeiske klima- og helseobservatoriet"
+msgstr "Gå til Europeisk klima- og helseobservatorium"
 
 #: ../theme/climateadaptv2/index.html:624
 msgid "Go to the Mission Portal"
-msgstr ""
+msgstr "Gå til oppdragsportalen"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:828
 msgid "Guidance"
-msgstr "Veiledning"
+msgstr "Rettleiing"
 
 #: ../theme/climateadaptv2/index.html:800
 msgid "Guidance to search function"
-msgstr ""
+msgstr "Rettleiing til søkefunksjonen"
 
 # ,
 # ,
@@ -339,165 +339,165 @@ msgstr "Helse"
 #: ../theme/climateadaptv2/index.html:1014
 #: ../theme/climateadaptv2/tab-policies-rule.html:102
 msgid "ICT"
-msgstr ""
+msgstr "IKT"
 
 #: ../theme/climateadaptv2/index.html:1461
 msgid "Identifying adaptation options"
-msgstr ""
+msgstr "Identifisere tilpassingsalternativ"
 
 #: ../theme/climateadaptv2/index.html:1479
 msgid "Implementation"
-msgstr ""
+msgstr "Gjennomføring"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1248
 #: ../theme/climateadaptv2/tab-policies-rule.html:336
 msgid "In Europe, nearly 73% of the population live in urban areas and this is projected to increase to over 80% by 2050. Climate change is likely to influence almost all components of cities and towns – their environment, economy and society. This raises new, complex challenges for urban planning and management. Climate change impacts on the hubs of Europe's economic activity, social life, culture and innovation have repercussions far beyond their municipal borders."
-msgstr "I Europa bor nesten 73% av befolkningen i urbane områder, og dette anslås å øke til over 80% innen 2050. Klimaendringer vil sannsynligvis påvirke nesten alle komponenter i byer og tettsteder - deres miljø, økonomi og samfunn. Dette øker nye, komplekse utfordringer for byplanlegging og ledelse. Klimaendringer påvirker knutepunktene for Europas økonomiske aktivitet, sosiale liv, kultur og innovasjon har konsekvenser langt utenfor kommunale grenser."
+msgstr "I Europa bur nesten 73 % av befolkninga i urbane område, og dette er venta å auke til over 80 % innan 2050. Klimaendringar vil truleg påverke nesten alle delar av byar og tettstader – miljøet, økonomien og samfunnet. Dette skaper nye, komplekse utfordringar for byplanlegging og forvaltning. Klimapåverknad på knutepunkta for økonomisk aktivitet, sosialt liv, kultur og innovasjon i Europa har konsekvensar langt utover kommunegrensene."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:837
 msgid "Indicators"
-msgstr "Indikatorer"
+msgstr "Indikatorar"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:846
 msgid "Information portals"
-msgstr "Informasjonsportaler"
+msgstr "Informasjonsportalar"
 
 #: ../theme/climateadaptv2/index.html:1022
 #: ../theme/climateadaptv2/tab-policies-rule.html:110
 msgid "Land use planning"
-msgstr ""
+msgstr "Arealplanlegging"
 
 #: ../theme/climateadaptv2/index.html:1318
 #: ../theme/climateadaptv2/tab-policies-rule.html:406
 msgid "Land use planning is identified as one of the most effective processes to facilitate local adaptation to climate change. Existing processes and tools available through the municipal land use planning process in the EU, including official plans, zoning, and/or development permits, assist in minimizing the development risks to a municipality from the predicted impacts of increased floods, wildfires, landslides, and/or other natural hazards due to a changing climate."
-msgstr ""
+msgstr "Arealplanlegging er identifisert som ein av dei mest effektive prosessane for å legge til rette for lokal klimatilpassing. Eksisterande prosessar og verktøy som er tilgjengelege gjennom den kommunale arealplanlegginga i EU, inkludert offentlege planar, regulering og/eller utbyggingsløyve, bidrar til å minimere risikoen for ein kommune frå venta konsekvensar av auka flaum, skogbrann, jordskred og/eller andre naturfarar som følgje av eit klima i endring."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1030
 #: ../theme/climateadaptv2/tab-policies-rule.html:118
 msgid "Marine <br /> &amp; fisheries"
-msgstr "Marine <br /> & amp; fiskerier"
+msgstr "Hav <br /> &amp; fiskeri"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1219
 #: ../theme/climateadaptv2/tab-policies-rule.html:307
 msgid "Marine and fisheries"
-msgstr "Marine og fiskerier"
+msgstr "Hav og fiskeri"
 
 #: ../theme/climateadaptv2/index.html:1488
 msgid "Monitoring &amp; Evaluation (M&amp;E)"
-msgstr ""
+msgstr "Overvaking og evaluering (M&amp;E)"
 
 #: ../theme/climateadaptv2/index.html:1695
 msgid "More events"
-msgstr ""
+msgstr "Fleire arrangement"
 
 #: ../theme/climateadaptv2/index.html:1666
 msgid "More news"
-msgstr ""
+msgstr "Fleire nyheiter"
 
 #: ../theme/climateadaptv2/index.html:1038
 #: ../theme/climateadaptv2/tab-policies-rule.html:126
 msgid "Mountain areas"
-msgstr ""
+msgstr "Fjellområde"
 
 #: ../theme/climateadaptv2/index.html:420
 msgid "New <br /> Features"
-msgstr ""
+msgstr "Nye <br /> funksjonar"
 
 #: ../theme/climateadaptv2/index.html:1611
 msgid "New EEA product: European Climate Risk Assessment."
-msgstr ""
+msgstr "Nytt EEA-produkt: Europeisk klimarisikovurdering."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1633
 msgid "News"
-msgstr "Nyheter"
+msgstr "Nyheiter"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1709
 msgid "Newsletter"
-msgstr "Nyhetsbrev"
+msgstr "Nyheitsbrev"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:864
 msgid "Organisations"
-msgstr "Organisasjoner"
+msgstr "Organisasjonar"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1147
 #: ../theme/climateadaptv2/tab-policies-rule.html:235
 msgid "Over the past few years, Europe has experienced every type of natural disasters: severe floods, droughts, and forest fires with devastating effects on people's lives, the European economy and the environment. In the past decade, the European Commission adopted several strategies and actions to cope with disaster risk reduction as, for instance, the Floods Directive and its implementation (timetable), the EU Action on Water Scarcity and Drought, the Green Paper on insurance in the context of natural and man-made disasters."
-msgstr "I løpet av de siste årene har Europa opplevd alle typer naturkatastrofer: alvorlige flom, tørke og skogbranner med ødeleggende effekter på folks liv, den europeiske økonomien og miljøet. I løpet av det siste tiåret vedtok EU -kommisjonen flere strategier og handlinger for å takle reduksjon av katastroferisiko som for eksempel flomdirektivet og dens implementering (timeplan), EU kontekst av naturlige og menneskeskapte katastrofer."
+msgstr "I løpet av dei siste åra har Europa opplevd alle typar naturkatastrofar: alvorlege flaumar, tørke og skogbrannar med øydeleggande effektar på liv, økonomi og miljø. Det siste tiåret har EU-kommisjonen vedteke fleire strategiar og tiltak for å handtere reduksjon av katastroferisiko, som til dømes flaumdirektivet og gjennomføringa av dette (tidsplan), EU-tiltak mot vassmangel og tørke, og grønboka om forsikring i samband med naturlege og menneskeskapte katastrofar."
 
 #: ../theme/climateadaptv2/index.html:1443
 msgid "Preparing the ground for adaptation"
-msgstr ""
+msgstr "Førebu grunnen for tilpassing"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:882
 msgid "Publications and reports"
-msgstr "Publikasjoner og rapporter"
+msgstr "Publikasjonar og rapportar"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1712
 msgid "RSS feed"
-msgstr "RSS -feed"
+msgstr "RSS-strøym"
 
 #: ../theme/climateadaptv2/index.html:1623
 msgid "Read more"
-msgstr ""
+msgstr "Les meir"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:891
 msgid "Research and knowledge projects"
-msgstr "Forsknings- og kunnskapsprosjekter"
+msgstr "Forskings- og kunnskapsprosjekt"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1132
 #: ../theme/climateadaptv2/tab-policies-rule.html:220
 msgid "Sea level rise can cause flooding, coastal erosion and the loss of low-lying coastal systems. It will also increase the risk of storm surges and the likelihood of landward intrusion of saltwater and may endanger coastal ecosystems. Expected rises in water temperatures and ocean acidification will contribute to a restructuring of coastal ecosystems; with implications for ocean circulation and biogeochemical cycling."
-msgstr "Havnivåstigning kan forårsake flom, erosjon av kyst og tap av lavtliggende kystsystemer. Det vil også øke risikoen for stormflo og sannsynligheten for inntrenging av landover av saltvann og kan sette kystøkosystemene i fare. Forventede stigninger i vanntemperaturer og forsuring av havet vil bidra til en omstilling av kystøkosystemer; med implikasjoner for havsirkulasjon og biogeokjemisk sykling."
+msgstr "Havnivåstigning kan føre til flaum, kysterosjon og tap av lågtliggjande kystsystem. Det vil også auke risikoen for stormflo og sannsynet for at saltvatn trenger inn på land, noko som kan true kystøkosystem. Venta stigning i vasstemperatur og havforsuring vil bidra til ei omstrukturering av kystøkosystem, med følgjer for havsirkulasjon og biogeokjemiske syklusar."
 
 # ,
 #: ../theme/climateadaptv2/index.html:61
 #: ../theme/climateadaptv2/page.html:67
 msgid "Search Climate-ADAPT"
-msgstr "Søk på klimatilpasset"
+msgstr "Søk i Climate-ADAPT"
 
 #: ../theme/climateadaptv2/index.html:426
 msgid "Search the <br /> Database"
-msgstr ""
+msgstr "Søk i <br /> databasen"
 
 #: ../theme/climateadaptv2/index.html:908
 msgid "See complete database"
-msgstr ""
+msgstr "Sjå heile databasen"
 
 #: ../theme/climateadaptv2/index.html:1417
 msgid "See how Europe is adapting to climate change:"
-msgstr ""
+msgstr "Sjå korleis Europa tilpassar seg klimaendringar:"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1595
 msgid "Share <span>your information</span>"
-msgstr "Del <span> Din informasjon </span>"
+msgstr "Del <span>din informasjon</span>"
 
 # ,
 # ,
@@ -508,69 +508,69 @@ msgstr "Meld meg på!"
 #: ../theme/climateadaptv2/index.html:1346
 #: ../theme/climateadaptv2/tab-policies-rule.html:434
 msgid "Since weather and climate have a decisive influence on the travel season and the choice of holiday destinations, the tourism industry is highly dependent on them. There is also a strong connection between nature and tourism, as well as between cultural heritage and tourism. Depending on the location and the time of the year tourism can be positively or negatively impacted by climate change."
-msgstr ""
+msgstr "Sidan vêr og klima har ein avgjerande påverknad på reisesesongen og valet av reisemål, er reiselivsnæringa sterkt avhengig av dette. Det er også ein sterk samanheng mellom natur og turisme, og mellom kulturarv og turisme. Avhengig av stad og tid på året kan turisme bli positivt eller negativt påverka av klimaendringar."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1742
 msgid "Subscribe"
-msgstr "Abonnere"
+msgstr "Abonner"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1740
 msgid "Subscribe to our <strong> RSS feed </strong> <br /> and stay up to date!"
-msgstr "Abonner på <strong> rss -feed </strong> <br /> og hold deg oppdatert!"
+msgstr "Abonner på vår <strong> RSS-strøym </strong> <br /> og hald deg oppdatert!"
 
 #: ../theme/climateadaptv2/index.html:623
 msgid "The EU Mission on Adaptation to Climate Change portal provides relevant information and resources to European regional and local authorities to prepare and plan for climate resilience."
-msgstr ""
+msgstr "Portalen for EU-oppdraget om tilpassing til klimaendringar gir relevant informasjon og ressursar til europeiske regionale og lokale styresmakter for å førebu og planleggje for klimamotstandskraft."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:585
 msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
-msgstr "European Climate Data Explorer gir interaktiv tilgang til mange klimaindekser fra Copernicus klimaendringstjeneste til støtte for tilpasning av klimaendringer."
+msgstr "Den europeiske klimadata-utforskaren gir interaktiv tilgang til many klimaindeksar frå Copernicus’ klimatendringsteneste til støtte for tilpassing til klimaendringar."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:604
 msgid "The European Climate and Health Observatory provides access to a wide range of relevant publications, tools, websites and other resources related to climate change and health."
-msgstr "Det europeiske klima- og helseobservatoriet gir tilgang til et bredt spekter av relevante publikasjoner, verktøy, nettsteder og andre ressurser relatert til klimaendringer og helse."
+msgstr "Det europeiske klima- og helseobservatoriet gir tilgang til eit breitt utval av relevante publikasjonar, verktøy, nettstader og andre ressursar knytte til klimaendringar og helse."
 
 #: ../theme/climateadaptv2/index.html:1615
 msgid "The assessment identifies 36 climate risks that pose major threats to Europe. Many of these have already reached critical levels and can become catastrophic without urgent and decisive action."
-msgstr ""
+msgstr "Vurderinga identifiserer 36 klimarisikoar som utgjer store truslar for Europa. Mange av desse har allereie nådd kritiske nivå og kan bli katastrofale utan raske og avgjerande tiltak."
 
 #: ../theme/climateadaptv2/index.html:1304
 #: ../theme/climateadaptv2/tab-policies-rule.html:392
 msgid "The challenges posed by climate change for the ICT fall into two main categories: acute events and chronic stresses. Acute events (also termed critical or crisis events) include floods (pluvial, fluvial, coastal), ice storms, heatwaves, etc. Acute events compromise ICT infrastructures by destroying or disabling the physical assets that they depend on. Chronic stresses result from more gradual changes in climate norms, such as including changes in temperature ranges and humidity levels. While these impacts are less likely to have catastrophic consequences, they will lead to increased asset degradation, more frequent failures and shorter life spans."
-msgstr ""
+msgstr "Utfordringane klimaendringar skaper for IKT fell i to hovudkategoriar: akutte hendingar og kroniske belastningar. Akutte hendingar (også kalla kritiske eller krisehendingar) inkluderer flaum (regn, elv, kyst), isstormar, hetebølgjer osv. Akutte hendingar skader IKT-infrastruktur ved å øydelegge eller deaktivere dei fysiske ressursane dei er avhengige av. Kroniske belastningar kjem av meir gradvise endringar i klimanormer, som endringar i temperaturområde og fuktigheitsnivå. Sjølv om desse påverknadene er mindre sannsynlege for å få katastrofale følgjer, vil dei føre til auka ressursforringing, hyppigare feil og kortare levetid."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:798
 msgid "The database contains quality checked information and is annotated by climate adaptation experts with keywords."
-msgstr "Databasen inneholder kvalitetssjekket informasjon og er merket av klimatilpasningseksperter med nøkkelord."
+msgstr "Databasen inneheld kvalitetssjekka informasjon og er annotert med nøkkelord av ekspertar på klimatilpassing."
 
 #: ../theme/climateadaptv2/index.html:1290
 #: ../theme/climateadaptv2/tab-policies-rule.html:378
 msgid "The impacts of catastrophic events on this heritage are coupled with the slow onset of changes arising from deterioration processes. Continuous increase in temperature and fluctuations in temperature and humidity or fluctuations in freeze–thaw cycles causes degradation and stress in materials, leading to a greater need for restoration and conservation. Biological degradation caused by microorganisms, for example, are more likely to occur."
-msgstr ""
+msgstr "Påverknaden frå katastrofale hendingar på denne arven er kopla til dei langsamme endringane som kjem av nedbrytingsprosessar. Kontinuerleg temperaturstigning og svingingar i temperatur og fuktigheit eller svingingar i frys-tin-syklusar fører til nedbryting og stress i materiale, noko som skaper eit større behov for restaurering og konservering. Biologisk nedbryting årsaka av til dømes mikroorganismar er meir sannsynleg."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1234
 #: ../theme/climateadaptv2/tab-policies-rule.html:322
 msgid "The need for adapting the transport system to the impact of climate change has been highlighted since the European Commission's Adaptation White Paper (COM (2009)148). Transport adaptation is addressed through a combination of European transport, climate change and research policies. The European Union promotes best practices, mainstreaming adaptation within its transport infrastructure development programmes, and provides guidance, e.g. by developing adequate standards for construction. Action is focused on transport infrastructure, and particularly on the Trans-European Transport Network (TEN-T)."
-msgstr "Behovet for å tilpasse transportsystemet til virkningen av klimaendringer har blitt fremhevet siden EU -kommisjonens tilpasning White Paper (COM (2009) 148). Transporttilpasning blir adressert gjennom en kombinasjon av europeisk transport, klimaendringer og forskningspolitikk. EU fremmer beste praksis, mainstreaming tilpasning innen sine transportinfrastrukturutviklingsprogrammer, og gir veiledning, f.eks. ved å utvikle tilstrekkelige standarder for bygging. Handling er fokusert på transportinfrastruktur, og spesielt på det trans-europeiske transportnettet (TEN-T)."
+msgstr "Behovet for å tilpasse transportsystemet til konsekvensane av klimaendringar har vore framheva sidan EU-kommisjonen si kvittbok om tilpassing (COM (2009)148). Tilpassing i transportsektoren blir handtert gjennom ein kombinasjon av europeisk transport-, klima- og forskingspolitikk. EU fremjar beste praksis, integrerer tilpassing i sine program for utvikling av transportinfrastruktur og gir rettleiing, t.d. ved å utvikle passande standardar for konstruksjon. Tiltaka er fokuserte på transportinfrastruktur, og spesielt på det transeuropeiske transportnettverket (TEN-T)."
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1192
 #: ../theme/climateadaptv2/tab-policies-rule.html:280
 msgid "The rapid rate of climate change may overcome the natural ability of forest ecosystems to adapt. It leads to increased risk of disturbances through storms, fire, pests and diseases with implications for forest growth and production. The economic viability of forestry will be affected, mainly in southern areas of Europe, as well as the capacity of forests to provide environmental services, including changes in the carbon sink function. In 2013, the Commission adopted a new EU Forest Strategy, which responds to new challenges facing forests and the forest sector."
-msgstr "Den raske frekvensen av klimaendringer kan overvinne den naturlige evnen til skogøkosystemer til å tilpasse seg. Det fører til økt risiko for forstyrrelser gjennom stormer, brann, skadedyr og sykdommer med implikasjoner for skogvekst og produksjon. Den økonomiske levedyktigheten av skogbruk vil bli påvirket, hovedsakelig i sørlige områder av Europa, samt skogens kapasitet til å tilby miljøtjenester, inkludert endringer i karbonvasken. I 2013 vedtok kommisjonen en ny EU -skogstrategi, som reagerer på nye utfordringer skoger og skogsektoren står overfor."
+msgstr "Den raske takten i klimaendringane kan overgå den naturlege evna skogøkosystem har til å tilpasse seg. Det fører til auka risiko for forstyrringar gjennom storm, brann, skadedyr og sjukdommar, noko som påverkar skogvekst og produksjon. Den økonomiske berekrafta i skogbruket vil bli påverka, særleg i sørlege delar av Europa, i tillegg til evna skogen har til å levere miljøtenester, inkludert endringar i karbonopptaket. I 2013 vedtok kommisjonen ein ny skogstrategi for EU, som svarer på nye utfordringar for skogane og skogsektoren."
 
 # ,
 # ,
@@ -581,14 +581,14 @@ msgstr "Verktøy"
 #: ../theme/climateadaptv2/index.html:1046
 #: ../theme/climateadaptv2/tab-policies-rule.html:134
 msgid "Tourism"
-msgstr ""
+msgstr "Reiseliv"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1054
 #: ../theme/climateadaptv2/tab-policies-rule.html:142
 msgid "Transport"
-msgstr "Transportere"
+msgstr "Transport"
 
 # ,
 # ,
@@ -599,50 +599,52 @@ msgstr "Urban"
 
 #: ../theme/climateadaptv2/index.html:1561
 msgid "Urban Adaptation Support Tool"
-msgstr ""
+msgstr "Verktøy for urban tilpassingsstøtte"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:873
 msgid "Videos"
-msgstr "Videoer"
+msgstr "Videoar"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1070
 #: ../theme/climateadaptv2/tab-policies-rule.html:158
 msgid "Water <br /> management"
-msgstr "Vann <br /> Håndtering"
+msgstr "Vass- <br /> forvaltning"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1261
 #: ../theme/climateadaptv2/tab-policies-rule.html:349
 msgid "Water management"
-msgstr "Vannforvaltning"
+msgstr "Vassforvaltning"
 
 # ,
 # ,
 #: ../theme/climateadaptv2/index.html:1262
 #: ../theme/climateadaptv2/tab-policies-rule.html:350
 msgid "Water resources are directly impacted by climate change, and the management of these resources affects the vulnerability of ecosystems, socio-economic activities and human health. Water management is also expected to play an increasingly central role in adaptation. Climate change is projected to lead to major changes in water availability across Europe with increasing water scarcity and droughts mainly in Southern Europe and increasing risk of floods throughout most of Europe."
-msgstr "Vannressurser påvirkes direkte av klimaendringer, og styringen av disse ressursene påvirker sårbarheten til økosystemer, samfunnsøkonomiske aktiviteter og menneskers helse. Vannforvaltning forventes også å spille en stadig mer sentral rolle i tilpasningen. Klimaendringer anslås å føre til store endringer i vanntilgjengeligheten over hele Europa med økende vannmangel og tørke hovedsakelig i Sør -Europa og økende risiko for flom i det meste av Europa."
+msgstr "Vassressursar blir direkte påverka av klimaendringar, og forvaltninga av desse ressursane påverkar sårbarheita til økosystem, sosioøkonomisk aktivitet og menneskehelse. Vassforvaltning er også venta å spele ei stadig meir sentral rolle i tilpassinga. Klimaendringar er venta å føre til store endringar i vasstilgangen over heile Europa, med auka vassmangel og tørke særleg i Sør-Europa og auka risiko for flaum i det meste av Europa."
 
+# ,
+# ,
 #. Default: "Case studies are flagship of the Climate-ADAPT platform. They have a comprehensive structure that covers all the key aspects in the implementation cycle of adaptation measures and are careful and specifically prepared for Climate-ADAPT by the organisation that is involved in the implementation with the support of EEA, following a set of ${case_studies_tab_repository} and also in collaboration with the main stakeholders. See the ${case_studies_tab_pages}."
 #: ../theme/climateadaptv2/index.html:1408
 msgid "case_studies_tab"
-msgstr ""
+msgstr "Casestudiar er flaggskipet til Climate-ADAPT-plattforma. Dei har ein omfattande struktur som dekker alle sentrale aspekt i gjennomføringssyklusen for tilpassingstiltak, og er nøye og spesifikt førebudde for Climate-ADAPT av organisasjonen som er involvert i gjennomføringa med støtte frå EEA, etter eit sett med ${case_studies_tab_repository} og også i samarbeid med dei viktigaste interessentane. Sjå ${case_studies_tab_pages}."
 
 #: ../theme/climateadaptv2/index.html:1405
 msgid "criteria"
-msgstr ""
+msgstr "kriterium"
 
 #. Default: "Please check our ${page_url} for more help on how to search the database."
 #: ../theme/climateadaptv2/index.html:800
 msgid "guidance_link"
-msgstr ""
+msgstr "Sjekk ${page_url} for meir hjelp til korleis du søker i databasen."
 
 # ,
 #: ../theme/climateadaptv2/index.html:787
 msgid "type here ..."
-msgstr "Skriv her ..."
+msgstr "skriv her ..."
