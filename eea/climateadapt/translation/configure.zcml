@@ -87,14 +87,6 @@
   <adapter factory=".optimizations.LanguageAwareImageFieldSerializer" />
   <adapter factory=".optimizations.LanguageAwareFileFieldSerializer" />
 
-  <monkey:patch
-    zcml:condition="installed eea.volto.policy"
-    module="eea.volto.policy.indexers"
-    original="hasPreviewImage"
-    replacement="eea.climateadapt.translation.optimizations.hasPreviewImage"
-    description="Use the ClimateADAPT translation-aware hasPreviewImage indexer"
-  />
-
   <browser:page
     name="images"
     for="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"
