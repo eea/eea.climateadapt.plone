@@ -22,10 +22,6 @@
     marker="plone.app.contenttypes.behaviors.leadimage.ILeadImage"
     former_dotted_names="plone.app.contenttypes.behaviors.leadimage.ILeadImage"
   />
-  <adapter
-    factory="eea.climateadapt.translation.optimizations.hasPreviewImage"
-    name="hasPreviewImage"
-  />
 
   <adapter
     factory="eea.climateadapt.translation.optimizations.image_field_indexer"
