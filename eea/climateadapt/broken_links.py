@@ -639,6 +639,8 @@ def extract_links_from_single_object(obj):
         normalized_urls.append(normalized)
 
     return normalized_urls
+
+
 def check_broken_links_for_object(obj):
     """Returns a list of broken links with status codes for the given object."""
 
