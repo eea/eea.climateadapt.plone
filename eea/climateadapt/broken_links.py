@@ -16,16 +16,18 @@ from plone import api
 from plone.api.env import adopt_user
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemataForType
-from plone.restapi.behaviors import IBlocks
+from plone.restapi.behaviors import IBlocks, IBlocksEditableLayout
 from plone.restapi.services import Service
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zExceptions import Unauthorized
 from zope.annotation.interfaces import IAnnotations
+from zope.interface import providedBy
 
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 from eea.climateadapt.restapi.slate import iterate_children
+
 # from plone.api.content import get_state
 
 logger = logging.getLogger("eea.climateadapt")
@@ -240,19 +242,42 @@ def convert_aceitem(obj):
     return urls
 
 
+def iter_nested_blocks(block):
+    if not block:
+        return
+
+    yield block
+
+    nested_blocks = block.get("blocks")
+    nested_layout = block.get("blocks_layout", {})
+    if nested_blocks and nested_layout:
+        for uid in nested_layout.get("items", []):
+            child = nested_blocks.get(uid)
+            if child:
+                yield from iter_nested_blocks(child)
+
+    data = block.get("data", {})
+    data_blocks = data.get("blocks")
+    data_layout = data.get("blocks_layout", {})
+    if data_blocks and data_layout:
+        for uid in data_layout.get("items", []):
+            child = data_blocks.get(uid)
+            if child:
+                yield from iter_nested_blocks(child)
+
+
 def iterate_blocks(obj):
+    """Iterate through all top-level and nested blocks on an object."""
     blocks = getattr(obj, "blocks", None)
     layout = getattr(obj, "blocks_layout", {})
 
-    if not blocks:
+    if not blocks or not layout:
         return
 
-    if layout:
-        items = layout.get("items", {})
-        for uid in items:
-            block = blocks.get(uid)
-            if block:
-                yield block
+    for uid in layout.get("items", []):
+        block = blocks.get(uid)
+        if block:
+            yield from iter_nested_blocks(block)
 
 
 def handle_link(node):
@@ -289,6 +314,7 @@ def convert_blocks(obj):
         for block in iterate_blocks(obj):
             if not block:
                 continue
+
             extractor = BLOCK_EXTRACTORS.get(block.get("@type"))
             if extractor:
                 urls.extend(extractor(block))
@@ -301,6 +327,7 @@ CONVERTORS = {
     IAceMeasure: convert_aceitem,
     IAceItem: convert_aceitem,
     IBlocks: convert_blocks,
+    IBlocksEditableLayout: convert_blocks,
 }
 
 PORTAL_TYPES_BLACKLIST = [
@@ -528,7 +555,6 @@ class BrokenLinksService(Service):
             ("date", "Date"),
             ("state", "Type"),
         ]
-
         # Create a workbook and add a worksheet.
         out = BytesIO()
         workbook = xlsxwriter.Workbook(out, {"in_memory": True})
@@ -579,51 +605,40 @@ class BrokenLinksService(Service):
 def extract_links_from_single_object(obj):
     """Extract all links from a single object (page)."""
     urls = []
-    portal_type = getattr(obj, "portal_type", None)
-
-    if not portal_type:
+    if not getattr(obj, "portal_type", None):
         return urls
 
     seen_convertors = set()
 
-    for schemata in iterSchemataForType(portal_type):
-        for iface in [schemata] + list(schemata.getBases()):
-            convertor = CONVERTORS.get(iface)
-            if not convertor:
-                continue
+    for iface in providedBy(obj):
+        convertor = CONVERTORS.get(iface)
+        if not convertor or convertor in seen_convertors:
+            continue
 
-            if convertor in seen_convertors:
-                continue
+        seen_convertors.add(convertor)
 
-            seen_convertors.add(convertor)
+        try:
+            extracted = convertor(obj) or []
+            urls.extend(extracted)
+        except Exception as err:
+            logger.warning(
+                "Could not extract links from %s (%s): %s",
+                obj.absolute_url(),
+                obj.portal_type,
+                err,
+            )
 
-            try:
-                extracted = convertor(obj) or []
-                urls.extend(extracted)
-            except Exception as err:
-                logger.warning(
-                    "Could not extract links from %s (%s): %s",
-                    obj.absolute_url(),
-                    portal_type,
-                    err,
-                )
-
-    # Normalize and deduplicate while preserving order
     normalized_urls = []
     seen_urls = set()
 
     for url in urls:
         normalized = _normalize_link(url)
-        if not normalized:
-            continue
-        if normalized in seen_urls:
+        if not normalized or normalized in seen_urls:
             continue
         seen_urls.add(normalized)
         normalized_urls.append(normalized)
 
     return normalized_urls
-
-
 def check_broken_links_for_object(obj):
     """Returns a list of broken links with status codes for the given object."""
 
@@ -631,12 +646,15 @@ def check_broken_links_for_object(obj):
     urls = extract_links_from_single_object(obj)
     obj_path = "/".join(obj.getPhysicalPath())
 
-    logger.info("Checking %d unique links on object: %s", len(urls), obj.absolute_url())
+    logger.info(
+        "Checking %d unique links on object: %s",
+        len(urls),
+        obj.absolute_url(),
+    )
 
     for link in urls:
         if link.startswith("/"):
             # Skip relative links
-            logger.debug("Skipping relative link: %s", link)
             continue
 
         res = check_link_status(link)
@@ -671,6 +689,7 @@ class DetectBrokenLinksSingleView(BrowserView):
                 "@id": self.context.absolute_url() + "/@@check-object-broken-links",
                 "page": self.context.absolute_url(),
                 "title": getattr(self.context, "title", ""),
+                "portal_type": getattr(self.context, "portal_type", ""),
                 "broken_links_count": len(formatted),
                 "broken_links": formatted,
             }
@@ -723,6 +742,7 @@ class SinglePageBrokenLinksService(Service):
                 "@id": self.context.absolute_url() + "/@check-object-broken-links",
                 "page": self.context.absolute_url(),
                 "title": getattr(self.context, "title", ""),
+                "portal_type": getattr(self.context, "portal_type", ""),
                 "broken_links_count": len(broken_links),
                 "broken_links": broken_links,
             }
