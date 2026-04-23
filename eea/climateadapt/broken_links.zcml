@@ -12,6 +12,7 @@
   i18n_domain="eea.climateadapt"
 >
 
+  <!-- Full-site broken links scan -->
   <plone:service
     method="GET"
     factory=".broken_links.BrokenLinksService"
@@ -32,6 +33,23 @@
     name="compute-broken-links-trigger"
     for="plone.app.layout.navigation.interfaces.INavigationRoot"
     class=".broken_links.DetectBrokenLinksTriggerView"
+    permission="zope2.View"
+  />
+
+  <!-- Per-page broken links checker -->
+  <plone:service
+    method="GET"
+    factory=".broken_links.SinglePageBrokenLinksService"
+    for="zope.interface.Interface"
+    permission="zope2.View"
+    name="@check-object-broken-links"
+    layer="eea.climateadapt.interfaces.IEEAClimateAdaptInstalled"
+  />
+
+  <browser:page
+    name="check-object-broken-links"
+    for="zope.interface.Interface"
+    class=".broken_links.DetectBrokenLinksSingleView"
     permission="zope2.View"
   />
 

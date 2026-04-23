@@ -26,7 +26,6 @@ from zope.annotation.interfaces import IAnnotations
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
 from eea.climateadapt.restapi.slate import iterate_children
-
 # from plone.api.content import get_state
 
 logger = logging.getLogger("eea.climateadapt")
@@ -574,3 +573,170 @@ class BrokenLinksService(Service):
         }
 
         return info
+
+
+
+# PER-PAGE BROKEN LINKS CHECKER
+def extract_links_from_single_object(obj):
+    """Extract all links from a single object (page)."""
+    urls = []
+    portal_type = getattr(obj, "portal_type", None)
+
+    if not portal_type:
+        return urls
+
+    seen_convertors = set()
+
+    for schemata in iterSchemataForType(portal_type):
+        for iface in [schemata] + list(schemata.getBases()):
+            convertor = CONVERTORS.get(iface)
+            if not convertor:
+                continue
+
+            if convertor in seen_convertors:
+                continue
+
+            seen_convertors.add(convertor)
+
+            try:
+                extracted = convertor(obj) or []
+                urls.extend(extracted)
+            except Exception as err:
+                logger.warning(
+                    "Could not extract links from %s (%s): %s",
+                    obj.absolute_url(),
+                    portal_type,
+                    err,
+                )
+
+    # Normalize and deduplicate while preserving order
+    normalized_urls = []
+    seen_urls = set()
+
+    for url in urls:
+        normalized = _normalize_link(url)
+        if not normalized:
+            continue
+        if normalized in seen_urls:
+            continue
+        seen_urls.add(normalized)
+        normalized_urls.append(normalized)
+
+    return normalized_urls
+
+
+def check_broken_links_for_object(obj):
+    """Returns a list of broken links with status codes for the given object."""
+
+    results = []
+    urls = extract_links_from_single_object(obj)
+    obj_path = "/".join(obj.getPhysicalPath())
+
+    logger.info("Checking %d unique links on object: %s", len(urls), obj.absolute_url())
+
+    for link in urls:
+        if link.startswith("/"):
+            # Skip relative links
+            logger.debug("Skipping relative link: %s", link)
+            continue
+
+        res = check_link_status(link)
+        if res is not None:
+            res["object_url"] = obj_path
+            results.append(res)
+
+    return results
+
+
+class DetectBrokenLinksSingleView(BrowserView):
+    """Check broken links for a single page.
+    Usage: Navigate to any page and access /@@check-object-broken-links
+    Returns JSON with broken links found on that specific page.
+    """
+
+    def __call__(self):
+        try:
+            results = check_broken_links_for_object(self.context)
+
+            formatted = []
+            for item in results:
+                formatted.append(
+                    {
+                        "url": item.get("url"),
+                        "status": item.get("status"),
+                        "object_url": item.get("object_url"),
+                    }
+                )
+
+            info = {
+                "@id": self.context.absolute_url() + "/@@check-object-broken-links",
+                "page": self.context.absolute_url(),
+                "title": getattr(self.context, "title", ""),
+                "broken_links_count": len(formatted),
+                "broken_links": formatted,
+            }
+
+            self.request.response.setHeader("Content-Type", "application/json")
+
+            import json
+
+            return json.dumps(info, indent=2)
+
+        except Exception as err:
+            logger.exception(
+                "Error checking broken links for object: %s",
+                getattr(self.context, "absolute_url", lambda: "unknown")(),
+            )
+            self.request.response.setStatus(500)
+
+            import json
+
+            return json.dumps(
+                {
+                    "error": str(err),
+                    "@id": self.context.absolute_url() + "/@@check-object-broken-links",
+                },
+                indent=2,
+            )
+
+
+class SinglePageBrokenLinksService(Service):
+    """REST API service for checking broken links on a single page.
+    Usage: GET /path/to/page/@check-object-broken-links
+    """
+
+    def reply(self):
+        """Return broken links for the current context object."""
+        try:
+            results = check_broken_links_for_object(self.context)
+
+            broken_links = []
+            for item in results:
+                broken_links.append(
+                    {
+                        "url": item.get("url"),
+                        "status": item.get("status"),
+                        "object_url": item.get("object_url"),
+                    }
+                )
+
+            info = {
+                "@id": self.context.absolute_url() + "/@check-object-broken-links",
+                "page": self.context.absolute_url(),
+                "title": getattr(self.context, "title", ""),
+                "broken_links_count": len(broken_links),
+                "broken_links": broken_links,
+            }
+
+            return info
+
+        except Exception as err:
+            logger.exception(
+                "Error in SinglePageBrokenLinksService for object: %s",
+                getattr(self.context, "absolute_url", lambda: "unknown")(),
+            )
+            self.request.response.setStatus(500)
+            return {
+                "error": str(err),
+                "@id": self.context.absolute_url() + "/@check-object-broken-links",
+            }
