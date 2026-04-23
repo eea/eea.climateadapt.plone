@@ -575,7 +575,6 @@ class BrokenLinksService(Service):
         return info
 
 
-
 # PER-PAGE BROKEN LINKS CHECKER
 def extract_links_from_single_object(obj):
     """Extract all links from a single object (page)."""
