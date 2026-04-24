@@ -384,6 +384,25 @@ PORTAL_TYPES_BLACKLIST = [
 ]
 
 
+def get_object_convertors(obj, fallback_convertors=None):
+    """Return applicable convertors for a specific object."""
+    seen_convertors = set()
+    result = []
+
+    for convertor in fallback_convertors or []:
+        if convertor and convertor not in seen_convertors:
+            seen_convertors.add(convertor)
+            result.append(convertor)
+
+    for iface in providedBy(obj):
+        convertor = CONVERTORS.get(iface)
+        if convertor and convertor not in seen_convertors:
+            seen_convertors.add(convertor)
+            result.append(convertor)
+
+    return result
+
+
 def recursively_extract_links(site):
     """Gets the links for all our items by using the websites field
     along with the respective object urls
@@ -418,16 +437,33 @@ def recursively_extract_links(site):
         if brain.portal_type == "News Item":
             if (now - brain.created) > 365:  # skip news that are older then a year
                 continue
+
         obj = brain.getObject()
         path = obj.getPhysicalPath()
 
-        for convertor in convertors[brain.portal_type]:
-            for link in convertor(obj):
+        object_convertors = get_object_convertors(
+            obj, fallback_convertors=convertors[brain.portal_type]
+        )
+
+        for convertor in object_convertors:
+            try:
+                extracted_links = convertor(obj) or []
+            except Exception as err:
+                logger.warning(
+                    "Could not extract links from %s (%s): %s",
+                    obj.absolute_url(),
+                    getattr(obj, "portal_type", ""),
+                    err,
+                )
+                continue
+
+            for link in extracted_links:
                 logger.info("Link %s" % link)
+
             urls.extend(
                 [
                     {"link": link, "object_url": "/".join(path)}
-                    for link in convertor(obj)
+                    for link in extracted_links
                 ]
             )
 
@@ -639,6 +675,8 @@ def extract_links_from_single_object(obj):
         normalized_urls.append(normalized)
 
     return normalized_urls
+
+
 def check_broken_links_for_object(obj):
     """Returns a list of broken links with status codes for the given object."""
 
