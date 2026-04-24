@@ -16,12 +16,13 @@ from plone import api
 from plone.api.env import adopt_user
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import iterSchemataForType
-from plone.restapi.behaviors import IBlocks
+from plone.restapi.behaviors import IBlocks, IBlocksEditableLayout
 from plone.restapi.services import Service
 from Products.CMFPlone.utils import getToolByName
 from Products.Five.browser import BrowserView
 from zExceptions import Unauthorized
 from zope.annotation.interfaces import IAnnotations
+from zope.interface import providedBy
 
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from eea.climateadapt.behaviors.acemeasure import IAceMeasure
@@ -241,19 +242,42 @@ def convert_aceitem(obj):
     return urls
 
 
+def iter_nested_blocks(block):
+    if not block:
+        return
+
+    yield block
+
+    nested_blocks = block.get("blocks")
+    nested_layout = block.get("blocks_layout", {})
+    if nested_blocks and nested_layout:
+        for uid in nested_layout.get("items", []):
+            child = nested_blocks.get(uid)
+            if child:
+                yield from iter_nested_blocks(child)
+
+    data = block.get("data", {})
+    data_blocks = data.get("blocks")
+    data_layout = data.get("blocks_layout", {})
+    if data_blocks and data_layout:
+        for uid in data_layout.get("items", []):
+            child = data_blocks.get(uid)
+            if child:
+                yield from iter_nested_blocks(child)
+
+
 def iterate_blocks(obj):
+    """Iterate through all top-level and nested blocks on an object."""
     blocks = getattr(obj, "blocks", None)
     layout = getattr(obj, "blocks_layout", {})
 
-    if not blocks:
+    if not blocks or not layout:
         return
 
-    if layout:
-        items = layout.get("items", {})
-        for uid in items:
-            block = blocks.get(uid)
-            if block:
-                yield block
+    for uid in layout.get("items", []):
+        block = blocks.get(uid)
+        if block:
+            yield from iter_nested_blocks(block)
 
 
 def handle_link(node):
@@ -290,6 +314,7 @@ def convert_blocks(obj):
         for block in iterate_blocks(obj):
             if not block:
                 continue
+
             extractor = BLOCK_EXTRACTORS.get(block.get("@type"))
             if extractor:
                 urls.extend(extractor(block))
@@ -302,6 +327,7 @@ CONVERTORS = {
     IAceMeasure: convert_aceitem,
     IAceItem: convert_aceitem,
     IBlocks: convert_blocks,
+    IBlocksEditableLayout: convert_blocks,
 }
 
 PORTAL_TYPES_BLACKLIST = [
@@ -358,6 +384,25 @@ PORTAL_TYPES_BLACKLIST = [
 ]
 
 
+def get_object_convertors(obj, fallback_convertors=None):
+    """Return applicable convertors for a specific object."""
+    seen_convertors = set()
+    result = []
+
+    for convertor in fallback_convertors or []:
+        if convertor and convertor not in seen_convertors:
+            seen_convertors.add(convertor)
+            result.append(convertor)
+
+    for iface in providedBy(obj):
+        convertor = CONVERTORS.get(iface)
+        if convertor and convertor not in seen_convertors:
+            seen_convertors.add(convertor)
+            result.append(convertor)
+
+    return result
+
+
 def recursively_extract_links(site):
     """Gets the links for all our items by using the websites field
     along with the respective object urls
@@ -392,16 +437,33 @@ def recursively_extract_links(site):
         if brain.portal_type == "News Item":
             if (now - brain.created) > 365:  # skip news that are older then a year
                 continue
+
         obj = brain.getObject()
         path = obj.getPhysicalPath()
 
-        for convertor in convertors[brain.portal_type]:
-            for link in convertor(obj):
+        object_convertors = get_object_convertors(
+            obj, fallback_convertors=convertors[brain.portal_type]
+        )
+
+        for convertor in object_convertors:
+            try:
+                extracted_links = convertor(obj) or []
+            except Exception as err:
+                logger.warning(
+                    "Could not extract links from %s (%s): %s",
+                    obj.absolute_url(),
+                    getattr(obj, "portal_type", ""),
+                    err,
+                )
+                continue
+
+            for link in extracted_links:
                 logger.info("Link %s" % link)
+
             urls.extend(
                 [
                     {"link": link, "object_url": "/".join(path)}
-                    for link in convertor(obj)
+                    for link in extracted_links
                 ]
             )
 
@@ -529,7 +591,6 @@ class BrokenLinksService(Service):
             ("date", "Date"),
             ("state", "Type"),
         ]
-
         # Create a workbook and add a worksheet.
         out = BytesIO()
         workbook = xlsxwriter.Workbook(out, {"in_memory": True})
@@ -574,3 +635,165 @@ class BrokenLinksService(Service):
         }
 
         return info
+
+
+# PER-PAGE BROKEN LINKS CHECKER
+def extract_links_from_single_object(obj):
+    """Extract all links from a single object (page)."""
+    urls = []
+    if not getattr(obj, "portal_type", None):
+        return urls
+
+    seen_convertors = set()
+
+    for iface in providedBy(obj):
+        convertor = CONVERTORS.get(iface)
+        if not convertor or convertor in seen_convertors:
+            continue
+
+        seen_convertors.add(convertor)
+
+        try:
+            extracted = convertor(obj) or []
+            urls.extend(extracted)
+        except Exception as err:
+            logger.warning(
+                "Could not extract links from %s (%s): %s",
+                obj.absolute_url(),
+                obj.portal_type,
+                err,
+            )
+
+    normalized_urls = []
+    seen_urls = set()
+
+    for url in urls:
+        normalized = _normalize_link(url)
+        if not normalized or normalized in seen_urls:
+            continue
+        seen_urls.add(normalized)
+        normalized_urls.append(normalized)
+
+    return normalized_urls
+
+
+def check_broken_links_for_object(obj):
+    """Returns a list of broken links with status codes for the given object."""
+
+    results = []
+    urls = extract_links_from_single_object(obj)
+    obj_path = "/".join(obj.getPhysicalPath())
+
+    logger.info(
+        "Checking %d unique links on object: %s",
+        len(urls),
+        obj.absolute_url(),
+    )
+
+    for link in urls:
+        if link.startswith("/"):
+            # Skip relative links
+            continue
+
+        res = check_link_status(link)
+        if res is not None:
+            res["object_url"] = obj_path
+            results.append(res)
+
+    return results
+
+
+class DetectBrokenLinksSingleView(BrowserView):
+    """Check broken links for a single page.
+    Usage: Navigate to any page and access /@@check-object-broken-links
+    Returns JSON with broken links found on that specific page.
+    """
+
+    def __call__(self):
+        try:
+            results = check_broken_links_for_object(self.context)
+
+            formatted = []
+            for item in results:
+                formatted.append(
+                    {
+                        "url": item.get("url"),
+                        "status": item.get("status"),
+                        "object_url": item.get("object_url"),
+                    }
+                )
+
+            info = {
+                "@id": self.context.absolute_url() + "/@@check-object-broken-links",
+                "page": self.context.absolute_url(),
+                "title": getattr(self.context, "title", ""),
+                "portal_type": getattr(self.context, "portal_type", ""),
+                "broken_links_count": len(formatted),
+                "broken_links": formatted,
+            }
+
+            self.request.response.setHeader("Content-Type", "application/json")
+
+            import json
+
+            return json.dumps(info, indent=2)
+
+        except Exception as err:
+            logger.exception(
+                "Error checking broken links for object: %s",
+                getattr(self.context, "absolute_url", lambda: "unknown")(),
+            )
+            self.request.response.setStatus(500)
+
+            import json
+
+            return json.dumps(
+                {
+                    "error": str(err),
+                    "@id": self.context.absolute_url() + "/@@check-object-broken-links",
+                },
+                indent=2,
+            )
+
+
+class SinglePageBrokenLinksService(Service):
+    """REST API service for checking broken links on a single page.
+    Usage: GET /path/to/page/@check-object-broken-links
+    """
+
+    def reply(self):
+        """Return broken links for the current context object."""
+        try:
+            results = check_broken_links_for_object(self.context)
+
+            broken_links = []
+            for item in results:
+                broken_links.append(
+                    {
+                        "url": item.get("url"),
+                        "status": item.get("status"),
+                        "object_url": item.get("object_url"),
+                    }
+                )
+
+            info = {
+                "@id": self.context.absolute_url() + "/@check-object-broken-links",
+                "page": self.context.absolute_url(),
+                "title": getattr(self.context, "title", ""),
+                "portal_type": getattr(self.context, "portal_type", ""),
+                "broken_links_count": len(broken_links),
+                "broken_links": broken_links,
+            }
+
+            return info
+
+        except Exception as err:
+            logger.exception(
+                "Error in SinglePageBrokenLinksService for object: %s",
+                getattr(self.context, "absolute_url", lambda: "unknown")(),
+            )
+            self.request.response.setStatus(500)
+            return {
+                "error": str(err),
+                "@id": self.context.absolute_url() + "/@check-object-broken-links",
+            }

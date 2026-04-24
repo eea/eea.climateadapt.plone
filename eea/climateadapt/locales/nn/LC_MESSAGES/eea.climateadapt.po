@@ -1,0 +1,2319 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
+
+#: ../../climateadapt/vocabulary.py:596
+msgid "-NONSPECIFIC-"
+msgstr "-IKKE SPESIFIKKE-"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:130
+msgid "1. Preparing the ground for adaptation"
+msgstr "1. Forberede grunnen for tilpasning"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:136
+msgid "1.1 Obtaining high-level political support for adaptation"
+msgstr "1.1 Å oppnå politisk støtte på høyt nivå for tilpasning"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:83
+msgid "1.1 Obtaining political support for adaptation"
+msgstr "1.1 Innhenting av politisk støtte til tilpasning"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:88
+msgid "1.2 Collecting initial information"
+msgstr "1.2 Innsamling av innledende informasjon"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:140
+msgid "1.2 Setting up the process in a structured way"
+msgstr "1.2 Sette opp prosessen på en strukturert måte"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:144
+msgid "1.3 Estimating human and financial resources needed and identifying potential sources of long-term funding"
+msgstr "1.3 Anslå menneskelige og økonomiske ressurser som trengs og identifisere potensielle kilder til langsiktig finansiering"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:93
+msgid "1.3 Setting up adaptation processes within and beyond the municipality"
+msgstr "1.3 Sette opp tilretteleggingsprosesser i og utenfor kommunen"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:148
+msgid "1.4 Collecting information"
+msgstr "1.4 Innsamling av informasjon"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:98
+msgid "1.4 Identifying and obtaining human and technical resources"
+msgstr "1.4 Identifisere og skaffe menneskelige og tekniske ressurser"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:152
+msgid "1.5 Communicating adaptation and raising awareness"
+msgstr "1.5 Kommunisere tilpasning og bevisstgjøring"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:103
+msgid "1.5 Identifying and obtaining financing and funding"
+msgstr "1.5 Identifisere og skaffe finansiering og finansiering"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:108
+msgid "1.6 Identifying and engaging stakeholders"
+msgstr "1.6 Identifisere og engasjere interessenter"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:156
+msgid "1.6 Preparing the ground for adaptation: Self-check"
+msgstr "1.6 Forberede grunnen for tilpasning: Egensjekk"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:113
+msgid "1.7 Communicating adaptation to different target audiences"
+msgstr "1.7 Kommunisere tilpasning til ulike målgrupper"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:118
+msgid "1.8 Finding additional support"
+msgstr "1.8 Finne ekstra støtte"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:123
+msgid "1.9 Preparing the ground for adaptation: Self check"
+msgstr "1.9 Forberede grunnen for tilpasning: Egensjekk"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:415
+msgid "12 regions"
+msgstr "12 regioner"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:163
+msgid "2. Assessing climate change risks and vulnerabilities"
+msgstr "2. Vurdere risikoer og sårbarheter for klimaendringer"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:138
+msgid "2.1 Recognizing past and present climate impacts"
+msgstr "2.1 Erkjenne tidligere og nåværende klimapåvirkninger"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:168
+msgid "2.1 Understanding climate risks"
+msgstr "2.1 Forstå klimarisikoer"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:172
+msgid "2.2 Frameworks for assessing climate impacts, vulnerabilities and risks"
+msgstr "2.2 Rammer for vurdering av klimapåvirkninger, sårbarheter og risikoer"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:143
+msgid "2.2 Understanding climate projections and future impacts"
+msgstr "2.2 Forstå klimaprognoser og fremtidige konsekvenser"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:176
+msgid "2.3 General sequence for climate impacts, vulnerabilities and risk assessments"
+msgstr "2.3 Generell rekkefølge for klimapåvirkninger, sårbarheter og risikovurderinger"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:148
+msgid "2.3 Identifying vulnerable urban sectors"
+msgstr "2.3 Identifisering av sårbare bysektorer"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:153
+msgid "2.4 Conducting risk and vulnerability assessments"
+msgstr "2.4 Gjennomføring av risiko- og sårbarhetsvurderinger"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:180
+msgid "2.4 Taking trans-boundary issues into account"
+msgstr "2.4 Ta hensyn til grenseoverskridende problemstillinger"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:184
+msgid "2.5 Addressing knowledge gaps and dealing with uncertainties"
+msgstr "2.5 Å adressere kunnskapshull og håndtere usikkerheter"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:158
+msgid "2.5 Understanding the role of surrounding areas in adaptation"
+msgstr "2.5 Forstå omliggende områders rolle i tilpasning"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:163
+msgid "2.6 Identifying main adaptation concerns and defining objectives"
+msgstr "2.6 Identifisere hovedtilpasningsproblemer og definere mål"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:188
+msgid "2.6 Identifying main adaptation concerns and setting a strategic direction"
+msgstr "2.6 Identifisere hovedtilpasningsproblemer og sette en strategisk retning"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:168
+msgid "2.7 Assessing climate change risks and vulnerabilities: Self check"
+msgstr "2.7 Vurdere risikoer og sårbarheter for klimaendringer: Egensjekk"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:192
+msgid "2.7 Assessing climate change risks and vulnerabilities: Self-check"
+msgstr "2.7 Vurdere risikoer og sårbarheter for klimaendringer: Egensjekk"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:199
+msgid "3. Identifying adaptation options"
+msgstr "3. Identifisere tilpasningsmuligheter"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:204
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:183
+msgid "3.1 Creating a catalogue of relevant adaptation options"
+msgstr "3.1 Opprette en katalog over relevante tilpasningsmuligheter"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:208
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:188
+msgid "3.2 Finding examples of good adaptation practices"
+msgstr "3.2 Finne eksempler på god tilpasningspraksis"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:212
+msgid "3.3 Describing adaptation options in detail"
+msgstr "3.3 Detaljert beskrivelse av tilpasningsmuligheter"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:193
+msgid "3.3 Identifying adaptation options: Self check"
+msgstr "3.3 Identifisere tilpasningsalternativer: Selvsjekk"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:216
+msgid "3.4 Identifying adaptation options: Self-check"
+msgstr "3.4 Identifisere tilpasningsmuligheter: Egensjekk"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:223
+msgid "4. Assessing adaptation options"
+msgstr "4. Vurdere tilpasningsmuligheter"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:229
+msgid "4.1 Assessing possible adaptation options in terms of effects, time, costs, benefits and efforts"
+msgstr "4.1 Vurdere mulige tilpasningsmuligheter med tanke på effekter, tid, kostnader, nytte og innsats"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:208
+msgid "4.1 Choosing an assessment framework for adaptation options"
+msgstr "4.1 Valg av vurderingsramme for tilpasningsmuligheter"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:213
+msgid "4.2 Conducting a cost-benefit analysis of adaptation measures"
+msgstr "4.2 Gjennomføring av nytte-kostnadsanalyse av tilpasningstiltak"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:233
+msgid "4.2 Prioritising adaptation options and selecting preferred ones"
+msgstr "4.2 Prioritere tilpasningsalternativer og velge foretrukne"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:237
+msgid "4.3 Preparing a strategy document and getting political approval"
+msgstr "4.3 Utarbeide et strategidokument og få politisk godkjenning"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:218
+msgid "4.3 Prioritising adaptation options"
+msgstr "4.3 Prioritering av tilpasningsmuligheter"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:223
+msgid "4.4 Assessing and selecting adaptation options: Self check"
+msgstr "4.4 Vurdere og velge tilpasningsmuligheter: Egensjekk"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:241
+msgid "4.4 Assessing and selecting adaptation options: Self-check"
+msgstr "4.4 Vurdere og velge tilpasningsmuligheter: Egensjekk"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:251
+msgid "5. Implementing Adaptation"
+msgstr "5. Implementering av tilpasning"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:238
+msgid "5.1 Designing an effective adaptation action plan"
+msgstr "5.1 Utforme en effektiv handlingsplan for tilpasning"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:257
+msgid "5.1 Developing an adaptation action plan"
+msgstr "5.1 Utarbeide en handlingsplan for tilpasning"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:243
+msgid "5.2 Finding examples of adaptation action plans"
+msgstr "5.2 Finne eksempler på handlingsplaner for tilpasning"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:261
+msgid "5.2 Organising governance of implementation across sectors and levels"
+msgstr "5.2 Organisering av styring av implementering på tvers av sektorer og nivåer"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:248
+msgid "5.3 Mainstreaming adaptation in urban policies and plans"
+msgstr "5.3 Integrering av tilpasning i bypolitikk og -planer"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:265
+msgid "5.3 Mainstreaming: Integrating adaptation into instruments and sector policies"
+msgstr "5.3 Integrering: Integrering av tilpasning i virkemidler og sektorpolitikk"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:253
+msgid "5.4 Addressing climate change through adaptation and mitigation"
+msgstr "5.4 Håndtere klimaendringer gjennom tilpasning og demping"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:269
+msgid "5.4 Multilevel coordination and supportive governance framework"
+msgstr "5.4 Flernivåkoordinering og støttende styringsrammeverk"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:273
+msgid "5.5 Implementing Adaptation: Self-check"
+msgstr "5.5 Implementering av tilpasning: Egensjekk"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:258
+msgid "5.5 Implementing adaptation: Self check"
+msgstr "5.5 Gjennomføring av tilpasning: Egensjekk"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:280
+msgid "6. Monitoring and Evaluating Adaptation"
+msgstr "6. Overvåke og evaluere tilpasning"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:273
+msgid "6.1 Developing the monitoring and evaluation approach"
+msgstr "6.1 Utvikle tilnærmingen til overvåking og evaluering"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:287
+msgid "6.1 Understanding drivers and purposes"
+msgstr "6.1 Forstå drivere og formål"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:291
+msgid "6.2 Deciding who to involve in the process"
+msgstr "6.2 Bestemme hvem som skal involveres i prosessen"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:278
+msgid "6.2 Defining monitoring indicators"
+msgstr "6.2 Definere overvåkingsindikatorer"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:295
+msgid "6.3 Defining MRE indicators and mixed-methods approach"
+msgstr "6.3 Definere MRE-indikatorer og blandede metoder"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:283
+msgid "6.3 Finding examples of adaptation monitoring indicators"
+msgstr "6.3 Finne eksempler på indikatorer for tilpasningsovervåking"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:299
+msgid "6.4 Communicating results to inform policy and practice"
+msgstr "6.4 Formidle resultater for å informere politikk og praksis"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:288
+msgid "6.4 Using monitoring results to enhance the process of adaptation"
+msgstr "6.4 Bruk av overvåkingsresultater for å forbedre tilpasningsprosessen"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:293
+msgid "6.5 Monitoring and evaluating adaptation: Self check"
+msgstr "6.5 Overvåke og evaluere tilpasning: Egensjekk"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:303
+msgid "6.5 Monitoring and evaluating adaptation: Self-check"
+msgstr "6.5 Overvåke og evaluere tilpasning: Egensjekk"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:72
+msgid "<!-- <span class=\"map-type\">NAS</span> --> HHWS available (click on country for further information)"
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> HHWS tilgjengelig (klikk på land for mer informasjon)"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:79
+msgid "<!-- <span class=\"map-type\">NAS</span> --> No information"
+msgstr "<!-- <span class=\"map-type\">NAS</span> --> Ingen informasjon"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:429
+msgid "<a href=\"https://oppla.eu/about\">Oppla</a> is the EU Repository of Nature-Based Solutions. It provides a knowledge marketplace, where the latest thinking on natural capital, ecosystem services and nature-based solutions is brought together. Its purpose is to simplify how to share, obtain and create knowledge to better manage our environment"
+msgstr "<a href=\"https://oppla.eu/about\">Oppla</a> er EU-depotet for naturbaserte løsninger. Det gir en kunnskapsmarkedsplass, der den siste tenkningen om naturkapital, økosystemtjenester og naturbaserte løsninger samles. Formålet er å forenkle hvordan man deler, innhenter og skaper kunnskap for å bedre administrere miljøet vårt"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:462
+msgid "<a href=\"https://urbact.eu/\">URBACT’s</a> mission is to enable cities to work together and develop integrated solutions to common urban challenges, by networking, learning from one another’s experiences, drawing lessons and identifying good practices to improve urban policies."
+msgstr "<a href=\"https://urbact.eu/\">URBACTs</a> oppgave er å gjøre det mulig for byer å jobbe sammen og utvikle integrerte løsninger på vanlige urbane utfordringer, ved å bygge nettverk, lære av hverandres erfaringer, trekke lærdom og identifisere god praksis for å forbedre bypolitikk."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:484
+msgid "<a href=\"https://www.climatealliance.org/home.html\">Climate Alliance</a> <br><a href=\"https://www.ccre.org\">Council of European Municipalities and Regions (CEMR)</a> <br><a href=\"https://www.cdp.net/en\">CDP</a> <br><a href=\"https://www.c40.org\">C40</a> <br><a href=\"https://fedarene.org\">European Federation of Agencies and Regions for Energy and Environment (FEDARENE)</a> <br><a href=\"https://iclei-europe.org\">Local Governments for Sustainability (ICLEI) Europe</a>"
+msgstr "<a href=\"https://www.climatealliance.org/home.html\">Klimaalliansen</a> <br><a href=\"https://www.ccre.org\">Council of European Municipalities and Regions (CEMR)</a> <br><a href=\"https://www.cdp.net/no\">CDP</a> <br><a href=\"https://org>\">C40><a href=\"https://org>C40. href=\"https://fedarene.org\">European Federation of Agencies and Regions for Energy and Environment (FEDARENE)</a> <br><a href=\"https://iclei-europe.org\">Local Governments for Sustainability (ICLEI) Europe</a>"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:407
+msgid "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> is an Initiative of the European Union that provides urban areas throughout Europe with resources to test new and unproven solutions to address urban challenge"
+msgstr "<a href=\"https://www.uia-initiative.eu/en\">Urban Innovative Actions</a> er et initiativ fra EU som gir urbane områder i hele Europa ressurser til å teste nye og uprøvde løsninger for å møte urbane utfordringer"
+
+#: ../../climateadapt/browser/pt/casestudy_view.pt:292
+msgid "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
+msgstr "<span>x</span> (${DYNAMIC_CONTENT}) <i class=\"fa fa-picture-o\" aria-hidden=\"true\"></i>"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:142
+msgid "<strong>Language:</strong> <span>${DYNAMIC_CONTENT}</span>"
+msgstr "<strong>Språk:</strong> <span>${DYNAMIC_CONTENT}</span>"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:86
+msgid "A background document for the event is available <a href=\"${DYNAMIC_CONTENT}\">here</a>"
+msgstr "Et bakgrunnsdokument for arrangementet er tilgjengelig <a href=\"${DYNAMIC_CONTENT}\">her</a>"
+
+#: ../../climateadapt/image_scales/interfaces.py:93
+msgid "A value for the quality of 2x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 62."
+msgstr "En verdi for kvaliteten på bilder med 2x høy pikseltetthet, fra 1 (laveste) til 95 (høyest). En verdi på 0 betyr at plone.scalings standard vil bli brukt, som for øyeblikket er 62."
+
+#: ../../climateadapt/image_scales/interfaces.py:106
+msgid "A value for the quality of 3x high pixel density images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 51."
+msgstr "En verdi for kvaliteten på bilder med 3x høy pikseltetthet, fra 1 (laveste) til 95 (høyest). En verdi på 0 betyr at plone.scalings standard vil bli brukt, som for øyeblikket er 51."
+
+#: ../../climateadapt/image_scales/interfaces.py:67
+msgid "A value for the quality of scaled images, from 1 (lowest) to 95 (highest). A value of 0 will mean plone.scaling's default will be used, which is currently 88."
+msgstr "En verdi for kvaliteten på skalerte bilder, fra 1 (lavest) til 95 (høyest). En verdi på 0 betyr at plone.scalings standard vil bli brukt, som for øyeblikket er 88."
+
+#: ../../climateadapt/vocabulary.py:732
+msgid "A1: Governance and Institutional: Policy Instruments"
+msgstr "A1: Styring og institusjonelle: Politiske virkemidler"
+
+#: ../../climateadapt/vocabulary.py:765
+msgid "A1: Policy Instruments"
+msgstr "A1: Politiske virkemidler"
+
+#: ../../climateadapt/vocabulary.py:733
+msgid "A2: Governance and Institutional: Management and planning"
+msgstr "A2: Styring og institusjonell: Ledelse og planlegging"
+
+#: ../../climateadapt/vocabulary.py:766
+msgid "A2: Management and planning"
+msgstr "A2: Ledelse og planlegging"
+
+#: ../../climateadapt/vocabulary.py:767
+msgid "A3: Coordination cooperation and networks"
+msgstr "A3: Koordineringssamarbeid og nettverk"
+
+#: ../../climateadapt/vocabulary.py:736
+msgid "A3: Governance and Institutional: Coordination cooperation and networks"
+msgstr "A3: Styring og institusjonell: Koordineringssamarbeid og nettverk"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:54
+msgid "About the Urban Adaptation Support Tool"
+msgstr "Om støtteverktøyet bytilpasning"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:52
+msgid "Adaptation <br /> Support Tool"
+msgstr "Tilpasning <br /> støtteverktøy"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:60
+msgid "Adaptation Details"
+msgstr "Tilpasningsdetaljer"
+
+# ,
+#: ../../climateadapt/vocabulary.py:327
+msgid "Adaptation Measures and Actions"
+msgstr "Tilpasningstiltak og handlinger"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:59
+msgid "Adaptation Options Implemented In This Case"
+msgstr "Tilpasningsalternativer implementert i dette tilfellet"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:198
+msgid "Adaptation Options and Case Studies"
+msgstr "Tilpasningsalternativer og kasusstudier"
+
+# ,
+#: ../../climateadapt/vocabulary.py:329
+msgid "Adaptation Plans and Strategies"
+msgstr "Tilpasningsplaner og strategier"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:253
+msgid "Adaptation Sectors"
+msgstr "Tilpasningssektorer"
+
+#: ../../climateadapt/browser/pt/aceitem_view.pt:73
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:54
+#: ../../climateadapt/browser/pt/video_view.pt:113
+msgid "Adaptation elements"
+msgstr "Tilpasningselementer"
+
+#: ../../climateadapt/browser/pt/aceproject_view.pt:107
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:158
+#: ../../climateadapt/browser/pt/casestudy_view.pt:340
+msgid "Adaptation elements:"
+msgstr "Tilpasningselementer:"
+
+# ,
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:283
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:265
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:13
+msgid "Adaptation options"
+msgstr "Tilpasningsmuligheter"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:95
+msgid "Adaptation portal or platform reported"
+msgstr "Tilpasningsportal eller plattform rapportert"
+
+#: ../../climateadapt/browser/BKPcountries.py:182
+#: ../../climateadapt/browser/countries.py:186
+msgid "Adaptation portals and platforms"
+msgstr "Tilpasningsportaler og plattformer"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:440
+msgid "Adaptation to Climate Change: The goal of the <a href=\"https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal-transformation_en\">EU mission</a> - Adaptation to climate change is to foster the development of innovative solutions to adapt to climate change and encourage regions, cities and communities to lead the societal transformation."
+msgstr "Tilpasning til klimaendringer: Målet med <a href=\"https://ec.europa.eu/info/research-and-innovation/funding/funding-opportunities/funding-programmes-and-open-calls/horizon-europe/eu-missions-horizon-europe/adaptation-climate-change-including-societal\">klimaendringene -EU-transformasjon</a> er fremme utviklingen av innovative løsninger for å tilpasse seg klimaendringene og oppmuntre regioner, byer og lokalsamfunn til å lede den samfunnsmessige transformasjonen."
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:115
+msgid "Adaptation to climate change"
+msgstr "Tilpasning til klimaendringer"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:63
+msgid "Adaptation to climate change in urban areas"
+msgstr "Tilpasning til klimaendringer i urbane områder"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:371
+msgid "AdapteCCA"
+msgstr "AdapteCCA"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:31
+#: ../../climateadapt/browser/pt/casestudy_view.pt:73
+msgid "Additional Details"
+msgstr "Ytterligere detaljer"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:420
+msgid "Adriatic and Ionian"
+msgstr "Adriaterhavet og jonisk"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:452
+msgid "Adriatic-Ionian"
+msgstr "Adriaterhavet-jonisk"
+
+#: ../../climateadapt/vocabulary.py:1304
+msgid "Advanced"
+msgstr "Avansert"
+
+# ,
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:196
+msgid "Advanced search for Climate-Adapt database items <a href=\"/redirect_to_search_page\">here</a>"
+msgstr "Avansert søk etter Climate-Adapt databaseelementer <a href=\"/redirect_to_search_page\">her</a>"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:61
+msgid "Agenda and supporting documents"
+msgstr "Agenda og støttedokumenter"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:37
+#: ../../climateadapt/vocabulary.py:301
+msgid "Agriculture"
+msgstr "Jordbruk"
+
+#: ../../climateadapt/vocabulary.py:594
+msgid "Air pollution and aero-allergens"
+msgstr "Luftforurensning og aero-allergener"
+
+#: ../../climateadapt/tiles/search_acecontent.py:882
+msgid "All adaptation sectors"
+msgstr "Alle tilpasningssektorer"
+
+#: ../../climateadapt/tiles/search_acecontent.py:879
+msgid "All climate impacts"
+msgstr "Alle klimapåvirkninger"
+
+#: ../../climateadapt/tiles/search_acecontent.py:885
+msgid "All key type measures"
+msgstr "Alle viktige tiltak"
+
+#: ../../climateadapt/image_scales/interfaces.py:42
+msgid "Allowed image sizes"
+msgstr "Tillatte bildestørrelser"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:419
+msgid "Alpine"
+msgstr "Alpint"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:455
+msgid "Alpine Space"
+msgstr "Alpine Space"
+
+#: ../../climateadapt/vocabulary.py:624
+msgid "Aridity"
+msgstr "Tørrhet"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:82
+msgid "Assessing adaptation options"
+msgstr "Vurdere tilpasningsmuligheter"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:204
+msgid "Assessing and selecting adaptation options"
+msgstr "Vurdere og velge tilpasningsmuligheter"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:134
+msgid "Assessing climate change risks and vulnerabilities"
+msgstr "Vurdere risikoer og sårbarheter for klimaendringer"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:66
+msgid "Assessing risks and vulnerability <br /> to climate change"
+msgstr "Vurdere risiko og sårbarhet <br /> for klimaendringer"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:458
+msgid "Atlantic Area"
+msgstr "Atlanterhavsområdet"
+
+#: ../../climateadapt/vocabulary.py:738
+msgid "B1: Economic and Finance: Financing incentive instruments"
+msgstr "B1: Økonomi og finans: Finansieringsincentivinstrumenter"
+
+#: ../../climateadapt/vocabulary.py:768
+msgid "B1: Financing incentive instruments"
+msgstr "B1: Finansieringsincentivinstrumenter"
+
+#: ../../climateadapt/vocabulary.py:739
+msgid "B2: Economic and Finance: Insurance and risk sharing instruments"
+msgstr "B2: Økonomi og finans: Forsikrings- og risikodelingsinstrumenter"
+
+#: ../../climateadapt/vocabulary.py:769
+msgid "B2: Insurance and risk sharing instruments"
+msgstr "B2: Forsikrings- og risikodelingsinstrumenter"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:461
+msgid "Balkan-Mediterranean"
+msgstr "Balkan-Middelhavet"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:417
+msgid "Baltic Sea"
+msgstr "Østersjøen"
+
+#: ../../climateadapt/vocabulary.py:1303
+msgid "Basic"
+msgstr "Grunnleggende"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity"
+msgstr "Biologisk mangfold"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Biodiversity protection"
+msgstr "Beskyttelse av biologisk mangfold"
+
+# ,
+#: ../../climateadapt/browser/__init__.py:189
+msgid "Biogeographical regions"
+msgstr "Biogeografiske regioner"
+
+#: ../../climateadapt/vocabulary.py:1255
+msgid "Building"
+msgstr "Bygning"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:49
+#: ../../climateadapt/vocabulary.py:303
+msgid "Buildings"
+msgstr "Bygninger"
+
+#: ../../climateadapt/vocabulary.py:304
+msgid "Business and industry"
+msgstr "Næringsliv og industri"
+
+#: ../../climateadapt/vocabulary.py:770
+msgid "C1: Grey options"
+msgstr "C1: Grå alternativer"
+
+#: ../../climateadapt/vocabulary.py:740
+msgid "C1: Physical and technological: Grey options"
+msgstr "C1: Fysisk og teknologisk: Grå alternativer"
+
+#: ../../climateadapt/vocabulary.py:741
+msgid "C2: Physical and technological: Technological options"
+msgstr "C2: Fysiske og teknologiske: Teknologiske muligheter"
+
+#: ../../climateadapt/vocabulary.py:771
+msgid "C2: Technological options"
+msgstr "C2: Teknologiske alternativer"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:48
+msgid "Case Study Description"
+msgstr "Kasusstudiebeskrivelse"
+
+#: ../../climateadapt/browser/pt/casestudy_view.pt:292
+msgid "Case Study Illustrations"
+msgstr "Kasusstudieillustrasjoner"
+
+#: ../../climateadapt/vocabulary.py:384
+msgid "Case developed and implemented and partially funded as a Climate Change Adaptation measure."
+msgstr "Case utviklet og implementert og delvis finansiert som et klimatilpasningstiltak."
+
+#: ../../climateadapt/vocabulary.py:380
+msgid "Case developed and implemented as a Climate Change Adaptation Measure."
+msgstr "Case utviklet og implementert som et klimatilpasningstiltak."
+
+#: ../../climateadapt/vocabulary.py:390
+msgid "Case mainly developed and implemented because of other policy objectives, but with significant consideration of Climate Change Adaptation aspects"
+msgstr "Saken hovedsakelig utviklet og implementert på grunn av andre politiske mål, men med betydelige hensyn til klimatilpasningsaspekter"
+
+# ,
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:296
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:251
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:14
+msgid "Case studies"
+msgstr "Kasusstudier"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:177
+msgid "Case studies and Adaptation Options"
+msgstr "Kasusstudier og tilpasningsalternativer"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:301
+msgid "Case studies collected at national level in Spain, provided by AdapteCCA.es"
+msgstr "Kasusstudier samlet på nasjonalt nivå i Spania, levert av AdapteCCA.es"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:200
+msgid "Case studies related to this option:"
+msgstr "Kasusstudier relatert til dette alternativet:"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:467
+msgid "Central Europe"
+msgstr "Sentral-Europa"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:51
+msgid "Challenges"
+msgstr "Utfordringer"
+
+#: ../../climateadapt/mayorsadapt/views.py:78
+msgid "Check-out created"
+msgstr "Utsjekking opprettet"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:51
+msgid "Choose a country"
+msgstr "Velg et land"
+
+#: ../../climateadapt/tiles/pt/country_select.pt:10
+msgid "Choose a country:"
+msgstr "Velg et land:"
+
+#: ../../climateadapt/browser/pt/regions-section-select.pt:7
+#: ../../climateadapt/browser/pt/transnational_regions.pt:431
+#: ../../climateadapt/tiles/pt/transregional_select.pt:112
+msgid "Choose a region"
+msgstr "Velg en region"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:69
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:46
+msgid "Choose thematic map:"
+msgstr "Velg tematisk kart:"
+
+#: ../../climateadapt/vocabulary.py:1296
+msgid "Citizen"
+msgstr "Borger"
+
+# ,
+#: ../../climateadapt/browser/__init__.py:231
+msgid "City"
+msgstr "By"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:201
+msgid "City Initiatives"
+msgstr "Byinitiativer"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:483
+msgid "City Networks"
+msgstr "Bynettverk"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:260
+msgid "Climate Impacts"
+msgstr "Klimapåvirkninger"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:111
+msgid "Climate Impacts in Europe"
+msgstr "Klimapåvirkninger i Europa"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:58
+msgid "Climate change impacts on European cities"
+msgstr "Klimaendringer påvirker europeiske byer"
+
+#: ../../climateadapt/tiles/search_acecontent.py:835
+msgid "Climate impact"
+msgstr "Klimapåvirkning"
+
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:70
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:51
+#: ../../climateadapt/browser/pt/video_view.pt:108
+msgid "Climate impacts"
+msgstr "Klimapåvirkninger"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:102
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:178
+#: ../../climateadapt/browser/pt/casestudy_view.pt:350
+msgid "Climate impacts:"
+msgstr "Klimapåvirkning:"
+
+#: ../../climateadapt/vocabulary.py:331
+msgid "Climate services"
+msgstr "Klimatjenester"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:63
+msgid "Climate-ADAPT Event"
+msgstr "Climate-ADAPT Event"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:300
+msgid "Climate-ADAPT case studies"
+msgstr "Climate-ADAPT casestudier"
+
+#: ../../climateadapt/vocabulary.py:593
+msgid "Climate-sensitive diseases"
+msgstr "Klimasensitive sykdommer"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:40
+#: ../../climateadapt/vocabulary.py:305
+msgid "Coastal areas"
+msgstr "Kystområder"
+
+#: ../../climateadapt/vocabulary.py:628
+msgid "Coastal flooding"
+msgstr "Kystflom"
+
+#: ../../climateadapt/vocabulary.py:620
+msgid "Cold spells and frost"
+msgstr "Kuldeperioder og frost"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:218
+msgid "Comments:"
+msgstr "Kommentarer:"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:10
+msgid "Common definitions of the terms used frequently in the clearinghouse."
+msgstr "Vanlige definisjoner av begrepene som brukes ofte i oppgjørssentralen."
+
+#: ../../climateadapt/vocabulary.py:1229
+msgid "Companies, SMEs and private associations"
+msgstr "Bedrifter, SMB og private foreninger"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:105
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:95
+#: ../../climateadapt/browser/pt/navbar_footer.pt:15
+msgid "Contact"
+msgstr "Kontakt"
+
+# ,
+#: ../../climateadapt/browser/pt/organisation_view.pt:39
+msgid "Contact information for the Observatory"
+msgstr "Kontaktinformasjon for observatoriet"
+
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:30
+#: ../../climateadapt/browser/pt/c3sindicator_view.pt:158
+msgid "Content in the European Climate Data Explorer pages is delivered by the <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Disclaimer</a>"
+msgstr "Innhold på European Climate Data Explorer-sidene leveres av <a href=\"https://climate.copernicus.eu/\">Copernicus Climate Change Service (C3S)</a> implementert av ECMWF. <a href=\"/knowledge/european-climate-data-explorer/disclaimer\">Ansvarsfraskrivelse</a>"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:205
+msgid "Contributor:"
+msgstr "Bidragsyter:"
+
+#: ../../climateadapt/vocabulary.py:339
+msgid "Cost-benefit analysis and maintenance costs"
+msgstr "Nyttekostnadsanalyse og vedlikeholdskostnader"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:41
+#: ../../climateadapt/browser/pt/casestudy_view.pt:84
+msgid "Costs and Benefits"
+msgstr "Kostnader og fordeler"
+
+# ,
+#: ../../climateadapt/browser/__init__.py:197
+msgid "Countries"
+msgstr "Land"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:253
+#: ../../climateadapt/browser/pt/aceitem_view.pt:83
+#: ../../climateadapt/browser/pt/aceproject_view.pt:130
+msgid "Countries:"
+msgstr "Land:"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:104
+msgid "Created by:"
+msgstr "Laget av:"
+
+#: ../../climateadapt/vocabulary.py:603
+msgid "Critical Infrastructure"
+msgstr "Kritisk infrastruktur"
+
+#: ../../climateadapt/vocabulary.py:306
+msgid "Cultural heritage"
+msgstr "Kulturarv"
+
+#: ../../climateadapt/vocabulary.py:772
+msgid "D1: Green options"
+msgstr "D1: Grønne alternativer"
+
+#: ../../climateadapt/vocabulary.py:744
+msgid "D1: Nature based Solutions and Ecosystem based approaches: Green options"
+msgstr "D1: Naturbaserte løsninger og økosystembaserte tilnærminger: Grønne alternativer"
+
+#: ../../climateadapt/vocabulary.py:773
+msgid "D2: Blue options"
+msgstr "D2: Blå alternativer"
+
+#: ../../climateadapt/vocabulary.py:748
+msgid "D2: Nature based Solutions and Ecosystem based approaches: Blue options"
+msgstr "D2: Naturbaserte løsninger og økosystembaserte tilnærminger: Blå alternativer"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:141
+msgid "DRMKC"
+msgstr "DRMKC"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:418
+msgid "Danube"
+msgstr "Donau"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:171
+msgid "Data and Tools"
+msgstr "Data og verktøy"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:70
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:136
+#: ../../climateadapt/browser/pt/casestudy_view.pt:265
+msgid "Date of creation:"
+msgstr "Opprettelsesdato:"
+
+# ,
+#: ../../climateadapt/browser/pt/guidancedocument_view.pt:48
+#: ../../climateadapt/browser/pt/indicator_view.pt:66
+#: ../../climateadapt/browser/pt/publicationreport_view.pt:56
+msgid "Date of publication:"
+msgstr "Publiseringsdato:"
+
+# ,
+#: ../../climateadapt/browser/pt/video_view.pt:93
+msgid "Date of release:"
+msgstr "Utgivelsesdato:"
+
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:25
+#: ../../climateadapt/browser/pt/indicator_view.pt:32
+#: ../../climateadapt/browser/pt/informationportal_view.pt:21
+msgid "Description"
+msgstr "Beskrivelse"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:159
+#: ../../climateadapt/browser/pt/guidancedocument_view.pt:21
+#: ../../climateadapt/browser/pt/organisation_view.pt:18
+msgid "Description:"
+msgstr "Beskrivelse:"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:42
+#: ../../climateadapt/vocabulary.py:307
+msgid "Disaster Risk Reduction"
+msgstr "Katastroferisikoreduksjon"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:82
+msgid "Download the detailed agenda <a href=\"${DYNAMIC_CONTENT}\">here</a>"
+msgstr "Last ned den detaljerte agendaen <a href=\"${DYNAMIC_CONTENT}\">her</a>"
+
+# ,
+#: ../../climateadapt/vocabulary.py:357
+msgid "Droughts"
+msgstr "Tørke"
+
+#: ../../climateadapt/vocabulary.py:592
+msgid "Droughts and floods"
+msgstr "Tørke og flom"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:97
+msgid "Duration:"
+msgstr "Varighet:"
+
+#: ../../climateadapt/vocabulary.py:774
+msgid "E1: Information and awareness raising"
+msgstr "E1: Informasjon og bevisstgjøring"
+
+#: ../../climateadapt/vocabulary.py:752
+msgid "E1: Knowledge and behavioural change: Information and awareness raising"
+msgstr "E1: Kunnskap og atferdsendring: Informasjon og bevisstgjøring"
+
+#: ../../climateadapt/vocabulary.py:775
+msgid "E2: Capacity building empowering and lifestyle practices"
+msgstr "E2: Kapasitetsbygging og livsstilspraksis"
+
+#: ../../climateadapt/vocabulary.py:756
+msgid "E2: Knowledge and behavioural change: Capacity building empowering and lifestyle practices"
+msgstr "E2: Kunnskap og atferdsendring: Kapasitetsbygging og livstilspraksis"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:439
+msgid "EU Missions"
+msgstr "EU-misjoner"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:349
+msgid "EU funding of adaptation"
+msgstr "EU-finansiering av tilpasning"
+
+#: ../../climateadapt/vocabulary.py:338
+msgid "Economic aspects"
+msgstr "Økonomiske aspekter"
+
+#: ../../climateadapt/vocabulary.py:609
+msgid "Ecosystems and Nature Based Solutions"
+msgstr "Økosystemer og naturbaserte løsninger"
+
+#: ../../climateadapt/browser/overrides.py:39
+#: ../../climateadapt/vocabulary.py:302
+msgid "Ecosystems restoration"
+msgstr "Restaurering av økosystemer"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:47
+#: ../../climateadapt/vocabulary.py:308
+msgid "Energy"
+msgstr "Energi"
+
+#: ../../climateadapt/vocabulary.py:335
+msgid "Environmental aspects"
+msgstr "Miljøaspekter"
+
+#: ../../climateadapt/vocabulary.py:1251
+msgid "European"
+msgstr "europeisk"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:241
+msgid "European Climate Data Explorer"
+msgstr "European Climate Data Explorer"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:395
+msgid "European Climate Pact"
+msgstr "Europeisk klimapakt"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:260
+msgid "European Drought Observatory"
+msgstr "Europeisk tørkeobservatorium"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:61
+msgid "Event"
+msgstr "Hendelse"
+
+#: ../../climateadapt/browser/pt/health_homepage.pt:25
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:17
+msgid "Events"
+msgstr "Hendelser"
+
+#: ../../climateadapt/vocabulary.py:1305
+msgid "Expert"
+msgstr "Ekspert"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:298
+msgid "Explore Forest adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
+msgstr "Utforsk casestudier av skogtilpasning når det gjelder geografisk plassering, tematisk dekning og lenke til tilpasningsalternativer gjennom den kartbaserte casestudieutforskeren."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:253
+msgid "Explore Urban adaptation case studies in terms of geographic location, thematic coverage and link to adaptation options through the map-based Case study explorer."
+msgstr "Utforsk casestudier av urban tilpasning når det gjelder geografisk plassering, tematisk dekning og lenke til tilpasningsalternativer gjennom den kartbaserte case study explorer."
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:139
+#: ../../climateadapt/browser/pt/casestudy_view.pt:369
+msgid "External source"
+msgstr "Ekstern kilde"
+
+#: ../../climateadapt/vocabulary.py:622
+msgid "Extreme Precipitation"
+msgstr "Ekstrem nedbør"
+
+# ,
+#: ../../climateadapt/vocabulary.py:358
+msgid "Extreme Temperatures"
+msgstr "Ekstreme temperaturer"
+
+#: ../../climateadapt/vocabulary.py:619
+msgid "Extreme cold"
+msgstr "Ekstrem kulde"
+
+#: ../../climateadapt/vocabulary.py:619
+msgid "Extreme heat"
+msgstr "Ekstrem varme"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:417
+msgid "FAO Green Cities"
+msgstr "FAO grønne byer"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:22
+msgid "FAQ for providers"
+msgstr "Vanlige spørsmål for leverandører"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:29
+msgid "FAQ for users"
+msgstr "Vanlige spørsmål for brukere"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:248
+msgid "FISE web portal will help us to improve the health and resilience of our forests, which play a vital role in protecting our biodiversity and in mitigating climate change."
+msgstr "FISE-nettportalen vil hjelpe oss med å forbedre helsen og motstandskraften til skogene våre, som spiller en viktig rolle i å beskytte vårt biologiske mangfold og for å redusere klimaendringer."
+
+# ,
+#: ../../climateadapt/browser/overrides.py:43
+#: ../../climateadapt/vocabulary.py:309
+msgid "Financial"
+msgstr "Finansiell"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:24
+msgid "Find out how to contribute different types of information to Climate-ADAPT."
+msgstr "Finn ut hvordan du kan bidra med ulike typer informasjon til Climate-ADAPT."
+
+# ,
+#: ../../climateadapt/vocabulary.py:359
+msgid "Flooding"
+msgstr "Flom"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:38
+#: ../../climateadapt/vocabulary.py:310
+msgid "Forestry"
+msgstr "Skogbruk"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:251
+msgid "Forestry Information System for Europe"
+msgstr "Skogsinformasjonssystem for Europa"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:31
+msgid "Frequently asked questions in one place."
+msgstr "Ofte stilte spørsmål på ett sted."
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:87
+msgid "Funding Programme:"
+msgstr "Finansieringsprogram:"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:216
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:195
+msgid "Funding and Financing"
+msgstr "Finansiering og finansiering"
+
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:7
+msgid "General"
+msgstr "General"
+
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:60
+msgid "Geographic characterisation"
+msgstr "Geografisk karakterisering"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:193
+#: ../../climateadapt/browser/pt/guidancedocument_view.pt:85
+#: ../../climateadapt/browser/pt/informationportal_view.pt:88
+msgid "Geographic characterisation:"
+msgstr "Geografisk karakterisering:"
+
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:78
+#: ../../climateadapt/browser/pt/video_view.pt:123
+msgid "Geographic characterization"
+msgstr "Geografisk karakterisering"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:117
+#: ../../climateadapt/browser/pt/casestudy_view.pt:364
+#: ../../climateadapt/browser/pt/indicator_view.pt:103
+msgid "Geographic characterization:"
+msgstr "Geografisk karakterisering:"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:50
+msgid "Getting started"
+msgstr "Komme i gang"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:8
+msgid "Glossary"
+msgstr "Ordliste"
+
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:13
+msgid "Go back"
+msgstr "Gå tilbake"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:300
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:255
+msgid "Go to Case Study Explorer"
+msgstr "Gå til Case Study Explorer"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:352
+msgid "Go to EU funding of adaptation"
+msgstr "Gå til EU-finansiering av tilpasning"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:287
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:269
+msgid "Go to the Adaptation Options"
+msgstr "Gå til Tilpasningsalternativer"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:237
+msgid "Go to the European Climate Data Explorer"
+msgstr "Gå til European Climate Data Explorer"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:342
+msgid "Go to the Forest Policy Overview"
+msgstr "Gå til skogpolitikkoversikten"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:228
+msgid "Go to the Urban Adaptation Map Viewer"
+msgstr "Gå til Urban Adaptation Map Viewer"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:218
+msgid "Go to the Urban Adaptation Support Tool"
+msgstr "Gå til støtteverktøyet Urban Adaptation"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:311
+msgid "Go to the Urban Policy Overview"
+msgstr "Gå til Bypolitisk oversikt"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:184
+#: ../../climateadapt/browser/pt/casestudy_view.pt:356
+msgid "Governance level:"
+msgstr "Styringsnivå:"
+
+# ,
+#: ../../climateadapt/vocabulary.py:270
+msgid "Guidance"
+msgstr "Veiledning"
+
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:10
+msgid "Guidance documents"
+msgstr "Veiledningsdokumenter"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:17
+msgid "Guidance on the Climate-ADAPT Database Search function."
+msgstr "Veiledning om Climate-ADAPT Database Search-funksjonen."
+
+#: ../../climateadapt/browser/pt/help-categories.pt:15
+msgid "Guidance to <br /> search function"
+msgstr "Veiledning til <br /> søkefunksjon"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:111
+msgid "HHWS website"
+msgstr "HHWS nettsted"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:44
+#: ../../climateadapt/vocabulary.py:311
+msgid "Health"
+msgstr "Helse"
+
+#: ../../climateadapt/vocabulary.py:604
+msgid "Health and Wellbeing"
+msgstr "Helse og velvære"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:80
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:146
+#: ../../climateadapt/browser/pt/casestudy_view.pt:328
+msgid "Health impact:"
+msgstr "Helsepåvirkning:"
+
+#: ../../climateadapt/vocabulary.py:591
+msgid "Heat"
+msgstr "Varme"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:105
+msgid "Heat index of HHWS:"
+msgstr "Varmeindeks for HHWS:"
+
+#: ../../climateadapt/image_scales/interfaces.py:79
+msgid "High pixel density mode"
+msgstr "Modus med høy pikseltetthet"
+
+# ,
+#: ../../climateadapt/browser/pt/navbar_footer.pt:12
+msgid "Home"
+msgstr "Hjem"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:423
+msgid "How to use the map?"
+msgstr "Hvordan bruke kartet?"
+
+#: ../../climateadapt/vocabulary.py:312
+msgid "ICT"
+msgstr "IKT"
+
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:168
+msgid "IPCC adaptation options categories:"
+msgstr "IPCC-tilpasningsalternativkategorier:"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:33
+msgid "IPCC categories"
+msgstr "IPCC-kategorier"
+
+# ,
+#: ../../climateadapt/vocabulary.py:360
+msgid "Ice and Snow"
+msgstr "Is og snø"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:74
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:179
+msgid "Identifying adaptation options"
+msgstr "Identifisere tilpasningsmuligheter"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:38
+msgid "If you are new user the video tutorials can help you get started."
+msgstr "Hvis du er ny bruker, kan videoopplæringen hjelpe deg med å komme i gang."
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:96
+msgid "If you have any further questions you can contact <a href=\"${DYNAMIC_CONTENT}\">${DYNAMIC_CONTENT}</a>"
+msgstr "Hvis du har flere spørsmål, kan du kontakte <a href=\"${DYNAMIC_CONTENT}\">${DYNAMIC_CONTENT}</a>"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:494
+msgid "Image courtesy of <a style=\"color: #999;font-size: 12px;\" href=\"https://www.vecteezy.com/free-vector/technology\">Technology Vectors by Vecteezy</a>"
+msgstr "Bilde med tillatelse fra <a style=\"color: #999;font-size: 12px;\" href=\"https://www.vecteezy.com/free-vector/technology\">Technology Vectors by Vecteezy</a>"
+
+#: ../../climateadapt/image_scales/interfaces.py:92
+msgid "Image quality at 2x"
+msgstr "Bildekvalitet på 2x"
+
+#: ../../climateadapt/image_scales/interfaces.py:105
+msgid "Image quality at 3x"
+msgstr "Bildekvalitet på 3x"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:90
+msgid "Implementation"
+msgstr "Implementering"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:47
+#: ../../climateadapt/browser/pt/casestudy_view.pt:92
+msgid "Implementation Time"
+msgstr "Implementeringstid"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:234
+msgid "Implementing adaptation"
+msgstr "Implementere tilpasning"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:67
+msgid "Importance and Relevance of Adaptation"
+msgstr "Viktigheten og relevansen av tilpasning"
+
+#: ../../climateadapt/browser/pt/regions-section.pt:75
+msgid "In 2021-2027, the <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> cross-border cooperation (CBC) between EU Member States and Neighbourhood region </a> is governed by the EU Cohesion policy and the programmes will be fully part of Interreg. In order to highlight the external dimension of Cohesion policy and at the same time to emphasise how close EU and partner countries stand, the new programmes is called “Interreg NEXT”."
+msgstr "I 2021-2027 er <a href=\"https://ec.europa.eu/regional_policy/policy/cooperation/european-territorial/next_en\"> grenseoverskridende samarbeid (CBC) mellom EUs medlemsland og naboskapsregionen </a> styrt av EUs samholdspolitikk, og programmene vil være fullt ut en del av Interreg. For å synliggjøre den eksterne dimensjonen av samholdspolitikken og samtidig understreke hvor tett EU og partnerland står, kalles de nye programmene «Interreg NEXT»."
+
+# ,
+#: ../../climateadapt/vocabulary.py:269
+msgid "Indicators"
+msgstr "Indikatorer"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:120
+msgid "Info:"
+msgstr "Info:"
+
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:9
+msgid "Information Portals"
+msgstr "Informasjonsportaler"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:106
+msgid "Information on the protection of personal data is available in the <a href=\"${DYNAMIC_CONTENT}\"><b>privacy statement</b></a>"
+msgstr "Informasjon om beskyttelse av personopplysninger er tilgjengelig i <a href=\"${DYNAMIC_CONTENT}\"><b>personvernerklæringen</b></a>"
+
+# ,
+#: ../../climateadapt/vocabulary.py:267
+msgid "Information portals"
+msgstr "Informasjonsportaler"
+
+#: ../../climateadapt/vocabulary.py:791
+msgid "Institutional: Economic options"
+msgstr "Institusjonell: Økonomiske alternativer"
+
+#: ../../climateadapt/vocabulary.py:793
+msgid "Institutional: Government policies and programmes"
+msgstr "Institusjonell: Regjeringens politikk og programmer"
+
+#: ../../climateadapt/vocabulary.py:792
+msgid "Institutional: Law and regulations"
+msgstr "Institusjonell: Lov og forskrifter"
+
+#: ../../climateadapt/browser/pt/aceitem_view.pt:56
+msgid "Item Documents"
+msgstr "Varedokumenter"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:129
+msgid "Item’s creation:"
+msgstr "Oppretting av element:"
+
+#: ../../climateadapt/tiles/search_acecontent.py:847
+msgid "Key Type Measure"
+msgstr "Nøkkeltype Mål"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:267
+msgid "Key Type Measures"
+msgstr "Nøkkeltypemål"
+
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:163
+msgid "Key Type Measures:"
+msgstr "Nøkkeltypemål:"
+
+# ,
+#: ../../climateadapt/browser/pt/organisation_view.pt:22
+msgid "Key activities within climate change and health"
+msgstr "Sentrale aktiviteter innen klimaendringer og helse"
+
+#: ../../climateadapt/browser/admin.py:565
+msgid "Keyword succesfully deleted: ${kw_old}."
+msgstr "Søkeord ble slettet: ${kw_old}."
+
+#: ../../climateadapt/browser/admin.py:595
+msgid "Keyword succesfully renamed: ${kw_old} to ${kw_new}."
+msgstr "Søkeordet har fått nytt navn: ${kw_old} til ${kw_new}."
+
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:65
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:48
+#: ../../climateadapt/browser/pt/video_view.pt:103
+msgid "Keywords"
+msgstr "Nøkkelord"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:92
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:153
+#: ../../climateadapt/browser/pt/casestudy_view.pt:335
+msgid "Keywords:"
+msgstr "Nøkkelord:"
+
+#: ../../climateadapt/vocabulary.py:313
+msgid "Land use planning"
+msgstr "Arealplanlegging"
+
+#: ../../climateadapt/vocabulary.py:605
+msgid "Land-use and Food Systems"
+msgstr "Arealbruk og matsystemer"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:99
+msgid "Language of the conference"
+msgstr "Språket på konferansen"
+
+#: ../../climateadapt/browser/pt/ace_macros.pt:152
+msgid "Last Modified in Climate-ADAPT"
+msgstr "Sist endret i Climate-ADAPT"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:166
+msgid "Lead"
+msgstr "Bly"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:285
+msgid "Learn more about different adaptation options to the various impacts of climate change in forests."
+msgstr "Lær mer om ulike tilpasningsmuligheter til de ulike konsekvensene av klimaendringer i skoger."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:267
+msgid "Learn more about different adaptation options to the various impacts of climate change in urban areas."
+msgstr "Lær mer om ulike tilpasningsalternativer til de ulike konsekvensene av klimaendringer i urbane områder."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:155
+msgid "Learn more about how cities can adapt to climate change to become future-proof, climate-resilient cities"
+msgstr "Lær mer om hvordan byer kan tilpasse seg klimaendringer for å bli fremtidssikre, klimarobuste byer"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:177
+msgid "Learn more about how forests can adapt to climate change to stay healthy, diverse, resilient and productive"
+msgstr "Lær mer om hvordan skoger kan tilpasse seg klimaendringer for å holde seg sunne, mangfoldige, robuste og produktive"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:44
+#: ../../climateadapt/browser/pt/casestudy_view.pt:88
+msgid "Legal Aspects"
+msgstr "Juridiske aspekter"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:50
+#: ../../climateadapt/browser/pt/casestudy_view.pt:96
+msgid "Life Time"
+msgstr "Livstid"
+
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:26
+msgid "Link to Map Viewer:"
+msgstr "Link til kartvisning:"
+
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:44
+#: ../../climateadapt/browser/pt/indicator_view.pt:49
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:37
+msgid "Link to metadata:"
+msgstr "Link til metadata:"
+
+# ,
+#: ../../climateadapt/browser/pt/organisation_view.pt:34
+msgid "Links to further information"
+msgstr "Lenker til mer informasjon"
+
+#: ../../climateadapt/vocabulary.py:611
+msgid "Local Economic Systems"
+msgstr "Lokale økonomiske systemer"
+
+#: ../../climateadapt/vocabulary.py:1221
+msgid "Local authorities and administrative bodies"
+msgstr "Lokale myndigheter og forvaltningsorganer"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:450
+msgid "MCR 2030"
+msgstr "MCR 2030"
+
+# ,
+#: ../../climateadapt/browser/__init__.py:180
+msgid "Macro-Transnational region"
+msgstr "Makro-transnasjonal region"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:451
+msgid "Making Cities Resilient: <a href=\"https://mcr2030.undrr.org/\">Making Cities Resilient 2030</a> is a cross-stakeholder initiative for improving local resilience through advocacy, sharing knowledge and experiences, establishing mutually reinforcing city-to-city learning networks, injecting technical expertise, connecting multiple layers of government and building partnerships."
+msgstr "Making Cities Resilient: <a href=\"https://mcr2030.undrr.org/\">Making Cities Resilient 2030</a> er et initiativ på tvers av interessenter for å forbedre lokal motstandskraft gjennom talsmann, deling av kunnskap og erfaringer, etablere gjensidig forsterkende by-til-by-læringsnettverk for å koble sammen myndighetskompetanse og bygge partnerskap med teknisk ekspertise."
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:238
+msgid "Map"
+msgstr "Kart"
+
+# ,
+#: ../../climateadapt/vocabulary.py:268
+msgid "Maps, graphs and datasets"
+msgstr "Kart, grafer og datasett"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:46
+#: ../../climateadapt/vocabulary.py:314
+msgid "Marine and Fisheries"
+msgstr "Marine og fiskeri"
+
+#: ../../climateadapt/vocabulary.py:618
+msgid "Mean air temperature"
+msgstr "Gjennomsnittlig lufttemperatur"
+
+#: ../../climateadapt/vocabulary.py:621
+msgid "Mean precipitation"
+msgstr "Gjennomsnittlig nedbør"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:473
+msgid "Mediterranean"
+msgstr "Middelhavet"
+
+#: ../../climateadapt/vocabulary.py:336
+msgid "Mitigation aspects"
+msgstr "Avbøtende aspekter"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:98
+msgid "Monitoring &amp; Evaluation (M&amp;E)"
+msgstr "Overvåking &amp; Evaluering (M&E)"
+
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:269
+msgid "Monitoring and evaluating adaptation"
+msgstr "Overvåke og evaluere tilpasning"
+
+#: ../../climateadapt/vocabulary.py:315
+msgid "Mountain areas"
+msgstr "Fjellområder"
+
+#: ../../climateadapt/vocabulary.py:1254
+msgid "Municipal/Local"
+msgstr "Kommunalt/Lokalt"
+
+#: ../../climateadapt/vocabulary.py:1231
+msgid "NGOs"
+msgstr "NGOer"
+
+#: ../../climateadapt/vocabulary.py:1252
+msgid "National"
+msgstr "Nasjonal"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:53
+msgid "National HHAP"
+msgstr "Nasjonal HHAP"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:119
+msgid "National adaptation policy not reported beyond mandatory reporting in 2023"
+msgstr "Nasjonal tilpasningspolitikk ikke rapportert utover obligatorisk rapportering i 2023"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:115
+msgid "National adaptation policy reported in 2023"
+msgstr "Nasjonal tilpasningspolitikk rapportert i 2023"
+
+#: ../../climateadapt/browser/BKPcountries.py:179
+#: ../../climateadapt/browser/countries.py:183
+msgid "National adaption policy"
+msgstr "Nasjonal tilpasningspolitikk"
+
+#: ../../climateadapt/vocabulary.py:334
+msgid "Nature-based solutions"
+msgstr "Naturbaserte løsninger"
+
+#: ../../climateadapt/browser/pt/health_homepage.pt:20
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:16
+msgid "News"
+msgstr "Nyheter"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:61
+msgid "No HHAP"
+msgstr "Ingen HHAP"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:80
+msgid "No assessments reported"
+msgstr "Ingen vurderinger rapportert"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:88
+msgid "No data reported in 2021"
+msgstr "Ingen data rapportert i 2021"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:104
+msgid "No data reported in 2023"
+msgstr "Ingen data rapportert i 2023"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:65
+msgid "No information"
+msgstr "Ingen informasjon"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:99
+msgid "No portal or platform reported"
+msgstr "Ingen portal eller plattform rapportert"
+
+#: ../../climateadapt/browser/pt/health_homepage.pt:65
+msgid "No upcoming events."
+msgstr "Ingen kommende arrangementer."
+
+# ,
+#: ../../climateadapt/vocabulary.py:320
+msgid "Non specific"
+msgstr "Ikke spesifikk"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:476
+msgid "North Sea"
+msgstr "Nordsjøen"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:479
+msgid "North West Europe"
+msgstr "Nordvest-Europa"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:482
+msgid "Northern Periphery and Arctic"
+msgstr "Nordlige periferi og Arktis"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:428
+msgid "OPPLA"
+msgstr "OPPLA"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:55
+msgid "Objectives"
+msgstr "Mål"
+
+# ,
+#: ../../climateadapt/vocabulary.py:328
+msgid "Observations and Scenarios"
+msgstr "Observasjoner og scenarier"
+
+# ,
+#: ../../climateadapt/browser/pt/organisation_view.pt:50
+msgid "Observatory Contributions:"
+msgstr "Observatoriets bidrag:"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:76
+msgid "One or more assessments reported"
+msgstr "En eller flere vurderinger rapportert"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:125
+msgid "Online registration"
+msgstr "Online registrering"
+
+# ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:15
+#: ../../climateadapt/vocabulary.py:275
+msgid "Organisations"
+msgstr "Organisasjoner"
+
+#: ../../climateadapt/browser/pt/aceitem_view.pt:18
+msgid "Original aceitem"
+msgstr "Original aceitem"
+
+# ,
+#: ../../climateadapt/browser/pt/footer_logos.pt:35
+msgid "Other European Information Systems:<br />&nbsp;"
+msgstr "Andre europeiske informasjonssystemer:<br />&nbsp;"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:488
+msgid "Other regions"
+msgstr "Andre regioner"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:140
+msgid "Outside EEA coverage"
+msgstr "Utenfor EØS-dekning"
+
+#: ../../climateadapt/browser/pt/c3s_indicators_overview.pt:15
+msgid "Overview list of all indices"
+msgstr "Oversiktsliste over alle indekser"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:91
+msgid "Participation"
+msgstr "Deltakelse"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:174
+msgid "Partners"
+msgstr "Partnere"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:254
+msgid "Please contact us for any other enquiry on this Case Study or to share a new Case Study (email <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
+msgstr "Ta kontakt med oss ​​for andre spørsmål om denne kasusstudien eller for å dele en ny kasusstudie (e-post <a href=\"mailto: climate.adapt@eea.europa.eu\">climate.adapt@eea.europa.eu</a>)"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:105
+msgid "Please fill in this <a href=\"${DYNAMIC_CONTENT}\">registration form</a>"
+msgstr "Fyll ut dette <a href=\"${DYNAMIC_CONTENT}\">registreringsskjemaet</a>"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:189
+msgid "Policy Overview"
+msgstr "Policyoversikt"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:210
+msgid "Policy overview"
+msgstr "Policyoversikt"
+
+# ,
+#: ../../climateadapt/browser/pt/item_statistics.pt:23
+msgid "Portal Type"
+msgstr "Portaltype"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:61
+msgid "Practical information"
+msgstr "Praktisk informasjon"
+
+#: ../../climateadapt/vocabulary.py:1294
+msgid "Practitioners at the regional level"
+msgstr "Utøvere på regionalt nivå"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:58
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:79
+msgid "Preparing the ground for adaptation"
+msgstr "Forbereder grunnen for tilpasning"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:119
+#: ../../climateadapt/tiles/pt/urbanast_navigation.pt:68
+msgid "Principles and success factors"
+msgstr "Prinsipper og suksessfaktorer"
+
+# ,
+#: ../../climateadapt/browser/pt/navbar_footer.pt:21
+msgid "Privacy and Legal Notice"
+msgstr "Personvern og juridisk merknad"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:59
+msgid "Professional thematic domain"
+msgstr "Profesjonelt tematisk domene"
+
+# ,
+#: ../../climateadapt/browser/pt/publicationreport_view.pt:50
+msgid "Project Documents"
+msgstr "Prosjektdokumenter"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:47
+msgid "Project information"
+msgstr "Prosjektinformasjon"
+
+# ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:8
+#: ../../climateadapt/vocabulary.py:266
+msgid "Publications and reports"
+msgstr "Publikasjoner og rapporter"
+
+# ,
+#: ../../climateadapt/browser/pt/item_statistics.pt:24
+msgid "Published"
+msgstr "Publisert"
+
+#: ../../climateadapt/browser/pt/ace_macros.pt:148
+msgid "Published in Climate-ADAPT"
+msgstr "Publisert i Climate-ADAPT"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:237
+msgid "Reference"
+msgstr "Referanse"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:102
+msgid "Reference Information"
+msgstr "Referanseinformasjon"
+
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:28
+#: ../../climateadapt/browser/pt/aceproject_view.pt:54
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:54
+msgid "Reference information"
+msgstr "Referanseinformasjon"
+
+#: ../../climateadapt/browser/pt/aceitem_view.pt:40
+msgid "Reference:"
+msgstr "Referanse:"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:113
+msgid "References:"
+msgstr "Referanser:"
+
+#: ../../climateadapt/tiles/pt/transregional_select.pt:120
+msgid "Region's countries:"
+msgstr "Regionens land:"
+
+#: ../../climateadapt/vocabulary.py:1253
+msgid "Regional"
+msgstr "Regional"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:61
+msgid "Registration"
+msgstr "Registrering"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:124
+msgid "Registration:"
+msgstr "Registrering:"
+
+# ,
+#: ../../climateadapt/browser/pt/video_view.pt:45
+msgid "Related documents and presentations"
+msgstr "Relaterte dokumenter og presentasjoner"
+
+#: ../../climateadapt/vocabulary.py:627
+msgid "Relative sea level"
+msgstr "Relativt havnivå"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:187
+msgid "Relevance"
+msgstr "Relevans"
+
+#: ../../climateadapt/tiles/pt/filter_acecontent.pt:49
+msgid "Relevant tile"
+msgstr "Relevant flis"
+
+#: ../../climateadapt/vocabulary.py:340
+msgid "Replication/upscaling potential"
+msgstr "Replikerings-/oppskaleringspotensial"
+
+# ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:12
+#: ../../climateadapt/vocabulary.py:272
+msgid "Research and knowledge projects"
+msgstr "Forsknings- og kunnskapsprosjekter"
+
+#: ../../climateadapt/vocabulary.py:1292
+msgid "Researcher"
+msgstr "Forsker"
+
+#: ../../climateadapt/browser/pt/case-study-and-adaptation-options-map-viewer.pt:277
+msgid "Reset"
+msgstr "Tilbakestill"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:472
+msgid "Resilient Cities Network"
+msgstr "Resilient Cities Network"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:183
+msgid "Resource Catalogue"
+msgstr "Ressurskatalog"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:204
+msgid "Resource catalogue"
+msgstr "Ressurskatalog"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:112
+msgid "Reviewed by:"
+msgstr "Anmeldt av:"
+
+#: ../../climateadapt/vocabulary.py:623
+msgid "River flooding"
+msgstr "Elveflom"
+
+# ,
+#: ../../climateadapt/browser/pt/navbar_footer.pt:18
+msgid "SITE MAP"
+msgstr "SITEKART"
+
+#: ../../climateadapt/image_scales/interfaces.py:66
+msgid "Scaled image quality"
+msgstr "Skalert bildekvalitet"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:58
+msgid "Scroll to top"
+msgstr "Rull til toppen"
+
+# ,
+#: ../../climateadapt/vocabulary.py:361
+msgid "Sea Level Rise"
+msgstr "Havnivåstigning"
+
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:101
+msgid "Search"
+msgstr "Søk"
+
+# ,
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:203
+msgid "Search results"
+msgstr "Søkeresultater"
+
+# ,
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:212
+msgid "Search results for: ${term}"
+msgstr "Søkeresultater for: ${term}"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:319
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:288
+msgid "Search the Climate Adapt Database:"
+msgstr "Søk i Climate Adapt-databasen:"
+
+#: ../../climateadapt/tiles/pt/search_acecontent.pt:66
+msgid "Search tile"
+msgstr "Søk flis"
+
+#: ../../climateadapt/tiles/search_acecontent.py:841
+msgid "Sector"
+msgstr "Sektor"
+
+# ,
+#: ../../climateadapt/vocabulary.py:326
+msgid "Sector Policies"
+msgstr "Sektorpolitikk"
+
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:76
+#: ../../climateadapt/browser/pt/indicator_view.pt:98
+#: ../../climateadapt/browser/pt/mapgraphdataset_view.pt:57
+msgid "Sectors"
+msgstr "Sektorer"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:112
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:173
+#: ../../climateadapt/browser/pt/casestudy_view.pt:345
+msgid "Sectors:"
+msgstr "Sektorer:"
+
+# ,
+#: ../../climateadapt/browser/pt/organisation_view.pt:63
+msgid "See more"
+msgstr "Se mer"
+
+# ,
+#: ../../climateadapt/browser/pt/video_view.pt:39
+msgid "See video outside Climate-ADAPT"
+msgstr "Se video utenfor Climate-ADAPT"
+
+#: ../../climateadapt/browser/pt/countries-list.pt:5
+msgid "Select a country"
+msgstr "Velg et land"
+
+#: ../../climateadapt/browser/pt/countries-d3.pt:49
+msgid "Select a country to go directly to the country's page:"
+msgstr "Velg et land for å gå direkte til landets side:"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:60
+msgid "Select the sectors for which you want to receive a notification email when an item is modified."
+msgstr "Velg sektorene du vil motta en e-postvarsling for når et element endres."
+
+#: ../../climateadapt/tiles/pt/shareinfo.pt:8
+msgid "Share button tile"
+msgstr "Del-knappflis"
+
+#: ../../climateadapt/tiles/pt/shareinfo.pt:11
+msgid "Share type:"
+msgstr "Delingstype:"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:87
+#: ../../climateadapt/tiles/pt/search_acecontent.pt:103
+#: ../../climateadapt/tiles/pt/shareinfo.pt:18
+msgid "Share your information"
+msgstr "Del informasjonen din"
+
+#: ../../climateadapt/browser/pt/observatory_indicators_search.pt:108
+msgid "Show all sources"
+msgstr "Vis alle kilder"
+
+#: ../../climateadapt/vocabulary.py:626
+msgid "Snow and ice"
+msgstr "Snø og is"
+
+#: ../../climateadapt/vocabulary.py:1225
+msgid "Social, cultural and educational institutions"
+msgstr "Sosiale, kulturelle og utdanningsinstitusjoner"
+
+#: ../../climateadapt/vocabulary.py:790
+msgid "Social: Behavioural"
+msgstr "Sosialt: Atferdsmessig"
+
+#: ../../climateadapt/vocabulary.py:788
+msgid "Social: Educational options"
+msgstr "Sosialt: Utdanningsalternativer"
+
+#: ../../climateadapt/vocabulary.py:789
+msgid "Social: Informational"
+msgstr "Sosialt: Informasjon"
+
+#: ../../climateadapt/vocabulary.py:337
+msgid "Societal aspects"
+msgstr "Samfunnsmessige aspekter"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:63
+msgid "Solutions"
+msgstr "Løsninger"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:57
+#: ../../climateadapt/browser/pt/casestudy_view.pt:113
+msgid "Source"
+msgstr "Kilde"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:183
+msgid "Source of funding"
+msgstr "Finansieringskilde"
+
+# ,
+#: ../../climateadapt/browser/pt/guidancedocument_view.pt:32
+#: ../../climateadapt/browser/pt/indicator_view.pt:44
+#: ../../climateadapt/browser/pt/informationportal_view.pt:32
+msgid "Source:"
+msgstr "Kilde:"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:485
+msgid "South West Europe"
+msgstr "Sørvest-Europa"
+
+#: ../../climateadapt/image_scales/interfaces.py:43
+msgid "Specify all allowed maximum image dimensions, one per line. The required format is &lt;name&gt; &lt;width&gt;:&lt;height&gt;."
+msgstr "Spesifiser alle tillatte maksimale bildedimensjoner, én per linje. Det nødvendige formatet er &lt;navn&gt; &lt;bredde&gt;:&lt;høyde&gt;."
+
+#: ../../climateadapt/vocabulary.py:1293
+msgid "Staff of regional authority"
+msgstr "Ansatte i regional myndighet"
+
+# ,
+#: ../../climateadapt/browser/pt/casestudy_view.pt:76
+msgid "Stakeholder Participation"
+msgstr "Interessentmedvirkning"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:35
+msgid "Stakeholder participation"
+msgstr "Interessenters deltakelse"
+
+#: ../../climateadapt/vocabulary.py:1295
+msgid "Stakeholders"
+msgstr "Interessenter"
+
+#: ../../climateadapt/vocabulary.py:1207
+msgid "Step 1. Preparing the ground for adaptation"
+msgstr "Trinn 1. Forberede grunnen for tilpasning"
+
+#: ../../climateadapt/vocabulary.py:1208
+msgid "Step 2. Assessing climate change risks and vulnerabilities"
+msgstr "Trinn 2. Vurdere risikoer og sårbarheter for klimaendringer"
+
+#: ../../climateadapt/vocabulary.py:1209
+msgid "Step 3. Identifying adaptation options"
+msgstr "Trinn 3. Identifisere tilpasningsalternativer"
+
+#: ../../climateadapt/vocabulary.py:1210
+msgid "Step 4. Assessing and selecting adaptation options"
+msgstr "Trinn 4. Vurdere og velge tilpasningsalternativer"
+
+#: ../../climateadapt/vocabulary.py:1211
+msgid "Step 5. Implementing adaptation"
+msgstr "Trinn 5. Implementere tilpasning"
+
+#: ../../climateadapt/vocabulary.py:1212
+msgid "Step 6. Monitoring and evaluating adaptation"
+msgstr "Trinn 6. Overvåking og evaluering av tilpasning"
+
+# ,
+#: ../../climateadapt/vocabulary.py:362
+msgid "Storms"
+msgstr "Stormer"
+
+#: ../../climateadapt/vocabulary.py:786
+msgid "Structural and physical: Ecosystem-based adaptation options"
+msgstr "Strukturelt og fysisk: Økosystembaserte tilpasningsmuligheter"
+
+#: ../../climateadapt/vocabulary.py:783
+msgid "Structural and physical: Engineering and built environment options"
+msgstr "Strukturelle og fysiske: Tekniske og bygde miljøalternativer"
+
+#: ../../climateadapt/vocabulary.py:787
+msgid "Structural and physical: Service options"
+msgstr "Strukturelt og fysisk: Servicealternativer"
+
+#: ../../climateadapt/vocabulary.py:785
+msgid "Structural and physical: Technological options"
+msgstr "Strukturelle og fysiske: Teknologiske alternativer"
+
+# ,
+#: ../../climateadapt/browser/__init__.py:202
+msgid "Sub Nationals"
+msgstr "Sub Nationals"
+
+#: ../../climateadapt/browser/pt/countries-heat-index.pt:57
+msgid "Subnational or local HHAP"
+msgstr "Subnasjonal eller lokal HHAP"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:38
+#: ../../climateadapt/browser/pt/casestudy_view.pt:80
+msgid "Success and Limiting Factors"
+msgstr "Suksess og begrensende faktorer"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:396
+msgid "The <a href=\"https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en\">European Climate Pact</a> is an EU-wide initiative inviting people, communities and organisations to participate in climate action and build a greener Europe."
+msgstr "<a href=\"https://ec.europa.eu/clima/eu-action/european-green-deal/european-climate-pact_en\">European Climate Pact</a> er et EU-dekkende initiativ som inviterer mennesker, lokalsamfunn og organisasjoner til å delta i klimahandlinger og bygge et grønnere Europa."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:473
+msgid "The <a href=\"https://resilientcitiesnetwork.org/\">Resilient Cities Network</a> consists of cities that are committed to building and investing in urban resilience, located in five geographical regions: Africa, Asia Pacific, Europe and Middle East, Latin America and the Caribbean, and North America."
+msgstr "<a href=\"https://resilientcitiesnetwork.org/\">Resilient Cities Network</a> består av byer som er forpliktet til å bygge og investere i urban motstandskraft, lokalisert i fem geografiske regioner: Afrika, Asia-Stillehavsområdet, Europa og Midtøsten, Latin-Amerika og Karibia og Nord-Amerika."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:385
+msgid "The <a href=\"https://www.covenantofmayors.eu/\">EU Covenant of Mayors</a> brings together over 10,000 local governments voluntarily committed to implementing EU climate and energy objectives. Signatory cities commit to increasing resilience and preparing for the adverse impacts of climate change."
+msgstr "<a href=\"https://www.covenantofmayors.eu/\">EU-ordføreravtalen</a> samler over 10 000 lokale myndigheter som frivillig er forpliktet til å implementere EUs klima- og energimål. Undertegnende byer forplikter seg til å øke motstandskraften og forberede seg på de negative konsekvensene av klimaendringer."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:318
+msgid "The <a href=\"https://www.covenantofmayors.eu/support/funding.html\">Covenant of Mayors Interactive Funding Guide</a> provides comprehensive and up-to-date information on various funding initiatives open to cities and managed by the European Commission, Member States and key financial institutions such as the European Investment Bank. In addition, the guide includes information on support services and innovative financing models."
+msgstr "<a href=\"https://www.covenantofmayors.eu/support/funding.html\">Covenant of Mayors Interactive Funding Guide</a> gir omfattende og oppdatert informasjon om ulike finansieringsinitiativer som er åpne for byer og administreres av EU-kommisjonen, medlemslandene og sentrale finansinstitusjoner som Den europeiske investeringsbanken. I tillegg inneholder veilederen informasjon om støttetjenester og innovative finansieringsmodeller."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:418
+msgid "The <a href=\"https://www.fao.org/green-cities-initiative/en/\">FAO Green Cities Initiative</a> focuses on improving the urban environment, strengthening urban-rural linkages and the resilience of urban systems, services and populations to external shocks."
+msgstr "<a href=\"https://www.fao.org/green-cities-initiative/en/\">FAO Green Cities Initiative</a> fokuserer på å forbedre bymiljøet, styrke koblinger mellom by og land og motstandskraften til urbane systemer, tjenester og befolkninger mot eksterne sjokk."
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:106
+msgid "The Adaptation Support Tool - Getting started"
+msgstr "Tilpasningsstøtteverktøyet – Komme i gang"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:384
+msgid "The EU Covenant of Mayors"
+msgstr "EUs ordførerkonvensjon"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:350
+msgid "The EU finances adaptation to climate change in Europe through a wide range of instruments. The Multiannual Financial Framework 2021-2027 ensures that at least 25% of the European budget is climate-related expenditure. Therefore, Climate adaptation actions have to be integrated into all the major EU spending programmes, and a tracking system is put in place to guarantee these objectives are met."
+msgstr "EU finansierer tilpasning til klimaendringer i Europa gjennom en lang rekke virkemidler. Det flerårige økonomiske rammeverket 2021-2027 sikrer at minst 25 % av det europeiske budsjettet er klimarelaterte utgifter. Derfor må klimatilpasningstiltak integreres i alle de store EU-utgiftsprogrammene, og et sporingssystem er på plass for å sikre at disse målene blir nådd."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:309
+msgid "The EU has several policy frameworks in place to increase the resilience of European cities and their inhabitants, including the EU Adaptation Strategy and the EU Biodiversity Strategy 2030, and has developed several initiatives to improve knowledge and data availability on urban vulnerability and adaptive capacity. It also provides financial and technical support to policy makers and practitioners to make cities more resilient and adaptive."
+msgstr "EU har flere politiske rammer på plass for å øke motstandskraften til europeiske byer og deres innbyggere, inkludert EUs tilpasningsstrategi og EUs strategi for biologisk mangfold 2030, og har utviklet flere initiativer for å forbedre kunnskap og datatilgjengelighet om urban sårbarhet og tilpasningsevne. Det gir også økonomisk og teknisk støtte til beslutningstakere og utøvere for å gjøre byene mer robuste og tilpasningsdyktige."
+
+# ,
+#: ../../climateadapt/browser/pt/footer_logos.pt:10
+msgid "The European Climate Adaptation Platform Climate-ADAPT is a partnership between the <a href=\"https://ec.europa.eu/\">European Commission</a> and the <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
+msgstr "European Climate Adaptation Platform Climate-ADAPT er et partnerskap mellom <a href=\"https://ec.europa.eu/\">European Commission</a> og <a href=\"https://www.eea.europa.eu/\">European Environment Agency.</a>"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:234
+msgid "The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation."
+msgstr "European Climate Data Explorer gir interaktiv tilgang til mange klimaindekser fra Copernicus Climate Change Service til støtte for klimatilpasning."
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:239
+msgid "The European Climate Data Explorer provides interactive access to many climate indices like fire weather indices in support of climate change adaptation in forests."
+msgstr "European Climate Data Explorer gir interaktiv tilgang til mange klimaindekser som brannværindekser til støtte for klimatilpasning i skoger."
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:257
+msgid "The European Drought Observatory (EDO) contains drought-relevant information. These give an overview of the situation in the EU about imminent droughts."
+msgstr "European Drought Observatory (EDO) inneholder tørkerelevant informasjon. Disse gir en oversikt over situasjonen i EU om forestående tørke."
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:269
+msgid "The European Forest Fire Information System"
+msgstr "Det europeiske skogbranninformasjonssystemet"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:266
+msgid "The European Forest Fire Information System (EFFIS) supports the protection of forests against fires and provides the EU with harmonized information on forest fires"
+msgstr "Det europeiske skogbranninformasjonssystemet (EFFIS) støtter beskyttelse av skog mot brann og gir EU harmonisert informasjon om skogbranner"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:225
+msgid "The Urban Adaptation Map Viewer provides an overview of the current and future climate hazards, the vulnerability of the cities to these hazards and their adaptive capacity."
+msgstr "Urban Adaptation Map Viewer gir en oversikt over dagens og fremtidige klimafarer, byenes sårbarhet for disse farene og deres tilpasningsevne."
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:216
+msgid "The Urban Adaptation Support Tool assists cities, towns and local authorities in developing, implementing and monitoring climate change adaptation plans."
+msgstr "Urban Adaptation Support Tool hjelper byer, tettsteder og lokale myndigheter med å utvikle, implementere og overvåke klimatilpasningsplaner."
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:340
+msgid "The climate crisis is severely affecting Europe's forests, making them increasingly vulnerable to hazards like storms, wildfires, droughts, insect and disease outbreaks, or sea level rise. The growing risks and impacts are affecting the economic viability of forestry and they reduce the capacity of forests to provide essential ecosystem services. The EU responds to this unprecedented challenge by supporting the adaptation of forests to climate change through a wide range of policies, like the EU Forest Strategy, EU Strategy on Adaptation to Climate Change, and the EU Biodiversity Strategy."
+msgstr "Klimakrisen påvirker Europas skoger hardt, og gjør dem stadig mer sårbare for farer som stormer, skogbranner, tørke, insekt- og sykdomsutbrudd eller havnivåstigning. De økende risikoene og konsekvensene påvirker den økonomiske levedyktigheten til skogbruket, og de reduserer skogens kapasitet til å tilby viktige økosystemtjenester. EU svarer på denne enestående utfordringen ved å støtte tilpasningen av skoger til klimaendringer gjennom et bredt spekter av politikk, som EUs skogstrategi, EUs strategi for tilpasning til klimaendringer og EUs strategi for biologisk mangfold."
+
+# ,
+#: ../../climateadapt/browser/pt/video_view.pt:95
+msgid "The date refers to the date of release of the video"
+msgstr "Datoen refererer til datoen for utgivelsen av videoen"
+
+# ,
+#: ../../climateadapt/browser/pt/guidancedocument_view.pt:50
+#: ../../climateadapt/browser/pt/indicator_view.pt:68
+#: ../../climateadapt/browser/pt/publicationreport_view.pt:58
+msgid "The date refers to the latest date of publication of the item"
+msgstr "Datoen refererer til siste dato for publisering av varen"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:72
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:138
+#: ../../climateadapt/browser/pt/casestudy_view.pt:267
+msgid "The date refers to the moment in which the item has been prepared or updated by contributing experts to be submitted for the publication in Climate ADAPT"
+msgstr "Datoen refererer til tidspunktet da elementet er utarbeidet eller oppdatert av medvirkende eksperter som skal sendes inn for publisering i Climate ADAPT"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:423
+msgid "There are <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> in Europe for transnational co-operation. In addition, specific EU agreed strategies exist for four macro-national regions: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, and <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regions. This section provides information on strategies and actions that have been developed or are currently under development for the EU transnational regions and for other regions and countries.<br /> <br /> <b>x</b><br /> The map shows the transnational regions situated in Europe defined in the co-operation programmes for 2014-2020. You can select transnational regions by clicking on the map. If you select an area that belongs to more than one region, the pop-up window will show all the regions where the area is located. The pop-up window also shows the countries where each region is located.<br /> <br /> To go to one of the regions' pages, choose in the drop-down list, click on the legend, or make use of the link shown in the tooltip."
+msgstr "Det er <a href=\"http://ec.europa.eu/regional_policy/cooperate/cooperation/transnational/index_en.cfm\" target=\"_blank\">x</a> i Europa for transnasjonalt samarbeid. I tillegg finnes det spesifikke EU-vedtatte strategier for fire makronasjonale regioner: <a href=\"http://ec.europa.eu/regional_policy/cooperate/baltic/index_en.cfm\" target=\"_blank\">x</a>, <a href=\"http://ec.europa.eu/regional_policy/cooperate/danube/index_en.cfm\">target=\"_blank</a>, <ax\" target=\"_blank\"> href=\"http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+TA+P7-TA-2013-0229+0+DOC+XML+V0//EN&amp;language=EN\" target=\"_blank\">x</a>, og <a href=\"http://ec.europa.eu/regional_policy/en/policy/cooperation/macro-regional-strategies/adriatic-ionian/\" target=\"_blank\">x</a> regioner. Denne delen gir informasjon om strategier og handlinger som er utviklet eller er under utvikling for EUs transnasjonale regioner og for andre regioner og land.<br /> <br /> <b>x</b><br /> Kartet viser de transnasjonale regionene som ligger i Europa definert i samarbeidsprogrammene for 2014-2020. Du kan velge transnasjonale regioner ved å klikke på kartet. Hvis du velger et område som tilhører mer enn én region, vil popup-vinduet vise alle regionene der området ligger. Popup-vinduet viser også landene der hver region befinner seg.<br /> <br /> For å gå til en av regionenes sider, velg i rullegardinlisten, klikk på forklaringen, eller bruk lenken som vises i verktøytipset."
+
+#: ../../climateadapt/browser/pt/regions-section.pt:83
+msgid "To go to one of the regions please click on the maps."
+msgstr "Klikk på kartene for å gå til en av regionene."
+
+#: ../../climateadapt/vocabulary.py:1244
+msgid "Tool broadly used"
+msgstr "Verktøy mye brukt"
+
+#: ../../climateadapt/vocabulary.py:1243
+msgid "Tool tested in several case studies"
+msgstr "Verktøy testet i flere casestudier"
+
+# ,
+#: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:11
+#: ../../climateadapt/vocabulary.py:271
+msgid "Tools"
+msgstr "Verktøy"
+
+#: ../../climateadapt/browser/pt/landing_page_forest.pt:192
+msgid "Tools and data"
+msgstr "Verktøy og data"
+
+# ,
+#: ../../climateadapt/browser/pt/item_statistics.pt:25
+msgid "Total"
+msgstr "Total"
+
+#: ../../climateadapt/vocabulary.py:316
+msgid "Tourism"
+msgstr "Turisme"
+
+#: ../../climateadapt/browser/pt/transnational_regions.pt:410
+msgid "Transnational regions and other regions and countries"
+msgstr "Transnasjonale regioner og andre regioner og land"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:48
+#: ../../climateadapt/vocabulary.py:317
+msgid "Transport"
+msgstr "Transportere"
+
+#: ../../climateadapt/browser/pt/help-categories.pt:36
+msgid "Tutorial videos"
+msgstr "Opplæringsvideoer"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:461
+msgid "URBACT"
+msgstr "URBACT"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:45
+#: ../../climateadapt/vocabulary.py:318
+msgid "Urban"
+msgstr "Urban"
+
+#: ../../climateadapt/browser/pt/landing_page_urban.pt:406
+msgid "Urban Innovative Actions"
+msgstr "Urbane innovative handlinger"
+
+#: ../../climateadapt/tiles/pt/ast_navigation.pt:123
+msgid "Using the Adaptation Support Tool"
+msgstr "Bruke Adaptation Support Tool"
+
+#: ../../climateadapt/tiles/pt/filter_acecontent.pt:61
+msgid "View all"
+msgstr "Se alle"
+
+# ,
+#: ../../climateadapt/browser/pt/organisation_view.pt:67
+msgid "View all contributions in the resource catalogue"
+msgstr "Se alle bidrag i ressurskatalogen"
+
+#: ../../climateadapt/tiles/pt/relevant_acecontent.pt:119
+msgid "View more"
+msgstr "Se mer"
+
+# ,
+#: ../../climateadapt/browser/pt/aceproject_view.pt:18
+msgid "View on DRMKC"
+msgstr "Se på DRMKC"
+
+# ,
+#: ../../climateadapt/vocabulary.py:330
+msgid "Vulnerability Assessment"
+msgstr "Sårbarhetsvurdering"
+
+#: ../../climateadapt/vocabulary.py:606
+msgid "Water Management"
+msgstr "Vannforvaltning"
+
+# ,
+#: ../../climateadapt/vocabulary.py:363
+msgid "Water Scarcity"
+msgstr "Vannmangel"
+
+# ,
+#: ../../climateadapt/browser/overrides.py:50
+#: ../../climateadapt/vocabulary.py:319
+msgid "Water management"
+msgstr "Vannforvaltning"
+
+# ,
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:56
+#: ../../climateadapt/browser/pt/casestudy_view.pt:109
+msgid "Websites"
+msgstr "Nettsteder"
+
+# ,
+#: ../../climateadapt/browser/pt/aceitem_view.pt:29
+#: ../../climateadapt/browser/pt/aceproject_view.pt:55
+#: ../../climateadapt/browser/pt/adaptationoption_view.pt:108
+msgid "Websites:"
+msgstr "Nettsteder:"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:112
+msgid "When:"
+msgstr "Når:"
+
+#: ../../climateadapt/browser/pt/ccaevent_view.pt:116
+msgid "Where:"
+msgstr "Hvor:"
+
+#: ../../climateadapt/vocabulary.py:625
+msgid "Wildfire"
+msgstr "Wildfire"
+
+#: ../../climateadapt/vocabulary.py:595
+msgid "Wildfires"
+msgstr "Villbranner"
+
+#: ../../climateadapt/browser/pt/item_statistics.pt:19
+msgid "Year:"
+msgstr "År:"
+
+# ,
+#: ../../climateadapt/browser/pt/ace_macros.pt:33
+msgid "back to search"
+msgstr "Tilbake til søk"
+
+#. richtexteditor based on the description of images."
+#. Default: "Enable automatic image captioning for images set in the richtexteditor based on the description of images."
+#: ../../climateadapt/image_scales/interfaces.py:211
+msgid "image_captioning_description"
+msgstr ""
+
+#. Default: "Enable image captioning"
+#: ../../climateadapt/image_scales/interfaces.py:210
+msgid "image_captioning_title"
+msgstr ""
+
+# ,
+#. Default: "Filter the results."
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:250
+msgid "narrow_search_options"
+msgstr "smal_search_options"
+
+# ,
+#. Default: "Sort by"
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:451
+msgid "sort_by"
+msgstr "Sorter etter"
+
+# ,
+#. Default: "Located in"
+#: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
+msgid "text_searchitem_location"
+msgstr "text_searchItem_location"

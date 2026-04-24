@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2022-05-17 15:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+"Report-Msgid-Bugs-To: \n"
+"Language: \n"
+
+# ,
+msgid "Adaptation options"
+msgstr "Tilpasningsalternativer"
+
+msgid "Adaptation portals and platforms"
+msgstr ""
+
+msgid "Aridity"
+msgstr ""
+
+msgid "Based on your preferences, you can view this page in english"
+msgstr ""
+
+# ,
+msgid "Case studies"
+msgstr "Casestudier"
+
+msgid "Climate change impact and vulnerability assessments"
+msgstr ""
+
+msgid "Coastal"
+msgstr ""
+
+msgid "Coastal flooding"
+msgstr ""
+
+msgid "Cold spells and frost"
+msgstr ""
+
+# ,
+msgid "Countries:"
+msgstr "Land:"
+
+msgid "Download"
+msgstr ""
+
+msgid "Extreme heat"
+msgstr ""
+
+msgid "Extreme precipitation"
+msgstr ""
+
+# ,
+msgid "Guidance"
+msgstr "Veiledning"
+
+msgid "Hazard category"
+msgstr ""
+
+msgid "Hazard type"
+msgstr ""
+
+msgid "Heat and cold"
+msgstr ""
+
+msgid "Indicator"
+msgstr ""
+
+# ,
+msgid "Indicators"
+msgstr "Indikatorer"
+
+# ,
+msgid "Information portals"
+msgstr "Informasjonsportaler"
+
+msgid "Latest <br/> News & Events"
+msgstr ""
+
+msgid "Mean air temperature"
+msgstr ""
+
+msgid "Mean precipitation"
+msgstr ""
+
+msgid "Most recent <br/> Case Study"
+msgstr ""
+
+msgid "Most recent <br/> Publication or Report"
+msgstr ""
+
+msgid "National adaption policy"
+msgstr ""
+
+# ,
+msgid "Organisations"
+msgstr "Organisasjoner"
+
+msgid "Other"
+msgstr ""
+
+# ,
+msgid "Publication and reports"
+msgstr "Publisering og rapporter"
+
+msgid "Publications and reports"
+msgstr ""
+
+msgid "Relative sea level"
+msgstr ""
+
+# ,
+msgid "Research and knowledge projects"
+msgstr "Forsknings- og kunnskapsprosjekter"
+
+msgid "River flooding"
+msgstr ""
+
+msgid "Snow and ice"
+msgstr ""
+
+msgid "Snow and land ice"
+msgstr ""
+
+# ,
+msgid "Tools"
+msgstr "Verktøy"
+
+# ,
+msgid "Videos"
+msgstr "Videoer"
+
+msgid "Wet and dry"
+msgstr ""
+
+msgid "Wildfire"
+msgstr ""
+
+msgid "Zip download"
+msgstr ""
+
+msgid "here"
+msgstr ""
