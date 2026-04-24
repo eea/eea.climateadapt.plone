@@ -4,21 +4,21 @@ msgstr ""
 "POT-Creation-Date: 2024-05-15 06:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Norwegian Nynorsk <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: nn\n"
+"Language-Name: Norwegian Nynorsk\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 "Report-Msgid-Bugs-To: \n"
-"Language: \n"
+"Language: nn\n"
 
 #: ../theme/climateadaptv2/health-homepage.html:185
 msgid "AIR POLLUTANT FORECAST VIEWERS"
-msgstr ""
+msgstr "VISING AV VARSEL FOR LUFTFORUREINING"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:448
@@ -30,55 +30,55 @@ msgstr "Kontakt"
 #: ../theme/climateadaptv2/health-homepage.html:406
 #: ../theme/climateadaptv2/health-page.html:241
 msgid "Contribute to the Observatory via Climate-ADAPT"
-msgstr ""
+msgstr "Bidra til observatoriet via Climate-ADAPT"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:240
 msgid "Country profiles"
-msgstr "Landsprofiler"
+msgstr "Landsprofilar"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:175
 msgid "Discover the main topics and tools of the observatory"
-msgstr "Oppdag hovedtemaene og verktøyene i observatoriet"
+msgstr "Oppdag hovudtema og verktøy i observatoriet"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:152
 msgid "European Climate <br /> and Health Observatory"
-msgstr "Europeisk klima <br /> og Health Observatory"
+msgstr "Europeisk klima- <br /> og helseobservatorium"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:322
 #: ../theme/climateadaptv2/health-page.html:157
 msgid "Events"
-msgstr "arrangementer"
+msgstr "Arrangement"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:445
 #: ../theme/climateadaptv2/health-page-full.html:156
 #: ../theme/climateadaptv2/health-page.html:280
 msgid "Home"
-msgstr "Hjem"
+msgstr "Heim"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:220
 msgid "INDICATORS"
-msgstr "Indikatorer"
+msgstr "INDIKATORAR"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:223
 msgid "Learn more"
-msgstr "Lære mer"
+msgstr "Lær meir"
 
 #: ../theme/climateadaptv2/health-homepage.html:357
 #: ../theme/climateadaptv2/health-page.html:192
 msgid "More events"
-msgstr ""
+msgstr "Fleire arrangement"
 
 #: ../theme/climateadaptv2/health-homepage.html:340
 #: ../theme/climateadaptv2/health-page.html:175
 msgid "More news"
-msgstr ""
+msgstr "Fleire nyheiter"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:182
@@ -89,30 +89,30 @@ msgstr "Ny"
 #: ../theme/climateadaptv2/health-homepage.html:319
 #: ../theme/climateadaptv2/health-page.html:154
 msgid "News"
-msgstr "Nyheter"
+msgstr "Nyheiter"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:316
 #: ../theme/climateadaptv2/health-page.html:151
 msgid "News/Events"
-msgstr "Nyheter og hendelser"
+msgstr "Nyheiter/arrangement"
 
 #: ../theme/climateadaptv2/health-homepage.html:370
 #: ../theme/climateadaptv2/health-page.html:205
 msgid "Newsletter"
-msgstr ""
+msgstr "Nyheitsbrev"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:461
 #: ../theme/climateadaptv2/health-page-full.html:172
 #: ../theme/climateadaptv2/health-page.html:296
 msgid "Privacy and Legal Notice"
-msgstr "Personvern og juridisk varsel"
+msgstr "Personvern og juridisk merknad"
 
 #: ../theme/climateadaptv2/health-homepage.html:384
 #: ../theme/climateadaptv2/health-page.html:219
 msgid "Register to receive news from the European Climate and Health Observatory"
-msgstr ""
+msgstr "Registrer deg for å få nyheiter frå Det europeiske klima- og helseobservatoriet"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:260
@@ -124,50 +124,50 @@ msgstr "Ressurskatalog"
 #: ../theme/climateadaptv2/health-page-full.html:168
 #: ../theme/climateadaptv2/health-page.html:292
 msgid "SITE MAP"
-msgstr "Nettstedskart"
+msgstr "NETTSTADKART"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:261
 msgid "Search and access the Observatory’s database containing case studies, publications, indicators, research projects and other"
-msgstr "Søk og få tilgang til observatoriets database som inneholder casestudier, publikasjoner, indikatorer, forskningsprosjekter og annet"
+msgstr "Søk og få tilgang til databasen til observatoriet som inneheld casestudiar, publikasjonar, indikatorar, forskingsprosjekt og anna"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:241
 msgid "See how countries are addressing climate change adaptation in public health"
-msgstr "Se hvordan landene tar for seg klimaendring i folkehelsen"
+msgstr "Sjå korleis landa handterer tilpassing til klimaendringar innan folkehelse"
 
 #: ../theme/climateadaptv2/health-homepage.html:373
 #: ../theme/climateadaptv2/health-page.html:208
 msgid "Share"
-msgstr ""
+msgstr "Del"
 
 #: ../theme/climateadaptv2/health-homepage.html:405
 #: ../theme/climateadaptv2/health-page.html:240
 msgid "Share your<br /> information"
-msgstr ""
+msgstr "Del din<br /> informasjon"
 
 #: ../theme/climateadaptv2/health-homepage.html:386
 #: ../theme/climateadaptv2/health-page.html:221
 msgid "Sign me up"
-msgstr ""
+msgstr "Meld meg på"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:501
 #: ../theme/climateadaptv2/health-page-full.html:212
 #: ../theme/climateadaptv2/health-page.html:336
 msgid "This <strong>European Climate and Health Observatory</strong> is a partnership between the European Commission, the European Environment Agency and several other organisations."
-msgstr "Dette <strong> europeiske klima- og helseobservatoriet </strong> er et partnerskap mellom EU -kommisjonen, European Environment Agency og flere andre organisasjoner."
+msgstr "Dette <strong>europeiske klima- og helseobservatoriet</strong> er eit partnarskap mellom EU-kommisjonen, Det europeiske miljøbyrået (EEA) og fleire andre organisasjonar."
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:221
 msgid "View climate and health indicators from different trusted information providers"
-msgstr "Se klima- og helseindikatorer fra forskjellige pålitelige informasjonsleverandører"
+msgstr "Sjå klima- og helseindikatorar frå ulike pålitelege informasjonsleverandørar"
 
 #: ../theme/climateadaptv2/health-homepage.html:186
 msgid "View forecasts of air pollutant concentrations, which could be affected by climatic changes"
-msgstr ""
+msgstr "Sjå varsel for konsentrasjonar av luftforureining, som kan bli påverka av klimaendringar"
 
 # ,
 #: ../theme/climateadaptv2/health-homepage.html:153
 msgid "We provide easy access to a wide range of relevant publications, tools, websites and other resources related to climate change and human health."
-msgstr "Vi gir enkel tilgang til et bredt spekter av relevante publikasjoner, verktøy, nettsteder og andre ressurser relatert til klimaendringer og menneskers helse."
+msgstr "Vi gir enkel tilgang til eit breitt utval av relevante publikasjonar, verktøy, nettstader og andre ressursar knytte til klimaendringar og menneskeleg helse."

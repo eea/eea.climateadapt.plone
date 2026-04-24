@@ -8,844 +8,581 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: nn\n"
+"Language-Name: Norwegian Nynorsk\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Language: nn\n"
 
 #: ../../climateadapt/tiles/ast.py:130
 msgid "AST Step"
-msgstr ""
+msgstr "AST-steg"
 
 #: ../../climateadapt/behaviors/aceproject.py:176
 msgid "Abstracts"
-msgstr ""
+msgstr "Samandrag"
 
 #: ../../climateadapt/tiles/search_acecontent.py:70
 msgid "Aceitem type"
-msgstr ""
+msgstr "Aceitem-type"
 
 #: ../../climateadapt/behaviors/aceproject.py:163
 #: ../../climateadapt/behaviors/organisation.py:30
 msgid "Acronym"
-msgstr ""
+msgstr "Akronym"
 
 #: ../../climateadapt/behaviors/organisation.py:31
 msgid "Acronym of the organisation"
-msgstr ""
+msgstr "Akronym for organisasjonen"
 
 #: ../../climateadapt/behaviors/aceproject.py:164
 msgid "Acronym of the project"
-msgstr ""
+msgstr "Akronym for prosjektet"
 
 #: ../../climateadapt/behaviors/ccaevent.py:63
 msgid "Agenda"
-msgstr ""
+msgstr "Agenda"
 
 #: ../../climateadapt/behaviors/ccaevent.py:69
 msgid "Agenda document"
-msgstr ""
+msgstr "Agendadokument"
 
 #: ../../climateadapt/browser/overrides.py:37
 msgid "Agriculture"
-msgstr ""
+msgstr "Jordbruk"
 
 #: ../../climateadapt/behaviors/ccaevent.py:75
 msgid "Background documents"
-msgstr ""
+msgstr "Bakgrunnsdokument"
 
 #: ../../climateadapt/browser/overrides.py:39
 msgid "Biodiversity"
-msgstr ""
+msgstr "Biomangfald"
 
 #: ../../climateadapt/tiles/search_acecontent.py:112
 msgid "Biogeographical Regions"
-msgstr ""
+msgstr "Biogeografiske regionar"
 
 #: ../../climateadapt/browser/overrides.py:49
 msgid "Buildings"
-msgstr ""
+msgstr "Bygningar"
 
 #: ../../climateadapt/behaviors/c3sindicator.py:64
 msgid "C3S Identifier"
-msgstr ""
+msgstr "C3S-identifikator"
 
 #: ../../climateadapt/behaviors/casestudy.py:33
 msgid "Challenges"
-msgstr ""
+msgstr "Utfordringar"
 
 #: ../../climateadapt/tiles/richtext.py:25
 msgid "Change header style."
-msgstr ""
+msgstr "Endre overskriftsstil."
 
 #: ../../climateadapt/mayorsadapt/views.py:78
 msgid "Check-out created"
-msgstr ""
+msgstr "Utsjekking oppretta"
 
 #: ../../climateadapt/tiles/search_acecontent.py:728
 msgid "Climate impact"
-msgstr ""
+msgstr "Klimapåverknad"
 
 #: ../../climateadapt/behaviors/aceitem.py:182
 #: ../../climateadapt/behaviors/acemeasure.py:143
 #: ../../climateadapt/behaviors/aceproject.py:250
 msgid "Climate impacts"
-msgstr ""
+msgstr "Klimapåverknader"
 
 #: ../../climateadapt/browser/overrides.py:40
 msgid "Coastal areas"
-msgstr ""
+msgstr "Kystområde"
 
 #: ../../climateadapt/browser/pt/detect_links.pt:26
 msgid "Code"
-msgstr ""
+msgstr "Kode"
 
 #: ../../climateadapt/behaviors/aceitem.py:265
 #: ../../climateadapt/behaviors/acemeasure.py:350
 msgid "Comments"
-msgstr ""
+msgstr "Kommentarar"
 
 #: ../../climateadapt/behaviors/acemeasure.py:353
 #: ../../climateadapt/behaviors/aceproject.py:324
 msgid "Comments about this database item [information entered below will not be displayed on the public pages of climate-adapt]"
-msgstr ""
+msgstr "Kommentarar om dette databaseelementet [informasjon skriven inn her vil ikkje bli vist på dei offentlege sidene til Climate-ADAPT]"
 
 #: ../../climateadapt/behaviors/casestudy.py:83
 #: ../../climateadapt/behaviors/organisation.py:36
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: ../../climateadapt/behaviors/organisation.py:73
 msgid "Contact information for the Observatory"
-msgstr ""
+msgstr "Kontaktinformasjon for observatoriet"
 
 #: ../../climateadapt/behaviors/casestudy.py:86
 msgid "Contact of reference (institution and persons) who is directly involved in the development and implementation of the case. (500 char limit) "
-msgstr ""
+msgstr "Referansekontakt (institusjon og personar) som er direkte involvert i utviklinga og gjennomføringa av casen. (Grensa på 500 teikn)"
 
 #: ../../climateadapt/behaviors/casestudy.py:117
 msgid "Copyright statement or other rights information for  the primary photo."
-msgstr ""
+msgstr "Opphavsrettserklæring eller annan rettigheitsinformasjon for hovudbiletet."
 
 #: ../../climateadapt/behaviors/organisation.py:37
 msgid "Corporate email or link to contact form"
-msgstr ""
+msgstr "Bedrifts-e-post eller lenke til kontaktskjema"
 
 #: ../../climateadapt/behaviors/acemeasure.py:242
 msgid "Cost / Benefit"
-msgstr ""
+msgstr "Kostnad / Nytte"
 
 #: ../../climateadapt/behaviors/aceitem.py:387
 #: ../../climateadapt/behaviors/acemeasure.py:475
 #: ../../climateadapt/behaviors/aceproject.py:411
 msgid "Countries"
-msgstr ""
+msgstr "Land"
 
 #: ../../climateadapt/behaviors/aceitem.py:401
-#: ../../climateadapt/behaviors/acemeasure.py:529
-#: ../../climateadapt/behaviors/aceproject.py:356
+#: ../../climateadapt/behaviors/acemeasure.py:529\n#: ../../climateadapt/behaviors/aceproject.py:356
 msgid "Created"
-msgstr ""
+msgstr "Oppretta"
 
 #: ../../climateadapt/behaviors/aceitem.py:372
 msgid "Data Type"
-msgstr ""
+msgstr "Datatype"
 
 #: ../../climateadapt/browser/pt/detect_links.pt:28
 msgid "Date"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:211
-#: ../../climateadapt/behaviors/acemeasure.py:191
-#: ../../climateadapt/behaviors/aceproject.py:218
-msgid "Date of item's creation"
-msgstr ""
-
-#: ../../climateadapt/behaviors/c3sindicator.py:108
-#: ../../climateadapt/behaviors/guidancedocument.py:20
-#: ../../climateadapt/behaviors/indicator.py:21
-msgid "Date of item's publication"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acevideo.py:25
-msgid "Date of video's release"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:158
-msgid "Describe and tag this item with relevant keywords. Press Enter after writing your keyword. Use specific and not general key words (e.g. avoid words as: adaption, climate change, measure, integrated approach, etc.):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:156
-msgid "Describe and tag this item with relevant keywords.Press Enter after writing your keyword."
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:245
-msgid "Describe costs (possibly providing quantitative estimate) and funding sources. Describe benefits provided by implemented solutions, i.e.: positive outcomes related climate change adaptation, co-benefits in other areas, quantitative estimation of benefits and related methodologies (e.g. monetization of benefits for cost benefit analysis, indicators of effectiveness of actions implemented, etc.) (5,000 characters limit)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:232
-msgid "Describe factors that are decisive for a successful implementation and expected challenges or limiting factors which may hinder the process and need to be considered (5,000 character limit)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:216
-msgid "Describe the Information about actors involved, the form of participation and the participation process.  Focus should be on the level of participation needed and/or adopted already (from information, to full commitment in the deliberation/implementation process), with useful notes e.g. regarding motivations. (5,000 character limit)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:263
-msgid "Describe the Legislation framework from which the case originated, relevant institutional opportunities and constrains, which determined the case as it is (5000 character limit):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:60
-msgid "Describe the climate change adaptation solution(s) implemented (5,000 characters limit):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:50
-msgid "Describe the objectives which triggered the adaptation measures (5,000 characters limit):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:245
-#: ../../climateadapt/behaviors/acemeasure.py:316
-msgid "Describe the references (projects, a tools reports, etc.) related to this item, providing further information about it or its source."
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:278
-msgid "Describe the time needed to implement the measure. Include: Time frame, e.g. 5-10 years, Brief explanation(250 char limit)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/casestudy.py:36
-msgid "Describe what are the main climate change impacts/risks and related challenges addressed by the adaptation solutions proposed by the case study. Possibly include quantitate scenarios/projections of future climate change considered by the case study (5,000 characters limit):"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:131
-#: ../../climateadapt/tiles/embedapp.py:25
-msgid "Description"
-msgstr ""
-
-#: ../../climateadapt/browser/pt/detect_links.pt:25
-msgid "Destination Links"
-msgstr ""
-
-#: ../../climateadapt/behaviors/c3sindicator.py:74
-msgid "Details APP Toolbox URL"
-msgstr ""
-
-#: ../../climateadapt/browser/overrides.py:42
-msgid "Disaster Risk Reduction"
-msgstr ""
-
-#: ../../climateadapt/tiles/richtext.py:19
-msgid "Don't sanitize HTML"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:280
-msgid "Duration"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:78
-msgid "Element type"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:197
-#: ../../climateadapt/behaviors/acemeasure.py:487
-#: ../../climateadapt/behaviors/aceproject.py:265
-msgid "Elements"
-msgstr ""
-
-#: ../../climateadapt/tiles/embedapp.py:15
-msgid "Embedding view"
-msgstr ""
-
-#: ../../climateadapt/browser/overrides.py:47
-msgid "Energy"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:388
-#: ../../climateadapt/behaviors/acemeasure.py:476
-#: ../../climateadapt/behaviors/aceproject.py:412
-msgid "European countries"
-msgstr ""
-
-#: ../../climateadapt/behaviors/ccaevent.py:80
-msgid "Event Language"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:223
-#: ../../climateadapt/behaviors/acemeasure.py:203
-#: ../../climateadapt/behaviors/aceproject.py:286
-msgid "Featured"
-msgstr ""
-
-#: ../../climateadapt/browser/overrides.py:43
-msgid "Financial"
-msgstr ""
-
-#: ../../climateadapt/browser/overrides.py:38
-msgid "Forestry"
-msgstr ""
-
-#: ../../climateadapt/tiles/formtile.py:25
-msgid "Form UUID"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:155
-msgid "Funding Programme"
-msgstr ""
-
-#: ../../climateadapt/tiles/search_acecontent.py:119
-msgid "Funding programmes"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:274
-msgid "Further information on the funding"
-msgstr ""
-
-#: ../../climateadapt/behaviors/mapgraphdataset.py:12
-msgid "GIS Layer ID"
-msgstr ""
-
-#: ../../climateadapt/behaviors/adaptationoption.py:25
-msgid "General category"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:256
-#: ../../climateadapt/behaviors/acemeasure.py:340
-#: ../../climateadapt/behaviors/aceproject.py:316
-msgid "Geographic characterisation"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:327
-msgid "Governance Level"
-msgstr ""
-
-#: ../../climateadapt/browser/overrides.py:44
-msgid "Health"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:130
-#: ../../climateadapt/behaviors/acemeasure.py:503
-#: ../../climateadapt/behaviors/aceproject.py:212
-msgid "Health impacts"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:393
-#: ../../climateadapt/behaviors/acemeasure.py:512
-msgid "High importance"
-msgstr ""
-
-#: ../../climateadapt/behaviors/adaptationoption.py:35
-msgid "IPCC adaptation options categories"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:275
-msgid "Implementation Time"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:466
-msgid "Implementation Type"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:397
-msgid "Important"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:135
-#: ../../climateadapt/behaviors/acemeasure.py:509
-#: ../../climateadapt/behaviors/aceproject.py:230
-msgid "Include in observatory"
-msgstr ""
-
-#: ../../climateadapt/behaviors/c3sindicator.py:54
-msgid "Indicator title"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:97
-#: ../../climateadapt/behaviors/acemeasure.py:362
-#: ../../climateadapt/behaviors/aceproject.py:107
-msgid "Item from third parties"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:367
-msgid "Item link"
-msgstr ""
-
-#: ../../climateadapt/behaviors/organisation.py:46
-msgid "Key activities within climate change and health"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:155
-#: ../../climateadapt/behaviors/acemeasure.py:157
-#: ../../climateadapt/behaviors/aceproject.py:201
-msgid "Keywords"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:406
-#: ../../climateadapt/behaviors/acemeasure.py:534
-#: ../../climateadapt/behaviors/aceproject.py:361
-msgid "Last Modified"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:185
-msgid "Lead"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceproject.py:186
-msgid "Lead organisation or individual of the project"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:260
-msgid "Legal aspects"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:287
-msgid "Lifetime"
-msgstr ""
-
-#: ../../climateadapt/behaviors/organisation.py:60
-msgid "Links to further information (relevant for the Observatory)"
-msgstr ""
-
-#: ../../climateadapt/behaviors/aceitem.py:233
-#: ../../climateadapt/behaviors/aceproject.py:295
-msgid "List the Websites where the item can be found or is described. Please place each website on a new line"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:300
-msgid "List the Websites where the option can be found or is described. Note: may refer to the original document describing a measure and does not have to refer back to the project e.g. collected measures. NOTE: Add http:// in front of every website link."
-msgstr ""
+msgstr "Dato"
 
 #: ../../climateadapt/behaviors/aceitem.py:110
 #: ../../climateadapt/behaviors/acemeasure.py:375
 #: ../../climateadapt/behaviors/aceproject.py:119
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: ../../climateadapt/tiles/search_acecontent.py:106
 msgid "Macro-Transnational Regions"
-msgstr ""
+msgstr "Makro-transnasjonale regionar"
 
 #: ../../climateadapt/behaviors/indicator.py:18
 msgid "Map/Graphs"
-msgstr ""
+msgstr "Kart/Grafar"
 
 #: ../../climateadapt/browser/overrides.py:46
 msgid "Marine and Fisheries"
-msgstr ""
+msgstr "Hav og fiskeri"
 
 #: ../../climateadapt/behaviors/acemeasure.py:496
 msgid "Measure Type"
-msgstr ""
+msgstr "Tiltakstype"
 
 #: ../../climateadapt/behaviors/aceitem.py:396
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"
 
 #: ../../climateadapt/behaviors/ccaevent.py:59
 msgid "More information on the event (URL)"
-msgstr ""
+msgstr "Meir informasjon om arrangementet (URL)"
 
 #: ../../climateadapt/behaviors/organisation.py:42
 msgid "Name"
-msgstr ""
+msgstr "Namn"
 
 #: ../../climateadapt/behaviors/acemeasure.py:122
 msgid "Name of the case study clearly identifying its scope and location (250 character limit)"
-msgstr ""
+msgstr "Namnet på casestudien som tydeleg identifiserer omfang og stad (Grensa på 250 teikn)"
 
 #: ../../climateadapt/tiles/search_acecontent.py:124
 msgid "Nr of items to show"
-msgstr ""
+msgstr "Antal element som skal visast"
 
 #: ../../climateadapt/behaviors/aceitem.py:411
 #: ../../climateadapt/behaviors/acemeasure.py:539
 #: ../../climateadapt/behaviors/aceproject.py:366
 msgid "Object ID"
-msgstr ""
+msgstr "Objekt-ID"
 
 #: ../../climateadapt/browser/pt/detect_links.pt:27
 msgid "Object URL"
-msgstr ""
+msgstr "Objekt-URL"
 
 #: ../../climateadapt/behaviors/casestudy.py:47
 msgid "Objectives"
-msgstr ""
+msgstr "Mål"
 
 #: ../../climateadapt/behaviors/ccaevent.py:93
 msgid "Online registration (URL)"
-msgstr ""
+msgstr "Registrering på nett (URL)"
 
 #: ../../climateadapt/behaviors/ccaevent.py:103
 msgid "Online registration documents"
-msgstr ""
+msgstr "Dokument for registrering på nett"
 
 #: ../../climateadapt/behaviors/ccaevent.py:97
 msgid "Online registration message"
-msgstr ""
+msgstr "Melding for registrering på nett"
 
 #: ../../climateadapt/tiles/search_acecontent.py:62
 msgid "Origin website"
-msgstr ""
+msgstr "Opphavsnettstad"
 
 #: ../../climateadapt/behaviors/aceitem.py:292
 #: ../../climateadapt/behaviors/acemeasure.py:412
 msgid "Other contributor(s)"
-msgstr ""
+msgstr "Andre bidragsytar(ar)"
 
 #: ../../climateadapt/behaviors/c3sindicator.py:68
 msgid "Overview APP Toolbox URL"
-msgstr ""
+msgstr "URL for oversikt i APP-verktøykassa"
 
 #: ../../climateadapt/behaviors/ccaevent.py:87
 msgid "Participation"
-msgstr ""
+msgstr "Deltaking"
 
 #: ../../climateadapt/behaviors/aceproject.py:192
 msgid "Partners"
-msgstr ""
+msgstr "Partnarar"
 
 #: ../../climateadapt/behaviors/aceproject.py:418
 msgid "Partners Source Link"
-msgstr ""
+msgstr "Lenke til partnarkjelde"
 
 #: ../../climateadapt/behaviors/acemeasure.py:415
 msgid "Please first verify if the contributor is already part of the Climate ADAPT Database. If not, it is suggested to first create a new Organisation item (%s). As last alternative please add the new contributor(s) in the following box, using the official name"
-msgstr ""
+msgstr "Ver venleg og sjekk først om bidragsytaren allereie er ein del av Climate-ADAPT-databasen. Om ikkje, blir det foreslått å først opprette eit nytt organisasjonselement (%s). Som eit siste alternativ, legg til den/dei nye bidragsytaren/ane i feltet under, bruk offisielt namn."
 
 #: ../../climateadapt/behaviors/aceitem.py:295
 msgid "Please first verify if the contributor is already part of the Climate ADAPT Database. If not, it is suggested to first create a new Organisation item (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>click here</a>). As last alternative please add the new contributor(s) in the following box, using the official name"
-msgstr ""
+msgstr "Ver venleg og sjekk først om bidragsytaren allereie er ein del av Climate-ADAPT-databasen. Om ikkje, blir det foreslått å først opprette eit nytt organisasjonselement (<a target='_blank' href='/metadata/organisations/++add++eea.climateadapt.organisation'>klikk her</a>). Som eit siste alternativ, legg til den/dei nye bidragsytaren/ane i feltet under, bruk offisielt namn."
 
 #: ../../climateadapt/behaviors/aceitem.py:365
 msgid "Portal type"
-msgstr ""
+msgstr "Portaltype"
 
 #: ../../climateadapt/behaviors/casestudy.py:114
 msgid "Primary Photo Copyright"
-msgstr ""
+msgstr "Opphavsrett for hovudbilete"
 
 #: ../../climateadapt/behaviors/casestudy.py:109
 msgid "Primary photo"
-msgstr ""
+msgstr "Hovudbilete"
 
 #: ../../climateadapt/behaviors/casestudy.py:125
 msgid "Prime photo"
-msgstr ""
+msgstr "Hovudbilete"
 
 #: ../../climateadapt/browser/overrides.py:59
 msgid "Professional thematic domain"
-msgstr ""
+msgstr "Profesjonelt tematisk domene"
 
 #: ../../climateadapt/behaviors/aceproject.py:170
 msgid "Project title or name"
-msgstr ""
+msgstr "Prosjekttittel eller namn"
 
 #: ../../climateadapt/behaviors/aceproject.py:202
 msgid "Provide Keywords related to the project. Press Enter after writing your keyword."
-msgstr ""
+msgstr "Oppgi nøkkelord knytte til prosjektet. Trykk Enter etter kvart nøkkelord."
 
 #: ../../climateadapt/behaviors/aceproject.py:281
 msgid "Provide duration of project - Start and end date [yr]"
-msgstr ""
+msgstr "Oppgi varigheita på prosjektet – start- og sluttdato [år]"
 
 #: ../../climateadapt/behaviors/aceproject.py:193
 msgid "Provide information about project partners (organisation names)."
-msgstr ""
+msgstr "Gi informasjon om prosjektpartnarar (namn på organisasjonar)."
 
 #: ../../climateadapt/behaviors/aceproject.py:177
 msgid "Provide information focusing on project output. Possibly on specific Website features."
-msgstr ""
+msgstr "Gi informasjon med fokus på prosjektresultat. Eventuelt om spesifikke funksjonar på nettstaden."
 
 #: ../../climateadapt/behaviors/aceproject.py:307
 msgid "Provide source from which project was retrieved (e.g. specific DB) "
-msgstr ""
+msgstr "Oppgi kjelda prosjektet vart henta frå (t.d. ein spesifikk database)"
 
 #: ../../climateadapt/behaviors/aceproject.py:275
 msgid "Provide source of funding"
-msgstr ""
+msgstr "Oppgi finansieringskjelde"
 
-#: ../../climateadapt/behaviors/acemeasure.py:514
-#: ../../climateadapt/behaviors/aceproject.py:402
+#: ../../climateadapt/behaviors/acemeasure.py:514\n#: ../../climateadapt/behaviors/aceproject.py:402
 msgid "Rating"
-msgstr ""
+msgstr "Vurdering"
 
 #: ../../climateadapt/behaviors/aceproject.py:306
 msgid "Reference"
-msgstr ""
+msgstr "Referanse"
 
 #: ../../climateadapt/behaviors/aceitem.py:243
 #: ../../climateadapt/behaviors/acemeasure.py:314
 msgid "References"
-msgstr ""
+msgstr "Referansar"
 
 #: ../../climateadapt/tiles/transregional_select.py:22
 msgid "Region"
-msgstr ""
+msgstr "Region"
 
 #: ../../climateadapt/contentrules.py:26
 msgid "Reindex object"
-msgstr ""
+msgstr "Reindekser objekt"
 
 #: ../../climateadapt/behaviors/aceitem.py:283
 #: ../../climateadapt/behaviors/acemeasure.py:402
 #: ../../climateadapt/behaviors/aceproject.py:146
 msgid "Related"
-msgstr ""
+msgstr "Relatert"
 
 #: ../../climateadapt/behaviors/acevideo.py:34
 msgid "Related documents and presentations"
-msgstr ""
+msgstr "Relaterte dokument og presentasjonar"
 
 #: ../../climateadapt/behaviors/casestudy.py:68
 msgid "Relevance"
-msgstr ""
+msgstr "Relevans"
 
 #: ../../climateadapt/tiles/search_acecontent.py:56
 msgid "Search Text"
-msgstr ""
+msgstr "Søketekst"
 
 #: ../../climateadapt/tiles/search_acecontent.py:86
 msgid "Sector"
-msgstr ""
+msgstr "Sektor"
 
 #: ../../climateadapt/behaviors/aceitem.py:167
 #: ../../climateadapt/behaviors/acemeasure.py:172
 #: ../../climateadapt/behaviors/aceproject.py:235
 msgid "Sectors"
-msgstr ""
+msgstr "Sektorar"
 
 #: ../../climateadapt/behaviors/acemeasure.py:397
 #: ../../climateadapt/behaviors/aceproject.py:141
 msgid "Select from the Climate ADAPT Organisation items the organisations contributing to/ involved in this item"
-msgstr ""
+msgstr "Vel frå organisasjonselementa i Climate-ADAPT dei organisasjonane som bidrar til eller er involverte i dette elementet"
 
 #: ../../climateadapt/behaviors/aceitem.py:277
 msgid "Select from the Climate ADAPT \"Organisation\" items the organisations contributing to/ involved in this item"
-msgstr ""
+msgstr "Vel frå organisasjonselementa i \"Organisation\" i Climate-ADAPT dei organisasjonane som bidrar til eller er involverte i dette elementet"
 
 #: ../../climateadapt/behaviors/casestudy.py:96
 msgid "Select one or more adaptation options that this item relates to:"
-msgstr ""
+msgstr "Vel eit eller fleire tilpassingsalternativ som dette elementet er knytt til:"
 
 #: ../../climateadapt/behaviors/adaptationoption.py:46
 msgid "Select one or more case study that this item relates to:"
-msgstr ""
+msgstr "Vel ein eller fleire casestudiar som dette elementet er knytt til:"
 
 #: ../../climateadapt/behaviors/adaptationoption.py:26
 msgid "Select one or more categories of adaptation options. The 3 options are:"
-msgstr ""
+msgstr "Vel ein eller fleire kategoriar for tilpassingsalternativ. Dei tre alternativa er:"
 
 #: ../../climateadapt/behaviors/adaptationoption.py:36
 msgid "Select one or more categories of adaptation options. The options are:"
-msgstr ""
+msgstr "Vel ein eller fleire kategoriar for tilpassingsalternativ. Alternativa er:"
 
 #: ../../climateadapt/behaviors/aceitem.py:183
-#: ../../climateadapt/behaviors/aceproject.py:251
+#: ../../climateadapt/behaviors/aceproject.py:266
 #: ../../climateadapt/behaviors/c3sindicator.py:95
 msgid "Select one or more climate change impact topics that this item relates to."
-msgstr ""
+msgstr "Vel eit eller fleire emne for klimapåverknad som dette elementet er knytt til."
 
 #: ../../climateadapt/behaviors/acemeasure.py:146
 msgid "Select one or more climate change impact topics that this item relates to:"
-msgstr ""
+msgstr "Vel eit eller fleire emne for klimapåverknad som dette elementet er knytt til:"
 
 #: ../../climateadapt/behaviors/aceitem.py:198
 #: ../../climateadapt/behaviors/aceproject.py:266
 msgid "Select one or more elements."
-msgstr ""
+msgstr "Vel eit eller fleire element."
 
 #: ../../climateadapt/behaviors/aceitem.py:168
 #: ../../climateadapt/behaviors/aceproject.py:236
 #: ../../climateadapt/behaviors/c3sindicator.py:81
 msgid "Select one or more relevant sector policies that this item relates to."
-msgstr ""
+msgstr "Vel ein eller fleire relevante sektorpolitikk-område som dette elementet er knytt til."
 
 #: ../../climateadapt/behaviors/acemeasure.py:173
 msgid "Select one or more relevant sector policies that this item relates to:"
-msgstr ""
+msgstr "Vel ein eller fleire relevante sektorpolitikk-område som dette elementet er knytt til:"
 
 #: ../../climateadapt/behaviors/casestudy.py:72
 msgid "Select only one category below that best describes how relevant this case study is to climate change adaptation:"
-msgstr ""
+msgstr "Vel berre éin kategori under som best beskriv kor relevant denne casestudien er for klimatilpassing:"
 
 #: ../../climateadapt/behaviors/acemeasure.py:328
 msgid "Select the one governance level that relates to this adaptation option"
-msgstr ""
+msgstr "Vel det eine forvaltningsnivået som er knytt til dette tilpassingsalternativet"
 
 #: ../../climateadapt/browser/overrides.py:60
 msgid "Select the sectors for which you want to receive a notification email when an item is modified."
-msgstr ""
+msgstr "Vel sektorane du ønsker å få varsel om på e-post når eit element blir endra."
 
 #: ../../climateadapt/tiles/shareinfo.py:26
 msgid "Share info type"
-msgstr ""
+msgstr "Type delingsinfo"
 
 #: ../../climateadapt/behaviors/aceitem.py:149
 #: ../../climateadapt/behaviors/acemeasure.py:136
 msgid "Short summary"
-msgstr ""
+msgstr "Kort samandrag"
 
 #: ../../climateadapt/tiles/search_acecontent.py:391
 msgid "Show listing results, in addition to assigned items"
-msgstr ""
+msgstr "Vis listeresultat i tillegg til tildelte element"
 
 #: ../../climateadapt/tiles/search_acecontent.py:386
 msgid "Show the share button"
-msgstr ""
+msgstr "Vis deleknappen"
 
 #: ../../climateadapt/behaviors/casestudy.py:57
 msgid "Solutions"
-msgstr ""
+msgstr "Løysingar"
 
 #: ../../climateadapt/tiles/search_acecontent.py:406
 msgid "Sort order for results and assigned items"
-msgstr ""
+msgstr "Sorteringsrekkefølgje for resultat og tildelte element"
 
 #: ../../climateadapt/behaviors/aceproject.py:323
 msgid "Source"
-msgstr ""
+msgstr "Kjelde"
 
 #: ../../climateadapt/behaviors/aceitem.py:384
 #: ../../climateadapt/behaviors/acemeasure.py:472
 #: ../../climateadapt/behaviors/aceproject.py:405
 msgid "Spatial Layer"
-msgstr ""
+msgstr "Romleg lag"
 
 #: ../../climateadapt/behaviors/aceproject.py:371
 msgid "Special Tagging"
-msgstr ""
+msgstr "Spesiell tagging"
 
 #: ../../climateadapt/behaviors/aceitem.py:354
 #: ../../climateadapt/behaviors/acemeasure.py:517
 #: ../../climateadapt/behaviors/aceproject.py:385
 msgid "Special tagging"
-msgstr ""
+msgstr "Spesiell tagging"
 
 #: ../../climateadapt/tiles/search_acecontent.py:94
 msgid "Special tags"
-msgstr ""
+msgstr "Spesielle taggar"
 
 #: ../../climateadapt/behaviors/acemeasure.py:213
 msgid "Stakeholder participation"
-msgstr ""
+msgstr "Interessentdeltaking"
 
 #: ../../climateadapt/behaviors/aceitem.py:379
 msgid "Storage Type"
-msgstr ""
+msgstr "Lagringstype"
 
 #: ../../climateadapt/behaviors/ccaevent.py:55
 msgid "Subtitle"
-msgstr ""
+msgstr "Undertittel"
 
 #: ../../climateadapt/behaviors/acemeasure.py:229
 msgid "Success / limitations"
-msgstr ""
-
-#: ../../climateadapt/behaviors/acemeasure.py:488
-msgid "TODO: Elements description here"
-msgstr ""
+msgstr "Suksess / avgrensingar"
 
 #: ../../climateadapt/behaviors/aceitem.py:119
 #: ../../climateadapt/behaviors/acemeasure.py:384
 #: ../../climateadapt/behaviors/aceproject.py:128
 msgid "Thumbnail"
-msgstr ""
+msgstr "Miniatyrbilete"
 
 #: ../../climateadapt/behaviors/aceitem.py:139
 #: ../../climateadapt/behaviors/acemeasure.py:121
 #: ../../climateadapt/behaviors/aceproject.py:169
 msgid "Title"
-msgstr ""
+msgstr "Tittel"
 
 #: ../../climateadapt/browser/overrides.py:48
 msgid "Transport"
-msgstr ""
+msgstr "Transport"
 
 #: ../../climateadapt/browser/pt/detect_links.pt:29
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: ../../climateadapt/tiles/cardslisting.py:28
 #: ../../climateadapt/tiles/section_nav.py:24
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 #: ../../climateadapt/contentrules.py:61
 msgid "Unable to reindex ${name} as part of content rule 'reindex' action: ${error}"
-msgstr ""
+msgstr "Kunne ikkje reindeksere ${name} som del av 'reindex'-handlinga for innhaldsregelen: ${error}"
 
 #: ../../climateadapt/behaviors/aceitem.py:111
 #: ../../climateadapt/behaviors/acemeasure.py:376
 #: ../../climateadapt/behaviors/aceproject.py:120
 msgid "Upload a representative picture or logo for the item. Recommended size: at least 360/180 px, aspect ratio 2x"
-msgstr ""
+msgstr "Last opp eit representativt bilete eller logo for elementet. Tilrådd storleik: minst 360/180 px, sideforhold 2x."
 
 #: ../../climateadapt/behaviors/aceitem.py:120
 #: ../../climateadapt/behaviors/acemeasure.py:385
 #: ../../climateadapt/behaviors/aceproject.py:129
 msgid "Upload a representative picture or logo for the item. Recommended size: at least 360/180 px, aspect ratio 2x. This image will be used in the search result page - cards view. If this image doesn't exist, then the logo image will be used."
-msgstr ""
+msgstr "Last opp eit representativt bilete eller logo for elementet. Tilrådd storleik: minst 360/180 px, sideforhold 2x. Dette biletet vil bli brukt på søkeresultatsida (kortvising). Om dette biletet ikkje finst, vil logobiletet bli brukt."
 
 #: ../../climateadapt/behaviors/aceitem.py:369
 msgid "Uploaded by"
-msgstr ""
+msgstr "Lasta opp av"
 
 #: ../../climateadapt/browser/overrides.py:45
 msgid "Urban"
-msgstr ""
+msgstr "Urban"
 
 #: ../../climateadapt/tiles/richtext.py:20
 msgid "Use with care!"
-msgstr ""
+msgstr "Bruk med varsemd!"
 
 #: ../../climateadapt/behaviors/aceproject.py:372
 msgid "Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item"
-msgstr ""
+msgstr "Brukt berre av Climate-ADAPT-administrator. Ver venleg og ikkje fyll ut dette feltet om du er ein Climate-ADAPT-ekspert som opprettar eit nytt element."
 
 #: ../../climateadapt/behaviors/aceitem.py:355
 #: ../../climateadapt/behaviors/acemeasure.py:518
-#: ../../climateadapt/behaviors/aceproject.py:386
+#: ../../climateadapt/behaviors/aceproject.py:385
 msgid "Used only by Climate-ADAPT administrator. Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
-msgstr ""
+msgstr "Brukt berre av Climate-ADAPT-administrator. Ver venleg og ikkje fyll ut dette feltet om du er ein Climate-ADAPT-ekspert som opprettar eit nytt element."
 
 #: ../../climateadapt/behaviors/acemeasure.py:363
 msgid "Used only to highlight items provided by Third parties. <br>Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
-msgstr ""
+msgstr "Brukt berre for å framheve element frå tredjepartar. <br>Ver venleg og ikkje fyll ut dette feltet om du er ein Climate-ADAPT-ekspert som opprettar eit nytt element."
 
 #: ../../climateadapt/behaviors/aceitem.py:98
 #: ../../climateadapt/behaviors/aceproject.py:108
 msgid "Used only to highlight items provided by Third parties.<br>Please don't compile this field if you are a Climate-ADAPT expert creating a new item."
-msgstr ""
+msgstr "Brukt berre for å framheve element frå tredjepartar. <br>Ver venleg og ikkje fyll ut dette feltet om du er ein Climate-ADAPT-ekspert som opprettar eit nytt element."
 
 #: ../../climateadapt/behaviors/acevideo.py:18
 msgid "Video Height"
-msgstr ""
+msgstr "Video-høgde"
 
 #: ../../climateadapt/behaviors/acevideo.py:14
 msgid "Video URL"
-msgstr ""
+msgstr "Video-URL"
 
 #: ../../climateadapt/tiles/genericview.py:21
 msgid "View name"
-msgstr ""
+msgstr "Visingsnamn"
 
 #: ../../climateadapt/browser/overrides.py:50
 msgid "Water management"
-msgstr ""
+msgstr "Vassforvaltning"
 
 #: ../../climateadapt/behaviors/aceitem.py:232
 #: ../../climateadapt/behaviors/acemeasure.py:299
 #: ../../climateadapt/behaviors/aceproject.py:294
 msgid "Websites"
-msgstr ""
+msgstr "Nettstader"
 
 #: ../../climateadapt/tiles/search_acecontent.py:632
 msgid "You are not allowed to add content to this tile"
-msgstr ""
+msgstr "Du har ikkje lov til å legge til innhald i denne flisa"
 
 #: ../../climateadapt/browser/pt/detect_links.pt:49
 msgid "external"
-msgstr ""
+msgstr "ekstern"
 
 #: ../../climateadapt/browser/pt/detect_links.pt:50
 msgid "internal"
-msgstr ""
+msgstr "intern"

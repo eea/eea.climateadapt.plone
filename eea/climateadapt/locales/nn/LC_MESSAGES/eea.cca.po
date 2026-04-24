@@ -8,144 +8,133 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language-Code: nn\n"
+"Language-Name: Norwegian Nynorsk\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: eea.cca\n"
 "Report-Msgid-Bugs-To: \n"
-"Language: \n"
+"Language: nn\n"
 
-# ,
 msgid "Adaptation options"
-msgstr "Tilpasningsalternativer"
+msgstr "Tilpassingsalternativ"
 
 msgid "Adaptation portals and platforms"
-msgstr ""
+msgstr "Tilpassingsportalar og -plattformer"
 
 msgid "Aridity"
-msgstr ""
+msgstr "Ariditet"
 
 msgid "Based on your preferences, you can view this page in english"
-msgstr ""
+msgstr "Basert på preferansane dine, kan du sjå denne sida på engelsk"
 
-# ,
 msgid "Case studies"
-msgstr "Casestudier"
+msgstr "Casestudiar"
 
 msgid "Climate change impact and vulnerability assessments"
-msgstr ""
+msgstr "Konsekvens- og sårbarheitsanalysar for klimaendringar"
 
 msgid "Coastal"
-msgstr ""
+msgstr "Kystnær"
 
 msgid "Coastal flooding"
-msgstr ""
+msgstr "Kystflaum"
 
 msgid "Cold spells and frost"
-msgstr ""
+msgstr "Kuldeperiodar og frost"
 
-# ,
 msgid "Countries:"
 msgstr "Land:"
 
 msgid "Download"
-msgstr ""
+msgstr "Last ned"
 
 msgid "Extreme heat"
-msgstr ""
+msgstr "Ekstremvarme"
 
 msgid "Extreme precipitation"
-msgstr ""
+msgstr "Ekstremnedbør"
 
-# ,
 msgid "Guidance"
-msgstr "Veiledning"
+msgstr "Rettleiing"
 
 msgid "Hazard category"
-msgstr ""
+msgstr "Farekategori"
 
 msgid "Hazard type"
-msgstr ""
+msgstr "Faretype"
 
 msgid "Heat and cold"
-msgstr ""
+msgstr "Varme og kulde"
 
 msgid "Indicator"
-msgstr ""
+msgstr "Indikator"
 
-# ,
 msgid "Indicators"
-msgstr "Indikatorer"
+msgstr "Indikatorar"
 
-# ,
 msgid "Information portals"
-msgstr "Informasjonsportaler"
+msgstr "Informasjonsportalar"
 
 msgid "Latest <br/> News & Events"
-msgstr ""
+msgstr "Siste <br/> Nyheiter og arrangement"
 
 msgid "Mean air temperature"
-msgstr ""
+msgstr "Gjennomsnittleg lufttemperatur"
 
 msgid "Mean precipitation"
-msgstr ""
+msgstr "Gjennomsnittleg nedbør"
 
 msgid "Most recent <br/> Case Study"
-msgstr ""
+msgstr "Siste <br/> casestudie"
 
 msgid "Most recent <br/> Publication or Report"
-msgstr ""
+msgstr "Siste <br/> publikasjon eller rapport"
 
 msgid "National adaption policy"
-msgstr ""
+msgstr "Nasjonal tilpassingspolitikk"
 
-# ,
 msgid "Organisations"
-msgstr "Organisasjoner"
+msgstr "Organisasjonar"
 
 msgid "Other"
-msgstr ""
+msgstr "Andre"
 
-# ,
 msgid "Publication and reports"
-msgstr "Publisering og rapporter"
+msgstr "Publikasjonar og rapportar"
 
 msgid "Publications and reports"
-msgstr ""
+msgstr "Publikasjonar og rapportar"
 
 msgid "Relative sea level"
-msgstr ""
+msgstr "Relativt havnivå"
 
-# ,
 msgid "Research and knowledge projects"
-msgstr "Forsknings- og kunnskapsprosjekter"
+msgstr "Forskings- og kunnskapsprosjekt"
 
 msgid "River flooding"
-msgstr ""
+msgstr "Elveflaum"
 
 msgid "Snow and ice"
-msgstr ""
+msgstr "Snø og is"
 
 msgid "Snow and land ice"
-msgstr ""
+msgstr "Snø og landis"
 
-# ,
 msgid "Tools"
 msgstr "Verktøy"
 
-# ,
 msgid "Videos"
-msgstr "Videoer"
+msgstr "Videoar"
 
 msgid "Wet and dry"
-msgstr ""
+msgstr "Vått og tørt"
 
 msgid "Wildfire"
-msgstr ""
+msgstr "Skogbrann"
 
 msgid "Zip download"
-msgstr ""
+msgstr "Zip-nedlasting"
 
 msgid "here"
-msgstr ""
+msgstr "her"
