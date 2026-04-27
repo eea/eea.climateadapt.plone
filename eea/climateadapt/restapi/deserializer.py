@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone.dexterity.interfaces import IDexterityContent
+
 # from plone.formwidget.geolocation.geolocation import Geolocation
 # from plone.formwidget.geolocation.interfaces import IGeolocationField
 from plone.restapi.behaviors import IBlocks

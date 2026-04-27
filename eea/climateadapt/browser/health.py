@@ -4,9 +4,13 @@ import DateTime
 import plone.api as api
 from Products.Five.browser import BrowserView
 from zope.component.hooks import getSite
+
 # from zope.component import getMultiAdapter
 from eea.climateadapt.translation.utils import (
-    get_current_language, translate_text, TranslationUtilsMixin)
+    get_current_language,
+    translate_text,
+    TranslationUtilsMixin,
+)
 import pytz
 
 
@@ -49,8 +53,11 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
 
             size = self.days_elapsed_mapping(days)
 
-            timezoned_time = item.getObject().start.astimezone(
-                pytz.timezone(item.start.timezone())).strftime("%d %b %Y")
+            timezoned_time = (
+                item.getObject()
+                .start.astimezone(pytz.timezone(item.start.timezone()))
+                .strftime("%d %b %Y")
+            )
 
             info = {
                 "title": item.Title,
@@ -91,7 +98,9 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
             info = {
                 "title": item.Title,
                 "size": size,
-                "url": "/"+self.current_lang+"/observatory/++aq++"  # item.getURL()
+                "url": "/"
+                + self.current_lang
+                + "/observatory/++aq++"  # item.getURL()
                 + "/".join(item.getObject().getPhysicalPath()[3:]),
                 "date": item.getObject().effective().strftime("%d %b %Y"),
             }
@@ -103,8 +112,9 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
     def more_news(self):
         site = getSite()
         # TODO get_current_language
-        url = site[get_current_language(
-            self.context, self.request)]["observatory"]["news-archive-observatory"].absolute_url()
+        url = site[get_current_language(self.context, self.request)]["observatory"][
+            "news-archive-observatory"
+        ].absolute_url()
         # url = site["en"]["observatory"]["news-archive-observatory"].absolute_url()
         # TODO translate
         # title = translate_text(self.context, self.request,
@@ -117,13 +127,19 @@ class HealthHomepageItems(BrowserView, TranslationUtilsMixin):
     def more_events(self):
         site = getSite()
         # TODO get_current_language
-        url = site[get_current_language(
-            self.context, self.request)]["observatory"]["more-events-observatory"].absolute_url()
+        url = site[get_current_language(self.context, self.request)]["observatory"][
+            "more-events-observatory"
+        ].absolute_url()
         # url = site["en"]["observatory"]["more-events-observatory"].absolute_url()
 
         # TODO translate
-        title = translate_text(self.context, self.request,
-                               "More events", 'eea.climateadapt.frontpage', self.current_lang)
+        title = translate_text(
+            self.context,
+            self.request,
+            "More events",
+            "eea.climateadapt.frontpage",
+            self.current_lang,
+        )
         # title = "More news"
 
         return [url, title]

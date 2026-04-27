@@ -58,8 +58,7 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(
-        climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     climate_impacts = List(
         title=_("Climate Impacts"),
         description=_(
@@ -83,8 +82,7 @@ class IMissionStory(model.Schema, IBlocks):
         ),
     )
 
-    directives.widget(
-        key_system="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(key_system="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     key_system = List(
         title=_("Key Community Systems"),
         description=_(

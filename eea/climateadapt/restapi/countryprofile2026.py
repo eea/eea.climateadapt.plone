@@ -70,8 +70,9 @@ class CountryProfile2026(object):
             html = fixed_data[country_id]
         else:
             view = getMultiAdapter(
-                (self.context, self.request), name="country-profile-2026")
-            data['json'] = view().replace("<tal>", "").replace("</tal>", "")
+                (self.context, self.request), name="country-profile-2026"
+            )
+            data["json"] = view().replace("<tal>", "").replace("</tal>", "")
             return data
 
         e = lxml.html.fromstring(html)
@@ -86,8 +87,7 @@ class CountryProfile2026(object):
                 '//div[contains(@class,"sweet-tabs")]//ul[contains(@class,"nav-tabs")]//a'
             )
             for menu in menus:
-                data["menu"].append(
-                    {"id": menu.attrib["href"][1:], "name": menu.text})
+                data["menu"].append({"id": menu.attrib["href"][1:], "name": menu.text})
             # Check top accordeon, old Turkie page
             contents = e.xpath(
                 '//div[contains(@class,"sweet-tabs")]/div/div[contains(@class,"panel panel-default")]'
@@ -117,8 +117,7 @@ class CountryProfile2026(object):
         else:
             menus = e.xpath('//ul[contains(@id,"third-level-menu")]//a')
             for menu in menus:
-                data["menu"].append(
-                    {"id": menu.attrib["href"][1:], "name": menu.text})
+                data["menu"].append({"id": menu.attrib["href"][1:], "name": menu.text})
             # Check last updated
             _tmp = e.xpath(
                 "//strong[contains(text(),'Reporting updated until: ')]/../span/text()"
@@ -135,14 +134,12 @@ class CountryProfile2026(object):
             for content in contents:
                 if content.tag == "h2":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     menuContent.append({"type": "h2", "value": content.text})
                 elif content.tag == "table":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     menuContent.append(
                         {
@@ -155,12 +152,12 @@ class CountryProfile2026(object):
                     and "class" in content.attrib
                     and content.attrib["class"] == "accordion ui secondary"
                 ):
-                    aer = content.xpath(
-                        './/div[contains(@class,"content")]')
+                    aer = content.xpath('.//div[contains(@class,"content")]')
                     accordeon.append(
                         {
                             "title": content.xpath(
-                                './/span[contains(@class,"item-title")]')[0].text,
+                                './/span[contains(@class,"item-title")]'
+                            )[0].text,
                             "value": "".join(
                                 [
                                     etree.tostring(child).decode("utf-8")
@@ -174,8 +171,7 @@ class CountryProfile2026(object):
                     and "class" in content.attrib
                     and content.attrib["class"] == "panel panel-default"
                 ):
-                    aer = content.xpath(
-                        './/div[contains(@class,"panel-body")]')
+                    aer = content.xpath('.//div[contains(@class,"panel-body")]')
                     accordeon.append(
                         {
                             "title": content.xpath(
@@ -191,30 +187,26 @@ class CountryProfile2026(object):
                     )
                 elif content.tag == "div":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     aer = content.xpath("./*")
                     menuContent.append(
                         {
                             "type": "div",
                             "value": "".join(
-                                [etree.tostring(dd).decode("utf-8")
-                                 for dd in aer]
+                                [etree.tostring(dd).decode("utf-8") for dd in aer]
                             ),
                         }
                     )
                 # for norway and lichenstein
                 elif content.tag == "h3":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     menuContent.append({"type": "h3", "value": content.text})
                 elif content.tag == "p":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     aer = content.xpath("./*")
                     # menuContent.append({'type':'p', 'value':''.join(map(etree.tostring,aer))})
@@ -245,9 +237,9 @@ class CountryProfile2026(object):
         result = {
             "countryprofile2026": {
                 "@id": "{}/@countryprofile2026".format(self.context.absolute_url()),
-                "menu": data['menu'],
-                "content": data['content'],
-                "json": data['json'],
+                "menu": data["menu"],
+                "content": data["content"],
+                "json": data["json"],
             }
         }
 

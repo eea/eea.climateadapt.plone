@@ -70,7 +70,8 @@ class CountryProfile2025(object):
             html = fixed_data[country_id]
         else:
             view = getMultiAdapter(
-                (self.context, self.request), name="country-profile-2025")
+                (self.context, self.request), name="country-profile-2025"
+            )
             html = view().replace("<tal>", "").replace("</tal>", "")
 
         e = lxml.html.fromstring(html)
@@ -80,14 +81,11 @@ class CountryProfile2025(object):
         if country_id in [
             "switzerland-notAnyMore",
         ]:
-            data['html'] = html
+            data["html"] = html
             # return data
-            menus = e.xpath(
-                '//div[contains(@class,"secondary menu")]//a'
-            )
+            menus = e.xpath('//div[contains(@class,"secondary menu")]//a')
             for menu in menus:
-                data["menu"].append(
-                    {"id": menu.attrib["href"], "name": menu.text})
+                data["menu"].append({"id": menu.attrib["href"], "name": menu.text})
             contents = e.xpath(
                 '//div[contains(@class,"sweet-tabs")]/div/div[contains(@class,"panel panel-default")]'
             )
@@ -120,8 +118,7 @@ class CountryProfile2025(object):
                 '//div[contains(@class,"sweet-tabs")]//ul[contains(@class,"nav-tabs")]//a'
             )
             for menu in menus:
-                data["menu"].append(
-                    {"id": menu.attrib["href"][1:], "name": menu.text})
+                data["menu"].append({"id": menu.attrib["href"][1:], "name": menu.text})
             # Check top accordeon, old Turkie page
             contents = e.xpath(
                 '//div[contains(@class,"sweet-tabs")]/div/div[contains(@class,"panel panel-default")]'
@@ -151,8 +148,7 @@ class CountryProfile2025(object):
         else:
             menus = e.xpath('//ul[contains(@id,"third-level-menu")]//a')
             for menu in menus:
-                data["menu"].append(
-                    {"id": menu.attrib["href"][1:], "name": menu.text})
+                data["menu"].append({"id": menu.attrib["href"][1:], "name": menu.text})
             # Check last updated
             _tmp = e.xpath(
                 "//strong[contains(text(),'Reporting updated until: ')]/../span/text()"
@@ -169,14 +165,12 @@ class CountryProfile2025(object):
             for content in contents:
                 if content.tag == "h2":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     menuContent.append({"type": "h2", "value": content.text})
                 elif content.tag == "table":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     menuContent.append(
                         {
@@ -189,12 +183,12 @@ class CountryProfile2025(object):
                     and "class" in content.attrib
                     and content.attrib["class"] == "accordion ui secondary"
                 ):
-                    aer = content.xpath(
-                        './/div[contains(@class,"content")]')
+                    aer = content.xpath('.//div[contains(@class,"content")]')
                     accordeon.append(
                         {
                             "title": content.xpath(
-                                './/span[contains(@class,"item-title")]')[0].text,
+                                './/span[contains(@class,"item-title")]'
+                            )[0].text,
                             "value": "".join(
                                 [
                                     etree.tostring(child).decode("utf-8")
@@ -208,8 +202,7 @@ class CountryProfile2025(object):
                     and "class" in content.attrib
                     and content.attrib["class"] == "panel panel-default"
                 ):
-                    aer = content.xpath(
-                        './/div[contains(@class,"panel-body")]')
+                    aer = content.xpath('.//div[contains(@class,"panel-body")]')
                     accordeon.append(
                         {
                             "title": content.xpath(
@@ -225,30 +218,26 @@ class CountryProfile2025(object):
                     )
                 elif content.tag == "div":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     aer = content.xpath("./*")
                     menuContent.append(
                         {
                             "type": "div",
                             "value": "".join(
-                                [etree.tostring(dd).decode("utf-8")
-                                 for dd in aer]
+                                [etree.tostring(dd).decode("utf-8") for dd in aer]
                             ),
                         }
                     )
                 # for norway and lichenstein
                 elif content.tag == "h3":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     menuContent.append({"type": "h3", "value": content.text})
                 elif content.tag == "p":
                     if len(accordeon):
-                        menuContent.append(
-                            {"type": "accordeon", "value": accordeon})
+                        menuContent.append({"type": "accordeon", "value": accordeon})
                         accordeon = []
                     aer = content.xpath("./*")
                     # menuContent.append({'type':'p', 'value':''.join(map(etree.tostring,aer))})

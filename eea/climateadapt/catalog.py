@@ -2,6 +2,7 @@ import json
 import logging
 
 from Acquisition import aq_base
+
 # from collective.cover.interfaces import ICover, ISearchableText
 # from eea.climateadapt.aceitem import IAceItem, IC3sIndicator
 from eea.climateadapt.behaviors.aceproject import IAceProject
@@ -11,8 +12,10 @@ from eea.climateadapt.interfaces import IClimateAdaptContent, INewsEventsLinks
 from plone.api.portal import get_tool
 from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
+
 # from Products.CMFPlone.utils import safe_unicode
 from zope.annotation.interfaces import IAnnotations
+
 # from zope.component import queryAdapter
 from zope.interface import Interface
 
@@ -159,8 +162,7 @@ def _get_aceitem_description(object):
     portal_transforms = get_tool(name="portal_transforms")
 
     # Output here is a single <p> which contains <br /> for newline
-    data = portal_transforms.convertTo(
-        "text/plain", text, mimetype="text/html")
+    data = portal_transforms.convertTo("text/plain", text, mimetype="text/html")
     text = data.getData().strip()
 
     # the following is a very bad algorithm. Needs to use nltk.tokenize

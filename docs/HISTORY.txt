@@ -1,7 +1,32 @@
 Changelog
 =========
 
-1.4.dev0 - (unreleased)
+2.0-dev0 - (unreleased)
+---------------------------
+
+1.9 - (2026-04-27)
+---------------------------
+* Change: Release
+  [kreafox]
+
+1.8 - (2026-04-20)
+---------------------------
+* Change: fix: update README filename in setup.py [tiberiuichim]
+
+1.7 - (2026-04-20)
+---------------------------
+* Change: Develop [tiberiuichim]
+
+1.7 - (2026-04-20)
+---------------------------
+* Change: Develop
+  [tiberiuichim]
+
+1.6 - (2026-04-07)
+---------------------------
+* Change: (feat): Add Jenkinsfile to align with other add-ons and release to eggrepo [valentinab25]
+
+1.4 - 1.5.19  ( 2025 - 2026 )
 -----------------------
 * Feature: Add `report_roles` console script and documentation for local roles
   auditing.

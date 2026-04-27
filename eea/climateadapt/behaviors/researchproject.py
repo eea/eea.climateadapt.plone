@@ -20,8 +20,6 @@ class IResearchProject(IAceItem):
         title=_("Blocks Layout"),
         description=_("The JSON representation of the object blocks layout."),
         schema=LAYOUT_SCHEMA,
-        default={
-            "items": research_layout_items
-        },
+        default={"items": research_layout_items},
         required=False,
     )

@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
-""" Open .xlsx
-    Copy relevant data to Google Sheets
-    Download CSV
-    Save the content as python var here
+"""Open .xlsx
+Copy relevant data to Google Sheets
+Download CSV
+Save the content as python var here
 
-    Some titles are updated:
-    NOT FOUND ITEMS:
-    Water uses to cope with heat waves in cities
-    Improved desing of dikes and levees
-    Agro-forestry
-    Climate proofed construction and design standards for road infrastructure
+Some titles are updated:
+NOT FOUND ITEMS:
+Water uses to cope with heat waves in cities
+Improved desing of dikes and levees
+Agro-forestry
+Climate proofed construction and design standards for road infrastructure
 
-    FOUND AS:
-    Using water to cope with heat waves in cities
-    Improved design of dikes and levees
-    Agroforestry
-    Climate proofed standards for road design, construction and maintenance
+FOUND AS:
+Using water to cope with heat waves in cities
+Improved design of dikes and levees
+Agroforestry
+Climate proofed standards for road design, construction and maintenance
 """
-
 
 ADAPTATION_OPTION_MIGRATION_DATA = """
 Adaptation measures to increase climate resilience of airports,,,,,,X,X,,,,,,,,,,,,X,,X

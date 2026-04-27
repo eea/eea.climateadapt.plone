@@ -50,5 +50,40 @@ Processed by the `climateadapt-async-translate` service:
 
 ## Technical Notes
 
+- **Environment & Execution**: The AI agent operates **outside** the Docker container. All commands intended to run within the backend environment (e.g., running scripts, migrations, or tests) MUST be wrapped in `docker compose exec backend`.
+- **Python Executable**: Inside the backend container, the correct Python to use is `/app/bin/python3`, which has the full environment with all dependencies.
 - **Authentication**: The communication between the Node.js services and Plone is protected by a shared `TRANSLATION_AUTH_TOKEN`.
 - **Queues**: BullMQ queues are used to decouple the long-running translation tasks from the main CMS operations.
+
+## Development Lessons Learnt
+
+### Zope Configuration Parsing
+- **Schema Sensitivity**: Standard `ZConfig.loadSchema` or `ZODB.config.storageFromFile` might fail in Zope/Plone environments because they don't handle Zope-specific schema keys (like `instancehome`) or conditional imports (like `tempstorage` in `wsgischema.xml`).
+- **Correct Configuration Loader**: For Zope 5+ (WSGI), use `Zope2.Startup.options.ZopeWSGIOptions` to correctly parse a Zope configuration file (`zope.conf` or `relstorage.conf`) without needing to fully initialize the Zope application.
+- **Efficient Metadata Extraction**: Use `ZODB.utils.get_pickle_metadata` to extract class names from ZODB records without unpickling the entire object. This is significantly faster and avoids dependency issues during database scanning.
+
+## Automated GitHub Interactions
+
+When using the `gh` (GitHub CLI) utility for automated workflows (e.g., creating PRs from scripts or agents), follow these best practices:
+
+### 1. Initial PR Creation
+Always provide both the title and body during creation to minimize subsequent API calls:
+```bash
+gh pr create --title "Your Title" --body "Your detailed PR description"
+```
+
+### 2. Handling GraphQL Errors
+Some repositories (like `eea.climateadapt.plone`) may have legacy "Projects (classic)" settings that cause `gh pr edit` to fail with GraphQL errors. If this happens, fallback to the GitHub REST API using `gh api`:
+
+**To update a PR title and body:**
+```bash
+gh api -X PATCH /repos/{owner}/{repo}/pulls/{pr_number} \
+  -f title="New Title" \
+  -f body="New Body Content"
+```
+
+### 3. Verification
+To verify the content of a PR programmatically (e.g., ensuring the body was written):
+```bash
+gh pr view {pr_number} --json title,body
+```

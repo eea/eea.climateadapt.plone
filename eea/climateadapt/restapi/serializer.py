@@ -25,9 +25,18 @@ from eea.climateadapt.restapi.navigation import ICCARestapiLayer
 from plone.restapi.interfaces import IPloneRestapiLayer
 
 import logging
+
 logger = logging.getLogger("eea.climateadapt")
 
-from .utils import cca_content_serializer, extract_section_text, richtext_to_plain_text, serialize_blocks, html_to_plain_text, serialize_relevant_eu_policies
+from .utils import (
+    cca_content_serializer,
+    extract_section_text,
+    richtext_to_plain_text,
+    serialize_blocks,
+    html_to_plain_text,
+    serialize_relevant_eu_policies,
+)
+
 
 def serialize(possible_node):
     if isinstance(possible_node, str):
@@ -138,8 +147,22 @@ class AdaptationOptionSerializer(SerializeFolderToJson):
         result = super(AdaptationOptionSerializer, self).__call__(
             version=version, include_items=True
         )
+        item = self.context
+        images = item.contentValues({"portal_type": "Image"})
+        suffix = "/@@images/image/large"
+        result["cca_adaptation_gallery"] = [
+            {
+                "title": image.Title(),
+                "url": image.absolute_url() + suffix,
+                "description": image.Description(),
+                "rights": getattr(image.aq_inner.aq_self, "rights"),
+            }
+            for image in images
+        ]
         result["related_case_studies"] = find_related_casestudies(self.context)
-        result["relevant_eu_policies_items"] = serialize_relevant_eu_policies(self.context)
+        result["relevant_eu_policies_items"] = serialize_relevant_eu_policies(
+            self.context
+        )
         return cca_content_serializer(self.context, result, self.request)
 
 
@@ -193,10 +216,7 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
         item = self.context
         images = item.contentValues({"portal_type": "Image"})
         suffix = "/@@images/image/large"
-        result["cca_gallery_urls"] = [
-            image.absolute_url() + suffix
-            for image in images
-        ]
+        result["cca_gallery_urls"] = [image.absolute_url() + suffix for image in images]
         result["cca_gallery"] = [
             {
                 "title": image.Title(),
@@ -223,10 +243,13 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
         blocks_layout = obj.blocks_layout.get("items", [])
 
         columnblock = next(
-            (b for uid in blocks_layout
-             for b in [blocks_copy.get(uid)]
-             if b and b.get("@type") == "columnsBlock"),
-            None
+            (
+                b
+                for uid in blocks_layout
+                for b in [blocks_copy.get(uid)]
+                if b and b.get("@type") == "columnsBlock"
+            ),
+            None,
         )
         if not columnblock:
             return result
@@ -237,28 +260,26 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
         blocks = firstcol["blocks"]
 
         sections = [
-            ("Objective of the funding programme",
-             "Type of funding",
-             "objective_funding_programme"),
-            ("Funding rate (percentage of covered costs)",
-             "Expected budget range of proposals",
-             "funding_rate"),
-            ("Administering authority",
-             "Publication page",
-             "administering_authority"),
-            ("Publication page",
-             "General information",
-             "publication_page"),
-            ("General information",
-             "Further information",
-             "general_information"),
-            ("Further information",
-             None,
-             "further_information"),
+            (
+                "Objective of the funding programme",
+                "Type of funding",
+                "objective_funding_programme",
+            ),
+            (
+                "Funding rate (percentage of covered costs)",
+                "Expected budget range of proposals",
+                "funding_rate",
+            ),
+            ("Administering authority", "Publication page", "administering_authority"),
+            ("Publication page", "General information", "publication_page"),
+            ("General information", "Further information", "general_information"),
+            ("Further information", None, "further_information"),
         ]
 
         for start_title, end_title, field_name in sections:
-            result[field_name] = extract_section_text(blocks, items, start_title, end_title) or ""
+            result[field_name] = (
+                extract_section_text(blocks, items, start_title, end_title) or ""
+            )
 
         if not result.get("description") and result.get("objective_funding_programme"):
             result["description"] = result["objective_funding_programme"]
@@ -330,9 +351,12 @@ class MissionStorySerializer(SerializeFolderToJson):
         blocks_layout = obj.blocks_layout.get("items", [])
 
         columnblock = next(
-            (blocks_copy.get(uid) for uid in blocks_layout
-             if (blocks_copy.get(uid) or {}).get("@type") == "columnsBlock"),
-            None
+            (
+                blocks_copy.get(uid)
+                for uid in blocks_layout
+                if (blocks_copy.get(uid) or {}).get("@type") == "columnsBlock"
+            ),
+            None,
         )
         if not columnblock:
             return result
@@ -354,6 +378,8 @@ class MissionStorySerializer(SerializeFolderToJson):
         )
 
         return result
+
+
 @adapter(ILink, IPloneRestapiLayer)
 class LinkRedirectSerializer(SerializeToJson):
     """Serializer that adds @components.redirect for anonymous users
@@ -382,6 +408,7 @@ class LinkRedirectSerializer(SerializeToJson):
 
         if target.startswith(("../", "./")):
             from urllib.parse import urljoin
+
             target = urljoin(context.absolute_url(), target)
 
         elif "/resolveuid/" in target and not target.startswith("http"):

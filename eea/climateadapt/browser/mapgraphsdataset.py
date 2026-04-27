@@ -10,27 +10,25 @@ from plone.memoize import view
 
 
 class MapGraphDatasetView(DefaultView, AceViewApi):
-    """ Maps graph datasets view
-    """
+    """Maps graph datasets view"""
+
     type_label = "Map Graph Data Set"
 
     @view.memoize
     def compose_layer_link(self):
-        """ Function to compose the map layer url """
-        if self.context.gis_layer_id in ['', None]:
-            return {'url': '', 'title': 'No map layer id provided'}
+        """Function to compose the map layer url"""
+        if self.context.gis_layer_id in ["", None]:
+            return {"url": "", "title": "No map layer id provided"}
 
-        url = '/tools/map-viewer?&layerid=' + self.context.gis_layer_id
-        if (self.context.search_type == 'MAPGRAPHDATASET'):
-            result = {'url': url,
-                      'title': 'View map ' + self.context.title}
+        url = "/tools/map-viewer?&layerid=" + self.context.gis_layer_id
+        if self.context.search_type == "MAPGRAPHDATASET":
+            result = {"url": url, "title": "View map " + self.context.title}
             return result
-        return ''
+        return ""
 
 
 class MapsEditForm(DefaultEditForm):
-    """ Edit form for case studies
-    """
+    """Edit form for case studies"""
 
 
 MapsEditView = layout.wrap_form(MapsEditForm)
@@ -38,21 +36,22 @@ classImplements(MapsEditView, IDexterityEditForm)
 
 
 class MapsAddForm(DefaultAddForm):
-    """ Add Form for case studies
-    """
+    """Add Form for case studies"""
 
 
 class MapsFormExtender(FormExtender):
     def update(self):
-        self.move('gis_layer_id', after='websites')
-        self.remove('ICategorization.subjects')
-        self.remove('ICategorization.language')
-        self.remove('IPublication.effective')
-        self.remove('IPublication.expires')
-        self.remove('IOwnership.creators')
-        self.remove('IOwnership.contributors')
-        self.remove('IOwnership.rights')
-        self.remove('IBlocks.blocks')
-        self.remove('IBlocks.blocks_layout')
-        labels = ['label_schema_dates', 'label_schema_ownership']
-        self.form.groups = [group for group in self.form.groups if group.label not in labels]
+        self.move("gis_layer_id", after="websites")
+        self.remove("ICategorization.subjects")
+        self.remove("ICategorization.language")
+        self.remove("IPublication.effective")
+        self.remove("IPublication.expires")
+        self.remove("IOwnership.creators")
+        self.remove("IOwnership.contributors")
+        self.remove("IOwnership.rights")
+        self.remove("IBlocks.blocks")
+        self.remove("IBlocks.blocks_layout")
+        labels = ["label_schema_dates", "label_schema_ownership"]
+        self.form.groups = [
+            group for group in self.form.groups if group.label not in labels
+        ]

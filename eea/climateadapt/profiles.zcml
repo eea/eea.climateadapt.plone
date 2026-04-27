@@ -496,4 +496,12 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
   />
 
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_79"
+    title="Upgrade profile for eea.climateadapt v79"
+    description="Add Static infographic figure content type"
+    directory="profiles/upgrades/to_79"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
 </configure>

@@ -8,15 +8,12 @@ from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 
 
-fpath = resource_filename(
-    "eea.climateadapt.behaviors", "volto_layout_event.json"
-)
+fpath = resource_filename("eea.climateadapt.behaviors", "volto_layout_event.json")
 layout = json.load(open(fpath))
 
 
 @provider(IFormFieldProvider)
 class IMainEvent(IBlocks):
-
     blocks = JSONField(
         title=_("Blocks"),
         description=_("The JSON representation of the object blocks."),

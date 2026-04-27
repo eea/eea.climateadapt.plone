@@ -34,4 +34,25 @@
 
   </genericsetup:upgradeSteps>
 
+
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_4"
+    title="Upgrade profile for eea.climateadapt v4"
+    description=""
+    directory="to_4"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
+  <genericsetup:upgradeSteps
+    source="3.0"
+    destination="4.0"
+    profile="eea.climateadapt:default">
+
+    <genericsetup:upgradeDepends
+      title="Add health_impacts to querystring definitions"
+      import_profile="eea.climateadapt.upgrades:eeaclimateadapt_to_4"
+    />
+
+  </genericsetup:upgradeSteps>
+
 </configure>
