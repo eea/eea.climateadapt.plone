@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.9 - (2026-04-27)
+---------------------------
+* Change: Release
+  [kreafox]
+
 1.8 - (2026-04-20)
 ---------------------------
 * Change: fix: update README filename in setup.py [tiberiuichim]
