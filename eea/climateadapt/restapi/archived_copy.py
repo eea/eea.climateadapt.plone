@@ -102,7 +102,9 @@ class CreateArchivedCopy(Service):
             if IRelatedItems.providedBy(context):
                 existing = list(context.relatedItems or [])
                 # Avoid duplicates
-                existing_ids = {intids.queryId(rel.to_object) for rel in existing if rel.to_object}
+                existing_ids = {
+                    intids.queryId(rel.to_object) for rel in existing if rel.to_object
+                }
                 if archived_intid not in existing_ids:
                     existing.append(RelationValue(archived_intid))
                 context.relatedItems = existing
