@@ -239,6 +239,15 @@
     layer="eea.volto.policy.interfaces.IEeaVoltoPolicyLayer"
   />
 
+  <plone:service
+    method="POST"
+    factory=".archived_copy.CreateArchivedCopy"
+    for="eea.climateadapt.interfaces.IClimateAdaptContent"
+    permission="cmf.AddPortalContent"
+    name="@create-archived-copy"
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
+  />
+
   <adapter
     factory=".navroot.Navroot"
     name="navroot"
