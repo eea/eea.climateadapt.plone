@@ -3,6 +3,7 @@ from plone import api
 from plone.api.exc import InvalidParameterError
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.services import Service
+from zope.component import getMultiAdapter
 
 import json
 
@@ -99,5 +100,5 @@ class CreateArchivedCopy(Service):
         context.reindexObject()
 
         # Serialize and return
-        serializer = ISerializeToJson(archived, self.request)
+        serializer = getMultiAdapter((archived, self.request), ISerializeToJson)
         return serializer()
