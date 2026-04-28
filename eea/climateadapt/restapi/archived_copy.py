@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from plone.api.exc import InvalidParameterError
-from plone.app.relationfield.behavior import IRelatedItems
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.services import Service
-from z3c.relationfield import RelationValue
-from zope.component import getUtility
-from zope.intid.interfaces import IIntIds
-from zope.interface import alsoProvides
 
 import json
 
@@ -85,32 +80,19 @@ class CreateArchivedCopy(Service):
             except Exception:
                 pass
 
-        # Update relatedItems bidirectionally
-        intids = getUtility(IIntIds)
-        source_intid = intids.queryId(context)
-        archived_intid = intids.queryId(archived)
+        # Update relatedItems bidirectionally using plone.api.relation
+        # The copied object inherits the source's relatedItems; clear them first.
+        api.relation.delete(source=archived, relationship="relatedItems")
 
-        if source_intid and archived_intid:
-            # Set relatedItems on archived copy -> points to source
-            if IRelatedItems.providedBy(archived):
-                archived.relatedItems = [RelationValue(source_intid)]
-            else:
-                alsoProvides(archived, IRelatedItems)
-                archived.relatedItems = [RelationValue(source_intid)]
+        # Archived copy points back to the original (latest) indicator
+        api.relation.create(
+            source=archived, target=context, relationship="relatedItems"
+        )
 
-            # Append archived copy to source's relatedItems
-            if IRelatedItems.providedBy(context):
-                existing = list(context.relatedItems or [])
-                # Avoid duplicates
-                existing_ids = {
-                    intids.queryId(rel.to_object) for rel in existing if rel.to_object
-                }
-                if archived_intid not in existing_ids:
-                    existing.append(RelationValue(archived_intid))
-                context.relatedItems = existing
-            else:
-                alsoProvides(context, IRelatedItems)
-                context.relatedItems = [RelationValue(archived_intid)]
+        # Original indicator gets a link to the archived copy
+        api.relation.create(
+            source=context, target=archived, relationship="relatedItems"
+        )
 
         # Reindex
         archived.reindexObject()
