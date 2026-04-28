@@ -4,14 +4,24 @@ from plone.api.exc import InvalidParameterError
 from plone.restapi.interfaces import ISerializeToJson
 from plone.restapi.services import Service
 from zope.component import getMultiAdapter
+from zope.interface import alsoProvides
 
 import json
+
+try:
+    from plone.protect.interfaces import IDisableCSRFProtection
+except ImportError:
+    IDisableCSRFProtection = None
 
 
 class CreateArchivedCopy(Service):
     """Create an archived copy of an indicator."""
 
     def reply(self):
+        # Disable CSRF protection for this API endpoint
+        if IDisableCSRFProtection:
+            alsoProvides(self.request, IDisableCSRFProtection)
+
         data = json.loads(self.request.get("BODY") or "{}")
         title = data.get("title", "").strip()
         new_id = data.get("id", "").strip()
