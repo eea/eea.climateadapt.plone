@@ -1,6 +1,9 @@
 Changelog
 =========
 
+2.2-dev0 - (unreleased)
+---------------------------
+
 2.1 - (2026-04-30)
 ---------------------------
 * Change: feat: add archived_versions relation field to indicators and update archived copy logic
