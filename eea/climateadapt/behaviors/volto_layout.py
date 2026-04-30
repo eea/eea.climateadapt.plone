@@ -391,6 +391,14 @@ indicator_layout_blocks = {
                                         "widget": "relations",
                                     },
                                 },
+                                {
+                                    "@id": "7769e6b3-6c8a-446a-9acf-f8e123456789",
+                                    "field": {
+                                        "id": "archived_versions",
+                                        "title": "Archived Versions",
+                                        "widget": "relations",
+                                    },
+                                },
                             ],
                             "variation": "default",
                         },

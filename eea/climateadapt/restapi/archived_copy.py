@@ -91,18 +91,17 @@ class CreateArchivedCopy(Service):
             except Exception:
                 pass
 
-        # Update relatedItems bidirectionally using plone.api.relation
-        # The copied object inherits the source's relatedItems; clear them first.
-        api.relation.delete(source=archived, relationship="relatedItems")
+        # Update archived_versions bidirectionally using plone.api.relation
+        api.relation.delete(source=archived, relationship="archived_versions")
 
         # Archived copy points back to the original (latest) indicator
         api.relation.create(
-            source=archived, target=context, relationship="relatedItems"
+            source=archived, target=context, relationship="archived_versions"
         )
 
         # Original indicator gets a link to the archived copy
         api.relation.create(
-            source=context, target=archived, relationship="relatedItems"
+            source=context, target=archived, relationship="archived_versions"
         )
 
         # Reindex
