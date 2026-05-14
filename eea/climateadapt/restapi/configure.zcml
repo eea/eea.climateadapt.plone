@@ -144,6 +144,11 @@
   />
 
   <subscriber
+    factory=".blocks_linkintegrity.CCAObjectListLinksRetriever"
+    provides="plone.restapi.interfaces.IBlockFieldLinkIntegrityRetriever"
+  />
+
+  <subscriber
     factory=".blocks.SearchAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
   />
