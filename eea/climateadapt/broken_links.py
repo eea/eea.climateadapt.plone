@@ -404,8 +404,7 @@ def get_object_convertors(obj, fallback_convertors=None):
 
 
 def should_ignore_object(obj):
-    """Return True for objects that should not be checked or reported.
-    """
+    """Return True for objects that should not be checked or reported."""
     return getattr(obj, "getId", lambda: None)() == "index_html"
 
 
@@ -590,7 +589,7 @@ class BrokenLinksService(Service):
         broken_links.sort(key=lambda i: i["date"])
 
         for link in broken_links:
-            key = f'{link["object_url"]}::{link["url"]}'
+            key = f"{link['object_url']}::{link['url']}"
             res[key] = link
 
         return res
@@ -647,6 +646,7 @@ class BrokenLinksService(Service):
         }
 
         return info
+
 
 # PER-PAGE BROKEN LINKS CHECKER
 def extract_links_from_single_object(obj):
