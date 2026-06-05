@@ -144,6 +144,11 @@
   />
 
   <subscriber
+    factory=".blocks_linkintegrity.CCAObjectListLinksRetriever"
+    provides="plone.restapi.interfaces.IBlockFieldLinkIntegrityRetriever"
+  />
+
+  <subscriber
     factory=".blocks.SearchAceContentBlockSerializer"
     provides="plone.restapi.interfaces.IBlockFieldSerializationTransformer"
   />
@@ -237,6 +242,15 @@
     permission="zope2.View"
     name="@navroot"
     layer="eea.volto.policy.interfaces.IEeaVoltoPolicyLayer"
+  />
+
+  <plone:service
+    method="POST"
+    factory=".archived_copy.CreateArchivedCopy"
+    for="eea.climateadapt.interfaces.IClimateAdaptContent"
+    permission="cmf.AddPortalContent"
+    name="@create-archived-copy"
+    layer="eea.climateadapt.restapi.navigation.ICCARestapiLayer"
   />
 
   <adapter

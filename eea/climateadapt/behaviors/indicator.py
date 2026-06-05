@@ -2,7 +2,8 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from zope.interface import alsoProvides
-from zope.schema import Date, Text, TextLine, Bool
+from zope.schema import Bool, Date, Text, TextLine
+from z3c.relationfield.schema import RelationChoice, RelationList
 
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
@@ -71,5 +72,17 @@ class IIndicator(IAceItem, IBlocks):
         required=False,
     )
 
+    archived_versions = RelationList(
+        title=_("Archived Versions"),
+        description=_("Archived versions of this indicator"),
+        required=False,
+        default=[],
+        value_type=RelationChoice(
+            title=_("Archived Version"),
+            vocabulary="plone.app.vocabularies.Catalog",
+        ),
+    )
+
 
 alsoProvides(IIndicator["publication_date"], ILanguageIndependentField)
+alsoProvides(IIndicator["archived_versions"], ILanguageIndependentField)
