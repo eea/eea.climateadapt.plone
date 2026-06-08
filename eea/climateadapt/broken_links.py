@@ -403,6 +403,11 @@ def get_object_convertors(obj, fallback_convertors=None):
     return result
 
 
+def should_ignore_object(obj):
+    """Return True for objects that should not be checked or reported."""
+    return getattr(obj, "getId", lambda: None)() == "index_html"
+
+
 def recursively_extract_links(site):
     """Gets the links for all our items by using the websites field
     along with the respective object urls
@@ -438,8 +443,12 @@ def recursively_extract_links(site):
             if (now - brain.created) > 365:  # skip news that are older then a year
                 continue
 
+        if brain.getId() == "index_html":
+            continue
+
         obj = brain.getObject()
-        path = obj.getPhysicalPath()
+
+        path = list(obj.getPhysicalPath())
 
         object_convertors = get_object_convertors(
             obj, fallback_convertors=convertors[brain.portal_type]
@@ -572,6 +581,7 @@ class BrokenLinksService(Service):
 
                     item["url"] = info["url"]
                     item["status"] = info["status"]
+
                     item["object_url"] = info["object_url"].replace("/cca/", "/")
 
                     broken_links.append(item)
@@ -579,7 +589,8 @@ class BrokenLinksService(Service):
         broken_links.sort(key=lambda i: i["date"])
 
         for link in broken_links:
-            res[link["url"]] = link
+            key = f"{link['object_url']}::{link['url']}"
+            res[key] = link
 
         return res
 
@@ -641,28 +652,30 @@ class BrokenLinksService(Service):
 def extract_links_from_single_object(obj):
     """Extract all links from a single object (page)."""
     urls = []
-    if not getattr(obj, "portal_type", None):
-        return urls
 
-    seen_convertors = set()
+    def _extract_from_target(target):
+        if not getattr(target, "portal_type", None):
+            return []
+        target_urls = []
+        seen_convertors = set()
+        for iface in providedBy(target):
+            convertor = CONVERTORS.get(iface)
+            if not convertor or convertor in seen_convertors:
+                continue
+            seen_convertors.add(convertor)
+            try:
+                extracted = convertor(target) or []
+                target_urls.extend(extracted)
+            except Exception as err:
+                logger.warning(
+                    "Could not extract links from %s (%s): %s",
+                    target.absolute_url(),
+                    target.portal_type,
+                    err,
+                )
+        return target_urls
 
-    for iface in providedBy(obj):
-        convertor = CONVERTORS.get(iface)
-        if not convertor or convertor in seen_convertors:
-            continue
-
-        seen_convertors.add(convertor)
-
-        try:
-            extracted = convertor(obj) or []
-            urls.extend(extracted)
-        except Exception as err:
-            logger.warning(
-                "Could not extract links from %s (%s): %s",
-                obj.absolute_url(),
-                obj.portal_type,
-                err,
-            )
+    urls.extend(_extract_from_target(obj))
 
     normalized_urls = []
     seen_urls = set()
@@ -681,7 +694,10 @@ def check_broken_links_for_object(obj):
     """Returns a list of broken links with status codes for the given object."""
 
     results = []
+    if should_ignore_object(obj):
+        return []
     urls = extract_links_from_single_object(obj)
+
     obj_path = "/".join(obj.getPhysicalPath())
 
     logger.info(
