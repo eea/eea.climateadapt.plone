@@ -847,3 +847,165 @@ class DeleteTranslationField(BrowserView):
             except Exception as e:
                 logger.warning(f"Could not process {e} ")
                 continue
+
+
+class AdminCutAndPaste(BrowserView):
+    """Admin view to cut and paste Plone objects and their translations quickly."""
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+
+        self.source_path = ""
+        self.destination_path = ""
+        self.status = ""
+        self.errors = []
+        self.success_info = []
+
+        if self.request.method == "POST":
+            self.source_path = self.request.form.get("source_path", "").strip()
+            self.destination_path = self.request.form.get("destination_path", "").strip()
+
+            if not self.source_path or not self.destination_path:
+                self.errors.append("Both source path and destination path are required.")
+            else:
+                self.execute_cut_and_paste()
+
+        return self.index()
+
+    def execute_cut_and_paste(self):
+        # 1. Disable translation event handlers during this operation
+        self.request.disable_object_modified_handler = True
+        try:
+            annotations = IAnnotations(self.request)
+            annotations["disable_object_modified_handler"] = True
+        except Exception:
+            pass
+
+        site = portal.getSite()
+
+        # Helper to resolve paths to objects
+        def get_obj_by_path(path):
+            path = path.strip("/")
+            if path.startswith("cca/"):
+                path = path[4:]
+            try:
+                return site.unrestrictedTraverse(path)
+            except Exception:
+                return None
+
+        # 2. Resolve source object
+        source_obj = get_obj_by_path(self.source_path)
+        if source_obj is None:
+            self.errors.append(f"Source object not found: {self.source_path}")
+            return
+
+        source_path_str = "/".join(source_obj.getPhysicalPath())
+
+        # 3. Ensure source object is canonical (English)
+        if not ("/en/" in source_path_str or source_path_str.endswith("/en")):
+            self.errors.append(f"Source object is not under /en/: {source_path_str}")
+            return
+
+        # 4. Resolve destination parent and new ID
+        target_parent = get_obj_by_path(self.destination_path)
+        new_id = None
+
+        from Products.CMFCore.interfaces import IFolderish
+        if target_parent is not None and IFolderish.providedBy(target_parent):
+            new_id = source_obj.getId()
+        else:
+            dest_parts = [p for p in self.destination_path.split("/") if p]
+            if dest_parts:
+                new_id = dest_parts[-1]
+                parent_path = "/" + "/".join(dest_parts[:-1])
+                target_parent = get_obj_by_path(parent_path)
+
+            if target_parent is None or not IFolderish.providedBy(target_parent):
+                self.errors.append(
+                    f"Destination parent folder could not be resolved from: {self.destination_path}"
+                )
+                return
+
+        # Ensure target_parent is under /en/
+        target_parent_path_str = "/".join(target_parent.getPhysicalPath())
+        if not ("/en/" in target_parent_path_str or target_parent_path_str.endswith("/en")):
+            self.errors.append(
+                f"Destination parent is not under /en/: {target_parent_path_str}"
+            )
+            return
+
+        # 5. Retrieve translation objects
+        try:
+            tm = ITranslationManager(source_obj)
+            translations = tm.get_translations()
+        except TypeError:
+            translations = {"en": source_obj}
+        except Exception as e:
+            self.errors.append(f"Error getting translations: {str(e)}")
+            return
+
+        # 6. Move non-canonical translations first
+        for lang, trans_obj in list(translations.items()):
+            if lang == "en":
+                continue
+
+            # Ensure target parent exists in this language
+            try:
+                lang_target_parent = setup_translation_object(target_parent, lang, self.request)
+            except Exception as e:
+                self.errors.append(
+                    f"Could not setup translation parent folder for '{lang}': {str(e)}"
+                )
+                continue
+
+            if lang_target_parent is None:
+                self.errors.append(f"Translation parent folder for '{lang}' is None.")
+                continue
+
+            # Delete existing object at destination path in this language
+            target_obj_path = "/".join(lang_target_parent.getPhysicalPath()) + "/" + new_id
+            existing_trans = content.get(target_obj_path)
+            if existing_trans is not None:
+                try:
+                    content.delete(existing_trans, check_linkintegrity=False)
+                    self.success_info.append(f"Removed existing translation at {target_obj_path}")
+                except Exception as e:
+                    self.errors.append(
+                        f"Could not delete existing translation at {target_obj_path}: {str(e)}"
+                    )
+                    continue
+
+            # Move translation object
+            try:
+                old_trans_path = "/".join(trans_obj.getPhysicalPath())
+                moved_trans = content.move(source=trans_obj, target=lang_target_parent, id=new_id)
+                new_trans_path = "/".join(moved_trans.getPhysicalPath())
+                self.success_info.append(
+                    f"Moved [{lang}] from {old_trans_path} to {new_trans_path}"
+                )
+            except Exception as e:
+                self.errors.append(f"Failed to move [{lang}] translation: {str(e)}")
+
+        # 7. Finally, move the canonical (English) object
+        target_en_path = "/".join(target_parent.getPhysicalPath()) + "/" + new_id
+        existing_en = content.get(target_en_path)
+        if existing_en is not None:
+            try:
+                content.delete(existing_en, check_linkintegrity=False)
+                self.success_info.append(f"Removed existing English object at {target_en_path}")
+            except Exception as e:
+                self.errors.append(
+                    f"Could not delete existing English object at {target_en_path}: {str(e)}"
+                )
+                return
+
+        try:
+            old_en_path = "/".join(source_obj.getPhysicalPath())
+            moved_en = content.move(source=source_obj, target=target_parent, id=new_id)
+            new_en_path = "/".join(moved_en.getPhysicalPath())
+            self.success_info.append(f"Moved [en] from {old_en_path} to {new_en_path}")
+            self.status = "SUCCESS"
+        except Exception as e:
+            self.errors.append(f"Failed to move English object: {str(e)}")

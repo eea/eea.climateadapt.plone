@@ -112,4 +112,12 @@
     class=".admin.SeeTranslationStatus"
   />
 
+  <browser:page
+    for="*"
+    name="admin-cut-and-paste"
+    permission="cmf.ManagePortal"
+    class=".admin.AdminCutAndPaste"
+    template="pt/admin_cut_and_paste.pt"
+  />
+
 </configure>
