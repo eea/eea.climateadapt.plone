@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.3 - (2026-05-27)
+---------------------------
+* Change: Develop
+  [tiberiuichim]
+
 2.2 - (2026-05-25)
 ---------------------------
 * Change: Develop [tiberiuichim]
