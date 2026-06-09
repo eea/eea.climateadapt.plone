@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  lang="en"
+  metal:use-macro="context/main_template/macros/master"
+  i18n:domain="plone">
+  <body>
+
+    <metal:content-core fill-slot="content-core">
+      <metal:content-core define-macro="content-core">
+
+        <h1>Fast Cut and Paste (Synchronous Move)</h1>
+        <p class="documentDescription">
+          This form moves a canonical English object and all of its translations synchronously.
+          Standard async triggers are bypassed for optimal speed.
+        </p>
+
+        <!-- Status & Error Reporting -->
+        <div class="portalMessage error" tal:condition="view/errors">
+          <strong i18n:translate="">Error</strong>
+          <ul>
+            <li tal:repeat="error view/errors" tal:content="error">Error details</li>
+          </ul>
+        </div>
+
+        <div class="portalMessage info" tal:condition="view/status">
+          <strong tal:content="view/status">Success/Status</strong>
+          <ul tal:condition="view/success_info">
+            <li tal:repeat="info view/success_info" tal:content="info">Action details</li>
+          </ul>
+        </div>
+
+        <form method="POST" action="" tal:attributes="action string:${context/absolute_url}/@@admin-cut-and-paste">
+          <div class="field">
+            <label for="source_path">Source Path (e.g. <code>/cca/en/folder/item</code> or <code>en/folder/item</code>):</label>
+            <span class="formHelp">Absolute physical path or relative path to the Plone site root. Must be under English (/en/).</span>
+            <input type="text" id="source_path" name="source_path" size="60" tal:attributes="value view/source_path" />
+          </div>
+
+          <div class="field">
+            <label for="destination_path">Destination Path (e.g. <code>/cca/en/new-parent/item</code> or <code>/cca/en/new-parent</code>):</label>
+            <span class="formHelp">Target path. If the path points to an existing folder, the item will keep its ID. Otherwise, the last segment of the path will be used as the new ID.</span>
+            <input type="text" id="destination_path" name="destination_path" size="60" tal:attributes="value view/destination_path" />
+          </div>
+
+          <div class="formControls">
+            <input class="context" type="submit" name="submit" value="Move Object & Translations" />
+          </div>
+        </form>
+
+      </metal:content-core>
+    </metal:content-core>
+
+  </body>
+</html>
