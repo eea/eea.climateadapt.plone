@@ -385,7 +385,7 @@ PORTAL_TYPES_BLACKLIST = [
 
 
 def get_object_convertors(obj, fallback_convertors=None):
-    """Return applicable convertors for a specific object."""
+    """Return applicable convertors for a specific object"""
     seen_convertors = set()
     result = []
 
@@ -650,7 +650,7 @@ class BrokenLinksService(Service):
 
 # PER-PAGE BROKEN LINKS CHECKER
 def extract_links_from_single_object(obj):
-    """Extract all links from a single object (page)."""
+    """Extract all links from a single object (page)"""
     urls = []
 
     def _extract_from_target(target):
@@ -691,7 +691,7 @@ def extract_links_from_single_object(obj):
 
 
 def check_broken_links_for_object(obj):
-    """Returns a list of broken links with status codes for the given object."""
+    """Returns a list of broken links with status codes for the given object"""
 
     results = []
     if should_ignore_object(obj):
