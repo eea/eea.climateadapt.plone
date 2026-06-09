@@ -160,6 +160,10 @@ class Items(BrowserView):
                 #         len(obj.origin_website) and
                 #         "AdapteCCA" in obj.origin_website):
                 # origin_adaptecca_value = 10
+
+                parts = brain.getPath().split("/")
+                the_path = "/" + "/".join(parts[2:])
+
                 results["features"].append(
                     {
                         "properties": {
@@ -188,7 +192,8 @@ class Items(BrowserView):
                             "ipcc_categories_str": ", ".join(list_ipcc_categories),
                             "title": obj.title,
                             "description": long_description,
-                            "url": brain.getURL(),
+                            # "url": brain.getURL(),
+                            "url": the_path,
                             "image": brain.getURL() + "/@@images/primary_photo/preview"
                             if obj.primary_photo
                             else "",
