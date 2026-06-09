@@ -26,8 +26,11 @@ def object_modified_handler(obj, event):
             return
         try:
             from zope.annotation.interfaces import IAnnotations
+
             annotations = IAnnotations(request, None)
-            if annotations and annotations.get("disable_object_modified_handler", False):
+            if annotations and annotations.get(
+                "disable_object_modified_handler", False
+            ):
                 return
         except Exception:
             pass
@@ -118,8 +121,11 @@ def object_removed_handler(obj, event):
             return
         try:
             from zope.annotation.interfaces import IAnnotations
+
             annotations = IAnnotations(request, None)
-            if annotations and annotations.get("disable_object_modified_handler", False):
+            if annotations and annotations.get(
+                "disable_object_modified_handler", False
+            ):
                 return
         except Exception:
             pass

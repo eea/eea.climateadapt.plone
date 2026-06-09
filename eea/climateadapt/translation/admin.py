@@ -865,10 +865,14 @@ class AdminCutAndPaste(BrowserView):
 
         if self.request.method == "POST":
             self.source_path = self.request.form.get("source_path", "").strip()
-            self.destination_path = self.request.form.get("destination_path", "").strip()
+            self.destination_path = self.request.form.get(
+                "destination_path", ""
+            ).strip()
 
             if not self.source_path or not self.destination_path:
-                self.errors.append("Both source path and destination path are required.")
+                self.errors.append(
+                    "Both source path and destination path are required."
+                )
             else:
                 self.execute_cut_and_paste()
 
@@ -913,6 +917,7 @@ class AdminCutAndPaste(BrowserView):
         new_id = None
 
         from Products.CMFCore.interfaces import IFolderish
+
         if target_parent is not None and IFolderish.providedBy(target_parent):
             new_id = source_obj.getId()
         else:
@@ -930,7 +935,9 @@ class AdminCutAndPaste(BrowserView):
 
         # Ensure target_parent is under /en/
         target_parent_path_str = "/".join(target_parent.getPhysicalPath())
-        if not ("/en/" in target_parent_path_str or target_parent_path_str.endswith("/en")):
+        if not (
+            "/en/" in target_parent_path_str or target_parent_path_str.endswith("/en")
+        ):
             self.errors.append(
                 f"Destination parent is not under /en/: {target_parent_path_str}"
             )
@@ -953,7 +960,9 @@ class AdminCutAndPaste(BrowserView):
 
             # Ensure target parent exists in this language
             try:
-                lang_target_parent = setup_translation_object(target_parent, lang, self.request)
+                lang_target_parent = setup_translation_object(
+                    target_parent, lang, self.request
+                )
             except Exception as e:
                 self.errors.append(
                     f"Could not setup translation parent folder for '{lang}': {str(e)}"
@@ -965,12 +974,16 @@ class AdminCutAndPaste(BrowserView):
                 continue
 
             # Delete existing object at destination path in this language
-            target_obj_path = "/".join(lang_target_parent.getPhysicalPath()) + "/" + new_id
+            target_obj_path = (
+                "/".join(lang_target_parent.getPhysicalPath()) + "/" + new_id
+            )
             existing_trans = content.get(target_obj_path)
             if existing_trans is not None:
                 try:
                     content.delete(existing_trans, check_linkintegrity=False)
-                    self.success_info.append(f"Removed existing translation at {target_obj_path}")
+                    self.success_info.append(
+                        f"Removed existing translation at {target_obj_path}"
+                    )
                 except Exception as e:
                     self.errors.append(
                         f"Could not delete existing translation at {target_obj_path}: {str(e)}"
@@ -980,7 +993,9 @@ class AdminCutAndPaste(BrowserView):
             # Move translation object
             try:
                 old_trans_path = "/".join(trans_obj.getPhysicalPath())
-                moved_trans = content.move(source=trans_obj, target=lang_target_parent, id=new_id)
+                moved_trans = content.move(
+                    source=trans_obj, target=lang_target_parent, id=new_id
+                )
                 new_trans_path = "/".join(moved_trans.getPhysicalPath())
                 self.success_info.append(
                     f"Moved [{lang}] from {old_trans_path} to {new_trans_path}"
@@ -994,7 +1009,9 @@ class AdminCutAndPaste(BrowserView):
         if existing_en is not None:
             try:
                 content.delete(existing_en, check_linkintegrity=False)
-                self.success_info.append(f"Removed existing English object at {target_en_path}")
+                self.success_info.append(
+                    f"Removed existing English object at {target_en_path}"
+                )
             except Exception as e:
                 self.errors.append(
                     f"Could not delete existing English object at {target_en_path}: {str(e)}"
