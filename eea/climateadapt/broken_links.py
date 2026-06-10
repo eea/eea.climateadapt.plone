@@ -40,6 +40,24 @@ DEFAULT_HEADERS = {
 }
 
 
+def get_content_id(item):
+    """Helper to get the ID from either a brain or a content object."""
+    value = getattr(item, "getId", None)
+    if callable(value):
+        return value()
+
+    if value:
+        return value
+
+    return getattr(item, "id", None)
+
+
+def is_index_html_variant(name):
+    if not isinstance(name, str):
+        return False
+    return name.startswith("index_html")
+
+
 def convert_to_string(item):
     """Convert to string other types"""
 
@@ -405,7 +423,7 @@ def get_object_convertors(obj, fallback_convertors=None):
 
 def should_ignore_object(obj):
     """Return True for objects that should not be checked or reported."""
-    return getattr(obj, "getId", lambda: None)() == "index_html"
+    return is_index_html_variant(get_content_id(obj))
 
 
 def recursively_extract_links(site):
@@ -443,7 +461,7 @@ def recursively_extract_links(site):
             if (now - brain.created) > 365:  # skip news that are older then a year
                 continue
 
-        if brain.getId() == "index_html":
+        if is_index_html_variant(get_content_id(brain)):
             continue
 
         obj = brain.getObject()
@@ -557,7 +575,10 @@ class BrokenLinksService(Service):
 
         for date in latest_dates:
             for info in annot[date]:
-                if "en" not in info["object_url"]:
+                if not (
+                    info["object_url"] == "/cca/en"
+                    or info["object_url"].startswith("/cca/en/")
+                ):
                     continue
 
                 item = {}
