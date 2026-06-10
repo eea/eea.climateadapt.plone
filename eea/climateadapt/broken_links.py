@@ -58,7 +58,6 @@ def is_index_html_variant(name):
     return name.startswith("index_html")
 
 
-
 def convert_to_string(item):
     """Convert to string other types"""
 
