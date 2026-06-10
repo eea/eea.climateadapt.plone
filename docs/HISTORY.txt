@@ -1,6 +1,10 @@
 Changelog
 =========
 
+2.6 - (2026-06-10)
+---------------------------
+* Change: Develop [tiberiuichim]
+
 2.6-dev0 - (unreleased)
 ---------------------------
 
