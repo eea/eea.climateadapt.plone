@@ -56,9 +56,13 @@ def _resolve_uid_target(target):
         return target
 
     uid = target.split("/resolveuid/")[-1].split("/")[0]
-    obj = api.content.get(UID=uid)
+    brains = api.content.find(UID=uid, unrestricted=True)
+    obj = brains[0].getObject() if brains else None
 
-    return _public_object_url(obj) if obj else target
+    if obj:
+        return _public_object_url(obj)
+
+    return f"/resolveuid/{uid}"
 
 
 def serialize(possible_node):
