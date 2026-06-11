@@ -1,5 +1,5 @@
 from copy import deepcopy
-
+from urllib.parse import urljoin
 from lxml.html import fragments_fromstring, tostring
 from plone import api
 from plone.api import portal
@@ -36,6 +36,29 @@ from .utils import (
     html_to_plain_text,
     serialize_relevant_eu_policies,
 )
+
+
+def _public_object_url(obj):
+    if not obj:
+        return None
+
+    portal = api.portal.get()
+    portal_path = portal.getPhysicalPath()
+    obj_path = obj.getPhysicalPath()
+
+    path = "/" + "/".join(obj_path[len(portal_path) :])
+
+    return path
+
+
+def _resolve_uid_target(target):
+    if "/resolveuid/" not in target:
+        return target
+
+    uid = target.split("/resolveuid/")[-1].split("/")[0]
+    obj = api.content.get(UID=uid)
+
+    return _public_object_url(obj) if obj else target
 
 
 def serialize(possible_node):
@@ -392,34 +415,27 @@ class LinkRedirectSerializer(SerializeToJson):
         if not api.user.is_anonymous():
             return super().__call__(version=version, include_items=include_items)
 
-        target = getattr(context, "remoteUrl", None)
+        target = str(getattr(context, "remoteUrl", None) or "")
 
         if not target:
             return super().__call__(version=version, include_items=include_items)
-
-        if "${portal_url}/resolveuid/" in target:
-            uid = target.split("/resolveuid/")[-1]
-            obj = api.content.get(UID=uid)
-            target = obj.absolute_url() if obj else target
-
-        elif "${portal_url}" in target:
-            portal_url = api.portal.get().absolute_url()
-            target = target.replace("${portal_url}", portal_url)
-
-        if target.startswith(("../", "./")):
-            from urllib.parse import urljoin
-
-            target = urljoin(context.absolute_url(), target)
-
-        elif "/resolveuid/" in target and not target.startswith("http"):
-            uid = target.split("/resolveuid/")[-1].split("/")[0]
-            obj = api.content.get(UID=uid)
-            target = obj.absolute_url() if obj else target
 
         raw = getattr(context, "redirection_type", "")
 
         if not raw:
             return super().__call__(version=version, include_items=include_items)
+
+        if "/resolveuid/" in target:
+            target = _resolve_uid_target(target)
+
+        elif "${portal_url}" in target:
+            target = target.replace("${portal_url}", "")
+            if not target.startswith("/"):
+                target = "/" + target
+
+        elif target.startswith(("../", "./")):
+            base = _public_object_url(context) or "/"
+            target = urljoin(base.rstrip("/") + "/", target)
 
         try:
             status = int(raw)
@@ -430,9 +446,7 @@ class LinkRedirectSerializer(SerializeToJson):
 
         result = super().__call__(version=version, include_items=include_items)
 
-        if "@components" not in result:
-            result["@components"] = {}
-
+        result.setdefault("@components", {})
         result["@components"]["redirect"] = {
             "url": target,
             "status": status,

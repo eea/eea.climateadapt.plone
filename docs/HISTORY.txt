@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.7 - (2026-06-11)
+---------------------------
+* Change: Release
+  [kreafox]
+
 2.6 - (2026-06-10)
 ---------------------------
 * Change: Develop [tiberiuichim]
