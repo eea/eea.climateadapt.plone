@@ -37,6 +37,7 @@ from .utils import (
     serialize_relevant_eu_policies,
 )
 
+
 def _public_object_url(obj):
     if not obj:
         return None
@@ -45,9 +46,10 @@ def _public_object_url(obj):
     portal_path = portal.getPhysicalPath()
     obj_path = obj.getPhysicalPath()
 
-    path = "/" + "/".join(obj_path[len(portal_path):])
+    path = "/" + "/".join(obj_path[len(portal_path) :])
 
     return path
+
 
 def _resolve_uid_target(target):
     if "/resolveuid/" not in target:
@@ -57,6 +59,7 @@ def _resolve_uid_target(target):
     obj = api.content.get(UID=uid)
 
     return _public_object_url(obj) if obj else target
+
 
 def serialize(possible_node):
     if isinstance(possible_node, str):
