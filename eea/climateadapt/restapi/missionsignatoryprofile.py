@@ -38,7 +38,7 @@ DISCODATA_URLS = {
 }
 
 DISCODATA_BETA_URLS = {
-    key: url.replace("latest", "v2").replace(
+    key: url.replace("latest", "v2r1").replace(
         "MissionOnAdaptation", "MissionOnAdaptation_SignatoryReporting"
     )
     for key, url in DISCODATA_URLS.items()
