@@ -575,10 +575,7 @@ class BrokenLinksService(Service):
 
         for date in latest_dates:
             for info in annot[date]:
-                if not (
-                    info["object_url"] == "/cca/en"
-                    or info["object_url"].startswith("/cca/en/")
-                ):
+                if "en" not in info["object_url"]:
                     continue
 
                 item = {}
