@@ -504,4 +504,12 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
   />
 
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_80"
+    title="Upgrade profile for eea.climateadapt v80"
+    description="Add layout for visualization content types"
+    directory="profiles/upgrades/to_80"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
 </configure>
