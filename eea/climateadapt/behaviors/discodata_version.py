@@ -20,24 +20,25 @@ class IDiscodataVersion(model.Schema, IBlocks):
         title=_("Discodata version"),
         description=_("Sandbox version for discodata"),
         required=False,
-
     )
 
 
 @implementer(IBehaviorAssignable)
 @adapter(IDiscodataVersionMarker)
 class DiscodataVersionBehaviorAssignable(DexterityBehaviorAssignable):
-    """ Custom assignable that adds the discodata behavior
-        if the marker is present.
+    """Custom assignable that adds the discodata behavior
+    if the marker is present.
     """
 
     def enumerateBehaviors(self):
         # import pdb
         # pdb.set_trace()
         # Yield default behaviors from FTI
-        for behavior in super(DiscodataVersionBehaviorAssignable, self).enumerateBehaviors():
+        for behavior in super(
+            DiscodataVersionBehaviorAssignable, self
+        ).enumerateBehaviors():
             yield behavior
 
         # Also yield our custom behavior
-        behavior = getUtility(IBehavior, name='eea.climateadapt.discodata_version')
+        behavior = getUtility(IBehavior, name="eea.climateadapt.discodata_version")
         yield behavior

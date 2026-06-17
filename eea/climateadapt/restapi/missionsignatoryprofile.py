@@ -341,7 +341,9 @@ class MissionSignatoryProfile(object):
             version = DISCODATA_VERSION
 
         profile_id = self.context.absolute_url().rstrip("/").split("/")[-1]
-        data = get_data_for_mission_signatory(profile_id, getDiscodataUrlsByVersion(version))
+        data = get_data_for_mission_signatory(
+            profile_id, getDiscodataUrlsByVersion(version)
+        )
         # data = get_data_for_mission_signatory(profile_id, DISCODATA_BETA_URLS)
 
         banner = None
