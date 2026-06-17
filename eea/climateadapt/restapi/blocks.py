@@ -127,7 +127,7 @@ class TranslatedLanguageLinkFixer(object):
             if not _has_translated_site_path(self.context, url, lang):
                 return m.group(0)
 
-            return f'{m.group("field")}{m.group("prefix")}/{lang}/'
+            return f"{m.group('field')}{m.group('prefix')}/{lang}/"
 
         block_json = _URL_KEY_PATTERN.sub(_replace, block_json)
         return json.loads(block_json)
