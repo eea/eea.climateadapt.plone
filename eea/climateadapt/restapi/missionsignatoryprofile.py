@@ -2,6 +2,7 @@ import logging
 
 import json
 import urllib.request
+from Acquisition import aq_parent
 from collections import defaultdict
 from plone.restapi.interfaces import IExpandableElement, ISerializeToJson
 from zope.component import adapter, queryMultiAdapter
@@ -18,98 +19,73 @@ logger = logging.getLogger("eea.climateadapt")
 DISCODATA_VERSION = "v2r1"
 DISCODATA_PATH = "MissionOnAdaptation_SignatoryReporting"
 
-DISCODATA_URLS = {
+
+def getDiscodataUrlsByVersion(version=DISCODATA_VERSION):
+    return {
+        key: url.replace("__DISCODATA_VERSION__", version)
+        for key, url in DISCODATA_URLS_TEMPLATES.items()
+    }
+
+
+DISCODATA_URLS_TEMPLATES = {
     "governance": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Governance_Template_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Governance_Template_Text%5D&p=1&nrOfHits=10000",
     "assessment_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Assessment_Template_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Text%5D&p=1&nrOfHits=10000",
     "assessment_factors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Assessment_Template_Factors_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Factors_Text%5D&p=1&nrOfHits=10000",
     "assessment_risks": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Assessment_Template_Climate_Risk_Assessments_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Climate_Risk_Assessments_Text%5D&p=1&nrOfHits=10000",
     "assessment_hazards_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Assessment_Template_Hazards_Sectors_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Hazards_Sectors_Text%5D&p=1&nrOfHits=10000",
     "action_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Action_Template_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Text%5D&p=1&nrOfHits=10000",
     "action_actions": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Action_Template_Actions_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Actions_Text%5D&p=1&nrOfHits=10000",
     "action_hazards": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Action_Template_Climate_Hazards_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Climate_Hazards_Text%5D&p=1&nrOfHits=10000",
     "action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Action_Template_Sectors_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Sectors_Text%5D&p=1&nrOfHits=10000",
     "action_benefits": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Action_Template_Co_Benefits_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Co_Benefits_Text%5D&p=1&nrOfHits=10000",
     "planning_titles": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Planning_Template_Adaptation_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Adaptation_Text%5D&p=1&nrOfHits=10000",
     "planning_goals": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Planning_Template_Adaptation_Goals_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Adaptation_Goals_Text%5D&p=1&nrOfHits=10000",
     "planning_goals_hazard": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Planning_Template_Adaptation_Goals_Climate_Hazards_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Adaptation_Goals_Climate_Hazards_Text%5D&p=1&nrOfHits=10000",
     "planning_climate_action": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Planning_Template_Climate_Action_Plan_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Climate_Action_Plan_Text%5D&p=1&nrOfHits=10000",
     "planning_climate_action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Planning_Template_Climate_Action_Plan_Sectors_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Climate_Action_Plan_Sectors_Text%5D&p=1&nrOfHits=10000",
     "tabs_labels": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Tabs_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Tabs_Text%5D&p=1&nrOfHits=10000",
     "footer_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_Footer_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Footer_Text%5D&p=1&nrOfHits=10000",
     "general_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B"
-    + DISCODATA_VERSION
-    + "%5D.%5Bv_General_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_General_Text%5D&p=1&nrOfHits=10000",
 }
+
+
+DISCODATA_URLS = getDiscodataUrlsByVersion()
 
 
 # DISCODATA_BETA_URLS = {
@@ -355,8 +331,17 @@ class MissionSignatoryProfile(object):
         self.request = request
 
     def __call__(self, expand=False):
+        version = DISCODATA_VERSION
+
+        parent = aq_parent(self.context)
+        if parent:
+            version = getattr(parent, "discodata_version", DISCODATA_VERSION)
+
+        if version is None:
+            version = DISCODATA_VERSION
+
         profile_id = self.context.absolute_url().rstrip("/").split("/")[-1]
-        data = get_data_for_mission_signatory(profile_id, DISCODATA_URLS)
+        data = get_data_for_mission_signatory(profile_id, getDiscodataUrlsByVersion(version))
         # data = get_data_for_mission_signatory(profile_id, DISCODATA_BETA_URLS)
 
         banner = None
