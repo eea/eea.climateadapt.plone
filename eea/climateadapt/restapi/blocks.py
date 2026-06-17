@@ -1,6 +1,8 @@
 import json
+import re
 import logging
 from copy import deepcopy
+from urllib.parse import urlparse
 
 from plone.restapi.behaviors import IBlocks
 from plone.restapi.deserializer.blocks import path2uid
@@ -39,6 +41,96 @@ class GenericLinkFixer(object):
                 block = json.loads(dumped)
 
         return block
+
+
+_IMAGE_EXTENSIONS_RE = re.compile(
+    r'\.(?:png|jpe?g|gif|webp|svg|tiff?|bmp|ico)(\?[^"]*)?$',
+    re.IGNORECASE,
+)
+
+_URL_KEY_PATTERN = re.compile(
+    r'(?P<field>"(?:url|href|@id)"\s*:\s*")'
+    r'(?P<prefix>(?:https?://[^/"]+)?)/en/'
+)
+
+
+def _get_site_root(context):
+    try:
+        return context.portal_url.getPortalObject()
+    except Exception:
+        return None
+
+
+def _site_path_exists(context, path):
+    site = _get_site_root(context)
+    if site is None:
+        return False
+
+    path = path.lstrip("/")
+    if not path:
+        return False
+
+    try:
+        return site.unrestrictedTraverse(path, None) is not None
+    except Exception:
+        return False
+
+
+def _has_translated_site_path(context, url, language):
+    """Return True when url points to an existing target-language site path."""
+    path = urlparse(url).path
+    if not path.startswith("/en/"):
+        return False
+
+    translated_path = path.replace("/en/", "/%s/" % language, 1)
+    return _site_path_exists(context, translated_path)
+
+
+@implementer(IBlockFieldSerializationTransformer)
+@adapter(IBlocks, IBrowserRequest)
+class TranslatedLanguageLinkFixer(object):
+    """Generic block serialization transformer that rewrites internal
+    ``/en/`` URL prefixes to ``/{language}/`` so that links in translated
+    pages work correctly when opened in a new browser tab.
+    """
+
+    order = 200
+    block_type = None  # applies to every block type
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self, block):
+        if not block:
+            return block
+
+        lang = getattr(self.context, "language", "en")
+        if not lang or lang == "en":
+            return block
+
+        if block.get("@type") == "image":
+            return block
+
+        block_json = json.dumps(json_compatible(block))
+
+        def _replace(m):
+            """Replace /en/ only when the remainder of the URL value is not
+            an image file path."""
+            pos = m.end()
+            close = block_json.find('"', pos)
+            url_tail = block_json[pos:close] if close >= 0 else block_json[pos:]
+            if _IMAGE_EXTENSIONS_RE.search(url_tail):
+                return m.group(0)  # leave image URLs unchanged
+
+            url = "{}{}".format(m.group("prefix"), "/en/" + url_tail)
+            if not _has_translated_site_path(self.context, url, lang):
+                return m.group(0)
+
+            return f'{m.group("field")}{m.group("prefix")}/{lang}/'
+
+        block_json = _URL_KEY_PATTERN.sub(_replace, block_json)
+        return json.loads(block_json)
 
 
 @implementer(IBlockFieldSerializationTransformer)
