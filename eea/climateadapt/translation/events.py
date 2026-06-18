@@ -20,6 +20,21 @@ def object_modified_handler(obj, event):
         # obj.REQUEST.tg = "notg"
         return
 
+    request = getattr(obj, "REQUEST", None)
+    if request is not None:
+        if getattr(request, "disable_object_modified_handler", False):
+            return
+        try:
+            from zope.annotation.interfaces import IAnnotations
+
+            annotations = IAnnotations(request, None)
+            if annotations and annotations.get(
+                "disable_object_modified_handler", False
+            ):
+                return
+        except Exception:
+            pass
+
     try:
         op = "/".join(event.oldParent.getPhysicalPath())
     except Exception:
@@ -99,6 +114,21 @@ def object_removed_handler(obj, event):
     """
     if IS_JOB_EXECUTOR:
         return
+
+    request = getattr(obj, "REQUEST", None)
+    if request is not None:
+        if getattr(request, "disable_object_modified_handler", False):
+            return
+        try:
+            from zope.annotation.interfaces import IAnnotations
+
+            annotations = IAnnotations(request, None)
+            if annotations and annotations.get(
+                "disable_object_modified_handler", False
+            ):
+                return
+        except Exception:
+            pass
 
     # Check if object is canonical (English)
     try:
