@@ -20,6 +20,10 @@ class ICCACountry2026(Interface):
     """Marker interface for Country Profiles 2026"""
 
 
+class IDiscodataVersionMarker(Interface):
+    """Marker interface for Discoda Versioning"""
+
+
 class IClimateAdaptContent(Interface):
     """Marker interface for climate adapt content"""
 
