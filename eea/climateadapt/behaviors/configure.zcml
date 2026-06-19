@@ -72,6 +72,15 @@
   />
 
   <plone:behavior
+     name="eea.climateadapt.discodata_version"
+     title="Discodata version"
+     description="Set custom version for discodata, only if have marker IDiscodataVersionMarker"
+     provides=".discodata_version.IDiscodataVersion"
+   />
+
+  <adapter factory=".discodata_version.DiscodataVersionBehaviorAssignable" />
+
+  <plone:behavior
     title="Event details"
     description="Settings and layout for Event content type"
     provides=".event.IMainEvent"
