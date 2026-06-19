@@ -87,7 +87,7 @@ def _is_internal_url(context, url):
     return (
         hostname
         in (
-            "climate-adapt-plone6.devel5cph.eea.europa.eu",
+            "demo-climate-adapt.02pre.eea.europa.eu",
             "climate-adapt.eea.europa.eu",
         )
         or (context_host and hostname == context_host.lower())
