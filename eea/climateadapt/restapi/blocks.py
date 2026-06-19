@@ -61,6 +61,39 @@ def _get_site_root(context):
         return None
 
 
+def _get_context_host(context):
+    try:
+        return urlparse(context.portal_url()).hostname
+    except Exception:
+        return None
+
+
+def _is_internal_url(context, url):
+    parsed = urlparse(url)
+
+    if not parsed.scheme and not parsed.netloc:
+        return parsed.path.startswith("/en/")
+
+    if parsed.scheme not in ("http", "https"):
+        return False
+
+    hostname = parsed.hostname
+    if not hostname:
+        return False
+
+    context_host = _get_context_host(context)
+
+    hostname = hostname.lower()
+    return (
+        hostname
+        in (
+            "climate-adapt-plone6.devel5cph.eea.europa.eu",
+            "climate-adapt.eea.europa.eu",
+        )
+        or (context_host and hostname == context_host.lower())
+    ) and parsed.path.startswith("/en/")
+
+
 def _site_path_exists(context, path):
     site = _get_site_root(context)
     if site is None:
@@ -78,10 +111,10 @@ def _site_path_exists(context, path):
 
 def _has_translated_site_path(context, url, language):
     """Return True when url points to an existing target-language site path."""
-    path = urlparse(url).path
-    if not path.startswith("/en/"):
+    if not _is_internal_url(context, url):
         return False
 
+    path = urlparse(url).path
     translated_path = path.replace("/en/", "/%s/" % language, 1)
     return _site_path_exists(context, translated_path)
 
