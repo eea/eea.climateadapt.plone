@@ -22,9 +22,7 @@ class ITool(IAceItem, IBlocks):
     #                              u"description (250 character limit)")
 
     include_in_navigator = Bool(
-        title=_("Include in navigator"),
-        required=False,
-        default=False
+        title=_("Include in navigator"), required=False, default=False
     )
 
     blocks = JSONField(
