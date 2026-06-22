@@ -5,6 +5,7 @@ from z3c.form.interfaces import IAddForm, IEditForm
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from .volto_layout import tool_layout_blocks, tool_layout_items
+from zope.schema import Bool
 
 
 class ITool(IAceItem, IBlocks):
@@ -19,6 +20,12 @@ class ITool(IAceItem, IBlocks):
     #                  required=False,
     #                  description=u"Describe the original source of the item "
     #                              u"description (250 character limit)")
+
+    include_in_navigator = Bool(
+        title=_("Include in navigator"),
+        required=False,
+        default=False
+    )
 
     blocks = JSONField(
         title=_("Blocks"),
