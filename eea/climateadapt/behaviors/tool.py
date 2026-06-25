@@ -22,9 +22,7 @@ class ITool(IAceItem, IBlocks):
     #                              u"description (250 character limit)")
 
     include_in_navigator = Bool(
-        title=_("Include in navigator"),
-        required=False,
-        default=False
+        title=_("Include in navigator"), required=False, default=False
     )
 
     directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
@@ -58,30 +56,20 @@ class ITool(IAceItem, IBlocks):
     )
 
     nature_based_solution = Bool(
-        title=_("Nature-based solution"),
-        required=False,
-        default=False
+        title=_("Nature-based solution"), required=False, default=False
     )
 
-    just_resilience = Bool(
-        title=_("Just resilience"),
-        required=False,
-        default=False
-    )
+    just_resilience = Bool(title=_("Just resilience"), required=False, default=False)
 
     cost_benefit_ratio = Bool(
-        title=_("Cost-benefit ratio"),
-        required=False,
-        default=False
+        title=_("Cost-benefit ratio"), required=False, default=False
     )
 
     spatial_resolution = TextLine(
         title=_("Spatial resolution"),
         required=False,
         default=str(""),
-        description=_(
-            "Free text (Local, NUTS3, NUTS2 ...)"
-        ),
+        description=_("Free text (Local, NUTS3, NUTS2 ...)"),
     )
 
     underlying_data_maintenance = TextLine(
