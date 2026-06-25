@@ -42,6 +42,18 @@
     component=".vocabulary.aceitem_elements_case_study_vocabulary"
   />
   <utility
+    name="eea.climateadapt.type_of_outputs_tool"
+    component=".vocabulary.type_of_outputs_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.temporality_of_data_tool"
+    component=".vocabulary.temporality_of_data_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.accessibility_and_usability_tool"
+    component=".vocabulary.accessibility_and_usability_tool_vocabulary"
+  />
+  <utility
     name="eea.climateadapt.aceitems_climateimpacts"
     component=".vocabulary.aceitem_climateimpacts_vocabulary"
   />
