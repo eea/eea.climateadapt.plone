@@ -6,6 +6,7 @@ from z3c.form.interfaces import IAddForm, IEditForm
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from .volto_layout import tool_layout_blocks, tool_layout_items
+from zope.schema import Bool
 
 
 class ITool(IAceItem, IBlocks):
@@ -59,7 +60,8 @@ class ITool(IAceItem, IBlocks):
         title=_("Nature-based solution"), required=False, default=False
     )
 
-    just_resilience = Bool(title=_("Just resilience"), required=False, default=False)
+    just_resilience = Bool(title=_("Just resilience"),
+                           required=False, default=False)
 
     cost_benefit_ratio = Bool(
         title=_("Cost-benefit ratio"), required=False, default=False
