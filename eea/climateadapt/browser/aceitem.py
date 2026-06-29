@@ -54,6 +54,12 @@ class ToolView(DefaultView, AceViewApi):
     type_label = "Tools"
 
 
+class ExtendedToolView(DefaultView, AceViewApi):
+    """"""
+
+    type_label = "ExtendedTools"
+
+
 class IndicatorView(DefaultView, AceViewApi):
     """"""
 
@@ -275,9 +281,11 @@ class OrganisationFormExtender(FormExtender):
         self.move("logo", before="image")
         self.move("IRelatedItems.relatedItems", before="comments")
         self.move("acronym", before="title")
-        self.move("organisational_contact_information", after="include_in_observatory")
+        self.move("organisational_contact_information",
+                  after="include_in_observatory")
         self.move("organisational_websites", after="include_in_observatory")
-        self.move("organisational_key_activities", after="include_in_observatory")
+        self.move("organisational_key_activities",
+                  after="include_in_observatory")
         self.remove("other_contributor")
         self.remove("IBlocks.blocks")
         self.remove("IBlocks.blocks_layout")

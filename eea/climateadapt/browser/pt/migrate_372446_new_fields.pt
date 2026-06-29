@@ -1,0 +1,13 @@
+<h1 i18n:translate="">New tool and fields #372446</h1>
+<form action="./@@tool_extendfields_372446" method="post" enctype="multipart/form-data">
+  <br i18n:translate="">Select CSV file to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload" />
+  <input type="submit" value="Process CSV" name="submit" />
+</form>
+<table tal:define="items view/list">
+    <tr tal:repeat="item items">
+        <td tal:content="item/external_id"></td>
+        <td tal:content="item/name"></td>
+        <td tal:content="item/url"></td>
+    </tr>
+</table>

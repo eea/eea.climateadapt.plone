@@ -2,6 +2,9 @@ from eea.climateadapt.interfaces import ICCACountry
 from eea.climateadapt.interfaces import ICCACountry2025
 from zope.interface import noLongerProvides
 from zope.interface import alsoProvides
+from datetime import date
+
+from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
 import logging
 import csv
@@ -111,7 +114,8 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s",
+                            idx, total, self.count)
 
         return self.count
 
@@ -328,6 +332,130 @@ class ImpactFiltersNew:
             len(response),
             count_found,
             count_not_found,
+        )
+        return response
+
+
+class ToolExtendFields:
+    """New fields for tool #372446"""
+
+    def list(self):
+        response = []
+        fileUploaded = self.request.form.get("fileToUpload", None)
+
+        if not fileUploaded:
+            return response
+
+        data = fileUploaded.read().decode("utf-8")
+        csv_file = io.StringIO(data)
+        reader = csv.DictReader(csv_file)
+
+        i_transaction = 0
+        for row in reader:
+            i_transaction += 1
+            if i_transaction % 100 == 0:
+                transaction.savepoint()
+            if row["Tool ID"] == '':
+                continue
+
+            # print(row)
+            import pdb
+            pdb.set_trace()
+
+            item = {}
+            item["external_id"] = row["Tool ID"]
+            item["name"] = row["Name of tool"]
+            item["short_description"] = row["Short description"]
+
+            # check if object already exists
+            # brains = api.content.find(
+            #     portal_type="eea.climateadapt.tool",
+            #     external_import_id=item["external_id"],
+            # )
+            catalog = self.context.portal_catalog
+            brains = catalog.unrestrictedSearchResults(
+                path="/cca/en", portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"]
+            )
+            obj = None
+            for brain in brains:
+                _obj = brain.getObject()
+                if getattr(_obj, 'external_import_id', None) == item['external_id']:
+                    if obj:
+                        api.content.delete(obj=_obj)
+                        logger.info("REMOVE: %s -> %s",
+                                    item["external_id"], _obj.absolute_url())
+                    else:
+                        obj = brain.getObject()
+                        if obj.portal_type == 'eea.climateadapt.tool':
+                            obj.portal_type = 'eea.climateadapt.extendedtool'
+                        if getattr(obj, 'external_import_id', None):
+                            obj.external_id = getattr(
+                                obj, 'external_import_id', None)
+                        logger.info("FOUND: %s -> %s",
+                                    item["external_id"], obj.absolute_url())
+
+            # for brain in brains:
+            #     _obj = brain.getObject()
+            #     if getattr(_obj, 'external_id', None) == item['external_id']:
+            #         obj = brain.getObject()
+
+            pdb.set_trace()
+
+            if not obj:
+                container = api.content.get(path="/cca/en/metadata/tools/")
+
+                # constrain = ISelectableConstrainTypes(container, None)
+                # if constrain is not None:
+                #     old_mode = constrain.getConstrainTypesMode()
+                #     old_types = constrain.getLocallyAllowedTypes()
+                #     constrain.setConstrainTypesMode(0)  # 0 = disabled
+
+                obj = api.content.create(
+                    container=container,
+                    type="eea.climateadapt.tool",
+                    portal_type="eea.climateadapt.tool",
+                    sectors=["AGRICULTURE"],
+                    climate_impacts=["EXTREMEHEAT"],
+                    publication_date=date(2026, 1, 1),
+                    title=item["name"],
+                    external_import_id=item['external_id'],
+                    safe_id=True,
+                )
+                obj.external_import_id = item["external_id"]
+
+                # if constrain is not None:
+                #     constrain.setConstrainTypesMode(old_mode)
+
+                logger.info("CREATED: %s -> %s",
+                            item["external_id"], item["external_id"])
+            # pdb.set_trace()
+
+            if row["Tool provider"] == "AdapteCa":
+                obj.origin_website = "AdapteCCA"
+            elif row["Tool provider"] == "carrot":
+                result = "vegetable"
+            else:
+                result = "unknown"
+            obj.description = item["short_description"]
+            # Check if _p_changed is necesary
+            obj._p_changed = True
+
+            obj.reindexObject()
+            logger.info("OBJ URL: %s", obj.absolute_url())
+            response.append(
+                {
+                    "external_id": item["external_id"],
+                    "name": item["name"],
+                    "url": obj.absolute_url(),
+                }
+            )
+            logger.info("OBJ: %s -> %s", item['external_id'], item['name'])
+
+        transaction.commit()
+
+        logger.info(
+            "LINES IN RESPONSE: %s",
+            len(response),
         )
         return response
 
