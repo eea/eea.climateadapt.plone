@@ -114,8 +114,7 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s",
-                            idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
 
         return self.count
 
@@ -355,11 +354,12 @@ class ToolExtendFields:
             i_transaction += 1
             if i_transaction % 100 == 0:
                 transaction.savepoint()
-            if row["Tool ID"] == '':
+            if row["Tool ID"] == "":
                 continue
 
             # print(row)
             import pdb
+
             pdb.set_trace()
 
             item = {}
@@ -374,25 +374,27 @@ class ToolExtendFields:
             # )
             catalog = self.context.portal_catalog
             brains = catalog.unrestrictedSearchResults(
-                path="/cca/en", portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"]
+                path="/cca/en",
+                portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"],
             )
             obj = None
             for brain in brains:
                 _obj = brain.getObject()
-                if getattr(_obj, 'external_import_id', None) == item['external_id']:
+                if getattr(_obj, "external_import_id", None) == item["external_id"]:
                     if obj:
                         api.content.delete(obj=_obj)
-                        logger.info("REMOVE: %s -> %s",
-                                    item["external_id"], _obj.absolute_url())
+                        logger.info(
+                            "REMOVE: %s -> %s", item["external_id"], _obj.absolute_url()
+                        )
                     else:
                         obj = brain.getObject()
-                        if obj.portal_type == 'eea.climateadapt.tool':
-                            obj.portal_type = 'eea.climateadapt.extendedtool'
-                        if getattr(obj, 'external_import_id', None):
-                            obj.external_id = getattr(
-                                obj, 'external_import_id', None)
-                        logger.info("FOUND: %s -> %s",
-                                    item["external_id"], obj.absolute_url())
+                        if obj.portal_type == "eea.climateadapt.tool":
+                            obj.portal_type = "eea.climateadapt.extendedtool"
+                        if getattr(obj, "external_import_id", None):
+                            obj.external_id = getattr(obj, "external_import_id", None)
+                        logger.info(
+                            "FOUND: %s -> %s", item["external_id"], obj.absolute_url()
+                        )
 
             # for brain in brains:
             #     _obj = brain.getObject()
@@ -418,7 +420,7 @@ class ToolExtendFields:
                     climate_impacts=["EXTREMEHEAT"],
                     publication_date=date(2026, 1, 1),
                     title=item["name"],
-                    external_import_id=item['external_id'],
+                    external_import_id=item["external_id"],
                     safe_id=True,
                 )
                 obj.external_import_id = item["external_id"]
@@ -426,8 +428,9 @@ class ToolExtendFields:
                 # if constrain is not None:
                 #     constrain.setConstrainTypesMode(old_mode)
 
-                logger.info("CREATED: %s -> %s",
-                            item["external_id"], item["external_id"])
+                logger.info(
+                    "CREATED: %s -> %s", item["external_id"], item["external_id"]
+                )
             # pdb.set_trace()
 
             if row["Tool provider"] == "AdapteCa":
@@ -449,7 +452,7 @@ class ToolExtendFields:
                     "url": obj.absolute_url(),
                 }
             )
-            logger.info("OBJ: %s -> %s", item['external_id'], item['name'])
+            logger.info("OBJ: %s -> %s", item["external_id"], item["name"])
 
         transaction.commit()
 

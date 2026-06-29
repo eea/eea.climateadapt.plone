@@ -15,8 +15,8 @@ from .tool import ITool
 class IExtendedTool(ITool, IBlocks):
     """ExtendedTool Interface"""
 
-    directives.omitted(IAddForm, 'external_id')
-    directives.omitted(IEditForm, 'external_id')
+    directives.omitted(IAddForm, "external_id")
+    directives.omitted(IEditForm, "external_id")
     external_id = TextLine(
         title=_("External ID"),
         required=False,
@@ -27,8 +27,7 @@ class IExtendedTool(ITool, IBlocks):
         title=_("Include in navigator"), required=False, default=False
     )
 
-    directives.widget(
-        type_of_outputs="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(type_of_outputs="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     type_of_outputs = List(
         title=_("Type of outputs"),
         description=_("Select one or more type of outputs."),
@@ -39,7 +38,8 @@ class IExtendedTool(ITool, IBlocks):
     )
 
     directives.widget(
-        temporality_of_data="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+        temporality_of_data="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
     temporality_of_data = List(
         title=_("Temporality of data"),
         description=_("Select one or more temporality of data."),
@@ -50,7 +50,8 @@ class IExtendedTool(ITool, IBlocks):
     )
 
     directives.widget(
-        accessibility_and_usability="z3c.form.browser.radio.RadioFieldWidget")
+        accessibility_and_usability="z3c.form.browser.radio.RadioFieldWidget"
+    )
     accessibility_and_usability = Choice(
         title=_("Accessibility and usability"),
         description=_("Select one or more accessibility and usability."),

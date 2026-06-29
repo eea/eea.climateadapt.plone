@@ -30,8 +30,7 @@ class ITool(IAceItem, IBlocks):
         title=_("Nature-based solution"), required=False, default=False
     )
 
-    just_resilience = Bool(title=_("Just resilience"),
-                           required=False, default=False)
+    just_resilience = Bool(title=_("Just resilience"), required=False, default=False)
 
     cost_benefit_ratio = Bool(
         title=_("Cost-benefit ratio"), required=False, default=False
