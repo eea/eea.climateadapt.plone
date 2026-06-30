@@ -4,7 +4,12 @@ from zope.interface import noLongerProvides
 from zope.interface import alsoProvides
 from datetime import date
 
-from eea.climateadapt.vocabulary import _sectors, _climateimpacts, _type_of_outputs_tool, _temporality_of_data_tool
+from eea.climateadapt.vocabulary import (
+    _sectors,
+    _climateimpacts,
+    _type_of_outputs_tool,
+    _temporality_of_data_tool,
+)
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
 import logging
@@ -115,8 +120,7 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s",
-                            idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
 
         return self.count
 
@@ -378,10 +382,10 @@ class ToolExtendFields:
 
         response = []
         for key, header_name in map_header:
-            if header_name == '':
+            if header_name == "":
                 continue
             val = self.get_value_by_header(row, header_name)
-            if val and val.strip().upper() == 'Y':
+            if val and val.strip().upper() == "Y":
                 response.append(key)
         return response
 
@@ -401,18 +405,20 @@ class ToolExtendFields:
 
         response = []
         for key, header_name in map_header:
-            if header_name == '':
+            if header_name == "":
                 continue
             val = self.get_value_by_header(row, header_name)
-            if val and val.strip().upper() == 'Y':
+            if val and val.strip().upper() == "Y":
                 response.append(key)
         return response
 
     def get_obj_type_of_outputs(self, row):
         map_header = [
             ("MAPS_AND_GRAPHS", "19. Type of outputs_Maps and graphs"),
-            ("REPORTS_AND_DECISION_SUPPORT",
-             "19. Type of outputs_Reports and decision support"),
+            (
+                "REPORTS_AND_DECISION_SUPPORT",
+                "19. Type of outputs_Reports and decision support",
+            ),
             ("DATASETS_AND_INDICATORS", "19. Type of outputs_Datasets and indicators"),
             ("NARRATIVES", "19. Type of outputs_Narrative"),
             ("BEST_PRACTICE_EXAMPLES", "19. Type of outputs_Best practice examples"),
@@ -420,10 +426,10 @@ class ToolExtendFields:
 
         response = []
         for key, header_name in map_header:
-            if header_name == '':
+            if header_name == "":
                 continue
             val = self.get_value_by_header(row, header_name)
-            if val and val.strip().upper() == 'Y':
+            if val and val.strip().upper() == "Y":
                 response.append(key)
         return response
 
@@ -436,10 +442,10 @@ class ToolExtendFields:
 
         response = []
         for key, header_name in map_header:
-            if header_name == '':
+            if header_name == "":
                 continue
             val = self.get_value_by_header(row, header_name)
-            if val and val.strip().upper() == 'Y':
+            if val and val.strip().upper() == "Y":
                 response.append(key)
         return response
 
@@ -466,7 +472,7 @@ class ToolExtendFields:
             if a:
                 last_header = a.strip()
             value = f"{last_header}_{b}" if b else last_header
-            value = value.replace('\xa0', '').strip()
+            value = value.replace("\xa0", "").strip()
             self._headers.append(value)
 
         # # now read data
@@ -492,22 +498,23 @@ class ToolExtendFields:
 
             # pdb.set_trace()
 
-            if self.get_value_by_header(row, 'Tool ID') == '':
+            if self.get_value_by_header(row, "Tool ID") == "":
                 continue
 
             # print(row)
 
             item = {}
-            item["external_id"] = self.get_value_by_header(row, 'Tool ID')
-            item["name"] = self.get_value_by_header(row, 'Name of tool')
+            item["external_id"] = self.get_value_by_header(row, "Tool ID")
+            item["name"] = self.get_value_by_header(row, "Name of tool")
             item["short_description"] = self.get_value_by_header(
-                row, 'Short description')
+                row, "Short description"
+            )
 
             # pdb.set_trace()
             item["sectors"] = self.get_obj_sectors(row)
 
-            if not item['sectors']:
-                print('No sectors for:'+item["external_id"])
+            if not item["sectors"]:
+                print("No sectors for:" + item["external_id"])
                 # pdb.set_trace()
                 continue
 
@@ -519,8 +526,7 @@ class ToolExtendFields:
             catalog = self.context.portal_catalog
             brains = catalog.unrestrictedSearchResults(
                 path="/cca/en",
-                portal_type=["eea.climateadapt.tool",
-                             "eea.climateadapt.extendedtool"],
+                portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"],
             )
             obj = None
             # for brain in brains:
@@ -542,7 +548,7 @@ class ToolExtendFields:
 
             for brain in brains:
                 _obj = brain.getObject()
-                if getattr(_obj, 'external_id', None) == item['external_id']:
+                if getattr(_obj, "external_id", None) == item["external_id"]:
                     obj = brain.getObject()
 
             # pdb.set_trace()
@@ -563,10 +569,9 @@ class ToolExtendFields:
                 )
                 obj.external_import_id = item["external_id"]
 
-                logger.info("CREATED: %s -> %s",
-                            item["external_id"], item["name"])
+                logger.info("CREATED: %s -> %s", item["external_id"], item["name"])
             # pdb.set_trace()
-            obj.tool_provider = self.get_value_by_header(row, 'Tool provider')
+            obj.tool_provider = self.get_value_by_header(row, "Tool provider")
             obj.description = item["short_description"]
             obj.sectors = item["sectors"]
             obj.type_of_outputs = self.get_obj_type_of_outputs(row)
