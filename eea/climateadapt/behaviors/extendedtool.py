@@ -23,6 +23,12 @@ class IExtendedTool(ITool, IBlocks):
         default=str(""),
     )
 
+    tool_provider = TextLine(
+        title=_("Tool provider"),
+        required=False,
+        default=str(""),
+    )
+
     include_in_navigator = Bool(
         title=_("Include in navigator"), required=False, default=False
     )

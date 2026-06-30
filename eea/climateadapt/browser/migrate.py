@@ -4,6 +4,7 @@ from zope.interface import noLongerProvides
 from zope.interface import alsoProvides
 from datetime import date
 
+from eea.climateadapt.vocabulary import _sectors, _climateimpacts, _type_of_outputs_tool, _temporality_of_data_tool
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
 import logging
@@ -114,7 +115,8 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s",
+                            idx, total, self.count)
 
         return self.count
 
@@ -336,7 +338,110 @@ class ImpactFiltersNew:
 
 
 class ToolExtendFields:
-    """New fields for tool #372446"""
+    """New fields for tool #304613"""
+
+    _headers = []
+
+    def get_value_by_header(self, line, key):
+        index = None
+        try:
+            index = self._headers.index(key)
+        except ValueError:
+            return None
+
+        return line[index] if 0 <= index < len(line) else None
+
+    def get_obj_sectors(self, row):
+        map_header = [
+            ("AGRICULTURE", "16. Sector_Agriculture"),
+            ("BIODIVERSITY", "16. Sector_Biodiversity"),
+            ("BUILDINGS", "16. Sector_Buildings"),
+            ("BUSINESSINDUSTRY", "16. Sector_Business & Industry"),
+            ("COASTAL", "16. Sector_Coastal areas"),
+            ("CULTURALHERITAGE", "16. Sector_Cultural heritage"),
+            ("DISASTERRISKREDUCTION", "16. Sector_Disaster Risk Reduction"),
+            ("ECOSYSTEMSRESTORATION", ""),
+            ("ENERGY", "16. Sector_Energy"),
+            ("FINANCIAL", "16. Sector_Financial"),
+            ("FORESTRY", "16. Sector_Forestry"),
+            ("HEALTH", "16. Sector_Health"),
+            ("ICT", "16. Sector_ICT"),
+            ("LANDUSE", "16. Sector_Land use planning"),
+            ("MARINE", "16. Sector_Marine & fisheries"),
+            ("MOUNTAINAREAS", "16. Sector_Mountain areas"),
+            ("TOURISMSECTOR", "16. Sector_Tourism"),
+            ("TRANSPORT", "16. Sector_Transport"),
+            ("URBAN", "16. Sector_Urban"),
+            ("WATERMANAGEMENT", "16. Sector_Water management"),
+            ("NONSPECIFIC", ""),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == '':
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == 'Y':
+                response.append(key)
+        return response
+
+    def get_obj_climateimpacts(self, row):
+        map_header = [
+            ("DROUGHT", "11. Hazard_Drought"),
+            ("EXTREMEHEAT", "11. Hazard_Heat"),
+            ("EXTREMECOLD", "11. Hazard_Cold waves / extreme cold"),
+            ("FLOODING", "11. Hazard_Flooding"),
+            ("ICEANDSNOW", "11. Hazard_Snow/Avalanche"),
+            ("SEALEVELRISE", "11. Hazard_Sea-level rise"),
+            ("STORM", "11. Hazard_Coastal flooding / storm surge"),
+            ("WATERSCARCE", ""),
+            ("WILDFIRES", "11. Hazard_Fire / wildfire"),
+            ("NONSPECIFIC", "11. Hazard_Not hazard-specific"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == '':
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == 'Y':
+                response.append(key)
+        return response
+
+    def get_obj_type_of_outputs(self, row):
+        map_header = [
+            ("MAPS_AND_GRAPHS", "19. Type of outputs_Maps and graphs"),
+            ("REPORTS_AND_DECISION_SUPPORT",
+             "19. Type of outputs_Reports and decision support"),
+            ("DATASETS_AND_INDICATORS", "19. Type of outputs_Datasets and indicators"),
+            ("NARRATIVES", "19. Type of outputs_Narrative"),
+            ("BEST_PRACTICE_EXAMPLES", "19. Type of outputs_Best practice examples"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == '':
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == 'Y':
+                response.append(key)
+        return response
+
+    def get_obj_temporality_of_data(self, row):
+        map_header = [
+            ("HISTORYCAL_PAST", "20. Temporality of data_Historical/past"),
+            ("PRESENT", "20. Temporality of data_Present"),
+            ("FORWARD_LOOKING", "20. Temporality of data_Forward-looking"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == '':
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == 'Y':
+                response.append(key)
+        return response
 
     def list(self):
         response = []
@@ -347,25 +452,64 @@ class ToolExtendFields:
 
         data = fileUploaded.read().decode("utf-8")
         csv_file = io.StringIO(data)
-        reader = csv.DictReader(csv_file)
+
+        reader = csv.reader(csv_file)
+
+        # first two rows are headers
+        header1 = next(reader)
+        header2 = next(reader)
+
+        last_header = ""
+
+        for a, b in zip(header1, header2):
+            b.replace("\xa0", " ").strip() if b else b
+            if a:
+                last_header = a.strip()
+            value = f"{last_header}_{b}" if b else last_header
+            value = value.replace('\xa0', '').strip()
+            self._headers.append(value)
+
+        # # now read data
+        # for row in reader:
+        #     item = dict(zip(headers, row))
+        #     print(item)
+
+        # import pdb
+        # pdb.set_trace()
+
+        # csv_file = io.StringIO(data)
+        # # reader = csv.DictReader(csv_file)
+        # reader = csv.reader(csv_file)
 
         i_transaction = 0
         for row in reader:
             i_transaction += 1
+            # if i_transaction <= 2:
+            #     continue
+
             if i_transaction % 100 == 0:
                 transaction.savepoint()
-            if row["Tool ID"] == "":
+
+            # pdb.set_trace()
+
+            if self.get_value_by_header(row, 'Tool ID') == '':
                 continue
 
             # print(row)
-            import pdb
-
-            pdb.set_trace()
 
             item = {}
-            item["external_id"] = row["Tool ID"]
-            item["name"] = row["Name of tool"]
-            item["short_description"] = row["Short description"]
+            item["external_id"] = self.get_value_by_header(row, 'Tool ID')
+            item["name"] = self.get_value_by_header(row, 'Name of tool')
+            item["short_description"] = self.get_value_by_header(
+                row, 'Short description')
+
+            # pdb.set_trace()
+            item["sectors"] = self.get_obj_sectors(row)
+
+            if not item['sectors']:
+                print('No sectors for:'+item["external_id"])
+                # pdb.set_trace()
+                continue
 
             # check if object already exists
             # brains = api.content.find(
@@ -375,48 +519,42 @@ class ToolExtendFields:
             catalog = self.context.portal_catalog
             brains = catalog.unrestrictedSearchResults(
                 path="/cca/en",
-                portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"],
+                portal_type=["eea.climateadapt.tool",
+                             "eea.climateadapt.extendedtool"],
             )
             obj = None
-            for brain in brains:
-                _obj = brain.getObject()
-                if getattr(_obj, "external_import_id", None) == item["external_id"]:
-                    if obj:
-                        api.content.delete(obj=_obj)
-                        logger.info(
-                            "REMOVE: %s -> %s", item["external_id"], _obj.absolute_url()
-                        )
-                    else:
-                        obj = brain.getObject()
-                        if obj.portal_type == "eea.climateadapt.tool":
-                            obj.portal_type = "eea.climateadapt.extendedtool"
-                        if getattr(obj, "external_import_id", None):
-                            obj.external_id = getattr(obj, "external_import_id", None)
-                        logger.info(
-                            "FOUND: %s -> %s", item["external_id"], obj.absolute_url()
-                        )
-
             # for brain in brains:
             #     _obj = brain.getObject()
-            #     if getattr(_obj, 'external_id', None) == item['external_id']:
-            #         obj = brain.getObject()
+            #     if getattr(_obj, 'external_import_id', None) == item['external_id']:
+            #         if obj:
+            #             api.content.delete(obj=_obj)
+            #             logger.info("REMOVE: %s -> %s",
+            #                         item["external_id"], _obj.absolute_url())
+            #         else:
+            #             obj = brain.getObject()
+            #             if obj.portal_type == 'eea.climateadapt.tool':
+            #                 obj.portal_type = 'eea.climateadapt.extendedtool'
+            #             if getattr(obj, 'external_import_id', None):
+            #                 obj.external_id = getattr(
+            #                     obj, 'external_import_id', None)
+            #             logger.info("FOUND: %s -> %s",
+            #                         item["external_id"], obj.absolute_url())
 
-            pdb.set_trace()
+            for brain in brains:
+                _obj = brain.getObject()
+                if getattr(_obj, 'external_id', None) == item['external_id']:
+                    obj = brain.getObject()
+
+            # pdb.set_trace()
 
             if not obj:
                 container = api.content.get(path="/cca/en/metadata/tools/")
-
-                # constrain = ISelectableConstrainTypes(container, None)
-                # if constrain is not None:
-                #     old_mode = constrain.getConstrainTypesMode()
-                #     old_types = constrain.getLocallyAllowedTypes()
-                #     constrain.setConstrainTypesMode(0)  # 0 = disabled
 
                 obj = api.content.create(
                     container=container,
                     type="eea.climateadapt.tool",
                     portal_type="eea.climateadapt.tool",
-                    sectors=["AGRICULTURE"],
+                    sectors=item["sectors"],
                     climate_impacts=["EXTREMEHEAT"],
                     publication_date=date(2026, 1, 1),
                     title=item["name"],
@@ -425,21 +563,14 @@ class ToolExtendFields:
                 )
                 obj.external_import_id = item["external_id"]
 
-                # if constrain is not None:
-                #     constrain.setConstrainTypesMode(old_mode)
-
-                logger.info(
-                    "CREATED: %s -> %s", item["external_id"], item["external_id"]
-                )
+                logger.info("CREATED: %s -> %s",
+                            item["external_id"], item["name"])
             # pdb.set_trace()
-
-            if row["Tool provider"] == "AdapteCa":
-                obj.origin_website = "AdapteCCA"
-            elif row["Tool provider"] == "carrot":
-                result = "vegetable"
-            else:
-                result = "unknown"
+            obj.tool_provider = self.get_value_by_header(row, 'Tool provider')
             obj.description = item["short_description"]
+            obj.sectors = item["sectors"]
+            obj.type_of_outputs = self.get_obj_type_of_outputs(row)
+            obj.temporality_of_data = self.get_obj_temporality_of_data(row)
             # Check if _p_changed is necesary
             obj._p_changed = True
 
