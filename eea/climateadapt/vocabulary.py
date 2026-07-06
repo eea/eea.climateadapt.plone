@@ -103,8 +103,7 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
 
         if parsed.get("path"):
             if parsed["path"].get("depth"):
-                parsed["path"]["query"].append(
-                    "/cca/metadata/adaptation-options")
+                parsed["path"]["query"].append("/cca/metadata/adaptation-options")
 
                 if "/cca" in parsed["path"]["query"]:
                     parsed["path"]["query"].remove("/cca")
@@ -365,14 +364,12 @@ _elements_case_study = [
     ("COSTBENEFIT", _("Cost-benefit analysis and maintenance costs")),
     ("RUPOTENTIAL", _("Replication/upscaling potential")),
 ]
-aceitem_elements_case_study_vocabulary = generic_vocabulary(
-    _elements_case_study)
+aceitem_elements_case_study_vocabulary = generic_vocabulary(_elements_case_study)
 alsoProvides(aceitem_elements_case_study_vocabulary, IVocabularyFactory)
 
 # 304613 - Extending Climate ADAPT Tool Content Type
 _intended_user_groups_tool = [
-    ("COMMISSION_SERVICE_AND_OR_AGENCIES", _(
-        "Commission services and/or Agencies")),
+    ("COMMISSION_SERVICE_AND_OR_AGENCIES", _("Commission services and/or Agencies")),
     ("TRANSBOUNDARY_NETWORK", _("Transboundary networks")),
     ("NATIONAL_AUTHORITIES", _("National authorities")),
     ("SUBNATIONAL_AUTHORITIES", _("Subnational authorities")),
@@ -382,20 +379,26 @@ _intended_user_groups_tool = [
     ("CITIZENS", _("Citizens")),
 ]
 intended_user_groups_tool_vocabulary = generic_vocabulary(
-    _intended_user_groups_tool, sort=False)
+    _intended_user_groups_tool, sort=False
+)
 alsoProvides(intended_user_groups_tool_vocabulary, IVocabularyFactory)
 
 _place_of_implementation_tool = [
     ("GLOBAL_LEVEL", _("Global level")),
     ("EUROPEAN_LEVEL", _("European level")),
-    ("TRANSNATIONAL", _(
-        "Transnational shared coastal, mountain, sea regions -e-g- mediterrenean etc")),
+    (
+        "TRANSNATIONAL",
+        _(
+            "Transnational shared coastal, mountain, sea regions -e-g- mediterrenean etc"
+        ),
+    ),
     ("OUTERMOST_EUROPEAN_REGIONS", _("Outermost European regions")),
     ("NATIONAL_LEVEL", _("National-level")),
     ("SUBNATIONAL", _("Subnational")),
 ]
 place_of_implementation_tool_vocabulary = generic_vocabulary(
-    _place_of_implementation_tool, sort=False)
+    _place_of_implementation_tool, sort=False
+)
 alsoProvides(place_of_implementation_tool_vocabulary, IVocabularyFactory)
 
 _type_of_data_tool = [
@@ -406,8 +409,7 @@ _type_of_data_tool = [
     ("SOCIO_ECONOMIC", _("Socio-economic or exposure data")),
     ("OTHER", _("Other")),
 ]
-type_of_data_tool_vocabulary = generic_vocabulary(
-    _type_of_data_tool, sort=False)
+type_of_data_tool_vocabulary = generic_vocabulary(_type_of_data_tool, sort=False)
 alsoProvides(type_of_data_tool_vocabulary, IVocabularyFactory)
 
 _data_sources_tool = [
@@ -417,8 +419,7 @@ _data_sources_tool = [
     ("COMERCIAL_OR_THIRD_PARTY", _("Commercial or third-party data providers")),
     ("MIXED_SOURCES", _("Mixed sources")),
 ]
-data_sources_tool_vocabulary = generic_vocabulary(
-    _data_sources_tool, sort=False)
+data_sources_tool_vocabulary = generic_vocabulary(_data_sources_tool, sort=False)
 alsoProvides(data_sources_tool_vocabulary, IVocabularyFactory)
 
 _license_status_tool = [
@@ -428,8 +429,7 @@ _license_status_tool = [
     ("RESTRICTED", _("Restricted")),
     ("MIXED", _("Mixed")),
 ]
-license_status_tool_vocabulary = generic_vocabulary(
-    _license_status_tool, sort=False)
+license_status_tool_vocabulary = generic_vocabulary(_license_status_tool, sort=False)
 alsoProvides(license_status_tool_vocabulary, IVocabularyFactory)
 
 _type_of_outputs_tool = [
@@ -439,8 +439,7 @@ _type_of_outputs_tool = [
     ("NARRATIVES", _("Narratives")),
     ("BEST_PRACTICE_EXAMPLES", _("Best practice examples")),
 ]
-type_of_outputs_tool_vocabulary = generic_vocabulary(
-    _type_of_outputs_tool, sort=False)
+type_of_outputs_tool_vocabulary = generic_vocabulary(_type_of_outputs_tool, sort=False)
 alsoProvides(type_of_outputs_tool_vocabulary, IVocabularyFactory)
 
 _temporality_of_data_tool = [
@@ -487,8 +486,7 @@ _climateimpacts = [
     ("WILDFIRES", _("Wildfires")),
     ("NONSPECIFIC", _("Non specific")),
 ]
-aceitem_climateimpacts_vocabulary = generic_vocabulary(
-    _climateimpacts, sort=False)
+aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts, sort=False)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
 
 
@@ -525,8 +523,7 @@ _implementationtypes = (
     ("green", "Ecological ('green')"),
     ("soft", "Behavioural / policy ('soft')"),
 )
-acemeasure_implementationtype_vocabulary = generic_vocabulary(
-    _implementationtypes)
+acemeasure_implementationtype_vocabulary = generic_vocabulary(_implementationtypes)
 alsoProvides(acemeasure_implementationtype_vocabulary, IVocabularyFactory)
 
 # Used for aceitems
@@ -593,8 +590,7 @@ ace_countries = sorted(ace_countries, key=lambda x: x[0])
 
 ace_countries.append(("MK", "Republic of North Macedonia"))
 
-ace_countries.append(
-    ("XK", "Kosovo under UN Security Council Resolution 1244/99"))
+ace_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 ace_countries_dict = dict(ace_countries)
 
 ace_countries_vocabulary = generic_vocabulary(ace_countries)
@@ -691,8 +687,7 @@ faceted_countries = [
     (x.alpha_2, x.name) for x in pycountry.countries if x.alpha_2 in faceted_countries
 ]
 faceted_countries.append(("MK", "Republic of North Macedonia"))
-faceted_countries.append(
-    ("XK", "Kosovo under UN Security Council Resolution 1244/99"))
+faceted_countries.append(("XK", "Kosovo under UN Security Council Resolution 1244/99"))
 
 faceted_countries_dict = dict(faceted_countries)
 
@@ -762,8 +757,7 @@ alsoProvides(climate_threats, IVocabularyFactory)
 _funding_programme = (
     ("Other", "Other"),
     ("COST Action", "COST Action"),
-    ("LIFE - Environment and climate action",
-     "LIFE - Environment and climate action"),
+    ("LIFE - Environment and climate action", "LIFE - Environment and climate action"),
     (
         "COPERNICUS - European earth observation programme",
         "COPERNICUS - European earth observation programme",
@@ -1511,8 +1505,7 @@ _relevant_synergies = [
     ("carbon_capture_and_storage", _("Carbon capture and storage")),
     ("no_relevant_synergies", _("No relevant synergies with mitigation")),
 ]
-relevant_synergies_vocabulary = generic_vocabulary(
-    _relevant_synergies, sort=False)
+relevant_synergies_vocabulary = generic_vocabulary(_relevant_synergies, sort=False)
 alsoProvides(relevant_synergies_vocabulary, IVocabularyFactory)
 
 relevant_eu_policies = [
@@ -1582,8 +1575,7 @@ relevant_eu_policies = [
     ("EU_WATER_REUSE", _("Water reuse regulation")),
     ("EU_CULTURE_PLAN_2023_26", _("Work Plan for Culture 2023-26")),
 ]
-relevant_eu_policies_vocabulary = generic_vocabulary(
-    relevant_eu_policies, sort=False)
+relevant_eu_policies_vocabulary = generic_vocabulary(relevant_eu_policies, sort=False)
 alsoProvides(relevant_eu_policies_vocabulary, IVocabularyFactory)
 
 RELEVANT_EU_POLICY_URLS = {

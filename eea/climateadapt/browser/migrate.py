@@ -120,8 +120,7 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s",
-                            idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
 
         return self.count
 
@@ -415,19 +414,27 @@ class ToolExtendFields:
 
     def get_obj_intended_user_groups(self, row):
         map_header = [
-            ("COMMISSION_SERVICE_AND_OR_AGENCIES",
-             "6. Intended User Groups_Commission services and/or Agencies"),
+            (
+                "COMMISSION_SERVICE_AND_OR_AGENCIES",
+                "6. Intended User Groups_Commission services and/or Agencies",
+            ),
             (
                 "TRANSBOUNDARY_NETWORK",
                 "6. Intended User Groups_ Transboundary networks",
             ),
             ("NATIONAL_AUTHORITIES", "6. Intended User Groups_National authorities"),
-            ("SUBNATIONAL_AUTHORITIES",
-             "6. Intended User Groups_Subnational authorities  [Y/N]"),
-            ("BUSINESSES_CONSULTANTS",
-             "6. Intended User Groups_Businesses/consultants  [Y/N]"),
-            ("RESEASRCHERS_SUPPORTING_POLICY",
-             "6. Intended User Groups_Researchers supporting policy  [Y/N]"),
+            (
+                "SUBNATIONAL_AUTHORITIES",
+                "6. Intended User Groups_Subnational authorities  [Y/N]",
+            ),
+            (
+                "BUSINESSES_CONSULTANTS",
+                "6. Intended User Groups_Businesses/consultants  [Y/N]",
+            ),
+            (
+                "RESEASRCHERS_SUPPORTING_POLICY",
+                "6. Intended User Groups_Researchers supporting policy  [Y/N]",
+            ),
             ("NGOS", "6. Intended User Groups_NGOs [Y/N]"),
             ("CITIZENS", "6. Intended User Groups_Citizens [Y/N]"),
         ]
@@ -443,19 +450,21 @@ class ToolExtendFields:
 
     def get_obj_place_of_implementation(self, row):
         map_header = [
-            ("GLOBAL_LEVEL",
-             "7. Place of implementation_Global level"),
+            ("GLOBAL_LEVEL", "7. Place of implementation_Global level"),
             (
                 "EUROPEAN_LEVEL",
                 "7. Place of implementation_European level",
             ),
-            ("TRANSNATIONAL", "7. Place of implementation_transnational ((convention-based) shared coastal, mountain, sea regions -e-g- mediterrenean etc"),
-            ("OUTERMOST_EUROPEAN_REGIONS",
-             "7. Place of implementation_Outermost European regions"),
-            ("NATIONAL_LEVEL",
-             "7. Place of implementation_national-level"),
-            ("SUBNATIONAL",
-             "7. Place of implementation_subnational"),
+            (
+                "TRANSNATIONAL",
+                "7. Place of implementation_transnational ((convention-based) shared coastal, mountain, sea regions -e-g- mediterrenean etc",
+            ),
+            (
+                "OUTERMOST_EUROPEAN_REGIONS",
+                "7. Place of implementation_Outermost European regions",
+            ),
+            ("NATIONAL_LEVEL", "7. Place of implementation_national-level"),
+            ("SUBNATIONAL", "7. Place of implementation_subnational"),
         ]
 
         response = []
@@ -471,14 +480,19 @@ class ToolExtendFields:
         map_header = [
             ("OBSERVATIONAL_DATASETS", "8. Type of data_Observational datasets"),
             ("REANALYSIS_DATASETS", "8. Type of data_Reanalysis datasets"),
-            ("CLIMATE_MODEL_OUTPUTS",
-             "8. Type of data_Climate model outputs (simulations of past or present climate; scenarios; projections)"),
-            ("IMPACT_OR_SECTORAL_MODEL_OUTPUTS",
-             "8. Type of data_Impact or sectoral model outputs (e.g. flood, crop, wildfire models)"),
-            ("SOCIO_ECONOMIC",
-             "8. Type of data_Socio-economic or exposure data (e.g. population, assets, land use)"),
-            ("OTHER",
-             "8. Type of data_Other"),
+            (
+                "CLIMATE_MODEL_OUTPUTS",
+                "8. Type of data_Climate model outputs (simulations of past or present climate; scenarios; projections)",
+            ),
+            (
+                "IMPACT_OR_SECTORAL_MODEL_OUTPUTS",
+                "8. Type of data_Impact or sectoral model outputs (e.g. flood, crop, wildfire models)",
+            ),
+            (
+                "SOCIO_ECONOMIC",
+                "8. Type of data_Socio-economic or exposure data (e.g. population, assets, land use)",
+            ),
+            ("OTHER", "8. Type of data_Other"),
         ]
 
         response = []
@@ -492,14 +506,23 @@ class ToolExtendFields:
 
     def get_obj_data_sources(self, row):
         map_header = [
-            ("PUBLIC_DATASETS", "9. Data sources_Public datasets from external providers (e.g. Copernicus, national meteorological services)"),
-            ("PROJECT_GENERATED", "9. Data sources_Project-generated or processed datasets (data created or processed by the tool developers)"),
-            ("USER_PROVIDED",
-             "9. Data sources_User-provided input data (e.g. uploaded assets, local datasets, reported data)"),
-            ("COMERCIAL_OR_THIRD_PARTY",
-             "9. Data sources_Commercial or third-party data providers"),
-            ("MIXED_SOURCES",
-             "9. Data sources_Mixed sources"),
+            (
+                "PUBLIC_DATASETS",
+                "9. Data sources_Public datasets from external providers (e.g. Copernicus, national meteorological services)",
+            ),
+            (
+                "PROJECT_GENERATED",
+                "9. Data sources_Project-generated or processed datasets (data created or processed by the tool developers)",
+            ),
+            (
+                "USER_PROVIDED",
+                "9. Data sources_User-provided input data (e.g. uploaded assets, local datasets, reported data)",
+            ),
+            (
+                "COMERCIAL_OR_THIRD_PARTY",
+                "9. Data sources_Commercial or third-party data providers",
+            ),
+            ("MIXED_SOURCES", "9. Data sources_Mixed sources"),
         ]
 
         response = []
@@ -513,11 +536,20 @@ class ToolExtendFields:
 
     def get_obj_license_status(self, row):
         map_header = [
-            ("FULLY_OPEN", "10. License status_Fully open data (freely available without restrictions)"),
+            (
+                "FULLY_OPEN",
+                "10. License status_Fully open data (freely available without restrictions)",
+            ),
             ("OPEN_DATA", "10. License status_Open data with attribution requirements"),
-            ("LICENSED_OR_COMMERCIAL", "10. License status_Licensed or commercial data"),
+            (
+                "LICENSED_OR_COMMERCIAL",
+                "10. License status_Licensed or commercial data",
+            ),
             ("RESTRICTED", "10. License status_Restricted"),
-            ("MIXED", "10. License status_Mixed (combination of open and restricted data)"),
+            (
+                "MIXED",
+                "10. License status_Mixed (combination of open and restricted data)",
+            ),
         ]
 
         response = []
@@ -643,8 +675,7 @@ class ToolExtendFields:
             catalog = self.context.portal_catalog
             brains = catalog.unrestrictedSearchResults(
                 path="/cca/en",
-                portal_type=["eea.climateadapt.tool",
-                             "eea.climateadapt.extendedtool"],
+                portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"],
             )
             obj = None
             # for brain in brains:
@@ -669,7 +700,7 @@ class ToolExtendFields:
                 if getattr(_obj, "external_id", None) == item["external_id"]:
                     obj = brain.getObject()
 
-            if item["external_id"] == '#231':
+            if item["external_id"] == "#231":
                 pdb.set_trace()
 
             if not obj:
@@ -688,21 +719,17 @@ class ToolExtendFields:
                 )
                 obj.external_import_id = item["external_id"]
 
-                logger.info("CREATED: %s -> %s",
-                            item["external_id"], item["name"])
+                logger.info("CREATED: %s -> %s", item["external_id"], item["name"])
             # pdb.set_trace()
             obj.tool_provider = self.get_value_by_header(row, "Tool provider")
-            obj.public_private_mode = self.get_value_by_header(
-                row, "public/private")
-            obj.contact = self.get_value_by_header(
-                row, "Contact (person / email)")
+            obj.public_private_mode = self.get_value_by_header(row, "public/private")
+            obj.contact = self.get_value_by_header(row, "Contact (person / email)")
             obj.hyperlink = self.get_value_by_header(row, "Tool hyperlink")
             obj.coder_1 = self.get_value_by_header(row, "CODER 1")
             obj.coder_2 = self.get_value_by_header(row, "CODER 1_CODER 2")
 
             obj.intended_user_groups = self.get_obj_intended_user_groups(row)
-            obj.place_of_implementation = self.get_obj_place_of_implementation(
-                row)
+            obj.place_of_implementation = self.get_obj_place_of_implementation(row)
             obj.type_of_data = self.get_obj_type_of_data(row)
             obj.data_sources = self.get_obj_data_sources(row)
             obj.license_status = self.get_obj_license_status(row)
@@ -712,10 +739,16 @@ class ToolExtendFields:
             obj.long_description = item["short_description"]
 
             obj.sectors = item["sectors"]
-            obj.tool_available_english = self.get_value_by_header(
-                row, "18. In which language(s) is the tool available?_English").upper() == 'Y'
+            obj.tool_available_english = (
+                self.get_value_by_header(
+                    row, "18. In which language(s) is the tool available?_English"
+                ).upper()
+                == "Y"
+            )
             obj.tool_available_language = self.get_value_by_header(
-                row, "18. In which language(s) is the tool available?_Other EU/EEA member/cooperating country language")
+                row,
+                "18. In which language(s) is the tool available?_Other EU/EEA member/cooperating country language",
+            )
             obj.type_of_outputs = self.get_obj_type_of_outputs(row)
             obj.temporality_of_data = self.get_obj_temporality_of_data(row)
             # Check if _p_changed is necesary
