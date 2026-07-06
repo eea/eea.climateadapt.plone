@@ -43,7 +43,27 @@
   />
   <utility
     name="eea.climateadapt.type_of_outputs_tool"
-    component=".vocabulary.type_of_outputs_tool_vocabulary"
+    component=".vocabulary.intended_user_groups_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.intended_user_groups_tool"
+    component=".vocabulary.intended_user_groups_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.type_of_data_tool"
+    component=".vocabulary.type_of_data_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.data_sources_tool"
+    component=".vocabulary.data_sources_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.license_status_tool"
+    component=".vocabulary.license_status_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.place_of_implementation_tool"
+    component=".vocabulary.place_of_implementation_tool_vocabulary"
   />
   <utility
     name="eea.climateadapt.temporality_of_data_tool"

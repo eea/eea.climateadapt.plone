@@ -29,11 +29,120 @@ class IExtendedTool(ITool, IBlocks):
         default=str(""),
     )
 
+    public_private_mode = TextLine(
+        title=_("Public/private"),
+        description=_("academi, public, Public–academic ..."),
+        required=False,
+    )
+
+    contact = TextLine(
+        title=_("Contact"),
+        description=_("person / email"),
+        required=False,
+    )
+
+    hyperlink = TextLine(
+        title=_("Hyperlink"),
+        description=_("Tool hyperlink"),
+        required=False,
+    )
+
+    coder_1 = TextLine(
+        title=_("CODER 1"),
+        description=_("Code"),
+        required=False,
+    )
+
+    coder_2 = TextLine(
+        title=_("CODER 2"),
+        description=_("Code"),
+        required=False,
+    )
+
+    directives.widget(
+        intended_user_groups="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    intended_user_groups = List(
+        title=_("Intended User Groups"),
+        description=_("Select one or more intended user groups."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.intended_user_groups_tool",
+        ),
+    )
+
+    directives.widget(
+        place_of_implementation="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    place_of_implementation = List(
+        title=_("Place of implementation"),
+        description=_("Select one or more place of implementation."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.place_of_implementation_tool",
+        ),
+    )
+
+    directives.widget(
+        type_of_data="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    type_of_data = List(
+        title=_("Type of data"),
+        description=_("Select one or more type of data."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.type_of_data_tool",
+        ),
+    )
+
+    directives.widget(
+        data_sources="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    data_sources = List(
+        title=_("Data sources"),
+        description=_("Select one or more data sources."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.data_sources_tool",
+        ),
+    )
+
+    directives.widget(
+        license_status="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    license_status = List(
+        title=_("License status"),
+        description=_("Select one or more license status."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.license_status_tool",
+        ),
+    )
+    # Hazard - THIS IS ALREADY IN USE
+    # User support provisions
+    # Tool validation use
+    # Number of users / uptake (if known)
+    # Tool provider [private, public, both, other]
+    # Sector - THIS IS ALREADY IN USE
+    # Adaptation Support Cycle Step
+
     include_in_navigator = Bool(
         title=_("Include in navigator"), required=False, default=False
     )
 
-    directives.widget(type_of_outputs="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    tool_available_english = Bool(
+        title=_("Is tool available in English?"), required=False, default=False
+    )
+    tool_available_language = TextLine(
+        title=_("Tool language"),
+        description=_(
+            "In which language(s) is the tool available, if not English"),
+        required=False,
+    )
+
+    directives.widget(
+        type_of_outputs="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
     type_of_outputs = List(
         title=_("Type of outputs"),
         description=_("Select one or more type of outputs."),
