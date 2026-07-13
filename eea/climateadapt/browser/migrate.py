@@ -120,8 +120,7 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s",
-                            idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
 
         return self.count
 
@@ -601,11 +600,16 @@ class ToolExtendFields:
 
     def get_obj_user_support_provisions(self, row):
         map_header = [
-            ("USER_GUIDANCE", "12. User support provisions_User guidance / documentation"),
+            (
+                "USER_GUIDANCE",
+                "12. User support provisions_User guidance / documentation",
+            ),
             ("HELPDESK", "12. User support provisions_Helpdesk / contact support"),
             ("TUTORIALS", "12. User support provisions_Tutorials / training material"),
-            ("INTERACTIVE_ASSISTANCE",
-             "12. User support provisions_Interactive assistance (chatbot / wizard)"),
+            (
+                "INTERACTIVE_ASSISTANCE",
+                "12. User support provisions_Interactive assistance (chatbot / wizard)",
+            ),
         ]
 
         response = []
@@ -619,11 +623,15 @@ class ToolExtendFields:
 
     def get_obj_tool_validation_use(self, row):
         map_header = [
-            ("PEER_REVIEWED_METHODOLOGY",
-             "13. Tool validation use_Peer-reviewed methodology"),
+            (
+                "PEER_REVIEWED_METHODOLOGY",
+                "13. Tool validation use_Peer-reviewed methodology",
+            ),
             ("CASE_STUDY_VALIDATION", "13. Tool validation use_Case-study validation"),
-            ("EXPERT_VALIDATION",
-             "13. Tool validation use_Expert validation / reputable institution"),
+            (
+                "EXPERT_VALIDATION",
+                "13. Tool validation use_Expert validation / reputable institution",
+            ),
             ("USER_TESTING", "13. Tool validation use_User testing / pilot testing"),
         ]
 
@@ -638,11 +646,9 @@ class ToolExtendFields:
 
     def get_obj_number_of_users_tool(self, row):
         map_header = [
-            ("HIGH_UPTAKE",
-             "14. Number of users / uptake (if known)_High uptake"),
+            ("HIGH_UPTAKE", "14. Number of users / uptake (if known)_High uptake"),
             ("MEDIUM_UPTAKE", "14. Number of users / uptake (if known)_Medium uptake"),
-            ("LOW_UPTAKE",
-             "14. Number of users / uptake (if known)_Low uptake"),
+            ("LOW_UPTAKE", "14. Number of users / uptake (if known)_Low uptake"),
             ("UNKNOWN", "14. Number of users / uptake (if known)_Unknown"),
         ]
 
@@ -657,14 +663,19 @@ class ToolExtendFields:
 
     def get_obj_tool_provider_mode(self, row):
         map_header = [
-            ("PUBLIC",
-             "15. Tool provider [private, public, both, other]_Public organisation"),
-            ("PRIVATE",
-             "15. Tool provider [private, public, both, other]_Private organisation"),
-            ("PUBLIC_PRIVATE",
-             "15. Tool provider [private, public, both, other]_Public-private partnership"),
-            ("OTHER",
-             "15. Tool provider [private, public, both, other]_Other"),
+            (
+                "PUBLIC",
+                "15. Tool provider [private, public, both, other]_Public organisation",
+            ),
+            (
+                "PRIVATE",
+                "15. Tool provider [private, public, both, other]_Private organisation",
+            ),
+            (
+                "PUBLIC_PRIVATE",
+                "15. Tool provider [private, public, both, other]_Public-private partnership",
+            ),
+            ("OTHER", "15. Tool provider [private, public, both, other]_Other"),
         ]
 
         response = []
@@ -732,8 +743,7 @@ class ToolExtendFields:
             catalog = self.context.portal_catalog
             brains = catalog.unrestrictedSearchResults(
                 path="/cca/en",
-                portal_type=["eea.climateadapt.tool",
-                             "eea.climateadapt.extendedtool"],
+                portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"],
             )
             obj = None
 
@@ -761,21 +771,17 @@ class ToolExtendFields:
                 )
                 obj.external_import_id = item["external_id"]
 
-                logger.info("CREATED: %s -> %s",
-                            item["external_id"], item["name"])
+                logger.info("CREATED: %s -> %s", item["external_id"], item["name"])
             # pdb.set_trace()
             obj.tool_provider = self.get_value_by_header(row, "Tool provider")
-            obj.public_private_mode = self.get_value_by_header(
-                row, "public/private")
-            obj.contact = self.get_value_by_header(
-                row, "Contact (person / email)")
+            obj.public_private_mode = self.get_value_by_header(row, "public/private")
+            obj.contact = self.get_value_by_header(row, "Contact (person / email)")
             obj.hyperlink = self.get_value_by_header(row, "Tool hyperlink")
             obj.coder_1 = self.get_value_by_header(row, "CODER 1")
             obj.coder_2 = self.get_value_by_header(row, "CODER 1_CODER 2")
 
             obj.intended_user_groups = self.get_obj_intended_user_groups(row)
-            obj.place_of_implementation = self.get_obj_place_of_implementation(
-                row)
+            obj.place_of_implementation = self.get_obj_place_of_implementation(row)
             obj.type_of_data = self.get_obj_type_of_data(row)
             obj.data_sources = self.get_obj_data_sources(row)
             obj.license_status = self.get_obj_license_status(row)
@@ -797,22 +803,26 @@ class ToolExtendFields:
             )
             obj.type_of_outputs = self.get_obj_type_of_outputs(row)
             obj.temporality_of_data = self.get_obj_temporality_of_data(row)
-            obj.user_support_provisions = self.get_obj_user_support_provisions(
-                row)
+            obj.user_support_provisions = self.get_obj_user_support_provisions(row)
             obj.tool_validation_use = self.get_obj_tool_validation_use(row)
             obj.number_of_users_tool = self.get_obj_number_of_users_tool(row)
             obj.tool_provider_mode = self.get_obj_tool_provider_mode(row)
 
             obj.only_interactive_support_tool = self.get_value_by_header(
-                row, "1. Only *online* interactive support tool")
+                row, "1. Only *online* interactive support tool"
+            )
             obj.adaptation_cycle_step = self.get_value_by_header(
-                row, "2. Supports ≥1 adaptation cycle step")
+                row, "2. Supports ≥1 adaptation cycle step"
+            )
             obj.updating_cycle_of_the_tool = self.get_value_by_header(
-                row, "3. Updating cycle of the tool (Tools <5 years and up to date)")
+                row, "3. Updating cycle of the tool (Tools <5 years and up to date)"
+            )
             obj.language_accessibility = self.get_value_by_header(
-                row, "4. Language Accessibility (EEA)")
+                row, "4. Language Accessibility (EEA)"
+            )
             obj.free_access = self.get_value_by_header(
-                row, "5. Free [full or core functionality] access")
+                row, "5. Free [full or core functionality] access"
+            )
 
             obj._p_changed = True
 

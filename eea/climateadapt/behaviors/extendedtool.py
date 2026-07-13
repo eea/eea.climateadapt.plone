@@ -142,8 +142,7 @@ class IExtendedTool(ITool, IBlocks):
     )
     number_of_users_tool = List(
         title=_("Number of users / uptake"),
-        description=_(
-            "Select one or more number of users / uptake (if known)"),
+        description=_("Select one or more number of users / uptake (if known)"),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.number_of_users_tool",
@@ -155,8 +154,7 @@ class IExtendedTool(ITool, IBlocks):
     )
     tool_provider_mode = List(
         title=_("Tool provider"),
-        description=_(
-            "private, public, both, other"),
+        description=_("private, public, both, other"),
         required=False,
         value_type=Choice(
             vocabulary="eea.climateadapt.tool_provider",
@@ -180,7 +178,9 @@ class IExtendedTool(ITool, IBlocks):
     )
 
     updating_cycle_of_the_tool = Bool(
-        title=_("Updating cycle of the tool (Tools <5 years and up to date)"), required=False, default=False
+        title=_("Updating cycle of the tool (Tools <5 years and up to date)"),
+        required=False,
+        default=False,
     )
 
     language_accessibility = Bool(
@@ -188,7 +188,9 @@ class IExtendedTool(ITool, IBlocks):
     )
 
     free_access = Bool(
-        title=_("Free [full or core functionality] access"), required=False, default=False
+        title=_("Free [full or core functionality] access"),
+        required=False,
+        default=False,
     )
 
     tool_available_english = Bool(
