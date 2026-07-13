@@ -1,0 +1,47 @@
+<html>
+  <body>
+    <h1>Migrate Moldova and Ukraine geographical coverage</h1>
+
+    <p tal:condition="not: python:view.should_change()">
+      Dry run. Add <code>?change=true</code> to apply the changes.
+    </p>
+    <p tal:condition="python:view.should_change()">
+      Write mode. Matching content is updated and reindexed.
+    </p>
+
+    <form action="./@@migrate-moldova-ukraine-geocoverage" method="get">
+      <label>
+        <input type="checkbox" name="change" value="true" />
+        apply changes
+      </label>
+      <input type="submit" value="Run" />
+    </form>
+
+    <table tal:define="items view/list" border="1">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Changed</th>
+          <th>Type</th>
+          <th>Title</th>
+          <th>URL</th>
+          <th>Old geochars</th>
+          <th>New geochars</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr tal:repeat="item items">
+          <td tal:content="item/nr"></td>
+          <td tal:content="item/changed"></td>
+          <td tal:content="item/portal_type"></td>
+          <td tal:content="item/title"></td>
+          <td>
+            <a tal:attributes="href item/url" tal:content="item/url"></a>
+          </td>
+          <td tal:content="item/old_geochars"></td>
+          <td tal:content="item/new_geochars"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
