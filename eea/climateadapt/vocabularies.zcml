@@ -62,6 +62,22 @@
     component=".vocabulary.license_status_tool_vocabulary"
   />
   <utility
+    name="eea.climateadapt.user_support_provisions_tool"
+    component=".vocabulary.user_support_provisions_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.tool_validation_use"
+    component=".vocabulary.tool_validation_use_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.tool_provider"
+    component=".vocabulary.tool_provider_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.number_of_users_tool"
+    component=".vocabulary.number_of_users_tool_vocabulary"
+  />
+  <utility
     name="eea.climateadapt.place_of_implementation_tool"
     component=".vocabulary.place_of_implementation_tool_vocabulary"
   />

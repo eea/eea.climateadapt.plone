@@ -112,16 +112,83 @@ class IExtendedTool(ITool, IBlocks):
             vocabulary="eea.climateadapt.license_status_tool",
         ),
     )
+
+    directives.widget(
+        user_support_provisions="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    user_support_provisions = List(
+        title=_("User support provisions"),
+        description=_("Select one or more user support provisions ."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.user_support_provisions_tool",
+        ),
+    )
+
+    directives.widget(
+        tool_validation_use="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    tool_validation_use = List(
+        title=_("Tool validation use"),
+        description=_("Select one or more tool validation use."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.tool_validation_use",
+        ),
+    )
+
+    directives.widget(
+        number_of_users_tool="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    number_of_users_tool = List(
+        title=_("Number of users / uptake"),
+        description=_(
+            "Select one or more number of users / uptake (if known)"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.number_of_users_tool",
+        ),
+    )
+
+    directives.widget(
+        tool_provider_mode="z3c.form.browser.checkbox.CheckBoxFieldWidget"
+    )
+    tool_provider_mode = List(
+        title=_("Tool provider"),
+        description=_(
+            "private, public, both, other"),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.tool_provider",
+        ),
+    )
+
     # Hazard - THIS IS ALREADY IN USE
-    # User support provisions
-    # Tool validation use
-    # Number of users / uptake (if known)
-    # Tool provider [private, public, both, other]
     # Sector - THIS IS ALREADY IN USE
     # Adaptation Support Cycle Step
 
     include_in_navigator = Bool(
         title=_("Include in navigator"), required=False, default=False
+    )
+
+    only_interactive_support_tool = Bool(
+        title=_("Only *online* interactive support tool"), required=False, default=False
+    )
+
+    adaptation_cycle_step = Bool(
+        title=_("Supports ≥1 adaptation cycle step"), required=False, default=False
+    )
+
+    updating_cycle_of_the_tool = Bool(
+        title=_("Updating cycle of the tool (Tools <5 years and up to date)"), required=False, default=False
+    )
+
+    language_accessibility = Bool(
+        title=_("Language Accessibility (EEA)"), required=False, default=False
+    )
+
+    free_access = Bool(
+        title=_("Free [full or core functionality] access"), required=False, default=False
     )
 
     tool_available_english = Bool(

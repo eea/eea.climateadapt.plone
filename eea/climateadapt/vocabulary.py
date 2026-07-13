@@ -432,6 +432,46 @@ _license_status_tool = [
 license_status_tool_vocabulary = generic_vocabulary(_license_status_tool, sort=False)
 alsoProvides(license_status_tool_vocabulary, IVocabularyFactory)
 
+_user_support_provisions_tool = [
+    ("USER_GUIDANCE", _("User guidance / documentation")),
+    ("HELPDESK", _("Helpdesk / contact support")),
+    ("TUTORIALS", _("Tutorials / training material")),
+    ("INTERACTIVE_ASSISTANCE", _("Interactive assistance (chatbot / wizard)")),
+]
+user_support_provisions_tool_vocabulary = generic_vocabulary(
+    _user_support_provisions_tool, sort=False)
+alsoProvides(user_support_provisions_tool_vocabulary, IVocabularyFactory)
+
+_tool_validation_use = [
+    ("PEER_REVIEWED_METHODOLOGY", _("Peer-reviewed methodology")),
+    ("CASE_STUDY_VALIDATION", _("Case-study validation")),
+    ("EXPERT_VALIDATION", _("Expert validation / reputable institution")),
+    ("USER_TESTING", _("User testing / pilot testing")),
+]
+tool_validation_use_vocabulary = generic_vocabulary(
+    _tool_validation_use, sort=False)
+alsoProvides(tool_validation_use_vocabulary, IVocabularyFactory)
+
+_number_of_users_tool = [
+    ("HIGH_UPTAKE", _("High uptake")),
+    ("MEDIUM_UPTAKE", _("Medium uptake")),
+    ("LOW_UPTAKE", _("Low uptake")),
+    ("UNKNOWN", _("Unknown")),
+]
+number_of_users_tool_vocabulary = generic_vocabulary(
+    _number_of_users_tool, sort=False)
+alsoProvides(number_of_users_tool_vocabulary, IVocabularyFactory)
+
+_tool_provider = [
+    ("PUBLIC", _("Public organisation")),
+    ("PRIVATE", _("Private organisation")),
+    ("PUBLIC_PRIVATE", _("Public-private partnership")),
+    ("OTHER", _("Other")),
+]
+tool_provider_vocabulary = generic_vocabulary(
+    _tool_provider, sort=False)
+alsoProvides(tool_provider_vocabulary, IVocabularyFactory)
+
 _type_of_outputs_tool = [
     ("MAPS_AND_GRAPHS", _("Maps and graphs")),
     ("REPORTS_AND_DECISION_SUPPORT", _("Reports and decision support")),
