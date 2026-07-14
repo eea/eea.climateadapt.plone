@@ -43,7 +43,11 @@
   />
   <utility
     name="eea.climateadapt.type_of_outputs_tool"
-    component=".vocabulary.intended_user_groups_tool_vocabulary"
+    component=".vocabulary.type_of_outputs_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.adaptation_support_cycle_step_tool"
+    component=".vocabulary.adaptation_support_cycle_step_tool_vocabulary"
   />
   <utility
     name="eea.climateadapt.intended_user_groups_tool"

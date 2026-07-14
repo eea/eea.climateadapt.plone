@@ -83,7 +83,8 @@ class IExtendedTool(ITool, IBlocks):
         ),
     )
 
-    directives.widget(type_of_data="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        type_of_data="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     type_of_data = List(
         title=_("Type of data"),
         description=_("Select one or more type of data."),
@@ -93,7 +94,8 @@ class IExtendedTool(ITool, IBlocks):
         ),
     )
 
-    directives.widget(data_sources="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        data_sources="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     data_sources = List(
         title=_("Data sources"),
         description=_("Select one or more data sources."),
@@ -103,7 +105,8 @@ class IExtendedTool(ITool, IBlocks):
         ),
     )
 
-    directives.widget(license_status="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        license_status="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     license_status = List(
         title=_("License status"),
         description=_("Select one or more license status."),
@@ -196,13 +199,27 @@ class IExtendedTool(ITool, IBlocks):
     tool_available_english = Bool(
         title=_("Is tool available in English?"), required=False, default=False
     )
+
+    directives.widget(
+        adaptation_support_cycle_step="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    adaptation_support_cycle_step = List(
+        title=_("Adaptation Support Cycle Step"),
+        description=_("Select one or more options."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.adaptation_support_cycle_step_tool",
+        ),
+    )
+
     tool_available_language = TextLine(
         title=_("Tool language"),
-        description=_("In which language(s) is the tool available, if not English"),
+        description=_(
+            "In which language(s) is the tool available, if not English"),
         required=False,
     )
 
-    directives.widget(type_of_outputs="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    directives.widget(
+        type_of_outputs="z3c.form.browser.checkbox.CheckBoxFieldWidget")
     type_of_outputs = List(
         title=_("Type of outputs"),
         description=_("Select one or more type of outputs."),
