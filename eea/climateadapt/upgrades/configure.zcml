@@ -55,4 +55,37 @@
 
   </genericsetup:upgradeSteps>
 
+
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_81"
+    title="Upgrade profile for eea.climateadapt v81"
+    description="Add Extended Tool content type"
+    directory="to_81"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
+  <genericsetup:upgradeSteps
+    source="4.0"
+    destination="5.0"
+    profile="eea.climateadapt:default">
+
+    <genericsetup:upgradeDepends
+      title="Add Extended Tool content type"
+      import_profile="eea.climateadapt.upgrades:eeaclimateadapt_to_81"
+    />
+
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+    source="5.0"
+    destination="6.0"
+    profile="eea.climateadapt:default">
+
+    <genericsetup:upgradeDepends
+      title="Add Extended Tool content type (fix)"
+      import_profile="eea.climateadapt.upgrades:eeaclimateadapt_to_81"
+    />
+
+  </genericsetup:upgradeSteps>
+
 </configure>

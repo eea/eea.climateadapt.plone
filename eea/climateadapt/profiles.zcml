@@ -512,4 +512,12 @@
     provides="Products.GenericSetup.interfaces.EXTENSION"
   />
 
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_81"
+    title="Upgrade profile for eea.climateadapt v81"
+    description="Add Extended Tool content type"
+    directory="profiles/upgrades/to_81"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
 </configure>

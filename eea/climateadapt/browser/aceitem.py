@@ -54,6 +54,12 @@ class ToolView(DefaultView, AceViewApi):
     type_label = "Tools"
 
 
+class ExtendedToolView(DefaultView, AceViewApi):
+    """"""
+
+    type_label = "ExtendedTools"
+
+
 class IndicatorView(DefaultView, AceViewApi):
     """"""
 

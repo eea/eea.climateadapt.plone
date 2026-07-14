@@ -2,6 +2,15 @@ from eea.climateadapt.interfaces import ICCACountry
 from eea.climateadapt.interfaces import ICCACountry2025
 from zope.interface import noLongerProvides
 from zope.interface import alsoProvides
+from datetime import date
+
+from eea.climateadapt.vocabulary import (
+    _sectors,
+    _climateimpacts,
+    _type_of_outputs_tool,
+    _temporality_of_data_tool,
+)
+from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
 import logging
 import csv
@@ -329,6 +338,629 @@ class ImpactFiltersNew:
             len(response),
             count_found,
             count_not_found,
+        )
+        return response
+
+
+class ToolExtendFields:
+    """New fields for tool #304613"""
+
+    _headers = []
+
+    def get_value_by_header(self, line, key):
+        index = None
+        try:
+            index = self._headers.index(key)
+        except ValueError:
+            return None
+
+        return line[index] if 0 <= index < len(line) else None
+
+    def get_obj_sectors(self, row):
+        map_header = [
+            ("AGRICULTURE", "16. Sector_Agriculture"),
+            ("BIODIVERSITY", "16. Sector_Biodiversity"),
+            ("BUILDINGS", "16. Sector_Buildings"),
+            ("BUSINESSINDUSTRY", "16. Sector_Business & Industry"),
+            ("COASTAL", "16. Sector_Coastal areas"),
+            ("CULTURALHERITAGE", "16. Sector_Cultural heritage"),
+            ("DISASTERRISKREDUCTION", "16. Sector_Disaster Risk Reduction"),
+            ("ECOSYSTEMSRESTORATION", ""),
+            ("ENERGY", "16. Sector_Energy"),
+            ("FINANCIAL", "16. Sector_Financial"),
+            ("FORESTRY", "16. Sector_Forestry"),
+            ("HEALTH", "16. Sector_Health"),
+            ("ICT", "16. Sector_ICT"),
+            ("LANDUSE", "16. Sector_Land use planning"),
+            ("MARINE", "16. Sector_Marine & fisheries"),
+            ("MOUNTAINAREAS", "16. Sector_Mountain areas"),
+            ("TOURISMSECTOR", "16. Sector_Tourism"),
+            ("TRANSPORT", "16. Sector_Transport"),
+            ("URBAN", "16. Sector_Urban"),
+            ("WATERMANAGEMENT", "16. Sector_Water management"),
+            ("NONSPECIFIC", ""),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_climateimpacts(self, row):
+        map_header = [
+            ("DROUGHT", "11. Hazard_Drought"),
+            ("EXTREMEHEAT", "11. Hazard_Heat"),
+            ("EXTREMECOLD", "11. Hazard_Cold waves / extreme cold"),
+            ("FLOODING", "11. Hazard_Flooding"),
+            ("ICEANDSNOW", "11. Hazard_Snow/Avalanche"),
+            ("SEALEVELRISE", "11. Hazard_Sea-level rise"),
+            ("STORM", "11. Hazard_Coastal flooding / storm surge"),
+            ("WATERSCARCE", ""),
+            ("WILDFIRES", "11. Hazard_Fire / wildfire"),
+            ("NONSPECIFIC", "11. Hazard_Not hazard-specific"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_intended_user_groups(self, row):
+        map_header = [
+            (
+                "COMMISSION_SERVICE_AND_OR_AGENCIES",
+                "6. Intended User Groups_Commission services and/or Agencies",
+            ),
+            (
+                "TRANSBOUNDARY_NETWORK",
+                "6. Intended User Groups_ Transboundary networks",
+            ),
+            ("NATIONAL_AUTHORITIES", "6. Intended User Groups_National authorities"),
+            (
+                "SUBNATIONAL_AUTHORITIES",
+                "6. Intended User Groups_Subnational authorities  [Y/N]",
+            ),
+            (
+                "BUSINESSES_CONSULTANTS",
+                "6. Intended User Groups_Businesses/consultants  [Y/N]",
+            ),
+            (
+                "RESEASRCHERS_SUPPORTING_POLICY",
+                "6. Intended User Groups_Researchers supporting policy  [Y/N]",
+            ),
+            ("NGOS", "6. Intended User Groups_NGOs [Y/N]"),
+            ("CITIZENS", "6. Intended User Groups_Citizens [Y/N]"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_place_of_implementation(self, row):
+        map_header = [
+            ("GLOBAL_LEVEL", "7. Place of implementation_Global level"),
+            (
+                "EUROPEAN_LEVEL",
+                "7. Place of implementation_European level",
+            ),
+            (
+                "TRANSNATIONAL",
+                "7. Place of implementation_transnational ((convention-based) shared coastal, mountain, sea regions -e-g- mediterrenean etc",
+            ),
+            (
+                "OUTERMOST_EUROPEAN_REGIONS",
+                "7. Place of implementation_Outermost European regions",
+            ),
+            ("NATIONAL_LEVEL", "7. Place of implementation_national-level"),
+            ("SUBNATIONAL", "7. Place of implementation_subnational"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_adaptation_support_cycle_step(self, row):
+        map_header = [
+            (
+                "STEP_1",
+                "17. Adaptation Support Cycle Step_Step 1: Preparing the Ground for Adaptation",
+            ),
+            (
+                "STEP_2",
+                "17. Adaptation Support Cycle Step_Step 2: Assessing Climate Change Risks and Vulnerabilities",
+            ),
+            (
+                "STEP_3",
+                "17. Adaptation Support Cycle Step_Step 3: Identifying Adaptation Options",
+            ),
+            (
+                "STEP_4",
+                "17. Adaptation Support Cycle Step_Step 4: Assessing and Prioritising Adaptation Options",
+            ),
+            ("STEP_5", "17. Adaptation Support Cycle Step_Step 5: Implementation"),
+            (
+                "STEP_6",
+                "17. Adaptation Support Cycle Step_Step 6: Monitoring and Evaluation (M&E)",
+            ),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_type_of_data(self, row):
+        map_header = [
+            ("OBSERVATIONAL_DATASETS", "8. Type of data_Observational datasets"),
+            ("REANALYSIS_DATASETS", "8. Type of data_Reanalysis datasets"),
+            (
+                "CLIMATE_MODEL_OUTPUTS",
+                "8. Type of data_Climate model outputs (simulations of past or present climate, scenarios, projections)",
+            ),
+            (
+                "IMPACT_OR_SECTORAL_MODEL_OUTPUTS",
+                "8. Type of data_Impact or sectoral model outputs (e.g. flood, crop, wildfire models)",
+            ),
+            (
+                "SOCIO_ECONOMIC",
+                "8. Type of data_Socio-economic or exposure data (e.g. population, assets, land use)",
+            ),
+            ("OTHER", "8. Type of data_Other"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_data_sources(self, row):
+        map_header = [
+            (
+                "PUBLIC_DATASETS",
+                "9. Data sources_Public datasets from external providers (e.g. Copernicus, national meteorological services)",
+            ),
+            (
+                "PROJECT_GENERATED",
+                "9. Data sources_Project-generated or processed datasets (data created or processed by the tool developers)",
+            ),
+            (
+                "USER_PROVIDED",
+                "9. Data sources_User-provided input data (e.g. uploaded assets, local datasets, reported data)",
+            ),
+            (
+                "COMERCIAL_OR_THIRD_PARTY",
+                "9. Data sources_Commercial or third-party data providers",
+            ),
+            ("MIXED_SOURCES", "9. Data sources_Mixed sources"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_license_status(self, row):
+        map_header = [
+            (
+                "FULLY_OPEN",
+                "10. License status_Fully open data (freely available without restrictions)",
+            ),
+            ("OPEN_DATA", "10. License status_Open data with attribution requirements"),
+            (
+                "LICENSED_OR_COMMERCIAL",
+                "10. License status_Licensed or commercial data",
+            ),
+            ("RESTRICTED", "10. License status_Restricted"),
+            (
+                "MIXED",
+                "10. License status_Mixed (combination of open and restricted data)",
+            ),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_type_of_outputs(self, row):
+        map_header = [
+            ("MAPS_AND_GRAPHS", "19. Type of outputs_Maps and graphs"),
+            (
+                "REPORTS_AND_DECISION_SUPPORT",
+                "19. Type of outputs_Reports and decision support",
+            ),
+            ("DATASETS_AND_INDICATORS", "19. Type of outputs_Datasets and indicators"),
+            ("NARRATIVES", "19. Type of outputs_Narratives"),
+            ("BEST_PRACTICE_EXAMPLES", "19. Type of outputs_Best practice examples"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_temporality_of_data(self, row):
+        map_header = [
+            ("HISTORYCAL_PAST", "20. Temporality of data_Historical/past"),
+            ("PRESENT", "20. Temporality of data_Present"),
+            ("FORWARD_LOOKING", "20. Temporality of data_Forward-looking"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_user_support_provisions(self, row):
+        map_header = [
+            (
+                "USER_GUIDANCE",
+                "12. User support provisions_User guidance / documentation",
+            ),
+            ("HELPDESK", "12. User support provisions_Helpdesk / contact support"),
+            ("TUTORIALS", "12. User support provisions_Tutorials / training material"),
+            (
+                "INTERACTIVE_ASSISTANCE",
+                "12. User support provisions_Interactive assistance (chatbot / wizard)",
+            ),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_tool_validation_use(self, row):
+        map_header = [
+            (
+                "PEER_REVIEWED_METHODOLOGY",
+                "13. Tool validation use_Peer-reviewed methodology",
+            ),
+            ("CASE_STUDY_VALIDATION", "13. Tool validation use_Case-study validation"),
+            (
+                "EXPERT_VALIDATION",
+                "13. Tool validation use_Expert validation / reputable institution",
+            ),
+            ("USER_TESTING", "13. Tool validation use_User testing / pilot testing"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_number_of_users_tool(self, row):
+        map_header = [
+            ("HIGH_UPTAKE", "14. Number of users / uptake (if known)_High uptake"),
+            ("MEDIUM_UPTAKE", "14. Number of users / uptake (if known)_Medium uptake"),
+            ("LOW_UPTAKE", "14. Number of users / uptake (if known)_Low uptake"),
+            ("UNKNOWN", "14. Number of users / uptake (if known)_Unknown"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_tool_provider_mode(self, row):
+        map_header = [
+            (
+                "PUBLIC",
+                "15. Tool provider [private, public, both, other]_Public organisation",
+            ),
+            (
+                "PRIVATE",
+                "15. Tool provider [private, public, both, other]_Private organisation",
+            ),
+            (
+                "PUBLIC_PRIVATE",
+                "15. Tool provider [private, public, both, other]_Public-private partnership",
+            ),
+            ("OTHER", "15. Tool provider [private, public, both, other]_Other"),
+        ]
+
+        response = []
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_tool_accessibility_and_usability(self, row):
+        map_header = [
+            (
+                "HIGH",
+                "26. Accessibility and usability_High (general user-friendly, minimal technical knowledge needed)",
+            ),
+            (
+                "MODERATE",
+                "26. Accessibility and usability_Moderate (some prior technical/scientific knowledge needed)",
+            ),
+            (
+                "LOW",
+                "26. Accessibility and usability_Low (high-level expertise needed)",
+            ),
+        ]
+
+        response = None
+        for key, header_name in map_header:
+            if header_name == "":
+                continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response = key
+        return response
+
+    def list(self):
+        response = []
+        fileUploaded = self.request.form.get("fileToUpload", None)
+
+        if not fileUploaded:
+            return response
+
+        data = fileUploaded.read().decode("utf-8")
+        csv_file = io.StringIO(data)
+
+        reader = csv.reader(csv_file)
+
+        # first two rows are headers
+        header1 = next(reader)
+        header2 = next(reader)
+
+        last_header = ""
+
+        for a, b in zip(header1, header2):
+            b.replace("\xa0", " ").strip() if b else b
+            if a:
+                last_header = a.strip()
+            value = f"{last_header}_{b}" if b else last_header
+            value = value.replace("\xa0", "").strip()
+            self._headers.append(value)
+
+        import pdb
+        # pdb.set_trace()
+
+        i_transaction = 0
+        for row in reader:
+            i_transaction += 1
+
+            if i_transaction % 100 == 0:
+                transaction.savepoint()
+
+            if self.get_value_by_header(row, "Tool ID") == "":
+                continue
+
+            item = {}
+            item["external_id"] = self.get_value_by_header(row, "Tool ID")
+            item["name"] = self.get_value_by_header(row, "Name of tool")
+            item["short_description"] = self.get_value_by_header(
+                row, "Short description"
+            )
+
+            # pdb.set_trace()
+            item["sectors"] = self.get_obj_sectors(row)
+
+            if not item["sectors"]:
+                print("No sectors for:" + item["external_id"])
+                continue
+
+            catalog = self.context.portal_catalog
+            brains = catalog.unrestrictedSearchResults(
+                path="/cca/en",
+                portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"],
+            )
+            obj = None
+
+            for brain in brains:
+                _obj = brain.getObject()
+                if getattr(_obj, "external_id", None) == item["external_id"]:
+                    obj = brain.getObject()
+
+            # if item["external_id"] == "#231":
+            #     pdb.set_trace()
+
+            if not obj:
+                container = api.content.get(path="/cca/en/metadata/tools/")
+
+                obj = api.content.create(
+                    container=container,
+                    type="eea.climateadapt.tool",
+                    portal_type="eea.climateadapt.tool",
+                    sectors=item["sectors"],
+                    climate_impacts=["EXTREMEHEAT"],
+                    publication_date=date(2026, 1, 1),
+                    title=item["name"],
+                    external_import_id=item["external_id"],
+                    safe_id=True,
+                )
+                obj.external_import_id = item["external_id"]
+
+                logger.info("CREATED: %s -> %s", item["external_id"], item["name"])
+
+            obj.climate_impacts = self.get_obj_climateimpacts(row)
+            obj.spatial_resolution = self.get_value_by_header(
+                row, "21. Spatial resolution_Free text (Local, NUTS3, NUTS2…)"
+            )
+            obj.underlying_data_maintenance = self.get_value_by_header(
+                row, "22. Underlying data maintenance_Free text"
+            )
+            obj.nature_based_solution = (
+                self.get_value_by_header(
+                    row, "23. Nature-based solution_Check (Y/N)"
+                ).upper()
+                == "Y"
+            )
+            obj.just_resilience = (
+                self.get_value_by_header(row, "24. Just resilience_Check (Y/N)").upper()
+                == "Y"
+            )
+            obj.cost_benefit_ratio = (
+                self.get_value_by_header(
+                    row, "25. Cost-benefit ratio_Check (Y/N)"
+                ).upper()
+                == "Y"
+            )
+            # if item["external_id"] == "#231":
+            #     pdb.set_trace()
+            functionality_value = self.get_value_by_header(
+                row, "27. Functionality_Number of adaptation support cycle steps"
+            )
+            obj.functionality = (
+                None if functionality_value == "" else int(functionality_value)
+            )
+            obj.strengths_and_possible_limitations = self.get_value_by_header(
+                row, "28. Strengths and possible limitations of the tool_Free text"
+            )
+
+            # pdb.set_trace()
+            obj.tool_provider = self.get_value_by_header(row, "Tool provider")
+            obj.public_private_mode = self.get_value_by_header(row, "public/private")
+            obj.contact = self.get_value_by_header(row, "Contact (person / email)")
+            obj.hyperlink = self.get_value_by_header(row, "Tool hyperlink")
+            obj.coder_1 = self.get_value_by_header(row, "CODER 1")
+            obj.coder_2 = self.get_value_by_header(row, "CODER 1_CODER 2")
+
+            obj.intended_user_groups = self.get_obj_intended_user_groups(row)
+            obj.place_of_implementation = self.get_obj_place_of_implementation(row)
+            obj.type_of_data = self.get_obj_type_of_data(row)
+            obj.data_sources = self.get_obj_data_sources(row)
+            obj.license_status = self.get_obj_license_status(row)
+            obj.adaptation_support_cycle_step = (
+                self.get_obj_adaptation_support_cycle_step(row)
+            )
+
+            obj.description = item["short_description"]
+            # TODO: this is mandatory for update !?
+            obj.long_description = item["short_description"]
+
+            obj.sectors = item["sectors"]
+            obj.tool_available_english = (
+                self.get_value_by_header(
+                    row, "18. In which language(s) is the tool available?_English"
+                )
+                and self.get_value_by_header(
+                    row, "18. In which language(s) is the tool available?_English"
+                ).upper()
+                == "Y"
+            )
+
+            obj.tool_available_language = self.get_value_by_header(
+                row,
+                "18. In which language(s) is the tool available?_Other EU/EEA member/cooperating country language",
+            )
+            obj.type_of_outputs = self.get_obj_type_of_outputs(row)
+            obj.temporality_of_data = self.get_obj_temporality_of_data(row)
+            obj.user_support_provisions = self.get_obj_user_support_provisions(row)
+            obj.tool_validation_use = self.get_obj_tool_validation_use(row)
+            obj.number_of_users_tool = self.get_obj_number_of_users_tool(row)
+            obj.tool_provider_mode = self.get_obj_tool_provider_mode(row)
+
+            obj.only_interactive_support_tool = (
+                self.get_value_by_header(
+                    row, "1. Only *online* interactive support tool"
+                ).upper()
+                == "Y"
+            )
+            obj.adaptation_cycle_step = (
+                self.get_value_by_header(
+                    row, "2. Supports ≥1 adaptation cycle step"
+                ).upper()
+                == "Y"
+            )
+            obj.updating_cycle_of_the_tool = (
+                self.get_value_by_header(
+                    row, "3. Updating cycle of the tool (Tools <5 years and up to date)"
+                ).upper()
+                == "Y"
+            )
+            obj.language_accessibility = (
+                self.get_value_by_header(row, "4. Language Accessibility (EEA)").upper()
+                == "Y"
+            )
+            obj.free_access = (
+                self.get_value_by_header(
+                    row, "5. Free [full or core functionality] access"
+                ).upper()
+                == "Y"
+            )
+            obj.accessibility_and_usability = (
+                self.get_obj_tool_accessibility_and_usability(row)
+            )
+
+            obj._p_changed = True
+
+            obj.reindexObject()
+            logger.info("OBJ URL: %s", obj.absolute_url())
+            response.append(
+                {
+                    "external_id": item["external_id"],
+                    "name": item["name"],
+                    "url": obj.absolute_url(),
+                }
+            )
+            logger.info("OBJ: %s -> %s", item["external_id"], item["name"])
+
+        transaction.commit()
+
+        logger.info(
+            "LINES IN RESPONSE: %s",
+            len(response),
         )
         return response
 
