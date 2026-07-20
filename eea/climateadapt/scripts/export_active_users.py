@@ -146,7 +146,9 @@ def run(portal, years=2, csv_file=None, json_file=None):
     since = DateTime(datetime.now() - timedelta(days=years * 365))
     logger.info("Looking back %d years (since %s)", years, since)
 
-    print(f"Scanning for active users (last {years} years, since {since.strftime('%Y-%m-%d')})...")
+    print(
+        f"Scanning for active users (last {years} years, since {since.strftime('%Y-%m-%d')})..."
+    )
     # DateTime.strftime works the same as datetime.strftime
     print()
 
