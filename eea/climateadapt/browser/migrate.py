@@ -939,8 +939,8 @@ class ToolExtendFields:
                 ).upper()
                 == "Y"
             )
-            if item["external_id"] == "#14":
-                pdb.set_trace()
+            # if item["external_id"] == "#14":
+            #     pdb.set_trace()
             functionality_value = self.get_value_by_header(
                 row, "27. Functionality_Number of adaptation support cycle steps"
             )
