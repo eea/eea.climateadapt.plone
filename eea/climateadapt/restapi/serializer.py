@@ -23,7 +23,12 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 from plone.app.contenttypes.interfaces import ILink
 
-from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy, IAceProject, IExtendedTool
+from eea.climateadapt.behaviors import (
+    IAdaptationOption,
+    ICaseStudy,
+    IAceProject,
+    IExtendedTool,
+)
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
 from eea.climateadapt.behaviors.mission_tool import IMissionTool
 from eea.climateadapt.behaviors.missionstory import IMissionStory
@@ -45,7 +50,7 @@ def _public_object_url(obj):
     portal_path = portal.getPhysicalPath()
     obj_path = obj.getPhysicalPath()
 
-    path = "/" + "/".join(obj_path[len(portal_path):])
+    path = "/" + "/".join(obj_path[len(portal_path) :])
 
     return path
 
@@ -208,8 +213,7 @@ class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
 
         lead = (result.get("lead") or "").strip()
         partners_html = (result.get("partners") or {}).get("data", "")
-        partners_txt = html_to_plain_text(
-            partners_html, inline_links=True).strip()
+        partners_txt = html_to_plain_text(partners_html, inline_links=True).strip()
 
         if lead or partners_txt:
             parts.append("Project information")
@@ -243,8 +247,7 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
         item = self.context
         images = item.contentValues({"portal_type": "Image"})
         suffix = "/@@images/image/large"
-        result["cca_gallery_urls"] = [
-            image.absolute_url() + suffix for image in images]
+        result["cca_gallery_urls"] = [image.absolute_url() + suffix for image in images]
         result["cca_gallery"] = [
             {
                 "title": image.Title(),
@@ -334,16 +337,14 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
 
         for start_title, end_title, field_name in sections:
             result[field_name] = (
-                extract_section_text(
-                    blocks, items, start_title, end_title) or ""
+                extract_section_text(blocks, items, start_title, end_title) or ""
             )
 
         if not result.get("description") and result.get("objective_funding_programme"):
             result["description"] = result["objective_funding_programme"]
 
         if "regions" in result:
-            result["funding_region"] = richtext_to_plain_text(
-                result["regions"])
+            result["funding_region"] = richtext_to_plain_text(result["regions"])
 
         return result
 
