@@ -126,8 +126,7 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s",
-                            idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
 
         return self.count
 
@@ -716,8 +715,7 @@ class ToolExtendFields:
                 "PUBLIC_PRIVATE",
                 "15. Tool provider [private, public, both, other]_Public-private partnership",
             ),
-            ("OTHER",
-             "15. Tool provider [private, public, both, other]_Other"),
+            ("OTHER", "15. Tool provider [private, public, both, other]_Other"),
         ]
 
         response = []
@@ -887,8 +885,7 @@ class ToolExtendFields:
             catalog = self.context.portal_catalog
             brains = catalog.unrestrictedSearchResults(
                 path="/cca/en",
-                portal_type=["eea.climateadapt.tool",
-                             "eea.climateadapt.extendedtool"],
+                portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"],
             )
             obj = None
 
@@ -916,8 +913,7 @@ class ToolExtendFields:
                 )
                 obj.external_id = item["external_id"]
 
-                logger.info("CREATED: %s -> %s",
-                            item["external_id"], item["name"])
+                logger.info("CREATED: %s -> %s", item["external_id"], item["name"])
 
             obj.climate_impacts = self.get_obj_climateimpacts(row)
             obj.spatial_resolution = self.get_value_by_header(
@@ -934,8 +930,7 @@ class ToolExtendFields:
                     == "Y"
                 )
             obj.just_resilience = (
-                self.get_value_by_header(
-                    row, "24. Just resilience_Check (Y/N)").upper()
+                self.get_value_by_header(row, "24. Just resilience_Check (Y/N)").upper()
                 == "Y"
             )
             obj.cost_benefit_ratio = (
@@ -960,17 +955,14 @@ class ToolExtendFields:
 
             # pdb.set_trace()
             obj.tool_provider = self.get_value_by_header(row, "Tool provider")
-            obj.public_private_mode = self.get_value_by_header(
-                row, "public/private")
-            obj.contact = self.get_value_by_header(
-                row, "Contact (person / email)")
+            obj.public_private_mode = self.get_value_by_header(row, "public/private")
+            obj.contact = self.get_value_by_header(row, "Contact (person / email)")
             obj.hyperlink = self.get_value_by_header(row, "Tool hyperlink")
             obj.coder_1 = self.get_value_by_header(row, "CODER 1")
             obj.coder_2 = self.get_value_by_header(row, "CODER 1_CODER 2")
 
             obj.intended_user_groups = self.get_obj_intended_user_groups(row)
-            obj.place_of_implementation = self.get_obj_place_of_implementation(
-                row)
+            obj.place_of_implementation = self.get_obj_place_of_implementation(row)
             obj.type_of_data = self.get_obj_type_of_data(row)
             obj.data_sources = self.get_obj_data_sources(row)
             obj.license_status = self.get_obj_license_status(row)
@@ -981,7 +973,10 @@ class ToolExtendFields:
             # obj.description = item["short_description"]
             # TODO: this is mandatory for update !?
             obj.long_description = RichTextValue(
-                raw='<p>'+item["short_description"]+'</p>',  mimeType='text/html', outputMimeType='text/html')
+                raw="<p>" + item["short_description"] + "</p>",
+                mimeType="text/html",
+                outputMimeType="text/html",
+            )
 
             obj.sectors = item["sectors"]
             obj.tool_available_english = (
@@ -1000,8 +995,7 @@ class ToolExtendFields:
             )
             obj.type_of_outputs = self.get_obj_type_of_outputs(row)
             obj.temporality_of_data = self.get_obj_temporality_of_data(row)
-            obj.user_support_provisions = self.get_obj_user_support_provisions(
-                row)
+            obj.user_support_provisions = self.get_obj_user_support_provisions(row)
             obj.tool_validation_use = self.get_obj_tool_validation_use(row)
             obj.number_of_users_tool = self.get_obj_number_of_users_tool(row)
             obj.tool_provider_mode = self.get_obj_tool_provider_mode(row)
@@ -1025,8 +1019,7 @@ class ToolExtendFields:
                 == "Y"
             )
             obj.language_accessibility = (
-                self.get_value_by_header(
-                    row, "4. Language Accessibility (EEA)").upper()
+                self.get_value_by_header(row, "4. Language Accessibility (EEA)").upper()
                 == "Y"
             )
             obj.free_access = (
