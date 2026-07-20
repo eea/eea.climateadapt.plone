@@ -1040,7 +1040,7 @@ class ToolExtendFields:
             )
 
             geochars = json.loads(obj.geochars)
-            geochars["geoElements"]["element"] = is_global
+            geochars["geoElements"]["element"] = is_global.upper()
             if country_codes:
                 geochars["geoElements"]["countries"] = country_codes
             if subnational_key:
