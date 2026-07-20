@@ -5,7 +5,7 @@ from plone.autoform import directives
 from z3c.form.interfaces import IAddForm, IEditForm
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
-from .volto_layout import tool_layout_blocks, tool_layout_items
+from .volto_layout import extendetool_layout_blocks, extendetool_layout_items
 from zope.schema import Bool
 
 
@@ -245,4 +245,20 @@ class IExtendedTool(ITool, IBlocks):
         description=_("Select one or more accessibility and usability."),
         required=False,
         vocabulary="eea.climateadapt.accessibility_and_usability_tool",
+    )
+
+    blocks = JSONField(
+        title=_("Blocks"),
+        description=_("The JSON representation of the object blocks."),
+        schema=BLOCKS_SCHEMA,
+        default=extendetool_layout_blocks,
+        required=False,
+    )
+
+    blocks_layout = JSONField(
+        title=_("Blocks Layout"),
+        description=_("The JSON representation of the object blocks layout."),
+        schema=LAYOUT_SCHEMA,
+        default={"items": extendetool_layout_items},
+        required=False,
     )

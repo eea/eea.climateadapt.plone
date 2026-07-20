@@ -1,3 +1,11 @@
+from .utils import (
+    cca_content_serializer,
+    extract_section_text,
+    richtext_to_plain_text,
+    serialize_blocks,
+    html_to_plain_text,
+    serialize_relevant_eu_policies,
+)
 from copy import deepcopy
 from urllib.parse import urljoin
 from lxml.html import fragments_fromstring, tostring
@@ -15,7 +23,12 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 from plone.app.contenttypes.interfaces import ILink
 
-from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy, IAceProject
+from eea.climateadapt.behaviors import (
+    IAdaptationOption,
+    ICaseStudy,
+    IAceProject,
+    IExtendedTool,
+)
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
 from eea.climateadapt.behaviors.mission_tool import IMissionTool
 from eea.climateadapt.behaviors.missionstory import IMissionStory
@@ -27,15 +40,6 @@ from plone.restapi.interfaces import IPloneRestapiLayer
 import logging
 
 logger = logging.getLogger("eea.climateadapt")
-
-from .utils import (
-    cca_content_serializer,
-    extract_section_text,
-    richtext_to_plain_text,
-    serialize_blocks,
-    html_to_plain_text,
-    serialize_relevant_eu_policies,
-)
 
 
 def _public_object_url(obj):
@@ -253,6 +257,34 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
             }
             for image in images
         ]
+
+        return result
+
+
+@adapter(IExtendedTool, Interface)
+class ExtendedToolSerializer(SerializeFolderToJson):  # SerializeToJson
+    def __call__(self, version=None, include_items=True):
+        result = super(ExtendedToolSerializer, self).__call__(
+            version=version, include_items=True
+        )
+        # import pdb
+        # pdb.set_trace()
+        result = cca_content_serializer(self.context, result, self.request)
+
+        # item = self.context
+        # images = item.contentValues({"portal_type": "Image"})
+        # suffix = "/@@images/image/large"
+        # result["cca_gallery_urls"] = [
+        #     image.absolute_url() + suffix for image in images]
+        # result["cca_gallery"] = [
+        #     {
+        #         "title": image.Title(),
+        #         "url": image.absolute_url() + suffix,
+        #         "description": image.Description(),
+        #         "rights": getattr(image.aq_inner.aq_self, "rights"),
+        #     }
+        #     for image in images
+        # ]
 
         return result
 
