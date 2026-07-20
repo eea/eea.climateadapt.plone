@@ -108,6 +108,7 @@ def cca_content_serializer(item, result, request):
     if (
         hasattr(item, "long_description")
         and item.long_description
+        and hasattr(item.long_description, "output")
         and item.long_description.output
         and "eea_index" in request.form
     ):
@@ -126,7 +127,8 @@ def cca_content_serializer(item, result, request):
         else:
             result["description"] = ""
 
-    result["cca_last_modified"] = json_compatible(dates["cadapt_last_modified"])
+    result["cca_last_modified"] = json_compatible(
+        dates["cadapt_last_modified"])
     result["cca_published"] = json_compatible(dates["cadapt_published"])
     result["is_cca_content"] = True
     result["language"] = getattr(item, "language", "en")
@@ -191,7 +193,8 @@ def render_slate_value(value):
                     if url and "resolveuid" in url:
                         url = uid_to_url(url)
 
-                    label = extract_text_recursive(c.get("children", [])).strip()
+                    label = extract_text_recursive(
+                        c.get("children", [])).strip()
 
                     # avoid duplicates when the label already is the URL
                     if label and url:
@@ -207,7 +210,8 @@ def render_slate_value(value):
                 elif c.get("type") in ("ul", "ol"):
                     segs.append(render_list(c))
                 elif c.get("type") == "li":
-                    text = extract_text_recursive(c.get("children", [])).strip()
+                    text = extract_text_recursive(
+                        c.get("children", [])).strip()
                     if text:
                         segs.append(f"- {text}")
                 else:
@@ -274,12 +278,13 @@ def find_section_range(blocks, items, start_title, end_title=None):
 
 def extract_section_text(blocks, items, start_title, end_title=None):
     """Extract text between two h3 headings from Slate blocks."""
-    start_idx, end_idx = find_section_range(blocks, items, start_title, end_title)
+    start_idx, end_idx = find_section_range(
+        blocks, items, start_title, end_title)
     if start_idx is None:
         return ""
 
     content_slice = (
-        items[start_idx + 1 : end_idx] if end_idx else items[start_idx + 1 :]
+        items[start_idx + 1: end_idx] if end_idx else items[start_idx + 1:]
     )
     parts = []
 
@@ -290,7 +295,8 @@ def extract_section_text(blocks, items, start_title, end_title=None):
         if is_h3_block(block):
             break
 
-        text = render_slate_value(block.get("value", [])) or block.get("plaintext", "")
+        text = render_slate_value(
+            block.get("value", [])) or block.get("plaintext", "")
         text = text.strip()
         if text:
             parts.append(text.rstrip("."))
@@ -345,7 +351,8 @@ def serialize_blocks(blocks, items, result, metadata_ids=None):
                 text = ", ".join(titles)
 
             elif isinstance(value, dict) and "data" in value:
-                text = html_to_plain_text(value.get("data", ""), inline_links=True)
+                text = html_to_plain_text(
+                    value.get("data", ""), inline_links=True)
 
             elif value:
                 text = str(value)

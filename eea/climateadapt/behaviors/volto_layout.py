@@ -2493,6 +2493,550 @@ tool_layout_items = [
     "72eff79b-8c00-44f1-98b9-16fcca2a3f03",
 ]
 
+extendetool_layout_blocks = {
+    "388e8844-716f-4417-b11f-5168046e0b03": {
+        "@layout": "72eff79b-8c00-44f1-98b9-16fcca2a3f03",
+        "@type": "slate",
+        "block": "4cbf947e-0069-4ebe-b724-731c6838a85c",
+        "plaintext": "",
+        "value": [
+            {
+                "children": [
+                    {
+                        "text": ""
+                    }
+                ],
+                "type": "p"
+            }
+        ]
+    },
+    "db9fe8d3-a901-4083-ae4c-78bf17cba6ed": {
+        "@layout": "613a783e-8652-410c-b57e-08e96913e0f2",
+        "@type": "tabs_block",
+        "block": "70c9d46c-2d19-45f2-b5ae-ba3e10b28c7d",
+        "data": {
+            "blocks": {
+                "796a3ca2-3fd1-41db-a6ff-b28999360212": {
+                    "@type": "tab",
+                    "blocks": {
+                        "9897e1b5-01a3-4174-b7ec-0624f43c9346": {
+                            "@type": "slate"
+                        },
+                        "ff371fbc-61bb-4df9-9876-5f8ee9750c94": {
+                            "@type": "metadataSection",
+                            "fields": [
+                                {
+                                    "@id": "032c01de-aa1e-4b55-a656-b66e3fc8526f",
+                                    "field": {
+                                        "id": "include_in_observatory",
+                                        "title": "Include in observatory",
+                                        "widget": "boolean"
+                                    }
+                                },
+                                {
+                                    "@id": "ae75789f-0ce5-433b-9819-02daf8e34bb5",
+                                    "field": {
+                                        "id": "include_in_mission",
+                                        "title": "Include in the Mission Portal",
+                                        "widget": "boolean"
+                                    }
+                                },
+                                {
+                                    "@id": "f0d1c689-f85d-490a-9000-5f14298dddec",
+                                    "field": {
+                                        "id": "health_impacts",
+                                        "title": "Health impacts",
+                                        "widget": "array"
+                                    }
+                                }
+                            ],
+                            "variation": "default"
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "ff371fbc-61bb-4df9-9876-5f8ee9750c94",
+                            "9897e1b5-01a3-4174-b7ec-0624f43c9346"
+                        ]
+                    },
+                    "title": "Inclusion in subsites"
+                },
+                "7c25e37c-0502-4970-8102-2529e827af30": {
+                    "@type": "tab",
+                    "blocks": {
+                        "1c7402ac-d908-4bbf-b712-3c54ccb1d58e": {
+                            "@type": "metadataSection",
+                            "fields": [
+                                {
+                                    "@id": "04ba1a33-b79b-4bce-b327-d4d2f11e0ce3",
+                                    "field": {
+                                        "id": "geochars",
+                                        "title": "Geographic characterisation",
+                                        "widget": "textarea"
+                                    }
+                                }
+                            ],
+                            "variation": "default"
+                        },
+                        "d9271d2e-372f-4761-b114-7c65de88840a": {
+                            "@type": "slate"
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "1c7402ac-d908-4bbf-b712-3c54ccb1d58e",
+                            "d9271d2e-372f-4761-b114-7c65de88840a"
+                        ]
+                    },
+                    "title": "Geographic info"
+                },
+                "9d325a25-3493-43a2-8f1d-b26ab911bb91": {
+                    "@type": "tab",
+                    "blocks": {
+                        "3e6b9302-0683-4a41-9843-5ab6c0e13978": {
+                            "@type": "slate"
+                        },
+                        "f3ba3e54-5e62-4283-9283-e391f3411705": {
+                            "@type": "metadataSection",
+                            "fields": [
+                                {
+                                    "@id": "c9eb933e-4b5a-43ef-825d-a9aad3bb1140",
+                                    "field": {
+                                        "id": "websites",
+                                        "title": "Websites",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "bf07141e-942c-41b0-bd58-49e1be179cc6",
+                                    "field": {
+                                        "id": "source",
+                                        "title": "References",
+                                        "widget": "richtext"
+                                    }
+                                },
+                                {
+                                    "@id": "e8b5d353-4868-4d70-b0ff-7dac4e84ac4f",
+                                    "field": {
+                                        "id": "special_tags",
+                                        "title": "Special tagging",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "1375eb13-47e5-498c-b7a0-e1420d6fc2ee",
+                                    "field": {
+                                        "id": "comments",
+                                        "title": "Comments",
+                                        "widget": "textarea"
+                                    }
+                                },
+                                {
+                                    "@id": "43f1e56f-b331-437a-862f-7cfd6adbf275",
+                                    "field": {
+                                        "id": "relatedItems",
+                                        "title": "Related Items",
+                                        "widget": "relations"
+                                    }
+                                }
+                            ],
+                            "variation": "default"
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "f3ba3e54-5e62-4283-9283-e391f3411705",
+                            "3e6b9302-0683-4a41-9843-5ab6c0e13978"
+                        ]
+                    },
+                    "title": "Reference info"
+                },
+                "d51a9bc2-bf1a-4a44-bb55-6d60cbfa734d": {
+                    "@type": "tab",
+                    "blocks": {
+                        "6d53b234-46ff-4907-8a5a-f046f4036705": {
+                            "@type": "slate"
+                        },
+                        "e771001c-46bb-4bb8-bff1-3727ec852b32": {
+                            "@type": "metadataSection",
+                            "fields": [
+                                {
+                                    "@id": "d33d00df-e090-4c3b-8a10-e77c1d43bc8c",
+                                    "field": {
+                                        "id": "publication_date",
+                                        "title": "Date of item's creation",
+                                        "widget": "date"
+                                    }
+                                },
+                                {
+                                    "@id": "d1c11d2d-7452-495e-a19d-3b677bab9081",
+                                    "field": {
+                                        "id": "title",
+                                        "title": "Title",
+                                        "widget": "title"
+                                    }
+                                },
+                                {
+                                    "@id": "c101cc6d-1368-4f67-9d39-29dbdc35b839",
+                                    "field": {
+                                        "id": "description",
+                                        "title": "Short summary",
+                                        "widget": "description"
+                                    }
+                                },
+                                {
+                                    "@id": "e229c642-c45b-4556-be8b-a76d0b1dfaf0",
+                                    "field": {
+                                        "id": "long_description",
+                                        "title": "Description",
+                                        "widget": "richtext"
+                                    }
+                                },
+                                {
+                                    "@id": "a34af168-b8bf-42b3-906d-d3f95fcebf25",
+                                    "field": {
+                                        "id": "keywords",
+                                        "title": "Keywords",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "86a2172d-54e7-4d3b-8648-c87e2ef4e661",
+                                    "field": {
+                                        "id": "sectors",
+                                        "title": "Sectors",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "4825ba9b-a803-479c-8fb1-9169149c117e",
+                                    "field": {
+                                        "id": "climate_impacts",
+                                        "title": "Climate impacts",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "7a399cd9-7b68-4127-bc72-1bcc1ec86be2",
+                                    "field": {
+                                        "id": "elements",
+                                        "title": "Adaptation elements",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "9390f62c-da9b-46ef-8713-9b9ee95a2e84",
+                                    "field": {
+                                        "id": "logo",
+                                        "title": "Logo",
+                                        "widget": "image"
+                                    }
+                                },
+                                {
+                                    "@id": "68f28cab-e3e9-4926-858a-bd4438f3cb56",
+                                    "field": {
+                                        "id": "image",
+                                        "title": "Thumbnail",
+                                        "widget": "image"
+                                    }
+                                },
+                                {
+                                    "@id": "4648ffd1-85b3-43b9-9089-c8c1ab828c61",
+                                    "field": {
+                                        "id": "origin_website",
+                                        "title": "Item from third parties",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "50348533-4cb9-4e8b-9ceb-9024a41aedc0",
+                                    "field": {
+                                        "id": "contributor_list",
+                                        "title": "Contributor(s)",
+                                        "widget": "relations"
+                                    }
+                                },
+                                {
+                                    "@id": "f580799f-61f0-47f4-9fb7-9ffdb39c3adb",
+                                    "field": {
+                                        "id": "other_contributor",
+                                        "title": "Other contributor(s)",
+                                        "widget": "textarea"
+                                    }
+                                },
+                                {
+                                    "@id": "cf07b569-ef88-4d26-b960-7d0a25ac7e09",
+                                    "field": {
+                                        "id": "tool_provider",
+                                        "title": "Tool provider",
+                                        "widget": "string"
+                                    }
+                                },
+                                {
+                                    "@id": "f1562064-12b0-4674-8303-0c293703c744",
+                                    "field": {
+                                        "id": "public_private_mode",
+                                        "title": "Public/private",
+                                        "widget": "string"
+                                    }
+                                },
+                                {
+                                    "@id": "4cf5c552-052c-48ed-a26b-98b4aa124725",
+                                    "field": {
+                                        "id": "contact",
+                                        "title": "Contact",
+                                        "widget": "string"
+                                    }
+                                },
+                                {
+                                    "@id": "ed71db5b-3bfa-4f83-883a-cd8a808e0ce2",
+                                    "field": {
+                                        "id": "hyperlink",
+                                        "title": "Hyperlink",
+                                        "widget": "string"
+                                    }
+                                },
+                                {
+                                    "@id": "ccd8eee7-70a7-41fb-80bf-aee6dae17aa9",
+                                    "field": {
+                                        "id": "coder_1",
+                                        "title": "CODER 1",
+                                        "widget": "string"
+                                    }
+                                },
+                                {
+                                    "@id": "42c23831-7efd-45a6-bdb9-6d523f966099",
+                                    "field": {
+                                        "id": "coder_2",
+                                        "title": "CODER 2",
+                                        "widget": "string"
+                                    }
+                                },
+                                {
+                                    "@id": "67a60154-2345-4a1a-9beb-eef5682b881e",
+                                    "field": {
+                                        "id": "only_interactive_support_tool",
+                                        "title": "Only *online* interactive support tool",
+                                        "widget": "boolean"
+                                    }
+                                },
+                                {
+                                    "@id": "c0942260-edaf-49cd-8f5d-1a73612e11ab",
+                                    "field": {
+                                        "id": "adaptation_cycle_step",
+                                        "title": "Supports ≥1 adaptation cycle step",
+                                        "widget": "boolean"
+                                    }
+                                },
+                                {
+                                    "@id": "b9e504c2-2213-4dbb-8a8b-997fe3f5d2bf",
+                                    "field": {
+                                        "id": "updating_cycle_of_the_tool",
+                                        "title": "Updating cycle of the tool (Tools <5 years and up to date)",
+                                        "widget": "boolean"
+                                    }
+                                },
+                                {
+                                    "@id": "769d8b9b-3cd8-41c4-bc65-ea83751ab16b",
+                                    "field": {
+                                        "id": "language_accessibility",
+                                        "title": "Language Accessibility (EEA)",
+                                        "widget": "boolean"
+                                    }
+                                },
+                                {
+                                    "@id": "21236d04-8606-4dde-9571-e70fc638a657",
+                                    "field": {
+                                        "id": "free_access",
+                                        "title": "Free [full or core functionality] access",
+                                        "widget": "boolean"
+                                    }
+                                },
+                                {
+                                    "@id": "9ebc41e6-087b-4db1-8a78-615693a14f8d",
+                                    "field": {
+                                        "id": "intended_user_groups",
+                                        "title": "Intended User Groups",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "dbeb73a7-1432-4d4c-8b33-a2c0d828a868",
+                                    "field": {
+                                        "id": "place_of_implementation",
+                                        "title": "Place of implementation",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "66e78464-1307-4c63-a384-5555657d4024",
+                                    "field": {
+                                        "id": "type_of_data",
+                                        "title": "Type of data",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "0036b0cd-0105-4c38-821f-c76f315280e5",
+                                    "field": {
+                                        "id": "data_sources",
+                                        "title": "Data sources",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "f5f82596-bcfb-4f21-9245-2dc560e49f33",
+                                    "field": {
+                                        "id": "license_status",
+                                        "title": "License status",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "cccb97a4-b562-42b5-ae89-4fbefdc1e409",
+                                    "field": {
+                                        "id": "user_support_provisions",
+                                        "title": "User support provisions",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "0fb11477-e504-493b-8ff2-59175dad470a",
+                                    "field": {
+                                        "id": "tool_validation_use",
+                                        "title": "Tool validation use",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "4583e329-dc19-4087-bd97-7ee938c57a60",
+                                    "field": {
+                                        "id": "number_of_users_tool",
+                                        "title": "Number of users / uptake",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "7748c575-f4d6-4142-832d-6a17626a0778",
+                                    "field": {
+                                        "id": "tool_provider_mode",
+                                        "title": "Tool provider",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "8415fdfb-f8ad-4a9a-8944-09f910cd8a30",
+                                    "field": {
+                                        "id": "adaptation_support_cycle_step",
+                                        "title": "Adaptation Support Cycle Step",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "649cd2ba-9af2-49ed-b3fb-2db18e751de7",
+                                    "field": {
+                                        "id": "tool_available_english",
+                                        "title": "Is tool available in English?",
+                                        "widget": "boolean"
+                                    }
+                                },
+                                {
+                                    "@id": "f3f1d38d-0de3-474d-bb66-241493155c5c",
+                                    "field": {
+                                        "id": "tool_available_language",
+                                        "title": "Tool language",
+                                        "widget": "string"
+                                    }
+                                },
+                                {
+                                    "@id": "beee1f1b-05fe-4c99-add0-100b76aa195f",
+                                    "field": {
+                                        "id": "type_of_outputs",
+                                        "title": "Type of outputs",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "f0a05a29-a4fc-4cc4-95d5-29e271f5c370",
+                                    "field": {
+                                        "id": "temporality_of_data",
+                                        "title": "Temporality of data",
+                                        "widget": "array"
+                                    }
+                                },
+                                {
+                                    "@id": "904c7b62-9256-4eb5-b722-4b92180d115a",
+                                    "field": {
+                                        "id": "underlying_data_maintenance",
+                                        "title": "Underlying data maintenance",
+                                        "widget": "string"
+                                    }
+                                },
+                                {
+                                    "@id": "c950721b-edff-4796-9e9f-982e3cb30463",
+                                    "field": {
+                                        "id": "accessibility_and_usability",
+                                        "title": "Accessibility and usability",
+                                        "widget": "choices"
+                                    }
+                                },
+                                {
+                                    "@id": "f1f02096-fbdd-40b1-941e-f8f11a74b4e8",
+                                    "field": {
+                                        "id": "functionality",
+                                        "title": "Functionality",
+                                        "widget": "integer"
+                                    }
+                                },
+                                {
+                                    "@id": "d29cde53-ca1e-4122-86a2-aba8387635f4",
+                                    "field": {
+                                        "id": "strengths_and_possible_limitations",
+                                        "title": "Strengths and possible limitations of the tool",
+                                        "widget": "string"
+                                    }
+                                }
+                            ],
+                            "variation": "default"
+                        }
+                    },
+                    "blocks_layout": {
+                        "items": [
+                            "e771001c-46bb-4bb8-bff1-3727ec852b32",
+                            "6d53b234-46ff-4907-8a5a-f046f4036705"
+                        ]
+                    },
+                    "title": "Item Description"
+                }
+            },
+            "blocks_layout": {
+                "items": [
+                    "d51a9bc2-bf1a-4a44-bb55-6d60cbfa734d",
+                    "9d325a25-3493-43a2-8f1d-b26ab911bb91",
+                    "7c25e37c-0502-4970-8102-2529e827af30",
+                    "796a3ca2-3fd1-41db-a6ff-b28999360212"
+                ]
+            }
+        },
+        "template": "default",
+        "verticalAlign": "flex-start"
+    },
+    "ee8128ed-602d-4a81-9c20-201985b9c089": {
+        "@layout": "96854e5f-1b23-484a-b009-d3a8523b2b43",
+        "@type": "title",
+        "block": "8e0d5a16-e3b6-4527-ad32-a4308da57e55",
+        "copyrightIcon": "ri-copyright-line",
+        "styles": {},
+        "variation": "default"
+    }
+}
+
+extendetool_layout_items = [
+    "ee8128ed-602d-4a81-9c20-201985b9c089",
+    "db9fe8d3-a901-4083-ae4c-78bf17cba6ed",
+    "388e8844-716f-4417-b11f-5168046e0b03"
+]
+
 
 case_study_layout_items = [
     "3f1f3ddd-0c38-4408-9ab7-5191099dec50",

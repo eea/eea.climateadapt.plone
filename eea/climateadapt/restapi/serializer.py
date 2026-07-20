@@ -1,3 +1,11 @@
+from .utils import (
+    cca_content_serializer,
+    extract_section_text,
+    richtext_to_plain_text,
+    serialize_blocks,
+    html_to_plain_text,
+    serialize_relevant_eu_policies,
+)
 from copy import deepcopy
 from urllib.parse import urljoin
 from lxml.html import fragments_fromstring, tostring
@@ -15,7 +23,7 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 from plone.app.contenttypes.interfaces import ILink
 
-from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy, IAceProject
+from eea.climateadapt.behaviors import IAdaptationOption, ICaseStudy, IAceProject, IExtendedTool
 from eea.climateadapt.behaviors.mission_funding_cca import IMissionFundingCCA
 from eea.climateadapt.behaviors.mission_tool import IMissionTool
 from eea.climateadapt.behaviors.missionstory import IMissionStory
@@ -28,15 +36,6 @@ import logging
 
 logger = logging.getLogger("eea.climateadapt")
 
-from .utils import (
-    cca_content_serializer,
-    extract_section_text,
-    richtext_to_plain_text,
-    serialize_blocks,
-    html_to_plain_text,
-    serialize_relevant_eu_policies,
-)
-
 
 def _public_object_url(obj):
     if not obj:
@@ -46,7 +45,7 @@ def _public_object_url(obj):
     portal_path = portal.getPhysicalPath()
     obj_path = obj.getPhysicalPath()
 
-    path = "/" + "/".join(obj_path[len(portal_path) :])
+    path = "/" + "/".join(obj_path[len(portal_path):])
 
     return path
 
@@ -209,7 +208,8 @@ class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
 
         lead = (result.get("lead") or "").strip()
         partners_html = (result.get("partners") or {}).get("data", "")
-        partners_txt = html_to_plain_text(partners_html, inline_links=True).strip()
+        partners_txt = html_to_plain_text(
+            partners_html, inline_links=True).strip()
 
         if lead or partners_txt:
             parts.append("Project information")
@@ -243,7 +243,8 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
         item = self.context
         images = item.contentValues({"portal_type": "Image"})
         suffix = "/@@images/image/large"
-        result["cca_gallery_urls"] = [image.absolute_url() + suffix for image in images]
+        result["cca_gallery_urls"] = [
+            image.absolute_url() + suffix for image in images]
         result["cca_gallery"] = [
             {
                 "title": image.Title(),
@@ -253,6 +254,34 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
             }
             for image in images
         ]
+
+        return result
+
+
+@adapter(IExtendedTool, Interface)
+class ExtendedToolSerializer(SerializeFolderToJson):  # SerializeToJson
+    def __call__(self, version=None, include_items=True):
+        result = super(ExtendedToolSerializer, self).__call__(
+            version=version, include_items=True
+        )
+        # import pdb
+        # pdb.set_trace()
+        result = cca_content_serializer(self.context, result, self.request)
+
+        # item = self.context
+        # images = item.contentValues({"portal_type": "Image"})
+        # suffix = "/@@images/image/large"
+        # result["cca_gallery_urls"] = [
+        #     image.absolute_url() + suffix for image in images]
+        # result["cca_gallery"] = [
+        #     {
+        #         "title": image.Title(),
+        #         "url": image.absolute_url() + suffix,
+        #         "description": image.Description(),
+        #         "rights": getattr(image.aq_inner.aq_self, "rights"),
+        #     }
+        #     for image in images
+        # ]
 
         return result
 
@@ -305,14 +334,16 @@ class MissionFundingSerializer(SerializeFolderToJson):  # SerializeToJson
 
         for start_title, end_title, field_name in sections:
             result[field_name] = (
-                extract_section_text(blocks, items, start_title, end_title) or ""
+                extract_section_text(
+                    blocks, items, start_title, end_title) or ""
             )
 
         if not result.get("description") and result.get("objective_funding_programme"):
             result["description"] = result["objective_funding_programme"]
 
         if "regions" in result:
-            result["funding_region"] = richtext_to_plain_text(result["regions"])
+            result["funding_region"] = richtext_to_plain_text(
+                result["regions"])
 
         return result
 

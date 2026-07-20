@@ -9,6 +9,8 @@ from eea.climateadapt.vocabulary import (
     _climateimpacts,
     _type_of_outputs_tool,
     _temporality_of_data_tool,
+    european_countries,
+    SUBNATIONAL_REGIONS,
 )
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
@@ -16,6 +18,9 @@ import logging
 import csv
 import io
 from datetime import datetime, timedelta
+import pycountry
+import re
+import json
 
 import transaction
 from plone import api
@@ -120,7 +125,8 @@ class MigrateAbsoluteURLs(BrowserView):
 
             if idx % 100 == 0:
                 transaction.commit()
-                logger.info("Progress %s of %s. Migrated %s", idx, total, self.count)
+                logger.info("Progress %s of %s. Migrated %s",
+                            idx, total, self.count)
 
         return self.count
 
@@ -709,7 +715,8 @@ class ToolExtendFields:
                 "PUBLIC_PRIVATE",
                 "15. Tool provider [private, public, both, other]_Public-private partnership",
             ),
-            ("OTHER", "15. Tool provider [private, public, both, other]_Other"),
+            ("OTHER",
+             "15. Tool provider [private, public, both, other]_Other"),
         ]
 
         response = []
@@ -745,6 +752,75 @@ class ToolExtendFields:
             if val and val.strip().upper() == "Y":
                 response = key
         return response
+
+    def process_region(self, val):
+        val = val.strip()
+        val_lower = val.lower()
+
+        # 1. Global / Europe
+        is_global = ""
+        if "global" in val_lower or "international" in val_lower:
+            is_global = "Global"
+        elif "europe" in val_lower or "european" in val_lower:
+            is_global = "Europe"
+
+        # 2. Country
+        country_names = []
+        country_codes = []
+
+        # Check for country codes
+        matches = re.findall(r'\b([A-Z]{2})\b', val)
+        for code in matches:
+            orig_code = code
+            if code == 'UK':
+                code = 'GB'
+            elif code == 'EL':
+                code = 'GR'
+            c = pycountry.countries.get(alpha_2=code)
+            if c and c.name not in country_names:
+                country_names.append(c.name)
+                country_codes.append(c.alpha_2)
+
+        # Check if country name is in the string
+        for c in pycountry.countries:
+            if c.name.lower() in val_lower and c.name not in country_names:
+                country_names.append(c.name)
+                country_codes.append(c.alpha_2)
+
+        for code in country_codes:
+            if code in european_countries:
+                is_global = "Europe"
+                break
+
+        # 3. Subnational Key
+        subnational_key = ""
+        best_key = ""
+        best_score = 0
+
+        # Simple normalization to find overlapping meaningful words
+        def normalize(text):
+            text = re.sub(r'[^a-zA-Z0-9\s]', ' ', text).lower()
+            # ignore generic words like region, area, selected, cities
+            ignore_words = {'region', 'area', 'selected',
+                            'cities', 'city', 'level', 'national'}
+            words = set([w for w in text.split() if len(w)
+                        > 3 and w not in ignore_words])
+            return words
+
+        val_words = normalize(val)
+
+        if val_words:
+            for key, name in SUBNATIONAL_REGIONS.items():
+                name_words = normalize(name)
+                intersection = val_words.intersection(name_words)
+                if len(intersection) > best_score:
+                    best_score = len(intersection)
+                    best_key = key
+
+        if best_score > 0:
+            subnational_key = best_key
+
+        return is_global, country_names, country_codes, subnational_key
 
     def list(self):
         response = []
@@ -802,7 +878,8 @@ class ToolExtendFields:
             catalog = self.context.portal_catalog
             brains = catalog.unrestrictedSearchResults(
                 path="/cca/en",
-                portal_type=["eea.climateadapt.tool", "eea.climateadapt.extendedtool"],
+                portal_type=["eea.climateadapt.tool",
+                             "eea.climateadapt.extendedtool"],
             )
             obj = None
 
@@ -811,7 +888,7 @@ class ToolExtendFields:
                 if getattr(_obj, "external_id", None) == item["external_id"]:
                     obj = brain.getObject()
 
-            # if item["external_id"] == "#231":
+            # if item["external_id"] == "#14":
             #     pdb.set_trace()
 
             if not obj:
@@ -819,18 +896,19 @@ class ToolExtendFields:
 
                 obj = api.content.create(
                     container=container,
-                    type="eea.climateadapt.tool",
-                    portal_type="eea.climateadapt.tool",
+                    type="eea.climateadapt.extendedtool",
+                    portal_type="eea.climateadapt.extendedtool",
                     sectors=item["sectors"],
                     climate_impacts=["EXTREMEHEAT"],
                     publication_date=date(2026, 1, 1),
                     title=item["name"],
-                    external_import_id=item["external_id"],
+                    external_id=item["external_id"],
                     safe_id=True,
                 )
-                obj.external_import_id = item["external_id"]
+                obj.external_id = item["external_id"]
 
-                logger.info("CREATED: %s -> %s", item["external_id"], item["name"])
+                logger.info("CREATED: %s -> %s",
+                            item["external_id"], item["name"])
 
             obj.climate_impacts = self.get_obj_climateimpacts(row)
             obj.spatial_resolution = self.get_value_by_header(
@@ -839,14 +917,16 @@ class ToolExtendFields:
             obj.underlying_data_maintenance = self.get_value_by_header(
                 row, "22. Underlying data maintenance_Free text"
             )
-            obj.nature_based_solution = (
-                self.get_value_by_header(
-                    row, "23. Nature-based solution_Check (Y/N)"
-                ).upper()
-                == "Y"
-            )
+            if self.get_value_by_header(row, "23. Nature-based solution_Check (Y/N)"):
+                obj.nature_based_solution = (
+                    self.get_value_by_header(
+                        row, "23. Nature-based solution_Check (Y/N)"
+                    ).upper()
+                    == "Y"
+                )
             obj.just_resilience = (
-                self.get_value_by_header(row, "24. Just resilience_Check (Y/N)").upper()
+                self.get_value_by_header(
+                    row, "24. Just resilience_Check (Y/N)").upper()
                 == "Y"
             )
             obj.cost_benefit_ratio = (
@@ -861,7 +941,8 @@ class ToolExtendFields:
                 row, "27. Functionality_Number of adaptation support cycle steps"
             )
             obj.functionality = (
-                None if functionality_value == "" else int(functionality_value)
+                None if functionality_value and functionality_value == "" else int(
+                    functionality_value)
             )
             obj.strengths_and_possible_limitations = self.get_value_by_header(
                 row, "28. Strengths and possible limitations of the tool_Free text"
@@ -869,14 +950,17 @@ class ToolExtendFields:
 
             # pdb.set_trace()
             obj.tool_provider = self.get_value_by_header(row, "Tool provider")
-            obj.public_private_mode = self.get_value_by_header(row, "public/private")
-            obj.contact = self.get_value_by_header(row, "Contact (person / email)")
+            obj.public_private_mode = self.get_value_by_header(
+                row, "public/private")
+            obj.contact = self.get_value_by_header(
+                row, "Contact (person / email)")
             obj.hyperlink = self.get_value_by_header(row, "Tool hyperlink")
             obj.coder_1 = self.get_value_by_header(row, "CODER 1")
             obj.coder_2 = self.get_value_by_header(row, "CODER 1_CODER 2")
 
             obj.intended_user_groups = self.get_obj_intended_user_groups(row)
-            obj.place_of_implementation = self.get_obj_place_of_implementation(row)
+            obj.place_of_implementation = self.get_obj_place_of_implementation(
+                row)
             obj.type_of_data = self.get_obj_type_of_data(row)
             obj.data_sources = self.get_obj_data_sources(row)
             obj.license_status = self.get_obj_license_status(row)
@@ -884,7 +968,7 @@ class ToolExtendFields:
                 self.get_obj_adaptation_support_cycle_step(row)
             )
 
-            obj.description = item["short_description"]
+            # obj.description = item["short_description"]
             # TODO: this is mandatory for update !?
             obj.long_description = item["short_description"]
 
@@ -905,7 +989,8 @@ class ToolExtendFields:
             )
             obj.type_of_outputs = self.get_obj_type_of_outputs(row)
             obj.temporality_of_data = self.get_obj_temporality_of_data(row)
-            obj.user_support_provisions = self.get_obj_user_support_provisions(row)
+            obj.user_support_provisions = self.get_obj_user_support_provisions(
+                row)
             obj.tool_validation_use = self.get_obj_tool_validation_use(row)
             obj.number_of_users_tool = self.get_obj_number_of_users_tool(row)
             obj.tool_provider_mode = self.get_obj_tool_provider_mode(row)
@@ -929,7 +1014,8 @@ class ToolExtendFields:
                 == "Y"
             )
             obj.language_accessibility = (
-                self.get_value_by_header(row, "4. Language Accessibility (EEA)").upper()
+                self.get_value_by_header(
+                    row, "4. Language Accessibility (EEA)").upper()
                 == "Y"
             )
             obj.free_access = (
@@ -942,9 +1028,24 @@ class ToolExtendFields:
                 self.get_obj_tool_accessibility_and_usability(row)
             )
 
-            obj._p_changed = True
+            # pdb.set_trace()
+            is_global, country_names, country_codes, subnational_key = self.process_region(
+                self.get_value_by_header(row, "Geographic coverage/scope"))
 
+            geochars = json.loads(obj.geochars)
+            geochars['geoElements']['element'] = is_global
+            if country_codes:
+                geochars['geoElements']['countries'] = country_codes
+            if subnational_key:
+                geochars['geoElements']['subnational'] = [subnational_key]
+            else:
+                geochars['geoElements']['subnational'] = []
+            geochars = json.dumps(geochars).encode()
+            obj.geochars = geochars
+
+            obj._p_changed = True
             obj.reindexObject()
+
             logger.info("OBJ URL: %s", obj.absolute_url())
             response.append(
                 {
