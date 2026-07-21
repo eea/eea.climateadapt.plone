@@ -256,8 +256,7 @@ class HideMissionSignatoryReportingFolders(BrowserView):
     """Exclude Mission Signatory Reporting folders from navigation."""
 
     signatory_reporting_path = (
-        "en/eu-policy/eu-adaptation-policy/eu-mission-on-adaptation/"
-        "signatory-reporting"
+        "en/eu-policy/eu-adaptation-policy/eu-mission-on-adaptation/signatory-reporting"
     )
 
     def should_change(self):
@@ -305,9 +304,7 @@ class HideMissionSignatoryReportingFolders(BrowserView):
             return self._result
 
         root_path = "/".join(root.getPhysicalPath())
-        brains = [
-            brain for brain in self.get_brains() if brain.getPath() != root_path
-        ]
+        brains = [brain for brain in self.get_brains() if brain.getPath() != root_path]
         found = len(brains)
         upgraded = 0
         already_excluded = 0
