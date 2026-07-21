@@ -108,6 +108,7 @@ def cca_content_serializer(item, result, request):
     if (
         hasattr(item, "long_description")
         and item.long_description
+        and hasattr(item.long_description, "output")
         and item.long_description.output
         and "eea_index" in request.form
     ):
