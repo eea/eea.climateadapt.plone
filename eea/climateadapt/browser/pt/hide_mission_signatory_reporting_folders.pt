@@ -1,0 +1,52 @@
+<html>
+  <body tal:define="result view/result">
+    <h1>Exclude Mission Signatory Reporting folders from navigation</h1>
+
+    <p tal:condition="not: result/root_found">
+      Signatory Reporting root was not found:
+      <code tal:content="result/path"></code>
+    </p>
+
+    <div tal:condition="result/root_found">
+      <p tal:condition="not: result/change">
+        Dry run. Add <code>?change=true</code> to apply the changes.
+      </p>
+      <p tal:condition="result/change">
+        Write mode. Matching folders were updated and reindexed.
+      </p>
+
+      <p>
+        Root:
+        <a tal:attributes="href result/url" tal:content="result/url"></a>
+      </p>
+
+      <p>
+        <strong tal:content="result/found"></strong>
+        folders found.
+      </p>
+
+      <p tal:condition="not: result/change">
+        <strong tal:content="result/upgraded"></strong>
+        folders would be upgraded.
+      </p>
+
+      <p tal:condition="result/change">
+        <strong tal:content="result/upgraded"></strong>
+        folders upgraded.
+      </p>
+
+      <p>
+        <strong tal:content="result/already_excluded"></strong>
+        folders already had exclude from navigation set.
+      </p>
+    </div>
+
+    <form action="./@@hide-mission-signatory-reporting-folders" method="get">
+      <label>
+        <input type="checkbox" name="change" value="true" />
+        apply changes
+      </label>
+      <input type="submit" value="Run" />
+    </form>
+  </body>
+</html>

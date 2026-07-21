@@ -441,6 +441,8 @@ class MissionSigImporter(BrowserView):
                     id=dir_info["id"],
                     title=dir_info["id"],
                 )
+                folder_object.exclude_from_nav = True
+                folder_object.reindexObject(idxs=["exclude_from_nav"])
                 logger.info("Created %s", folder_object.absolute_url())
 
                 for child in dir_info["files"]:
