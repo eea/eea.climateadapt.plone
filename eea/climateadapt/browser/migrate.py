@@ -252,6 +252,12 @@ class ArchiveItems294148(BrowserView):
         return response
 
 
+def is_mission_reporting_question_folder(obj):
+    """Return True for reporting question folders such as Q3.1.1.16."""
+    title = getattr(obj, "title", "") or ""
+    return re.match(r"^Q\d", title) is not None
+
+
 class HideMissionSignatoryReportingFolders(BrowserView):
     """Exclude Mission Signatory Reporting folders from navigation."""
 
@@ -308,28 +314,34 @@ class HideMissionSignatoryReportingFolders(BrowserView):
         brains = [
             brain for brain in self.get_brains() if brain.getPath() != root_path
         ]
-        found = len(brains)
+        folders = []
+        for brain in brains:
+            folder = brain.getObject()
+            if is_mission_reporting_question_folder(folder):
+                folders.append(folder)
+        found = len(folders)
         upgraded = 0
         already_excluded = 0
 
         logger.info(
-            "HideMissionSignatoryReportingFolders found %s folders under %s. change=%s",
+            "HideMissionSignatoryReportingFolders found %s question folders under %s. change=%s",
             found,
             root.absolute_url(),
             change,
         )
 
-        for idx, brain in enumerate(brains, start=1):
-            folder = brain.getObject()
+        for idx, folder in enumerate(folders, start=1):
             has_exclude_from_nav = getattr(folder, "exclude_from_nav", False)
+            has_seo_noindex = getattr(folder, "seo_noindex", False)
 
-            if has_exclude_from_nav:
+            if has_exclude_from_nav and has_seo_noindex:
                 already_excluded += 1
                 continue
 
             if change:
                 folder.exclude_from_nav = True
-                folder.reindexObject(idxs=["exclude_from_nav"])
+                folder.seo_noindex = True
+                folder.reindexObject(idxs=["exclude_from_nav", "seo_noindex"])
 
                 if idx % 100 == 0:
                     transaction.savepoint()

@@ -1,6 +1,6 @@
 <html>
   <body tal:define="result view/result">
-    <h1>Exclude Mission Signatory Reporting folders from navigation</h1>
+    <h1>Exclude Mission Signatory Reporting question folders from navigation and search</h1>
 
     <p tal:condition="not: result/root_found">
       Signatory Reporting root was not found:
@@ -12,7 +12,7 @@
         Dry run. Add <code>?change=true</code> to apply the changes.
       </p>
       <p tal:condition="result/change">
-        Write mode. Matching folders were updated and reindexed.
+        Write mode. Matching question folders were updated and reindexed.
       </p>
 
       <p>
@@ -22,22 +22,22 @@
 
       <p>
         <strong tal:content="result/found"></strong>
-        folders found.
+        matching question folders found.
       </p>
 
       <p tal:condition="not: result/change">
         <strong tal:content="result/upgraded"></strong>
-        folders would be upgraded.
+        matching question folders would be upgraded.
       </p>
 
       <p tal:condition="result/change">
         <strong tal:content="result/upgraded"></strong>
-        folders upgraded.
+        matching question folders upgraded.
       </p>
 
       <p>
         <strong tal:content="result/already_excluded"></strong>
-        folders already had exclude from navigation set.
+        matching question folders already had exclude from navigation and noindex set.
       </p>
     </div>
 
