@@ -1,39 +1,29 @@
-from eea.climateadapt.interfaces import ICCACountry
-from eea.climateadapt.interfaces import ICCACountry2025
-from zope.interface import noLongerProvides
-from zope.interface import alsoProvides
-from datetime import date
-from plone.app.textfield.value import RichTextValue
-
-from eea.climateadapt.vocabulary import (
-    _sectors,
-    _climateimpacts,
-    _type_of_outputs_tool,
-    _temporality_of_data_tool,
-    european_countries,
-    SUBNATIONAL_REGIONS,
-)
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
-
-import logging
 import csv
 import io
-from datetime import datetime, timedelta
-import pycountry
-import re
 import json
+import logging
+import re
+from datetime import date, datetime, timedelta
 
+import pycountry
 import transaction
+from eea.climateadapt.interfaces import ICCACountry, ICCACountry2025
+from eea.climateadapt.translation.utils import get_site_languages
+from eea.climateadapt.vocabulary import (SUBNATIONAL_REGIONS, _climateimpacts,
+                                         _sectors, _temporality_of_data_tool,
+                                         _type_of_outputs_tool,
+                                         european_countries)
 from plone import api
+from plone.app.textfield.value import RichTextValue
 from plone.base.interfaces import ILanguage
 from plone.protect.interfaces import IDisableCSRFProtection
 from plone.restapi.blocks import visit_blocks
 from plone.restapi.deserializer.utils import path2uid
+from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
-from zope.interface import alsoProvides
+from zope.interface import alsoProvides, noLongerProvides
 from zope.lifecycleevent import modified
-from eea.climateadapt.translation.utils import get_site_languages
 
 logger = logging.getLogger("eea.climateadapt")
 
@@ -262,8 +252,7 @@ class HideMissionSignatoryReportingFolders(BrowserView):
     """Exclude Mission Signatory Reporting folders from navigation."""
 
     signatory_reporting_path = (
-        "en/eu-policy/eu-adaptation-policy/eu-mission-on-adaptation/"
-        "signatory-reporting"
+        "en/eu-policy/eu-adaptation-policy/eu-mission-on-adaptation/signatory-reporting"
     )
 
     def should_change(self):
@@ -976,6 +965,7 @@ class ToolExtendFields:
             self._headers.append(value)
 
         import pdb
+
         # pdb.set_trace()
 
         i_transaction = 0
