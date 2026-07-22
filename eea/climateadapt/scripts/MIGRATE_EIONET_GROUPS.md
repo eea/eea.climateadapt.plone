@@ -13,6 +13,7 @@ Climate-ADAPT is moving away from direct LDAP group mapping for local roles in f
 - **Idempotency**: The script can be run multiple times. If a `local-*` group already has the same roles as the `extranet-*` group on an object, it won't be duplicated.
 - **Dry-run Mode**: Enabled by default, allowing you to see what changes would be made without actually modifying the database.
 - **Iterative Traversal**: Uses a stack-based approach for robustness and to avoid recursion depth issues.
+- **Broken Order Key Resilience**: If a folder has a broken order key (an ID present in the folder ordering but missing from the BTree), the affected child is skipped with a logged error message and the traversal continues. If `objectIds()` itself fails for a folder, the entire folder is skipped with a logged error.
 
 ## How to Run
 
@@ -41,3 +42,4 @@ docker compose exec backend /app/docker-entrypoint.sh bin/migrate_eionet_groups 
 - **Group Prefix**: It looks for principals starting with `extranet-` and maps them to `local-`.
 - **Plone Groups**: It uses `portal_groups` to create the new groups if they don't exist.
 - **Transaction Management**: When running in non-dry-run mode, it commits the transaction at the end.
+- **Child Retrieval Strategy**: Uses `objectIds()` + `_getOb()` instead of `objectValues()` to avoid crashes from `Lazy` sequence iteration when broken order keys are encountered. This allows per-child error handling rather than failing the entire folder.
