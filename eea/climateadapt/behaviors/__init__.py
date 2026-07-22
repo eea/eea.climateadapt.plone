@@ -7,6 +7,7 @@ from .adaptationoption import IAdaptationOption
 from .c3sindicator import IC3sIndicator
 from .casestudy import ICaseStudy
 from .ccaevent import ICcaEvent
+from .extendedtool import IExtendedTool
 from .guidancedocument import IGuidanceDocument
 from .indicator import IIndicator
 from .informationportal import IInformationPortal
@@ -35,6 +36,7 @@ __all__ = [
     IAction,
     IC3sIndicator,
     ICcaEvent,
+    IExtendedTool,
     IGuidanceDocument,
     IIndicator,
     IInformationPortal,

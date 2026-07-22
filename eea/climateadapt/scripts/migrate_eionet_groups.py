@@ -123,19 +123,36 @@ def run(app):
         except Exception as e:
             logger.error(f"Error processing {path}: {e}")
 
-        # Recurse into children if it's folder-like
-        if hasattr(obj, "objectValues"):
+        # Recurse into children if it's folder-like. We use objectIds() + _getOb()
+        # instead of objectValues() because the latter returns a Lazy sequence
+        # that calls _getOb internally. If a folder has a broken order key
+        # (an ID present in the ordering but missing from the BTree), _getOb
+        # raises AttributeError mid-iteration, crashing the entire traversal.
+        # By retrieving each child individually we can skip just the broken
+        # child and continue processing the rest of the folder.
+        if hasattr(obj, "objectIds"):
             try:
-                children = obj.objectValues()
+                child_ids = obj.objectIds()
             except Exception as e:
-                logger.error(f"Error getting children for {path}: {e}")
+                logger.error(
+                    f"Error getting child IDs for {path}: {e}. Skipping folder."
+                )
                 continue
 
-            for child in children:
+            for child_id in child_ids:
                 try:
-                    child_id = child.getId()
+                    child = obj._getOb(child_id)
+                except (AttributeError, KeyError) as e:
+                    logger.error(
+                        f"Broken order key '{child_id}' in {path}: {e}. "
+                        f"Skipping this child."
+                    )
+                    continue
                 except Exception as e:
-                    logger.error(f"Error getting ID for child of {path}: {e}")
+                    logger.error(
+                        f"Error getting child '{child_id}' from {path}: {e}. "
+                        f"Skipping this child."
+                    )
                     continue
 
                 # Filter for content objects: must be Dexterity content or the portal root

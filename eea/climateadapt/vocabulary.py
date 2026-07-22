@@ -367,6 +367,152 @@ _elements_case_study = [
 aceitem_elements_case_study_vocabulary = generic_vocabulary(_elements_case_study)
 alsoProvides(aceitem_elements_case_study_vocabulary, IVocabularyFactory)
 
+# 304613 - Extending Climate ADAPT Tool Content Type
+_intended_user_groups_tool = [
+    ("COMMISSION_SERVICE_AND_OR_AGENCIES", _("Commission services and/or Agencies")),
+    ("TRANSBOUNDARY_NETWORK", _("Transboundary networks")),
+    ("NATIONAL_AUTHORITIES", _("National authorities")),
+    ("SUBNATIONAL_AUTHORITIES", _("Subnational authorities")),
+    ("BUSINESSES_CONSULTANTS", _("Businesses/consultants")),
+    ("RESEASRCHERS_SUPPORTING_POLICY", _("Researchers supporting policy")),
+    ("NGOS", _("NGOs")),
+    ("CITIZENS", _("Citizens")),
+]
+intended_user_groups_tool_vocabulary = generic_vocabulary(
+    _intended_user_groups_tool, sort=False
+)
+alsoProvides(intended_user_groups_tool_vocabulary, IVocabularyFactory)
+
+_place_of_implementation_tool = [
+    ("GLOBAL_LEVEL", _("Global level")),
+    ("EUROPEAN_LEVEL", _("European level")),
+    (
+        "TRANSNATIONAL",
+        _(
+            "Transnational shared coastal, mountain, sea regions -e-g- mediterrenean etc"
+        ),
+    ),
+    ("OUTERMOST_EUROPEAN_REGIONS", _("Outermost European regions")),
+    ("NATIONAL_LEVEL", _("National-level")),
+    ("SUBNATIONAL", _("Subnational")),
+]
+place_of_implementation_tool_vocabulary = generic_vocabulary(
+    _place_of_implementation_tool, sort=False
+)
+alsoProvides(place_of_implementation_tool_vocabulary, IVocabularyFactory)
+
+_type_of_data_tool = [
+    ("OBSERVATIONAL_DATASETS", _("Observational datasets")),
+    ("REANALYSIS_DATASETS", _("Reanalysis datasets")),
+    ("CLIMATE_MODEL_OUTPUTS", _("Climate model outputs")),
+    ("IMPACT_OR_SECTORAL_MODEL_OUTPUTS", _("Impact or sectoral model outputs")),
+    ("SOCIO_ECONOMIC", _("Socio-economic or exposure data")),
+    ("OTHER", _("Other")),
+]
+type_of_data_tool_vocabulary = generic_vocabulary(_type_of_data_tool, sort=False)
+alsoProvides(type_of_data_tool_vocabulary, IVocabularyFactory)
+
+_data_sources_tool = [
+    ("PUBLIC_DATASETS", _("Public datasets from external providers")),
+    ("PROJECT_GENERATED", _("Project-generated or processed datasets")),
+    ("USER_PROVIDED", _("User-provided input data")),
+    ("COMERCIAL_OR_THIRD_PARTY", _("Commercial or third-party data providers")),
+    ("MIXED_SOURCES", _("Mixed sources")),
+]
+data_sources_tool_vocabulary = generic_vocabulary(_data_sources_tool, sort=False)
+alsoProvides(data_sources_tool_vocabulary, IVocabularyFactory)
+
+_license_status_tool = [
+    ("FULLY_OPEN", _("Fully open data")),
+    ("OPEN_DATA", _("Open data with attribution requirements")),
+    ("LICENSED_OR_COMMERCIAL", _("Licensed or commercial data")),
+    ("RESTRICTED", _("Restricted")),
+    ("MIXED", _("Mixed")),
+]
+license_status_tool_vocabulary = generic_vocabulary(_license_status_tool, sort=False)
+alsoProvides(license_status_tool_vocabulary, IVocabularyFactory)
+
+_user_support_provisions_tool = [
+    ("USER_GUIDANCE", _("User guidance / documentation")),
+    ("HELPDESK", _("Helpdesk / contact support")),
+    ("TUTORIALS", _("Tutorials / training material")),
+    ("INTERACTIVE_ASSISTANCE", _("Interactive assistance (chatbot / wizard)")),
+]
+user_support_provisions_tool_vocabulary = generic_vocabulary(
+    _user_support_provisions_tool, sort=False
+)
+alsoProvides(user_support_provisions_tool_vocabulary, IVocabularyFactory)
+
+_tool_validation_use = [
+    ("PEER_REVIEWED_METHODOLOGY", _("Peer-reviewed methodology")),
+    ("CASE_STUDY_VALIDATION", _("Case-study validation")),
+    ("EXPERT_VALIDATION", _("Expert validation / reputable institution")),
+    ("USER_TESTING", _("User testing / pilot testing")),
+]
+tool_validation_use_vocabulary = generic_vocabulary(_tool_validation_use, sort=False)
+alsoProvides(tool_validation_use_vocabulary, IVocabularyFactory)
+
+_number_of_users_tool = [
+    ("HIGH_UPTAKE", _("High uptake")),
+    ("MEDIUM_UPTAKE", _("Medium uptake")),
+    ("LOW_UPTAKE", _("Low uptake")),
+    ("UNKNOWN", _("Unknown")),
+]
+number_of_users_tool_vocabulary = generic_vocabulary(_number_of_users_tool, sort=False)
+alsoProvides(number_of_users_tool_vocabulary, IVocabularyFactory)
+
+_tool_provider = [
+    ("PUBLIC", _("Public organisation")),
+    ("PRIVATE", _("Private organisation")),
+    ("PUBLIC_PRIVATE", _("Public-private partnership")),
+    ("OTHER", _("Other")),
+]
+tool_provider_vocabulary = generic_vocabulary(_tool_provider, sort=False)
+alsoProvides(tool_provider_vocabulary, IVocabularyFactory)
+
+_type_of_outputs_tool = [
+    ("MAPS_AND_GRAPHS", _("Maps and graphs")),
+    ("REPORTS_AND_DECISION_SUPPORT", _("Reports and decision support")),
+    ("DATASETS_AND_INDICATORS", _("Datasets and indicators")),
+    ("NARRATIVES", _("Narratives")),
+    ("BEST_PRACTICE_EXAMPLES", _("Best practice examples")),
+]
+type_of_outputs_tool_vocabulary = generic_vocabulary(_type_of_outputs_tool, sort=False)
+alsoProvides(type_of_outputs_tool_vocabulary, IVocabularyFactory)
+
+_adaptation_support_cycle_step_tool = [
+    ("STEP_1", _("Step 1: Preparing the Ground for Adaptation")),
+    ("STEP_2", _("Step 2: Assessing Climate Change Risks and Vulnerabilities")),
+    ("STEP_3", _("Step 3: Identifying Adaptation Options")),
+    ("STEP_4", _("Step 4: Assessing and Prioritising Adaptation Options")),
+    ("STEP_5", _("Step 5: Implementation")),
+    ("STEP_6", _("Step 6: Monitoring and Evaluation (M&E)")),
+]
+adaptation_support_cycle_step_tool_vocabulary = generic_vocabulary(
+    _adaptation_support_cycle_step_tool, sort=False
+)
+alsoProvides(adaptation_support_cycle_step_tool_vocabulary, IVocabularyFactory)
+
+_temporality_of_data_tool = [
+    ("HISTORYCAL_PAST", _("Historical/past")),
+    ("PRESENT", _("Present")),
+    ("FORWARD_LOOKING", _("Forward-looking")),
+]
+temporality_of_data_tool_vocabulary = generic_vocabulary(
+    _temporality_of_data_tool, sort=False
+)
+alsoProvides(temporality_of_data_tool_vocabulary, IVocabularyFactory)
+
+_accessibility_and_usability_tool = [
+    ("HIGH", _("High")),
+    ("MODERATE", _("Moderate")),
+    ("LOW", _("Low")),
+]
+accessibility_and_usability_tool_vocabulary = generic_vocabulary(
+    _accessibility_and_usability_tool, sort=False
+)
+alsoProvides(accessibility_and_usability_tool_vocabulary, IVocabularyFactory)
+
 # Vocabulary for faceted search "Adaptation elements"
 fac_elements = [
     ("OBSERVATIONS", _("Observations and Scenarios")),

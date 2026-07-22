@@ -25,6 +25,7 @@
   <adapter factory=".serializer.AdaptationOptionSerializer" />
   <adapter factory=".serializer.AceProjectSerializer" />
   <adapter factory=".serializer.CaseStudySerializer" />
+  <adapter factory=".serializer.ExtendedToolSerializer" />
   <!-- <adapter factory=".serializer.OrganisationSerializer" /> -->
   <adapter factory=".serializer.RichttextFieldSerializer" />
 
