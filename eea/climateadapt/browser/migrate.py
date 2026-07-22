@@ -9,10 +9,14 @@ import pycountry
 import transaction
 from eea.climateadapt.interfaces import ICCACountry, ICCACountry2025
 from eea.climateadapt.translation.utils import get_site_languages
-from eea.climateadapt.vocabulary import (SUBNATIONAL_REGIONS, _climateimpacts,
-                                         _sectors, _temporality_of_data_tool,
-                                         _type_of_outputs_tool,
-                                         european_countries)
+from eea.climateadapt.vocabulary import (
+    SUBNATIONAL_REGIONS,
+    _climateimpacts,
+    _sectors,
+    _temporality_of_data_tool,
+    _type_of_outputs_tool,
+    european_countries,
+)
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.base.interfaces import ILanguage
@@ -300,9 +304,7 @@ class HideMissionSignatoryReportingFolders(BrowserView):
             return self._result
 
         root_path = "/".join(root.getPhysicalPath())
-        brains = [
-            brain for brain in self.get_brains() if brain.getPath() != root_path
-        ]
+        brains = [brain for brain in self.get_brains() if brain.getPath() != root_path]
         folders = []
         for brain in brains:
             folder = brain.getObject()
