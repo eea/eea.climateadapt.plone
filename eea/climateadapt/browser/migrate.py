@@ -253,6 +253,123 @@ class ArchiveItems294148(BrowserView):
         return response
 
 
+def is_mission_reporting_question_folder(obj):
+    """Return True for reporting question folders such as Q3.1.1.16."""
+    title = getattr(obj, "title", "") or ""
+    return re.match(r"^Q\d", title) is not None
+
+
+class HideMissionSignatoryReportingFolders(BrowserView):
+    """Exclude Mission Signatory Reporting folders from navigation."""
+
+    signatory_reporting_path = (
+        "en/eu-policy/eu-adaptation-policy/eu-mission-on-adaptation/signatory-reporting"
+    )
+
+    def should_change(self):
+        value = self.request.form.get("change", "")
+        return value.lower() in ("1", "true", "yes", "on")
+
+    def get_root(self):
+        portal = api.portal.get()
+        return portal.unrestrictedTraverse(self.signatory_reporting_path, None)
+
+    def get_brains(self):
+        root = self.get_root()
+        if root is None:
+            return []
+
+        catalog = api.portal.get_tool("portal_catalog")
+        root_path = "/".join(root.getPhysicalPath())
+        return catalog.unrestrictedSearchResults(
+            path={"query": root_path},
+            portal_type="Folder",
+        )
+
+    def result(self):
+        if hasattr(self, "_result"):
+            return self._result
+
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        change = self.should_change()
+        root = self.get_root()
+
+        if root is None:
+            self._result = {
+                "change": change,
+                "root_found": False,
+                "path": self.signatory_reporting_path,
+                "found": 0,
+                "upgraded": 0,
+                "already_excluded": 0,
+            }
+            logger.warning(
+                "Signatory Reporting root not found at %s",
+                self.signatory_reporting_path,
+            )
+            return self._result
+
+        root_path = "/".join(root.getPhysicalPath())
+        brains = [brain for brain in self.get_brains() if brain.getPath() != root_path]
+        folders = []
+        for brain in brains:
+            folder = brain.getObject()
+            if is_mission_reporting_question_folder(folder):
+                folders.append(folder)
+        found = len(folders)
+        upgraded = 0
+        already_excluded = 0
+
+        logger.info(
+            "HideMissionSignatoryReportingFolders found %s question folders under %s. change=%s",
+            found,
+            root.absolute_url(),
+            change,
+        )
+
+        for idx, folder in enumerate(folders, start=1):
+            has_exclude_from_nav = getattr(folder, "exclude_from_nav", False)
+            has_seo_noindex = getattr(folder, "seo_noindex", False)
+
+            if has_exclude_from_nav and has_seo_noindex:
+                already_excluded += 1
+                continue
+
+            if change:
+                folder.exclude_from_nav = True
+                folder.seo_noindex = True
+                folder.reindexObject(idxs=["exclude_from_nav", "seo_noindex"])
+
+                if idx % 100 == 0:
+                    transaction.savepoint()
+
+            upgraded += 1
+
+        if change:
+            transaction.commit()
+
+        self._result = {
+            "change": change,
+            "root_found": True,
+            "path": "/".join(root.getPhysicalPath()),
+            "url": root.absolute_url(),
+            "found": found,
+            "upgraded": upgraded,
+            "already_excluded": already_excluded,
+        }
+
+        logger.info(
+            "HideMissionSignatoryReportingFolders found=%s upgraded=%s "
+            "already_excluded=%s change=%s",
+            found,
+            upgraded,
+            already_excluded,
+            change,
+        )
+        return self._result
+
+
 class ImpactFiltersNew:
     """New impact filters"""
 
