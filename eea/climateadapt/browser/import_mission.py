@@ -17,6 +17,12 @@ from eea.climateadapt.vocabulary import ace_countries
 
 logger = logging.getLogger("eea.climateadapt")
 
+
+def is_mission_reporting_question_title(title):
+    """Return True for reporting question folders such as Q3.1.1.16."""
+    return re.match(r"^Q\d", title or "") is not None
+
+
 _ace_countries = ace_countries + [
     ("MD", "Moldova"),
     ("MK", "North Macedonia"),
@@ -441,6 +447,12 @@ class MissionSigImporter(BrowserView):
                     id=dir_info["id"],
                     title=dir_info["id"],
                 )
+                if is_mission_reporting_question_title(folder_object.title):
+                    folder_object.exclude_from_nav = True
+                    folder_object.seo_noindex = True
+                    folder_object.reindexObject(
+                        idxs=["exclude_from_nav", "seo_noindex"]
+                    )
                 logger.info("Created %s", folder_object.absolute_url())
 
                 for child in dir_info["files"]:
