@@ -255,20 +255,30 @@ def is_mission_reporting_question_folder(obj):
 class HideMissionSignatoryReportingFolders(BrowserView):
     """Exclude Mission Signatory Reporting folders from navigation."""
 
-    signatory_reporting_path = (
-        "en/eu-policy/eu-adaptation-policy/eu-mission-on-adaptation/signatory-reporting"
+    signatory_reporting_path_template = (
+        "{language}/eu-policy/eu-adaptation-policy/"
+        "eu-mission-on-adaptation/signatory-reporting"
     )
 
     def should_change(self):
         value = self.request.form.get("change", "")
         return value.lower() in ("1", "true", "yes", "on")
 
-    def get_root(self):
-        portal = api.portal.get()
-        return portal.unrestrictedTraverse(self.signatory_reporting_path, None)
+    def get_language(self):
+        language = self.request.form.get("language", "en").strip().lower()
+        if not re.match(r"^[a-z]{2}$", language):
+            raise ValueError("language must be a two-letter code")
+        return language
 
-    def get_brains(self):
-        root = self.get_root()
+    def get_signatory_reporting_path(self, language):
+        return self.signatory_reporting_path_template.format(language=language)
+
+    def get_root(self, language):
+        portal = api.portal.get()
+        path = self.get_signatory_reporting_path(language)
+        return portal.unrestrictedTraverse(path, None)
+
+    def get_brains(self, root):
         if root is None:
             return []
 
@@ -286,25 +296,30 @@ class HideMissionSignatoryReportingFolders(BrowserView):
         alsoProvides(self.request, IDisableCSRFProtection)
 
         change = self.should_change()
-        root = self.get_root()
+        language = self.get_language()
+        signatory_reporting_path = self.get_signatory_reporting_path(language)
+        root = self.get_root(language)
 
         if root is None:
             self._result = {
                 "change": change,
+                "language": language,
                 "root_found": False,
-                "path": self.signatory_reporting_path,
+                "path": signatory_reporting_path,
                 "found": 0,
                 "upgraded": 0,
                 "already_excluded": 0,
             }
             logger.warning(
                 "Signatory Reporting root not found at %s",
-                self.signatory_reporting_path,
+                signatory_reporting_path,
             )
             return self._result
 
         root_path = "/".join(root.getPhysicalPath())
-        brains = [brain for brain in self.get_brains() if brain.getPath() != root_path]
+        brains = [
+            brain for brain in self.get_brains(root) if brain.getPath() != root_path
+        ]
         folders = []
         for brain in brains:
             folder = brain.getObject()
@@ -315,9 +330,11 @@ class HideMissionSignatoryReportingFolders(BrowserView):
         already_excluded = 0
 
         logger.info(
-            "HideMissionSignatoryReportingFolders found %s question folders under %s. change=%s",
+            "HideMissionSignatoryReportingFolders found %s question folders "
+            "under %s. language=%s change=%s",
             found,
             root.absolute_url(),
+            language,
             change,
         )
 
@@ -344,6 +361,7 @@ class HideMissionSignatoryReportingFolders(BrowserView):
 
         self._result = {
             "change": change,
+            "language": language,
             "root_found": True,
             "path": "/".join(root.getPhysicalPath()),
             "url": root.absolute_url(),
@@ -354,10 +372,11 @@ class HideMissionSignatoryReportingFolders(BrowserView):
 
         logger.info(
             "HideMissionSignatoryReportingFolders found=%s upgraded=%s "
-            "already_excluded=%s change=%s",
+            "already_excluded=%s language=%s change=%s",
             found,
             upgraded,
             already_excluded,
+            language,
             change,
         )
         return self._result
