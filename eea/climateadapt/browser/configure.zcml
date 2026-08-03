@@ -209,6 +209,13 @@
   />
 
   <browser:page
+    name="countPortalTypes"
+    class=".misc.CountPortalTypes"
+    template="pt/misc_portal_types.pt"
+    permission="zope2.View"
+  />
+
+  <browser:page
     name="countries-metadata-extract"
     for="*"
     class=".countries.CountriesMetadataExtract"

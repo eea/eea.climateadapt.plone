@@ -257,6 +257,53 @@ class FixCheckout(BrowserView):
         return "Fixed"
 
 
+class CountPortalTypes(BrowserView):
+    """Count portal types.
+    """
+
+    def list(self):
+        import pdb
+        # pdb.set_trace()
+
+        from collections import defaultdict, Counter
+        from plone import api
+
+        inputPath = self.request.form.get("path", None)
+        pdb.set_trace()
+
+        # portal = api.portal.get()
+        # catalog = portal.portal_catalog
+
+        # stats = defaultdict(Counter)
+
+        catalog = self.context.portal_catalog
+        pathSearch = "/cca/en" + inputPath if len(inputPath) > 2 else "/cca/en"
+        brains = catalog.unrestrictedSearchResults(path=pathSearch)
+
+        stats = defaultdict(lambda: {
+            "count": 0,
+            "states": defaultdict(int),
+        })
+        for brain in brains:
+            # pdb.set_trace()
+            portal_type = brain.portal_type
+            state = getattr(brain, "review_state", None) or "no_workflow"
+
+            stats[portal_type]["count"] += 1
+            stats[portal_type]["states"][state] += 1
+
+        result = []
+        for portal_type, data in sorted(stats.items()):
+            result.append({
+                "portalType": portal_type,
+                "count": data["count"],
+                "states": dict(data["states"]),
+            })
+
+        # pdb.set_trace()
+        return result
+
+
 class ISimplifiedResourceRegistriesView(Interface):
     """A view with simplified resource registries"""
 
