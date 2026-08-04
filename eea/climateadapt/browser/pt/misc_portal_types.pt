@@ -1,0 +1,35 @@
+<tal:block tal:define="results view/list">
+<form method="get">
+    <label>Path (/cca/en/...):</label>
+    <input type="text"
+           name="path"
+           tal:attributes="value results/path" />
+
+    <input type="submit" value="Search" />
+</form>
+<hr>
+<h2>Portal Types in <span tal:content="results/pathSearch">Path</span></h2>
+<table class="listing">
+  <thead>
+    <tr>
+      <th>Portal type</th>
+      <th>Total</th>
+      <th>States</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr tal:repeat="item results/data">
+      <td tal:content="item/portalType">Document</td>
+      <td tal:content="item/count">23</td>
+      <td>
+        <ul>
+          <li tal:repeat="state item/states/items">
+            <span tal:content="python:state[0]">published</span>:
+            <span tal:content="python:state[1]">18</span>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</tal:block>
