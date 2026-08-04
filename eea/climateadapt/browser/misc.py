@@ -261,22 +261,17 @@ class CountPortalTypes(BrowserView):
     """Count portal types."""
 
     def list(self):
-        import pdb
-        # pdb.set_trace()
-
-        from collections import defaultdict, Counter
+        from collections import defaultdict
         from plone import api
 
-        inputPath = self.request.form.get("path", None)
-        pdb.set_trace()
+        inputPath = self.request.form.get("path", "")
+        
+        if inputPath and not inputPath.startswith('/'):
+            inputPath = '/' + inputPath
 
-        # portal = api.portal.get()
-        # catalog = portal.portal_catalog
-
-        # stats = defaultdict(Counter)
-
+        pathSearch = "/cca/en" + inputPath if inputPath else "/cca/en"
         catalog = self.context.portal_catalog
-        pathSearch = "/cca/en" + inputPath if len(inputPath) > 2 else "/cca/en"
+        
         brains = catalog.unrestrictedSearchResults(path=pathSearch)
 
         stats = defaultdict(
@@ -286,7 +281,6 @@ class CountPortalTypes(BrowserView):
             }
         )
         for brain in brains:
-            # pdb.set_trace()
             portal_type = brain.portal_type
             state = getattr(brain, "review_state", None) or "no_workflow"
 
@@ -303,7 +297,69 @@ class CountPortalTypes(BrowserView):
                 }
             )
 
-        # pdb.set_trace()
+        return {
+            'data': result,
+            'path': inputPath,
+            'pathSearch': pathSearch
+        }
+
+
+class FindCountAPortalType(BrowserView):
+    """Find and count nr apearance for a portal types.
+    """
+
+    def list(self):
+        from collections import defaultdict
+        from plone import api
+
+        inputPath = self.request.form.get("path", "")
+        portal_type = self.request.form.get("portal_type", "-Select-")
+
+        portal_types_tool = api.portal.get_tool("portal_types")
+        all_portal_types = sorted([pt.id for pt in portal_types_tool.objectValues()])
+
+        mainPathSearch = "/cca/en" + inputPath if inputPath and len(inputPath) > 2 else "/cca/en"
+        catalog = self.context.portal_catalog
+        
+        try:
+            folder = api.portal.get().unrestrictedTraverse(mainPathSearch.lstrip('/'))
+            folders = [
+                obj for obj in folder.objectValues()
+                if getattr(obj, "portal_type", None) == "Folder"
+            ]
+        except KeyError:
+            folders = []
+
+        result = {
+            'data': [], 
+            'portalType': portal_type, 
+            'path': inputPath, 
+            'mainPathSearch': mainPathSearch,
+            'all_portal_types': all_portal_types
+        }
+
+        if portal_type and portal_type != "-Select-":
+            for fld in folders:
+                path_search = "/".join(fld.getPhysicalPath())
+                brains = catalog.unrestrictedSearchResults(
+                    path=path_search, portal_type=portal_type)
+
+                stats = {
+                    "count": 0,
+                    "states": defaultdict(int),
+                }
+                for brain in brains:
+                    state = getattr(brain, "review_state", None) or "no_workflow"
+
+                    stats["count"] += 1
+                    stats["states"][state] += 1
+
+                result['data'].append({
+                    "path": path_search,
+                    "count": stats["count"],
+                    "states": dict(stats["states"]),
+                })
+
         return result
 
 
