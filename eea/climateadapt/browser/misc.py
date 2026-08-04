@@ -258,8 +258,7 @@ class FixCheckout(BrowserView):
 
 
 class CountPortalTypes(BrowserView):
-    """Count portal types.
-    """
+    """Count portal types."""
 
     def list(self):
         import pdb
@@ -280,10 +279,12 @@ class CountPortalTypes(BrowserView):
         pathSearch = "/cca/en" + inputPath if len(inputPath) > 2 else "/cca/en"
         brains = catalog.unrestrictedSearchResults(path=pathSearch)
 
-        stats = defaultdict(lambda: {
-            "count": 0,
-            "states": defaultdict(int),
-        })
+        stats = defaultdict(
+            lambda: {
+                "count": 0,
+                "states": defaultdict(int),
+            }
+        )
         for brain in brains:
             # pdb.set_trace()
             portal_type = brain.portal_type
@@ -294,11 +295,13 @@ class CountPortalTypes(BrowserView):
 
         result = []
         for portal_type, data in sorted(stats.items()):
-            result.append({
-                "portalType": portal_type,
-                "count": data["count"],
-                "states": dict(data["states"]),
-            })
+            result.append(
+                {
+                    "portalType": portal_type,
+                    "count": data["count"],
+                    "states": dict(data["states"]),
+                }
+            )
 
         # pdb.set_trace()
         return result
