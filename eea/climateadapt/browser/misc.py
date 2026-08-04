@@ -265,13 +265,13 @@ class CountPortalTypes(BrowserView):
         from plone import api
 
         inputPath = self.request.form.get("path", "")
-        
-        if inputPath and not inputPath.startswith('/'):
-            inputPath = '/' + inputPath
+
+        if inputPath and not inputPath.startswith("/"):
+            inputPath = "/" + inputPath
 
         pathSearch = "/cca/en" + inputPath if inputPath else "/cca/en"
         catalog = self.context.portal_catalog
-        
+
         brains = catalog.unrestrictedSearchResults(path=pathSearch)
 
         stats = defaultdict(
@@ -297,16 +297,11 @@ class CountPortalTypes(BrowserView):
                 }
             )
 
-        return {
-            'data': result,
-            'path': inputPath,
-            'pathSearch': pathSearch
-        }
+        return {"data": result, "path": inputPath, "pathSearch": pathSearch}
 
 
 class FindCountAPortalType(BrowserView):
-    """Find and count nr apearance for a portal types.
-    """
+    """Find and count nr apearance for a portal types."""
 
     def list(self):
         from collections import defaultdict
@@ -318,31 +313,35 @@ class FindCountAPortalType(BrowserView):
         portal_types_tool = api.portal.get_tool("portal_types")
         all_portal_types = sorted([pt.id for pt in portal_types_tool.objectValues()])
 
-        mainPathSearch = "/cca/en" + inputPath if inputPath and len(inputPath) > 2 else "/cca/en"
+        mainPathSearch = (
+            "/cca/en" + inputPath if inputPath and len(inputPath) > 2 else "/cca/en"
+        )
         catalog = self.context.portal_catalog
-        
+
         try:
-            folder = api.portal.get().unrestrictedTraverse(mainPathSearch.lstrip('/'))
+            folder = api.portal.get().unrestrictedTraverse(mainPathSearch.lstrip("/"))
             folders = [
-                obj for obj in folder.objectValues()
+                obj
+                for obj in folder.objectValues()
                 if getattr(obj, "portal_type", None) == "Folder"
             ]
         except KeyError:
             folders = []
 
         result = {
-            'data': [], 
-            'portalType': portal_type, 
-            'path': inputPath, 
-            'mainPathSearch': mainPathSearch,
-            'all_portal_types': all_portal_types
+            "data": [],
+            "portalType": portal_type,
+            "path": inputPath,
+            "mainPathSearch": mainPathSearch,
+            "all_portal_types": all_portal_types,
         }
 
         if portal_type and portal_type != "-Select-":
             for fld in folders:
                 path_search = "/".join(fld.getPhysicalPath())
                 brains = catalog.unrestrictedSearchResults(
-                    path=path_search, portal_type=portal_type)
+                    path=path_search, portal_type=portal_type
+                )
 
                 stats = {
                     "count": 0,
@@ -354,11 +353,13 @@ class FindCountAPortalType(BrowserView):
                     stats["count"] += 1
                     stats["states"][state] += 1
 
-                result['data'].append({
-                    "path": path_search,
-                    "count": stats["count"],
-                    "states": dict(stats["states"]),
-                })
+                result["data"].append(
+                    {
+                        "path": path_search,
+                        "count": stats["count"],
+                        "states": dict(stats["states"]),
+                    }
+                )
 
         return result
 
