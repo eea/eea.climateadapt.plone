@@ -143,6 +143,14 @@
   />
 
   <browser:page
+    name="migrate-moldova-ukraine-geocoverage"
+    for="*"
+    template="pt/migrate_moldova_ukraine_geocoverage.pt"
+    class=".migrate.MigrateMoldovaUkraineGeoCoverage"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
     name="hide-mission-signatory-reporting-folders"
     for="*"
     template="pt/hide_mission_signatory_reporting_folders.pt"
@@ -205,6 +213,20 @@
     name="country-profile-2026"
     for="eea.climateadapt.interfaces.ICCACountry2026"
     class=".countries2026.CountryProfileJson"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    name="countPortalTypes"
+    class=".misc.CountPortalTypes"
+    template="pt/misc_portal_types.pt"
+    permission="zope2.View"
+  />
+
+  <browser:page
+    name="findCountPortalTypes"
+    class=".misc.FindCountAPortalType"
+    template="pt/misc_count_a_portal_types.pt"
     permission="zope2.View"
   />
 
