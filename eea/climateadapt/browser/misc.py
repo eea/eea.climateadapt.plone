@@ -366,7 +366,6 @@ class FindCountAPortalType(BrowserView):
 
 
 class DownloadZipView(BrowserView):
-
     def _add_to_zip(self, zip_file, context, current_path):
         for item_id, item in context.objectItems():
             zip_path = f"{current_path}{item_id}"
@@ -375,12 +374,11 @@ class DownloadZipView(BrowserView):
             #     import pdb
             #     pdb.set_trace()
 
-            print('DownloadZipView: '+zip_path)
+            print("DownloadZipView: " + zip_path)
             # If it's a folder-like object, recurse
             # if getattr(item, "isPrincipiaFolderish", False) or hasattr(item, "objectItems"):
             if getattr(item, "isPrincipiaFolderish", False):
-
-                print('   ITEM FOLDER')
+                print("   ITEM FOLDER")
                 self._add_to_zip(zip_file, item, f"{zip_path}/")
                 # Removed 'continue' here so that folderish items (like Plone 6 Pages/Links)
                 # are also exported/serialized as files (e.g. .json) next to their folder.
@@ -389,7 +387,7 @@ class DownloadZipView(BrowserView):
             filename = zip_path
 
             if hasattr(item, "file") and item.file is not None:
-                print('   ITEM FILE')
+                print("   ITEM FILE")
                 if hasattr(item.file, "data"):
                     data = item.file.data
                 elif hasattr(item.file, "open"):
@@ -398,7 +396,7 @@ class DownloadZipView(BrowserView):
                 if getattr(item.file, "filename", None):
                     filename = f"{current_path}{item.file.filename}"
             elif hasattr(item, "image") and item.image is not None:
-                print('   ITEM IMAGE')
+                print("   ITEM IMAGE")
                 if hasattr(item.image, "data"):
                     data = item.image.data
                 elif hasattr(item.image, "open"):
@@ -408,7 +406,7 @@ class DownloadZipView(BrowserView):
                     filename = f"{current_path}{item.image.filename}"
             elif hasattr(item, "getFile"):
                 try:
-                    print('   ITEM FILE')
+                    print("   ITEM FILE")
                     file_obj = item.getFile()
                     if file_obj is not None:
                         if hasattr(file_obj, "data"):
@@ -423,14 +421,15 @@ class DownloadZipView(BrowserView):
             if data is None:
                 # Serialize other content types to JSON using plone.restapi
                 try:
-                    print('   START Serialize item: '+zip_path)
+                    print("   START Serialize item: " + zip_path)
                     from plone.restapi.interfaces import ISerializeToJson
                     from zope.component import getMultiAdapter
+
                     serializer = getMultiAdapter((item, self.request), ISerializeToJson)
                     item_data = serializer()
                     data = json.dumps(item_data, indent=2)
                     filename = f"{zip_path}.json"
-                    print('   END Serialize item: '+zip_path)
+                    print("   END Serialize item: " + zip_path)
                 except Exception as e:
                     # Fallback if serialization fails
                     data = f"Could not serialize {item_id}: {e}"
@@ -471,10 +470,9 @@ class DownloadZipView(BrowserView):
 
 
 class UploadZipView(BrowserView):
-
     def __call__(self):
-        if self.request.method == 'GET':
-            self.request.response.setHeader('Content-Type', 'text/html; charset=utf-8')
+        if self.request.method == "GET":
+            self.request.response.setHeader("Content-Type", "text/html; charset=utf-8")
             return """
             <html>
             <head>
@@ -523,14 +521,14 @@ class UploadZipView(BrowserView):
                     if zip_path == "empty.txt":
                         continue
 
-                    is_dir = zip_path.endswith('/')
-                    clean_path = zip_path.rstrip('/')
-                    parts = clean_path.split('/')
+                    is_dir = zip_path.endswith("/")
+                    clean_path = zip_path.rstrip("/")
+                    parts = clean_path.split("/")
 
                     # If any parent was skipped, we skip this too
                     parent_skipped = False
                     for i in range(1, len(parts)):
-                        if '/'.join(parts[:i]) in skipped_paths:
+                        if "/".join(parts[:i]) in skipped_paths:
                             parent_skipped = True
                             break
                     if parent_skipped:
@@ -546,15 +544,21 @@ class UploadZipView(BrowserView):
                             break
 
                     if warning_msg:
-                        results.append({"path": zip_path, "status": "WARNING",
-                                       "message": warning_msg, "class": "warning"})
+                        results.append(
+                            {
+                                "path": zip_path,
+                                "status": "WARNING",
+                                "message": warning_msg,
+                                "class": "warning",
+                            }
+                        )
                         continue
 
                     basename = parts[-1]
                     item_id = basename
 
                     is_json = False
-                    if not is_dir and basename.endswith('.json'):
+                    if not is_dir and basename.endswith(".json"):
                         item_id = basename[:-5]
                         is_json = True
 
@@ -562,59 +566,132 @@ class UploadZipView(BrowserView):
                         skipped_paths.add(clean_path)
                         if is_json:
                             skipped_paths.add(clean_path[:-5])
-                        results.append({"path": zip_path, "status": "SKIP",
-                                       "message": f"Item '{item_id}' already exists.", "class": "skip"})
+                        results.append(
+                            {
+                                "path": zip_path,
+                                "status": "SKIP",
+                                "message": f"Item '{item_id}' already exists.",
+                                "class": "skip",
+                            }
+                        )
                         continue
 
                     try:
                         if is_dir:
-                            api.content.create(type='Folder', title=item_id, id=item_id, container=parent_container)
-                            results.append({"path": zip_path, "status": "YES",
-                                           "message": "Created folder.", "class": "yes"})
+                            api.content.create(
+                                type="Folder",
+                                title=item_id,
+                                id=item_id,
+                                container=parent_container,
+                            )
+                            results.append(
+                                {
+                                    "path": zip_path,
+                                    "status": "YES",
+                                    "message": "Created folder.",
+                                    "class": "yes",
+                                }
+                            )
                         elif is_json:
                             file_data = zf.read(zip_path)
                             json_data = json.loads(file_data)
 
-                            portal_type = json_data.get('@type')
+                            portal_type = json_data.get("@type")
                             if not portal_type:
-                                results.append({"path": zip_path, "status": "WARNING",
-                                               "message": "Missing @type in JSON.", "class": "warning"})
+                                results.append(
+                                    {
+                                        "path": zip_path,
+                                        "status": "WARNING",
+                                        "message": "Missing @type in JSON.",
+                                        "class": "warning",
+                                    }
+                                )
                                 continue
 
-                            obj = api.content.create(type=portal_type, title=json_data.get(
-                                'title', item_id), id=item_id, container=parent_container)
+                            obj = api.content.create(
+                                type=portal_type,
+                                title=json_data.get("title", item_id),
+                                id=item_id,
+                                container=parent_container,
+                            )
 
                             try:
-                                deserializer = getMultiAdapter((obj, self.request), IDeserializeFromJson)
+                                deserializer = getMultiAdapter(
+                                    (obj, self.request), IDeserializeFromJson
+                                )
                                 deserializer(validate_all=False, data=json_data)
-                                results.append({"path": zip_path, "status": "YES",
-                                               "message": f"Created {portal_type}.", "class": "yes"})
+                                results.append(
+                                    {
+                                        "path": zip_path,
+                                        "status": "YES",
+                                        "message": f"Created {portal_type}.",
+                                        "class": "yes",
+                                    }
+                                )
                             except Exception as e:
-                                results.append({"path": zip_path, "status": "WARNING",
-                                               "message": f"Deserialization error: {e}", "class": "warning"})
+                                results.append(
+                                    {
+                                        "path": zip_path,
+                                        "status": "WARNING",
+                                        "message": f"Deserialization error: {e}",
+                                        "class": "warning",
+                                    }
+                                )
                         else:
                             file_data = zf.read(zip_path)
                             mt, _ = mimetypes.guess_type(basename)
-                            if mt and mt.startswith('image/'):
-                                obj = api.content.create(type='Image', title=item_id,
-                                                         id=item_id, container=parent_container)
-                                obj.image = NamedBlobImage(data=file_data, filename=basename)
-                                results.append({"path": zip_path, "status": "YES",
-                                               "message": "Created Image.", "class": "yes"})
+                            if mt and mt.startswith("image/"):
+                                obj = api.content.create(
+                                    type="Image",
+                                    title=item_id,
+                                    id=item_id,
+                                    container=parent_container,
+                                )
+                                obj.image = NamedBlobImage(
+                                    data=file_data, filename=basename
+                                )
+                                results.append(
+                                    {
+                                        "path": zip_path,
+                                        "status": "YES",
+                                        "message": "Created Image.",
+                                        "class": "yes",
+                                    }
+                                )
                             else:
-                                obj = api.content.create(type='File', title=item_id,
-                                                         id=item_id, container=parent_container)
-                                obj.file = NamedBlobFile(data=file_data, filename=basename)
-                                results.append({"path": zip_path, "status": "YES",
-                                               "message": "Created File.", "class": "yes"})
+                                obj = api.content.create(
+                                    type="File",
+                                    title=item_id,
+                                    id=item_id,
+                                    container=parent_container,
+                                )
+                                obj.file = NamedBlobFile(
+                                    data=file_data, filename=basename
+                                )
+                                results.append(
+                                    {
+                                        "path": zip_path,
+                                        "status": "YES",
+                                        "message": "Created File.",
+                                        "class": "yes",
+                                    }
+                                )
                     except Exception as e:
-                        results.append({"path": zip_path, "status": "WARNING", "message": str(e), "class": "warning"})
+                        results.append(
+                            {
+                                "path": zip_path,
+                                "status": "WARNING",
+                                "message": str(e),
+                                "class": "warning",
+                            }
+                        )
 
         except Exception as e:
             return f"Error processing zip: {e}"
 
-        self.request.response.setHeader('Content-Type', 'text/html; charset=utf-8')
-        html = ["""
+        self.request.response.setHeader("Content-Type", "text/html; charset=utf-8")
+        html = [
+            """
         <html>
         <head>
           <title>Upload Results</title>
@@ -632,13 +709,17 @@ class UploadZipView(BrowserView):
           <h2>Upload Results</h2>
           <table>
             <tr><th>Status</th><th>Path</th><th>Message</th></tr>
-        """]
+        """
+        ]
         for r in results:
             html.append(
-                f"<tr><td class='{r.get('class', '')}'>{r['status']}</td><td>{r['path']}</td><td>{r['message']}</td></tr>")
-        html.append("</table><br/><a href='javascript:history.back()'>Inapoi</a></body></html>")
+                f"<tr><td class='{r.get('class', '')}'>{r['status']}</td><td>{r['path']}</td><td>{r['message']}</td></tr>"
+            )
+        html.append(
+            "</table><br/><a href='javascript:history.back()'>Inapoi</a></body></html>"
+        )
 
-        self.request.response.setHeader('Content-Type', 'text/html; charset=utf-8')
+        self.request.response.setHeader("Content-Type", "text/html; charset=utf-8")
         return "".join(html)
 
 
