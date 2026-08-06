@@ -231,6 +231,20 @@
   />
 
   <browser:page
+    name="download-zip"
+    for="Products.CMFCore.interfaces.IFolderish"
+    permission="zope2.View"
+    class=".misc.DownloadZipView"
+    />
+
+  <browser:page
+    name="upload-zip"
+    for="Products.CMFCore.interfaces.IFolderish"
+    permission="zope2.View"
+    class=".misc.UploadZipView"
+    />
+
+  <browser:page
     name="countries-metadata-extract"
     for="*"
     class=".countries.CountriesMetadataExtract"
