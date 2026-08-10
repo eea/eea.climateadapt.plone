@@ -17,6 +17,18 @@ from eea.climateadapt.vocabulary import (
     _type_of_outputs_tool,
     european_countries,
 )
+from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+
+import logging
+import csv
+import io
+import json
+from datetime import datetime, timedelta
+import pycountry
+import re
+import json
+
+import transaction
 from plone import api
 from plone.app.textfield.value import RichTextValue
 from plone.base.interfaces import ILanguage
@@ -1254,3 +1266,106 @@ class MigrateAdaptationOption(BrowserView):
         msg = f"Updated {count} out of {total} AdaptationOption items show_related_resources field"
         logger.info(msg)
         return msg
+
+
+class MigrateMoldovaUkraineGeoCoverage(BrowserView):
+    """Migrate Moldova and Ukraine geographical coverage."""
+
+    macro_region = "TRANS_MACRO_DANUBE"
+    countries = ("MD", "UA")
+
+    def should_change(self):
+        value = self.request.form.get("change", "")
+        return value.lower() in ("1", "true", "yes", "on")
+
+    def get_brains(self):
+        catalog = api.portal.get_tool("portal_catalog")
+        return catalog.unrestrictedSearchResults(macro_regions=self.macro_region)
+
+    def update_geochars(self, obj):
+        raw_geochars = getattr(obj, "geochars", None)
+        if not raw_geochars:
+            return None, "Missing geochars"
+
+        try:
+            geochars = json.loads(raw_geochars)
+        except Exception as error:
+            return None, "Invalid geochars: {}".format(error)
+
+        geo_elements = geochars.get("geoElements", {})
+        macrotrans = geo_elements.get("macrotrans") or []
+
+        if self.macro_region not in macrotrans:
+            return None, "Danube Region not found in geochars"
+
+        current_countries = geo_elements.get("countries") or []
+        missing_countries = [
+            country for country in self.countries if country not in current_countries
+        ]
+
+        if not missing_countries:
+            return None, "Already has Moldova and Ukraine"
+
+        geo_elements["countries"] = current_countries + missing_countries
+        geochars["geoElements"] = geo_elements
+
+        return json.dumps(geochars), ""
+
+    def list(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        change = self.should_change()
+        response = []
+        changed = 0
+
+        brains = self.get_brains()
+        total = len(brains)
+
+        logger.info(
+            "MigrateMoldovaUkraineGeoCoverage found %s Danube Region items. change=%s",
+            total,
+            change,
+        )
+
+        for idx, brain in enumerate(brains, start=1):
+            obj = brain.getObject()
+            updated_geochars, error = self.update_geochars(obj)
+
+            if not updated_geochars:
+                if error and "Danube Region not found" not in error:
+                    logger.info("Skipped %s: %s", brain.getURL(), error)
+                continue
+
+            old_geochars = getattr(obj, "geochars", "")
+
+            if change:
+                obj.geochars = updated_geochars
+                obj._p_changed = True
+                obj.reindexObject()
+                changed += 1
+
+                if idx % 100 == 0:
+                    transaction.savepoint()
+
+            response.append(
+                {
+                    "nr": len(response) + 1,
+                    "title": obj.title,
+                    "url": brain.getURL(),
+                    "portal_type": brain.portal_type,
+                    "old_geochars": old_geochars,
+                    "new_geochars": updated_geochars,
+                    "changed": "Y" if change else "N",
+                }
+            )
+
+        if change:
+            transaction.commit()
+
+        logger.info(
+            "MigrateMoldovaUkraineGeoCoverage %s %s out of %s Danube Region items",
+            "changed" if change else "would change",
+            changed if change else len(response),
+            total,
+        )
+
+        return response
