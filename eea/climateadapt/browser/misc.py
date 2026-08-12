@@ -365,6 +365,67 @@ class FindCountAPortalType(BrowserView):
         return result
 
 
+class DeleteAllPortalTypes(BrowserView):
+    """Delete all items for a selected portal type."""
+
+    def list(self):
+        from plone import api
+
+        inputPath = self.request.form.get("path", "")
+        portal_type = self.request.form.get("portal_type", "-Select-")
+        confirm = self.request.form.get("confirm", "")
+
+        portal_types_tool = api.portal.get_tool("portal_types")
+        all_portal_types = sorted([pt.id for pt in portal_types_tool.objectValues()])
+        # limit just for mission content types
+        all_portal_types = [item for item in all_portal_types if "mission" in item]
+
+        mainPathSearch = (
+            "/cca/en" + inputPath if inputPath and len(inputPath) > 2 else "/cca/en"
+        )
+        catalog = self.context.portal_catalog
+
+        result = {
+            "data": [],
+            "deleted_count": 0,
+            "portalType": portal_type,
+            "path": inputPath,
+            "mainPathSearch": mainPathSearch,
+            "all_portal_types": all_portal_types,
+            "confirmed": confirm == "yes",
+        }
+
+        if portal_type and portal_type != "-Select-" and confirm == "yes":
+            brains = catalog.unrestrictedSearchResults(
+                path=mainPathSearch, portal_type=portal_type
+            )
+
+            objects_to_delete = []
+            for brain in brains:
+                obj = brain.getObject()
+                if obj:
+                    objects_to_delete.append(obj)
+
+            # Delete the deepest items first to avoid deleting a parent and then failing on the child
+            objects_to_delete.sort(key=lambda o: len(o.getPhysicalPath()), reverse=True)
+
+            for obj in objects_to_delete:
+                path = "/".join(obj.getPhysicalPath())
+
+                # Exclude the base folder itself from deletion
+                if path == mainPathSearch:
+                    continue
+
+                try:
+                    api.content.delete(obj=obj)
+                    result["data"].append(path)
+                    result["deleted_count"] += 1
+                except Exception as e:
+                    result["data"].append(f"{path} (Error: {e})")
+
+        return result
+
+
 class DownloadZipView(BrowserView):
     def _add_to_zip(self, zip_file, context, current_path):
         for item_id, item in context.objectItems():
