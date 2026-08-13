@@ -64,6 +64,8 @@ def get_geographic(item, result={}):
         response["sub_nationals"] = [
             SUBNATIONAL_REGIONS.get(x, x) for x in data["geoElements"]["subnational"]
         ]
+    if "city" in data["geoElements"] and data["geoElements"]["city"] not in (None, ""):
+        response["city"] = data["geoElements"]["city"]
 
     if len(response):
         result["geographic"] = response
