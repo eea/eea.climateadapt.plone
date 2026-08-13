@@ -1,0 +1,41 @@
+<html>
+<head>
+  <title>Upload ZIP</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .yes { color: green; font-weight: bold; }
+    .skip { color: gray; }
+    .warning { color: orange; font-weight: bold; }
+  </style>
+</head>
+<body tal:define="data view/process">
+  <tal:block condition="not:data/is_post">
+      <h2>Upload ZIP Archive</h2>
+      <p>Selectati fisierul ZIP pentru a recrea structura. Obiectele existente vor fi ignorate (SKIP).</p>
+      <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="zip_file" accept=".zip" required="required" />
+        <button type="submit">Upload</button>
+      </form>
+  </tal:block>
+
+  <tal:block condition="data/is_post">
+      <tal:error condition="data/error | nothing">
+          <p tal:content="data/error"></p>
+      </tal:error>
+      <tal:results condition="not:data/error | nothing">
+          <h2>Upload Results</h2>
+          <table>
+            <tr><th>Status</th><th>Path</th><th>Message</th></tr>
+            <tr tal:repeat="r data/results">
+                <td tal:attributes="class r/class" tal:content="r/status"></td>
+                <td tal:content="r/path"></td>
+                <td tal:content="r/message"></td>
+            </tr>
+          </table><br/><a href='javascript:history.back()'>Back</a>
+      </tal:results>
+  </tal:block>
+</body>
+</html>
