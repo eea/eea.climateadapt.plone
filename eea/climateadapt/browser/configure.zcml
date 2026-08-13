@@ -242,6 +242,7 @@
     for="Products.CMFCore.interfaces.IFolderish"
     permission="zope2.View"
     class=".misc.UploadZipView"
+    template="pt/misc_upload_zip.pt"
     />
 
   <browser:page
