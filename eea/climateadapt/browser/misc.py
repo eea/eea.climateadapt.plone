@@ -531,37 +531,13 @@ class DownloadZipView(BrowserView):
 
 
 class UploadZipView(BrowserView):
-    def __call__(self):
+    def process(self):
         if self.request.method == "GET":
-            self.request.response.setHeader("Content-Type", "text/html; charset=utf-8")
-            return """
-            <html>
-            <head>
-              <title>Upload ZIP</title>
-              <style>
-                body { font-family: sans-serif; margin: 40px; }
-                table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-                th { background-color: #f2f2f2; }
-                .yes { color: green; font-weight: bold; }
-                .skip { color: gray; }
-                .warning { color: orange; font-weight: bold; }
-              </style>
-            </head>
-            <body>
-              <h2>Upload ZIP Archive</h2>
-              <p>Selectati fisierul ZIP pentru a recrea structura. Obiectele existente vor fi ignorate (SKIP).</p>
-              <form method="POST" enctype="multipart/form-data">
-                <input type="file" name="zip_file" accept=".zip" required />
-                <button type="submit">Upload</button>
-              </form>
-            </body>
-            </html>
-            """
+            return {"is_post": False}
 
         zip_file = self.request.form.get("zip_file")
         if not zip_file:
-            return "No zip file provided."
+            return {"is_post": True, "error": "No zip file provided."}
 
         results = []
 
@@ -748,40 +724,9 @@ class UploadZipView(BrowserView):
                         )
 
         except Exception as e:
-            return f"Error processing zip: {e}"
+            return {"is_post": True, "error": f"Error processing zip: {e}"}
 
-        self.request.response.setHeader("Content-Type", "text/html; charset=utf-8")
-        html = [
-            """
-        <html>
-        <head>
-          <title>Upload Results</title>
-          <style>
-            body { font-family: sans-serif; margin: 40px; }
-            table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-            th { background-color: #f2f2f2; }
-            .yes { color: green; font-weight: bold; }
-            .skip { color: gray; }
-            .warning { color: orange; font-weight: bold; }
-          </style>
-        </head>
-        <body>
-          <h2>Upload Results</h2>
-          <table>
-            <tr><th>Status</th><th>Path</th><th>Message</th></tr>
-        """
-        ]
-        for r in results:
-            html.append(
-                f"<tr><td class='{r.get('class', '')}'>{r['status']}</td><td>{r['path']}</td><td>{r['message']}</td></tr>"
-            )
-        html.append(
-            "</table><br/><a href='javascript:history.back()'>Inapoi</a></body></html>"
-        )
-
-        self.request.response.setHeader("Content-Type", "text/html; charset=utf-8")
-        return "".join(html)
+        return {"is_post": True, "results": results}
 
 
 class ISimplifiedResourceRegistriesView(Interface):

@@ -321,6 +321,7 @@ class AceItemFormExtender(FormExtender):
 class IndicatorFormExtender(FormExtender):
     def update(self):
         self.move("publication_date", before="map_graphs")
+        self.move("visualizations", after="map_graphs_full_width")
         self.remove("IBlocks.blocks")
         self.remove("IBlocks.blocks_layout")
 
