@@ -31,6 +31,8 @@ class IC3sIndicator(IIndicator):
     directives.omitted(IAddForm, "other_contributor")
     directives.omitted(IEditForm, "map_graphs")
     directives.omitted(IAddForm, "map_graphs")
+    directives.omitted(IEditForm, "visualizations")
+    directives.omitted(IAddForm, "visualizations")
     # directives.omitted(IEditForm, "publication_date")
     # directives.omitted(IAddForm, "publication_date")
 
