@@ -220,34 +220,34 @@
     name="countPortalTypes"
     class=".misc.CountPortalTypes"
     template="pt/misc_portal_types.pt"
-    permission="zope2.View"
+    permission="cmf.ManagePortal"
   />
 
   <browser:page
     name="findCountPortalTypes"
     class=".misc.FindCountAPortalType"
     template="pt/misc_count_a_portal_types.pt"
-    permission="zope2.View"
+    permission="cmf.ManagePortal"
   />
 
   <browser:page
     name="deleteAllPortalTypes"
     class=".misc.DeleteAllPortalTypes"
     template="pt/misc_delete_all_portal_types.pt"
-    permission="zope2.View"
+    permission="cmf.ManagePortal"
   />
 
   <browser:page
     name="download-zip"
     for="Products.CMFCore.interfaces.IFolderish"
-    permission="zope2.View"
+    permission="cmf.ManagePortal"
     class=".misc.DownloadZipView"
     />
 
   <browser:page
     name="upload-zip"
     for="Products.CMFCore.interfaces.IFolderish"
-    permission="zope2.View"
+    permission="cmf.ManagePortal"
     class=".misc.UploadZipView"
     template="pt/misc_upload_zip.pt"
     />
