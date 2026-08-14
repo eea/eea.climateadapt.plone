@@ -394,6 +394,202 @@ class HideMissionSignatoryReportingFolders(BrowserView):
         return self._result
 
 
+class MigrateIndicatorVisualizations(BrowserView):
+    """Move old Indicator map/graphs values to the visualizations field."""
+
+    path_template = "{language}"
+    portal_type = "eea.climateadapt.indicator"
+
+    def should_change(self):
+        value = self.request.form.get("change", "")
+        return value.lower() in ("1", "true", "yes", "on")
+
+    def get_language(self):
+        language = self.request.form.get("language", "en").strip().lower()
+        if not re.match(r"^[a-z]{2}$", language):
+            raise ValueError("language must be a two-letter code")
+        return language
+
+    def get_path(self, language):
+        return self.path_template.format(language=language)
+
+    def get_root(self, language):
+        portal = api.portal.get()
+        path = self.get_path(language)
+        return portal.unrestrictedTraverse(path, None)
+
+    def get_brains(self, root):
+        if root is None:
+            return []
+
+        catalog = api.portal.get_tool("portal_catalog")
+        root_path = "/".join(root.getPhysicalPath())
+        return catalog.unrestrictedSearchResults(
+            path={"query": root_path},
+            portal_type=self.portal_type,
+        )
+
+    def get_visualizations(self, obj):
+        visualizations = getattr(obj, "visualizations", None)
+        if isinstance(visualizations, str):
+            try:
+                visualizations = json.loads(visualizations)
+            except ValueError:
+                return visualizations
+        return visualizations
+
+    def has_visualizations(self, obj):
+        visualizations = self.get_visualizations(obj)
+        return bool(visualizations)
+
+    def has_map_graphs(self, obj):
+        return bool(getattr(obj, "map_graphs", None))
+
+    def has_old_field_values(self, obj):
+        return bool(
+            getattr(obj, "map_graphs", None)
+            or getattr(obj, "map_graphs_height", None)
+            or getattr(obj, "map_graphs_full_width", False)
+        )
+
+    def migrate_visualization(self, obj):
+        obj.visualizations = [
+            {
+                "title": "",
+                "embed_code": getattr(obj, "map_graphs", "") or "",
+                "height": getattr(obj, "map_graphs_height", "") or "",
+                "full_width": bool(getattr(obj, "map_graphs_full_width", False)),
+            }
+        ]
+
+    def clear_old_fields(self, obj):
+        obj.map_graphs = None
+        obj.map_graphs_height = None
+        obj.map_graphs_full_width = False
+
+    def update_obj(self, obj, migrate_visualization, clear_old_fields):
+        if migrate_visualization:
+            self.migrate_visualization(obj)
+        if clear_old_fields:
+            self.clear_old_fields(obj)
+        modified(obj)
+        obj.reindexObject()
+
+    def result(self):
+        if hasattr(self, "_result"):
+            return self._result
+
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        change = self.should_change()
+        language = self.get_language()
+        path = self.get_path(language)
+        root = self.get_root(language)
+
+        if root is None:
+            self._result = {
+                "change": change,
+                "language": language,
+                "root_found": False,
+                "path": path,
+                "found": 0,
+                "with_map_graphs": 0,
+                "migrated": 0,
+                "cleared_old_values": 0,
+                "already_with_visualizations": 0,
+                "without_map_graphs": 0,
+            }
+            logger.warning("Indicator visualizations root not found at %s", path)
+            return self._result
+
+        brains = self.get_brains(root)
+        found = len(brains)
+        with_map_graphs = 0
+        migrated = 0
+        cleared_old_values = 0
+        already_with_visualizations = 0
+        without_map_graphs = 0
+
+        logger.info(
+            "MigrateIndicatorVisualizations found %s indicators under %s. "
+            "language=%s change=%s",
+            found,
+            root.absolute_url(),
+            language,
+            change,
+        )
+
+        for idx, brain in enumerate(brains, start=1):
+            obj = brain.getObject()
+            has_map_graphs = self.has_map_graphs(obj)
+            has_visualizations = self.has_visualizations(obj)
+            has_old_field_values = self.has_old_field_values(obj)
+
+            if not has_map_graphs:
+                without_map_graphs += 1
+            else:
+                with_map_graphs += 1
+
+            if has_visualizations:
+                already_with_visualizations += 1
+
+            should_migrate_visualization = has_map_graphs and not has_visualizations
+            should_clear_old_fields = has_old_field_values and (
+                has_visualizations or should_migrate_visualization
+            )
+
+            if should_migrate_visualization:
+                migrated += 1
+
+            if should_clear_old_fields:
+                cleared_old_values += 1
+
+            if not should_migrate_visualization and not should_clear_old_fields:
+                continue
+
+            if change:
+                self.update_obj(
+                    obj,
+                    should_migrate_visualization,
+                    should_clear_old_fields,
+                )
+
+            if change and idx % 100 == 0:
+                transaction.savepoint()
+
+        if change:
+            transaction.commit()
+
+        self._result = {
+            "change": change,
+            "language": language,
+            "root_found": True,
+            "path": "/".join(root.getPhysicalPath()),
+            "url": root.absolute_url(),
+            "found": found,
+            "with_map_graphs": with_map_graphs,
+            "migrated": migrated,
+            "cleared_old_values": cleared_old_values,
+            "already_with_visualizations": already_with_visualizations,
+            "without_map_graphs": without_map_graphs,
+        }
+
+        logger.info(
+            "MigrateIndicatorVisualizations found=%s with_map_graphs=%s "
+            "migrated=%s cleared_old_values=%s already_with_visualizations=%s "
+            "without_map_graphs=%s language=%s change=%s",
+            found,
+            with_map_graphs,
+            migrated,
+            cleared_old_values,
+            already_with_visualizations,
+            without_map_graphs,
+            language,
+            change,
+        )
+        return self._result
+
+
 class ImpactFiltersNew:
     """New impact filters"""
 

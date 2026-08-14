@@ -1,0 +1,87 @@
+<html>
+  <body tal:define="result view/result">
+    <h1>Migrate Indicator Map/Graphs to Visualizations</h1>
+
+    <p tal:condition="not: result/root_found">
+      Language root was not found:
+      <code tal:content="result/path"></code>
+    </p>
+
+    <div tal:condition="result/root_found">
+      <p tal:condition="not: result/change">
+        Dry run. Add <code>?change=true</code> to apply the changes.
+      </p>
+      <p tal:condition="result/change">
+        Write mode. Matching indicators were updated, old values were cleared,
+        and items were reindexed.
+      </p>
+
+      <p>
+        Language:
+        <strong tal:content="result/language"></strong>
+      </p>
+
+      <p>
+        Root:
+        <a tal:attributes="href result/url" tal:content="result/url"></a>
+      </p>
+
+      <p>
+        <strong tal:content="result/found"></strong>
+        indicators found.
+      </p>
+
+      <p>
+        <strong tal:content="result/with_map_graphs"></strong>
+        indicators have the old Map/Graphs field set.
+      </p>
+
+      <p tal:condition="not: result/change">
+        <strong tal:content="result/migrated"></strong>
+        indicators would get a new visualization copied from Map/Graphs.
+      </p>
+
+      <p tal:condition="result/change">
+        <strong tal:content="result/migrated"></strong>
+        indicators got a new visualization copied from Map/Graphs.
+      </p>
+
+      <p tal:condition="not: result/change">
+        <strong tal:content="result/cleared_old_values"></strong>
+        indicators would have old Map/Graphs values cleared.
+      </p>
+
+      <p tal:condition="result/change">
+        <strong tal:content="result/cleared_old_values"></strong>
+        indicators had old Map/Graphs values cleared.
+      </p>
+
+      <p>
+        <strong tal:content="result/already_with_visualizations"></strong>
+        indicators already had visualizations, so no new visualization was copied.
+      </p>
+
+      <p>
+        <strong tal:content="result/without_map_graphs"></strong>
+        indicators had no old Map/Graphs value.
+      </p>
+    </div>
+
+    <form action="./@@migrate-indicator-visualizations" method="get">
+      <label>
+        language
+        <input
+          type="text"
+          name="language"
+          size="2"
+          tal:attributes="value result/language"
+        />
+      </label>
+      <label>
+        <input type="checkbox" name="change" value="true" />
+        apply changes
+      </label>
+      <input type="submit" value="Run" />
+    </form>
+  </body>
+</html>
