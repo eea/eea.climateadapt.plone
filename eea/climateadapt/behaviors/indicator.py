@@ -1,3 +1,5 @@
+import json
+
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
@@ -12,6 +14,19 @@ from .volto_layout import indicator_layout_blocks, indicator_layout_items
 
 # from plone.autoform import directives
 # from z3c.form.interfaces import IAddForm, IEditForm
+
+VISUALIZATIONS_SCHEMA = {
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "title": {"type": "string"},
+            "embed_code": {"type": "string"},
+            "height": {"type": "string"},
+            "full_width": {"type": "boolean"},
+        },
+    },
+}
 
 
 class IIndicator(IAceItem, IBlocks):
@@ -44,6 +59,18 @@ class IIndicator(IAceItem, IBlocks):
         ),
         required=False,
         default=False,
+    )
+
+    visualizations = JSONField(
+        title=_("Visualizations"),
+        description=_(
+            "Multiple interactive visualizations. Each item can contain a "
+            "title, an iframe embed code, a Flourish embed code, or a direct "
+            "URL, plus an optional height and full-width setting."
+        ),
+        schema=json.dumps(VISUALIZATIONS_SCHEMA),
+        default=[],
+        required=False,
     )
 
     publication_date = Date(

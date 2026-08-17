@@ -612,6 +612,14 @@ indicator_layout_blocks = {
                                     },
                                 },
                                 {
+                                    "@id": "d6d5ad7f-cd9d-4f36-b081-7619fdfeb0e7",
+                                    "field": {
+                                        "id": "visualizations",
+                                        "title": "Visualizations",
+                                        "widget": "json",
+                                    },
+                                },
+                                {
                                     "@id": "c0dbddd0-c93f-457f-ad86-f3c667f1edc3",
                                     "field": {
                                         "id": "origin_website",
