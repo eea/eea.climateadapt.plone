@@ -3,6 +3,7 @@ import io
 import json
 import logging
 import re
+from copy import deepcopy
 from datetime import date, datetime, timedelta
 
 import pycountry
@@ -584,6 +585,218 @@ class MigrateIndicatorVisualizations(BrowserView):
             cleared_old_values,
             already_with_visualizations,
             without_map_graphs,
+            language,
+            change,
+        )
+        return self._result
+
+
+class MigrateIndicatorVisualizationsLayout(BrowserView):
+    """Add the visualizations metadata field to old Indicator Volto layouts."""
+
+    path_template = "{language}"
+    portal_type = "eea.climateadapt.indicator"
+    legacy_field_ids = (
+        "map_graphs",
+        "map_graphs_height",
+        "map_graphs_full_width",
+    )
+    visualization_field = {
+        "@id": "d6d5ad7f-cd9d-4f36-b081-7619fdfeb0e7",
+        "field": {
+            "id": "visualizations",
+            "title": "Visualizations",
+            "widget": "json",
+        },
+    }
+
+    def should_change(self):
+        value = self.request.form.get("change", "")
+        return value.lower() in ("1", "true", "yes", "on")
+
+    def get_language(self):
+        language = self.request.form.get("language", "en").strip().lower()
+        if not re.match(r"^[a-z]{2}$", language):
+            raise ValueError("language must be a two-letter code")
+        return language
+
+    def get_path(self, language):
+        return self.path_template.format(language=language)
+
+    def get_root(self, language):
+        portal = api.portal.get()
+        path = self.get_path(language)
+        return portal.unrestrictedTraverse(path, None)
+
+    def get_brains(self, root):
+        if root is None:
+            return []
+
+        catalog = api.portal.get_tool("portal_catalog")
+        root_path = "/".join(root.getPhysicalPath())
+        return catalog.unrestrictedSearchResults(
+            path={"query": root_path},
+            portal_type=self.portal_type,
+        )
+
+    def field_id(self, field_entry):
+        if not isinstance(field_entry, dict):
+            return None
+        field = field_entry.get("field")
+        if not isinstance(field, dict):
+            return None
+        return field.get("id")
+
+    def insert_visualization_field(self, fields):
+        field_ids = [self.field_id(field) for field in fields]
+        if "visualizations" in field_ids:
+            return False
+
+        insert_after = None
+        for legacy_id in self.legacy_field_ids:
+            if legacy_id in field_ids:
+                insert_after = field_ids.index(legacy_id)
+
+        if insert_after is None:
+            return False
+
+        fields.insert(insert_after + 1, deepcopy(self.visualization_field))
+        return True
+
+    def update_metadata_section(self, block):
+        if not isinstance(block, dict):
+            return False
+
+        if block.get("@type") != "metadataSection":
+            return False
+
+        fields = block.get("fields")
+        if not isinstance(fields, list):
+            return False
+
+        field_ids = [self.field_id(field) for field in fields]
+        has_legacy_anchor = bool(set(field_ids).intersection(self.legacy_field_ids))
+        if not has_legacy_anchor:
+            return False
+
+        return self.insert_visualization_field(fields)
+
+    def update_blocks(self, obj, apply_changes):
+        original_blocks = getattr(obj, "blocks", None)
+        if not isinstance(original_blocks, dict):
+            return {
+                "changed": False,
+                "added": 0,
+            }
+
+        blocks = deepcopy(original_blocks)
+        stats = {
+            "changed": False,
+            "added": 0,
+        }
+
+        for block in visit_blocks(obj, blocks):
+            if self.update_metadata_section(block):
+                stats["added"] += 1
+
+        stats["changed"] = blocks != original_blocks
+        if stats["changed"] and apply_changes:
+            obj.blocks = blocks
+        return stats
+
+    def result(self):
+        if hasattr(self, "_result"):
+            return self._result
+
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        change = self.should_change()
+        language = self.get_language()
+        path = self.get_path(language)
+        root = self.get_root(language)
+
+        if root is None:
+            self._result = {
+                "change": change,
+                "language": language,
+                "root_found": False,
+                "path": path,
+                "found": 0,
+                "changed": 0,
+                "visualization_fields_added": 0,
+                "without_blocks": 0,
+                "unchanged": 0,
+                "sample_paths": [],
+            }
+            logger.warning("Indicator layout migration root not found at %s", path)
+            return self._result
+
+        brains = self.get_brains(root)
+        found = len(brains)
+        changed = 0
+        visualization_fields_added = 0
+        without_blocks = 0
+        unchanged = 0
+        sample_paths = []
+
+        logger.info(
+            "MigrateIndicatorVisualizationsLayout found %s indicators under %s. "
+            "language=%s change=%s",
+            found,
+            root.absolute_url(),
+            language,
+            change,
+        )
+
+        for idx, brain in enumerate(brains, start=1):
+            obj = brain.getObject()
+            if not isinstance(getattr(obj, "blocks", None), dict):
+                without_blocks += 1
+                continue
+
+            stats = self.update_blocks(obj, change)
+            if not stats["changed"]:
+                unchanged += 1
+                continue
+
+            changed += 1
+            visualization_fields_added += stats["added"]
+
+            if len(sample_paths) < 20:
+                sample_paths.append("/".join(obj.getPhysicalPath()))
+
+            if change:
+                modified(obj)
+                obj.reindexObject()
+
+            if change and idx % 100 == 0:
+                transaction.savepoint()
+
+        if change:
+            transaction.commit()
+
+        self._result = {
+            "change": change,
+            "language": language,
+            "root_found": True,
+            "path": "/".join(root.getPhysicalPath()),
+            "url": root.absolute_url(),
+            "found": found,
+            "changed": changed,
+            "visualization_fields_added": visualization_fields_added,
+            "without_blocks": without_blocks,
+            "unchanged": unchanged,
+            "sample_paths": sample_paths,
+        }
+
+        logger.info(
+            "MigrateIndicatorVisualizationsLayout found=%s changed=%s "
+            "added=%s without_blocks=%s unchanged=%s language=%s change=%s",
+            found,
+            changed,
+            visualization_fields_added,
+            without_blocks,
+            unchanged,
             language,
             change,
         )
