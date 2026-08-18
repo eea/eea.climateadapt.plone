@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<object name="portal_catalog" meta_type="Plone Catalog Tool">
+  <column value="climate_impacts" />
+  <column value="adaptation_support_cycle_step" />
+
+  <index name="climate_impacts" meta_type="KeywordIndex">
+    <indexed_attr value="climate_impacts" />
+  </index>
+  <index name="adaptation_support_cycle_step" meta_type="KeywordIndex">
+    <indexed_attr value="adaptation_support_cycle_step" />
+  </index>
+</object>

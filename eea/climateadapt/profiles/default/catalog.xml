@@ -7,6 +7,8 @@
   <column value="origin_website" />
   <column value="search_type" />
   <column value="sectors" />
+  <column value="climate_impacts" />
+  <column value="adaptation_support_cycle_step" />
   <column value="elements" />
   <column value="special_tags" />
   <column value="year" />
@@ -43,6 +45,12 @@
   </index>
   <index name="sectors" meta_type="KeywordIndex">
     <indexed_attr value="sectors" />
+  </index>
+  <index name="climate_impacts" meta_type="KeywordIndex">
+    <indexed_attr value="climate_impacts" />
+  </index>
+  <index name="adaptation_support_cycle_step" meta_type="KeywordIndex">
+    <indexed_attr value="adaptation_support_cycle_step" />
   </index>
   <index name="macro_regions" meta_type="KeywordIndex">
     <indexed_attr value="macro_regions" />
