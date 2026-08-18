@@ -1,0 +1,84 @@
+<html>
+  <body tal:define="result view/result">
+    <h1>Cleanup Indicator Visualizations Layout</h1>
+
+    <p tal:condition="not: result/root_found">
+      Language root was not found:
+      <code tal:content="result/path"></code>
+    </p>
+
+    <div tal:condition="result/root_found">
+      <p tal:condition="not: result/change">
+        Dry run. Add <code>?change=true</code> to apply the changes.
+      </p>
+      <p tal:condition="result/change">
+        Write mode. Matching indicators were updated and reindexed.
+      </p>
+
+      <p>
+        Language:
+        <strong tal:content="result/language"></strong>
+      </p>
+
+      <p>
+        Root:
+        <a tal:attributes="href result/url" tal:content="result/url"></a>
+      </p>
+
+      <p>
+        <strong tal:content="result/found"></strong>
+        indicators found.
+      </p>
+
+      <p>
+        <strong tal:content="result/changed"></strong>
+        indicators
+        <span tal:condition="not: result/change">would be updated.</span>
+        <span tal:condition="result/change">were updated.</span>
+      </p>
+
+      <p>
+        <strong tal:content="result/legacy_fields_removed"></strong>
+        legacy layout fields
+        <span tal:condition="not: result/change">would be removed.</span>
+        <span tal:condition="result/change">were removed.</span>
+      </p>
+
+      <p>
+        <strong tal:content="result/without_blocks"></strong>
+        indicators had no Volto blocks.
+      </p>
+
+      <p>
+        <strong tal:content="result/unchanged"></strong>
+        indicators needed no layout change.
+      </p>
+
+      <div tal:condition="result/sample_paths">
+        <h2>Sample changed paths</h2>
+        <ul>
+          <li tal:repeat="path result/sample_paths">
+            <code tal:content="path"></code>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <form action="./@@cleanup-indicator-visualizations-layout" method="get">
+      <label>
+        language
+        <input
+          type="text"
+          name="language"
+          size="2"
+          tal:attributes="value result/language"
+        />
+      </label>
+      <label>
+        <input type="checkbox" name="change" value="true" />
+        apply changes
+      </label>
+      <input type="submit" value="Run" />
+    </form>
+  </body>
+</html>
