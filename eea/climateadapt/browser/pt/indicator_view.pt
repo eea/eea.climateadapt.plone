@@ -32,8 +32,6 @@
             <h3 i18n:translate="">Description</h3>
             <div tal:content="structure python: view.w['long_description'].render()">description here</div>
 
-            <div tal:condition="context/map_graphs" tal:content="structure context/map_graphs">ifram map</div>
-
             <h4 class="reference-title" tal:condition="python:context.websites or context.source" i18n:translate="">Reference information</h4>
             <div tal:condition="context/websites">
                 <h5 i18n:translate="">Websites:</h5>
