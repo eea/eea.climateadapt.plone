@@ -588,30 +588,6 @@ indicator_layout_blocks = {
                                     },
                                 },
                                 {
-                                    "@id": "7c085bd7-936b-41ad-ade6-8979d359c2e3",
-                                    "field": {
-                                        "id": "map_graphs",
-                                        "title": "Map/Graphs",
-                                        "widget": "textarea",
-                                    },
-                                },
-                                {
-                                    "@id": "b5086acf-b9f7-4c23-8ea1-7584f2fbe49e",
-                                    "field": {
-                                        "id": "map_graphs_height",
-                                        "title": "Map/Graphs Height",
-                                        "widget": "textarea",
-                                    },
-                                },
-                                {
-                                    "@id": "b5086acf-b9f7-4c23-8ea1-7584f2fbe49e",
-                                    "field": {
-                                        "id": "map_graphs_full_width",
-                                        "title": "Full-width map/graph",
-                                        "widget": "boolean",
-                                    },
-                                },
-                                {
                                     "@id": "d6d5ad7f-cd9d-4f36-b081-7619fdfeb0e7",
                                     "field": {
                                         "id": "visualizations",

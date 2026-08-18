@@ -803,6 +803,152 @@ class MigrateIndicatorVisualizationsLayout(BrowserView):
         return self._result
 
 
+class CleanupIndicatorVisualizationsLayout(MigrateIndicatorVisualizationsLayout):
+    """Remove old Indicator map/graphs fields from Volto layouts."""
+
+    def remove_legacy_fields(self, fields):
+        original_count = len(fields)
+        fields[:] = [
+            field
+            for field in fields
+            if self.field_id(field) not in self.legacy_field_ids
+        ]
+        return original_count - len(fields)
+
+    def update_metadata_section(self, block):
+        if not isinstance(block, dict):
+            return 0
+
+        if block.get("@type") != "metadataSection":
+            return 0
+
+        fields = block.get("fields")
+        if not isinstance(fields, list):
+            return 0
+
+        return self.remove_legacy_fields(fields)
+
+    def update_blocks(self, obj, apply_changes):
+        original_blocks = getattr(obj, "blocks", None)
+        if not isinstance(original_blocks, dict):
+            return {
+                "changed": False,
+                "removed": 0,
+            }
+
+        blocks = deepcopy(original_blocks)
+        stats = {
+            "changed": False,
+            "removed": 0,
+        }
+
+        for block in visit_blocks(obj, blocks):
+            stats["removed"] += self.update_metadata_section(block)
+
+        stats["changed"] = blocks != original_blocks
+        if stats["changed"] and apply_changes:
+            obj.blocks = blocks
+        return stats
+
+    def result(self):
+        if hasattr(self, "_result"):
+            return self._result
+
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        change = self.should_change()
+        language = self.get_language()
+        path = self.get_path(language)
+        root = self.get_root(language)
+
+        if root is None:
+            self._result = {
+                "change": change,
+                "language": language,
+                "root_found": False,
+                "path": path,
+                "found": 0,
+                "changed": 0,
+                "legacy_fields_removed": 0,
+                "without_blocks": 0,
+                "unchanged": 0,
+                "sample_paths": [],
+            }
+            logger.warning("Indicator layout cleanup root not found at %s", path)
+            return self._result
+
+        brains = self.get_brains(root)
+        found = len(brains)
+        changed = 0
+        legacy_fields_removed = 0
+        without_blocks = 0
+        unchanged = 0
+        sample_paths = []
+
+        logger.info(
+            "CleanupIndicatorVisualizationsLayout found %s indicators under %s. "
+            "language=%s change=%s",
+            found,
+            root.absolute_url(),
+            language,
+            change,
+        )
+
+        for idx, brain in enumerate(brains, start=1):
+            obj = brain.getObject()
+            if not isinstance(getattr(obj, "blocks", None), dict):
+                without_blocks += 1
+                continue
+
+            stats = self.update_blocks(obj, change)
+            if not stats["changed"]:
+                unchanged += 1
+                continue
+
+            changed += 1
+            legacy_fields_removed += stats["removed"]
+
+            if len(sample_paths) < 20:
+                sample_paths.append("/".join(obj.getPhysicalPath()))
+
+            if change:
+                modified(obj)
+                obj.reindexObject()
+
+            if change and idx % 100 == 0:
+                transaction.savepoint()
+
+        if change:
+            transaction.commit()
+
+        self._result = {
+            "change": change,
+            "language": language,
+            "root_found": True,
+            "path": "/".join(root.getPhysicalPath()),
+            "url": root.absolute_url(),
+            "found": found,
+            "changed": changed,
+            "legacy_fields_removed": legacy_fields_removed,
+            "without_blocks": without_blocks,
+            "unchanged": unchanged,
+            "sample_paths": sample_paths,
+        }
+
+        logger.info(
+            "CleanupIndicatorVisualizationsLayout found=%s changed=%s "
+            "removed=%s without_blocks=%s unchanged=%s language=%s change=%s",
+            found,
+            changed,
+            legacy_fields_removed,
+            without_blocks,
+            unchanged,
+            language,
+            change,
+        )
+        return self._result
+
+
 class ImpactFiltersNew:
     """New impact filters"""
 

@@ -4,7 +4,7 @@ from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from zope.interface import alsoProvides
-from zope.schema import Bool, Date, Text, TextLine
+from zope.schema import Date
 from z3c.relationfield.schema import RelationChoice, RelationList
 
 from eea.climateadapt import CcaAdminMessageFactory as _
@@ -36,30 +36,6 @@ class IIndicator(IAceItem, IBlocks):
     # directives.omitted(IAddForm, 'year')
     # directives.omitted(IEditForm, "featured")
     # directives.omitted(IAddForm, "featured")
-
-    map_graphs = Text(
-        title=_("Map/Graphs"),
-        required=False,
-        description="Enter an iframe embed code, a Flourish embed code, "
-        "or a direct URL (which will be embedded as an iframe) "
-        "to display an interactive visualization.",
-    )
-
-    map_graphs_height = TextLine(
-        title=_("Map/Graphs Height"),
-        description="Height of the iframe (e.g., 750).",
-        required=False,
-    )
-
-    map_graphs_full_width = Bool(
-        title=_("Full-width map/graphs"),
-        description=_(
-            "If enabled, the visualization will use the full container width. "
-            "If disabled, it will remain in the left column."
-        ),
-        required=False,
-        default=False,
-    )
 
     visualizations = JSONField(
         title=_("Visualizations"),
