@@ -245,6 +245,21 @@ class CaseStudySerializer(SerializeFolderToJson):  # SerializeToJson
         result = cca_content_serializer(self.context, result, self.request)
 
         item = self.context
+        adaptation_options = []
+        for relation in getattr(item, "adaptationoptions", []) or []:
+            try:
+                option = relation.to_object
+            except Exception:
+                logger.exception(
+                    "Error resolving adaptation option relation for case study %s",
+                    item.absolute_url(),
+                )
+                continue
+            if option is not None and option.Title():
+                adaptation_options.append(option.Title())
+
+        result["cca_adaptation_options"] = adaptation_options
+
         images = item.contentValues({"portal_type": "Image"})
         suffix = "/@@images/image/large"
         result["cca_gallery_urls"] = [image.absolute_url() + suffix for image in images]
