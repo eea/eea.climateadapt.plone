@@ -2,6 +2,7 @@ from zope.schema import Bool, Choice, List, TextLine, Int
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
 from plone.autoform import directives
+from plone.app.textfield import RichText
 from z3c.form.interfaces import IAddForm, IEditForm
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
@@ -27,6 +28,31 @@ class IExtendedTool(ITool, IBlocks):
         title=_("Tool provider"),
         required=False,
         default=str(""),
+    )
+
+    tool_input = RichText(
+        title=_("Input"),
+        required=False,
+    )
+
+    tool_output = RichText(
+        title=_("Output"),
+        required=False,
+    )
+
+    use_it_to = RichText(
+        title=_("Use it to"),
+        required=False,
+    )
+
+    climate_adaptation_relevance = RichText(
+        title=_("Why is it relevant to climate adaptation"),
+        required=False,
+    )
+
+    used_in = RichText(
+        title=_("Used in"),
+        required=False,
     )
 
     public_private_mode = TextLine(
