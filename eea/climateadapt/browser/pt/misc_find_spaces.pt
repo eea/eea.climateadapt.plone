@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>Find Items with Space in URL</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body tal:define="data view/process">
+  <tal:block condition="not:data/is_post">
+      <h2>Find Items with Space in URL</h2>
+      <p>Search starts from /cca by default. You can specify a folder path.</p>
+      <form method="POST">
+        <label>Path (e.g. /cca/en/... or empty for /cca):</label>
+        <input type="text" name="path" style="width: 300px;" tal:attributes="value data/path" />
+        <button type="submit">Search</button>
+      </form>
+  </tal:block>
+
+  <tal:block condition="data/is_post">
+      <tal:error condition="data/error | nothing">
+          <p style="color: red;" tal:content="data/error"></p>
+          <a href='javascript:history.back()'>Back</a>
+      </tal:error>
+      <tal:results condition="not:data/error | nothing">
+          <h2>Search Results for: <span tal:content="data/mainPathSearch"></span></h2>
+          <p>Found <span tal:content="data/count">0</span> items.</p>
+          <table>
+            <tr><th>URL</th></tr>
+            <tr tal:repeat="url data/results">
+                <td><a tal:attributes="href url" tal:content="url" target="_blank"></a></td>
+            </tr>
+          </table><br/>
+          <a href='?'>Back to search</a>
+      </tal:results>
+  </tal:block>
+</body>
+</html>

@@ -323,4 +323,12 @@
     permission="zope2.View"
   />
 
+  <browser:page
+    name="find-spaces-in-url"
+    for="*"
+    class=".misc.FindSpacesInUrl"
+    template="pt/misc_find_spaces.pt"
+    permission="cmf.ManagePortal"
+  />
+
 </configure>
