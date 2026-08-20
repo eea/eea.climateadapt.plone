@@ -15,6 +15,15 @@
       <form method="POST">
         <label>Path (e.g. /cca/en/... or empty for /cca):</label>
         <input type="text" name="path" style="width: 300px;" tal:attributes="value data/path" />
+        <br/><br/>
+        <label>
+          <input type="checkbox" name="rename" value="1" /> Replace the spaces in the URL with hyphens (-)
+        </label>
+        <br/><br/>
+        <label>
+          <input type="checkbox" name="exclude_files" value="1" /> Exclude files (images, PDFs, XLS, XLSX, DOC, DOCX).
+        </label>
+        <br/><br/>
         <button type="submit">Search</button>
       </form>
   </tal:block>
