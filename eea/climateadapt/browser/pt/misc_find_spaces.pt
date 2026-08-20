@@ -21,7 +21,7 @@
         </label>
         <br/><br/>
         <label>
-          <input type="checkbox" name="exclude_files" value="1" /> Exclude files (images, PDFs, XLS, XLSX, DOC, DOCX).
+          <input type="checkbox" name="exclude_files" value="1" /> Exclude files (images, PDFs, XLS, XLSX, DOC, DOCX, CSV, PPT, PPTX).
         </label>
         <br/><br/>
         <button type="submit">Search</button>

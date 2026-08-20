@@ -1343,6 +1343,9 @@ class FindSpacesInUrl(BrowserView):
             ".png",
             ".gif",
             ".svg",
+            ".csv",
+            ".ppt",
+            ".pptx",
         )
         brains_with_spaces = []
         for b in brains:
