@@ -1322,7 +1322,11 @@ class FindSpacesInUrl(BrowserView):
         try:
             brains = catalog.unrestrictedSearchResults(path=mainPathSearch)
         except Exception as e:
-            return {"is_post": True, "error": f"Error searching path: {e}", "path": inputPath}
+            return {
+                "is_post": True,
+                "error": f"Error searching path: {e}",
+                "path": inputPath,
+            }
 
         results = []
         for brain in brains:
@@ -1335,5 +1339,5 @@ class FindSpacesInUrl(BrowserView):
             "results": results,
             "path": inputPath,
             "mainPathSearch": mainPathSearch,
-            "count": len(results)
+            "count": len(results),
         }
