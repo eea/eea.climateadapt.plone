@@ -2740,6 +2740,46 @@ extendetool_layout_blocks = {
                                     },
                                 },
                                 {
+                                    "@id": "421bcac3-5d75-45af-a524-06f8d308e9e5",
+                                    "field": {
+                                        "id": "tool_input",
+                                        "title": "Input",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "04de720e-5c34-441d-8b69-9ee4905591cb",
+                                    "field": {
+                                        "id": "tool_output",
+                                        "title": "Output",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "3a11254c-250f-4ef4-a86a-5c59af7afd2b",
+                                    "field": {
+                                        "id": "use_it_to",
+                                        "title": "Use it to",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "ed61cfeb-670c-4af5-85a1-19f54e16ca10",
+                                    "field": {
+                                        "id": "climate_adaptation_relevance",
+                                        "title": "Why is it relevant to climate adaptation",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
+                                    "@id": "3bf697d0-30ea-4d42-8723-c43c6c65a800",
+                                    "field": {
+                                        "id": "used_in",
+                                        "title": "Used in",
+                                        "widget": "richtext",
+                                    },
+                                },
+                                {
                                     "@id": "f1562064-12b0-4674-8303-0c293703c744",
                                     "field": {
                                         "id": "public_private_mode",
@@ -2929,6 +2969,14 @@ extendetool_layout_blocks = {
                                         "id": "temporality_of_data",
                                         "title": "Temporality of data",
                                         "widget": "array",
+                                    },
+                                },
+                                {
+                                    "@id": "5d86df6a-8e21-43b5-b4e9-617f338af7b8",
+                                    "field": {
+                                        "id": "spatial_resolution",
+                                        "title": "Spatial resolution",
+                                        "widget": "string",
                                     },
                                 },
                                 {

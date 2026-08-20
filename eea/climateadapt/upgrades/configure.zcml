@@ -88,4 +88,29 @@
 
   </genericsetup:upgradeSteps>
 
+  <genericsetup:registerProfile
+    name="eeaclimateadapt_to_7"
+    title="Upgrade profile for eea.climateadapt v7"
+    description="Add catalog support for related Extended Tools"
+    directory="to_7"
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+  />
+
+  <genericsetup:upgradeSteps
+    source="6.0"
+    destination="7.0"
+    profile="eea.climateadapt:default">
+
+    <genericsetup:upgradeDepends
+      title="Add catalog fields for related Extended Tools"
+      import_profile="eea.climateadapt.upgrades:eeaclimateadapt_to_7"
+    />
+
+    <genericsetup:upgradeStep
+      title="Index related Extended Tool fields"
+      handler="eea.climateadapt.upgrades.evolve7.reindex_related_tool_fields"
+    />
+
+  </genericsetup:upgradeSteps>
+
 </configure>
