@@ -1332,7 +1332,18 @@ class FindSpacesInUrl(BrowserView):
             }
 
         # Filter items that actually have space in their own ID, not just in their parent's path
-        excluded_extensions = ('.pdf', '.xls', '.xlsx', '.doc', '.docx', '.jpg', '.jpeg', '.png', '.gif', '.svg')
+        excluded_extensions = (
+            ".pdf",
+            ".xls",
+            ".xlsx",
+            ".doc",
+            ".docx",
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".gif",
+            ".svg",
+        )
         brains_with_spaces = []
         for b in brains:
             brain_id = b.getId
@@ -1340,9 +1351,9 @@ class FindSpacesInUrl(BrowserView):
                 if exclude_files and brain_id.lower().endswith(excluded_extensions):
                     continue
                 brains_with_spaces.append(b)
-        
+
         # Sort by path depth descending so we rename children before their parents
-        brains_with_spaces.sort(key=lambda b: len(b.getPath().split('/')), reverse=True)
+        brains_with_spaces.sort(key=lambda b: len(b.getPath().split("/")), reverse=True)
 
         results = []
         for brain in brains_with_spaces:
@@ -1352,12 +1363,14 @@ class FindSpacesInUrl(BrowserView):
                     obj = brain.getObject()
                     old_id = obj.getId()
                     import urllib.parse
+
                     decoded_id = urllib.parse.unquote(old_id)
                     new_id = decoded_id.replace(" ", "-")
-                    
+
                     if old_id != new_id:
                         import transaction
                         from plone import api
+
                         parent = obj.aq_parent
                         if hasattr(parent, new_id):
                             results.append(f"{url} (ERROR: {new_id} already exists)")
