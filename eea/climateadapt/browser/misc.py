@@ -366,20 +366,48 @@ class FindCountAPortalType(BrowserView):
 
 
 class DownloadZipView(BrowserView):
-    def _add_to_zip(self, zip_file, context, current_path):
+    def list_items(self):
+        items = []
+        for item_id, item in self.context.objectItems():
+            is_folder = getattr(item, "isPrincipiaFolderish", False)
+            portal_type = getattr(item, "portal_type", type(item).__name__)
+            items.append({
+                'id': item_id,
+                'title': getattr(item, 'title', item_id),
+                'type': portal_type,
+                'is_folder': is_folder
+            })
+        return items
+
+    def _add_to_zip(self, zip_file, context, current_path, selected_items=None, recursive_items=None, is_root=False):
         for item_id, item in context.objectItems():
+            if is_root and selected_items is not None and item_id not in selected_items:
+                continue
+
             zip_path = f"{current_path}{item_id}"
 
             # if zip_path == 'research-and-innovation-projects':
             #     import pdb
             #     pdb.set_trace()
 
+            # import pdb
+            # pdb.set_trace()
+
             print("DownloadZipView: " + zip_path)
             # If it's a folder-like object, recurse
             # if getattr(item, "isPrincipiaFolderish", False) or hasattr(item, "objectItems"):
             if getattr(item, "isPrincipiaFolderish", False):
                 print("   ITEM FOLDER")
-                self._add_to_zip(zip_file, item, f"{zip_path}/")
+
+                # We recurse only if it's NOT root, OR if it's root and in recursive_items
+                should_recurse = True
+                if is_root:
+                    if recursive_items is None or item_id not in recursive_items:
+                        should_recurse = False
+
+                if should_recurse:
+                    self._add_to_zip(zip_file, item, f"{zip_path}/",
+                                     selected_items=None, recursive_items=None, is_root=False)
                 # Removed 'continue' here so that folderish items (like Plone 6 Pages/Links)
                 # are also exported/serialized as files (e.g. .json) next to their folder.
 
@@ -432,8 +460,13 @@ class DownloadZipView(BrowserView):
                     print("   END Serialize item: " + zip_path)
                 except Exception as e:
                     # Fallback if serialization fails
-                    data = f"Could not serialize {item_id}: {e}"
-                    filename = f"{zip_path}.txt"
+                    is_folder = getattr(item, "isPrincipiaFolderish", False)
+                    if is_folder:
+                        data = b""
+                        filename = f"{zip_path}/"
+                    else:
+                        data = f"Could not serialize {item_id}: {e}"
+                        filename = f"{zip_path}.txt"
 
             if data is not None:
                 if isinstance(data, str):
@@ -446,27 +479,45 @@ class DownloadZipView(BrowserView):
                     print("Could not zip item %s: %s", item.getId(), e)
 
     def __call__(self):
-        output = BytesIO()
+        if self.request.method == "POST":
+            items = self.request.form.get("items", [])
+            if isinstance(items, str):
+                items = [items]
 
-        with ZipFile(output, "w") as zip_file:
-            self._add_to_zip(zip_file, self.context, "")
+            recursive_items = self.request.form.get("recursive", [])
+            if isinstance(recursive_items, str):
+                recursive_items = [recursive_items]
 
-            # If the zip is completely empty, add a dummy file so it's a valid zip archive
-            if not zip_file.infolist():
-                zip_file.writestr("empty.txt", b"No files found.")
+            output = BytesIO()
 
-        output.seek(0)
+            with ZipFile(output, "w") as zip_file:
+                self._add_to_zip(
+                    zip_file,
+                    self.context,
+                    "",
+                    selected_items=items,
+                    recursive_items=recursive_items,
+                    is_root=True
+                )
 
-        self.request.response.setHeader(
-            "Content-Type",
-            "application/zip",
-        )
-        self.request.response.setHeader(
-            "Content-Disposition",
-            'attachment; filename="%s.zip"' % self.context.getId(),
-        )
+                # If the zip is completely empty, add a dummy file so it's a valid zip archive
+                if not zip_file.infolist():
+                    zip_file.writestr("empty.txt", b"No files found.")
 
-        return output.getvalue()
+            output.seek(0)
+
+            self.request.response.setHeader(
+                "Content-Type",
+                "application/zip",
+            )
+            self.request.response.setHeader(
+                "Content-Disposition",
+                'attachment; filename="%s.zip"' % self.context.getId(),
+            )
+
+            return output.getvalue()
+        else:
+            return self.index()
 
 
 class UploadZipView(BrowserView):

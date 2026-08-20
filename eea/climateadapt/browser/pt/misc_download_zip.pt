@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title>Download ZIP</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .folder { font-weight: bold; }
+    button { margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+  </style>
+  <script>
+    function toggleAll(source, name) {
+      checkboxes = document.getElementsByName(name);
+      for(var i=0, n=checkboxes.length;i<n;i++) {
+        checkboxes[i].checked = source.checked;
+      }
+    }
+  </script>
+</head>
+<body tal:define="items view/list_items">
+  <h2>Download ZIP Archive</h2>
+  <p>Select the files/folders you want to include in the ZIP archive.</p>
+  <form method="POST">
+    <table>
+      <tr>
+        <th>
+          <input type="checkbox" onclick="toggleAll(this, 'items')" /> INCLUDE
+        </th>
+        <th>
+          <input type="checkbox" onclick="toggleAll(this, 'recursive')" /> Recursive (folders only)
+        </th>
+        <th>TYPE</th>
+        <th>ID FILE / FOLDER</th>
+        <th>TTITLE</th>
+      </tr>
+      <tr tal:repeat="item items">
+        <td style="text-align: center;">
+          <input type="checkbox" name="items" tal:attributes="value item/id" />
+        </td>
+        <td style="text-align: center;">
+          <input type="checkbox" name="recursive" tal:attributes="value item/id" tal:condition="item/is_folder" />
+        </td>
+        <td tal:content="item/type"></td>
+        <td tal:content="item/id" tal:attributes="class python: 'folder' if item['is_folder'] else ''"></td>
+        <td tal:content="item/title"></td>
+      </tr>
+    </table>
+    
+    <button type="submit">Download ZIP</button>
+  </form>
+</body>
+</html>

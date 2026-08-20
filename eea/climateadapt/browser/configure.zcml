@@ -235,6 +235,7 @@
     for="Products.CMFCore.interfaces.IFolderish"
     permission="zope2.View"
     class=".misc.DownloadZipView"
+    template="pt/misc_download_zip.pt"
     />
 
   <browser:page
