@@ -1371,7 +1371,6 @@ class FindSpacesInUrl(BrowserView):
 
         results = []
         for brain in brains_with_spaces:
-
             url = brain.getURL()
             if rename_spaces:
                 try:
@@ -1383,7 +1382,6 @@ class FindSpacesInUrl(BrowserView):
                     new_id = decoded_id.strip()
 
                     if old_id != new_id:
-
                         parent = obj.aq_parent
                         if hasattr(parent, new_id):
                             results.append(f"{url} (ERROR: {new_id} already exists)")
