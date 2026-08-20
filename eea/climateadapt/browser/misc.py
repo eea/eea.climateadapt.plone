@@ -1302,3 +1302,42 @@ def create_contributions_link(language="en", organisation_id=None):
         query = ""
 
         return "{}{}".format(url, query)
+
+
+class FindSpacesInUrl(BrowserView):
+    """Find items with space in URL"""
+
+    def process(self):
+        inputPath = self.request.form.get("path", "").strip()
+
+        if self.request.method == "GET":
+            return {"is_post": False, "path": inputPath}
+
+        mainPathSearch = inputPath if inputPath else "/cca"
+        if not mainPathSearch.startswith("/"):
+            mainPathSearch = "/" + mainPathSearch
+
+        catalog = self.context.portal_catalog
+
+        try:
+            brains = catalog.unrestrictedSearchResults(path=mainPathSearch)
+        except Exception as e:
+            return {
+                "is_post": True,
+                "error": f"Error searching path: {e}",
+                "path": inputPath,
+            }
+
+        results = []
+        for brain in brains:
+            url = brain.getURL()
+            if " " in url or "%20" in url:
+                results.append(url)
+
+        return {
+            "is_post": True,
+            "results": results,
+            "path": inputPath,
+            "mainPathSearch": mainPathSearch,
+            "count": len(results),
+        }
