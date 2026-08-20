@@ -6,6 +6,7 @@ import urllib.parse
 # import re
 import urllib.request
 
+
 # from datetime import datetime
 # from email.mime.text import MIMEText
 from io import BytesIO
@@ -1343,11 +1344,19 @@ class FindSpacesInUrl(BrowserView):
             ".png",
             ".gif",
             ".svg",
+            ".csv",
+            ".ppt",
+            ".pptx",
         )
         brains_with_spaces = []
+
+        # import pdb
+        # pdb.set_trace()
+
         for b in brains:
             brain_id = b.getId
-            if " " in brain_id or "%20" in brain_id:
+            # if " " in brain_id or "%20" in brain_id:
+            if brain_id.endswith(" ") or brain_id.endswith("%20"):
                 if exclude_files and brain_id.lower().endswith(excluded_extensions):
                     continue
                 brains_with_spaces.append(b)
@@ -1355,35 +1364,48 @@ class FindSpacesInUrl(BrowserView):
         # Sort by path depth descending so we rename children before their parents
         brains_with_spaces.sort(key=lambda b: len(b.getPath().split("/")), reverse=True)
 
+        # import pdb
+        # pdb.set_trace()
+
+        i_transaction = 0
+
         results = []
         for brain in brains_with_spaces:
             url = brain.getURL()
             if rename_spaces:
                 try:
                     obj = brain.getObject()
-                    old_id = obj.getId()
-                    import urllib.parse
+                    old_id = brain.getId
 
                     decoded_id = urllib.parse.unquote(old_id)
-                    new_id = decoded_id.replace(" ", "-")
+                    # new_id = decoded_id.strip().replace(" ", "-")
+                    new_id = decoded_id.strip()
 
                     if old_id != new_id:
-                        import transaction
-                        from plone import api
-
                         parent = obj.aq_parent
                         if hasattr(parent, new_id):
                             results.append(f"{url} (ERROR: {new_id} already exists)")
                         else:
                             api.content.rename(obj=obj, new_id=new_id)
+                            obj.reindexObject()
+
+                            i_transaction += 1
+                            if i_transaction % 100 == 0:
+                                transaction.savepoint()
+
                             results.append(f"{url} -> Renamed to {new_id}")
-                            transaction.commit()
                     else:
                         results.append(f"{url} (Needs rename but old_id == new_id?)")
                 except Exception as e:
                     results.append(f"{url} (Error renaming: {e})")
             else:
                 results.append(url)
+
+        transaction.commit()
+
+        # import pdb
+        # pdb.set_trace()
+
         return {
             "is_post": True,
             "results": results,
