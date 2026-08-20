@@ -371,15 +371,25 @@ class DownloadZipView(BrowserView):
         for item_id, item in self.context.objectItems():
             is_folder = getattr(item, "isPrincipiaFolderish", False)
             portal_type = getattr(item, "portal_type", type(item).__name__)
-            items.append({
-                'id': item_id,
-                'title': getattr(item, 'title', item_id),
-                'type': portal_type,
-                'is_folder': is_folder
-            })
+            items.append(
+                {
+                    "id": item_id,
+                    "title": getattr(item, "title", item_id),
+                    "type": portal_type,
+                    "is_folder": is_folder,
+                }
+            )
         return items
 
-    def _add_to_zip(self, zip_file, context, current_path, selected_items=None, recursive_items=None, is_root=False):
+    def _add_to_zip(
+        self,
+        zip_file,
+        context,
+        current_path,
+        selected_items=None,
+        recursive_items=None,
+        is_root=False,
+    ):
         for item_id, item in context.objectItems():
             if is_root and selected_items is not None and item_id not in selected_items:
                 continue
@@ -406,8 +416,14 @@ class DownloadZipView(BrowserView):
                         should_recurse = False
 
                 if should_recurse:
-                    self._add_to_zip(zip_file, item, f"{zip_path}/",
-                                     selected_items=None, recursive_items=None, is_root=False)
+                    self._add_to_zip(
+                        zip_file,
+                        item,
+                        f"{zip_path}/",
+                        selected_items=None,
+                        recursive_items=None,
+                        is_root=False,
+                    )
                 # Removed 'continue' here so that folderish items (like Plone 6 Pages/Links)
                 # are also exported/serialized as files (e.g. .json) next to their folder.
 
@@ -497,7 +513,7 @@ class DownloadZipView(BrowserView):
                     "",
                     selected_items=items,
                     recursive_items=recursive_items,
-                    is_root=True
+                    is_root=True,
                 )
 
                 # If the zip is completely empty, add a dummy file so it's a valid zip archive
