@@ -1,4 +1,5 @@
 import logging
+import re
 
 import transaction
 from Acquisition import aq_inner, aq_parent
@@ -82,11 +83,23 @@ class ReindexContentType(BrowserView):
 class TriggerCaseStudiesModified(BrowserView):
     """Trigger ObjectModifiedEvent for case study items."""
 
+    def get_language(self):
+        language = self.request.form.get("language", "en").strip().lower()
+        if not re.match(r"^[a-z]{2}$", language):
+            raise ValueError("language must be a two-letter code")
+        return language
+
+    def get_language_path(self, language):
+        portal = get_tool("portal_url").getPortalObject()
+        portal_path = "/".join(portal.getPhysicalPath())
+        return "{}/{}".format(portal_path, language)
+
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
 
+        language = self.get_language()
         catalog = self.context.portal_catalog
-        path = "/".join(self.context.getPhysicalPath())
+        path = self.get_language_path(language)
         brains = catalog.searchResults(
             portal_type=CASE_STUDY_PORTAL_TYPE,
             path=path,
@@ -125,8 +138,8 @@ class TriggerCaseStudiesModified(BrowserView):
         transaction.commit()
         return (
             "Triggered modified event for {} of {} case study items"
-            " under {}. Errors: {}"
-        ).format(count, total, path, errors)
+            " under {} for language {}. Errors: {}"
+        ).format(count, total, path, language, errors)
 
 
 class InspectCatalog(BrowserView):
