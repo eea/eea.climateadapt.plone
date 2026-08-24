@@ -1,13 +1,17 @@
 import logging
 
+import transaction
 from Acquisition import aq_inner, aq_parent
 from plone.api.portal import get_tool
 from plone.base.utils import base_hasattr, safe_callable
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
 from zope.interface import alsoProvides
+from zope.lifecycleevent import modified
 
 logger = logging.getLogger("eea.climateadapt")
+
+CASE_STUDY_PORTAL_TYPE = "eea.climateadapt.casestudy"
 
 
 class GoPDB(BrowserView):
@@ -73,6 +77,56 @@ class ReindexContentType(BrowserView):
             logger.info("Reindexed %s", obj.absolute_url())
 
         return "done"
+
+
+class TriggerCaseStudiesModified(BrowserView):
+    """Trigger ObjectModifiedEvent for case study items."""
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        catalog = self.context.portal_catalog
+        path = "/".join(self.context.getPhysicalPath())
+        brains = catalog.searchResults(
+            portal_type=CASE_STUDY_PORTAL_TYPE,
+            path=path,
+        )
+
+        total = len(brains)
+        count = 0
+        errors = 0
+        try:
+            batch_size = int(self.request.form.get("batch_size", 100))
+        except (TypeError, ValueError):
+            batch_size = 100
+        batch_size = max(batch_size, 1)
+
+        for idx, brain in enumerate(brains, start=1):
+            try:
+                obj = brain.getObject()
+                modified(obj)
+                count += 1
+                logger.info("Triggered modified event for %s", brain.getURL())
+            except Exception:
+                errors += 1
+                logger.exception(
+                    "Could not trigger modified event for %s",
+                    brain.getURL(),
+                )
+
+            if idx % batch_size == 0:
+                transaction.commit()
+                logger.info(
+                    "Triggered modified event for %s/%s case study items",
+                    idx,
+                    total,
+                )
+
+        transaction.commit()
+        return (
+            "Triggered modified event for {} of {} case study items"
+            " under {}. Errors: {}"
+        ).format(count, total, path, errors)
 
 
 class InspectCatalog(BrowserView):
