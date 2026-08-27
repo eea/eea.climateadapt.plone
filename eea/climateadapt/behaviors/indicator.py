@@ -21,6 +21,7 @@ VISUALIZATIONS_SCHEMA = {
         "type": "object",
         "properties": {
             "title": {"type": "string"},
+            "description": {"type": "string"},
             "embed_code": {"type": "string"},
             "height": {"type": "string"},
             "full_width": {"type": "boolean"},
@@ -41,8 +42,9 @@ class IIndicator(IAceItem, IBlocks):
         title=_("Visualizations"),
         description=_(
             "Multiple interactive visualizations. Each item can contain a "
-            "title, an iframe embed code, a Flourish embed code, or a direct "
-            "URL, plus an optional height and full-width setting."
+            "title, a description, an iframe embed code, a Flourish embed "
+            "code, or a direct URL, plus an optional height and full-width "
+            "setting."
         ),
         schema=json.dumps(VISUALIZATIONS_SCHEMA),
         default=[],
