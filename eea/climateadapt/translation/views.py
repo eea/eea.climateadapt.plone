@@ -192,8 +192,7 @@ class TranslationCallback(BrowserView):
         if error_code or error_message:
             raise ValueError(
                 "REST v2 eTranslation callback error: requestId=%s "
-                "errorCode=%s errorMessage=%s"
-                % (request_id, error_code, error_message)
+                "errorCode=%s errorMessage=%s" % (request_id, error_code, error_message)
             )
 
         if not extref:
