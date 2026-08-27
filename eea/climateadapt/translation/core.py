@@ -3,6 +3,7 @@ import base64
 import json
 import logging
 import os
+import time
 
 import requests
 from Acquisition import aq_inner, aq_parent
@@ -41,6 +42,11 @@ SERVICE_URL = "https://webgate.ec.europa.eu/etranslation/si/translate"
 ETRANSLATION_SOAP_SERVICE_URL = (
     "https://webgate.ec.europa.eu/etranslation/si/WSEndpointHandlerService?WSDL"
 )
+ETRANSLATION_REST_V2_URL = (
+    "https://language-tools.ec.europa.eu/etranslation/api/askTranslate"
+)
+ETRANSLATION_APPLICATION = "Marine_EEA_20180706"
+ETRANSLATION_API_VERSION = "rest_v2"
 REDIS_HOST = env("REDIS_HOST", "localhost")
 REDIS_PORT = int(env("REDIS_PORT", 6379))
 TRANSLATION_AUTH_TOKEN = env("TRANSLATION_AUTH_TOKEN", "")
@@ -189,19 +195,193 @@ def call_etranslation_service(html, obj_path, target_languages):
     (based on volto export)
     """
 
+    logger.info(
+        "event=etranslation.call.dispatch api=%s obj_path=%s target_languages=%s",
+        ETRANSLATION_API_VERSION,
+        obj_path,
+        target_languages,
+    )
+
+    if ETRANSLATION_API_VERSION == "rest_v2":
+        return call_etranslation_rest_v2(html, obj_path, target_languages)
+
+    return call_etranslation_soap(html, obj_path, target_languages)
+
+
+def call_etranslation_rest_v2(html, obj_path, target_languages):
+    """Submit a translation request to eTranslation REST v2."""
+
+    if not html:
+        return {"transId": "not-called", "reason": "Empty HTML content"}
+
+    site_url = PORTAL_URL or portal.get().absolute_url()
+    dest = "{}/@@translate-callback".format(site_url)
+    duration_start = time.time()
+
+    if "localhost" in site_url:
+        logger.warning(
+            "event=etranslation.call.skip api=rest_v2 reason=localhost "
+            "obj_path=%s target_languages=%s html_length=%s callback_url=%s",
+            obj_path,
+            target_languages,
+            len(html),
+            dest,
+        )
+        return {
+            "transId": "not-called",
+            "reason": "localhost",
+            "externalRefId": obj_path,
+        }
+
+    encoded_html = base64.b64encode(html.encode("utf-8")).decode("ascii")
+    normalized_target_languages = [
+        language.upper() for language in target_languages if language
+    ]
+    payload = {
+        "sourceLanguage": "EN",
+        "targetLanguages": normalized_target_languages,
+        "domain": "GEN",
+        "outputFormat": "html",
+        "callerInformation": {
+            "externalReference": obj_path,
+            "username": TRANS_USERNAME,
+        },
+        "documentToTranslate": {
+            "document": {
+                "content": encoded_html,
+                "format": "html",
+                "filename": "out.html",
+            }
+        },
+        "deliveries": {
+            "http": dest,
+        },
+    }
+
+    logger.info(
+        "event=etranslation.call.start api=rest_v2 endpoint=%s obj_path=%s "
+        "target_languages=%s html_length=%s callback_url=%s",
+        ETRANSLATION_REST_V2_URL,
+        obj_path,
+        normalized_target_languages,
+        len(html),
+        dest,
+    )
+    logger.info(
+        "event=etranslation.rest_v2.payload.ready source_language=%s "
+        "target_languages=%s domain=%s output_format=%s filename=%s "
+        "content_base64_length=%s external_reference=%s",
+        payload["sourceLanguage"],
+        payload["targetLanguages"],
+        payload["domain"],
+        payload["outputFormat"],
+        payload["documentToTranslate"]["document"]["filename"],
+        len(encoded_html),
+        obj_path,
+    )
+
+    try:
+        response = requests.post(
+            ETRANSLATION_REST_V2_URL,
+            json=payload,
+            auth=(ETRANSLATION_APPLICATION, MARINE_PASS),
+            timeout=60,
+        )
+    except Exception:
+        duration_ms = int((time.time() - duration_start) * 1000)
+        logger.exception(
+            "event=etranslation.rest_v2.request.exception endpoint=%s "
+            "obj_path=%s target_languages=%s duration_ms=%s",
+            ETRANSLATION_REST_V2_URL,
+            obj_path,
+            normalized_target_languages,
+            duration_ms,
+        )
+        raise
+
+    duration_ms = int((time.time() - duration_start) * 1000)
+    content_type = response.headers.get("Content-Type", "")
+
+    try:
+        response_data = response.json()
+    except ValueError:
+        response_data = {}
+
+    request_id = response_data.get("requestId")
+    error_code = response_data.get("errorCode")
+    error_message = response_data.get("errorMessage")
+
+    logger.info(
+        "event=etranslation.rest_v2.response status_code=%s ok=%s "
+        "content_type=%s request_id=%s error_code=%s error_message=%s "
+        "duration_ms=%s obj_path=%s target_languages=%s",
+        response.status_code,
+        response.ok,
+        content_type,
+        request_id,
+        error_code,
+        error_message,
+        duration_ms,
+        obj_path,
+        normalized_target_languages,
+    )
+
+    if not response.ok:
+        if not response_data:
+            logger.warning(
+                "event=etranslation.rest_v2.error.non_json status_code=%s "
+                "response_text=%s obj_path=%s target_languages=%s",
+                response.status_code,
+                response.text[:1000],
+                obj_path,
+                normalized_target_languages,
+            )
+        raise ValueError(
+            "REST v2 eTranslation request failed: status_code=%s "
+            "errorCode=%s errorMessage=%s"
+            % (response.status_code, error_code, error_message)
+        )
+
+    if request_id is None:
+        raise ValueError(
+            "REST v2 eTranslation response did not include requestId: %s"
+            % response_data
+        )
+
+    return {
+        "transId": request_id,
+        "requestId": request_id,
+        "externalRefId": obj_path,
+        "api": "rest_v2",
+    }
+
+
+def call_etranslation_soap(html, obj_path, target_languages):
+    """Submit a translation request to the legacy eTranslation SOAP service."""
+
     if not html:
         return {"transId": "not-called", "reason": "Empty HTML content"}
 
     encoded_html = base64.b64encode(html.encode("utf-8"))
 
     site_url = PORTAL_URL or portal.get().absolute_url()
+    dest = "{}/@@translate-callback".format(site_url)
+    duration_start = time.time()
+
+    logger.info(
+        "event=etranslation.call.start api=soap wsdl=%s obj_path=%s "
+        "target_languages=%s html_length=%s callback_url=%s",
+        ETRANSLATION_SOAP_SERVICE_URL,
+        obj_path,
+        target_languages,
+        len(html),
+        dest,
+    )
 
     client = Client(
         ETRANSLATION_SOAP_SERVICE_URL,
         wsse=UsernameToken(TRANS_USERNAME, MARINE_PASS),
     )
-
-    dest = "{}/@@translate-callback".format(site_url)
 
     if "localhost" not in site_url:
         resp = client.service.translate(
@@ -209,7 +389,7 @@ def call_etranslation_service(html, obj_path, target_languages):
                 "priority": "5",
                 "external-reference": obj_path,
                 "caller-information": {
-                    "application": "Marine_EEA_20180706",
+                    "application": ETRANSLATION_APPLICATION,
                     "username": TRANS_USERNAME,
                 },
                 "document-to-translate-base64": {
@@ -227,18 +407,36 @@ def call_etranslation_service(html, obj_path, target_languages):
             }
         )
     else:
-        logger.warning("Is localhost, won't retrieve translation for: %s", html)
-        return {"transId": "not-called", "externalRefId": html}
+        logger.warning(
+            "event=etranslation.call.skip api=soap reason=localhost "
+            "obj_path=%s target_languages=%s html_length=%s callback_url=%s",
+            obj_path,
+            target_languages,
+            len(html),
+            dest,
+        )
+        return {
+            "transId": "not-called",
+            "reason": "localhost",
+            "externalRefId": obj_path,
+        }
 
-    logger.info("Data translation request : html content")
-    logger.info("Response from translation request: %r", resp)
+    duration_ms = int((time.time() - duration_start) * 1000)
+    logger.info(
+        "event=etranslation.soap.response trans_id=%s duration_ms=%s "
+        "obj_path=%s target_languages=%s",
+        resp,
+        duration_ms,
+        obj_path,
+        target_languages,
+    )
 
     # if str(resp[0]) == '-':
     #     # If the response is a negative number this means error. Error codes:
     #     # https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/How+to+submit+a+translation+request+via+the+CEF+eTranslation+webservice
     #     import pdb; pdb.set_trace()
 
-    return {"transId": resp, "externalRefId": html}
+    return {"transId": resp, "externalRefId": obj_path, "api": "soap"}
 
 
 def get_content_from_html(html, language=None):
