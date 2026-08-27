@@ -1,13 +1,18 @@
 import logging
+import re
 
+import transaction
 from Acquisition import aq_inner, aq_parent
 from plone.api.portal import get_tool
 from plone.base.utils import base_hasattr, safe_callable
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
 from zope.interface import alsoProvides
+from zope.lifecycleevent import modified
 
 logger = logging.getLogger("eea.climateadapt")
+
+CASE_STUDY_PORTAL_TYPE = "eea.climateadapt.casestudy"
 
 
 class GoPDB(BrowserView):
@@ -73,6 +78,68 @@ class ReindexContentType(BrowserView):
             logger.info("Reindexed %s", obj.absolute_url())
 
         return "done"
+
+
+class TriggerCaseStudiesModified(BrowserView):
+    """Trigger ObjectModifiedEvent for case study items."""
+
+    def get_language(self):
+        language = self.request.form.get("language", "en").strip().lower()
+        if not re.match(r"^[a-z]{2}$", language):
+            raise ValueError("language must be a two-letter code")
+        return language
+
+    def get_language_path(self, language):
+        portal = get_tool("portal_url").getPortalObject()
+        portal_path = "/".join(portal.getPhysicalPath())
+        return "{}/{}".format(portal_path, language)
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        language = self.get_language()
+        catalog = self.context.portal_catalog
+        path = self.get_language_path(language)
+        brains = catalog.searchResults(
+            portal_type=CASE_STUDY_PORTAL_TYPE,
+            path=path,
+        )
+
+        total = len(brains)
+        count = 0
+        errors = 0
+        try:
+            batch_size = int(self.request.form.get("batch_size", 100))
+        except (TypeError, ValueError):
+            batch_size = 100
+        batch_size = max(batch_size, 1)
+
+        for idx, brain in enumerate(brains, start=1):
+            try:
+                obj = brain.getObject()
+                modified(obj)
+                count += 1
+                logger.info("Triggered modified event for %s", brain.getURL())
+            except Exception:
+                errors += 1
+                logger.exception(
+                    "Could not trigger modified event for %s",
+                    brain.getURL(),
+                )
+
+            if idx % batch_size == 0:
+                transaction.commit()
+                logger.info(
+                    "Triggered modified event for %s/%s case study items",
+                    idx,
+                    total,
+                )
+
+        transaction.commit()
+        return (
+            "Triggered modified event for {} of {} case study items"
+            " under {} for language {}. Errors: {}"
+        ).format(count, total, path, language, errors)
 
 
 class InspectCatalog(BrowserView):
