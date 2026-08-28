@@ -1924,3 +1924,167 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
         )
 
         return response
+
+
+class UsersGroupsList(BrowserView):
+    """ View to list users and their groups """
+
+    def results(self):
+        req = self.request
+        f_id = req.get('f_id', '').strip().lower()
+        f_name = req.get('f_name', '').strip().lower()
+        f_email = req.get('f_email', '').strip().lower()
+        f_group = req.get('f_group', '').strip().lower()
+
+        # import pdb
+        # pdb.set_trace()
+
+        try:
+            from plone import api
+            users = api.user.get_users()
+        except ImportError:
+            from Products.CMFCore.utils import getToolByName
+            acl_users = getToolByName(self.context, 'acl_users')
+            users = acl_users.searchUsers()
+            # api.user.get_users returns user objects. acl_users.searchUsers returns dicts or simple objects
+            # To be safe and since plone.api is used elsewhere, we assume api is available.
+
+        import plone.api as api
+        users = api.user.get_users()
+
+        results = []
+        for user in users:
+            uid = user.getId() or ''
+            uname = user.getProperty('fullname') or ''
+            uemail = user.getProperty('email') or ''
+
+            if f_id and f_id not in uid.lower():
+                continue
+            if f_name and f_name not in uname.lower():
+                continue
+            if f_email and f_email not in uemail.lower():
+                continue
+
+            groups = api.group.get_groups(user=user)
+            gnames = [g.getId() for g in groups if g]
+
+            if f_group:
+                if not any(f_group in g.lower() for g in gnames):
+                    continue
+
+            results.append({
+                'id': uid,
+                'name': uname,
+                'email': uemail,
+                'groups': ", ".join(gnames)
+            })
+
+            if len(results) >= 200:
+                break
+
+        return results
+
+
+class UploadCSVUsersGroupsView(BrowserView):
+    """ Upload a CSV file with group_name, user_name and list them """
+
+    def process(self):
+        req = self.request
+        data = {
+            'is_post': req.environ.get('REQUEST_METHOD') == 'POST',
+            'addgroups': req.form.get('addgroups', None),
+            'error': None,
+            'plone_users': [],
+            'plone_groups': [],
+            'results': []
+        }
+
+        if not data['is_post']:
+            return data
+
+        # try:
+        #     from plone import api
+        #     users = api.user.get_users()
+        # except ImportError:
+        #     from Products.CMFCore.utils import getToolByName
+        #     acl_users = getToolByName(self.context, 'acl_users')
+        #     users = acl_users.searchUsers()
+        #     # api.user.get_users returns user objects. acl_users.searchUsers returns dicts or simple objects
+        #     # To be safe and since plone.api is used elsewhere, we assume api is available.
+
+        from plone import api
+        portal = api.portal.get()
+
+        # data['plone_users'] = [user.getId() for user in users]
+        # data['plone_groups'] = [user.getId() for user in users]
+
+        data['plone_users'] = [user.getId() for user in portal.acl_users.getUsers()]
+        data['plone_groups'] = [group.getId() for group in portal.acl_users.getGroups()]
+
+        file_upload = req.form.get('csv_file', None)
+        if not file_upload or not hasattr(file_upload, 'read'):
+            data['error'] = 'No CSV file uploaded.'
+            return data
+
+        try:
+            content = file_upload.read().decode('utf-8-sig')
+            csv_file = io.StringIO(content)
+            reader = csv.reader(csv_file)
+        except Exception as e:
+            data['error'] = f'Error reading CSV file: {e}'
+            return data
+
+        user_groups = {}
+        for i, row in enumerate(reader):
+            # Skip empty rows
+            if not row or len(row) < 2:
+                continue
+
+            group_name = row[0].strip()
+            user_name = row[1].strip()
+
+            if not group_name or not user_name:
+                continue
+
+            if user_name not in user_groups:
+                user_groups[user_name] = set()
+            user_groups[user_name].add(group_name)
+
+        try:
+            import plone.api as api
+        except ImportError:
+            api = None
+
+        results = []
+        for uname, groups in sorted(user_groups.items()):
+            user_exists = True
+            if api:
+                user_exists = api.user.get(userid=uname) is not None
+
+            group_results = []
+            for gname in sorted(groups):
+                g_exists = True
+                if api:
+                    g_exists = api.group.get(groupname=gname) is not None
+
+                if g_exists and data['addgroups']:
+                    group = portal.acl_users.getGroupById(gname)
+                    if group is not None:
+                        if uname not in group.getMemberIds():
+                            # import pdb
+                            # pdb.set_trace()
+                            group.addMember(uname)
+
+                group_results.append({
+                    'name': gname,
+                    'exists': g_exists
+                })
+
+            results.append({
+                'name': uname,
+                'exists': user_exists,
+                'groups': group_results
+            })
+
+        data['results'] = results
+        return data

@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>Users and Groups List</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    form { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; background: #f9f9f9; }
+    .form-group { display: inline-block; margin-right: 15px; }
+    .form-group label { font-weight: bold; margin-right: 5px; }
+  </style>
+</head>
+<body>
+  <h2>List Users and Groups</h2>
+  
+  <form method="GET">
+    <div class="form-group">
+      <label for="f_id">ID User:</label>
+      <input type="text" id="f_id" name="f_id" tal:attributes="value request/f_id | nothing" />
+    </div>
+    <div class="form-group">
+      <label for="f_name">Name:</label>
+      <input type="text" id="f_name" name="f_name" tal:attributes="value request/f_name | nothing" />
+    </div>
+    <div class="form-group">
+      <label for="f_email">Email:</label>
+      <input type="text" id="f_email" name="f_email" tal:attributes="value request/f_email | nothing" />
+    </div>
+    <div class="form-group">
+      <label for="f_group">Group:</label>
+      <input type="text" id="f_group" name="f_group" tal:attributes="value request/f_group | nothing" />
+    </div>
+    <button type="submit">Filter</button>
+    <a href="?">Reset</a>
+  </form>
+
+  <table>
+    <tr>
+      <th>ID User</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Groups</th>
+    </tr>
+    <tr tal:repeat="row view/results">
+      <td tal:content="row/id"></td>
+      <td tal:content="row/name"></td>
+      <td tal:content="row/email"></td>
+      <td tal:content="row/groups"></td>
+    </tr>
+    <tr tal:condition="not:view/results">
+      <td colspan="4" style="text-align:center;">No users found.</td>
+    </tr>
+  </table>
+</body>
+</html>

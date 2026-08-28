@@ -1,0 +1,65 @@
+<html>
+<head>
+  <title>Upload CSV Users/Groups</title>
+  <style>
+    body { font-family: sans-serif; margin: 40px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
+    .error { color: red; font-weight: bold; }
+    .bg_red { background-color: #ff8282; color:#222; font-weight: bold; }
+    .bg_success { background-color: #A8DCAB; color:#222; font-weight: bold; }
+    span {background-color:#A8DCAB;border: 1px solid #ccc; border-radius: 12px; padding: 2px 8px; font-size: 0.9em;font-weight: bold; }
+  </style>
+</head>
+<body tal:define="data view/process">
+  <tal:block condition="not:data/is_post">
+      <h2>Upload CSV - Users and Groups</h2>
+      <p>Selectati fisierul CSV (coloana 1: group_name, coloana 2: user_name).</p>
+      <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="csv_file" accept=".csv" required="required" />
+        <br><br><input type="checkbox" name="addgroups" value="1" />Add group(s) from list for each user if not already assign
+        <br><br><button type="submit">Upload</button>
+      </form>
+  </tal:block>
+
+  <tal:block condition="data/is_post">
+      <tal:error condition="data/error | nothing">
+          <p class="error" tal:content="data/error"></p>
+          <a href='javascript:history.back()'>Back</a>
+      </tal:error>
+
+      <tal:results condition="not:data/error | nothing">
+          <h1 tal:condition="not:data/addgroups">ATTENTION: you did not check to add grups for each user</h1>
+          <h2>Parsed Results</h2>
+          <table>
+            <tr>
+              <th>#</th>
+              <th>User Name</th>
+              <th>Groups (from CSV)</th>
+            </tr>
+            <tr tal:repeat="user data/results">
+                <td tal:content="repeat/user/number"></td>
+                <td tal:content="user/name"
+                    tal:attributes="class string:bg_success"
+                    tal:condition="user/exists">
+                </td>
+                <td tal:content="user/name"
+                    tal:attributes="class string:bg_red"
+                    tal:condition="not:user/exists">
+                </td>
+                <td>
+                    <tal:block tal:repeat="group user/groups">
+                        <span tal:content="group/name" tal:condition="group/exists"></span>
+                        <span tal:content="group/name" tal:condition="not:group/exists" tal:attributes="class string:bg_red"></span>
+                        <tal:comma condition="not:repeat/group/end">, </tal:comma>
+                    </tal:block>
+                </td>
+            </tr>
+          </table>
+          <br/>
+          <a href='javascript:history.back()'>Back</a>
+      </tal:results>
+  </tal:block>
+</body>
+</html>

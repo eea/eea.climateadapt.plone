@@ -330,4 +330,20 @@
     permission="zope2.View"
   />
 
+  <browser:page
+    name="users-groups-list"
+    for="*"
+    class=".migrate.UsersGroupsList"
+    template="pt/misc_users_groups_list.pt"
+    permission="cmf.ManagePortal"
+  />
+
+  <browser:page
+    name="upload-csv-users-groups"
+    for="*"
+    class=".migrate.UploadCSVUsersGroupsView"
+    template="pt/misc_upload_csv_users.pt"
+    permission="cmf.ManagePortal"
+  />
+
 </configure>
