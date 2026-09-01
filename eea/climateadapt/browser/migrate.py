@@ -1834,41 +1834,47 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
         "eea.climateadapt.indicator",
         "eea.climateadapt.c3sindicator",
     )
-    searchable_text_queries = (
-        ("UA", "Ukraine"),
-        ("MD", "Republic of Moldova"),
-    )
-
     def should_change(self):
         value = self.request.form.get("change", "")
         return value.lower() in ("1", "true", "yes", "on")
 
+    def get_country_codes_from_subjects(self, obj):
+        subjects = obj.Subject()
+        country_codes = []
+
+        if "Ukraine" in subjects:
+            country_codes.append("UA")
+
+        if any("Moldova" in subject for subject in subjects):
+            country_codes.append("MD")
+
+        return country_codes
+
     def get_brains(self):
         catalog = api.portal.get_tool("portal_catalog")
-        brains_by_path = {}
+        brains = catalog.unrestrictedSearchResults(
+            macro_regions={"query": self.macro_regions, "operator": "or"},
+        )
+        entries = []
 
-        for country_code, searchable_text in self.searchable_text_queries:
-            brains = catalog.unrestrictedSearchResults(
-                macro_regions={"query": self.macro_regions, "operator": "or"},
-                SearchableText=searchable_text,
+        for brain in brains:
+            if brain.portal_type in self.excluded_portal_types:
+                continue
+
+            obj = brain.getObject()
+            country_codes = self.get_country_codes_from_subjects(obj)
+
+            if not country_codes:
+                continue
+
+            entries.append(
+                {
+                    "brain": brain,
+                    "country_codes": country_codes,
+                }
             )
 
-            for brain in brains:
-                if brain.portal_type in self.excluded_portal_types:
-                    continue
-
-                entry = brains_by_path.setdefault(
-                    brain.getPath(),
-                    {
-                        "brain": brain,
-                        "country_codes": [],
-                    },
-                )
-
-                if country_code not in entry["country_codes"]:
-                    entry["country_codes"].append(country_code)
-
-        return list(brains_by_path.values())
+        return entries
 
     def update_geochars(self, obj, country_codes):
         if not country_codes:
