@@ -1834,20 +1834,69 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
         "eea.climateadapt.indicator",
         "eea.climateadapt.c3sindicator",
     )
+    country_text_fields = (
+        "title",
+        "description",
+        "long_description",
+        "lead",
+        "partners",
+        "keywords",
+        "special_tags",
+    )
+    country_text_methods = ("Title", "Description")
+    country_patterns = (
+        ("UA", re.compile(r"\b(?:Ukraine|Ukrainian|Ukraina)\b", re.I)),
+        (
+            "MD",
+            re.compile(r"\b(?:Republic\s+of\s+Moldova|Moldova|Moldovan)\b", re.I),
+        ),
+    )
 
     def should_change(self):
         value = self.request.form.get("change", "")
         return value.lower() in ("1", "true", "yes", "on")
 
-    def get_country_codes_from_subjects(self, obj):
-        subjects = obj.Subject()
+    def value_to_text(self, value):
+        if not value:
+            return ""
+
+        if isinstance(value, bytes):
+            return value.decode("utf-8", "ignore")
+
+        if isinstance(value, (list, tuple, set)):
+            return " ".join(self.value_to_text(item) for item in value)
+
+        text_parts = []
+        for attr in ("raw", "output", "data"):
+            attr_value = getattr(value, attr, None)
+            if attr_value:
+                text_parts.append(self.value_to_text(attr_value))
+
+        if text_parts:
+            return " ".join(text_parts)
+
+        return str(value)
+
+    def get_country_text(self, obj):
+        parts = []
+
+        for field_name in self.country_text_fields:
+            parts.append(self.value_to_text(getattr(obj, field_name, "")))
+
+        for method_name in self.country_text_methods:
+            method = getattr(obj, method_name, None)
+            if method:
+                parts.append(self.value_to_text(method()))
+
+        return " ".join(part for part in parts if part)
+
+    def get_country_codes_from_text(self, obj):
+        text = self.get_country_text(obj)
         country_codes = []
 
-        if "Ukraine" in subjects:
-            country_codes.append("UA")
-
-        if any("Moldova" in subject for subject in subjects):
-            country_codes.append("MD")
+        for country_code, pattern in self.country_patterns:
+            if pattern.search(text):
+                country_codes.append(country_code)
 
         return country_codes
 
@@ -1863,7 +1912,7 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
                 continue
 
             obj = brain.getObject()
-            country_codes = self.get_country_codes_from_subjects(obj)
+            country_codes = self.get_country_codes_from_text(obj)
 
             if not country_codes:
                 continue
