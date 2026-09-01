@@ -1826,8 +1826,18 @@ class MigrateAdaptationOption(BrowserView):
 class MigrateMoldovaUkraineGeoCoverage(BrowserView):
     """Migrate Moldova and Ukraine geographical coverage."""
 
-    macro_region = "TRANS_MACRO_DANUBE"
-    countries = ("MD", "UA")
+    macro_regions = ("TRANS_MACRO_DANUBE", "TRANS_MACRO_BLACKSEA_BASIN")
+    excluded_portal_types = (
+        "File",
+        "Image",
+        "RichImage",
+        "eea.climateadapt.indicator",
+        "eea.climateadapt.c3sindicator",
+    )
+    searchable_text_queries = (
+        ("UA", "Ukraine"),
+        ("MD", "Republic of Moldova"),
+    )
 
     def should_change(self):
         value = self.request.form.get("change", "")
@@ -1835,9 +1845,35 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
 
     def get_brains(self):
         catalog = api.portal.get_tool("portal_catalog")
-        return catalog.unrestrictedSearchResults(macro_regions=self.macro_region)
+        brains_by_path = {}
 
-    def update_geochars(self, obj):
+        for country_code, searchable_text in self.searchable_text_queries:
+            brains = catalog.unrestrictedSearchResults(
+                macro_regions={"query": self.macro_regions, "operator": "or"},
+                SearchableText=searchable_text,
+            )
+
+            for brain in brains:
+                if brain.portal_type in self.excluded_portal_types:
+                    continue
+
+                entry = brains_by_path.setdefault(
+                    brain.getPath(),
+                    {
+                        "brain": brain,
+                        "country_codes": [],
+                    },
+                )
+
+                if country_code not in entry["country_codes"]:
+                    entry["country_codes"].append(country_code)
+
+        return list(brains_by_path.values())
+
+    def update_geochars(self, obj, country_codes):
+        if not country_codes:
+            return None, "No Moldova or Ukraine keyword"
+
         raw_geochars = getattr(obj, "geochars", None)
         if not raw_geochars:
             return None, "Missing geochars"
@@ -1850,16 +1886,16 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
         geo_elements = geochars.get("geoElements", {})
         macrotrans = geo_elements.get("macrotrans") or []
 
-        if self.macro_region not in macrotrans:
-            return None, "Danube Region not found in geochars"
+        if not any(macro_region in macrotrans for macro_region in self.macro_regions):
+            return None, "Candidate macro region not found in geochars"
 
         current_countries = geo_elements.get("countries") or []
         missing_countries = [
-            country for country in self.countries if country not in current_countries
+            country for country in country_codes if country not in current_countries
         ]
 
         if not missing_countries:
-            return None, "Already has Moldova and Ukraine"
+            return None, "Already has matched countries"
 
         geo_elements["countries"] = current_countries + missing_countries
         geochars["geoElements"] = geo_elements
@@ -1876,17 +1912,20 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
         total = len(brains)
 
         logger.info(
-            "MigrateMoldovaUkraineGeoCoverage found %s Danube Region items. change=%s",
+            "MigrateMoldovaUkraineGeoCoverage found %s candidate macro region "
+            "items. change=%s",
             total,
             change,
         )
 
-        for idx, brain in enumerate(brains, start=1):
+        for idx, entry in enumerate(brains, start=1):
+            brain = entry["brain"]
             obj = brain.getObject()
-            updated_geochars, error = self.update_geochars(obj)
+            country_codes = entry["country_codes"]
+            updated_geochars, error = self.update_geochars(obj, country_codes)
 
             if not updated_geochars:
-                if error and "Danube Region not found" not in error:
+                if error and "Candidate macro region not found" not in error:
                     logger.info("Skipped %s: %s", brain.getURL(), error)
                 continue
 
@@ -1917,7 +1956,8 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
             transaction.commit()
 
         logger.info(
-            "MigrateMoldovaUkraineGeoCoverage %s %s out of %s Danube Region items",
+            "MigrateMoldovaUkraineGeoCoverage %s %s out of %s candidate "
+            "macro region items",
             "changed" if change else "would change",
             changed if change else len(response),
             total,
