@@ -1834,6 +1834,7 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
         "eea.climateadapt.indicator",
         "eea.climateadapt.c3sindicator",
     )
+
     def should_change(self):
         value = self.request.form.get("change", "")
         return value.lower() in ("1", "true", "yes", "on")
