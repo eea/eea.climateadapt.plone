@@ -1886,9 +1886,7 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
         geo_elements = geochars.get("geoElements", {})
         macrotrans = geo_elements.get("macrotrans") or []
 
-        if not any(
-            macro_region in macrotrans for macro_region in self.macro_regions
-        ):
+        if not any(macro_region in macrotrans for macro_region in self.macro_regions):
             return None, "Candidate macro region not found in geochars"
 
         current_countries = geo_elements.get("countries") or []
