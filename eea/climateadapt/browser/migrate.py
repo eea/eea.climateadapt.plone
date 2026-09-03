@@ -1903,7 +1903,7 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
     def get_brains(self):
         catalog = api.portal.get_tool("portal_catalog")
         brains = catalog.unrestrictedSearchResults(
-            macro_regions={"query": self.macro_regions, "operator": "or"},
+            path="/cca/en",
         )
         entries = []
 
@@ -1940,10 +1940,6 @@ class MigrateMoldovaUkraineGeoCoverage(BrowserView):
             return None, "Invalid geochars: {}".format(error)
 
         geo_elements = geochars.get("geoElements", {})
-        macrotrans = geo_elements.get("macrotrans") or []
-
-        if not any(macro_region in macrotrans for macro_region in self.macro_regions):
-            return None, "Candidate macro region not found in geochars"
 
         current_countries = geo_elements.get("countries") or []
         missing_countries = [
