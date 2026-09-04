@@ -56,8 +56,24 @@ from zope.globalrequest import setRequest
 from zope.interface import implementer
 from OFS.interfaces import IFolder
 from plone.dexterity.interfaces import IDexterityContent
+from Products.CMFCore.utils import getToolByName
+
+from eea.climateadapt.local_roles import IGNORED_USER_IDS
+from eea.climateadapt.scripts.export_eionet_groups import (
+    connect,
+    fetch_groups,
+    fetch_users,
+    find_ldap_settings,
+    member_uid,
+)
 
 logger = logging.getLogger(__name__)
+
+# Developer/staff accounts that show up in content changes but are not real
+# portal users; excluded from the report (same list as report_roles).
+DEVELOPER_USER_IDS = {uid.lower() for uid in IGNORED_USER_IDS}
+
+DEFAULT_LDAP_EXCLUDE_FILTER = "extranet-cca*"
 
 
 def traverse_content(portal):
@@ -141,7 +157,52 @@ def collect_active_users(portal, since):
     return creators, modifiers
 
 
-def run(portal, years=2, csv_file=None, json_file=None):
+def get_user_details(portal, user_ids):
+    """Resolve user IDs to fullname/email via portal_membership.
+
+    Returns: dict user_id -> {"fullname": str, "email": str}
+    """
+    portal_membership = getToolByName(portal, "portal_membership")
+    details = {}
+    for uid in user_ids:
+        try:
+            member = portal_membership.getMemberById(uid)
+            if member is None:
+                details[uid] = {"fullname": "", "email": ""}
+                continue
+            details[uid] = {
+                "fullname": (member.getProperty("fullname") or "").strip(),
+                "email": (member.getProperty("email") or "").strip(),
+            }
+        except Exception as e:
+            logger.warning("Could not fetch member details for %s: %s", uid, e)
+            details[uid] = {"fullname": "", "email": ""}
+    return details
+
+
+def get_ldap_group_members(portal, cn_filter):
+    """Fetch the set of Eionet usernames that are members of the LDAP groups
+    matching ``cn_filter`` (e.g. ``extranet-cca*``).
+
+    Requires the EEA VPN to be connected. Raises on connection failure.
+    """
+    settings = find_ldap_settings(portal.acl_users)
+    con = connect(settings)
+    try:
+        groups = fetch_groups(con, settings, cn_filter)
+    finally:
+        con.unbind()
+    uids = set()
+    for group in groups:
+        for member_dn in group["members"]:
+            uid = member_uid(member_dn)
+            if uid:
+                uids.add(uid)
+    return uids
+
+
+def run(portal, years=2, csv_file=None, json_file=None, no_ldap=False,
+        ldap_exclude_filter=DEFAULT_LDAP_EXCLUDE_FILTER):
     """Main logic: traverse content and produce output."""
     since = DateTime(datetime.now() - timedelta(days=years * 365))
     logger.info("Looking back %d years (since %s)", years, since)
@@ -155,35 +216,111 @@ def run(portal, years=2, csv_file=None, json_file=None):
     creators, modifiers = collect_active_users(portal, since)
 
     # Merge: union of all user IDs
-    all_users = sorted(set(creators.keys()) | set(modifiers.keys()))
+    all_users = set(creators.keys()) | set(modifiers.keys())
 
-    results = [
-        {
+    # Drop developer/staff accounts (see IGNORED_USER_IDS in local_roles.py)
+    dev_users = {uid for uid in all_users if uid.lower() in DEVELOPER_USER_IDS}
+    if dev_users:
+        print(f"Ignoring developer/staff accounts: {', '.join(sorted(dev_users))}")
+        print()
+        all_users -= dev_users
+
+    # Exclude users that are members of the Eionet LDAP groups, and fetch
+    # LDAP user details to fill missing local fullname/email.
+    excluded_users = set()
+    ldap_details = {}
+    if no_ldap:
+        print(f"LDAP lookup skipped (--no-ldap).")
+        print()
+    else:
+        print(
+            f"Fetching LDAP groups (cn={ldap_exclude_filter}) and user details..."
+        )
+        try:
+            settings = find_ldap_settings(portal.acl_users)
+            con = connect(settings)
+            try:
+                groups = fetch_groups(con, settings, ldap_exclude_filter)
+                for group in groups:
+                    for member_dn in group["members"]:
+                        uid = member_uid(member_dn)
+                        if uid:
+                            # member_uid() already lowercases
+                            excluded_users.add(uid)
+                # fetch_users() keys results by lowercased uid
+                ldap_details = fetch_users(con, settings, [f"uid={u}" for u in all_users])
+            finally:
+                con.unbind()
+        except Exception as e:
+            print(
+                f"Warning: could not fetch from LDAP ({e}).\n"
+                "Make sure the EEA VPN is connected, or re-run with --no-ldap "
+                "to skip the LDAP lookup."
+            )
+            print()
+        else:
+            print(
+                f"  {len(excluded_users)} users are members of those LDAP groups; "
+                f"{len(ldap_details)} users found in the LDAP directory."
+            )
+            print()
+
+    details = get_user_details(portal, all_users)
+    # Fill missing local details from LDAP (case-insensitive uid match)
+    for uid in all_users:
+        ldap_info = ldap_details.get(uid.lower())
+        if ldap_info:
+            if not details[uid]["fullname"]:
+                details[uid]["fullname"] = ldap_info["fullname"]
+            if not details[uid]["email"]:
+                details[uid]["email"] = ldap_info["email"]
+    results = []
+    excluded_results = []
+    for uid in sorted(all_users):
+        entry = {
             "user_id": uid,
+            "fullname": details[uid]["fullname"],
+            "email": details[uid]["email"],
             "objects_created": creators.get(uid, 0),
             "objects_modified": modifiers.get(uid, 0),
         }
-        for uid in all_users
+        if uid.lower() in excluded_users:
+            excluded_results.append(entry)
+        else:
+            results.append(entry)
+
+    fieldnames = [
+        "user_id",
+        "fullname",
+        "email",
+        "objects_created",
+        "objects_modified",
     ]
 
+    def print_table(entries):
+        print(f"{'User ID':<16} {'Full name':<30} {'Email':<35} {'Created':>8} {'Modified':>8}")
+        print("-" * 101)
+        for entry in entries:
+            print(
+                f"{entry['user_id']:<16} {entry['fullname']:<30} {entry['email']:<35} "
+                f"{entry['objects_created']:>8} {entry['objects_modified']:>8}"
+            )
+        print("-" * 101)
+
     # Console output (always)
-    print(f"{'User ID':<40} {'Created':>10} {'Modified':>10}")
-    print("-" * 62)
-    for entry in results:
-        print(
-            f"{entry['user_id']:<40} {entry['objects_created']:>10} {entry['objects_modified']:>10}"
-        )
-    print("-" * 62)
+    print_table(results)
     print(f"Total active users: {len(results)}")
     print(f"  Created objects:  {sum(e['objects_created'] for e in results)}")
     print(f"  Modified objects: {sum(e['objects_modified'] for e in results)}")
+    if excluded_results:
+        print()
+        print(f"Excluded (member of LDAP groups matching {ldap_exclude_filter}): {len(excluded_results)}")
+        print_table(excluded_results)
 
     # CSV output
     if csv_file:
         with open(csv_file, "w", newline="") as f:
-            writer = csv.DictWriter(
-                f, fieldnames=["user_id", "objects_created", "objects_modified"]
-            )
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
             writer.writerows(results)
         print(f"CSV saved to {csv_file} ({len(results)} users)")
@@ -218,6 +355,23 @@ def main():
         default=2,
         help="Lookback period in years (default: 2)",
     )
+    parser.add_argument(
+        "--no-ldap",
+        action="store_true",
+        help=(
+            "Skip fetching Eionet LDAP groups (also skips the group-member "
+            "exclusion). Use when the EEA VPN is not connected."
+        ),
+    )
+    parser.add_argument(
+        "--ldap-exclude-filter",
+        dest="ldap_exclude_filter",
+        default=DEFAULT_LDAP_EXCLUDE_FILTER,
+        help=(
+            "LDAP wildcard filter for groups whose members are excluded "
+            f"(default: {DEFAULT_LDAP_EXCLUDE_FILTER})"
+        ),
+    )
 
     # Bootstrap Zope
     make_wsgi_app({}, parser.parse_args().zope_conf)
@@ -236,7 +390,14 @@ def main():
         sys.exit(1)
 
     setSite(portal)
-    run(portal, years=args.years, csv_file=args.csv_file, json_file=args.json_file)
+    run(
+        portal,
+        years=args.years,
+        csv_file=args.csv_file,
+        json_file=args.json_file,
+        no_ldap=args.no_ldap,
+        ldap_exclude_filter=args.ldap_exclude_filter,
+    )
 
 
 if __name__ == "__main__":
