@@ -201,8 +201,14 @@ def get_ldap_group_members(portal, cn_filter):
     return uids
 
 
-def run(portal, years=2, csv_file=None, json_file=None, no_ldap=False,
-        ldap_exclude_filter=DEFAULT_LDAP_EXCLUDE_FILTER):
+def run(
+    portal,
+    years=2,
+    csv_file=None,
+    json_file=None,
+    no_ldap=False,
+    ldap_exclude_filter=DEFAULT_LDAP_EXCLUDE_FILTER,
+):
     """Main logic: traverse content and produce output."""
     since = DateTime(datetime.now() - timedelta(days=years * 365))
     logger.info("Looking back %d years (since %s)", years, since)
@@ -233,9 +239,7 @@ def run(portal, years=2, csv_file=None, json_file=None, no_ldap=False,
         print(f"LDAP lookup skipped (--no-ldap).")
         print()
     else:
-        print(
-            f"Fetching LDAP groups (cn={ldap_exclude_filter}) and user details..."
-        )
+        print(f"Fetching LDAP groups (cn={ldap_exclude_filter}) and user details...")
         try:
             settings = find_ldap_settings(portal.acl_users)
             con = connect(settings)
@@ -248,7 +252,9 @@ def run(portal, years=2, csv_file=None, json_file=None, no_ldap=False,
                             # member_uid() already lowercases
                             excluded_users.add(uid)
                 # fetch_users() keys results by lowercased uid
-                ldap_details = fetch_users(con, settings, [f"uid={u}" for u in all_users])
+                ldap_details = fetch_users(
+                    con, settings, [f"uid={u}" for u in all_users]
+                )
             finally:
                 con.unbind()
         except Exception as e:
@@ -298,7 +304,9 @@ def run(portal, years=2, csv_file=None, json_file=None, no_ldap=False,
     ]
 
     def print_table(entries):
-        print(f"{'User ID':<16} {'Full name':<30} {'Email':<35} {'Created':>8} {'Modified':>8}")
+        print(
+            f"{'User ID':<16} {'Full name':<30} {'Email':<35} {'Created':>8} {'Modified':>8}"
+        )
         print("-" * 101)
         for entry in entries:
             print(
@@ -314,7 +322,9 @@ def run(portal, years=2, csv_file=None, json_file=None, no_ldap=False,
     print(f"  Modified objects: {sum(e['objects_modified'] for e in results)}")
     if excluded_results:
         print()
-        print(f"Excluded (member of LDAP groups matching {ldap_exclude_filter}): {len(excluded_results)}")
+        print(
+            f"Excluded (member of LDAP groups matching {ldap_exclude_filter}): {len(excluded_results)}"
+        )
         print_table(excluded_results)
 
     # CSV output
