@@ -72,5 +72,6 @@ setup(
       document_workflows = eea.climateadapt.scripts.document_workflows:main
       analyze_relstorage = eea.climateadapt.scripts.analyze_relstorage:main
       export_active_users = eea.climateadapt.scripts.export_active_users:main
+      export_eionet_groups = eea.climateadapt.scripts.export_eionet_groups:main
       """,
 )
