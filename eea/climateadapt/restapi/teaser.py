@@ -22,6 +22,15 @@ logger = logging.getLogger("eea.climateadapt")
 RESOLVE_UID_REGEXP = re.compile("resolveuid/([^/]+)")
 
 
+def is_external_url(parsed_url):
+    """Return True for absolute URLs that should not be catalog-resolved."""
+    if parsed_url.scheme not in ("http", "https") or not parsed_url.netloc:
+        return False
+
+    portal_url = urlparse(api.portal.get().absolute_url())
+    return parsed_url.netloc != portal_url.netloc
+
+
 def url_to_brain(url):
     """Find the catalog brain for a URL.
 
@@ -36,6 +45,8 @@ def url_to_brain(url):
         # fallback in case the url wasn't converted to a UID
         try:
             parsed = urlparse(url)
+            if is_external_url(parsed):
+                return
             url = parsed.path
             if url.endswith("/"):
                 url = url[:-1]
