@@ -1,13 +1,41 @@
-<h1 i18n:translate="">New tool and fields #372446</h1>
+<h1 i18n:translate="">Import Extended Tools #372446</h1>
 <form action="./@@tool_extendfields_372446" method="post" enctype="multipart/form-data">
-  <br i18n:translate="">Select CSV file to upload:
-  <input type="file" name="fileToUpload" id="fileToUpload" />
-  <input type="submit" value="Process CSV" name="submit" />
+  <p>
+    <label for="fileToUpload" i18n:translate="">Select Main Metadata file (ODS or CSV):</label><br />
+    <input type="file" name="fileToUpload" id="fileToUpload" />
+  </p>
+  <p>
+    <label for="fileToUploadExtra" i18n:translate="">Select Extra Fields file (ODS, optional):</label><br />
+    <input type="file" name="fileToUploadExtra" id="fileToUploadExtra" />
+  </p>
+  <input type="submit" value="Import Extended Tools" name="submit" />
 </form>
-<table tal:define="items view/list">
-    <tr tal:repeat="item items">
+
+<div tal:define="items view/list" tal:condition="items">
+  <h2>Import Results (<span tal:replace="python:len(items)">0</span> tools processed)</h2>
+  <table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Tool ID</th>
+        <th>Name</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr tal:repeat="item items">
+        <td tal:content="item/status"></td>
         <td tal:content="item/external_id"></td>
         <td tal:content="item/name"></td>
-        <td tal:content="item/url"></td>
-    </tr>
-</table>
+        <td>
+          <a tal:condition="python:item.get('url') and item['url'] != 'DRY_RUN'"
+             tal:attributes="href item/url"
+             tal:content="item/url"
+             target="_blank"></a>
+          <span tal:condition="python:not item.get('url') or item['url'] == 'DRY_RUN'"
+                tal:content="item/url"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
