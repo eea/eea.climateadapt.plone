@@ -8,8 +8,6 @@ from plone.app.vocabularies.catalog import CatalogVocabulary as BCV
 from plone.app.vocabularies.catalog import CatalogVocabularyFactory
 from plone.app.vocabularies.catalog import KeywordsVocabulary as BKV
 from plone.uuid.interfaces import IUUID
-from Products.CMFCore.utils import getToolByName
-from zope.component.hooks import getSite
 from zope.interface import alsoProvides, implementer
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
@@ -108,12 +106,6 @@ class AdaptationOptionsVocabulary(CatalogVocabularyFactory):
                 if "/cca" in parsed["path"]["query"]:
                     parsed["path"]["query"].remove("/cca")
 
-        # try:
-        #     catalog = getToolByName(context, "portal_catalog")
-        # except AttributeError:
-        #     catalog = getToolByName(getSite(), "portal_catalog")
-        # brains = catalog(**parsed)
-
         vocab = CatalogVocabulary.fromItems(parsed, context)
         vocab.query = query
         return vocab
@@ -145,11 +137,6 @@ class CaseStudiesVocabulary(CatalogVocabularyFactory):
 
             if "sort_order" in query:
                 parsed["sort_order"] = str(query["sort_order"])
-        try:
-            catalog = getToolByName(context, "portal_catalog")
-        except AttributeError:
-            catalog = getToolByName(getSite(), "portal_catalog")
-
         if parsed.get("path"):
             if parsed["path"].get("depth"):
                 parsed["path"]["query"].append("/cca/metadata/case-studies")
@@ -157,9 +144,7 @@ class CaseStudiesVocabulary(CatalogVocabularyFactory):
                 if "/cca" in parsed["path"]["query"]:
                     parsed["path"]["query"].remove("/cca")
 
-        brains = catalog(**parsed)
-
-        return CatalogVocabulary.fromItems(brains, context)
+        return CatalogVocabulary.fromItems(parsed, context)
 
 
 @implementer(IVocabularyFactory)
@@ -195,11 +180,6 @@ class OrganisationsVocabulary(CatalogVocabularyFactory):
 
             if "sort_order" in query:
                 parsed["sort_order"] = str(query["sort_order"])
-        try:
-            catalog = getToolByName(context, "portal_catalog")
-        except AttributeError:
-            catalog = getToolByName(getSite(), "portal_catalog")
-
         if parsed.get("path"):
             if parsed["path"].get("depth"):
                 parsed["path"]["query"].append("/cca/metadata/organisations")
@@ -207,9 +187,7 @@ class OrganisationsVocabulary(CatalogVocabularyFactory):
                 if "/cca" in parsed["path"]["query"]:
                     parsed["path"]["query"].remove("/cca")
 
-        brains = catalog(**parsed)
-
-        return CatalogVocabulary.fromItems(brains, context)
+        return CatalogVocabulary.fromItems(parsed, context)
 
 
 @implementer(IVocabularyFactory)
@@ -251,20 +229,14 @@ class CCAItemsVocabulary(CatalogVocabularyFactory):
 
             if "sort_order" in query:
                 parsed["sort_order"] = str(query["sort_order"])
-        try:
-            catalog = getToolByName(context, "portal_catalog")
-        except AttributeError:
-            catalog = getToolByName(getSite(), "portal_catalog")
-
         if parsed.get("path"):
             if parsed["path"].get("depth"):
                 parsed["path"]["query"].append("/cca/metadata")
 
                 if "/cca" in parsed["path"]["query"]:
                     parsed["path"]["query"].remove("/cca")
-        brains = catalog(**parsed)
 
-        return CatalogVocabulary.fromItems(brains, context)
+        return CatalogVocabulary.fromItems(parsed, context)
 
 
 # changes title and buttons (what to add) in view for AceItem
