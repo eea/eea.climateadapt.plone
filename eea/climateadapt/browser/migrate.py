@@ -1064,6 +1064,7 @@ class ToolExtendFields:
             file1_upload=file1, file2_upload=file2, context=self.context
         )
 
+
 class FixMipSigLangs(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)

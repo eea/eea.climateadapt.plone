@@ -21,7 +21,9 @@ def get_plone_site(zope_conf="/app/etc/relstorage.conf", portal_id="cca"):
         if zope_conf and os.path.exists(zope_conf):
             make_wsgi_app({}, zope_conf)
         else:
-            raise RuntimeError(f"Zope not initialized and zope_conf '{zope_conf}' not found.")
+            raise RuntimeError(
+                f"Zope not initialized and zope_conf '{zope_conf}' not found."
+            )
 
     app = Zope2.app()
 

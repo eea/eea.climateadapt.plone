@@ -650,9 +650,7 @@ class ExtendedToolsImporter:
                     row, "22. Underlying data maintenance_Free text"
                 )
                 or "",
-                "nature_based_solution": is_y(
-                    "23. Nature-based solution_Check (Y/N)"
-                ),
+                "nature_based_solution": is_y("23. Nature-based solution_Check (Y/N)"),
                 "just_resilience": is_y("24. Just resilience_Check (Y/N)"),
                 "cost_benefit_ratio": is_y("25. Cost-benefit ratio_Check (Y/N)"),
                 "functionality": functionality,
@@ -662,9 +660,7 @@ class ExtendedToolsImporter:
                 )
                 or "",
                 "tool_provider": self.get_value_by_header(row, "Tool provider") or "",
-                "public_private_mode": self.get_value_by_header(
-                    row, "public/private"
-                )
+                "public_private_mode": self.get_value_by_header(row, "public/private")
                 or "",
                 "contact": self.get_value_by_header(row, "Contact (person / email)")
                 or "",
@@ -806,7 +802,11 @@ class ExtendedToolsImporter:
         created = False
         if not obj:
             if dry_run:
-                logger.info("[DRY-RUN] Would CREATE extendedtool: %s -> %s", tid, tool_data.get("name"))
+                logger.info(
+                    "[DRY-RUN] Would CREATE extendedtool: %s -> %s",
+                    tid,
+                    tool_data.get("name"),
+                )
                 return None, True
             sectors = tool_data.get("sectors") or ["NONSPECIFIC"]
             impacts = tool_data.get("climate_impacts") or ["NONSPECIFIC"]
