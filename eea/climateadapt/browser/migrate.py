@@ -1055,9 +1055,7 @@ class ToolExtendFields:
         if not file1 and not file2:
             return []
 
-        from eea.climateadapt.scripts.import_extended_tools import (
-            ExtendedToolsImporter,
-        )
+        from eea.climateadapt.tool_import import ExtendedToolsImporter
 
         importer = ExtendedToolsImporter()
         return importer.run_web_import(

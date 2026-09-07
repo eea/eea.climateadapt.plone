@@ -32,11 +32,13 @@ The importer parses both files directly, joins them by tool ID (e.g. `#10`), for
 
 To prevent code duplication, the importer logic is centralized in:
 
-- **Core Module**: `eea.climateadapt.scripts.import_extended_tools`
+- **Core Domain Module**: `eea.climateadapt.tool_import`
   - `ExtendedToolsImporter`: Handles row parsing, header resolution, taxonomy normalization, dataset merging, and Plone object population.
   - `parse_ods_rows()`: Direct OpenDocument XML parser using Python's standard library (`zipfile` + `xml.etree.ElementTree`). Properly handles multi-row bullet continuations resulting from vertically merged cells (`table:covered-table-cell`).
-- **CLI Entrypoint**: `import_extended_tools = eea.climateadapt.scripts.import_extended_tools:main`
-- **Browser View**: `ToolExtendFields` in `eea.climateadapt.browser.migrate` (registered at `@@tool_extendfields_372446`), delegating directly to `ExtendedToolsImporter.run_web_import()`.
+- **CLI Runner**: `eea.climateadapt.scripts.import_extended_tools`
+  - Lightweight entrypoint handling command-line arguments (`argparse`), WSGI site bootstrapping (`get_plone_site`), and formatted console output.
+  - Registered as console script: `import_extended_tools = eea.climateadapt.scripts.import_extended_tools:main`
+- **Browser View**: `ToolExtendFields` in `eea.climateadapt.browser.migrate` (registered at `@@tool_extendfields_372446`), delegating directly to `ExtendedToolsImporter.run_web_import()`. Neither the browser layer nor the view imports from `scripts`.
 
 ---
 
