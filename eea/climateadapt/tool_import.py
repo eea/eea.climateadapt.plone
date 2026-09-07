@@ -532,11 +532,9 @@ class ExtendedToolsImporter:
             return "Europe", [], [], "", ["TRANS_MACRO_ALP_SPACE"]
 
         # 1. Global / Europe
-        is_global = ""
-        if "global" in val_lower or "international" in val_lower:
-            is_global = "Global"
-        elif "europe" in val_lower or "european" in val_lower:
-            is_global = "Europe"
+        is_global = "Global" if (
+            "global" in val_lower or "international" in val_lower
+        ) else "Europe"
 
         # 2. Country
         country_names = []
