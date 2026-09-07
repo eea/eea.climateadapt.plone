@@ -524,9 +524,12 @@ class ExtendedToolsImporter:
 
     def process_region(self, val):
         if not val:
-            return "", [], [], ""
+            return "", [], [], "", []
         val = val.strip()
-        val_lower = val.lower()
+        val_lower = " ".join(val.lower().split())
+
+        if val_lower in {"transnational (alpine)", "alpine region"}:
+            return "Europe", [], [], "", ["TRANS_MACRO_ALP_SPACE"]
 
         # 1. Global / Europe
         is_global = ""
@@ -593,7 +596,7 @@ class ExtendedToolsImporter:
         if best_score > 0:
             subnational_key = best_key
 
-        return is_global, country_names, country_codes, subnational_key
+        return is_global, country_names, country_codes, subnational_key, []
 
     def parse_file1_rows(self, rows):
         """Parse main metadata rows from File 1 (ODS rows or CSV reader)."""
@@ -924,9 +927,13 @@ class ExtendedToolsImporter:
 
         # Geographic scope
         if "geographic_scope" in tool_data and tool_data["geographic_scope"]:
-            is_global, country_names, country_codes, subnational_key = (
-                self.process_region(tool_data["geographic_scope"])
-            )
+            (
+                is_global,
+                country_names,
+                country_codes,
+                subnational_key,
+                macro_regions,
+            ) = self.process_region(tool_data["geographic_scope"])
             try:
                 geochars = json.loads(getattr(obj, "geochars", None) or "{}")
             except Exception:
@@ -934,6 +941,8 @@ class ExtendedToolsImporter:
             if "geoElements" not in geochars:
                 geochars["geoElements"] = {}
             geochars["geoElements"]["element"] = is_global.upper()
+            if macro_regions:
+                geochars["geoElements"]["macrotrans"] = macro_regions
             if country_codes:
                 geochars["geoElements"]["countries"] = country_codes
             if subnational_key:
