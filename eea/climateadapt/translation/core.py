@@ -47,6 +47,9 @@ ETRANSLATION_REST_V2_URL = (
 )
 ETRANSLATION_APPLICATION = "Marine_EEA_20180706"
 ETRANSLATION_API_VERSION = "rest_v2"
+ETRANSLATION_DISABLE_DAYTIME_DELAY = env(
+    "ETRANSLATION_DISABLE_DAYTIME_DELAY", ""
+).lower() in ("1", "true", "yes", "on")
 REDIS_HOST = env("REDIS_HOST", "localhost")
 REDIS_PORT = int(env("REDIS_PORT", 6379))
 TRANSLATION_AUTH_TOKEN = env("TRANSLATION_AUTH_TOKEN", "")
@@ -154,7 +157,9 @@ def queue_translate(obj, language=None):
 
     delay = 1000  # default delay
 
-    if 7 <= now.hour < 19:
+    if ETRANSLATION_DISABLE_DAYTIME_DELAY:
+        logger.info("eTranslation daytime delay disabled by environment")
+    elif 7 <= now.hour < 19:
         # We are during the day (forbidden window). Schedule for 7 PM tonight.
         wait_time = start_time_limit - now
         delay = int(wait_time.total_seconds() * 1000)
