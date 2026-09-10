@@ -134,30 +134,18 @@ class TranslationCallback(BrowserView):
         alsoProvides(self.request, IDisableCSRFProtection)
         self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
         self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+        self.request.response.setHeader("Content-Type", "application/json")
 
-        # for some reason this request acts strange
-        # qs = self.request["QUERY_STRING"]
-        # parsed = parse_qs(qs)
-        # form = {}
-        # for name, val in list(parsed.items()):
-        #     form[name] = val[0]
-        #
-        _file = self.request._file.read()
-        form = self.request.form
-        # _file = form.get("file", "")
+        try:
+            content_type = self.request.getHeader("Content-Type", "")
+            if "application/json" in content_type:
+                data = self._parse_rest_v2_callback()
+            else:
+                data = self._parse_legacy_callback()
+        except Exception as e:
+            logger.exception("event=etranslation.callback.error error=%s", e)
+            return json.dumps({"error_type": exception_to_json(e)})
 
-        decoded_bytes = base64.b64decode(_file)
-        html = decoded_bytes.decode("utf-8")  # latin-1
-        # html = html_translated.encode("utf-8")
-
-        extref = form.get("external-reference")
-
-        # logger.info("Translation Callback Incoming file: %s" % _file)
-        # logger.info("Translate volto html form: %s", form)
-        # logger.info("Translate volto html: %s", html_translated)
-
-        data = {"obj_path": extref, "html": html}
-        # print("data", data)
         opts = {
             "delay": 0,  # Delay in milliseconds
             "priority": 1,
@@ -166,8 +154,93 @@ class TranslationCallback(BrowserView):
         }
 
         queue_job("save_etranslation", "save_translated_html", data, opts)
+        logger.info(
+            "event=etranslation.callback.queue_save obj_path=%s html_length=%s",
+            data.get("obj_path"),
+            len(data.get("html", "")),
+        )
 
-        return "ok"
+        return json.dumps({"status": "ok"})
+
+    def _parse_rest_v2_callback(self):
+        body = self.request._file.read()
+        payload = json.loads(body.decode("utf-8"))
+
+        request_id = payload.get("requestId")
+        source_language = payload.get("sourceLanguage")
+        target_language = payload.get("targetLanguage")
+        output_format = payload.get("outputFormat")
+        extref = payload.get("externalReference")
+        result = payload.get("result")
+        error_code = payload.get("errorCode")
+        error_message = payload.get("errorMessage")
+
+        logger.info(
+            "event=etranslation.callback.received api=rest_v2 request_id=%s "
+            "source_language=%s target_language=%s output_format=%s "
+            "external_reference=%s has_result=%s error_code=%s error_message=%s",
+            request_id,
+            source_language,
+            target_language,
+            output_format,
+            extref,
+            bool(result),
+            error_code,
+            error_message,
+        )
+
+        if error_code or error_message:
+            raise ValueError(
+                "REST v2 eTranslation callback error: requestId=%s "
+                "errorCode=%s errorMessage=%s" % (request_id, error_code, error_message)
+            )
+
+        if not extref:
+            raise ValueError("REST v2 eTranslation callback missing externalReference")
+
+        if not result:
+            raise ValueError("REST v2 eTranslation callback missing result")
+
+        decoded_bytes = base64.b64decode(result)
+        html = decoded_bytes.decode("utf-8")
+
+        logger.info(
+            "event=etranslation.callback.decoded api=rest_v2 request_id=%s "
+            "external_reference=%s html_length=%s",
+            request_id,
+            extref,
+            len(html),
+        )
+
+        return {"obj_path": extref, "html": html}
+
+    def _parse_legacy_callback(self):
+        # for some reason this request acts strange
+        # qs = self.request["QUERY_STRING"]
+        # parsed = parse_qs(qs)
+        # form = {}
+        # for name, val in list(parsed.items()):
+        #     form[name] = val[0]
+        #
+        file_body = self.request._file.read()
+        form = self.request.form
+        # file_body = form.get("file", "")
+
+        decoded_bytes = base64.b64decode(file_body)
+        html = decoded_bytes.decode("utf-8")  # latin-1
+        extref = form.get("external-reference")
+
+        logger.info(
+            "event=etranslation.callback.received api=legacy "
+            "external_reference=%s html_length=%s",
+            extref,
+            len(html),
+        )
+
+        if not extref:
+            raise ValueError("Legacy eTranslation callback missing external-reference")
+
+        return {"obj_path": extref, "html": html}
 
 
 class ToHtml(BrowserView):
