@@ -1019,11 +1019,58 @@ class ExtendedToolsImporter:
         obj._p_changed = True
         obj.reindexObject()
 
-    def import_tools(self, site, merged_tools, dry_run=True):
-        """Import all merged tools into the portal."""
-        container = api.content.get(path="/cca/en/metadata/tools")
-        if not container:
-            raise RuntimeError("Folder /cca/en/metadata/tools not found!")
+    def import_tools(self, site, merged_tools, dry_run=True, container=None):
+        """Import all merged tools into the portal.
+
+        :param site: Plone portal object
+        :param merged_tools: dict of tool data keyed by tool id
+        :param dry_run: bool, if True do not commit changes
+        :param container: target container object or path (default: /cca/en/metadata/tools)
+        """
+        if container is None:
+            container = api.content.get(path="/cca/en/metadata/tools")
+            if not container and hasattr(site, "unrestrictedTraverse"):
+                container = site.unrestrictedTraverse("en/metadata/tools", None)
+            if not container:
+                raise RuntimeError("Folder /cca/en/metadata/tools not found!")
+        elif isinstance(container, str):
+            target_path = container
+            container = api.content.get(path=target_path)
+            if not container and hasattr(site, "unrestrictedTraverse"):
+                container = site.unrestrictedTraverse(target_path.lstrip("/"), None)
+            if not container:
+                raise RuntimeError(f"Folder {target_path} not found!")
+        else:
+            from Products.CMFPlone.interfaces import IPloneSiteRoot
+
+            if IPloneSiteRoot.providedBy(container):
+                default_c = api.content.get(path="/cca/en/metadata/tools")
+                if not default_c and hasattr(site, "unrestrictedTraverse"):
+                    default_c = site.unrestrictedTraverse("en/metadata/tools", None)
+                if default_c:
+                    container = default_c
+            else:
+                from plone.dexterity.interfaces import IDexterityContainer
+                from Products.CMFCore.interfaces import IFolderish
+
+                if not IFolderish.providedBy(
+                    container
+                ) and not IDexterityContainer.providedBy(container):
+                    parent = getattr(container, "aq_parent", None)
+                    if parent is not None and (
+                        IFolderish.providedBy(parent)
+                        or IDexterityContainer.providedBy(parent)
+                    ):
+                        container = parent
+
+        container_path = (
+            "/".join(container.getPhysicalPath())
+            if hasattr(container, "getPhysicalPath")
+            else str(container)
+        )
+        logger.info(
+            "Target import container: %s (dry_run=%s)", container_path, dry_run
+        )
 
         if not dry_run:
             try:
@@ -1148,4 +1195,4 @@ class ExtendedToolsImporter:
 
         merged = self.merge_datasets(tools1, tools2)
         site = api.portal.get()
-        return self.import_tools(site, merged, dry_run=False)
+        return self.import_tools(site, merged, dry_run=False, container=context)
