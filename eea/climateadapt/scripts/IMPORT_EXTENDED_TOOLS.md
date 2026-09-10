@@ -95,6 +95,7 @@ docker compose -f backend/docker-compose.yml exec -T backend \
 | `--file1` | `/app/sources/eea.climateadapt/data/tools_main.ods` | Path to main metadata ODS or CSV file |
 | `--file2` | `/app/sources/eea.climateadapt/data/tools_extra.ods` | Path to extra fields ODS file (optional) |
 | `--commit` | `False` | When set, commits transactions to ZODB; otherwise runs dry-run |
+| `--target-path` | `/cca/en/metadata/tools` | Target container path in Plone |
 | `--portal` | `cca` | Plone portal ID |
 | `--zope-conf` | `/app/etc/relstorage.conf` | Path to Zope / RelStorage configuration file |
 
@@ -102,12 +103,19 @@ docker compose -f backend/docker-compose.yml exec -T backend \
 
 ### 2. From Plone Web Management View
 
-1. Navigate to:
+The view `@@tool_extendfields_372446` imports directly into the **current folder** where it is invoked. When invoked at the portal root, it defaults to `/cca/en/metadata/tools`.
+
+1. Navigate to the desired folder (or the default tools folder):
    ```
-   http://cca.localhost/cca/@@tool_extendfields_372446
+   http://cca.localhost/cca/en/metadata/tools/@@tool_extendfields_372446
    ```
-2. In the form:
+   or any other folder:
+   ```
+   http://cca.localhost/cca/en/some-folder/@@tool_extendfields_372446
+   ```
+2. The page displays the **Target folder** path so you can verify the destination before importing.
+3. In the form:
    - **Select Main Metadata file**: Upload the main `.ods` or `.csv` file.
    - **Select Extra Fields file**: (Optional) Upload the extra fields `.ods` file.
-3. Click **Import Extended Tools**.
-4. The page will execute the import, commit the transaction, and render a table showing the status, external ID, title, and link for each imported tool.
+4. Click **Import Extended Tools**.
+5. The page executes the import into that current folder, automatically ensures `eea.climateadapt.extendedtool` is addable in the folder, commits the transaction, and renders a table showing the status, external ID, title, and link for each imported tool.

@@ -49,6 +49,12 @@ def main():
         help="Portal ID (default: cca)",
     )
     parser.add_argument(
+        "--target-path",
+        dest="target_path",
+        default=None,
+        help="Target folder path for import (default: /cca/en/metadata/tools)",
+    )
+    parser.add_argument(
         "--zope-conf",
         dest="zope_conf",
         default="/app/etc/relstorage.conf",
@@ -85,7 +91,9 @@ def main():
     merged = importer.merge_datasets(tools1, tools2)
     logger.info("Merged total: %d unique tools", len(merged))
 
-    results = importer.import_tools(site, merged, dry_run=not args.commit)
+    results = importer.import_tools(
+        site, merged, dry_run=not args.commit, container=args.target_path
+    )
 
     for r in results:
         extra_info = ""

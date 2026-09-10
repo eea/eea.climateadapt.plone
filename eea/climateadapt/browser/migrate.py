@@ -1047,6 +1047,15 @@ class ImpactFiltersNew:
 class ToolExtendFields:
     """New fields for tool #304613 / #372446"""
 
+    def target_path(self):
+        from Products.CMFPlone.interfaces import IPloneSiteRoot
+
+        if IPloneSiteRoot.providedBy(self.context):
+            return "/cca/en/metadata/tools (default for site root)"
+        if hasattr(self.context, "getPhysicalPath"):
+            return "/".join(self.context.getPhysicalPath())
+        return str(self.context)
+
     def list(self):
         alsoProvides(self.request, IDisableCSRFProtection)
         file1 = self.request.form.get("fileToUpload", None)
