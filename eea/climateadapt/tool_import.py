@@ -1061,9 +1061,7 @@ class ExtendedToolsImporter:
             if hasattr(container, "getPhysicalPath")
             else str(container)
         )
-        logger.info(
-            "Target import container: %s (dry_run=%s)", container_path, dry_run
-        )
+        logger.info("Target import container: %s (dry_run=%s)", container_path, dry_run)
 
         if not dry_run:
             try:
