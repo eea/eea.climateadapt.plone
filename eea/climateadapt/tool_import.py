@@ -834,16 +834,9 @@ class ExtendedToolsImporter:
         return merged
 
     def find_or_create_tool(self, container, tool_data, existing_map, dry_run=False):
-        """Find existing tool by external_id or title, or create new extendedtool."""
+        """Find existing tool by external_id, or create new extendedtool."""
         tid = tool_data["external_id"]
         obj = existing_map.get(tid)
-
-        if not obj:
-            name_lower = tool_data.get("name", "").strip().lower()
-            for ext_id, existing_obj in existing_map.items():
-                if existing_obj.Title().strip().lower() == name_lower:
-                    obj = existing_obj
-                    break
 
         created = False
         if not obj:
