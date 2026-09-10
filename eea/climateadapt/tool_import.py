@@ -524,21 +524,30 @@ class ExtendedToolsImporter:
 
     def process_region(self, val):
         if not val:
-            return "", [], [], "", []
+            return "", [], [], "", [], ""
         val = val.strip()
         val_lower = " ".join(val.lower().split())
 
-        if val_lower in {"transnational (alpine)", "alpine region"}:
-            return "Europe", [], [], "", ["TRANS_MACRO_ALP_SPACE"]
+        # 1. Macro-Transnational / Transnational regions
+        macro_map = {
+            "transnational (alpine)": "TRANS_MACRO_ALP_SPACE",
+            "alpine region": "TRANS_MACRO_ALP_SPACE",
+            "central europe": "TRANS_MACRO_CEN_EUR",
+            "outermost european regions": "TRANS_MACRO_OUTERMOST",
+        }
+        macro_regions = []
+        for k, v in macro_map.items():
+            if k in val_lower and v not in macro_regions:
+                macro_regions.append(v)
 
-        # 1. Global / Europe
+        # 2. Global / Europe
         is_global = (
             "Global"
             if ("global" in val_lower or "international" in val_lower)
             else "Europe"
         )
 
-        # 2. Country
+        # 3. Country
         country_names = []
         country_codes = []
 
@@ -563,7 +572,7 @@ class ExtendedToolsImporter:
                 is_global = "Europe"
                 break
 
-        # 3. Subnational Key
+        # 4. Subnational Key
         subnational_key = ""
         best_key = ""
         best_score = 0
@@ -596,7 +605,41 @@ class ExtendedToolsImporter:
         if best_score > 0:
             subnational_key = best_key
 
-        return is_global, country_names, country_codes, subnational_key, []
+        # 5. Residual free text treated as municipality name (city)
+        residual = val
+        residual = re.sub(
+            r"(?i)\b(?:country|selected\s+region|region):\s*", " ", residual
+        )
+        residual = re.sub(r"(?i)\b(?:country)/\s*", " ", residual)
+        for k in macro_map:
+            residual = re.sub(rf"(?i){re.escape(k)}", " ", residual)
+        for code in matches:
+            residual = re.sub(rf"\b{code}\b", " ", residual)
+        for name in country_names:
+            residual = re.sub(rf"(?i)\b{re.escape(name)}\b", " ", residual)
+        if subnational_key:
+            sub_name = SUBNATIONAL_REGIONS[subnational_key]
+            residual = re.sub(rf"(?i){re.escape(sub_name)}", " ", residual)
+            for w in normalize(sub_name):
+                residual = re.sub(rf"(?i)\b{re.escape(w)}\b", " ", residual)
+        residual = re.sub(
+            r"(?i)\b(?:global|international|europe|european)\b", " ", residual
+        )
+        residual = re.sub(r"[;,+/\(\)]", " ", residual)
+        residual = " ".join(residual.split()).strip()
+        if residual.lower() in {"city", "cities", "municipality", "area", "region"}:
+            residual = ""
+
+        city = residual.capitalize() if residual else ""
+
+        return (
+            is_global,
+            country_names,
+            country_codes,
+            subnational_key,
+            macro_regions,
+            city,
+        )
 
     def parse_file1_rows(self, rows):
         """Parse main metadata rows from File 1 (ODS rows or CSV reader)."""
@@ -933,9 +976,13 @@ class ExtendedToolsImporter:
                 country_codes,
                 subnational_key,
                 macro_regions,
+                city,
             ) = self.process_region(tool_data["geographic_scope"])
             try:
-                geochars = json.loads(getattr(obj, "geochars", None) or "{}")
+                raw_geochars = getattr(obj, "geochars", None)
+                if isinstance(raw_geochars, bytes):
+                    raw_geochars = raw_geochars.decode("utf-8")
+                geochars = json.loads(raw_geochars or "{}")
             except Exception:
                 geochars = {}
             if "geoElements" not in geochars:
@@ -949,7 +996,11 @@ class ExtendedToolsImporter:
                 geochars["geoElements"]["subnational"] = [subnational_key]
             else:
                 geochars["geoElements"]["subnational"] = []
-            obj.geochars = json.dumps(geochars).encode()
+            if city:
+                geochars["geoElements"]["city"] = city
+            elif "city" not in geochars["geoElements"]:
+                geochars["geoElements"]["city"] = ""
+            obj.geochars = json.dumps(geochars)
 
         # Extra rich text fields from File 2
         if tool_data.get("tool_input_bullets"):
@@ -968,11 +1019,56 @@ class ExtendedToolsImporter:
         obj._p_changed = True
         obj.reindexObject()
 
-    def import_tools(self, site, merged_tools, dry_run=True):
-        """Import all merged tools into the portal."""
-        container = api.content.get(path="/cca/en/metadata/tools")
-        if not container:
-            raise RuntimeError("Folder /cca/en/metadata/tools not found!")
+    def import_tools(self, site, merged_tools, dry_run=True, container=None):
+        """Import all merged tools into the portal.
+
+        :param site: Plone portal object
+        :param merged_tools: dict of tool data keyed by tool id
+        :param dry_run: bool, if True do not commit changes
+        :param container: target container object or path (default: /cca/en/metadata/tools)
+        """
+        if container is None:
+            container = api.content.get(path="/cca/en/metadata/tools")
+            if not container and hasattr(site, "unrestrictedTraverse"):
+                container = site.unrestrictedTraverse("en/metadata/tools", None)
+            if not container:
+                raise RuntimeError("Folder /cca/en/metadata/tools not found!")
+        elif isinstance(container, str):
+            target_path = container
+            container = api.content.get(path=target_path)
+            if not container and hasattr(site, "unrestrictedTraverse"):
+                container = site.unrestrictedTraverse(target_path.lstrip("/"), None)
+            if not container:
+                raise RuntimeError(f"Folder {target_path} not found!")
+        else:
+            from Products.CMFPlone.interfaces import IPloneSiteRoot
+
+            if IPloneSiteRoot.providedBy(container):
+                default_c = api.content.get(path="/cca/en/metadata/tools")
+                if not default_c and hasattr(site, "unrestrictedTraverse"):
+                    default_c = site.unrestrictedTraverse("en/metadata/tools", None)
+                if default_c:
+                    container = default_c
+            else:
+                from plone.dexterity.interfaces import IDexterityContainer
+                from Products.CMFCore.interfaces import IFolderish
+
+                if not IFolderish.providedBy(
+                    container
+                ) and not IDexterityContainer.providedBy(container):
+                    parent = getattr(container, "aq_parent", None)
+                    if parent is not None and (
+                        IFolderish.providedBy(parent)
+                        or IDexterityContainer.providedBy(parent)
+                    ):
+                        container = parent
+
+        container_path = (
+            "/".join(container.getPhysicalPath())
+            if hasattr(container, "getPhysicalPath")
+            else str(container)
+        )
+        logger.info("Target import container: %s (dry_run=%s)", container_path, dry_run)
 
         if not dry_run:
             try:
@@ -1097,4 +1193,4 @@ class ExtendedToolsImporter:
 
         merged = self.merge_datasets(tools1, tools2)
         site = api.portal.get()
-        return self.import_tools(site, merged, dry_run=False)
+        return self.import_tools(site, merged, dry_run=False, container=context)

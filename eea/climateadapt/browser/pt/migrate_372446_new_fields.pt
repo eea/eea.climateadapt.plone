@@ -1,4 +1,8 @@
 <h1 i18n:translate="">Import Extended Tools #372446</h1>
+<p>
+  <strong>Target folder:</strong>
+  <code tal:content="view/target_path">/cca/en/metadata/tools</code>
+</p>
 <form action="./@@tool_extendfields_372446" method="post" enctype="multipart/form-data">
   <p>
     <label for="fileToUpload" i18n:translate="">Select Main Metadata file (ODS or CSV):</label><br />
