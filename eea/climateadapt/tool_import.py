@@ -910,11 +910,11 @@ class ExtendedToolsImporter:
             )
 
         if "sectors" in tool_data:
-            obj.sectors = tool_data["sectors"]
+            obj.sectors = tool_data["sectors"] or ["NONSPECIFIC"]
         if "focus_areas" in tool_data:
             obj.focus_areas = tool_data["focus_areas"]
         if "climate_impacts" in tool_data:
-            obj.climate_impacts = tool_data["climate_impacts"]
+            obj.climate_impacts = tool_data["climate_impacts"] or ["NONSPECIFIC"]
         if "elements" in tool_data:
             obj.elements = tool_data["elements"]
         if "spatial_resolution" in tool_data:
