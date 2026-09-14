@@ -24,7 +24,7 @@ class IExtendedTool(ITool, IBlocks):
         description=_(
             "Select one or more relevant sector policies that this item relates to."
         ),
-        required=True,
+        required=False,
         missing_value=[],
         default=None,
         value_type=Choice(
