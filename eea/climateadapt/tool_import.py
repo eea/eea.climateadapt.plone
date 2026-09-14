@@ -679,7 +679,7 @@ class ExtendedToolsImporter:
             if a:
                 last_header = a.strip()
             value = f"{last_header}_{b}" if b else last_header
-            value = value.replace("\xa0", "").strip()
+            value = " ".join(value.replace("\xa0", " ").split())
             self._headers.append(value)
 
         tools = {}
