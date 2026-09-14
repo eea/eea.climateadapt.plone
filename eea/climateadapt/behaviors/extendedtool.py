@@ -1,3 +1,5 @@
+from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from zope.interface import alsoProvides
 from zope.schema import Bool, Choice, List, TextLine, Int
 from eea.climateadapt import CcaAdminMessageFactory as _
 from eea.climateadapt.behaviors.aceitem import IAceItem
@@ -15,6 +17,54 @@ from .tool import ITool
 
 class IExtendedTool(ITool, IBlocks):
     """ExtendedTool Interface"""
+
+    directives.widget(sectors="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    sectors = List(
+        title=_("Sectors"),
+        description=_(
+            "Select one or more relevant sector policies that this item relates to."
+        ),
+        required=True,
+        missing_value=[],
+        default=None,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_sectors_extended_tool",
+        ),
+    )
+
+    directives.widget(climate_impacts="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    climate_impacts = List(
+        title=_("Climate impacts"),
+        description=_(
+            "Select one or more climate change impact topics that this item relates to."
+        ),
+        required=True,
+        missing_value=[],
+        default=None,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_climateimpacts_extended_tool",
+        ),
+    )
+
+    directives.widget(focus_areas="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    focus_areas = List(
+        title=_("Focus areas"),
+        description=_("Select one or more focus areas."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.focus_areas_extended_tool",
+        ),
+    )
+
+    directives.widget(elements="z3c.form.browser.checkbox.CheckBoxFieldWidget")
+    elements = List(
+        title=_("Adaptation approaches"),
+        description=_("Select one or more approaches."),
+        required=False,
+        value_type=Choice(
+            vocabulary="eea.climateadapt.aceitems_elements_extended_tool",
+        ),
+    )
 
     directives.omitted(IAddForm, "external_id")
     directives.omitted(IEditForm, "external_id")
@@ -288,3 +338,8 @@ class IExtendedTool(ITool, IBlocks):
         default={"items": extendetool_layout_items},
         required=False,
     )
+
+
+alsoProvides(IExtendedTool["climate_impacts"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["sectors"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["elements"], ILanguageIndependentField)

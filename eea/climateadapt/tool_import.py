@@ -149,7 +149,6 @@ class ExtendedToolsImporter:
             ("BIODIVERSITY", "16. Sector_Biodiversity"),
             ("BUILDINGS", "16. Sector_Buildings"),
             ("BUSINESSINDUSTRY", "16. Sector_Business & Industry"),
-            ("COASTAL", "16. Sector_Coastal areas"),
             ("CULTURALHERITAGE", "16. Sector_Cultural heritage"),
             ("DISASTERRISKREDUCTION", "16. Sector_Disaster Risk Reduction"),
             ("ECOSYSTEMSRESTORATION", ""),
@@ -160,10 +159,8 @@ class ExtendedToolsImporter:
             ("ICT", "16. Sector_ICT"),
             ("LANDUSE", "16. Sector_Land use planning"),
             ("MARINE", "16. Sector_Marine & fisheries"),
-            ("MOUNTAINAREAS", "16. Sector_Mountain areas"),
             ("TOURISMSECTOR", "16. Sector_Tourism"),
             ("TRANSPORT", "16. Sector_Transport"),
-            ("URBAN", "16. Sector_Urban"),
             ("WATERMANAGEMENT", "16. Sector_Water management"),
             ("NONSPECIFIC", ""),
         ]
@@ -176,23 +173,51 @@ class ExtendedToolsImporter:
                 response.append(key)
         return response
 
+    def get_obj_focus_areas(self, row):
+        map_header = [
+            ("COASTAL", "16. Sector_Coastal areas"),
+            ("URBAN", "16. Sector_Urban"),
+            ("MOUNTAINAREAS", "16. Sector_Mountain areas"),
+        ]
+        response = []
+        for key, header_name in map_header:
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
     def get_obj_climateimpacts(self, row):
         map_header = [
-            ("DROUGHT", "11. Hazard_Drought"),
-            ("EXTREMEHEAT", "11. Hazard_Heat"),
-            ("EXTREMECOLD", "11. Hazard_Cold waves / extreme cold"),
+            ("RAINFALL", "11. Hazard_Heavy precipitation / extreme rainfall"),
             ("FLOODING", "11. Hazard_Flooding"),
-            ("ICEANDSNOW", "11. Hazard_Snow/Avalanche"),
+            ("COASTALFLOODING", "11. Hazard_Coastal flooding / storm surge"),
             ("SEALEVELRISE", "11. Hazard_Sea-level rise"),
-            ("STORM", "11. Hazard_Coastal flooding / storm surge"),
-            ("WATERSCARCE", ""),
+            ("HEAT", "11. Hazard_Heat"),
+            ("DROUGHT", "11. Hazard_Drought"),
             ("WILDFIRES", "11. Hazard_Fire / wildfire"),
+            ("STORM", "11. Hazard_Wind / storm"),
+            ("LANDSLIDE", "11. Hazard_Landslide"),
+            ("EXTREMECOLD", "11. Hazard_Cold waves / extreme cold"),
+            ("ICEANDAVALANCHE", "11. Hazard_Snow/Avalanche"),
             ("NONSPECIFIC", "11. Hazard_Not hazard-specific"),
         ]
         response = []
         for key, header_name in map_header:
             if not header_name:
                 continue
+            val = self.get_value_by_header(row, header_name)
+            if val and val.strip().upper() == "Y":
+                response.append(key)
+        return response
+
+    def get_obj_elements(self, row):
+        map_header = [
+            ("NATUREBASEDSOL", "23. Nature-based solution_Check (Y/N)"),
+            ("JUSTRESILIENCE", "24. Just resilience_Check (Y/N)"),
+            ("COSTBENEFITRATIO", "25. Cost-benefit ratio_Check (Y/N)"),
+        ]
+        response = []
+        for key, header_name in map_header:
             val = self.get_value_by_header(row, header_name)
             if val and val.strip().upper() == "Y":
                 response.append(key)
@@ -654,7 +679,7 @@ class ExtendedToolsImporter:
             if a:
                 last_header = a.strip()
             value = f"{last_header}_{b}" if b else last_header
-            value = value.replace("\xa0", "").strip()
+            value = " ".join(value.replace("\xa0", " ").split())
             self._headers.append(value)
 
         tools = {}
@@ -687,7 +712,9 @@ class ExtendedToolsImporter:
                 "name": name.strip(),
                 "short_description": short_desc.strip(),
                 "sectors": sectors,
+                "focus_areas": self.get_obj_focus_areas(row),
                 "climate_impacts": self.get_obj_climateimpacts(row),
+                "elements": self.get_obj_elements(row),
                 "spatial_resolution": self.get_value_by_header(
                     row, "21. Spatial resolution_Free text (Local, NUTS3, NUTS2…)"
                 )
@@ -882,10 +909,14 @@ class ExtendedToolsImporter:
                 outputMimeType="text/html",
             )
 
-        if "sectors" in tool_data and tool_data["sectors"]:
-            obj.sectors = tool_data["sectors"]
-        if "climate_impacts" in tool_data and tool_data["climate_impacts"]:
-            obj.climate_impacts = tool_data["climate_impacts"]
+        if "sectors" in tool_data:
+            obj.sectors = tool_data["sectors"] or ["NONSPECIFIC"]
+        if "focus_areas" in tool_data:
+            obj.focus_areas = tool_data["focus_areas"]
+        if "climate_impacts" in tool_data:
+            obj.climate_impacts = tool_data["climate_impacts"] or ["NONSPECIFIC"]
+        if "elements" in tool_data:
+            obj.elements = tool_data["elements"]
         if "spatial_resolution" in tool_data:
             obj.spatial_resolution = tool_data["spatial_resolution"]
         if "underlying_data_maintenance" in tool_data:
