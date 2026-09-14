@@ -392,7 +392,7 @@ alsoProvides(intended_user_groups_tool_vocabulary, IVocabularyFactory)
 _place_of_implementation_tool = [
     ("GLOBAL_LEVEL", _("Global")),
     ("EUROPEAN_LEVEL", _("European")),
-    ("TRANSNATIONAL", ("Transnational")),
+    ("TRANSNATIONAL", _("Transnational")),
     ("OUTERMOST_EUROPEAN_REGIONS", _("EU Outermost regions")),
     ("NATIONAL_LEVEL", _("National")),
     ("SUBNATIONAL", _("Subnational")),
