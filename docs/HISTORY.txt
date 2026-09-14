@@ -1,6 +1,11 @@
 Changelog
 =========
 
+5.6 - (2026-09-14)
+---------------------------
+* Change: Release
+  [kreafox]
+
 5.5 - (2026-09-10)
 ---------------------------
 * Change: Update extended tools importer with geocoverage and strict ID matching
