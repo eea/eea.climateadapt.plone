@@ -347,7 +347,6 @@ _elements_extended_tool = [
     ("NATUREBASEDSOL", _("Nature-based solutions")),
     ("JUSTRESILIENCE", "Just resilience"),
     ("COSTBENEFITRATIO", _("Cost-benefit ratio")),
-
 ]
 aceitem_elements_extended_tool_vocabulary = generic_vocabulary(_elements_extended_tool)
 alsoProvides(aceitem_elements_extended_tool_vocabulary, IVocabularyFactory)
