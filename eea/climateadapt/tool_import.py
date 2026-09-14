@@ -874,7 +874,7 @@ class ExtendedToolsImporter:
                     tool_data.get("name"),
                 )
                 return None, True
-            sectors = tool_data.get("sectors") or []
+            sectors = tool_data.get("sectors") or ["NONSPECIFIC"]
             impacts = tool_data.get("climate_impacts") or ["NONSPECIFIC"]
             obj = api.content.create(
                 container=container,

@@ -322,6 +322,7 @@ _sectors_extended_tool = [
     ("TOURISMSECTOR", _("Tourism")),
     ("TRANSPORT", _("Transport")),
     ("WATERMANAGEMENT", _("Water management")),
+    ("NONSPECIFIC", _("Non specific")),
 ]
 aceitem_sectors_extended_tool_vocabulary = generic_vocabulary(
     _sectors_extended_tool, sort=False
