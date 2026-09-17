@@ -63,6 +63,15 @@ def split_bullets(text_list):
     return deduped
 
 
+def split_keywords(value):
+    """Return the comma-separated spreadsheet keywords as unique Plone tags."""
+    return tuple(
+        dict.fromkeys(
+            keyword.strip() for keyword in value.split(",") if keyword.strip()
+        )
+    )
+
+
 def to_richtext_list(bullets):
     """Convert bullet points list to RichTextValue containing <ul><li>...</li></ul>."""
     if not bullets:
@@ -780,6 +789,10 @@ class ExtendedToolsImporter:
                 or "",
                 "include_in_navigator": True,
             }
+            if "Keywords" in self._headers:
+                tool_data["keywords"] = split_keywords(
+                    self.get_value_by_header(row, "Keywords") or ""
+                )
             tools[tid] = tool_data
         return tools
 
@@ -991,6 +1004,8 @@ class ExtendedToolsImporter:
             obj.accessibility_and_usability = tool_data["accessibility_and_usability"]
         if "include_in_navigator" in tool_data:
             obj.include_in_navigator = tool_data["include_in_navigator"]
+        if "keywords" in tool_data:
+            obj.keywords = tool_data["keywords"]
 
         # Geographic scope
         if "geographic_scope" in tool_data and tool_data["geographic_scope"]:
