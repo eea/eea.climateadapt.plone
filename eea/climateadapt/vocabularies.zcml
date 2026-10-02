@@ -38,6 +38,10 @@
     component=".vocabulary.aceitem_elements_vocabulary"
   />
   <utility
+    name="eea.climateadapt.aceitems_elements_extended_tool"
+    component=".vocabulary.aceitem_elements_extended_tool_vocabulary"
+  />
+  <utility
     name="eea.climateadapt.aceitems_elements_case_study"
     component=".vocabulary.aceitem_elements_case_study_vocabulary"
   />
@@ -273,4 +277,16 @@
     component=".vocabulary.relevant_eu_policies_vocabulary"
   />
 
+  <utility
+    name="eea.climateadapt.aceitems_sectors_extended_tool"
+    component=".vocabulary.aceitem_sectors_extended_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.aceitems_climateimpacts_extended_tool"
+    component=".vocabulary.aceitem_climateimpacts_extended_tool_vocabulary"
+  />
+  <utility
+    name="eea.climateadapt.focus_areas_extended_tool"
+    component=".vocabulary.focus_areas_extended_tool_vocabulary"
+  />
 </configure>

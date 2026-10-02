@@ -2684,6 +2684,14 @@ extendetool_layout_blocks = {
                                     },
                                 },
                                 {
+                                    "@id": "5885250a-c9fb-4f3e-b3bc-d850cc19097b",
+                                    "field": {
+                                        "id": "focus_areas",
+                                        "title": "Focus areas",
+                                        "widget": "array",
+                                    },
+                                },
+                                {
                                     "@id": "7a399cd9-7b68-4127-bc72-1bcc1ec86be2",
                                     "field": {
                                         "id": "elements",

@@ -1,8 +1,60 @@
 Changelog
 =========
 
-4.9-dev0 - (unreleased)
+5.8 - (2026-10-02)
 ---------------------------
+* Change: Develop
+  [tiberiuichim]
+
+5.7 - (2026-09-17)
+---------------------------
+* Change: Release
+  [kreafox]
+
+5.6 - (2026-09-14)
+---------------------------
+* Change: Release
+  [kreafox]
+
+5.5 - (2026-09-10)
+---------------------------
+* Change: Update extended tools importer with geocoverage and strict ID matching
+  [tiberiuichim]
+* Feature: Restore the login/password form (backported from WISE MSFD) so that
+  classic logins keep working alongside the Authomatic/Entra ID login. The
+  `@@login` / `@@login_form` views now render the shared template with the
+  "Or continue with" external provider buttons when Authomatic is configured.
+  [tiberiuichim]
+
+5.4 - (2026-09-10)
+---------------------------
+* Change: Develop
+  [tiberiuichim]
+
+5.3 - (2026-09-10)
+---------------------------
+* Change: Develop
+  [GhitaB]
+
+5.2 - (2026-09-07)
+---------------------------
+* Change: Develop
+  [kreafox]
+
+5.1 - (2026-09-07)
+---------------------------
+* Change: Develop
+  [tiberiuichim]
+
+5.0 - (2026-09-04)
+---------------------------
+* Change: Develop
+  [GhitaB]
+
+4.9 - (2026-09-04)
+---------------------------
+* Change: Develop
+  [GhitaB]
 
 4.8 - (2026-08-31)
 ---------------------------

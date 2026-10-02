@@ -304,6 +304,31 @@ _sectors = [  # this is the canonical
 aceitem_sectors_vocabulary = generic_vocabulary(_sectors, sort=False)
 alsoProvides(aceitem_sectors_vocabulary, IVocabularyFactory)
 
+# 304610 - Separate values for extended tools
+_sectors_extended_tool = [
+    ("AGRICULTURE", _("Agriculture")),
+    ("BIODIVERSITY", _("Biodiversity")),
+    ("BUILDINGS", _("Buildings")),
+    ("BUSINESSINDUSTRY", _("Business and industry")),
+    ("CULTURALHERITAGE", _("Cultural heritage")),
+    ("DISASTERRISKREDUCTION", _("Disaster Risk Reduction")),
+    ("ENERGY", _("Energy")),
+    ("FINANCIAL", _("Financial")),
+    ("FORESTRY", _("Forestry")),
+    ("HEALTH", _("Health")),
+    ("ICT", _("ICT")),
+    ("LANDUSE", _("Land use planning")),
+    ("MARINE", _("Marine and Fisheries")),
+    ("TOURISMSECTOR", _("Tourism")),
+    ("TRANSPORT", _("Transport")),
+    ("WATERMANAGEMENT", _("Water management")),
+    ("NONSPECIFIC", _("Non specific")),
+]
+aceitem_sectors_extended_tool_vocabulary = generic_vocabulary(
+    _sectors_extended_tool, sort=False
+)
+alsoProvides(aceitem_sectors_extended_tool_vocabulary, IVocabularyFactory)
+
 _elements = [
     ("EU_POLICY", _("Sector Policies")),
     ("MEASUREACTION", _("Adaptation Measures and Actions")),
@@ -317,6 +342,15 @@ _elements = [
 ]
 aceitem_elements_vocabulary = generic_vocabulary(_elements)
 alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
+
+# 304610 - Separate values for extended tools
+_elements_extended_tool = [
+    ("NATUREBASEDSOL", _("Nature-based solutions")),
+    ("JUSTRESILIENCE", "Just resilience"),
+    ("COSTBENEFITRATIO", _("Cost-benefit ratio")),
+]
+aceitem_elements_extended_tool_vocabulary = generic_vocabulary(_elements_extended_tool)
+alsoProvides(aceitem_elements_extended_tool_vocabulary, IVocabularyFactory)
 
 # 261447 - only for case studies we need 6 more elements
 _elements_case_study = [
@@ -356,16 +390,11 @@ intended_user_groups_tool_vocabulary = generic_vocabulary(
 alsoProvides(intended_user_groups_tool_vocabulary, IVocabularyFactory)
 
 _place_of_implementation_tool = [
-    ("GLOBAL_LEVEL", _("Global level")),
-    ("EUROPEAN_LEVEL", _("European level")),
-    (
-        "TRANSNATIONAL",
-        _(
-            "Transnational shared coastal, mountain, sea regions -e-g- mediterrenean etc"
-        ),
-    ),
-    ("OUTERMOST_EUROPEAN_REGIONS", _("Outermost European regions")),
-    ("NATIONAL_LEVEL", _("National-level")),
+    ("GLOBAL_LEVEL", _("Global")),
+    ("EUROPEAN_LEVEL", _("European")),
+    ("TRANSNATIONAL", _("Transnational")),
+    ("OUTERMOST_EUROPEAN_REGIONS", _("EU Outermost regions")),
+    ("NATIONAL_LEVEL", _("National")),
     ("SUBNATIONAL", _("Subnational")),
 ]
 place_of_implementation_tool_vocabulary = generic_vocabulary(
@@ -511,6 +540,26 @@ _climateimpacts = [
 ]
 aceitem_climateimpacts_vocabulary = generic_vocabulary(_climateimpacts, sort=False)
 alsoProvides(aceitem_climateimpacts_vocabulary, IVocabularyFactory)
+
+# 304610 - Separate values for extended tools
+_climateimpacts_extended_tool = [
+    ("RAINFALL", _("Heavy precipitation / extreme rainfall")),
+    ("FLOODING", _("Flooding")),
+    ("COASTALFLOODING", _("Coastal flooding / storm surge")),
+    ("SEALEVELRISE", _("Sea Level Rise")),
+    ("HEAT", _("Heat")),
+    ("DROUGHT", _("Drought")),
+    ("WILDFIRES", _("Fire / wildfire")),
+    ("STORM", _("Wind / storm")),
+    ("LANDSLIDE", _("Landslide")),
+    ("EXTREMECOLD", _("Cold waves / extreme cold")),
+    ("ICEANDAVALANCHE", _("Snow / Avalanche")),
+    ("NONSPECIFIC", _("Non hazard-specific")),
+]
+aceitem_climateimpacts_extended_tool_vocabulary = generic_vocabulary(
+    _climateimpacts_extended_tool, sort=False
+)
+alsoProvides(aceitem_climateimpacts_extended_tool_vocabulary, IVocabularyFactory)
 
 
 _featured = [
@@ -1649,3 +1698,14 @@ RELEVANT_EU_POLICY_URLS = {
     "EU_WATER_REUSE": "https://environment.ec.europa.eu/topics/water/water-reuse_en",
     "EU_CULTURE_PLAN_2023_26": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022G1207%2801%29&qid=1671635488811",
 }
+
+
+_focus_areas_extended_tool = [
+    ("COASTAL", _("Coastal areas")),
+    ("URBAN", _("Urban areas")),
+    ("MOUNTAINAREAS", _("Mountain areas")),
+]
+focus_areas_extended_tool_vocabulary = generic_vocabulary(
+    _focus_areas_extended_tool, sort=False
+)
+alsoProvides(focus_areas_extended_tool_vocabulary, IVocabularyFactory)
