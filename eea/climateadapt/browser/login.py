@@ -38,9 +38,7 @@ class AuthomaticLoginSupport(object):
             return providers[0]["url"]
         if authomatic_cfg is None:
             return ""
-        return "{}/@@authomatic-handler".format(
-            self.portal_state.portal_url()
-        )
+        return "{}/@@authomatic-handler".format(self.portal_state.portal_url())
 
     def authomatic_providers(self):
         """Return configured Authomatic providers for the login template."""
@@ -60,9 +58,7 @@ class AuthomaticLoginSupport(object):
                 {
                     "identifier": identifier,
                     "title": display.get("title", identifier),
-                    "url": "{}/@@authomatic-handler/{}".format(
-                        portal_url, identifier
-                    ),
+                    "url": "{}/@@authomatic-handler/{}".format(portal_url, identifier),
                 }
             )
         return providers
@@ -79,15 +75,9 @@ class CCALoginForm(AuthomaticLoginSupport, LoginForm):
 def patch_plone_login_form():
     """Patch Plone's global login form to use the CCA template."""
     LoginForm.render = AuthomaticLoginSupport.render
-    LoginForm.authomatic_login_url = (
-        AuthomaticLoginSupport.authomatic_login_url
-    )
-    LoginForm.authomatic_providers = (
-        AuthomaticLoginSupport.authomatic_providers
-    )
-    LoginForm.show_authomatic_login = (
-        AuthomaticLoginSupport.show_authomatic_login
-    )
+    LoginForm.authomatic_login_url = AuthomaticLoginSupport.authomatic_login_url
+    LoginForm.authomatic_providers = AuthomaticLoginSupport.authomatic_providers
+    LoginForm.show_authomatic_login = AuthomaticLoginSupport.show_authomatic_login
 
 
 patch_plone_login_form()
