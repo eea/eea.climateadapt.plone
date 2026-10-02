@@ -233,7 +233,7 @@ class AceProjectSerializer(SerializeFolderToJson):  # SerializeToJson
         result["main_content"] = "\n\n".join([p for p in parts if p])
         result["language"] = getattr(self.context, "language", "en")
 
-        return result
+        return cca_content_serializer(self.context, result, self.request)
 
 
 @adapter(ICaseStudy, Interface)
