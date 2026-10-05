@@ -644,9 +644,7 @@ class ExtendedToolsImporter:
         val_lower = " ".join(val.lower().split())
 
         # 1. Macro-Transnational / Transnational regions
-        region_map = {
-            name.lower(): name for name in TRANSNATIONAL_REGION_IDS
-        }
+        region_map = {name.lower(): name for name in TRANSNATIONAL_REGION_IDS}
         region_map.update(TRANSNATIONAL_REGION_ALIASES)
         macro_regions = []
         matched_region_names = []
