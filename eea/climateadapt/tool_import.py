@@ -36,6 +36,87 @@ logging.basicConfig(
 )
 
 
+TRANSNATIONAL_REGION_COUNTRIES = {
+    "Adriatic-Ionian": ["HR", "GR", "IT", "SI", "AL", "BA", "ME", "MK", "RS"],
+    "Alpine Space": ["AT", "FR", "DE", "IT", "SI", "LI", "CH"],
+    "Northern Periphery and Arctic": ["FI", "IE", "SE", "IS", "NO", "FO"],
+    "Baltic Sea": ["DK", "EE", "FI", "DE", "LV", "LT", "PL", "SE", "NO"],
+    "North West Europe": ["BE", "FR", "DE", "IE", "LU", "NL", "CH"],
+    "North Sea": ["BE", "DK", "DE", "FR", "NL", "SE", "NO"],
+    "Atlantic Area": ["FR", "IE", "PT", "ES"],
+    "Central Europe": ["AT", "HR", "CZ", "DE", "HU", "IT", "PL", "SK", "SI"],
+    "South West Europe": ["FR", "PT", "ES", "AD"],
+    "Mediterranean (Euro-Med)": [
+        "AL",
+        "BA",
+        "BG",
+        "HR",
+        "CY",
+        "FR",
+        "GR",
+        "IT",
+        "MT",
+        "ME",
+        "MK",
+        "SI",
+        "ES",
+        "PT",
+    ],
+    "Danube Area": [
+        "AT",
+        "BG",
+        "HR",
+        "CZ",
+        "DE",
+        "HU",
+        "RO",
+        "SK",
+        "SI",
+        "BA",
+        "ME",
+        "RS",
+        "UA",
+        "MD",
+    ],
+    "Mediterranean Sea Basin (NEXT)": [
+        "CY",
+        "FR",
+        "GR",
+        "IL",
+        "IT",
+        "MT",
+        "PT",
+        "ES",
+        "TR",
+    ],
+    "Black Sea Basin (NEXT)": ["BG", "GE", "GR", "MD", "RO", "TR", "UA"],
+    "Outermost Regions": ["FR", "PT", "ES"],
+}
+
+TRANSNATIONAL_REGION_IDS = {
+    "Adriatic-Ionian": "TRANS_MACRO_ADR_IONIAN",
+    "Alpine Space": "TRANS_MACRO_ALP_SPACE",
+    "Atlantic Area": "TRANS_MACRO_ATL_AREA",
+    "Baltic Sea": "TRANS_MACRO_BACLITC",
+    "Black Sea Basin (NEXT)": "TRANS_MACRO_BLACKSEA_BASIN",
+    "Central Europe": "TRANS_MACRO_CEN_EUR",
+    "Danube Area": "TRANS_MACRO_DANUBE",
+    "Mediterranean (Euro-Med)": "TRANS_MACRO_MED",
+    "Mediterranean Sea Basin (NEXT)": "TRANS_MACRO_MED_BASIN",
+    "North Sea": "TRANS_MACRO_N_SEA",
+    "North West Europe": "TRANS_MACRO_NW_EUROPE",
+    "Northern Periphery and Arctic": "TRANS_MACRO_NORTHPERI",
+    "Outermost Regions": "TRANS_MACRO_OUTERMOST",
+    "South West Europe": "TRANS_MACRO_SW_EUR",
+}
+
+TRANSNATIONAL_REGION_ALIASES = {
+    "transnational (alpine)": "Alpine Space",
+    "alpine region": "Alpine Space",
+    "outermost european regions": "Outermost Regions",
+}
+
+
 def split_bullets(text_list):
     """Split text into individual bullet items."""
     bullets = []
@@ -563,16 +644,20 @@ class ExtendedToolsImporter:
         val_lower = " ".join(val.lower().split())
 
         # 1. Macro-Transnational / Transnational regions
-        macro_map = {
-            "transnational (alpine)": "TRANS_MACRO_ALP_SPACE",
-            "alpine region": "TRANS_MACRO_ALP_SPACE",
-            "central europe": "TRANS_MACRO_CEN_EUR",
-            "outermost european regions": "TRANS_MACRO_OUTERMOST",
+        region_map = {
+            name.lower(): name for name in TRANSNATIONAL_REGION_IDS
         }
+        region_map.update(TRANSNATIONAL_REGION_ALIASES)
         macro_regions = []
-        for k, v in macro_map.items():
-            if k in val_lower and v not in macro_regions:
-                macro_regions.append(v)
+        matched_region_names = []
+        matched_region_patterns = []
+        for pattern, region_name in region_map.items():
+            region_id = TRANSNATIONAL_REGION_IDS[region_name]
+            if pattern in val_lower:
+                if region_id not in macro_regions:
+                    macro_regions.append(region_id)
+                    matched_region_names.append(region_name)
+                matched_region_patterns.append(pattern)
 
         # 2. Global / Europe
         is_global = (
@@ -601,6 +686,14 @@ class ExtendedToolsImporter:
                 country_names.append(c.name)
                 country_codes.append(c.alpha_2)
 
+        for region_name in matched_region_names:
+            for code in TRANSNATIONAL_REGION_COUNTRIES[region_name]:
+                if code not in country_codes:
+                    country_codes.append(code)
+                    country = pycountry.countries.get(alpha_2=code)
+                    if country and country.name not in country_names:
+                        country_names.append(country.name)
+
         for code in country_codes:
             if code in european_countries:
                 is_global = "Europe"
@@ -627,7 +720,14 @@ class ExtendedToolsImporter:
             )
             return words
 
-        val_words = normalize(val)
+        value_without_transnational_regions = val
+        for pattern in matched_region_patterns:
+            pattern_regex = re.escape(pattern).replace(r"\ ", r"\s+")
+            value_without_transnational_regions = re.sub(
+                rf"(?i){pattern_regex}", " ", value_without_transnational_regions
+            )
+
+        val_words = normalize(value_without_transnational_regions)
         if val_words:
             for key, name in SUBNATIONAL_REGIONS.items():
                 name_words = normalize(name)
@@ -645,8 +745,9 @@ class ExtendedToolsImporter:
             r"(?i)\b(?:country|selected\s+region|region):\s*", " ", residual
         )
         residual = re.sub(r"(?i)\b(?:country)/\s*", " ", residual)
-        for k in macro_map:
-            residual = re.sub(rf"(?i){re.escape(k)}", " ", residual)
+        for pattern in matched_region_patterns:
+            pattern_regex = re.escape(pattern).replace(r"\ ", r"\s+")
+            residual = re.sub(rf"(?i){pattern_regex}", " ", residual)
         for code in matches:
             residual = re.sub(rf"\b{code}\b", " ", residual)
         for name in country_names:
