@@ -1,6 +1,11 @@
 Changelog
 =========
 
+5.8 - (2026-10-02)
+---------------------------
+* Change: Develop
+  [tiberiuichim]
+
 5.7 - (2026-09-17)
 ---------------------------
 * Change: Release
@@ -14,6 +19,11 @@ Changelog
 5.5 - (2026-09-10)
 ---------------------------
 * Change: Update extended tools importer with geocoverage and strict ID matching
+  [tiberiuichim]
+* Feature: Restore the login/password form (backported from WISE MSFD) so that
+  classic logins keep working alongside the Authomatic/Entra ID login. The
+  `@@login` / `@@login_form` views now render the shared template with the
+  "Or continue with" external provider buttons when Authomatic is configured.
   [tiberiuichim]
 
 5.4 - (2026-09-10)
