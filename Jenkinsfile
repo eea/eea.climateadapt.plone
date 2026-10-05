@@ -62,11 +62,24 @@ pipeline {
                   return
                 }
                 checkout scm
+                // The eeacms/ruff container may be slow to clone, or may fail
+                // (e.g. network issues) - a failure must not block the build,
+                // and the container may be gone before we try to copy the
+                // auto-fixed files out.
                 fix_result = sh(script: '''docker run --pull=always --name="$BUILD_TAG-ruff-fix" -e GIT_SRC="https://github.com/eea/$GIT_NAME.git" -e GIT_NAME="$GIT_NAME" -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/ruff format''', returnStatus: true)
-                sh '''docker cp $BUILD_TAG-ruff-fix:/code/$GIT_NAME .'''
+                if (fix_result != 0) {
+                  sh '''docker rm -v $BUILD_TAG-ruff-fix 2>/dev/null || true'''
+                  echo "ruff fix container exited with code $fix_result - skipping auto-fix"
+                  return
+                }
+                if (!sh(script: '''docker cp $BUILD_TAG-ruff-fix:/code/$GIT_NAME .''', returnStatus: true) == 0) {
+                  sh '''docker rm -v $BUILD_TAG-ruff-fix 2>/dev/null || true'''
+                  echo "could not copy auto-fixed files from ruff container - skipping auto-fix"
+                  return
+                }
                 sh '''cp -rf $GIT_NAME/* .'''
                 sh '''rm -rf $GIT_NAME'''
-                sh '''docker rm -v $BUILD_TAG-ruff-fix'''
+                sh '''docker rm -v $BUILD_TAG-ruff-fix 2>/dev/null || true'''
                 FOUND_FIX = sh(script: '''git diff --name-only '*.py' | wc -l''', returnStdout: true).trim()
 
                 if (FOUND_FIX != '0') {
