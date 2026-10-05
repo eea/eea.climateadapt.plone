@@ -1,6 +1,13 @@
 pipeline {
   agent any
 
+  options {
+    // Wipe the agent workspace after each build so stale local changes
+    // (e.g. uncommitted ruff auto-fixes) can never block a later
+    // `git checkout` on a shared workspace.
+    cleanWs()
+  }
+
   environment {
     GIT_NAME = "eea.climateadapt.plone"
     GIT_VERSIONFILE = "eea/climateadapt/version.txt"
@@ -49,7 +56,7 @@ pipeline {
                     sh '''sed -i "s|url = .*|url = https://eea-jenkins:$GITHUB_TOKEN@github.com/eea/$GIT_NAME.git|" .git/config'''
                   }
                   sh '''git fetch origin $GIT_BRANCH:$GIT_BRANCH'''
-                  sh '''git checkout $GIT_BRANCH'''
+                  sh '''git checkout -f $GIT_BRANCH'''
                   sh '''git add -- '*.py' '''
                   sh '''git commit -m "style: Automated code fix" '''
                   sh '''git push --set-upstream origin $GIT_BRANCH'''
