@@ -1,13 +1,6 @@
 pipeline {
   agent any
 
-  options {
-    // Wipe the agent workspace after each build so stale local changes
-    // (e.g. uncommitted ruff auto-fixes) can never block a later
-    // `git checkout` on a shared workspace.
-    cleanWs()
-  }
-
   environment {
     GIT_NAME = "eea.climateadapt.plone"
     GIT_VERSIONFILE = "eea/climateadapt/version.txt"
@@ -16,6 +9,31 @@ pipeline {
   }
 
   stages {
+    stage('Prepare workspace') {
+      // Force a clean checkout at the start of every build so stale local
+      // changes (e.g. uncommitted ruff auto-fixes from a previous build) can
+      // never block the checkout on a shared agent workspace.
+      // (The Jenkins server does not have the ws-cleanup plugin, so this
+      // uses plain git commands instead of cleanWs().)
+      steps {
+        checkout scm
+        script {
+          // If the branch still exists on the remote, force the workspace to
+          // its exact state; otherwise (branch deleted after merge, e.g. old
+          // Redmine issue branches) just discard local changes and clean.
+          sh '''
+            if git ls-remote --exit-code --heads origin "\$BRANCH_NAME" >/dev/null 2>&1; then
+              git checkout -f "\$BRANCH_NAME"
+              git reset --hard "origin/\$BRANCH_NAME"
+            else
+              git checkout . || true
+            fi
+            git clean -fdx || true
+          '''
+        }
+      }
+    }
+
     stage('Cosmetics') {
       steps {
         parallel(
@@ -208,6 +226,15 @@ pipeline {
   }
 
   post {
+    always {
+      // Best-effort wipe of the agent workspace after each build so the next
+      // build always starts from a clean tree. Kept in a catchError-style
+      // block so a cleanup failure can never fail the build itself.
+      script {
+        sh 'git checkout . || true'
+        sh 'git clean -fdx || true'
+      }
+    }
     changed {
       script {
         def url = "${env.BUILD_URL}/display/redirect"
