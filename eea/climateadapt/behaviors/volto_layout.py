@@ -2879,7 +2879,7 @@ extendetool_layout_blocks = {
                                     "@id": "dbeb73a7-1432-4d4c-8b33-a2c0d828a868",
                                     "field": {
                                         "id": "place_of_implementation",
-                                        "title": "Place of implementation",
+                                        "title": "Governance level",
                                         "widget": "array",
                                     },
                                 },
