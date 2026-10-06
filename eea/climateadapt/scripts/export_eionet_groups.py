@@ -126,7 +126,9 @@ def fetch_groups(con, settings, cn_filter):
         members += [_txt(m) for m in (attrs.get("uniqueMember") or [])]
         # Legacy entries can contain empty member values
         members = [m for m in members if m.strip()]
-        groups.append({"cn": cn, "dn": _txt(dn), "description": desc, "members": members})
+        groups.append(
+            {"cn": cn, "dn": _txt(dn), "description": desc, "members": members}
+        )
     groups.sort(key=lambda g: g["cn"])
     return groups
 
@@ -225,19 +227,16 @@ def run(app):
         print(f"  members: {len(member_rows)}")
         for row in member_rows:
             if row["username"]:
-                print(
-                    f"    {row['username']:<16} {row['fullname']:<35} "
-                    f"{row['email']}"
-                )
+                print(f"    {row['username']:<16} {row['fullname']:<35} {row['email']}")
             else:
                 print(f"    (non-user entry: {row['member_dn']})")
 
-    unique_users = {
-        row["username"]: row for row in rows if row["username"]
-    }
+    unique_users = {row["username"]: row for row in rows if row["username"]}
     print(f"\nTotal group rows: {len(rows)}")
     print(f"Unique users across all groups: {len(unique_users)}")
-    unresolved = len(all_members) - len({m for m in all_members if member_uid(m) in users})
+    unresolved = len(all_members) - len(
+        {m for m in all_members if member_uid(m) in users}
+    )
     if unresolved:
         print(f"Warning: {unresolved} member DN(s) could not be resolved to users.")
 

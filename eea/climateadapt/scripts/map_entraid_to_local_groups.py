@@ -11,7 +11,6 @@ See MAP_ENTRAID_TO_LOCAL_GROUPS.md for documentation.
 import argparse
 import csv
 import logging
-import sys
 from collections import defaultdict
 
 logger = logging.getLogger(__name__)
@@ -188,7 +187,9 @@ def build_plone_user_index(portal):
             sheet = getattr(uis, "propertysheet", None) or getattr(uis, "_sheet", None)
             if not sheet:
                 continue
-            fullname = sheet.getProperty("fullname", "") or sheet.getProperty("displayName", "")
+            fullname = sheet.getProperty("fullname", "") or sheet.getProperty(
+                "displayName", ""
+            )
             for prop in ("email", "mail", "userPrincipalName"):
                 email_val = sheet.getProperty(prop, "")
                 if email_val and isinstance(email_val, str) and "@" in email_val:
@@ -282,6 +283,7 @@ def find_user_in_plone(portal, email, index=None):
     # portal_membership fallback
     try:
         from Products.CMFCore.utils import getToolByName
+
         mtool = getToolByName(portal, "portal_membership", None)
     except ImportError:
         mtool = getattr(portal, "portal_membership", None)
@@ -321,7 +323,11 @@ def run(app, args):
     dry_run = not args.run
     portal_groups = getToolByName(portal, "portal_groups")
 
-    mode_str = "DRY-RUN (use --run to commit changes)" if dry_run else "LIVE RUN (changes will be committed)"
+    mode_str = (
+        "DRY-RUN (use --run to commit changes)"
+        if dry_run
+        else "LIVE RUN (changes will be committed)"
+    )
     print(f"\n{'=' * 80}")
     print(f"Mapping EntraID Users to Local Groups [{mode_str}]")
     print(f"Portal: {args.portal_id}")
@@ -341,14 +347,18 @@ def run(app, args):
 
     if args.target_group_filter:
         memberships = [m for m in memberships if m["group"] == args.target_group_filter]
-        print(f"Filtered to target LDAP group '{args.target_group_filter}': {len(memberships)} rows")
+        print(
+            f"Filtered to target LDAP group '{args.target_group_filter}': {len(memberships)} rows"
+        )
     else:
         print(f"Total LDAP membership rows to process: {len(memberships)}")
 
     # 2. Build Plone user index
     print("Indexing known Plone/EntraID users in acl_users...")
     user_index = build_plone_user_index(portal)
-    print(f"  Indexed {len(user_index)} user email(s) across authomatic / mutable_properties.")
+    print(
+        f"  Indexed {len(user_index)} user email(s) across authomatic / mutable_properties."
+    )
 
     # 3. Group memberships by LDAP group
     by_ldap_group = defaultdict(list)
@@ -396,7 +406,9 @@ def run(app, args):
                 existing_member_ids = set(target_group_obj.getMemberIds())
             except Exception:
                 try:
-                    existing_member_ids = set(portal_groups.getGroupMembers(local_group))
+                    existing_member_ids = set(
+                        portal_groups.getGroupMembers(local_group)
+                    )
                 except Exception:
                     pass
 
@@ -411,17 +423,19 @@ def run(app, args):
                 notes = "User has no email in LDAP; cannot match to EntraID"
                 if args.verbose:
                     print(f"    [-] {username:<16} {fullname:<30} [NO EMAIL]")
-                results.append({
-                    "ldap_group": ldap_group,
-                    "local_group": local_group,
-                    "ldap_username": username,
-                    "ldap_fullname": fullname,
-                    "email": "",
-                    "plone_user_id": "",
-                    "plone_fullname": "",
-                    "status": status,
-                    "notes": notes,
-                })
+                results.append(
+                    {
+                        "ldap_group": ldap_group,
+                        "local_group": local_group,
+                        "ldap_username": username,
+                        "ldap_fullname": fullname,
+                        "email": "",
+                        "plone_user_id": "",
+                        "plone_fullname": "",
+                        "status": status,
+                        "notes": notes,
+                    }
+                )
                 continue
 
             # Look up EntraID user in Plone
@@ -431,18 +445,22 @@ def run(app, args):
                 status = "USER_NOT_FOUND"
                 notes = "Not found in Plone (user has not logged in via EntraID or not synced)"
                 if args.verbose:
-                    print(f"    [?] {username:<16} {fullname:<30} {email:<35} [NOT IN PLONE]")
-                results.append({
-                    "ldap_group": ldap_group,
-                    "local_group": local_group,
-                    "ldap_username": username,
-                    "ldap_fullname": fullname,
-                    "email": email,
-                    "plone_user_id": "",
-                    "plone_fullname": "",
-                    "status": status,
-                    "notes": notes,
-                })
+                    print(
+                        f"    [?] {username:<16} {fullname:<30} {email:<35} [NOT IN PLONE]"
+                    )
+                results.append(
+                    {
+                        "ldap_group": ldap_group,
+                        "local_group": local_group,
+                        "ldap_username": username,
+                        "ldap_fullname": fullname,
+                        "email": email,
+                        "plone_user_id": "",
+                        "plone_fullname": "",
+                        "status": status,
+                        "notes": notes,
+                    }
+                )
                 continue
 
             plone_uid = user_info["user_id"]
@@ -453,7 +471,9 @@ def run(app, args):
                 status = "ALREADY_MEMBER"
                 notes = f"Already in {local_group}"
                 if args.verbose:
-                    print(f"    [=] {username:<16} {plone_fn:<30} {email:<35} [ALREADY MEMBER]")
+                    print(
+                        f"    [=] {username:<16} {plone_fn:<30} {email:<35} [ALREADY MEMBER]"
+                    )
             else:
                 if not dry_run:
                     portal_groups.addPrincipalToGroup(plone_uid, local_group)
@@ -461,24 +481,30 @@ def run(app, args):
                     stats["added"] += 1
                     status = "ADDED"
                     notes = f"Added to {local_group}"
-                    print(f"    [+] ADDED: {username} ({email}) -> {local_group} [uid={plone_uid}]")
+                    print(
+                        f"    [+] ADDED: {username} ({email}) -> {local_group} [uid={plone_uid}]"
+                    )
                 else:
                     stats["would_add"] += 1
                     status = "WOULD_ADD"
                     notes = f"Would add to {local_group}"
-                    print(f"    [*] WOULD ADD: {username} ({email}) -> {local_group} [uid={plone_uid}]")
+                    print(
+                        f"    [*] WOULD ADD: {username} ({email}) -> {local_group} [uid={plone_uid}]"
+                    )
 
-            results.append({
-                "ldap_group": ldap_group,
-                "local_group": local_group,
-                "ldap_username": username,
-                "ldap_fullname": fullname,
-                "email": email,
-                "plone_user_id": plone_uid,
-                "plone_fullname": plone_fn,
-                "status": status,
-                "notes": notes,
-            })
+            results.append(
+                {
+                    "ldap_group": ldap_group,
+                    "local_group": local_group,
+                    "ldap_username": username,
+                    "ldap_fullname": fullname,
+                    "email": email,
+                    "plone_user_id": plone_uid,
+                    "plone_fullname": plone_fn,
+                    "status": status,
+                    "notes": notes,
+                }
+            )
 
     # 5. Commit if live run
     if not dry_run:
@@ -499,7 +525,9 @@ def run(app, args):
     else:
         print(f"  Users added (ADDED):        {stats['added']}")
     print(f"  Already members:            {stats['already_member']}")
-    print(f"  Users not found in Plone:   {stats['user_not_found']} (need EntraID login or sync_eea_entra)")
+    print(
+        f"  Users not found in Plone:   {stats['user_not_found']} (need EntraID login or sync_eea_entra)"
+    )
     print(f"  Members with missing email: {stats['no_email']}")
     print(f"{'=' * 80}")
 
