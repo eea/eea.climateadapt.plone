@@ -151,7 +151,7 @@ class IExtendedTool(ITool, IBlocks):
         place_of_implementation="z3c.form.browser.checkbox.CheckBoxFieldWidget"
     )
     place_of_implementation = List(
-        title=_("Place of implementation"),
+        title=_("Governance level"),
         description=_("Select one or more place of implementation."),
         required=False,
         value_type=Choice(

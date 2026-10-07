@@ -9,6 +9,31 @@ pipeline {
   }
 
   stages {
+    stage('Prepare workspace') {
+      // Force a clean checkout at the start of every build so stale local
+      // changes (e.g. uncommitted ruff auto-fixes from a previous build) can
+      // never block the checkout on a shared agent workspace.
+      // (The Jenkins server does not have the ws-cleanup plugin, so this
+      // uses plain git commands instead of cleanWs().)
+      steps {
+        checkout scm
+        script {
+          // If the branch still exists on the remote, force the workspace to
+          // its exact state; otherwise (branch deleted after merge, e.g. old
+          // Redmine issue branches) just discard local changes and clean.
+          sh '''
+            if git ls-remote --exit-code --heads origin "\$BRANCH_NAME" >/dev/null 2>&1; then
+              git checkout -f "\$BRANCH_NAME"
+              git reset --hard "origin/\$BRANCH_NAME"
+            else
+              git checkout . || true
+            fi
+            git clean -fdx || true
+          '''
+        }
+      }
+    }
+
     stage('Cosmetics') {
       steps {
         parallel(
@@ -37,11 +62,24 @@ pipeline {
                   return
                 }
                 checkout scm
+                // The eeacms/ruff container may be slow to clone, or may fail
+                // (e.g. network issues) - a failure must not block the build,
+                // and the container may be gone before we try to copy the
+                // auto-fixed files out.
                 fix_result = sh(script: '''docker run --pull=always --name="$BUILD_TAG-ruff-fix" -e GIT_SRC="https://github.com/eea/$GIT_NAME.git" -e GIT_NAME="$GIT_NAME" -e GIT_BRANCH="$BRANCH_NAME" -e GIT_CHANGE_ID="$CHANGE_ID" eeacms/ruff format''', returnStatus: true)
-                sh '''docker cp $BUILD_TAG-ruff-fix:/code/$GIT_NAME .'''
+                if (fix_result != 0) {
+                  sh '''docker rm -v $BUILD_TAG-ruff-fix 2>/dev/null || true'''
+                  echo "ruff fix container exited with code $fix_result - skipping auto-fix"
+                  return
+                }
+                if (!sh(script: '''docker cp $BUILD_TAG-ruff-fix:/code/$GIT_NAME .''', returnStatus: true) == 0) {
+                  sh '''docker rm -v $BUILD_TAG-ruff-fix 2>/dev/null || true'''
+                  echo "could not copy auto-fixed files from ruff container - skipping auto-fix"
+                  return
+                }
                 sh '''cp -rf $GIT_NAME/* .'''
                 sh '''rm -rf $GIT_NAME'''
-                sh '''docker rm -v $BUILD_TAG-ruff-fix'''
+                sh '''docker rm -v $BUILD_TAG-ruff-fix 2>/dev/null || true'''
                 FOUND_FIX = sh(script: '''git diff --name-only '*.py' | wc -l''', returnStdout: true).trim()
 
                 if (FOUND_FIX != '0') {
@@ -49,7 +87,7 @@ pipeline {
                     sh '''sed -i "s|url = .*|url = https://eea-jenkins:$GITHUB_TOKEN@github.com/eea/$GIT_NAME.git|" .git/config'''
                   }
                   sh '''git fetch origin $GIT_BRANCH:$GIT_BRANCH'''
-                  sh '''git checkout $GIT_BRANCH'''
+                  sh '''git checkout -f $GIT_BRANCH'''
                   sh '''git add -- '*.py' '''
                   sh '''git commit -m "style: Automated code fix" '''
                   sh '''git push --set-upstream origin $GIT_BRANCH'''
@@ -201,6 +239,15 @@ pipeline {
   }
 
   post {
+    always {
+      // Best-effort wipe of the agent workspace after each build so the next
+      // build always starts from a clean tree. Kept in a catchError-style
+      // block so a cleanup failure can never fail the build itself.
+      script {
+        sh 'git checkout . || true'
+        sh 'git clean -fdx || true'
+      }
+    }
     changed {
       script {
         def url = "${env.BUILD_URL}/display/redirect"

@@ -16,6 +16,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+msgid "About us"
+msgstr "O nas"
+
+msgid "Accessibility"
+msgstr "Dostępność"
+
 # ,
 # ,
 # ,
@@ -63,6 +69,9 @@ msgstr "Powódź przybrzeżna"
 msgid "Cold spells and frost"
 msgstr "Zimne zaklęcia i mróz"
 
+msgid "Contact us"
+msgstr "Skontaktuj się z nami"
+
 # ,
 # ,
 # ,
@@ -75,8 +84,14 @@ msgstr "Zimne zaklęcia i mróz"
 msgid "Countries:"
 msgstr "Kraje:"
 
+msgid "Dashboard"
+msgstr "Panel"
+
 msgid "Download"
 msgstr "Pobierać"
+
+msgid "Explore our environmental information systems"
+msgstr "Poznaj nasze systemy informacji o środowisku"
 
 msgid "Extreme heat"
 msgstr "Ekstremalne ciepło"
@@ -104,6 +119,9 @@ msgstr "Rodzaj zagrożenia"
 
 msgid "Heat and cold"
 msgstr "Ciepło i zimno"
+
+msgid "Help"
+msgstr "Pomoc"
 
 msgid "Indicator"
 msgstr "Wskaźnik"
@@ -140,6 +158,12 @@ msgstr "Portale informacyjne"
 # ,
 msgid "Latest <br/> News & Events"
 msgstr "Najnowsze <br/> Wiadomości i wydarzenia"
+
+msgid "Legal notice"
+msgstr "Informacja prawna"
+
+msgid "Login"
+msgstr "Zaloguj się"
 
 msgid "Mean air temperature"
 msgstr "Średnia temperatura powietrza"
@@ -184,6 +208,9 @@ msgstr "Organizacje"
 msgid "Other"
 msgstr "Inny"
 
+msgid "Privacy statement"
+msgstr "Oświadczenie o ochronie prywatności"
+
 # ,
 # ,
 # ,
@@ -218,6 +245,9 @@ msgstr "Projekty badawcze i oparte na wiedzy"
 
 msgid "River flooding"
 msgstr "Wylew rzeki"
+
+msgid "Sitemap"
+msgstr "Mapa strony"
 
 msgid "Snow and ice"
 msgstr "Śnieg i lód"
