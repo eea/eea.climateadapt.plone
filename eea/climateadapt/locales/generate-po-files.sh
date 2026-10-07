@@ -1,7 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # Shell script to generate .po files.
 #
+
+set -euo pipefail
+
+if ! command -v i18ndude >/dev/null 2>&1; then
+    echo "Error: i18ndude is not installed or is not available on PATH." >&2
+    echo "Activate the project's Python/buildout environment and try again." >&2
+    exit 127
+fi
 
 declare -a list=(
               "eea.cca"

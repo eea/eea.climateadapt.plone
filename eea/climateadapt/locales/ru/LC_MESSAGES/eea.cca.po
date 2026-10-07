@@ -16,6 +16,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+msgid "About us"
+msgstr "О нас"
+
+msgid "Accessibility"
+msgstr "Доступность"
+
 # ,
 msgid "Adaptation options"
 msgstr "Параметры адаптации"
@@ -45,12 +51,21 @@ msgstr ""
 msgid "Cold spells and frost"
 msgstr ""
 
+msgid "Contact us"
+msgstr "Свяжитесь с нами"
+
 # ,
 msgid "Countries:"
 msgstr "Страны:"
 
+msgid "Dashboard"
+msgstr "Панель управления"
+
 msgid "Download"
 msgstr ""
+
+msgid "Explore our environmental information systems"
+msgstr "Изучите наши информационные системы об окружающей среде"
 
 msgid "Extreme heat"
 msgstr ""
@@ -71,6 +86,9 @@ msgstr ""
 msgid "Heat and cold"
 msgstr ""
 
+msgid "Help"
+msgstr "Помощь"
+
 msgid "Indicator"
 msgstr ""
 
@@ -84,6 +102,12 @@ msgstr "Информационные порталы"
 
 msgid "Latest <br/> News & Events"
 msgstr ""
+
+msgid "Legal notice"
+msgstr "Правовая информация"
+
+msgid "Login"
+msgstr "Войти"
 
 msgid "Mean air temperature"
 msgstr ""
@@ -107,6 +131,9 @@ msgstr "Организации"
 msgid "Other"
 msgstr ""
 
+msgid "Privacy statement"
+msgstr "Заявление о конфиденциальности"
+
 # ,
 msgid "Publication and reports"
 msgstr "Публикация и отчеты"
@@ -123,6 +150,9 @@ msgstr "Проекты по исследованиям и знаниям"
 
 msgid "River flooding"
 msgstr ""
+
+msgid "Sitemap"
+msgstr "Карта сайта"
 
 msgid "Snow and ice"
 msgstr ""

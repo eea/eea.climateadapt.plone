@@ -14,6 +14,12 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+msgid "About us"
+msgstr "Uagut pilluta"
+
+msgid "Accessibility"
+msgstr "Tikikkuminassuseq"
+
 msgid "Adaptation options"
 msgstr ""
 
@@ -41,11 +47,20 @@ msgstr ""
 msgid "Cold spells and frost"
 msgstr ""
 
+msgid "Contact us"
+msgstr "Attavigisigut"
+
 msgid "Countries:"
 msgstr ""
 
+msgid "Dashboard"
+msgstr "Takussutissat"
+
 msgid "Download"
 msgstr ""
+
+msgid "Explore our environmental information systems"
+msgstr "Avatangiisinut paasissutissiinermut atortorissaarutivut misissuataakkit"
 
 msgid "Extreme heat"
 msgstr ""
@@ -65,6 +80,9 @@ msgstr ""
 msgid "Heat and cold"
 msgstr ""
 
+msgid "Help"
+msgstr "Ikiorsiineq"
+
 msgid "Indicator"
 msgstr ""
 
@@ -76,6 +94,12 @@ msgstr ""
 
 msgid "Latest <br/> News & Events"
 msgstr ""
+
+msgid "Legal notice"
+msgstr "Inatsisitigut nalunaarut"
+
+msgid "Login"
+msgstr "Iserit"
 
 msgid "Mean air temperature"
 msgstr ""
@@ -98,6 +122,9 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
+msgid "Privacy statement"
+msgstr "Inuttut paasissutissat pillugit nalunaarut"
+
 msgid "Publication and reports"
 msgstr ""
 
@@ -112,6 +139,9 @@ msgstr ""
 
 msgid "River flooding"
 msgstr ""
+
+msgid "Sitemap"
+msgstr "Nittartakkap assinga"
 
 msgid "Snow and ice"
 msgstr ""
