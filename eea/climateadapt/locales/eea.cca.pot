@@ -139,3 +139,33 @@ msgstr ""
 
 msgid "Other"
 msgstr ""
+
+msgid "About us"
+msgstr ""
+
+msgid "Contact us"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Explore our environmental information systems"
+msgstr ""
+
+msgid "Privacy statement"
+msgstr ""
+
+msgid "Accessibility"
+msgstr ""
+
+msgid "Legal notice"
+msgstr ""
+
+msgid "Sitemap"
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "Login"
+msgstr ""

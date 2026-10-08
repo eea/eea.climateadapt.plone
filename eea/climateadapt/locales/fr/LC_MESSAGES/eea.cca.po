@@ -16,6 +16,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+msgid "About us"
+msgstr "À propos"
+
+msgid "Accessibility"
+msgstr "Accessibilité"
+
 # ,
 # ,
 # ,
@@ -63,6 +69,9 @@ msgstr "Inondations côtières"
 msgid "Cold spells and frost"
 msgstr "Coups de froid et gel"
 
+msgid "Contact us"
+msgstr "Nous contacter"
+
 # ,
 # ,
 # ,
@@ -75,8 +84,14 @@ msgstr "Coups de froid et gel"
 msgid "Countries:"
 msgstr "Pays:"
 
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
 msgid "Download"
 msgstr "Télécharger"
+
+msgid "Explore our environmental information systems"
+msgstr "Découvrez nos systèmes d’information sur l’environnement"
 
 msgid "Extreme heat"
 msgstr "Chaleur extrème"
@@ -104,6 +119,9 @@ msgstr "Type de danger"
 
 msgid "Heat and cold"
 msgstr "Chaleur et froid"
+
+msgid "Help"
+msgstr "Aide"
 
 msgid "Indicator"
 msgstr "Indicateur"
@@ -140,6 +158,12 @@ msgstr "Portails d'information"
 # ,
 msgid "Latest <br/> News & Events"
 msgstr "Dernières <br/> actualités et événements"
+
+msgid "Legal notice"
+msgstr "Mentions légales"
+
+msgid "Login"
+msgstr "Se connecter"
 
 msgid "Mean air temperature"
 msgstr "Température moyenne de l'air"
@@ -184,6 +208,9 @@ msgstr "Organisations"
 msgid "Other"
 msgstr "Autre"
 
+msgid "Privacy statement"
+msgstr "Déclaration de confidentialité"
+
 # ,
 # ,
 # ,
@@ -218,6 +245,9 @@ msgstr "Projets de recherche et de connaissance"
 
 msgid "River flooding"
 msgstr "Inondation de la rivière"
+
+msgid "Sitemap"
+msgstr "Plan du site"
 
 msgid "Snow and ice"
 msgstr "Neige et glace"

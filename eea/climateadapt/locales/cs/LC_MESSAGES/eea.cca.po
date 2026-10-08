@@ -17,6 +17,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+msgid "About us"
+msgstr "O nás"
+
+msgid "Accessibility"
+msgstr "Přístupnost"
+
 # ,
 msgid "Adaptation options"
 msgstr "Možnosti adaptace"
@@ -46,12 +52,21 @@ msgstr "Pobřežní záplavy"
 msgid "Cold spells and frost"
 msgstr "Zima a mráz"
 
+msgid "Contact us"
+msgstr "Kontaktujte nás"
+
 # ,
 msgid "Countries:"
 msgstr "země:"
 
+msgid "Dashboard"
+msgstr "Přehled"
+
 msgid "Download"
 msgstr "Stáhnout"
+
+msgid "Explore our environmental information systems"
+msgstr "Prozkoumejte naše informační systémy o životním prostředí"
 
 msgid "Extreme heat"
 msgstr "Extrémní horko"
@@ -72,6 +87,9 @@ msgstr "Typ nebezpečí"
 msgid "Heat and cold"
 msgstr "Teplo a zima"
 
+msgid "Help"
+msgstr "Nápověda"
+
 msgid "Indicator"
 msgstr "Indikátor"
 
@@ -85,6 +103,12 @@ msgstr "Informační portály"
 
 msgid "Latest <br/> News & Events"
 msgstr "Nejnovější <br/> Novinky a události"
+
+msgid "Legal notice"
+msgstr "Právní upozornění"
+
+msgid "Login"
+msgstr "Přihlášení"
 
 msgid "Mean air temperature"
 msgstr "Střední teplota vzduchu"
@@ -108,6 +132,9 @@ msgstr "Organizace"
 msgid "Other"
 msgstr "Ostatní"
 
+msgid "Privacy statement"
+msgstr "Prohlášení o ochraně osobních údajů"
+
 # ,
 msgid "Publication and reports"
 msgstr "Publikace a zprávy"
@@ -124,6 +151,9 @@ msgstr "Výzkumné a znalostní projekty"
 
 msgid "River flooding"
 msgstr "Záplavy řeky"
+
+msgid "Sitemap"
+msgstr "Mapa stránek"
 
 msgid "Snow and ice"
 msgstr "Sníh a led"

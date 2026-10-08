@@ -15,6 +15,12 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+msgid "About us"
+msgstr "Fúinn"
+
+msgid "Accessibility"
+msgstr "Inrochtaineacht"
+
 msgid "Adaptation options"
 msgstr "Roghanna oiriúnaithe"
 
@@ -42,11 +48,20 @@ msgstr "Tuile cósta"
 msgid "Cold spells and frost"
 msgstr "Geasa fuar agus sioc"
 
+msgid "Contact us"
+msgstr "Déan teagmháil linn"
+
 msgid "Countries:"
 msgstr "Tíortha:"
 
+msgid "Dashboard"
+msgstr "Painéal"
+
 msgid "Download"
 msgstr "Íosluchtaigh"
+
+msgid "Explore our environmental information systems"
+msgstr "Déan iniúchadh ar ár gcórais faisnéise comhshaoil"
 
 msgid "Extreme heat"
 msgstr "Teas an-mhór"
@@ -66,6 +81,9 @@ msgstr "Cineál guaise"
 msgid "Heat and cold"
 msgstr "Teas agus fuar"
 
+msgid "Help"
+msgstr "Cabhair"
+
 msgid "Indicator"
 msgstr "Táscaire"
 
@@ -77,6 +95,12 @@ msgstr "Tairseacha faisnéise"
 
 msgid "Latest <br/> News & Events"
 msgstr "<br/> Nuacht & Imeachtaí is déanaí"
+
+msgid "Legal notice"
+msgstr "Fógra dlíthiúil"
+
+msgid "Login"
+msgstr "Logáil isteach"
 
 msgid "Mean air temperature"
 msgstr "Meánteocht an aeir"
@@ -99,6 +123,9 @@ msgstr "Eagraíochtaí"
 msgid "Other"
 msgstr "Eile"
 
+msgid "Privacy statement"
+msgstr "Ráiteas príobháideachais"
+
 msgid "Publication and reports"
 msgstr "Foilsiú agus tuarascálacha"
 
@@ -113,6 +140,9 @@ msgstr "Tionscadail taighde agus eolais"
 
 msgid "River flooding"
 msgstr "Tuile abhann"
+
+msgid "Sitemap"
+msgstr "Mapa suímh"
 
 msgid "Snow and ice"
 msgstr "Sneachta agus oighear"

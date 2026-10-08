@@ -17,6 +17,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+msgid "About us"
+msgstr "Om os"
+
+msgid "Accessibility"
+msgstr "Tilgængelighed"
+
 # ,
 msgid "Adaptation options"
 msgstr "Tilpasningsmuligheder"
@@ -46,12 +52,21 @@ msgstr "Kystoversvømmelser"
 msgid "Cold spells and frost"
 msgstr "Forkølelse og frost"
 
+msgid "Contact us"
+msgstr "Kontakt os"
+
 # ,
 msgid "Countries:"
 msgstr "Lande:"
 
+msgid "Dashboard"
+msgstr "Kontrolpanel"
+
 msgid "Download"
 msgstr "Download"
+
+msgid "Explore our environmental information systems"
+msgstr "Udforsk vores miljøinformationssystemer"
 
 msgid "Extreme heat"
 msgstr "Ekstrem varme"
@@ -72,6 +87,9 @@ msgstr "Faretype"
 msgid "Heat and cold"
 msgstr "Varme og kulde"
 
+msgid "Help"
+msgstr "Hjælp"
+
 msgid "Indicator"
 msgstr "Indikator"
 
@@ -85,6 +103,12 @@ msgstr "Informationsportaler"
 
 msgid "Latest <br/> News & Events"
 msgstr "Seneste <br/> nyheder og begivenheder"
+
+msgid "Legal notice"
+msgstr "Juridisk meddelelse"
+
+msgid "Login"
+msgstr "Log ind"
 
 msgid "Mean air temperature"
 msgstr "Gennemsnitlig lufttemperatur"
@@ -108,6 +132,9 @@ msgstr "Organisationer"
 msgid "Other"
 msgstr "Andre"
 
+msgid "Privacy statement"
+msgstr "Databeskyttelseserklæring"
+
 # ,
 msgid "Publication and reports"
 msgstr "Udgivelse og rapporter"
@@ -124,6 +151,9 @@ msgstr "Forsknings- og vidensprojekter"
 
 msgid "River flooding"
 msgstr "Flod oversvømmelse"
+
+msgid "Sitemap"
+msgstr "Sitemap"
 
 msgid "Snow and ice"
 msgstr "Sne og is"
