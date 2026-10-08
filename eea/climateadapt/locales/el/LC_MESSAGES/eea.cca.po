@@ -16,6 +16,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+msgid "About us"
+msgstr "Σχετικά με εμάς"
+
+msgid "Accessibility"
+msgstr "Προσβασιμότητα"
+
 # ,
 msgid "Adaptation options"
 msgstr "Επιλογές προσαρμογής"
@@ -45,12 +51,21 @@ msgstr ""
 msgid "Cold spells and frost"
 msgstr ""
 
+msgid "Contact us"
+msgstr "Επικοινωνήστε μαζί μας"
+
 # ,
 msgid "Countries:"
 msgstr "Χώρες:"
 
+msgid "Dashboard"
+msgstr "Πίνακας ελέγχου"
+
 msgid "Download"
 msgstr ""
+
+msgid "Explore our environmental information systems"
+msgstr "Εξερευνήστε τα συστήματα περιβαλλοντικών πληροφοριών μας"
 
 msgid "Extreme heat"
 msgstr ""
@@ -71,6 +86,9 @@ msgstr ""
 msgid "Heat and cold"
 msgstr ""
 
+msgid "Help"
+msgstr "Βοήθεια"
+
 msgid "Indicator"
 msgstr ""
 
@@ -84,6 +102,12 @@ msgstr "Πύλες πληροφοριών"
 
 msgid "Latest <br/> News & Events"
 msgstr ""
+
+msgid "Legal notice"
+msgstr "Νομική ανακοίνωση"
+
+msgid "Login"
+msgstr "Σύνδεση"
 
 msgid "Mean air temperature"
 msgstr ""
@@ -107,6 +131,9 @@ msgstr "Οργανώσεις"
 msgid "Other"
 msgstr ""
 
+msgid "Privacy statement"
+msgstr "Δήλωση απορρήτου"
+
 # ,
 msgid "Publication and reports"
 msgstr "Δημοσίευση και αναφορές"
@@ -123,6 +150,9 @@ msgstr "Έργα έρευνας και γνώσης"
 
 msgid "River flooding"
 msgstr ""
+
+msgid "Sitemap"
+msgstr "Χάρτης ιστότοπου"
 
 msgid "Snow and ice"
 msgstr ""

@@ -17,6 +17,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "Language: \n"
 
+msgid "About us"
+msgstr "За нас"
+
+msgid "Accessibility"
+msgstr "Достъпност"
+
 # ,
 msgid "Adaptation options"
 msgstr "Възможности за адаптация"
@@ -46,12 +52,21 @@ msgstr "Крайбрежно наводнение"
 msgid "Cold spells and frost"
 msgstr "Студове и слани"
 
+msgid "Contact us"
+msgstr "Свържете се с нас"
+
 # ,
 msgid "Countries:"
 msgstr "Държави:"
 
+msgid "Dashboard"
+msgstr "Табло"
+
 msgid "Download"
 msgstr "Изтегляне"
+
+msgid "Explore our environmental information systems"
+msgstr "Разгледайте нашите информационни системи за околната среда"
 
 msgid "Extreme heat"
 msgstr "Изключителна топлина"
@@ -72,6 +87,9 @@ msgstr "Тип опасност"
 msgid "Heat and cold"
 msgstr "Топлина и студ"
 
+msgid "Help"
+msgstr "Помощ"
+
 msgid "Indicator"
 msgstr "Индикатор"
 
@@ -85,6 +103,12 @@ msgstr "Информационни портали"
 
 msgid "Latest <br/> News & Events"
 msgstr "Последни <br/> новини и събития"
+
+msgid "Legal notice"
+msgstr "Правна информация"
+
+msgid "Login"
+msgstr "Вход"
 
 msgid "Mean air temperature"
 msgstr "Средна температура на въздуха"
@@ -108,6 +132,9 @@ msgstr "организации"
 msgid "Other"
 msgstr "други"
 
+msgid "Privacy statement"
+msgstr "Декларация за поверителност"
+
 # ,
 msgid "Publication and reports"
 msgstr "Публикации и доклади"
@@ -124,6 +151,9 @@ msgstr "Изследователски проекти и проекти за з�
 
 msgid "River flooding"
 msgstr "Наводнение на реката"
+
+msgid "Sitemap"
+msgstr "Карта на сайта"
 
 msgid "Snow and ice"
 msgstr "Сняг и лед"
