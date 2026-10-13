@@ -40,6 +40,26 @@ def generic_vocabulary(_terms, sort=True):
     return factory
 
 
+_tool_types = [
+    ("CLIMATE_DATA_EXPLORER_ATLAS", _("Climate data explorer / atlas")),
+    ("HAZARD_RISK_MAP_VIEWER", _("Hazard & risk map viewer")),
+    ("MONITORING_EARLY_WARNING", _("Monitoring & early warning")),
+    (
+        "RISK_VULNERABILITY_ASSESSMENT",
+        _("Risk & vulnerability assessment"),
+    ),
+    ("PLANNING_DECISION_SUPPORT", _("Planning & decision support")),
+    ("MEASURES_KNOWLEDGE_LIBRARY", _("Measures & knowledge library")),
+    (
+        "SELF_ASSESSMENT_PROGRESS_TRACKING",
+        _("Self-assessment & progress tracking"),
+    ),
+]
+
+tool_types_vocabulary = generic_vocabulary(_tool_types, sort=False)
+alsoProvides(tool_types_vocabulary, IVocabularyFactory)
+
+
 @implementer(IVocabularyFactory)
 class KeywordsVocabulary(BKV):
     def __init__(self, index):
