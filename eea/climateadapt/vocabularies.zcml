@@ -42,6 +42,10 @@
     component=".vocabulary.aceitem_elements_extended_tool_vocabulary"
   />
   <utility
+    name="eea.climateadapt.tool_types"
+    component=".vocabulary.tool_types_vocabulary"
+  />
+  <utility
     name="eea.climateadapt.aceitems_elements_case_study"
     component=".vocabulary.aceitem_elements_case_study_vocabulary"
   />
