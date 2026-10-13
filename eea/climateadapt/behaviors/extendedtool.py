@@ -74,6 +74,14 @@ class IExtendedTool(ITool, IBlocks):
         default=str(""),
     )
 
+    directives.widget(tool_type="z3c.form.browser.radio.RadioFieldWidget")
+    tool_type = Choice(
+        title=_("Tool type"),
+        description=_("Select the category used for the tool icon."),
+        required=False,
+        vocabulary="eea.climateadapt.tool_types",
+    )
+
     tool_provider = TextLine(
         title=_("Tool provider"),
         required=False,
@@ -343,3 +351,4 @@ class IExtendedTool(ITool, IBlocks):
 alsoProvides(IExtendedTool["climate_impacts"], ILanguageIndependentField)
 alsoProvides(IExtendedTool["sectors"], ILanguageIndependentField)
 alsoProvides(IExtendedTool["elements"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["tool_type"], ILanguageIndependentField)
