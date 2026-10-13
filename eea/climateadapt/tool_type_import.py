@@ -29,9 +29,7 @@ def normalize_tool_type_value(value):
 TOOL_TYPE_LABEL_TO_TOKEN = {
     normalize_tool_type_value(str(label)): token for token, label in _tool_types
 }
-TOOL_TYPE_TOKEN_TO_LABEL = {
-    token: str(label) for token, label in _tool_types
-}
+TOOL_TYPE_TOKEN_TO_LABEL = {token: str(label) for token, label in _tool_types}
 
 
 def normalize_tool_id(value):
@@ -76,6 +74,7 @@ def parse_assignment_rows(rows):
     assignments = {}
     errors = []
     for row_number, row in enumerate(rows[header_index + 1 :], header_index + 2):
+
         def value(field):
             index = columns[field]
             return row[index].strip() if index < len(row) and row[index] else ""
@@ -93,9 +92,7 @@ def parse_assignment_rows(rows):
             errors.append(f"row {row_number}: duplicate Tool ID {external_id}")
             continue
 
-        tool_type = TOOL_TYPE_LABEL_TO_TOKEN.get(
-            normalize_tool_type_value(category)
-        )
+        tool_type = TOOL_TYPE_LABEL_TO_TOKEN.get(normalize_tool_type_value(category))
         if not tool_type:
             errors.append(
                 f"row {row_number} ({external_id}): unknown category {category!r}"
@@ -177,9 +174,7 @@ class ToolTypeImporter:
             )
 
         missing_ids = [
-            external_id
-            for external_id in assignments
-            if external_id not in existing
+            external_id for external_id in assignments if external_id not in existing
         ]
         if missing_ids and not dry_run:
             missing = ", ".join(missing_ids)

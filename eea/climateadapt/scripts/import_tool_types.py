@@ -78,9 +78,7 @@ def main():
         )
 
     counts = Counter(result["status"] for result in results)
-    summary = ", ".join(
-        f"{key}={value}" for key, value in sorted(counts.items())
-    )
+    summary = ", ".join(f"{key}={value}" for key, value in sorted(counts.items()))
     print(f"\nSummary: {summary}")
     if not args.commit:
         print("DRY-RUN complete; pass --commit to write the assignments.")
