@@ -1072,6 +1072,52 @@ class ToolExtendFields:
         )
 
 
+class ToolTypeImport:
+    """Import Extended Tool category assignments from an ODS file."""
+
+    _results = None
+    error = ""
+    committed = False
+
+    def target_path(self):
+        from Products.CMFPlone.interfaces import IPloneSiteRoot
+
+        if IPloneSiteRoot.providedBy(self.context):
+            return "/cca/en/metadata/tools (default for site root)"
+        if hasattr(self.context, "getPhysicalPath"):
+            return "/".join(self.context.getPhysicalPath())
+        return str(self.context)
+
+    def list(self):
+        if self._results is not None:
+            return self._results
+
+        file_upload = self.request.form.get("assignment_file", None)
+        if not file_upload:
+            self._results = []
+            return self._results
+
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.committed = self.request.form.get("commit") == "1"
+
+        from eea.climateadapt.tool_type_import import (
+            ToolTypeAssignmentError,
+            ToolTypeImporter,
+        )
+
+        try:
+            self._results = ToolTypeImporter().run_web_import(
+                file_upload=file_upload,
+                context=self.context,
+                commit=self.committed,
+            )
+        except (OSError, RuntimeError, ToolTypeAssignmentError) as error:
+            self.error = str(error)
+            self._results = []
+
+        return self._results
+
+
 class FixMipSigLangs(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
