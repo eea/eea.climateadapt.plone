@@ -32,10 +32,6 @@
   </div>
 
   <div tal:condition="items">
-    <div class="portalMessage info">
-      The assignments were committed.
-    </div>
-
     <h2>
       Results (<span tal:replace="python:len(items)">0</span> tools processed)
     </h2>
