@@ -77,7 +77,7 @@ class IExtendedTool(ITool, IBlocks):
     directives.widget(tool_type="z3c.form.browser.radio.RadioFieldWidget")
     tool_type = Choice(
         title=_("Tool type"),
-        description=_("Select the category used for the Navigator tool icon."),
+        description=_("Select the category used for the tool icon."),
         required=False,
         vocabulary="eea.climateadapt.tool_types",
     )
