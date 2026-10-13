@@ -1077,7 +1077,6 @@ class ToolTypeImport:
 
     _results = None
     error = ""
-    committed = False
 
     def target_path(self):
         from Products.CMFPlone.interfaces import IPloneSiteRoot
@@ -1098,7 +1097,6 @@ class ToolTypeImport:
             return self._results
 
         alsoProvides(self.request, IDisableCSRFProtection)
-        self.committed = self.request.form.get("commit") == "1"
 
         from eea.climateadapt.tool_type_import import (
             ToolTypeAssignmentError,
@@ -1109,7 +1107,6 @@ class ToolTypeImport:
             self._results = ToolTypeImporter().run_web_import(
                 file_upload=file_upload,
                 context=self.context,
-                commit=self.committed,
             )
         except (OSError, RuntimeError, ToolTypeAssignmentError) as error:
             self.error = str(error)

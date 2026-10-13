@@ -22,13 +22,7 @@
       required="required"
     />
   </p>
-  <p>
-    <label>
-      <input type="checkbox" name="commit" value="1" />
-      Commit changes (leave unchecked for a dry-run preview)
-    </label>
-  </p>
-  <input type="submit" value="Process assignments" />
+  <input type="submit" value="Import" />
 </form>
 
 <tal:results define="items view/list">
@@ -38,10 +32,7 @@
   </div>
 
   <div tal:condition="items">
-    <div class="portalMessage info" tal:condition="python:not view.committed">
-      Dry-run only: no content was changed.
-    </div>
-    <div class="portalMessage info" tal:condition="view/committed">
+    <div class="portalMessage info">
       The assignments were committed.
     </div>
 

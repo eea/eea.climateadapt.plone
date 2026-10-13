@@ -229,13 +229,13 @@ class ToolTypeImporter:
 
         return results
 
-    def run_web_import(self, file_upload, context=None, commit=False):
-        """Parse an uploaded ODS file and apply or preview its assignments."""
+    def run_web_import(self, file_upload, context=None):
+        """Parse an uploaded ODS file and apply its assignments."""
         assignments = parse_assignment_ods(file_upload)
         site = api.portal.get()
         return self.import_assignments(
             site,
             assignments,
-            dry_run=not commit,
+            dry_run=False,
             container=context,
         )
