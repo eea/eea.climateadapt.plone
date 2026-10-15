@@ -8,7 +8,7 @@
 
 <p>
   <strong>Target folder:</strong>
-  <code tal:content="view/target_path">/cca/en/metadata/tools</code>
+  <code tal:content="view/target_path">/cca/en/navigator/tool-catalogue</code>
 </p>
 
 <form action="./@@import-tool-types" method="post" enctype="multipart/form-data">

@@ -13,7 +13,7 @@ from eea.climateadapt.vocabulary import _tool_types
 
 logger = logging.getLogger("eea.climateadapt.importer.tool_types")
 
-DEFAULT_TARGET_PATH = "/cca/en/metadata/tools"
+DEFAULT_TARGET_PATH = "/cca/en/navigator/tool-catalogue"
 PORTAL_TYPE = "eea.climateadapt.extendedtool"
 
 
