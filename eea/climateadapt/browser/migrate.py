@@ -1082,7 +1082,7 @@ class ToolTypeImport:
         from Products.CMFPlone.interfaces import IPloneSiteRoot
 
         if IPloneSiteRoot.providedBy(self.context):
-            return "/cca/en/metadata/tools (default for site root)"
+            return "/cca/en/navigator/tool-catalogue (default for site root)"
         if hasattr(self.context, "getPhysicalPath"):
             return "/".join(self.context.getPhysicalPath())
         return str(self.context)
