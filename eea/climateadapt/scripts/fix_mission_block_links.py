@@ -35,7 +35,9 @@ import argparse
 import csv
 import json
 import logging
+import re
 import sys
+import unicodedata
 from urllib.parse import urlparse
 
 import transaction
@@ -86,6 +88,42 @@ TEXT_OCCURRENCE = "TEXT-OCCURRENCE"
 TEXT_FIELDS = ("text", "plaintext")
 
 
+def normalise_name(value, dots=False):
+    """Normalise a file name for matching: ``Asset 98@2x.png`` -> ``asset-98-2x.png``.
+
+    Editors often put the original upload name in the block's ``alt`` while Plone
+    normalised the object id (spaces/underscores to dashes, ``@`` to a dash,
+    accents stripped, lower case). With ``dots`` the remaining dots are folded to
+    dashes too, which is what Plone did to names like ``Asset 70@1.5x.png``
+    (object id ``asset-70-1-5x.png``).
+    """
+    if not value:
+        return ""
+    value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode()
+    value = value.lower().replace("@", "-")
+    if dots:
+        value = value.replace(".", "-")
+    value = re.sub(r"[\s_]+", "-", value)
+    value = re.sub(r"-+", "-", value)
+    return value.strip("-")
+
+
+def name_keys(value):
+    """Every normalisation form a name may be stored or typed under.
+
+    The stem forms matter because Plone may or may not keep the extension; the
+    dotted forms because Plone folded dots into dashes for names such as
+    ``Asset 70@1.5x.png`` (object id ``asset-70-1-5x.png``).
+    """
+    stem = value.rsplit(".", 1)[0] if "." in value else value
+    return {
+        normalise_name(value),
+        normalise_name(value, dots=True),
+        normalise_name(stem),
+        normalise_name(stem, dots=True),
+    }
+
+
 class Resolver(object):
     """Resolves old (pre-reorg) paths to objects of the current database."""
 
@@ -101,6 +139,7 @@ class Resolver(object):
         self._uid_cache = {}
         self._alias_cache = {}
         self._anc_cache = {}
+        self._name_index = None
 
     # -- lookups ---------------------------------------------------------
     def uid_to_rel(self, uid):
@@ -278,6 +317,54 @@ class Resolver(object):
     def in_scope(self, old_rel):
         return any(old_rel.startswith(prefix) for prefix in self.restrict)
 
+    # -- alt text fallback ----------------------------------------------
+    def build_name_index(self):
+        """Index every Image/File id under the scanned subtrees."""
+        index = {}
+        for root in self.scan_roots:
+            root_obj = self.traverse(root)
+            if root_obj is None:
+                continue
+            brains = self.catalog(
+                portal_type=("Image", "File"),
+                path=f"{self.portal_path}{root}",
+            )
+            for brain in brains:
+                rel = brain.getPath()[len(self.portal_path) :]
+                for key in name_keys(brain.getId):
+                    if key:
+                        index.setdefault(key, set()).add(rel)
+        self._name_index = index
+        return index
+
+    def alt_match(self, alt, obj_rel):
+        """Path of the image a dead reference meant, taken from the block's alt.
+
+        Accepted only when exactly one object matches, so an ambiguous alt text
+        is reported instead of guessed. The one exception is the common case of
+        the same file existing both inside the page's own folder and in a shared
+        images folder: a child of the referencing page wins, because that is
+        where Volto stores an inline upload.
+        """
+        if not alt:
+            return None
+        if self._name_index is None:
+            self.build_name_index()
+        candidates = None
+        for key in name_keys(alt):
+            if key and key in self._name_index:
+                candidates = self._name_index[key]
+                break
+        if not candidates:
+            return None
+        if len(candidates) > 1:
+            parent = obj_rel.rstrip("/")
+            own = {c for c in candidates if c.rsplit("/", 1)[0] == parent}
+            if len(own) != 1:
+                return None
+            return next(iter(own))
+        return next(iter(candidates))
+
 
 def rewrite_value(kind, value, new_rel, target_obj, context_obj, suffix):
     """Build the replacement value, keeping the original form."""
@@ -341,6 +428,12 @@ def main():
         action="store_true",
         help="Also rewrite URLs that appear inside slate display text "
         "(text/plaintext fields). Off by default.",
+    )
+    parser.add_argument(
+        "--no-alt-match",
+        action="store_true",
+        help="Do not pair a dead reference with an image using the block's alt "
+        "text (used only when the alt text matches exactly one image id).",
     )
     parser.add_argument(
         "--traverse",
@@ -524,18 +617,28 @@ def main():
                             continue
 
                 old_rel, how = resolver.old_path_for(kind, ref, obj_rel, bid, field)
+                new_rel = None
+                note = ""
                 if not old_rel:
-                    add_row(
-                        NOT_IN_MAP,
-                        (obj_rel, container, bid, btype, field),
-                        kind,
-                        value,
-                        "",
-                        how,
-                    )
-                    continue
-
-                if not resolver.in_scope(old_rel):
+                    # last resort: the block's alt text often carries the file
+                    # name of the image that was picked
+                    alt = (holder.get("alt") or block.get("alt") or "").strip()
+                    if kind == RESOLVEUID and alt and not args.no_alt_match:
+                        new_rel = resolver.alt_match(alt, obj_rel)
+                        if new_rel:
+                            how = "alt-match"
+                            note = f"alt={alt!r}"
+                    if not new_rel:
+                        add_row(
+                            NOT_IN_MAP,
+                            (obj_rel, container, bid, btype, field),
+                            kind,
+                            value,
+                            "",
+                            how if not alt else f"{how}; alt {alt!r} matched nothing",
+                        )
+                        continue
+                elif not resolver.in_scope(old_rel):
                     add_row(
                         OUT_OF_SCOPE,
                         (obj_rel, container, bid, btype, field),
@@ -545,19 +648,19 @@ def main():
                         f"old target {old_rel} outside --restrict",
                     )
                     continue
-
-                new_rel, note = resolver.old_to_new(old_rel)
-                if new_rel is None:
-                    action = LEFT_CCA if note == "left-cca" else UNRESOLVED
-                    add_row(
-                        action,
-                        (obj_rel, container, bid, btype, field),
-                        kind,
-                        value,
-                        "",
-                        f"old={old_rel} ({how})",
-                    )
-                    continue
+                else:
+                    new_rel, note = resolver.old_to_new(old_rel)
+                    if new_rel is None:
+                        action = LEFT_CCA if note == "left-cca" else UNRESOLVED
+                        add_row(
+                            action,
+                            (obj_rel, container, bid, btype, field),
+                            kind,
+                            value,
+                            "",
+                            f"old={old_rel} ({how})",
+                        )
+                        continue
 
                 target_obj = resolver.traverse(new_rel)
                 if target_obj is None:
@@ -567,7 +670,7 @@ def main():
                         kind,
                         value,
                         new_rel,
-                        f"mapped but target missing ({old_rel})",
+                        f"mapped but target missing ({old_rel or new_rel})",
                     )
                     continue
 
