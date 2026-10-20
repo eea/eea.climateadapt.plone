@@ -75,5 +75,7 @@ setup(
       export_eionet_groups = eea.climateadapt.scripts.export_eionet_groups:main
       map_entraid_to_local_groups = eea.climateadapt.scripts.map_entraid_to_local_groups:main
       import_extended_tools = eea.climateadapt.scripts.import_extended_tools:main
+      export_uid_paths = eea.climateadapt.scripts.export_uid_paths:main
+      fix_mission_block_links = eea.climateadapt.scripts.fix_mission_block_links:main
       """,
 )

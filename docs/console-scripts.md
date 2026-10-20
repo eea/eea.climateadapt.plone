@@ -12,6 +12,8 @@ These scripts bootstrap the full Zope/Plone application (RelStorage → PostgreS
 | [analyze_relstorage.py](../eea/climateadapt/scripts/analyze_relstorage.py) | Analyzes raw RelStorage object counts and sizes by iterating transactions/records. Opens RelStorage directly (does not need full Plone bootstrap). |
 | [migrate_eionet_groups.py](../eea/climateadapt/scripts/migrate_eionet_groups.py) | Crawls all content and migrates `extranet-*` groups → `local-*` groups in local roles. Supports `--run` flag to commit changes. |
 | [document_workflows.py](../eea/climateadapt/scripts/document_workflows.py) | Documents content type → workflow mappings (read-only). |
+| [export_uid_paths.py](../eea/climateadapt/scripts/export_uid_paths.py) | Exports a `{uid: path}` dictionary (and a per-object block reference map) from a database that still has the pre-reorg content. See [FIX_MISSION_BLOCK_LINKS.md](../eea/climateadapt/scripts/FIX_MISSION_BLOCK_LINKS.md). |
+| [fix_mission_block_links.py](../eea/climateadapt/scripts/fix_mission_block_links.py) | Repairs Volto block references (images/links) broken by the June 2026 mission reorganisation. Dry-run by default, `--apply` to write. See [FIX_MISSION_BLOCK_LINKS.md](../eea/climateadapt/scripts/FIX_MISSION_BLOCK_LINKS.md). |
 | [c3s.py](../eea/climateadapt/scripts/c3s.py) | Fetches C3S indicator data from a remote URL and creates/updates content objects. |
 | [harvest_eea_indicators.py](../eea/climateadapt/scripts/harvest_eea_indicators.py) | Queries an EEA SPARQL endpoint and triggers Plone content rules. |
 | [sync_to_arcgis.py](../eea/climateadapt/scripts/sync_to_arcgis.py) | Reads Plone config for RabbitMQ, then consumes messages and processes content. |
