@@ -345,6 +345,15 @@ class Resolver(object):
     def in_scope(self, old_rel):
         return any(old_rel.startswith(prefix) for prefix in self.restrict)
 
+    def reset_candidate_index(self):
+        """Drop the language-scoped candidate index (the UID/alias caches stay).
+
+        The alt-text and id fallbacks index candidates under the scanned
+        subtrees. Scanning another language must not inherit the previous
+        language's index, or every candidate becomes ambiguous.
+        """
+        self._name_index = None
+
     # -- alt text fallback ----------------------------------------------
     def build_name_index(self):
         """Index every Image/File id under the scanned subtrees."""

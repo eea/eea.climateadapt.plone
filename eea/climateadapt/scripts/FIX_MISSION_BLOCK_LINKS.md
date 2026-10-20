@@ -58,6 +58,12 @@ problem, not a relative-path problem.
 - **CSV report** of every decision, taken or skipped.
 
 ## How to Run
+## Companion: `audit_block_links`
+
+The same decision tree, read-only, scanning one language at a time. Use it to
+size the damage before a run and to prove a run worked afterwards (`FIXED` must
+drop to 0 and `ALIVE` rise by exactly the number written).
+
 
 Both scripts are registered console scripts (`eea.climateadapt.scripts` entry points),
 so they are available as `bin/export_uid_paths` and `bin/fix_mission_block_links`. If

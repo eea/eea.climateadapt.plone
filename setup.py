@@ -77,5 +77,6 @@ setup(
       import_extended_tools = eea.climateadapt.scripts.import_extended_tools:main
       export_uid_paths = eea.climateadapt.scripts.export_uid_paths:main
       fix_mission_block_links = eea.climateadapt.scripts.fix_mission_block_links:main
+      audit_block_links = eea.climateadapt.scripts.audit_block_links:main
       """,
 )
