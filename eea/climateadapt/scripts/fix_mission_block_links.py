@@ -100,6 +100,7 @@ class Resolver(object):
         self.scan_roots = scan_roots
         self._uid_cache = {}
         self._alias_cache = {}
+        self._anc_cache = {}
 
     # -- lookups ---------------------------------------------------------
     def uid_to_rel(self, uid):
@@ -142,6 +143,39 @@ class Resolver(object):
         self._alias_cache[rel] = result
         return result
 
+    def ancestor_alias(self, rel):
+        """Nearest *ancestor* of ``rel`` that has an alias, with the path rebuilt.
+
+        Aliases are registered per moved object, not for everything below it. A
+        folder that was renamed without an alias (``images/step-1.3`` ->
+        ``images/1.3``) or leaf content that was never aliased (images) still
+        resolves if an ancestor was aliased:
+
+            /en/mission/.../regional-adaptation-support-tool  ->  <new tree>
+            /en/mission/.../regional-adaptation-support-tool/images/1.1/x.png
+              => <new tree>/images/1.1/x.png
+
+        Returns ``(new_rel, aliased_ancestor)`` or ``(None, None)``.
+        """
+        if rel in self._anc_cache:
+            return self._anc_cache[rel]
+        segments = [s for s in rel.split("/") if s]
+        result = (None, None)
+        # start below the full path: the exact alias is handled by follow_alias
+        for i in range(len(segments) - 1, 0, -1):
+            ancestor = "/" + "/".join(segments[:i])
+            target = self.storage.get(f"{self.portal_path}{ancestor}")
+            if not target or target == f"{self.portal_path}{ancestor}":
+                continue
+            if target.startswith(self.portal_path):
+                target = target[len(self.portal_path) :]
+            candidate = f"{target}/{'/'.join(segments[i:])}"
+            if self.traverse(candidate):
+                result = (candidate, ancestor)
+                break
+        self._anc_cache[rel] = result
+        return result
+
     def _by_id(self, rel):
         """Find an object whose parent moved but whose own folder was renamed."""
         segments = [s for s in rel.split("/") if s]
@@ -152,14 +186,18 @@ class Resolver(object):
         parent_obj = self.traverse(parent)
         candidates = []
         if parent_obj is not None:
-            candidates = self.catalog(path=parent, id=wanted_id)
+            # the catalog path index needs the physical path, not the
+            # portal-relative one
+            candidates = self.catalog(path=f"{self.portal_path}{parent}", id=wanted_id)
         if len(candidates) != 1:
             hits = []
             for root in self.scan_roots:
                 root_obj = self.traverse(root)
                 if root_obj is None:
                     continue
-                hits.extend(self.catalog(path=root, id=wanted_id))
+                hits.extend(
+                    self.catalog(path=f"{self.portal_path}{root}", id=wanted_id)
+                )
             uids = {brain.UID for brain in hits}
             if len(uids) == 1:
                 candidates = hits[:1]
@@ -196,6 +234,12 @@ class Resolver(object):
             if self._left_cca(obj):
                 return None, "left-cca"
             return old_rel, "unchanged"
+        by_ancestor, ancestor = self.ancestor_alias(old_rel)
+        if by_ancestor:
+            obj = self.traverse(by_ancestor)
+            if obj is not None and self._left_cca(obj):
+                return None, "left-cca"
+            return by_ancestor, f"alias-ancestor({ancestor})"
         by_id = self._by_id(aliased)
         if by_id:
             return by_id, "alias+id"
