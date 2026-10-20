@@ -131,6 +131,7 @@ make fix-mission-links-run ARGS="--csv /tmp/mission_block_links_report.csv"
 | `--restrict` | `/en/mission` | Only rewrite references whose **old** path starts with this prefix |
 | `--normalize-aliasable` | off | Also rewrite references that currently resolve only thanks to an alias (they work, but they depend on the aliases surviving) |
 | `--rewrite-text` | off | Also rewrite URLs inside slate display text (`text`/`plaintext`) |
+| `--no-alt-match` | off | Disable pairing a dead reference with an image using the block's `alt` text (see *Alt-text pairing*) |
 | `--traverse` | off | Enumerate objects by walking the tree instead of using the catalog |
 | `--apply` | off | Write the changes |
 | `--limit` | 0 (no limit) | Stop after N objects |
@@ -170,6 +171,44 @@ The defaults are **English only** on purpose — the site is multilingual and th
   makes every image look like it carries blocks and makes the walk loop forever. The
   script gates descent with `IDexterityContainer.providedBy(node)`, reads attributes
   through `aq_base(node)`, and keeps a visited set.
+
+### Alias resolution is per object, not per subtree
+
+`IRedirectionStorage` holds an alias for each **moved object**, not for everything
+below it. Production aliases `…/regional-adaptation-support-tool` and
+`…/regional-adaptation-support-tool/images`, but not the leaf folders (`images/1.1`)
+or the images themselves. Following the alias of the exact path therefore finds
+nothing for `…/images/1.1/map-mission.png`. `ancestor_alias()` walks up to the
+nearest aliased ancestor, rebuilds the remainder and **verifies the candidate by
+traversal** before accepting it.
+
+### Alt-text pairing
+
+A dead `resolveuid/<uid>` carries no file name, and image blocks usually have no
+`image_scales` either, so a UID missing from the pre-reorg dictionary cannot be
+mapped by path. But editors routinely store the original upload name in the block's
+`alt`:
+
+```json
+{"@type": "image", "alt": "Step1_3_ex3_1.png",
+ "url": "../../../../../../../resolveuid/ba029abf391340d68eac92470e334aaf"}
+```
+
+and the reorganisation kept the images at the same relative paths. The script
+indexes every `Image`/`File` id under the scanned subtrees, normalises both sides
+(lower case, accents stripped, spaces/underscores and `@` folded to dashes, and dots
+folded to dashes for names like `Asset 70@1.5x.png` -> `asset-70-1-5x.png`) and
+rewrites **only when exactly one object matches**. If the same file name exists both
+inside the page's own folder and in a shared images folder, the child of the
+referencing page wins — that is where Volto stores an inline upload. Anything still
+ambiguous is reported, never guessed. Disable with `--no-alt-match`.
+
+### Path forms: portal-relative vs physical
+
+`IRedirectionStorage.redirects()` returns **physical** paths (`/cca/en/…`) while the
+block-join map is keyed portal-relative (`/en/…`); the catalog `path` index needs the
+**physical** path while the scan roots are portal-relative. Both mismatches fail
+silently with zero matches, so any new lookup has to pick the form explicitly.
 
 ## Output Format (Console Example)
 
@@ -243,6 +282,18 @@ copied image, with the `/@@images/image/big` suffix preserved.
 
 `TRANSLATE_ON_CHANGE=` must be unset for setup/cleanup: creating and deleting content
 fires events that queue `sync_paths` jobs in Redis.
+
+## Results on production (October 2026 run)
+
+| stage | `FIXED` | `UNRESOLVED` | `NOT-IN-MAP` |
+|---|---|---|---|
+| first audit, exact path mapping only | 7 | 110 | 107 |
+| + ancestor aliases and the catalog path fix | 83 | 34 | 107 |
+| + alt-text pairing | 27 more | 34 | 80 |
+
+110 references rewritten across 38 objects, all verified to render (`200 image/png`).
+What remains is 80 `NOT-IN-MAP` (78 of them have no `alt` at all) and 34
+`UNRESOLVED` pointing at content that left for the external mission portal.
 
 ## Limitations
 
