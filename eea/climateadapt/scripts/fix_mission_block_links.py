@@ -13,9 +13,11 @@ Strategy, per reference found in a block:
      ``export_uid_paths`` from the pre-reorg database;
    * absolute-internal / root-relative values -> the path in the value itself.
 2. map old path -> new path with ``plone.app.redirector``'s
-   ``IRedirectionStorage`` (following alias chains), with an ``id``-based
-   fallback for the cases where the alias exists but the target folder was also
-   renamed (e.g. ``images/step-1.3`` -> ``images/1.3``).
+   ``IRedirectionStorage`` (following alias chains, including aliases registered
+   on an ancestor folder), with an ``id``-based fallback for the cases where the
+   alias exists but the target folder was also renamed (e.g.
+   ``images/step-1.3`` -> ``images/1.3``), and with ``--rename-rule`` for the
+   folders that were renamed without any alias at all;
 3. rewrite the value, keeping its original form (resolveuid stays resolveuid,
    absolute URL stays an absolute URL, path stays a path).
 
@@ -127,7 +129,9 @@ def name_keys(value):
 class Resolver(object):
     """Resolves old (pre-reorg) paths to objects of the current database."""
 
-    def __init__(self, site, uid_paths, block_join, restrict, scan_roots):
+    def __init__(
+        self, site, uid_paths, block_join, restrict, scan_roots, rename_rules=()
+    ):
         self.site = site
         self.portal_path = "/".join(site.getPhysicalPath())
         self.catalog = api.portal.get_tool("portal_catalog")
@@ -136,6 +140,7 @@ class Resolver(object):
         self.block_join = block_join
         self.restrict = restrict
         self.scan_roots = scan_roots
+        self.rename_rules = tuple(rename_rules)
         self._uid_cache = {}
         self._alias_cache = {}
         self._anc_cache = {}
@@ -194,12 +199,16 @@ class Resolver(object):
             /en/mission/.../regional-adaptation-support-tool/images/1.1/x.png
               => <new tree>/images/1.1/x.png
 
-        Returns ``(new_rel, aliased_ancestor)`` or ``(None, None)``.
+        Returns ``(new_rel, aliased_ancestor, rename_rule)``; ``new_rel`` is
+        ``None`` when nothing resolves. ``rename_rule`` is the ``--rename-rule``
+        that was needed, if any: some folders were renamed as well as moved
+        (``images/step-1.3`` -> ``images/1.3``), so the rebuilt remainder has to
+        be rewritten before it resolves.
         """
         if rel in self._anc_cache:
             return self._anc_cache[rel]
         segments = [s for s in rel.split("/") if s]
-        result = (None, None)
+        result = (None, None, "")
         # start below the full path: the exact alias is handled by follow_alias
         for i in range(len(segments) - 1, 0, -1):
             ancestor = "/" + "/".join(segments[:i])
@@ -210,7 +219,16 @@ class Resolver(object):
                 target = target[len(self.portal_path) :]
             candidate = f"{target}/{'/'.join(segments[i:])}"
             if self.traverse(candidate):
-                result = (candidate, ancestor)
+                result = (candidate, ancestor, "")
+                break
+            for old_seg, new_seg in self.rename_rules:
+                if old_seg not in candidate:
+                    continue
+                moved = candidate.replace(old_seg, new_seg)
+                if self.traverse(moved):
+                    result = (moved, ancestor, f"{old_seg}->{new_seg}")
+                    break
+            if result[0]:
                 break
         self._anc_cache[rel] = result
         return result
@@ -273,12 +291,15 @@ class Resolver(object):
             if self._left_cca(obj):
                 return None, "left-cca"
             return old_rel, "unchanged"
-        by_ancestor, ancestor = self.ancestor_alias(old_rel)
+        by_ancestor, ancestor, rule = self.ancestor_alias(old_rel)
         if by_ancestor:
             obj = self.traverse(by_ancestor)
             if obj is not None and self._left_cca(obj):
                 return None, "left-cca"
-            return by_ancestor, f"alias-ancestor({ancestor})"
+            note = f"alias-ancestor({ancestor})"
+            if rule:
+                note += f" + rename({rule})"
+            return by_ancestor, note
         by_id = self._by_id(aliased)
         if by_id:
             return by_id, "alias+id"
@@ -443,6 +464,15 @@ def main():
         "text (used only when the alt text matches exactly one image id).",
     )
     parser.add_argument(
+        "--rename-rule",
+        dest="rename_rules",
+        action="append",
+        default=[],
+        metavar="OLD=NEW",
+        help="Folder renamed together with the move, applied to the rebuilt "
+        "candidate path. Repeatable, e.g. --rename-rule images/step-1.3=images/1.3",
+    )
+    parser.add_argument(
         "--traverse",
         action="store_true",
         help="Enumerate objects by walking the tree instead of using the catalog "
@@ -497,7 +527,16 @@ def main():
     restrict = [f"/{p}" for p in expand(args.restrict or list(DEFAULT_RESTRICT))]
     scan_roots = [f"/{p}" for p in scan_paths]
 
-    resolver = Resolver(site, uid_paths, block_join, restrict, scan_roots)
+    rename_rules = []
+    for rule in args.rename_rules:
+        if "=" not in rule:
+            parser.error(f"--rename-rule needs OLD=NEW, got {rule!r}")
+        old_seg, new_seg = rule.split("=", 1)
+        rename_rules.append((old_seg.strip("/"), new_seg.strip("/")))
+    for old_seg, new_seg in rename_rules:
+        logger.info("rename rule: %s -> %s", old_seg, new_seg)
+
+    resolver = Resolver(site, uid_paths, block_join, restrict, scan_roots, rename_rules)
 
     catalog = api.portal.get_tool("portal_catalog")
     targets = []

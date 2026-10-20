@@ -291,8 +291,9 @@ fires events that queue `sync_paths` jobs in Redis.
 | + ancestor aliases and the catalog path fix | 83 | 34 | 107 |
 | + alt-text pairing | 27 more | 34 | 80 |
 | + block-join path form fix | 4 more | 34 | 76 |
+| + pre-reorg copy dictionary, `/en` | 32 more | 30 | 48 |
 
-114 references rewritten across 42 objects, all verified to render
+146 references rewritten across 47 objects, all verified to render
 (`200 image/png` / `200 image/jpeg`). What remains is 76 `NOT-IN-MAP` (78 of the
 original 107 have no `alt` at all) and 34 `UNRESOLVED` pointing at content that left
 for the external mission portal.
