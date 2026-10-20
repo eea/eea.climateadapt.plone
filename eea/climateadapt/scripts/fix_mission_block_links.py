@@ -305,7 +305,14 @@ class Resolver(object):
         if not self.block_join:
             return None
         physical = f"{self.portal_path}{obj_rel}"
-        for old_obj_rel in self.storage.redirects(physical):
+        for old_physical in self.storage.redirects(physical):
+            # redirects() answers with physical paths, the map is keyed
+            # portal-relative
+            old_obj_rel = (
+                old_physical[len(self.portal_path) :]
+                if old_physical.startswith(self.portal_path)
+                else old_physical
+            )
             entries = self.block_join.get(old_obj_rel)
             if not entries:
                 continue
