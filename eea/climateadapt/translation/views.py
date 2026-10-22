@@ -24,6 +24,7 @@ from eea.climateadapt.versions import ISerialId
 
 from .constants import LANGUAGE_INDEPENDENT_FIELDS
 from .core import (
+    ETRANSLATION_API_VERSION,
     call_etranslation_service,
     check_token_security,
     get_blocks_as_html,
@@ -40,6 +41,33 @@ logger = logging.getLogger("eea.climateadapt.translation")
 env = os.environ.get
 
 IS_JOB_EXECUTOR = env("IS_JOB_EXECUTOR", False)
+
+# eTranslation's REST v2 schema caps callerInformation.externalReference at 200
+# characters; longer values are rejected with errorCode=-10003.
+EXTERNAL_REFERENCE_MAX_LENGTH = 200
+
+
+def parse_target_langs(value):
+    """Normalize a target_lang form value into a list of language codes.
+
+    Accepts the legacy single value ("de"), a comma separated list
+    ("de, fr,es") and a repeated form field (["de", "fr"]). Sending every
+    target language in one eTranslation request counts as a single active
+    submission against the service's concurrency quota, instead of one
+    submission per language.
+    """
+
+    if isinstance(value, (list, tuple)):
+        chunks = [str(item) for item in value]
+    else:
+        chunks = [str(value or "")]
+
+    return [
+        language.strip()
+        for chunk in chunks
+        for language in chunk.split(",")
+        if language.strip()
+    ]
 
 
 class IsJobExecutor(BrowserView):
@@ -212,7 +240,23 @@ class TranslationCallback(BrowserView):
             len(html),
         )
 
-        return {"obj_path": extref, "html": html}
+        # A single request may carry several target languages, in which case
+        # eTranslation delivers one result per language, all sharing the same
+        # externalReference. The language therefore has to travel with the
+        # result - it cannot be recovered from externalReference alone.
+        data = {"obj_path": extref, "html": html}
+        if target_language:
+            data["language"] = target_language.lower()
+
+        logger.info(
+            "event=etranslation.callback.language api=rest_v2 request_id=%s "
+            "language=%s external_reference=%s",
+            request_id,
+            data.get("language"),
+            extref,
+        )
+
+        return data
 
     def _parse_legacy_callback(self):
         # for some reason this request acts strange
@@ -240,7 +284,12 @@ class TranslationCallback(BrowserView):
         if not extref:
             raise ValueError("Legacy eTranslation callback missing external-reference")
 
-        return {"obj_path": extref, "html": html}
+        data = {"obj_path": extref, "html": html}
+        legacy_lang = form.get("target-language")
+        if legacy_lang:
+            data["language"] = legacy_lang.lower()
+
+        return data
 
 
 class ToHtml(BrowserView):
@@ -306,6 +355,32 @@ class CallETranslation(BrowserView):
         obj_path = form.get("obj_path")
         obj_uid = form.get("obj_uid")
 
+        # target_lang may be a single language code or a comma separated list.
+        target_langs = parse_target_langs(target_lang)
+
+        # ext_ref is the value sent to eTranslation as
+        # callerInformation.externalReference, which is echoed back verbatim in
+        # the delivery callback. It is schema limited to 200 characters, so the
+        # async worker may pass a short correlation id here instead of the long
+        # obj_path. obj_path itself is still used for the staleness checks below.
+        ext_ref = form.get("ext_ref") or obj_path or ""
+
+        if not target_langs:
+            logger.warning("No target languages supplied for %s", obj_path)
+            self.request.response.setHeader("Content-Type", "application/json")
+            return json.dumps({"error_type": "no target languages supplied"})
+
+        if len(ext_ref) > EXTERNAL_REFERENCE_MAX_LENGTH:
+            logger.warning(
+                "event=etranslation.external_reference.too_long length=%s "
+                "limit=%s ext_ref=%s obj_path=%s - eTranslation will reject this "
+                "request with errorCode=-10003",
+                len(ext_ref),
+                EXTERNAL_REFERENCE_MAX_LENGTH,
+                ext_ref,
+                obj_path,
+            )
+
         # Check if the job is stale
         if "?" in obj_path:
             path, qs = obj_path.split("?", 1)
@@ -362,8 +437,18 @@ class CallETranslation(BrowserView):
             # for some reason but path is valid for eTranslation (unlikely).
             pass
 
+        logger.info(
+            "event=etranslation.call.dispatch api=%s obj_path=%s ext_ref=%s "
+            "target_languages=%s target_language_count=%s",
+            ETRANSLATION_API_VERSION,
+            obj_path,
+            ext_ref,
+            target_langs,
+            len(target_langs),
+        )
+
         try:
-            data = call_etranslation_service(html, obj_path, [target_lang])
+            data = call_etranslation_service(html, ext_ref, target_langs)
         except Exception as e:
             logger.exception("Error in calling eTranslation service: %s", e)
             result = {"error_type": exception_to_json(e)}
