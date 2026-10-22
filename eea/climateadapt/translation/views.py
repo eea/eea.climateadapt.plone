@@ -5,6 +5,7 @@ import base64
 import json
 import logging
 import os
+import re
 import sys
 import traceback
 from urllib.parse import unquote
@@ -46,6 +47,12 @@ IS_JOB_EXECUTOR = env("IS_JOB_EXECUTOR", False)
 # characters; longer values are rejected with errorCode=-10003.
 EXTERNAL_REFERENCE_MAX_LENGTH = 200
 
+# de, fr, pt-BR, sr-Latn. Deliberately a shape check rather than a lookup
+# against the site's language list: a malformed code makes eTranslation reject
+# the whole request, and once a request carries every target language one typo
+# would lose all of them.
+LANG_CODE_RE = re.compile(r"^[a-z]{2}(?:-[a-z]{2,4})?$")
+
 
 def parse_target_langs(value):
     """Normalize a target_lang form value into a list of language codes.
@@ -55,6 +62,9 @@ def parse_target_langs(value):
     target language in one eTranslation request counts as a single active
     submission against the service's concurrency quota, instead of one
     submission per language.
+
+    Malformed codes are dropped rather than passed through, and duplicates are
+    collapsed.
     """
 
     if isinstance(value, (list, tuple)):
@@ -62,12 +72,27 @@ def parse_target_langs(value):
     else:
         chunks = [str(value or "")]
 
-    return [
-        language.strip()
-        for chunk in chunks
-        for language in chunk.split(",")
-        if language.strip()
-    ]
+    langs = []
+    rejected = []
+    for chunk in chunks:
+        for language in chunk.split(","):
+            language = language.strip().lower()
+            if not language:
+                continue
+            if LANG_CODE_RE.match(language):
+                if language not in langs:
+                    langs.append(language)
+            else:
+                rejected.append(language)
+
+    if rejected:
+        logger.warning(
+            "event=etranslation.target_lang.invalid rejected=%s accepted=%s",
+            rejected,
+            langs,
+        )
+
+    return langs
 
 
 class IsJobExecutor(BrowserView):
