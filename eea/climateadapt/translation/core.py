@@ -221,6 +221,7 @@ def call_etranslation_rest_v2(html, obj_path, target_languages):
 
     site_url = PORTAL_URL or portal.get().absolute_url()
     dest = "{}/@@translate-callback".format(site_url)
+    failure_dest = "{}/@@translate-failure".format(site_url)
     duration_start = time.time()
 
     if "localhost" in site_url:
@@ -260,6 +261,16 @@ def call_etranslation_rest_v2(html, obj_path, target_languages):
         },
         "deliveries": {
             "http": dest,
+        },
+        # eTranslation reports failures only when the request asks for it. With
+        # deliveries alone a language that fails simply never delivers and
+        # nothing here learns why - the only symptom is a submission slot held
+        # until its lease expires. See artifacts/ETRANSLATION-FAILURE-
+        # NOTIFICATIONS.md
+        "notifications": {
+            "failure": {
+                "http": failure_dest,
+            },
         },
     }
 
