@@ -317,6 +317,78 @@ class TranslationCallback(BrowserView):
         return data
 
 
+class TranslationFailure(BrowserView):
+    """Receives eTranslation's failure notification for a submission.
+
+    eTranslation only reports failures when the request asks for them through
+    notifications.failure.http. Without it, a language that fails simply never
+    delivers and nothing in the system learns why - the only symptom is that a
+    submission slot stays occupied until its lease expires.
+
+    This view only records the event and queues it. The async worker owns the
+    in-flight gate and can free the slot immediately.
+    """
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        self.request.environ["HTTP_X_THEME_DISABLED"] = "1"
+        self.request.environ[DISABLE_TRANSFORM_REQUEST_KEY] = True
+        self.request.response.setHeader("Content-Type", "application/json")
+
+        try:
+            data = self._parse()
+        except Exception as e:
+            logger.exception("event=etranslation.failure.parse_error error=%s", e)
+            # Always answer 200. A notification we cannot parse will not
+            # improve on retry, and eTranslation retries anything that is not
+            # 200 - three times, with back-off, for nothing.
+            return json.dumps({"status": "ignored", "error_type": exception_to_json(e)})
+
+        opts = {
+            "delay": 0,
+            "priority": 1,
+            "attempts": 1,
+            "lifo": False,
+        }
+        queue_job("save_etranslation", "translation_failed", data, opts)
+
+        logger.info(
+            "event=etranslation.failure.queue request_id=%s ext_ref=%s "
+            "target_languages=%s error_code=%s error_message=%s",
+            data.get("request_id"),
+            data.get("obj_path"),
+            data.get("languages"),
+            data.get("error_code"),
+            data.get("error_message"),
+        )
+
+        return json.dumps({"status": "ok"})
+
+    def _parse(self):
+        body = self.request._file.read()
+        payload = json.loads(body.decode("utf-8"))
+
+        extref = payload.get("externalReference")
+        if not extref:
+            raise ValueError(
+                "eTranslation failure notification without externalReference"
+            )
+
+        langs = payload.get("targetLanguages") or []
+        if isinstance(langs, str):
+            langs = [langs]
+
+        return {
+            # obj_path keeps the same field name the delivery callback uses, so
+            # the worker resolves it through the same correlation lookup.
+            "obj_path": extref,
+            "request_id": payload.get("requestId"),
+            "languages": [str(lang).lower() for lang in langs if lang],
+            "error_code": payload.get("errorCode"),
+            "error_message": payload.get("errorMessage"),
+        }
+
+
 class ToHtml(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
