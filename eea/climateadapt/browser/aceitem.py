@@ -12,6 +12,7 @@ from zope.interface import classImplements
 
 from eea.climateadapt.browser import AceViewApi
 from eea.climateadapt.browser.misc import create_contributions_link
+from eea.climateadapt.config import ECDE_PATH
 from eea.climateadapt.translation.utils import get_current_language
 
 # from zope.intid.interfaces import IIntIds
@@ -103,7 +104,7 @@ class C3sIndicatorView(DefaultView, AceViewApi):
 
     def get_toolbox_embed_version(self):
         site = api.portal.get()
-        base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
+        base_folder = site.restrictedTraverse(f"en/{ECDE_PATH}")
         annot = IAnnotations(base_folder)
         if "c3s_json_data" in annot:
             return annot["c3s_json_data"]["data"]["toolbox_embed_version"]
