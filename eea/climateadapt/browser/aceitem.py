@@ -104,7 +104,9 @@ class C3sIndicatorView(DefaultView, AceViewApi):
 
     def get_toolbox_embed_version(self):
         site = api.portal.get()
-        base_folder = site.restrictedTraverse(f"en/{ECDE_PATH}")
+        base_folder = site.restrictedTraverse(f"en/{ECDE_PATH}", None)
+        if base_folder is None:
+            return "4.16.0"
         annot = IAnnotations(base_folder)
         if "c3s_json_data" in annot:
             return annot["c3s_json_data"]["data"]["toolbox_embed_version"]
