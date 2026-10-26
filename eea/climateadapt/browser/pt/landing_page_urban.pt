@@ -234,7 +234,7 @@
                   <p class="feature-text" i18n:translate="">The European Climate Data Explorer provides interactive access to many climate indices from the Copernicus Climate Change Service in support of climate change adaptation.
                   </p>
                   <div class="bottom-section">
-                    <a class="standard-button primary-button feature-btn" href="/en/knowledge/european-climate-data-explorer/" i18n:translate="">Go to the European Climate Data Explorer</a>
+                    <a class="standard-button primary-button feature-btn" href="/en/eu-adaptation/assessing-climate-risks/european-climate-data-explorer/" i18n:translate="">Go to the European Climate Data Explorer</a>
                   </div>
                 </div>
 

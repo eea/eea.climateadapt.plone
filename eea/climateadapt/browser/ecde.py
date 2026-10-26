@@ -3,6 +3,7 @@ from collections import OrderedDict
 
 from plone import api
 from plone.api import content, portal
+from eea.climateadapt.config import ECDE_PATH
 from eea.climateadapt.translation.utils import (
     TranslationUtilsMixin,
     get_current_language,
@@ -41,7 +42,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         site = portal.get()
         lg = get_current_language(self.context, self.request)
         # lg = "en"
-        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
+        base_folder = site.restrictedTraverse(f"{lg}/{ECDE_PATH}")
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
         return datastore.get("data", {})
 
@@ -49,7 +50,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         site = portal.get()
         lg = get_current_language(self.context, self.request)
         # lg = "en"
-        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
+        base_folder = site.restrictedTraverse(f"{lg}/{ECDE_PATH}")
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
         data_overview_page = datastore["data"]["overview_page"]
 
@@ -79,7 +80,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         lang = self.current_lang
         lg = "en"
 
-        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
+        base_folder = site.restrictedTraverse(f"{lg}/{ECDE_PATH}")
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
         overview_page = datastore["data"]["overview_page"]
         response = {"left": [], "right": []}
@@ -182,7 +183,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         lg = "en"
         catalog = getToolByName(site, "portal_catalog")
 
-        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
+        base_folder = site.restrictedTraverse(f"{lg}/{ECDE_PATH}")
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
         data = datastore["data"]["overview_table"]
         response = OrderedDict()
@@ -279,7 +280,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         site = portal.get()
         lg = get_current_language(self.context, self.request)
         # lg = 'en'
-        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
+        base_folder = site.restrictedTraverse(f"{lg}/{ECDE_PATH}")
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
         return datastore["data"]["html_pages"]["disclaimer"]["page_text"]
 
@@ -287,7 +288,7 @@ class C3sIndicatorsOverview(BrowserView, TranslationUtilsMixin):
         site = portal.get()
         lg = get_current_language(self.context, self.request)
         # lg = 'en'
-        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
+        base_folder = site.restrictedTraverse(f"{lg}/{ECDE_PATH}")
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
         if "glossary_table" in datastore["data"]:
             return datastore["data"]["glossary_table"]
@@ -332,7 +333,7 @@ class C3sIndicatorsListing(BrowserView, TranslationUtilsMixin):
 
         site = portal.get()
         # lg = get_current_language(self.context, self.request) - KeyError: 'data'
-        base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
+        base_folder = site.restrictedTraverse(f"en/{ECDE_PATH}")
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
         res["description"] = datastore["data"]["themes"][category_id]["description"]
 
