@@ -14,6 +14,10 @@ from .core import queue_translate
 
 logger = logging.getLogger("eea.climateadapt")
 
+# Mirrors translation/events.py. The translation instance is where delivered
+# translations are written back, so it must never react to content rules.
+IS_JOB_EXECUTOR = os.environ.get("IS_JOB_EXECUTOR", False)
+
 
 class TranslateAsyncAddForm(NullAddForm):
     """A translate async action form"""
@@ -46,6 +50,17 @@ class TranslateAsyncActionExecutor(object):
         self.event = event
 
     def __call__(self):
+        # Saving a delivered translation modifies the translated object, which fires
+        # this rule on the instance that performed the save. Without this guard the
+        # translation instance re-queues a translation of the object it just
+        # translated. object_modified_handler in translation/events.py already bails
+        # out the same way; this path was missing the check.
+        if IS_JOB_EXECUTOR:
+            logger.info(
+                "Skipping TranslateAsync content rule: this is the job executor",
+            )
+            return True
+
         if not os.environ.get("TRANSLATE_ON_CHANGE"):
             logger.warn("TranslateAsyncActionExecutor executed on the wrong server")
             return True
