@@ -966,7 +966,7 @@ msgstr "Környezeti szempontok"
 
 #: ../../climateadapt/vocabulary.py:1251
 msgid "European"
-msgstr "európai"
+msgstr "Európai"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:241
 msgid "European Climate Data Explorer"
