@@ -9,7 +9,6 @@ from z3c.form.interfaces import IAddForm, IEditForm
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from .volto_layout import extendetool_layout_blocks, extendetool_layout_items
-from zope.schema import Bool
 
 
 from .tool import ITool
