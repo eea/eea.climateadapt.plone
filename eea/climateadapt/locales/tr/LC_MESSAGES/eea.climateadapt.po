@@ -1052,6 +1052,7 @@ msgstr "Climate-ADAPT'a farklı türde bilgilerle nasıl katkıda bulunacağın�
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Sel"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Sağlık etkisi:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Sıcaklık"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Ulusal uyum politikası"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Doğa bazlı çözümler"
 
@@ -1830,6 +1833,7 @@ msgstr "Yukarıya doğru kaydır"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Deniz Seviyesi Yükselişi"
 
@@ -2553,6 +2557,50 @@ msgstr "Orta"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Düşük"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Adil dayanıklılık"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Maliyet-fayda oranı"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Şiddetli yağış / aşırı yağmur"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Kıyı taşkını / fırtına kabarması"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Kuraklık"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Yangın / orman yangını"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Rüzgâr / fırtına"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Heyelan"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Soğuk hava dalgaları / aşırı soğuk"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Kar / çığ"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Belirli bir tehlikeye özgü değil"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

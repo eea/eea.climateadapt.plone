@@ -1007,8 +1007,9 @@ msgid "Find out how to contribute different types of information to Climate-ADAP
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
-msgstr ""
+msgstr "Qarsutsinerit"
 
 #: ../../climateadapt/browser/overrides.py:38
 #: ../../climateadapt/vocabulary.py:310
@@ -1144,8 +1145,9 @@ msgid "Health impact:"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
-msgstr ""
+msgstr "Kiak"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:105
 msgid "Heat index of HHWS:"
@@ -1452,8 +1454,9 @@ msgid "National adaption policy"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
-msgstr ""
+msgstr "Pinngortitami tunngaveqartut aaqqiissutit"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:20
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:16
@@ -1732,8 +1735,9 @@ msgid "Scroll to top"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
-msgstr ""
+msgstr "Immap qaffakkiartornera"
 
 #: ../../climateadapt/browser/pt/observatory_indicators_search.pt:101
 msgid "Search"
@@ -2416,6 +2420,50 @@ msgstr "Akunnattumik"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Appasittoq"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Nalinginnaasumik pinngortitamut naleqqussarneq"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Aningaasartuutit iluaqutillu imminnut naleqqiunnerat"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Sialuk annertooq / sialuk sakkortooq"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Sinerissami qarsutsinerit / ulersuaq"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Panernersuaq"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Ikualaneq / orpippassuarni ikuallattoorneq"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Anori / anorersuaq"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Nunap sisoornera"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Nillertorsuit / nillerluinnaq"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Aput / aputip sisoornera"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Navianartumut aalajangersimasumut tunngassuteqanngitsoq"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

@@ -366,7 +366,7 @@ alsoProvides(aceitem_elements_vocabulary, IVocabularyFactory)
 # 304610 - Separate values for extended tools
 _elements_extended_tool = [
     ("NATUREBASEDSOL", _("Nature-based solutions")),
-    ("JUSTRESILIENCE", "Just resilience"),
+    ("JUSTRESILIENCE", _("Just resilience")),
     ("COSTBENEFITRATIO", _("Cost-benefit ratio")),
 ]
 aceitem_elements_extended_tool_vocabulary = generic_vocabulary(_elements_extended_tool)

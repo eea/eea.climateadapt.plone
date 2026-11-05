@@ -1008,6 +1008,7 @@ msgid "Find out how to contribute different types of information to Climate-ADAP
 msgstr "Faigh amach conas cineálacha éagsúla faisnéise a chur le Aeráid-oiriúnú."
 
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Tuilte"
 
@@ -1145,6 +1146,7 @@ msgid "Health impact:"
 msgstr "Tionchar sláinte:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Teas"
 
@@ -1453,6 +1455,7 @@ msgid "National adaption policy"
 msgstr "Beartas náisiúnta um oiriúnú"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Réitigh nádúr-bhunaithe"
 
@@ -1733,6 +1736,7 @@ msgid "Scroll to top"
 msgstr "Scrollaigh go barr"
 
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Ardú Leibhéal na Farraige"
 
@@ -2419,6 +2423,50 @@ msgstr "Measartha"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Íseal"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Athléimneacht chóir"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Cóimheas costais is tairbhe"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Deascadh trom / báisteach fhoircneach"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Tuilte cósta / borradh stoirme"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Triomach"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Tine / dóiteán fiáin"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Gaoth / stoirm"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Sciorradh talún"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Tonnta fuachta / fuacht foircneach"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Sneachta / maidhm shneachta"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Neamhshonrach do ghuais"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

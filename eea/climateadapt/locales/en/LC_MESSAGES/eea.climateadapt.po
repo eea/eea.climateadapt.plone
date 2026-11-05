@@ -1007,6 +1007,7 @@ msgid "Find out how to contribute different types of information to Climate-ADAP
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr ""
 
@@ -1144,6 +1145,7 @@ msgid "Health impact:"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr ""
 
@@ -1452,6 +1454,7 @@ msgid "National adaption policy"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr ""
 
@@ -1732,6 +1735,7 @@ msgid "Scroll to top"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr ""
 
@@ -2415,6 +2419,50 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
 msgstr ""
 
 #. Default: "Located in"

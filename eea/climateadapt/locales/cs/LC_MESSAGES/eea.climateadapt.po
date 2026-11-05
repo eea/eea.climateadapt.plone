@@ -1052,6 +1052,7 @@ msgstr "Zjistěte, jak přispívat různými typy informací do Climate-ADAPT."
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Záplavy"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Dopad na zdraví:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Teplo"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Národní adaptační politika"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Řešení založená na přírodě"
 
@@ -1830,6 +1833,7 @@ msgstr "Přejděte nahoru"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Vzestup hladiny moře"
 
@@ -2551,6 +2555,50 @@ msgstr "Střední"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Nízká"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Spravedlivá odolnost"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Poměr nákladů a přínosů"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Silné srážky / extrémní srážky"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Pobřežní záplavy / bouřkový příliv"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Sucho"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Požár / lesní požár"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Vítr / bouře"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Sesuv půdy"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Studené vlny / extrémní chlad"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Sníh / lavina"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Bez vazby na konkrétní nebezpečí"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

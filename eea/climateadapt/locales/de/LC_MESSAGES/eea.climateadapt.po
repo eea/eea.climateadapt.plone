@@ -3157,6 +3157,7 @@ msgstr "Finden Sie heraus, wie Sie mit verschiedene Informationsangeboten zu Cli
 # ,
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Überschwemmungen"
 
@@ -3556,6 +3557,7 @@ msgstr "Gesundheitsauswirkungen:"
 
 # ,
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Hitze"
 
@@ -4420,6 +4422,7 @@ msgid "National adaption policy"
 msgstr "Nationale Adaptionspolitik"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Naturbasierte Lösungen"
 
@@ -5400,6 +5403,7 @@ msgstr "Zum Anfang"
 # ,
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Meeresspiegelanstieg"
 
@@ -6916,6 +6920,50 @@ msgstr "Mittel"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Niedrig"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Gerechte Resilienz"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Kosten-Nutzen-Verhältnis"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Starkniederschlag / extreme Niederschläge"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Küstenüberschwemmung / Sturmflut"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Dürre"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Feuer / Waldbrand"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Wind / Sturm"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Erdrutsch"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Kältewellen / extreme Kälte"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Schnee / Lawine"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Nicht gefahrenspezifisch"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

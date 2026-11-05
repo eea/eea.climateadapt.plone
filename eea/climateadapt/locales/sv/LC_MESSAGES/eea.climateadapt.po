@@ -1052,6 +1052,7 @@ msgstr "Ta reda på hur du kan bidra med olika typer av information till Climate
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Översvämning"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Hälsoeffekter:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Värme"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Nationell anpassningspolitik"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Naturbaserade lösningar"
 
@@ -1830,6 +1833,7 @@ msgstr "Bläddra till toppen"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Havsnivåhöjning"
 
@@ -2552,6 +2556,50 @@ msgstr "Måttlig"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Låg"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Rättvis motståndskraft"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Kostnads-nyttoförhållande"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Kraftig nederbörd / extrem nederbörd"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Kustöversvämning / stormflod"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Torka"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Brand / skogsbrand"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Vind / storm"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Jordskred"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Köldvågor / extrem kyla"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Snö / lavin"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Inte farospecifik"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

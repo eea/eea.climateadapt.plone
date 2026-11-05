@@ -1052,6 +1052,7 @@ msgstr "Разберете как да допринесете с различн�
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Наводнение"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Въздействие върху здравето:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Топлина"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Национална политика за адаптиране"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Решения, базирани на природата"
 
@@ -1830,6 +1833,7 @@ msgstr "Превъртете до върха"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Покачване на морското ниво"
 
@@ -2551,6 +2555,50 @@ msgstr "Умерено"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Ниско"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Справедливост и устойчивост"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Съотношение разходи-ползи"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Обилни валежи / екстремни валежи"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Крайбрежни наводнения / щормови прилив"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Суша"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Пожар / горски пожар"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Вятър / буря"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Свлачище"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Студени вълни / екстремно ниски температури"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Сняг / лавина"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Без връзка с конкретна опасност"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

@@ -2710,6 +2710,7 @@ msgstr "Dowiedz się, jak dostarczyć różne rodzaje informacji do Climate-ADAP
 # ,
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Powodzie"
 
@@ -3052,6 +3053,7 @@ msgstr "Wpływ na zdrowie:"
 
 # ,
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Ciepło"
 
@@ -3788,6 +3790,7 @@ msgid "National adaption policy"
 msgstr "Krajowa polityka adaptacyjna"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Rozwiązania oparte na przyrodzie"
 
@@ -4610,6 +4613,7 @@ msgstr "Przewiń na górę"
 # ,
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Wzrost poziomu morza"
 
@@ -5969,6 +5973,50 @@ msgstr "Umiarkowany"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Niski"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Sprawiedliwa odporność"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Stosunek kosztów do korzyści"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Intensywne opady / ekstremalne deszcze"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Powódź przybrzeżna / fala sztormowa"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Susza"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Pożar / pożar lasu"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Wiatr / burza"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Osuwisko"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Fale chłodu / ekstremalne zimno"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Śnieg / lawina"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Niespecyficzne dla zagrożenia"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

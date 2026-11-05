@@ -1052,6 +1052,7 @@ msgstr "Opi lisäämään erityyppistä tietoa Climate-ADAPTiin."
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Tulvat"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Terveysvaikutus:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Lämpö"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Kansallinen sopeutumispolitiikka"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Luontoratkaisut"
 
@@ -1830,6 +1833,7 @@ msgstr "Vieritä ylös"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Merenpinnan nousu"
 
@@ -2550,6 +2554,50 @@ msgstr "Kohtalainen"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Matala"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Oikeudenmukainen palautumiskyky"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Kustannus-hyötysuhde"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Voimakkaat sateet / rankkasateet"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Rannikkotulvat / myrskyvuoksi"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Kuivuus"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Palo / maastopalo"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Tuuli / myrsky"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Maanvyörymä"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Kylmät aallot / äärimmäinen kylmyys"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Lumi / lumivyöry"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Ei tiettyyn vaaraan liittyvä"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

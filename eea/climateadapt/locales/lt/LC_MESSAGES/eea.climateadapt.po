@@ -1052,6 +1052,7 @@ msgstr "Sužinokite, kaip „Climate-ADAPT“ pateikti įvairių tipų informaci
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Potvynis"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Poveikis sveikatai:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Šiluma"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Nacionalinė prisitaikymo politika"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Gamtiniai sprendimai"
 
@@ -1830,6 +1833,7 @@ msgstr "Slinkite į viršų"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Jūros lygio kilimas"
 
@@ -2552,6 +2556,50 @@ msgstr "Vidutinis"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Žemas"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Teisingas atsparumas"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Sąnaudų ir naudos santykis"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Stiprūs krituliai / smarkus lietus"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Pakrančių potvyniai / audros sukelta patvanka"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Sausra"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Gaisras / miško gaisras"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Vėjas / audra"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Nuošliauža"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Šalčio bangos / itin didelis šaltis"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Sniegas / lavina"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Nesusiję su konkrečiu pavojumi"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

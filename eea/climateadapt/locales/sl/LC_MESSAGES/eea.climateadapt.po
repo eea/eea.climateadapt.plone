@@ -1052,6 +1052,7 @@ msgstr "Ugotovite, kako prispevati različne vrste informacij k Climate-ADAPT."
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Poplavljanje"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Vpliv na zdravje:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Toplota"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Nacionalna politika prilagajanja"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Naravne rešitve"
 
@@ -1830,6 +1833,7 @@ msgstr "Pomaknite se na vrh"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Dvig morske gladine"
 
@@ -2552,6 +2556,50 @@ msgstr "Zmerno"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Nizko"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Pravična odpornost"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Razmerje med stroški in koristmi"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Močne padavine / ekstremno deževje"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Obalne poplave / nevihtni val"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Suša"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Požar / gozdni požar"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Veter / nevihta"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Zemeljski plaz"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Hladni valovi / izreden mraz"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Sneg / snežni plaz"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Ni specifično za določeno nevarnost"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

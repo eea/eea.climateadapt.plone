@@ -2709,6 +2709,7 @@ msgstr "Scopri come contribuire con diversi tipi di informazioni a Climate-ADAPT
 # ,
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Inondazioni"
 
@@ -3051,6 +3052,7 @@ msgstr "Impatto sulla salute:"
 
 # ,
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Calore"
 
@@ -3790,6 +3792,7 @@ msgid "National adaption policy"
 msgstr "Politica di adattamento nazionale"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Soluzioni basate sulla natura"
 
@@ -4619,6 +4622,7 @@ msgstr "Scorri verso l'alto"
 # ,
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Innalzamento del livello del mare"
 
@@ -5978,6 +5982,50 @@ msgstr "Moderato"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Basso"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Resilienza giusta"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Rapporto costi-benefici"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Precipitazioni intense / piogge estreme"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Alluvione costiera / mareggiata"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Siccità"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Incendio / incendio boschivo"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Vento / tempesta"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Frana"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Ondate di freddo / freddo estremo"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Neve / valanga"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Non specifico per un pericolo"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

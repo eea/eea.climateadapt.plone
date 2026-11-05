@@ -1052,6 +1052,7 @@ msgstr "Siit saate teada, kuidas lisada Climate-ADAPT-i erinevat tüüpi teavet.
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Üleujutus"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Mõju tervisele:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Kuumus"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Riiklik kohanemispoliitika"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Looduspõhised lahendused"
 
@@ -1830,6 +1833,7 @@ msgstr "Kerige üles"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Meretaseme tõus"
 
@@ -2550,6 +2554,50 @@ msgstr "Mõõdukas"
 #: ../../climateadapt/vocabulary.py:530
 msgid "Low"
 msgstr "Madal"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Õiglane vastupanuvõime"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Kulude ja tulude suhe"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Tugevad sademed / äärmuslikud vihmasajud"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Rannikualade üleujutus / tormitulv"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Põud"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Tulekahju / metsatulekahju"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Tuul / torm"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Maalihe"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Külmalained / äärmuslik külm"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Lumi / laviin"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Ohupõhine määratlus puudub"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
