@@ -6691,6 +6691,38 @@ msgstr "Validation par des experts / institution réputée"
 msgid "User testing / pilot testing"
 msgstr "Tests utilisateurs / tests pilotes"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Jeux de données publics de fournisseurs externes"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Jeux de données générés ou traités par le projet"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Données d'entrée fournies par l'utilisateur"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Fournisseurs de données commerciaux ou tiers"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Sources mixtes"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Historique/passé"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Présent"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Tourné vers l'avenir"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

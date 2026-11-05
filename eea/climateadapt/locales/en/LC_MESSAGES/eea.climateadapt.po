@@ -2193,6 +2193,38 @@ msgstr ""
 msgid "User testing / pilot testing"
 msgstr ""
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr ""
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr ""
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

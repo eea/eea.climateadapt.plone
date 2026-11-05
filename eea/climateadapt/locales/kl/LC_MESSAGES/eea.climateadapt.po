@@ -2193,6 +2193,38 @@ msgstr "Ilisimatuunit uppernarsaat / suliffeqarfik tatiginartoq"
 msgid "User testing / pilot testing"
 msgstr "Atuisunit misileraaneq / misileraalluni misiliineq"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Kalaallit Nunaanni avataanit paasissutissanik katersat tamanut ammasut"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Suliniummit pilersinneqartut suliarineqartulluunniit paasissutissanik katersat"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Atuisumit tunniunneqartut paasissutissat"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Niueruteqartunit imaluunniit allanit paasissutissanik tunniussisut"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Paasissutissanik assigiinngitsunik aallaaveqartut"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Oqaluttuarisaanermi/periarfissiut"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Maanna"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Siunissamut isiginnittoq"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

@@ -2328,6 +2328,38 @@ msgstr "Валидиране от експерти / утвърдена инст
 msgid "User testing / pilot testing"
 msgstr "Тестване от потребители / пилотно тестване"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Публични набори от данни от външни доставчици"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Набори от данни, създадени или обработени по проекта"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Входни данни, предоставени от потребителите"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Търговски или външни доставчици на данни"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Смесени източници"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Исторически/минали данни"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Настояще"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Ориентирани към бъдещето"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

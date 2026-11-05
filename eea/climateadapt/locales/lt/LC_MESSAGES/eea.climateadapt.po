@@ -2329,6 +2329,38 @@ msgstr "Ekspertinis validavimas / gerą reputaciją turinti institucija"
 msgid "User testing / pilot testing"
 msgstr "Naudotojų testavimas / bandomasis testavimas"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Vieši išorinių teikėjų duomenų rinkiniai"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Projekto sukurti arba apdoroti duomenų rinkiniai"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Naudotojo pateikti įvesties duomenys"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Komerciniai arba trečiųjų šalių duomenų teikėjai"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Mišrūs šaltiniai"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Istoriniai / praeities"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Dabartis"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Orientuotas į ateitį"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

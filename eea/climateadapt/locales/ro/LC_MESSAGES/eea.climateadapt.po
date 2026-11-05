@@ -2532,6 +2532,38 @@ msgstr "Validare de către experți / instituție de renume"
 msgid "User testing / pilot testing"
 msgstr "Testare de către utilizatori / testare pilot"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Seturi de date publice de la furnizori externi"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Seturi de date generate sau prelucrate de proiect"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Date de intrare furnizate de utilizator"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Furnizori comerciali sau terți de date"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Surse mixte"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Istoric/trecut"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Prezent"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Orientat spre viitor"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

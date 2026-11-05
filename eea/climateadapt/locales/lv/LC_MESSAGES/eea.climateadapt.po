@@ -2329,6 +2329,38 @@ msgstr "Ekspertu validācija / atzīta iestāde"
 msgid "User testing / pilot testing"
 msgstr "Lietotāju testēšana / izmēģinājuma testēšana"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Publiskas datu kopas no ārējiem pakalpojumu sniedzējiem"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Projektā izveidotas vai apstrādātas datu kopas"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Lietotāja sniegtie ievaddati"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Komerciāli vai trešo pušu datu sniedzēji"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Jaukti avoti"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Vēsturisks/pagātne"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Pašreizējais"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Vērsts uz nākotni"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

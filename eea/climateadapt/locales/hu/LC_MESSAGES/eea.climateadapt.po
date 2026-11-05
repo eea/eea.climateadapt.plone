@@ -2327,6 +2327,38 @@ msgstr "Szakértői validálás / elismert intézmény"
 msgid "User testing / pilot testing"
 msgstr "Felhasználói tesztelés / pilot tesztelés"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Külső szolgáltatók nyilvános adatkészletei"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "A projekt által létrehozott vagy feldolgozott adatkészletek"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "A felhasználó által megadott bemeneti adatok"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Kereskedelmi vagy külső adatszolgáltatók"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Vegyes források"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Történelmi/múltbeli"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Jelen"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Jövőorientált"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

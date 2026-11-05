@@ -2329,6 +2329,38 @@ msgstr "Validácia odborníkmi / renomovanou inštitúciou"
 msgid "User testing / pilot testing"
 msgstr "Testovanie používateľmi / pilotné testovanie"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Verejné súbory údajov od externých poskytovateľov"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Súbory údajov vytvorené alebo spracované projektom"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Vstupné údaje poskytnuté používateľom"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Komerční alebo externí poskytovatelia údajov"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Zmiešané zdroje"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Historické/minulé"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Súčasnosť"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Orientovaný na budúcnosť"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

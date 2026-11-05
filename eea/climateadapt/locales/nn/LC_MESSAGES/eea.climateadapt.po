@@ -2329,6 +2329,38 @@ msgstr "Ekspertvalidering / anerkjend institusjon"
 msgid "User testing / pilot testing"
 msgstr "Brukartesting / pilottesting"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Offentlege datasett frå eksterne leverandørar"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Datasett genererte eller handsama av prosjektet"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Inndata leverte av brukaren"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Kommersielle eller tredjeparts dataleverandørar"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Blanda kjelder"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Historisk/fortid"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Notid"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Framtidsretta"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

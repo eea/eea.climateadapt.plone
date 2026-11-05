@@ -2196,6 +2196,38 @@ msgstr "Bailíochtú saineolaithe / institiúid cháiliúil"
 msgid "User testing / pilot testing"
 msgstr "Tástáil úsáideora / tástáil phíolótach"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Tacair shonraí poiblí ó sholáthraithe seachtracha"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Tacair shonraí a ghin nó a phróiseáil an tionscadal"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Sonraí ionchuir a chuir an t-úsáideoir ar fáil"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Soláthraithe sonraí tráchtála nó tríú páirtí"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Foinsí measctha"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Stairiúil/saol atá thart"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "An lá atá inniu ann"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Dírithe ar an todhchaí"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

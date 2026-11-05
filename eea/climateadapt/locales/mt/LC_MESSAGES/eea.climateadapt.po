@@ -2329,6 +2329,38 @@ msgstr "Validazzjoni minn esperti / istituzzjoni ta' reputazzjoni tajba"
 msgid "User testing / pilot testing"
 msgstr "Ittestjar mill-utenti / ittestjar pilota"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Settijiet ta' dejta pubbliċi minn fornituri esterni"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Settijiet ta' dejta ġġenerati jew ipproċessati mill-proġett"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Dejta tal-input ipprovduta mill-utent"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Fornituri kummerċjali jew ta' partijiet terzi tad-dejta"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Sorsi mħallta"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Storiku/passat"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Preżent"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Orjentat lejn il-futur"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

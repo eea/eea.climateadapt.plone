@@ -2330,6 +2330,38 @@ msgstr "Uzman doğrulaması / saygın kurum"
 msgid "User testing / pilot testing"
 msgstr "Kullanıcı testi / pilot testi"
 
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Harici sağlayıcılardan alınan açık veri kümeleri"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Proje tarafından oluşturulan veya işlenen veri kümeleri"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Kullanıcı tarafından sağlanan girdi verileri"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Ticari veya üçüncü taraf veri sağlayıcıları"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Karma kaynaklar"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Tarihsel/geçmiş"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Şimdi"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Geleceğe dönük"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"
