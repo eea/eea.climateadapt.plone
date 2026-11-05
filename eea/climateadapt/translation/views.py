@@ -15,6 +15,7 @@ from plone.api import portal
 from plone.api.env import adopt_user
 from plone.uuid.interfaces import IUUID
 from plone.app.multilingual.dx.interfaces import ILanguageIndependentField
+from plone.app.multilingual.interfaces import ITranslationManager
 from plone.dexterity.utils import iterSchemata
 from plone.protect.interfaces import IDisableCSRFProtection
 from Products.Five.browser import BrowserView
@@ -168,7 +169,31 @@ class SaveTranslationHtml(BrowserView):
 
                 trans_obj = setup_translation_object(en_obj, language, request)
                 ingest_html(trans_obj, html)
-                result = {"url": trans_obj.absolute_url()}
+
+                # A url is not proof the translation is usable. The object can
+                # be created and then fail to register with the translation
+                # manager, or be removed again by a later pass. This response
+                # is what the async worker caches on, so reporting an
+                # unverified success permanently blocks that object+language
+                # for the whole skip-cache TTL (7 days) - every later attempt
+                # is refused as "already translated" while no translation
+                # exists. Verify registration before claiming success.
+                registered = (
+                    ITranslationManager(en_obj).get_translation(language) is not None
+                )
+                if not registered:
+                    logger.error(
+                        "Translation not registered after save: %s (%s)", path, language
+                    )
+                    result = {
+                        "error_type": "translation_not_registered",
+                        "translation_registered": False,
+                    }
+                else:
+                    result = {
+                        "url": trans_obj.absolute_url(),
+                        "translation_registered": True,
+                    }
             except Exception as e:
                 logger.exception("Error in saving translation: \n: %s", e)
                 result = {"error_type": exception_to_json(e)}
