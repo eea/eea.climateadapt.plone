@@ -2564,6 +2564,82 @@ msgstr "Prezent"
 msgid "Forward-looking"
 msgstr "Orientat spre viitor"
 
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Serviciile și/sau agențiile Comisiei"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Rețele transfrontaliere"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Autorități naționale"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Autorități subnaționale"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Întreprinderi/consultanți"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Cercetători care sprijină politicile"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Cetățeni"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Hărți și grafice"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Rapoarte și sprijin pentru luarea deciziilor"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Seturi de date și indicatori"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Descrieri"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Exemple de bune practici"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Etapa 1: Pregătirea terenului pentru adaptare"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Etapa 2: Evaluarea riscurilor și vulnerabilităților legate de schimbările climatice"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Etapa 3: Identificarea opțiunilor de adaptare"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Etapa 4: Evaluarea și prioritizarea opțiunilor de adaptare"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Etapa 5: Implementare"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Etapa 6: Monitorizare și evaluare"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Zone urbane"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

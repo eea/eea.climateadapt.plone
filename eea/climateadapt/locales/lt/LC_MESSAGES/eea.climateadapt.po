@@ -2361,6 +2361,82 @@ msgstr "Dabartis"
 msgid "Forward-looking"
 msgstr "Orientuotas į ateitį"
 
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Komisijos tarnybos ir (arba) agentūros"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Tarpvalstybiniai tinklai"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Nacionalinės institucijos"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Subnacionalinės institucijos"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Įmonės ir konsultantai"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Mokslininkai, padedantys formuoti politiką"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Piliečiai"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Žemėlapiai ir diagramos"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Ataskaitos ir sprendimų priėmimo parama"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Duomenų rinkiniai ir rodikliai"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Aprašomieji tekstai"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Gerosios praktikos pavyzdžiai"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "1 etapas. Pasirengimas prisitaikymui"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "2 etapas. Klimato kaitos rizikos ir pažeidžiamumo vertinimas"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "3 etapas. Prisitaikymo galimybių nustatymas"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "4 etapas. Prisitaikymo galimybių vertinimas ir prioritetų nustatymas"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "5 etapas. Įgyvendinimas"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "6 etapas. Stebėsena ir vertinimas"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Miesto teritorijos"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

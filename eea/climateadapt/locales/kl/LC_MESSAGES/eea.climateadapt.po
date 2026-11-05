@@ -728,7 +728,7 @@ msgstr ""
 #: ../../climateadapt/browser/overrides.py:40
 #: ../../climateadapt/vocabulary.py:305
 msgid "Coastal areas"
-msgstr ""
+msgstr "Sinerissami sumiiffiit"
 
 #: ../../climateadapt/vocabulary.py:628
 msgid "Coastal flooding"
@@ -1420,7 +1420,7 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:315
 msgid "Mountain areas"
-msgstr ""
+msgstr "Qaqqani sumiiffiit"
 
 #: ../../climateadapt/vocabulary.py:1254
 msgid "Municipal/Local"
@@ -1428,7 +1428,7 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:1231
 msgid "NGOs"
-msgstr ""
+msgstr "Kattuffiit namminersortut"
 
 #: ../../climateadapt/vocabulary.py:1252
 msgid "National"
@@ -2224,6 +2224,82 @@ msgstr "Maanna"
 #: ../../climateadapt/vocabulary.py:520
 msgid "Forward-looking"
 msgstr "Siunissamut isiginnittoq"
+
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Kommissionip immikkoortortaqarfii aamma/imaluunniit suliffeqarfii"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Nunat killeqarfiinik qaangiisut attaveqaqatigiiffii"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Nunap oqartussaasui"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Nunap immikkoortuini oqartussaasut"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Suliffeqarfiit/siunnersortit"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Ilisimatuut politikkimik tapersersuisut"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Innuttaasut"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Nunap assingi titartakkallu"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Nalunaarusiat aalajangiinermullu tapersiissutit"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Paasissutissat katersat uuttuutillu"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Oqaluttuat"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Iliuutsinik pitsaasunik assersuutit"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Alloriarneq 1: naleqqussarnissamut piareersarneq"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Alloriarneq 2: silap pissusiata allanngoriartornerani aarlerinaatinik nalilersuineq"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Alloriarneq 3: naleqqussarnissamut periarfissanik nassaarneq"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Alloriarneq 4: naleqqussarnissamut periarfissanik nalilersuineq tulleriissaarinerlu"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Alloriarneq 5: piviusunngortitsineq"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Alloriarneq 6: nakkutiginninneq naliliinerlu"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Illoqarfittut sumiiffiit"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

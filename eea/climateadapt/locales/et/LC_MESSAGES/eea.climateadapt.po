@@ -2359,6 +2359,82 @@ msgstr "Praegune"
 msgid "Forward-looking"
 msgstr "Tulevikku suunatud"
 
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Komisjoni talitused ja/või ametid"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Piiriülesed võrgustikud"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Riiklikud asutused"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Allriiklikud asutused"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Ettevõtted/konsultandid"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Poliitikat toetavad teadlased"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Kodanikud"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Kaardid ja graafikud"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Aruanded ja otsustustugi"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Andmestikud ja näitajad"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Kirjeldused"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Hea tava näited"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "1. samm: kohanemiseks eelduste loomine"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "2. samm: kliimamuutuste riskide ja haavatavuse hindamine"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "3. samm: kohanemisvõimaluste kindlakstegemine"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "4. samm: kohanemisvõimaluste hindamine ja tähtsuse järjekorda seadmine"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "5. samm: rakendamine"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "6. samm: seire ja hindamine"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Linnapiirkonnad"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

@@ -2361,6 +2361,82 @@ msgstr "Súčasnosť"
 msgid "Forward-looking"
 msgstr "Orientovaný na budúcnosť"
 
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Služby a/alebo agentúry Komisie"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Cezhraničné siete"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Vnútroštátne orgány"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Subnárodné orgány"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Podniky/konzultanti"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Výskumníci podporujúci tvorbu politík"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Občania"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Mapy a grafy"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Správy a podpora rozhodovania"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Súbory údajov a ukazovatele"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Opisné texty"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Príklady osvedčených postupov"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Krok 1: Príprava podmienok na adaptáciu"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Krok 2: Posúdenie rizík a zraniteľnosti súvisiacich so zmenou klímy"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Krok 3: Určenie možností adaptácie"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Krok 4: Posúdenie a stanovenie priorít možností adaptácie"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Krok 5: Realizácia"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Krok 6: Monitorovanie a hodnotenie"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Mestské oblasti"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"
