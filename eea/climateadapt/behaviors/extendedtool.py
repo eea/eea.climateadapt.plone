@@ -9,7 +9,6 @@ from z3c.form.interfaces import IAddForm, IEditForm
 from plone.restapi.behaviors import BLOCKS_SCHEMA, LAYOUT_SCHEMA, IBlocks
 from plone.schema import JSONField
 from .volto_layout import extendetool_layout_blocks, extendetool_layout_items
-from zope.schema import Bool
 
 
 from .tool import ITool
@@ -351,4 +350,37 @@ class IExtendedTool(ITool, IBlocks):
 alsoProvides(IExtendedTool["climate_impacts"], ILanguageIndependentField)
 alsoProvides(IExtendedTool["sectors"], ILanguageIndependentField)
 alsoProvides(IExtendedTool["elements"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["include_in_navigator"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["nature_based_solution"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["just_resilience"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["cost_benefit_ratio"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["functionality"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["external_id"], ILanguageIndependentField)
 alsoProvides(IExtendedTool["tool_type"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["tool_provider"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["public_private_mode"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["contact"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["hyperlink"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["coder_1"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["coder_2"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["focus_areas"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["intended_user_groups"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["place_of_implementation"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["type_of_data"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["data_sources"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["license_status"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["user_support_provisions"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["tool_validation_use"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["number_of_users_tool"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["tool_provider_mode"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["adaptation_support_cycle_step"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["type_of_outputs"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["temporality_of_data"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["accessibility_and_usability"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["only_interactive_support_tool"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["adaptation_cycle_step"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["updating_cycle_of_the_tool"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["language_accessibility"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["free_access"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["tool_available_english"], ILanguageIndependentField)
+alsoProvides(IExtendedTool["tool_available_language"], ILanguageIndependentField)
