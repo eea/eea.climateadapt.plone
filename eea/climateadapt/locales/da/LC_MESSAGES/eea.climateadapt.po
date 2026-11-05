@@ -2436,6 +2436,122 @@ msgstr "Trin 6: Overvågning og evaluering"
 msgid "Urban areas"
 msgstr "Byområder"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globalt"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Transnationalt"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "EU's yderste regioner"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Subnationalt"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Observationsdatasæt"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Reanalysedatasæt"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Klimamodelresultater"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Resultater fra effekt- eller sektormodeller"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Socioøkonomiske data eller eksponeringsdata"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Andet"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Fuldt åbne data"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Åbne data med krav om kildeangivelse"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Licenserede eller kommercielle data"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Begrænset"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Blandet"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Brugervejledning / dokumentation"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Helpdesk / kontakt support"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Vejledninger / undervisningsmateriale"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Interaktiv hjælp (chatbot / guide)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Høj anvendelse"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Mellem anvendelse"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Lav anvendelse"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Ukendt"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Offentlig organisation"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Privat organisation"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Offentligt-privat partnerskab"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Høj"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Moderat"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Lav"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

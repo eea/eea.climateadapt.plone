@@ -2435,6 +2435,122 @@ msgstr "6. samm: seire ja hindamine"
 msgid "Urban areas"
 msgstr "Linnapiirkonnad"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globaalne"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Riikidevaheline"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "ELi äärepoolseimad piirkonnad"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Riigisisene"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Vaatlusandmestikud"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Ümberanalüüsi andmestikud"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Kliimamudelite väljundid"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Mõju- või valdkondlike mudelite väljundid"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Sotsiaal-majanduslikud või kokkupuuteandmed"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Muu"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Täielikult avatud andmed"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Avatud andmed koos viitamise nõudega"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Litsentsitud või ärilised andmed"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Piiratud"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Segatud"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Kasutajajuhised / dokumentatsioon"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Kasutajatugi / tugikontakt"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Õpetused / õppematerjalid"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Interaktiivne abi (vestlusrobot / juhend)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Suur kasutus"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Keskmine kasutus"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Vähene kasutus"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Teadmata"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Avalik organisatsioon"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Eraorganisatsioon"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Avaliku ja erasektori partnerlus"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Kõrge"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Mõõdukas"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Madal"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

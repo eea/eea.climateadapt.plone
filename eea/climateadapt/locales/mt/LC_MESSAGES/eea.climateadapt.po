@@ -2437,6 +2437,122 @@ msgstr "Pass 6: Monitoraġġ u evalwazzjoni"
 msgid "Urban areas"
 msgstr "Żoni urbani"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globali"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Transnazzjonali"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Reġjuni ultraperiferiċi tal-UE"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Subnazzjonali"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Settijiet ta' dejta osservazzjonali"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Settijiet ta' dejta ta' analiżi mill-ġdid"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Riżultati ta' mudelli klimatiċi"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Riżultati ta' mudelli tal-impatt jew settorjali"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Dejta soċjoekonomika jew dwar l-esponiment"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Oħrajn"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Dejta kompletament miftuħa"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Dejta miftuħa li teħtieġ l-attribuzzjoni tas-sors"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Dejta liċenzjata jew kummerċjali"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Ristrett"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Imħallat"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Gwida għall-utent / dokumentazzjoni"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Helpdesk / kuntatt għall-appoġġ"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Tuturi / materjal ta' taħriġ"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Assistenza interattiva (chatbot / gwida)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Użu għoli"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Użu medju"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Użu baxx"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Mhux magħruf"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Organizzazzjoni pubblika"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Organizzazzjoni privata"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Sħubija bejn is-settur pubbliku u dak privat"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Għoli"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Moderat"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Baxx"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

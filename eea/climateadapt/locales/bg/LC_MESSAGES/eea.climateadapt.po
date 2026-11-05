@@ -2436,6 +2436,122 @@ msgstr "Стъпка 6: Мониторинг и оценка"
 msgid "Urban areas"
 msgstr "Градски райони"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Глобален"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Транснационален"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Най-отдалечени региони на ЕС"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Поднационален"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Наблюдателни набори от данни"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Набори от данни от повторен анализ"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Резултати от климатични модели"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Резултати от модели за въздействие или секторни модели"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Социално-икономически данни или данни за експозицията"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Друго"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Напълно отворени данни"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Отворени данни с изискване за посочване на източника"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Лицензирани или търговски данни"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Ограничен достъп"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Смесено"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Насоки за потребители / документация"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Помощна служба / връзка с поддръжката"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Уроци / учебни материали"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Интерактивна помощ (чатбот / помощник)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Високо използване"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Средно използване"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Ниско използване"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Публична организация"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Частна организация"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Публично-частно партньорство"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Високо"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Умерено"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Ниско"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

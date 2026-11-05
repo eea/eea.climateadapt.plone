@@ -2435,6 +2435,122 @@ msgstr "6. lépés: Nyomon követés és értékelés"
 msgid "Urban areas"
 msgstr "Városi területek"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globális"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Transznacionális"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Az EU legkülső régiói"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Szubnacionális"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Megfigyelési adatkészletek"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Újraelemzési adatkészletek"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Éghajlati modellkimenetek"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Hatás- vagy ágazati modellek kimenetei"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Társadalmi-gazdasági vagy kitettségi adatok"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Egyéb"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Teljesen nyílt adatok"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Forrásmegjelölést igénylő nyílt adatok"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Licencelt vagy kereskedelmi adatok"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Korlátozott"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Vegyes"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Felhasználói útmutató / dokumentáció"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Ügyfélszolgálat / támogatási kapcsolat"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Oktatóanyagok / képzési anyagok"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Interaktív segítség (chatbot / útmutató)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Magas használat"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Közepes használat"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Alacsony használat"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Ismeretlen"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Állami szervezet"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Magánszervezet"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Köz- és magánszféra partnersége"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Magas"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Mérsékelt"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Alacsony"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

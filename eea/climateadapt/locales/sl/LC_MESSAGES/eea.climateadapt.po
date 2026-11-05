@@ -2437,6 +2437,122 @@ msgstr "Korak 6: Spremljanje in vrednotenje"
 msgid "Urban areas"
 msgstr "Mestna območja"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globalno"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Nadnacionalno"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Najbolj oddaljene regije EU"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Subnacionalno"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Opazovalni podatkovni nizi"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Podatkovni nizi ponovne analize"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Rezultati podnebnih modelov"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Rezultati modelov vplivov ali sektorskih modelov"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Družbeno-ekonomski podatki ali podatki o izpostavljenosti"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Drugo"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Popolnoma odprti podatki"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Odprti podatki z obvezno navedbo vira"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Licencirani ali komercialni podatki"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Omejeno"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Mešano"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Uporabniška navodila / dokumentacija"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Pomoč uporabnikom / stik s podporo"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Vadnice / gradivo za usposabljanje"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Interaktivna pomoč (klepetalni robot / čarovnik)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Velika uporaba"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Srednja uporaba"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Majhna uporaba"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Neznano"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Javna organizacija"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Zasebna organizacija"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Javno-zasebno partnerstvo"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Visoko"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Zmerno"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Nizko"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

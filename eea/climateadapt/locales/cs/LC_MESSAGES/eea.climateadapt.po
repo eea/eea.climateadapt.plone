@@ -2436,6 +2436,122 @@ msgstr "Krok 6: Monitorování a hodnocení"
 msgid "Urban areas"
 msgstr "Městské oblasti"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globální"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Nadnárodní"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Nejvzdálenější regiony EU"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Subnárodní"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Pozorovací datové sady"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Datové sady z reanalýzy"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Výstupy klimatických modelů"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Výstupy dopadových nebo odvětvových modelů"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Socioekonomická data nebo údaje o expozici"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Jiné"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Plně otevřená data"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Otevřená data s požadavkem na uvedení zdroje"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Licencovaná nebo komerční data"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Omezený přístup"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Smíšené"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Uživatelské pokyny / dokumentace"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Podpora / kontakt na podporu"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Výukové programy / školicí materiály"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Interaktivní asistence (chatbot / průvodce)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Vysoké využití"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Střední využití"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Nízké využití"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Neznámé"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Veřejná organizace"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Soukromá organizace"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Veřejno-soukromé partnerství"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Vysoká"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Střední"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Nízká"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

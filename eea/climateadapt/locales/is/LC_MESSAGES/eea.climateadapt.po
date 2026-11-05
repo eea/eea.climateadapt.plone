@@ -2437,6 +2437,122 @@ msgstr "Skref 6: Vöktun og mat"
 msgid "Urban areas"
 msgstr "Þéttbýlissvæði"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Á heimsvísu"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Þverþjóðlegt"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Ystu jaðarsvæði ESB"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Undirþjóðlegt"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Athugunargagnasöfn"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Endurgreiningargagnasöfn"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Niðurstöður loftslagslíkana"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Niðurstöður áhrifa- eða geiralíkana"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Félagshagfræðileg gögn eða gögn um váhrif"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Annað"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Alveg opin gögn"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Opin gögn með kröfu um heimildatilvísun"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Gögn með leyfi eða viðskiptagögn"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Takmarkað"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Blandað"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Notendaleiðbeiningar / gögn"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Þjónustuver / samband við stuðning"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Kennsluefni / þjálfunarefni"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Gagnvirk aðstoð (spjallmenni / leiðarvísir)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Mikil notkun"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Miðlungsnotkun"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Lítil notkun"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Óþekkt"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Opinber stofnun"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Einkastofnun"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Samstarf opinberra aðila og einkaaðila"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Hátt"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Miðlungs"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Lágt"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

@@ -2438,6 +2438,122 @@ msgstr "Adım 6: İzleme ve değerlendirme"
 msgid "Urban areas"
 msgstr "Kentsel alanlar"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Küresel"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Ulusötesi"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "AB'nin en uzak bölgeleri"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Ulusal altı"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Gözlemsel veri kümeleri"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Yeniden analiz veri kümeleri"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "İklim modeli çıktıları"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Etki veya sektörel model çıktıları"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Sosyoekonomik veya maruziyet verileri"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Diğer"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Tamamen açık veriler"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Atıf gereklilikleri olan açık veriler"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Lisanslı veya ticari veriler"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Kısıtlı"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Karma"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Kullanıcı kılavuzu / belgeler"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Yardım masası / destek iletişimi"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Öğreticiler / eğitim materyalleri"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Etkileşimli yardım (sohbet robotu / kılavuz)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Yüksek kullanım"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Orta düzey kullanım"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Düşük kullanım"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Bilinmiyor"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Kamu kuruluşu"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Özel kuruluş"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Kamu-özel sektör ortaklığı"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Yüksek"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Orta"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Düşük"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

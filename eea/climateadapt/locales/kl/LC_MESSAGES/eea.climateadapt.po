@@ -925,7 +925,7 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:1251
 msgid "European"
-msgstr ""
+msgstr "Europami"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:241
 msgid "European Climate Data Explorer"
@@ -1432,7 +1432,7 @@ msgstr "Kattuffiit namminersortut"
 
 #: ../../climateadapt/vocabulary.py:1252
 msgid "National"
-msgstr ""
+msgstr "Nunatsinni"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:53
 msgid "National HHAP"
@@ -2300,6 +2300,122 @@ msgstr "Alloriarneq 6: nakkutiginninneq naliliinerlu"
 #: ../../climateadapt/vocabulary.py:1725
 msgid "Urban areas"
 msgstr "Illoqarfittut sumiiffiit"
+
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Nunarsuaq tamakkerlugu"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Nunat akimorlugit"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "EU-mi nunat ungasinnerpaat"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Nunap iluani immikkoortoq"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Paasissutissat alapernaarsukkat"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Paasissutissat misissoqqissaarlugit iluarsisat"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Silap pissusaanut ilusilersuutit inerneri"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Sunnersuutinik imaluunniit immikkoortunik ilusilersuutit inerneri"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Inuiaqatigiinnut aningaasarsiornermullu imaluunniit sunnerneqarnermut paasissutissat"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Allat"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Paasissutissat tamakkiisumik ammasut"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Paasissutissat ammasut sumit pisuunerinik taasineq piumasaqaataavoq"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Paasissutissat akuersissummik imaluunniit niuerutigineqartut"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Killilersugaq"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Akuleriit"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Atuisunut ilitsersuut / paasissutissat"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Ikiortarfik / ikiorneqarnissamut attaveqarneq"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Ilitsersuutit / ilinniarnermut atortussat"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Ikiorsiissutit attaveqarsinnaasut (chatbot / ilitsersuut)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Atorneqarnera annertooq"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Atorneqarnera akunnattumik annertussuseqartoq"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Atorneqarnera annikitsoq"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Naluneqanngilaq"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Suliffeqarfik pisortanit pigineqartoq"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Suliffeqarfik namminersortoq"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Pisortat namminersortullu suleqatigiinnerat"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Qaffasittoq"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Akunnattumik"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Appasittoq"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

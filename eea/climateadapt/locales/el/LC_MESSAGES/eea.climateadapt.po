@@ -2436,6 +2436,122 @@ msgstr "Βήμα 6: Παρακολούθηση και αξιολόγηση"
 msgid "Urban areas"
 msgstr "Αστικές περιοχές"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Παγκόσμιο"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Διακρατικό"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Εξόχως απόκεντρες περιοχές της ΕΕ"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Υποεθνικό"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Παρατηρησιακά σύνολα δεδομένων"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Σύνολα δεδομένων επανάλυσης"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Αποτελέσματα κλιματικών μοντέλων"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Αποτελέσματα μοντέλων επιπτώσεων ή τομεακών μοντέλων"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Κοινωνικοοικονομικά δεδομένα ή δεδομένα έκθεσης"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Άλλο"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Πλήρως ανοικτά δεδομένα"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Ανοικτά δεδομένα με υποχρέωση αναφοράς της πηγής"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Δεδομένα με άδεια χρήσης ή εμπορικά δεδομένα"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Περιορισμένη πρόσβαση"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Μικτό"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Οδηγίες χρήσης / τεκμηρίωση"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Γραφείο υποστήριξης / επικοινωνία με την υποστήριξη"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Εκπαιδευτικά προγράμματα / υλικό κατάρτισης"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Διαδραστική βοήθεια (chatbot / οδηγός)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Υψηλή χρήση"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Μέτρια χρήση"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Χαμηλή χρήση"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Άγνωστο"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Δημόσιος οργανισμός"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Ιδιωτικός οργανισμός"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Σύμπραξη δημόσιου και ιδιωτικού τομέα"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Υψηλό"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Μέτριο"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Χαμηλό"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

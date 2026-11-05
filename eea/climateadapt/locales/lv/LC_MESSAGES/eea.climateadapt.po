@@ -2437,6 +2437,122 @@ msgstr "6. solis: uzraudzība un novērtēšana"
 msgid "Urban areas"
 msgstr "Pilsētu teritorijas"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globāls"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Transnacionāls"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "ES tālākie reģioni"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Subnacionāls"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Novērojumu datu kopas"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Atkārtotas analīzes datu kopas"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Klimata modeļu rezultāti"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Ietekmes vai nozaru modeļu rezultāti"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Sociālekonomiskie vai ekspozīcijas dati"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Cits"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Pilnībā atvērti dati"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Atvērti dati ar prasību norādīt avotu"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Licencēti vai komerciāli dati"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Ierobežots"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Jaukts"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Lietotāja rokasgrāmata / dokumentācija"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Palīdzības dienests / saziņa ar atbalsta dienestu"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Pamācības / mācību materiāli"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Interaktīva palīdzība (tērzēšanas robots / vednis)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Liela izmantošana"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Vidēja izmantošana"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Maza izmantošana"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Nezināms"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Publiska organizācija"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Privāta organizācija"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Publiskā un privātā sektora partnerība"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Augsts"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Mērens"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Zems"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

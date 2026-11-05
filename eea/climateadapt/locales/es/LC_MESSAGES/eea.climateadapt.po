@@ -6506,6 +6506,122 @@ msgstr "Paso 6: Seguimiento y evaluación"
 msgid "Urban areas"
 msgstr "Zonas urbanas"
 
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Global"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Transnacional"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Regiones ultraperiféricas de la UE"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Subnacional"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Conjuntos de datos observacionales"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Conjuntos de datos de reanálisis"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Resultados de modelos climáticos"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Resultados de modelos de impacto o sectoriales"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Datos socioeconómicos o de exposición"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Otro"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Datos totalmente abiertos"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Datos abiertos con obligación de atribución"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Datos sujetos a licencia o comerciales"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Restringido"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Mixto"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Orientación para usuarios / documentación"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Servicio de asistencia / contacto de soporte"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Tutoriales / material de formación"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Asistencia interactiva (chatbot / asistente)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Uso elevado"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Uso medio"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Uso bajo"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Organización pública"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Organización privada"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Asociación público-privada"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Alto"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Moderado"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Bajo"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"
