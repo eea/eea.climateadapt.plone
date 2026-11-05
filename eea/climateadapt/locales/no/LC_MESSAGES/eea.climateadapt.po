@@ -2313,6 +2313,22 @@ msgid "sort_by"
 msgstr "Sorter etter"
 
 # ,
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Fagfellevurdert metodikk"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Validering gjennom en casestudie"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Ekspertvalidering / anerkjent institusjon"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Brukertesting / pilottesting"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

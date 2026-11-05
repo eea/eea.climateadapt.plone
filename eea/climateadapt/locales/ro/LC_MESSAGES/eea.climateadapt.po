@@ -2516,6 +2516,22 @@ msgid "sort_by"
 msgstr "filtrează după"
 
 # ,
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Metodologie evaluată de experți"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Validare prin studiu de caz"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Validare de către experți / instituție de renume"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Testare de către utilizatori / testare pilot"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

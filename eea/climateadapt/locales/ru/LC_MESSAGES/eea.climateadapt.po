@@ -2311,6 +2311,22 @@ msgid "sort_by"
 msgstr "Сортировать по"
 
 # ,
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Методика, прошедшая экспертную оценку"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Проверка на примере конкретного случая"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Экспертная проверка / авторитетное учреждение"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Тестирование пользователями / пилотное тестирование"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

@@ -2180,6 +2180,22 @@ msgstr "roghanna_cuardaigh_chaolais"
 msgid "sort_by"
 msgstr "sórt_le"
 
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Modheolaíocht a bhfuil piarmheasúnú déanta uirthi"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Bailíochtú trí chás-staidéar"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Bailíochtú saineolaithe / institiúid cháiliúil"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Tástáil úsáideora / tástáil phíolótach"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

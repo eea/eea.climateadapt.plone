@@ -2311,6 +2311,22 @@ msgstr ""
 msgid "sort_by"
 msgstr "Järjestä"
 
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Vertaisarvioitu menetelmä"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Validointi tapaustutkimuksella"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Asiantuntijoiden validointi / arvostettu laitos"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Käyttäjätestaus / pilottitestaus"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

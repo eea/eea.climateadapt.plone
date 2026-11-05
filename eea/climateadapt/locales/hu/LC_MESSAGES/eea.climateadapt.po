@@ -1501,7 +1501,7 @@ msgstr "Önkormányzati/helyi"
 
 #: ../../climateadapt/vocabulary.py:1231
 msgid "NGOs"
-msgstr "civil szervezetek"
+msgstr "Civil szervezetek"
 
 #: ../../climateadapt/vocabulary.py:1252
 msgid "National"
@@ -2310,6 +2310,22 @@ msgstr ""
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:451
 msgid "sort_by"
 msgstr "rendezés"
+
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Szakértők által lektorált módszertan"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Esettanulmány-alapú validálás"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Szakértői validálás / elismert intézmény"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Felhasználói tesztelés / pilot tesztelés"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
