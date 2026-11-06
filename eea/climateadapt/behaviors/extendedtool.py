@@ -236,7 +236,7 @@ class IExtendedTool(ITool, IBlocks):
         tool_provider_mode="z3c.form.browser.checkbox.CheckBoxFieldWidget"
     )
     tool_provider_mode = List(
-        title=_("Tool provider"),
+        title=_("Tool provider mode"),
         description=_("private, public, both, other"),
         required=False,
         value_type=Choice(
