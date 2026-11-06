@@ -1052,6 +1052,7 @@ msgstr "Разберете как да допринесете с различн�
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Наводнение"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Въздействие върху здравето:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Топлина"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Национална политика за адаптиране"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Решения, базирани на природата"
 
@@ -1830,6 +1833,7 @@ msgstr "Превъртете до върха"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Покачване на морското ниво"
 
@@ -2311,6 +2315,290 @@ msgstr "тесни_опции за_търсене"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:451
 msgid "sort_by"
 msgstr "сортиране_по"
+
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Методология, рецензирана от специалисти"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Валидиране чрез казус"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Валидиране от експерти / утвърдена институция"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Тестване от потребители / пилотно тестване"
+
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Публични набори от данни от външни доставчици"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Набори от данни, създадени или обработени по проекта"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Входни данни, предоставени от потребителите"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Търговски или външни доставчици на данни"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Смесени източници"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Исторически/минали данни"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Настояще"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Ориентирани към бъдещето"
+
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Служби и/или агенции на Комисията"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Трансгранични мрежи"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Национални органи"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Поднационални органи"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Предприятия/консултанти"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Изследователи, подкрепящи политиките"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Граждани"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Карти и графики"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Доклади и подкрепа за вземане на решения"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Набори от данни и показатели"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Описателни материали"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Примери за добри практики"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Стъпка 1: Подготовка за адаптация"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Стъпка 2: Оценка на рисковете и уязвимостите, свързани с изменението на климата"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Стъпка 3: Определяне на възможностите за адаптация"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Стъпка 4: Оценка и приоритизиране на възможностите за адаптация"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Стъпка 5: Прилагане"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Стъпка 6: Мониторинг и оценка"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Градски райони"
+
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Глобален"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Транснационален"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Най-отдалечени региони на ЕС"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Поднационален"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Наблюдателни набори от данни"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Набори от данни от повторен анализ"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Резултати от климатични модели"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Резултати от модели за въздействие или секторни модели"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Социално-икономически данни или данни за експозицията"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Друго"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Напълно отворени данни"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Отворени данни с изискване за посочване на източника"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Лицензирани или търговски данни"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Ограничен достъп"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Смесено"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Насоки за потребители / документация"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Помощна служба / връзка с поддръжката"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Уроци / учебни материали"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Интерактивна помощ (чатбот / помощник)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Високо използване"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Средно използване"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Ниско използване"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Публична организация"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Частна организация"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Публично-частно партньорство"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Високо"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Умерено"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Ниско"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Справедливост и устойчивост"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Съотношение разходи-ползи"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Обилни валежи / екстремни валежи"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Крайбрежни наводнения / щормови прилив"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Суша"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Пожар / горски пожар"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Вятър / буря"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Свлачище"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Студени вълни / екстремно ниски температури"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Сняг / лавина"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Без връзка с конкретна опасност"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

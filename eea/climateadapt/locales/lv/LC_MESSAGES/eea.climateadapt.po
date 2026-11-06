@@ -1052,6 +1052,7 @@ msgstr "Uzziniet, kā Climate-ADAPT sniegt dažāda veida informāciju."
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Plūdi"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Ietekme uz veselību:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Siltums"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Valsts adaptācijas politika"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Dabā balstīti risinājumi"
 
@@ -1830,6 +1833,7 @@ msgstr "Ritiniet uz augšu"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Jūras līmeņa celšanās"
 
@@ -2313,6 +2317,290 @@ msgid "sort_by"
 msgstr "Kārtot pēc"
 
 # ,
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Ekspertu recenzēta metodika"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Validācija, izmantojot gadījuma izpēti"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Ekspertu validācija / atzīta iestāde"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Lietotāju testēšana / izmēģinājuma testēšana"
+
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Publiskas datu kopas no ārējiem pakalpojumu sniedzējiem"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Projektā izveidotas vai apstrādātas datu kopas"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Lietotāja sniegtie ievaddati"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Komerciāli vai trešo pušu datu sniedzēji"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Jaukti avoti"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Vēsturisks/pagātne"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Pašreizējais"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Vērsts uz nākotni"
+
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Komisijas dienesti un/vai aģentūras"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Pārrobežu tīkli"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Valsts iestādes"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Subnacionālās iestādes"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Uzņēmumi/konsultanti"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Pētnieki, kas atbalsta politikas veidošanu"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Iedzīvotāji"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Kartes un diagrammas"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Ziņojumi un atbalsts lēmumu pieņemšanai"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Datu kopas un rādītāji"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Apraksti"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Labas prakses piemēri"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "1. solis: sagatavošanās pielāgošanās procesam"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "2. solis: klimata pārmaiņu risku un neaizsargātības novērtēšana"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "3. solis: pielāgošanās iespēju noteikšana"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "4. solis: pielāgošanās iespēju novērtēšana un prioritizēšana"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "5. solis: īstenošana"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "6. solis: uzraudzība un novērtēšana"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Pilsētu teritorijas"
+
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globāls"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Transnacionāls"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "ES tālākie reģioni"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Subnacionāls"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Novērojumu datu kopas"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Atkārtotas analīzes datu kopas"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Klimata modeļu rezultāti"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Ietekmes vai nozaru modeļu rezultāti"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Sociālekonomiskie vai ekspozīcijas dati"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Cits"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Pilnībā atvērti dati"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Atvērti dati ar prasību norādīt avotu"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Licencēti vai komerciāli dati"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Ierobežots"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Jaukts"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Lietotāja rokasgrāmata / dokumentācija"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Palīdzības dienests / saziņa ar atbalsta dienestu"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Pamācības / mācību materiāli"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Interaktīva palīdzība (tērzēšanas robots / vednis)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Liela izmantošana"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Vidēja izmantošana"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Maza izmantošana"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Nezināms"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Publiska organizācija"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Privāta organizācija"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Publiskā un privātā sektora partnerība"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Augsts"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Mērens"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Zems"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Taisnīga noturība"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Izmaksu un ieguvumu attiecība"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Spēcīgi nokrišņi / ekstremālas lietusgāzes"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Piekrastes plūdi / vētras uzplūdi"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Sausums"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Ugunsgrēks / meža ugunsgrēks"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Vējš / vētra"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Nogruvums"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Aukstuma viļņi / ārkārtējs aukstums"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Sniegs / lavīna"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Nav saistīts ar konkrētu apdraudējumu"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"
