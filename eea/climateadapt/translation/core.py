@@ -687,10 +687,31 @@ def setup_translation_object(canonical, language, request):
 
             return translated_object
         else:
-            logger.info(
-                f"Removing translation {trans_path} because it's different path"
+            # This deletes a whole translated folder when its registered path no
+            # longer matches the canonical one, taking every child translation
+            # with it. Log what is being lost and re-queue the subtree so the
+            # gap is filled instead of silently persisting.
+            logger.warning(
+                "setup_translation_object: removing translation %s (uid=%s, type=%s, "
+                "children=%s) of %s for %s because it sits at a non-canonical path "
+                "(expected %s)",
+                trans_path,
+                IUUID(translated_object, None),
+                translated_object.portal_type,
+                len(translated_object.objectIds()),
+                "/".join(canonical.getPhysicalPath()),
+                language,
+                get_translated_path(canonical, language),
             )
             content.delete(obj=translated_object, check_linkintegrity=False)
+            try:
+                _requeue_subtree_for_translation(canonical, language)
+            except Exception:
+                logger.exception(
+                    "setup_translation_object: could not re-queue %s for %s",
+                    "/".join(canonical.getPhysicalPath()),
+                    language,
+                )
 
     trans_path = get_translated_path(canonical, language)
 
@@ -819,6 +840,8 @@ def sync_translation_paths(
 
     translations = tm.get_translations()
 
+    requeue = []
+
     for lang, trans_obj in translations.items():
         if lang == "en":
             continue
@@ -848,21 +871,36 @@ def sync_translation_paths(
 
         target_obj_path = "/".join(target.getPhysicalPath()) + "/" + newName
         existing_trans = content.get(target_obj_path)
-        test_path = ["", "cca", "en", "mission"]
-        if existing_trans is not None:
-            if len(target.getPhysicalPath()) < len(test_path):
-                raise ValueError(
-                    "Need to delete this object, but it's too big %s", target_obj_path
-                )
 
-            # brains = en_obj.portal_catalog.searchResults(
-            #     path=target_obj_path,
-            #     sort="path",
-            # )
-
-            logger.info(
-                "This translation object already exists %s, removing", target_obj_path
+        if existing_trans is not None and not _same_content(existing_trans, trans_obj):
+            # The destination is occupied by something other than the object we
+            # are relocating. Removing it is the intended path realignment, but
+            # it used to be silent and unconditional, which destroyed unrelated
+            # content: a move deep inside a section deleted the translations of
+            # whatever already lived at the destination, and deleting a folder
+            # took its entire subtree with it.
+            #
+            # Identify the owner, log it, and put that owner back in the
+            # translation queue instead of letting it silently go untranslated.
+            owner = _translation_owner(existing_trans)
+            logger.warning(
+                "sync_translation_paths: removing %s (uid=%s, type=%s) to make room "
+                "for the %s translation of %s",
+                target_obj_path,
+                IUUID(existing_trans, None),
+                existing_trans.portal_type,
+                lang,
+                en_path,
             )
+            if owner is not None and not _same_content(owner, en_obj):
+                logger.warning(
+                    "sync_translation_paths: %s was the %s translation of %s - "
+                    "re-queueing that subtree for translation",
+                    target_obj_path,
+                    lang,
+                    "/".join(owner.getPhysicalPath()),
+                )
+                requeue.append((owner, lang))
             content.delete(existing_trans, check_linkintegrity=False)
 
         # TODO: setup_translation_object()
@@ -877,4 +915,77 @@ def sync_translation_paths(
         result[f"{lang}-old"] = old_path
         logger.info("Moved %s => %s", old_path, new_path)
 
+    # Re-queue once the moves have settled, so the freshly realigned paths are
+    # what gets translated.
+    for owner, lang in requeue:
+        try:
+            _requeue_subtree_for_translation(owner, lang)
+        except Exception:
+            logger.exception(
+                "sync_translation_paths: could not re-queue %s for %s",
+                "/".join(owner.getPhysicalPath()),
+                lang,
+            )
+
     return result
+
+
+def _same_content(a, b):
+    """True when ``a`` and ``b`` are the same piece of content.
+
+    Falls back to object identity when either UUID is unavailable, so two
+    unrelated objects that both lack a UUID are never mistaken for each other.
+    """
+    if a is None or b is None:
+        return False
+    if a is b:
+        return True
+    uid_a = IUUID(a, None)
+    uid_b = IUUID(b, None)
+    return uid_a is not None and uid_b is not None and uid_a == uid_b
+
+
+def _translation_owner(obj):
+    """Return the canonical (English) object ``obj`` is a translation of.
+
+    Returns None when ``obj`` is not translatable, is itself the canonical
+    object, or is not registered in a translation group at all - i.e. an orphan,
+    which is safe to delete.
+
+    Note: ``ITranslationManager`` has no ``get_canonical()`` in this PAM
+    version. The translation group is shared by every language of a piece of
+    content, so the canonical object is the "en" member of that group.
+    """
+    try:
+        tm = ITranslationManager(obj)
+    except TypeError:
+        return None
+    try:
+        translations = tm.get_translations()
+    except Exception:
+        logger.warning("Could not read translation group for %s", obj)
+        return None
+    canonical = translations.get("en")
+    if canonical is None or _same_content(canonical, obj):
+        return None
+    return canonical
+
+
+def _requeue_subtree_for_translation(canonical, language):
+    """Queue ``canonical`` and everything under it for translation.
+
+    Deleting a translated folder takes its children with it, so re-queueing the
+    folder alone would leave the rest of the subtree untranslated.
+    """
+    path = "/".join(canonical.getPhysicalPath())
+    catalog = getToolByName(canonical, "portal_catalog")
+    queued = 0
+    for brain in catalog.searchResults(path=path, sort_on="path"):
+        obj = brain.getObject()
+        try:
+            ITranslationManager(obj)
+        except TypeError:
+            continue
+        queue_translate(obj, language)
+        queued += 1
+    logger.info("Re-queued %s object(s) under %s for %s", queued, path, language)
