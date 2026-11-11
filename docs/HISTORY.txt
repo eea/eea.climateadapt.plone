@@ -1,7 +1,7 @@
 Changelog
 =========
 
-7.3-dev0 - (unreleased)
+7.3 - (2026-11-11)
 ---------------------------
 * Fix: sync_translation_paths no longer deletes an unrelated translation
   silently. Moving an English object removed whatever already sat at the
