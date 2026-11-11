@@ -3,6 +3,16 @@ Changelog
 
 7.3-dev0 - (unreleased)
 ---------------------------
+* Fix: sync_translation_paths no longer deletes an unrelated translation
+  silently. Moving an English object removed whatever already sat at the
+  destination path (check_linkintegrity=False), and deleting a translated
+  folder took its whole subtree with it. The owner of the removed translation
+  is now identified, the deletion is logged at WARNING with path/uid/type, and
+  that owner's subtree is re-queued for translation instead of silently going
+  untranslated. The arbitrary ["", "cca", "en", "mission"] depth guard is
+  removed. setup_translation_object's non-canonical-path folder delete gets the
+  same logging and re-queue.
+  [tiberich]
 
 7.2 - (2026-11-10)
 ---------------------------
