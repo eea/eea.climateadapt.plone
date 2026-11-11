@@ -116,9 +116,13 @@ class TestRequeueSubtree(unittest.TestCase):
         child = FakeObject("en-2", "/cca/en/section/a")
         mapping = {"en-1": {"en": en}, "en-2": {"en": child}}
 
-        with mock.patch.object(core, "getToolByName", return_value=self._catalog([en, child])), \
-             mock.patch.object(core, "ITranslationManager", _tm_for(mapping)), \
-             mock.patch.object(core, "queue_translate") as queued:
+        with (
+            mock.patch.object(
+                core, "getToolByName", return_value=self._catalog([en, child])
+            ),
+            mock.patch.object(core, "ITranslationManager", _tm_for(mapping)),
+            mock.patch.object(core, "queue_translate") as queued,
+        ):
             core._requeue_subtree_for_translation(en, "tr")
 
         self.assertEqual(queued.call_count, 2)
@@ -129,9 +133,15 @@ class TestRequeueSubtree(unittest.TestCase):
         en = FakeObject("en-1", "/cca/en/section")
         img = FakeObject("img-1", "/cca/en/section/photo.png", portal_type="Image")
 
-        with mock.patch.object(core, "getToolByName", return_value=self._catalog([en, img])), \
-             mock.patch.object(core, "ITranslationManager", _tm_for({"en-1": {"en": en}})), \
-             mock.patch.object(core, "queue_translate") as queued:
+        with (
+            mock.patch.object(
+                core, "getToolByName", return_value=self._catalog([en, img])
+            ),
+            mock.patch.object(
+                core, "ITranslationManager", _tm_for({"en-1": {"en": en}})
+            ),
+            mock.patch.object(core, "queue_translate") as queued,
+        ):
             core._requeue_subtree_for_translation(en, "tr")
 
         self.assertEqual(queued.call_count, 1)
