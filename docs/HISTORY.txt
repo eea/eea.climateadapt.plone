@@ -1,6 +1,11 @@
 Changelog
 =========
 
+7.4 - (2026-11-12)
+---------------------------
+* Change: Release 7.4
+  [tiberiuichim]
+
 7.3 - (2026-11-11)
 ---------------------------
 * Fix: sync_translation_paths no longer deletes an unrelated translation
