@@ -202,10 +202,56 @@ class SaveTranslationHtml(BrowserView):
         return json.dumps(result)
 
 
+class CallbackPayloadError(Exception):
+    """The POSTed payload is unusable.
+
+    Retrying cannot change the bytes that were sent, and eTranslation does not
+    retry 4xx anyway, so these are acknowledged as a client error rather than
+    left to look like a transient fault.
+    """
+
+
+class CallbackDeliveryError(Exception):
+    """eTranslation is reporting that a language failed.
+
+    This arrives on the delivery endpoint carrying errorCode/errorMessage. It is
+    a notification, not a delivery: re-sending the same error tells us nothing
+    new, so it is acknowledged rather than retried - but it must be visible.
+    Until now it was swallowed by the generic handler and returned as HTTP 200
+    with no ERROR-level record, which is why failed languages looked silent.
+    """
+
+
+def callback_failure_response(exc):
+    """Map a callback failure to (status, body).
+
+    eTranslation retries an HTTP callback up to 3 times with exponential
+    back-off, but only on 5xx; 4xx is never retried. Getting this mapping wrong
+    is what turned transient faults into permanently lost translations.
+    """
+    if isinstance(exc, CallbackDeliveryError):
+        # A failure notification. Re-delivering the same error is pointless.
+        return 200, {"status": "error-recorded", "error": str(exc)}
+    if isinstance(exc, CallbackPayloadError):
+        # Malformed or unusable payload - identical bytes on every retry.
+        return 400, {"status": "rejected", "error": str(exc)}
+    # Anything else is our fault: Redis unavailable, unreadable request, a bug.
+    # 503 so the platform retries rather than writing the delivery off as good.
+    return 503, {"error_type": exception_to_json(exc)}
+
+
 class TranslationCallback(BrowserView):
     """This view is called by the EC translation service.
     Saves the translation in Annotations (or directly in the object in case
     of html fields).
+
+    HTTP status matters. eTranslation retries an HTTP callback up to 3 times
+    with exponential back-off, but only on 5xx; 4xx is never retried. Returning
+    200 for any outcome - which this view used to do - tells the platform the
+    delivery succeeded and forfeits those retries permanently, so a transient
+    fault on our side (Redis unavailable, a bug in the handler) silently
+    destroys a translation eTranslation had already produced. See
+    artifacts/etranslation-docs/README.md.
     """
 
     def __call__(self):
@@ -220,9 +266,25 @@ class TranslationCallback(BrowserView):
                 data = self._parse_rest_v2_callback()
             else:
                 data = self._parse_legacy_callback()
+        except (CallbackDeliveryError, CallbackPayloadError) as e:
+            status, body = callback_failure_response(e)
+            if status == 200:
+                # A failure notification, not a delivery. This is the only
+                # signal we get about which languages eTranslation could not
+                # produce, and it used to be invisible.
+                logger.error("event=etranslation.callback.delivery_error error=%s", e)
+            else:
+                logger.error("event=etranslation.callback.rejected error=%s", e)
+            self.request.response.setStatus(status)
+            return json.dumps(body)
         except Exception as e:
+            # Our own failure: unreadable body, Redis unavailable, an
+            # unexpected bug. 503 so the platform's 3 retries apply instead of
+            # the delivery being written off as successful.
             logger.exception("event=etranslation.callback.error error=%s", e)
-            return json.dumps({"error_type": exception_to_json(e)})
+            status, body = callback_failure_response(e)
+            self.request.response.setStatus(status)
+            return json.dumps(body)
 
         opts = {
             "delay": 0,  # Delay in milliseconds
@@ -231,7 +293,19 @@ class TranslationCallback(BrowserView):
             "lifo": False,  # we use FIFO queing
         }
 
-        queue_job("save_etranslation", "save_translated_html", data, opts)
+        try:
+            queue_job("save_etranslation", "save_translated_html", data, opts)
+        except Exception as e:
+            # The translation exists upstream but we could not queue it. This is
+            # exactly the case a retry is for.
+            logger.exception(
+                "event=etranslation.callback.queue_failed obj_path=%s error=%s",
+                data.get("obj_path"),
+                e,
+            )
+            self.request.response.setStatus(503)
+            return json.dumps({"error_type": exception_to_json(e)})
+
         logger.info(
             "event=etranslation.callback.queue_save obj_path=%s html_length=%s",
             data.get("obj_path"),
@@ -241,8 +315,19 @@ class TranslationCallback(BrowserView):
         return json.dumps({"status": "ok"})
 
     def _parse_rest_v2_callback(self):
-        body = self.request._file.read()
-        payload = json.loads(body.decode("utf-8"))
+        try:
+            body = self.request._file.read()
+            payload = json.loads(body.decode("utf-8"))
+        except Exception as e:
+            # Unreadable body or invalid JSON. Re-POSTing produces the same
+            # bytes, so this is a client error, not a transient fault.
+            raise CallbackPayloadError(
+                "REST v2 eTranslation callback body unreadable: %s" % e
+            )
+        if not isinstance(payload, dict):
+            raise CallbackPayloadError(
+                "REST v2 eTranslation callback payload is not a JSON object"
+            )
 
         request_id = payload.get("requestId")
         source_language = payload.get("sourceLanguage")
@@ -268,16 +353,25 @@ class TranslationCallback(BrowserView):
         )
 
         if error_code or error_message:
-            raise ValueError(
-                "REST v2 eTranslation callback error: requestId=%s "
-                "errorCode=%s errorMessage=%s" % (request_id, error_code, error_message)
+            raise CallbackDeliveryError(
+                "requestId=%s errorCode=%s errorMessage=%s "
+                "targetLanguage=%s externalReference=%s"
+                % (
+                    request_id,
+                    error_code,
+                    error_message,
+                    target_language,
+                    extref,
+                )
             )
 
         if not extref:
-            raise ValueError("REST v2 eTranslation callback missing externalReference")
+            raise CallbackPayloadError(
+                "REST v2 eTranslation callback missing externalReference"
+            )
 
         if not result:
-            raise ValueError("REST v2 eTranslation callback missing result")
+            raise CallbackPayloadError("REST v2 eTranslation callback missing result")
 
         decoded_bytes = base64.b64decode(result)
         html = decoded_bytes.decode("utf-8")
