@@ -302,11 +302,16 @@ def get_footer_text_data(_, data):
     return {"footer_text": data[0]} if data else {}
 
 
-def get_data_for_mission_signatory(profile_id, language="en", data=DISCODATA_URLS, version = DISCODATA_VERSION):
+def get_data_for_mission_signatory(
+    profile_id,
+    language="en",
+    data=DISCODATA_URLS,
+    version=DISCODATA_VERSION,
+):
     """Fetches data from DISCODATA."""
     if language != "en":
         temp = get_governance_data(profile_id, data)
-        if not temp.get("governance",[]):
+        if not temp.get("governance", []):
             logger.info("get_data_for_mission_signatory reload english")
             data = getDiscodataUrlsByVersion(version, "en")
 
