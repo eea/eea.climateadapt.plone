@@ -27,6 +27,7 @@ from plone.dexterity.utils import createContentInContainer
 from zope.annotation.interfaces import IAnnotations
 
 from eea.climateadapt.scripts import get_plone_site
+from eea.climateadapt.config import ECDE_PATH
 
 logger = logging.getLogger("eea.climateadapt")
 logging.basicConfig()
@@ -94,7 +95,7 @@ def save_indicator(indicator, site, data):
     print("=============================================")
     print((indicator["theme"]))
 
-    folder_path = "en/knowledge/european-climate-data-explorer/"
+    folder_path = f"en/{ECDE_PATH}/"
     folder = site.restrictedTraverse(folder_path)
 
     for theme_name in indicator["theme"]:
@@ -150,7 +151,7 @@ def save_indicator(indicator, site, data):
 def main():
     site = get_plone_site()
     data = get_source_data()
-    base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
+    base_folder = site.restrictedTraverse(f"en/{ECDE_PATH}")
     annot = IAnnotations(base_folder)
     annot._p_changed = True
     annot["c3s_json_data"] = {"data": data, "fetched": datetime.datetime.now()}

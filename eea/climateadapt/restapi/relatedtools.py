@@ -4,6 +4,7 @@ from zope.component import adapter
 from zope.interface import Interface, implementer
 
 from eea.climateadapt.behaviors.extendedtool import IExtendedTool
+from eea.climateadapt.vocabulary import _tool_types
 
 
 RELATED_FIELDS = (
@@ -14,6 +15,7 @@ RELATED_FIELDS = (
 NON_RELATIONSHIP_VALUES = {"NONSPECIFIC"}
 PORTAL_TYPE = "eea.climateadapt.extendedtool"
 MAX_RELATED_TOOLS = 3
+TOOL_TYPE_TITLES = {token: str(title) for token, title in _tool_types}
 
 
 def normalized_values(values):
@@ -97,12 +99,22 @@ class RelatedTools:
     def _serialize_candidate(self, candidate):
         brain = candidate["brain"]
         obj = brain.getObject()
+        tool_type_token = getattr(obj, "tool_type", None)
+        tool_type = (
+            {
+                "token": tool_type_token,
+                "title": TOOL_TYPE_TITLES.get(tool_type_token, tool_type_token),
+            }
+            if tool_type_token
+            else None
+        )
         return {
             "@id": brain.getURL(),
             "@type": brain.portal_type,
             "title": brain.Title,
             "description": brain.Description,
             "tool_provider": getattr(obj, "tool_provider", ""),
+            "tool_type": tool_type,
             "shared": candidate["shared"],
         }
 

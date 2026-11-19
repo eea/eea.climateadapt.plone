@@ -1052,6 +1052,7 @@ msgstr "Opi lisäämään erityyppistä tietoa Climate-ADAPTiin."
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Tulvat"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Terveysvaikutus:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Lämpö"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Kansallinen sopeutumispolitiikka"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Luontoratkaisut"
 
@@ -1830,6 +1833,7 @@ msgstr "Vieritä ylös"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Merenpinnan nousu"
 
@@ -2310,6 +2314,290 @@ msgstr ""
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:451
 msgid "sort_by"
 msgstr "Järjestä"
+
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Vertaisarvioitu menetelmä"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Validointi tapaustutkimuksella"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Asiantuntijoiden validointi / arvostettu laitos"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Käyttäjätestaus / pilottitestaus"
+
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Ulkoisten tarjoajien julkiset aineistot"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Hankkeen tuottamat tai käsittelemät aineistot"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Käyttäjän toimittamat syötetiedot"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Kaupalliset tai kolmannen osapuolen tietojen tarjoajat"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Sekalähteet"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Historiallinen/menneisyys"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Nykyhetki"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Tulevaisuuteen suuntautuva"
+
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Komission yksiköt ja/tai virastot"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Valtioiden rajat ylittävät verkostot"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Kansalliset viranomaiset"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Alueelliset viranomaiset"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Yritykset/konsultit"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Politiikkaa tukevat tutkijat"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Kansalaiset"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Kartat ja kaaviot"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Raportit ja päätöksenteon tuki"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Aineistot ja indikaattorit"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Kuvaukset"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Hyvien käytäntöjen esimerkit"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Vaihe 1: Sopeutumisen edellytysten luominen"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Vaihe 2: Ilmastonmuutoksen riskien ja haavoittuvuuksien arviointi"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Vaihe 3: Sopeutumisvaihtoehtojen tunnistaminen"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Vaihe 4: Sopeutumisvaihtoehtojen arviointi ja priorisointi"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Vaihe 5: Täytäntöönpano"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Vaihe 6: Seuranta ja arviointi"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Kaupunkialueet"
+
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Maailmanlaajuinen"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Kansainvälinen"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "EU:n syrjäisimmät alueet"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Alueellinen"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Havaintoaineistot"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Uudelleenanalyysiaineistot"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Ilmastomallien tulokset"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Vaikutus- tai alakohtaisten mallien tulokset"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Sosioekonomiset tiedot tai altistumistiedot"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Muu"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Täysin avoin data"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Avoin data, joka edellyttää lähteen mainitsemista"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Lisensoitu tai kaupallinen data"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Rajoitettu"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Sekamuotoinen"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Käyttöohjeet / dokumentaatio"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Helpdesk / yhteydenotto tukeen"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Oppaat / koulutusmateriaali"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Vuorovaikutteinen apu (chatbot / opas)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Paljon käyttöä"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Kohtalaisesti käyttöä"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Vähän käyttöä"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Tuntematon"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Julkinen organisaatio"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Yksityinen organisaatio"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Julkisen ja yksityisen sektorin kumppanuus"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Korkea"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Kohtalainen"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Matala"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Oikeudenmukainen palautumiskyky"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Kustannus-hyötysuhde"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Voimakkaat sateet / rankkasateet"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Rannikkotulvat / myrskyvuoksi"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Kuivuus"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Palo / maastopalo"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Tuuli / myrsky"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Maanvyörymä"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Kylmät aallot / äärimmäinen kylmyys"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Lumi / lumivyöry"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Ei tiettyyn vaaraan liittyvä"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

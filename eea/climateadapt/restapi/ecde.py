@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 
+from eea.climateadapt.config import ECDE_PATH
 from eea.climateadapt.restapi.navigation import ICCARestapiLayer
 from zope.component import getMultiAdapter
 
@@ -63,15 +64,22 @@ class C3SIndicatorsOverview(TranslationUtilsMixin):
         # current_lang = "en"
 
         site = portal.get()
-        base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
-        datastore = IAnnotations(base_folder).get("c3s_json_data", {})
-
-        if category_id not in datastore["data"]["themes"]:
+        base_folder = site.restrictedTraverse(f"en/{ECDE_PATH}", None)
+        if base_folder is None:
+            logger.warning("ECDE base folder is missing at /en/%s", ECDE_PATH)
             return {}
 
-        res["description"] = datastore["data"]["themes"][category_id]["description"]
+        datastore = IAnnotations(base_folder).get("c3s_json_data", {})
+        data = datastore.get("data", {})
+        themes = data.get("themes", {})
 
-        for indicator in datastore["data"]["themes"][category_id]["apps"]:
+        if category_id not in themes:
+            return {}
+
+        theme = themes[category_id]
+        res["description"] = theme.get("description", "")
+
+        for indicator in theme.get("apps", []):
             if indicator["title"] in items:
                 obj = items[indicator["title"]]["obj"]
                 if current_lang != "en":
@@ -123,13 +131,13 @@ class C3SIndicatorsData(object):
         site = portal.get()
         # lg = get_current_language(self.context, self.request)
         lg = "en"
-        base_folder = site[lg]["knowledge"]["european-climate-data-explorer"]
+        base_folder = site.restrictedTraverse(f"{lg}/{ECDE_PATH}", None)
+        if base_folder is None:
+            logger.warning("ECDE base folder is missing at /%s/%s", lg, ECDE_PATH)
+            return ""
+
         datastore = IAnnotations(base_folder).get("c3s_json_data", {})
-
-        if "glossary_table" in datastore["data"]:
-            return datastore["data"]["glossary_table"]
-
-        return ""
+        return datastore.get("data", {}).get("glossary_table", "")
 
     def __call__(self, expand=False):
         if not self.is_ecde_context():

@@ -2710,6 +2710,7 @@ msgstr "Dowiedz się, jak dostarczyć różne rodzaje informacji do Climate-ADAP
 # ,
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Powodzie"
 
@@ -3052,6 +3053,7 @@ msgstr "Wpływ na zdrowie:"
 
 # ,
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Ciepło"
 
@@ -3788,6 +3790,7 @@ msgid "National adaption policy"
 msgstr "Krajowa polityka adaptacyjna"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Rozwiązania oparte na przyrodzie"
 
@@ -4610,6 +4613,7 @@ msgstr "Przewiń na górę"
 # ,
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Wzrost poziomu morza"
 
@@ -5730,6 +5734,290 @@ msgstr "Sortuj według"
 # ,
 # ,
 # ,
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Metodologia recenzowana przez ekspertów"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Walidacja na podstawie studium przypadku"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Walidacja ekspercka / renomowana instytucja"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Testy z udziałem użytkowników / testy pilotażowe"
+
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Publiczne zbiory danych od zewnętrznych dostawców"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Zbiory danych utworzone lub przetworzone w ramach projektu"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Dane wejściowe przekazane przez użytkownika"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Komercyjni lub zewnętrzni dostawcy danych"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Źródła mieszane"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Historyczne/przeszłość"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Teraźniejszość"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Zorientowany na przyszłość"
+
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Służby i/lub agencje Komisji"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Sieci transgraniczne"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Organy krajowe"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Organy szczebla regionalnego"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Przedsiębiorstwa/konsultanci"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Naukowcy wspierający politykę"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Obywatele"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Mapy i wykresy"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Raporty i wsparcie decyzji"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Zbiory danych i wskaźniki"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Opisy"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Przykłady dobrych praktyk"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Krok 1: Przygotowanie podstaw do adaptacji"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Krok 2: Ocena ryzyka i podatności na zmianę klimatu"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Krok 3: Określenie możliwości adaptacji"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Krok 4: Ocena i ustalanie priorytetów możliwości adaptacji"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Krok 5: Wdrażanie"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Krok 6: Monitorowanie i ocena"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Obszary miejskie"
+
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globalny"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Transnarodowy"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Regiony najbardziej oddalone UE"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Subnarodowy"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Zbiory danych obserwacyjnych"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Zbiory danych reanalizy"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Wyniki modeli klimatycznych"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Wyniki modeli oddziaływania lub sektorowych"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Dane społeczno-ekonomiczne lub dotyczące ekspozycji"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Inne"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "W pełni otwarte dane"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Otwarte dane z obowiązkiem podania źródła"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Dane licencjonowane lub komercyjne"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Ograniczone"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Mieszane"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Przewodnik użytkownika / dokumentacja"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Pomoc techniczna / kontakt z pomocą"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Samouczki / materiały szkoleniowe"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Interaktywna pomoc (chatbot / przewodnik)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Wysokie wykorzystanie"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Średnie wykorzystanie"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Niskie wykorzystanie"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Nieznane"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Organizacja publiczna"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Organizacja prywatna"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Partnerstwo publiczno-prywatne"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Wysoki"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Umiarkowany"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Niski"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Sprawiedliwa odporność"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Stosunek kosztów do korzyści"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Intensywne opady / ekstremalne deszcze"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Powódź przybrzeżna / fala sztormowa"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Susza"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Pożar / pożar lasu"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Wiatr / burza"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Osuwisko"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Fale chłodu / ekstremalne zimno"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Śnieg / lawina"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Niespecyficzne dla zagrożenia"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

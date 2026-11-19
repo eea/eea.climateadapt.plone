@@ -1052,6 +1052,7 @@ msgstr "Μάθετε πώς να συνεισφέρετε διαφορετικο
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Πλημμύρα"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Επίπτωση στην υγεία:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Θερμότητα"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Εθνική πολιτική προσαρμογής"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Λύσεις βασισμένες στη φύση"
 
@@ -1830,6 +1833,7 @@ msgstr "Κάντε κύλιση στην κορυφή"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Άνοδος της στάθμης της θάλασσας"
 
@@ -2311,6 +2315,290 @@ msgstr "narrow_search_options"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:451
 msgid "sort_by"
 msgstr "ταξινόμηση_κατά"
+
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Μεθοδολογία αξιολογημένη από ομοτίμους"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Επικύρωση μέσω μελέτης περίπτωσης"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Επικύρωση από ειδικούς / αξιόπιστο ίδρυμα"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Δοκιμή από χρήστες / πιλοτική δοκιμή"
+
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Δημόσια σύνολα δεδομένων από εξωτερικούς παρόχους"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Σύνολα δεδομένων που δημιουργήθηκαν ή υποβλήθηκαν σε επεξεργασία από το έργο"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Δεδομένα εισόδου που παρέχονται από τον χρήστη"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Εμπορικοί πάροχοι δεδομένων ή πάροχοι τρίτων"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Μικτές πηγές"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Ιστορικά/παρελθόν"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Παρόν"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Με προοπτική προς το μέλλον"
+
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Υπηρεσίες ή/και οργανισμοί της Επιτροπής"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Διασυνοριακά δίκτυα"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Εθνικές αρχές"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Υποεθνικές αρχές"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Επιχειρήσεις/σύμβουλοι"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Ερευνητές που υποστηρίζουν τη χάραξη πολιτικής"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Πολίτες"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Χάρτες και γραφήματα"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Εκθέσεις και υποστήριξη λήψης αποφάσεων"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Σύνολα δεδομένων και δείκτες"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Αφηγηματικά κείμενα"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Παραδείγματα βέλτιστων πρακτικών"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Βήμα 1: Προετοιμασία του εδάφους για την προσαρμογή"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Βήμα 2: Αξιολόγηση των κινδύνων και των ευπαθειών της κλιματικής αλλαγής"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Βήμα 3: Προσδιορισμός επιλογών προσαρμογής"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Βήμα 4: Αξιολόγηση και ιεράρχηση επιλογών προσαρμογής"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Βήμα 5: Υλοποίηση"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Βήμα 6: Παρακολούθηση και αξιολόγηση"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Αστικές περιοχές"
+
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Παγκόσμιο"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Διακρατικό"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Εξόχως απόκεντρες περιοχές της ΕΕ"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Υποεθνικό"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Παρατηρησιακά σύνολα δεδομένων"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Σύνολα δεδομένων επανάλυσης"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Αποτελέσματα κλιματικών μοντέλων"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Αποτελέσματα μοντέλων επιπτώσεων ή τομεακών μοντέλων"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Κοινωνικοοικονομικά δεδομένα ή δεδομένα έκθεσης"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Άλλο"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Πλήρως ανοικτά δεδομένα"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Ανοικτά δεδομένα με υποχρέωση αναφοράς της πηγής"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Δεδομένα με άδεια χρήσης ή εμπορικά δεδομένα"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Περιορισμένη πρόσβαση"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Μικτό"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Οδηγίες χρήσης / τεκμηρίωση"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Γραφείο υποστήριξης / επικοινωνία με την υποστήριξη"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Εκπαιδευτικά προγράμματα / υλικό κατάρτισης"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Διαδραστική βοήθεια (chatbot / οδηγός)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Υψηλή χρήση"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Μέτρια χρήση"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Χαμηλή χρήση"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Άγνωστο"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Δημόσιος οργανισμός"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Ιδιωτικός οργανισμός"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Σύμπραξη δημόσιου και ιδιωτικού τομέα"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Υψηλό"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Μέτριο"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Χαμηλό"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Δίκαιη ανθεκτικότητα"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Σχέση κόστους-οφέλους"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Έντονες βροχοπτώσεις / ακραίες βροχοπτώσεις"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Παράκτιες πλημμύρες / παλιρροϊκή καταιγίδα"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Ξηρασία"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Πυρκαγιά / δασική πυρκαγιά"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Άνεμος / καταιγίδα"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Κατολίσθηση"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Ψυχρά κύματα / ακραίο ψύχος"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Χιόνι / χιονοστιβάδα"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Μη ειδικό για συγκεκριμένο κίνδυνο"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541

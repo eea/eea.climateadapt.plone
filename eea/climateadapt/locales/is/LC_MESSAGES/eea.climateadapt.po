@@ -1052,6 +1052,7 @@ msgstr "Finndu út hvernig á að leggja mismunandi gerðir af upplýsingum til 
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Flóð"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Heilsuáhrif:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Hiti"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Landsstefna aðlögunar"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Náttúrulegar lausnir"
 
@@ -1830,6 +1833,7 @@ msgstr "Skrunaðu efst"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Sjávarborðshækkun"
 
@@ -2313,6 +2317,290 @@ msgid "sort_by"
 msgstr "Raða eftir"
 
 # ,
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Aðferðafræði ritrýnd af jafningjum"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Staðfesting með tilviksrannsókn"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Staðfesting sérfræðinga / virt stofnun"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Notendaprófanir / tilraunaprófanir"
+
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Opinber gagnasöfn frá ytri aðilum"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Gagnasöfn sem verkefnið útbjó eða vann úr"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Inntaksgögn frá notanda"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Viðskiptaaðilar eða þriðju aðilar sem útvega gögn"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Blandaðar heimildir"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Sögulegt/fortíð"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Nútíð"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Framsýnt"
+
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Þjónustudeildir og/eða stofnanir framkvæmdastjórnarinnar"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Net yfir landamæri"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Landsyfirvöld"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Svæðisyfirvöld"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Fyrirtæki/ráðgjafar"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Rannsakendur sem styðja stefnumótun"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Borgarar"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Kort og gröf"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Skýrslur og stuðningur við ákvarðanatöku"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Gagnasöfn og vísar"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Frásagnir"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Dæmi um bestu starfshætti"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Skref 1: Undirbúningur að aðlögun"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Skref 2: Mat á loftslagsáhættu og viðkvæmni"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Skref 3: Greining aðlögunarmöguleika"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Skref 4: Mat og forgangsröðun aðlögunarmöguleika"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Skref 5: Framkvæmd"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Skref 6: Vöktun og mat"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Þéttbýlissvæði"
+
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Á heimsvísu"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Þverþjóðlegt"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Ystu jaðarsvæði ESB"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Undirþjóðlegt"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Athugunargagnasöfn"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Endurgreiningargagnasöfn"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Niðurstöður loftslagslíkana"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Niðurstöður áhrifa- eða geiralíkana"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Félagshagfræðileg gögn eða gögn um váhrif"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Annað"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Alveg opin gögn"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Opin gögn með kröfu um heimildatilvísun"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Gögn með leyfi eða viðskiptagögn"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Takmarkað"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Blandað"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Notendaleiðbeiningar / gögn"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Þjónustuver / samband við stuðning"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Kennsluefni / þjálfunarefni"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Gagnvirk aðstoð (spjallmenni / leiðarvísir)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Mikil notkun"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Miðlungsnotkun"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Lítil notkun"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Óþekkt"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Opinber stofnun"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Einkastofnun"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Samstarf opinberra aðila og einkaaðila"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Hátt"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Miðlungs"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Lágt"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Réttlátur viðnámsþróttur"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Kostnaðar- og ábatahlutfall"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Mikil úrkoma / úrhellisrigning"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Strandflóð / stormflóð"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Þurrkur"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Eldur / gróðureldur"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Vindur / stormur"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Skriða"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Kuldaköst / mikill kuldi"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Snjór / snjóflóð"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Ekki bundið við tiltekna hættu"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

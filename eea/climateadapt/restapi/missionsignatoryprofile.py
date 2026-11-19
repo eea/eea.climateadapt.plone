@@ -95,7 +95,7 @@ DISCODATA_URLS = getDiscodataUrlsByVersion()
 #     for key, url in DISCODATA_URLS.items()
 # }
 
-SIGN_PROFILE_HEADER_IMAGE_PATH = "/cca/en/mission/sig-profile-header.jpeg"
+SIGN_PROFILE_HEADER_IMAGE_PATH = "/cca/en/eu-adaptation/adaptation-context/eu-mission-on-adaptation/signatory-reporting/sig-profile-header.jpeg"
 
 
 def fetch_discodata_json(url):

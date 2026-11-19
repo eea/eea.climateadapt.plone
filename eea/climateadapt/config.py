@@ -1,5 +1,7 @@
 # These are the default locations, where content is created
 
+ECDE_PATH = "eu-adaptation/assessing-climate-risks/european-climate-data-explorer"
+
 DEFAULT_LOCATIONS = {
     "DOCUMENT": (
         "metadata/publications",

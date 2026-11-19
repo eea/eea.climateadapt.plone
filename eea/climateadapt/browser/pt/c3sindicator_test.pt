@@ -149,4 +149,4 @@ window.define = window._define;
 
 <!-- <link rel="stylesheet" type="text/css" media="screen" href="http://ecde-dev.copernicus-climate.eu/css/style-maris.css?v=ec476a3554" /> -->
 
-<br><br><p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/knowledge/european-climate-data-explorer/disclaimer">Disclaimer</a></p>
+<br><br><p i18n:translate="">Content in the European Climate Data Explorer pages is delivered by the <a href="https://climate.copernicus.eu/">Copernicus Climate Change Service (C3S)</a> implemented by ECMWF. <a href="/en/eu-adaptation/assessing-climate-risks/european-climate-data-explorer/disclaimer">Disclaimer</a></p>

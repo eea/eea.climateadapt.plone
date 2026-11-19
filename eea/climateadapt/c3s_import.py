@@ -20,6 +20,7 @@ from collections import OrderedDict
 
 
 from eea.climateadapt.behaviors.aceitem import IAceItem
+from eea.climateadapt.config import ECDE_PATH
 from eea.climateadapt.restapi.slate import iterate_children
 
 # from plone.api.content import get_state
@@ -97,7 +98,7 @@ def save_indicator(indicator, site, data):
     print("=============================================")
     print((indicator["theme"]))
 
-    folder_path = "en/knowledge/european-climate-data-explorer/"
+    folder_path = f"en/{ECDE_PATH}/"
     folder = site.restrictedTraverse(folder_path)
 
     for theme_name in indicator["theme"]:
@@ -156,7 +157,7 @@ def c3s_import(site):
 
     site = api.portal.get()
     data = get_source_data()
-    base_folder = site["en"]["knowledge"]["european-climate-data-explorer"]
+    base_folder = site.restrictedTraverse(f"en/{ECDE_PATH}")
     annot = IAnnotations(base_folder)
     annot._p_changed = True
     annot["c3s_json_data"] = {"data": data, "fetched": datetime.datetime.now()}

@@ -25,7 +25,14 @@ from plone.uuid.interfaces import IUUID
 from eea.climateadapt.translation.core import find_untranslated, queue_translate
 from eea.climateadapt.utils import force_unlock
 
-from .core import ingest_html, queue_job, setup_translation_object
+from .core import (
+    _requeue_subtree_for_translation,
+    _same_content,
+    _translation_owner,
+    ingest_html,
+    queue_job,
+    setup_translation_object,
+)
 from .utils import get_site_languages
 
 logger = logging.getLogger("eea.climateadapt.translation")
@@ -954,6 +961,12 @@ class AdminCutAndPaste(BrowserView):
             return
 
         # 6. Move non-canonical translations first
+        #
+        # Owners whose translations get displaced below. Re-queued only after
+        # every move has settled, so what gets translated is the freshly
+        # realigned tree.
+        requeue = []
+
         for lang, trans_obj in list(translations.items()):
             if lang == "en":
                 continue
@@ -973,12 +986,47 @@ class AdminCutAndPaste(BrowserView):
                 self.errors.append(f"Translation parent folder for '{lang}' is None.")
                 continue
 
-            # Delete existing object at destination path in this language
+            # Make room at the destination path in this language.
+            #
+            # Replacing whatever already lives there is the intended path
+            # realignment, but it must not be blind: an unconditional delete
+            # destroys the translations of an unrelated object, and deleting a
+            # folder takes its whole subtree with it. Same guard as
+            # sync_translation_paths - identify the owner, log it, and put that
+            # owner back in the translation queue.
             target_obj_path = (
                 "/".join(lang_target_parent.getPhysicalPath()) + "/" + new_id
             )
             existing_trans = content.get(target_obj_path)
-            if existing_trans is not None:
+
+            if existing_trans is not None and not _same_content(
+                existing_trans, trans_obj
+            ):
+                owner = _translation_owner(existing_trans)
+                logger.warning(
+                    "admin-cut-and-paste: removing %s (uid=%s, type=%s) to make "
+                    "room for the %s translation of %s",
+                    target_obj_path,
+                    IUUID(existing_trans, None),
+                    existing_trans.portal_type,
+                    lang,
+                    source_path_str,
+                )
+                self.errors.append(
+                    f"Destination {target_obj_path} was already occupied by an "
+                    f"unrelated {existing_trans.portal_type} "
+                    f"(uid={IUUID(existing_trans, None)}). It was deleted to "
+                    "realign the path."
+                )
+                if owner is not None and not _same_content(owner, source_obj):
+                    logger.warning(
+                        "admin-cut-and-paste: %s was the %s translation of %s - "
+                        "re-queueing that subtree for translation",
+                        target_obj_path,
+                        lang,
+                        "/".join(owner.getPhysicalPath()),
+                    )
+                    requeue.append((owner, lang))
                 try:
                     content.delete(existing_trans, check_linkintegrity=False)
                     self.success_info.append(
@@ -1006,7 +1054,23 @@ class AdminCutAndPaste(BrowserView):
         # 7. Finally, move the canonical (English) object
         target_en_path = "/".join(target_parent.getPhysicalPath()) + "/" + new_id
         existing_en = content.get(target_en_path)
-        if existing_en is not None:
+        if existing_en is not None and not _same_content(existing_en, source_obj):
+            # This one has no translation owner to rescue - it is canonical
+            # English content being destroyed. Make the operator see it.
+            logger.warning(
+                "admin-cut-and-paste: removing English object %s (uid=%s, type=%s) "
+                "to make room for %s",
+                target_en_path,
+                IUUID(existing_en, None),
+                existing_en.portal_type,
+                source_path_str,
+            )
+            self.errors.append(
+                f"Destination {target_en_path} was occupied by an unrelated "
+                f"{existing_en.portal_type} titled "
+                f"{getattr(existing_en, 'title', '')!r} "
+                f"(uid={IUUID(existing_en, None)}). It was deleted."
+            )
             try:
                 content.delete(existing_en, check_linkintegrity=False)
                 self.success_info.append(
@@ -1026,3 +1090,20 @@ class AdminCutAndPaste(BrowserView):
             self.status = "SUCCESS"
         except Exception as e:
             self.errors.append(f"Failed to move English object: {str(e)}")
+
+        # Translation handlers are disabled for this whole operation, so nothing
+        # else will notice content that just lost its translations. Re-queue the
+        # displaced owners ourselves, after the moves have settled.
+        for owner, lang in requeue:
+            try:
+                _requeue_subtree_for_translation(owner, lang)
+                self.success_info.append(
+                    f"Re-queued translation of {owner.absolute_url()} for {lang} "
+                    "after its translation was displaced"
+                )
+            except Exception:
+                logger.exception(
+                    "admin-cut-and-paste: could not re-queue %s for %s",
+                    "/".join(owner.getPhysicalPath()),
+                    lang,
+                )

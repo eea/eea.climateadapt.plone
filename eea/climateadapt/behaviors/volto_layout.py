@@ -2748,6 +2748,14 @@ extendetool_layout_blocks = {
                                     },
                                 },
                                 {
+                                    "@id": "29204a55-ad68-4ba8-aeca-9b0b32b450de",
+                                    "field": {
+                                        "id": "tool_type",
+                                        "title": "Tool type",
+                                        "widget": "choices",
+                                    },
+                                },
+                                {
                                     "@id": "421bcac3-5d75-45af-a524-06f8d308e9e5",
                                     "field": {
                                         "id": "tool_input",

@@ -1052,6 +1052,7 @@ msgstr "Zistite, ako prispieť rôznymi typmi informácií do Climate-ADAPT."
 
 # ,
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
 msgstr "Záplavy"
 
@@ -1198,6 +1199,7 @@ msgid "Health impact:"
 msgstr "Vplyv na zdravie:"
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
 msgstr "Teplo"
 
@@ -1525,6 +1527,7 @@ msgid "National adaption policy"
 msgstr "Národná adaptačná politika"
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
 msgstr "Riešenia založené na prírode"
 
@@ -1830,6 +1833,7 @@ msgstr "Prejdite na začiatok"
 
 # ,
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
 msgstr "Vzostup hladiny mora"
 
@@ -2313,6 +2317,290 @@ msgid "sort_by"
 msgstr "triediť podľa"
 
 # ,
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Metodika recenzovaná odborníkmi"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Validácia na základe prípadovej štúdie"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Validácia odborníkmi / renomovanou inštitúciou"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Testovanie používateľmi / pilotné testovanie"
+
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Verejné súbory údajov od externých poskytovateľov"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Súbory údajov vytvorené alebo spracované projektom"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Vstupné údaje poskytnuté používateľom"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Komerční alebo externí poskytovatelia údajov"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Zmiešané zdroje"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Historické/minulé"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Súčasnosť"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Orientovaný na budúcnosť"
+
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Služby a/alebo agentúry Komisie"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Cezhraničné siete"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Vnútroštátne orgány"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Subnárodné orgány"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Podniky/konzultanti"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Výskumníci podporujúci tvorbu politík"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Občania"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Mapy a grafy"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Správy a podpora rozhodovania"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Súbory údajov a ukazovatele"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Opisné texty"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Príklady osvedčených postupov"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Krok 1: Príprava podmienok na adaptáciu"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Krok 2: Posúdenie rizík a zraniteľnosti súvisiacich so zmenou klímy"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Krok 3: Určenie možností adaptácie"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Krok 4: Posúdenie a stanovenie priorít možností adaptácie"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Krok 5: Realizácia"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Krok 6: Monitorovanie a hodnotenie"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Mestské oblasti"
+
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Globálny"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Nadnárodný"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "Najvzdialenejšie regióny EÚ"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Subnárodný"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Pozorovacie súbory údajov"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Súbory údajov z opätovnej analýzy"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Výstupy klimatických modelov"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Výstupy modelov vplyvu alebo sektorových modelov"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Socioekonomické údaje alebo údaje o expozícii"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Iné"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Plne otvorené údaje"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Otvorené údaje s požiadavkou na uvedenie zdroja"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Licencované alebo komerčné údaje"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Obmedzené"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Zmiešané"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Používateľská príručka / dokumentácia"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Podpora / kontakt na podporu"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Návody / školiace materiály"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Interaktívna pomoc (chatbot / sprievodca)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Vysoké využitie"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Stredné využitie"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Nízke využitie"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Neznáme"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Verejná organizácia"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Súkromná organizácia"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Verejno-súkromné partnerstvo"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Vysoká"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Mierna"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Nízka"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Spravodlivá odolnosť"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Pomer nákladov a prínosov"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Silné zrážky / extrémne dažde"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Pobrežné záplavy / búrkový príliv"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Sucho"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Požiar / lesný požiar"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Vietor / búrka"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Zosuv pôdy"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Studené vlny / extrémny chlad"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Sneh / lavína"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Bez špecifického nebezpečenstva"
+
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
 msgid "text_searchitem_location"

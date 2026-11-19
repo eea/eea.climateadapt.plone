@@ -728,7 +728,7 @@ msgstr ""
 #: ../../climateadapt/browser/overrides.py:40
 #: ../../climateadapt/vocabulary.py:305
 msgid "Coastal areas"
-msgstr ""
+msgstr "Sinerissami sumiiffiit"
 
 #: ../../climateadapt/vocabulary.py:628
 msgid "Coastal flooding"
@@ -925,7 +925,7 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:1251
 msgid "European"
-msgstr ""
+msgstr "Europami"
 
 #: ../../climateadapt/browser/pt/landing_page_forest.pt:241
 msgid "European Climate Data Explorer"
@@ -1007,8 +1007,9 @@ msgid "Find out how to contribute different types of information to Climate-ADAP
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:359
+#: ../../climateadapt/vocabulary.py:567
 msgid "Flooding"
-msgstr ""
+msgstr "Qarsutsinerit"
 
 #: ../../climateadapt/browser/overrides.py:38
 #: ../../climateadapt/vocabulary.py:310
@@ -1144,8 +1145,9 @@ msgid "Health impact:"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:591
+#: ../../climateadapt/vocabulary.py:570
 msgid "Heat"
-msgstr ""
+msgstr "Kiak"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:105
 msgid "Heat index of HHWS:"
@@ -1420,7 +1422,7 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:315
 msgid "Mountain areas"
-msgstr ""
+msgstr "Qaqqani sumiiffiit"
 
 #: ../../climateadapt/vocabulary.py:1254
 msgid "Municipal/Local"
@@ -1428,11 +1430,11 @@ msgstr ""
 
 #: ../../climateadapt/vocabulary.py:1231
 msgid "NGOs"
-msgstr ""
+msgstr "Kattuffiit namminersortut"
 
 #: ../../climateadapt/vocabulary.py:1252
 msgid "National"
-msgstr ""
+msgstr "Nunatsinni"
 
 #: ../../climateadapt/browser/pt/countries-heat-index.pt:53
 msgid "National HHAP"
@@ -1452,8 +1454,9 @@ msgid "National adaption policy"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:334
+#: ../../climateadapt/vocabulary.py:368
 msgid "Nature-based solutions"
-msgstr ""
+msgstr "Pinngortitami tunngaveqartut aaqqiissutit"
 
 #: ../../climateadapt/browser/pt/health_homepage.pt:20
 #: ../../climateadapt/browser/pt/viewlet_sharepage_submenu.pt:16
@@ -1732,8 +1735,9 @@ msgid "Scroll to top"
 msgstr ""
 
 #: ../../climateadapt/vocabulary.py:361
+#: ../../climateadapt/vocabulary.py:569
 msgid "Sea Level Rise"
-msgstr ""
+msgstr "Immap qaffakkiartornera"
 
 #: ../../climateadapt/browser/pt/observatory_indicators_search.pt:101
 msgid "Search"
@@ -2176,6 +2180,290 @@ msgstr ""
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:451
 msgid "sort_by"
 msgstr ""
+
+#: ../../climateadapt/vocabulary.py:468
+msgid "Peer-reviewed methodology"
+msgstr "Periuseq ilisimatuunit nalilersorneqarsimasoq"
+
+#: ../../climateadapt/vocabulary.py:469
+msgid "Case-study validation"
+msgstr "Misissuinermik assersuummik uppernarsaat"
+
+#: ../../climateadapt/vocabulary.py:470
+msgid "Expert validation / reputable institution"
+msgstr "Ilisimatuunit uppernarsaat / suliffeqarfik tatiginartoq"
+
+#: ../../climateadapt/vocabulary.py:471
+msgid "User testing / pilot testing"
+msgstr "Atuisunit misileraaneq / misileraalluni misiliineq"
+
+#: ../../climateadapt/vocabulary.py:437
+msgid "Public datasets from external providers"
+msgstr "Kalaallit Nunaanni avataanit paasissutissanik katersat tamanut ammasut"
+
+#: ../../climateadapt/vocabulary.py:438
+msgid "Project-generated or processed datasets"
+msgstr "Suliniummit pilersinneqartut suliarineqartulluunniit paasissutissanik katersat"
+
+#: ../../climateadapt/vocabulary.py:439
+msgid "User-provided input data"
+msgstr "Atuisumit tunniunneqartut paasissutissat"
+
+#: ../../climateadapt/vocabulary.py:440
+msgid "Commercial or third-party data providers"
+msgstr "Niueruteqartunit imaluunniit allanit paasissutissanik tunniussisut"
+
+#: ../../climateadapt/vocabulary.py:441
+msgid "Mixed sources"
+msgstr "Paasissutissanik assigiinngitsunik aallaaveqartut"
+
+#: ../../climateadapt/vocabulary.py:518
+msgid "Historical/past"
+msgstr "Oqaluttuarisaanermi/periarfissiut"
+
+#: ../../climateadapt/vocabulary.py:519
+msgid "Present"
+msgstr "Maanna"
+
+#: ../../climateadapt/vocabulary.py:520
+msgid "Forward-looking"
+msgstr "Siunissamut isiginnittoq"
+
+#: ../../climateadapt/vocabulary.py:398
+msgid "Commission services and/or Agencies"
+msgstr "Kommissionip immikkoortortaqarfii aamma/imaluunniit suliffeqarfii"
+
+#: ../../climateadapt/vocabulary.py:399
+msgid "Transboundary networks"
+msgstr "Nunat killeqarfiinik qaangiisut attaveqaqatigiiffii"
+
+#: ../../climateadapt/vocabulary.py:400
+msgid "National authorities"
+msgstr "Nunap oqartussaasui"
+
+#: ../../climateadapt/vocabulary.py:401
+msgid "Subnational authorities"
+msgstr "Nunap immikkoortuini oqartussaasut"
+
+#: ../../climateadapt/vocabulary.py:402
+msgid "Businesses/consultants"
+msgstr "Suliffeqarfiit/siunnersortit"
+
+#: ../../climateadapt/vocabulary.py:403
+msgid "Researchers supporting policy"
+msgstr "Ilisimatuut politikkimik tapersersuisut"
+
+#: ../../climateadapt/vocabulary.py:405
+msgid "Citizens"
+msgstr "Innuttaasut"
+
+#: ../../climateadapt/vocabulary.py:495
+msgid "Maps and graphs"
+msgstr "Nunap assingi titartakkallu"
+
+#: ../../climateadapt/vocabulary.py:496
+msgid "Reports and decision support"
+msgstr "Nalunaarusiat aalajangiinermullu tapersiissutit"
+
+#: ../../climateadapt/vocabulary.py:497
+msgid "Datasets and indicators"
+msgstr "Paasissutissat katersat uuttuutillu"
+
+#: ../../climateadapt/vocabulary.py:498
+msgid "Narratives"
+msgstr "Oqaluttuat"
+
+#: ../../climateadapt/vocabulary.py:499
+msgid "Best practice examples"
+msgstr "Iliuutsinik pitsaasunik assersuutit"
+
+#: ../../climateadapt/vocabulary.py:505
+msgid "Step 1: Preparing the Ground for Adaptation"
+msgstr "Alloriarneq 1: naleqqussarnissamut piareersarneq"
+
+#: ../../climateadapt/vocabulary.py:506
+msgid "Step 2: Assessing Climate Change Risks and Vulnerabilities"
+msgstr "Alloriarneq 2: silap pissusiata allanngoriartornerani aarlerinaatinik nalilersuineq"
+
+#: ../../climateadapt/vocabulary.py:507
+msgid "Step 3: Identifying Adaptation Options"
+msgstr "Alloriarneq 3: naleqqussarnissamut periarfissanik nassaarneq"
+
+#: ../../climateadapt/vocabulary.py:508
+msgid "Step 4: Assessing and Prioritising Adaptation Options"
+msgstr "Alloriarneq 4: naleqqussarnissamut periarfissanik nalilersuineq tulleriissaarinerlu"
+
+#: ../../climateadapt/vocabulary.py:509
+msgid "Step 5: Implementation"
+msgstr "Alloriarneq 5: piviusunngortitsineq"
+
+#: ../../climateadapt/vocabulary.py:510
+msgid "Step 6: Monitoring and Evaluation (M&E)"
+msgstr "Alloriarneq 6: nakkutiginninneq naliliinerlu"
+
+#: ../../climateadapt/vocabulary.py:1725
+msgid "Urban areas"
+msgstr "Illoqarfittut sumiiffiit"
+
+#: ../../climateadapt/vocabulary.py:413
+msgid "Global"
+msgstr "Nunarsuaq tamakkerlugu"
+
+#: ../../climateadapt/vocabulary.py:415
+msgid "Transnational"
+msgstr "Nunat akimorlugit"
+
+#: ../../climateadapt/vocabulary.py:416
+msgid "EU Outermost regions"
+msgstr "EU-mi nunat ungasinnerpaat"
+
+#: ../../climateadapt/vocabulary.py:418
+msgid "Subnational"
+msgstr "Nunap iluani immikkoortoq"
+
+#: ../../climateadapt/vocabulary.py:426
+msgid "Observational datasets"
+msgstr "Paasissutissat alapernaarsukkat"
+
+#: ../../climateadapt/vocabulary.py:427
+msgid "Reanalysis datasets"
+msgstr "Paasissutissat misissoqqissaarlugit iluarsisat"
+
+#: ../../climateadapt/vocabulary.py:428
+msgid "Climate model outputs"
+msgstr "Silap pissusaanut ilusilersuutit inerneri"
+
+#: ../../climateadapt/vocabulary.py:429
+msgid "Impact or sectoral model outputs"
+msgstr "Sunnersuutinik imaluunniit immikkoortunik ilusilersuutit inerneri"
+
+#: ../../climateadapt/vocabulary.py:430
+msgid "Socio-economic or exposure data"
+msgstr "Inuiaqatigiinnut aningaasarsiornermullu imaluunniit sunnerneqarnermut paasissutissat"
+
+#: ../../climateadapt/vocabulary.py:431
+msgid "Other"
+msgstr "Allat"
+
+#: ../../climateadapt/vocabulary.py:447
+msgid "Fully open data"
+msgstr "Paasissutissat tamakkiisumik ammasut"
+
+#: ../../climateadapt/vocabulary.py:448
+msgid "Open data with attribution requirements"
+msgstr "Paasissutissat ammasut sumit pisuunerinik taasineq piumasaqaataavoq"
+
+#: ../../climateadapt/vocabulary.py:449
+msgid "Licensed or commercial data"
+msgstr "Paasissutissat akuersissummik imaluunniit niuerutigineqartut"
+
+#: ../../climateadapt/vocabulary.py:450
+msgid "Restricted"
+msgstr "Killilersugaq"
+
+#: ../../climateadapt/vocabulary.py:451
+msgid "Mixed"
+msgstr "Akuleriit"
+
+#: ../../climateadapt/vocabulary.py:457
+msgid "User guidance / documentation"
+msgstr "Atuisunut ilitsersuut / paasissutissat"
+
+#: ../../climateadapt/vocabulary.py:458
+msgid "Helpdesk / contact support"
+msgstr "Ikiortarfik / ikiorneqarnissamut attaveqarneq"
+
+#: ../../climateadapt/vocabulary.py:459
+msgid "Tutorials / training material"
+msgstr "Ilitsersuutit / ilinniarnermut atortussat"
+
+#: ../../climateadapt/vocabulary.py:460
+msgid "Interactive assistance (chatbot / wizard)"
+msgstr "Ikiorsiissutit attaveqarsinnaasut (chatbot / ilitsersuut)"
+
+#: ../../climateadapt/vocabulary.py:477
+msgid "High uptake"
+msgstr "Atorneqarnera annertooq"
+
+#: ../../climateadapt/vocabulary.py:478
+msgid "Medium uptake"
+msgstr "Atorneqarnera akunnattumik annertussuseqartoq"
+
+#: ../../climateadapt/vocabulary.py:479
+msgid "Low uptake"
+msgstr "Atorneqarnera annikitsoq"
+
+#: ../../climateadapt/vocabulary.py:480
+msgid "Unknown"
+msgstr "Naluneqanngilaq"
+
+#: ../../climateadapt/vocabulary.py:486
+msgid "Public organisation"
+msgstr "Suliffeqarfik pisortanit pigineqartoq"
+
+#: ../../climateadapt/vocabulary.py:487
+msgid "Private organisation"
+msgstr "Suliffeqarfik namminersortoq"
+
+#: ../../climateadapt/vocabulary.py:488
+msgid "Public-private partnership"
+msgstr "Pisortat namminersortullu suleqatigiinnerat"
+
+#: ../../climateadapt/vocabulary.py:528
+msgid "High"
+msgstr "Qaffasittoq"
+
+#: ../../climateadapt/vocabulary.py:529
+msgid "Moderate"
+msgstr "Akunnattumik"
+
+#: ../../climateadapt/vocabulary.py:530
+msgid "Low"
+msgstr "Appasittoq"
+
+#: ../../climateadapt/vocabulary.py:369
+msgid "Just resilience"
+msgstr "Nalinginnaasumik pinngortitamut naleqqussarneq"
+
+#: ../../climateadapt/vocabulary.py:370
+msgid "Cost-benefit ratio"
+msgstr "Aningaasartuutit iluaqutillu imminnut naleqqiunnerat"
+
+#: ../../climateadapt/vocabulary.py:566
+msgid "Heavy precipitation / extreme rainfall"
+msgstr "Sialuk annertooq / sialuk sakkortooq"
+
+#: ../../climateadapt/vocabulary.py:568
+msgid "Coastal flooding / storm surge"
+msgstr "Sinerissami qarsutsinerit / ulersuaq"
+
+#: ../../climateadapt/vocabulary.py:571
+msgid "Drought"
+msgstr "Panernersuaq"
+
+#: ../../climateadapt/vocabulary.py:572
+msgid "Fire / wildfire"
+msgstr "Ikualaneq / orpippassuarni ikuallattoorneq"
+
+#: ../../climateadapt/vocabulary.py:573
+msgid "Wind / storm"
+msgstr "Anori / anorersuaq"
+
+#: ../../climateadapt/vocabulary.py:574
+msgid "Landslide"
+msgstr "Nunap sisoornera"
+
+#: ../../climateadapt/vocabulary.py:575
+msgid "Cold waves / extreme cold"
+msgstr "Nillertorsuit / nillerluinnaq"
+
+#: ../../climateadapt/vocabulary.py:576
+msgid "Snow / Avalanche"
+msgstr "Aput / aputip sisoornera"
+
+#: ../../climateadapt/vocabulary.py:577
+msgid "Non hazard-specific"
+msgstr "Navianartumut aalajangersimasumut tunngassuteqanngitsoq"
 
 #. Default: "Located in"
 #: ../../climateadapt/browser/pt-overrides/plone.app.search.search.pt:541
