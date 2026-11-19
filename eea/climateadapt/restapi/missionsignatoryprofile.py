@@ -306,8 +306,8 @@ def get_data_for_mission_signatory(profile_id, language="en", data=DISCODATA_URL
     """Fetches data from DISCODATA."""
     if language != "en":
         temp = get_governance_data(profile_id, data)
-        if not temp.get('governance',[]):
-            logger.info(f"get_data_for_mission_signatory is empty we reload english version")
+        if not temp.get("governance",[]):
+            logger.info("get_data_for_mission_signatory reload english")
             data = getDiscodataUrlsByVersion(version, "en")
 
     data_sections = [
