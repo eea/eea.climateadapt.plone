@@ -2,6 +2,7 @@ import logging
 
 import json
 import urllib.request
+from urllib.parse import quote, urlsplit
 from Acquisition import aq_parent
 from collections import defaultdict
 from plone.restapi.interfaces import IExpandableElement, ISerializeToJson
@@ -20,9 +21,11 @@ DISCODATA_VERSION = "v2r1"
 DISCODATA_PATH = "MissionOnAdaptation_SignatoryReporting"
 
 
-def getDiscodataUrlsByVersion(version=DISCODATA_VERSION):
+def getDiscodataUrlsByVersion(version=DISCODATA_VERSION, language="en"):
     return {
-        key: url.replace("__DISCODATA_VERSION__", version)
+        key: url.replace("__DISCODATA_VERSION__", version).replace(
+            "__LANGUAGE__", quote(language, safe="")
+        )
         for key, url in DISCODATA_URLS_TEMPLATES.items()
     }
 
@@ -30,63 +33,62 @@ def getDiscodataUrlsByVersion(version=DISCODATA_VERSION):
 DISCODATA_URLS_TEMPLATES = {
     "governance": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Governance_Template_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Governance_Template_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "assessment_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "assessment_factors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Factors_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Factors_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "assessment_risks": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Climate_Risk_Assessments_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Climate_Risk_Assessments_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "assessment_hazards_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Hazards_Sectors_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Assessment_Template_Hazards_Sectors_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "action_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "action_actions": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Actions_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Actions_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "action_hazards": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Climate_Hazards_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Climate_Hazards_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Sectors_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Sectors_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "action_benefits": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Co_Benefits_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Action_Template_Co_Benefits_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "planning_titles": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Adaptation_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Adaptation_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "planning_goals": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Adaptation_Goals_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Adaptation_Goals_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "planning_goals_hazard": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Adaptation_Goals_Climate_Hazards_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Adaptation_Goals_Climate_Hazards_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "planning_climate_action": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Climate_Action_Plan_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Climate_Action_Plan_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "planning_climate_action_sectors": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Climate_Action_Plan_Sectors_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Planning_Template_Climate_Action_Plan_Sectors_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "tabs_labels": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Tabs_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Tabs_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "footer_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Footer_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Footer_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
     "general_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20*%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_General_Text%5D&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_General_Text%5D%20WHERE%20Language%3D%27__LANGUAGE__%27&p=1&nrOfHits=10000",
 }
 
 
 DISCODATA_URLS = getDiscodataUrlsByVersion()
-
 
 # DISCODATA_BETA_URLS = {
 #     key: url.replace(DISCODATA_VERSION, "v2").replace(
@@ -300,8 +302,19 @@ def get_footer_text_data(_, data):
     return {"footer_text": data[0]} if data else {}
 
 
-def get_data_for_mission_signatory(profile_id, data=DISCODATA_URLS):
+def get_data_for_mission_signatory(
+    profile_id,
+    language="en",
+    data=DISCODATA_URLS,
+    version=DISCODATA_VERSION,
+):
     """Fetches data from DISCODATA."""
+    if language != "en":
+        temp = get_governance_data(profile_id, data)
+        if not temp.get("governance", []):
+            logger.info("get_data_for_mission_signatory reload english")
+            data = getDiscodataUrlsByVersion(version, "en")
+
     data_sections = [
         get_governance_data,
         get_planning_data,
@@ -340,9 +353,12 @@ class MissionSignatoryProfile(object):
         if version is None:
             version = DISCODATA_VERSION
 
-        profile_id = self.context.absolute_url().rstrip("/").split("/")[-1]
+        context_url = urlsplit(self.context.absolute_url())
+        path_segments = [segment for segment in context_url.path.split("/") if segment]
+        language = path_segments[0] if path_segments else "en"
+        profile_id = path_segments[-1] if path_segments else ""
         data = get_data_for_mission_signatory(
-            profile_id, getDiscodataUrlsByVersion(version)
+            profile_id, language, getDiscodataUrlsByVersion(version, language), version
         )
         # data = get_data_for_mission_signatory(profile_id, DISCODATA_BETA_URLS)
 
