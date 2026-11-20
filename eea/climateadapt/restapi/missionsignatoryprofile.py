@@ -110,7 +110,7 @@ def fetch_discodata_json(url):
         with urllib.request.urlopen(url) as response:
             return json.loads(response.read().decode()).get("results", [])
     except Exception as e:
-        logger.error(f"[DISCODATA] Failed to fetch or parse JSON from {url}: {e}")
+        logger.error(f"[DISCODATA] Failed to fetch or parse JSON {url}: {e}")
         return []
 
 
@@ -293,7 +293,11 @@ def get_tab_labels_data(_, data):
             first_row = rows[0]
 
             # Preserve order as defined by SQL column order
-            tab_labels = [{"key": key, "value": first_row[key]} for key in first_row if key != "language_priority"]
+            tab_labels = [
+                {"key": key, "value": first_row[key]}
+                for key in first_row
+                if key != "language_priority"
+            ]
 
             return {"tab_labels": tab_labels}
         return {}
