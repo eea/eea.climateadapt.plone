@@ -277,6 +277,8 @@ def get_action_data(profile_id, data):
 
 
 def get_governance_data(profile_id, data):
+    logger.info("get_governance_data DISCODATA")
+    logger.info(data["governance"])
     data = fetch_discodata_json(data["governance"])
     return {"governance": filter_by_profile_id(data, profile_id)}
 
