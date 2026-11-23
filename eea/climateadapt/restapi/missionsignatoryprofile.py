@@ -129,7 +129,10 @@ def filter_by_profile_id(data, profile_id):
 
 def build_map(data, id_keys, value_key):
     result = defaultdict(list)
+    language = data[0].get("Language") if data else None
     for row in data:
+        if row.get("Language") != language:
+            continue
         key = tuple(row.get(k) for k in id_keys)
         result[key].append(row.get(value_key))
     return dict(result)
@@ -137,7 +140,10 @@ def build_map(data, id_keys, value_key):
 
 def build_map_objects(data, id_keys, fields):
     result = defaultdict(list)
+    language = data[0].get("Language") if data else None
     for row in data:
+        if row.get("Language") != language:
+            continue
         key = tuple(row.get(k) for k in id_keys)
         value = {field: row.get(field) for field in fields}
         result[key].append(value)
