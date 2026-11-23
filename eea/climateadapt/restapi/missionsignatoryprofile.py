@@ -86,7 +86,7 @@ DISCODATA_URLS_TEMPLATES = {
     + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Tabs_Text%5D%20WHERE%20Language%20IN%20%28%27__LANGUAGE__%27%2C%27en%27%20%29%20ORDER%20BY%20language_priority%20ASC&p=1&nrOfHits=10000",
     "footer_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20%2A%2C%20CASE%20WHEN%20Language%20%3D%20%27en%27%20THEN%201%20ELSE%200%20END%20AS%20language_priority%20FROM%20%5B"
     + DISCODATA_PATH
-    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Footer_Text%5D%20WHERE%20Language%20IN%20%28%27__LANGUAGE__%27%2C%27en%27%20%29%20AND%20ID%3D__PROFILE_ID__%20ORDER%20BY%20language_priority%20ASC&p=1&nrOfHits=10000",
+    + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_Footer_Text%5D%20WHERE%20Language%20IN%20%28%27__LANGUAGE__%27%2C%27en%27%20%29%20ORDER%20BY%20language_priority%20ASC&p=1&nrOfHits=10000",
     "general_text": "https://discodata.eea.europa.eu/sql?query=SELECT%20TOP%2010000%20%2A%2C%20CASE%20WHEN%20Language%20%3D%20%27en%27%20THEN%201%20ELSE%200%20END%20AS%20language_priority%20FROM%20%5B"
     + DISCODATA_PATH
     + "%5D.%5B__DISCODATA_VERSION__%5D.%5Bv_General_Text%5D%20WHERE%20Language%20IN%20%28%27__LANGUAGE__%27%2C%27en%27%20%29%20AND%20ID%3D__PROFILE_ID__%20ORDER%20BY%20language_priority%20ASC&p=1&nrOfHits=10000",
@@ -115,7 +115,16 @@ def fetch_discodata_json(url):
 
 
 def filter_by_profile_id(data, profile_id):
-    return [row for row in data if str(row.get("Id")) == str(profile_id)]
+    if not data:
+        return []
+
+    language = data[0].get("Language")
+    return [
+        row
+        for row in data
+        if str(row.get("Id")) == str(profile_id)
+        and row.get("Language") == language
+    ]
 
 
 def build_map(data, id_keys, value_key):
